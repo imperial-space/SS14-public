@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/24/2026 08:38:26
+  time: 10/24/2026 08:56:12
   entityCount: 537
 maps:
 - 1
@@ -206,79 +206,6 @@ entities:
     components:
     - type: Transform
       pos: 15.5,20.5
-      parent: 2
-- proto: AlwaysPoweredSmallLight
-  entities:
-  - uid: 49
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 12.5,32.5
-      parent: 2
-  - uid: 249
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 24.5,23.5
-      parent: 2
-  - uid: 294
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 7.5,20.5
-      parent: 2
-  - uid: 304
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 23.5,20.5
-      parent: 2
-  - uid: 315
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 11.5,19.5
-      parent: 2
-  - uid: 320
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 19.5,19.5
-      parent: 2
-  - uid: 354
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 6.5,17.5
-      parent: 2
-  - uid: 387
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 14.5,15.5
-      parent: 2
-  - uid: 390
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 16.5,15.5
-      parent: 2
-  - uid: 406
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 10.5,14.5
-      parent: 2
-  - uid: 429
-    components:
-    - type: Transform
-      pos: 14.5,13.5
-      parent: 2
-  - uid: 442
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 6.5,12.5
       parent: 2
 - proto: AlwaysPoweredWallLight
   entities:
@@ -1008,7 +935,7 @@ entities:
     - type: Transform
       pos: 23.5,18.5
       parent: 2
-- proto: ClothingShoesMartialSandals
+- proto: ClothingShoesSlippers
   entities:
   - uid: 293
     components:
@@ -1119,10 +1046,25 @@ entities:
       parent: 2
 - proto: DiceBag
   entities:
+  - uid: 102
+    components:
+    - type: Transform
+      pos: 21.5,30.5
+      parent: 2
+  - uid: 103
+    components:
+    - type: Transform
+      pos: 21.5,30.5
+      parent: 2
   - uid: 122
     components:
     - type: Transform
       pos: 18.5,29.5
+      parent: 2
+  - uid: 163
+    components:
+    - type: Transform
+      pos: 24.5,27.5
       parent: 2
 - proto: DisposalUnit
   entities:
@@ -1472,23 +1414,6 @@ entities:
     - type: Transform
       pos: 11.5,33.5
       parent: 2
-- proto: ImperialPlayingCardDeck
-  entities:
-  - uid: 102
-    components:
-    - type: Transform
-      pos: 21.5,30.5
-      parent: 2
-  - uid: 103
-    components:
-    - type: Transform
-      pos: 21.5,30.5
-      parent: 2
-  - uid: 163
-    components:
-    - type: Transform
-      pos: 24.5,27.5
-      parent: 2
 - proto: ImperialWandOfNothing
   entities:
   - uid: 343
@@ -1798,6 +1723,103 @@ entities:
     - type: Transform
       pos: 9.5,11.5
       parent: 2
+- proto: PoweredSmallLight
+  entities:
+  - uid: 49
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 12.5,32.5
+      parent: 2
+    - type: ApcPowerReceiver
+      needsPower: False
+  - uid: 249
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 24.5,23.5
+      parent: 2
+    - type: ApcPowerReceiver
+      needsPower: False
+  - uid: 294
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 7.5,20.5
+      parent: 2
+    - type: ApcPowerReceiver
+      needsPower: False
+  - uid: 304
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 23.5,20.5
+      parent: 2
+    - type: ApcPowerReceiver
+      needsPower: False
+  - uid: 315
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 11.5,19.5
+      parent: 2
+    - type: ApcPowerReceiver
+      needsPower: False
+  - uid: 320
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 19.5,19.5
+      parent: 2
+    - type: ApcPowerReceiver
+      needsPower: False
+  - uid: 354
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,17.5
+      parent: 2
+    - type: ApcPowerReceiver
+      needsPower: False
+  - uid: 387
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 14.5,15.5
+      parent: 2
+    - type: ApcPowerReceiver
+      needsPower: False
+  - uid: 390
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 16.5,15.5
+      parent: 2
+    - type: ApcPowerReceiver
+      needsPower: False
+  - uid: 406
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 10.5,14.5
+      parent: 2
+    - type: ApcPowerReceiver
+      needsPower: False
+  - uid: 429
+    components:
+    - type: Transform
+      pos: 14.5,13.5
+      parent: 2
+    - type: ApcPowerReceiver
+      needsPower: False
+  - uid: 442
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,12.5
+      parent: 2
+    - type: ApcPowerReceiver
+      needsPower: False
 - proto: Rack
   entities:
   - uid: 83
