@@ -147,11 +147,7 @@ public sealed class ImperialVoidedSystem : EntitySystem
 
     private bool IsSpace(EntityUid uid)
     {
-        var xform = Transform(uid);
-        if (xform.GridUid == null)
-            return !IsOnPlanet(uid);
-
-        return _turf.GetTileRef(xform.Coordinates) is not { } tile || _turf.IsSpace(tile);
+        return EntityManager.System<ImperialVoidwalkerSystem>().IsSpace(uid);
     }
 
     /// <summary>physiology.brute_mod *= 1.1: стеклянные, хрупкие.</summary>

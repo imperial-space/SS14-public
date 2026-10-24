@@ -139,6 +139,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
     [Dependency] private readonly ISharedPlayerManager _players = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private readonly ITileDefinitionManager _tileDefs = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
@@ -187,6 +188,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
         SubscribeLocalEvent<ImperialVoidwalkerComponent, ExaminedEvent>(OnExamined);
 
         SubscribeLocalEvent<ImperialVoidwalkerComponent, ImperialVoidKidnapDoAfterEvent>(OnKidnapDoAfter);
+        SubscribeLocalEvent<ImperialVoidwalkerComponent, DoAfterAttemptEvent<ImperialVoidKidnapDoAfterEvent>>(OnKidnapAttempt);
         SubscribeLocalEvent<ImperialVoidwalkerComponent, ImperialVoidUnsettleActionEvent>(OnUnsettle);
         SubscribeLocalEvent<ImperialVoidwalkerComponent, ImperialVoidUnsettleDoAfterEvent>(OnUnsettleDoAfter);
         SubscribeLocalEvent<ImperialVoidwalkerComponent, DoAfterAttemptEvent<ImperialVoidUnsettleDoAfterEvent>>(OnUnsettleAttempt);
@@ -235,7 +237,11 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
         if (xform.GridUid == null)
             return xform.MapUid is not { } map || !HasComp<BiomeComponent>(map);
 
-        return _turf.GetTileRef(xform.Coordinates) is not { } tile || _turf.IsSpace(tile);
+        if (_turf.GetTileRef(xform.Coordinates) is not { } tile || _turf.IsSpace(tile))
+            return true;
+
+        // В TG решётка лежит поверх космоса, в SS14 это отдельная плитка.
+        return _tileDefs[tile.Tile.TypeId].ID == "Lattice";
     }
 
     public bool OnNebulaVomit(EntityUid uid)
@@ -324,7 +330,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
 
         if (!IsSpace(victim) && !OnNebulaVomit(victim))
         {
-            _popup.PopupEntity(Loc.GetString("imperial-voidwalker-not-in-space"), victim, ent);
+            _popup.PopupEntity(Loc.GetString("imperial-voidwalker-not-in-space"), victim, ent, PopupType.Medium);
             return false;
         }
 
@@ -337,21 +343,41 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
     private void StartKidnap(Entity<ImperialVoidwalkerComponent> ent, EntityUid victim)
     {
         _stun.TryUpdateParalyzeDuration(victim, ent.Comp.KidnapTime);
+        // В невесомости оба дрейфуют — гасим скорость, а движение не прерывает похищение (только расстояние).
+        _physics.SetLinearVelocity(victim, Vector2.Zero);
+        _physics.SetLinearVelocity(ent, Vector2.Zero);
         ent.Comp.Kidnapping = true;
         var started = _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.KidnapTime, new ImperialVoidKidnapDoAfterEvent(), ent, victim)
         {
-            BreakOnMove = true,
+            BreakOnMove = false,
             BreakOnDamage = false,
             RequireCanInteract = false,
+            DistanceThreshold = 2.5f,
+            AttemptFrequency = AttemptFrequency.EveryTick,
         });
 
         if (!started)
+        {
             ent.Comp.Kidnapping = false;
+            return;
+        }
+
+        _popup.PopupEntity(Loc.GetString("imperial-voidwalker-kidnap-start", ("victim", victim)), ent, ent, PopupType.Medium);
+        _popup.PopupEntity(Loc.GetString("imperial-voidwalker-kidnap-victim"), victim, victim, PopupType.LargeCaution);
+    }
+
+    /// <summary>check_incapacitated(): жертва должна оставаться без сознания.</summary>
+    private void OnKidnapAttempt(Entity<ImperialVoidwalkerComponent> ent, ref DoAfterAttemptEvent<ImperialVoidKidnapDoAfterEvent> args)
+    {
+        if (args.DoAfter.Args.Target is { } victim && (_mobs.IsAlive(victim) || _mobs.IsDead(victim)))
+            args.Cancel();
     }
 
     private void OnKidnapDoAfter(Entity<ImperialVoidwalkerComponent> ent, ref ImperialVoidKidnapDoAfterEvent args)
     {
         ent.Comp.Kidnapping = false;
+        if (args.Cancelled)
+            _popup.PopupEntity(Loc.GetString("imperial-voidwalker-kidnap-failed"), ent, ent);
         if (args.Cancelled || args.Handled || args.Target is not { } victim || _mobs.IsAlive(victim) || _mobs.IsDead(victim))
             return;
 
@@ -368,6 +394,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
         Spawn("ImperialVoidUnsettleWave", Transform(victim).Coordinates);
         ent.Comp.ConversionsRemaining++;
         _void.SendToVoid(victim);
+        _popup.PopupEntity(Loc.GetString("imperial-voidwalker-kidnap-done", ("victim", victim), ("count", ent.Comp.ConversionsRemaining)), ent, ent, PopupType.Medium);
     }
 
     /// <summary>NODEATH: пока действует укус, жертва застревает в критическом состоянии.</summary>
