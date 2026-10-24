@@ -36,7 +36,7 @@
     minPlayers: 10
   - type: ImperialWizardRule
   - type: LoadMapRule
-    mapPath: /Maps/Nonstations/wizardsden.yml
+    mapPath: /Maps/Imperial/Maps/Wizard/wizard_den.yml
   - type: RuleGrids
   - type: AntagLoadProfileRule
     speciesOverride: Human
@@ -47,6 +47,7 @@
     - prefRoles: [ ImperialWizard ]
       max: 1
       playerRatio: 1
+      spawnerPrototype: SpawnPointGhostImperialWizard
       roleLoadout:
       - RoleSurvivalExtended
       briefing:
@@ -156,3 +157,26 @@
       sprite: Objects/Tools/emag.rsi
       state: icon
   - type: HijackShuttleCondition
+
+# Маг, добавленный посреди раунда (динамик, админ), приходит гост-ролью в логово.
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostImperialWizard
+  name: ghost role spawn point
+  suffix: imperial wizard
+  components:
+  - type: GhostRole
+    name: ghost-role-information-wizard-name
+    description: ghost-role-information-wizard-desc
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleImperialWizard
+    raffle:
+      settings: default
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Clothing/Head/Hats/wizardhat.rsi
+      state: icon

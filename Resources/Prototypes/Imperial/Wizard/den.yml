@@ -1,0 +1,64 @@
+# Логово мага TG (_maps/templates/lazy_templates/wizard_den.dmm).
+
+# /obj/structure/mirror/magic
+- type: entity
+  parent: Mirror
+  id: ImperialWizardMagicMirror
+  name: волшебное зеркало
+  description: Свет мой, зеркальце! скажи, да всю правду доложи...
+  components:
+  - type: ImperialWizardMagicMirror
+
+# /obj/machinery/computer/camera_advanced
+- type: entity
+  parent: BaseComputer
+  id: ImperialWizardScryingConsole
+  name: консоль наблюдения
+  description: Магически усиленная консоль, позволяющая свободно разглядывать станцию издалека.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: cameras
+    - map: ["computerLayerKeys"]
+      state: tech_key
+  - type: Transform
+    anchored: true
+  - type: ImperialWizardScryingConsole
+
+# Глаз консоли наблюдения.
+- type: entity
+  parent: Incorporeal
+  id: ImperialWizardScryingEye
+  name: око мага
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InputMover
+  - type: Eye
+    drawFov: false
+  - type: ContentEye
+    maxZoom: 1.5,1.5
+  - type: Visibility
+    layer: 2
+  - type: Sprite
+    sprite: Imperial/Wizard/spells.rsi
+    state: grand_ritual
+    shader: unshaded
+    color: "#a03bff88"
+
+- type: entity
+  id: ImperialActionScryingExit
+  name: Прекратить наблюдение
+  description: Вернуть взгляд в своё тело.
+  components:
+  - type: Action
+    icon:
+      sprite: Interface/Actions/actions_ai.rsi
+      state: ai_core
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ImperialScryingExitActionEvent

@@ -117,3 +117,6 @@ public sealed partial class ImperialBloodCrawlExitDoAfterEvent : Content.Shared.
 /// <summary>Одна из трёх стадий пожирания жертвы в крови.</summary>
 [Serializable, NetSerializable]
 public sealed partial class ImperialDemonConsumeDoAfterEvent : Content.Shared.DoAfter.SimpleDoAfterEvent;
+
+/// <summary>Выйти из наблюдения через консоль логова (camera_advanced).</summary>
+public sealed partial class ImperialScryingExitActionEvent : InstantActionEvent;

@@ -143,3 +143,8 @@ imperial-spellbook-fullrandom-desc = Полная рандомизация да�
 
 imperial-spellbook-teleport-name = Телепорт
 imperial-spellbook-teleport-desc = Телепортирует вас в выбранную вами область.
+
+imperial-wizard-mirror-rename = Сменить имя
+imperial-wizard-mirror-rename-prompt = Как вас теперь будут звать?
+imperial-wizard-mirror-renamed = Отныне вас зовут { $name }.
+imperial-wizard-scrying-no-station = Консоль не видит ни одной станции.
