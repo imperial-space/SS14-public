@@ -375,6 +375,9 @@ public sealed partial class ImperialWizardSpellsSystem
                 _stun.TryUpdateParalyzeDuration(husk, TimeSpan.FromDays(1));
             }
 
+            // /datum/species/spirit/ghost: полупрозрачный летающий дух.
+            EnsureComp<ImperialTransparentVisualsComponent>(caster);
+            EnsureComp<Content.Shared.Movement.Components.MovementIgnoreGravityComponent>(caster);
             _popup.PopupEntity(Loc.GetString("imperial-spell-ghost-done"), caster, caster, PopupType.Large);
         }
         else

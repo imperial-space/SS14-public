@@ -10,6 +10,7 @@
   refundable: false
   requiresGarb: false
   special: Perk
+  iconEntity: ClothingHandsGlovesColorBlack
 
 - type: imperialSpellbookEntry
   id: ImperialSpellbookPerkWormborn
@@ -19,6 +20,7 @@
   refundable: false
   requiresGarb: false
   special: Perk
+  iconEntity: ImperialWizardWorm
   noCoexistence: [ ImperialSpellbookLichdom ]
 
 - type: imperialSpellbookEntry
@@ -29,6 +31,7 @@
   refundable: false
   requiresGarb: false
   special: Perk
+  iconEntity: ImperialTeleportScroll
 
 - type: imperialSpellbookEntry
   id: ImperialSpellbookPerkSpellLottery
@@ -38,6 +41,7 @@
   refundable: false
   requiresGarb: false
   special: Perk
+  iconEntity: d20Dice
 
 - type: imperialSpellbookEntry
   id: ImperialSpellbookPerkGamble
@@ -47,6 +51,7 @@
   refundable: false
   requiresGarb: false
   special: Gamble
+  iconEntity: DiceBag
 
 - type: imperialSpellbookEntry
   id: ImperialSpellbookPerkHeartEater
@@ -56,6 +61,7 @@
   refundable: false
   requiresGarb: false
   special: Perk
+  iconEntity: ImperialRippedHeart
 
 - type: imperialSpellbookEntry
   id: ImperialSpellbookPerkSlimeFriends
@@ -65,6 +71,7 @@
   refundable: false
   requiresGarb: false
   special: Perk
+  iconEntity: MobAdultSlimesBlue
 
 - type: imperialSpellbookEntry
   id: ImperialSpellbookPerkTransparence
@@ -74,6 +81,7 @@
   refundable: false
   requiresGarb: false
   special: Perk
+  iconEntity: Ectoplasm
 
 - type: imperialSpellbookEntry
   id: ImperialSpellbookPerkMagnetism
@@ -83,6 +91,7 @@
   refundable: false
   requiresGarb: false
   special: Perk
+  iconEntity: ClothingShoesBootsMag
 
 # ─── Ритуалы ───
 
@@ -96,6 +105,7 @@
   refundable: false
   buyWord: Cast
   special: SummonGhosts
+  iconEntity: Ectoplasm
 
 - type: imperialSpellbookEntry
   id: ImperialSpellbookSummonGuns
@@ -106,6 +116,7 @@
   refundable: false
   buyWord: Cast
   special: SummonGuns
+  iconEntity: WeaponRevolverDeckard
 
 - type: imperialSpellbookEntry
   id: ImperialSpellbookSummonMagic
@@ -116,6 +127,7 @@
   refundable: false
   buyWord: Cast
   special: SummonMagic
+  iconEntity: ImperialStaffChaos
 
 - type: imperialSpellbookEntry
   id: ImperialSpellbookSummonEvents
@@ -126,6 +138,7 @@
   refundable: false
   buyWord: Cast
   special: SummonEvents
+  iconEntity: ImperialSpellbook
 
 - type: imperialSpellbookEntry
   id: ImperialSpellbookCurseOfMadness
@@ -137,6 +150,7 @@
   refundable: false
   buyWord: Cast
   special: CurseOfMadness
+  iconEntity: Brain
 
 - type: imperialSpellbookEntry
   id: ImperialSpellbookMassTeaching
@@ -148,6 +162,7 @@
   refundable: false
   buyWord: Cast
   special: MassTeaching
+  iconEntity: BookRandom
 
 # ─── Испытания (купить нельзя) ───
 
@@ -159,6 +174,7 @@
   refundable: false
   buyWord: Accept
   special: Challenge
+  iconEntity: ClothingHeadHatWizard
 
 - type: imperialSpellbookEntry
   id: ImperialSpellbookChallengeAntiwizard
@@ -168,6 +184,7 @@
   refundable: false
   buyWord: Accept
   special: Challenge
+  iconEntity: WeaponPistolMk58
 
 # ─── Сущности перков ───
 

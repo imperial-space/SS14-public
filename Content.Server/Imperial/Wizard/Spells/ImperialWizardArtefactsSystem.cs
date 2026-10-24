@@ -208,7 +208,7 @@ public sealed class ImperialWizardArtefactsSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("imperial-scrying-fade"), args.User, args.User);
     }
 
-    /// <summary>attack_self(): user.ghostize(TRUE) — выйти духом, тело остаётся.</summary>
+    /// <summary>attack_self(): user.ghostize(TRUE) — выйти духом, тело остаётся, вернуться можно.</summary>
     private void OnOrbUse(Entity<ImperialScryingOrbComponent> ent, ref UseInHandEvent args)
     {
         if (args.Handled || !_mind.TryGetMind(args.User, out var mindId, out var mind))
@@ -216,7 +216,7 @@ public sealed class ImperialWizardArtefactsSystem : EntitySystem
 
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString("imperial-scrying-stare", ("user", args.User)), args.User, Content.Shared.Popups.PopupType.Medium);
-        _ghost.OnGhostAttempt(mindId, true, mind: mind);
+        _ghost.SpawnGhost((mindId, mind), Transform(args.User).Coordinates, canReturn: true);
     }
 
     #endregion
@@ -621,6 +621,30 @@ public sealed class ImperialWizardArtefactsSystem : EntitySystem
         base.Update(frameTime);
         UpdateWhistles();
         UpdateVendors();
+
+        // Рентген держится, пока шар в руках, даже если поле зрения вернул кто-то другой.
+        var orbs = EntityQueryEnumerator<ImperialScryingOrbComponent>();
+        while (orbs.MoveNext(out _, out var orb))
+        {
+            if (orb.Holder is { } holder)
+                _eye.SetDrawFov(holder, false);
+        }
+    }
+
+    /// <summary>TRAIT_XRAY_VISION: шар в руках или купленный шар.</summary>
+    public bool HasXray(EntityUid uid)
+    {
+        if (HasComp<ImperialPermanentXrayComponent>(uid))
+            return true;
+
+        var orbs = EntityQueryEnumerator<ImperialScryingOrbComponent>();
+        while (orbs.MoveNext(out _, out var orb))
+        {
+            if (orb.Holder == uid)
+                return true;
+        }
+
+        return false;
     }
 }
 

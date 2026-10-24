@@ -1,7 +1,9 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client.Imperial.UI;
+using Content.Shared.Actions.Components;
 using Content.Shared.Imperial.Wizard;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -149,6 +151,8 @@ public sealed class ImperialSpellbookWindow : DefaultWindow
     }
 
     private readonly IPrototypeManager _proto;
+    private readonly IComponentFactory _factory;
+    private readonly SpriteSystem _sprite;
     private readonly BoxContainer _pages = Tgui.HBox(8);
     private readonly LineEdit _search = new() { MinWidth = 150 };
     private readonly Control _points = new() { HorizontalExpand = true };
@@ -159,6 +163,8 @@ public sealed class ImperialSpellbookWindow : DefaultWindow
     public ImperialSpellbookWindow()
     {
         _proto = IoCManager.Resolve<IPrototypeManager>();
+        _factory = IoCManager.Resolve<IComponentFactory>();
+        _sprite = IoCManager.Resolve<IEntityManager>().System<SpriteSystem>();
         Title = Loc.GetString("imperial-spellbook-title");
         MinSize = SetSize = new Vector2(950, 560);
 
@@ -425,7 +431,7 @@ public sealed class ImperialSpellbookWindow : DefaultWindow
             var buttons = Tgui.VBox(4, buy, refund);
             var desc = Tgui.Paragraph(Loc.GetString(entry.Desc));
             desc.HorizontalExpand = true;
-            var body = Tgui.HBox(8, desc, buttons);
+            var body = Tgui.HBox(8, EntryIcon(entry), desc, buttons);
             box.AddChild(Tgui.MakeSection(entryState.Name, null, body, Theme));
         }
 
@@ -433,6 +439,49 @@ public sealed class ImperialSpellbookWindow : DefaultWindow
             box.AddChild(Tgui.Text(Loc.GetString("imperial-spellbook-empty"), Theme.Label, align: HAlignment.Center));
 
         return box;
+    }
+
+    /// <summary>Иконка записи: значок заклинания, первый предмет или iconEntity.</summary>
+    private Control EntryIcon(ImperialSpellbookEntryPrototype entry)
+    {
+        var frame = new PanelContainer
+        {
+            MinSize = new Vector2(52, 52),
+            MaxSize = new Vector2(52, 52),
+            VerticalAlignment = VAlignment.Top,
+            PanelOverride = new StyleBoxFlat
+            {
+                BackgroundColor = Theme.Primary.WithAlpha(0.35f),
+                BorderColor = Theme.SectionLine,
+                BorderThickness = new Thickness(1),
+            },
+        };
+
+        if (entry.Spell is { } spell && _proto.TryIndex(spell, out var spellProto)
+            && spellProto.TryGetComponent<ActionComponent>(out var action, _factory) && action.Icon is { } icon)
+        {
+            frame.AddChild(new TextureRect
+            {
+                Texture = _sprite.Frame0(icon),
+                TextureScale = new Vector2(1.5f, 1.5f),
+                Stretch = TextureRect.StretchMode.KeepCentered,
+            });
+            return frame;
+        }
+
+        var entity = entry.Items.Count > 0 ? entry.Items[0] : entry.IconEntity;
+        if (entity != null)
+        {
+            var view = new EntityPrototypeView { Scale = new Vector2(1.5f, 1.5f), HorizontalAlignment = HAlignment.Center, VerticalAlignment = VAlignment.Center };
+            view.SetPrototype(entity);
+            frame.AddChild(view);
+            return frame;
+        }
+
+        var glyph = WizardIcons.Icon("magic", 24, Theme.Label);
+        glyph.HorizontalAlignment = HAlignment.Center;
+        frame.AddChild(glyph);
+        return frame;
     }
 
     /// <summary>Loadouts.tsx: четыре одобренных набора.</summary>
@@ -452,9 +501,12 @@ public sealed class ImperialSpellbookWindow : DefaultWindow
             return section;
         }
 
+        // Страница узкая — наборы друг под другом, иначе правый сжимается в столбик.
         return Tgui.VBox(6,
-            Tgui.HBox(6, Single("loadout_classic", "fire", Color.FromHex("#a74fff")), Single("loadout_hammer", "hammer", Tgui.Green)),
-            Tgui.HBox(6, Single("loadout_army", "pastafarianism", Tgui.Yellow), Single("loadout_tap", "skull", Color.White)));
+            Single("loadout_classic", "fire", Color.FromHex("#a74fff")),
+            Single("loadout_hammer", "hammer", Tgui.Green),
+            Single("loadout_army", "pastafarianism", Tgui.Yellow),
+            Single("loadout_tap", "skull", Color.White));
     }
 
     /// <summary>Randomize.tsx.</summary>

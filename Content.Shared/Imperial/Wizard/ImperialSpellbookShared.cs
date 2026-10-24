@@ -64,6 +64,10 @@ public sealed partial class ImperialSpellbookEntryPrototype : IPrototype
     [DataField]
     public List<EntProtoId> Items = new();
 
+    /// <summary>Иконка в книге для записей без заклинания и предметов (перки, ритуалы).</summary>
+    [DataField]
+    public EntProtoId? IconEntity;
+
     /// <summary>Особая покупка (призывы, перки, испытания) — обрабатывается системой по этому ключу.</summary>
     [DataField]
     public string? Special;

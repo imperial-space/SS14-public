@@ -56,6 +56,7 @@ public sealed class ImperialWizardDenSystem : EntitySystem
     [Dependency] private readonly SharedMoverController _mover = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ImperialWizardTeleportSystem _teleport = default!;
+    [Dependency] private readonly Spells.ImperialWizardArtefactsSystem _artefacts = default!;
 
     private const int MaxNameLength = 32;
 
@@ -168,7 +169,7 @@ public sealed class ImperialWizardDenSystem : EntitySystem
 
         RemComp<RelayInputMoverComponent>(ent);
         _eye.SetTarget(ent, null);
-        _eye.SetDrawFov(ent, true);
+        _eye.SetDrawFov(ent, !_artefacts.HasXray(ent));
         _actions.RemoveAction(ent.Owner, ent.Comp.Action);
         QueueDel(ent.Comp.Eye);
     }
