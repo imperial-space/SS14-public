@@ -187,6 +187,10 @@ public sealed partial class ImperialQuirkSocialAnxietyComponent : Component
     public TimeSpan SilencedUntil;
 }
 
+/// <summary>TRAIT_GRABWEAKNESS: из захвата вырваться труднее (стадия +1). Проверяется в захватах боевых искусств по имени компонента.</summary>
+[RegisterComponent]
+public sealed partial class ImperialQuirkPushoverComponent : Component;
+
 /// <summary>TRAIT_SOFTSPOKEN: голос слышно только рядом.</summary>
 [RegisterComponent]
 public sealed partial class ImperialQuirkSoftSpokenComponent : Component

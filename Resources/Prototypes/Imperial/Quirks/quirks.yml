@@ -455,6 +455,18 @@
   - type: ImperialQuirkPoorAim
 
 - type: trait
+  id: ImperialQuirkPushover
+  name: imperial-quirk-pushover-name
+  description: imperial-quirk-pushover-desc
+  category: ImperialQuirks
+  cost: -8
+
+- type: imperialQuirk
+  id: ImperialQuirkPushover
+  components:
+  - type: ImperialQuirkPushover
+
+- type: trait
   id: ImperialQuirkScarredEye
   name: imperial-quirk-scarred-eye-name
   description: imperial-quirk-scarred-eye-desc
