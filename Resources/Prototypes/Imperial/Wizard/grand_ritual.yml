@@ -1,0 +1,299 @@
+# Великий ритуал TG (antagonists/wizard/grand_ritual).
+
+# /datum/action/cooldown/grand_ritual
+- type: entity
+  id: ImperialActionGrandRitual
+  name: Великий ритуал
+  description: Даёт направление к узлу силы, а затем рисует там руну для завершения Великого ритуала. С каждым разом ритуал занимает всё больше времени.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Wizard/spells.rsi
+      state: grand_ritual
+    checkCanInteract: true
+  - type: InstantAction
+    event: !type:ImperialGrandRitualActionEvent
+
+# /obj/effect/grand_rune
+- type: entity
+  id: ImperialGrandRune
+  name: великая руна
+  description: Плавный круг из фигур и рун выгравирован на полу, линии извиваются и движутся на ваших глазах.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Imperial/Wizard/grand_rune.rsi
+    state: rune
+    drawdepth: FloorObjects
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.4,-1.4,1.4,1.4"
+        hard: false
+        mask:
+        - ItemMask
+  - type: ImperialGrandRune
+
+- type: entity
+  parent: ImperialGrandRune
+  id: ImperialGrandRuneFinale
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ImperialGrandRune
+    finale: true
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#de3aff"
+
+# /obj/effect/grand_rune/finale/cheesy
+- type: entity
+  parent: ImperialGrandRune
+  id: ImperialGrandRuneCheesy
+  name: особенно великая руна
+  description: Ритуальный круг безумных форм и очертаний, само присутствие которого оскорбляет разум.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: cheese
+  - type: ImperialGrandRune
+    finale: true
+    cheesy: true
+    statePrefix: cheese
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#ffd94a"
+
+# /obj/effect/temp_visual/wizard_rune/*
+- type: entity
+  id: ImperialGrandRuneEffectBase
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/grand_rune.rsi
+    drawdepth: FloorObjects
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  parent: ImperialGrandRuneEffectBase
+  id: ImperialGrandRuneDrawing
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: rune_draw
+  - type: TimedDespawn
+    lifetime: 4.2
+
+- type: entity
+  parent: ImperialGrandRuneDrawing
+  id: ImperialGrandRuneDrawingCheese
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: cheese_draw
+
+- type: entity
+  parent: ImperialGrandRuneEffectBase
+  id: ImperialGrandRuneFail
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: rune_fail
+  - type: TimedDespawn
+    lifetime: 0.5
+
+- type: entity
+  parent: ImperialGrandRuneFail
+  id: ImperialGrandRuneFailCheese
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: cheese_fail
+
+- type: entity
+  parent: ImperialGrandRuneEffectBase
+  id: ImperialGrandRuneFlash
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: rune_flash
+    drawdepth: Objects
+  - type: TimedDespawn
+    lifetime: 0.9
+
+- type: entity
+  parent: ImperialGrandRuneFlash
+  id: ImperialGrandRuneFlashCheese
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: cheese_flash
+
+- type: entity
+  parent: ImperialGrandRuneEffectBase
+  id: ImperialGrandRuneActivate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: rune_activate
+    drawdepth: Objects
+  - type: TimedDespawn
+    lifetime: 0.6
+
+- type: entity
+  parent: ImperialGrandRuneActivate
+  id: ImperialGrandRuneActivateCheese
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: cheese_activate
+
+# /obj/effect/decal/cleanable/grand_remains
+- type: entity
+  id: ImperialGrandRuneRemains
+  name: круг из пепла
+  description: Похоже, кто-то рисовал пеплом на полу странные фигуры.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Imperial/Wizard/grand_rune.rsi
+    state: rune_burned
+    drawdepth: FloorObjects
+  - type: Clickable
+
+- type: entity
+  parent: ImperialGrandRuneRemains
+  id: ImperialGrandRuneRemainsCheese
+  name: следы сырной копоти
+  description: Причудливые фигуры на полу оказываются сырной коркой, сгоревшей до чёрной смолы.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: cheese_burned
+
+# /obj/effect/temp_visual/delayed_mob_portal
+- type: entity
+  id: ImperialDelayedMobPortal
+  name: разлом
+  description: Из него что-то вот-вот появится.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/effects.rsi
+    state: rift
+    drawdepth: Effects
+    shader: unshaded
+  - type: PointLight
+    radius: 1.5
+    energy: 1
+    color: "#9b4dff"
+  - type: TimedDespawn
+    lifetime: 15
+
+# /obj/effect/temp_visual/teleport_abductor
+- type: entity
+  id: ImperialGrandRitualTeleportMark
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/effects.rsi
+    state: rift
+    drawdepth: Effects
+    shader: unshaded
+  - type: TimedDespawn
+    lifetime: 9
+
+# /obj/effect/temp_visual/immortality_pulse
+- type: entity
+  id: ImperialImmortalityPulse
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#98fb98"
+  - type: TimedDespawn
+    lifetime: 1.5
+
+# /obj/effect/spectre_of_resurrection
+- type: entity
+  id: ImperialSpectreOfResurrection
+  name: призрак
+  description: Пугающее видение, медленно обретающее плоть.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Mobs/Ghosts/ghost_human.rsi
+    state: animated
+    color: "#98fb98aa"
+    drawdepth: Mobs
+  - type: Clickable
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#98fb98"
+  - type: ImperialSpectreOfResurrection
+
+# /obj/item/gun/magic/staff/chaos/true_wabbajack
+- type: entity
+  parent: ImperialStaffChaos
+  id: ImperialTrueWabbajack
+  name: Вабаджак
+  description: Если бы ваши глаза не обманывали вас (а они обманывают), вы бы сказали, что этот посох вырезан из окаменевшего сыра.
+  components:
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBoltChaos
+    capacity: 20
+    count: 20
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+
+# Цели Великого ритуала.
+- type: entity
+  parent: BaseObjective
+  id: ImperialWizardRitualObjective
+  name: Завершите Великий ритуал не менее семи раз.
+  description: Вы переполнены силой, и станция это запомнит.
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard
+    difficulty: 1
+    icon:
+      sprite: Imperial/Wizard/spells.rsi
+      state: grand_ritual
+  - type: ImperialWizardRitualCondition
+
+# /datum/antagonist/wizard_prank_vendetta
+- type: entity
+  parent: BaseObjective
+  id: ImperialWizardVendettaObjective
+  name: Убейте мага
+  description: Это он во всём виноват.
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard-vendetta
+    difficulty: 1
+    unique: false
+    icon:
+      sprite: Clothing/Head/Hats/wizardhat.rsi
+      state: icon
+  - type: TargetObjective
+    title: objective-condition-kill-person-title
+  - type: KillPersonCondition
+    requireDead: true

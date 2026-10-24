@@ -1,0 +1,182 @@
+# Маг Федерации волшебников TG (code/modules/antagonists/wizard/wizard.dm).
+
+- type: antag
+  id: ImperialWizard
+  name: roles-antag-imperial-wizard-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-imperial-wizard-objective
+  guides: [ ]
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleImperialWizard
+  components:
+  - type: MindRole
+    antagPrototype: ImperialWizard
+    exclusiveAntag: true
+    roleType: SoloAntagonist
+  - type: ImperialWizardRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleImperialWizardApprentice
+  components:
+  - type: MindRole
+    antagPrototype: ImperialWizard
+    roleType: TeamAntagonist
+  - type: ImperialWizardApprenticeRole
+
+# Маг прилетает из своего логова в начале раунда.
+- type: entity
+  parent: BaseGameRule
+  id: ImperialWizard
+  components:
+  - type: GameRule
+    minPlayers: 10
+  - type: ImperialWizardRule
+  - type: LoadMapRule
+    mapPath: /Maps/Imperial/Maps/Wizard/wizard_den.yml
+  - type: RuleGrids
+  - type: AntagLoadProfileRule
+    speciesOverride: Human
+  - type: AntagSelection
+    agentName: imperial-wizard-round-end-agent-name
+    selectionTime: PrePlayerSpawn
+    definitions:
+    - prefRoles: [ ImperialWizard ]
+      max: 1
+      playerRatio: 1
+      spawnerPrototype: SpawnPointGhostImperialWizard
+      roleLoadout:
+      - RoleSurvivalExtended
+      briefing:
+        text: imperial-wizard-briefing
+        color: Turquoise
+        sound: /Audio/Imperial/Wizard/castsummon.ogg
+      startingGear: ImperialWizardGear
+      mindRoles:
+      - MindRoleImperialWizard
+  - type: DynamicRuleCost
+    cost: 150
+
+# /datum/outfit/wizard.
+- type: startingGear
+  id: ImperialWizardGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorPurple
+    outerClothing: ClothingOuterWizard
+    head: ClothingHeadHatWizard
+    shoes: ClothingShoesWizard
+    back: ClothingBackpack
+    ears: ClothingHeadsetAltWizard
+    pocket2: ImperialTeleportScroll
+  inhand:
+  - ImperialWizardStaff
+  storage:
+    back:
+    - ImperialSpellbook
+
+# /datum/outfit/wizard/apprentice.
+- type: startingGear
+  id: ImperialWizardApprenticeGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorPurple
+    outerClothing: ClothingOuterWizard
+    head: ClothingHeadHatWizard
+    shoes: ClothingShoesWizard
+    back: ClothingBackpack
+    ears: ClothingHeadsetAltWizard
+    pocket2: ImperialTeleportScrollApprentice
+
+# ─── Цели (create_objectives) ───
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseImperialWizardObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard
+  - type: RoleRequirement
+    roles:
+    - ImperialWizardRole
+
+- type: entity
+  parent: [ BaseImperialWizardObjective, BaseKillObjective ]
+  id: ImperialWizardKillObjective
+  description: Убедитесь, что цель не доберётся до станции ЦентКома живой.
+  components:
+  - type: Objective
+    difficulty: 1.75
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-kill-person-title
+  - type: PickRandomPerson
+    filters:
+    - !type:TargetObjectiveMindFilter
+      blacklist:
+        components:
+        - KillPersonCondition
+  - type: KillPersonCondition
+    requireDead: true
+
+- type: entity
+  parent: [ BaseImperialWizardObjective, BaseLivingObjective ]
+  id: ImperialWizardEscapeObjective
+  name: Улететь на шаттле живым и свободным.
+  description: Покиньте станцию на эвакуационном шаттле и не попадитесь.
+  components:
+  - type: Objective
+    difficulty: 1.3
+    icon:
+      sprite: Structures/Furniture/chairs.rsi
+      state: shuttle
+  - type: EscapeShuttleCondition
+
+- type: entity
+  parent: [ BaseImperialWizardObjective, BaseSurviveObjective ]
+  id: ImperialWizardSurviveObjective
+  name: Выжить
+  description: Федерация волшебников хочет, чтобы вы остались в живых.
+  components:
+  - type: Objective
+    difficulty: 0.5
+    icon:
+      sprite: Clothing/Head/Hats/wizardhat.rsi
+      state: icon
+
+- type: entity
+  parent: [ BaseImperialWizardObjective, BaseLivingObjective ]
+  id: ImperialWizardHijackObjective
+  name: Угнать эвакуационный шаттл
+  description: Улетите на шаттле, на котором не осталось лояльного экипажа Nanotrasen. Используйте ЛЮБЫЕ доступные средства.
+  components:
+  - type: Objective
+    difficulty: 5
+    icon:
+      sprite: Objects/Tools/emag.rsi
+      state: icon
+  - type: HijackShuttleCondition
+
+# Маг, добавленный посреди раунда (динамик, админ), приходит гост-ролью в логово.
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostImperialWizard
+  name: ghost role spawn point
+  suffix: imperial wizard
+  components:
+  - type: GhostRole
+    name: ghost-role-information-wizard-name
+    description: ghost-role-information-wizard-desc
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleImperialWizard
+    raffle:
+      settings: default
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Clothing/Head/Hats/wizardhat.rsi
+      state: icon

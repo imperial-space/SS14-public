@@ -1,0 +1,157 @@
+# Проклятые маски животных (clothing/masks/animal_masks.dm, GLOB.cursed_animal_masks).
+
+- type: entity
+  abstract: true
+  parent: [ ClothingMaskBase, BaseMagicalContraband ]
+  id: BaseImperialCursedMask
+  components:
+  - type: Unremoveable
+    deleteOnDrop: false
+  - type: ImperialCursedMask
+
+- type: entity
+  parent: BaseImperialCursedMask
+  id: ImperialCursedMaskPig
+  name: свиное лицо
+  description: Похоже на маску свиньи, но если присмотреться — она срослась с лицом!
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/Masks/pig.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/Masks/pig.rsi
+  - type: ImperialAnimalMask
+    sounds: [ "Хрю!", "Иииииии!", "Хрю-хрю!" ]
+
+- type: entity
+  parent: BaseImperialCursedMask
+  id: ImperialCursedMaskFrog
+  name: лягушачье лицо
+  description: Похоже на маску лягушки, но если присмотреться — она срослась с лицом!
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/Masks/frog.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/Masks/frog.rsi
+  - type: ImperialAnimalMask
+    sounds: [ "Ква!!", "Квааа!!", "КВААА!!", "КВААААА!!" ]
+    altSounds: [ "ХУУУУУ!!", "КУРИМ!!", "Слезьте с меня!!", "КТО-НИБУДЬ, ОСТАНОВИТЕ МЕНЯ!!", "Мне плохо, мужик." ]
+    altProbability: 0.05
+
+- type: entity
+  parent: BaseImperialCursedMask
+  id: ImperialCursedMaskCow
+  name: коровье лицо
+  description: Похоже на маску коровы, но если присмотреться — она срослась с лицом!
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/Masks/cowmask.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/Masks/cowmask.rsi
+  - type: ImperialAnimalMask
+    sounds: [ "Мууууууу!", "Му!", "Мууу!" ]
+
+- type: entity
+  parent: BaseImperialCursedMask
+  id: ImperialCursedMaskHorse
+  name: лошадиное лицо
+  description: Похоже на маску лошади, но если присмотреться — она срослась с лицом!
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/Masks/horsehead.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/Masks/horsehead.rsi
+  - type: ImperialAnimalMask
+    sounds: [ "ИИИИГО-ГО!", "ИИИГОГОГО!", "ИГО-ГО!", "ФРРРРР!", "ФРРР!" ]
+
+- type: entity
+  parent: BaseImperialCursedMask
+  id: ImperialCursedMaskRat
+  name: крысиное лицо
+  description: Похоже на маску крысы, но если присмотреться — она срослась с лицом!
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/Masks/rat.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/Masks/rat.rsi
+  - type: ImperialAnimalMask
+    sounds: [ "Скри!", "СКРИИИ!", "Пи-пи!" ]
+
+- type: entity
+  parent: BaseImperialCursedMask
+  id: ImperialCursedMaskFox
+  name: лисье лицо
+  description: Похоже на маску лисы, но если присмотреться — она срослась с лицом!
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/Masks/fox.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/Masks/fox.rsi
+  - type: ImperialAnimalMask
+    sounds: [ "Ак-ак!", "Ак-ак-ак-акавууу!", "Тяв!", "АУУУ!", "ТЧОФФ!" ]
+
+- type: entity
+  parent: BaseImperialCursedMask
+  id: ImperialCursedMaskBee
+  name: пчелиное лицо
+  description: Похоже на маску пчелы, но если присмотреться — она срослась с лицом!
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/Masks/bee.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/Masks/bee.rsi
+  - type: ImperialAnimalMask
+    sounds: [ "БЗЗТ!", "ЖУЖЖЖ!", "Б-жжжж!", "Бзззззззттт!" ]
+
+- type: entity
+  parent: BaseImperialCursedMask
+  id: ImperialCursedMaskBear
+  name: медвежье лицо
+  description: Похоже на маску медведя, но если присмотреться — она срослась с лицом!
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/Masks/bear.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/Masks/bear.rsi
+  - type: ImperialAnimalMask
+    sounds: [ "РРАУР!", "Рраур!", "ГРР!", "Ррр!" ]
+
+- type: entity
+  parent: BaseImperialCursedMask
+  id: ImperialCursedMaskBat
+  name: мышиное лицо
+  description: Похоже на маску летучей мыши, но если присмотреться — она срослась с лицом!
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/Masks/bat.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/Masks/bat.rsi
+  - type: ImperialAnimalMask
+    sounds: [ "Скри!", "Пи-пи!" ]
+
+- type: entity
+  parent: BaseImperialCursedMask
+  id: ImperialCursedMaskRaven
+  name: вороново лицо
+  description: Похоже на маску ворона, но если присмотреться — она срослась с лицом!
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/Masks/raven.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/Masks/raven.rsi
+  - type: ImperialAnimalMask
+    sounds: [ "КАР!", "К-КАРР!", "Кра!" ]
+    altSounds: [ "Никогда..." ]
+    altProbability: 0.01
+
+- type: entity
+  parent: BaseImperialCursedMask
+  id: ImperialCursedMaskJackal
+  name: шакалье лицо
+  description: Похоже на маску шакала, но если присмотреться — она срослась с лицом!
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/Masks/jackal.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/Masks/jackal.rsi
+  - type: ImperialAnimalMask
+    sounds: [ "ТЯВ!", "Гав!", "Рав!", "АУУУУУ!" ]

@@ -1,0 +1,305 @@
+# Перки, ритуалы и испытания книги TG (spellbook_entries/perks.dm, summons.dm, challenges.dm).
+
+# ─── Перки ───
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookPerkFourHands
+  name: imperial-spellbook-perk-four-hands-name
+  desc: imperial-spellbook-perk-four-hands-desc
+  category: Perks
+  refundable: false
+  requiresGarb: false
+  special: Perk
+  iconEntity: ClothingHandsGlovesColorBlack
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookPerkWormborn
+  name: imperial-spellbook-perk-wormborn-name
+  desc: imperial-spellbook-perk-wormborn-desc
+  category: Perks
+  refundable: false
+  requiresGarb: false
+  special: Perk
+  iconEntity: ImperialWizardWorm
+  noCoexistence: [ ImperialSpellbookLichdom ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookPerkDejavu
+  name: imperial-spellbook-perk-dejavu-name
+  desc: imperial-spellbook-perk-dejavu-desc
+  category: Perks
+  refundable: false
+  requiresGarb: false
+  special: Perk
+  iconEntity: ImperialTeleportScroll
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookPerkSpellLottery
+  name: imperial-spellbook-perk-spell-lottery-name
+  desc: imperial-spellbook-perk-spell-lottery-desc
+  category: Perks
+  refundable: false
+  requiresGarb: false
+  special: Perk
+  iconEntity: d20Dice
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookPerkGamble
+  name: imperial-spellbook-perk-gamble-name
+  desc: imperial-spellbook-perk-gamble-desc
+  category: Perks
+  refundable: false
+  requiresGarb: false
+  special: Gamble
+  iconEntity: DiceBag
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookPerkHeartEater
+  name: imperial-spellbook-perk-heart-eater-name
+  desc: imperial-spellbook-perk-heart-eater-desc
+  category: Perks
+  refundable: false
+  requiresGarb: false
+  special: Perk
+  iconEntity: ImperialRippedHeart
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookPerkSlimeFriends
+  name: imperial-spellbook-perk-slime-friends-name
+  desc: imperial-spellbook-perk-slime-friends-desc
+  category: Perks
+  refundable: false
+  requiresGarb: false
+  special: Perk
+  iconEntity: MobAdultSlimesBlue
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookPerkTransparence
+  name: imperial-spellbook-perk-transparence-name
+  desc: imperial-spellbook-perk-transparence-desc
+  category: Perks
+  refundable: false
+  requiresGarb: false
+  special: Perk
+  iconEntity: Ectoplasm
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookPerkMagnetism
+  name: imperial-spellbook-perk-magnetism-name
+  desc: imperial-spellbook-perk-magnetism-desc
+  category: Perks
+  refundable: false
+  requiresGarb: false
+  special: Perk
+  iconEntity: ClothingShoesBootsMag
+
+# ─── Ритуалы ───
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookSummonGhosts
+  name: imperial-spellbook-summon-ghosts-name
+  desc: imperial-spellbook-summon-ghosts-desc
+  category: Rituals
+  cost: 0
+  limit: 1
+  refundable: false
+  buyWord: Cast
+  special: SummonGhosts
+  iconEntity: Ectoplasm
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookSummonGuns
+  name: imperial-spellbook-summon-guns-name
+  desc: imperial-spellbook-summon-guns-desc
+  category: Rituals
+  limit: 1
+  refundable: false
+  buyWord: Cast
+  special: SummonGuns
+  iconEntity: WeaponRevolverDeckard
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookSummonMagic
+  name: imperial-spellbook-summon-magic-name
+  desc: imperial-spellbook-summon-magic-desc
+  category: Rituals
+  limit: 1
+  refundable: false
+  buyWord: Cast
+  special: SummonMagic
+  iconEntity: ImperialStaffChaos
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookSummonEvents
+  name: imperial-spellbook-summon-events-name
+  desc: imperial-spellbook-summon-events-desc
+  category: Rituals
+  limit: 5
+  refundable: false
+  buyWord: Cast
+  special: SummonEvents
+  iconEntity: ImperialSpellbook
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookCurseOfMadness
+  name: imperial-spellbook-curse-of-madness-name
+  desc: imperial-spellbook-curse-of-madness-desc
+  category: Rituals
+  cost: 4
+  limit: 1
+  refundable: false
+  buyWord: Cast
+  special: CurseOfMadness
+  iconEntity: Brain
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookMassTeaching
+  name: imperial-spellbook-mass-teaching-name
+  desc: imperial-spellbook-mass-teaching-desc
+  category: Rituals
+  cost: 3
+  limit: 1
+  refundable: false
+  buyWord: Cast
+  special: MassTeaching
+  iconEntity: BookRandom
+
+# ─── Испытания (купить нельзя) ───
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookChallengeMultiverse
+  name: imperial-spellbook-challenge-multiverse-name
+  desc: imperial-spellbook-challenge-multiverse-desc
+  category: Challenges
+  refundable: false
+  buyWord: Accept
+  special: Challenge
+  iconEntity: ClothingHeadHatWizard
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookChallengeAntiwizard
+  name: imperial-spellbook-challenge-antiwizard-name
+  desc: imperial-spellbook-challenge-antiwizard-desc
+  category: Challenges
+  refundable: false
+  buyWord: Accept
+  special: Challenge
+  iconEntity: WeaponPistolMk58
+
+# ─── Сущности перков ───
+
+# /mob/living/basic/wizard_worm
+- type: entity
+  parent: [ SimpleMobBase, MobCombat ]
+  id: ImperialWizardWorm
+  name: магический червь
+  description: Большой синий червь. Что будет, если сунуть руку ему в пасть?
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Wizard/wizard_worm.rsi
+    layers:
+    - state: start
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: start
+      Dead:
+        Base: start
+  - type: InputMover
+  - type: MobMover
+  - type: NpcFactionMember
+    factions:
+    - Wizard
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      800: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Blunt: 25
+        Structural: 200
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 4
+  - type: MovementAlwaysTouching
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 1000
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+
+- type: entity
+  id: ImperialWizardWormSegment
+  name: магический червь
+  description: Большой синий червь.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Wizard/wizard_worm.rsi
+    state: mid
+    noRot: false
+  - type: Clickable
+  - type: InteractionOutline
+
+- type: entity
+  parent: ImperialWizardWormSegment
+  id: ImperialWizardWormTail
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: end
+
+# /obj/effect/client_image_holder/stalker_phantom
+- type: entity
+  id: ImperialWizardStalker
+  name: "???"
+  description: Оно приближается...
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Ghosts
+    sprite: Imperial/Wizard/stalker.rsi
+    state: stalker
+    shader: unshaded
+
+# Вырванное сердце (/datum/component/heart_eater).
+- type: entity
+  parent: BaseItem
+  id: ImperialRippedHeart
+  name: вырванное сердце
+  description: Ещё тёплое. Пожиратель сердец знает, что с ним делать.
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    state: heart-on
+  - type: Item
+    size: Small
+  - type: ImperialRippedHeart
+
+# /datum/objective/survive (выживальщик после призыва оружия или магии).
+- type: entity
+  parent: BaseObjective
+  id: ImperialSurvivalistObjective
+  name: Выжить любой ценой
+  description: Станция сошла с ума. Не расставайтесь с оружием и улетите на эвакуационном шаттле живым.
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard
+    difficulty: 1
+    icon:
+      sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+      state: icon
+  - type: EscapeShuttleCondition

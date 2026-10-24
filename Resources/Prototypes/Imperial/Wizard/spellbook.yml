@@ -1,0 +1,537 @@
+# Записи книги заклинаний TG (spellbook_entries/*.dm).
+
+# ─── Мобильность ───
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookTeleport
+  name: imperial-spellbook-teleport-name
+  desc: imperial-spellbook-teleport-desc
+  category: Mobility
+  spell: ImperialSpellTeleport
+
+# ─── Наступление ───
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookFireball
+  name: imperial-spellbook-fireball-name
+  desc: imperial-spellbook-fireball-desc
+  category: Offensive
+  spell: ImperialSpellFireball
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookSpellCards
+  name: imperial-spellbook-spell-cards-name
+  desc: imperial-spellbook-spell-cards-desc
+  category: Offensive
+  spell: ImperialSpellSpellCards
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookRodForm
+  name: imperial-spellbook-rod-form-name
+  desc: imperial-spellbook-rod-form-desc
+  category: Offensive
+  spell: ImperialSpellRodForm
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookDisintegrate
+  name: imperial-spellbook-disintegrate-name
+  desc: imperial-spellbook-disintegrate-desc
+  category: Offensive
+  spell: ImperialSpellSmite
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookSimians
+  name: imperial-spellbook-simians-name
+  desc: imperial-spellbook-simians-desc
+  category: Offensive
+  spell: ImperialSpellSimians
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookBlind
+  name: imperial-spellbook-blind-name
+  desc: imperial-spellbook-blind-desc
+  category: Offensive
+  cost: 1
+  spell: ImperialSpellBlind
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookTieShoes
+  name: imperial-spellbook-tie-shoes-name
+  desc: imperial-spellbook-tie-shoes-desc
+  category: Offensive
+  cost: 1
+  spell: ImperialSpellTieShoes
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookMutate
+  name: imperial-spellbook-mutate-name
+  desc: imperial-spellbook-mutate-desc
+  category: Offensive
+  spell: ImperialSpellMutate
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookFleshToStone
+  name: imperial-spellbook-flesh-to-stone-name
+  desc: imperial-spellbook-flesh-to-stone-desc
+  category: Offensive
+  spell: ImperialSpellFleshToStone
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookTeslaBlast
+  name: imperial-spellbook-tesla-blast-name
+  desc: imperial-spellbook-tesla-blast-desc
+  category: Offensive
+  spell: ImperialSpellTeslaBlast
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookLightningBolt
+  name: imperial-spellbook-lightning-bolt-name
+  desc: imperial-spellbook-lightning-bolt-desc
+  category: Offensive
+  cost: 1
+  spell: ImperialSpellLightningBolt
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookInfiniteGuns
+  name: imperial-spellbook-infinite-guns-name
+  desc: imperial-spellbook-infinite-guns-desc
+  category: Offensive
+  cost: 3
+  spell: ImperialSpellInfiniteGuns
+  noCoexistence: [ ImperialSpellbookArcaneBarrage ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookArcaneBarrage
+  name: imperial-spellbook-arcane-barrage-name
+  desc: imperial-spellbook-arcane-barrage-desc
+  category: Offensive
+  cost: 3
+  spell: ImperialSpellArcaneBarrage
+  noCoexistence: [ ImperialSpellbookInfiniteGuns ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookBarnyard
+  name: imperial-spellbook-barnyard-name
+  desc: imperial-spellbook-barnyard-desc
+  category: Offensive
+  spell: ImperialSpellBarnyard
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookSplattercasting
+  name: imperial-spellbook-splattercasting-name
+  desc: imperial-spellbook-splattercasting-desc
+  category: Offensive
+  spell: ImperialSpellSplattercasting
+  noCoexistence: [ ImperialSpellbookLichdom, ImperialSpellbookGhostliness ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookSanguineStrike
+  name: imperial-spellbook-sanguine-strike-name
+  desc: imperial-spellbook-sanguine-strike-desc
+  category: Offensive
+  spell: ImperialSpellSanguineStrike
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookScreamForMe
+  name: imperial-spellbook-scream-for-me-name
+  desc: imperial-spellbook-scream-for-me-desc
+  category: Offensive
+  cost: 1
+  spell: ImperialSpellScreamForMe
+
+# ─── Защита ───
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookMagicMissile
+  name: imperial-spellbook-magic-missile-name
+  desc: imperial-spellbook-magic-missile-desc
+  category: Defensive
+  spell: ImperialSpellMagicMissile
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookDisableTech
+  name: imperial-spellbook-disable-tech-name
+  desc: imperial-spellbook-disable-tech-desc
+  category: Defensive
+  cost: 1
+  spell: ImperialSpellDisableTech
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookRepulse
+  name: imperial-spellbook-repulse-name
+  desc: imperial-spellbook-repulse-desc
+  category: Defensive
+  spell: ImperialSpellRepulse
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookThrownLightning
+  name: imperial-spellbook-thrown-lightning-name
+  desc: imperial-spellbook-thrown-lightning-desc
+  category: Defensive
+  spell: ImperialSpellThrownLightning
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookTimestop
+  name: imperial-spellbook-timestop-name
+  desc: imperial-spellbook-timestop-desc
+  category: Defensive
+  spell: ImperialSpellTimestop
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookSmoke
+  name: imperial-spellbook-smoke-name
+  desc: imperial-spellbook-smoke-desc
+  category: Defensive
+  cost: 1
+  spell: ImperialSpellSmoke
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookForcewall
+  name: imperial-spellbook-forcewall-name
+  desc: imperial-spellbook-forcewall-desc
+  category: Defensive
+  cost: 1
+  spell: ImperialSpellForcewall
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookLichdom
+  name: imperial-spellbook-lichdom-name
+  desc: imperial-spellbook-lichdom-desc
+  category: Defensive
+  spell: ImperialSpellLichdom
+  noCoexistence: [ ImperialSpellbookSplattercasting, ImperialSpellbookPerkWormborn, ImperialSpellbookGhostliness ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookChuuni
+  name: imperial-spellbook-chuuni-name
+  desc: imperial-spellbook-chuuni-desc
+  category: Defensive
+  spell: ImperialSpellChuuni
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookSpacetimeDist
+  name: imperial-spellbook-spacetime-dist-name
+  desc: imperial-spellbook-spacetime-dist-desc
+  category: Defensive
+  cost: 1
+  spell: ImperialSpellSpacetime
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookTheTraps
+  name: imperial-spellbook-the-traps-name
+  desc: imperial-spellbook-the-traps-desc
+  category: Defensive
+  cost: 1
+  spell: ImperialSpellTheTraps
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookBees
+  name: imperial-spellbook-bees-name
+  desc: imperial-spellbook-bees-desc
+  category: Defensive
+  spell: ImperialSpellBees
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookDuffelbag
+  name: imperial-spellbook-duffelbag-name
+  desc: imperial-spellbook-duffelbag-desc
+  category: Defensive
+  cost: 1
+  spell: ImperialSpellDuffelbag
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookMindswap
+  name: imperial-spellbook-mindswap-name
+  desc: imperial-spellbook-mindswap-desc
+  category: Mobility
+  spell: ImperialSpellMindSwap
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookKnock
+  name: imperial-spellbook-knock-name
+  desc: imperial-spellbook-knock-desc
+  category: Mobility
+  cost: 1
+  spell: ImperialSpellKnock
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookBlink
+  name: imperial-spellbook-blink-name
+  desc: imperial-spellbook-blink-desc
+  category: Mobility
+  spell: ImperialSpellBlink
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookJaunt
+  name: imperial-spellbook-jaunt-name
+  desc: imperial-spellbook-jaunt-desc
+  category: Mobility
+  spell: ImperialSpellJaunt
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookSwap
+  name: imperial-spellbook-swap-name
+  desc: imperial-spellbook-swap-desc
+  category: Mobility
+  cost: 1
+  spell: ImperialSpellSwap
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookGhostliness
+  name: imperial-spellbook-ghostliness-name
+  desc: imperial-spellbook-ghostliness-desc
+  category: Mobility
+  spell: ImperialSpellGhostliness
+  noCoexistence: [ ImperialSpellbookLichdom, ImperialSpellbookSplattercasting ]
+
+# ─── Поддержка ───
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookSummonItem
+  name: imperial-spellbook-summon-item-name
+  desc: imperial-spellbook-summon-item-desc
+  category: Assistance
+  cost: 1
+  spell: ImperialSpellSummonItem
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookCharge
+  name: imperial-spellbook-charge-name
+  desc: imperial-spellbook-charge-desc
+  category: Assistance
+  cost: 1
+  spell: ImperialSpellCharge
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookShapeshift
+  name: imperial-spellbook-shapeshift-name
+  desc: imperial-spellbook-shapeshift-desc
+  category: Assistance
+  cost: 1
+  spell: ImperialSpellShapeshift
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookSoulTap
+  name: imperial-spellbook-soul-tap-name
+  desc: imperial-spellbook-soul-tap-desc
+  category: Assistance
+  cost: 1
+  spell: ImperialSpellSoulTap
+
+# ─── Посохи и палочки ───
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookStaffAnimation
+  name: imperial-spellbook-staff-animation-name
+  desc: imperial-spellbook-staff-animation-desc
+  category: Assistance
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialStaffAnimation ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookStaffHealing
+  name: imperial-spellbook-staff-healing-name
+  desc: imperial-spellbook-staff-healing-desc
+  category: Defensive
+  cost: 1
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialStaffHealing ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookStaffLocker
+  name: imperial-spellbook-staff-locker-name
+  desc: imperial-spellbook-staff-locker-desc
+  category: Defensive
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialStaffLocker ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookWands
+  name: imperial-spellbook-wands-name
+  desc: imperial-spellbook-wands-desc
+  category: Defensive
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialWandBeltFull ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookWandsDiscount
+  name: imperial-spellbook-wands-discount-name
+  desc: imperial-spellbook-wands-discount-desc
+  category: Defensive
+  cost: 1
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialWandBeltDiscount ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookStaffDoor
+  name: imperial-spellbook-staff-door-name
+  desc: imperial-spellbook-staff-door-desc
+  category: Mobility
+  cost: 1
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialStaffDoor ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookStaffChaos
+  name: imperial-spellbook-staff-chaos-name
+  desc: imperial-spellbook-staff-chaos-desc
+  category: Offensive
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialStaffChaos ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookStaffChange
+  name: imperial-spellbook-staff-change-name
+  desc: imperial-spellbook-staff-change-desc
+  category: Offensive
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialStaffChange ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookSpellblade
+  name: imperial-spellbook-spellblade-name
+  desc: imperial-spellbook-spellblade-desc
+  category: Offensive
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialSpellblade ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookStaffShrink
+  name: imperial-spellbook-staff-shrink-name
+  desc: imperial-spellbook-staff-shrink-desc
+  category: Offensive
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialStaffShrink ]
+
+# ─── Артефакты ───
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookSoulstones
+  name: imperial-spellbook-soulstones-name
+  desc: imperial-spellbook-soulstones-desc
+  category: Assistance
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialSoulstoneBeltFull ]
+  special: Soulstones
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookNecrostone
+  name: imperial-spellbook-necrostone-name
+  desc: imperial-spellbook-necrostone-desc
+  category: Assistance
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialNecromanticStone ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookContract
+  name: imperial-spellbook-contract-name
+  desc: imperial-spellbook-contract-desc
+  category: Assistance
+  buyWord: Summon
+  refundable: true
+  items: [ ImperialApprenticeContract ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookGuardian
+  name: imperial-spellbook-guardian-name
+  desc: imperial-spellbook-guardian-desc
+  category: Assistance
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialGuardianDeck ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookVendormancer
+  name: imperial-spellbook-vendormancer-name
+  desc: imperial-spellbook-vendormancer-desc
+  category: Assistance
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialRunicScepter ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookWarpWhistle
+  name: imperial-spellbook-warp-whistle-name
+  desc: imperial-spellbook-warp-whistle-desc
+  category: Mobility
+  cost: 1
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialWarpWhistle ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookTeleportRod
+  name: imperial-spellbook-teleport-rod-name
+  desc: imperial-spellbook-teleport-rod-desc
+  category: Mobility
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialTeleportRod ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookMjolnir
+  name: imperial-spellbook-mjolnir-name
+  desc: imperial-spellbook-mjolnir-desc
+  category: Offensive
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialMjolnir ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookSingularityHammer
+  name: imperial-spellbook-singularity-hammer-name
+  desc: imperial-spellbook-singularity-hammer-desc
+  category: Offensive
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialSingularityHammer ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookHighFrequencyBlade
+  name: imperial-spellbook-high-frequency-blade-name
+  desc: imperial-spellbook-high-frequency-blade-desc
+  category: Offensive
+  cost: 3
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialHighFrequencyBlade ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookFrogContract
+  name: imperial-spellbook-frog-contract-name
+  desc: imperial-spellbook-frog-contract-desc
+  category: Offensive
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialFrogContract ]
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookScryingOrb
+  name: imperial-spellbook-scrying-orb-name
+  desc: imperial-spellbook-scrying-orb-desc
+  category: Defensive
+  buyWord: Summon
+  refundable: false
+  items: [ ImperialScryingOrb ]
+  special: ScryingXray
+
+- type: imperialSpellbookEntry
+  id: ImperialSpellbookArmor
+  name: imperial-spellbook-armor-name
+  desc: imperial-spellbook-armor-desc
+  category: Defensive
+  buyWord: Summon
+  refundable: false
+  special: Armor
+  iconEntity: ImperialBattlemageArmor
