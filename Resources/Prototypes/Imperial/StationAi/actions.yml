@@ -1,0 +1,196 @@
+# Кнопки HUD ИИ из TG (_onclick/hud/ai.dm), которых нет в SS14.
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiCameraList
+  name: Список камер
+  description: Перейти к любой работающей камере станции.
+  components:
+  - type: Action
+    priority: -8
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/StationAi/actions.rsi
+      state: camera
+  - type: InstantAction
+    event: !type:ImperialAiCameraListActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiTrack
+  name: Следить
+  description: Следить за существом, пока его видят камеры.
+  components:
+  - type: Action
+    priority: -7
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/StationAi/actions.rsi
+      state: track
+  - type: InstantAction
+    event: !type:ImperialAiTrackActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiOpenDoor
+  name: Открыть шлюз цели
+  description: Открыть ближайший к отслеживаемой цели шлюз.
+  components:
+  - type: Action
+    priority: -6
+    itemIconStyle: BigAction
+    icon:
+      sprite: Interface/Actions/actions_ai.rsi
+      state: unbolt_door
+  - type: InstantAction
+    event: !type:ImperialAiOpenDoorActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiCameraLight
+  name: Подсветка камер
+  description: Включить свет у камер рядом с вашим взглядом.
+  components:
+  - type: Action
+    priority: -5
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/StationAi/actions.rsi
+      state: camera_light
+  - type: InstantAction
+    event: !type:ImperialAiCameraLightActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiAlerts
+  name: Тревоги станции
+  description: Пожарные, атмосферные, энергетические тревоги и отключённые камеры.
+  components:
+  - type: Action
+    priority: -4
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/StationAi/actions.rsi
+      state: alerts
+  - type: InstantAction
+    event: !type:ImperialAiAlertsActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiStateLaws
+  name: Огласить законы
+  description: Произнести законы вслух или по радиоканалу.
+  components:
+  - type: Action
+    priority: -2
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/StationAi/actions.rsi
+      state: state_laws
+  - type: InstantAction
+    event: !type:ImperialAiStateLawsActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiSensors
+  name: Сенсоры
+  description: Включить медицинский и охранный HUD.
+  components:
+  - type: Action
+    priority: -1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/StationAi/actions.rsi
+      state: ai_sensor
+  - type: InstantAction
+    event: !type:ImperialAiSensorsActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiAnnouncement
+  name: Объявление
+  description: Объявить голосом VOX на всю станцию.
+  components:
+  - type: Action
+    priority: -3
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/StationAi/actions.rsi
+      state: announcement
+  - type: InstantAction
+    event: !type:ImperialAiAnnouncementActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiStatusDisplay
+  name: Статус-дисплеи
+  description: Выбрать картинку на экранах станции.
+  components:
+  - type: Action
+    priority: 0
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/StationAi/actions.rsi
+      state: view_images
+  - type: InstantAction
+    event: !type:ImperialAiStatusDisplayActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiBorgs
+  name: Киборги
+  description: Подключённые киборги и оболочки ИИ.
+  components:
+  - type: Action
+    priority: 1
+    itemIconStyle: BigAction
+    icon:
+      sprite: Mobs/Silicon/chassis.rsi
+      state: robot
+  - type: InstantAction
+    event: !type:ImperialAiBorgsActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiShellReturn
+  name: Вернуться в ядро
+  description: Покинуть оболочку и вернуться в ядро ИИ.
+  components:
+  - type: Action
+    priority: -10
+    itemIconStyle: BigAction
+    icon:
+      sprite: Interface/Actions/actions_ai.rsi
+      state: ai_core
+  - type: InstantAction
+    event: !type:ImperialAiShellReturnActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiBots
+  name: Боты
+  description: Управление ботами станции — слежение и вызов к вашему взгляду.
+  components:
+  - type: Action
+    priority: 2
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/StationAi/actions.rsi
+      state: botcall
+  - type: InstantAction
+    event: !type:ImperialAiBotsActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialAiCoreBolts
+  name: Болты ядра
+  description: Поднять или опустить болты, крепящие ядро к полу.
+  components:
+  - type: Action
+    priority: 3
+    itemIconStyle: BigAction
+    icon:
+      sprite: Interface/Actions/actions_ai.rsi
+      state: bolt_door
+  - type: InstantAction
+    event: !type:ImperialAiCoreBoltsActionEvent
