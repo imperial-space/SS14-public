@@ -1,0 +1,98 @@
+{
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "Taken from tgstation/BandaStation (voidwalker_items.dmi)",
+    "size":  {
+                 "x":  32,
+                 "y":  32
+             },
+    "states":  [
+                   {
+                       "name":  "cosmic_skull_charged",
+                       "delays":  [
+                                      [
+                                          0.8,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "cosmic_skull_drained"
+                   },
+                   {
+                       "name":  "tentacle"
+                   },
+                   {
+                       "name":  "wisp",
+                       "delays":  [
+                                      [
+                                          0.5,
+                                          0.5
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "vomitnebula_1",
+                       "delays":  [
+                                      [
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "vomitnebula_2",
+                       "delays":  [
+                                      [
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "vomitnebula_3",
+                       "delays":  [
+                                      [
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "vomitnebula_4",
+                       "delays":  [
+                                      [
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2
+                                      ]
+                                  ]
+                   }
+               ]
+}
