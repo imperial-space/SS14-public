@@ -1,0 +1,847 @@
+# Беглецы и охотники за беглецами TG (antagonists/fugitive, dynamic_ruleset_midround fugitives).
+
+# ─── Роли ───
+
+- type: antag
+  id: ImperialFugitive
+  name: roles-antag-imperial-fugitive-name
+  antagonist: true
+  setPreference: false
+  objective: roles-antag-imperial-fugitive-objective
+
+- type: antag
+  id: ImperialFugitiveHunter
+  name: roles-antag-imperial-fugitive-hunter-name
+  antagonist: true
+  setPreference: false
+  objective: roles-antag-imperial-fugitive-hunter-objective
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleImperialFugitive
+  components:
+  - type: MindRole
+    antagPrototype: ImperialFugitive
+    roleType: TeamAntagonist
+  - type: ImperialFugitiveRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleImperialFugitiveHunter
+  components:
+  - type: MindRole
+    antagPrototype: ImperialFugitiveHunter
+    roleType: TeamAntagonist
+  - type: ImperialFugitiveHunterRole
+
+# ─── Правило (мидраунд: weight 3, min_pop 20) ───
+
+- type: entity
+  parent: BaseGameRule
+  id: ImperialFugitives
+  components:
+  - type: StationEvent
+    weight: 3
+    duration: null
+    earliestStart: 20
+    minimumPlayers: 20
+    maxOccurrences: 1
+  - type: ImperialFugitivesRule
+
+# ─── Цели ───
+
+- type: entity
+  parent: BaseObjective
+  id: ImperialFugitiveEvadeObjective
+  name: Избегайте поимки охотниками за беглецами.
+  description: Охотники уже в пути. Не попадитесь им в руки.
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-fugitive
+    difficulty: 1
+    unique: true
+    icon:
+      sprite: Imperial/Fugitives/Clothing/waldo_hat.rsi
+      state: icon
+  - type: ImperialFugitiveEvadeCondition
+
+- type: entity
+  parent: BaseObjective
+  id: ImperialFugitiveCaptureObjective
+  name: Захватите беглецов на станции и поместите их в блюспейс-устройство захвата на вашем корабле.
+  description: Живыми или мёртвыми.
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-fugitive-hunter
+    difficulty: 1
+    unique: true
+    icon:
+      sprite: Imperial/Fugitives/machines.rsi
+      state: capture
+  - type: ImperialFugitiveCaptureCondition
+
+# ─── Гост-роли ───
+
+- type: entity
+  parent: MobHuman
+  id: ImperialMobFugitiveHuman
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: ImperialFugitivePending
+
+- type: entity
+  abstract: true
+  parent: MarkerBase
+  id: BaseImperialFugitiveSpawner
+  components:
+  - type: GhostRoleMobSpawner
+    prototype: ImperialMobFugitiveHuman
+  - type: GhostRole
+    rules: ghost-role-information-antagonist-rules
+    raffle:
+      settings: short
+  - type: ImperialFugitiveSpawner
+
+- type: entity
+  parent: BaseImperialFugitiveSpawner
+  id: ImperialSpawnPointFugitive
+  name: беглец
+  categories: [ HideSpawnMenu, Spawner ]
+  components:
+  - type: GhostRole
+    name: imperial-fugitive-ghost-name
+    description: imperial-fugitive-ghost-desc
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: short
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Imperial/Fugitives/Clothing/waldo_hat.rsi
+      state: icon
+
+# Капсулы охотников на кораблях (/obj/effect/mob_spawn/ghost_role/human/fugitive/*).
+- type: entity
+  abstract: true
+  parent: BaseImperialFugitiveSpawner
+  id: BaseImperialHunterSpawner
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Fugitives/machines.rsi
+    state: sleeper
+    drawdepth: Objects
+  - type: GhostRole
+    name: imperial-hunter-ghost-name
+    description: imperial-hunter-ghost-desc
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: short
+
+- type: entity
+  parent: BaseImperialHunterSpawner
+  id: ImperialSpawnPointHunterSpacepol
+  name: полицейская капсула
+  description: Небольшая капсула для сна, где офицеров усыпляют для инструктажа перед заданием.
+  components:
+  - type: GhostRole
+    name: imperial-hunter-ghost-spacepol-name
+    description: imperial-hunter-ghost-spacepol-desc
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: short
+  - type: ImperialFugitiveSpawner
+    hunter: true
+    pack: Cops
+    gear: ImperialHunterSpacepolGear
+
+- type: entity
+  parent: BaseImperialHunterSpawner
+  id: ImperialSpawnPointHunterRussian
+  name: русская капсула
+  description: Небольшая капсула, чтобы долгие перелёты было легче переносить.
+  components:
+  - type: GhostRole
+    name: imperial-hunter-ghost-russian-name
+    description: imperial-hunter-ghost-russian-desc
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: short
+  - type: ImperialFugitiveSpawner
+    hunter: true
+    pack: Russian
+    gear: ImperialHunterRussianGear
+
+- type: entity
+  parent: ImperialSpawnPointHunterRussian
+  id: ImperialSpawnPointHunterRussianLeader
+  name: капсула русского коменданта
+  components:
+  - type: GhostRole
+    name: imperial-hunter-ghost-russian-leader-name
+    description: imperial-hunter-ghost-russian-desc
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: short
+  - type: ImperialFugitiveSpawner
+    hunter: true
+    pack: Russian
+    gear: ImperialHunterRussianLeaderGear
+
+- type: entity
+  abstract: true
+  parent: BaseImperialHunterSpawner
+  id: BaseImperialHunterBountySpawner
+  name: капсула охотника за головами
+  description: Небольшая капсула, чтобы долгие перелёты было легче переносить.
+  components:
+  - type: GhostRole
+    name: imperial-hunter-ghost-bounty-name
+    description: imperial-hunter-ghost-bounty-desc
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: short
+
+- type: entity
+  parent: BaseImperialHunterBountySpawner
+  id: ImperialSpawnPointHunterBountyArmor
+  components:
+  - type: ImperialFugitiveSpawner
+    hunter: true
+    pack: Bounty
+    gear: ImperialHunterBountyArmorGear
+
+- type: entity
+  parent: BaseImperialHunterBountySpawner
+  id: ImperialSpawnPointHunterBountyHook
+  components:
+  - type: ImperialFugitiveSpawner
+    hunter: true
+    pack: Bounty
+    gear: ImperialHunterBountyHookGear
+
+- type: entity
+  parent: BaseImperialHunterBountySpawner
+  id: ImperialSpawnPointHunterBountySynth
+  components:
+  - type: ImperialFugitiveSpawner
+    hunter: true
+    pack: Bounty
+    gear: ImperialHunterBountySynthGear
+
+- type: entity
+  parent: BaseImperialHunterSpawner
+  id: ImperialSpawnPointHunterPsyker
+  name: ментальный энергизатор
+  description: Криокапсула, переделанная так, чтобы держать разум спящего в тонусе. Как бы это ни работало...
+  components:
+  - type: Sprite
+    state: psykerpod
+  - type: GhostRole
+    name: imperial-hunter-ghost-psyker-name
+    description: imperial-hunter-ghost-psyker-desc
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: short
+  - type: ImperialFugitiveSpawner
+    hunter: true
+    pack: Psyker
+    gear: ImperialHunterPsykerGear
+
+- type: entity
+  parent: ImperialSpawnPointHunterPsyker
+  id: ImperialSpawnPointHunterPsykerCaptain
+  components:
+  - type: GhostRole
+    name: imperial-hunter-ghost-psyker-captain-name
+    description: imperial-hunter-ghost-psyker-desc
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: short
+  - type: ImperialFugitiveSpawner
+    hunter: true
+    pack: Psyker
+    gear: ImperialHunterPsykerCaptainGear
+
+- type: entity
+  parent: BaseImperialHunterSpawner
+  id: ImperialSpawnPointHunterPsykerSeer
+  name: криокапсула
+  description: Грязная, плохо обслуживаемая, но всё же самая обычная криокапсула.
+  components:
+  - type: GhostRole
+    name: imperial-hunter-ghost-psyker-seer-name
+    description: imperial-hunter-ghost-psyker-seer-desc
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: short
+  - type: ImperialFugitiveSpawner
+    hunter: true
+    pack: Psyker
+    gear: ImperialHunterPsykerSeerGear
+
+- type: entity
+  parent: BaseImperialHunterSpawner
+  id: ImperialSpawnPointHunterMi13
+  name: совершенно секретная капсула
+  description: У вас нет допуска, чтобы знать, что в этой капсуле и зачем она нужна.
+  components:
+  - type: Sprite
+    state: sleeper_s
+  - type: GhostRole
+    name: imperial-hunter-ghost-mi13-name
+    description: imperial-hunter-ghost-mi13-desc
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: short
+  - type: ImperialFugitiveSpawner
+    hunter: true
+    pack: Mi13
+    gear: ImperialHunterMi13Gear
+
+- type: entity
+  parent: ImperialSpawnPointHunterMi13
+  id: ImperialSpawnPointHunterMi13Chef
+  components:
+  - type: ImperialFugitiveSpawner
+    hunter: true
+    pack: Mi13
+    gear: ImperialHunterMi13ChefGear
+
+# ─── Снаряжение беглецов (fugitive_outfits.dm) ───
+
+- type: startingGear
+  id: ImperialFugitivePrisonerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisoner
+    shoes: ClothingShoesColorOrange
+    pocket2: Shiv
+
+- type: startingGear
+  id: ImperialFugitiveYalpCultistGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChaplain
+    outerClothing: ImperialClothingOuterHolidayPriest
+    gloves: ClothingHandsGlovesColorRed
+    shoes: ClothingShoesColorBlack
+    mask: ImperialClothingMaskTikiYalpElor
+
+- type: startingGear
+  id: ImperialFugitiveWaldoGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlue
+    outerClothing: ImperialClothingOuterWaldoSweater
+    head: ImperialClothingHeadHatWaldo
+    shoes: ClothingShoesColorBrown
+    ears: ClothingHeadsetGrey
+    eyes: ClothingEyesGlasses
+
+- type: startingGear
+  id: ImperialFugitiveSynthGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorWhite
+    ears: ClothingHeadsetGrey
+
+- type: startingGear
+  id: ImperialFugitiveInvisibleGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+    back: ClothingBackpackSatchelLeather
+    shoes: ClothingShoesBootsLaceup
+    eyes: ClothingEyesGlasses
+    mask: SmokingPipeFilledTobacco
+    ears: ClothingHeadsetGrey
+  storage:
+    back:
+    - ImperialInvisibilityInjector
+    - ImperialInvisibilityInjector
+    - ImperialInvisibilityInjector
+
+# ─── Снаряжение охотников (hunter_outfits.dm) ───
+
+- type: startingGear
+  id: ImperialHunterSpacepolGear
+  equipment:
+    jumpsuit: ImperialClothingUniformSpacepol
+    outerClothing: ImperialClothingOuterVestBlueshirt
+    belt: WeaponPistolMk58
+    head: SpecialForcePoliceCap
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsJack
+    mask: ClothingMaskGasSwat
+    eyes: ClothingEyesGlassesSunglasses
+    ears: ClothingHeadsetGrey
+    pocket1: MagazinePistol
+    pocket2: Handcuffs
+    id: ImperialHunterPoliceIDCard
+
+- type: startingGear
+  id: ImperialHunterRussianGear
+  equipment:
+    jumpsuit: ImperialClothingUniformSoviet
+    outerClothing: ClothingOuterArmorBasic
+    back: ClothingBackpack
+    ears: ClothingHeadsetGrey
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    head: ClothingHeadHelmetBasic
+    shoes: ImperialClothingShoesRussian
+    pocket1: SpeedLoaderLightRifle
+    pocket2: Zipties
+    id: ImperialHunterRussianIDCard
+  inhand:
+  - WeaponSniperMosin
+
+- type: startingGear
+  id: ImperialHunterRussianLeaderGear
+  parent: ImperialHunterRussianGear
+  equipment:
+    head: ClothingHeadHatUshanka
+    shoes: ClothingShoesBootsCombat
+
+- type: startingGear
+  id: ImperialHunterBountyArmorGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisoner
+    back: ClothingBackpack
+    head: ClothingHeadHatCowboyBountyHunter
+    outerClothing: ImperialClothingOuterHardsuitHunter
+    belt: WeaponPistolViper
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsJack
+    mask: ImperialClothingMaskGasHunter
+    eyes: ClothingEyesGlassesSunglasses
+    ears: ClothingHeadsetGrey
+    pocket1: MagazinePistolIncendiary
+    pocket2: Zipties
+    id: ImperialHunterBountyIDCard
+  inhand:
+  - WeaponShotgunKammerer
+  storage:
+    back:
+    - ShellShotgunBeanbag
+    - ShellShotgunBeanbag
+    - ShellShotgunBeanbag
+    - ShellShotgunBeanbag
+    - ShellShotgunIncendiary
+    - ShellShotgunIncendiary
+    - ShellShotgunIncendiary
+    - ShellShotgunIncendiary
+
+- type: startingGear
+  id: ImperialHunterBountyHookGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisoner
+    back: ClothingBackpack
+    head: ImperialClothingHeadHatScarecrow
+    gloves: ClothingHandsGlovesLeather
+    ears: ClothingHeadsetGrey
+    shoes: ClothingShoesBootsJack
+    mask: ImperialClothingMaskScarecrow
+    pocket2: Zipties
+    id: ImperialHunterBountyIDCard
+  inhand:
+  - WeaponGrapplingGun
+
+- type: startingGear
+  id: ImperialHunterBountySynthGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisoner
+    back: ClothingBackpack
+    outerClothing: ClothingOuterArmorRiot
+    shoes: ClothingShoesBootsJack
+    eyes: ClothingEyesEyepatch
+    pocket2: Zipties
+    ears: ClothingHeadsetGrey
+    id: ImperialHunterBountyIDCard
+  inhand:
+  - MedkitFilled
+  storage:
+    back:
+    - Handcuffs
+    - Handcuffs
+    - Handcuffs
+    - Handcuffs
+
+- type: startingGear
+  id: ImperialHunterPsykerGear
+  equipment:
+    eyes: ImperialClothingEyesTrickBlindfold
+    ears: ClothingHeadsetGrey
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    gloves: ClothingHandsGlovesFingerless
+    shoes: ClothingShoesBootsJack
+    outerClothing: ImperialClothingOuterVestBlueshirt
+    pocket1: Stimpack
+    pocket2: Stimpack
+    id: ImperialHunterPsykerIDCard
+
+- type: startingGear
+  id: ImperialHunterPsykerCaptainGear
+  parent: ImperialHunterPsykerGear
+  equipment:
+    outerClothing: ClothingOuterArmorReflective
+    jumpsuit: ClothingUniformJumpsuitMinuteManCamoForest
+    id: ImperialHunterPsykerCaptainIDCard
+
+- type: startingGear
+  id: ImperialHunterPsykerSeerGear
+  equipment:
+    eyes: ClothingEyesGlassesThermal
+    ears: ClothingHeadsetGrey
+    jumpsuit: ClothingUniformJumpsuitColorBlue
+    outerClothing: ClothingOuterVestHazard
+    gloves: ClothingHandsGlovesFingerless
+    shoes: ClothingShoesBootsLaceup
+    pocket1: Zipties
+    pocket2: Zipties
+    id: ImperialHunterPsykerSeerIDCard
+
+- type: startingGear
+  id: ImperialHunterMi13Gear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTacticool
+    back: ClothingBackpackSatchelLeather
+    ears: ClothingHeadsetAltSyndicate
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsLaceup
+    pocket1: WeaponPistolViper
+    pocket2: Zipties
+    id: AgentIDCard
+  storage:
+    back:
+    - BoxSurvivalSyndicate
+
+- type: startingGear
+  id: ImperialHunterMi13ChefGear
+  parent: ImperialHunterMi13Gear
+  equipment:
+    head: ClothingHeadHatChef
+    outerClothing: ClothingOuterApronChef
+    mask: ClothingMaskItalianMoustache
+
+# ─── Карты охотников и доступ к кораблю ───
+
+- type: accessLevel
+  id: ImperialHunter
+  name: imperial-hunter-access
+
+- type: entity
+  abstract: true
+  parent: IDCardStandard
+  id: BaseImperialHunterIDCard
+  name: карта охотника за головами
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: stripe_top
+      color: "#d4682a"
+    - state: stripe_bottom
+      color: "#8c2a12"
+  - type: Access
+    tags:
+    - ImperialHunter
+
+- type: entity
+  parent: BaseImperialHunterIDCard
+  id: ImperialHunterBountyIDCard
+  components:
+  - type: IdCard
+    jobTitle: imperial-hunter-job-bounty
+
+- type: entity
+  parent: BaseImperialHunterIDCard
+  id: ImperialHunterPoliceIDCard
+  components:
+  - type: IdCard
+    jobTitle: imperial-hunter-job-police
+
+- type: entity
+  parent: BaseImperialHunterIDCard
+  id: ImperialHunterRussianIDCard
+  components:
+  - type: IdCard
+    jobTitle: imperial-hunter-job-russian
+
+- type: entity
+  parent: BaseImperialHunterIDCard
+  id: ImperialHunterPsykerIDCard
+  components:
+  - type: IdCard
+    jobTitle: imperial-hunter-job-psyker
+
+- type: entity
+  parent: BaseImperialHunterIDCard
+  id: ImperialHunterPsykerCaptainIDCard
+  components:
+  - type: IdCard
+    jobTitle: imperial-hunter-job-psyker-captain
+
+- type: entity
+  parent: BaseImperialHunterIDCard
+  id: ImperialHunterPsykerSeerIDCard
+  components:
+  - type: IdCard
+    jobTitle: imperial-hunter-job-psyker-seer
+
+# /obj/machinery/computer/shuttle/hunter
+- type: entity
+  parent: ComputerShuttle
+  id: ImperialHunterShuttleConsole
+  name: консоль шаттла охотников
+  components:
+  - type: AccessReader
+    access: [ [ "ImperialHunter" ] ]
+
+# ─── Машины охотников (hunter_gear.dm) ───
+
+- type: entity
+  id: ImperialFugitiveCapture
+  name: блюспейс-машина захвата
+  description: Внутри она гораздо, ГОРАЗДО больше, чтобы безопасно перевозить заключённых. Перетащите заключённого на машину.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Fugitives/machines.rsi
+    state: capture
+    drawdepth: Objects
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: ContainerContainer
+    containers:
+      imperial_fugitive_prison: !type:Container
+  - type: ImperialFugitiveCapture
+
+- type: entity
+  parent: ImperialFugitiveCapture
+  id: ImperialFugitiveCapturePsyker
+  name: рекреационная камера псайкеров
+  description: Перепрофилированная камера, успокаивающая пользователя громкими звуками и болезненными стимулами. Переоборудована для содержания заключённых — затягивает беглецов, оказавшихся рядом.
+  components:
+  - type: ImperialFugitiveCapture
+    suckIn: true
+
+- type: entity
+  id: ImperialFugitiveLocator
+  name: локатор целей
+  description: Отслеживает сигнатуры целей за награду в вашем секторе. Никто толком не знает, как эта штука работает, но она найдёт того, кого вы ищете, где бы он ни скрывался.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Fugitives/machines.rsi
+    state: locator
+    drawdepth: Objects
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Speech
+    speechVerb: Robotic
+  - type: ImperialFugitiveLocator
+
+# /obj/effect/forcefield/psychic
+- type: entity
+  id: ImperialPsychicForcefield
+  name: психическое силовое поле
+  description: Стена психической энергии, достаточно сильная, чтобы остановить движение предметов. Снаряды от неё рикошетят.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Fugitives/items.rsi
+    state: psychic
+    drawdepth: Overdoors
+    shader: unshaded
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: Reflect
+    reflectProb: 1
+  - type: PointLight
+    radius: 1.5
+    energy: 0.5
+    color: "#3a9bff"
+
+- type: entity
+  parent: ImperialPsychicForcefield
+  id: ImperialPsychicForcefieldTemporary
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 10
+
+# /obj/structure/bouncy_castle
+- type: entity
+  id: ImperialBouncyCastle
+  name: надувной замок
+  description: Если вы принимаете наркотики, то перед смертью попадёте в ад. Пожалуйста.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Fugitives/bouncy_castle.rsi
+    state: icon
+    drawdepth: Objects
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  parent: Paper
+  id: ImperialFortuneTellerNote
+  name: нацарапанная записка
+  components:
+  - type: Paper
+    content: imperial-hunter-fortune-teller-note
+
+# ─── Снаряжение беглецов ───
+
+- type: entity
+  parent: BaseItem
+  id: ImperialInvisibilityInjector
+  name: автоинъектор невидимости
+  description: Автоинъектор со стабилизированным составом Сатурн-X. Создан для тактических операций скрытности — видимо, теми, кому было не стыдно ходить голышом.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fugitives/items.rsi
+    state: invispen
+  - type: Item
+    size: Tiny
+  - type: ImperialInvisibilityInjector
+
+- type: entity
+  id: ImperialActionCamouflage
+  name: Включить маскировку
+  description: Включите маскировочный имплант и слейтесь с окружением...
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Storage/boxes.rsi
+      state: box
+    useDelay: 1
+  - type: InstantAction
+    event: !type:ImperialCamouflageActionEvent
+
+# ─── Силы псайкеров (religion/burdened/psyker.dm) ───
+
+- type: entity
+  id: ImperialActionPsychicProjection
+  name: Психическая проекция
+  description: Спроецируйте свою психику в цель, исказите её взгляд и вселите абсолютный ужас. Цель начнёт бешено палить из оружия в руках.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Fugitives/items.rsi
+      state: psychic
+    useDelay: 60
+  - type: TargetAction
+    range: 5
+  - type: EntityTargetAction
+    event: !type:ImperialPsychicProjectionActionEvent
+    canTargetSelf: false
+    whitelist:
+      components:
+      - MobState
+
+- type: entity
+  id: ImperialActionPsychicBooster
+  name: Психический ускоритель
+  description: Зарядите разум, чтобы стрелять быстрее. Думай умнее, а не сильнее.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Fugitives/items.rsi
+      state: psychic
+    useDelay: 60
+  - type: InstantAction
+    event: !type:ImperialPsychicBoosterActionEvent
+
+- type: entity
+  id: ImperialActionPsychicWall
+  name: Психическая стена
+  description: Создайте психическую стену, отражающую снаряды и не пропускающую ничего.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Fugitives/items.rsi
+      state: psychic
+    useDelay: 30
+  - type: InstantAction
+    event: !type:ImperialPsychicWallActionEvent

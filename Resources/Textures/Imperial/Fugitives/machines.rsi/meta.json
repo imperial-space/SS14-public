@@ -1,0 +1,56 @@
+{
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "Taken from tgstation/BandaStation (research.dmi)",
+    "size":  {
+                 "x":  32,
+                 "y":  32
+             },
+    "states":  [
+                   {
+                       "name":  "capture",
+                       "delays":  [
+                                      [
+                                          0.3,
+                                          0.3,
+                                          0.3,
+                                          0.3,
+                                          0.3,
+                                          0.3,
+                                          0.3
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "locator",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "sleeper",
+                       "directions":  4
+                   },
+                   {
+                       "name":  "sleeper_s",
+                       "directions":  4
+                   },
+                   {
+                       "name":  "psykerpod",
+                       "directions":  4
+                   }
+               ]
+}
