@@ -7,6 +7,9 @@
   - ping.ogg
   - slowclap.ogg
   - alien_roar.ogg
+  - slap.ogg
+  - tableslam.ogg
+  - kiss.ogg
   license: "CC-BY-SA-3.0"
   copyright: "Taken from tgstation (via BandaStation)"
   source: "https://github.com/tgstation/tgstation/tree/master/sound"

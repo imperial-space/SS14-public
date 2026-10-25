@@ -1,6 +1,9 @@
+using Content.Shared.Alert;
 using Content.Shared.Chat.Prototypes;
+using Content.Shared.DoAfter;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -129,6 +132,10 @@ public sealed partial class ImperialEmotePrototype : IPrototype
     [DataField]
     public ImperialEmoteEffect Effect = ImperialEmoteEffect.None;
 
+    /// <summary>Предмет «рука» (hand_item), который эмоция кладёт в свободную руку.</summary>
+    [DataField]
+    public EntProtoId? HandItem;
+
     /// <summary>Картинка на экранах станции для эмоций ИИ.</summary>
     [DataField]
     public string? AiDisplay;
@@ -158,8 +165,8 @@ public sealed partial class ImperialEmotePrototype : IPrototype
 
     public string NameLoc => $"imperial-emote-name-{ID}";
 
-    /// <summary>Эмоция что-то делает: анимирует, сбивает с ног, меняет экраны.</summary>
-    public bool IsAction => Effect != ImperialEmoteEffect.None;
+    /// <summary>Эмоция что-то делает: кладёт руку, анимирует, сбивает с ног, меняет экраны.</summary>
+    public bool IsAction => Effect != ImperialEmoteEffect.None || HandItem != null;
 }
 
 /// <summary>Строка панели (ui_static_data TG): эмоция доступна этому существу.</summary>
@@ -208,3 +215,42 @@ public sealed class ImperialEmoteVisualMessage(NetEntity entity, ImperialEmoteEf
     public readonly NetEntity Entity = entity;
     public readonly ImperialEmoteEffect Effect = effect;
 }
+
+public enum ImperialHandItemKind : byte
+{
+    Slapper,
+    Kisser,
+    Circle,
+    Noogie,
+    Offer,
+    Stealer,
+}
+
+/// <summary>/obj/item/hand_item: исчезает, как только покидает руку.</summary>
+[RegisterComponent, NetworkedComponent]
+public sealed partial class ImperialHandItemComponent : Component
+{
+    [DataField(required: true)]
+    public ImperialHandItemKind Kind;
+
+    /// <summary>table_smacks_left шлепка.</summary>
+    [DataField]
+    public int TableSmacks = 3;
+}
+
+/// <summary>Воздушный поцелуй (/obj/projectile/kiss).</summary>
+[RegisterComponent]
+public sealed partial class ImperialKissProjectileComponent : Component
+{
+    /// <summary>Поцелуй вручён лично (suppressed): без сообщения о попадании.</summary>
+    public bool Direct;
+}
+
+/// <summary>Нажатие на уведомление «X предлагает…» (/atom/movable/screen/alert/give).</summary>
+public sealed partial class ImperialEmoteOfferAlertEvent : BaseAlertEvent;
+
+[Serializable, NetSerializable]
+public sealed partial class ImperialNoogieDoAfterEvent : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public sealed partial class ImperialShoeStealDoAfterEvent : SimpleDoAfterEvent;

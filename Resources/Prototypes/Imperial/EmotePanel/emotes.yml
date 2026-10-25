@@ -162,6 +162,11 @@
   mobs: [ Living ]
 
 - type: imperialEmote
+  id: kiss
+  mobs: [ Living ]
+  handItem: ImperialHandKisser
+
+- type: imperialEmote
   id: laugh
   mobs: [ Living ]
   requires: [ CanSpeak ]
@@ -387,6 +392,12 @@
   vary: true
 
 - type: imperialEmote
+  id: circle
+  mobs: [ Carbon ]
+  hands: true
+  handItem: ImperialHandCircle
+
+- type: imperialEmote
   id: chitter
   mobs: [ Carbon ]
   species: [ Moth ]
@@ -410,6 +421,12 @@
   vanillaSound: Squeak
 
 - type: imperialEmote
+  id: noogie
+  mobs: [ Carbon ]
+  hands: true
+  handItem: ImperialHandNoogie
+
+- type: imperialEmote
   id: roll_alien
   mobs: [ Alien ]
   hands: true
@@ -430,11 +447,29 @@
   hands: true
 
 - type: imperialEmote
+  id: slap
+  mobs: [ Carbon ]
+  hands: true
+  handItem: ImperialHandSlapper
+
+- type: imperialEmote
+  id: hand
+  mobs: [ Carbon ]
+  hands: true
+  handItem: ImperialHandOffer
+
+- type: imperialEmote
   id: snap
   mobs: [ Carbon ]
   audible: true
   hands: true
   vanillaSound: Snap
+
+- type: imperialEmote
+  id: shoesteal
+  mobs: [ Carbon ]
+  hands: true
+  handItem: ImperialHandStealer
 
 - type: imperialEmote
   id: tail_alien

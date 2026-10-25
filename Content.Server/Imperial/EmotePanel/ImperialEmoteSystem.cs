@@ -41,6 +41,7 @@ public sealed partial class ImperialEmoteSystem : EntitySystem
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly ImperialEmoteHandSystem _handItems = default!;
 
     /// <summary>initial(/datum/emote::cooldown) BandaStation.</summary>
     private const float DefaultCooldown = 3f;
@@ -99,7 +100,7 @@ public sealed partial class ImperialEmoteSystem : EntitySystem
             list.Add(new ImperialEmoteEntry
             {
                 Id = proto.ID,
-                Hands = proto.Hands,
+                Hands = proto.Hands || proto.HandItem != null,
                 Visible = proto.Visible,
                 Audible = proto.Audible,
                 Sound = HasSound(uid, proto) && ShouldPlaySound(uid, proto),
@@ -234,7 +235,7 @@ public sealed partial class ImperialEmoteSystem : EntitySystem
             (!TryComp<HumanoidProfileComponent>(uid, out var profile) || !proto.Species.Contains(profile.Species)))
             return false;
 
-        if (proto.Hands && !HasHands(uid))
+        if ((proto.Hands || proto.HandItem != null) && !HasHands(uid))
             return false;
 
         foreach (var requirement in proto.Requires)
@@ -474,6 +475,10 @@ public sealed partial class ImperialEmoteSystem : EntitySystem
         }
 
         ApplyEffect(uid, proto);
+
+        if (proto.HandItem is { } handItem)
+            _handItems.GiveHandItem(uid, handItem);
+
         return true;
     }
 
