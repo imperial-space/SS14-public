@@ -46,3 +46,50 @@ imperial-mood-see-death = Я видел, как { $target } умер. Как у�
 imperial-mood-see-death-pet = { CAPITALIZE($target) } просто умер!!
 imperial-mood-see-death-naive = Хорошо поспать, { $target }.
 imperial-mood-see-death-xeno = Этот ксеноморф глотает пыль. Ооо, да!!
+imperial-mood-see-death-dontcare = Оу, { $target } умер. Досадно, наверное.
+
+imperial-mood-print-personality = Я знаю себя: { $personalities }.
+imperial-mood-print-quirks = У меня имеются следующие особенности: { $quirks }.
+imperial-mood-personality-none = без особой личности
+
+imperial-mood-personality-hug-aloof = Я бы хотел, чтобы меня не трогали.
+imperial-mood-personality-hug-callous = Ненавижу обниматься.
+imperial-mood-personality-pet-disliker = Беееее, { $target } такой грязный! Не буду его трогать от греха подальше!
+imperial-mood-personality-pet-love = Я очень люблю { $target }, такая милота! Не могу перестать гладить!
+imperial-mood-personality-pet-not-dog = Я не люблю { $target }! Я люблю собак!
+imperial-mood-personality-pet-not-cat = Я не люблю { $target }! Я люблю котов!
+imperial-mood-personality-pet = { CAPITALIZE($target) } — сама милота!
+imperial-mood-personality-helped-callous = Они должны были сами разобраться со своими проблемами.
+imperial-mood-personality-helped-compassionate = Мне понравилось помогать { $target }!
+imperial-mood-personality-drunk-teetotal = Я не люблю пить... Из-за этого я чувствую себя ужасно.
+
+imperial-mood-heirloom-given = [color=#7fb3ff]{ CAPITALIZE($item) } — драгоценная семейная реликвия, передаваемая из поколения в поколение. Берегите её![/color]
+imperial-mood-heirloom-examine-owner = [color=#7fb3ff]Это драгоценная семейная реликвия рода { $family }. Её нужно беречь![/color]
+imperial-mood-heirloom-examine = Это семейная реликвия рода { $family }.
+imperial-mood-all-nighter-tired = [color=#ff3d3d]Вы снова начинаете чувствовать усталость.[/color]
+imperial-mood-erratic-normal = [color=#7fb3ff]Вы чувствуете себя... нормально.[/color]
+imperial-mood-erratic-different = [color=#7fb3ff]Вы чувствуете себя... по-другому.[/color]
+imperial-mood-erratic-now = [color=#6ec36e]Ваша личность сейчас: { $personalities }.[/color]
+
+imperial-quirk-depression-name = Депрессия
+imperial-quirk-depression-desc = Иногда вы просто ненавидите жизнь.
+imperial-quirk-depression-gain = У вас начинается депрессия.
+imperial-quirk-jolly-name = Весельчак
+imperial-quirk-jolly-desc = Иногда вы просто чувствуете себя счастливым без всякой причины.
+imperial-quirk-hypersensitive-name = Сверхчувствительный
+imperial-quirk-hypersensitive-desc = К сожалению или к счастью, вам кажется, что всё влияет на ваше настроение сильнее обычного.
+imperial-quirk-hypersensitive-gain = Вы, кажется, делаете из мухи слона где только возможно.
+imperial-quirk-unstable-name = Нестабильный
+imperial-quirk-unstable-desc = Из-за прошлых неприятностей вы не сможете восстановить рассудок, если потеряете его. Будьте очень осторожны в управлении своим настроением!
+imperial-quirk-unstable-gain = У вас сейчас довольно много разных мыслей на уме.
+imperial-quirk-family-heirloom-name = Семейная реликвия
+imperial-quirk-family-heirloom-desc = У вас есть семейная реликвия, передающаяся из поколения в поколение. Вы должны сохранить её любой ценой!
+imperial-quirk-all-nighter-name = Бессонная ночь
+imperial-quirk-all-nighter-desc = Вы заметно не выспались прошлой ночью! У вас постоянно будет плохое настроение. Стимуляторы или сон могут помочь.
+imperial-quirk-all-nighter-gain = Вы чувствуете себя уставшим.
+imperial-quirk-bad-back-name = Больная спина
+imperial-quirk-bad-back-desc = Из-за плохой осанки рюкзаки и другие сумки никогда не сидят на вашей спине правильно.
+imperial-quirk-bad-back-gain = Ваша спина действительно болит!
+imperial-quirk-erratic-name = Переменчивый
+imperial-quirk-erratic-desc = Ваше настроение колеблется подобно маятнику, вызывая частые и непредсказуемые изменения вашей личности.
+imperial-quirk-erratic-gain = Вы чувствуете себя неуравновешенным.

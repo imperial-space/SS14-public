@@ -1,3 +1,4 @@
+using Content.Shared.Imperial.Mood;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Chat.Systems;
@@ -282,6 +283,19 @@ public sealed partial class ImperialQuirkSystem
     #region Общее
 
     /// <summary>has_reagent: вещество в любом растворе тела (кровь, метаболиты).</summary>
+    /// <summary>add_mood_event через событие настроения.</summary>
+    private void AddMoodlet(EntityUid mob, string category, string id)
+    {
+        var ev = new ImperialMoodAddEvent(category, id);
+        RaiseLocalEvent(mob, ref ev);
+    }
+
+    private void ClearMoodlet(EntityUid mob, string category)
+    {
+        var ev = new ImperialMoodClearEvent(category);
+        RaiseLocalEvent(mob, ref ev);
+    }
+
     private bool HasReagent(EntityUid mob, string reagent, float min = 0.01f)
     {
         foreach (var (_, solution) in _solutions.EnumerateSolutions(mob))
@@ -394,12 +408,24 @@ public sealed partial class ImperialQuirkSystem
         if (Satisfied(ent))
         {
             ent.Comp.LastFix = now;
+            ClearMoodlet(ent, "withdrawal");
             return;
         }
 
         var minutes = (now - ent.Comp.LastFix).TotalMinutes;
         if (minutes < 5)
             return;
+
+        // Мудлеты ломки: никотиновая у курильщиков, обычная у остальных.
+        var nicotine = ent.Comp.Reagents.Contains("Nicotine");
+        AddMoodlet(ent, "withdrawal", (nicotine, minutes) switch
+        {
+            (true, < 15) => "nicotine_withdrawal_moderate",
+            (true, _) => "nicotine_withdrawal_severe",
+            (false, < 10) => "withdrawal_light",
+            (false, < 15) => "withdrawal_medium",
+            _ => "withdrawal_severe",
+        });
 
         if (_random.Prob(0.15f))
             _popup.PopupEntity(Loc.GetString($"imperial-quirk-withdrawal-{_random.Next(1, 5)}"), ent, ent, PopupType.MediumCaution);
@@ -989,6 +1015,8 @@ public sealed partial class ImperialQuirkSystem
     {
         if (!_random.Prob(0.25f))
             return;
+
+        AddMoodlet(anxious, "anxiety_eyecontact", "anxiety_eyecontact");
 
         var key = _random.Next(1, 4);
         switch (key)

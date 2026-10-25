@@ -1,0 +1,107 @@
+# Причуды TG про настроение (code/datums/quirks). Стоимость = value TG, как у остальных Imperial-причуд.
+
+- type: trait
+  id: ImperialQuirkDepression
+  name: imperial-quirk-depression-name
+  description: imperial-quirk-depression-desc
+  category: ImperialQuirks
+  cost: -3
+
+- type: imperialQuirk
+  id: ImperialQuirkDepression
+  incompatible: [ ImperialQuirkJolly ]
+  gainText: imperial-quirk-depression-gain
+  components:
+  - type: ImperialQuirkDepression
+
+- type: trait
+  id: ImperialQuirkJolly
+  name: imperial-quirk-jolly-name
+  description: imperial-quirk-jolly-desc
+  category: ImperialQuirks
+  cost: 4
+
+- type: imperialQuirk
+  id: ImperialQuirkJolly
+  incompatible: [ ImperialQuirkDepression ]
+  components:
+  - type: ImperialQuirkJolly
+
+- type: trait
+  id: ImperialQuirkHypersensitive
+  name: imperial-quirk-hypersensitive-name
+  description: imperial-quirk-hypersensitive-desc
+  category: ImperialQuirks
+  cost: -2
+
+- type: imperialQuirk
+  id: ImperialQuirkHypersensitive
+  gainText: imperial-quirk-hypersensitive-gain
+  components:
+  - type: ImperialQuirkHypersensitive
+
+- type: trait
+  id: ImperialQuirkUnstable
+  name: imperial-quirk-unstable-name
+  description: imperial-quirk-unstable-desc
+  category: ImperialQuirks
+  cost: -10
+
+- type: imperialQuirk
+  id: ImperialQuirkUnstable
+  gainText: imperial-quirk-unstable-gain
+  components:
+  - type: ImperialQuirkUnstable
+
+- type: trait
+  id: ImperialQuirkFamilyHeirloom
+  name: imperial-quirk-family-heirloom-name
+  description: imperial-quirk-family-heirloom-desc
+  category: ImperialQuirks
+  cost: -2
+
+- type: imperialQuirk
+  id: ImperialQuirkFamilyHeirloom
+  components:
+  - type: ImperialQuirkFamilyHeirloom
+    heirlooms: [ Lighter, d20Dice, DiceBag ]
+
+- type: trait
+  id: ImperialQuirkAllNighter
+  name: imperial-quirk-all-nighter-name
+  description: imperial-quirk-all-nighter-desc
+  category: ImperialQuirks
+  cost: -4
+
+- type: imperialQuirk
+  id: ImperialQuirkAllNighter
+  gainText: imperial-quirk-all-nighter-gain
+  components:
+  - type: ImperialQuirkAllNighter
+    stimulants: [ Coffee, Tea, EnergyDrink, Nicotine, Ephedrine, Desoxyephedrine, Stimulants ]
+
+- type: trait
+  id: ImperialQuirkBadBack
+  name: imperial-quirk-bad-back-name
+  description: imperial-quirk-bad-back-desc
+  category: ImperialQuirks
+  cost: -8
+
+- type: imperialQuirk
+  id: ImperialQuirkBadBack
+  gainText: imperial-quirk-bad-back-gain
+  components:
+  - type: ImperialQuirkBadBack
+
+- type: trait
+  id: ImperialQuirkErratic
+  name: imperial-quirk-erratic-name
+  description: imperial-quirk-erratic-desc
+  category: ImperialQuirks
+  cost: -3
+
+- type: imperialQuirk
+  id: ImperialQuirkErratic
+  gainText: imperial-quirk-erratic-gain
+  components:
+  - type: ImperialQuirkErratic

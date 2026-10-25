@@ -128,6 +128,11 @@ public sealed partial class ImperialMoodSystem
     {
         if (!_status.TryGetMaxTime<DrunkStatusEffectComponent>(ent, out var drunk) || drunk.EndEffectTime is not { } end)
         {
+            // clear_effects: любителю выпить хорошо и после.
+            if (ent.Comp.DrunkStage != 0 && HasPersonality(ent.Comp, "bibulous"))
+                AddMood((ent.Owner, ent.Comp), "drunk_after", "drunk_after");
+
+            ent.Comp.DrunkStage = 0;
             ClearMood((ent.Owner, ent.Comp), "drunk");
             return;
         }
@@ -139,13 +144,15 @@ public sealed partial class ImperialMoodSystem
             < 45 => (4, 2),
             < 60 => (5, 3),
             < 90 => (6, 4),
-            _ => (7, 5),
+            _ => (3, 5),
         };
 
-        if (GetMood((ent.Owner, ent.Comp), "drunk")?.Change == change)
+        if (ent.Comp.DrunkStage == stage)
             return;
 
+        ent.Comp.DrunkStage = stage;
         ClearMood((ent.Owner, ent.Comp), "drunk");
+        ClearMood((ent.Owner, ent.Comp), "drunk_after");
         AddMood((ent.Owner, ent.Comp), "drunk", "drunk", change: change,
             description: Loc.GetString($"imperial-mood-drunk-{stage}"));
     }
@@ -167,6 +174,14 @@ public sealed partial class ImperialMoodSystem
     private void OnSlip(Entity<SlipperyComponent> ent, ref SlipEvent args)
     {
         AddMood(args.Slipped, "slipped", "slipped");
+
+        // slip_observed: чудакам смешно смотреть, как кто-то падает.
+        foreach (var viewer in _lookup.GetEntitiesInRange<ImperialMoodComponent>(Transform(args.Slipped).Coordinates, 5f))
+        {
+            if (viewer.Owner != args.Slipped && HasPersonality(viewer.Comp, "whimsical") &&
+                _examine.InRangeUnOccluded(viewer, args.Slipped, 5f))
+                AddMood(viewer.AsNullable(), "slip_observed", "whimsical_slip");
+        }
     }
 
     /// <summary>help_shake_act и pet_bonus: обнять человека или погладить зверя.</summary>
@@ -176,7 +191,11 @@ public sealed partial class ImperialMoodSystem
             return;
 
         if (HasComp<HumanoidProfileComponent>(ent))
+        {
             AddMood(ent.Owner, "hug", "hug");
+            if (TryComp<ImperialMoodComponent>(ent, out var mood))
+                BadTouch((ent.Owner, mood));
+        }
         else if (HasComp<MobStateComponent>(ent))
             AddMood(args.User, $"pet_{ent.Owner}", "pet_animal", ent.Owner);
     }
@@ -213,7 +232,16 @@ public sealed partial class ImperialMoodSystem
 
         var pet = !HasComp<HumanoidProfileComponent>(dead);
         var xenoDead = IsAlien(dead);
-        if (IsClown(witness))
+        var timeout = baseTimeout;
+        if (HasPersonality(witness.Comp, "callous") || pet && HasPersonality(witness.Comp, "animal_disliker"))
+        {
+            // dontcare: бессердечным и нелюбителям животных всё равно.
+            id = "see_death_dontcare";
+            priority = 40;
+            change = 0;
+            description = Loc.GetString("imperial-mood-see-death-dontcare", ("target", Descriptor(dead)));
+        }
+        else if (IsClown(witness))
         {
             // naive: клоуны не понимают смерти.
             id = "see_death_naive";
@@ -232,7 +260,11 @@ public sealed partial class ImperialMoodSystem
         {
             id = "see_death_pet";
             priority = 30;
-            change = baseChange * 0.25f;
+            change = baseChange;
+            if (HasPersonality(witness.Comp, "animal_friend"))
+                change *= 1.5f;
+            else if (!HasPersonality(witness.Comp, "compassionate"))
+                change *= 0.25f;
             description = Loc.GetString("imperial-mood-see-death-pet", ("target", Descriptor(dead)));
         }
         else
@@ -241,6 +273,13 @@ public sealed partial class ImperialMoodSystem
             priority = 0;
             change = baseChange;
             description = Loc.GetString("imperial-mood-see-death", ("target", Descriptor(dead)));
+        }
+
+        // compassionate: чужая смерть ранит сильнее и дольше.
+        if (change < 0 && HasPersonality(witness.Comp, "compassionate"))
+        {
+            change *= 1.5f;
+            timeout *= 1.5f;
         }
 
         // be_refreshed: новая смерть того же рода давит сильнее.
@@ -253,7 +292,7 @@ public sealed partial class ImperialMoodSystem
             return;
         }
 
-        AddMood((witness.Owner, witness.Comp), category, id, dead, (int) Math.Ceiling(change), description, priority, baseTimeout);
+        AddMood((witness.Owner, witness.Comp), category, id, dead, (int) Math.Ceiling(change), description, priority, timeout);
     }
 
     /// <summary>get_descriptor: должность члена экипажа, имя питомца или «кто-то».</summary>

@@ -1594,3 +1594,232 @@
 - type: imperialMoodEvent
   id: completely_organic
   moodChange: -8
+
+- type: imperialMoodEvent
+  id: anxiety_eyecontact
+  moodChange: -5
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: spacer
+
+- type: imperialMoodEvent
+  id: spacer_in_space
+
+- type: imperialMoodEvent
+  id: spacer_on_planet
+  moodChange: -2
+
+- type: imperialMoodEvent
+  id: spacer_on_planet_too_long
+  moodChange: -4
+
+- type: imperialMoodEvent
+  id: spacer_on_planet_nerfed
+  moodChange: -3
+
+- type: imperialMoodEvent
+  id: spacer_on_planet_low_grav
+  moodChange: 3
+
+- type: imperialMoodEvent
+  id: stoat
+
+- type: imperialMoodEvent
+  id: stoat_enemies_nearby
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: stoat_enemies_nearby_one
+  moodChange: -1
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: stoat_enemies_nearby_multiple
+  moodChange: -3
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: stoat_enemies_nearby_crowd
+  moodChange: -5
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: stoat_alone
+  moodChange: 1
+
+- type: imperialMoodEvent
+  id: stoat_friendlies_nearby
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: stoat_friendlies_nearby_one
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: stoat_friendlies_nearby_multiple
+  moodChange: -1
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: stoat_friendlies_nearby_crowd
+  moodChange: -3
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: poster_mood
+  moodChange: 2
+
+- type: imperialMoodEvent
+  id: fallen_changeling
+  moodChange: -4
+
+- type: imperialMoodEvent
+  id: shadow_realm
+  moodChange: -15
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: shadow_realm_live
+  moodChange: 4
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: shadow_realm_live_sad
+  moodChange: -6
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: shadow_realm_live_sad_heretic
+  moodChange: -8
+  timeout: 480
+
+- type: imperialMoodEvent
+  id: heretics_lunatic
+  moodChange: 10
+  hidden: true
+
+- type: imperialMoodEvent
+  id: soultrapped_heretic
+  moodChange: -20
+
+- type: imperialMoodEvent
+  id: mansus_dream_fatigue
+  moodChange: -2
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: royale_survivor
+  moodChange: 4
+
+- type: imperialMoodEvent
+  id: traitor_poster_antag
+  moodChange: 2
+  timeout: 120
+  hidden: true
+
+- type: imperialMoodEvent
+  id: traitor_poster_crew
+  moodChange: -2
+  timeout: 120
+  hidden: true
+
+- type: imperialMoodEvent
+  id: traitor_poster_auth
+  moodChange: -3
+  timeout: 120
+  hidden: true
+
+- type: imperialMoodEvent
+  id: traitor_graffiti_antag
+  moodChange: 2
+  timeout: 120
+  hidden: true
+
+- type: imperialMoodEvent
+  id: traitor_graffiti_crew
+  moodChange: -2
+  timeout: 120
+  hidden: true
+
+- type: imperialMoodEvent
+  id: traitor_graffiti_auth
+  moodChange: -3
+  timeout: 120
+  hidden: true
+
+- type: imperialMoodEvent
+  id: traitor_module_antag
+  moodChange: 1
+  timeout: 120
+  hidden: true
+
+- type: imperialMoodEvent
+  id: traitor_module_crew
+  moodChange: -4
+  timeout: 120
+  hidden: true
+
+- type: imperialMoodEvent
+  id: traitor_module_auth
+  moodChange: -5
+  timeout: 120
+  hidden: true
+
+- type: imperialMoodEvent
+  id: clown_world
+  moodChange: 4
+
+- type: imperialMoodEvent
+  id: depressing_party
+  moodChange: -1
+  timeout: 30
+
+- type: imperialMoodEvent
+  id: festive_party
+  moodChange: 2
+  timeout: 30
+
+- type: imperialMoodEvent
+  id: soul_core_torment
+  moodChange: -20
+  timeout: 10
+
+- type: imperialMoodEvent
+  id: soul_core_torment_heretic
+  moodChange: -20
+  timeout: 10
+
+- type: imperialMoodEvent
+  id: soul_core_discomfort
+  moodChange: -3
+  timeout: 10
+
+- type: imperialMoodEvent
+  id: soul_core_warning
+  timeout: 10
+
+- type: imperialMoodEvent
+  id: banish_nightmare
+  moodChange: 4
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: dream_interrupted
+  moodChange: -2
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: dream_failed
+  moodChange: -2
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: surgery_emp_active
+  moodChange: -90
+  timeout: 60
+  icon: mood_despair
+
+- type: imperialMoodEvent
+  id: surgery_emp_expired
+  timeout: 300

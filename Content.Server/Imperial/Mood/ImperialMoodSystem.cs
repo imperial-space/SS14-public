@@ -75,6 +75,15 @@ public sealed partial class ImperialMoodComponent : Component
 
     public bool Hallucinating;
     public TimeSpan NextTick;
+
+    /// <summary>Каждые 5 секунд: окружение, личности, роли.</summary>
+    public TimeSpan NextSlowTick;
+
+    /// <summary>personalities: savefile_key личностей.</summary>
+    public HashSet<string> Personalities = new();
+
+    /// <summary>Стадия опьянения, по которой выставлен мудлет drunk.</summary>
+    public int DrunkStage;
 }
 
 public static class ImperialMood
@@ -121,6 +130,8 @@ public sealed partial class ImperialMoodSystem : EntitySystem
         SubscribeLocalEvent<ImperialMoodComponent, MobStateChangedEvent>(OnOwnState);
         SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
         InitializeTriggers();
+        InitializePersonality();
+        InitializeQuirks();
     }
 
     /// <summary>mob_mood есть у гуманоидов с игроком.</summary>
@@ -181,6 +192,10 @@ public sealed partial class ImperialMoodSystem : EntitySystem
         var now = _timing.CurTime;
         var moodChange = change ?? proto.MoodChange;
 
+        // can_effect_mob и on_add: личность меняет силу и текст мудлета или отменяет его.
+        if (!ApplyPersonality((ent.Owner, comp), proto, source, ref moodChange, ref description))
+            return;
+
         if (comp.Events.TryGetValue(category, out var existing))
         {
             // be_refreshed: тот же мудлет — только продлеваем.
@@ -211,6 +226,9 @@ public sealed partial class ImperialMoodSystem : EntitySystem
         };
 
         UpdateMood((ent.Owner, comp));
+
+        if (moodChange != 0 && !proto.Hidden)
+            SpreadToViewers(ent.Owner, proto.ID, moodChange > 0);
     }
 
     /// <summary>clear_mood_event.</summary>
@@ -318,6 +336,14 @@ public sealed partial class ImperialMoodSystem : EntitySystem
                 continue;
 
             PollTriggers(ent);
+            PollQuirks(ent);
+            if (now >= comp.NextSlowTick)
+            {
+                comp.NextSlowTick = now + TimeSpan.FromSeconds(5);
+                PollPersonalities(ent);
+                PollAntag(ent);
+            }
+
             ProcessSanity(ent, 1f);
         }
     }
@@ -352,6 +378,10 @@ public sealed partial class ImperialMoodSystem : EntitySystem
         var comp = ent.Comp;
         if (amount < minimum && comp.Sanity < minimum)
             amount = comp.Sanity + 0.7f;
+
+        // TRAIT_UNSTABLE: рассудок только падает.
+        if (!force && HasComp<ImperialQuirkUnstableComponent>(ent))
+            amount = Math.Min(comp.Sanity, amount);
 
         if (amount > maximum)
             amount = maximum;
@@ -514,6 +544,15 @@ public sealed partial class ImperialMoodSystem : EntitySystem
 
         if (!any)
             msg.AppendLine(Loc.GetString("imperial-mood-print-none"));
+
+        if (comp.Personalities.Count > 0)
+            msg.AppendLine(Loc.GetString("imperial-mood-print-personality", ("personalities", PersonalityNames(comp))));
+
+        if (TryComp<Shared.Imperial.Quirks.ImperialQuirksComponent>(ent, out var quirks) && quirks.Quirks.Count > 0)
+        {
+            var names = quirks.Quirks.Select(q => _proto.TryIndex(q, out var trait) ? Loc.GetString(trait.Name) : q.Id);
+            msg.AppendLine(Loc.GetString("imperial-mood-print-quirks", ("quirks", string.Join(", ", names))));
+        }
 
         var text = msg.ToString().TrimEnd();
         _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Emotes, text, text, EntityUid.Invalid, false, actor.PlayerSession.Channel);

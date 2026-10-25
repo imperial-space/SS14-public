@@ -57,3 +57,80 @@ public record struct ImperialMoodClearEvent(string Category);
 
 /// <summary>Клик по значку настроения: print_mood.</summary>
 public sealed partial class ImperialMoodAlertEvent : BaseAlertEvent;
+
+/// <summary>
+/// /datum/personality TG. Выбирается чертой с тем же id в категории ImperialPersonalities;
+/// личности из одной группы несовместимы.
+/// </summary>
+[Prototype]
+public sealed partial class ImperialPersonalityPrototype : IPrototype
+{
+    [IdDataField]
+    public string ID { get; private set; } = default!;
+
+    /// <summary>savefile_key TG: по нему системы узнают личность.</summary>
+    [DataField(required: true)]
+    public string Key = string.Empty;
+
+    [DataField]
+    public List<string> Groups = new();
+}
+
+/// <summary>/datum/quirk/depression: иногда без причины грустно.</summary>
+[RegisterComponent]
+public sealed partial class ImperialQuirkDepressionComponent : Component;
+
+/// <summary>/datum/quirk/jolly: иногда без причины радостно.</summary>
+[RegisterComponent]
+public sealed partial class ImperialQuirkJollyComponent : Component;
+
+/// <summary>/datum/quirk/hypersensitive: mood_modifier +0.5.</summary>
+[RegisterComponent]
+public sealed partial class ImperialQuirkHypersensitiveComponent : Component;
+
+/// <summary>/datum/quirk/unstable (TRAIT_UNSTABLE): рассудок не восстанавливается.</summary>
+[RegisterComponent]
+public sealed partial class ImperialQuirkUnstableComponent : Component;
+
+/// <summary>/datum/quirk/item_quirk/family_heirloom.</summary>
+[RegisterComponent]
+public sealed partial class ImperialQuirkFamilyHeirloomComponent : Component
+{
+    [DataField]
+    public List<EntProtoId> Heirlooms = new();
+
+    public EntityUid? Item;
+    public bool Given;
+}
+
+/// <summary>/datum/quirk/all_nighter: «копилка сна» и усталость без стимуляторов.</summary>
+[RegisterComponent]
+public sealed partial class ImperialQuirkAllNighterComponent : Component
+{
+    [DataField]
+    public List<string> Stimulants = new();
+
+    public float SleepBank;
+}
+
+/// <summary>/datum/quirk/badback: рюкзак на спине — боль.</summary>
+[RegisterComponent]
+public sealed partial class ImperialQuirkBadBackComponent : Component;
+
+/// <summary>/datum/quirk/erratic: личность то и дело меняется.</summary>
+[RegisterComponent]
+public sealed partial class ImperialQuirkErraticComponent : Component
+{
+    public List<string> BasePersonalities = new();
+    public TimeSpan NextChange;
+    public int Index;
+    public bool Initialized;
+}
+
+/// <summary>Семейная реликвия: чья она.</summary>
+[RegisterComponent]
+public sealed partial class ImperialHeirloomComponent : Component
+{
+    public EntityUid Owner;
+    public string Family = string.Empty;
+}
