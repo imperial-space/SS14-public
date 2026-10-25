@@ -1,0 +1,478 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (food.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "shrimp_chips"
+    },
+    {
+      "name": "boritos"
+    },
+    {
+      "name": "candy"
+    },
+    {
+      "name": "bronx"
+    },
+    {
+      "name": "monkeycube"
+    },
+    {
+      "name": "badrecipe"
+    },
+    {
+      "name": "tofu"
+    },
+    {
+      "name": "soylent_green"
+    },
+    {
+      "name": "soylent_yellow"
+    },
+    {
+      "name": "sosjerky"
+    },
+    {
+      "name": "4no_raisins"
+    },
+    {
+      "name": "space_twinkie"
+    },
+    {
+      "name": "candy_corn"
+    },
+    {
+      "name": "phelmbiscuit"
+    },
+    {
+      "name": "moffin_1"
+    },
+    {
+      "name": "berrymuffin"
+    },
+    {
+      "name": "spiderlollipop"
+    },
+    {
+      "name": "soydope"
+    },
+    {
+      "name": "stewedsoymeat"
+    },
+    {
+      "name": "candiedapple"
+    },
+    {
+      "name": "cookie"
+    },
+    {
+      "name": "cracker"
+    },
+    {
+      "name": "chococornet"
+    },
+    {
+      "name": "chococoin"
+    },
+    {
+      "name": "chocoorange"
+    },
+    {
+      "name": "cherrycupcake"
+    },
+    {
+      "name": "bluecherrycupcake"
+    },
+    {
+      "name": "melonkeg"
+    },
+    {
+      "name": "roastparsnip"
+    },
+    {
+      "name": "chocodice"
+    },
+    {
+      "name": "honeybun"
+    },
+    {
+      "name": "honeybar"
+    },
+    {
+      "name": "stuffed_legion",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "khachapuri"
+    },
+    {
+      "name": "powercrepe"
+    },
+    {
+      "name": "tatortot"
+    },
+    {
+      "name": "bran_requests"
+    },
+    {
+      "name": "butterbiscuit"
+    },
+    {
+      "name": "rawpancakes_1"
+    },
+    {
+      "name": "butterdog"
+    },
+    {
+      "name": "tiny_chocolate"
+    },
+    {
+      "name": "rationpack"
+    },
+    {
+      "name": "butteronastick"
+    },
+    {
+      "name": "donkpocketgondola"
+    },
+    {
+      "name": "bubblegum"
+    },
+    {
+      "name": "royalcheese"
+    },
+    {
+      "name": "poutine"
+    },
+    {
+      "name": "lasagna"
+    },
+    {
+      "name": "peanuts"
+    },
+    {
+      "name": "cnds"
+    },
+    {
+      "name": "ant_pop"
+    },
+    {
+      "name": "roasted_bell_pepper"
+    },
+    {
+      "name": "curd_cheese"
+    },
+    {
+      "name": "cheese_curds"
+    },
+    {
+      "name": "firm_cheese"
+    },
+    {
+      "name": "firm_cheese_slice"
+    },
+    {
+      "name": "mozzarella"
+    },
+    {
+      "name": "spacers_sidekick"
+    },
+    {
+      "name": "pesto"
+    },
+    {
+      "name": "tomato_sauce"
+    },
+    {
+      "name": "bechamel_sauce"
+    },
+    {
+      "name": "ready_donk_bachelor"
+    },
+    {
+      "name": "ready_donk_bachelor_warm"
+    },
+    {
+      "name": "ready_donk_mac"
+    },
+    {
+      "name": "ready_donk_mac_warm"
+    },
+    {
+      "name": "ready_donk_mex"
+    },
+    {
+      "name": "ready_donk_mex_warm"
+    },
+    {
+      "name": "ready_donk_nachos"
+    },
+    {
+      "name": "ready_donk_nachos_warm"
+    },
+    {
+      "name": "ready_donk_orange"
+    },
+    {
+      "name": "ready_donk_orange_warm"
+    },
+    {
+      "name": "ready_donk_salisbury"
+    },
+    {
+      "name": "ready_donk_salisbury_warm"
+    },
+    {
+      "name": "ready_donk_chicken"
+    },
+    {
+      "name": "ready_donk_chicken_warm"
+    },
+    {
+      "name": "sunseeds"
+    },
+    {
+      "name": "boritosgreen"
+    },
+    {
+      "name": "boritosred"
+    },
+    {
+      "name": "boritospurple"
+    },
+    {
+      "name": "pierogi"
+    },
+    {
+      "name": "stuffed_cabbage"
+    },
+    {
+      "name": "seaweedsheet"
+    },
+    {
+      "name": "vegetariansushiroll"
+    },
+    {
+      "name": "vegetariansushislice"
+    },
+    {
+      "name": "spicyfiletroll"
+    },
+    {
+      "name": "spicyfiletslice"
+    },
+    {
+      "name": "peanut_butter_cookie"
+    },
+    {
+      "name": "raw_brownie_batter"
+    },
+    {
+      "name": "brownie_sheet"
+    },
+    {
+      "name": "granola_bar"
+    },
+    {
+      "name": "nigiri_sushi"
+    },
+    {
+      "name": "onigiri"
+    },
+    {
+      "name": "tempeh"
+    },
+    {
+      "name": "tempehslice"
+    },
+    {
+      "name": "tempehstarter"
+    },
+    {
+      "name": "mashed_potatoes"
+    },
+    {
+      "name": "pacoca"
+    },
+    {
+      "name": "pickle"
+    },
+    {
+      "name": "springroll"
+    },
+    {
+      "name": "caramel_popcorn"
+    },
+    {
+      "name": "baked_potato"
+    },
+    {
+      "name": "buttered_baked_potato"
+    },
+    {
+      "name": "cheese_pierogi"
+    },
+    {
+      "name": "meat_pierogi"
+    },
+    {
+      "name": "raw_calzone"
+    },
+    {
+      "name": "meat_calzone"
+    },
+    {
+      "name": "vegetarian_calzone"
+    },
+    {
+      "name": "uncooked_rice"
+    },
+    {
+      "name": "caramel_truffle"
+    },
+    {
+      "name": "chocolate_truffle"
+    },
+    {
+      "name": "peanut_truffle"
+    },
+    {
+      "name": "peanut_butter_cup"
+    },
+    {
+      "name": "peanut_butter_brownie_batter"
+    },
+    {
+      "name": "peanut_butter_brownie_sheet"
+    },
+    {
+      "name": "peanut_butter_brownie"
+    },
+    {
+      "name": "crunchy_peanut_butter_tart"
+    },
+    {
+      "name": "hot_shots"
+    },
+    {
+      "name": "sticko_classic"
+    },
+    {
+      "name": "sticko_matcha"
+    },
+    {
+      "name": "sticko_nutty"
+    },
+    {
+      "name": "sticko_pineapple"
+    },
+    {
+      "name": "sticko_yuyake"
+    },
+    {
+      "name": "shok_roks_candy"
+    },
+    {
+      "name": "shok_roks_citrus"
+    },
+    {
+      "name": "shok_roks_berry"
+    },
+    {
+      "name": "shok_roks_tropical"
+    },
+    {
+      "name": "shok_roks_lanternfruit"
+    },
+    {
+      "name": "sauteed_eggplant"
+    },
+    {
+      "name": "stuffed_eggplant"
+    },
+    {
+      "name": "baba_ghanoush"
+    },
+    {
+      "name": "moussaka"
+    },
+    {
+      "name": "moussaka_slice"
+    },
+    {
+      "name": "falafel"
+    },
+    {
+      "name": "tzatziki_sauce"
+    },
+    {
+      "name": "tzatziki_and_pita_bread"
+    },
+    {
+      "name": "vegetarian_gyro"
+    },
+    {
+      "name": "grilled_beef_gyro"
+    },
+    {
+      "name": "candied_pineapple_1"
+    },
+    {
+      "name": "futomaki_sushi_roll"
+    },
+    {
+      "name": "futomaki_sushi_slice"
+    },
+    {
+      "name": "philadelphia_sushi_roll"
+    },
+    {
+      "name": "philadelphia_sushi_slice"
+    },
+    {
+      "name": "thumbprint_cookie"
+    },
+    {
+      "name": "snickerdoodle"
+    },
+    {
+      "name": "macaron_1"
+    },
+    {
+      "name": "virtual_chocolate"
+    },
+    {
+      "name": "jupitercupcake"
+    },
+    {
+      "name": "donkpocketdeluxe"
+    },
+    {
+      "name": "donkpocketdeluxenocarb"
+    },
+    {
+      "name": "donkpocketdeluxevegan"
+    },
+    {
+      "name": "ink_sac"
+    },
+    {
+      "name": "apple_fritter"
+    }
+  ]
+}

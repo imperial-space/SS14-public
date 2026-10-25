@@ -1,0 +1,540 @@
+# Блюда TG /obj/item/food/burger (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerFish
+  name: "филе-о-карп"
+  description: "Словно где-то вопит карп... Отдай моё филе-о-карп, отдай карпа."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: fishburger
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 18
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - bun
+    - fishy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerRed
+  name: "красный бургер"
+  description: "Отлично скрывает, что он сгорел дотла."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: cburger
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - bun
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerOrange
+  name: "оранжевый бургер"
+  description: "Содержит 0% сока."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: cburger
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - bun
+    - orange
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerYellow
+  name: "жёлтый бургер"
+  description: "Яркий до последнего кусочка."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: cburger
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - bun
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerGreen
+  name: "зелёный бургер"
+  description: "Это не тухлое мясо, это крашеное мясо!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: cburger
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - bun
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerBlue
+  name: "синий бургер"
+  description: "Это с кровью... синей?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: cburger
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - bun
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerPurple
+  name: "фиолетовый бургер"
+  description: "Царственный и простецкий одновременно."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: cburger
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - bun
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerBlack
+  name: "чёрный бургер"
+  description: "Пережарен."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: cburger
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - bun
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerWhite
+  name: "белый бургер"
+  description: "Вкуснейший титан!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: cburger
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - bun
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerEmpty
+  name: "бургер"
+  description: "Безумный бургер на заказ от сумасшедшего повара."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: custburg
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerSloppyMoe
+  name: "неряшливый Мо"
+  description: "Фарш с луком и соусом барбекю, неаккуратно шлёпнутый на булку. Вкусно, но руки точно испачкаете."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: sloppy_moe
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 29
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 6
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - bun
+    - onion
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerPlainKorta
+  name: "простой корнебургер"
+  description: "Простая котлета в булке из корнетеста."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: kortaburger
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 14
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - bun
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerRatKorta
+  name: "крысиный корнебургер"
+  description: "Ровно то, чего вы ожидали... только в булке из корнетеста."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: ratburger
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - bun
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerRootguffin
+  name: "корнемаффин"
+  description: "Дешёвая и жирная ящерская имитация яиц Бенедикт."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: rootguffin
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 18
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Egg
+          Quantity: 3
+        - ReagentId: Protein
+          Quantity: 7
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - bacon
+    - muffin
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerRootrib
+  name: "корнериб"
+  description: "Неуловимый бургер в форме рёбрышек, доступный в галактике лишь ограниченное время. Теперь соответствует нечеловеческим стандартам."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: rootrib
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 19
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 7
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: BbqSauce
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - bun
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerRootchicken
+  name: "корнебутерброд с курицей"
+  description: "Вкусный сэндвич с курицей в мягкой корнебулочке."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: rootchicken
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 21
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Mayo
+          Quantity: 3
+        - ReagentId: Protein
+          Quantity: 7
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: OilOlive
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - chicken
+    - bun
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerRootfish
+  name: "корнебутерброд с рыбой"
+  description: "Рыба в лёгком кляре в корнебулочке."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: rootfish
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 18
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - bun
+    - fishy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerSloppyroot
+  name: "неряшшшливый Мо"
+  description: "Фарш с луком и сссоусом барбекю, неряшшшливо шлёпнутый на корнебулочку. Вкусно, но руки точно испачкаете."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: sloppyroot
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 29
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 6
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - bun
+    - onion
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerBigBlue
+  name: "бургер «Большой синий»"
+  description: "Оригинальный и лучший «Большой синий» прямо из любимой бургерной Марса. Лови волну, брат!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: big_blue_burger
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 8
+  - type: FlavorProfile
+    flavors:
+    - bacon
+    - bun
+    - cheesy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBurgerChappy
+  name: "котлета «Чаппи»"
+  description: "Родилась однажды пьяной ночью на кухне «Большого синего» и с тех пор стала основой и их меню, и (псевдо)гавайской кухни по всей галактике."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: chappy_patty
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 17
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Protein
+          Quantity: 6
+  - type: FlavorProfile
+    flavors:
+    - bun
+    - cheesy
+    - egg

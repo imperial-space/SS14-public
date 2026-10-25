@@ -1,0 +1,139 @@
+# Блюда TG /obj/item/food/bowled (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBowledHuaMulanCongee
+  name: "конджи «Хуа Мулань»"
+  description: "Никто не знает, почему эта улыбчивая миска рисовой каши с яйцами и беконом названа в честь мифической китаянки — просто так повелось."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: hua_mulan_congee
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 27
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 6
+  - type: FlavorProfile
+    flavors:
+    - bacon
+    - egg
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBowledFriedEggplantPolenta
+  name: "жареный баклажан с полентой"
+  description: "Полента с сыром, несколько кружков жареного баклажана и томатный соус. Лекке!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/moth.rsi
+    state: fried_eggplant_polenta
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 33
+        reagents:
+        - ReagentId: Protein
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Nutriment
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - cheesy
+    - eggplant
+    - tomato
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBowledWish
+  name: "суп-желание"
+  description: "Хотелось бы, чтобы это был суп."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/soupsalad.rsi
+    state: wishsoup
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Water
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - food
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBowledMammi
+  name: "мямми"
+  description: "Миска размокшего хлеба с молоком. Не слишком приятно напоминает кое-что из уборной."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/soupsalad.rsi
+    state: mammi
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 18
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 11
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodBowledSpacylibertyduff
+  name: "космический либерти-дафф"
+  description: "Желе из кулинарной книги Альфреда Хаббарда."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/soupsalad.rsi
+    state: spacylibertyduff
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - jelly
+    - mushroom
+  - type: Edible
+    trash:
+    - FoodBowlBig

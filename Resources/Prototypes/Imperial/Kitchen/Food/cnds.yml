@@ -1,0 +1,130 @@
+# Блюда TG /obj/item/food/cnds (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCndsCaramel
+  name: "карамельные C&D"
+  description: "С приторной карамелью внутри — кошмар диабетика."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: cnds
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 9
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 3
+        - ReagentId: CocoaPowder
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - chocolate
+    - sweet
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCndsPretzel
+  name: "C&D с кренделем"
+  description: "Eine köstliche Begleitung zu Ihrem Lieblingsbier."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: cnds
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 9
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 2
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: CocoaPowder
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - chocolate
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCndsPeanutButter
+  name: "C&D с арахисовым маслом"
+  description: "Любимы и детьми, и пришельцами."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: cnds
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 9
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 2
+        - ReagentId: CocoaPowder
+          Quantity: 1
+        - ReagentId: ImperialPeanutButter
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - chocolate
+    - butter
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCndsBananaHonk
+  name: "банановые хонк-C&D"
+  description: "Официальные конфеты клоунов всего мира. Хонк-хонк!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: cnds
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 9
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 2
+        - ReagentId: CocoaPowder
+          Quantity: 1
+        - ReagentId: JuiceBanana
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - chocolate
+    - banana
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCndsRandom
+  name: "C&D с загадочной начинкой"
+  description: "С одним из четырёх вкусных вкусов!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: cnds
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 9
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 3
+        - ReagentId: CocoaPowder
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - chocolate

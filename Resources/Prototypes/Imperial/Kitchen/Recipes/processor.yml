@@ -1,0 +1,133 @@
+# /datum/food_processor_process TG.
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessMeat
+  input: FoodMeat
+  output: FoodMeatMeatball
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessCutlet
+  input: FoodMeatCutletCooked
+  output: FoodMeatMeatball
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessMeatHuman
+  input: FoodMeatHuman
+  output: ImperialFoodRawMeatballHuman
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessMeatCorgi
+  input: FoodMeatCorgi
+  output: ImperialFoodRawMeatballCorgi
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessMeatXeno
+  input: FoodMeatXeno
+  output: ImperialFoodRawMeatballXeno
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessCutletXeno
+  input: FoodMeatXenoCutletCooked
+  output: ImperialFoodRawMeatballXeno
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessMeatBear
+  input: FoodMeatBear
+  output: ImperialFoodRawMeatballBear
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessCutletBear
+  input: FoodMeatBearCutletCooked
+  output: ImperialFoodRawMeatballBear
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessMeatChicken
+  input: FoodMeatChicken
+  output: ImperialFoodRawMeatballChicken
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessCutletChicken
+  input: FoodMeatChickenCutletCooked
+  output: ImperialFoodRawMeatballChicken
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessFishmeat
+  input: FoodMeatFish
+  output: FoodMeatFish
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessBacon
+  input: FoodMeatCutlet
+  output: FoodMeatBacon
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessTempeh
+  input: ImperialFoodTempehstarter
+  output: ImperialFoodTempeh
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessSpidereggs
+  input: ImperialFoodSpidereggs
+  output: ImperialFoodSpidereggsProcessed
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessPotato
+  input: FoodPotato
+  output: ImperialFoodTatortot
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessCarrot
+  input: FoodCarrot
+  output: FoodMealFriesCarrot
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessSoybeans
+  input: FoodSoybeans
+  output: ImperialFoodSoydope
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessSpaghetti
+  input: FoodDoughSlice
+  output: FoodNoodles
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessCorn
+  input: FoodCorn
+  output: FoodDoughTortillaFlat
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessTortilla
+  input: FoodDoughTortillaFlat
+  output: FoodSnackBoritos
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessTowercap
+  input: Log
+  output: FoodFrozenPopsicleTrash
+  time: 4
+
+- type: imperialProcessorRecipe
+  id: ImperialProcessCannedInk
+  input: ImperialFoodInkSac
+  output: ImperialFoodCannedSquidInk
+  time: 4

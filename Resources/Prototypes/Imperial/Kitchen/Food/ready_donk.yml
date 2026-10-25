@@ -1,0 +1,319 @@
+# Блюда TG /obj/item/food/ready_donk (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodReadyDonkWarm
+  name: "тёплый «Реди-Донк»: холостяцкий обед"
+  description: "Быстрый Донк-обед, теперь со вкусом! И даже горячий!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: ready_donk_bachelor_warm
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Omnizine
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodReadyDonkMacNCheese
+  name: "«Реди-Донк»: Донк-а-рони"
+  description: "Неоново-оранжевые макароны с сыром за секунды!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: ready_donk_mac
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - pasta
+  - type: ImperialBakeable
+    result: ImperialFoodReadyDonkWarmMacNCheese
+    time: 17.5
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodReadyDonkWarmMacNCheese
+  name: "тёплый «Реди-Донк»: Донк-а-рони"
+  description: "Неоново-оранжевые макароны с сыром, готовые к еде!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: ready_donk_mac_warm
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Omnizine
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - pasta
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodReadyDonkDonkhiladas
+  name: "«Реди-Донк»: донкчиладас"
+  description: "Фирменные донкчиладас Donk Co с донк-соусом для «настоящего» вкуса Мексики."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: ready_donk_mex
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - food
+  - type: ImperialBakeable
+    result: ImperialFoodReadyDonkWarmDonkhiladas
+    time: 17.5
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodReadyDonkWarmDonkhiladas
+  name: "тёплый «Реди-Донк»: донкчиладас"
+  description: "Фирменные донкчиладас Donk Co с донк-соусом, горячие, как мексиканское солнце."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: ready_donk_mex_warm
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Omnizine
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodReadyDonkNachosGrandes
+  name: "«Реди-Донк»: начос гранде «Боритос»"
+  description: "Готовьтесь к матчу с классическими начос гранде от Donk, спонсора Солнечной серии! Чипсы «Боритос» с сыром, острым мясом и бобами, отдельно гуакамоле, пико и донк-соус."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: ready_donk_nachos
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - nachos
+  - type: ImperialBakeable
+    result: ImperialFoodReadyDonkWarmNachosGrandes
+    time: 17.5
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodReadyDonkWarmNachosGrandes
+  name: "тёплый «Реди-Донк»: начос гранде «Боритос»"
+  description: "Готовьтесь к матчу с классическими начос гранде от Donk! Чипсы «Боритос» с сыром, острым мясом и бобами. Горячее фастбола Сакамото!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: ready_donk_nachos_warm
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Omnizine
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - nachos
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodReadyDonkDonkrangeChicken
+  name: "«Реди-Донк»: курица Донк-апельсин"
+  description: "Китайская классика: острая апельсиновая курица Donk с жареным перцем и луком на пропаренном рисе."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: ready_donk_orange
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - chicken
+  - type: ImperialBakeable
+    result: ImperialFoodReadyDonkWarmDonkrangeChicken
+    time: 17.5
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodReadyDonkWarmDonkrangeChicken
+  name: "тёплый «Реди-Донк»: курица Донк-апельсин"
+  description: "Китайская классика: острая апельсиновая курица Donk с жареным перцем и луком на рисе, горячее дыхания дракона."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: ready_donk_orange_warm
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Omnizine
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - chicken
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodReadyDonkSalisburySteak
+  name: "«Реди-Донк Донкриджиналс»: солсбери-стейк"
+  description: "Оригинал и лучший: пласт формованной говядины в коричневой подливке с картофельным пюре. Лучше найти телевизор."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: ready_donk_salisbury
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - food
+  - type: ImperialBakeable
+    result: ImperialFoodReadyDonkWarmSalisburySteak
+    time: 17.5
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodReadyDonkWarmSalisburySteak
+  name: "тёплый «Реди-Донк Донкриджиналс»: солсбери-стейк"
+  description: "Оригинал и лучший: пласт формованной говядины в коричневой подливке с пюре. Почти так же горяч, как финал сезона."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: ready_donk_salisbury_warm
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Omnizine
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodReadyDonkCountryChicken
+  name: "«Реди-Донк Донкриджиналс»: курица по-деревенски"
+  description: "Классика ТВ-ужинов: «хрустящая» жареная курица в деревенской подливке, пюре и стручковая фасоль."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: ready_donk_chicken
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - chicken
+  - type: ImperialBakeable
+    result: ImperialFoodReadyDonkWarmCountryChicken
+    time: 17.5
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodReadyDonkWarmCountryChicken
+  name: "тёплый «Реди-Донк Донкриджиналс»: курица по-деревенски"
+  description: "Классика ТВ-ужинов: «хрустящая» жареная курица в деревенской подливке, пюре и стручковая фасоль. Ешьте, пока горячо!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: ready_donk_chicken_warm
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Omnizine
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - chicken

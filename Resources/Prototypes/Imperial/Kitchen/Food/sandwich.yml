@@ -1,0 +1,301 @@
+# Блюда TG /obj/item/food/sandwich (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSandwichCheese
+  name: "сырный сэндвич"
+  description: "Лёгкая закуска для тёплого дня. ...а что, если его поджарить?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: sandwich
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Protein
+          Quantity: 3
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+  - type: ImperialGrillable
+    result: FoodBakedGrilledCheeseSandwich
+    time: 45
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSandwichJelly
+  name: "сэндвич с джемом"
+  description: "Вот бы к нему арахисового масла..."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: jellysandwich
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 19
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Protein
+          Quantity: 7
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - jelly
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSandwichJellySlime
+  name: "сэндвич со слаймовым джемом"
+  description: "Вот бы к нему арахисового масла..."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: jellysandwich
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 11
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - jelly
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSandwichJellyCherry
+  name: "сэндвич с вишнёвым джемом"
+  description: "Вот бы к нему арахисового масла..."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: jellysandwich
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 19
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: ImperialCherryjelly
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - jelly
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSandwichNotasandwich
+  name: "не-сэндвич"
+  description: "С ним что-то не так, но не поймёшь что. Может, усы."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: notasandwich
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 21
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - nothing
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSandwichBlt
+  name: "БЛТ"
+  description: "Классический сэндвич с беконом, салатом и томатом."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: blt
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - bacon
+    - bread
+    - tomato
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSandwichPeanutButterJelly
+  name: "сэндвич с арахисовым маслом и джемом"
+  description: "Классический сэндвич с арахисовым маслом и джемом, как делала мама."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: peanut_butter_jelly_sandwich
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - butter
+    - jelly
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSandwichPeanutButterBanana
+  name: "сэндвич с арахисовым маслом и бананом"
+  description: "Сэндвич с арахисовым маслом и ломтиками банана — белковое лакомство."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: peanut_butter_banana_sandwich
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 18
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 4
+        - ReagentId: JuiceBanana
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - banana
+    - butter
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSandwichPhillyCheesesteak
+  name: "филли-чизстейк"
+  description: "Популярный сэндвич из нарезанного мяса, лука и расплавленного сыра в длинной булке. «Слюнки текут» — не то слово."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: philly_cheesesteak
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 31
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 8
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSandwichToastSandwich
+  name: "тостовый сэндвич"
+  description: "Кусок тоста с маслом между двумя ломтиками хлеба. Зачем такое делать?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: toast_sandwich
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 9
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - butter
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSandwichDeath
+  name: "сэндвич смерти"
+  description: "Ешь правильно, или умрёшь!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/burgerbread.rsi
+    state: death_sandwich
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 33
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Protein
+          Quantity: 14
+        - ReagentId: Vitamin
+          Quantity: 6
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - meaty
+    - tomato

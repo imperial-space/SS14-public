@@ -1,0 +1,1128 @@
+# Реакции напитков и смесей TG (/datum/chemical_reaction/drink, /food).
+
+- type: reaction
+  id: ImperialReactionHiveminderaser
+  reactants:
+    BlackRussian:
+      amount: 2
+    ImperialThirteenloko:
+      amount: 1
+    Grenadine:
+      amount: 1
+  products:
+    ImperialHiveminderaser: 4
+
+- type: reaction
+  id: ImperialReactionPinaOlivada
+  reactants:
+    JuicePineapple:
+      amount: 3
+    Rum:
+      amount: 1
+    OilOlive:
+      amount: 1
+  products:
+    ImperialPinaOlivada: 5
+
+- type: reaction
+  id: ImperialReactionDrunkenblumpkin
+  reactants:
+    ImperialBlumpkinjuice:
+      amount: 1
+    IrishCream:
+      amount: 2
+    Ice:
+      amount: 1
+  products:
+    ImperialDrunkenblumpkin: 4
+
+- type: reaction
+  id: ImperialReactionFetchingFizz
+  reactants:
+    ImperialNukaCola:
+      amount: 1
+    Iron:
+      amount: 1
+  products:
+    ImperialFetchingFizz: 3
+
+- type: reaction
+  id: ImperialReactionHeartyPunch
+  minTemp: 315
+  reactants:
+    BraveBull:
+      amount: 5
+    SyndicateBomb:
+      amount: 5
+    Absinthe:
+      amount: 5
+  products:
+    ImperialHeartyPunch: 1
+
+- type: reaction
+  id: ImperialReactionNarsour
+  reactants:
+    Blood:
+      amount: 1
+    JuiceLemon:
+      amount: 1
+    DemonsBlood:
+      amount: 1
+  products:
+    ImperialNarsour: 1
+
+- type: reaction
+  id: ImperialReactionQuadruplesec
+  reactants:
+    ImperialTripleSec:
+      amount: 5
+    ImperialTripleCitrus:
+      amount: 5
+    Grenadine:
+      amount: 5
+  products:
+    ImperialQuadrupleSec: 15
+
+- type: reaction
+  id: ImperialReactionGrasshopper
+  reactants:
+    Cream:
+      amount: 5
+    ImperialCremeDeMenthe:
+      amount: 5
+    ImperialCremeDeCacao:
+      amount: 5
+  products:
+    ImperialGrasshopper: 15
+
+- type: reaction
+  id: ImperialReactionStinger
+  reactants:
+    Cognac:
+      amount: 10
+    ImperialCremeDeMenthe:
+      amount: 5
+  products:
+    ImperialStinger: 15
+
+- type: reaction
+  id: ImperialReactionQuintuplesec
+  reactants:
+    ImperialQuadrupleSec:
+      amount: 5
+    ImperialSoupClownTears:
+      amount: 5
+    SyndicateBomb:
+      amount: 5
+  products:
+    ImperialQuintupleSec: 15
+
+- type: reaction
+  id: ImperialReactionBastionBourbon
+  reactants:
+    Tea:
+      amount: 1
+    ImperialCremeDeMenthe:
+      amount: 1
+    ImperialTripleCitrus:
+      amount: 1
+    JuiceBerry:
+      amount: 1
+  products:
+    ImperialBastionBourbon: 2
+
+- type: reaction
+  id: ImperialReactionFringeWeaver
+  reactants:
+    Ethanol:
+      amount: 9
+    Sugar:
+      amount: 1
+  products:
+    ImperialFringeWeaver: 10
+
+- type: reaction
+  id: ImperialReactionAlexander
+  reactants:
+    Cognac:
+      amount: 1
+    ImperialCremeDeCacao:
+      amount: 1
+    Cream:
+      amount: 1
+  products:
+    ImperialAlexander: 3
+
+- type: reaction
+  id: ImperialReactionSidecar
+  reactants:
+    Cognac:
+      amount: 2
+    ImperialTripleSec:
+      amount: 1
+    JuiceLemon:
+      amount: 1
+  products:
+    ImperialSidecar: 4
+
+- type: reaction
+  id: ImperialReactionBetweenTheSheets
+  reactants:
+    Rum:
+      amount: 1
+    ImperialSidecar:
+      amount: 4
+  products:
+    ImperialBetweenTheSheets: 5
+
+- type: reaction
+  id: ImperialReactionKamikaze
+  reactants:
+    Vodka:
+      amount: 1
+    ImperialTripleSec:
+      amount: 1
+    JuiceLime:
+      amount: 1
+  products:
+    ImperialKamikaze: 3
+
+- type: reaction
+  id: ImperialReactionBlankPaper
+  reactants:
+    Silencer:
+      amount: 1
+    Nothing:
+      amount: 1
+    ImperialNukaCola:
+      amount: 1
+  products:
+    ImperialBlankPaper: 3
+
+- type: reaction
+  id: ImperialReactionWizzFizz
+  reactants:
+    ImperialTripleSec:
+      amount: 1
+    SodaWater:
+      amount: 1
+    Champagne:
+      amount: 1
+  products:
+    ImperialWizzFizz: 3
+
+- type: reaction
+  id: ImperialReactionBugSpray
+  reactants:
+    ImperialTripleSec:
+      amount: 2
+    LemonLime:
+      amount: 1
+    Rum:
+      amount: 2
+    Vodka:
+      amount: 1
+  products:
+    ImperialBugSpray: 5
+
+- type: reaction
+  id: ImperialReactionTurbo
+  reactants:
+    Moonshine:
+      amount: 2
+    NitrousOxide:
+      amount: 1
+    SugarRush:
+      amount: 1
+    PwrGame:
+      amount: 1
+  products:
+    ImperialTurbo: 5
+
+- type: reaction
+  id: ImperialReactionOldTimer
+  reactants:
+    WhiskeySoda:
+      amount: 3
+    ImperialParsnipjuice:
+      amount: 2
+    ImperialAlexander:
+      amount: 1
+  products:
+    ImperialOldTimer: 6
+
+- type: reaction
+  id: ImperialReactionPlanetCracker
+  reactants:
+    Champagne:
+      amount: 10
+    ImperialLizardwine:
+      amount: 10
+    Egg:
+      amount: 2
+    Gold:
+      amount: 5
+  products:
+    ImperialPlanetCracker: 20
+
+- type: reaction
+  id: ImperialReactionMaunaLoa
+  reactants:
+    CapsaicinOil:
+      amount: 2
+    CoffeeLiqueur:
+      amount: 1
+    BahamaMama:
+      amount: 2
+  products:
+    ImperialMaunaLoa: 5
+
+- type: reaction
+  id: ImperialReactionHelianthus
+  reactants:
+    Absinthe:
+      amount: 1
+    Sugar:
+      amount: 1
+    MindbreakerToxin:
+      amount: 1
+  products:
+    ImperialHelianthus: 5
+
+- type: reaction
+  id: ImperialReactionTheHat
+  reactants:
+    Ethanol:
+      amount: 1
+    Water:
+      amount: 1
+    ImperialPlumwine:
+      amount: 1
+  products:
+    ImperialTheHat: 1
+
+- type: reaction
+  id: ImperialReactionGinGarden
+  reactants:
+    JuiceLime:
+      amount: 1
+    Sugar:
+      amount: 1
+    Gin:
+      amount: 3
+    ImperialCucumberjuice:
+      amount: 3
+    SolDry:
+      amount: 5
+    Ice:
+      amount: 2
+  products:
+    ImperialGinGarden: 15
+
+- type: reaction
+  id: ImperialReactionTelepole
+  reactants:
+    ImperialWineVoltaic:
+      amount: 1
+    DarkandStormy:
+      amount: 2
+    Sake:
+      amount: 1
+  products:
+    ImperialTelepole: 5
+
+- type: reaction
+  id: ImperialReactionPodTesla
+  reactants:
+    ImperialTelepole:
+      amount: 5
+    BraveBull:
+      amount: 3
+    ImperialAdmiralty:
+      amount: 5
+  products:
+    ImperialPodTesla: 15
+
+- type: reaction
+  id: ImperialReactionBosozoku
+  reactants:
+    ImperialRiceBeer:
+      amount: 1
+    Lemonade:
+      amount: 1
+  products:
+    ImperialBosozoku: 2
+
+- type: reaction
+  id: ImperialReactionErsatzche
+  reactants:
+    ImperialRiceBeer:
+      amount: 5
+    JuicePineapple:
+      amount: 3
+    CapsaicinOil:
+      amount: 1
+    Sugar:
+      amount: 1
+  products:
+    ImperialErsatzche: 10
+
+- type: reaction
+  id: ImperialReactionRedCityAm
+  reactants:
+    ImperialRiceBeer:
+      amount: 5
+    JuiceLime:
+      amount: 1
+    ImperialRedBay:
+      amount: 1
+    Soysauce:
+      amount: 1
+    JuiceTomato:
+      amount: 2
+  products:
+    ImperialRedCityAm: 10
+
+- type: reaction
+  id: ImperialReactionWhiteHawaiian
+  reactants:
+    CoffeeLiqueur:
+      amount: 1
+    CoconutRum:
+      amount: 1
+    ImperialCoconutMilk:
+      amount: 2
+  products:
+    ImperialWhiteHawaiian: 4
+
+- type: reaction
+  id: ImperialReactionImperialMaiTai
+  reactants:
+    ImperialNavyRum:
+      amount: 1
+    Rum:
+      amount: 1
+    ImperialTripleSec:
+      amount: 1
+    JuiceLime:
+      amount: 1
+    ImperialKortaNectar:
+      amount: 1
+  products:
+    ImperialImperialMaiTai: 5
+
+- type: reaction
+  id: ImperialReactionKonococoRumtini
+  reactants:
+    CoconutRum:
+      amount: 2
+    CoffeeLiqueur:
+      amount: 3
+    Coffee:
+      amount: 3
+    Sugar:
+      amount: 2
+  products:
+    ImperialKonococoRumtini: 10
+
+- type: reaction
+  id: ImperialReactionSazerac
+  reactants:
+    ImperialOldFashioned:
+      amount: 10
+    Absinthe:
+      amount: 1
+  products:
+    ImperialSazerac: 10
+
+- type: reaction
+  id: ImperialReactionRamosGinFizz
+  reactants:
+    GinFizz:
+      amount: 12
+    JuiceLemon:
+      amount: 3
+    Sugar:
+      amount: 3
+    Egg:
+      amount: 3
+    Cream:
+      amount: 3
+    ImperialTripleSec:
+      amount: 1
+  products:
+    ImperialRamosGinFizz: 25
+
+- type: reaction
+  id: ImperialReactionFrench75
+  reactants:
+    Champagne:
+      amount: 5
+    Gin:
+      amount: 3
+    JuiceLemon:
+      amount: 1
+    Sugar:
+      amount: 1
+  products:
+    ImperialFrench75: 10
+
+- type: reaction
+  id: ImperialReactionSangria
+  reactants:
+    Wine:
+      amount: 10
+    Cognac:
+      amount: 3
+    ImperialTripleCitrus:
+      amount: 3
+    SodaWater:
+      amount: 3
+    Sugar:
+      amount: 1
+  products:
+    ImperialSangria: 20
+
+- type: reaction
+  id: ImperialReactionHotToddy
+  minTemp: 320
+  reactants:
+    Water:
+      amount: 5
+    Cognac:
+      amount: 3
+    Sugar:
+      amount: 1
+    JuiceLemon:
+      amount: 1
+  products:
+    ImperialHotToddy: 10
+
+- type: reaction
+  id: ImperialReactionFlipCocktail
+  reactants:
+    Cognac:
+      amount: 15
+    Sugar:
+      amount: 5
+    Egg:
+      amount: 6
+  products:
+    ImperialFlipCocktail: 25
+
+- type: reaction
+  id: ImperialReactionBlueBlazer
+  minTemp: 365
+  reactants:
+    Whiskey:
+      amount: 4
+    Water:
+      amount: 4
+    Sugar:
+      amount: 1
+  products:
+    ImperialBlueBlazer: 9
+
+- type: reaction
+  id: ImperialReactionNuclearDaiquiriThermo
+  reactants:
+    ImperialNuclearDaiquiri:
+      amount: 10
+    Uranium:
+      amount: 1
+    Hydrogen:
+      amount: 9
+  products:
+    ImperialNuclearDaiquiriThermo: 10
+
+- type: reaction
+  id: ImperialReactionSeaBreeze
+  reactants:
+    ImperialKortara:
+      amount: 3
+    ImperialCremeDeMenthe:
+      amount: 1
+    ImperialCremeDeCacao:
+      amount: 1
+  products:
+    ImperialSeaBreeze: 5
+
+- type: reaction
+  id: ImperialReactionWhiteTiziran
+  reactants:
+    BlackRussian:
+      amount: 5
+    ImperialKortara:
+      amount: 3
+  products:
+    ImperialWhiteTiziran: 8
+
+- type: reaction
+  id: ImperialReactionTichToch
+  reactants:
+    ImperialTiltaellen:
+      amount: 6
+    ImperialToechtaueseSyrup:
+      amount: 2
+    Vodka:
+      amount: 2
+  products:
+    ImperialTichToch: 10
+
+- type: reaction
+  id: ImperialReactionTiltaellen
+  reactants:
+    ImperialYoghurt:
+      amount: 8
+    Vinegar:
+      amount: 1
+    TableSalt:
+      amount: 1
+  products:
+    ImperialTiltaellen: 10
+
+- type: reaction
+  id: ImperialReactionTropicalStorm
+  reactants:
+    Rum:
+      amount: 2
+    ImperialCuracao:
+      amount: 2
+    ImperialTripleCitrus:
+      amount: 4
+    JuicePineapple:
+      amount: 2
+  products:
+    ImperialTropicalStorm: 10
+
+- type: reaction
+  id: ImperialReactionCherryshake
+  reactants:
+    ImperialCherryjelly:
+      amount: 1
+    Ice:
+      amount: 1
+    Cream:
+      amount: 1
+  products:
+    ImperialCherryshake: 3
+
+- type: reaction
+  id: ImperialReactionBluecherryshake
+  reactants:
+    ImperialBluecherryjelly:
+      amount: 1
+    Ice:
+      amount: 1
+    Cream:
+      amount: 1
+  products:
+    ImperialBluecherryshake: 3
+
+- type: reaction
+  id: ImperialReactionVanillashake
+  reactants:
+    ImperialVanilla:
+      amount: 1
+    Ice:
+      amount: 1
+    Cream:
+      amount: 1
+  products:
+    ImperialVanillashake: 3
+
+- type: reaction
+  id: ImperialReactionChoccyshake
+  reactants:
+    CocoaPowder:
+      amount: 1
+    Ice:
+      amount: 1
+    Cream:
+      amount: 1
+  products:
+    ImperialChoccyshake: 3
+
+- type: reaction
+  id: ImperialReactionStrawberryshake
+  reactants:
+    JuiceBerry:
+      amount: 1
+    Ice:
+      amount: 1
+    Cream:
+      amount: 1
+  products:
+    ImperialStrawberryshake: 3
+
+- type: reaction
+  id: ImperialReactionBananashake
+  reactants:
+    JuiceBanana:
+      amount: 1
+    Ice:
+      amount: 1
+    Cream:
+      amount: 1
+  products:
+    ImperialBananashake: 3
+
+- type: reaction
+  id: ImperialReactionPumpkinLatte
+  reactants:
+    ImperialPumpkinjuice:
+      amount: 5
+    Coffee:
+      amount: 5
+    Cream:
+      amount: 5
+  products:
+    ImperialPumpkinLatte: 15
+
+- type: reaction
+  id: ImperialReactionGibbfloats
+  reactants:
+    DrGibb:
+      amount: 5
+    Ice:
+      amount: 5
+    Cream:
+      amount: 5
+  products:
+    ImperialGibbfloats: 15
+
+- type: reaction
+  id: ImperialReactionTripleCitrus
+  reactants:
+    JuiceLemon:
+      amount: 1
+    JuiceLime:
+      amount: 1
+    JuiceOrange:
+      amount: 1
+  products:
+    ImperialTripleCitrus: 3
+
+- type: reaction
+  id: ImperialReactionChocolateMilk
+  maxTemp: 300
+  reactants:
+    HotCocoa:
+      amount: 3
+    CocoaPowder:
+      amount: 2
+  products:
+    ImperialChocolateMilk: 5
+
+- type: reaction
+  id: ImperialReactionCreamSoda
+  reactants:
+    Sugar:
+      amount: 2
+    SodaWater:
+      amount: 2
+    ImperialVanilla:
+      amount: 1
+  products:
+    ImperialCreamSoda: 4
+
+- type: reaction
+  id: ImperialReactionToechtaueseSyrup
+  reactants:
+    ImperialToechtaueseJuice:
+      amount: 6
+    Sugar:
+      amount: 4
+  products:
+    ImperialToechtaueseSyrup: 10
+
+- type: reaction
+  id: ImperialReactionItalianCoco
+  reactants:
+    HotCocoa:
+      amount: 5
+    Cornmeal:
+      amount: 1
+    Cream:
+      amount: 4
+  products:
+    ImperialItalianCoco: 10
+
+- type: reaction
+  id: ImperialReactionStrawberryBanana
+  reactants:
+    JuiceBerry:
+      amount: 1
+    Milk:
+      amount: 1
+    JuiceBanana:
+      amount: 1
+  products:
+    ImperialStrawberryBanana: 3
+
+- type: reaction
+  id: ImperialReactionBerryBlast
+  reactants:
+    JuiceBerry:
+      amount: 1
+    Milk:
+      amount: 1
+    Cream:
+      amount: 1
+  products:
+    ImperialBerryBlast: 3
+
+- type: reaction
+  id: ImperialReactionFunkyMonkey
+  reactants:
+    CocoaPowder:
+      amount: 1
+    Milk:
+      amount: 1
+    JuiceBanana:
+      amount: 1
+  products:
+    ImperialFunkyMonkey: 3
+
+- type: reaction
+  id: ImperialReactionGreenGiant
+  reactants:
+    ImperialCremeDeMenthe:
+      amount: 1
+    Milk:
+      amount: 1
+    JuiceLime:
+      amount: 1
+  products:
+    ImperialGreenGiant: 3
+
+- type: reaction
+  id: ImperialReactionMelonBaller
+  reactants:
+    JuiceWatermelon:
+      amount: 1
+    ImperialCremeDeMenthe:
+      amount: 1
+    Milk:
+      amount: 1
+  products:
+    ImperialMelonBaller: 3
+
+- type: reaction
+  id: ImperialReactionVanillaDream
+  reactants:
+    ImperialVanilla:
+      amount: 1
+    Milk:
+      amount: 1
+    Cream:
+      amount: 1
+  products:
+    ImperialVanillaDream: 3
+
+- type: reaction
+  id: ImperialReactionCucumberlemonade
+  reactants:
+    LemonLime:
+      amount: 3
+    ImperialCucumberjuice:
+      amount: 2
+    Ice:
+      amount: 1
+  products:
+    ImperialCucumberlemonade: 5
+
+- type: reaction
+  id: ImperialReactionMississippiQueen
+  reactants:
+    JuiceTomato:
+      amount: 15
+    Mayo:
+      amount: 10
+    Soysauce:
+      amount: 5
+    Vinegar:
+      amount: 2
+    CapsaicinOil:
+      amount: 10
+    CocoaPowder:
+      amount: 2
+  products:
+    ImperialMississippiQueen: 50
+
+- type: reaction
+  id: ImperialReactionTLetter
+  reactants:
+    Nothing:
+      amount: 1
+    Tea:
+      amount: 1
+  products:
+    ImperialTLetter: 2
+
+- type: reaction
+  id: ImperialReactionTofu
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    MilkSoy:
+      amount: 10
+    Enzyme:
+      amount: 5
+      catalyst: true
+  effects:
+  - !type:SpawnEntity
+    entity: FoodTofu
+
+- type: reaction
+  id: ImperialReactionCandycorn
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    OilOlive:
+      amount: 5
+    Sugar:
+      amount: 5
+      catalyst: true
+  effects:
+  - !type:SpawnEntity
+    entity: ImperialFoodCandyCorn
+
+- type: reaction
+  id: ImperialReactionChocolatepudding
+  reactants:
+    Cream:
+      amount: 5
+    CocoaPowder:
+      amount: 5
+    Egg:
+      amount: 2
+  products:
+    ImperialChocolatepudding: 20
+
+- type: reaction
+  id: ImperialReactionVanillapudding
+  reactants:
+    ImperialVanilla:
+      amount: 5
+    Cream:
+      amount: 5
+    Egg:
+      amount: 2
+  products:
+    ImperialVanillapudding: 20
+
+- type: reaction
+  id: ImperialReactionChocolateBar
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    MilkSoy:
+      amount: 2
+    CocoaPowder:
+      amount: 2
+    Sugar:
+      amount: 2
+  effects:
+  - !type:SpawnEntity
+    entity: FoodSnackChocolate
+
+- type: reaction
+  id: ImperialReactionChocolateBar2
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    ImperialChocolateMilk:
+      amount: 4
+    Sugar:
+      amount: 2
+  effects:
+  - !type:SpawnEntity
+    entity: FoodSnackChocolate
+
+- type: reaction
+  id: ImperialReactionCornSyrup
+  minTemp: 374
+  reactants:
+    Cornmeal:
+      amount: 1
+    SulfuricAcid:
+      amount: 1
+  products:
+    ImperialCornSyrup: 5
+
+- type: reaction
+  id: ImperialReactionRiceFlour
+  reactants:
+    Flour:
+      amount: 5
+    Rice:
+      amount: 5
+  products:
+    ImperialRiceFlour: 10
+
+- type: reaction
+  id: ImperialReactionCheesewheel
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    Milk:
+      amount: 40
+    Enzyme:
+      amount: 5
+      catalyst: true
+  effects:
+  - !type:SpawnEntity
+    entity: FoodCheese
+
+- type: reaction
+  id: ImperialReactionSynthmeat
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    Blood:
+      amount: 5
+    Cryoxadone:
+      amount: 1
+  effects:
+  - !type:SpawnEntity
+    entity: ImperialFoodMeatSlabSynthmeat
+
+- type: reaction
+  id: ImperialReactionHellRamen
+  reactants:
+    CapsaicinOil:
+      amount: 1
+    HotRamen:
+      amount: 6
+  products:
+    ImperialHellRamen: 6
+
+- type: reaction
+  id: ImperialReactionRiceDough
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    ImperialRiceFlour:
+      amount: 20
+    Water:
+      amount: 10
+  effects:
+  - !type:SpawnEntity
+    entity: ImperialFoodRiceDough
+
+- type: reaction
+  id: ImperialReactionCakebatter
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    Egg:
+      amount: 18
+    Flour:
+      amount: 15
+    Sugar:
+      amount: 5
+  effects:
+  - !type:SpawnEntity
+    entity: FoodCakeBatter
+
+- type: reaction
+  id: ImperialReactionPancakebatter
+  reactants:
+    Egg:
+      amount: 18
+    Milk:
+      amount: 10
+    Flour:
+      amount: 5
+  products:
+    ImperialPancakebatter: 15
+
+- type: reaction
+  id: ImperialReactionGravy
+  reactants:
+    Milk:
+      amount: 1
+    Nutriment:
+      amount: 1
+    Flour:
+      amount: 1
+  products:
+    ImperialGravy: 3
+
+- type: reaction
+  id: ImperialReactionCurdCheese
+  quantized: true
+  conserveEnergy: false
+  minTemp: 353
+  reactants:
+    Milk:
+      amount: 15
+    Vinegar:
+      amount: 5
+    Cream:
+      amount: 5
+  effects:
+  - !type:SpawnEntity
+    entity: ImperialFoodCheeseCurdCheese
+
+- type: reaction
+  id: ImperialReactionMozzarella
+  quantized: true
+  conserveEnergy: false
+  minTemp: 353
+  reactants:
+    Milk:
+      amount: 10
+    Cream:
+      amount: 10
+    Enzyme:
+      amount: 1
+      catalyst: true
+  effects:
+  - !type:SpawnEntity
+    entity: ImperialFoodCheeseMozzarella
+
+- type: reaction
+  id: ImperialReactionCornmealBatter
+  reactants:
+    Cornmeal:
+      amount: 20
+    ImperialYoghurt:
+      amount: 10
+    Egg:
+      amount: 5
+  products:
+    ImperialCornmealBatter: 35
+
+- type: reaction
+  id: ImperialReactionCornbread
+  quantized: true
+  conserveEnergy: false
+  minTemp: 473
+  reactants:
+    ImperialCornmealBatter:
+      amount: 25
+  effects:
+  - !type:SpawnEntity
+    entity: FoodBreadCorn
+
+- type: reaction
+  id: ImperialReactionYoghurt
+  reactants:
+    Cream:
+      amount: 10
+    ImperialVirusFood:
+      amount: 2
+  products:
+    ImperialYoghurt: 10
+
+- type: reaction
+  id: ImperialReactionMartianBatter
+  reactants:
+    Flour:
+      amount: 5
+    ImperialSoupDashi:
+      amount: 5
+  products:
+    ImperialMartianBatter: 10

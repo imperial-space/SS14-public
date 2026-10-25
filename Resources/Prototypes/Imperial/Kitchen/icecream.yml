@@ -1,0 +1,168 @@
+# Автомат мороженого TG (/obj/machinery/icecream_vat) и вкусы (/datum/ice_cream_flavour).
+
+- type: entity
+  parent: BaseStructureDynamic
+  id: ImperialIcecreamVat
+  name: автомат мороженого
+  description: Смотря на машину, вы вспоминаете мелодию вашего любимого кафе с мороженым. Теперь таким кафе стало Нанотрейзен!
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/utensils.rsi
+    state: icecream_vat
+    noRot: true
+  - type: ImperialIcecreamVat
+    cones:
+    - ImperialFoodIcecream
+    - ImperialFoodIcecreamChocolate
+    - ImperialFoodIcecreamKorta
+  - type: SolutionContainerManager
+    solutions:
+      vat:
+        maxVol: 300
+        canReact: false
+        reagents:
+        - ReagentId: Milk
+          Quantity: 6
+        - ReagentId: ImperialKortaMilk
+          Quantity: 6
+        - ReagentId: Flour
+          Quantity: 6
+        - ReagentId: ImperialKortaFlour
+          Quantity: 6
+        - ReagentId: Sugar
+          Quantity: 12
+        - ReagentId: Ice
+          Quantity: 6
+        - ReagentId: CocoaPowder
+          Quantity: 6
+        - ReagentId: ImperialVanilla
+          Quantity: 6
+        - ReagentId: JuiceBerry
+          Quantity: 6
+        - ReagentId: Singulo
+          Quantity: 6
+        - ReagentId: JuiceLemon
+          Quantity: 6
+        - ReagentId: JuiceBanana
+          Quantity: 6
+        - ReagentId: JuiceOrange
+          Quantity: 6
+        - ReagentId: Cream
+          Quantity: 6
+        - ReagentId: ImperialPeachjuice
+          Quantity: 6
+        - ReagentId: ImperialCherryjelly
+          Quantity: 6
+  - type: RefillableSolution
+    solution: vat
+  - type: DrainableSolution
+    solution: vat
+  - type: ExaminableSolution
+    solution: vat
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Anchorable
+  - type: Pullable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 4
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: imperialIcecreamFlavour
+  id: Vanilla
+  name: imperial-icecream-flavour-vanilla
+  color: "#f2eede"
+  ingredients: [ Milk, Ice, ImperialVanilla ]
+  reagent: ImperialVanilla
+
+- type: imperialIcecreamFlavour
+  id: Chocolate
+  name: imperial-icecream-flavour-chocolate
+  color: "#93683c"
+  ingredients: [ Milk, Ice, CocoaPowder ]
+  reagent: CocoaPowder
+
+- type: imperialIcecreamFlavour
+  id: Strawberry
+  name: imperial-icecream-flavour-strawberry
+  color: "#f4cbcb"
+  ingredients: [ Milk, Ice, JuiceBerry ]
+  reagent: JuiceBerry
+
+- type: imperialIcecreamFlavour
+  id: Blue
+  name: imperial-icecream-flavour-blue
+  color: "#cbd5f4"
+  ingredients: [ Milk, Ice, Singulo ]
+  reagent: Singulo
+
+- type: imperialIcecreamFlavour
+  id: Lemon
+  name: imperial-icecream-flavour-lemon
+  color: "#ffff9f"
+  ingredients: [ Ice, JuiceLemon ]
+  reagent: JuiceLemon
+
+- type: imperialIcecreamFlavour
+  id: Caramel
+  name: imperial-icecream-flavour-caramel
+  color: "#d98736"
+  ingredients: [ Milk, Ice, Sugar ]
+  reagent: Sugar
+
+- type: imperialIcecreamFlavour
+  id: Banana
+  name: imperial-icecream-flavour-banana
+  color: "#ffff00"
+  ingredients: [ Milk, Ice, JuiceBanana ]
+  reagent: JuiceBanana
+
+- type: imperialIcecreamFlavour
+  id: OrangeCream
+  name: imperial-icecream-flavour-orange-cream
+  color: "#ffa980"
+  ingredients: [ Cream, Ice, JuiceOrange ]
+  reagent: JuiceOrange
+
+- type: imperialIcecreamFlavour
+  id: Peach
+  name: imperial-icecream-flavour-peach
+  color: "#ffcc66"
+  ingredients: [ Milk, Ice, ImperialPeachjuice ]
+  reagent: ImperialPeachjuice
+
+- type: imperialIcecreamFlavour
+  id: KortaVanilla
+  name: imperial-icecream-flavour-korta-vanilla
+  color: "#f2eede"
+  ingredients: [ ImperialKortaMilk, Ice, ImperialVanilla ]
+  reagent: ImperialVanilla
+
+- type: imperialIcecreamFlavour
+  id: CherryChocolate
+  name: imperial-icecream-flavour-cherry-chocolate
+  color: "#800000"
+  ingredients: [ Milk, Ice, CocoaPowder, ImperialCherryjelly ]
+  reagent: ImperialCherryjelly

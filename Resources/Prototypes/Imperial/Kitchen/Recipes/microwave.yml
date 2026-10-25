@@ -1,0 +1,226 @@
+# make_microwaveable TG: разогрев в микроволновке.
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodCheeseCurdCheese
+  name: "рецепт: творожный сыр"
+  result: ImperialFoodCheeseCheeseCurds
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodCheeseCurdCheese: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodDonkpocketGondola
+  name: "рецепт: гондола-покет"
+  result: ImperialFoodDonkpocketWarmGondola
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodDonkpocketGondola: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodDonkpocketWarmGondola
+  name: "рецепт: тёплый гондола-покет"
+  result: FoodBadRecipe
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodDonkpocketWarmGondola: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodDonkpocketDeluxe
+  name: "рецепт: донк-покет делюкс"
+  result: ImperialFoodDonkpocketWarmDeluxe
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodDonkpocketDeluxe: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodDonkpocketWarmDeluxe
+  name: "рецепт: тёплый донк-покет делюкс"
+  result: FoodBadRecipe
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodDonkpocketWarmDeluxe: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodDonkpocketDeluxeNocarb
+  name: "рецепт: мясо-покет"
+  result: ImperialFoodDonkpocketWarmDeluxeNocarb
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodDonkpocketDeluxeNocarb: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodDonkpocketWarmDeluxeNocarb
+  name: "рецепт: тёплый мясо-покет"
+  result: FoodBadRecipe
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodDonkpocketWarmDeluxeNocarb: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodDonkpocketDeluxeVegan
+  name: "рецепт: донк-ролл"
+  result: ImperialFoodDonkpocketWarmDeluxeVegan
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodDonkpocketDeluxeVegan: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodDonkpocketWarmDeluxeVegan
+  name: "рецепт: тёплый донк-ролл"
+  result: FoodBadRecipe
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodDonkpocketWarmDeluxeVegan: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodEggOrganic
+  name: "рецепт: органическое яйцо"
+  result: FoodEggBoiled
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodEggOrganic: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodEggFertile
+  name: "рецепт: оплодотворённое яйцо"
+  result: FoodEggBoiled
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodEggFertile: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodReadyDonkWarm
+  name: "рецепт: тёплый «Реди-Донк»: холостяцкий обед"
+  result: FoodBadRecipe
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodReadyDonkWarm: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodReadyDonkMacNCheese
+  name: "рецепт: «Реди-Донк»: Донк-а-рони"
+  result: ImperialFoodReadyDonkWarmMacNCheese
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodReadyDonkMacNCheese: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodReadyDonkWarmMacNCheese
+  name: "рецепт: тёплый «Реди-Донк»: Донк-а-рони"
+  result: FoodBadRecipe
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodReadyDonkWarmMacNCheese: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodReadyDonkDonkhiladas
+  name: "рецепт: «Реди-Донк»: донкчиладас"
+  result: ImperialFoodReadyDonkWarmDonkhiladas
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodReadyDonkDonkhiladas: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodReadyDonkWarmDonkhiladas
+  name: "рецепт: тёплый «Реди-Донк»: донкчиладас"
+  result: FoodBadRecipe
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodReadyDonkWarmDonkhiladas: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodReadyDonkNachosGrandes
+  name: "рецепт: «Реди-Донк»: начос гранде «Боритос»"
+  result: ImperialFoodReadyDonkWarmNachosGrandes
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodReadyDonkNachosGrandes: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodReadyDonkWarmNachosGrandes
+  name: "рецепт: тёплый «Реди-Донк»: начос гранде «Боритос»"
+  result: FoodBadRecipe
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodReadyDonkWarmNachosGrandes: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodReadyDonkDonkrangeChicken
+  name: "рецепт: «Реди-Донк»: курица Донк-апельсин"
+  result: ImperialFoodReadyDonkWarmDonkrangeChicken
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodReadyDonkDonkrangeChicken: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodReadyDonkWarmDonkrangeChicken
+  name: "рецепт: тёплый «Реди-Донк»: курица Донк-апельсин"
+  result: FoodBadRecipe
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodReadyDonkWarmDonkrangeChicken: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodReadyDonkSalisburySteak
+  name: "рецепт: «Реди-Донк Донкриджиналс»: солсбери-стейк"
+  result: ImperialFoodReadyDonkWarmSalisburySteak
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodReadyDonkSalisburySteak: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodReadyDonkWarmSalisburySteak
+  name: "рецепт: тёплый «Реди-Донк Донкриджиналс»: солсбери-стейк"
+  result: FoodBadRecipe
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodReadyDonkWarmSalisburySteak: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodReadyDonkCountryChicken
+  name: "рецепт: «Реди-Донк Донкриджиналс»: курица по-деревенски"
+  result: ImperialFoodReadyDonkWarmCountryChicken
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodReadyDonkCountryChicken: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodReadyDonkWarmCountryChicken
+  name: "рецепт: тёплый «Реди-Донк Донкриджиналс»: курица по-деревенски"
+  result: FoodBadRecipe
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodReadyDonkWarmCountryChicken: 1
+
+- type: microwaveMealRecipe
+  id: ImperialMicrowaveImperialFoodUncookedRice
+  name: "рецепт: сырой рис"
+  result: FoodRiceBoiled
+  time: 10
+  group: Other
+  solids:
+    ImperialFoodUncookedRice: 1

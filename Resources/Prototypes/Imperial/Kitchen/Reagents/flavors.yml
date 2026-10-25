@@ -1,0 +1,1501 @@
+# Вкусы новых реагентов TG.
+
+- type: flavor
+  id: imperialsoupmeatballsoup
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-meatball-soup
+
+- type: flavor
+  id: imperialsoupvegetablesoup
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-vegetable-soup
+
+- type: flavor
+  id: imperialsoupnettle
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-nettle
+
+- type: flavor
+  id: imperialsoupwingfangchu
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-wingfangchu
+
+- type: flavor
+  id: imperialsouphotchili
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-hotchili
+
+- type: flavor
+  id: imperialsoupcoldchili
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-coldchili
+
+- type: flavor
+  id: imperialsoupclownchili
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-clownchili
+
+- type: flavor
+  id: imperialsoupchilisincarne
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-chili-sin-carne
+
+- type: flavor
+  id: imperialsouptomato
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-tomato
+
+- type: flavor
+  id: imperialsoupeyeball
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-eyeball
+
+- type: flavor
+  id: imperialsoupmiso
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-miso
+
+- type: flavor
+  id: imperialsoupslime
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-slime
+
+- type: flavor
+  id: imperialsoupclowntears
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-clown-tears
+
+- type: flavor
+  id: imperialsoupmystery
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-mystery
+
+- type: flavor
+  id: imperialsoupmonkey
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-monkey
+
+- type: flavor
+  id: imperialsoupmushroom
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-mushroom
+
+- type: flavor
+  id: imperialsoupwhitebeet
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-white-beet
+
+- type: flavor
+  id: imperialsoupstew
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-stew
+
+- type: flavor
+  id: imperialsoupsweetpotato
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-sweetpotato
+
+- type: flavor
+  id: imperialsoupredbeet
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-red-beet
+
+- type: flavor
+  id: imperialsoupfrenchonion
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-french-onion
+
+- type: flavor
+  id: imperialsoupbisque
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-bisque
+
+- type: flavor
+  id: imperialsoupbungo
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-bungo
+
+- type: flavor
+  id: imperialsoupelectrons
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-electrons
+
+- type: flavor
+  id: imperialsouppea
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-pea
+
+- type: flavor
+  id: imperialsoupindiancurry
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-indian-curry
+
+- type: flavor
+  id: imperialsoupoatmeal
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-oatmeal
+
+- type: flavor
+  id: imperialsoupzurek
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-zurek
+
+- type: flavor
+  id: imperialsoupcullenskink
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-cullen-skink
+
+- type: flavor
+  id: imperialsoupchickennoodlesoup
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-chicken-noodle-soup
+
+- type: flavor
+  id: imperialsoupcornchowder
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-corn-chowder
+
+- type: flavor
+  id: imperialsoupatrakordumplings
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-atrakor-dumplings
+
+- type: flavor
+  id: imperialsoupmeatballnoodles
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-meatball-noodles
+
+- type: flavor
+  id: imperialsoupblackbroth
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-black-broth
+
+- type: flavor
+  id: imperialsoupjellyfish
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-jellyfish
+
+- type: flavor
+  id: imperialsouprootbread
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-rootbread
+
+- type: flavor
+  id: imperialsoupcottonball
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-cottonball
+
+- type: flavor
+  id: imperialsoupcheese
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-cheese
+
+- type: flavor
+  id: imperialsoupseed
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-seed
+
+- type: flavor
+  id: imperialsoupbeans
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-beans
+
+- type: flavor
+  id: imperialsoupmothoats
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-moth-oats
+
+- type: flavor
+  id: imperialsoupfiresoup
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-fire-soup
+
+- type: flavor
+  id: imperialsoupriceporridge
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-rice-porridge
+
+- type: flavor
+  id: imperialsoupcornmealporridge
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-cornmeal-porridge
+
+- type: flavor
+  id: imperialsoupcheeseporridge
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-cheese-porridge
+
+- type: flavor
+  id: imperialsouptoechtauesericeporridge
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-toechtauese-rice-porridge
+
+- type: flavor
+  id: imperialsoupredporridge
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-red-porridge
+
+- type: flavor
+  id: imperialsoupdashi
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-dashi
+
+- type: flavor
+  id: imperialsoupteriyaki
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-teriyaki
+
+- type: flavor
+  id: imperialsoupcurrysauce
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-curry-sauce
+
+- type: flavor
+  id: imperialsoupshoyuramen
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-shoyu-ramen
+
+- type: flavor
+  id: imperialsoupgyuramen
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-gyuramen
+
+- type: flavor
+  id: imperialsoupnewosakasunrise
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-new-osaka-sunrise
+
+- type: flavor
+  id: imperialsoupsatsumablack
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-satsuma-black
+
+- type: flavor
+  id: imperialsoupdragonramen
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-dragon-ramen
+
+- type: flavor
+  id: imperialsouphongkongborscht
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-hong-kong-borscht
+
+- type: flavor
+  id: imperialsouphongkongmacaroni
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-hong-kong-macaroni
+
+- type: flavor
+  id: imperialsoupfoxsprizesoup
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-foxs-prize-soup
+
+- type: flavor
+  id: imperialsoupsecretnoodlesoup
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-secret-noodle-soup
+
+- type: flavor
+  id: imperialsoupbudaejjigae
+  flavorType: Complex
+  description: flavor-complex-imperial-soup-budae-jjigae
+
+- type: flavor
+  id: imperiallight
+  flavorType: Complex
+  description: flavor-complex-imperial-light
+
+- type: flavor
+  id: imperialgreen
+  flavorType: Complex
+  description: flavor-complex-imperial-green
+
+- type: flavor
+  id: imperialkong
+  flavorType: Complex
+  description: flavor-complex-imperial-kong
+
+- type: flavor
+  id: imperialcandycorn
+  flavorType: Complex
+  description: flavor-complex-imperial-candycorn
+
+- type: flavor
+  id: imperialthirteenloko
+  flavorType: Complex
+  description: flavor-complex-imperial-thirteenloko
+
+- type: flavor
+  id: imperialbilk
+  flavorType: Complex
+  description: flavor-complex-imperial-bilk
+
+- type: flavor
+  id: imperialaged
+  flavorType: Complex
+  description: flavor-complex-imperial-aged
+
+- type: flavor
+  id: imperiallizardwine
+  flavorType: Complex
+  description: flavor-complex-imperial-lizardwine
+
+- type: flavor
+  id: imperialgoldschlager
+  flavorType: Complex
+  description: flavor-complex-imperial-goldschlager
+
+- type: flavor
+  id: imperialrumcoke
+  flavorType: Complex
+  description: flavor-complex-imperial-rum-coke
+
+- type: flavor
+  id: imperialbooger
+  flavorType: Complex
+  description: flavor-complex-imperial-booger
+
+- type: flavor
+  id: imperialirishcarbomb
+  flavorType: Complex
+  description: flavor-complex-imperial-irishcarbomb
+
+- type: flavor
+  id: imperialhiveminderaser
+  flavorType: Complex
+  description: flavor-complex-imperial-hiveminderaser
+
+- type: flavor
+  id: imperialdrunkenblumpkin
+  flavorType: Complex
+  description: flavor-complex-imperial-drunkenblumpkin
+
+- type: flavor
+  id: imperialfetchingfizz
+  flavorType: Complex
+  description: flavor-complex-imperial-fetching-fizz
+
+- type: flavor
+  id: imperialheartypunch
+  flavorType: Complex
+  description: flavor-complex-imperial-hearty-punch
+
+- type: flavor
+  id: imperialdreadnog
+  flavorType: Complex
+  description: flavor-complex-imperial-dreadnog
+
+- type: flavor
+  id: imperialnarsour
+  flavorType: Complex
+  description: flavor-complex-imperial-narsour
+
+- type: flavor
+  id: imperialtriplesec
+  flavorType: Complex
+  description: flavor-complex-imperial-triple-sec
+
+- type: flavor
+  id: imperialcremedementhe
+  flavorType: Complex
+  description: flavor-complex-imperial-creme-de-menthe
+
+- type: flavor
+  id: imperialcremedecacao
+  flavorType: Complex
+  description: flavor-complex-imperial-creme-de-cacao
+
+- type: flavor
+  id: imperialcremedecoconut
+  flavorType: Complex
+  description: flavor-complex-imperial-creme-de-coconut
+
+- type: flavor
+  id: imperialquadruplesec
+  flavorType: Complex
+  description: flavor-complex-imperial-quadruple-sec
+
+- type: flavor
+  id: imperialquintuplesec
+  flavorType: Complex
+  description: flavor-complex-imperial-quintuple-sec
+
+- type: flavor
+  id: imperialgrasshopper
+  flavorType: Complex
+  description: flavor-complex-imperial-grasshopper
+
+- type: flavor
+  id: imperialstinger
+  flavorType: Complex
+  description: flavor-complex-imperial-stinger
+
+- type: flavor
+  id: imperialbastionbourbon
+  flavorType: Complex
+  description: flavor-complex-imperial-bastion-bourbon
+
+- type: flavor
+  id: imperialsquirtcider
+  flavorType: Complex
+  description: flavor-complex-imperial-squirt-cider
+
+- type: flavor
+  id: imperialfringeweaver
+  flavorType: Complex
+  description: flavor-complex-imperial-fringe-weaver
+
+- type: flavor
+  id: imperialpeppermintpatty
+  flavorType: Complex
+  description: flavor-complex-imperial-peppermint-patty
+
+- type: flavor
+  id: imperialalexander
+  flavorType: Complex
+  description: flavor-complex-imperial-alexander
+
+- type: flavor
+  id: imperialamarettoalexander
+  flavorType: Complex
+  description: flavor-complex-imperial-amaretto-alexander
+
+- type: flavor
+  id: imperialsidecar
+  flavorType: Complex
+  description: flavor-complex-imperial-sidecar
+
+- type: flavor
+  id: imperialbetweenthesheets
+  flavorType: Complex
+  description: flavor-complex-imperial-between-the-sheets
+
+- type: flavor
+  id: imperialkamikaze
+  flavorType: Complex
+  description: flavor-complex-imperial-kamikaze
+
+- type: flavor
+  id: imperialfernetcola
+  flavorType: Complex
+  description: flavor-complex-imperial-fernet-cola
+
+- type: flavor
+  id: imperialfanciulli
+  flavorType: Complex
+  description: flavor-complex-imperial-fanciulli
+
+- type: flavor
+  id: imperialbrancamenta
+  flavorType: Complex
+  description: flavor-complex-imperial-branca-menta
+
+- type: flavor
+  id: imperialblankpaper
+  flavorType: Complex
+  description: flavor-complex-imperial-blank-paper
+
+- type: flavor
+  id: imperialfruitwine
+  flavorType: Complex
+  description: flavor-complex-imperial-fruit-wine
+
+- type: flavor
+  id: imperialwizzfizz
+  flavorType: Complex
+  description: flavor-complex-imperial-wizz-fizz
+
+- type: flavor
+  id: imperialbugspray
+  flavorType: Complex
+  description: flavor-complex-imperial-bug-spray
+
+- type: flavor
+  id: imperialturbo
+  flavorType: Complex
+  description: flavor-complex-imperial-turbo
+
+- type: flavor
+  id: imperialoldtimer
+  flavorType: Complex
+  description: flavor-complex-imperial-old-timer
+
+- type: flavor
+  id: imperialduplex
+  flavorType: Complex
+  description: flavor-complex-imperial-duplex
+
+- type: flavor
+  id: imperialblazaam
+  flavorType: Complex
+  description: flavor-complex-imperial-blazaam
+
+- type: flavor
+  id: imperialplanetcracker
+  flavorType: Complex
+  description: flavor-complex-imperial-planet-cracker
+
+- type: flavor
+  id: imperialmaunaloa
+  flavorType: Complex
+  description: flavor-complex-imperial-mauna-loa
+
+- type: flavor
+  id: imperialpinaolivada
+  flavorType: Complex
+  description: flavor-complex-imperial-pina-olivada
+
+- type: flavor
+  id: imperialpruno
+  flavorType: Complex
+  description: flavor-complex-imperial-pruno
+
+- type: flavor
+  id: imperialgingeramaretto
+  flavorType: Complex
+  description: flavor-complex-imperial-ginger-amaretto
+
+- type: flavor
+  id: imperialgodfather
+  flavorType: Complex
+  description: flavor-complex-imperial-godfather
+
+- type: flavor
+  id: imperialgodmother
+  flavorType: Complex
+  description: flavor-complex-imperial-godmother
+
+- type: flavor
+  id: imperialkortara
+  flavorType: Complex
+  description: flavor-complex-imperial-kortara
+
+- type: flavor
+  id: imperialseabreeze
+  flavorType: Complex
+  description: flavor-complex-imperial-sea-breeze
+
+- type: flavor
+  id: imperialwhitetiziran
+  flavorType: Complex
+  description: flavor-complex-imperial-white-tiziran
+
+- type: flavor
+  id: imperialdrunkenespatier
+  flavorType: Complex
+  description: flavor-complex-imperial-drunken-espatier
+
+- type: flavor
+  id: imperialproteinblend
+  flavorType: Complex
+  description: flavor-complex-imperial-protein-blend
+
+- type: flavor
+  id: imperialtriumphalarch
+  flavorType: Complex
+  description: flavor-complex-imperial-triumphal-arch
+
+- type: flavor
+  id: imperialthejuice
+  flavorType: Complex
+  description: flavor-complex-imperial-the-juice
+
+- type: flavor
+  id: imperialritualwine
+  flavorType: Complex
+  description: flavor-complex-imperial-ritual-wine
+
+- type: flavor
+  id: imperialcuracao
+  flavorType: Complex
+  description: flavor-complex-imperial-curacao
+
+- type: flavor
+  id: imperialnavyrum
+  flavorType: Complex
+  description: flavor-complex-imperial-navy-rum
+
+- type: flavor
+  id: imperialadmiralty
+  flavorType: Complex
+  description: flavor-complex-imperial-admiralty
+
+- type: flavor
+  id: imperiallonghaul
+  flavorType: Complex
+  description: flavor-complex-imperial-long-haul
+
+- type: flavor
+  id: imperiallongjohnsilver
+  flavorType: Complex
+  description: flavor-complex-imperial-long-john-silver
+
+- type: flavor
+  id: imperialtropicalstorm
+  flavorType: Complex
+  description: flavor-complex-imperial-tropical-storm
+
+- type: flavor
+  id: imperialsaltandswell
+  flavorType: Complex
+  description: flavor-complex-imperial-salt-and-swell
+
+- type: flavor
+  id: imperialtiltaellen
+  flavorType: Complex
+  description: flavor-complex-imperial-tiltaellen
+
+- type: flavor
+  id: imperialtichtoch
+  flavorType: Complex
+  description: flavor-complex-imperial-tich-toch
+
+- type: flavor
+  id: imperialhelianthus
+  flavorType: Complex
+  description: flavor-complex-imperial-helianthus
+
+- type: flavor
+  id: imperialplumwine
+  flavorType: Complex
+  description: flavor-complex-imperial-plumwine
+
+- type: flavor
+  id: imperialthehat
+  flavorType: Complex
+  description: flavor-complex-imperial-the-hat
+
+- type: flavor
+  id: imperialgingarden
+  flavorType: Complex
+  description: flavor-complex-imperial-gin-garden
+
+- type: flavor
+  id: imperialwinevoltaic
+  flavorType: Complex
+  description: flavor-complex-imperial-wine-voltaic
+
+- type: flavor
+  id: imperialtelepole
+  flavorType: Complex
+  description: flavor-complex-imperial-telepole
+
+- type: flavor
+  id: imperialpodtesla
+  flavorType: Complex
+  description: flavor-complex-imperial-pod-tesla
+
+- type: flavor
+  id: imperialricebeer
+  flavorType: Complex
+  description: flavor-complex-imperial-rice-beer
+
+- type: flavor
+  id: imperialyuyakita
+  flavorType: Complex
+  description: flavor-complex-imperial-yuyakita
+
+- type: flavor
+  id: imperialsaibasan
+  flavorType: Complex
+  description: flavor-complex-imperial-saibasan
+
+- type: flavor
+  id: imperialbanzaiti
+  flavorType: Complex
+  description: flavor-complex-imperial-banzai-ti
+
+- type: flavor
+  id: imperialsanraizusoda
+  flavorType: Complex
+  description: flavor-complex-imperial-sanraizusoda
+
+- type: flavor
+  id: imperialkumicho
+  flavorType: Complex
+  description: flavor-complex-imperial-kumicho
+
+- type: flavor
+  id: imperialredplanet
+  flavorType: Complex
+  description: flavor-complex-imperial-red-planet
+
+- type: flavor
+  id: imperialamaterasu
+  flavorType: Complex
+  description: flavor-complex-imperial-amaterasu
+
+- type: flavor
+  id: imperialnekomimosa
+  flavorType: Complex
+  description: flavor-complex-imperial-nekomimosa
+
+- type: flavor
+  id: imperialsentaiquencha
+  flavorType: Complex
+  description: flavor-complex-imperial-sentai-quencha
+
+- type: flavor
+  id: imperialbosozoku
+  flavorType: Complex
+  description: flavor-complex-imperial-bosozoku
+
+- type: flavor
+  id: imperialersatzche
+  flavorType: Complex
+  description: flavor-complex-imperial-ersatzche
+
+- type: flavor
+  id: imperialredcityam
+  flavorType: Complex
+  description: flavor-complex-imperial-red-city-am
+
+- type: flavor
+  id: imperialkingsransom
+  flavorType: Complex
+  description: flavor-complex-imperial-kings-ransom
+
+- type: flavor
+  id: imperialfourbit
+  flavorType: Complex
+  description: flavor-complex-imperial-four-bit
+
+- type: flavor
+  id: imperialwhitehawaiian
+  flavorType: Complex
+  description: flavor-complex-imperial-white-hawaiian
+
+- type: flavor
+  id: imperialmauisunrise
+  flavorType: Complex
+  description: flavor-complex-imperial-maui-sunrise
+
+- type: flavor
+  id: imperialimperialmaitai
+  flavorType: Complex
+  description: flavor-complex-imperial-imperial-mai-tai
+
+- type: flavor
+  id: imperialkonococorumtini
+  flavorType: Complex
+  description: flavor-complex-imperial-konococo-rumtini
+
+- type: flavor
+  id: imperialbostonsour
+  flavorType: Complex
+  description: flavor-complex-imperial-boston-sour
+
+- type: flavor
+  id: imperialstar
+  flavorType: Complex
+  description: flavor-complex-imperial-star
+
+- type: flavor
+  id: imperialoldfashioned
+  flavorType: Complex
+  description: flavor-complex-imperial-old-fashioned
+
+- type: flavor
+  id: imperialsazerac
+  flavorType: Complex
+  description: flavor-complex-imperial-sazerac
+
+- type: flavor
+  id: imperialamarettosour
+  flavorType: Complex
+  description: flavor-complex-imperial-amaretto-sour
+
+- type: flavor
+  id: imperialramosginfizz
+  flavorType: Complex
+  description: flavor-complex-imperial-ramos-gin-fizz
+
+- type: flavor
+  id: imperialfrench75
+  flavorType: Complex
+  description: flavor-complex-imperial-french75
+
+- type: flavor
+  id: imperialsangria
+  flavorType: Complex
+  description: flavor-complex-imperial-sangria
+
+- type: flavor
+  id: imperialsufferingbastard
+  flavorType: Complex
+  description: flavor-complex-imperial-suffering-bastard
+
+- type: flavor
+  id: imperialblueblazer
+  flavorType: Complex
+  description: flavor-complex-imperial-blue-blazer
+
+- type: flavor
+  id: imperialhottoddy
+  flavorType: Complex
+  description: flavor-complex-imperial-hot-toddy
+
+- type: flavor
+  id: imperialtiziriansour
+  flavorType: Complex
+  description: flavor-complex-imperial-tizirian-sour
+
+- type: flavor
+  id: imperialflipcocktail
+  flavorType: Complex
+  description: flavor-complex-imperial-flip-cocktail
+
+- type: flavor
+  id: imperialbartendershandshake
+  flavorType: Complex
+  description: flavor-complex-imperial-bartenders-handshake
+
+- type: flavor
+  id: imperialbrandycrusta
+  flavorType: Complex
+  description: flavor-complex-imperial-brandy-crusta
+
+- type: flavor
+  id: imperialcasino
+  flavorType: Complex
+  description: flavor-complex-imperial-casino
+
+- type: flavor
+  id: imperialgaribaldi
+  flavorType: Complex
+  description: flavor-complex-imperial-garibaldi
+
+- type: flavor
+  id: imperialimprovedwhiskey
+  flavorType: Complex
+  description: flavor-complex-imperial-improved-whiskey
+
+- type: flavor
+  id: imperiallastword
+  flavorType: Complex
+  description: flavor-complex-imperial-last-word
+
+- type: flavor
+  id: imperialmarypickford
+  flavorType: Complex
+  description: flavor-complex-imperial-mary-pickford
+
+- type: flavor
+  id: imperialnegroni
+  flavorType: Complex
+  description: flavor-complex-imperial-negroni
+
+- type: flavor
+  id: imperialnucleardaiquiri
+  flavorType: Complex
+  description: flavor-complex-imperial-nuclear-daiquiri
+
+- type: flavor
+  id: imperialnucleardaiquirithermo
+  flavorType: Complex
+  description: flavor-complex-imperial-nuclear-daiquiri-thermo
+
+- type: flavor
+  id: imperialpoetsdream
+  flavorType: Complex
+  description: flavor-complex-imperial-poets-dream
+
+- type: flavor
+  id: imperialpoussecafe
+  flavorType: Complex
+  description: flavor-complex-imperial-pousse-cafe
+
+- type: flavor
+  id: imperialspritz
+  flavorType: Complex
+  description: flavor-complex-imperial-spritz
+
+- type: flavor
+  id: imperialvieuxcarre
+  flavorType: Complex
+  description: flavor-complex-imperial-vieux-carre
+
+- type: flavor
+  id: imperialsuperlaughter
+  flavorType: Complex
+  description: flavor-complex-imperial-superlaughter
+
+- type: flavor
+  id: imperialpotatojuice
+  flavorType: Complex
+  description: flavor-complex-imperial-potato-juice
+
+- type: flavor
+  id: imperialpickle
+  flavorType: Complex
+  description: flavor-complex-imperial-pickle
+
+- type: flavor
+  id: imperialplumjuice
+  flavorType: Complex
+  description: flavor-complex-imperial-plumjuice
+
+- type: flavor
+  id: imperialhoticecoffee
+  flavorType: Complex
+  description: flavor-complex-imperial-hot-ice-coffee
+
+- type: flavor
+  id: imperialnukacola
+  flavorType: Complex
+  description: flavor-complex-imperial-nuka-cola
+
+- type: flavor
+  id: imperialcinderella
+  flavorType: Complex
+  description: flavor-complex-imperial-cinderella
+
+- type: flavor
+  id: imperialcherryshake
+  flavorType: Complex
+  description: flavor-complex-imperial-cherryshake
+
+- type: flavor
+  id: imperialbluecherryshake
+  flavorType: Complex
+  description: flavor-complex-imperial-bluecherryshake
+
+- type: flavor
+  id: imperialvanillashake
+  flavorType: Complex
+  description: flavor-complex-imperial-vanillashake
+
+- type: flavor
+  id: imperialcaramelshake
+  flavorType: Complex
+  description: flavor-complex-imperial-caramelshake
+
+- type: flavor
+  id: imperialchoccyshake
+  flavorType: Complex
+  description: flavor-complex-imperial-choccyshake
+
+- type: flavor
+  id: imperialstrawberryshake
+  flavorType: Complex
+  description: flavor-complex-imperial-strawberryshake
+
+- type: flavor
+  id: imperialbananashake
+  flavorType: Complex
+  description: flavor-complex-imperial-bananashake
+
+- type: flavor
+  id: imperialpumpkinlatte
+  flavorType: Complex
+  description: flavor-complex-imperial-pumpkin-latte
+
+- type: flavor
+  id: imperialgibbfloats
+  flavorType: Complex
+  description: flavor-complex-imperial-gibbfloats
+
+- type: flavor
+  id: imperialpumpkinjuice
+  flavorType: Complex
+  description: flavor-complex-imperial-pumpkinjuice
+
+- type: flavor
+  id: imperialblumpkinjuice
+  flavorType: Complex
+  description: flavor-complex-imperial-blumpkinjuice
+
+- type: flavor
+  id: imperialtriplecitrus
+  flavorType: Complex
+  description: flavor-complex-imperial-triple-citrus
+
+- type: flavor
+  id: imperialchocolatemilk
+  flavorType: Complex
+  description: flavor-complex-imperial-chocolate-milk
+
+- type: flavor
+  id: imperialitaliancoco
+  flavorType: Complex
+  description: flavor-complex-imperial-italian-coco
+
+- type: flavor
+  id: imperialparsnipjuice
+  flavorType: Complex
+  description: flavor-complex-imperial-parsnipjuice
+
+- type: flavor
+  id: imperialpeachjuice
+  flavorType: Complex
+  description: flavor-complex-imperial-peachjuice
+
+- type: flavor
+  id: imperialcreamsoda
+  flavorType: Complex
+  description: flavor-complex-imperial-cream-soda
+
+- type: flavor
+  id: imperialredqueen
+  flavorType: Complex
+  description: flavor-complex-imperial-red-queen
+
+- type: flavor
+  id: imperialprunomix
+  flavorType: Complex
+  description: flavor-complex-imperial-prunomix
+
+- type: flavor
+  id: imperialaloejuice
+  flavorType: Complex
+  description: flavor-complex-imperial-aloejuice
+
+- type: flavor
+  id: imperialaguafresca
+  flavorType: Complex
+  description: flavor-complex-imperial-agua-fresca
+
+- type: flavor
+  id: imperialmushroomtea
+  flavorType: Complex
+  description: flavor-complex-imperial-mushroom-tea
+
+- type: flavor
+  id: imperialtoechtauesejuice
+  flavorType: Complex
+  description: flavor-complex-imperial-toechtauese-juice
+
+- type: flavor
+  id: imperialtoechtauesesyrup
+  flavorType: Complex
+  description: flavor-complex-imperial-toechtauese-syrup
+
+- type: flavor
+  id: imperialstrawberrybanana
+  flavorType: Complex
+  description: flavor-complex-imperial-strawberry-banana
+
+- type: flavor
+  id: imperialberryblast
+  flavorType: Complex
+  description: flavor-complex-imperial-berry-blast
+
+- type: flavor
+  id: imperialfunkymonkey
+  flavorType: Complex
+  description: flavor-complex-imperial-funky-monkey
+
+- type: flavor
+  id: imperialgreengiant
+  flavorType: Complex
+  description: flavor-complex-imperial-green-giant
+
+- type: flavor
+  id: imperialmelonballer
+  flavorType: Complex
+  description: flavor-complex-imperial-melon-baller
+
+- type: flavor
+  id: imperialvanilladream
+  flavorType: Complex
+  description: flavor-complex-imperial-vanilla-dream
+
+- type: flavor
+  id: imperialcucumberjuice
+  flavorType: Complex
+  description: flavor-complex-imperial-cucumberjuice
+
+- type: flavor
+  id: imperialcucumberlemonade
+  flavorType: Complex
+  description: flavor-complex-imperial-cucumberlemonade
+
+- type: flavor
+  id: imperialmississippiqueen
+  flavorType: Complex
+  description: flavor-complex-imperial-mississippi-queen
+
+- type: flavor
+  id: imperialtletter
+  flavorType: Complex
+  description: flavor-complex-imperial-t-letter
+
+- type: flavor
+  id: imperialcoconutmilk
+  flavorType: Complex
+  description: flavor-complex-imperial-coconut-milk
+
+- type: flavor
+  id: imperialmelonsoda
+  flavorType: Complex
+  description: flavor-complex-imperial-melon-soda
+
+- type: flavor
+  id: imperialvoltenergy
+  flavorType: Complex
+  description: flavor-complex-imperial-volt-energy
+
+- type: flavor
+  id: imperialfruitpunch
+  flavorType: Complex
+  description: flavor-complex-imperial-fruit-punch
+
+- type: flavor
+  id: imperialbitterssoda
+  flavorType: Complex
+  description: flavor-complex-imperial-bitters-soda
+
+- type: flavor
+  id: imperiallean
+  flavorType: Complex
+  description: flavor-complex-imperial-lean
+
+- type: flavor
+  id: imperialstomachlining
+  flavorType: Complex
+  description: flavor-complex-imperial-stomach-lining
+
+- type: flavor
+  id: imperialclothfibers
+  flavorType: Complex
+  description: flavor-complex-imperial-cloth-fibers
+
+- type: flavor
+  id: imperialvirusfood
+  flavorType: Complex
+  description: flavor-complex-imperial-virus-food
+
+- type: flavor
+  id: imperialtearjuice
+  flavorType: Complex
+  description: flavor-complex-imperial-tearjuice
+
+- type: flavor
+  id: imperialsprinkles
+  flavorType: Complex
+  description: flavor-complex-imperial-sprinkles
+
+- type: flavor
+  id: imperialhellramen
+  flavorType: Complex
+  description: flavor-complex-imperial-hell-ramen
+
+- type: flavor
+  id: imperialcherryjelly
+  flavorType: Complex
+  description: flavor-complex-imperial-cherryjelly
+
+- type: flavor
+  id: imperialbluecherryjelly
+  flavorType: Complex
+  description: flavor-complex-imperial-bluecherryjelly
+
+- type: flavor
+  id: imperialriceflour
+  flavorType: Complex
+  description: flavor-complex-imperial-rice-flour
+
+- type: flavor
+  id: imperialvanilla
+  flavorType: Complex
+  description: flavor-complex-imperial-vanilla
+
+- type: flavor
+  id: imperialcornsyrup
+  flavorType: Complex
+  description: flavor-complex-imperial-corn-syrup
+
+- type: flavor
+  id: imperialhoney
+  flavorType: Complex
+  description: flavor-complex-imperial-honey
+
+- type: flavor
+  id: imperialmoltobeso
+  flavorType: Complex
+  description: flavor-complex-imperial-moltobeso
+
+- type: flavor
+  id: imperialstabilized
+  flavorType: Complex
+  description: flavor-complex-imperial-stabilized
+
+- type: flavor
+  id: imperialentpoly
+  flavorType: Complex
+  description: flavor-complex-imperial-entpoly
+
+- type: flavor
+  id: imperialvitfro
+  flavorType: Complex
+  description: flavor-complex-imperial-vitfro
+
+- type: flavor
+  id: imperialliquidelectricity
+  flavorType: Complex
+  description: flavor-complex-imperial-liquidelectricity
+
+- type: flavor
+  id: imperialenriched
+  flavorType: Complex
+  description: flavor-complex-imperial-enriched
+
+- type: flavor
+  id: imperialsecretsauce
+  flavorType: Complex
+  description: flavor-complex-imperial-secretsauce
+
+- type: flavor
+  id: imperialchocolatepudding
+  flavorType: Complex
+  description: flavor-complex-imperial-chocolatepudding
+
+- type: flavor
+  id: imperialvanillapudding
+  flavorType: Complex
+  description: flavor-complex-imperial-vanillapudding
+
+- type: flavor
+  id: imperialgravy
+  flavorType: Complex
+  description: flavor-complex-imperial-gravy
+
+- type: flavor
+  id: imperialpancakebatter
+  flavorType: Complex
+  description: flavor-complex-imperial-pancakebatter
+
+- type: flavor
+  id: imperialkortaflour
+  flavorType: Complex
+  description: flavor-complex-imperial-korta-flour
+
+- type: flavor
+  id: imperialkortamilk
+  flavorType: Complex
+  description: flavor-complex-imperial-korta-milk
+
+- type: flavor
+  id: imperialkortanectar
+  flavorType: Complex
+  description: flavor-complex-imperial-korta-nectar
+
+- type: flavor
+  id: imperialpeanutbutter
+  flavorType: Complex
+  description: flavor-complex-imperial-peanut-butter
+
+- type: flavor
+  id: imperialyoghurt
+  flavorType: Complex
+  description: flavor-complex-imperial-yoghurt
+
+- type: flavor
+  id: imperialcornmealbatter
+  flavorType: Complex
+  description: flavor-complex-imperial-cornmeal-batter
+
+- type: flavor
+  id: imperialolivepaste
+  flavorType: Complex
+  description: flavor-complex-imperial-olivepaste
+
+- type: flavor
+  id: imperialcreamer
+  flavorType: Complex
+  description: flavor-complex-imperial-creamer
+
+- type: flavor
+  id: imperialmintextract
+  flavorType: Complex
+  description: flavor-complex-imperial-mintextract
+
+- type: flavor
+  id: imperialworcestershire
+  flavorType: Complex
+  description: flavor-complex-imperial-worcestershire
+
+- type: flavor
+  id: imperialredbay
+  flavorType: Complex
+  description: flavor-complex-imperial-red-bay
+
+- type: flavor
+  id: imperialcurrypowder
+  flavorType: Complex
+  description: flavor-complex-imperial-curry-powder
+
+- type: flavor
+  id: imperialdashiconcentrate
+  flavorType: Complex
+  description: flavor-complex-imperial-dashi-concentrate
+
+- type: flavor
+  id: imperialmartianbatter
+  flavorType: Complex
+  description: flavor-complex-imperial-martian-batter
+
+- type: flavor
+  id: imperialgroundingsolution
+  flavorType: Complex
+  description: flavor-complex-imperial-grounding-solution
+
+- type: flavor
+  id: imperialgizmogoop
+  flavorType: Complex
+  description: flavor-complex-imperial-gizmo-goop
+
+- type: flavor
+  id: imperialbeefflavour
+  flavorType: Complex
+  description: flavor-complex-imperial-beef-flavour
+
+- type: flavor
+  id: imperialfailedreaction
+  flavorType: Complex
+  description: flavor-complex-imperial-failed-reaction
+
+- type: flavor
+  id: imperialliquidgibs
+  flavorType: Complex
+  description: flavor-complex-imperial-liquidgibs
+
+- type: flavor
+  id: imperialsambuka
+  flavorType: Complex
+  description: flavor-complex-imperial-sambuka
+
+- type: flavor
+  id: imperialinnocenterp
+  flavorType: Complex
+  description: flavor-complex-imperial-innocent-erp
+
+- type: flavor
+  id: imperialsoundhand
+  flavorType: Complex
+  description: flavor-complex-imperial-soundhand
+
+- type: flavor
+  id: imperialjagermeister
+  flavorType: Complex
+  description: flavor-complex-imperial-jagermeister
+
+- type: flavor
+  id: imperialblackblood
+  flavorType: Complex
+  description: flavor-complex-imperial-black-blood
+
+- type: flavor
+  id: imperialpeguclub
+  flavorType: Complex
+  description: flavor-complex-imperial-pegu-club
+
+- type: flavor
+  id: imperialamnesia
+  flavorType: Complex
+  description: flavor-complex-imperial-amnesia
+
+- type: flavor
+  id: imperialsilverhand
+  flavorType: Complex
+  description: flavor-complex-imperial-silverhand
+
+- type: flavor
+  id: imperialtelegol
+  flavorType: Complex
+  description: flavor-complex-imperial-telegol
+
+- type: flavor
+  id: imperialhorseneck
+  flavorType: Complex
+  description: flavor-complex-imperial-horse-neck
+
+- type: flavor
+  id: imperialinabox
+  flavorType: Complex
+  description: flavor-complex-imperial-inabox
+
+- type: flavor
+  id: imperialgreenfairy
+  flavorType: Complex
+  description: flavor-complex-imperial-green-fairy
+
+- type: flavor
+  id: imperialtranssiberianexpress
+  flavorType: Complex
+  description: flavor-complex-imperial-trans-siberian-express
+
+- type: flavor
+  id: imperialrainbowsky
+  flavorType: Complex
+  description: flavor-complex-imperial-rainbow-sky
+
+- type: flavor
+  id: imperialcommunismbeach
+  flavorType: Complex
+  description: flavor-complex-imperial-communism-beach
+
+- type: flavor
+  id: imperialredjanuary
+  flavorType: Complex
+  description: flavor-complex-imperial-red-january
+
+- type: flavor
+  id: imperialfiveyearplan
+  flavorType: Complex
+  description: flavor-complex-imperial-five-year-plan
+
+- type: flavor
+  id: imperialgalactional
+  flavorType: Complex
+  description: flavor-complex-imperial-galactional
+
+- type: flavor
+  id: imperialslimetea
+  flavorType: Complex
+  description: flavor-complex-imperial-slimetea
+
+- type: flavor
+  id: imperialglace
+  flavorType: Complex
+  description: flavor-complex-imperial-glace
+
+- type: flavor
+  id: imperialrobbusto
+  flavorType: Complex
+  description: flavor-complex-imperial-robbusto
+
+- type: flavor
+  id: imperialvortex
+  flavorType: Complex
+  description: flavor-complex-imperial-vortex
+
+- type: flavor
+  id: imperialmokko
+  flavorType: Complex
+  description: flavor-complex-imperial-mokko
+
+- type: flavor
+  id: imperialfrappuchino
+  flavorType: Complex
+  description: flavor-complex-imperial-frappuchino
+
+- type: flavor
+  id: imperialmacchiato
+  flavorType: Complex
+  description: flavor-complex-imperial-macchiato
+
+- type: flavor
+  id: imperialpumpkinraf
+  flavorType: Complex
+  description: flavor-complex-imperial-pumpkin-raf
+
+- type: flavor
+  id: imperialtehtahlua
+  flavorType: Complex
+  description: flavor-complex-imperial-teh-tahlua
+
+- type: flavor
+  id: imperialchifir
+  flavorType: Complex
+  description: flavor-complex-imperial-chifir

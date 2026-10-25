@@ -1,0 +1,475 @@
+# Реагенты TG: food (scratchpad/kitchen/kgen.pl).
+
+- type: reagent
+  id: ImperialStomachLining
+  name: reagent-name-imperial-stomach-lining
+  group: Foods
+  desc: reagent-desc-imperial-stomach-lining
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialstomachlining
+  color: "#664330"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 5
+
+- type: reagent
+  id: ImperialClothFibers
+  name: reagent-name-imperial-cloth-fibers
+  group: Foods
+  desc: reagent-desc-imperial-cloth-fibers
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialclothfibers
+  color: "#664330"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 6
+
+- type: reagent
+  id: ImperialVirusFood
+  name: reagent-name-imperial-virus-food
+  group: Foods
+  desc: reagent-desc-imperial-virus-food
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialvirusfood
+  color: "#899613"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 1
+
+- type: reagent
+  id: ImperialTearjuice
+  name: reagent-name-imperial-tearjuice
+  group: Foods
+  desc: reagent-desc-imperial-tearjuice
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialtearjuice
+  color: "#c0c9a0"
+
+- type: reagent
+  id: ImperialSprinkles
+  name: reagent-name-imperial-sprinkles
+  group: Foods
+  desc: reagent-desc-imperial-sprinkles
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialsprinkles
+  color: "#9E6B4A"
+
+- type: reagent
+  id: ImperialHellRamen
+  name: reagent-name-imperial-hell-ramen
+  group: Foods
+  desc: reagent-desc-imperial-hell-ramen
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialhellramen
+  color: "#302000"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 2
+
+- type: reagent
+  id: ImperialCherryjelly
+  name: reagent-name-imperial-cherryjelly
+  group: Foods
+  desc: reagent-desc-imperial-cherryjelly
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialcherryjelly
+  color: "#801E28"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 3
+
+- type: reagent
+  id: ImperialBluecherryjelly
+  name: reagent-name-imperial-bluecherryjelly
+  group: Foods
+  desc: reagent-desc-imperial-bluecherryjelly
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialbluecherryjelly
+  color: "#00F0FF"
+
+- type: reagent
+  id: ImperialRiceFlour
+  name: reagent-name-imperial-rice-flour
+  group: Foods
+  desc: reagent-desc-imperial-rice-flour
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialriceflour
+  color: "#9E6B4A"
+
+- type: reagent
+  id: ImperialVanilla
+  name: reagent-name-imperial-vanilla
+  group: Foods
+  desc: reagent-desc-imperial-vanilla
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialvanilla
+  color: "#FFFACD"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 2
+
+- type: reagent
+  id: ImperialCornSyrup
+  name: reagent-name-imperial-corn-syrup
+  group: Foods
+  desc: reagent-desc-imperial-corn-syrup
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialcornsyrup
+  color: "#DBCE95"
+
+- type: reagent
+  id: ImperialHoney
+  name: reagent-name-imperial-honey
+  group: Foods
+  desc: reagent-desc-imperial-honey
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialhoney
+  color: "#d3a308"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 5
+
+- type: reagent
+  id: ImperialMoltobeso
+  name: reagent-name-imperial-moltobeso
+  group: Foods
+  desc: reagent-desc-imperial-moltobeso
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialmoltobeso
+  color: "#f8fc36"
+
+- type: reagent
+  id: ImperialStabilized
+  name: reagent-name-imperial-stabilized
+  group: Foods
+  desc: reagent-desc-imperial-stabilized
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialstabilized
+  color: "#664330"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 5
+
+- type: reagent
+  id: ImperialEntpoly
+  name: reagent-name-imperial-entpoly
+  group: Foods
+  desc: reagent-desc-imperial-entpoly
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialentpoly
+  color: "#1d043d"
+
+- type: reagent
+  id: ImperialVitfro
+  name: reagent-name-imperial-vitfro
+  group: Foods
+  desc: reagent-desc-imperial-vitfro
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialvitfro
+  color: "#d3a308"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 1
+
+- type: reagent
+  id: ImperialLiquidelectricity
+  name: reagent-name-imperial-liquidelectricity
+  group: Foods
+  desc: reagent-desc-imperial-liquidelectricity
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialliquidelectricity
+  color: "#97ee63"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 2
+
+- type: reagent
+  id: ImperialEnriched
+  name: reagent-name-imperial-enriched
+  group: Foods
+  desc: reagent-desc-imperial-enriched
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialenriched
+  color: "#97ee63"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 2
+
+- type: reagent
+  id: ImperialSecretsauce
+  name: reagent-name-imperial-secretsauce
+  group: Foods
+  desc: reagent-desc-imperial-secretsauce
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialsecretsauce
+  color: "#792300"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 1
+
+- type: reagent
+  id: ImperialChocolatepudding
+  name: reagent-name-imperial-chocolatepudding
+  group: Foods
+  desc: reagent-desc-imperial-chocolatepudding
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialchocolatepudding
+  color: "#9E6B4A"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 1
+
+- type: reagent
+  id: ImperialVanillapudding
+  name: reagent-name-imperial-vanillapudding
+  group: Foods
+  desc: reagent-desc-imperial-vanillapudding
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialvanillapudding
+  color: "#FAFAD2"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 1
+
+- type: reagent
+  id: ImperialGravy
+  name: reagent-name-imperial-gravy
+  group: Foods
+  desc: reagent-desc-imperial-gravy
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialgravy
+  color: "#623301"
+
+- type: reagent
+  id: ImperialPancakebatter
+  name: reagent-name-imperial-pancakebatter
+  group: Foods
+  desc: reagent-desc-imperial-pancakebatter
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialpancakebatter
+  color: "#fccc98"
+
+- type: reagent
+  id: ImperialKortaFlour
+  name: reagent-name-imperial-korta-flour
+  group: Foods
+  desc: reagent-desc-imperial-korta-flour
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialkortaflour
+  color: "#EEC39A"
+
+- type: reagent
+  id: ImperialKortaMilk
+  name: reagent-name-imperial-korta-milk
+  group: Foods
+  desc: reagent-desc-imperial-korta-milk
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialkortamilk
+  color: "#9E6B4A"
+
+- type: reagent
+  id: ImperialKortaNectar
+  name: reagent-name-imperial-korta-nectar
+  group: Foods
+  desc: reagent-desc-imperial-korta-nectar
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialkortanectar
+  color: "#d3a308"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 2
+
+- type: reagent
+  id: ImperialPeanutButter
+  name: reagent-name-imperial-peanut-butter
+  group: Foods
+  desc: reagent-desc-imperial-peanut-butter
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialpeanutbutter
+  color: "#D9A066"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 5
+
+- type: reagent
+  id: ImperialYoghurt
+  name: reagent-name-imperial-yoghurt
+  group: Foods
+  desc: reagent-desc-imperial-yoghurt
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialyoghurt
+  color: "#efeff0"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 1
+
+- type: reagent
+  id: ImperialCornmealBatter
+  name: reagent-name-imperial-cornmeal-batter
+  group: Foods
+  desc: reagent-desc-imperial-cornmeal-batter
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialcornmealbatter
+  color: "#ebca85"
+
+- type: reagent
+  id: ImperialOlivepaste
+  name: reagent-name-imperial-olivepaste
+  group: Foods
+  desc: reagent-desc-imperial-olivepaste
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialolivepaste
+  color: "#adcf77"
+
+- type: reagent
+  id: ImperialCreamer
+  name: reagent-name-imperial-creamer
+  group: Foods
+  desc: reagent-desc-imperial-creamer
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialcreamer
+  color: "#efeff0"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 1
+
+- type: reagent
+  id: ImperialMintextract
+  name: reagent-name-imperial-mintextract
+  group: Foods
+  desc: reagent-desc-imperial-mintextract
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialmintextract
+  color: "#CF3600"
+
+- type: reagent
+  id: ImperialWorcestershire
+  name: reagent-name-imperial-worcestershire
+  group: Foods
+  desc: reagent-desc-imperial-worcestershire
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialworcestershire
+  color: "#572b26"
+
+- type: reagent
+  id: ImperialRedBay
+  name: reagent-name-imperial-red-bay
+  group: Foods
+  desc: reagent-desc-imperial-red-bay
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialredbay
+  color: "#8E4C00"
+
+- type: reagent
+  id: ImperialCurryPowder
+  name: reagent-name-imperial-curry-powder
+  group: Foods
+  desc: reagent-desc-imperial-curry-powder
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialcurrypowder
+  color: "#F6C800"
+
+- type: reagent
+  id: ImperialDashiConcentrate
+  name: reagent-name-imperial-dashi-concentrate
+  group: Foods
+  desc: reagent-desc-imperial-dashi-concentrate
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialdashiconcentrate
+  color: "#372926"
+
+- type: reagent
+  id: ImperialMartianBatter
+  name: reagent-name-imperial-martian-batter
+  group: Foods
+  desc: reagent-desc-imperial-martian-batter
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialmartianbatter
+  color: "#D49D26"
+
+- type: reagent
+  id: ImperialGroundingSolution
+  name: reagent-name-imperial-grounding-solution
+  group: Foods
+  desc: reagent-desc-imperial-grounding-solution
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialgroundingsolution
+  color: "#efeff0"
+
+- type: reagent
+  id: ImperialGizmoGoop
+  name: reagent-name-imperial-gizmo-goop
+  group: Foods
+  desc: reagent-desc-imperial-gizmo-goop
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialgizmogoop
+  color: "#707070"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 1
+
+- type: reagent
+  id: ImperialBeefFlavour
+  name: reagent-name-imperial-beef-flavour
+  group: Foods
+  desc: reagent-desc-imperial-beef-flavour
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialbeefflavour
+  color: "#5f3e00"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 2
+
+- type: reagent
+  id: ImperialLiquidgibs
+  name: reagent-name-imperial-liquidgibs
+  group: Foods
+  desc: reagent-desc-imperial-liquidgibs
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: imperialliquidgibs
+  color: "#CC4633"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 1

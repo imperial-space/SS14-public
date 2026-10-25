@@ -1,0 +1,41 @@
+{
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "Taken from tgstation/BandaStation (kitchen.dmi)",
+    "size":  {
+                 "x":  32,
+                 "y":  32
+             },
+    "states":  [
+                   {
+                       "name":  "pot"
+                   },
+                   {
+                       "name":  "pot_fill"
+                   },
+                   {
+                       "name":  "oven_tray"
+                   },
+                   {
+                       "name":  "plate"
+                   },
+                   {
+                       "name":  "plate_small"
+                   },
+                   {
+                       "name":  "plate_large"
+                   },
+                   {
+                       "name":  "icecream_vat"
+                   },
+                   {
+                       "name":  "cone_waffle"
+                   },
+                   {
+                       "name":  "cone_chocolate"
+                   },
+                   {
+                       "name":  "icecream_custom"
+                   }
+               ]
+}

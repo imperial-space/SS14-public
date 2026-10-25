@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (food_ingredients.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "cakebatter"
+    },
+    {
+      "name": "raw_pita_bread"
+    },
+    {
+      "name": "pita_bread"
+    }
+  ]
+}

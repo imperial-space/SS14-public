@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (egg.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "egg"
+    },
+    {
+      "name": "chocolateegg"
+    },
+    {
+      "name": "eggsausage"
+    },
+    {
+      "name": "chawanmushi"
+    },
+    {
+      "name": "eggwrap"
+    },
+    {
+      "name": "rawegg"
+    },
+    {
+      "name": "spore_sack"
+    },
+    {
+      "name": "spore_sack_independent"
+    },
+    {
+      "name": "friedspore"
+    },
+    {
+      "name": "burstspore"
+    }
+  ]
+}

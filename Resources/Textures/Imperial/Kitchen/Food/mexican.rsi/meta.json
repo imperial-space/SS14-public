@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (mexican.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "fuegoburrito"
+    },
+    {
+      "name": "carneburrito"
+    },
+    {
+      "name": "cheesyburrito"
+    },
+    {
+      "name": "burrito"
+    },
+    {
+      "name": "taco"
+    },
+    {
+      "name": "chipsandsalsa"
+    },
+    {
+      "name": "hard_taco_shell"
+    },
+    {
+      "name": "classic_hard_shell_taco"
+    },
+    {
+      "name": "plain_hard_shell_taco"
+    },
+    {
+      "name": "classic_chimichanga"
+    },
+    {
+      "name": "vegetarian_chimichanga"
+    },
+    {
+      "name": "refried_beans"
+    },
+    {
+      "name": "spanish_rice"
+    },
+    {
+      "name": "pineapple_salsa"
+    }
+  ]
+}

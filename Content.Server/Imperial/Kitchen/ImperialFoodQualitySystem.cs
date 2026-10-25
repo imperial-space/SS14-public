@@ -166,7 +166,7 @@ public sealed class ImperialFoodQualitySystem : EntitySystem
         return 0;
     }
 
-    private ImperialFoodDataPrototype? GetData(EntityUid food)
+    public ImperialFoodDataPrototype? GetData(EntityUid food)
     {
         if (MetaData(food).EntityPrototype is not { } proto)
             return null;

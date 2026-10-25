@@ -44,6 +44,20 @@ public sealed partial class ImperialFoodDataPrototype : IPrototype
 
     [DataField]
     public List<ImperialFoodTypes> Types = new();
+
+    /// <summary>bakeable для существующих блюд SS14 (у новых — компонент).</summary>
+    [DataField]
+    public EntProtoId? Bake;
+
+    [DataField]
+    public float BakeTime = 30f;
+
+    /// <summary>grillable для существующих блюд SS14.</summary>
+    [DataField]
+    public EntProtoId? Grill;
+
+    [DataField]
+    public float GrillTime = 30f;
 }
 
 /// <summary>quality реагента-напитка TG: 1 мерзко … 5 фантастика, 6 — изумительный вкус. id — реагент.</summary>

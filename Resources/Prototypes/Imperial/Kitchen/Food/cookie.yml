@@ -1,0 +1,115 @@
+# Блюда TG /obj/item/food/cookie (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCookiePeanutButter
+  name: "печенье с арахисовым маслом"
+  description: "Вкусное тягучее печенье с арахисовым маслом."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: peanut_butter_cookie
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: ImperialPeanutButter
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - butter
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCookieChocolateChipCookie
+  name: "печенье с шоколадной крошкой"
+  description: "Восхитительно пахнущее печенье с шоколадной крошкой. Где молоко?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: cookie
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - chocolate
+    - soft
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCookieSnickerdoodle
+  name: "сникердудл"
+  description: "Мягкое печенье с ванилью и корицей."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: snickerdoodle
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - soft
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCookieMacaron
+  name: "макарон"
+  description: "Кондитерский «сэндвич» из мягких печеньиц со сливочной меренгой внутри."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: macaron_1
+  - type: Item
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 11
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+  - type: FlavorProfile
+    flavors:
+    - creamy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCookieThumbprintCookie
+  name: "печенье с отпечатком"
+  description: "Печенье с углублением размером с палец для начинки. Это — с вишнёвым джемом."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: thumbprint_cookie
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 11
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+  - type: FlavorProfile
+    flavors:
+    - jelly
