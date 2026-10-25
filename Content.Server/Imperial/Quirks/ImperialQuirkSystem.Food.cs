@@ -113,7 +113,6 @@ public sealed partial class ImperialQuirkSystem
     {
         SubscribeLocalEvent<ImperialQuirkFoodAllergyComponent, ImperialQuirkAddedEvent>(OnFoodAllergyAdded);
         SubscribeLocalEvent<ImperialQuirkFoodAllergyComponent, IngestingEvent>(OnAllergicIngest);
-        SubscribeLocalEvent<ImperialQuirkTasteComponent, IngestingEvent>(OnTasteIngest);
         SubscribeLocalEvent<ImperialQuirkVoraciousComponent, BeforeIngestedEvent>(OnVoraciousBite);
     }
 
@@ -184,32 +183,6 @@ public sealed partial class ImperialQuirkSystem
         AddReagent(ent, Histamine, 10f);
         if (!HasComp<ImperialQuirkStrongStomachComponent>(ent) && _random.Prob(0.3f))
             _vomit.Vomit(ent);
-    }
-
-    /// <summary>
-    /// Реакция языка: любимое — приятно, нелюбимое — отвращение и, бывает, рвота.
-    /// Настроения в SS14 нет, поэтому остаются сообщения и тошнота.
-    /// </summary>
-    private void OnTasteIngest(Entity<ImperialQuirkTasteComponent> ent, ref IngestingEvent args)
-    {
-        if (HasComp<ImperialQuirkAgeusiaComponent>(ent) || _timing.CurTime < ent.Comp.NextReaction)
-            return;
-
-        var type = GetFoodType(args.Food, args.Split);
-        if ((type & ent.Comp.Disliked) != 0)
-        {
-            ent.Comp.NextReaction = _timing.CurTime + TimeSpan.FromSeconds(10);
-            _popup.PopupEntity(Loc.GetString("imperial-quirk-food-disgusting"), ent, ent, PopupType.MediumCaution);
-            if (!HasComp<ImperialQuirkStrongStomachComponent>(ent) && _random.Prob(0.25f))
-                _vomit.Vomit(ent);
-            return;
-        }
-
-        if ((type & ent.Comp.Liked) == 0)
-            return;
-
-        ent.Comp.NextReaction = _timing.CurTime + TimeSpan.FromSeconds(10);
-        _popup.PopupEntity(Loc.GetString("imperial-quirk-food-delicious"), ent, ent);
     }
 
     /// <summary>Причуды, меняющие вкусы языка: (любит, не любит, поменять местами).</summary>
