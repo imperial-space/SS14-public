@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseAction
+  id: ImperialActionEmotePanel
+  name: Эмоции
+  description: Открыть панель эмоций со своими эмоциями.
+  components:
+  - type: Action
+    priority: -21
+    clientExclusive: true
+    icon: Interface/Actions/scream.png
+  - type: InstantAction
+    event: !type:ImperialEmotePanelActionEvent
