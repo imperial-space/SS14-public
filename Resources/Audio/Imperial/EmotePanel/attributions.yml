@@ -1,0 +1,59 @@
+- files:
+  - male_sniff.ogg
+  - female_sniff.ogg
+  - human_hiss.ogg
+  - lizard_hiss.ogg
+  - knuckles.ogg
+  - ping.ogg
+  - slowclap.ogg
+  - alien_roar.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation (via BandaStation)"
+  source: "https://github.com/tgstation/tgstation/tree/master/sound"
+
+- files:
+  - sniff_male.ogg
+  - sniff_female.ogg
+  - giggle_male_1.ogg
+  - giggle_male_2.ogg
+  - giggle_female_1.ogg
+  - giggle_female_2.ogg
+  - giggle_female_3.ogg
+  - giggle_female_4.ogg
+  - choke_male_1.ogg
+  - choke_male_2.ogg
+  - choke_male_3.ogg
+  - choke_female_1.ogg
+  - choke_female_2.ogg
+  - choke_female_3.ogg
+  - moan_male_1.ogg
+  - moan_male_2.ogg
+  - moan_male_3.ogg
+  - moan_female_1.ogg
+  - moan_female_2.ogg
+  - moan_female_3.ogg
+  - vulpkanin_purr.ogg
+  - vulpkanin_wbark.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from BandaStation emote panel modpack"
+  source: "https://github.com/ss220club/BandaStation/tree/master/modular_bandastation/emote_panel/audio"
+
+- files: ["evil_laugh_male_1.ogg"]
+  license: "CC0-1.0"
+  copyright: "ptrmax"
+  source: "https://freesound.org/s/134720/"
+
+- files: ["evil_laugh_male_2.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "Eelke"
+  source: "https://freesound.org/s/162860/"
+
+- files: ["evil_laugh_female_1.ogg"]
+  license: "CC0-1.0"
+  copyright: "Reitanna"
+  source: "https://freesound.org/s/343987/"
+
+- files: ["evil_laugh_female_2.ogg"]
+  license: "CC0-1.0"
+  copyright: "mvVoiceActing"
+  source: "https://freesound.org/s/219778/"

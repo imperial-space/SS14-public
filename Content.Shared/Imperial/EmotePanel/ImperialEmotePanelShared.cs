@@ -1,5 +1,4 @@
 using Content.Shared.Actions;
-using Content.Shared.Chat.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -13,9 +12,9 @@ public sealed partial class ImperialEmotePanelActionEvent : InstantActionEvent;
 /// или текст поверх стандартной эмоции со звуком (TGUI_PANEL_EMOTE_TYPE_CUSTOM).
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class ImperialCustomEmoteMessage(ProtoId<EmotePrototype>? emote, string text) : EntityEventArgs
+public sealed class ImperialCustomEmoteMessage(ProtoId<ImperialEmotePrototype>? emote, string text) : EntityEventArgs
 {
-    public readonly ProtoId<EmotePrototype>? Emote = emote;
+    public readonly ProtoId<ImperialEmotePrototype>? Emote = emote;
     public readonly string Text = text;
 }
 

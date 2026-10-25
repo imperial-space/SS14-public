@@ -1,22 +1,37 @@
 using Content.Server.Chat.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Chat;
-using Content.Shared.Chat.Prototypes;
-using Content.Shared.Humanoid;
 using Content.Shared.Imperial.EmotePanel;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
+using Content.Shared.Silicons.StationAi;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.EmotePanel;
 
-/// <summary>Действие панели эмоций у существа.</summary>
+/// <summary>Действие панели эмоций и состояние эмоций существа.</summary>
 [RegisterComponent]
 public sealed partial class ImperialEmotePanelComponent : Component
 {
     public EntityUid? Action;
     public TimeSpan NextCustomEmote;
+
+    /// <summary>emotes_used: когда каждая эмоция снова доступна.</summary>
+    public Dictionary<string, TimeSpan> Cooldowns = new();
+
+    /// <summary>MANUAL_GENERAL_EMOTE_AUDIO_COOLDOWN.</summary>
+    public TimeSpan NextSound;
+
+    /// <summary>MANUAL_SPECIFIC_EMOTE_AUDIO_COOLDOWN по эмоциям.</summary>
+    public Dictionary<string, TimeSpan> NextSpecificSound = new();
+
+    /// <summary>COOLDOWN_YAWN_PROPAGATION.</summary>
+    public TimeSpan YawnImmuneUntil;
+
+    /// <summary>client.recent_examines: кого и когда осматривало существо.</summary>
+    public Dictionary<EntityUid, TimeSpan> RecentExamines = new();
 }
 
 /// <summary>Выдаёт действие панели эмоций и исполняет свои эмоции игрока.</summary>
@@ -27,6 +42,7 @@ public sealed class ImperialEmotePanelSystem : EntitySystem
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly ImperialEmoteSystem _emote = default!;
 
     private static readonly EntProtoId PanelAction = "ImperialActionEmotePanel";
 
@@ -40,9 +56,10 @@ public sealed class ImperialEmotePanelSystem : EntitySystem
         SubscribeNetworkEvent<ImperialCustomEmoteMessage>(OnCustomEmote);
     }
 
+    /// <summary>Панель есть у всех живых существ и у ИИ, но не у призраков.</summary>
     private void OnPlayerAttached(PlayerAttachedEvent args)
     {
-        if (!HasComp<HumanoidProfileComponent>(args.Entity))
+        if (!HasComp<MobStateComponent>(args.Entity) && !HasComp<StationAiHeldComponent>(args.Entity))
             return;
 
         var panel = EnsureComp<ImperialEmotePanelComponent>(args.Entity);
@@ -68,14 +85,13 @@ public sealed class ImperialEmotePanelSystem : EntitySystem
 
         panel.NextCustomEmote = now + CustomCooldown;
 
-        EmotePrototype? emote = null;
-        if (msg.Emote is { } id && (!_proto.TryIndex(id, out emote) || !_chat.AllowedToUseEmote(uid, emote)))
+        // TGUI_PANEL_EMOTE_TYPE_CUSTOM: свой текст, но звук и действие эмоции остаются.
+        if (msg.Emote is { } id && _proto.TryIndex<ImperialEmotePrototype>(id, out var emote))
+        {
+            _emote.TryEmote(uid, emote, null, intentional: true, messageOverride: text);
             return;
+        }
 
         _chat.TrySendInGameICMessage(uid, text, InGameICChatType.Emote, false);
-
-        // Свой текст, но звук и анимация стандартной эмоции остаются.
-        if (emote != null)
-            _chat.TryEmoteWithoutChat(uid, emote);
     }
 }

@@ -1,11 +1,7 @@
-using System.IO;
 using System.Linq;
 using System.Numerics;
-using Content.Shared.Chat;
-using Content.Shared.Chat.Prototypes;
 using Content.Shared.Imperial.EmotePanel;
-using Robust.Client.GameObjects;
-using Robust.Client.Player;
+using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.ContentPack;
@@ -14,24 +10,27 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Imperial.EmotePanel;
 
-/// <summary>Своя эмоция на панели: стандартная, стандартная со своим текстом или просто текст.</summary>
+/// <summary>Своя эмоция на панели: эмоция, эмоция со своим текстом или просто текст.</summary>
 public sealed class ImperialPanelEmote
 {
     public string Name = string.Empty;
-    public ProtoId<EmotePrototype>? Emote;
+    public ProtoId<ImperialEmotePrototype>? Emote;
     public string? Text;
 }
 
-/// <summary>Открывает панель по действию и хранит свои эмоции игрока у него на компьютере.</summary>
+/// <summary>Открывает панель по действию, запрашивает у сервера доступные эмоции и хранит свои эмоции игрока.</summary>
 public sealed class ImperialEmotePanelSystem : EntitySystem
 {
     [Dependency] private readonly IResourceManager _resource = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
     private static readonly ResPath SavePath = new("/imperial_emote_panel.txt");
 
     public readonly List<ImperialPanelEmote> Custom = new();
+
+    /// <summary>Эмоции, доступные текущему существу (ui_static_data).</summary>
+    public readonly List<ImperialEmoteEntry> Available = new();
+
     private ImperialEmotePanelWindow? _window;
     private bool _loaded;
 
@@ -39,6 +38,7 @@ public sealed class ImperialEmotePanelSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<ImperialEmotePanelActionEvent>(OnAction);
+        SubscribeNetworkEvent<ImperialEmoteListMessage>(OnList);
     }
 
     private void OnAction(ImperialEmotePanelActionEvent args)
@@ -51,21 +51,32 @@ public sealed class ImperialEmotePanelSystem : EntitySystem
         }
 
         Load();
+        Available.Clear();
         _window = new ImperialEmotePanelWindow(this);
         _window.OnClose += () => _window = null;
         _window.OpenCentered();
+        RaiseNetworkEvent(new ImperialEmoteListRequest());
     }
 
-    public EntityUid? Local => _player.LocalEntity;
+    private void OnList(ImperialEmoteListMessage msg)
+    {
+        Available.Clear();
+        Available.AddRange(msg.Emotes);
+        _window?.Refresh();
+    }
 
-    public void Play(EmotePrototype emote) => RaisePredictiveEvent(new PlayEmoteMessage(emote.ID));
+    public string NameOf(string id) => Loc.GetString($"imperial-emote-name-{id}");
+
+    public void Play(ImperialEmoteEntry emote, string? param) => RaiseNetworkEvent(new ImperialEmotePlayMessage(emote.Id, param));
+
+    public void Preview(ImperialEmoteEntry emote) => RaiseNetworkEvent(new ImperialEmotePreviewMessage(emote.Id));
 
     public void Play(ImperialPanelEmote emote)
     {
         if (string.IsNullOrWhiteSpace(emote.Text))
         {
-            if (emote.Emote is { } id && _proto.TryIndex(id, out var proto))
-                Play(proto);
+            if (emote.Emote is { } id)
+                RaiseNetworkEvent(new ImperialEmotePlayMessage(id, null));
             return;
         }
 
@@ -74,7 +85,7 @@ public sealed class ImperialEmotePanelSystem : EntitySystem
 
     #region Хранение
 
-    /// <summary>Строка: тип\tэмоция\tназвание\tтекст; табуляции и переводы строк из полей убираются.</summary>
+    /// <summary>Строка: эмоция\tназвание\tтекст; табуляции и переводы строк из полей убираются.</summary>
     private void Load()
     {
         if (_loaded)
@@ -92,8 +103,8 @@ public sealed class ImperialEmotePanelSystem : EntitySystem
             if (parts.Length < 3 || Custom.Count >= ImperialEmotePanel.MaxEmotes)
                 continue;
 
-            ProtoId<EmotePrototype>? emote = parts[0].Length > 0 && _proto.HasIndex<EmotePrototype>(parts[0]) ? parts[0] : null;
-            var text = parts.Length > 2 && parts[2].Length > 0 ? parts[2] : null;
+            ProtoId<ImperialEmotePrototype>? emote = parts[0].Length > 0 && _proto.HasIndex<ImperialEmotePrototype>(parts[0]) ? parts[0] : null;
+            var text = parts[2].Length > 0 ? parts[2] : null;
             if (emote == null && text == null)
                 continue;
 
@@ -115,45 +126,47 @@ public sealed class ImperialEmotePanelSystem : EntitySystem
     #endregion
 }
 
-/// <summary>EmotePanel TG + панель своих эмоций BandaStation: поиск, категории, избранное и свои тексты.</summary>
+/// <summary>EmotePanel TG + панель эмоций BandaStation: только эмоции, которые существо может выполнить.</summary>
 public sealed class ImperialEmotePanelWindow : DefaultWindow
 {
     private readonly ImperialEmotePanelSystem _system;
-    private readonly IPrototypeManager _proto;
-    private readonly SharedChatSystem _chat;
-    private readonly SpriteSystem _sprite;
 
     private readonly LineEdit _search = new() { HorizontalExpand = true };
+    private readonly LineEdit _param = new() { HorizontalExpand = true };
     private readonly BoxContainer _custom = new() { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 2 };
-    private readonly GridContainer _all = new() { Columns = 3, HorizontalExpand = true };
+    private readonly BoxContainer _groups = new() { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 6 };
     private readonly BoxContainer _editor = new() { Orientation = BoxContainer.LayoutOrientation.Vertical, Visible = false, SeparationOverride = 4 };
     private readonly LineEdit _editName = new() { PlaceHolder = Loc.GetString("imperial-emote-panel-name") };
     private readonly LineEdit _editText = new() { PlaceHolder = Loc.GetString("imperial-emote-panel-text") };
     private readonly OptionButton _editBase = new();
-    private readonly List<EmotePrototype?> _baseOptions = new();
-    private EmoteCategory? _category;
+    private readonly List<string?> _baseOptions = new();
+
+    private readonly Button _filterVisible = Filter("imperial-emote-panel-filter-visible");
+    private readonly Button _filterAudible = Filter("imperial-emote-panel-filter-audible");
+    private readonly Button _filterSound = Filter("imperial-emote-panel-filter-sound");
+    private readonly Button _filterHands = Filter("imperial-emote-panel-filter-hands");
+    private readonly Button _filterParams = Filter("imperial-emote-panel-filter-params");
+
     private ImperialPanelEmote? _editing;
 
     public ImperialEmotePanelWindow(ImperialEmotePanelSystem system)
     {
         _system = system;
-        _proto = IoCManager.Resolve<IPrototypeManager>();
-        var entities = IoCManager.Resolve<IEntityManager>();
-        _chat = entities.System<SharedChatSystem>();
-        _sprite = entities.System<SpriteSystem>();
 
         Title = Loc.GetString("imperial-emote-panel-title");
-        MinSize = new Vector2(420, 360);
-        SetSize = new Vector2(560, 620);
+        MinSize = new Vector2(460, 380);
+        SetSize = new Vector2(620, 660);
 
         _search.PlaceHolder = Loc.GetString("imperial-emote-panel-search");
-        _search.OnTextChanged += _ => RebuildAll();
+        _search.OnTextChanged += _ => RebuildGroups();
+        _param.PlaceHolder = Loc.GetString("imperial-emote-panel-param");
 
         var filters = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, SeparationOverride = 2 };
-        AddFilter(filters, "imperial-emote-panel-filter-all", null);
-        AddFilter(filters, "emote-menu-category-general", EmoteCategory.General);
-        AddFilter(filters, "emote-menu-category-hands", EmoteCategory.Hands);
-        AddFilter(filters, "emote-menu-category-vocal", EmoteCategory.Vocal);
+        foreach (var button in new[] { _filterVisible, _filterAudible, _filterSound, _filterHands, _filterParams })
+        {
+            button.OnToggled += _ => RebuildGroups();
+            filters.AddChild(button);
+        }
 
         BuildEditor();
 
@@ -168,8 +181,7 @@ public sealed class ImperialEmotePanelWindow : DefaultWindow
         content.AddChild(customHeader);
         content.AddChild(_editor);
         content.AddChild(_custom);
-        content.AddChild(new Label { Text = Loc.GetString("imperial-emote-panel-all"), StyleClasses = { "LabelHeading" } });
-        content.AddChild(_all);
+        content.AddChild(_groups);
 
         var scroll = new ScrollContainer { HScrollEnabled = false, VerticalExpand = true };
         scroll.AddChild(content);
@@ -177,67 +189,111 @@ public sealed class ImperialEmotePanelWindow : DefaultWindow
         var root = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 4 };
         root.AddChild(_search);
         root.AddChild(filters);
+        root.AddChild(_param);
         root.AddChild(scroll);
         Contents.AddChild(root);
 
+        Refresh();
+    }
+
+    private static Button Filter(string loc)
+    {
+        return new Button { Text = Loc.GetString(loc), ToggleMode = true, HorizontalExpand = true, ClipText = true };
+    }
+
+    public void Refresh()
+    {
         RebuildCustom();
-        RebuildAll();
+        RebuildGroups();
     }
 
-    private void AddFilter(BoxContainer box, string text, EmoteCategory? category)
+    #region Эмоции
+
+    private IEnumerable<ImperialEmoteEntry> Filtered()
     {
-        var button = new Button { Text = Loc.GetString(text), ToggleMode = true, Pressed = category == _category, HorizontalExpand = true };
-        button.OnPressed += _ =>
-        {
-            _category = category;
-            foreach (var child in box.Children.OfType<Button>())
-                child.Pressed = child == button;
-            RebuildAll();
-        };
-        box.AddChild(button);
-    }
-
-    private IEnumerable<EmotePrototype> Available()
-    {
-        if (_system.Local is not { } local)
-            return Enumerable.Empty<EmotePrototype>();
-
-        return _proto.EnumeratePrototypes<EmotePrototype>()
-            .Where(e => e.Category != EmoteCategory.Invalid && _chat.AllowedToUseEmote(local, e))
-            .OrderBy(e => Loc.GetString(e.Name));
-    }
-
-    #region Все эмоции
-
-    private void RebuildAll()
-    {
-        _all.RemoveAllChildren();
         var search = _search.Text.Trim();
-        foreach (var emote in Available())
+        return _system.Available
+            .Where(e => (!_filterVisible.Pressed || e.Visible) &&
+                        (!_filterAudible.Pressed || e.Audible) &&
+                        (!_filterSound.Pressed || e.Sound) &&
+                        (!_filterHands.Pressed || e.Hands) &&
+                        (!_filterParams.Pressed || e.Param))
+            .Where(e => search.Length == 0 ||
+                        _system.NameOf(e.Id).Contains(search, StringComparison.CurrentCultureIgnoreCase) ||
+                        e.Id.Contains(search, StringComparison.OrdinalIgnoreCase))
+            .OrderBy(e => _system.NameOf(e.Id));
+    }
+
+    /// <summary>Разделы как в панели BandaStation: ○ действия, ▷ со звуком, ◦ без звука.</summary>
+    private void RebuildGroups()
+    {
+        _groups.RemoveAllChildren();
+        if (_system.Available.Count == 0)
         {
-            var name = Loc.GetString(emote.Name);
-            if (_category != null && emote.Category != _category)
-                continue;
-            if (search.Length > 0 && !name.Contains(search, StringComparison.CurrentCultureIgnoreCase)
-                && !emote.ChatTriggers.Any(t => t.Contains(search, StringComparison.CurrentCultureIgnoreCase)))
-                continue;
-
-            var play = new Button { HorizontalExpand = true, ToolTip = Loc.GetString("imperial-emote-panel-play-tooltip") };
-            var inner = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, SeparationOverride = 4 };
-            inner.AddChild(new TextureRect { Texture = _sprite.Frame0(emote.Icon), TextureScale = new Vector2(1, 1), Stretch = TextureRect.StretchMode.KeepCentered, MinSize = new Vector2(24, 24) });
-            inner.AddChild(new Label { Text = name, ClipText = true, HorizontalExpand = true });
-            play.AddChild(inner);
-            var proto = emote;
-            play.OnPressed += _ => _system.Play(proto);
-
-            var favourite = new Button { Text = "★", ToolTip = Loc.GetString("imperial-emote-panel-favourite") };
-            favourite.OnPressed += _ => AddCustom(new ImperialPanelEmote { Name = name, Emote = proto.ID });
-
-            var row = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, HorizontalExpand = true };
-            row.AddChild(play);
-            row.AddChild(favourite);
-            _all.AddChild(row);
+            _groups.AddChild(new Label { Text = Loc.GetString("imperial-emote-panel-loading"), FontColorOverride = Color.Gray });
+            return;
         }
+
+        var emotes = Filtered().ToList();
+        AddGroup("imperial-emote-panel-group-action", emotes.Where(e => e.Action));
+        AddGroup("imperial-emote-panel-group-sound", emotes.Where(e => !e.Action && e.Sound));
+        AddGroup("imperial-emote-panel-group-silent", emotes.Where(e => !e.Action && !e.Sound));
+    }
+
+    private void AddGroup(string title, IEnumerable<ImperialEmoteEntry> emotes)
+    {
+        var grid = new GridContainer { Columns = 3, HorizontalExpand = true };
+        foreach (var emote in emotes)
+            grid.AddChild(EmoteRow(emote));
+
+        if (grid.ChildCount == 0)
+            return;
+
+        _groups.AddChild(new Label { Text = Loc.GetString(title), StyleClasses = { "LabelHeading" } });
+        _groups.AddChild(grid);
+    }
+
+    private Control EmoteRow(ImperialEmoteEntry emote)
+    {
+        var name = _system.NameOf(emote.Id);
+        var play = new Button { Text = name, HorizontalExpand = true, ClipText = true, ToolTip = Flags(emote) };
+        play.OnPressed += _ =>
+        {
+            var param = _param.Text.Trim();
+            _system.Play(emote, emote.Param && param.Length > 0 ? param : null);
+        };
+
+        var row = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, HorizontalExpand = true };
+        row.AddChild(play);
+
+        if (emote.Sound)
+        {
+            var preview = new Button { Text = "♪", ToolTip = Loc.GetString("imperial-emote-panel-preview") };
+            preview.OnPressed += _ => _system.Preview(emote);
+            row.AddChild(preview);
+        }
+
+        var favourite = new Button { Text = "★", ToolTip = Loc.GetString("imperial-emote-panel-favourite") };
+        favourite.OnPressed += _ => AddCustom(new ImperialPanelEmote { Name = name, Emote = emote.Id });
+        row.AddChild(favourite);
+        return row;
+    }
+
+    /// <summary>Значки EmotePanel TG: видимая, слышимая, звук, руки, параметр.</summary>
+    private static string Flags(ImperialEmoteEntry emote)
+    {
+        var flags = new List<string>();
+        if (emote.Visible)
+            flags.Add(Loc.GetString("imperial-emote-panel-filter-visible"));
+        if (emote.Audible)
+            flags.Add(Loc.GetString("imperial-emote-panel-filter-audible"));
+        if (emote.Sound)
+            flags.Add(Loc.GetString("imperial-emote-panel-filter-sound"));
+        if (emote.Hands)
+            flags.Add(Loc.GetString("imperial-emote-panel-filter-hands"));
+        if (emote.Param)
+            flags.Add(Loc.GetString("imperial-emote-panel-filter-params"));
+        return string.Join(", ", flags);
     }
 
     #endregion
@@ -283,7 +339,7 @@ public sealed class ImperialEmotePanelWindow : DefaultWindow
 
     private string Description(ImperialPanelEmote emote)
     {
-        var baseName = emote.Emote is { } id && _proto.TryIndex(id, out var proto) ? Loc.GetString(proto.Name) : null;
+        var baseName = emote.Emote is { } id ? _system.NameOf(id) : null;
         return (baseName, emote.Text) switch
         {
             (null, { } text) => Loc.GetString("imperial-emote-panel-desc-me", ("text", text)),
@@ -357,11 +413,11 @@ public sealed class ImperialEmotePanelWindow : DefaultWindow
         _editBase.AddItem(Loc.GetString("imperial-emote-panel-base-none"), 0);
         _baseOptions.Add(null);
         var selected = 0;
-        foreach (var proto in Available())
+        foreach (var entry in _system.Available.OrderBy(e => _system.NameOf(e.Id)))
         {
-            _baseOptions.Add(proto);
-            _editBase.AddItem(Loc.GetString(proto.Name), _baseOptions.Count - 1);
-            if (emote?.Emote == proto.ID)
+            _baseOptions.Add(entry.Id);
+            _editBase.AddItem(_system.NameOf(entry.Id), _baseOptions.Count - 1);
+            if (emote?.Emote == entry.Id)
                 selected = _baseOptions.Count - 1;
         }
 
@@ -375,7 +431,7 @@ public sealed class ImperialEmotePanelWindow : DefaultWindow
         var text = _editText.Text.Trim();
         var baseEmote = _baseOptions[_editBase.SelectedId];
         if (name.Length == 0)
-            name = text.Length > 0 ? text : baseEmote != null ? Loc.GetString(baseEmote.Name) : string.Empty;
+            name = text.Length > 0 ? text : baseEmote != null ? _system.NameOf(baseEmote) : string.Empty;
         if (name.Length == 0 || text.Length == 0 && baseEmote == null)
             return;
 
@@ -385,7 +441,7 @@ public sealed class ImperialEmotePanelWindow : DefaultWindow
         var emote = _editing ?? new ImperialPanelEmote();
         emote.Name = name;
         emote.Text = text.Length > 0 ? text : null;
-        emote.Emote = baseEmote?.ID;
+        emote.Emote = baseEmote;
         _editor.Visible = false;
 
         if (_editing == null)
