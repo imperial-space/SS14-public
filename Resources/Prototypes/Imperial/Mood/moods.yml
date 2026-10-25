@@ -1,0 +1,1596 @@
+# Сгенерировано из /datum/mood_event TG/BandaStation (scratchpad/mood/conv.pl).
+
+- type: imperialMoodEvent
+  id: area
+
+- type: imperialMoodEvent
+  id: axe_gone
+  moodChange: -15
+
+- type: imperialMoodEvent
+  id: axe_neutral
+  moodChange: 1
+
+- type: imperialMoodEvent
+  id: axe_cabinet
+  moodChange: 5
+
+- type: imperialMoodEvent
+  id: axe_missing
+  moodChange: -5
+
+- type: imperialMoodEvent
+  id: axe_held
+  moodChange: -10
+
+- type: imperialMoodEvent
+  id: horridroom
+  moodChange: -5
+
+- type: imperialMoodEvent
+  id: badroom
+  moodChange: -3
+
+- type: imperialMoodEvent
+  id: ehroom
+  moodChange: -1
+
+- type: imperialMoodEvent
+  id: decentroom
+  moodChange: 1
+
+- type: imperialMoodEvent
+  id: goodroom
+  moodChange: 3
+
+- type: imperialMoodEvent
+  id: greatroom
+  moodChange: 5
+
+- type: imperialMoodEvent
+  id: see_death
+  moodChange: -8
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: see_death_naive
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: see_death_cult
+  moodChange: 4
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: see_death_revolutionary
+  moodChange: 4
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: see_death_gamer
+  moodChange: 4
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: see_death_dontcare
+  timeout: 150
+
+- type: imperialMoodEvent
+  id: see_death_ashwalker
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: see_death_pet
+  moodChange: -8
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: see_death_xeno
+  moodChange: -8
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: see_death_desensitized
+  moodChange: -8
+  timeout: 150
+
+- type: imperialMoodEvent
+  id: it_was_on_the_mouse
+  moodChange: 1
+  timeout: 120
+  flags: [ Whimsy ]
+
+- type: imperialMoodEvent
+  id: gondola_serenity
+  moodChange: 10
+  icon: mood_gondola
+
+- type: imperialMoodEvent
+  id: fish_waterless
+  moodChange: -3
+
+- type: imperialMoodEvent
+  id: fish_water
+  moodChange: 1
+
+- type: imperialMoodEvent
+  id: drunk
+  moodChange: 3
+
+- type: imperialMoodEvent
+  id: drunk_after
+  moodChange: 2
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: wrong_brandy
+  moodChange: -2
+  timeout: 360
+
+- type: imperialMoodEvent
+  id: quality_revolting
+  moodChange: -8
+  timeout: 420
+
+- type: imperialMoodEvent
+  id: quality_nice
+  moodChange: 2
+  timeout: 420
+
+- type: imperialMoodEvent
+  id: quality_good
+  moodChange: 4
+  timeout: 420
+
+- type: imperialMoodEvent
+  id: quality_verygood
+  moodChange: 6
+  timeout: 420
+
+- type: imperialMoodEvent
+  id: quality_fantastic
+  moodChange: 8
+  timeout: 420
+
+- type: imperialMoodEvent
+  id: amazingtaste
+  moodChange: 50
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: wellcheers
+  moodChange: 3
+  timeout: 420
+
+- type: imperialMoodEvent
+  id: sweetcoffee
+  moodChange: 2
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: sweettea
+  moodChange: 4
+  timeout: 150
+
+- type: imperialMoodEvent
+  id: high
+  moodChange: 6
+
+- type: imperialMoodEvent
+  id: stoned
+  moodChange: 6
+
+- type: imperialMoodEvent
+  id: maintenance_high
+  moodChange: 6
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: hang_over
+  moodChange: -4
+  timeout: 60
+
+- type: imperialMoodEvent
+  id: smoked
+  moodChange: 2
+  timeout: 360
+
+- type: imperialMoodEvent
+  id: wrong_brand
+  moodChange: -2
+  timeout: 360
+
+- type: imperialMoodEvent
+  id: overdose
+  moodChange: -8
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: withdrawal_light
+  moodChange: -2
+
+- type: imperialMoodEvent
+  id: withdrawal_medium
+  moodChange: -5
+
+- type: imperialMoodEvent
+  id: withdrawal_severe
+  moodChange: -8
+
+- type: imperialMoodEvent
+  id: happiness_drug
+  moodChange: 50
+
+- type: imperialMoodEvent
+  id: happiness_drug_good_od
+  moodChange: 100
+  timeout: 30
+  icon: mood_happiness_good
+
+- type: imperialMoodEvent
+  id: happiness_drug_bad_od
+  moodChange: -100
+  timeout: 30
+  icon: mood_happiness_bad
+
+- type: imperialMoodEvent
+  id: narcotic_medium
+  moodChange: 4
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: narcotic_heavy
+  moodChange: 9
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: antinarcotic_medium
+  moodChange: -4
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: antinarcotic_heavy
+  moodChange: -9
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: stimulant_medium
+  moodChange: 4
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: stimulant_heavy
+  moodChange: 6
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: eigentrip
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: nicotine_withdrawal_moderate
+  moodChange: -5
+
+- type: imperialMoodEvent
+  id: nicotine_withdrawal_severe
+  moodChange: -8
+
+- type: imperialMoodEvent
+  id: hauntium_spirits
+  moodChange: -8
+  timeout: 480
+
+- type: imperialMoodEvent
+  id: sadness_inverse
+  moodChange: -150
+  icon: mood_happiness_bad
+
+- type: imperialMoodEvent
+  id: eldritch_painting
+  moodChange: -6
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: eldritch_painting_weeping
+  moodChange: -3
+  timeout: 11
+
+- type: imperialMoodEvent
+  id: eldritch_painting_weeping_heretic
+  moodChange: 5
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: eldritch_painting_weeping_withdrawal
+  moodChange: 1
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: eldritch_painting_desire_heretic
+  moodChange: -2
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: eldritch_painting_desire_examine
+  moodChange: 3
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: eldritch_painting_heretic_vines
+  moodChange: 3
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: eldritch_painting_rust_examine
+  moodChange: -2
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: eldritch_painting_rust_heretic_examine
+  moodChange: 6
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: favorite_food
+  moodChange: 5
+  timeout: 240
+  flags: [ Food ]
+
+- type: imperialMoodEvent
+  id: gross_food
+  moodChange: -2
+  timeout: 240
+  flags: [ Food ]
+
+- type: imperialMoodEvent
+  id: disgusting_food
+  moodChange: -6
+  timeout: 240
+  flags: [ Food ]
+
+- type: imperialMoodEvent
+  id: allergic_food
+  moodChange: -2
+  timeout: 240
+  flags: [ Food ]
+
+- type: imperialMoodEvent
+  id: breakfast
+  moodChange: 2
+  timeout: 600
+  flags: [ Food ]
+
+- type: imperialMoodEvent
+  id: food
+  timeout: 300
+  flags: [ Food ]
+
+- type: imperialMoodEvent
+  id: pacifist_eating_fish_item
+  moodChange: -1
+  timeout: 240
+  flags: [ Food ]
+
+- type: imperialMoodEvent
+  id: handcuffed
+  moodChange: -1
+
+- type: imperialMoodEvent
+  id: broken_vow
+  moodChange: -4
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: on_fire
+  moodChange: -12
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: suffocation
+  moodChange: -12
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: burnt_thumb
+  moodChange: -1
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: cold
+  moodChange: -5
+
+- type: imperialMoodEvent
+  id: hot
+  moodChange: -5
+
+- type: imperialMoodEvent
+  id: creampie
+  moodChange: -2
+  timeout: 180
+  flags: [ Whimsy ]
+
+- type: imperialMoodEvent
+  id: inked
+  moodChange: -3
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: slipped
+  moodChange: -2
+  timeout: 180
+  flags: [ Whimsy ]
+
+- type: imperialMoodEvent
+  id: eye_stab
+  moodChange: -4
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: delam
+  moodChange: -2
+  timeout: 240
+
+- type: imperialMoodEvent
+  id: cascade
+  moodChange: -8
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: depression
+  moodChange: -12
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: shameful_suicide
+  moodChange: -15
+  timeout: 60
+
+- type: imperialMoodEvent
+  id: dismembered
+  moodChange: -10
+  timeout: 480
+
+- type: imperialMoodEvent
+  id: reattachment
+  moodChange: -3
+  timeout: 120
+  flags: [ Pain ]
+
+- type: imperialMoodEvent
+  id: tased
+  moodChange: -3
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: embedded
+  moodChange: -7
+
+- type: imperialMoodEvent
+  id: table
+  moodChange: -2
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: table_limbsmash
+  moodChange: -3
+  timeout: 180
+  flags: [ Pain ]
+
+- type: imperialMoodEvent
+  id: brain_damage
+  moodChange: -3
+
+- type: imperialMoodEvent
+  id: hulk
+  moodChange: -4
+
+- type: imperialMoodEvent
+  id: epilepsy
+  moodChange: -3
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: photophobia
+  moodChange: -3
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: nyctophobia
+  moodChange: -3
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: claustrophobia
+  moodChange: -7
+  timeout: 60
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: bright_light
+  moodChange: -12
+
+- type: imperialMoodEvent
+  id: family_heirloom_missing
+  moodChange: -4
+
+- type: imperialMoodEvent
+  id: healsbadman
+  moodChange: -4
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: healsbadman_long_term
+  moodChange: -4
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: jittery
+  moodChange: -2
+
+- type: imperialMoodEvent
+  id: choke
+  moodChange: -10
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: vomit
+  moodChange: -2
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: vomitself
+  moodChange: -4
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: painful_medicine
+  moodChange: -5
+  timeout: 60
+  flags: [ Pain ]
+
+- type: imperialMoodEvent
+  id: startled
+  moodChange: -1
+  timeout: 60
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: phobia
+  moodChange: -4
+  timeout: 240
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: spooked
+  moodChange: -4
+  timeout: 240
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: notcreeping
+  moodChange: -6
+  timeout: 3
+  hidden: true
+
+- type: imperialMoodEvent
+  id: notcreepingsevere
+  moodChange: -30
+  timeout: 3
+
+- type: imperialMoodEvent
+  id: tower_of_babel
+  moodChange: -1
+  timeout: 15
+
+- type: imperialMoodEvent
+  id: back_pain
+  moodChange: -15
+  flags: [ Pain ]
+
+- type: imperialMoodEvent
+  id: sacrifice_bad
+  moodChange: -5
+  timeout: 120
+  flags: [ Spiritual ]
+
+- type: imperialMoodEvent
+  id: artbad
+  moodChange: -2
+  timeout: 120
+  flags: [ Art ]
+
+- type: imperialMoodEvent
+  id: graverobbing
+  moodChange: -8
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: deaths_door
+  moodChange: -20
+
+- type: imperialMoodEvent
+  id: gunpoint
+  moodChange: -10
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: tripped
+  moodChange: -5
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: untied
+  moodChange: -3
+  timeout: 60
+
+- type: imperialMoodEvent
+  id: gates_of_mansus
+  moodChange: -25
+  timeout: 240
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: high_five_full_hand
+  moodChange: -1
+  timeout: 45
+
+- type: imperialMoodEvent
+  id: too_slow
+  moodChange: -2
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: surgery
+  moodChange: -8
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: surgery_success
+  moodChange: -8
+  timeout: 180
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: surgery_failure
+  moodChange: -8
+  timeout: 600
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: bald
+  moodChange: -3
+
+- type: imperialMoodEvent
+  id: bald_reminder
+  moodChange: -5
+  timeout: 240
+
+- type: imperialMoodEvent
+  id: bad_touch
+  moodChange: -3
+  timeout: 240
+
+- type: imperialMoodEvent
+  id: very_bad_touch
+  moodChange: -5
+  timeout: 240
+
+- type: imperialMoodEvent
+  id: noogie
+  moodChange: -2
+  timeout: 60
+
+- type: imperialMoodEvent
+  id: noogie_harsh
+  moodChange: -4
+  timeout: 60
+
+- type: imperialMoodEvent
+  id: aquarium_negative
+  moodChange: -3
+  timeout: 90
+
+- type: imperialMoodEvent
+  id: tail_lost
+  moodChange: -8
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: tail_balance_lost
+  moodChange: -2
+
+- type: imperialMoodEvent
+  id: tail_regained_wrong
+  moodChange: -12
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: tail_regained_species
+  moodChange: -5
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: tail_regained_right
+  moodChange: -2
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: burnt_wings
+  moodChange: -10
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: holy_smite
+  moodChange: -5
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: banished
+  moodChange: -10
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: heresy
+  moodChange: -5
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: soda_spill
+  moodChange: -2
+  timeout: 60
+
+- type: imperialMoodEvent
+  id: watersprayed
+  moodChange: -1
+  timeout: 30
+
+- type: imperialMoodEvent
+  id: gamer_withdrawal
+  moodChange: -5
+  flags: [ Gaming ]
+
+- type: imperialMoodEvent
+  id: gamer_lost
+  moodChange: -6
+  timeout: 600
+  flags: [ Gaming ]
+
+- type: imperialMoodEvent
+  id: lost_52_card_pickup
+  moodChange: -3
+  timeout: 180
+  flags: [ Whimsy, Gaming ]
+
+- type: imperialMoodEvent
+  id: russian_roulette_lose_cheater
+  moodChange: -10
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: russian_roulette_lose
+  moodChange: -20
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: bad_touch_bear_hug
+  moodChange: -1
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: rippedtail
+  moodChange: -5
+  timeout: 30
+
+- type: imperialMoodEvent
+  id: sabrage_fail
+  moodChange: -2
+  timeout: 240
+
+- type: imperialMoodEvent
+  id: body_purist
+
+- type: imperialMoodEvent
+  id: unsatisfied_nomad
+  moodChange: -3
+
+- type: imperialMoodEvent
+  id: moon_insanity
+  moodChange: -3
+  timeout: 300
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: amulet_insanity
+  moodChange: -6
+  timeout: 300
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: mallet_humiliation
+  moodChange: -3
+  timeout: 10
+
+- type: imperialMoodEvent
+  id: madness_despair
+  moodChange: -200
+  icon: mood_despair
+
+- type: imperialMoodEvent
+  id: all_nighter
+  moodChange: -5
+
+- type: imperialMoodEvent
+  id: desentized
+  moodChange: -3
+  icon: mood_desentized
+
+- type: imperialMoodEvent
+  id: pacifism_bypassed
+  moodChange: -20
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: bapped
+  moodChange: -1
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: encountered_evil
+  moodChange: -1
+  timeout: 60
+
+- type: imperialMoodEvent
+  id: smoke_in_face
+  moodChange: -3
+  timeout: 30
+
+- type: imperialMoodEvent
+  id: slots_loss
+  moodChange: -2
+  timeout: 300
+  flags: [ Gaming ]
+
+- type: imperialMoodEvent
+  id: lost_control_of_life
+  moodChange: -5
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: empathetic_sad
+  moodChange: -2
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: misanthropic_sad
+  moodChange: -2
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: paranoid_one_on_one
+  moodChange: -3
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: paranoid_large_group
+  moodChange: -3
+  flags: [ Fear ]
+
+- type: imperialMoodEvent
+  id: nt_disillusioned
+  moodChange: -2
+
+- type: imperialMoodEvent
+  id: disillusioned_revs_lost
+  moodChange: -2
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: loyalist_revs_win
+  moodChange: -2
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: slacking_off_diligent
+  moodChange: -1
+
+- type: imperialMoodEvent
+  id: unimaginative_patronage
+  moodChange: -2
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: unimaginative_framing
+  moodChange: -2
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: unimaginative_sculpting
+  moodChange: -2
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: splattered_with_blood
+  moodChange: -4
+  timeout: 240
+
+- type: imperialMoodEvent
+  id: teetotal_hangover
+  moodChange: -4
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: normal_hangover
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: jabbed_with_tester
+  moodChange: -4
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: gizmo_negative
+  moodChange: -3
+  timeout: 30
+
+- type: imperialMoodEvent
+  id: hug
+  moodChange: 1
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: bear_hug
+  moodChange: 1
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: betterhug
+  moodChange: 3
+  timeout: 240
+
+- type: imperialMoodEvent
+  id: besthug
+  moodChange: 5
+  timeout: 240
+
+- type: imperialMoodEvent
+  id: warmhug
+  moodChange: 1
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: tailpulled
+  moodChange: -1
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: arcade
+  moodChange: 3
+  timeout: 480
+  flags: [ Gaming ]
+
+- type: imperialMoodEvent
+  id: blessing
+  moodChange: 1
+  timeout: 480
+  flags: [ Spiritual ]
+
+- type: imperialMoodEvent
+  id: maintenance_adaptation
+  moodChange: 8
+
+- type: imperialMoodEvent
+  id: book_nerd
+  moodChange: 1
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: exercise
+  moodChange: 1
+
+- type: imperialMoodEvent
+  id: pet_animal
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: honk
+  moodChange: 2
+  timeout: 240
+  flags: [ Whimsy ]
+  icon: honked_nose
+
+- type: imperialMoodEvent
+  id: saved_life
+  moodChange: 6
+  timeout: 480
+
+- type: imperialMoodEvent
+  id: oblivious
+  moodChange: 3
+
+- type: imperialMoodEvent
+  id: jolly
+  moodChange: 6
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: focused
+  moodChange: 8
+  hidden: true
+
+- type: imperialMoodEvent
+  id: badass_antag
+  moodChange: 8
+  hidden: true
+  icon: badass_sun
+
+- type: imperialMoodEvent
+  id: ling
+  moodChange: 12
+  hidden: true
+
+- type: imperialMoodEvent
+  id: creeping
+  moodChange: 18
+  timeout: 3
+  hidden: true
+
+- type: imperialMoodEvent
+  id: revolution
+  moodChange: 3
+  hidden: true
+
+- type: imperialMoodEvent
+  id: cult
+  moodChange: 12
+  hidden: true
+
+- type: imperialMoodEvent
+  id: heretics
+  moodChange: 12
+  hidden: true
+
+- type: imperialMoodEvent
+  id: rift_fishing
+  moodChange: 6
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: blood_worm
+  moodChange: 999
+  hidden: true
+
+- type: imperialMoodEvent
+  id: family_heirloom
+  moodChange: 1
+
+- type: imperialMoodEvent
+  id: clown_enjoyer_pin
+  moodChange: 1
+
+- type: imperialMoodEvent
+  id: mime_fan_pin
+  moodChange: 1
+
+- type: imperialMoodEvent
+  id: goodmusic
+  moodChange: 3
+  timeout: 60
+  flags: [ Art ]
+
+- type: imperialMoodEvent
+  id: chemical_euphoria
+  moodChange: 4
+
+- type: imperialMoodEvent
+  id: chemical_laughter
+  moodChange: 4
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: chemical_superlaughter
+  moodChange: 12
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: religiously_comforted
+  moodChange: 3
+  timeout: 300
+  flags: [ Spiritual ]
+
+- type: imperialMoodEvent
+  id: clownshoes
+  moodChange: 3
+
+- type: imperialMoodEvent
+  id: sacrifice_good
+  moodChange: 5
+  timeout: 180
+  flags: [ Spiritual ]
+
+- type: imperialMoodEvent
+  id: artok
+  moodChange: 2
+  timeout: 300
+  flags: [ Art ]
+
+- type: imperialMoodEvent
+  id: artgood
+  moodChange: 4
+  timeout: 300
+  flags: [ Art ]
+
+- type: imperialMoodEvent
+  id: artgreat
+  moodChange: 6
+  timeout: 300
+  flags: [ Art ]
+
+- type: imperialMoodEvent
+  id: bottle_flip
+  moodChange: 2
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: hope_lavaland
+  moodChange: 6
+
+- type: imperialMoodEvent
+  id: confident_mane
+  moodChange: 2
+
+- type: imperialMoodEvent
+  id: holy_consumption
+  moodChange: 1
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: high_five
+  moodChange: 2
+  timeout: 45
+
+- type: imperialMoodEvent
+  id: helped_up
+  timeout: 45
+
+- type: imperialMoodEvent
+  id: high_ten
+  moodChange: 3
+  timeout: 45
+  flags: [ Whimsy ]
+
+- type: imperialMoodEvent
+  id: down_low
+  moodChange: 4
+  timeout: 90
+  flags: [ Whimsy ]
+
+- type: imperialMoodEvent
+  id: aquarium_positive
+  moodChange: 3
+  timeout: 90
+
+- type: imperialMoodEvent
+  id: gondola
+  moodChange: 6
+
+- type: imperialMoodEvent
+  id: kiss
+  moodChange: 1
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: honorbound
+  moodChange: 4
+
+- type: imperialMoodEvent
+  id: et_pieces
+  moodChange: 50
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: memories_of_home
+  moodChange: 3
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: observed_soda_spill
+  moodChange: 2
+  timeout: 30
+  flags: [ Whimsy ]
+
+- type: imperialMoodEvent
+  id: gaming
+  moodChange: 2
+  timeout: 30
+  flags: [ Gaming ]
+
+- type: imperialMoodEvent
+  id: gamer_won
+  moodChange: 6
+  timeout: 300
+  flags: [ Gaming ]
+
+- type: imperialMoodEvent
+  id: love_reagent
+  moodChange: 5
+
+- type: imperialMoodEvent
+  id: won_52_card_pickup
+  moodChange: 3
+  timeout: 180
+  flags: [ Whimsy, Gaming ]
+
+- type: imperialMoodEvent
+  id: playing_cards
+  moodChange: 2
+  timeout: 180
+  flags: [ Gaming ]
+
+- type: imperialMoodEvent
+  id: garland
+  moodChange: 1
+
+- type: imperialMoodEvent
+  id: russian_roulette_win
+  moodChange: 2
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: fishing
+  moodChange: 4
+  timeout: 180
+
+- type: imperialMoodEvent
+  id: fish_released
+  moodChange: 1
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: fish_petting
+  moodChange: 2
+  timeout: 120
+  flags: [ Whimsy ]
+
+- type: imperialMoodEvent
+  id: kobun
+  moodChange: 14
+  timeout: 10
+
+- type: imperialMoodEvent
+  id: sabrage_success
+  moodChange: 2
+  timeout: 240
+
+- type: imperialMoodEvent
+  id: sabrage_witness
+  moodChange: 1
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: birthday
+  moodChange: 2
+  icon: birthday
+
+- type: imperialMoodEvent
+  id: basketball_score
+  moodChange: 2
+  timeout: 300
+  flags: [ Whimsy, Gaming ]
+
+- type: imperialMoodEvent
+  id: basketball_dunk
+  moodChange: 2
+  timeout: 300
+  flags: [ Whimsy, Gaming ]
+
+- type: imperialMoodEvent
+  id: moon_smile
+  moodChange: 10
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: madness_elation
+  moodChange: 200
+
+- type: imperialMoodEvent
+  id: prophat
+  moodChange: 2
+  flags: [ Whimsy ]
+
+- type: imperialMoodEvent
+  id: slots
+  moodChange: 1
+  timeout: 60
+  flags: [ Gaming ]
+
+- type: imperialMoodEvent
+  id: slots_win
+  moodChange: 2
+  timeout: 300
+  flags: [ Gaming ]
+
+- type: imperialMoodEvent
+  id: slots_win_big
+  moodChange: 3
+  timeout: 600
+  flags: [ Gaming ]
+
+- type: imperialMoodEvent
+  id: slots_win_jackpot
+  moodChange: 4
+  timeout: 300
+  flags: [ Gaming ]
+
+- type: imperialMoodEvent
+  id: slots_all_gone
+  moodChange: -2
+  timeout: 1200
+  flags: [ Gaming ]
+
+- type: imperialMoodEvent
+  id: empathetic_happy
+  moodChange: 2
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: misanthropic_happy
+  moodChange: 2
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: paranoid_alone
+  moodChange: 1
+
+- type: imperialMoodEvent
+  id: paranoid_small_group
+  moodChange: 2
+
+- type: imperialMoodEvent
+  id: nt_loyalist
+  moodChange: 2
+
+- type: imperialMoodEvent
+  id: loyalist_revs_lost
+  moodChange: 4
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: disillusioned_revs_win
+  moodChange: 4
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: enjoying_department_area
+  moodChange: 1
+
+- type: imperialMoodEvent
+  id: slacking_off_lazy
+  moodChange: 1
+
+- type: imperialMoodEvent
+  id: working_diligent
+  moodChange: 1
+
+- type: imperialMoodEvent
+  id: creative_patronage
+  moodChange: 2
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: creative_framing
+  moodChange: 2
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: creative_sculpting
+  moodChange: 2
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: whimsical_slip
+  moodChange: 3
+  timeout: 120
+  flags: [ Whimsy ]
+
+- type: imperialMoodEvent
+  id: bibulous_hangover
+  moodChange: 2
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: gizmo_positive
+  moodChange: 3
+  timeout: 30
+
+- type: imperialMoodEvent
+  id: morbid_dismemberment
+  moodChange: 2
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: morbid_dissection_success
+  moodChange: 2
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: morbid_abominable_surgery_success
+  moodChange: 2
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: morbid_revival_success
+  moodChange: 6
+  timeout: 480
+
+- type: imperialMoodEvent
+  id: morbid_graverobbing
+  moodChange: 2
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: morbid_hauntium
+  moodChange: 3
+  timeout: 360
+
+- type: imperialMoodEvent
+  id: morbid_aquarium_good
+  moodChange: 3
+  timeout: 90
+
+- type: imperialMoodEvent
+  id: morbid_tend_wounds
+  moodChange: -2
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: morbid_saved_life
+  moodChange: -6
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: morbid_aquarium_bad
+  moodChange: -3
+  timeout: 90
+
+- type: imperialMoodEvent
+  id: fat
+  moodChange: -6
+
+- type: imperialMoodEvent
+  id: too_wellfed
+
+- type: imperialMoodEvent
+  id: wellfed
+  moodChange: 8
+
+- type: imperialMoodEvent
+  id: fed
+  moodChange: 5
+
+- type: imperialMoodEvent
+  id: hungry
+  moodChange: -3
+
+- type: imperialMoodEvent
+  id: hungry_very
+  moodChange: -6
+
+- type: imperialMoodEvent
+  id: starving
+  moodChange: -10
+
+- type: imperialMoodEvent
+  id: supercharged
+  moodChange: -10
+
+- type: imperialMoodEvent
+  id: overcharged
+  moodChange: -4
+
+- type: imperialMoodEvent
+  id: charged
+  moodChange: 6
+
+- type: imperialMoodEvent
+  id: lowpower
+  moodChange: -6
+
+- type: imperialMoodEvent
+  id: decharged
+  moodChange: -10
+
+- type: imperialMoodEvent
+  id: gross
+  moodChange: -4
+
+- type: imperialMoodEvent
+  id: verygross
+  moodChange: -6
+
+- type: imperialMoodEvent
+  id: disgusted
+  moodChange: -8
+
+- type: imperialMoodEvent
+  id: disgust_bad_smell
+  moodChange: -6
+
+- type: imperialMoodEvent
+  id: disgust_nauseating_stench
+  moodChange: -12
+
+- type: imperialMoodEvent
+  id: disgust_dirty_food
+  moodChange: -6
+  timeout: 240
+
+- type: imperialMoodEvent
+  id: shower
+  moodChange: 4
+  timeout: 300
+
+- type: imperialMoodEvent
+  id: hot_spring
+  moodChange: 5
+
+- type: imperialMoodEvent
+  id: hot_spring_hater
+  moodChange: -2
+
+- type: imperialMoodEvent
+  id: hot_spring_left
+  moodChange: 4
+  timeout: 240
+
+- type: imperialMoodEvent
+  id: hot_spring_hater_left
+  moodChange: -3
+  timeout: 120
+
+- type: imperialMoodEvent
+  id: fresh_laundry
+  moodChange: 2
+  timeout: 600
+
+- type: imperialMoodEvent
+  id: surrounded_by_silicon
+  moodChange: 8
+
+- type: imperialMoodEvent
+  id: around_many_silicon
+  moodChange: 4
+
+- type: imperialMoodEvent
+  id: around_silicon
+  moodChange: 2
+
+- type: imperialMoodEvent
+  id: around_organic
+  moodChange: -2
+
+- type: imperialMoodEvent
+  id: around_many_organic
+  moodChange: -4
+
+- type: imperialMoodEvent
+  id: surrounded_by_organic
+  moodChange: -8
+
+- type: imperialMoodEvent
+  id: completely_robotic
+  moodChange: 8
+
+- type: imperialMoodEvent
+  id: very_robotic
+  moodChange: 4
+
+- type: imperialMoodEvent
+  id: balanced_robotic
+
+- type: imperialMoodEvent
+  id: very_organic
+  moodChange: -4
+
+- type: imperialMoodEvent
+  id: completely_organic
+  moodChange: -8

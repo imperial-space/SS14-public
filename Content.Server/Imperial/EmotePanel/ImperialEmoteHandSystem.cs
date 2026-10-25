@@ -17,6 +17,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Imperial.EmotePanel;
+using Content.Shared.Imperial.Mood;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
@@ -531,6 +532,7 @@ public sealed class ImperialEmoteHandSystem : EntitySystem
         if (_hands.CountFreeHands(taker) <= 0)
         {
             _popup.PopupEntity(L("highfive-full-hands", ("target", offerer)), taker, taker);
+            Mood(taker, "high_five", "high_five_full_hand");
             return;
         }
 
@@ -546,7 +548,17 @@ public sealed class ImperialEmoteHandSystem : EntitySystem
         var key = highTen ? "highten" : "highfive";
         Show(offerer, L($"{key}-others", ("user", taker), ("target", offerer)), L($"{key}-self", ("target", taker)),
             taker, L($"{key}-target", ("target", offerer)));
+        var mood = highTen ? "high_ten" : "high_five";
+        Mood(offerer, "high_five", mood);
+        Mood(taker, "high_five", mood);
         EndOffer(offerer, offer);
+    }
+
+    /// <summary>add_mood_event: настроение из PR настроения, без прямой зависимости от его системы.</summary>
+    private void Mood(EntityUid uid, string category, string id, EntityUid? source = null)
+    {
+        var ev = new ImperialMoodAddEvent(category, id, source);
+        RaiseLocalEvent(uid, ref ev);
     }
 
     /// <summary>too_slow: пятюню отдёрнули в последний момент.</summary>
@@ -565,6 +577,8 @@ public sealed class ImperialEmoteHandSystem : EntitySystem
                 rube, L("tooslow-end-target", ("target", offerer)), PopupType.LargeCaution);
             _audio.PlayPvs(WhooshSound, offerer);
             _stun.TryKnockdown(rube, TimeSpan.FromSeconds(1));
+            Mood(offerer, "high_five", "down_low");
+            Mood(rube, "high_five", "too_slow");
             if (TryComp<ImperialEmoteOfferComponent>(offerer, out var current))
                 EndOffer(offerer, current);
         });
@@ -580,6 +594,8 @@ public sealed class ImperialEmoteHandSystem : EntitySystem
 
             Show(offerer, L("helpup-others", ("user", offerer), ("target", taker)), L("helpup-self", ("target", taker)),
                 taker, L("helpup-target", ("user", offerer)));
+            Mood(offerer, "helping_up", "helped_up", taker);
+            Mood(taker, "helped_up", "helped_up", offerer);
             QueueDel(offer.Item);
             EndOffer(offerer, offer);
             return;
@@ -622,6 +638,8 @@ public sealed class ImperialEmoteHandSystem : EntitySystem
 
         if (!ent.Comp.Direct)
             _popup.PopupEntity(L("kiss-hit", ("kiss", ent.Owner), ("target", target)), target);
+
+        Mood(target, "kiss", "kiss", args.Shooter);
 
         if (!Factory.TryGetRegistration("ImperialQuirkSocialAnxiety", out var anxiety) || !HasComp(target, anxiety.Type) ||
             _mobState.IsIncapacitated(target) || _random.Prob(0.5f))
@@ -750,6 +768,7 @@ public sealed class ImperialEmoteHandSystem : EntitySystem
         var noogie = EnsureComp<ImperialNoogieComponent>(user);
         noogie.Iteration = 0;
         noogie.Brutal = brutal;
+        Mood(target, brutal ? "noogie_harsh" : "noogie", brutal ? "noogie_harsh" : "noogie");
 
         var kind = brutal ? "brutal" : "rough";
         Show(user, L($"noogie-start-{kind}-others", ("user", user), ("target", target)), L($"noogie-start-{kind}-self", ("target", target)),
