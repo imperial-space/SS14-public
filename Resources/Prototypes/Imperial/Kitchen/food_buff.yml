@@ -1,0 +1,18 @@
+# /atom/movable/screen/alert/status_effect/food: бафф рукотворного блюда, тяжесть — сила (сложность).
+- type: alert
+  id: ImperialFoodBuff
+  name: imperial-food-buff-name
+  description: imperial-food-buff-desc
+  minSeverity: 1
+  maxSeverity: 5
+  icons:
+  - sprite: /Textures/Imperial/Kitchen/food_buff.rsi
+    state: food_buff_1
+  - sprite: /Textures/Imperial/Kitchen/food_buff.rsi
+    state: food_buff_2
+  - sprite: /Textures/Imperial/Kitchen/food_buff.rsi
+    state: food_buff_3
+  - sprite: /Textures/Imperial/Kitchen/food_buff.rsi
+    state: food_buff_4
+  - sprite: /Textures/Imperial/Kitchen/food_buff.rsi
+    state: food_buff_5

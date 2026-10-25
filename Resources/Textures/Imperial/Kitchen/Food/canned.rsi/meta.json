@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (canned.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "envirochow"
+    },
+    {
+      "name": "peachcan"
+    },
+    {
+      "name": "tomatoescan"
+    },
+    {
+      "name": "pinenutscan"
+    },
+    {
+      "name": "jellyfish"
+    },
+    {
+      "name": "snails"
+    },
+    {
+      "name": "larvae"
+    },
+    {
+      "name": "chapcan"
+    },
+    {
+      "name": "squidinkcan"
+    }
+  ]
+}

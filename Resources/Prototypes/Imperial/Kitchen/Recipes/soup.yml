@@ -1,0 +1,580 @@
+# Супы TG (/datum/chemical_reaction/food/soup): готовятся в кастрюле на плите.
+
+- type: imperialSoupRecipe
+  id: ImperialSoupMeatballsoup
+  reagents:
+    Water: 50
+  ingredients:
+    FoodMeatMeatball: 1
+    FoodCarrot: 1
+    FoodPotato: 1
+  results:
+    ImperialSoupMeatballSoup: 30
+    Water: 9
+
+- type: imperialSoupRecipe
+  id: ImperialSoupVegetableSoup
+  reagents:
+    Water: 50
+  ingredients:
+    FoodCarrot: 1
+    FoodCorn: 1
+    FoodEggplant: 1
+    FoodPotato: 1
+  results:
+    ImperialSoupVegetableSoup: 30
+    Water: 9
+
+- type: imperialSoupRecipe
+  id: ImperialSoupNettlesoup
+  reagents:
+    Water: 50
+  ingredients:
+    Nettle: 1
+    FoodPotato: 1
+    FoodEggBoiled: 1
+  results:
+    ImperialSoupNettle: 30
+    Water: 9
+    Omnizine: 6
+
+- type: imperialSoupRecipe
+  id: ImperialSoupWingfangchu
+  reagents:
+    Water: 50
+    Soysauce: 5
+  ingredients:
+    FoodMeatXenoCutletCooked: 2
+  results:
+    ImperialSoupWingfangchu: 30
+    Soysauce: 10
+
+- type: imperialSoupRecipe
+  id: ImperialSoupHotchili
+  reagents:
+    Water: 50
+  ingredients:
+    FoodMeatCutletCooked: 2
+    FoodChiliPepper: 1
+    FoodTomato: 1
+  results:
+    ImperialSoupHotchili: 30
+    JuiceTomato: 10
+    Nutriment: 4
+    Protein: 6
+    Vitamin: 4
+
+- type: imperialSoupRecipe
+  id: ImperialSoupColdchili
+  reagents:
+    Water: 50
+  ingredients:
+    FoodMeatCutletCooked: 2
+    FoodChillyPepper: 1
+    FoodTomato: 1
+  results:
+    ImperialSoupColdchili: 30
+    JuiceTomato: 10
+
+- type: imperialSoupRecipe
+  id: ImperialSoupClownchili
+  reagents:
+    Water: 50
+  ingredients:
+    FoodMeatCutletCooked: 2
+    FoodChiliPepper: 1
+    FoodTomato: 1
+    ClothingShoesClown: 1
+  results:
+    ImperialSoupClownchili: 30
+    JuiceTomato: 8
+    Laughter: 4
+    JuiceBanana: 4
+
+- type: imperialSoupRecipe
+  id: ImperialSoupTomatosoup
+  reagents:
+    Water: 50
+    Cream: 5
+  ingredients:
+    FoodTomato: 2
+  results:
+    ImperialSoupTomato: 30
+    JuiceTomato: 30
+    Nutriment: 6
+    Vitamin: 3
+
+- type: imperialSoupRecipe
+  id: ImperialSoupMisosoup
+  reagents:
+    Water: 50
+  ingredients:
+    ImperialFoodSoydope: 2
+    FoodTofu: 2
+  results:
+    ImperialSoupMiso: 30
+    Water: 10
+
+- type: imperialSoupRecipe
+  id: ImperialSoupBloodsoup
+  reagents:
+    Water: 10
+    Blood: 10
+  ingredients:
+    FoodBloodTomato: 2
+  results:
+    Blood: 10
+    Water: 8
+    Protein: 7
+
+- type: imperialSoupRecipe
+  id: ImperialSoupClownstears
+  reagents:
+    SpaceLube: 30
+  ingredients:
+    FoodBanana: 1
+    MaterialBananium: 1
+  results:
+    ImperialSoupClownTears: 30
+    JuiceBanana: 8
+    Vitamin: 12
+    SpaceLube: 5
+
+- type: imperialSoupRecipe
+  id: ImperialSoupMysterysoup
+  reagents:
+    Water: 50
+  ingredients:
+    FoodBadRecipe: 1
+    FoodTofu: 1
+    FoodEggBoiled: 1
+    FoodCheeseSlice: 1
+  results:
+    ImperialSoupMystery: 30
+
+- type: imperialSoupRecipe
+  id: ImperialSoupMushroomsoup
+  reagents:
+    Water: 40
+    Milk: 10
+  ingredients:
+    FoodMushroom: 1
+  results:
+    ImperialSoupMushroom: 30
+    Nutriment: 9
+    Vitamin: 8
+    Milk: 2
+
+- type: imperialSoupRecipe
+  id: ImperialSoupStew
+  reagents:
+    Water: 50
+  ingredients:
+    FoodTomato: 1
+    FoodMeatCutletCooked: 3
+    FoodPotato: 1
+    FoodCarrot: 1
+    FoodEggplant: 1
+    FoodMushroom: 1
+  results:
+    ImperialSoupStew: 30
+    JuiceTomato: 10
+
+- type: imperialSoupRecipe
+  id: ImperialSoupOnionsoup
+  reagents:
+    Water: 50
+  ingredients:
+    FoodOnion: 1
+    FoodCheeseSlice: 1
+  results:
+    ImperialSoupFrenchOnion: 30
+    Protein: 8
+    JuiceTomato: 8
+
+- type: imperialSoupRecipe
+  id: ImperialSoupBisque
+  reagents:
+    Water: 50
+  ingredients:
+    FoodMeatCrabCooked: 1
+    FoodRiceBoiled: 1
+  results:
+    ImperialSoupBisque: 30
+    Protein: 6
+    Vitamin: 4
+    Water: 5
+
+- type: imperialSoupRecipe
+  id: ImperialSoupBungocurry
+  reagents:
+    Water: 40
+    Cream: 10
+  ingredients:
+    FoodChiliPepper: 1
+    FoodBungo: 1
+  results:
+    ImperialSoupBungo: 30
+    JuiceBungo: 15
+
+- type: imperialSoupRecipe
+  id: ImperialSoupIndianCurry
+  reagents:
+    Water: 50
+    Cream: 5
+  ingredients:
+    FoodMeatChicken: 1
+    FoodOnion: 2
+    FoodChiliPepper: 1
+    FoodGarlic: 1
+    FoodButterSlice: 1
+    FoodRiceBoiled: 1
+  results:
+    ImperialSoupIndianCurry: 30
+
+- type: imperialSoupRecipe
+  id: ImperialSoupOatmeal
+  reagents:
+    Milk: 20
+  ingredients:
+    OatBushel: 2
+  results:
+    ImperialSoupOatmeal: 20
+    Vitamin: 8
+
+- type: imperialSoupRecipe
+  id: ImperialSoupZurek
+  reagents:
+    Water: 40
+    Flour: 10
+  ingredients:
+    FoodEggBoiled: 1
+    FoodMeatCutletCooked: 1
+    FoodCarrot: 1
+    FoodOnion: 1
+  results:
+    ImperialSoupZurek: 30
+
+- type: imperialSoupRecipe
+  id: ImperialSoupCullenSkink
+  reagents:
+    Water: 40
+    Milk: 10
+    Blackpepper: 4
+  ingredients:
+    FoodMeatFish: 1
+    FoodOnion: 1
+    FoodPotato: 1
+  results:
+    ImperialSoupCullenSkink: 30
+    Nutriment: 6
+    Protein: 4
+    Vitamin: 4
+    Water: 6
+
+- type: imperialSoupRecipe
+  id: ImperialSoupChickenNoodleSoup
+  reagents:
+    Water: 30
+  ingredients:
+    FoodCarrot: 1
+    FoodMeatChicken: 1
+    FoodNoodlesBoiled: 1
+  results:
+    ImperialSoupChickenNoodleSoup: 30
+    Nutriment: 2
+    Vitamin: 3
+    Protein: 5
+
+- type: imperialSoupRecipe
+  id: ImperialSoupCornChowder
+  reagents:
+    Water: 40
+    Cream: 5
+  ingredients:
+    FoodCorn: 1
+    FoodPotato: 1
+    FoodCarrot: 1
+    FoodMeatBaconCooked: 1
+  results:
+    ImperialSoupCornChowder: 30
+    Protein: 4
+    Nutriment: 2
+
+- type: imperialSoupRecipe
+  id: ImperialSoupAtrakorDumplings
+  reagents:
+    Water: 40
+    Soysauce: 10
+  ingredients:
+    FoodMeatCutlet: 2
+    FoodOnion: 1
+    ImperialFoodLizardDumplings: 1
+  results:
+    ImperialSoupAtrakorDumplings: 30
+    Water: 10
+
+- type: imperialSoupRecipe
+  id: ImperialSoupBlackBroth
+  reagents:
+    Water: 40
+    Vinegar: 8
+    Blood: 8
+    Ice: 4
+  ingredients:
+    ImperialFoodTiziranSausage: 1
+    FoodOnion: 1
+  results:
+    ImperialSoupBlackBroth: 30
+    Blood: 8
+    ImperialLiquidgibs: 7
+    Vinegar: 5
+
+- type: imperialSoupRecipe
+  id: ImperialSoupRootbreadSoup
+  reagents:
+    Water: 50
+    Egg: 6
+  ingredients:
+    ImperialFoodBreadsliceRoot: 2
+    FoodGarlic: 1
+    FoodChiliPepper: 1
+  results:
+    ImperialSoupRootbread: 30
+    Protein: 8
+
+- type: imperialSoupRecipe
+  id: ImperialSoupCottonball
+  reagents:
+    Water: 50
+  ingredients:
+    CottonBol: 1
+    FoodOnion: 1
+    FoodCarrot: 1
+    FoodEggplant: 1
+    ImperialFoodOvenBakedCorn: 1
+  results:
+    ImperialSoupCottonball: 30
+
+- type: imperialSoupRecipe
+  id: ImperialSoupBeans
+  reagents:
+    Water: 50
+  ingredients:
+    FoodTinBeans: 1
+    FoodCabbage: 1
+    FoodTomato: 1
+    FoodOnion: 1
+    FoodChiliPepper: 1
+    ImperialFoodOvenBakedCorn: 1
+  results:
+    ImperialSoupBeans: 30
+    Protein: 10
+    Water: 10
+
+- type: imperialSoupRecipe
+  id: ImperialSoupFireSoup
+  reagents:
+    Water: 30
+    ImperialYoghurt: 15
+    Vinegar: 5
+  ingredients:
+    FoodChillyPepper: 1
+    FoodTofu: 1
+  results:
+    ImperialSoupFireSoup: 30
+    Protein: 8
+    Vinegar: 2
+
+- type: imperialSoupRecipe
+  id: ImperialSoupCornmealPorridge
+  reagents:
+    Cornmeal: 20
+    Water: 20
+  results:
+    ImperialSoupCornmealPorridge: 20
+
+- type: imperialSoupRecipe
+  id: ImperialSoupCheesePorridge
+  reagents:
+    Milk: 5
+    ImperialSoupCornmealPorridge: 20
+    Water: 20
+  ingredients:
+    ImperialFoodCheeseFirmCheeseSlice: 1
+    ImperialFoodCheeseCurdCheese: 1
+    FoodButterSlice: 1
+  results:
+    ImperialSoupCheesePorridge: 30
+    Vitamin: 8
+    Protein: 4
+
+- type: imperialSoupRecipe
+  id: ImperialSoupToechtaueseRicePorridge
+  reagents:
+    ImperialSoupRicePorridge: 20
+    ImperialToechtaueseSyrup: 10
+    Water: 10
+  ingredients:
+    FoodChiliPepper: 1
+  results:
+    ImperialSoupToechtaueseRicePorridge: 30
+    Protein: 6
+    Vitamin: 6
+    ImperialToechtaueseSyrup: 6
+
+- type: imperialSoupRecipe
+  id: ImperialSoupDashi
+  reagents:
+    ImperialDashiConcentrate: 5
+    Water: 40
+  results:
+    ImperialSoupDashi: 40
+
+- type: imperialSoupRecipe
+  id: ImperialSoupTeriyaki
+  reagents:
+    Soysauce: 10
+    Sake: 10
+    ImperialHoney: 5
+  results:
+    ImperialSoupTeriyaki: 20
+
+- type: imperialSoupRecipe
+  id: ImperialSoupCurrySauce
+  reagents:
+    Water: 30
+    ImperialCurryPowder: 10
+    Soysauce: 5
+    Cornmeal: 5
+  results:
+    ImperialSoupCurrySauce: 40
+
+- type: imperialSoupRecipe
+  id: ImperialSoupShoyuRamen
+  reagents:
+    ImperialSoupDashi: 20
+    ImperialSoupTeriyaki: 15
+  ingredients:
+    ImperialFoodSpaghettiBoilednoodles: 1
+    ImperialFoodKamabokoSlice: 1
+    FoodMeatCutletCooked: 1
+    FoodEggBoiled: 1
+  results:
+    ImperialSoupShoyuRamen: 30
+    Vitamin: 8
+    Protein: 8
+
+- type: imperialSoupRecipe
+  id: ImperialSoupGyuramen
+  reagents:
+    ImperialSoupDashi: 20
+    Soysauce: 5
+  ingredients:
+    ImperialFoodSpaghettiBoilednoodles: 1
+    FoodCheeseSlice: 1
+    FoodOnionSlice: 2
+    FoodMeatCutletCooked: 1
+  results:
+    ImperialSoupGyuramen: 30
+    Vitamin: 2
+    Protein: 10
+
+- type: imperialSoupRecipe
+  id: ImperialSoupSatsumaBlack
+  reagents:
+    ImperialSoupDashi: 20
+  ingredients:
+    ImperialFoodSpaghettiBoilednoodles: 1
+    ImperialFoodSeaweedsheet: 1
+    FoodTofu: 1
+    ImperialFoodCannedSquidInk: 1
+  results:
+    ImperialSoupSatsumaBlack: 30
+    Vitamin: 4
+    Protein: 6
+
+- type: imperialSoupRecipe
+  id: ImperialSoupDragonRamen
+  reagents:
+    ImperialSoupDashi: 20
+    ImperialSoupTeriyaki: 10
+    ImperialRedBay: 5
+  ingredients:
+    ImperialFoodSpaghettiBoilednoodles: 1
+    FoodChillyPepper: 1
+    FoodChiliPepper: 1
+    ImperialFoodKamabokoSlice: 1
+    FoodEggBoiled: 1
+  results:
+    ImperialSoupDragonRamen: 30
+    Vitamin: 4
+    Protein: 6
+
+- type: imperialSoupRecipe
+  id: ImperialSoupHongKongBorscht
+  reagents:
+    Water: 50
+    Soysauce: 5
+  ingredients:
+    FoodTomato: 1
+    FoodCabbage: 1
+    FoodOnion: 1
+    FoodCarrot: 1
+    FoodMeatCutletCooked: 1
+  results:
+    ImperialSoupHongKongBorscht: 30
+    Vitamin: 8
+    Protein: 2
+
+- type: imperialSoupRecipe
+  id: ImperialSoupHongKongMacaroni
+  reagents:
+    Water: 30
+    Cream: 10
+  ingredients:
+    FoodNoodlesBoiled: 1
+    FoodMeatChickenCutletCooked: 1
+    FoodMeatBaconCooked: 1
+  results:
+    ImperialSoupHongKongMacaroni: 30
+    Protein: 6
+
+- type: imperialSoupRecipe
+  id: ImperialSoupFoxsPrizeSoup
+  reagents:
+    ImperialSoupDashi: 30
+    Egg: 10
+  ingredients:
+    FoodMeatChickenCutletCooked: 1
+    FoodTofu: 1
+  results:
+    ImperialSoupFoxsPrizeSoup: 30
+    Protein: 6
+
+- type: imperialSoupRecipe
+  id: ImperialSoupSecretNoodleSoup
+  reagents:
+    ImperialSoupDashi: 30
+  ingredients:
+    FoodMeatChickenCutletCooked: 1
+    ImperialFoodSpaghettiBoilednoodles: 1
+    FoodMushroom: 1
+  results:
+    ImperialSoupSecretNoodleSoup: 30
+    Protein: 6
+
+- type: imperialSoupRecipe
+  id: ImperialSoupBudaeJjigae
+  reagents:
+    Water: 30
+  ingredients:
+    FoodTinBeans: 1
+    ImperialFoodSpaghettiRawnoodles: 1
+    ImperialFoodSausageAmerican: 1
+    ImperialFoodChapslice: 2
+    FoodSaladKimchi: 1
+    FoodCheeseSlice: 1
+  results:
+    ImperialSoupBudaeJjigae: 30
+    Protein: 6

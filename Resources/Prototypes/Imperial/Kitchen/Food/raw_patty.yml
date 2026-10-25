@@ -1,0 +1,127 @@
+# Блюда TG /obj/item/food/raw_patty (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodRawPattyHuman
+  name: "странная сырая котлета"
+  description: "Я.....НЕ ГОТОООВА."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: raw_patty
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialGrillable
+    result: ImperialFoodPattyHuman
+    time: 35
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodRawPattyCorgi
+  name: "сырая котлета из корги"
+  description: "Я.....НЕ ГОТОООВА."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: raw_patty
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialGrillable
+    result: ImperialFoodPattyCorgi
+    time: 35
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodRawPattyBear
+  name: "сырая медвежья котлета"
+  description: "Я.....НЕ ГОТОООВА."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: raw_patty
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialGrillable
+    result: ImperialFoodPattyBear
+    time: 35
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodRawPattyXeno
+  name: "сырая ксенокотлета"
+  description: "Я.....НЕ ГОТОООВА."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: raw_patty
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - acid
+    - meaty
+  - type: ImperialGrillable
+    result: ImperialFoodPattyXeno
+    time: 35
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodRawPattyChicken
+  name: "сырая куриная котлета"
+  description: "Я.....НЕ ГОТОООВА."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: raw_patty
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - chicken
+  - type: ImperialGrillable
+    result: ImperialFoodPattyChicken
+    time: 35

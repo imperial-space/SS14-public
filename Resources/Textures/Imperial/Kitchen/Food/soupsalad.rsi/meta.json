@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (soupsalad.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "wishsoup"
+    },
+    {
+      "name": "spacylibertyduff",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "mammi"
+    },
+    {
+      "name": "risotto"
+    },
+    {
+      "name": "bowl"
+    },
+    {
+      "name": "pokefish"
+    },
+    {
+      "name": "pokemeat"
+    },
+    {
+      "name": "kale_salad"
+    },
+    {
+      "name": "greek_salad"
+    },
+    {
+      "name": "spring_salad"
+    },
+    {
+      "name": "potato_salad"
+    },
+    {
+      "name": "spinach_fruit_salad"
+    },
+    {
+      "name": "antipasto_salad"
+    }
+  ]
+}

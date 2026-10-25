@@ -1,0 +1,232 @@
+# Блюда TG /obj/item/food/pieslice (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPiesliceEmpty
+  name: "кусок пирога"
+  description: "Кусок пирога на заказ от сумасшедшего шефа."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: pie_custom_slice
+  - type: Item
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPiesliceMeatpie
+  name: "кусок мясного пирога"
+  description: "О, мясной пирог!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: meatpie_slice
+  - type: Item
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPiesliceTofupie
+  name: "кусок пирога с тофу"
+  description: "О, мясной пир... ПОСТОЙТЕ-КА!!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: meatpie_slice
+  - type: Item
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - tofu
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPiesliceXemeatpie
+  name: "кусок ксенопирога"
+  description: "Боже... оно ещё шевелится?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: xenopie_slice
+  - type: Item
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - acid
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPiesliceBlumpkin
+  name: "кусок тыквинного пирога"
+  description: "Кусок тыквинного пирога со взбитыми сливками. Это вообще съедобно?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: blumpkinpieslice
+  - type: Item
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - water
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPiesliceDulcedebatata
+  name: "кусок дульсе де батата"
+  description: "Кусок сладкого мармелада дульсе де батата."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: dulcedebatataslice
+  - type: Item
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - jelly
+    - potatoes
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPiesliceFrostypie
+  name: "кусок морозного пирога"
+  description: "Вкусный синий, как мой любимый мелок!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: frostypie_slice
+  - type: Item
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - minty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPiesliceFrenchsilk
+  name: "кусок французского шёлкового пирога"
+  description: "Кусок пирога с шоколадным муссом, взбитыми сливками и шоколадной стружкой. Так вкусно, что можно заплакать."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: frenchsilkpieslice
+  - type: Item
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - chocolate
+    - creamy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPiesliceShepherdsPie
+  name: "кусок пастушьего пирога"
+  description: "Неаккуратный кусок пастушьего пирога: фарш и овощи под сливочным пюре. Опасно вкусно."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: shepherds_pie_slice
+  - type: Item
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 23
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: Protein
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - potatoes
+    - vegetables
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPiesliceBacidPie
+  name: "кусок пирога с аккумуляторной кислотой"
+  description: "Начинка из аккумуляторной кислоты пугающе аппетитного ярко-зелёного цвета."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: bacid_pie_slice
+  - type: Item
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 14
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4.5
+        - ReagentId: ImperialEnriched
+          Quantity: 4.5
+  - type: FlavorProfile
+    flavors:
+    - acid

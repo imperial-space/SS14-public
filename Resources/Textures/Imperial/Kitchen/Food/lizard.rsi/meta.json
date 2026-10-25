@@ -1,0 +1,206 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (lizard.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "raw_lizard_sausage"
+    },
+    {
+      "name": "lizard_sausage"
+    },
+    {
+      "name": "raw_lizard_cheese"
+    },
+    {
+      "name": "lizard_cheese"
+    },
+    {
+      "name": "lizard_cheese_slice"
+    },
+    {
+      "name": "lung_stirfry"
+    },
+    {
+      "name": "tsatsikh"
+    },
+    {
+      "name": "pate"
+    },
+    {
+      "name": "moonfish_eggs"
+    },
+    {
+      "name": "moonfish_caviar"
+    },
+    {
+      "name": "lizard_escargot"
+    },
+    {
+      "name": "fried_blood_sausage"
+    },
+    {
+      "name": "lizard_fries"
+    },
+    {
+      "name": "brain_pate"
+    },
+    {
+      "name": "crispy_headcheese"
+    },
+    {
+      "name": "picoss_skewer"
+    },
+    {
+      "name": "nectar_larvae"
+    },
+    {
+      "name": "grilled_moonfish"
+    },
+    {
+      "name": "moonfish_demiglace"
+    },
+    {
+      "name": "surf_n_turf"
+    },
+    {
+      "name": "nizaya"
+    },
+    {
+      "name": "snail_nizaya"
+    },
+    {
+      "name": "garlic_nizaya"
+    },
+    {
+      "name": "demit_nizaya"
+    },
+    {
+      "name": "mushroom_nizaya"
+    },
+    {
+      "name": "rootdough"
+    },
+    {
+      "name": "flat_rootdough"
+    },
+    {
+      "name": "rootdough_slice"
+    },
+    {
+      "name": "root_flatbread"
+    },
+    {
+      "name": "rootroll"
+    },
+    {
+      "name": "lizard_bread"
+    },
+    {
+      "name": "lizard_breadslice"
+    },
+    {
+      "name": "rustic_flatbread"
+    },
+    {
+      "name": "italic_flatbread"
+    },
+    {
+      "name": "imperial_flatbread"
+    },
+    {
+      "name": "emperor_roll"
+    },
+    {
+      "name": "honey_roll"
+    },
+    {
+      "name": "black_eggs"
+    },
+    {
+      "name": "patzikula"
+    },
+    {
+      "name": "korta_brittle"
+    },
+    {
+      "name": "korta_brittle_slice"
+    },
+    {
+      "name": "korta_ice"
+    },
+    {
+      "name": "sauerkraut"
+    },
+    {
+      "name": "lizard_dumplings"
+    },
+    {
+      "name": "moonfish_fillet"
+    },
+    {
+      "name": "jellyfish_fillet"
+    },
+    {
+      "name": "armorfish_fillet"
+    },
+    {
+      "name": "mushroomy_stirfry"
+    },
+    {
+      "name": "candied_mushrooms"
+    },
+    {
+      "name": "steeped_mushrooms"
+    },
+    {
+      "name": "rawmeat_flatbread"
+    },
+    {
+      "name": "stinging_flatbread"
+    },
+    {
+      "name": "zmorgast_flatbread"
+    },
+    {
+      "name": "fish_flatbread"
+    },
+    {
+      "name": "mushroom_flatbread"
+    },
+    {
+      "name": "nutty_flatbread"
+    },
+    {
+      "name": "peanutbutter-banana"
+    },
+    {
+      "name": "peanutbutter-jelly"
+    },
+    {
+      "name": "kortaburger"
+    },
+    {
+      "name": "ratburger"
+    },
+    {
+      "name": "rootguffin"
+    },
+    {
+      "name": "rootrib"
+    },
+    {
+      "name": "rootchicken"
+    },
+    {
+      "name": "rootfish"
+    },
+    {
+      "name": "sloppyroot"
+    }
+  ]
+}

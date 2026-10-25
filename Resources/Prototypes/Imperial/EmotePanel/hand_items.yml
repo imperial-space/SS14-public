@@ -1,0 +1,152 @@
+# /obj/item/hand_item TG: «руки» из эмоций. Исчезают, как только покидают руку.
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: ImperialHandItemBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/EmotePanel/hand.rsi
+    state: hand
+
+- type: entity
+  parent: ImperialHandItemBase
+  id: ImperialHandSlapper
+  name: пощёчина
+  description: Так дерутся настоящие мужчины. Нажмите в руке, чтобы дать пять; по столу в боевом режиме — ударить кулаком.
+  components:
+  - type: ImperialHandItem
+    kind: Slapper
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 0
+    soundHit:
+      path: /Audio/Imperial/EmotePanel/slap.ogg
+    soundNoDamage:
+      path: /Audio/Imperial/EmotePanel/slap.ogg
+
+- type: entity
+  parent: ImperialHandItemBase
+  id: ImperialHandKisser
+  name: поцелуй
+  description: Отправьте воздушный поцелуй кликом в любую сторону или предложите его стоящему рядом, нажав в руке.
+  components:
+  - type: Sprite
+    sprite: Imperial/EmotePanel/hand.rsi
+    state: heart
+  - type: ImperialHandItem
+    kind: Kisser
+
+- type: entity
+  parent: ImperialHandItemBase
+  id: ImperialHandCircle
+  name: рука-кольцо
+  description: Если кто-то посмотрит на это вблизи, можно отвесить ему щелбан.
+  components:
+  - type: Sprite
+    sprite: Imperial/EmotePanel/hand.rsi
+    state: circle
+  - type: ImperialHandItem
+    kind: Circle
+
+- type: entity
+  parent: ImperialHandItemBase
+  id: ImperialHandNoogie
+  name: подзатыльник
+  description: Схватите кого-нибудь и примените на нём, чтобы испортить ему день.
+  components:
+  - type: ImperialHandItem
+    kind: Noogie
+
+- type: entity
+  parent: ImperialHandItemBase
+  id: ImperialHandOffer
+  name: рука
+  description: Иногда хочется вести себя по-джентльменски. Нажмите в руке или на человека, чтобы протянуть руку.
+  components:
+  - type: ImperialHandItem
+    kind: Offer
+
+- type: entity
+  parent: ImperialHandItemBase
+  id: ImperialHandStealer
+  name: воровская рука
+  description: Ваши грязные пальчики готовы к преступлению. Лёжа примените на человеке, чтобы стащить его обувь.
+  components:
+  - type: ImperialHandItem
+    kind: Stealer
+
+# /obj/projectile/kiss
+- type: entity
+  id: ImperialKissProjectile
+  name: воздушный поцелуй
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/EmotePanel/hand.rsi
+    state: heart
+    noRot: true
+  - type: Physics
+    bodyType: Dynamic
+  - type: TileFrictionModifier
+    modifier: 0
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.15"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 0
+    soundHit:
+      path: /Audio/Imperial/EmotePanel/kiss.ogg
+  - type: TimedDespawn
+    lifetime: 3
+  - type: ImperialKissProjectile
+
+# /atom/movable/screen/alert/give
+- type: alert
+  id: ImperialOfferHighFive
+  icons:
+  - sprite: /Textures/Imperial/EmotePanel/hand.rsi
+    state: hand
+  clickEvent: !type:ImperialEmoteOfferAlertEvent
+  name: imperial-hand-alert-highfive-name
+  description: imperial-hand-alert-highfive-desc
+
+- type: alert
+  id: ImperialOfferHand
+  icons:
+  - sprite: /Textures/Imperial/EmotePanel/hand.rsi
+    state: hand
+  clickEvent: !type:ImperialEmoteOfferAlertEvent
+  name: imperial-hand-alert-hand-name
+  description: imperial-hand-alert-hand-desc
+
+- type: alert
+  id: ImperialOfferHelpUp
+  icons:
+  - sprite: /Textures/Imperial/EmotePanel/hand.rsi
+    state: hand
+  clickEvent: !type:ImperialEmoteOfferAlertEvent
+  name: imperial-hand-alert-helpup-name
+  description: imperial-hand-alert-helpup-desc
+
+- type: alert
+  id: ImperialOfferKiss
+  icons:
+  - sprite: /Textures/Imperial/EmotePanel/hand.rsi
+    state: heart
+  clickEvent: !type:ImperialEmoteOfferAlertEvent
+  name: imperial-hand-alert-kiss-name
+  description: imperial-hand-alert-kiss-desc

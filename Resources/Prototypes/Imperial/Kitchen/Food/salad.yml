@@ -1,0 +1,997 @@
+# Блюда TG /obj/item/food/salad (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladHurricaneRice
+  name: "жареный рис «Ураган»"
+  description: "Пикантный рис по мотивам наси-горенга прямо с ночных рынков Проспекта на Марсе. Назван за стиль готовки: рис подбрасывают высоко в воздух — в основном потому, что покупателям это нравится."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: hurricane_rice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 31
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - pineapple
+    - rice
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladIkareis
+  name: "икарайс"
+  description: "Острый рис с чернилами кальмара, перцем, луком, колбасой и ароматным чили."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: ikareis
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: CapsaicinOil
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - rice
+    - spicy
+    - vegetables
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladHawaiianFriedRice
+  name: "гавайский жареный рис"
+  description: "Не традиционное гавайское блюдо, а смесь гавайских продуктов — кубики чапа и, что спорно, ананас. Пуристы так и не решили, место ли ананасу в рисе."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: hawaiian_fried_rice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 33
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 8
+  - type: FlavorProfile
+    flavors:
+    - pineapple
+    - rice
+    - soy
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladKetchupFriedRice
+  name: "жареный рис с кетчупом"
+  description: "Классическая японская домашняя еда: колбаса, овощи, вустерский соус, рис и, конечно, кетчуп."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: ketchup_fried_rice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 33
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 8
+        - ReagentId: Ketchup
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - rice
+    - vegetables
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladMediterraneanFriedRice
+  name: "средиземноморский жареный рис"
+  description: "Странная версия жареного риса: травы, сыр, оливки и, конечно, фрикадельки. Нечто среднее между ризотто и жареным рисом."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: mediterranean_fried_rice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 33
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Protein
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - cheesy
+    - rice
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladBibimbap
+  name: "пибимпап"
+  description: "Корейское блюдо из риса с разными добавками, подаётся в горячей каменной миске."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: bibimbap
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Protein
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 8
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: CapsaicinOil
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - cabbage
+    - egg
+    - meaty
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladBulgogiNoodles
+  name: "лапша пулькоги"
+  description: "Корейское мясо барбекю с лапшой! С кочхуджаном для остроты."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: bulgogi_noodles
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 23
+        reagents:
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: CapsaicinOil
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - pasta
+    - spicy
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladYakisobaKatsu
+  name: "якисоба кацу"
+  description: "Мясо в панировке на подушке из жареной лапши. Вкусно, хоть и необычно."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: yakisoba_katsu
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Nutriment
+          Quantity: 8
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - pasta
+    - vegetables
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladMartianFriedNoodles
+  name: "марсианская жареная лапша"
+  description: "Жареная лапша с красной планеты. Марсианская кухня вбирает многое, и здесь есть черты малайской, тайской, китайской, корейской и японской кухонь."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: martian_fried_noodles
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Nutriment
+          Quantity: 8
+  - type: FlavorProfile
+    flavors:
+    - egg
+    - meaty
+    - nutty
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladSimpleFriedNoodles
+  name: "простая жареная лапша"
+  description: "Простая, но вкусная жареная лапша — творческий повар сделает из неё что угодно."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: simple_fried_noodles
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 19
+        reagents:
+        - ReagentId: Protein
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Nutriment
+          Quantity: 6
+  - type: FlavorProfile
+    flavors:
+    - pasta
+    - soy
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladSetagayaCurry
+  name: "карри Сэтагая"
+  description: "Прославлено кафе в Сэтагае; подробный рецепт стал строго охраняемой тайной владельцев кафе по всему человеческому космосу. Говорят, вкус восполняет душу, что бы это ни значило."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: setagaya_curry
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 34
+        reagents:
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 8
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Omnizine
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - curry
+    - rice
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladAgedashiTofu
+  name: "агэдаси-тофу"
+  description: "Хрустящий жареный тофу в бульоне с умами. Частое блюдо идзакай."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: agedashi_tofu
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 17
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - tofu
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladPoKokGai
+  name: "по-кок-гай"
+  description: "Также «курица по-португальски» — макаоская классика: курица в «португальском соусе», мягком кокосовом карри."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: po_kok_gai
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 19
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - chicken
+    - curry
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladHuoxingTofu
+  name: "тофу Хуосин"
+  description: "Версия мапо-тофу, прославленная в Проспекте — гастрономической Мекке Марса. Если прищуриться, даже похоже на Марс."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: huoxing_tofu
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 23
+        reagents:
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: CapsaicinOil
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - spicy
+    - tofu
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladGalinhaDeCabidela
+  name: "галинья де кабидела"
+  description: "Изначально португальское блюдо: рис кабидела с курицей. На Марсе победила куриная версия."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: galinha_de_cabidela
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 23
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Protein
+          Quantity: 12
+  - type: FlavorProfile
+    flavors:
+    - chicken
+    - rice
+    - sour
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladKatsuCurry
+  name: "карри кацу"
+  description: "Мясо в панировке, обжаренное во фритюре, под соусом карри на подушке из риса."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: katsu_curry
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 19
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Protein
+          Quantity: 8
+  - type: FlavorProfile
+    flavors:
+    - curry
+    - meaty
+    - rice
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladBeefBowl
+  name: "гюдон"
+  description: "Тушёная говядина с луком и даси на рисе. Обычно сверху маринованный имбирь, молотый чили и яичница."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: beef_bowl
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 21
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - rice
+    - onion
+    - spicy
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladSaltChilliBowl
+  name: "донбури с осьминогом, солью и чили"
+  description: "Острая версия тэн-дона по японской традиции донбури — вкусовая сенсация, покорившая Марс."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: salt_chilli_bowl
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: CapsaicinOil
+          Quantity: 2
+        - ReagentId: TableSalt
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - fishy
+    - garlic
+    - rice
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladKansaiBowl
+  name: "кансайский донбури"
+  description: "Также коноха-дон: камабоко, яйцо и лук на рисе. Типичен для Кансая."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: kansai_bowl
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 21
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - egg
+    - fishy
+    - onion
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladEigamudoCurry
+  name: "карри Эйгамудо"
+  description: "Необъяснимое карри из какофонии ингредиентов. Кому-то где-то, наверное, нравится — удачи его найти."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: eigamudo_curry
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: CapsaicinOil
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - food
+    - rice
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladPineappleFoster
+  name: "ананас Фостер"
+  description: "Марсианская версия классического десерта: тёплое сладкое лакомство с лишь умеренным риском пожара."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: pineapple_foster
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 23
+        reagents:
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Sugar
+          Quantity: 4
+        - ReagentId: JuicePineapple
+          Quantity: 2
+        - ReagentId: Milk
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - creamy
+    - pineapple
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladSproutBowl
+  name: "миска «Спраут»"
+  description: "Названа в честь родного мира эфириалов: рис по традиции донбури, но с рыбой для сашими и маринованной вольтлозой."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: sprout_bowl
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 19
+        reagents:
+        - ReagentId: ImperialEnriched
+          Quantity: 8
+        - ReagentId: Protein
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - fishy
+    - rice
+    - sour
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladFleetSalad
+  name: "лёртонкнускольт"
+  description: "Лёртонкнускольт, или флотский салат, — частый гость буфетов и столовых Флота. Сыр на гриле делает его сытным, а гренки — хрустящим."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/moth.rsi
+    state: fleet_salad
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 27
+        reagents:
+        - ReagentId: Protein
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 12
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladCottonSalad
+  name: "флёфрёленкнускольт"
+  description: "Салат с хлопком и простой заправкой. Видимо, рядом нианы. Или Юг восстал снова."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/moth.rsi
+    state: cotton_salad
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 27
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 14
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladMothKachumbari
+  name: "кэниаткнускольт"
+  description: "Изначально кенийский рецепт; качумбари — ещё одно человеческое блюдо, принятое нианами, хоть и с заменой некоторых ингредиентов."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/moth.rsi
+    state: moth_kachumbari
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 29
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 18
+  - type: FlavorProfile
+    flavors:
+    - corn
+    - onion
+    - spicy
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladRisotto
+  name: "ризотто"
+  description: "Доказательство, что итальянцы освоили все углеводы."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/soupsalad.rsi
+    state: risotto
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 21
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 6
+  - type: FlavorProfile
+    flavors:
+    - cheesy
+    - rice
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladEmpty
+  name: "салат"
+  description: "Вкусный салат на заказ."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/soupsalad.rsi
+    state: bowl
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 14
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - food
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladKaleSalad
+  name: "салат из кейла"
+  description: "Полезный салат из кейла с маслом, идеален для тёплых летних месяцев."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/soupsalad.rsi
+    state: kale_salad
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 29
+        reagents:
+        - ReagentId: Vitamin
+          Quantity: 12
+        - ReagentId: Nutriment
+          Quantity: 12
+  - type: FlavorProfile
+    flavors:
+    - food
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladGreekSalad
+  name: "греческий салат"
+  description: "Популярный салат из томатов, лука, феты и оливок с оливковым маслом. Хотя чего-то будто не хватает..."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/soupsalad.rsi
+    state: greek_salad
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 32
+        reagents:
+        - ReagentId: Vitamin
+          Quantity: 13
+        - ReagentId: Nutriment
+          Quantity: 14
+  - type: FlavorProfile
+    flavors:
+    - cheesy
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladSpringSalad
+  name: "весенний салат"
+  description: "Простой салат из моркови, латука и горошка с маслом и щепоткой соли."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/soupsalad.rsi
+    state: spring_salad
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 29
+        reagents:
+        - ReagentId: Vitamin
+          Quantity: 12
+        - ReagentId: Nutriment
+          Quantity: 12
+  - type: FlavorProfile
+    flavors:
+    - salty
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladPotatoSalad
+  name: "картофельный салат"
+  description: "Варёный картофель с варёными яйцами, луком и майонезом. Основа любого уважающего себя барбекю."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/soupsalad.rsi
+    state: potato_salad
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 33
+        reagents:
+        - ReagentId: Vitamin
+          Quantity: 12
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Protein
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - egg
+    - potatoes
+    - mayonnaise
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladSpinachFruitSalad
+  name: "фруктовый салат со шпинатом"
+  description: "Яркий фруктовый салат из шпината, ягод и кусочков ананаса с маслом. Вкуснотища!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/soupsalad.rsi
+    state: spinach_fruit_salad
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 29
+        reagents:
+        - ReagentId: Vitamin
+          Quantity: 12
+        - ReagentId: Nutriment
+          Quantity: 12
+  - type: FlavorProfile
+    flavors:
+    - berry
+    - pineapple
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSaladAntipastoSalad
+  name: "салат антипасто"
+  description: "Традиционный итальянский салат из салями, моцареллы, оливок и томатов. Часто подаётся первым блюдом."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/soupsalad.rsi
+    state: antipasto_salad
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+        - ReagentId: Vitamin
+          Quantity: 12
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Protein
+          Quantity: 6
+  - type: FlavorProfile
+    flavors:
+    - cheesy
+    - tomato
+  - type: Edible
+    trash:
+    - FoodBowlBig

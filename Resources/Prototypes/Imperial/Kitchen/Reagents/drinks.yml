@@ -1,0 +1,523 @@
+# Реагенты TG: drinks (scratchpad/kitchen/kgen.pl).
+
+- type: reagent
+  id: ImperialSuperlaughter
+  name: reagent-name-imperial-superlaughter
+  parent: BaseDrink
+  desc: reagent-desc-imperial-superlaughter
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialsuperlaughter
+  color: "#FF4DD2"
+
+- type: reagent
+  id: ImperialPotatoJuice
+  name: reagent-name-imperial-potato-juice
+  parent: BaseDrink
+  desc: reagent-desc-imperial-potato-juice
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialpotatojuice
+  color: "#E8A856"
+
+- type: reagent
+  id: ImperialPickle
+  name: reagent-name-imperial-pickle
+  parent: BaseDrink
+  desc: reagent-desc-imperial-pickle
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialpickle
+  color: "#cde65e"
+
+- type: reagent
+  id: ImperialPlumjuice
+  name: reagent-name-imperial-plumjuice
+  parent: BaseDrink
+  desc: reagent-desc-imperial-plumjuice
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialplumjuice
+  color: "#b6062c"
+
+- type: reagent
+  id: ImperialHotIceCoffee
+  name: reagent-name-imperial-hot-ice-coffee
+  parent: BaseDrink
+  desc: reagent-desc-imperial-hot-ice-coffee
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialhoticecoffee
+  color: "#462b15"
+
+- type: reagent
+  id: ImperialNukaCola
+  name: reagent-name-imperial-nuka-cola
+  parent: BaseDrink
+  desc: reagent-desc-imperial-nuka-cola
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialnukacola
+  color: "#100800"
+
+- type: reagent
+  id: ImperialCinderella
+  name: reagent-name-imperial-cinderella
+  parent: BaseDrink
+  desc: reagent-desc-imperial-cinderella
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialcinderella
+  color: "#FF6A50"
+
+- type: reagent
+  id: ImperialCherryshake
+  name: reagent-name-imperial-cherryshake
+  parent: BaseDrink
+  desc: reagent-desc-imperial-cherryshake
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialcherryshake
+  color: "#FFB6C1"
+
+- type: reagent
+  id: ImperialBluecherryshake
+  name: reagent-name-imperial-bluecherryshake
+  parent: BaseDrink
+  desc: reagent-desc-imperial-bluecherryshake
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialbluecherryshake
+  color: "#00F1FF"
+
+- type: reagent
+  id: ImperialVanillashake
+  name: reagent-name-imperial-vanillashake
+  parent: BaseDrink
+  desc: reagent-desc-imperial-vanillashake
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialvanillashake
+  color: "#E9D2B2"
+
+- type: reagent
+  id: ImperialCaramelshake
+  name: reagent-name-imperial-caramelshake
+  parent: BaseDrink
+  desc: reagent-desc-imperial-caramelshake
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialcaramelshake
+  color: "#E17C00"
+
+- type: reagent
+  id: ImperialChoccyshake
+  name: reagent-name-imperial-choccyshake
+  parent: BaseDrink
+  desc: reagent-desc-imperial-choccyshake
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialchoccyshake
+  color: "#541B00"
+
+- type: reagent
+  id: ImperialStrawberryshake
+  name: reagent-name-imperial-strawberryshake
+  parent: BaseDrink
+  desc: reagent-desc-imperial-strawberryshake
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialstrawberryshake
+  color: "#ff7b7b"
+
+- type: reagent
+  id: ImperialBananashake
+  name: reagent-name-imperial-bananashake
+  parent: BaseDrink
+  desc: reagent-desc-imperial-bananashake
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialbananashake
+  color: "#f2d554"
+
+- type: reagent
+  id: ImperialPumpkinLatte
+  name: reagent-name-imperial-pumpkin-latte
+  parent: BaseDrink
+  desc: reagent-desc-imperial-pumpkin-latte
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialpumpkinlatte
+  color: "#F4A460"
+
+- type: reagent
+  id: ImperialGibbfloats
+  name: reagent-name-imperial-gibbfloats
+  parent: BaseDrink
+  desc: reagent-desc-imperial-gibbfloats
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialgibbfloats
+  color: "#B22222"
+
+- type: reagent
+  id: ImperialPumpkinjuice
+  name: reagent-name-imperial-pumpkinjuice
+  parent: BaseDrink
+  desc: reagent-desc-imperial-pumpkinjuice
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialpumpkinjuice
+  color: "#FFA500"
+
+- type: reagent
+  id: ImperialBlumpkinjuice
+  name: reagent-name-imperial-blumpkinjuice
+  parent: BaseDrink
+  desc: reagent-desc-imperial-blumpkinjuice
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialblumpkinjuice
+  color: "#00BFFF"
+
+- type: reagent
+  id: ImperialTripleCitrus
+  name: reagent-name-imperial-triple-citrus
+  parent: BaseDrink
+  desc: reagent-desc-imperial-triple-citrus
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialtriplecitrus
+  color: "#EEFF00"
+
+- type: reagent
+  id: ImperialChocolateMilk
+  name: reagent-name-imperial-chocolate-milk
+  parent: BaseDrink
+  desc: reagent-desc-imperial-chocolate-milk
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialchocolatemilk
+  color: "#7D4E29"
+
+- type: reagent
+  id: ImperialItalianCoco
+  name: reagent-name-imperial-italian-coco
+  parent: BaseDrink
+  desc: reagent-desc-imperial-italian-coco
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialitaliancoco
+  color: "#57372A"
+
+- type: reagent
+  id: ImperialParsnipjuice
+  name: reagent-name-imperial-parsnipjuice
+  parent: BaseDrink
+  desc: reagent-desc-imperial-parsnipjuice
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialparsnipjuice
+  color: "#FFA500"
+
+- type: reagent
+  id: ImperialPeachjuice
+  name: reagent-name-imperial-peachjuice
+  parent: BaseDrink
+  desc: reagent-desc-imperial-peachjuice
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialpeachjuice
+  color: "#E78108"
+
+- type: reagent
+  id: ImperialCreamSoda
+  name: reagent-name-imperial-cream-soda
+  parent: BaseDrink
+  desc: reagent-desc-imperial-cream-soda
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialcreamsoda
+  color: "#dcb137"
+
+- type: reagent
+  id: ImperialRedQueen
+  name: reagent-name-imperial-red-queen
+  parent: BaseDrink
+  desc: reagent-desc-imperial-red-queen
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialredqueen
+  color: "#e6ddc3"
+
+- type: reagent
+  id: ImperialPrunomix
+  name: reagent-name-imperial-prunomix
+  parent: BaseDrink
+  desc: reagent-desc-imperial-prunomix
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialprunomix
+  color: "#E78108"
+
+- type: reagent
+  id: ImperialAloejuice
+  name: reagent-name-imperial-aloejuice
+  parent: BaseDrink
+  desc: reagent-desc-imperial-aloejuice
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialaloejuice
+  color: "#b3c5a7"
+
+- type: reagent
+  id: ImperialAguaFresca
+  name: reagent-name-imperial-agua-fresca
+  parent: BaseDrink
+  desc: reagent-desc-imperial-agua-fresca
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialaguafresca
+  color: "#D25B66"
+
+- type: reagent
+  id: ImperialMushroomTea
+  name: reagent-name-imperial-mushroom-tea
+  parent: BaseDrink
+  desc: reagent-desc-imperial-mushroom-tea
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialmushroomtea
+  color: "#674945"
+
+- type: reagent
+  id: ImperialToechtaueseJuice
+  name: reagent-name-imperial-toechtauese-juice
+  parent: BaseDrink
+  desc: reagent-desc-imperial-toechtauese-juice
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialtoechtauesejuice
+  color: "#554862"
+
+- type: reagent
+  id: ImperialToechtaueseSyrup
+  name: reagent-name-imperial-toechtauese-syrup
+  parent: BaseDrink
+  desc: reagent-desc-imperial-toechtauese-syrup
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialtoechtauesesyrup
+  color: "#554862"
+
+- type: reagent
+  id: ImperialStrawberryBanana
+  name: reagent-name-imperial-strawberry-banana
+  parent: BaseDrink
+  desc: reagent-desc-imperial-strawberry-banana
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialstrawberrybanana
+  color: "#FF9999"
+
+- type: reagent
+  id: ImperialBerryBlast
+  name: reagent-name-imperial-berry-blast
+  parent: BaseDrink
+  desc: reagent-desc-imperial-berry-blast
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialberryblast
+  color: "#A76DC5"
+
+- type: reagent
+  id: ImperialFunkyMonkey
+  name: reagent-name-imperial-funky-monkey
+  parent: BaseDrink
+  desc: reagent-desc-imperial-funky-monkey
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialfunkymonkey
+  color: "#9E6B4A"
+
+- type: reagent
+  id: ImperialGreenGiant
+  name: reagent-name-imperial-green-giant
+  parent: BaseDrink
+  desc: reagent-desc-imperial-green-giant
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialgreengiant
+  color: "#9E6B4A"
+
+- type: reagent
+  id: ImperialMelonBaller
+  name: reagent-name-imperial-melon-baller
+  parent: BaseDrink
+  desc: reagent-desc-imperial-melon-baller
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialmelonballer
+  color: "#D22F55"
+
+- type: reagent
+  id: ImperialVanillaDream
+  name: reagent-name-imperial-vanilla-dream
+  parent: BaseDrink
+  desc: reagent-desc-imperial-vanilla-dream
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialvanilladream
+  color: "#FFF3DD"
+
+- type: reagent
+  id: ImperialCucumberjuice
+  name: reagent-name-imperial-cucumberjuice
+  parent: BaseDrink
+  desc: reagent-desc-imperial-cucumberjuice
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialcucumberjuice
+  color: "#B1D861"
+
+- type: reagent
+  id: ImperialCucumberlemonade
+  name: reagent-name-imperial-cucumberlemonade
+  parent: BaseDrink
+  desc: reagent-desc-imperial-cucumberlemonade
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialcucumberlemonade
+  color: "#cbe248"
+
+- type: reagent
+  id: ImperialMississippiQueen
+  name: reagent-name-imperial-mississippi-queen
+  parent: BaseDrink
+  desc: reagent-desc-imperial-mississippi-queen
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialmississippiqueen
+  color: "#d4422f"
+
+- type: reagent
+  id: ImperialTLetter
+  name: reagent-name-imperial-t-letter
+  parent: BaseDrink
+  desc: reagent-desc-imperial-t-letter
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialtletter
+  color: "#583d09"
+
+- type: reagent
+  id: ImperialCoconutMilk
+  name: reagent-name-imperial-coconut-milk
+  parent: BaseDrink
+  desc: reagent-desc-imperial-coconut-milk
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialcoconutmilk
+  color: "#DFDFDF"
+
+- type: reagent
+  id: ImperialMelonSoda
+  name: reagent-name-imperial-melon-soda
+  parent: BaseDrink
+  desc: reagent-desc-imperial-melon-soda
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialmelonsoda
+  color: "#6FEB48"
+
+- type: reagent
+  id: ImperialVoltEnergy
+  name: reagent-name-imperial-volt-energy
+  parent: BaseDrink
+  desc: reagent-desc-imperial-volt-energy
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialvoltenergy
+  color: "#99E550"
+
+- type: reagent
+  id: ImperialFruitPunch
+  name: reagent-name-imperial-fruit-punch
+  parent: BaseDrink
+  desc: reagent-desc-imperial-fruit-punch
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialfruitpunch
+  color: "#f7b2e3"
+
+- type: reagent
+  id: ImperialLean
+  name: reagent-name-imperial-lean
+  parent: BaseDrink
+  desc: reagent-desc-imperial-lean
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperiallean
+  color: "#DE55ED"
+
+- type: reagent
+  id: ImperialFailedReaction
+  name: reagent-name-imperial-failed-reaction
+  parent: BaseDrink
+  desc: reagent-desc-imperial-failed-reaction
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialfailedreaction
+  color: "#270d03"
+
+- type: reagent
+  id: ImperialFiveYearPlan
+  name: reagent-name-imperial-five-year-plan
+  parent: BaseDrink
+  desc: reagent-desc-imperial-five-year-plan
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialfiveyearplan
+  color: "#1f1911"
+
+- type: reagent
+  id: ImperialSlimetea
+  name: reagent-name-imperial-slimetea
+  parent: BaseDrink
+  desc: reagent-desc-imperial-slimetea
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialslimetea
+  color: "#22e46c"
+
+- type: reagent
+  id: ImperialGlace
+  name: reagent-name-imperial-glace
+  parent: BaseDrink
+  desc: reagent-desc-imperial-glace
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialglace
+  color: "#dfa057"
+
+- type: reagent
+  id: ImperialRobbusto
+  name: reagent-name-imperial-robbusto
+  parent: BaseDrink
+  desc: reagent-desc-imperial-robbusto
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialrobbusto
+  color: "#4e361b"
+
+- type: reagent
+  id: ImperialVortex
+  name: reagent-name-imperial-vortex
+  parent: BaseDrink
+  desc: reagent-desc-imperial-vortex
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialvortex
+  color: "#45a2e0"
+
+- type: reagent
+  id: ImperialMokko
+  name: reagent-name-imperial-mokko
+  parent: BaseDrink
+  desc: reagent-desc-imperial-mokko
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialmokko
+  color: "#57361b"
+
+- type: reagent
+  id: ImperialFrappuchino
+  name: reagent-name-imperial-frappuchino
+  parent: BaseDrink
+  desc: reagent-desc-imperial-frappuchino
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialfrappuchino
+  color: "#bb8960"
+
+- type: reagent
+  id: ImperialMacchiato
+  name: reagent-name-imperial-macchiato
+  parent: BaseDrink
+  desc: reagent-desc-imperial-macchiato
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialmacchiato
+  color: "#503620"
+
+- type: reagent
+  id: ImperialPumpkinRaf
+  name: reagent-name-imperial-pumpkin-raf
+  parent: BaseDrink
+  desc: reagent-desc-imperial-pumpkin-raf
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialpumpkinraf
+  color: "#e48648"
+
+- type: reagent
+  id: ImperialTehTahlua
+  name: reagent-name-imperial-teh-tahlua
+  parent: BaseDrink
+  desc: reagent-desc-imperial-teh-tahlua
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialtehtahlua
+  color: "#e7c6b0"
+
+- type: reagent
+  id: ImperialChifir
+  name: reagent-name-imperial-chifir
+  parent: BaseDrink
+  desc: reagent-desc-imperial-chifir
+  physicalDesc: reagent-physical-desc-refreshing
+  flavor: imperialchifir
+  color: "#e7c6b0"

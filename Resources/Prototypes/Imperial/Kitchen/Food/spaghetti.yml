@@ -1,0 +1,538 @@
+# Блюда TG /obj/item/food/spaghetti (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiNizaya
+  name: "паста низая"
+  description: "Паста из корнеплодов и орехов, родом с прибрежных районов Тизиры. По текстуре и виду похожа на ньокки."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: nizaya
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 11
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiNizayaEgg
+  name: "паста низая"
+  description: "Паста из корнеплодов и орехов, родом с прибрежных районов Тизиры. По текстуре и виду похожа на ньокки."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: nizaya
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 11
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiSnailNizaya
+  name: "низая с пустынными улитками"
+  description: "Изысканная паста из винодельческого региона Тизиры Валингии. Традиционно готовится только с лучшим тизирским вином... но и человеческое пойло сгодится."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: snail_nizaya
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 23
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Protein
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 6
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiGarlicNizaya
+  name: "низая с чесноком и маслом"
+  description: "Ящерская версия итальянской пасты альо э олио из низаи."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: garlic_nizaya
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 23
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - garlic
+    - oily
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiDemitNizaya
+  name: "демит-низая"
+  description: "Сладкая сливочная паста низая с молоком и нектаром корты."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: demit_nizaya
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 19
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: ImperialKortaNectar
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - vegetables
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiMushroomNizaya
+  name: "грибная низая"
+  description: "Паста низая с грибами серака и хорошим маслом. Ярко выраженный ореховый вкус."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: mushroom_nizaya
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 23
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiRawnoodles
+  name: "свежая лапша"
+  description: "Свежая рисовая лапша. Помните: секретного ингредиента нет."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: raw_noodles
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - rice
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiBoilednoodles
+  name: "варёная лапша"
+  description: "Сварена свежей под заказ."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: cooked_noodles
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - rice
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiRamenDry
+  name: "сухой космический рамен"
+  description: "Прессованная сушёная лапша."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: raw_ramen
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiRamenBeef
+  name: "космический рамен с говядиной"
+  description: "Дымящаяся упругая лапша в насыщенном искусственном говяжьем бульоне. Одновременно уютно и слегка химически."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: cooked_ramen
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiPastatomatoSoulful
+  name: "еда для души"
+  description: "Прямо как мама готовила."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/spaghetti.rsi
+    state: pastatomato
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: JuiceTomato
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Pax
+          Quantity: 5
+        - ReagentId: Psicodine
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiBeefnoodle
+  name: "лапша с говядиной"
+  description: "Питательно, говяжье и лапшичное."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/spaghetti.rsi
+    state: beefnoodle
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: ImperialLiquidgibs
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - pasta
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiMacNCheese
+  name: "макароны с сыром"
+  description: "Приготовлены по правилам, с лучшим сыром и панировкой. И всё же не так хороши, как «Реди-Донк»."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/spaghetti.rsi
+    state: mac_n_cheese
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 9
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - cheesy
+    - pasta
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiShoyuTonkotsuRamen
+  name: "сёю-тонкоцу рамен"
+  description: "Простой рамен с мясом, яйцом, луком и листом водорослей."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/spaghetti.rsi
+    state: shoyu_tonkotsu_ramen
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 29
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Protein
+          Quantity: 6
+  - type: FlavorProfile
+    flavors:
+    - pasta
+    - egg
+    - meaty
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiKitakataRamen
+  name: "рамен китаката"
+  description: "Сытный рамен с мясом, грибами, луком и чесноком. Часто дают больным для утешения."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/spaghetti.rsi
+    state: kitakata_ramen
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 34
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Protein
+          Quantity: 8
+  - type: FlavorProfile
+    flavors:
+    - pasta
+    - meaty
+    - mushroom
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiKitsuneUdon
+  name: "кицунэ удон"
+  description: "Вегетарианский удон с жареным тофу и луком, сладко-солёный от сахара и соевого соуса. Название — из старой сказки о лисе, любившей жареный тофу."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/spaghetti.rsi
+    state: kitsune_udon
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 31
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - pasta
+    - tofu
+    - sweet
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiNikujaga
+  name: "никудзяга"
+  description: "Восхитительное японское рагу из лапши, лука, картофеля и мяса с овощами."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/spaghetti.rsi
+    state: nikujaga
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 41
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 16
+        - ReagentId: Vitamin
+          Quantity: 12
+        - ReagentId: Protein
+          Quantity: 8
+  - type: FlavorProfile
+    flavors:
+    - pasta
+    - meaty
+    - potatoes
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiPho
+  name: "фо"
+  description: "Вьетнамское блюдо из лапши, овощей, трав и мяса. Очень популярная уличная еда."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/spaghetti.rsi
+    state: pho
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 33
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 8
+        - ReagentId: Protein
+          Quantity: 8
+  - type: FlavorProfile
+    flavors:
+    - pasta
+    - meaty
+    - cabbage
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiPadThai
+  name: "пад-тай"
+  description: "Популярная в Таиланде жареная лапша с арахисом, тофу, лаймом и луком."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/spaghetti.rsi
+    state: pad_thai
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 34
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Vitamin
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - pasta
+    - tofu
+    - nutty
+  - type: Edible
+    trash:
+    - FoodBowlBig
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSpaghettiCarbonara
+  name: "спагетти карбонара"
+  description: "Шёлковые яйца, хрустящая свинина, сырное блаженство. Мамма миа!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/spaghetti.rsi
+    state: carbonara
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - food

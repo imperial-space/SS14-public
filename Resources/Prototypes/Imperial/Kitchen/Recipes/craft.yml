@@ -1,0 +1,5114 @@
+# /datum/crafting_recipe/food TG (меню крафта).
+
+- type: imperialCraftRecipe
+  id: ImperialCraftHotcrossbun
+  result: FoodBakedBunHotX
+  time: 3
+  category: Bread
+  ingredients:
+    FoodBreadPlainSlice: 1
+  reagents:
+    Sugar: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBriochecake
+  result: ImperialFoodCakeBrioche
+  time: 3
+  category: Pastry
+  ingredients:
+    FoodCakePlain: 1
+  reagents:
+    Sugar: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMammi
+  result: ImperialFoodBowledMammi
+  time: 3
+  category: Candy
+  ingredients:
+    FoodBreadPlain: 1
+    FoodSnackChocolate: 1
+  reagents:
+    Milk: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftWishsoup
+  result: ImperialFoodBowledWish
+  time: 3
+  category: Soup
+  ingredients:
+    FoodBowlBig: 1
+  reagents:
+    Water: 20
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMeatbread
+  result: FoodBreadMeat
+  time: 3
+  category: Bread
+  ingredients:
+    FoodBreadPlain: 1
+    FoodMeatCutletCooked: 3
+    FoodCheeseSlice: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftXenomeatbread
+  result: FoodBreadMeatXeno
+  time: 3
+  category: Bread
+  ingredients:
+    FoodBreadPlain: 1
+    FoodMeatXenoCutletCooked: 3
+    FoodCheeseSlice: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSpidermeatbread
+  result: FoodBreadMeatSpider
+  time: 3
+  category: Bread
+  ingredients:
+    FoodBreadPlain: 1
+    FoodMeatSpiderCutletCooked: 3
+    FoodCheeseSlice: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSausagebread
+  result: FoodBreadSausage
+  time: 3
+  category: Bread
+  ingredients:
+    FoodBreadPlain: 1
+    ImperialFoodSausage: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBanananutbread
+  result: FoodBreadBanana
+  time: 3
+  category: Bread
+  ingredients:
+    FoodBreadPlain: 1
+    FoodEggBoiled: 3
+    FoodBanana: 1
+  reagents:
+    Milk: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftTofubread
+  result: FoodBreadTofu
+  time: 3
+  category: Bread
+  ingredients:
+    FoodBreadPlain: 1
+    FoodTofu: 3
+    FoodCheeseSlice: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCreamcheesebread
+  result: FoodBreadCreamcheese
+  time: 3
+  category: Bread
+  ingredients:
+    FoodBreadPlain: 1
+    FoodCheeseSlice: 2
+  reagents:
+    Milk: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMimanabread
+  result: FoodBreadMimana
+  time: 3
+  category: Bread
+  ingredients:
+    FoodBreadPlain: 1
+    FoodTofu: 3
+    FoodMimana: 1
+  reagents:
+    MilkSoy: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftGarlicbread
+  result: FoodBreadGarlicSlice
+  time: 4
+  category: Bread
+  ingredients:
+    FoodGarlic: 1
+    FoodBreadPlainSlice: 1
+    FoodButterSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftButterbiscuit
+  result: ImperialFoodButterbiscuit
+  time: 3
+  category: Bread
+  ingredients:
+    FoodBreadBun: 1
+    FoodButterSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftButterdog
+  result: ImperialFoodButterdog
+  time: 3
+  category: Sandwich
+  ingredients:
+    FoodBreadBun: 1
+    FoodButter: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBaguette
+  result: FoodBreadBaguette
+  time: 4
+  category: Bread
+  ingredients:
+    FoodDoughSlice: 2
+  reagents:
+    TableSalt: 1
+    Blackpepper: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRawBreadstick
+  result: ImperialFoodRawBreadstick
+  time: 3
+  category: Bread
+  ingredients:
+    FoodDoughSlice: 1
+    FoodButterSlice: 1
+  reagents:
+    TableSalt: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRawCroissant
+  result: FoodCroissantRaw
+  time: 3
+  category: Bread
+  ingredients:
+    FoodDoughSlice: 1
+    FoodButterSlice: 1
+  reagents:
+    Sugar: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftThrowingCroissant
+  result: FoodBakedCroissant
+  time: 3
+  category: Bread
+  ingredients:
+    FoodBakedCroissant: 1
+    PartRodMetal1: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftJelliedyoast
+  result: ImperialFoodJelliedtoastCherry
+  time: 3
+  category: Bread
+  ingredients:
+    FoodBreadPlainSlice: 1
+  reagents:
+    ImperialCherryjelly: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftButteredtoast
+  result: FoodBreadButteredToast
+  time: 3
+  category: Bread
+  ingredients:
+    FoodBreadPlainSlice: 1
+    FoodButterSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftTwobread
+  result: FoodBreadTwoSlice
+  time: 3
+  category: Bread
+  ingredients:
+    FoodBreadPlainSlice: 2
+  reagents:
+    Wine: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMoldybread
+  result: FoodBreadMoldySlice
+  time: 3
+  category: Bread
+  ingredients:
+    FoodBreadPlainSlice: 1
+    FoodFlyAmanita: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFrenchtoast
+  result: ImperialFoodRawFrenchtoast
+  time: 3
+  category: Bread
+  ingredients:
+    FoodBreadPlainSlice: 1
+    FoodEgg: 2
+  reagents:
+    Milk: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftHumanburger
+  result: FoodBurgerHuman
+  time: 3
+  category: Burger
+  ingredients:
+    FoodBreadBun: 1
+    ImperialFoodPattyHuman: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBurger
+  result: FoodBurgerPlain
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatPattyCooked: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCorgiburger
+  result: FoodBurgerCorgi
+  time: 3
+  category: Burger
+  ingredients:
+    ImperialFoodPattyCorgi: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftAppendixburger
+  result: FoodBurgerAppendix
+  time: 3
+  category: Burger
+  ingredients:
+    OrganArachnidAppendix: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBrainburger
+  result: FoodBurgerBrain
+  time: 3
+  category: Burger
+  ingredients:
+    OrganArachnidBrain: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftXenoburger
+  result: FoodBurgerXeno
+  time: 3
+  category: Burger
+  ingredients:
+    ImperialFoodPattyXeno: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBearger
+  result: FoodBurgerBear
+  time: 3
+  category: Burger
+  ingredients:
+    ImperialFoodPattyBear: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFishburger
+  result: ImperialFoodBurgerFish
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatFish: 1
+    FoodBreadBun: 1
+    FoodCheeseSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftTofuburger
+  result: FoodBurgerTofu
+  time: 3
+  category: Burger
+  ingredients:
+    FoodTofu: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftGhostburger
+  result: FoodBurgerGhost
+  time: 3
+  category: Burger
+  ingredients:
+    Ectoplasm: 1
+    FoodBreadBun: 1
+  reagents:
+    TableSalt: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftClownburger
+  result: FoodBurgerClown
+  time: 3
+  category: Burger
+  ingredients:
+    ClothingMaskClown: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMimeburger
+  result: FoodBurgerMime
+  time: 3
+  category: Burger
+  ingredients:
+    ClothingMaskMime: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRedburger
+  result: ImperialFoodBurgerRed
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatPattyCooked: 1
+    CrayonRed: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftOrangeburger
+  result: ImperialFoodBurgerOrange
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatPattyCooked: 1
+    CrayonOrange: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftYellowburger
+  result: ImperialFoodBurgerYellow
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatPattyCooked: 1
+    CrayonYellow: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftGreenburger
+  result: ImperialFoodBurgerGreen
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatPattyCooked: 1
+    CrayonGreen: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBlueburger
+  result: ImperialFoodBurgerBlue
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatPattyCooked: 1
+    CrayonBlue: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPurpleburger
+  result: ImperialFoodBurgerPurple
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatPattyCooked: 1
+    CrayonPurple: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBlackburger
+  result: ImperialFoodBurgerBlack
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatPattyCooked: 1
+    CrayonBlack: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftWhiteburger
+  result: ImperialFoodBurgerWhite
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatPattyCooked: 1
+    CrayonWhite: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSpellburger
+  result: FoodBurgerSpell
+  time: 3
+  category: Burger
+  ingredients:
+    ClothingHeadHatWizard: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBigbiteburger
+  result: FoodBurgerBig
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatPattyCooked: 3
+    FoodBreadBun: 1
+    FoodCheeseSlice: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSuperbiteburger
+  result: FoodBurgerSuper
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatPattyCooked: 5
+    FoodTomato: 4
+    FoodCheeseSlice: 3
+    FoodEggBoiled: 1
+    FoodMeatBaconCooked: 1
+    FoodBreadBun: 1
+    ImperialFoodPickle: 1
+  reagents:
+    TableSalt: 5
+    Blackpepper: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftJellyburger
+  result: FoodBurgerJelly
+  time: 3
+  category: Burger
+  ingredients:
+    FoodBreadBun: 1
+  reagents:
+    ImperialCherryjelly: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFivealarmburger
+  result: FoodBurgerFive
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatPattyCooked: 1
+    FoodChillyPepper: 2
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBaseballburger
+  result: FoodBurgerBaseball
+  time: 3
+  category: Burger
+  ingredients:
+    BaseBallBat: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBaconburger
+  result: FoodBurgerBacon
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatBaconCooked: 3
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftEmpoweredburger
+  result: FoodBurgerEmpowered
+  time: 3
+  category: Burger
+  ingredients:
+    SheetPlasma1: 2
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCrabburger
+  result: FoodBurgerCrab
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatCrabCooked: 2
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCheeseburger
+  result: FoodBurgerCheese
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatPattyCooked: 1
+    FoodBreadBun: 1
+    FoodCheeseSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSoylentburger
+  result: FoodBurgerSoy
+  time: 3
+  category: Burger
+  ingredients:
+    ImperialFoodSoylentgreen: 1
+    FoodBreadBun: 1
+    FoodCheeseSlice: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRibburger
+  result: FoodBurgerMcrib
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMealRibs: 1
+    FoodOnionSlice: 1
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMcguffin
+  result: FoodBurgerMcguffin
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMealFriedegg: 1
+    FoodMeatBaconCooked: 2
+    FoodBreadBun: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftChickenburger
+  result: FoodBurgerChicken
+  time: 3
+  category: Burger
+  ingredients:
+    ImperialFoodPattyChicken: 1
+    FoodBreadBun: 1
+  reagents:
+    Mayo: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCrazyhamburger
+  result: FoodBurgerCrazy
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatPattyCooked: 2
+    FoodBreadBun: 1
+    FoodCheeseSlice: 2
+    FoodChiliPepper: 1
+    FoodCabbage: 1
+    CrayonGreen: 1
+    Flare: 1
+  reagents:
+    OilOlive: 15
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSloppyMoe
+  result: ImperialFoodBurgerSloppyMoe
+  time: 3
+  category: Burger
+  ingredients:
+    FoodBreadBun: 1
+    FoodMeatCutletCooked: 2
+    FoodOnionSlice: 1
+  reagents:
+    BbqSauce: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftKortaburger
+  result: ImperialFoodBurgerPlainKorta
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatPattyCooked: 1
+    ImperialFoodRootroll: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRootguffin
+  result: ImperialFoodBurgerRootguffin
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMealFriedegg: 1
+    FoodMeatBaconCooked: 2
+    ImperialFoodRootroll: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRootrib
+  result: ImperialFoodBurgerRootrib
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMealRibs: 1
+    FoodOnionSlice: 1
+    ImperialFoodRootroll: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRootchicken
+  result: ImperialFoodBurgerRootchicken
+  time: 3
+  category: Burger
+  ingredients:
+    ImperialFoodPattyChicken: 1
+    ImperialFoodRootroll: 1
+  reagents:
+    Mayo: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRootfish
+  result: ImperialFoodBurgerRootfish
+  time: 3
+  category: Burger
+  ingredients:
+    FoodMeatFish: 1
+    ImperialFoodRootroll: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSloppyroot
+  result: ImperialFoodBurgerSloppyroot
+  time: 3
+  category: Burger
+  ingredients:
+    ImperialFoodRootroll: 1
+    FoodMeatCutletCooked: 2
+    FoodOnionSlice: 1
+  reagents:
+    BbqSauce: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCarrotcake
+  result: FoodCakeCarrot
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 1
+    FoodCarrot: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCheesecake
+  result: FoodCakeCheese
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 1
+    FoodCheeseSlice: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftApplecake
+  result: FoodCakeApple
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 1
+    FoodApple: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftOrangecake
+  result: FoodCakeOrange
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 1
+    FoodOrange: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftLimecake
+  result: FoodCakeLime
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 1
+    FoodLime: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftLemoncake
+  result: FoodCakeLemon
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 1
+    FoodLemon: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftChocolatecake
+  result: FoodCakeChocolate
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 1
+    FoodSnackChocolate: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBirthdaycake
+  result: FoodCakeBirthday
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 1
+    CandleRed: 1
+  reagents:
+    Sugar: 7
+
+- type: imperialCraftRecipe
+  id: ImperialCraftEnergycake
+  result: ImperialFoodCakeBirthdayEnergy
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakeBirthday: 1
+    EnergySword: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBraincake
+  result: FoodCakeBrain
+  time: 3
+  category: Cake
+  ingredients:
+    OrganArachnidBrain: 1
+    FoodCakePlain: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPumpkinspicecake
+  result: FoodCakePumpkin
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 1
+    FoodPumpkin: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftHolycake
+  result: ImperialFoodCakeHolyCake
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 1
+  reagents:
+    Holywater: 15
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPoundcake
+  result: ImperialFoodCakePoundCake
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 4
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBerryChocolateCake
+  result: ImperialFoodCakeBerryChocolateCake
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 1
+    FoodSnackChocolate: 2
+    FoodBerries: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPavlovacream
+  result: ImperialFoodCakePavlova
+  time: 3
+  category: Cake
+  ingredients:
+    FoodBerries: 5
+  reagents:
+    Egg: 12
+    Sugar: 15
+    Cream: 10
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPavlovakorta
+  result: ImperialFoodCakePavlovaNuts
+  time: 3
+  category: Cake
+  ingredients:
+    FoodBerries: 5
+  reagents:
+    Egg: 12
+    Sugar: 15
+    ImperialKortaMilk: 10
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBerryVanillaCake
+  result: ImperialFoodCakeBerryVanillaCake
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 1
+    FoodBerries: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftClowncake
+  result: FoodCakeClown
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 1
+    FoodFrozenSundae: 2
+    FoodBanana: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftTrumpetcake
+  result: FoodCakeSpaceman
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 1
+    FoodSpacemansTrumpet: 2
+  reagents:
+    Cream: 5
+    JuiceBerry: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFruitcake
+  result: ImperialFoodCakeFruit
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 1
+    FoodSnackRaisins: 1
+    FoodCherry: 1
+  reagents:
+    Rum: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftWeddingcake
+  result: ImperialFoodCakeWedding
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 4
+  reagents:
+    Sugar: 120
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPineappleCreamCake
+  result: ImperialFoodCakePineappleCreamCake
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 1
+    FoodPineapple: 1
+  reagents:
+    Cream: 20
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSausageegg
+  result: ImperialFoodEggsausage
+  time: 3
+  category: Meat
+  ingredients:
+    ImperialFoodSausage: 1
+    FoodMealFriedegg: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftOmelette
+  result: FoodMealOmelette
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodEgg: 2
+    FoodCheeseSlice: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftChocolateegg
+  result: ImperialFoodChocolateegg
+  time: 3
+  category: Candy
+  ingredients:
+    FoodEggBoiled: 1
+    FoodSnackChocolate: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftEggsbenedict
+  result: FoodMealEggsbenedict
+  time: 3
+  category: Meat
+  ingredients:
+    FoodMealFriedegg: 1
+    FoodMeatCooked: 1
+    FoodBreadPlainSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftEggbowl
+  result: FoodRiceEgg
+  time: 3
+  category: Rice
+  ingredients:
+    FoodBowlBig: 1
+    FoodRiceBoiled: 1
+    FoodEggBoiled: 1
+    FoodCarrot: 1
+    FoodCorn: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftWrap
+  result: ImperialFoodEggwrap
+  time: 3
+  category: Burrito
+  ingredients:
+    FoodMealFriedegg: 1
+    FoodCabbage: 1
+  reagents:
+    Soysauce: 10
+
+- type: imperialCraftRecipe
+  id: ImperialCraftChawanmushi
+  result: ImperialFoodChawanmushi
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodEggBoiled: 2
+    FoodMushroom: 1
+  reagents:
+    Water: 5
+    Soysauce: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftIcecreamsandwich
+  result: FoodFrozenSandwich
+  time: 3
+  category: Frozen
+  ingredients:
+    ImperialFoodIcecream: 1
+  reagents:
+    Cream: 5
+    Ice: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftStrawberryicecreamsandwich
+  result: FoodFrozenSandwichStrawberry
+  time: 3
+  category: Frozen
+  ingredients:
+    FoodBerries: 2
+    ImperialFoodIcecream: 1
+  reagents:
+    Cream: 5
+    Ice: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSpacefreezy
+  result: FoodFrozenFreezy
+  time: 3
+  category: Frozen
+  ingredients:
+    ImperialFoodIcecream: 1
+  reagents:
+    ImperialBluecherryjelly: 5
+    SpaceMountainWind: 15
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSundae
+  result: FoodFrozenSundae
+  time: 3
+  category: Frozen
+  ingredients:
+    FoodCherry: 1
+    FoodBanana: 1
+    ImperialFoodIcecream: 1
+  reagents:
+    Cream: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftHonkdae
+  result: ImperialFoodHonkdae
+  time: 3
+  category: Frozen
+  ingredients:
+    ClothingMaskClown: 1
+    FoodCherry: 1
+    FoodBanana: 2
+    ImperialFoodIcecream: 1
+  reagents:
+    Cream: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCornuto
+  result: FoodFrozenCornuto
+  time: 3
+  category: Frozen
+  ingredients:
+    FoodSnackChocolate: 1
+    ImperialFoodIcecream: 1
+  reagents:
+    Cream: 4
+    Ice: 2
+    Sugar: 4
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnowcone
+  result: FoodFrozenSnowcone
+  time: 3
+  category: Frozen
+  ingredients:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 15
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnowconePineapple
+  result: ImperialFoodSnowconesPineapple
+  time: 3
+  category: Frozen
+  ingredients:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 15
+    JuicePineapple: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnowconeLime
+  result: ImperialFoodSnowconesLime
+  time: 3
+  category: Frozen
+  ingredients:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 15
+    JuiceLime: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnowconeLemon
+  result: ImperialFoodSnowconesLemon
+  time: 3
+  category: Frozen
+  ingredients:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 15
+    JuiceLemon: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnowconeApple
+  result: ImperialFoodSnowconesApple
+  time: 3
+  category: Frozen
+  ingredients:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 15
+    JuiceApple: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnowconeGrape
+  result: ImperialFoodSnowconesGrape
+  time: 3
+  category: Frozen
+  ingredients:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 15
+    JuiceGrape: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnowconeOrange
+  result: ImperialFoodSnowconesOrange
+  time: 3
+  category: Frozen
+  ingredients:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 15
+    JuiceOrange: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnowconeBlue
+  result: ImperialFoodSnowconesBlue
+  time: 3
+  category: Frozen
+  ingredients:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 15
+    ImperialBluecherryjelly: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnowconeRed
+  result: ImperialFoodSnowconesRed
+  time: 3
+  category: Frozen
+  ingredients:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 15
+    ImperialCherryjelly: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnowconeBerry
+  result: FoodFrozenSnowconeBerry
+  time: 3
+  category: Frozen
+  ingredients:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 15
+    JuiceBerry: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnowconeFruitsalad
+  result: FoodFrozenSnowconeFruit
+  time: 3
+  category: Frozen
+  ingredients:
+    DrinkWaterCup: 1
+  reagents:
+    Water: 5
+    Ice: 15
+    JuiceOrange: 5
+    JuiceLime: 5
+    JuiceLemon: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnowconeMime
+  result: FoodFrozenSnowconeMime
+  time: 3
+  category: Frozen
+  ingredients:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 15
+    Nothing: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnowconeClown
+  result: ImperialFoodSnowconesClown
+  time: 3
+  category: Frozen
+  ingredients:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 15
+    Laughter: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnowconeSoda
+  result: ImperialFoodSnowconesSoda
+  time: 3
+  category: Frozen
+  ingredients:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 15
+    Cola: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnowconeSpacemountainwind
+  result: ImperialFoodSnowconesSpacemountainwind
+  time: 3
+  category: Frozen
+  ingredients:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 15
+    SpaceMountainWind: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnowconePwrgame
+  result: ImperialFoodSnowconesPwrgame
+  time: 3
+  category: Frozen
+  ingredients:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 15
+    PwrGame: 15
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnowconeHoney
+  result: ImperialFoodSnowconesHoney
+  time: 3
+  category: Frozen
+  ingredients:
+    DrinkWaterCup: 1
+  reagents:
+    Ice: 15
+    ImperialHoney: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftOrangePopsicle
+  result: FoodFrozenPopsicleOrange
+  time: 3
+  category: Frozen
+  ingredients:
+    FoodFrozenPopsicleTrash: 1
+  reagents:
+    JuiceOrange: 4
+    Ice: 2
+    Cream: 2
+    ImperialVanilla: 2
+    Sugar: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBerryPopsicle
+  result: FoodFrozenPopsicleBerry
+  time: 3
+  category: Frozen
+  ingredients:
+    FoodFrozenPopsicleTrash: 1
+  reagents:
+    JuiceBerry: 4
+    Ice: 2
+    Cream: 2
+    ImperialVanilla: 2
+    Sugar: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftJumbo
+  result: FoodFrozenPopsicleJumbo
+  time: 3
+  category: Frozen
+  ingredients:
+    FoodFrozenPopsicleTrash: 1
+    FoodSnackChocolate: 1
+  reagents:
+    Ice: 2
+    Cream: 2
+    ImperialVanilla: 3
+    Sugar: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftLicoriceCreamsicle
+  result: ImperialFoodPopsicleLicoriceCreamsicle
+  time: 3
+  category: Frozen
+  ingredients:
+    FoodFrozenPopsicleTrash: 1
+  reagents:
+    ImperialBlumpkinjuice: 4
+    TableSalt: 2
+    Ice: 2
+    Cream: 2
+    ImperialVanilla: 2
+    Sugar: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMeatsicle
+  result: ImperialFoodPopsicleMeatsicle
+  time: 3
+  category: Frozen
+  ingredients:
+    FoodFrozenPopsicleTrash: 1
+    FoodMeatRawBase: 1
+  reagents:
+    Ice: 2
+    Sugar: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftTiziranSausage
+  result: ImperialFoodRawTiziranSausage
+  time: 3
+  category: Meat
+  ingredients:
+    FoodMeatCutlet: 1
+    FoodMeatBacon: 1
+  reagents:
+    Blood: 5
+    TableSalt: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftHeadcheese
+  result: ImperialFoodRawHeadcheese
+  time: 3
+  category: Meat
+  ingredients:
+    FoodMeatRawBase: 1
+  reagents:
+    TableSalt: 10
+    Blackpepper: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftShreddedLungs
+  result: ImperialFoodShreddedLungs
+  time: 3
+  category: Salad
+  ingredients:
+    FoodCarrot: 1
+    FoodChiliPepper: 1
+    FoodOnion: 1
+    OrganAnimalLungs: 1
+    FoodBowlBig: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftTsatsikh
+  result: ImperialFoodTsatsikh
+  time: 3
+  category: Meat
+  ingredients:
+    OrganAnimalHeart: 1
+    OrganAnimalLiver: 1
+    OrganAnimalLungs: 1
+    OrganAnimalStomach: 1
+  reagents:
+    TableSalt: 2
+    Blackpepper: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftLiverPate
+  result: ImperialFoodLiverPate
+  time: 3
+  category: Meat
+  ingredients:
+    OrganAnimalLiver: 1
+    FoodMeatCutlet: 1
+    FoodOnion: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftLizardEscargot
+  result: ImperialFoodLizardEscargot
+  time: 3
+  category: Uncategorized
+  ingredients:
+    ImperialFoodCannedDesertSnails: 1
+    FoodGarlic: 1
+    FoodBowlBig: 1
+  reagents:
+    JuiceLemon: 3
+    Blackpepper: 2
+    OilOlive: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFriedBloodSausage
+  result: ImperialFoodFriedBloodSausage
+  time: 3
+  category: Meat
+  ingredients:
+    ImperialFoodRawTiziranSausage: 1
+  reagents:
+    ImperialKortaFlour: 5
+    Water: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftLizardFries
+  result: ImperialFoodLizardFries
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodMealFries: 1
+    FoodMeatCutletCooked: 2
+    ImperialIronPlateFelix: 1
+  reagents:
+    BbqSauce: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCrispyHeadcheese
+  result: ImperialFoodCrispyHeadcheese
+  time: 3
+  category: Uncategorized
+  ingredients:
+    ImperialFoodHeadcheeseSlice: 1
+    ImperialFoodBreadsliceRoot: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPicossSkewers
+  result: ImperialFoodKebabPicossSkewers
+  time: 3
+  category: Meat
+  ingredients:
+    ImperialFoodFishmeatArmorfish: 2
+    FoodOnion: 1
+    FoodChiliPepper: 1
+    PartRodMetal1: 1
+  reagents:
+    Vinegar: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftNectarLarvae
+  result: ImperialFoodNectarLarvae
+  time: 3
+  category: Uncategorized
+  ingredients:
+    ImperialFoodCannedLarvae: 1
+    FoodTomato: 1
+    FoodChiliPepper: 1
+  reagents:
+    ImperialKortaNectar: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMoonfishDemiglace
+  result: ImperialFoodMoonfishDemiglace
+  time: 3
+  category: Meat
+  ingredients:
+    ImperialFoodGrilledMoonfish: 1
+    FoodPotato: 1
+    FoodCarrot: 1
+  reagents:
+    ImperialKortaMilk: 5
+    Wine: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftLizardSurfNTurf
+  result: ImperialFoodLizardSurfNTurf
+  time: 3
+  category: Meat
+  ingredients:
+    ImperialFoodGrilledMoonfish: 1
+    ImperialFoodKebabPicossSkewers: 2
+    FoodMeatCooked: 1
+    FoodMealRibs: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRootdough
+  result: ImperialFoodRootdough
+  time: 3
+  category: Bread
+  ingredients:
+    FoodPotato: 2
+  reagents:
+    MilkSoy: 15
+    ImperialKortaFlour: 5
+    Water: 10
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRootdoughWithEggs
+  result: ImperialFoodRootdoughEgg
+  time: 3
+  category: Bread
+  ingredients:
+    FoodPotato: 2
+    FoodEgg: 1
+  reagents:
+    ImperialKortaFlour: 5
+    Water: 10
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnailNizaya
+  result: ImperialFoodSpaghettiSnailNizaya
+  time: 3
+  category: Noodles
+  ingredients:
+    ImperialFoodCannedDesertSnails: 1
+    ImperialFoodSpaghettiNizaya: 1
+    FoodGarlic: 1
+  reagents:
+    Wine: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftGarlicNizaya
+  result: ImperialFoodSpaghettiGarlicNizaya
+  time: 3
+  category: Noodles
+  ingredients:
+    ImperialFoodSpaghettiNizaya: 1
+    FoodGarlic: 1
+    FoodChiliPepper: 1
+  reagents:
+    OilOlive: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDemitNizaya
+  result: ImperialFoodSpaghettiDemitNizaya
+  time: 3
+  category: Noodles
+  ingredients:
+    ImperialFoodSpaghettiNizaya: 1
+    FoodCarrot: 1
+    FoodOnion: 1
+    FoodEggplant: 1
+  reagents:
+    ImperialKortaMilk: 5
+    ImperialKortaNectar: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMushroomNizaya
+  result: ImperialFoodSpaghettiMushroomNizaya
+  time: 3
+  category: Noodles
+  ingredients:
+    ImperialFoodSpaghettiNizaya: 1
+    ImperialFoodSteepedMushrooms: 1
+    FoodGarlic: 1
+  reagents:
+    OilOlive: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRusticFlatbread
+  result: ImperialFoodPizzaFlatbreadRustic
+  time: 3
+  category: Bread
+  ingredients:
+    ImperialFoodRootFlatbread: 1
+    FoodGarlic: 1
+  reagents:
+    JuiceLemon: 2
+    OilOlive: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftItalicFlatbread
+  result: ImperialFoodPizzaFlatbreadItalic
+  time: 3
+  category: Bread
+  ingredients:
+    ImperialFoodRootFlatbread: 1
+    FoodGarlic: 1
+    FoodTomato: 1
+    FoodMeatMeatball: 2
+  reagents:
+    OilOlive: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftImperialFlatbread
+  result: ImperialFoodPizzaFlatbreadImperial
+  time: 3
+  category: Bread
+  ingredients:
+    ImperialFoodRootFlatbread: 1
+    ImperialFoodLiverPate: 1
+    ImperialFoodSauerkraut: 1
+    ImperialFoodHeadcheese: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRawmeatFlatbread
+  result: ImperialFoodPizzaFlatbreadRawmeat
+  time: 3
+  category: Bread
+  ingredients:
+    ImperialFoodRootFlatbread: 1
+    FoodMeatRawBase: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftStingingFlatbread
+  result: ImperialFoodPizzaFlatbreadStinging
+  time: 3
+  category: Bread
+  ingredients:
+    ImperialFoodRootFlatbread: 1
+    ImperialFoodCannedLarvae: 1
+    ImperialFoodCannedJellyfish: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFishFlatbread
+  result: ImperialFoodPizzaFlatbreadFish
+  time: 3
+  category: Bread
+  ingredients:
+    ImperialFoodRootFlatbread: 1
+    FoodMeatFish: 2
+  reagents:
+    BbqSauce: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMushroomFlatbread
+  result: ImperialFoodPizzaFlatbreadMushroom
+  time: 3
+  category: Bread
+  ingredients:
+    ImperialFoodRootFlatbread: 1
+    FoodTomato: 1
+    FoodMushroom: 3
+  reagents:
+    OilOlive: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftNuttyFlatbread
+  result: ImperialFoodPizzaFlatbreadNutty
+  time: 3
+  category: Bread
+  ingredients:
+    ImperialFoodRootFlatbread: 1
+  reagents:
+    ImperialKortaFlour: 5
+    ImperialKortaMilk: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftEmperorRoll
+  result: ImperialFoodEmperorRoll
+  time: 3
+  category: Pastry
+  ingredients:
+    ImperialFoodRootroll: 1
+    ImperialFoodLiverPate: 1
+    ImperialFoodHeadcheeseSlice: 2
+    ImperialFoodMoonfishCaviar: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftHoneySweetroll
+  result: ImperialFoodHoneyRoll
+  time: 3
+  category: Pastry
+  ingredients:
+    ImperialFoodRootroll: 1
+    FoodBerries: 1
+    FoodBanana: 1
+  reagents:
+    ImperialHoney: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBlackEggs
+  result: ImperialFoodBlackEggs
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodEgg: 2
+  reagents:
+    Blood: 5
+    Vinegar: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPatzikula
+  result: ImperialFoodPatzikula
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodTomato: 2
+    FoodOnion: 1
+    FoodChiliPepper: 1
+    FoodEgg: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftKortaIce
+  result: ImperialFoodSnowconesKortaIce
+  time: 3
+  category: Frozen
+  ingredients:
+    DrinkWaterCup: 1
+    FoodBerries: 1
+  reagents:
+    Ice: 15
+    ImperialKortaNectar: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCandiedMushrooms
+  result: ImperialFoodKebabCandiedMushrooms
+  time: 3
+  category: Candy
+  ingredients:
+    PartRodMetal1: 1
+    ImperialFoodSteepedMushrooms: 1
+  reagents:
+    Sugar: 5
+    TableSalt: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSauerkraut
+  result: ImperialFoodSauerkraut
+  time: 3
+  category: Condiment
+  ingredients:
+    FoodCabbage: 2
+  reagents:
+    TableSalt: 10
+
+- type: imperialCraftRecipe
+  id: ImperialCraftLizardDumplings
+  result: ImperialFoodLizardDumplings
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodPotato: 1
+  reagents:
+    ImperialKortaFlour: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRootbreadpbj
+  result: ImperialFoodRootbreadPeanutButterJelly
+  time: 3
+  category: Sandwich
+  ingredients:
+    ImperialFoodBreadsliceRoot: 2
+  reagents:
+    ImperialPeanutButter: 5
+    ImperialCherryjelly: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRootbreadpbb
+  result: ImperialFoodRootbreadPeanutButterBanana
+  time: 3
+  category: Sandwich
+  ingredients:
+    ImperialFoodBreadsliceRoot: 2
+    FoodBanana: 1
+  reagents:
+    ImperialPeanutButter: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftKimchi
+  result: FoodSaladKimchi
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodCabbage: 1
+    FoodChiliPepper: 1
+  reagents:
+    TableSalt: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftInfernoKimchi
+  result: ImperialFoodInfernoKimchi
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodCabbage: 1
+    FoodChillyPepper: 1
+  reagents:
+    TableSalt: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftGarlicKimchi
+  result: ImperialFoodGarlicKimchi
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodCabbage: 1
+    FoodChiliPepper: 1
+    FoodGarlic: 1
+  reagents:
+    TableSalt: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSurimi
+  result: ImperialFoodSurimi
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodMeatFish: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSambal
+  result: ImperialFoodSambal
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodChiliPepper: 1
+    FoodGarlic: 1
+    FoodOnion: 1
+    FoodBowlBig: 1
+  reagents:
+    Sugar: 3
+    JuiceLime: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftKatsuFillet
+  result: ImperialFoodKatsuFillet
+  time: 3
+  category: Frozen
+  ingredients:
+    FoodMeatCutlet: 1
+    ImperialFoodBreadsliceReispan: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRiceDough
+  result: ImperialFoodRiceDough
+  time: 3
+  category: Rice
+  reagents:
+    Flour: 10
+    Rice: 10
+    Water: 10
+
+- type: imperialCraftRecipe
+  id: ImperialCraftHurricaneRice
+  result: ImperialFoodSaladHurricaneRice
+  time: 3
+  category: Rice
+  ingredients:
+    FoodRiceBoiled: 1
+    FoodEgg: 1
+    FoodOnionSlice: 1
+    FoodChiliPepper: 1
+    FoodMeatCutletCooked: 1
+    FoodPineappleSlice: 1
+    FoodBowlBig: 1
+  reagents:
+    Soysauce: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftHuaMulanCongee
+  result: ImperialFoodBowledHuaMulanCongee
+  time: 3
+  category: Rice
+  ingredients:
+    FoodMeatBaconCooked: 1
+    FoodMealFriedegg: 2
+    FoodBowlBig: 1
+  reagents:
+    ImperialSoupRicePorridge: 10
+
+- type: imperialCraftRecipe
+  id: ImperialCraftKetchupFriedRice
+  result: ImperialFoodSaladKetchupFriedRice
+  time: 3
+  category: Rice
+  ingredients:
+    FoodRiceBoiled: 1
+    FoodOnionSlice: 1
+    ImperialFoodSausageAmerican: 1
+    FoodCarrot: 1
+    FoodPeaPod: 1
+    FoodBowlBig: 1
+  reagents:
+    Ketchup: 5
+    ImperialWorcestershire: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftEggFriedRice
+  result: FoodRiceEgg
+  time: 3
+  category: Rice
+  ingredients:
+    FoodRiceBoiled: 1
+    FoodEgg: 1
+    FoodBowlBig: 1
+  reagents:
+    Soysauce: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBulgogiNoodles
+  result: ImperialFoodSaladBulgogiNoodles
+  time: 3
+  category: Noodles
+  ingredients:
+    ImperialFoodSpaghettiBoilednoodles: 1
+    FoodMeatCutletCooked: 1
+    FoodApple: 1
+    FoodGarlic: 1
+    FoodOnionSlice: 1
+    FoodBowlBig: 1
+  reagents:
+    ImperialSoupTeriyaki: 4
+
+- type: imperialCraftRecipe
+  id: ImperialCraftYakisobaKatsu
+  result: ImperialFoodSaladYakisobaKatsu
+  time: 3
+  category: Noodles
+  ingredients:
+    ImperialFoodSpaghettiBoilednoodles: 1
+    FoodCabbage: 1
+    FoodCarrot: 1
+    FoodOnionSlice: 1
+    ImperialFoodKatsuFillet: 1
+    FoodBowlBig: 1
+  reagents:
+    ImperialWorcestershire: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSimpleFriedNoodles
+  result: ImperialFoodSaladSimpleFriedNoodles
+  time: 3
+  category: Noodles
+  ingredients:
+    ImperialFoodSpaghettiBoilednoodles: 1
+    FoodBowlBig: 1
+  reagents:
+    Soysauce: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSetagayaCurry
+  result: ImperialFoodSaladSetagayaCurry
+  time: 3
+  category: Rice
+  ingredients:
+    FoodRiceBoiled: 1
+    FoodApple: 1
+    FoodSnackChocolate: 1
+    FoodMeatRawBase: 1
+    FoodOnion: 1
+    FoodCarrot: 1
+    FoodPotato: 1
+    FoodBowlBig: 1
+  reagents:
+    ImperialHoney: 3
+    Ketchup: 3
+    Coffee: 3
+    Wine: 3
+    ImperialCurryPowder: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBigBlueBurger
+  result: ImperialFoodBurgerBigBlue
+  time: 3
+  category: Burger
+  ingredients:
+    FoodBreadBun: 1
+    FoodMeatPattyCooked: 2
+    FoodOnionSlice: 1
+    FoodCheeseSlice: 1
+    FoodMeatBaconCooked: 1
+    FoodPineappleSlice: 1
+  reagents:
+    ImperialSoupTeriyaki: 4
+
+- type: imperialCraftRecipe
+  id: ImperialCraftChappyPatty
+  result: ImperialFoodBurgerChappy
+  time: 3
+  category: Burger
+  ingredients:
+    FoodBreadBun: 1
+    ImperialFoodGrilledChapslice: 2
+    FoodMealFriedegg: 1
+    FoodCheeseSlice: 1
+  reagents:
+    Ketchup: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftKingKatsuSandwich
+  result: ImperialFoodKingKatsuSandwich
+  time: 3
+  category: Sandwich
+  ingredients:
+    ImperialFoodBreadsliceReispan: 2
+    ImperialFoodKatsuFillet: 1
+    FoodMeatBaconCooked: 1
+    FoodSaladKimchi: 1
+    FoodOnionSlice: 1
+    FoodTomato: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMarteCubanoSandwich
+  result: ImperialFoodMarteCubanoSandwich
+  time: 3
+  category: Sandwich
+  ingredients:
+    ImperialFoodBreadsliceReispan: 2
+    FoodMeatBaconCooked: 1
+    ImperialFoodPickle: 2
+    FoodCheeseSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCroqueMartienne
+  result: ImperialFoodCroqueMartienne
+  time: 3
+  category: Sandwich
+  ingredients:
+    ImperialFoodBreadsliceReispan: 2
+    FoodMeatCutletCooked: 1
+    FoodCheeseSlice: 1
+    FoodPineappleSlice: 1
+    FoodMealFriedegg: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftProspectSunrise
+  result: ImperialFoodProspectSunrise
+  time: 3
+  category: Sandwich
+  ingredients:
+    ImperialFoodBreadsliceReispan: 2
+    FoodMeatBaconCooked: 1
+    FoodCheeseSlice: 1
+    FoodMealOmelette: 1
+    ImperialFoodPickle: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftTakoyaki
+  result: ImperialFoodTakoyaki
+  time: 3
+  category: Meat
+  ingredients:
+    ImperialFoodFishmeatOctopus: 1
+    FoodOnionSlice: 1
+  reagents:
+    ImperialMartianBatter: 6
+    ImperialWorcestershire: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRussianTakoyaki
+  result: ImperialFoodTakoyakiRussian
+  time: 3
+  category: Meat
+  ingredients:
+    ImperialFoodFishmeatOctopus: 1
+    FoodChillyPepper: 1
+  reagents:
+    ImperialMartianBatter: 6
+    CapsaicinOil: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftTacoyaki
+  result: ImperialFoodTakoyakiTaco
+  time: 3
+  category: Meat
+  ingredients:
+    FoodMeatMeatball: 1
+    FoodCorn: 1
+    FoodCheeseSlice: 1
+  reagents:
+    ImperialMartianBatter: 6
+    ImperialRedBay: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBratKimchi
+  result: ImperialFoodBratKimchi
+  time: 3
+  category: Uncategorized
+  ingredients:
+    ImperialFoodSausage: 1
+    FoodSaladKimchi: 1
+  reagents:
+    Sugar: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftTonkatsuwurst
+  result: ImperialFoodTonkatsuwurst
+  time: 3
+  category: Meat
+  ingredients:
+    ImperialFoodSausage: 1
+    FoodMealFries: 1
+  reagents:
+    ImperialWorcestershire: 3
+    ImperialRedBay: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftKitzushi
+  result: ImperialFoodKitzushi
+  time: 3
+  category: Sushi
+  ingredients:
+    FoodRiceBoiled: 1
+    FoodTofu: 1
+    FoodCheeseSlice: 1
+    FoodChiliPepper: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRotiJohn
+  result: ImperialFoodRotiJohn
+  time: 3
+  category: Sandwich
+  ingredients:
+    FoodBreadBaguette: 1
+    FoodMeatMeatball: 1
+    FoodEgg: 1
+    FoodOnionSlice: 1
+  reagents:
+    CapsaicinOil: 3
+    Mayo: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftKurryOkSubsando
+  result: ImperialFoodKurryOkSubsando
+  time: 3
+  category: Sandwich
+  ingredients:
+    FoodBreadBaguette: 1
+    ImperialFoodIzakayaFries: 1
+    ImperialFoodKatsuFillet: 1
+  reagents:
+    ImperialSoupCurrySauce: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftLocoMoco
+  result: ImperialFoodLocoMoco
+  time: 3
+  category: Rice
+  ingredients:
+    FoodRiceBoiled: 1
+    FoodMeatPattyCooked: 1
+    FoodOnionSlice: 1
+    FoodMealFriedegg: 1
+  reagents:
+    ImperialGravy: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftWildDuckFries
+  result: ImperialFoodWildDuckFries
+  time: 3
+  category: Uncategorized
+  ingredients:
+    ImperialFoodIzakayaFries: 1
+    FoodMeatCutletCooked: 1
+  reagents:
+    Ketchup: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftLittleHawaiiHotdog
+  result: ImperialFoodLittleHawaiiHotdog
+  time: 3
+  category: Sandwich
+  ingredients:
+    ImperialFoodHotdog: 1
+    FoodPineappleSlice: 1
+    FoodOnionSlice: 1
+  reagents:
+    ImperialSoupTeriyaki: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSaltChilliFries
+  result: ImperialFoodSaltChilliFries
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodMealFries: 1
+    FoodChiliPepper: 1
+    FoodOnion: 1
+    FoodGarlic: 1
+  reagents:
+    TableSalt: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSteakCroquette
+  result: ImperialFoodSteakCroquette
+  time: 3
+  category: Pastry
+  ingredients:
+    FoodMeatCooked: 1
+    ImperialFoodMashedPotatoes: 1
+    ImperialFoodBreadsliceReispan: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftChapsilog
+  result: ImperialFoodChapsilog
+  time: 3
+  category: Uncategorized
+  ingredients:
+    ImperialFoodGrilledChapslice: 2
+    FoodMealFriedegg: 1
+    FoodRiceBoiled: 1
+    FoodGarlic: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftAgedashiTofu
+  result: ImperialFoodSaladAgedashiTofu
+  time: 3
+  category: Soup
+  ingredients:
+    FoodTofu: 1
+    FoodOnionSlice: 1
+    FoodBowlBig: 1
+  reagents:
+    ImperialSoupDashi: 20
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPoKokGai
+  result: ImperialFoodSaladPoKokGai
+  time: 3
+  category: Rice
+  ingredients:
+    FoodRiceBoiled: 1
+    FoodMeatChicken: 1
+    FoodBowlBig: 1
+  reagents:
+    ImperialCoconutMilk: 5
+    ImperialCurryPowder: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftHuoxingTofu
+  result: ImperialFoodSaladHuoxingTofu
+  time: 3
+  category: Meat
+  ingredients:
+    FoodTofu: 1
+    FoodMeatMeatball: 1
+    FoodChiliPepper: 1
+    FoodSoybeans: 1
+    FoodBowlBig: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftGalinhaDeCabidela
+  result: ImperialFoodSaladGalinhaDeCabidela
+  time: 3
+  category: Rice
+  ingredients:
+    FoodMeatChicken: 1
+    FoodTomato: 1
+    ImperialFoodUncookedRice: 1
+    FoodBowlBig: 1
+  reagents:
+    Blood: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftKatsuCurry
+  result: ImperialFoodSaladKatsuCurry
+  time: 3
+  category: Rice
+  ingredients:
+    ImperialFoodKatsuFillet: 1
+    FoodRiceBoiled: 1
+    FoodBowlBig: 1
+  reagents:
+    ImperialSoupCurrySauce: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBeefBowl
+  result: ImperialFoodSaladBeefBowl
+  time: 3
+  category: Rice
+  ingredients:
+    FoodMeatCutletCooked: 1
+    FoodOnionSlice: 1
+    FoodRiceBoiled: 1
+    FoodBowlBig: 1
+  reagents:
+    ImperialSoupDashi: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSaltChilliBowl
+  result: ImperialFoodSaladSaltChilliBowl
+  time: 3
+  category: Rice
+  ingredients:
+    ImperialFoodGrilledOctopus: 1
+    FoodChiliPepper: 1
+    FoodOnion: 1
+    FoodRiceBoiled: 1
+    FoodBowlBig: 1
+  reagents:
+    TableSalt: 2
+    ImperialSoupCurrySauce: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftKansaiBowl
+  result: ImperialFoodSaladKansaiBowl
+  time: 3
+  category: Rice
+  ingredients:
+    ImperialFoodKamabokoSlice: 2
+    FoodEggBoiled: 1
+    FoodOnion: 1
+    FoodRiceBoiled: 1
+    FoodBowlBig: 1
+  reagents:
+    ImperialSoupDashi: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCilbir
+  result: ImperialFoodCilbir
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodGarlic: 1
+    FoodMealFriedegg: 1
+    FoodChiliPepper: 1
+  reagents:
+    ImperialYoghurt: 5
+    OilOlive: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPekingDuckCrepes
+  result: ImperialFoodPekingDuckCrepes
+  time: 3
+  category: Meat
+  ingredients:
+    FoodBakedPancake: 1
+    FoodMeatCutletCooked: 1
+    FoodOrange: 1
+  reagents:
+    Cognac: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftVulgarisSpekkoek
+  result: ImperialFoodCakeSpekkoek
+  time: 3
+  category: Cake
+  ingredients:
+    FoodCakePlain: 1
+    FoodAmbrosiaVulgaris: 1
+    FoodButterSlice: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPineappleFoster
+  result: ImperialFoodSaladPineappleFoster
+  time: 3
+  category: Frozen
+  ingredients:
+    FoodPineappleSlice: 1
+    ImperialFoodIcecream: 1
+    FoodBowlBig: 1
+  reagents:
+    Sugar: 2
+    Rum: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBohLohYah
+  result: ImperialFoodBohLohYah
+  time: 3
+  category: Cookie
+  ingredients:
+    FoodDoughSlice: 1
+    FoodButterSlice: 1
+  reagents:
+    Sugar: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBananaFritter
+  result: ImperialFoodBananaFritter
+  time: 3
+  category: Pastry
+  ingredients:
+    FoodBanana: 1
+  reagents:
+    ImperialMartianBatter: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPineappleFritter
+  result: ImperialFoodPineappleFritter
+  time: 3
+  category: Pastry
+  ingredients:
+    FoodPineappleSlice: 1
+  reagents:
+    ImperialMartianBatter: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftKaseiDango
+  result: ImperialFoodKebabKaseiDango
+  time: 3
+  category: Pastry
+  ingredients:
+    PartRodMetal1: 1
+  reagents:
+    Sugar: 5
+    Rice: 5
+    JuiceOrange: 2
+    Grenadine: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPbIceCreamMochi
+  result: ImperialFoodPbIceCreamMochi
+  time: 3
+  category: Frozen
+  ingredients:
+    ImperialFoodIcecream: 1
+  reagents:
+    Sugar: 5
+    Rice: 5
+    ImperialPeanutButter: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFrozenPineapplePop
+  result: ImperialFoodPopsiclePineapplePop
+  time: 3
+  category: Frozen
+  ingredients:
+    FoodPineappleSlice: 1
+    FoodSnackChocolate: 1
+    FoodFrozenPopsicleTrash: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSeaSaltPop
+  result: ImperialFoodPopsicleSeaSalt
+  time: 3
+  category: Frozen
+  ingredients:
+    FoodFrozenPopsicleTrash: 1
+  reagents:
+    Cream: 5
+    Sugar: 5
+    TableSalt: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBerryTopsicle
+  result: ImperialFoodPopsicleTopsicle
+  time: 3
+  category: Frozen
+  ingredients:
+    FoodTofu: 1
+    FoodFrozenPopsicleTrash: 1
+  reagents:
+    JuiceBerry: 5
+    Sugar: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBananaTopsicle
+  result: ImperialFoodPopsicleTopsicleBanana
+  time: 3
+  category: Frozen
+  ingredients:
+    FoodTofu: 1
+    FoodFrozenPopsicleTrash: 1
+  reagents:
+    JuiceBanana: 5
+    Sugar: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPineappleTopsicle
+  result: ImperialFoodPopsicleTopsiclePineapple
+  time: 3
+  category: Frozen
+  ingredients:
+    FoodTofu: 1
+    FoodFrozenPopsicleTrash: 1
+  reagents:
+    JuicePineapple: 5
+    Sugar: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPlasmaDogSupreme
+  result: ImperialFoodPlasmaDogSupreme
+  time: 3
+  category: Sandwich
+  ingredients:
+    ImperialFoodHotdog: 1
+    FoodPineappleSlice: 1
+    ImperialFoodSambal: 1
+    FoodOnionSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFrickles
+  result: ImperialFoodFrickles
+  time: 3
+  category: Uncategorized
+  ingredients:
+    ImperialFoodPickle: 1
+  reagents:
+    ImperialMartianBatter: 2
+    ImperialRedBay: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRawBallparkPretzel
+  result: ImperialFoodRawBallparkPretzel
+  time: 3
+  category: Pastry
+  ingredients:
+    FoodDoughSlice: 1
+  reagents:
+    TableSalt: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRawBallparkTsukune
+  result: ImperialFoodKebabRawBallparkTsukune
+  time: 3
+  category: Meat
+  ingredients:
+    ImperialFoodRawMeatballChicken: 1
+    PartRodMetal1: 1
+  reagents:
+    ImperialSoupTeriyaki: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSproutBowl
+  result: ImperialFoodSaladSproutBowl
+  time: 3
+  category: Rice
+  ingredients:
+    ImperialFoodPickledVoltvine: 1
+    FoodMeatFish: 1
+    FoodRiceBoiled: 1
+    FoodBowlBig: 1
+  reagents:
+    ImperialSoupDashi: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftHumankebab
+  result: ImperialFoodKebabHuman
+  time: 3
+  category: Meat
+  ingredients:
+    PartRodMetal1: 1
+    FoodMeatCooked: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftKebab
+  result: ImperialFoodKebabMonkey
+  time: 3
+  category: Meat
+  ingredients:
+    PartRodMetal1: 1
+    FoodMeatCooked: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftTofukebab
+  result: ImperialFoodKebabTofu
+  time: 3
+  category: Meat
+  ingredients:
+    PartRodMetal1: 1
+    FoodTofu: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFiestaskewer
+  result: ImperialFoodKebabFiesta
+  time: 3
+  category: Meat
+  ingredients:
+    PartRodMetal1: 1
+    FoodChiliPepper: 1
+    FoodMeatCutletCooked: 1
+    FoodCorn: 1
+    FoodTomato: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSpidereggsham
+  result: ImperialFoodSpidereggsham
+  time: 3
+  category: Meat
+  ingredients:
+    ImperialFoodSpidereggs: 1
+    FoodMeatSpiderCutletCooked: 2
+  reagents:
+    TableSalt: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCornedbeef
+  result: FoodMealCornedbeef
+  time: 3
+  category: Meat
+  ingredients:
+    FoodMeatCooked: 1
+    FoodCabbage: 2
+  reagents:
+    TableSalt: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBearsteak
+  result: FoodMealBearsteak
+  time: 3
+  category: Meat
+  ingredients:
+    FoodMeatBearCooked: 1
+  reagents:
+    ManlyDorf: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftStewedsoymeat
+  result: ImperialFoodStewedsoymeat
+  time: 3
+  category: Meat
+  ingredients:
+    ImperialFoodSoydope: 2
+    FoodCarrot: 1
+    FoodTomato: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSausage
+  result: ImperialFoodRawSausage
+  time: 3
+  category: Meat
+  ingredients:
+    FoodMeatMeatball: 1
+    FoodMeatCutlet: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftNugget
+  result: FoodBakedNugget
+  time: 3
+  category: Meat
+  ingredients:
+    FoodMeatCutletCooked: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRawkhinkali
+  result: ImperialFoodRawkhinkali
+  time: 3
+  category: Meat
+  ingredients:
+    FoodDoughSlice: 1
+    FoodGarlic: 1
+    FoodMeatMeatball: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMeatbun
+  result: FoodBakedBunMeat
+  time: 3
+  category: Meat
+  ingredients:
+    FoodBreadBun: 1
+    FoodMeatMeatball: 1
+    FoodCabbage: 1
+  reagents:
+    Soysauce: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPigblanket
+  result: FoodMealPigblanket
+  time: 3
+  category: Meat
+  ingredients:
+    FoodBreadBun: 1
+    FoodButterSlice: 1
+    FoodMeatCutletCooked: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRicepork
+  result: FoodRicePork
+  time: 3
+  category: Meat
+  ingredients:
+    FoodBowlBig: 1
+    FoodRiceBoiled: 1
+    FoodMeatCutletCooked: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRibs
+  result: FoodMealRibs
+  time: 3
+  category: Meat
+  ingredients:
+    FoodMeatCooked: 2
+    PartRodMetal1: 2
+  reagents:
+    BbqSauce: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMeatclown
+  result: FoodMeatClown
+  time: 3
+  category: Meat
+  ingredients:
+    FoodMeatCooked: 1
+    FoodBanana: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftLasagna
+  result: ImperialFoodLasagna
+  time: 3
+  category: Meat
+  ingredients:
+    FoodMeatCutletCooked: 2
+    FoodTomato: 1
+    FoodCheeseSlice: 2
+    FoodNoodles: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftGumbo
+  result: FoodRiceGumbo
+  time: 3
+  category: Meat
+  ingredients:
+    FoodBowlBig: 1
+    FoodRiceBoiled: 1
+    FoodPeaPod: 1
+    FoodChiliPepper: 1
+    FoodMeatCutletCooked: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFriedChicken
+  result: FoodMeatChickenFried
+  time: 3
+  category: Meat
+  ingredients:
+    FoodMeatChicken: 1
+  reagents:
+    Flour: 5
+    Cornmeal: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBeefStroganoff
+  result: ImperialFoodBeefStroganoff
+  time: 3
+  category: Meat
+  ingredients:
+    FoodMushroom: 2
+    FoodOnion: 1
+    FoodTomato: 1
+    FoodMeatCooked: 1
+    FoodBowlBig: 1
+  reagents:
+    Flour: 5
+    Milk: 5
+    TableSalt: 2
+    Blackpepper: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBeefWellington
+  result: ImperialFoodBeefWellington
+  time: 3
+  category: Meat
+  ingredients:
+    FoodMeatCooked: 1
+    FoodMushroom: 1
+    FoodGarlic: 1
+    FoodMeatBaconCooked: 1
+    FoodDoughFlat: 1
+  reagents:
+    Cream: 5
+    TableSalt: 2
+    Blackpepper: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftKortaWellington
+  result: ImperialFoodKortaWellington
+  time: 3
+  category: Meat
+  ingredients:
+    FoodMeatCooked: 1
+    FoodMushroom: 1
+    FoodGarlic: 1
+    FoodMeatBaconCooked: 1
+    ImperialFoodFlatrootdough: 1
+  reagents:
+    ImperialKortaMilk: 5
+    TableSalt: 2
+    Blackpepper: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFullEnglish
+  result: FoodBreakfastEnglish
+  time: 3
+  category: Meat
+  ingredients:
+    ImperialFoodSausage: 1
+    FoodMealFriedegg: 2
+    FoodMeatBaconCooked: 1
+    FoodMushroom: 1
+    FoodTomato: 1
+    FoodTinBeans: 1
+    FoodBreadButteredToast: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftEnvirochow
+  result: ImperialFoodCannedEnvirochow
+  time: 3
+  category: Meat
+  ingredients:
+    FoodMeatCorgi: 2
+  reagents:
+    Vitamin: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMeatloaf
+  result: ImperialFoodRawMeatloaf
+  time: 3
+  category: Meat
+  ingredients:
+    FoodMeatRawBase: 2
+    FoodOnion: 1
+    FoodGarlic: 1
+  reagents:
+    Ketchup: 10
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPineappleSkewer
+  result: ImperialFoodKebabPineappleSkewer
+  time: 3
+  category: Meat
+  ingredients:
+    PartRodMetal1: 1
+    FoodPineappleSlice: 2
+    FoodMeatCutletCooked: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBurrito
+  result: ImperialFoodBurrito
+  time: 3
+  category: Burrito
+  ingredients:
+    FoodDoughTortillaFlat: 1
+    FoodSoybeans: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCheesyburrito
+  result: ImperialFoodCheesyburrito
+  time: 3
+  category: Burrito
+  ingredients:
+    FoodCheeseSlice: 2
+    FoodDoughTortillaFlat: 1
+    FoodSoybeans: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCarneburrito
+  result: ImperialFoodCarneburrito
+  time: 3
+  category: Burrito
+  ingredients:
+    FoodDoughTortillaFlat: 1
+    FoodMeatCutletCooked: 2
+    FoodSoybeans: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFuegoburrito
+  result: ImperialFoodFuegoburrito
+  time: 3
+  category: Burrito
+  ingredients:
+    FoodDoughTortillaFlat: 1
+    FoodChillyPepper: 2
+    FoodSoybeans: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftNachos
+  result: FoodMealNachos
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodDoughTortillaFlat: 1
+  reagents:
+    TableSalt: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCheesynachos
+  result: FoodMealNachosCheesy
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodCheeseSlice: 1
+    FoodDoughTortillaFlat: 1
+  reagents:
+    TableSalt: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCubannachos
+  result: FoodMealNachosCuban
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodChiliPepper: 2
+    FoodDoughTortillaFlat: 1
+  reagents:
+    Ketchup: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftTaco
+  result: ImperialFoodTaco
+  time: 3
+  category: Taco
+  ingredients:
+    FoodDoughTortillaFlat: 1
+    FoodCheeseSlice: 1
+    FoodMeatCutletCooked: 1
+    FoodCabbage: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftTacoplain
+  result: FoodTacoBeef
+  time: 3
+  category: Taco
+  ingredients:
+    FoodDoughTortillaFlat: 1
+    FoodCheeseSlice: 1
+    FoodMeatCutletCooked: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftEnchiladas
+  result: FoodMealEnchiladas
+  time: 3
+  category: Burrito
+  ingredients:
+    FoodMeatCutletCooked: 2
+    FoodChiliPepper: 2
+    FoodDoughTortillaFlat: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftChipsandsalsa
+  result: ImperialFoodChipsandsalsa
+  time: 3
+  category: Condiment
+  ingredients:
+    FoodSnackBoritos: 1
+    FoodChiliPepper: 1
+    FoodOnion: 1
+    FoodTomato: 1
+    FoodBowlBig: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftClassicChimichanga
+  result: ImperialFoodClassicChimichanga
+  time: 3
+  category: Burrito
+  ingredients:
+    FoodDoughTortillaFlat: 1
+    FoodMeatCutletCooked: 2
+    FoodCheeseSlice: 1
+    FoodOnion: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftVegetarianChimichanga
+  result: ImperialFoodVegetarianChimichanga
+  time: 3
+  category: Burrito
+  ingredients:
+    FoodDoughTortillaFlat: 1
+    FoodCabbage: 1
+    FoodOnion: 1
+    FoodChiliPepper: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftClassicHardShellTaco
+  result: ImperialFoodClassicHardShellTaco
+  time: 3
+  category: Taco
+  ingredients:
+    ImperialFoodHardTacoShell: 1
+    FoodMeatCutletCooked: 1
+    FoodCheeseSlice: 1
+    FoodTomato: 1
+    FoodCabbage: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPlainHardShellTaco
+  result: ImperialFoodPlainHardShellTaco
+  time: 3
+  category: Taco
+  ingredients:
+    ImperialFoodHardTacoShell: 1
+    FoodMeatCutletCooked: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRefriedBeans
+  result: ImperialFoodRefriedBeans
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodBowlBig: 1
+    FoodSoybeans: 2
+    FoodOnion: 1
+  reagents:
+    Water: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSpanishRice
+  result: ImperialFoodSpanishRice
+  time: 3
+  category: Rice
+  ingredients:
+    FoodBowlBig: 1
+    FoodRiceBoiled: 1
+    FoodTomato: 1
+  reagents:
+    TableSalt: 1
+    Blackpepper: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPineappleSalsa
+  result: ImperialFoodPineappleSalsa
+  time: 3
+  category: Condiment
+  ingredients:
+    FoodPineappleSlice: 2
+    FoodTomato: 1
+    FoodOnion: 1
+    FoodChiliPepper: 1
+    FoodBowlBig: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCandiedapple
+  result: ImperialFoodCandiedapple
+  time: 3
+  category: Candy
+  ingredients:
+    FoodApple: 1
+  reagents:
+    Sugar: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftChococoin
+  result: ImperialFoodChococoin
+  time: 3
+  category: Candy
+  ingredients:
+    FoodSnackChocolate: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFudgedice
+  result: ImperialFoodFudgedice
+  time: 3
+  category: Candy
+  ingredients:
+    d6Dice: 1
+    FoodSnackChocolate: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftChocoorange
+  result: ImperialFoodChocoorange
+  time: 3
+  category: Candy
+  ingredients:
+    FoodOrange: 1
+    FoodSnackChocolate: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCheesyfries
+  result: FoodMealFriesCheesy
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodMealFries: 1
+    FoodCheeseSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPoutine
+  result: ImperialFoodPoutine
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodMealFries: 1
+    FoodCheeseSlice: 1
+  reagents:
+    ImperialGravy: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBeans
+  result: FoodTinBeans
+  time: 4
+  category: Uncategorized
+  ingredients:
+    FoodSoybeans: 2
+  reagents:
+    Ketchup: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftEggplantparm
+  result: FoodMealEggplantParm
+  time: 3
+  category: Salad
+  ingredients:
+    FoodCheeseSlice: 2
+    FoodEggplant: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMelonkeg
+  result: ImperialFoodMelonkeg
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodHolymelon: 1
+    DrinkVodkaBottleFull: 1
+  reagents:
+    Vodka: 25
+
+- type: imperialCraftRecipe
+  id: ImperialCraftHoneybar
+  result: ImperialFoodHoneybar
+  time: 3
+  category: Uncategorized
+  ingredients:
+    OatBushel: 1
+  reagents:
+    ImperialHoney: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPowercrepe
+  result: ImperialFoodPowercrepe
+  time: 4
+  category: Pastry
+  ingredients:
+    FoodDoughFlat: 1
+    PowerCellHigh: 1
+    CaptainSabre: 1
+  reagents:
+    Milk: 1
+    ImperialCherryjelly: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBranrequests
+  result: ImperialFoodBranrequests
+  time: 3
+  category: Uncategorized
+  ingredients:
+    WheatBushel: 1
+    FoodSnackRaisins: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRicepudding
+  result: FoodRicePudding
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodBowlBig: 1
+    FoodRiceBoiled: 1
+  reagents:
+    Milk: 5
+    Sugar: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRisotto
+  result: ImperialFoodSaladRisotto
+  time: 3
+  category: Salad
+  ingredients:
+    FoodBowlBig: 1
+    FoodCheeseSlice: 1
+    FoodRiceBoiled: 1
+    FoodMushroom: 1
+  reagents:
+    Wine: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCrabRangoon
+  result: ImperialFoodCrabRangoon
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodDoughSlice: 1
+    FoodCheeseSlice: 1
+    FoodMeatCrab: 1
+  reagents:
+    Cream: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRoyalcheese
+  result: ImperialFoodCheeseRoyal
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodCheese: 1
+    ClothingHeadHatFancyCrown: 1
+  reagents:
+    StrangeReagent: 5
+    UnstableMutagen: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBechamelSauce
+  result: ImperialFoodBechamelSauce
+  time: 3
+  category: Condiment
+  ingredients:
+    FoodButterSlice: 1
+  reagents:
+    Milk: 10
+    Flour: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPierogi
+  result: ImperialFoodPierogi
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodDoughSlice: 1
+    FoodPotato: 1
+    FoodOnion: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftStuffedCabbage
+  result: ImperialFoodStuffedCabbage
+  time: 3
+  category: Salad
+  ingredients:
+    FoodMeatCutletCooked: 2
+    FoodRiceBoiled: 1
+    FoodCabbage: 1
+    FoodTomato: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftOnigiri
+  result: ImperialFoodOnigiri
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodRiceBoiled: 1
+    ImperialFoodSeaweedsheet: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMashedPotatoes
+  result: ImperialFoodMashedPotatoes
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodPotato: 2
+    FoodGarlic: 1
+    FoodButterSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCaramelPopcorn
+  result: ImperialFoodPopcornCaramel
+  time: 3
+  category: Candy
+  ingredients:
+    FoodSnackPopcorn: 1
+  reagents:
+    Sugar: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSaltyPopcorn
+  result: FoodSnackPopcorn
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodSnackPopcorn: 1
+  reagents:
+    TableSalt: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSpacylibertyduff
+  result: ImperialFoodBowledSpacylibertyduff
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodBowlBig: 1
+    FoodSpacemansTrumpet: 3
+  reagents:
+    Vodka: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftAmanitajelly
+  result: FoodJellyAmanita
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodBowlBig: 1
+    FoodFlyAmanita: 3
+  reagents:
+    Vodka: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftButteredBakedPotato
+  result: ImperialFoodButteredBakedPotato
+  time: 3
+  category: Uncategorized
+  ingredients:
+    ImperialFoodBakedPotato: 1
+    FoodButterSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftLoadedBakedPotato
+  result: FoodMealPotatoLoaded
+  time: 3
+  category: Uncategorized
+  ingredients:
+    ImperialFoodBakedPotato: 1
+    FoodCheeseSlice: 1
+    FoodMeatBaconCooked: 1
+    FoodCabbage: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCheesePierogi
+  result: ImperialFoodCheesePierogi
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodDoughSlice: 1
+    FoodPotato: 1
+    FoodCheeseSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMeatPierogi
+  result: ImperialFoodMeatPierogi
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodDoughSlice: 1
+    FoodPotato: 1
+    FoodMeatCutletCooked: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBonbonCaramelTruffle
+  result: ImperialFoodBonbonCaramelTruffle
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodSnackChocolate: 1
+  reagents:
+    Sugar: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBonbonChocolateTruffle
+  result: ImperialFoodBonbonChocolateTruffle
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodSnackChocolate: 1
+  reagents:
+    Sugar: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBonbonPeanutButterCup
+  result: ImperialFoodBonbonPeanutButterCup
+  time: 3
+  category: Candy
+  ingredients:
+    FoodSnackChocolate: 1
+  reagents:
+    ImperialPeanutButter: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSauteedEggplant
+  result: ImperialFoodSauteedEggplant
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodEggplant: 1
+    FoodGarlic: 1
+  reagents:
+    OilOlive: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftStuffedEggplant
+  result: ImperialFoodStuffedEggplant
+  time: 3
+  category: Salad
+  ingredients:
+    FoodEggplant: 1
+    FoodGarlic: 1
+    FoodCabbage: 1
+    FoodCheeseSlice: 1
+    FoodMeatCutletCooked: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBabaGhanoush
+  result: ImperialFoodBabaGhanoush
+  time: 3
+  category: Condiment
+  ingredients:
+    FoodBowlBig: 1
+    ImperialFoodPitaBread: 1
+    FoodEggplant: 1
+    FoodGarlic: 1
+  reagents:
+    OilOlive: 5
+    JuiceLemon: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMoussaka
+  result: ImperialFoodMoussaka
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodEggplant: 2
+    FoodGarlic: 1
+    FoodOnion: 1
+    FoodMeatCutletCooked: 1
+    ImperialFoodBechamelSauce: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCandiedPineapple
+  result: ImperialFoodCandiedPineapple
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodPineappleSlice: 1
+  reagents:
+    Sugar: 2
+    Water: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftTzatzikiAndPitaBread
+  result: ImperialFoodTzatzikiAndPitaBread
+  time: 3
+  category: Bread
+  ingredients:
+    ImperialFoodTzatzikiSauce: 1
+    ImperialFoodPitaBread: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftGrilledBeefGyro
+  result: ImperialFoodGrilledBeefGyro
+  time: 3
+  category: Burrito
+  ingredients:
+    ImperialFoodTzatzikiSauce: 1
+    ImperialFoodPitaBread: 1
+    FoodMeatCutletCooked: 2
+    FoodCabbage: 1
+    FoodTomato: 1
+    FoodOnion: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRawPitaBread
+  result: ImperialFoodRawPitaBread
+  time: 3
+  category: Bread
+  reagents:
+    Flour: 10
+    Water: 5
+    OilOlive: 2
+    Sugar: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMothicSalad
+  result: ImperialFoodMothicSalad
+  time: 3
+  category: Salad
+  ingredients:
+    FoodCabbage: 1
+    FoodOnionRedSlice: 2
+    FoodTomato: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSqueakingStirFry
+  result: ImperialFoodSqueakingStirFry
+  time: 3
+  category: Salad
+  ingredients:
+    FoodBowlBig: 1
+    ImperialFoodCheeseCheeseCurds: 1
+    FoodTofu: 1
+    FoodChiliPepper: 1
+    FoodRiceBoiled: 1
+    FoodCarrot: 1
+    FoodOnionSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSweetChiliCabbageWrap
+  result: ImperialFoodSweetChiliCabbageWrap
+  time: 3
+  category: Burrito
+  ingredients:
+    FoodBakedGrilledCheeseSandwich: 1
+    ImperialFoodMothicSalad: 1
+    FoodChiliPepper: 1
+    FoodCabbage: 1
+  reagents:
+    ImperialHoney: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftLoadedCurds
+  result: ImperialFoodLoadedCurds
+  time: 3
+  category: Uncategorized
+  ingredients:
+    ImperialFoodCheeseCheeseCurds: 1
+    FoodOnionSlice: 1
+    FoodCheeseSlice: 1
+    FoodMealFries: 1
+  reagents:
+    ImperialSoupChiliSinCarne: 10
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBakedCheesePlatter
+  result: ImperialFoodBakedCheesePlatter
+  time: 3
+  category: Uncategorized
+  ingredients:
+    ImperialFoodBakedCheese: 1
+    ImperialFoodGriddleToast: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRawGreenLasagne
+  result: ImperialFoodRawGreenLasagne
+  time: 3
+  category: Noodles
+  ingredients:
+    ImperialFoodPesto: 1
+    FoodNoodlesBoiled: 2
+    ImperialFoodBechamelSauce: 1
+    ImperialFoodCheeseFirmCheeseSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftButteredBakedCorn
+  result: ImperialFoodButteredBakedCorn
+  time: 3
+  category: Uncategorized
+  ingredients:
+    ImperialFoodOvenBakedCorn: 1
+    FoodButterSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFiestaCornSkillet
+  result: ImperialFoodFiestaCornSkillet
+  time: 3
+  category: Salad
+  ingredients:
+    ImperialFoodOvenBakedCorn: 1
+    FoodSnackBoritos: 1
+    FoodChiliPepper: 2
+    FoodTomato: 1
+    FoodOnionSlice: 2
+    FoodCheeseSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRatatouille
+  result: ImperialFoodRawRatatouille
+  time: 3
+  category: Salad
+  ingredients:
+    FoodTomato: 1
+    FoodOnionRed: 1
+    FoodEggplant: 1
+    ImperialFoodRoastedBellPepper: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMozzarellaSticks
+  result: ImperialFoodMozzarellaSticks
+  time: 3
+  category: Uncategorized
+  ingredients:
+    ImperialFoodCheeseMozzarella: 1
+    FoodBreadPlainSlice: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFueljacksLunch
+  result: ImperialFoodFueljacksLunch
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodCabbage: 1
+    FoodPotato: 1
+    FoodOnionSlice: 2
+    FoodChiliPepper: 1
+    ImperialFoodCheeseFirmCheeseSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMacBalls
+  result: ImperialFoodMacBalls
+  time: 3
+  category: Uncategorized
+  ingredients:
+    ImperialFoodReadyDonkWarmMacNCheese: 1
+    ImperialFoodTomatoSauce: 1
+  reagents:
+    ImperialCornmealBatter: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFriedEggplantPolenta
+  result: ImperialFoodBowledFriedEggplantPolenta
+  time: 3
+  category: Salad
+  ingredients:
+    FoodEggplant: 1
+    FoodBreadPlainSlice: 2
+    ImperialFoodTomatoSauce: 1
+    ImperialFoodCheeseMozzarella: 1
+    FoodBowlBig: 1
+  reagents:
+    ImperialSoupCornmealPorridge: 10
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFleetSalad
+  result: ImperialFoodSaladFleetSalad
+  time: 3
+  category: Salad
+  ingredients:
+    FoodBreadPlainSlice: 1
+    FoodBakedGrilledCheeseSandwich: 1
+    FoodCarrot: 1
+    ImperialFoodMothicSalad: 1
+    FoodBowlBig: 1
+  reagents:
+    OilOlive: 2
+    Vinegar: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCottonSalad
+  result: ImperialFoodSaladCottonSalad
+  time: 3
+  category: Salad
+  ingredients:
+    FoodCarrot: 1
+    ImperialFoodMothicSalad: 1
+    CottonBol: 2
+    FoodBowlBig: 1
+  reagents:
+    OilOlive: 2
+    Vinegar: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRawMothicFirecracker
+  result: ImperialFoodRawMothicFirecracker
+  time: 3
+  category: Pizza
+  ingredients:
+    ImperialFoodMothicPizzaDough: 1
+    ImperialFoodCheeseFirmCheeseSlice: 1
+    ImperialFoodOvenBakedCorn: 1
+    FoodChillyPepper: 1
+  reagents:
+    BbqSauce: 10
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRawMothicFiveCheese
+  result: ImperialFoodRawMothicFiveCheese
+  time: 3
+  category: Pizza
+  ingredients:
+    ImperialFoodMothicPizzaDough: 1
+    ImperialFoodTomatoSauce: 1
+    ImperialFoodCheeseFirmCheeseSlice: 1
+    FoodCheeseSlice: 1
+    ImperialFoodCheeseMozzarella: 1
+    ImperialFoodHerbyCheese: 1
+    ImperialFoodCheeseCheeseCurds: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRawMothicPesto
+  result: ImperialFoodRawMothicPesto
+  time: 3
+  category: Pizza
+  ingredients:
+    ImperialFoodMothicPizzaDough: 1
+    ImperialFoodPesto: 1
+    FoodTomato: 1
+    ImperialFoodCheeseMozzarella: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMothCheeseCakes
+  result: ImperialFoodMothCheeseCakes
+  time: 3
+  category: Uncategorized
+  ingredients:
+    ImperialFoodCheeseCurdCheese: 1
+    FoodSnackChocolate: 1
+  reagents:
+    Flour: 5
+    Sugar: 5
+    ImperialHoney: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMothmallow
+  result: ImperialFoodCakeMothmallow
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodSoybeans: 1
+  reagents:
+    ImperialVanilla: 5
+    Sugar: 15
+    Rum: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMoffin
+  result: ImperialFoodMuffinMoffin
+  time: 3
+  category: Pastry
+  ingredients:
+    FoodDoughPastryBase: 1
+    MaterialCloth: 1
+  reagents:
+    Milk: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonut
+  result: FoodDonutPlain
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDoughPastryBase: 1
+  reagents:
+    Sugar: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutChaos
+  result: FoodDonutChaos
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDoughPastryBase: 1
+  reagents:
+    FrostOil: 5
+    CapsaicinOil: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutMeat
+  result: FoodDonutMeat
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodMeatCutlet: 1
+    FoodDoughPastryBase: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutJelly
+  result: FoodDonutJellyPlain
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDoughPastryBase: 1
+  reagents:
+    JuiceBerry: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutBerry
+  result: FoodDonutPink
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutPlain: 1
+  reagents:
+    JuiceBerry: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutTrumpet
+  result: FoodDonutSpaceman
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutPlain: 1
+  reagents:
+    PolypyryliumOligomers: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutApple
+  result: FoodDonutApple
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutPlain: 1
+  reagents:
+    JuiceApple: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutCaramel
+  result: FoodDonutCaramel
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutPlain: 1
+  reagents:
+    Sugar: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutChoco
+  result: FoodDonutChocolate
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodSnackChocolate: 1
+    FoodDonutPlain: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutBlumpkin
+  result: ImperialFoodDonutBlumpkin
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutPlain: 1
+  reagents:
+    ImperialBlumpkinjuice: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutBungo
+  result: FoodDonutBungo
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutPlain: 1
+  reagents:
+    JuiceBungo: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutMatcha
+  result: FoodDonut
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutPlain: 1
+  reagents:
+    TeaPowder: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutLaugh
+  result: FoodDonutSweetpea
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutPlain: 1
+  reagents:
+    LaughinSyrup: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutJellyBerry
+  result: FoodDonutJellyPink
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutJellyPlain: 1
+  reagents:
+    JuiceBerry: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutJellyTrumpet
+  result: FoodDonutJellySpaceman
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutJellyPlain: 1
+  reagents:
+    PolypyryliumOligomers: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutJellyApple
+  result: FoodDonutJellyApple
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutJellyPlain: 1
+  reagents:
+    JuiceApple: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutJellyCaramel
+  result: FoodDonutJellyCaramel
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutJellyPlain: 1
+  reagents:
+    Sugar: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutJellyChoco
+  result: FoodDonutJellyChocolate
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodSnackChocolate: 1
+    FoodDonutJellyPlain: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutJellyBlumpkin
+  result: ImperialFoodDonutJellyBlumpkin
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutJellyPlain: 1
+  reagents:
+    ImperialBlumpkinjuice: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutJellyBungo
+  result: FoodDonutJellyBungo
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutJellyPlain: 1
+  reagents:
+    JuiceBungo: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutJellyMatcha
+  result: FoodDonutJelly
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutJellyPlain: 1
+  reagents:
+    TeaPowder: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutJellyLaugh
+  result: FoodDonutJellySweetpea
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutJellyPlain: 1
+  reagents:
+    LaughinSyrup: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutSlimejellyBerry
+  result: FoodDonutJellyPink
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutJellyHomer: 1
+  reagents:
+    JuiceBerry: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutSlimejellyTrumpet
+  result: FoodDonutJellySpaceman
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutJellyHomer: 1
+  reagents:
+    PolypyryliumOligomers: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutSlimejellyApple
+  result: FoodDonutJellyApple
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutJellyHomer: 1
+  reagents:
+    JuiceApple: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutSlimejellyCaramel
+  result: FoodDonutJellyCaramel
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutJellyHomer: 1
+  reagents:
+    Sugar: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutSlimejellyChoco
+  result: FoodDonutJellyChocolate
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodSnackChocolate: 1
+    FoodDonutJellyHomer: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutSlimejellyBlumpkin
+  result: ImperialFoodDonutJellySlimejellyBlumpkin
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutJellyHomer: 1
+  reagents:
+    ImperialBlumpkinjuice: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutSlimejellyBungo
+  result: FoodDonutJellyBungo
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutJellyHomer: 1
+  reagents:
+    JuiceBungo: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutSlimejellyMatcha
+  result: FoodDonutJelly
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutJellyHomer: 1
+  reagents:
+    TeaPowder: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonutSlimejellyLaugh
+  result: FoodDonutJellySweetpea
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDonutJellyHomer: 1
+  reagents:
+    LaughinSyrup: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftWaffles
+  result: FoodBakedWaffle
+  time: 1.5
+  category: Bread
+  ingredients:
+    FoodDoughPastryBase: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSoylenviridians
+  result: ImperialFoodSoylenviridians
+  time: 3
+  category: Pastry
+  ingredients:
+    FoodDoughPastryBase: 2
+    FoodSoybeans: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSoylentgreen
+  result: ImperialFoodSoylentgreen
+  time: 3
+  category: Pastry
+  ingredients:
+    FoodDoughPastryBase: 2
+    FoodMeatHuman: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonkpocket
+  result: FoodDonkpocket
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDoughSlice: 1
+    FoodMeatMeatball: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDankpocket
+  result: FoodDonkpocketDank
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDoughSlice: 1
+    LeavesCannabis: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonkpocketSpicy
+  result: FoodDonkpocketSpicy
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDoughSlice: 1
+    FoodMeatMeatball: 1
+    FoodChiliPepper: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonkpocketTeriyaki
+  result: FoodDonkpocketTeriyaki
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDoughSlice: 1
+    FoodMeatMeatball: 1
+  reagents:
+    Soysauce: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonkpocketPizza
+  result: FoodDonkpocketPizza
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDoughSlice: 1
+    FoodCheeseSlice: 1
+    FoodTomato: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonkpocketHonk
+  result: FoodDonkpocketHonk
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDoughSlice: 1
+    FoodBanana: 1
+  reagents:
+    Sugar: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonkpocketBerry
+  result: FoodDonkpocketBerry
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDoughSlice: 1
+    FoodBerries: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDonkpocketDeluxe
+  result: ImperialFoodDonkpocketDeluxe
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDoughSlice: 1
+    FoodMeatMeatball: 1
+    FoodMeatBaconCooked: 1
+    FoodOnionRedSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMuffin
+  result: FoodBakedMuffin
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDoughPastryBase: 1
+  reagents:
+    Milk: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBerrymuffin
+  result: FoodBakedMuffinBerry
+  time: 3
+  category: Pastry
+  ingredients:
+    FoodDoughPastryBase: 1
+    FoodBerries: 1
+  reagents:
+    Milk: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBooberrymuffin
+  result: ImperialFoodMuffinBooberry
+  time: 3
+  category: Pastry
+  ingredients:
+    FoodDoughPastryBase: 1
+    FoodBerries: 1
+    Ectoplasm: 1
+  reagents:
+    Milk: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftKhachapuri
+  result: ImperialFoodKhachapuri
+  time: 3
+  category: Bread
+  ingredients:
+    FoodCheeseSlice: 1
+    FoodBreadPlain: 1
+  reagents:
+    Egg: 6
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSugarcookie
+  result: FoodBakedCookieSugar
+  time: 1.5
+  category: Cookie
+  ingredients:
+    FoodDoughPastryBase: 1
+  reagents:
+    Sugar: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFortunecookie
+  result: FoodSnackCookieFortune
+  time: 1.5
+  category: Cookie
+  ingredients:
+    FoodDoughPastryBase: 1
+    PaperWrittenAMEScribbles: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPoppypretzel
+  result: FoodBakedPretzel
+  time: 1.5
+  category: Pastry
+  ingredients:
+    PoppySeeds: 1
+    FoodDoughPastryBase: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCracker
+  result: ImperialFoodCracker
+  time: 1.5
+  category: Pastry
+  ingredients:
+    FoodDoughSlice: 1
+  reagents:
+    TableSalt: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftChococornet
+  result: ImperialFoodChococornet
+  time: 3
+  category: Pastry
+  ingredients:
+    FoodDoughPastryBase: 1
+    FoodSnackChocolate: 1
+  reagents:
+    TableSalt: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftOatmealcookie
+  result: FoodBakedCookieOatmeal
+  time: 3
+  category: Cookie
+  ingredients:
+    FoodDoughPastryBase: 1
+    OatBushel: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRaisincookie
+  result: FoodBakedCookieRaisin
+  time: 3
+  category: Cookie
+  ingredients:
+    FoodSnackRaisins: 1
+    FoodDoughPastryBase: 1
+    OatBushel: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCherrycupcake
+  result: ImperialFoodCherrycupcake
+  time: 3
+  category: Pastry
+  ingredients:
+    FoodDoughPastryBase: 1
+    FoodCherry: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftHoneybun
+  result: ImperialFoodHoneybun
+  time: 3
+  category: Pastry
+  ingredients:
+    FoodDoughPastryBase: 1
+  reagents:
+    ImperialHoney: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCannoli
+  result: FoodBakedCannoli
+  time: 3
+  category: Pastry
+  ingredients:
+    FoodDoughPastryBase: 1
+  reagents:
+    Milk: 1
+    Sugar: 3
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPeanutButterCookie
+  result: ImperialFoodCookiePeanutButter
+  time: 3
+  category: Cookie
+  ingredients:
+    FoodDoughPastryBase: 1
+  reagents:
+    ImperialPeanutButter: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftRawBrownieBatter
+  result: ImperialFoodRawBrownieBatter
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodEgg: 2
+    FoodButterSlice: 1
+  reagents:
+    Flour: 5
+    Sugar: 5
+    CocoaPowder: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPeanutButterBrownieBatter
+  result: ImperialFoodPeanutButterBrownieBatter
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodEgg: 2
+    FoodButterSlice: 1
+  reagents:
+    Flour: 5
+    Sugar: 5
+    CocoaPowder: 5
+    ImperialPeanutButter: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftChocolateChipCookie
+  result: ImperialFoodCookieChocolateChipCookie
+  time: 3
+  category: Cookie
+  ingredients:
+    FoodDoughPastryBase: 1
+    FoodSnackChocolate: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSnickerdoodle
+  result: ImperialFoodCookieSnickerdoodle
+  time: 3
+  category: Cookie
+  ingredients:
+    FoodDoughPastryBase: 1
+  reagents:
+    ImperialVanilla: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftThumbprintCookie
+  result: ImperialFoodCookieThumbprintCookie
+  time: 3
+  category: Cookie
+  ingredients:
+    FoodDoughPastryBase: 1
+  reagents:
+    ImperialCherryjelly: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMacaron
+  result: ImperialFoodCookieMacaron
+  time: 3
+  category: Cookie
+  reagents:
+    Egg: 2
+    Cream: 5
+    Flour: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftAppleFritter
+  result: ImperialFoodAppleFritter
+  time: 3
+  category: Pastry
+  ingredients:
+    FoodDoughPastryBase: 1
+    ImperialFoodAppleslice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBananacreampie
+  result: FoodPieBananaCream
+  time: 3
+  category: Pie
+  ingredients:
+    ImperialFoodPiePlain: 1
+    FoodBanana: 1
+  reagents:
+    Milk: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMeatpie
+  result: FoodPieMeat
+  time: 3
+  category: Pie
+  ingredients:
+    ImperialFoodPiePlain: 1
+    FoodMeatCooked: 1
+  reagents:
+    Blackpepper: 1
+    TableSalt: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftTofupie
+  result: ImperialFoodPieTofupie
+  time: 3
+  category: Pie
+  ingredients:
+    ImperialFoodPiePlain: 1
+    FoodTofu: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftXenopie
+  result: FoodPieXeno
+  time: 3
+  category: Pie
+  ingredients:
+    ImperialFoodPiePlain: 1
+    FoodMeatXenoCutletCooked: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCherrypie
+  result: FoodPieCherry
+  time: 3
+  category: Pie
+  ingredients:
+    ImperialFoodPiePlain: 1
+    FoodCherry: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBerryclafoutis
+  result: FoodPieClafoutis
+  time: 3
+  category: Pie
+  ingredients:
+    ImperialFoodPiePlain: 1
+    FoodBerries: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBearypie
+  result: ImperialFoodPieBearypie
+  time: 3
+  category: Pie
+  ingredients:
+    ImperialFoodPiePlain: 1
+    FoodBerries: 1
+    FoodMeatBearCooked: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftAmanitapie
+  result: FoodPieAmanita
+  time: 3
+  category: Pie
+  ingredients:
+    ImperialFoodPiePlain: 1
+    FoodFlyAmanita: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftApplepie
+  result: FoodPieApple
+  time: 3
+  category: Pie
+  ingredients:
+    ImperialFoodPiePlain: 1
+    FoodApple: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPumpkinpie
+  result: FoodPiePumpkin
+  time: 3
+  category: Pie
+  ingredients:
+    ImperialFoodPiePlain: 1
+    FoodPumpkin: 1
+  reagents:
+    Milk: 5
+    Sugar: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftGoldenappletart
+  result: FoodTartGapple
+  time: 3
+  category: Pie
+  ingredients:
+    ImperialFoodPiePlain: 1
+    FoodGoldenApple: 1
+  reagents:
+    Milk: 5
+    Sugar: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftGrapetart
+  result: FoodTartGrape
+  time: 3
+  category: Pie
+  ingredients:
+    ImperialFoodPiePlain: 1
+    FoodGrape: 3
+  reagents:
+    Milk: 5
+    Sugar: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMimetart
+  result: FoodTartMime
+  time: 3
+  category: Pie
+  ingredients:
+    ImperialFoodPiePlain: 1
+  reagents:
+    Milk: 5
+    Sugar: 5
+    Nothing: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBerrytart
+  result: ImperialFoodPieBerrytart
+  time: 3
+  category: Pie
+  ingredients:
+    ImperialFoodPiePlain: 1
+    FoodBerries: 3
+  reagents:
+    Milk: 5
+    Sugar: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBaklava
+  result: FoodPieBaklava
+  time: 3
+  category: Pie
+  ingredients:
+    FoodButterSlice: 2
+    FoodDoughTortillaFlat: 4
+    OatSeeds: 4
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFrenchsilkpie
+  result: ImperialFoodPieFrenchsilkpie
+  time: 3
+  category: Pie
+  ingredients:
+    ImperialFoodPiePlain: 1
+    FoodSnackChocolate: 2
+  reagents:
+    Sugar: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftShepherdsPie
+  result: ImperialFoodPieShepherdsPie
+  time: 3
+  category: Pie
+  ingredients:
+    ImperialFoodMashedPotatoes: 1
+    FoodMeatCutletCooked: 3
+    FoodOnion: 1
+    FoodPeaPod: 1
+    FoodCorn: 1
+    FoodGarlic: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftAsdfpie
+  result: ImperialFoodPieAsdfpie
+  time: 3
+  category: Pie
+  ingredients:
+    ImperialFoodPiePlain: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBacidPie
+  result: ImperialFoodPieBacidPie
+  time: 3
+  category: Pie
+  ingredients:
+    ImperialFoodPiePlain: 1
+    PowerCellMedium: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPizzaMargherita
+  result: ImperialFoodPizzaMargheritaRaw
+  time: 3
+  category: Pizza
+  ingredients:
+    FoodDoughFlat: 1
+    FoodCheeseSlice: 4
+    FoodTomato: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPizzaMeatpizza
+  result: ImperialFoodPizzaMeatRaw
+  time: 3
+  category: Pizza
+  ingredients:
+    FoodDoughFlat: 1
+    FoodMeatCutlet: 4
+    FoodCheeseSlice: 1
+    FoodTomato: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPizzaArnold
+  result: ImperialFoodPizzaArnoldRaw
+  time: 3
+  category: Pizza
+  ingredients:
+    FoodDoughFlat: 1
+    FoodMeatCutlet: 3
+    CartridgePistolSpent: 8
+    FoodCheeseSlice: 1
+    FoodTomato: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPizzaMushroom
+  result: ImperialFoodPizzaMushroomRaw
+  time: 3
+  category: Pizza
+  ingredients:
+    FoodDoughFlat: 1
+    FoodMushroom: 5
+    FoodCheeseSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPizzaVegetable
+  result: ImperialFoodPizzaVegetableRaw
+  time: 3
+  category: Pizza
+  ingredients:
+    FoodDoughFlat: 1
+    FoodEggplant: 1
+    FoodCarrot: 1
+    FoodCorn: 1
+    FoodTomato: 1
+    FoodCheeseSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPizzaDonkpocket
+  result: ImperialFoodPizzaDonkpocketRaw
+  time: 3
+  category: Pizza
+  ingredients:
+    FoodDoughFlat: 1
+    FoodDonkpocket: 3
+    FoodCheeseSlice: 1
+    FoodTomato: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPizzaDank
+  result: ImperialFoodPizzaDankRaw
+  time: 3
+  category: Pizza
+  ingredients:
+    FoodDoughFlat: 1
+    FoodAmbrosiaVulgaris: 3
+    FoodCheeseSlice: 1
+    FoodTomato: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPizzaSassysage
+  result: ImperialFoodPizzaSassysageRaw
+  time: 3
+  category: Pizza
+  ingredients:
+    FoodDoughFlat: 1
+    FoodMeatMeatball: 3
+    FoodCheeseSlice: 1
+    FoodTomato: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPizzaPineapple
+  result: ImperialFoodPizzaPineappleRaw
+  time: 3
+  category: Pizza
+  ingredients:
+    FoodDoughFlat: 1
+    FoodMeatCutlet: 2
+    FoodPineappleSlice: 3
+    FoodCheeseSlice: 1
+    FoodTomato: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPizzaEnergy
+  result: ImperialFoodPizzaEnergyRaw
+  time: 3
+  category: Pizza
+  ingredients:
+    FoodDoughFlat: 1
+    PowerCellMedium: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPizzaRawMeatCalzone
+  result: ImperialFoodRawMeatCalzone
+  time: 3
+  category: Pizza
+  ingredients:
+    FoodDoughFlat: 1
+    FoodCheeseSlice: 2
+    FoodMeatCutlet: 3
+    FoodTomato: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPizzaRawVegetarianCalzone
+  result: ImperialFoodRawVegetarianCalzone
+  time: 3
+  category: Pizza
+  ingredients:
+    FoodDoughFlat: 1
+    FoodTomato: 1
+    FoodCabbage: 1
+    FoodOnion: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftHerbsalad
+  result: FoodSaladHerb
+  time: 3
+  category: Salad
+  ingredients:
+    FoodBowlBig: 1
+    FoodAmbrosiaVulgaris: 3
+    FoodApple: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftAesirsalad
+  result: FoodSaladAesir
+  time: 3
+  category: Salad
+  ingredients:
+    FoodBowlBig: 1
+    FoodAmbrosiaDeus: 3
+    FoodGoldenApple: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftValidsalad
+  result: FoodSaladValid
+  time: 3
+  category: Salad
+  ingredients:
+    FoodBowlBig: 1
+    FoodAmbrosiaVulgaris: 3
+    FoodPotato: 1
+    FoodMeatMeatball: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMelonfruitbowl
+  result: FoodSaladWatermelonFruitBowl
+  time: 3
+  category: Salad
+  ingredients:
+    FoodWatermelon: 1
+    FoodApple: 1
+    FoodOrange: 1
+    FoodLemon: 1
+    FoodBanana: 1
+    FoodAmbrosiaVulgaris: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFruitsalad
+  result: FoodSaladFruit
+  time: 3
+  category: Salad
+  ingredients:
+    FoodBowlBig: 1
+    FoodApple: 1
+    FoodGrape: 1
+    FoodOrange: 1
+    FoodWatermelonSlice: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftJunglesalad
+  result: FoodSaladJungle
+  time: 3
+  category: Salad
+  ingredients:
+    FoodBowlBig: 1
+    FoodApple: 2
+    FoodGrape: 2
+    FoodBanana: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCitrusdelight
+  result: FoodSaladCitrus
+  time: 3
+  category: Salad
+  ingredients:
+    FoodBowlBig: 1
+    FoodLime: 1
+    FoodLemon: 1
+    FoodOrange: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftKaleSalad
+  result: ImperialFoodSaladKaleSalad
+  time: 3
+  category: Salad
+  ingredients:
+    FoodBowlBig: 1
+    FoodCarrot: 1
+    FoodOnionRedSlice: 2
+    FoodCabbage: 1
+  reagents:
+    OilOlive: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCaesarSalad
+  result: FoodSaladCaesar
+  time: 3
+  category: Salad
+  ingredients:
+    FoodBowlBig: 1
+    FoodCabbage: 2
+    FoodOnionRedSlice: 1
+    FoodCheeseSlice: 1
+    FoodBreadPlainSlice: 1
+  reagents:
+    OilOlive: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSpringSalad
+  result: ImperialFoodSaladSpringSalad
+  time: 3
+  category: Salad
+  ingredients:
+    FoodBowlBig: 1
+    FoodCabbage: 2
+    FoodCarrot: 1
+    FoodPeaPod: 1
+  reagents:
+    OilOlive: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPotatoSalad
+  result: ImperialFoodSaladPotatoSalad
+  time: 3
+  category: Salad
+  ingredients:
+    FoodBowlBig: 1
+    FoodPotato: 2
+    FoodEggBoiled: 2
+    FoodOnion: 1
+  reagents:
+    Mayo: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSandwich
+  result: ImperialFoodSandwich
+  time: 3
+  category: Sandwich
+  ingredients:
+    FoodBreadPlainSlice: 2
+    FoodCabbage: 1
+    FoodMeatCooked: 1
+    FoodCheeseSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCheeseSandwich
+  result: ImperialFoodSandwichCheese
+  time: 3
+  category: Sandwich
+  ingredients:
+    FoodBreadPlainSlice: 2
+    FoodCheeseSlice: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCherrysandwich
+  result: ImperialFoodSandwichJellyCherry
+  time: 3
+  category: Sandwich
+  ingredients:
+    FoodBreadPlainSlice: 2
+  reagents:
+    ImperialCherryjelly: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftNotasandwich
+  result: ImperialFoodSandwichNotasandwich
+  time: 3
+  category: Sandwich
+  ingredients:
+    FoodBreadPlainSlice: 2
+    ClothingMaskItalianMoustache: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftHotdog
+  result: ImperialFoodHotdog
+  time: 3
+  category: Sandwich
+  ingredients:
+    FoodBreadBun: 1
+    ImperialFoodSausage: 1
+  reagents:
+    Ketchup: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDanishHotdog
+  result: ImperialFoodDanishHotdog
+  time: 3
+  category: Sandwich
+  ingredients:
+    FoodBreadBun: 1
+    ImperialFoodSausage: 1
+    ImperialFoodPickle: 1
+    FoodOnion: 1
+  reagents:
+    Ketchup: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBlt
+  result: ImperialFoodSandwichBlt
+  time: 3
+  category: Sandwich
+  ingredients:
+    FoodBreadPlainSlice: 2
+    FoodMeatBaconCooked: 2
+    FoodCabbage: 1
+    FoodTomato: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPeanutButterJellySandwich
+  result: ImperialFoodSandwichPeanutButterJelly
+  time: 3
+  category: Sandwich
+  ingredients:
+    FoodBreadPlainSlice: 2
+  reagents:
+    ImperialPeanutButter: 5
+    ImperialCherryjelly: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPeanutButterBananaSandwich
+  result: ImperialFoodSandwichPeanutButterBanana
+  time: 3
+  category: Sandwich
+  ingredients:
+    FoodBreadPlainSlice: 2
+    FoodBanana: 1
+  reagents:
+    ImperialPeanutButter: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPhillyCheesesteak
+  result: ImperialFoodSandwichPhillyCheesesteak
+  time: 3
+  category: Sandwich
+  ingredients:
+    FoodBreadPlainSlice: 2
+    FoodMeatCutletCooked: 2
+    FoodCheeseSlice: 1
+    FoodOnion: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftDeathSandwich
+  result: ImperialFoodSandwichDeath
+  time: 3
+  category: Sandwich
+  ingredients:
+    FoodBreadPlainSlice: 2
+    FoodMeatSalami: 4
+    FoodMeatMeatball: 4
+    FoodTomato: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftToastSandwich
+  result: ImperialFoodSandwichToastSandwich
+  time: 3
+  category: Sandwich
+  ingredients:
+    FoodBreadPlainSlice: 2
+    FoodBreadButteredToast: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCubancarp
+  result: FoodMealCubancarp
+  time: 3
+  category: Sandwich
+  ingredients:
+    FoodChiliPepper: 1
+    FoodMeatFish: 1
+  reagents:
+    Flour: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFishandchips
+  result: ImperialFoodFishandchips
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodMealFries: 1
+    FoodMeatFish: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFishfingers
+  result: ImperialFoodFishfingers
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodBreadBun: 1
+    FoodMeatFish: 1
+  reagents:
+    Flour: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFishfry
+  result: ImperialFoodFishfry
+  time: 3
+  category: Uncategorized
+  ingredients:
+    FoodCorn: 1
+    FoodPeaPod: 1
+    FoodMeatFish: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSashimi
+  result: FoodMealSashimi
+  time: 3
+  category: Uncategorized
+  ingredients:
+    ImperialFoodSpidereggs: 1
+    FoodMeatFish: 1
+  reagents:
+    Soysauce: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftFishtaco
+  result: FoodTacoFish
+  time: 3
+  category: Taco
+  ingredients:
+    FoodDoughTortillaFlat: 1
+    FoodCheeseSlice: 1
+    FoodMeatFish: 1
+    FoodCabbage: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftVegetariansushiroll
+  result: ImperialFoodVegetariansushiroll
+  time: 3
+  category: Sushi
+  ingredients:
+    ImperialFoodSeaweedsheet: 1
+    FoodRiceBoiled: 1
+    FoodCarrot: 1
+    FoodPotato: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSpicyfiletroll
+  result: ImperialFoodSpicyfiletsushiroll
+  time: 3
+  category: Sushi
+  ingredients:
+    ImperialFoodSeaweedsheet: 1
+    FoodRiceBoiled: 1
+    FoodMeatFish: 1
+    FoodChiliPepper: 1
+    FoodOnion: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftNigiriSushi
+  result: ImperialFoodNigiriSushi
+  time: 3
+  category: Sushi
+  ingredients:
+    ImperialFoodSeaweedsheet: 1
+    FoodRiceBoiled: 1
+    FoodMeatFish: 1
+  reagents:
+    Soysauce: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftTomatopasta
+  result: FoodNoodles
+  time: 3
+  category: Noodles
+  ingredients:
+    FoodNoodlesBoiled: 1
+    FoodTomato: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCopypasta
+  result: FoodNoodlesCopy
+  time: 3
+  category: Noodles
+  ingredients:
+    FoodNoodles: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSpaghettimeatball
+  result: FoodNoodlesMeatball
+  time: 3
+  category: Noodles
+  ingredients:
+    FoodNoodlesBoiled: 1
+    FoodMeatMeatball: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftSpesslaw
+  result: FoodNoodlesSpesslaw
+  time: 3
+  category: Noodles
+  ingredients:
+    FoodNoodlesBoiled: 1
+    FoodMeatMeatball: 4
+
+- type: imperialCraftRecipe
+  id: ImperialCraftBeefnoodle
+  result: ImperialFoodSpaghettiBeefnoodle
+  time: 3
+  category: Noodles
+  ingredients:
+    FoodBowlBig: 1
+    FoodNoodlesBoiled: 1
+    FoodMeatCutletCooked: 2
+    FoodCabbage: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftChowmein
+  result: FoodNoodlesChowmein
+  time: 3
+  category: Noodles
+  ingredients:
+    FoodNoodlesBoiled: 1
+    FoodMeatCutletCooked: 1
+    FoodCabbage: 2
+    FoodCarrot: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftButternoodles
+  result: FoodNoodlesButter
+  time: 3
+  category: Noodles
+  ingredients:
+    FoodNoodlesBoiled: 1
+    FoodButterSlice: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftMacNCheese
+  result: ImperialFoodSpaghettiMacNCheese
+  time: 3
+  category: Noodles
+  ingredients:
+    FoodNoodlesBoiled: 1
+    ImperialFoodBechamelSauce: 1
+    FoodCheeseSlice: 2
+    FoodBreadPlainSlice: 1
+  reagents:
+    Blackpepper: 2
+
+- type: imperialCraftRecipe
+  id: ImperialCraftShoyuTonkotsuRamen
+  result: ImperialFoodSpaghettiShoyuTonkotsuRamen
+  time: 3
+  category: Noodles
+  ingredients:
+    FoodBowlBig: 1
+    FoodNoodlesBoiled: 1
+    FoodEggBoiled: 1
+    ImperialFoodSeaweedsheet: 1
+    FoodMeatCutletCooked: 1
+    FoodOnion: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftKitakataRamen
+  result: ImperialFoodSpaghettiKitakataRamen
+  time: 3
+  category: Noodles
+  ingredients:
+    FoodBowlBig: 1
+    FoodNoodlesBoiled: 1
+    FoodMeatCutletCooked: 2
+    FoodOnion: 1
+    FoodMushroom: 1
+    FoodGarlic: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftKitsuneUdon
+  result: ImperialFoodSpaghettiKitsuneUdon
+  time: 3
+  category: Noodles
+  ingredients:
+    FoodBowlBig: 1
+    FoodNoodlesBoiled: 1
+    FoodTofu: 2
+    FoodOnion: 1
+  reagents:
+    Soysauce: 5
+    Sugar: 5
+
+- type: imperialCraftRecipe
+  id: ImperialCraftNikujaga
+  result: ImperialFoodSpaghettiNikujaga
+  time: 3
+  category: Noodles
+  ingredients:
+    FoodBowlBig: 1
+    FoodNoodlesBoiled: 1
+    FoodMeatCutletCooked: 2
+    FoodPotato: 1
+    FoodCarrot: 1
+    FoodPeaPod: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftPho
+  result: ImperialFoodSpaghettiPho
+  time: 3
+  category: Noodles
+  ingredients:
+    FoodBowlBig: 1
+    FoodNoodlesBoiled: 1
+    FoodMeatCutletCooked: 1
+    FoodOnion: 1
+    FoodCabbage: 1
+
+- type: imperialCraftRecipe
+  id: ImperialCraftCarbonara
+  result: ImperialFoodSpaghettiCarbonara
+  time: 3
+  category: Noodles
+  ingredients:
+    FoodNoodlesBoiled: 1
+    ImperialFoodCheeseFirmCheeseSlice: 1
+    FoodMeatBaconCooked: 1
+    FoodEgg: 1
+  reagents:
+    Blackpepper: 2

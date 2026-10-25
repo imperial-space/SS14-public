@@ -1,0 +1,6446 @@
+# crafting_complexity и foodtypes TG для блюд SS14 и новых блюд, bakeable/grillable существующих блюд
+# (scratchpad/kitchen/match.pl, kgen.pl).
+
+- type: imperialFoodData
+  id: FoodEggChickenFertilized
+  complexity: 0
+  types: [ Meat, Raw, Egg ]
+  # TG: food/egg
+
+- type: imperialFoodData
+  id: FoodEggDuckFertilized
+  complexity: 0
+  types: [ Meat, Raw, Egg ]
+  # TG: food/egg
+
+- type: imperialFoodData
+  id: FoodBreadCorn
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/bread/corn
+
+- type: imperialFoodData
+  id: FoodBreadCornSlice
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/breadslice/corn
+
+- type: imperialFoodData
+  id: FoodBreadCreamcheese
+  complexity: 2
+  types: [ Grain, Dairy ]
+  # TG: food/bread/creamcheese
+
+- type: imperialFoodData
+  id: FoodBreadCreamcheeseSlice
+  complexity: 2
+  types: [ Grain, Dairy ]
+  # TG: food/breadslice/creamcheese
+
+- type: imperialFoodData
+  id: FoodBreadMeat
+  complexity: 3
+  types: [ Grain, Meat, Dairy ]
+  # TG: food/breadslice/meat
+
+- type: imperialFoodData
+  id: FoodBreadMeatSlice
+  complexity: 3
+  types: [ Grain, Meat, Dairy ]
+  # TG: food/breadslice/meat
+
+- type: imperialFoodData
+  id: FoodBreadMimana
+  complexity: 3
+  types: [ Grain, Fruit, Vegetables ]
+  # TG: food/bread/mimana
+
+- type: imperialFoodData
+  id: FoodBreadMimanaSlice
+  complexity: 3
+  types: [ Grain, Fruit, Vegetables ]
+  # TG: food/breadslice/mimana
+
+- type: imperialFoodData
+  id: FoodBreadPlain
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/bread
+
+- type: imperialFoodData
+  id: FoodBreadPlainSlice
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/breadslice
+
+- type: imperialFoodData
+  id: FoodBreadSausage
+  complexity: 3
+  types: [ Grain, Meat ]
+  # TG: food/breadslice/sausage
+
+- type: imperialFoodData
+  id: FoodBreadSausageSlice
+  complexity: 3
+  types: [ Grain, Meat ]
+  # TG: food/breadslice/sausage
+
+- type: imperialFoodData
+  id: FoodBreadMeatSpider
+  complexity: 3
+  types: [ Grain, Meat, Dairy, Toxic ]
+  # TG: food/breadslice/spidermeat
+
+- type: imperialFoodData
+  id: FoodBreadMeatSpiderSlice
+  complexity: 3
+  types: [ Grain, Meat, Dairy, Toxic ]
+  # TG: food/breadslice/spidermeat
+
+- type: imperialFoodData
+  id: FoodBreadTofu
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/bread/tofu
+
+- type: imperialFoodData
+  id: FoodBreadTofuSlice
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/breadslice/tofu
+
+- type: imperialFoodData
+  id: FoodBreadMeatXeno
+  complexity: 3
+  types: [ Grain, Meat, Dairy ]
+  # TG: food/breadslice/xenomeat
+
+- type: imperialFoodData
+  id: FoodBreadMeatXenoSlice
+  complexity: 3
+  types: [ Grain, Meat, Dairy ]
+  # TG: food/breadslice/xenomeat
+
+- type: imperialFoodData
+  id: FoodBreadBaguette
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/baguette
+
+- type: imperialFoodData
+  id: FoodBreadButteredToast
+  complexity: 2
+  types: [ Grain, Breakfast, Dairy ]
+  # TG: food/butteredtoast
+
+- type: imperialFoodData
+  id: FoodBreadFrenchToast
+  complexity: 2
+  types: [ Grain, Breakfast, Meat, Egg ]
+  # TG: food/frenchtoast
+
+- type: imperialFoodData
+  id: FoodBreadGarlicSlice
+  complexity: 2
+  types: [ Vegetables, Grain, Dairy ]
+  # TG: food/garlicbread
+
+- type: imperialFoodData
+  id: FoodBreadMoldySlice
+  complexity: 2
+  types: [ Gross ]
+  # TG: food/breadslice/moldy
+
+- type: imperialFoodData
+  id: FoodCakePlain
+  complexity: 2
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/cake/empty
+
+- type: imperialFoodData
+  id: FoodCakeCarrot
+  complexity: 3
+  types: [ Grain, Dairy, Vegetables, Sugar ]
+  # TG: food/cake/carrot
+
+- type: imperialFoodData
+  id: FoodCakeBrain
+  complexity: 3
+  types: [ Grain, Dairy, Meat, Gore, Sugar ]
+  # TG: food/cake/brain
+
+- type: imperialFoodData
+  id: FoodCakeCheese
+  complexity: 3
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/cake/cheese
+
+- type: imperialFoodData
+  id: FoodCakeOrange
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar, Oranges ]
+  # TG: food/cake/orange
+
+- type: imperialFoodData
+  id: FoodCakeLime
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/cake/lime
+
+- type: imperialFoodData
+  id: FoodCakeLemon
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/cake/lemon
+
+- type: imperialFoodData
+  id: FoodCakeChocolate
+  complexity: 3
+  types: [ Grain, Dairy, Junkfood, Sugar ]
+  # TG: food/cake/chocolate
+
+- type: imperialFoodData
+  id: FoodCakeApple
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/cake/apple
+
+- type: imperialFoodData
+  id: FoodCakeSlime
+  complexity: 3
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/cake/slimecake
+
+- type: imperialFoodData
+  id: FoodCakePumpkin
+  complexity: 3
+  types: [ Grain, Dairy, Sugar, Vegetables ]
+  # TG: food/cake/pumpkinspice
+
+- type: imperialFoodData
+  id: FoodCakeBirthday
+  complexity: 3
+  types: [ Grain, Dairy, Junkfood, Sugar ]
+  # TG: food/cake/birthday
+
+- type: imperialFoodData
+  id: FoodCakeVanilla
+  complexity: 3
+  types: [ Grain, Fruit, Dairy, Sugar ]
+  # TG: food/cake/vanilla_cake
+
+- type: imperialFoodData
+  id: FoodCakeClown
+  complexity: 5
+  types: [ Grain, Fruit, Dairy, Sugar ]
+  # TG: food/cake/clown_cake
+
+- type: imperialFoodData
+  id: FoodCakeSpaceman
+  complexity: 4
+  types: [ Grain, Dairy, Fruit, Sugar, Vegetables ]
+  # TG: food/cake/trumpet
+
+- type: imperialFoodData
+  id: FoodDonkpocketWarm
+  complexity: 3
+  types: [ Grain ]
+  # TG: food/donkpocket/warm
+
+- type: imperialFoodData
+  id: FoodDonkpocketDankWarm
+  complexity: 2
+  types: [ Grain, Vegetables ]
+  # TG: food/donkpocket/warm/dank
+
+- type: imperialFoodData
+  id: FoodDonkpocketSpicyWarm
+  complexity: 3
+  types: [ Vegetables, Grain ]
+  # TG: food/donkpocket/warm/spicy
+
+- type: imperialFoodData
+  id: FoodDonkpocketTeriyakiWarm
+  complexity: 3
+  types: [ Grain ]
+  # TG: food/donkpocket/warm/teriyaki
+
+- type: imperialFoodData
+  id: FoodDonkpocketPizzaWarm
+  complexity: 3
+  types: [ Vegetables, Grain, Dairy ]
+  # TG: food/donkpocket/warm/pizza
+
+- type: imperialFoodData
+  id: FoodDonkpocketHonkWarm
+  complexity: 3
+  types: [ Grain, Fruit, Sugar ]
+  # TG: food/donkpocket/warm/honk
+
+- type: imperialFoodData
+  id: FoodDonkpocketBerryWarm
+  complexity: 3
+  types: [ Grain, Fruit, Sugar ]
+  # TG: food/donkpocket/warm/berry
+
+- type: imperialFoodData
+  id: FoodDonutHomer
+  complexity: 2
+  types: [ Grain, Dairy, Junkfood, Sugar, Fried, Breakfast ]
+  # TG: food/donut
+
+- type: imperialFoodData
+  id: FoodDonutChaos
+  complexity: 3
+  types: [ Grain, Dairy, Junkfood, Fried, Breakfast ]
+  # TG: food/donut/chaos
+
+- type: imperialFoodData
+  id: FoodDonutMeat
+  complexity: 3
+  types: [ Grain, Dairy, Junkfood, Fried, Breakfast, Meat, Gore ]
+  # TG: food/donut/meat
+
+- type: imperialFoodData
+  id: FoodDonutPink
+  complexity: 2
+  types: [ Fruit ]
+  # TG: food/donut/berry
+
+- type: imperialFoodData
+  id: FoodDonutSpaceman
+  complexity: 3
+  types: [ Grain, Dairy, Junkfood, Sugar, Fried, Breakfast ]
+  # TG: food/donut/trumpet
+
+- type: imperialFoodData
+  id: FoodDonutApple
+  complexity: 2
+  types: [ Fruit ]
+  # TG: food/donut/apple
+
+- type: imperialFoodData
+  id: FoodDonutCaramel
+  complexity: 2
+  types: [ Grain, Dairy, Junkfood, Sugar, Fried, Breakfast ]
+  # TG: food/donut/caramel
+
+- type: imperialFoodData
+  id: FoodDonutChocolate
+  complexity: 3
+  types: [ Grain, Dairy, Junkfood, Sugar, Fried, Breakfast ]
+  # TG: food/donut/choco
+
+- type: imperialFoodData
+  id: FoodDonutBungo
+  complexity: 2
+  types: [ Grain, Dairy, Junkfood, Sugar, Fried, Breakfast ]
+  # TG: food/donut/bungo
+
+- type: imperialFoodData
+  id: FoodDonut
+  complexity: 2
+  types: [ Grain, Dairy, Junkfood, Sugar, Fried, Breakfast ]
+  # TG: food/donut/matcha
+
+- type: imperialFoodData
+  id: FoodDonutSweetpea
+  complexity: 3
+  types: [ Grain, Dairy, Junkfood, Sugar, Fried, Breakfast ]
+  # TG: food/donut/laugh
+
+- type: imperialFoodData
+  id: FoodDonutJellyHomer
+  complexity: 2
+  types: [ Fruit ]
+  # TG: food/donut/jelly
+
+- type: imperialFoodData
+  id: FoodDonutJellyPink
+  complexity: 2
+  types: [ Fruit ]
+  # TG: food/donut/jelly/berry
+
+- type: imperialFoodData
+  id: FoodDonutJellySpaceman
+  complexity: 3
+  types: [ Fruit ]
+  # TG: food/donut/jelly/trumpet
+
+- type: imperialFoodData
+  id: FoodDonutJellyApple
+  complexity: 2
+  types: [ Fruit ]
+  # TG: food/donut/jelly/apple
+
+- type: imperialFoodData
+  id: FoodDonutJellyCaramel
+  complexity: 2
+  types: [ Fruit ]
+  # TG: food/donut/jelly/caramel
+
+- type: imperialFoodData
+  id: FoodDonutJellyChocolate
+  complexity: 3
+  types: [ Fruit ]
+  # TG: food/donut/jelly/choco
+
+- type: imperialFoodData
+  id: FoodDonutJellyBungo
+  complexity: 2
+  types: [ Fruit ]
+  # TG: food/donut/jelly/bungo
+
+- type: imperialFoodData
+  id: FoodDonutJelly
+  complexity: 2
+  types: [ Fruit ]
+  # TG: food/donut/jelly/matcha
+
+- type: imperialFoodData
+  id: FoodDonutJellySweetpea
+  complexity: 3
+  types: [ Fruit ]
+  # TG: food/donut/jelly/laugh
+
+- type: imperialFoodData
+  id: FoodDonutPoison
+  complexity: 2
+  types: [ Fruit ]
+  # TG: food/donut/berry
+
+- type: imperialFoodData
+  id: FoodBakedMuffin
+  complexity: 2
+  types: [ Grain, Dairy, Sugar, Breakfast ]
+  # TG: food/muffin
+
+- type: imperialFoodData
+  id: FoodBakedMuffinBerry
+  complexity: 3
+  types: [ Grain, Dairy, Sugar, Breakfast, Fruit ]
+  # TG: food/muffin/berry
+
+- type: imperialFoodData
+  id: FoodBakedBunHotX
+  complexity: 1
+  types: [ Sugar, Grain, Breakfast ]
+  # TG: food/hotcrossbun
+
+- type: imperialFoodData
+  id: FoodBakedBunMeat
+  complexity: 3
+  types: [ Grain, Meat, Vegetables ]
+  # TG: food/meatbun
+
+- type: imperialFoodData
+  id: FoodBakedCookie
+  complexity: 2
+  types: [ Grain, Sugar ]
+  # TG: food/cookie
+
+- type: imperialFoodData
+  id: FoodBakedCookieOatmeal
+  complexity: 3
+  types: [ Grain, Dairy ]
+  # TG: food/cookie/oatmeal
+
+- type: imperialFoodData
+  id: FoodBakedCookieRaisin
+  complexity: 3
+  types: [ Grain, Fruit, Dairy, Sugar ]
+  # TG: food/cookie/raisin
+
+- type: imperialFoodData
+  id: FoodBakedCookieSugar
+  complexity: 2
+  types: [ Grain, Dairy, Junkfood, Sugar ]
+  # TG: food/cookie/sugar
+
+- type: imperialFoodData
+  id: FoodBakedNugget
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/nugget
+
+- type: imperialFoodData
+  id: FoodBakedPancake
+  complexity: 2
+  types: [ Grain, Sugar, Breakfast ]
+  # TG: food/pancakes
+
+- type: imperialFoodData
+  id: FoodBakedPancakeBb
+  complexity: 3
+  types: [ Grain, Sugar, Breakfast ]
+  # TG: food/pancakes/blueberry
+
+- type: imperialFoodData
+  id: FoodBakedPancakeCc
+  complexity: 3
+  types: [ Grain, Sugar, Breakfast ]
+  # TG: food/pancakes/chocolatechip
+
+- type: imperialFoodData
+  id: FoodBakedWaffle
+  complexity: 2
+  types: [ Grain, Dairy, Breakfast ]
+  # TG: food/waffles
+
+- type: imperialFoodData
+  id: FoodBakedWaffleRoffle
+  complexity: 3
+  types: [ Grain, Dairy, Vegetables, Breakfast ]
+  # TG: food/rofflewaffles
+
+- type: imperialFoodData
+  id: FoodBakedPretzel
+  complexity: 3
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/poppypretzel
+
+- type: imperialFoodData
+  id: FoodBakedCannoli
+  complexity: 3
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/cannoli
+
+- type: imperialFoodData
+  id: FoodBakedBrownieBatch
+  complexity: 2
+  types: [ Grain, Dairy, Junkfood, Sugar, Breakfast ]
+  # TG: food/brownie
+
+- type: imperialFoodData
+  id: FoodBakedBrownie
+  complexity: 2
+  types: [ Grain, Dairy, Junkfood, Sugar, Breakfast ]
+  # TG: food/brownie
+
+- type: imperialFoodData
+  id: FoodOnionRings
+  complexity: 1
+  types: [ Vegetables ]
+  # TG: food/onionrings
+
+- type: imperialFoodData
+  id: FoodBakedCroissant
+  complexity: 2
+  types: [ Grain, Dairy, Breakfast ]
+  # TG: food/croissant
+
+- type: imperialFoodData
+  id: FoodBakedGrilledCheeseSandwich
+  complexity: 3
+  types: [ Grain, Dairy ]
+  # TG: food/sandwich/grilled_cheese
+
+- type: imperialFoodData
+  id: FoodPieApple
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/pie/applepie
+
+- type: imperialFoodData
+  id: FoodPieBaklava
+  complexity: 4
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/pie/baklava
+
+- type: imperialFoodData
+  id: FoodPieBananaCream
+  complexity: 3
+  types: [ Grain, Dairy, Sugar, Fruit ]
+  # TG: food/pie/cream
+
+- type: imperialFoodData
+  id: FoodPieClafoutis
+  complexity: 3
+  types: [ Grain, Fruit, Dairy, Sugar ]
+  # TG: food/pie/berryclafoutis
+
+- type: imperialFoodData
+  id: FoodPieCherry
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/pie/cherrypie
+
+- type: imperialFoodData
+  id: FoodPieMeat
+  complexity: 3
+  types: [ Grain, Dairy, Meat ]
+  # TG: food/pie/meatpie
+
+- type: imperialFoodData
+  id: FoodPiePumpkin
+  complexity: 3
+  types: [ Grain, Dairy, Vegetables, Sugar ]
+  # TG: food/pie/pumpkinpie
+
+- type: imperialFoodData
+  id: FoodPieXeno
+  complexity: 3
+  types: [ Meat, Grain, Dairy ]
+  # TG: food/pie/xemeatpie
+
+- type: imperialFoodData
+  id: FoodPieFrosty
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/pie/frostypie
+
+- type: imperialFoodData
+  id: FoodTartMime
+  complexity: 2
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/pie/mimetart
+
+- type: imperialFoodData
+  id: FoodPieAmanita
+  complexity: 3
+  types: [ Grain, Dairy, Vegetables, Toxic, Gross ]
+  # TG: food/pie/amanita_pie
+
+- type: imperialFoodData
+  id: FoodPiePlump
+  complexity: 3
+  types: [ Grain, Dairy, Vegetables ]
+  # TG: food/pie/plump_pie
+
+- type: imperialFoodData
+  id: FoodTartGrape
+  complexity: 4
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/pie/grapetart
+
+- type: imperialFoodData
+  id: FoodTartGapple
+  complexity: 4
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/pie/appletart
+
+- type: imperialFoodData
+  id: FoodTartCoco
+  complexity: 2
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/pie/cocolavatart
+
+- type: imperialFoodData
+  id: FoodPizzaMeat
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy, Meat ]
+  # TG: food/pizza/meat
+
+- type: imperialFoodData
+  id: FoodPizzaMushroom
+  complexity: 2
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/pizza/mushroom
+
+- type: imperialFoodData
+  id: FoodPizzaVegetable
+  complexity: 2
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/pizza/vegetable
+
+- type: imperialFoodData
+  id: FoodPizzaDonkpocket
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy, Junkfood ]
+  # TG: food/pizza/donkpocket
+
+- type: imperialFoodData
+  id: FoodPizzaDank
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/pizza/dank
+
+- type: imperialFoodData
+  id: FoodPizzaSassysage
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy, Meat ]
+  # TG: food/pizza/sassysage
+
+- type: imperialFoodData
+  id: FoodBreakfastEnglish
+  complexity: 5
+  types: [ Meat, Vegetables, Grain, Dairy, Fried, Breakfast, Egg ]
+  # TG: food/full_english
+
+- type: imperialFoodData
+  id: FoodBreadBun
+  complexity: 1
+  types: [ Grain ]
+  # TG: food/bun
+
+- type: imperialFoodData
+  id: FoodBurgerJelly
+  complexity: 2
+  types: [ Grain, Meat ]
+  # TG: food/burger/jelly
+
+- type: imperialFoodData
+  id: FoodBurgerAppendix
+  complexity: 2
+  types: [ Grain, Meat, Gore ]
+  # TG: food/burger/appendix
+
+- type: imperialFoodData
+  id: FoodBurgerBacon
+  complexity: 3
+  types: [ Grain, Meat ]
+  # TG: food/burger/baconburger
+
+- type: imperialFoodData
+  id: FoodBurgerBear
+  complexity: 3
+  types: [ Grain, Meat ]
+  # TG: food/burger/bearger
+
+- type: imperialFoodData
+  id: FoodBurgerBig
+  complexity: 3
+  types: [ Grain, Meat, Dairy ]
+  # TG: food/burger/bigbite
+
+- type: imperialFoodData
+  id: FoodBurgerBrain
+  complexity: 2
+  types: [ Grain, Meat, Gore ]
+  # TG: food/burger/brain
+
+- type: imperialFoodData
+  id: FoodBurgerCat
+  complexity: 3
+  types: [ Grain, Meat, Gore ]
+  # TG: food/burger/catburger
+
+- type: imperialFoodData
+  id: FoodBurgerCheese
+  complexity: 3
+  types: [ Grain, Meat, Dairy ]
+  # TG: food/burger/cheese
+
+- type: imperialFoodData
+  id: FoodBurgerClown
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/burger/clown
+
+- type: imperialFoodData
+  id: FoodBurgerCrab
+  complexity: 3
+  types: [ Grain, Seafood ]
+  # TG: food/burger/crab
+
+- type: imperialFoodData
+  id: FoodBurgerEmpowered
+  complexity: 2
+  types: [ Grain, Toxic ]
+  # TG: food/burger/empoweredburger
+
+- type: imperialFoodData
+  id: FoodBurgerFive
+  complexity: 3
+  types: [ Grain, Meat, Vegetables ]
+  # TG: food/burger/fivealarm
+
+- type: imperialFoodData
+  id: FoodBurgerGhost
+  complexity: 3
+  types: [ Grain ]
+  # TG: food/burger/ghost
+
+- type: imperialFoodData
+  id: FoodBurgerHuman
+  complexity: 2
+  types: [ Meat, Grain ]
+  # TG: food/burger/human
+
+- type: imperialFoodData
+  id: FoodBurgerMcguffin
+  complexity: 3
+  types: [ Grain, Meat, Breakfast, Fried, Egg ]
+  # TG: food/burger/mcguffin
+
+- type: imperialFoodData
+  id: FoodBurgerMime
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/burger/mime
+
+- type: imperialFoodData
+  id: FoodBurgerPlain
+  complexity: 2
+  types: [ Grain, Meat ]
+  # TG: food/burger/plain
+
+- type: imperialFoodData
+  id: FoodBurgerRat
+  complexity: 2
+  types: [ Grain, Meat, Gore, Raw ]
+  # TG: food/burger/rat
+
+- type: imperialFoodData
+  id: FoodBurgerRobot
+  complexity: 2
+  types: [ Grain, Toxic ]
+  # TG: food/burger/roburger
+
+- type: imperialFoodData
+  id: FoodBurgerSoy
+  complexity: 4
+  types: [ Grain, Meat, Dairy ]
+  # TG: food/burger/soylent
+
+- type: imperialFoodData
+  id: FoodBurgerSpell
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/burger/spell
+
+- type: imperialFoodData
+  id: FoodBurgerSuper
+  complexity: 5
+  types: [ Grain, Meat, Dairy, Vegetables, Egg ]
+  # TG: food/burger/superbite
+
+- type: imperialFoodData
+  id: FoodBurgerTofu
+  complexity: 2
+  types: [ Grain, Vegetables ]
+  # TG: food/burger/tofu
+
+- type: imperialFoodData
+  id: FoodBurgerXeno
+  complexity: 3
+  types: [ Grain, Meat ]
+  # TG: food/burger/xeno
+
+- type: imperialFoodData
+  id: FoodTinPeachesMaint
+  complexity: 0
+  types: [ Fruit, Sugar ]
+  # TG: food/canned/peaches/maint
+
+- type: imperialFoodData
+  id: FoodTinPeachesMaintOpen
+  complexity: 0
+  types: [ Fruit, Sugar ]
+  # TG: food/canned/peaches/maint
+
+- type: imperialFoodData
+  id: FoodTinBeans
+  complexity: 1
+  types: [ Vegetables ]
+  # TG: food/canned/beans
+
+- type: imperialFoodData
+  id: FoodEgg
+  complexity: 0
+  types: [ Meat, Raw, Egg ]
+  bake: FoodEggBoiled
+  bakeTime: 17.5
+  # TG: food/egg
+
+- type: imperialFoodData
+  id: FoodEggBoiled
+  complexity: 1
+  types: [ Meat, Breakfast, Egg ]
+  # TG: food/boiledegg
+
+- type: imperialFoodData
+  id: FoodFrozenSandwich
+  complexity: 2
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/icecreamsandwich
+
+- type: imperialFoodData
+  id: FoodFrozenSandwichStrawberry
+  complexity: 3
+  types: [ Grain, Fruit, Dairy, Sugar ]
+  # TG: food/strawberryicecreamsandwich
+
+- type: imperialFoodData
+  id: FoodFrozenFreezy
+  complexity: 3
+  types: [ Grain, Fruit, Dairy, Sugar ]
+  # TG: food/spacefreezy
+
+- type: imperialFoodData
+  id: FoodFrozenCornuto
+  complexity: 3
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/cornuto
+
+- type: imperialFoodData
+  id: FoodFrozenPopsicleOrange
+  complexity: 4
+  types: [ Fruit, Dairy, Sugar, Oranges ]
+  # TG: food/popsicle/creamsicle_orange
+
+- type: imperialFoodData
+  id: FoodFrozenPopsicleBerry
+  complexity: 4
+  types: [ Fruit, Dairy, Sugar ]
+  # TG: food/popsicle/creamsicle_berry
+
+- type: imperialFoodData
+  id: FoodFrozenPopsicleJumbo
+  complexity: 4
+  types: [ Dairy, Sugar ]
+  # TG: food/popsicle/jumbo
+
+- type: imperialFoodData
+  id: FoodFrozenSnowcone
+  complexity: 2
+  types: [ Sugar ]
+  # TG: food/snowcones
+
+- type: imperialFoodData
+  id: FoodFrozenSnowconeBerry
+  complexity: 2
+  types: [ Fruit ]
+  # TG: food/snowcones/berry
+
+- type: imperialFoodData
+  id: FoodFrozenSnowconeFruit
+  complexity: 2
+  types: [ Fruit, Oranges ]
+  # TG: food/snowcones/fruitsalad
+
+- type: imperialFoodData
+  id: FoodFrozenSnowconeMime
+  complexity: 2
+  types: [ Sugar ]
+  # TG: food/snowcones/mime
+
+- type: imperialFoodData
+  id: FoodFrozenSnowconeRainbow
+  complexity: 2
+  types: [ Sugar ]
+  # TG: food/snowcones/rainbow
+
+- type: imperialFoodData
+  id: FoodDough
+  complexity: 0
+  types: [ Grain ]
+  bake: FoodBreadPlain
+  bakeTime: 37.5
+  # TG: food/dough
+
+- type: imperialFoodData
+  id: FoodDoughSlice
+  complexity: 0
+  types: [ Grain ]
+  bake: FoodBreadBun
+  bakeTime: 22.5
+  # TG: food/doughslice
+
+- type: imperialFoodData
+  id: FoodDoughPastryBaseRaw
+  complexity: 1
+  types: [ Grain, Dairy ]
+  bake: FoodDoughPastryBase
+  bakeTime: 22.5
+  # TG: food/rawpastrybase
+
+- type: imperialFoodData
+  id: FoodDoughPastryBase
+  complexity: 2
+  types: [ Grain, Dairy ]
+  # TG: food/pastrybase
+
+- type: imperialFoodData
+  id: FoodDoughPie
+  complexity: 1
+  types: [ Grain, Dairy ]
+  bake: ImperialFoodPiePlain
+  bakeTime: 37.5
+  # TG: food/piedough
+
+- type: imperialFoodData
+  id: FoodDoughFlat
+  complexity: 0
+  types: [ Grain ]
+  bake: FoodDoughPizzaBaked
+  bakeTime: 37.5
+  # TG: food/flatdough
+
+- type: imperialFoodData
+  id: FoodDoughPizzaBaked
+  complexity: 1
+  types: [ Grain ]
+  # TG: food/pizzabread
+
+- type: imperialFoodData
+  id: FoodCakeBatter
+  complexity: 1
+  types: [ Grain, Dairy ]
+  bake: FoodCakePlain
+  bakeTime: 80
+  # TG: food/cakebatter
+
+- type: imperialFoodData
+  id: FoodButter
+  complexity: 0
+  types: [ Dairy ]
+  # TG: food/butter
+
+- type: imperialFoodData
+  id: FoodButterSlice
+  complexity: 0
+  types: [ Dairy ]
+  # TG: food/butterslice
+
+- type: imperialFoodData
+  id: FoodCheese
+  complexity: 1
+  types: [ Dairy ]
+  bake: ImperialFoodBakedCheese
+  bakeTime: 22.5
+  # TG: food/cheese/wheel
+
+- type: imperialFoodData
+  id: FoodCheeseSlice
+  complexity: 1
+  types: [ Dairy ]
+  # TG: food/cheese/wedge
+
+- type: imperialFoodData
+  id: FoodTofu
+  complexity: 1
+  types: [ Vegetables ]
+  # TG: food/tofu
+
+- type: imperialFoodData
+  id: FoodBadRecipe
+  complexity: 0
+  types: [ Gross ]
+  # TG: food/badrecipe
+
+- type: imperialFoodData
+  id: FoodCroissantRaw
+  complexity: 1
+  types: [ Grain, Dairy ]
+  bake: FoodBakedCroissant
+  bakeTime: 17.5
+  # TG: food/raw_croissant
+
+- type: imperialFoodData
+  id: FoodMealPotatoLoaded
+  complexity: 3
+  types: [ Vegetables, Dairy, Meat ]
+  # TG: food/loaded_baked_potato
+
+- type: imperialFoodData
+  id: FoodMealFries
+  complexity: 1
+  types: [ Vegetables, Fried ]
+  # TG: food/fries
+
+- type: imperialFoodData
+  id: FoodMealFriesCheesy
+  complexity: 2
+  types: [ Vegetables, Dairy, Fried ]
+  # TG: food/cheesyfries
+
+- type: imperialFoodData
+  id: FoodMealFriesCarrot
+  complexity: 1
+  types: [ Vegetables ]
+  # TG: food/carrotfries
+
+- type: imperialFoodData
+  id: FoodMealNachos
+  complexity: 1
+  types: [ Grain, Fried ]
+  # TG: food/nachos
+
+- type: imperialFoodData
+  id: FoodMealNachosCheesy
+  complexity: 2
+  types: [ Grain, Fried, Dairy ]
+  # TG: food/cheesynachos
+
+- type: imperialFoodData
+  id: FoodMealNachosCuban
+  complexity: 2
+  types: [ Vegetables, Fried, Grain ]
+  # TG: food/cubannachos
+
+- type: imperialFoodData
+  id: FoodMealMint
+  complexity: 0
+  types: [ Toxic, Sugar ]
+  # TG: food/mint
+
+- type: imperialFoodData
+  id: FoodMealEggplantParm
+  complexity: 2
+  types: [ Vegetables, Dairy ]
+  # TG: food/eggplantparm
+
+- type: imperialFoodData
+  id: FoodMealPotatoYaki
+  complexity: 1
+  types: [ Vegetables, Sugar ]
+  # TG: food/yakiimo
+
+- type: imperialFoodData
+  id: FoodMealCornedbeef
+  complexity: 2
+  types: [ Meat, Vegetables ]
+  # TG: food/cornedbeef
+
+- type: imperialFoodData
+  id: FoodMealBearsteak
+  complexity: 2
+  types: [ Meat, Alcohol ]
+  # TG: food/bearsteak
+
+- type: imperialFoodData
+  id: FoodMealPigblanket
+  complexity: 3
+  types: [ Meat, Dairy, Grain ]
+  # TG: food/pigblanket
+
+- type: imperialFoodData
+  id: FoodMealRibs
+  complexity: 2
+  types: [ Meat, Sugar ]
+  # TG: food/bbqribs
+
+- type: imperialFoodData
+  id: FoodMealEggsbenedict
+  complexity: 3
+  types: [ Meat, Breakfast, Grain, Fried, Egg ]
+  # TG: food/benedict
+
+- type: imperialFoodData
+  id: FoodMealFriedegg
+  complexity: 1
+  types: [ Meat, Fried, Breakfast, Egg ]
+  # TG: food/friedegg
+
+- type: imperialFoodData
+  id: FoodMealEnchiladas
+  complexity: 3
+  types: [ Meat, Vegetables, Grain ]
+  # TG: food/enchiladas
+
+- type: imperialFoodData
+  id: FoodSaladWatermelonFruitBowl
+  complexity: 4
+  types: [ Vegetables, Fruit, Oranges ]
+  # TG: food/melonfruitbowl
+
+- type: imperialFoodData
+  id: FoodMeatCrab
+  complexity: 0
+  types: [ Raw, Meat ]
+  grill: FoodMeatCrabCooked
+  grillTime: 60
+  # TG: food/meat/slab/rawcrab
+
+- type: imperialFoodData
+  id: FoodMeatWheat
+  complexity: 0
+  types: [ Meat, Raw ]
+  grill: FoodMeatCooked
+  grillTime: 60
+  # TG: food/meat/slab/meatwheat
+
+- type: imperialFoodData
+  id: FoodMeatTomato
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/meat/slab/killertomato
+
+- type: imperialFoodData
+  id: FoodMeatSalami
+  complexity: 2
+  types: [ Meat ]
+  # TG: food/salami
+
+- type: imperialFoodData
+  id: FoodMeatClown
+  complexity: 2
+  types: [ Meat, Fruit ]
+  # TG: food/meatclown
+
+- type: imperialFoodData
+  id: FoodMeatMeatball
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meatball
+
+- type: imperialFoodData
+  id: FoodMeatCooked
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meat/steak
+
+- type: imperialFoodData
+  id: FoodMeatChickenFried
+  complexity: 3
+  types: [ Meat, Fried ]
+  # TG: food/fried_chicken
+
+- type: imperialFoodData
+  id: FoodMeatGoliathCooked
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meat/steak/goliath
+
+- type: imperialFoodData
+  id: FoodMeatLizardCooked
+  complexity: 1
+  types: [ Meat, Gore ]
+  # TG: food/meat/steak/plain/human/lizard
+
+- type: imperialFoodData
+  id: FoodMeatSpiderlegCooked
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/boiledspiderleg
+
+- type: imperialFoodData
+  id: FoodMeatMeatballCooked
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meatball
+
+- type: imperialFoodData
+  id: FoodMeatCutlet
+  complexity: 0
+  types: [ Meat, Raw ]
+  grill: FoodMeatCutletCooked
+  grillTime: 42.5
+  # TG: food/meat/rawcutlet
+
+- type: imperialFoodData
+  id: FoodMeatBearCutlet
+  complexity: 0
+  types: [ Meat, Raw ]
+  grill: FoodMeatBearCutletCooked
+  grillTime: 42.5
+  # TG: food/meat/rawcutlet/bear
+
+- type: imperialFoodData
+  id: FoodMeatPenguinCutlet
+  complexity: 0
+  types: [ Meat, Raw ]
+  grill: FoodMeatPenguinCutletCooked
+  grillTime: 42.5
+  # TG: food/meat/rawcutlet/penguin
+
+- type: imperialFoodData
+  id: FoodMeatChickenCutlet
+  complexity: 0
+  types: [ Meat, Raw ]
+  grill: FoodMeatChickenCutletCooked
+  grillTime: 42.5
+  # TG: food/meat/rawcutlet/chicken
+
+- type: imperialFoodData
+  id: FoodMeatSpiderCutlet
+  complexity: 0
+  types: [ Toxic ]
+  grill: FoodMeatSpiderCutletCooked
+  grillTime: 42.5
+  # TG: food/meat/rawcutlet/spider
+
+- type: imperialFoodData
+  id: FoodMeatXenoCutlet
+  complexity: 0
+  types: [ Meat, Raw ]
+  grill: FoodMeatXenoCutletCooked
+  grillTime: 42.5
+  # TG: food/meat/rawcutlet/xeno
+
+- type: imperialFoodData
+  id: FoodMeatTomatoCutlet
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/meat/rawcutlet/killertomato
+
+- type: imperialFoodData
+  id: FoodMeatCutletCooked
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meat/cutlet
+
+- type: imperialFoodData
+  id: FoodMeatBearCutletCooked
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meat/cutlet/bear
+
+- type: imperialFoodData
+  id: FoodMeatPenguinCutletCooked
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meat/cutlet/penguin
+
+- type: imperialFoodData
+  id: FoodMeatChickenCutletCooked
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meat/cutlet/chicken
+
+- type: imperialFoodData
+  id: FoodMeatSpiderCutletCooked
+  complexity: 1
+  types: [ Toxic ]
+  # TG: food/meat/cutlet/spider
+
+- type: imperialFoodData
+  id: FoodMeatXenoCutletCooked
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meat/cutlet/xeno
+
+- type: imperialFoodData
+  id: FoodNoodlesBoiled
+  complexity: 1
+  types: [ Grain ]
+  # TG: food/spaghetti/boiledspaghetti
+
+- type: imperialFoodData
+  id: FoodNoodles
+  complexity: 1
+  types: [ Grain ]
+  bake: FoodNoodlesBoiled
+  bakeTime: 17.5
+  # TG: food/spaghetti/raw
+
+- type: imperialFoodData
+  id: FoodNoodlesCopy
+  complexity: 2
+  types: [ Grain, Vegetables ]
+  # TG: food/spaghetti/copypasta
+
+- type: imperialFoodData
+  id: FoodNoodlesMeatball
+  complexity: 2
+  types: [ Grain, Meat ]
+  # TG: food/spaghetti/meatballspaghetti
+
+- type: imperialFoodData
+  id: FoodNoodlesSpesslaw
+  complexity: 2
+  types: [ Grain, Meat ]
+  # TG: food/spaghetti/spesslaw
+
+- type: imperialFoodData
+  id: FoodNoodlesChowmein
+  complexity: 3
+  types: [ Grain, Meat, Vegetables ]
+  # TG: food/spaghetti/chowmein
+
+- type: imperialFoodData
+  id: FoodNoodlesButter
+  complexity: 2
+  types: [ Grain, Dairy ]
+  # TG: food/spaghetti/butternoodles
+
+- type: imperialFoodData
+  id: FoodBanana
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/grown/banana/bombanana
+
+- type: imperialFoodData
+  id: FoodMimana
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/grown/banana/mime
+
+- type: imperialFoodData
+  id: FoodCarrot
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/carrot
+
+- type: imperialFoodData
+  id: FoodCabbage
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/cabbage
+
+- type: imperialFoodData
+  id: FoodGarlic
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/garlic
+
+- type: imperialFoodData
+  id: FoodLemon
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/grown/citrus/lemon
+
+- type: imperialFoodData
+  id: FoodLime
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/grown/citrus/lime
+
+- type: imperialFoodData
+  id: FoodOrange
+  complexity: 0
+  types: [ Oranges, Fruit ]
+  # TG: food/grown/citrus/orange
+
+- type: imperialFoodData
+  id: FoodExtradimensionalOrange
+  complexity: 0
+  types: [ Oranges ]
+  # TG: food/grown/citrus/orange_3d
+
+- type: imperialFoodData
+  id: FoodPineapple
+  complexity: 0
+  types: [ Fruit, Pineapple ]
+  # TG: food/pineappleslice
+
+- type: imperialFoodData
+  id: FoodPotato
+  complexity: 0
+  types: [ Vegetables ]
+  bake: ImperialFoodBakedPotato
+  bakeTime: 20
+  # TG: food/grown/potato
+
+- type: imperialFoodData
+  id: FoodTomato
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/tomato
+
+- type: imperialFoodData
+  id: FoodBlueTomato
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/tomato/blue
+
+- type: imperialFoodData
+  id: FoodBloodTomato
+  complexity: 0
+  types: [ Vegetables, Gore ]
+  # TG: food/grown/tomato/blood
+
+- type: imperialFoodData
+  id: FoodEggplant
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/eggplant
+
+- type: imperialFoodData
+  id: FoodApple
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/grown/apple
+
+- type: imperialFoodData
+  id: FoodGoldenApple
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/grown/apple/gold
+
+- type: imperialFoodData
+  id: FoodCocoaPod
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/grown/cocoapod
+
+- type: imperialFoodData
+  id: FoodCorn
+  complexity: 0
+  types: [ Vegetables ]
+  bake: ImperialFoodOvenBakedCorn
+  bakeTime: 20
+  # TG: food/grown/corn
+
+- type: imperialFoodData
+  id: FoodOnion
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/onion
+
+- type: imperialFoodData
+  id: FoodOnionRed
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/onion/red
+
+- type: imperialFoodData
+  id: FoodMushroom
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/mushroom/chanterelle
+
+- type: imperialFoodData
+  id: FoodPineappleSlice
+  complexity: 0
+  types: [ Fruit, Pineapple ]
+  # TG: food/pineappleslice
+
+- type: imperialFoodData
+  id: FoodOnionSlice
+  complexity: 0
+  types: [ Vegetables ]
+  bake: FoodOnionRings
+  bakeTime: 17.5
+  # TG: food/onion_slice
+
+- type: imperialFoodData
+  id: FoodOnionRedSlice
+  complexity: 0
+  types: [ Vegetables ]
+  bake: FoodOnionRings
+  bakeTime: 17.5
+  # TG: food/onion_slice/red
+
+- type: imperialFoodData
+  id: FoodChillyPepper
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/icepepper
+
+- type: imperialFoodData
+  id: FoodAloe
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/aloe
+
+- type: imperialFoodData
+  id: FoodPoppy
+  complexity: 0
+  types: [ Vegetables, Gross ]
+  # TG: food/grown/poppy
+
+- type: imperialFoodData
+  id: FoodLily
+  complexity: 0
+  types: [ Vegetables, Gross ]
+  # TG: food/grown/poppy/lily
+
+- type: imperialFoodData
+  id: FoodFlyAmanita
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/mushroom/amanita
+
+- type: imperialFoodData
+  id: FoodGatfruit
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/grown/gatfruit
+
+- type: imperialFoodData
+  id: FoodSoybeans
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/soybeans
+
+- type: imperialFoodData
+  id: FoodSpacemansTrumpet
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/trumpet
+
+- type: imperialFoodData
+  id: FoodKoibean
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/koibeans
+
+- type: imperialFoodData
+  id: FoodWatermelon
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/grown/watermelon
+
+- type: imperialFoodData
+  id: FoodWatermelonSlice
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/watermelonslice
+
+- type: imperialFoodData
+  id: FoodHolymelon
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/grown/holymelon
+
+- type: imperialFoodData
+  id: FoodHolymelonSlice
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/holymelonslice
+
+- type: imperialFoodData
+  id: FoodBungo
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/grown/bungofruit
+
+- type: imperialFoodData
+  id: FoodBungoPit
+  complexity: 0
+  types: [ Toxic ]
+  # TG: food/grown/bungopit
+
+- type: imperialFoodData
+  id: FoodPeaPod
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/peas
+
+- type: imperialFoodData
+  id: FoodWorldPeas
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/peace
+
+- type: imperialFoodData
+  id: FoodPumpkin
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/pumpkin
+
+- type: imperialFoodData
+  id: FoodSnackChips
+  complexity: 0
+  types: [ Vegetables, Junkfood, Fried ]
+  # TG: food/chips
+
+- type: imperialFoodData
+  id: FoodSnackChocolateBar
+  complexity: 1
+  types: [ Junkfood, Sugar ]
+  # TG: food/chocolatebar
+
+- type: imperialFoodData
+  id: FoodSnackPopcorn
+  complexity: 0
+  types: [ Junkfood ]
+  # TG: food/popcorn
+
+- type: imperialFoodData
+  id: FoodSnackChowMein
+  complexity: 3
+  types: [ Grain, Meat, Vegetables ]
+  # TG: food/spaghetti/chowmein
+
+- type: imperialFoodData
+  id: FoodSnackCookieFortune
+  complexity: 2
+  types: [ Grain, Sugar, Dairy ]
+  # TG: food/fortunecookie
+
+- type: imperialFoodData
+  id: FoodSnackMREBrownieOpen
+  complexity: 2
+  types: [ Grain, Dairy, Junkfood, Sugar, Breakfast ]
+  # TG: food/brownie
+
+- type: imperialFoodData
+  id: FoodSnackSwirlLollipop
+  complexity: 1
+  types: [ Junkfood, Sugar ]
+  # TG: food/swirl_lollipop
+
+- type: imperialFoodData
+  id: FoodPacketChipsTrash
+  complexity: 0
+  types: [ Vegetables, Junkfood, Fried ]
+  # TG: food/chips
+
+- type: imperialFoodData
+  id: FoodSaladHerb
+  complexity: 2
+  types: [ Vegetables, Fruit ]
+  # TG: food/salad/herbsalad
+
+- type: imperialFoodData
+  id: FoodSaladValid
+  complexity: 2
+  types: [ Vegetables, Meat, Fried ]
+  # TG: food/salad/validsalad
+
+- type: imperialFoodData
+  id: FoodSaladCaesar
+  complexity: 4
+  types: [ Vegetables, Dairy, Grain ]
+  # TG: food/salad/caesar_salad
+
+- type: imperialFoodData
+  id: FoodSaladFruit
+  complexity: 3
+  types: [ Fruit, Oranges ]
+  # TG: food/salad/fruit
+
+- type: imperialFoodData
+  id: FoodSaladJungle
+  complexity: 3
+  types: [ Fruit ]
+  # TG: food/salad/jungle
+
+- type: imperialFoodData
+  id: FoodRiceBoiled
+  complexity: 1
+  types: [ Grain, Breakfast ]
+  # TG: food/boiledrice
+
+- type: imperialFoodData
+  id: FoodRiceEgg
+  complexity: 2
+  types: [ Meat, Grain, Egg ]
+  # TG: food/salad/egg_fried_rice
+
+- type: imperialFoodData
+  id: FoodRicePork
+  complexity: 2
+  types: [ Grain, Meat ]
+  # TG: food/salad/ricepork
+
+- type: imperialFoodData
+  id: FoodRicePudding
+  complexity: 2
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/salad/ricepudding
+
+- type: imperialFoodData
+  id: FoodRiceGumbo
+  complexity: 3
+  types: [ Grain, Meat, Vegetables ]
+  # TG: food/salad/gumbo
+
+- type: imperialFoodData
+  id: FoodJellyAmanita
+  complexity: 2
+  types: [ Vegetables, Toxic ]
+  # TG: food/bowled/amanitajelly
+
+- type: imperialFoodData
+  id: FoodTacoFish
+  complexity: 3
+  types: [ Seafood, Dairy, Grain, Vegetables ]
+  # TG: food/taco/fish
+
+- type: imperialFoodData
+  id: PlasticBanana
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/grown/banana/bombanana
+
+- type: imperialFoodData
+  id: WeaponBaguette
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/baguette
+
+- type: imperialFoodData
+  id: WeaponCroissant
+  complexity: 2
+  types: [ Grain, Dairy, Breakfast ]
+  # TG: food/croissant
+
+- type: imperialFoodData
+  id: FoodEggAshwalker
+  complexity: 0
+  types: [ Raw, Meat ]
+  # TG: food/meat/slab/monkey
+
+- type: imperialFoodData
+  id: ImperialFoodBreadsliceMoldyBacteria
+  complexity: 2
+  types: [ Gross ]
+  # TG: food/breadslice/moldy/bacteria
+
+- type: imperialFoodData
+  id: FoodBreadBanana
+  complexity: 3
+  types: [ Grain, Fruit, Meat ]
+  # TG: food/bread/banana
+
+- type: imperialFoodData
+  id: FoodBreadBananaSlice
+  complexity: 3
+  types: [ Grain, Fruit, Meat ]
+  # TG: food/breadslice/banana
+
+- type: imperialFoodData
+  id: ImperialFoodButterbiscuit
+  complexity: 2
+  types: [ Grain, Breakfast, Dairy ]
+  # TG: food/butterbiscuit
+
+- type: imperialFoodData
+  id: ImperialFoodButterdog
+  complexity: 2
+  types: [ Grain, Dairy ]
+  # TG: food/butterdog
+
+- type: imperialFoodData
+  id: ImperialFoodRawFrenchtoast
+  complexity: 2
+  types: [ Grain, Raw, Breakfast, Meat, Egg ]
+  # TG: food/raw_frenchtoast
+
+- type: imperialFoodData
+  id: ImperialFoodRawBreadstick
+  complexity: 1
+  types: [ Grain, Dairy ]
+  # TG: food/raw_breadstick
+
+- type: imperialFoodData
+  id: ImperialFoodBreadstick
+  complexity: 2
+  types: [ Grain, Dairy ]
+  # TG: food/breadstick
+
+- type: imperialFoodData
+  id: FoodBurgerCorgi
+  complexity: 2
+  types: [ Grain, Meat ]
+  # TG: food/burger/corgi
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerFish
+  complexity: 3
+  types: [ Grain, Seafood, Dairy ]
+  # TG: food/burger/fish
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerRed
+  complexity: 2
+  types: [ Grain, Meat ]
+  # TG: food/burger/red
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerOrange
+  complexity: 2
+  types: [ Grain, Meat ]
+  # TG: food/burger/orange
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerYellow
+  complexity: 2
+  types: [ Grain, Meat ]
+  # TG: food/burger/yellow
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerGreen
+  complexity: 2
+  types: [ Grain, Meat ]
+  # TG: food/burger/green
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerBlue
+  complexity: 2
+  types: [ Grain, Meat ]
+  # TG: food/burger/blue
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerPurple
+  complexity: 2
+  types: [ Grain, Meat ]
+  # TG: food/burger/purple
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerBlack
+  complexity: 2
+  types: [ Grain, Meat ]
+  # TG: food/burger/black
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerWhite
+  complexity: 2
+  types: [ Grain, Meat ]
+  # TG: food/burger/white
+
+- type: imperialFoodData
+  id: FoodBurgerBaseball
+  complexity: 3
+  types: [ Grain, Gross ]
+  # TG: food/burger/baseball
+
+- type: imperialFoodData
+  id: FoodBurgerMcrib
+  complexity: 3
+  types: [ Grain, Meat, Sugar, Vegetables ]
+  # TG: food/burger/rib
+
+- type: imperialFoodData
+  id: FoodBurgerChicken
+  complexity: 3
+  types: [ Grain, Meat ]
+  # TG: food/burger/chicken
+
+- type: imperialFoodData
+  id: FoodBurgerCrazy
+  complexity: 4
+  types: [ Grain, Meat, Dairy, Vegetables ]
+  # TG: food/burger/crazy
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerEmpty
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/burger/empty
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerSloppyMoe
+  complexity: 3
+  types: [ Meat, Vegetables, Grain ]
+  # TG: food/burger/sloppy_moe
+
+- type: imperialFoodData
+  id: ImperialFoodCakePlainVegan
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/cake/plain/vegan
+
+- type: imperialFoodData
+  id: ImperialFoodCakeslicePlainVegan
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/cakeslice/plain/vegan
+
+- type: imperialFoodData
+  id: FoodCakePlainSlice
+  complexity: 2
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/cakeslice/plain
+
+- type: imperialFoodData
+  id: ImperialFoodCakesliceEmpty
+  complexity: 2
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/cakeslice/empty
+
+- type: imperialFoodData
+  id: ImperialFoodCakeEmptyVegan
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/cake/empty/vegan
+
+- type: imperialFoodData
+  id: ImperialFoodCakesliceEmptyVegan
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/cakeslice/empty/vegan
+
+- type: imperialFoodData
+  id: FoodCakeCarrotSlice
+  complexity: 3
+  types: [ Grain, Dairy, Vegetables, Sugar ]
+  # TG: food/cakeslice/carrot
+
+- type: imperialFoodData
+  id: FoodCakeBrainSlice
+  complexity: 3
+  types: [ Grain, Dairy, Meat, Gore, Sugar ]
+  # TG: food/cakeslice/brain
+
+- type: imperialFoodData
+  id: FoodCakeCheeseSlice
+  complexity: 3
+  types: [ Grain, Dairy ]
+  # TG: food/cakeslice/cheese
+
+- type: imperialFoodData
+  id: FoodCakeOrangeSlice
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar, Oranges ]
+  # TG: food/cakeslice/orange
+
+- type: imperialFoodData
+  id: FoodCakeLimeSlice
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/cakeslice/lime
+
+- type: imperialFoodData
+  id: FoodCakeLemonSlice
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/cakeslice/lemon
+
+- type: imperialFoodData
+  id: FoodCakeChocolateSlice
+  complexity: 3
+  types: [ Grain, Dairy, Junkfood, Sugar ]
+  # TG: food/cakeslice/chocolate
+
+- type: imperialFoodData
+  id: FoodCakeBirthdaySlice
+  complexity: 3
+  types: [ Grain, Dairy, Junkfood, Sugar ]
+  # TG: food/cakeslice/birthday
+
+- type: imperialFoodData
+  id: ImperialFoodCakeBirthdayEnergy
+  complexity: 4
+  types: [ Grain, Dairy, Junkfood, Sugar ]
+  # TG: food/cake/birthday/energy
+
+- type: imperialFoodData
+  id: ImperialFoodCakesliceBirthdayEnergy
+  complexity: 4
+  types: [ Grain, Dairy, Junkfood, Sugar ]
+  # TG: food/cakeslice/birthday/energy
+
+- type: imperialFoodData
+  id: FoodCakeAppleSlice
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/cakeslice/apple
+
+- type: imperialFoodData
+  id: ImperialFoodCakesliceSlimecake
+  complexity: 3
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/cakeslice/slimecake
+
+- type: imperialFoodData
+  id: ImperialFoodCakeslicePumpkinspice
+  complexity: 3
+  types: [ Grain, Dairy, Sugar, Vegetables ]
+  # TG: food/cakeslice/pumpkinspice
+
+- type: imperialFoodData
+  id: ImperialFoodCakeBerryVanillaCake
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/cake/berry_vanilla_cake
+
+- type: imperialFoodData
+  id: ImperialFoodCakesliceBerryVanillaCake
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/cakeslice/berry_vanilla_cake
+
+- type: imperialFoodData
+  id: ImperialFoodCakeBerryChocolateCake
+  complexity: 4
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/cake/berry_chocolate_cake
+
+- type: imperialFoodData
+  id: ImperialFoodCakesliceBerryChocolateCake
+  complexity: 4
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/cakeslice/berry_chocolate_cake
+
+- type: imperialFoodData
+  id: ImperialFoodCakeHolyCake
+  complexity: 2
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/cake/holy_cake
+
+- type: imperialFoodData
+  id: ImperialFoodCakesliceHolyCakeSlice
+  complexity: 2
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/cakeslice/holy_cake_slice
+
+- type: imperialFoodData
+  id: ImperialFoodCakePoundCake
+  complexity: 2
+  types: [ Grain, Dairy, Sugar, Junkfood ]
+  # TG: food/cake/pound_cake
+
+- type: imperialFoodData
+  id: ImperialFoodCakeslicePoundCakeSlice
+  complexity: 2
+  types: [ Grain, Dairy, Sugar, Junkfood ]
+  # TG: food/cakeslice/pound_cake_slice
+
+- type: imperialFoodData
+  id: ImperialFoodCakeHardwareCake
+  complexity: 3
+  types: [ Grain, Dairy, Sugar, Gross ]
+  # TG: food/cake/hardware_cake
+
+- type: imperialFoodData
+  id: ImperialFoodCakesliceHardwareCakeSlice
+  complexity: 3
+  types: [ Grain, Dairy, Sugar, Gross ]
+  # TG: food/cakeslice/hardware_cake_slice
+
+- type: imperialFoodData
+  id: ImperialFoodCakesliceVanillaSlice
+  complexity: 3
+  types: [ Grain, Fruit, Dairy, Sugar ]
+  # TG: food/cakeslice/vanilla_slice
+
+- type: imperialFoodData
+  id: ImperialFoodCakesliceClownSlice
+  complexity: 5
+  types: [ Grain, Fruit, Dairy, Sugar ]
+  # TG: food/cakeslice/clown_slice
+
+- type: imperialFoodData
+  id: ImperialFoodCakesliceTrumpet
+  complexity: 4
+  types: [ Grain, Dairy, Fruit, Sugar, Vegetables ]
+  # TG: food/cakeslice/trumpet
+
+- type: imperialFoodData
+  id: ImperialFoodCakeBrioche
+  complexity: 2
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/cake/brioche
+
+- type: imperialFoodData
+  id: ImperialFoodCakesliceBrioche
+  complexity: 2
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/cakeslice/brioche
+
+- type: imperialFoodData
+  id: ImperialFoodCakePavlova
+  complexity: 3
+  types: [ Dairy, Fruit, Sugar ]
+  # TG: food/cake/pavlova
+
+- type: imperialFoodData
+  id: ImperialFoodCakePavlovaNuts
+  complexity: 3
+  types: [ Nuts, Fruit, Sugar ]
+  # TG: food/cake/pavlova/nuts
+
+- type: imperialFoodData
+  id: ImperialFoodCakeslicePavlova
+  complexity: 3
+  types: [ Dairy, Fruit, Sugar ]
+  # TG: food/cakeslice/pavlova
+
+- type: imperialFoodData
+  id: ImperialFoodCakeslicePavlovaNuts
+  complexity: 3
+  types: [ Nuts, Fruit, Sugar ]
+  # TG: food/cakeslice/pavlova/nuts
+
+- type: imperialFoodData
+  id: ImperialFoodCakeFruit
+  complexity: 4
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/cake/fruit
+
+- type: imperialFoodData
+  id: ImperialFoodCakesliceFruit
+  complexity: 4
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/cakeslice/fruit
+
+- type: imperialFoodData
+  id: ImperialFoodCakePlum
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/cake/plum
+
+- type: imperialFoodData
+  id: ImperialFoodCakeslicePlum
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/cakeslice/plum
+
+- type: imperialFoodData
+  id: ImperialFoodCakeWedding
+  complexity: 3
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/cake/wedding
+
+- type: imperialFoodData
+  id: ImperialFoodCakesliceWedding
+  complexity: 2
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/cakeslice/wedding
+
+- type: imperialFoodData
+  id: ImperialFoodCakePineappleCreamCake
+  complexity: 3
+  types: [ Grain, Dairy, Sugar, Fruit, Pineapple ]
+  # TG: food/cake/pineapple_cream_cake
+
+- type: imperialFoodData
+  id: ImperialFoodCakeslicePineappleCreamCake
+  complexity: 3
+  types: [ Grain, Dairy, Sugar, Fruit, Pineapple ]
+  # TG: food/cakeslice/pineapple_cream_cake
+
+- type: imperialFoodData
+  id: ImperialFoodCheeseRoyal
+  complexity: 3
+  types: [ Dairy ]
+  # TG: food/cheese/royal
+
+- type: imperialFoodData
+  id: ImperialFoodCheeseCurdCheese
+  complexity: 2
+  types: [ Dairy ]
+  # TG: food/cheese/curd_cheese
+
+- type: imperialFoodData
+  id: ImperialFoodCheeseCheeseCurds
+  complexity: 2
+  types: [ Dairy ]
+  # TG: food/cheese/cheese_curds
+
+- type: imperialFoodData
+  id: ImperialFoodCheeseFirmCheese
+  complexity: 3
+  types: [ Dairy ]
+  # TG: food/cheese/firm_cheese
+
+- type: imperialFoodData
+  id: ImperialFoodCheeseFirmCheeseSlice
+  complexity: 3
+  types: [ Dairy ]
+  # TG: food/cheese/firm_cheese_slice
+
+- type: imperialFoodData
+  id: ImperialFoodCheeseMozzarella
+  complexity: 2
+  types: [ Dairy ]
+  # TG: food/cheese/mozzarella
+
+- type: imperialFoodData
+  id: FoodDonkpocket
+  complexity: 3
+  types: [ Grain ]
+  # TG: food/donkpocket
+
+- type: imperialFoodData
+  id: FoodDonkpocketDank
+  complexity: 2
+  types: [ Grain, Vegetables ]
+  bake: FoodDonkpocketDankWarm
+  bakeTime: 30
+  # TG: food/donkpocket/dank
+
+- type: imperialFoodData
+  id: FoodDonkpocketSpicy
+  complexity: 3
+  types: [ Vegetables, Grain ]
+  bake: FoodDonkpocketSpicyWarm
+  bakeTime: 30
+  # TG: food/donkpocket/spicy
+
+- type: imperialFoodData
+  id: FoodDonkpocketTeriyaki
+  complexity: 3
+  types: [ Grain ]
+  bake: FoodDonkpocketTeriyakiWarm
+  bakeTime: 30
+  # TG: food/donkpocket/teriyaki
+
+- type: imperialFoodData
+  id: FoodDonkpocketPizza
+  complexity: 3
+  types: [ Vegetables, Grain, Dairy ]
+  bake: FoodDonkpocketPizzaWarm
+  bakeTime: 30
+  # TG: food/donkpocket/pizza
+
+- type: imperialFoodData
+  id: FoodDonkpocketHonk
+  complexity: 3
+  types: [ Grain, Fruit, Sugar ]
+  bake: FoodDonkpocketHonkWarm
+  bakeTime: 30
+  # TG: food/donkpocket/honk
+
+- type: imperialFoodData
+  id: FoodDonkpocketBerry
+  complexity: 3
+  types: [ Grain, Fruit, Sugar ]
+  bake: FoodDonkpocketBerryWarm
+  bakeTime: 30
+  # TG: food/donkpocket/berry
+
+- type: imperialFoodData
+  id: ImperialFoodDonkpocketGondola
+  complexity: 3
+  types: [ Grain, Meat ]
+  # TG: food/donkpocket/gondola
+
+- type: imperialFoodData
+  id: ImperialFoodDonkpocketWarmGondola
+  complexity: 3
+  types: [ Grain, Meat ]
+  # TG: food/donkpocket/warm/gondola
+
+- type: imperialFoodData
+  id: ImperialFoodDonkpocketDeluxe
+  complexity: 4
+  types: [ Grain, Meat, Vegetables ]
+  # TG: food/donkpocket/deluxe
+
+- type: imperialFoodData
+  id: ImperialFoodDonkpocketWarmDeluxe
+  complexity: 3
+  types: [ Grain, Meat, Vegetables, Fried ]
+  # TG: food/donkpocket/warm/deluxe
+
+- type: imperialFoodData
+  id: ImperialFoodDonkpocketDeluxeNocarb
+  complexity: 4
+  types: [ Meat, Raw ]
+  # TG: food/donkpocket/deluxe/nocarb
+
+- type: imperialFoodData
+  id: ImperialFoodDonkpocketWarmDeluxeNocarb
+  complexity: 3
+  types: [ Meat ]
+  # TG: food/donkpocket/warm/deluxe/nocarb
+
+- type: imperialFoodData
+  id: ImperialFoodDonkpocketDeluxeVegan
+  complexity: 4
+  types: [ Grain, Vegetables ]
+  # TG: food/donkpocket/deluxe/vegan
+
+- type: imperialFoodData
+  id: ImperialFoodDonkpocketWarmDeluxeVegan
+  complexity: 3
+  types: [ Grain, Vegetables, Fried ]
+  # TG: food/donkpocket/warm/deluxe/vegan
+
+- type: imperialFoodData
+  id: FoodDonutPlain
+  complexity: 2
+  types: [ Grain, Dairy, Junkfood, Sugar, Fried, Breakfast ]
+  # TG: food/donut/plain
+
+- type: imperialFoodData
+  id: ImperialFoodDonutBlumpkin
+  complexity: 3
+  types: [ Vegetables ]
+  # TG: food/donut/blumpkin
+
+- type: imperialFoodData
+  id: FoodDonutJellyPlain
+  complexity: 2
+  types: [ Fruit ]
+  # TG: food/donut/jelly/plain
+
+- type: imperialFoodData
+  id: ImperialFoodDonutJellyBlumpkin
+  complexity: 3
+  types: [ Vegetables ]
+  # TG: food/donut/jelly/blumpkin
+
+- type: imperialFoodData
+  id: ImperialFoodDonutJellySlimejellyBlumpkin
+  complexity: 3
+  types: [ Vegetables ]
+  # TG: food/donut/jelly/slimejelly/blumpkin
+
+- type: imperialFoodData
+  id: ImperialFoodCakebatterVegan
+  complexity: 1
+  types: [ Grain ]
+  # TG: food/cakebatter/vegan
+
+- type: imperialFoodData
+  id: ImperialFoodChocolateegg
+  complexity: 2
+  types: [ Junkfood, Sugar, Egg ]
+  # TG: food/chocolateegg
+
+- type: imperialFoodData
+  id: ImperialFoodEggOrganic
+  complexity: 0
+  types: [ Meat, Raw, Egg ]
+  # TG: food/egg/organic
+
+- type: imperialFoodData
+  id: ImperialFoodEggFertile
+  complexity: 0
+  types: [ Meat, Raw, Egg ]
+  # TG: food/egg/fertile
+
+- type: imperialFoodData
+  id: ImperialFoodRawegg
+  complexity: 0
+  types: [ Meat, Raw, Egg ]
+  # TG: food/rawegg
+
+- type: imperialFoodData
+  id: ImperialFoodEggsausage
+  complexity: 3
+  types: [ Meat, Fried, Breakfast, Egg ]
+  # TG: food/eggsausage
+
+- type: imperialFoodData
+  id: FoodMealOmelette
+  complexity: 2
+  types: [ Meat, Breakfast, Dairy, Egg ]
+  # TG: food/omelette
+
+- type: imperialFoodData
+  id: ImperialFoodEggwrap
+  complexity: 3
+  types: [ Meat, Vegetables, Fried, Egg ]
+  # TG: food/eggwrap
+
+- type: imperialFoodData
+  id: ImperialFoodChawanmushi
+  complexity: 3
+  types: [ Meat, Vegetables, Egg ]
+  # TG: food/chawanmushi
+
+- type: imperialFoodData
+  id: ImperialFoodSporeSack
+  complexity: 0
+  types: [ Meat, Raw, Toxic, Egg ]
+  # TG: food/spore_sack
+
+- type: imperialFoodData
+  id: ImperialFoodSporeSackIndependent
+  complexity: 0
+  types: [ Meat, Raw, Toxic, Egg ]
+  # TG: food/spore_sack/independent
+
+- type: imperialFoodData
+  id: ImperialFoodFriedeggSpore
+  complexity: 1
+  types: [ Meat, Fried, Breakfast, Egg ]
+  # TG: food/friedegg/spore
+
+- type: imperialFoodData
+  id: ImperialFoodRaweggSpore
+  complexity: 0
+  types: [ Meat, Raw, Egg ]
+  # TG: food/rawegg/spore
+
+- type: imperialFoodData
+  id: FoodFrozenSundae
+  complexity: 3
+  types: [ Grain, Fruit, Dairy, Sugar ]
+  # TG: food/sundae
+
+- type: imperialFoodData
+  id: ImperialFoodHonkdae
+  complexity: 4
+  types: [ Grain, Fruit, Dairy, Sugar ]
+  # TG: food/honkdae
+
+- type: imperialFoodData
+  id: ImperialFoodSnowconesLime
+  complexity: 2
+  types: [ Fruit ]
+  # TG: food/snowcones/lime
+
+- type: imperialFoodData
+  id: ImperialFoodSnowconesLemon
+  complexity: 2
+  types: [ Fruit ]
+  # TG: food/snowcones/lemon
+
+- type: imperialFoodData
+  id: ImperialFoodSnowconesApple
+  complexity: 2
+  types: [ Fruit ]
+  # TG: food/snowcones/apple
+
+- type: imperialFoodData
+  id: ImperialFoodSnowconesGrape
+  complexity: 2
+  types: [ Fruit ]
+  # TG: food/snowcones/grape
+
+- type: imperialFoodData
+  id: ImperialFoodSnowconesOrange
+  complexity: 2
+  types: [ Fruit, Oranges ]
+  # TG: food/snowcones/orange
+
+- type: imperialFoodData
+  id: ImperialFoodSnowconesBlue
+  complexity: 2
+  types: [ Fruit ]
+  # TG: food/snowcones/blue
+
+- type: imperialFoodData
+  id: ImperialFoodSnowconesRed
+  complexity: 2
+  types: [ Fruit ]
+  # TG: food/snowcones/red
+
+- type: imperialFoodData
+  id: ImperialFoodSnowconesPineapple
+  complexity: 2
+  types: [ Pineapple ]
+  # TG: food/snowcones/pineapple
+
+- type: imperialFoodData
+  id: ImperialFoodSnowconesClown
+  complexity: 2
+  types: [ Sugar, Fruit ]
+  # TG: food/snowcones/clown
+
+- type: imperialFoodData
+  id: ImperialFoodSnowconesSoda
+  complexity: 2
+  types: [ Sugar ]
+  # TG: food/snowcones/soda
+
+- type: imperialFoodData
+  id: ImperialFoodSnowconesSpacemountainwind
+  complexity: 2
+  types: [ Sugar ]
+  # TG: food/snowcones/spacemountainwind
+
+- type: imperialFoodData
+  id: ImperialFoodSnowconesPwrgame
+  complexity: 2
+  types: [ Sugar ]
+  # TG: food/snowcones/pwrgame
+
+- type: imperialFoodData
+  id: ImperialFoodSnowconesHoney
+  complexity: 3
+  types: [ Sugar ]
+  # TG: food/snowcones/honey
+
+- type: imperialFoodData
+  id: ImperialFoodPopsicle
+  complexity: 3
+  types: [ Dairy, Sugar ]
+  # TG: food/popsicle
+
+- type: imperialFoodData
+  id: ImperialFoodPopsicleLicoriceCreamsicle
+  complexity: 4
+  types: [ Dairy, Sugar ]
+  # TG: food/popsicle/licorice_creamsicle
+
+- type: imperialFoodData
+  id: ImperialFoodPopsicleMeatsicle
+  complexity: 4
+  types: [ Raw, Meat, Sugar ]
+  # TG: food/popsicle/meatsicle
+
+- type: imperialFoodData
+  id: ImperialFoodRawTiziranSausage
+  complexity: 1
+  types: [ Meat, Raw ]
+  # TG: food/raw_tiziran_sausage
+
+- type: imperialFoodData
+  id: ImperialFoodTiziranSausage
+  complexity: 2
+  types: [ Meat ]
+  # TG: food/tiziran_sausage
+
+- type: imperialFoodData
+  id: ImperialFoodRawHeadcheese
+  complexity: 1
+  types: [ Meat, Raw, Gore ]
+  # TG: food/raw_headcheese
+
+- type: imperialFoodData
+  id: ImperialFoodHeadcheese
+  complexity: 2
+  types: [ Meat, Gore ]
+  # TG: food/headcheese
+
+- type: imperialFoodData
+  id: ImperialFoodHeadcheeseSlice
+  complexity: 2
+  types: [ Meat, Gore ]
+  # TG: food/headcheese_slice
+
+- type: imperialFoodData
+  id: ImperialFoodShreddedLungs
+  complexity: 3
+  types: [ Meat, Vegetables, Gore ]
+  # TG: food/shredded_lungs
+
+- type: imperialFoodData
+  id: ImperialFoodTsatsikh
+  complexity: 2
+  types: [ Meat, Gore ]
+  # TG: food/tsatsikh
+
+- type: imperialFoodData
+  id: ImperialFoodLiverPate
+  complexity: 2
+  types: [ Meat, Vegetables ]
+  # TG: food/liver_pate
+
+- type: imperialFoodData
+  id: ImperialFoodMoonfishCaviar
+  complexity: 2
+  types: [ Seafood ]
+  # TG: food/moonfish_caviar
+
+- type: imperialFoodData
+  id: ImperialFoodLizardEscargot
+  complexity: 4
+  types: [ Meat, Vegetables ]
+  # TG: food/lizard_escargot
+
+- type: imperialFoodData
+  id: ImperialFoodFriedBloodSausage
+  complexity: 3
+  types: [ Meat, Nuts, Fried ]
+  # TG: food/fried_blood_sausage
+
+- type: imperialFoodData
+  id: ImperialFoodLizardFries
+  complexity: 3
+  types: [ Meat, Vegetables, Fried ]
+  # TG: food/lizard_fries
+
+- type: imperialFoodData
+  id: ImperialFoodBrainPate
+  complexity: 2
+  types: [ Meat, Vegetables, Gore ]
+  # TG: food/brain_pate
+
+- type: imperialFoodData
+  id: ImperialFoodCrispyHeadcheese
+  complexity: 3
+  types: [ Meat, Vegetables, Nuts, Gore ]
+  # TG: food/crispy_headcheese
+
+- type: imperialFoodData
+  id: ImperialFoodKebabPicossSkewers
+  complexity: 3
+  types: [ Vegetables, Seafood ]
+  # TG: food/kebab/picoss_skewers
+
+- type: imperialFoodData
+  id: ImperialFoodNectarLarvae
+  complexity: 3
+  types: [ Meat, Vegetables, Bugs, Gore ]
+  # TG: food/nectar_larvae
+
+- type: imperialFoodData
+  id: ImperialFoodMushroomyStirfry
+  complexity: 3
+  types: [ Vegetables ]
+  # TG: food/mushroomy_stirfry
+
+- type: imperialFoodData
+  id: ImperialFoodGrilledMoonfish
+  complexity: 2
+  types: [ Seafood ]
+  # TG: food/grilled_moonfish
+
+- type: imperialFoodData
+  id: ImperialFoodMoonfishDemiglace
+  complexity: 4
+  types: [ Vegetables, Seafood ]
+  # TG: food/moonfish_demiglace
+
+- type: imperialFoodData
+  id: ImperialFoodLizardSurfNTurf
+  complexity: 5
+  types: [ Meat, Seafood, Vegetables ]
+  # TG: food/lizard_surf_n_turf
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiNizaya
+  complexity: 2
+  types: [ Vegetables, Nuts ]
+  # TG: food/spaghetti/nizaya
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiNizayaEgg
+  complexity: 2
+  types: [ Meat ]
+  # TG: food/spaghetti/nizaya/egg
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiSnailNizaya
+  complexity: 4
+  types: [ Vegetables, Meat, Nuts ]
+  # TG: food/spaghetti/snail_nizaya
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiGarlicNizaya
+  complexity: 3
+  types: [ Vegetables, Nuts ]
+  # TG: food/spaghetti/garlic_nizaya
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiDemitNizaya
+  complexity: 4
+  types: [ Vegetables, Nuts, Sugar ]
+  # TG: food/spaghetti/demit_nizaya
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiMushroomNizaya
+  complexity: 4
+  types: [ Vegetables, Nuts ]
+  # TG: food/spaghetti/mushroom_nizaya
+
+- type: imperialFoodData
+  id: ImperialFoodRootdough
+  complexity: 1
+  types: [ Vegetables, Nuts ]
+  # TG: food/rootdough
+
+- type: imperialFoodData
+  id: ImperialFoodRootdoughEgg
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/rootdough/egg
+
+- type: imperialFoodData
+  id: ImperialFoodFlatrootdough
+  complexity: 1
+  types: [ Vegetables, Nuts ]
+  # TG: food/flatrootdough
+
+- type: imperialFoodData
+  id: ImperialFoodFlatrootdoughEgg
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/flatrootdough/egg
+
+- type: imperialFoodData
+  id: ImperialFoodRootdoughslice
+  complexity: 1
+  types: [ Vegetables, Nuts ]
+  # TG: food/rootdoughslice
+
+- type: imperialFoodData
+  id: ImperialFoodRootdoughsliceEgg
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/rootdoughslice/egg
+
+- type: imperialFoodData
+  id: ImperialFoodRootFlatbread
+  complexity: 2
+  types: [ Vegetables, Nuts ]
+  # TG: food/root_flatbread
+
+- type: imperialFoodData
+  id: ImperialFoodRootFlatbreadEgg
+  complexity: 2
+  types: [ Meat ]
+  # TG: food/root_flatbread/egg
+
+- type: imperialFoodData
+  id: ImperialFoodRootroll
+  complexity: 2
+  types: [ Vegetables, Nuts ]
+  # TG: food/rootroll
+
+- type: imperialFoodData
+  id: ImperialFoodRootrollEgg
+  complexity: 2
+  types: [ Meat ]
+  # TG: food/rootroll/egg
+
+- type: imperialFoodData
+  id: ImperialFoodBreadRoot
+  complexity: 2
+  types: [ Vegetables, Nuts ]
+  # TG: food/bread/root
+
+- type: imperialFoodData
+  id: ImperialFoodBreadRootEgg
+  complexity: 2
+  types: [ Meat ]
+  # TG: food/bread/root/egg
+
+- type: imperialFoodData
+  id: ImperialFoodBreadsliceRoot
+  complexity: 2
+  types: [ Vegetables, Nuts ]
+  # TG: food/breadslice/root
+
+- type: imperialFoodData
+  id: ImperialFoodBreadsliceRootEgg
+  complexity: 2
+  types: [ Meat ]
+  # TG: food/breadslice/root/egg
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaFlatbreadRustic
+  complexity: 3
+  types: [ Vegetables, Nuts ]
+  # TG: food/pizza/flatbread/rustic
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaFlatbreadItalic
+  complexity: 4
+  types: [ Vegetables, Nuts, Meat ]
+  # TG: food/pizza/flatbread/italic
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaFlatbreadImperial
+  complexity: 4
+  types: [ Vegetables, Meat, Nuts, Gore ]
+  # TG: food/pizza/flatbread/imperial
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaFlatbreadRawmeat
+  complexity: 3
+  types: [ Meat, Vegetables, Raw, Nuts ]
+  # TG: food/pizza/flatbread/rawmeat
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaFlatbreadStinging
+  complexity: 3
+  types: [ Meat, Vegetables, Nuts, Seafood, Bugs, Gore ]
+  # TG: food/pizza/flatbread/stinging
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaFlatbreadZmorgast
+  complexity: 3
+  types: [ Vegetables, Nuts, Meat, Egg ]
+  # TG: food/pizza/flatbread/zmorgast
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaFlatbreadFish
+  complexity: 4
+  types: [ Vegetables, Nuts, Seafood ]
+  # TG: food/pizza/flatbread/fish
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaFlatbreadMushroom
+  complexity: 4
+  types: [ Vegetables, Nuts ]
+  # TG: food/pizza/flatbread/mushroom
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaFlatbreadNutty
+  complexity: 3
+  types: [ Nuts ]
+  # TG: food/pizza/flatbread/nutty
+
+- type: imperialFoodData
+  id: ImperialFoodEmperorRoll
+  complexity: 4
+  types: [ Vegetables, Nuts, Meat, Gore, Seafood ]
+  # TG: food/emperor_roll
+
+- type: imperialFoodData
+  id: ImperialFoodHoneyRoll
+  complexity: 4
+  types: [ Vegetables, Nuts, Fruit ]
+  # TG: food/honey_roll
+
+- type: imperialFoodData
+  id: ImperialFoodBlackEggs
+  complexity: 2
+  types: [ Meat, Breakfast, Gore, Egg ]
+  # TG: food/black_eggs
+
+- type: imperialFoodData
+  id: ImperialFoodPatzikula
+  complexity: 3
+  types: [ Vegetables, Meat, Breakfast, Egg ]
+  # TG: food/patzikula
+
+- type: imperialFoodData
+  id: ImperialFoodCakeKortaBrittle
+  complexity: 3
+  types: [ Nuts, Sugar ]
+  # TG: food/cake/korta_brittle
+
+- type: imperialFoodData
+  id: ImperialFoodCakesliceKortaBrittle
+  complexity: 2
+  types: [ Nuts, Sugar ]
+  # TG: food/cakeslice/korta_brittle
+
+- type: imperialFoodData
+  id: ImperialFoodSnowconesKortaIce
+  complexity: 2
+  types: [ Nuts, Sugar, Fruit ]
+  # TG: food/snowcones/korta_ice
+
+- type: imperialFoodData
+  id: ImperialFoodKebabCandiedMushrooms
+  complexity: 2
+  types: [ Sugar, Vegetables ]
+  # TG: food/kebab/candied_mushrooms
+
+- type: imperialFoodData
+  id: ImperialFoodSauerkraut
+  complexity: 1
+  types: [ Vegetables ]
+  # TG: food/sauerkraut
+
+- type: imperialFoodData
+  id: ImperialFoodLizardDumplings
+  complexity: 1
+  types: [ Vegetables, Nuts ]
+  # TG: food/lizard_dumplings
+
+- type: imperialFoodData
+  id: ImperialFoodSteepedMushrooms
+  complexity: 1
+  types: [ Vegetables ]
+  # TG: food/steeped_mushrooms
+
+- type: imperialFoodData
+  id: ImperialFoodCannedJellyfish
+  complexity: 0
+  types: [ Seafood, Gore ]
+  # TG: food/canned/jellyfish
+
+- type: imperialFoodData
+  id: ImperialFoodCannedDesertSnails
+  complexity: 0
+  types: [ Meat, Gore ]
+  # TG: food/canned/desert_snails
+
+- type: imperialFoodData
+  id: ImperialFoodCannedLarvae
+  complexity: 0
+  types: [ Meat, Gore, Bugs ]
+  # TG: food/canned/larvae
+
+- type: imperialFoodData
+  id: ImperialFoodRootbreadPeanutButterJelly
+  complexity: 3
+  types: [ Fruit, Vegetables, Nuts ]
+  # TG: food/rootbread_peanut_butter_jelly
+
+- type: imperialFoodData
+  id: ImperialFoodRootbreadPeanutButterBanana
+  complexity: 3
+  types: [ Fruit, Vegetables, Nuts ]
+  # TG: food/rootbread_peanut_butter_banana
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerPlainKorta
+  complexity: 3
+  types: [ Meat, Vegetables, Nuts ]
+  # TG: food/burger/plain/korta
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerRatKorta
+  complexity: 3
+  types: [ Nuts, Meat, Gore, Vegetables, Raw ]
+  # TG: food/burger/rat/korta
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerRootguffin
+  complexity: 4
+  types: [ Nuts, Meat, Breakfast, Vegetables, Fried, Egg ]
+  # TG: food/burger/rootguffin
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerRootrib
+  complexity: 4
+  types: [ Nuts, Meat, Vegetables, Sugar ]
+  # TG: food/burger/rootrib
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerRootchicken
+  complexity: 4
+  types: [ Nuts, Meat, Vegetables ]
+  # TG: food/burger/rootchicken
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerRootfish
+  complexity: 3
+  types: [ Vegetables, Nuts, Seafood ]
+  # TG: food/burger/rootfish
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerSloppyroot
+  complexity: 4
+  types: [ Nuts, Meat, Vegetables ]
+  # TG: food/burger/sloppyroot
+
+- type: imperialFoodData
+  id: FoodSaladKimchi
+  complexity: 2
+  types: [ Vegetables ]
+  # TG: food/kimchi
+
+- type: imperialFoodData
+  id: ImperialFoodInfernoKimchi
+  complexity: 2
+  types: [ Vegetables ]
+  # TG: food/inferno_kimchi
+
+- type: imperialFoodData
+  id: ImperialFoodGarlicKimchi
+  complexity: 2
+  types: [ Vegetables ]
+  # TG: food/garlic_kimchi
+
+- type: imperialFoodData
+  id: ImperialFoodSurimi
+  complexity: 2
+  types: [ Seafood ]
+  # TG: food/surimi
+
+- type: imperialFoodData
+  id: ImperialFoodKamaboko
+  complexity: 3
+  types: [ Seafood ]
+  # TG: food/kamaboko
+
+- type: imperialFoodData
+  id: ImperialFoodKamabokoSlice
+  complexity: 3
+  types: [ Seafood ]
+  # TG: food/kamaboko_slice
+
+- type: imperialFoodData
+  id: ImperialFoodSambal
+  complexity: 2
+  types: [ Vegetables, Seafood ]
+  # TG: food/sambal
+
+- type: imperialFoodData
+  id: ImperialFoodKatsuFillet
+  complexity: 2
+  types: [ Meat, Fried, Grain ]
+  # TG: food/katsu_fillet
+
+- type: imperialFoodData
+  id: ImperialFoodRiceDough
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/rice_dough
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiRawnoodles
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/spaghetti/rawnoodles
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiBoilednoodles
+  complexity: 3
+  types: [ Grain ]
+  # TG: food/spaghetti/boilednoodles
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiRamenDry
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/spaghetti/ramen_dry
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiRamenBeef
+  complexity: 3
+  types: [ Grain ]
+  # TG: food/spaghetti/ramen_beef
+
+- type: imperialFoodData
+  id: ImperialFoodBreadReispan
+  complexity: 3
+  types: [ Grain ]
+  # TG: food/bread/reispan
+
+- type: imperialFoodData
+  id: ImperialFoodBreadsliceReispan
+  complexity: 3
+  types: [ Grain ]
+  # TG: food/breadslice/reispan
+
+- type: imperialFoodData
+  id: ImperialFoodSaladHurricaneRice
+  complexity: 3
+  types: [ Meat, Grain, Pineapple, Fruit, Vegetables, Egg ]
+  # TG: food/salad/hurricane_rice
+
+- type: imperialFoodData
+  id: ImperialFoodBowledHuaMulanCongee
+  complexity: 4
+  types: [ Meat, Grain, Fried, Egg ]
+  # TG: food/bowled/hua_mulan_congee
+
+- type: imperialFoodData
+  id: ImperialFoodSaladIkareis
+  complexity: 4
+  types: [ Meat, Grain, Seafood, Vegetables ]
+  # TG: food/salad/ikareis
+
+- type: imperialFoodData
+  id: ImperialFoodSaladHawaiianFriedRice
+  complexity: 3
+  types: [ Meat, Grain, Vegetables, Fruit, Pineapple ]
+  # TG: food/salad/hawaiian_fried_rice
+
+- type: imperialFoodData
+  id: ImperialFoodSaladKetchupFriedRice
+  complexity: 3
+  types: [ Meat, Grain, Vegetables ]
+  # TG: food/salad/ketchup_fried_rice
+
+- type: imperialFoodData
+  id: ImperialFoodSaladMediterraneanFriedRice
+  complexity: 3
+  types: [ Meat, Grain, Vegetables, Dairy, Fruit ]
+  # TG: food/salad/mediterranean_fried_rice
+
+- type: imperialFoodData
+  id: ImperialFoodSaladBibimbap
+  complexity: 3
+  types: [ Meat, Vegetables, Grain, Egg ]
+  # TG: food/salad/bibimbap
+
+- type: imperialFoodData
+  id: ImperialFoodSaladBulgogiNoodles
+  complexity: 3
+  types: [ Meat, Grain, Vegetables, Fruit ]
+  # TG: food/salad/bulgogi_noodles
+
+- type: imperialFoodData
+  id: ImperialFoodSaladYakisobaKatsu
+  complexity: 3
+  types: [ Meat, Vegetables, Grain, Fried ]
+  # TG: food/salad/yakisoba_katsu
+
+- type: imperialFoodData
+  id: ImperialFoodSaladMartianFriedNoodles
+  complexity: 3
+  types: [ Grain, Nuts, Meat, Vegetables, Egg ]
+  # TG: food/salad/martian_fried_noodles
+
+- type: imperialFoodData
+  id: ImperialFoodSaladSimpleFriedNoodles
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/salad/simple_fried_noodles
+
+- type: imperialFoodData
+  id: ImperialFoodSaladSetagayaCurry
+  complexity: 5
+  types: [ Meat, Vegetables, Grain, Fruit, Sugar ]
+  # TG: food/salad/setagaya_curry
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerBigBlue
+  complexity: 4
+  types: [ Meat, Grain, Dairy, Vegetables, Fruit, Pineapple ]
+  # TG: food/burger/big_blue
+
+- type: imperialFoodData
+  id: ImperialFoodBurgerChappy
+  complexity: 3
+  types: [ Meat, Grain, Dairy, Fried, Egg ]
+  # TG: food/burger/chappy
+
+- type: imperialFoodData
+  id: ImperialFoodKingKatsuSandwich
+  complexity: 3
+  types: [ Meat, Vegetables, Grain, Fried ]
+  # TG: food/king_katsu_sandwich
+
+- type: imperialFoodData
+  id: ImperialFoodMarteCubanoSandwich
+  complexity: 3
+  types: [ Meat, Dairy, Vegetables, Grain ]
+  # TG: food/marte_cubano_sandwich
+
+- type: imperialFoodData
+  id: ImperialFoodLittleShiroSandwich
+  complexity: 3
+  types: [ Meat, Vegetables, Grain, Dairy, Fried, Egg ]
+  # TG: food/little_shiro_sandwich
+
+- type: imperialFoodData
+  id: ImperialFoodCroqueMartienne
+  complexity: 3
+  types: [ Meat, Grain, Fruit, Dairy, Fried, Pineapple, Breakfast, Egg ]
+  # TG: food/croque_martienne
+
+- type: imperialFoodData
+  id: ImperialFoodProspectSunrise
+  complexity: 3
+  types: [ Meat, Dairy, Vegetables, Grain, Breakfast, Egg ]
+  # TG: food/prospect_sunrise
+
+- type: imperialFoodData
+  id: ImperialFoodTakoyaki
+  complexity: 3
+  types: [ Seafood, Grain, Fried, Vegetables ]
+  # TG: food/takoyaki
+
+- type: imperialFoodData
+  id: ImperialFoodTakoyakiRussian
+  complexity: 3
+  types: [ Seafood, Grain, Fried, Vegetables ]
+  # TG: food/takoyaki/russian
+
+- type: imperialFoodData
+  id: ImperialFoodTakoyakiTaco
+  complexity: 4
+  types: [ Meat, Grain, Fried, Vegetables, Dairy, Seafood ]
+  # TG: food/takoyaki/taco
+
+- type: imperialFoodData
+  id: ImperialFoodOkonomiyaki
+  complexity: 4
+  types: [ Grain, Fried, Vegetables, Seafood ]
+  # TG: food/okonomiyaki
+
+- type: imperialFoodData
+  id: ImperialFoodBratKimchi
+  complexity: 3
+  types: [ Meat, Vegetables ]
+  # TG: food/brat_kimchi
+
+- type: imperialFoodData
+  id: ImperialFoodTonkatsuwurst
+  complexity: 4
+  types: [ Meat, Vegetables, Fried ]
+  # TG: food/tonkatsuwurst
+
+- type: imperialFoodData
+  id: ImperialFoodKebabTiHoehKoe
+  complexity: 3
+  types: [ Meat, Fried, Nuts, Grain ]
+  # TG: food/kebab/ti_hoeh_koe
+
+- type: imperialFoodData
+  id: ImperialFoodKitzushi
+  complexity: 2
+  types: [ Grain, Fried, Vegetables, Dairy ]
+  # TG: food/kitzushi
+
+- type: imperialFoodData
+  id: ImperialFoodEpokEpok
+  complexity: 3
+  types: [ Grain, Meat, Vegetables, Fried, Egg ]
+  # TG: food/epok_epok
+
+- type: imperialFoodData
+  id: ImperialFoodRotiJohn
+  complexity: 4
+  types: [ Meat, Vegetables, Grain, Breakfast, Egg ]
+  # TG: food/roti_john
+
+- type: imperialFoodData
+  id: ImperialFoodIzakayaFries
+  complexity: 3
+  types: [ Vegetables, Fried ]
+  # TG: food/izakaya_fries
+
+- type: imperialFoodData
+  id: ImperialFoodKurryOkSubsando
+  complexity: 4
+  types: [ Meat, Vegetables, Grain, Fried ]
+  # TG: food/kurry_ok_subsando
+
+- type: imperialFoodData
+  id: ImperialFoodLocoMoco
+  complexity: 2
+  types: [ Meat, Vegetables, Grain, Fried, Egg ]
+  # TG: food/loco_moco
+
+- type: imperialFoodData
+  id: ImperialFoodWildDuckFries
+  complexity: 4
+  types: [ Meat, Vegetables, Fried ]
+  # TG: food/wild_duck_fries
+
+- type: imperialFoodData
+  id: ImperialFoodLittleHawaiiHotdog
+  complexity: 4
+  types: [ Meat, Vegetables, Grain, Fruit, Pineapple ]
+  # TG: food/little_hawaii_hotdog
+
+- type: imperialFoodData
+  id: ImperialFoodSaltChilliFries
+  complexity: 3
+  types: [ Vegetables, Fried ]
+  # TG: food/salt_chilli_fries
+
+- type: imperialFoodData
+  id: ImperialFoodGrilledOctopus
+  complexity: 3
+  types: [ Seafood ]
+  # TG: food/grilled_octopus
+
+- type: imperialFoodData
+  id: ImperialFoodSteakCroquette
+  complexity: 3
+  types: [ Meat, Vegetables, Grain, Dairy, Fried ]
+  # TG: food/steak_croquette
+
+- type: imperialFoodData
+  id: ImperialFoodChapsilog
+  complexity: 3
+  types: [ Meat, Grain, Fried, Breakfast, Vegetables, Egg ]
+  # TG: food/chapsilog
+
+- type: imperialFoodData
+  id: ImperialFoodChapHash
+  complexity: 3
+  types: [ Meat, Vegetables, Breakfast, Egg ]
+  # TG: food/chap_hash
+
+- type: imperialFoodData
+  id: ImperialFoodSaladAgedashiTofu
+  complexity: 2
+  types: [ Seafood, Vegetables ]
+  # TG: food/salad/agedashi_tofu
+
+- type: imperialFoodData
+  id: ImperialFoodSaladPoKokGai
+  complexity: 3
+  types: [ Meat, Grain, Fruit ]
+  # TG: food/salad/po_kok_gai
+
+- type: imperialFoodData
+  id: ImperialFoodSaladHuoxingTofu
+  complexity: 2
+  types: [ Meat, Vegetables ]
+  # TG: food/salad/huoxing_tofu
+
+- type: imperialFoodData
+  id: ImperialFoodFeizhouJi
+  complexity: 3
+  types: [ Meat, Vegetables ]
+  # TG: food/feizhou_ji
+
+- type: imperialFoodData
+  id: ImperialFoodSaladGalinhaDeCabidela
+  complexity: 3
+  types: [ Meat, Vegetables, Grain ]
+  # TG: food/salad/galinha_de_cabidela
+
+- type: imperialFoodData
+  id: ImperialFoodSaladKatsuCurry
+  complexity: 3
+  types: [ Meat, Grain, Fried ]
+  # TG: food/salad/katsu_curry
+
+- type: imperialFoodData
+  id: ImperialFoodSaladBeefBowl
+  complexity: 3
+  types: [ Meat, Vegetables, Grain, Seafood ]
+  # TG: food/salad/beef_bowl
+
+- type: imperialFoodData
+  id: ImperialFoodSaladSaltChilliBowl
+  complexity: 4
+  types: [ Vegetables, Grain, Seafood ]
+  # TG: food/salad/salt_chilli_bowl
+
+- type: imperialFoodData
+  id: ImperialFoodSaladKansaiBowl
+  complexity: 3
+  types: [ Meat, Vegetables, Grain, Seafood, Egg ]
+  # TG: food/salad/kansai_bowl
+
+- type: imperialFoodData
+  id: ImperialFoodSaladEigamudoCurry
+  complexity: 3
+  types: [ Vegetables, Grain, Fruit, Seafood, Gross, Toxic ]
+  # TG: food/salad/eigamudo_curry
+
+- type: imperialFoodData
+  id: ImperialFoodCilbir
+  complexity: 3
+  types: [ Meat, Vegetables, Dairy, Fried, Breakfast, Egg ]
+  # TG: food/cilbir
+
+- type: imperialFoodData
+  id: ImperialFoodPekingDuckCrepes
+  complexity: 3
+  types: [ Meat, Grain, Fruit, Sugar, Oranges ]
+  # TG: food/peking_duck_crepes
+
+- type: imperialFoodData
+  id: ImperialFoodCakeSpekkoek
+  complexity: 3
+  types: [ Vegetables, Grain, Dairy, Sugar ]
+  # TG: food/cake/spekkoek
+
+- type: imperialFoodData
+  id: ImperialFoodCakesliceSpekkoek
+  complexity: 3
+  types: [ Vegetables, Grain, Dairy, Sugar ]
+  # TG: food/cakeslice/spekkoek
+
+- type: imperialFoodData
+  id: ImperialFoodSaladPineappleFoster
+  complexity: 3
+  types: [ Grain, Fruit, Dairy, Sugar, Pineapple ]
+  # TG: food/salad/pineapple_foster
+
+- type: imperialFoodData
+  id: ImperialFoodPastelDeNata
+  complexity: 3
+  types: [ Grain, Fruit, Dairy, Egg ]
+  # TG: food/pastel_de_nata
+
+- type: imperialFoodData
+  id: ImperialFoodBohLohYah
+  complexity: 3
+  types: [ Dairy, Grain, Pineapple ]
+  # TG: food/boh_loh_yah
+
+- type: imperialFoodData
+  id: ImperialFoodBananaFritter
+  complexity: 3
+  types: [ Grain, Fruit, Fried, Seafood ]
+  # TG: food/banana_fritter
+
+- type: imperialFoodData
+  id: ImperialFoodPineappleFritter
+  complexity: 3
+  types: [ Grain, Fruit, Fried, Pineapple, Seafood ]
+  # TG: food/pineapple_fritter
+
+- type: imperialFoodData
+  id: ImperialFoodKebabKaseiDango
+  complexity: 3
+  types: [ Fruit, Grain ]
+  # TG: food/kebab/kasei_dango
+
+- type: imperialFoodData
+  id: ImperialFoodPbIceCreamMochi
+  complexity: 3
+  types: [ Nuts, Grain, Dairy, Sugar ]
+  # TG: food/pb_ice_cream_mochi
+
+- type: imperialFoodData
+  id: ImperialFoodPopsiclePineapplePop
+  complexity: 3
+  types: [ Sugar, Fruit, Pineapple ]
+  # TG: food/popsicle/pineapple_pop
+
+- type: imperialFoodData
+  id: ImperialFoodPopsicleSeaSalt
+  complexity: 3
+  types: [ Sugar, Dairy ]
+  # TG: food/popsicle/sea_salt
+
+- type: imperialFoodData
+  id: ImperialFoodPopsicleTopsicle
+  complexity: 3
+  types: [ Fruit, Sugar, Vegetables ]
+  # TG: food/popsicle/topsicle
+
+- type: imperialFoodData
+  id: ImperialFoodPopsicleTopsicleBanana
+  complexity: 3
+  types: [ Fruit, Sugar, Vegetables ]
+  # TG: food/popsicle/topsicle/banana
+
+- type: imperialFoodData
+  id: ImperialFoodPopsicleTopsiclePineapple
+  complexity: 3
+  types: [ Fruit, Sugar, Vegetables, Pineapple ]
+  # TG: food/popsicle/topsicle/pineapple
+
+- type: imperialFoodData
+  id: ImperialFoodPlasmaDogSupreme
+  complexity: 4
+  types: [ Meat, Vegetables, Grain, Fruit, Pineapple, Seafood ]
+  # TG: food/plasma_dog_supreme
+
+- type: imperialFoodData
+  id: ImperialFoodFrickles
+  complexity: 3
+  types: [ Vegetables, Grain, Fried, Seafood ]
+  # TG: food/frickles
+
+- type: imperialFoodData
+  id: ImperialFoodRawBallparkPretzel
+  complexity: 2
+  types: [ Grain, Raw ]
+  # TG: food/raw_ballpark_pretzel
+
+- type: imperialFoodData
+  id: ImperialFoodBallparkPretzel
+  complexity: 3
+  types: [ Grain ]
+  # TG: food/ballpark_pretzel
+
+- type: imperialFoodData
+  id: ImperialFoodKebabRawBallparkTsukune
+  complexity: 2
+  types: [ Meat, Raw ]
+  # TG: food/kebab/raw_ballpark_tsukune
+
+- type: imperialFoodData
+  id: ImperialFoodKebabBallparkTsukune
+  complexity: 3
+  types: [ Meat ]
+  # TG: food/kebab/ballpark_tsukune
+
+- type: imperialFoodData
+  id: ImperialFoodPickledVoltvine
+  complexity: 2
+  types: [ Vegetables ]
+  # TG: food/pickled_voltvine
+
+- type: imperialFoodData
+  id: ImperialFoodVoltFish
+  complexity: 3
+  types: [ Seafood ]
+  # TG: food/volt_fish
+
+- type: imperialFoodData
+  id: ImperialFoodSaladSproutBowl
+  complexity: 3
+  types: [ Seafood, Vegetables, Grain ]
+  # TG: food/salad/sprout_bowl
+
+- type: imperialFoodData
+  id: FoodMealCubancarp
+  complexity: 2
+  types: [ Vegetables, Grain, Seafood, Fried ]
+  # TG: food/cubancarp
+
+- type: imperialFoodData
+  id: FoodMeatFish
+  complexity: 0
+  types: [ Seafood ]
+  # TG: food/fishmeat
+
+- type: imperialFoodData
+  id: ImperialFoodFishmeatQuality
+  complexity: 1
+  types: [ Seafood ]
+  # TG: food/fishmeat/quality
+
+- type: imperialFoodData
+  id: ImperialFoodFishmeatSalmon
+  complexity: 1
+  types: [ Seafood ]
+  # TG: food/fishmeat/salmon
+
+- type: imperialFoodData
+  id: ImperialFoodFishmeatCarpImitation
+  complexity: 0
+  types: [ Seafood ]
+  # TG: food/fishmeat/carp/imitation
+
+- type: imperialFoodData
+  id: ImperialFoodFishmeatMoonfish
+  complexity: 0
+  types: [ Seafood ]
+  # TG: food/fishmeat/moonfish
+
+- type: imperialFoodData
+  id: ImperialFoodFishmeatGunnerJellyfish
+  complexity: 0
+  types: [ Seafood ]
+  # TG: food/fishmeat/gunner_jellyfish
+
+- type: imperialFoodData
+  id: ImperialFoodFishmeatGunnerJellyfishSupply
+  complexity: 0
+  types: [ Seafood ]
+  # TG: food/fishmeat/gunner_jellyfish/supply
+
+- type: imperialFoodData
+  id: ImperialFoodFishmeatArmorfish
+  complexity: 0
+  types: [ Seafood ]
+  # TG: food/fishmeat/armorfish
+
+- type: imperialFoodData
+  id: ImperialFoodFishmeatDonkfish
+  complexity: 0
+  types: [ Seafood ]
+  # TG: food/fishmeat/donkfish
+
+- type: imperialFoodData
+  id: ImperialFoodFishmeatOctopus
+  complexity: 0
+  types: [ Seafood ]
+  # TG: food/fishmeat/octopus
+
+- type: imperialFoodData
+  id: ImperialFoodFishmeatFishTail
+  complexity: 1
+  types: [ Seafood ]
+  # TG: food/fishmeat/fish_tail
+
+- type: imperialFoodData
+  id: ImperialFoodFishfingers
+  complexity: 2
+  types: [ Grain, Seafood, Fried ]
+  # TG: food/fishfingers
+
+- type: imperialFoodData
+  id: ImperialFoodFishandchips
+  complexity: 2
+  types: [ Seafood, Vegetables, Fried ]
+  # TG: food/fishandchips
+
+- type: imperialFoodData
+  id: ImperialFoodFishfry
+  complexity: 2
+  types: [ Seafood, Vegetables, Fried ]
+  # TG: food/fishfry
+
+- type: imperialFoodData
+  id: ImperialFoodVegetariansushiroll
+  complexity: 3
+  types: [ Vegetables, Grain ]
+  # TG: food/vegetariansushiroll
+
+- type: imperialFoodData
+  id: ImperialFoodVegetariansushislice
+  complexity: 3
+  types: [ Vegetables, Grain ]
+  # TG: food/vegetariansushislice
+
+- type: imperialFoodData
+  id: ImperialFoodSpicyfiletsushiroll
+  complexity: 3
+  types: [ Vegetables, Grain, Seafood ]
+  # TG: food/spicyfiletsushiroll
+
+- type: imperialFoodData
+  id: ImperialFoodSpicyfiletsushislice
+  complexity: 3
+  types: [ Vegetables, Grain, Seafood ]
+  # TG: food/spicyfiletsushislice
+
+- type: imperialFoodData
+  id: ImperialFoodSushiEmpty
+  complexity: 2
+  types: [ Vegetables ]
+  # TG: food/sushi/empty
+
+- type: imperialFoodData
+  id: ImperialFoodSushisliceEmpty
+  complexity: 2
+  types: [ Vegetables ]
+  # TG: food/sushislice/empty
+
+- type: imperialFoodData
+  id: ImperialFoodNigiriSushi
+  complexity: 2
+  types: [ Vegetables, Grain, Seafood ]
+  # TG: food/nigiri_sushi
+
+- type: imperialFoodData
+  id: ImperialFoodMeatPoke
+  complexity: 4
+  types: [ Meat, Vegetables, Grain ]
+  # TG: food/meat_poke
+
+- type: imperialFoodData
+  id: ImperialFoodFishPoke
+  complexity: 4
+  types: [ Vegetables, Grain, Seafood ]
+  # TG: food/fish_poke
+
+- type: imperialFoodData
+  id: ImperialFoodTempeh
+  complexity: 2
+  types: [ Vegetables ]
+  # TG: food/tempeh
+
+- type: imperialFoodData
+  id: ImperialFoodTempehslice
+  complexity: 2
+  types: [ Vegetables ]
+  # TG: food/tempehslice
+
+- type: imperialFoodData
+  id: ImperialFoodTempehstarter
+  complexity: 2
+  types: [ Vegetables, Gross ]
+  # TG: food/tempehstarter
+
+- type: imperialFoodData
+  id: ImperialFoodTofuPrison
+  complexity: 1
+  types: [ Gross ]
+  # TG: food/tofu/prison
+
+- type: imperialFoodData
+  id: FoodMeatSpiderLeg
+  complexity: 0
+  types: [ Meat, Toxic ]
+  grill: FoodMeatSpiderlegCooked
+  grillTime: 55
+  # TG: food/spiderleg
+
+- type: imperialFoodData
+  id: ImperialFoodRawMeatballHuman
+  complexity: 0
+  types: [ Meat, Raw ]
+  # TG: food/raw_meatball/human
+
+- type: imperialFoodData
+  id: ImperialFoodRawMeatballCorgi
+  complexity: 0
+  types: [ Meat, Raw ]
+  # TG: food/raw_meatball/corgi
+
+- type: imperialFoodData
+  id: ImperialFoodRawMeatballXeno
+  complexity: 0
+  types: [ Meat, Raw ]
+  # TG: food/raw_meatball/xeno
+
+- type: imperialFoodData
+  id: ImperialFoodRawMeatballBear
+  complexity: 0
+  types: [ Meat, Raw ]
+  # TG: food/raw_meatball/bear
+
+- type: imperialFoodData
+  id: ImperialFoodRawMeatballChicken
+  complexity: 0
+  types: [ Meat, Raw ]
+  # TG: food/raw_meatball/chicken
+
+- type: imperialFoodData
+  id: ImperialFoodMeatballHuman
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meatball/human
+
+- type: imperialFoodData
+  id: ImperialFoodMeatballCorgi
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meatball/corgi
+
+- type: imperialFoodData
+  id: ImperialFoodMeatballBear
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meatball/bear
+
+- type: imperialFoodData
+  id: ImperialFoodMeatballXeno
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meatball/xeno
+
+- type: imperialFoodData
+  id: ImperialFoodMeatballChicken
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meatball/chicken
+
+- type: imperialFoodData
+  id: FoodMeatPatty
+  complexity: 0
+  types: [ Meat, Raw ]
+  # TG: food/raw_patty
+
+- type: imperialFoodData
+  id: ImperialFoodRawPattyHuman
+  complexity: 0
+  types: [ Meat, Raw ]
+  # TG: food/raw_patty/human
+
+- type: imperialFoodData
+  id: ImperialFoodRawPattyCorgi
+  complexity: 0
+  types: [ Meat, Raw ]
+  # TG: food/raw_patty/corgi
+
+- type: imperialFoodData
+  id: ImperialFoodRawPattyBear
+  complexity: 0
+  types: [ Meat, Raw ]
+  # TG: food/raw_patty/bear
+
+- type: imperialFoodData
+  id: ImperialFoodRawPattyXeno
+  complexity: 0
+  types: [ Meat, Raw ]
+  # TG: food/raw_patty/xeno
+
+- type: imperialFoodData
+  id: ImperialFoodRawPattyChicken
+  complexity: 0
+  types: [ Meat, Raw ]
+  # TG: food/raw_patty/chicken
+
+- type: imperialFoodData
+  id: FoodMeatPattyCooked
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/patty
+
+- type: imperialFoodData
+  id: ImperialFoodPattyHuman
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/patty/human
+
+- type: imperialFoodData
+  id: ImperialFoodPattyCorgi
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/patty/corgi
+
+- type: imperialFoodData
+  id: ImperialFoodPattyBear
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/patty/bear
+
+- type: imperialFoodData
+  id: ImperialFoodPattyXeno
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/patty/xeno
+
+- type: imperialFoodData
+  id: ImperialFoodPattyChicken
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/patty/chicken
+
+- type: imperialFoodData
+  id: ImperialFoodRawSausage
+  complexity: 1
+  types: [ Meat, Raw ]
+  # TG: food/raw_sausage
+
+- type: imperialFoodData
+  id: ImperialFoodSausage
+  complexity: 2
+  types: [ Meat, Breakfast ]
+  # TG: food/sausage
+
+- type: imperialFoodData
+  id: ImperialFoodSausageAmerican
+  complexity: 2
+  types: [ Meat, Breakfast ]
+  # TG: food/sausage/american
+
+- type: imperialFoodData
+  id: ImperialFoodRawkhinkali
+  complexity: 2
+  types: [ Meat, Grain, Vegetables ]
+  # TG: food/rawkhinkali
+
+- type: imperialFoodData
+  id: ImperialFoodKhinkali
+  complexity: 3
+  types: [ Meat, Grain, Vegetables ]
+  # TG: food/khinkali
+
+- type: imperialFoodData
+  id: ImperialFoodStewedsoymeat
+  complexity: 2
+  types: [ Vegetables ]
+  # TG: food/stewedsoymeat
+
+- type: imperialFoodData
+  id: ImperialFoodSpidereggsham
+  complexity: 2
+  types: [ Meat, Bugs, Egg ]
+  # TG: food/spidereggsham
+
+- type: imperialFoodData
+  id: FoodMealSashimi
+  complexity: 2
+  types: [ Meat, Seafood, Bugs, Egg ]
+  # TG: food/sashimi
+
+- type: imperialFoodData
+  id: ImperialFoodNuggetFish
+  complexity: 1
+  types: [ Meat, Seafood, Fried ]
+  # TG: food/nugget/fish
+
+- type: imperialFoodData
+  id: ImperialFoodLasagna
+  complexity: 3
+  types: [ Meat, Vegetables, Grain, Dairy ]
+  # TG: food/lasagna
+
+- type: imperialFoodData
+  id: ImperialFoodKebabHuman
+  complexity: 1
+  types: [ Meat, Gore ]
+  # TG: food/kebab/human
+
+- type: imperialFoodData
+  id: ImperialFoodKebabMonkey
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/kebab/monkey
+
+- type: imperialFoodData
+  id: ImperialFoodKebabTofu
+  complexity: 1
+  types: [ Vegetables ]
+  # TG: food/kebab/tofu
+
+- type: imperialFoodData
+  id: ImperialFoodKebabTail
+  complexity: 1
+  types: [ Meat, Gore ]
+  # TG: food/kebab/tail
+
+- type: imperialFoodData
+  id: ImperialFoodKebabRat
+  complexity: 1
+  types: [ Meat, Raw, Gore ]
+  # TG: food/kebab/rat
+
+- type: imperialFoodData
+  id: ImperialFoodKebabRatDouble
+  complexity: 1
+  types: [ Meat, Raw, Gore ]
+  # TG: food/kebab/rat/double
+
+- type: imperialFoodData
+  id: ImperialFoodKebabFiesta
+  complexity: 3
+  types: [ Meat, Vegetables ]
+  # TG: food/kebab/fiesta
+
+- type: imperialFoodData
+  id: ImperialFoodBeefStroganoff
+  complexity: 4
+  types: [ Meat, Vegetables, Dairy ]
+  # TG: food/beef_stroganoff
+
+- type: imperialFoodData
+  id: ImperialFoodBeefWellington
+  complexity: 5
+  types: [ Meat, Vegetables, Grain ]
+  # TG: food/beef_wellington
+
+- type: imperialFoodData
+  id: ImperialFoodBeefWellingtonSlice
+  complexity: 5
+  types: [ Meat, Vegetables, Grain ]
+  # TG: food/beef_wellington_slice
+
+- type: imperialFoodData
+  id: ImperialFoodKortaWellington
+  complexity: 5
+  types: [ Meat, Vegetables, Nuts ]
+  # TG: food/korta_wellington
+
+- type: imperialFoodData
+  id: ImperialFoodKortaWellingtonSlice
+  complexity: 5
+  types: [ Meat, Vegetables, Nuts ]
+  # TG: food/korta_wellington_slice
+
+- type: imperialFoodData
+  id: ImperialFoodRoastDinner
+  complexity: 5
+  types: [ Meat, Vegetables, Grain ]
+  # TG: food/roast_dinner
+
+- type: imperialFoodData
+  id: ImperialFoodRoastSlice
+  complexity: 5
+  types: [ Meat, Vegetables, Grain ]
+  # TG: food/roast_slice
+
+- type: imperialFoodData
+  id: ImperialFoodRoastDinnerLizzy
+  complexity: 5
+  types: [ Meat, Vegetables, Nuts ]
+  # TG: food/roast_dinner_lizzy
+
+- type: imperialFoodData
+  id: ImperialFoodRoastSliceLizzy
+  complexity: 5
+  types: [ Meat, Vegetables, Nuts ]
+  # TG: food/roast_slice_lizzy
+
+- type: imperialFoodData
+  id: ImperialFoodRoastDinnerTofu
+  complexity: 5
+  types: [ Grain, Vegetables ]
+  # TG: food/roast_dinner_tofu
+
+- type: imperialFoodData
+  id: ImperialFoodRoastSliceTofu
+  complexity: 5
+  types: [ Grain, Vegetables ]
+  # TG: food/roast_slice_tofu
+
+- type: imperialFoodData
+  id: ImperialFoodRawMeatloaf
+  complexity: 3
+  types: [ Meat, Raw, Vegetables ]
+  # TG: food/raw_meatloaf
+
+- type: imperialFoodData
+  id: ImperialFoodMeatloaf
+  complexity: 3
+  types: [ Meat, Vegetables ]
+  # TG: food/meatloaf
+
+- type: imperialFoodData
+  id: ImperialFoodMeatloafSlice
+  complexity: 4
+  types: [ Meat, Vegetables ]
+  # TG: food/meatloaf_slice
+
+- type: imperialFoodData
+  id: ImperialFoodSweetAndSourMeatballs
+  complexity: 3
+  types: [ Meat, Vegetables, Fruit, Pineapple ]
+  # TG: food/sweet_and_sour_meatballs
+
+- type: imperialFoodData
+  id: ImperialFoodKebabPineappleSkewer
+  complexity: 3
+  types: [ Meat, Fruit, Pineapple ]
+  # TG: food/kebab/pineapple_skewer
+
+- type: imperialFoodData
+  id: ImperialFoodFutomakiSushiRoll
+  complexity: 3
+  types: [ Meat, Vegetables, Grain, Seafood, Egg ]
+  # TG: food/futomaki_sushi_roll
+
+- type: imperialFoodData
+  id: ImperialFoodFutomakiSushiSlice
+  complexity: 3
+  types: [ Vegetables, Grain, Dairy, Seafood ]
+  # TG: food/futomaki_sushi_slice
+
+- type: imperialFoodData
+  id: ImperialFoodPhiladelphiaSushiRoll
+  complexity: 3
+  types: [ Vegetables, Grain, Seafood, Dairy ]
+  # TG: food/philadelphia_sushi_roll
+
+- type: imperialFoodData
+  id: ImperialFoodPhiladelphiaSushiSlice
+  complexity: 3
+  types: [ Vegetables, Grain, Seafood, Dairy ]
+  # TG: food/philadelphia_sushi_slice
+
+- type: imperialFoodData
+  id: FoodMeat
+  complexity: 0
+  types: [ Meat, Raw ]
+  grill: FoodMeatCooked
+  grillTime: 60
+  # TG: food/meat/slab
+
+- type: imperialFoodData
+  id: FoodMeatHuman
+  complexity: 0
+  types: [ Meat, Raw, Gore ]
+  grill: FoodMeatCooked
+  grillTime: 60
+  # TG: food/meat/slab/human
+
+- type: imperialFoodData
+  id: FoodMeatSlime
+  complexity: 0
+  types: [ Meat, Raw, Toxic ]
+  grill: FoodMeatCooked
+  grillTime: 60
+  # TG: food/meat/slab/human/mutant/slime
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSlabHumanMutantGolem
+  complexity: 0
+  types: [ Meat, Raw, Gross ]
+  # TG: food/meat/slab/human/mutant/golem
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSlabHumanMutantGolemAdamantine
+  complexity: 0
+  types: [ Meat, Raw, Gross ]
+  # TG: food/meat/slab/human/mutant/golem/adamantine
+
+- type: imperialFoodData
+  id: FoodMeatLizard
+  complexity: 0
+  types: [ Meat, Raw, Gore ]
+  grill: FoodMeatLizardCooked
+  grillTime: 60
+  # TG: food/meat/slab/human/mutant/lizard
+
+- type: imperialFoodData
+  id: FoodMeatPlant
+  complexity: 0
+  types: [ Vegetables ]
+  grill: FoodMeatCooked
+  grillTime: 60
+  # TG: food/meat/slab/human/mutant/plant
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSlabHumanMutantShadow
+  complexity: 0
+  types: [ Meat, Raw, Gore ]
+  # TG: food/meat/slab/human/mutant/shadow
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSlabHumanMutantFly
+  complexity: 0
+  types: [ Meat, Raw, Gross, Bugs, Gore ]
+  # TG: food/meat/slab/human/mutant/fly
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSlabHumanMutantMoth
+  complexity: 0
+  types: [ Meat, Raw, Bugs, Gore ]
+  # TG: food/meat/slab/human/mutant/moth
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSlabHumanMutantSkeleton
+  complexity: 0
+  types: [ Gross, Gore ]
+  # TG: food/meat/slab/human/mutant/skeleton
+
+- type: imperialFoodData
+  id: FoodMeatRotten
+  complexity: 0
+  types: [ Raw, Meat, Toxic, Gore, Gross ]
+  grill: FoodMeatCooked
+  grillTime: 60
+  # TG: food/meat/slab/human/mutant/zombie
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSlabHumanMutantEthereal
+  complexity: 0
+  types: [ Raw, Meat, Toxic, Gore ]
+  # TG: food/meat/slab/human/mutant/ethereal
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSlabSynthmeat
+  complexity: 0
+  types: [ Raw, Meat ]
+  # TG: food/meat/slab/synthmeat
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSlabMeatproduct
+  complexity: 0
+  types: [ Raw, Meat ]
+  # TG: food/meat/slab/meatproduct
+
+- type: imperialFoodData
+  id: FoodMeatRat
+  complexity: 0
+  types: [ Raw, Meat, Gore ]
+  grill: FoodMeatCooked
+  grillTime: 60
+  # TG: food/meat/slab/mouse
+
+- type: imperialFoodData
+  id: FoodMeatCorgi
+  complexity: 0
+  types: [ Raw, Meat, Gore ]
+  grill: FoodMeatCooked
+  grillTime: 60
+  # TG: food/meat/slab/corgi
+
+- type: imperialFoodData
+  id: FoodMeatBear
+  complexity: 0
+  types: [ Raw, Meat ]
+  grill: FoodMeatBearCooked
+  grillTime: 55
+  # TG: food/meat/slab/bear
+
+- type: imperialFoodData
+  id: FoodMeatXeno
+  complexity: 0
+  types: [ Raw, Meat ]
+  grill: ImperialFoodMeatSteakXeno
+  grillTime: 55
+  # TG: food/meat/slab/xeno
+
+- type: imperialFoodData
+  id: FoodMeatSpider
+  complexity: 0
+  types: [ Raw, Meat, Toxic ]
+  grill: ImperialFoodMeatSteakSpider
+  grillTime: 55
+  # TG: food/meat/slab/spider
+
+- type: imperialFoodData
+  id: FoodMeatGoliath
+  complexity: 0
+  types: [ Raw, Meat, Toxic ]
+  grill: FoodMeatCooked
+  grillTime: 60
+  # TG: food/meat/slab/goliath
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSlabGorilla
+  complexity: 0
+  types: [ Meat, Raw ]
+  # TG: food/meat/slab/gorilla
+
+- type: imperialFoodData
+  id: FoodMeatBacon
+  complexity: 1
+  types: [ Raw, Meat ]
+  grill: FoodMeatBaconCooked
+  grillTime: 35
+  # TG: food/meat/rawbacon
+
+- type: imperialFoodData
+  id: FoodMeatBaconCooked
+  complexity: 1
+  types: [ Meat, Breakfast ]
+  # TG: food/meat/bacon
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSlabGondola
+  complexity: 0
+  types: [ Raw, Meat, Gore ]
+  # TG: food/meat/slab/gondola
+
+- type: imperialFoodData
+  id: FoodMeatPenguin
+  complexity: 0
+  types: [ Meat, Raw ]
+  grill: FoodMeatPenguinCooked
+  grillTime: 60
+  # TG: food/meat/slab/penguin
+
+- type: imperialFoodData
+  id: FoodMeatCrabCooked
+  complexity: 1
+  types: [ Seafood ]
+  # TG: food/meat/crab
+
+- type: imperialFoodData
+  id: FoodMeatChicken
+  complexity: 0
+  types: [ Meat, Raw ]
+  grill: FoodMeatChickenCooked
+  grillTime: 60
+  # TG: food/meat/slab/chicken
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSlabPig
+  complexity: 0
+  types: [ Raw, Meat, Gore ]
+  # TG: food/meat/slab/pig
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSlabGrassfed
+  complexity: 0
+  types: [ Meat, Raw ]
+  # TG: food/meat/slab/grassfed
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSlabBloodWorm
+  complexity: 0
+  types: [ Raw, Meat, Bugs, Gore ]
+  # TG: food/meat/slab/blood_worm
+
+- type: imperialFoodData
+  id: FoodMeatBearCooked
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meat/steak/bear
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSteakXeno
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meat/steak/xeno
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSteakSpider
+  complexity: 1
+  types: [ Toxic ]
+  # TG: food/meat/steak/spider
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSteakGondola
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meat/steak/gondola
+
+- type: imperialFoodData
+  id: FoodMeatPenguinCooked
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meat/steak/penguin
+
+- type: imperialFoodData
+  id: FoodMeatChickenCooked
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meat/steak/chicken
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSteakMeatproduct
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meat/steak/meatproduct
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSteakPlainSynth
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meat/steak/plain/synth
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSteakPlainPig
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meat/steak/plain/pig
+
+- type: imperialFoodData
+  id: ImperialFoodMeatSteakBloodWorm
+  complexity: 1
+  types: [ Meat, Bugs ]
+  # TG: food/meat/steak/blood_worm
+
+- type: imperialFoodData
+  id: ImperialFoodMeatRawcutletGondola
+  complexity: 0
+  types: [ Meat, Raw ]
+  # TG: food/meat/rawcutlet/gondola
+
+- type: imperialFoodData
+  id: ImperialFoodMeatCutletGondola
+  complexity: 1
+  types: [ Meat ]
+  # TG: food/meat/cutlet/gondola
+
+- type: imperialFoodData
+  id: FoodDoughTortillaFlat
+  complexity: 1
+  types: [ Grain ]
+  grill: ImperialFoodHardTacoShell
+  grillTime: 22.5
+  # TG: food/tortilla
+
+- type: imperialFoodData
+  id: ImperialFoodBurrito
+  complexity: 2
+  types: [ Vegetables, Grain ]
+  # TG: food/burrito
+
+- type: imperialFoodData
+  id: ImperialFoodCheesyburrito
+  complexity: 3
+  types: [ Vegetables, Grain, Dairy ]
+  # TG: food/cheesyburrito
+
+- type: imperialFoodData
+  id: ImperialFoodCarneburrito
+  complexity: 3
+  types: [ Vegetables, Grain, Meat ]
+  # TG: food/carneburrito
+
+- type: imperialFoodData
+  id: ImperialFoodFuegoburrito
+  complexity: 3
+  types: [ Vegetables, Grain ]
+  # TG: food/fuegoburrito
+
+- type: imperialFoodData
+  id: ImperialFoodTaco
+  complexity: 3
+  types: [ Meat, Dairy, Grain, Vegetables ]
+  # TG: food/taco
+
+- type: imperialFoodData
+  id: FoodTacoBeef
+  complexity: 2
+  types: [ Meat, Dairy, Grain ]
+  # TG: food/taco/plain
+
+- type: imperialFoodData
+  id: ImperialFoodStuffedlegion
+  complexity: 5
+  types: [ Meat ]
+  # TG: food/stuffedlegion
+
+- type: imperialFoodData
+  id: ImperialFoodChipsandsalsa
+  complexity: 3
+  types: [ Vegetables, Fried ]
+  # TG: food/chipsandsalsa
+
+- type: imperialFoodData
+  id: ImperialFoodClassicChimichanga
+  complexity: 3
+  types: [ Meat, Grain, Vegetables, Dairy, Fried ]
+  # TG: food/classic_chimichanga
+
+- type: imperialFoodData
+  id: ImperialFoodVegetarianChimichanga
+  complexity: 3
+  types: [ Grain, Vegetables, Fried ]
+  # TG: food/vegetarian_chimichanga
+
+- type: imperialFoodData
+  id: ImperialFoodHardTacoShell
+  complexity: 1
+  types: [ Grain, Fried ]
+  # TG: food/hard_taco_shell
+
+- type: imperialFoodData
+  id: ImperialFoodHardTacoShellEmpty
+  complexity: 1
+  types: [  ]
+  # TG: food/hard_taco_shell/empty
+
+- type: imperialFoodData
+  id: ImperialFoodClassicHardShellTaco
+  complexity: 4
+  types: [ Meat, Vegetables, Grain, Dairy, Fried ]
+  # TG: food/classic_hard_shell_taco
+
+- type: imperialFoodData
+  id: ImperialFoodPlainHardShellTaco
+  complexity: 2
+  types: [ Meat, Grain, Fried ]
+  # TG: food/plain_hard_shell_taco
+
+- type: imperialFoodData
+  id: ImperialFoodRefriedBeans
+  complexity: 2
+  types: [ Vegetables, Fried ]
+  # TG: food/refried_beans
+
+- type: imperialFoodData
+  id: ImperialFoodSpanishRice
+  complexity: 2
+  types: [ Vegetables, Grain ]
+  # TG: food/spanish_rice
+
+- type: imperialFoodData
+  id: ImperialFoodPineappleSalsa
+  complexity: 3
+  types: [ Vegetables, Fruit, Pineapple ]
+  # TG: food/pineapple_salsa
+
+- type: imperialFoodData
+  id: ImperialFoodWatermelonmush
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/watermelonmush
+
+- type: imperialFoodData
+  id: ImperialFoodHolymelonmush
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/holymelonmush
+
+- type: imperialFoodData
+  id: ImperialFoodBarrelmelonslice
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/barrelmelonslice
+
+- type: imperialFoodData
+  id: ImperialFoodBarrelmelonmush
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/barrelmelonmush
+
+- type: imperialFoodData
+  id: ImperialFoodAppleslice
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/appleslice
+
+- type: imperialFoodData
+  id: ImperialFoodHugemushroomslice
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/hugemushroomslice
+
+- type: imperialFoodData
+  id: ImperialFoodPopcornCaramel
+  complexity: 1
+  types: [ Junkfood, Sugar ]
+  # TG: food/popcorn/caramel
+
+- type: imperialFoodData
+  id: ImperialFoodSoydope
+  complexity: 1
+  types: [ Vegetables ]
+  # TG: food/soydope
+
+- type: imperialFoodData
+  id: ImperialFoodBadrecipeMoldy
+  complexity: 0
+  types: [ Gross ]
+  # TG: food/badrecipe/moldy
+
+- type: imperialFoodData
+  id: ImperialFoodBadrecipeMoldyBacteria
+  complexity: 0
+  types: [ Gross ]
+  # TG: food/badrecipe/moldy/bacteria
+
+- type: imperialFoodData
+  id: ImperialFoodSpidereggs
+  complexity: 0
+  types: [ Meat, Toxic, Bugs, Egg ]
+  # TG: food/spidereggs
+
+- type: imperialFoodData
+  id: ImperialFoodSpidereggsProcessed
+  complexity: 1
+  types: [ Meat, Bugs ]
+  # TG: food/spidereggs/processed
+
+- type: imperialFoodData
+  id: ImperialFoodMelonkeg
+  complexity: 2
+  types: [ Fruit, Alcohol ]
+  # TG: food/melonkeg
+
+- type: imperialFoodData
+  id: ImperialFoodHoneybar
+  complexity: 3
+  types: [ Grain, Sugar ]
+  # TG: food/honeybar
+
+- type: imperialFoodData
+  id: ImperialFoodPowercrepe
+  complexity: 5
+  types: [ Grain, Fruit, Sugar ]
+  # TG: food/powercrepe
+
+- type: imperialFoodData
+  id: ImperialFoodBranrequests
+  complexity: 2
+  types: [ Sugar, Grain, Fruit, Breakfast ]
+  # TG: food/branrequests
+
+- type: imperialFoodData
+  id: ImperialFoodButterOnAStick
+  complexity: 0
+  types: [ Dairy ]
+  # TG: food/butter/on_a_stick
+
+- type: imperialFoodData
+  id: ImperialFoodCrabRangoon
+  complexity: 3
+  types: [ Meat, Dairy, Grain ]
+  # TG: food/crab_rangoon
+
+- type: imperialFoodData
+  id: ImperialFoodPesto
+  complexity: 4
+  types: [ Vegetables, Dairy, Nuts ]
+  # TG: food/pesto
+
+- type: imperialFoodData
+  id: ImperialFoodTomatoSauce
+  complexity: 2
+  types: [ Vegetables ]
+  # TG: food/tomato_sauce
+
+- type: imperialFoodData
+  id: ImperialFoodBechamelSauce
+  complexity: 1
+  types: [ Dairy, Grain ]
+  # TG: food/bechamel_sauce
+
+- type: imperialFoodData
+  id: ImperialFoodRoastedBellPepper
+  complexity: 1
+  types: [ Vegetables ]
+  # TG: food/roasted_bell_pepper
+
+- type: imperialFoodData
+  id: ImperialFoodPierogi
+  complexity: 2
+  types: [ Grain, Vegetables ]
+  # TG: food/pierogi
+
+- type: imperialFoodData
+  id: ImperialFoodStuffedCabbage
+  complexity: 3
+  types: [ Meat, Vegetables, Grain ]
+  # TG: food/stuffed_cabbage
+
+- type: imperialFoodData
+  id: ImperialFoodSeaweedsheet
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/seaweedsheet
+
+- type: imperialFoodData
+  id: ImperialFoodSeaweedsheetSaltcane
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/seaweedsheet/saltcane
+
+- type: imperialFoodData
+  id: ImperialFoodGranolaBar
+  complexity: 4
+  types: [ Grain, Nuts, Fruit, Sugar ]
+  # TG: food/granola_bar
+
+- type: imperialFoodData
+  id: ImperialFoodOnigiri
+  complexity: 2
+  types: [ Vegetables, Grain ]
+  # TG: food/onigiri
+
+- type: imperialFoodData
+  id: ImperialFoodOnigiriEmpty
+  complexity: 2
+  types: [ Vegetables, Grain ]
+  # TG: food/onigiri/empty
+
+- type: imperialFoodData
+  id: ImperialFoodPacoca
+  complexity: 1
+  types: [ Nuts, Sugar ]
+  # TG: food/pacoca
+
+- type: imperialFoodData
+  id: ImperialFoodPickle
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/pickle
+
+- type: imperialFoodData
+  id: ImperialFoodSpringroll
+  complexity: 3
+  types: [ Grain, Vegetables ]
+  # TG: food/springroll
+
+- type: imperialFoodData
+  id: ImperialFoodCheesePierogi
+  complexity: 2
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/cheese_pierogi
+
+- type: imperialFoodData
+  id: ImperialFoodMeatPierogi
+  complexity: 2
+  types: [ Grain, Vegetables, Meat ]
+  # TG: food/meat_pierogi
+
+- type: imperialFoodData
+  id: ImperialFoodStuffedEggplant
+  complexity: 3
+  types: [ Vegetables, Meat, Dairy ]
+  # TG: food/stuffed_eggplant
+
+- type: imperialFoodData
+  id: ImperialFoodMoussaka
+  complexity: 4
+  types: [ Meat, Vegetables, Grain, Dairy ]
+  # TG: food/moussaka
+
+- type: imperialFoodData
+  id: ImperialFoodMoussakaSlice
+  complexity: 4
+  types: [ Meat, Vegetables, Grain, Dairy ]
+  # TG: food/moussaka_slice
+
+- type: imperialFoodData
+  id: ImperialFoodCandiedPineapple
+  complexity: 1
+  types: [ Sugar, Fruit, Pineapple ]
+  # TG: food/candied_pineapple
+
+- type: imperialFoodData
+  id: ImperialFoodRawPitaBread
+  complexity: 1
+  types: [ Grain ]
+  # TG: food/raw_pita_bread
+
+- type: imperialFoodData
+  id: ImperialFoodPitaBread
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/pita_bread
+
+- type: imperialFoodData
+  id: ImperialFoodTzatzikiSauce
+  complexity: 2
+  types: [ Vegetables ]
+  # TG: food/tzatziki_sauce
+
+- type: imperialFoodData
+  id: ImperialFoodTzatzikiAndPitaBread
+  complexity: 3
+  types: [ Vegetables, Grain ]
+  # TG: food/tzatziki_and_pita_bread
+
+- type: imperialFoodData
+  id: ImperialFoodGrilledBeefGyro
+  complexity: 4
+  types: [ Vegetables, Grain, Meat ]
+  # TG: food/grilled_beef_gyro
+
+- type: imperialFoodData
+  id: ImperialFoodVegetarianGyro
+  complexity: 4
+  types: [ Vegetables, Grain ]
+  # TG: food/vegetarian_gyro
+
+- type: imperialFoodData
+  id: ImperialFoodInkSac
+  complexity: 0
+  types: [ Seafood, Raw ]
+  # TG: food/ink_sac
+
+- type: imperialFoodData
+  id: ImperialFoodMonkeycubeGorilla
+  complexity: 0
+  types: [ Meat, Sugar ]
+  # TG: food/monkeycube/gorilla
+
+- type: imperialFoodData
+  id: ImperialFoodMonkeycubeChicken
+  complexity: 0
+  types: [ Meat, Sugar ]
+  # TG: food/monkeycube/chicken
+
+- type: imperialFoodData
+  id: ImperialFoodMonkeycubeBee
+  complexity: 0
+  types: [ Meat, Sugar ]
+  # TG: food/monkeycube/bee
+
+- type: imperialFoodData
+  id: ImperialFoodMonkeycubeRandom
+  complexity: 0
+  types: [ Meat, Sugar ]
+  # TG: food/monkeycube/random
+
+- type: imperialFoodData
+  id: ImperialFoodHerbyCheese
+  complexity: 3
+  types: [ Dairy, Vegetables ]
+  # TG: food/herby_cheese
+
+- type: imperialFoodData
+  id: ImperialFoodMothicSalad
+  complexity: 2
+  types: [ Vegetables ]
+  # TG: food/mothic_salad
+
+- type: imperialFoodData
+  id: ImperialFoodToastedSeeds
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/toasted_seeds
+
+- type: imperialFoodData
+  id: ImperialFoodEngineFodder
+  complexity: 3
+  types: [ Junkfood, Grain, Fried, Nuts, Vegetables ]
+  # TG: food/engine_fodder
+
+- type: imperialFoodData
+  id: ImperialFoodMothicPizzaDough
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/mothic_pizza_dough
+
+- type: imperialFoodData
+  id: ImperialFoodSqueakingStirFry
+  complexity: 4
+  types: [ Dairy, Vegetables, Grain ]
+  # TG: food/squeaking_stir_fry
+
+- type: imperialFoodData
+  id: ImperialFoodSweetChiliCabbageWrap
+  complexity: 5
+  types: [ Dairy, Vegetables ]
+  # TG: food/sweet_chili_cabbage_wrap
+
+- type: imperialFoodData
+  id: ImperialFoodLoadedCurds
+  complexity: 5
+  types: [ Vegetables, Dairy, Fried ]
+  # TG: food/loaded_curds
+
+- type: imperialFoodData
+  id: ImperialFoodBakedCheese
+  complexity: 1
+  types: [ Dairy ]
+  # TG: food/baked_cheese
+
+- type: imperialFoodData
+  id: ImperialFoodBakedCheesePlatter
+  complexity: 3
+  types: [ Dairy, Grain ]
+  # TG: food/baked_cheese_platter
+
+- type: imperialFoodData
+  id: ImperialFoodRawGreenLasagne
+  complexity: 5
+  types: [ Vegetables, Grain, Dairy, Nuts, Raw ]
+  # TG: food/raw_green_lasagne
+
+- type: imperialFoodData
+  id: ImperialFoodGreenLasagne
+  complexity: 5
+  types: [ Vegetables, Grain, Dairy, Nuts ]
+  # TG: food/green_lasagne
+
+- type: imperialFoodData
+  id: ImperialFoodGreenLasagneSlice
+  complexity: 5
+  types: [ Vegetables, Grain, Dairy, Nuts ]
+  # TG: food/green_lasagne_slice
+
+- type: imperialFoodData
+  id: ImperialFoodRawBakedRice
+  complexity: 5
+  types: [ Vegetables, Grain, Raw ]
+  # TG: food/raw_baked_rice
+
+- type: imperialFoodData
+  id: ImperialFoodBigBakedRice
+  complexity: 5
+  types: [ Vegetables, Grain ]
+  # TG: food/big_baked_rice
+
+- type: imperialFoodData
+  id: ImperialFoodLilBakedRice
+  complexity: 5
+  types: [ Vegetables, Grain ]
+  # TG: food/lil_baked_rice
+
+- type: imperialFoodData
+  id: ImperialFoodOvenBakedCorn
+  complexity: 1
+  types: [ Vegetables ]
+  # TG: food/oven_baked_corn
+
+- type: imperialFoodData
+  id: ImperialFoodButteredBakedCorn
+  complexity: 2
+  types: [ Vegetables, Dairy ]
+  # TG: food/buttered_baked_corn
+
+- type: imperialFoodData
+  id: ImperialFoodFiestaCornSkillet
+  complexity: 4
+  types: [ Vegetables, Junkfood, Dairy, Fried ]
+  # TG: food/fiesta_corn_skillet
+
+- type: imperialFoodData
+  id: ImperialFoodRawRatatouille
+  complexity: 3
+  types: [ Vegetables ]
+  # TG: food/raw_ratatouille
+
+- type: imperialFoodData
+  id: ImperialFoodRatatouille
+  complexity: 3
+  types: [ Vegetables ]
+  # TG: food/ratatouille
+
+- type: imperialFoodData
+  id: ImperialFoodMozzarellaSticks
+  complexity: 4
+  types: [ Grain, Dairy, Fried ]
+  # TG: food/mozzarella_sticks
+
+- type: imperialFoodData
+  id: ImperialFoodRawStuffedPeppers
+  complexity: 3
+  types: [ Dairy, Vegetables ]
+  # TG: food/raw_stuffed_peppers
+
+- type: imperialFoodData
+  id: ImperialFoodStuffedPeppers
+  complexity: 3
+  types: [ Dairy, Vegetables ]
+  # TG: food/stuffed_peppers
+
+- type: imperialFoodData
+  id: ImperialFoodFueljacksLunch
+  complexity: 4
+  types: [ Dairy, Vegetables ]
+  # TG: food/fueljacks_lunch
+
+- type: imperialFoodData
+  id: ImperialFoodMacBalls
+  complexity: 4
+  types: [ Dairy, Vegetables, Fried, Grain ]
+  # TG: food/mac_balls
+
+- type: imperialFoodData
+  id: ImperialFoodSustenanceBar
+  complexity: 0
+  types: [ Vegetables, Grain ]
+  # TG: food/sustenance_bar
+
+- type: imperialFoodData
+  id: ImperialFoodSustenanceBarNeapolitan
+  complexity: 0
+  types: [ Vegetables, Grain ]
+  # TG: food/sustenance_bar/neapolitan
+
+- type: imperialFoodData
+  id: ImperialFoodSustenanceBarCheese
+  complexity: 0
+  types: [ Vegetables, Grain ]
+  # TG: food/sustenance_bar/cheese
+
+- type: imperialFoodData
+  id: ImperialFoodSustenanceBarMint
+  complexity: 0
+  types: [ Vegetables, Grain ]
+  # TG: food/sustenance_bar/mint
+
+- type: imperialFoodData
+  id: ImperialFoodSustenanceBarWonka
+  complexity: 0
+  types: [ Vegetables, Grain ]
+  # TG: food/sustenance_bar/wonka
+
+- type: imperialFoodData
+  id: ImperialFoodBowledFriedEggplantPolenta
+  complexity: 5
+  types: [ Vegetables, Grain, Dairy ]
+  # TG: food/bowled/fried_eggplant_polenta
+
+- type: imperialFoodData
+  id: ImperialFoodCapreseSalad
+  complexity: 3
+  types: [ Dairy, Vegetables ]
+  # TG: food/caprese_salad
+
+- type: imperialFoodData
+  id: ImperialFoodSaladFleetSalad
+  complexity: 5
+  types: [ Dairy, Vegetables, Grain ]
+  # TG: food/salad/fleet_salad
+
+- type: imperialFoodData
+  id: ImperialFoodSaladCottonSalad
+  complexity: 4
+  types: [ Vegetables, Cloth ]
+  # TG: food/salad/cotton_salad
+
+- type: imperialFoodData
+  id: ImperialFoodSaladMothKachumbari
+  complexity: 3
+  types: [ Vegetables ]
+  # TG: food/salad/moth_kachumbari
+
+- type: imperialFoodData
+  id: ImperialFoodRawMothicMargherita
+  complexity: 5
+  types: [ Grain, Vegetables, Dairy, Raw ]
+  # TG: food/raw_mothic_margherita
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaMothicMargherita
+  complexity: 5
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/pizza/mothic_margherita
+
+- type: imperialFoodData
+  id: ImperialFoodPizzasliceMothicMargherita
+  complexity: 5
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/pizzaslice/mothic_margherita
+
+- type: imperialFoodData
+  id: ImperialFoodRawMothicFirecracker
+  complexity: 5
+  types: [ Grain, Vegetables, Dairy, Raw ]
+  # TG: food/raw_mothic_firecracker
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaMothicFirecracker
+  complexity: 5
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/pizza/mothic_firecracker
+
+- type: imperialFoodData
+  id: ImperialFoodPizzasliceMothicFirecracker
+  complexity: 5
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/pizzaslice/mothic_firecracker
+
+- type: imperialFoodData
+  id: ImperialFoodRawMothicFiveCheese
+  complexity: 5
+  types: [ Grain, Vegetables, Dairy, Raw ]
+  # TG: food/raw_mothic_five_cheese
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaMothicFiveCheese
+  complexity: 5
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/pizza/mothic_five_cheese
+
+- type: imperialFoodData
+  id: ImperialFoodPizzasliceMothicFiveCheese
+  complexity: 5
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/pizzaslice/mothic_five_cheese
+
+- type: imperialFoodData
+  id: ImperialFoodRawMothicWhitePie
+  complexity: 5
+  types: [ Grain, Vegetables, Dairy, Raw ]
+  # TG: food/raw_mothic_white_pie
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaMothicWhitePie
+  complexity: 5
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/pizza/mothic_white_pie
+
+- type: imperialFoodData
+  id: ImperialFoodPizzasliceMothicWhitePie
+  complexity: 5
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/pizzaslice/mothic_white_pie
+
+- type: imperialFoodData
+  id: ImperialFoodRawMothicPesto
+  complexity: 5
+  types: [ Grain, Vegetables, Dairy, Nuts, Raw ]
+  # TG: food/raw_mothic_pesto
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaMothicPesto
+  complexity: 5
+  types: [ Grain, Vegetables, Dairy, Nuts ]
+  # TG: food/pizza/mothic_pesto
+
+- type: imperialFoodData
+  id: ImperialFoodPizzasliceMothicPesto
+  complexity: 5
+  types: [ Grain, Vegetables, Dairy, Nuts ]
+  # TG: food/pizzaslice/mothic_pesto
+
+- type: imperialFoodData
+  id: ImperialFoodRawMothicGarlic
+  complexity: 4
+  types: [ Grain, Vegetables, Raw, Dairy ]
+  # TG: food/raw_mothic_garlic
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaMothicGarlic
+  complexity: 4
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/pizza/mothic_garlic
+
+- type: imperialFoodData
+  id: ImperialFoodPizzasliceMothicGarlic
+  complexity: 4
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/pizzaslice/mothic_garlic
+
+- type: imperialFoodData
+  id: ImperialFoodMothCheeseCakes
+  complexity: 4
+  types: [ Sugar, Fried, Dairy, Grain ]
+  # TG: food/moth_cheese_cakes
+
+- type: imperialFoodData
+  id: ImperialFoodCakeMothmallow
+  complexity: 2
+  types: [ Vegetables, Sugar ]
+  # TG: food/cake/mothmallow
+
+- type: imperialFoodData
+  id: ImperialFoodCakesliceMothmallow
+  complexity: 2
+  types: [ Vegetables, Sugar ]
+  # TG: food/cakeslice/mothmallow
+
+- type: imperialFoodData
+  id: ImperialFoodBubblegumWakeUp
+  complexity: 0
+  types: [  ]
+  # TG: food/bubblegum/wake_up
+
+- type: imperialFoodData
+  id: ImperialFoodCanned
+  complexity: 0
+  types: [  ]
+  # TG: food/canned
+
+- type: imperialFoodData
+  id: ImperialFoodCannedPeaches
+  complexity: 0
+  types: [ Fruit, Sugar ]
+  # TG: food/canned/peaches
+
+- type: imperialFoodData
+  id: ImperialFoodCannedTomatoes
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/canned/tomatoes
+
+- type: imperialFoodData
+  id: ImperialFoodCannedPineNuts
+  complexity: 0
+  types: [ Nuts ]
+  # TG: food/canned/pine_nuts
+
+- type: imperialFoodData
+  id: ImperialFoodCannedEnvirochow
+  complexity: 1
+  types: [ Meat, Gross ]
+  # TG: food/canned/envirochow
+
+- type: imperialFoodData
+  id: ImperialFoodCannedSquidInk
+  complexity: 0
+  types: [ Seafood ]
+  # TG: food/canned/squid_ink
+
+- type: imperialFoodData
+  id: ImperialFoodCannedChap
+  complexity: 0
+  types: [ Meat ]
+  # TG: food/canned/chap
+
+- type: imperialFoodData
+  id: ImperialFoodChapslice
+  complexity: 0
+  types: [ Meat ]
+  # TG: food/chapslice
+
+- type: imperialFoodData
+  id: ImperialFoodGrilledChapslice
+  complexity: 0
+  types: [ Meat ]
+  # TG: food/grilled_chapslice
+
+- type: imperialFoodData
+  id: ImperialFoodReadyDonk
+  complexity: 0
+  types: [ Meat, Junkfood ]
+  # TG: food/ready_donk
+
+- type: imperialFoodData
+  id: ImperialFoodReadyDonkWarm
+  complexity: 0
+  types: [ Meat, Junkfood ]
+  # TG: food/ready_donk/warm
+
+- type: imperialFoodData
+  id: ImperialFoodReadyDonkMacNCheese
+  complexity: 0
+  types: [ Grain, Dairy, Junkfood ]
+  # TG: food/ready_donk/mac_n_cheese
+
+- type: imperialFoodData
+  id: ImperialFoodReadyDonkWarmMacNCheese
+  complexity: 0
+  types: [ Grain, Dairy, Junkfood ]
+  # TG: food/ready_donk/warm/mac_n_cheese
+
+- type: imperialFoodData
+  id: ImperialFoodReadyDonkDonkhiladas
+  complexity: 0
+  types: [ Grain, Dairy, Meat, Vegetables, Junkfood ]
+  # TG: food/ready_donk/donkhiladas
+
+- type: imperialFoodData
+  id: ImperialFoodReadyDonkWarmDonkhiladas
+  complexity: 0
+  types: [ Grain, Dairy, Meat, Vegetables, Junkfood ]
+  # TG: food/ready_donk/warm/donkhiladas
+
+- type: imperialFoodData
+  id: ImperialFoodReadyDonkNachosGrandes
+  complexity: 0
+  types: [ Grain, Dairy, Meat, Vegetables, Junkfood ]
+  # TG: food/ready_donk/nachos_grandes
+
+- type: imperialFoodData
+  id: ImperialFoodReadyDonkWarmNachosGrandes
+  complexity: 0
+  types: [ Grain, Dairy, Meat, Vegetables, Junkfood ]
+  # TG: food/ready_donk/warm/nachos_grandes
+
+- type: imperialFoodData
+  id: ImperialFoodReadyDonkDonkrangeChicken
+  complexity: 0
+  types: [ Grain, Meat, Vegetables, Junkfood ]
+  # TG: food/ready_donk/donkrange_chicken
+
+- type: imperialFoodData
+  id: ImperialFoodReadyDonkWarmDonkrangeChicken
+  complexity: 0
+  types: [ Grain, Meat, Vegetables, Junkfood ]
+  # TG: food/ready_donk/warm/donkrange_chicken
+
+- type: imperialFoodData
+  id: ImperialFoodReadyDonkSalisburySteak
+  complexity: 0
+  types: [ Meat, Vegetables, Junkfood ]
+  # TG: food/ready_donk/salisbury_steak
+
+- type: imperialFoodData
+  id: ImperialFoodReadyDonkWarmSalisburySteak
+  complexity: 0
+  types: [ Meat, Vegetables, Junkfood ]
+  # TG: food/ready_donk/warm/salisbury_steak
+
+- type: imperialFoodData
+  id: ImperialFoodReadyDonkCountryChicken
+  complexity: 0
+  types: [ Meat, Dairy, Vegetables, Junkfood ]
+  # TG: food/ready_donk/country_chicken
+
+- type: imperialFoodData
+  id: ImperialFoodReadyDonkWarmCountryChicken
+  complexity: 0
+  types: [ Meat, Dairy, Vegetables, Junkfood ]
+  # TG: food/ready_donk/warm/country_chicken
+
+- type: imperialFoodData
+  id: ImperialFoodRationpack
+  complexity: 0
+  types: [  ]
+  # TG: food/rationpack
+
+- type: imperialFoodData
+  id: ImperialFoodPancakesRaw
+  complexity: 1
+  types: [ Grain, Sugar, Breakfast ]
+  # TG: food/pancakes/raw
+
+- type: imperialFoodData
+  id: ImperialFoodMuffinBooberry
+  complexity: 4
+  types: [ Grain, Dairy, Sugar, Breakfast, Fruit ]
+  # TG: food/muffin/booberry
+
+- type: imperialFoodData
+  id: ImperialFoodMuffinMoffin
+  complexity: 2
+  types: [ Cloth, Dairy, Grain, Sugar, Breakfast ]
+  # TG: food/muffin/moffin
+
+- type: imperialFoodData
+  id: ImperialFoodSoylentgreen
+  complexity: 3
+  types: [ Meat, Grain, Dairy ]
+  # TG: food/soylentgreen
+
+- type: imperialFoodData
+  id: ImperialFoodSoylenviridians
+  complexity: 3
+  types: [ Vegetables, Grain, Dairy ]
+  # TG: food/soylenviridians
+
+- type: imperialFoodData
+  id: ImperialFoodChococornet
+  complexity: 3
+  types: [ Junkfood, Grain, Dairy, Sugar ]
+  # TG: food/chococornet
+
+- type: imperialFoodData
+  id: ImperialFoodPlumphelmetbiscuit
+  complexity: 3
+  types: [ Vegetables, Grain, Dairy ]
+  # TG: food/plumphelmetbiscuit
+
+- type: imperialFoodData
+  id: ImperialFoodCracker
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/cracker
+
+- type: imperialFoodData
+  id: ImperialFoodKhachapuri
+  complexity: 3
+  types: [ Grain, Meat, Dairy ]
+  # TG: food/khachapuri
+
+- type: imperialFoodData
+  id: ImperialFoodCherrycupcake
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/cherrycupcake
+
+- type: imperialFoodData
+  id: ImperialFoodCherrycupcakeBlue
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/cherrycupcake/blue
+
+- type: imperialFoodData
+  id: ImperialFoodJupitercupcake
+  complexity: 3
+  types: [ Grain, Dairy, Vegetables, Sugar ]
+  # TG: food/jupitercupcake
+
+- type: imperialFoodData
+  id: ImperialFoodHoneybun
+  complexity: 3
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/honeybun
+
+- type: imperialFoodData
+  id: ImperialFoodIcecream
+  complexity: 2
+  types: [ Dairy, Sugar, Grain ]
+  # TG: food/icecream
+
+- type: imperialFoodData
+  id: ImperialFoodIcecreamChocolate
+  complexity: 2
+  types: [ Dairy, Sugar, Grain ]
+  # TG: food/icecream/chocolate
+
+- type: imperialFoodData
+  id: ImperialFoodIcecreamKorta
+  complexity: 2
+  types: [ Nuts, Sugar ]
+  # TG: food/icecream/korta
+
+- type: imperialFoodData
+  id: ImperialFoodCookiePeanutButter
+  complexity: 3
+  types: [ Grain, Dairy, Junkfood, Nuts ]
+  # TG: food/cookie/peanut_butter
+
+- type: imperialFoodData
+  id: ImperialFoodRawBrownieBatter
+  complexity: 1
+  types: [ Grain, Dairy, Junkfood, Sugar, Breakfast ]
+  # TG: food/raw_brownie_batter
+
+- type: imperialFoodData
+  id: ImperialFoodBrownieSheet
+  complexity: 2
+  types: [ Grain, Dairy, Junkfood, Sugar, Breakfast ]
+  # TG: food/brownie_sheet
+
+- type: imperialFoodData
+  id: ImperialFoodPeanutButterBrownieBatter
+  complexity: 1
+  types: [ Grain, Dairy, Junkfood, Sugar, Breakfast, Nuts ]
+  # TG: food/peanut_butter_brownie_batter
+
+- type: imperialFoodData
+  id: ImperialFoodPeanutButterBrownieSheet
+  complexity: 3
+  types: [ Grain, Dairy, Junkfood, Sugar, Breakfast, Nuts ]
+  # TG: food/peanut_butter_brownie_sheet
+
+- type: imperialFoodData
+  id: ImperialFoodPeanutButterBrownie
+  complexity: 3
+  types: [ Grain, Dairy, Junkfood, Sugar, Breakfast, Nuts ]
+  # TG: food/peanut_butter_brownie
+
+- type: imperialFoodData
+  id: ImperialFoodCrunchyPeanutButterTart
+  complexity: 3
+  types: [ Grain, Dairy, Junkfood, Sugar, Nuts ]
+  # TG: food/crunchy_peanut_butter_tart
+
+- type: imperialFoodData
+  id: ImperialFoodCookieChocolateChipCookie
+  complexity: 3
+  types: [ Grain, Sugar, Dairy ]
+  # TG: food/cookie/chocolate_chip_cookie
+
+- type: imperialFoodData
+  id: ImperialFoodCookieSnickerdoodle
+  complexity: 3
+  types: [ Grain, Sugar, Dairy ]
+  # TG: food/cookie/snickerdoodle
+
+- type: imperialFoodData
+  id: ImperialFoodCookieMacaron
+  complexity: 3
+  types: [ Grain, Sugar, Dairy ]
+  # TG: food/cookie/macaron
+
+- type: imperialFoodData
+  id: ImperialFoodCookieThumbprintCookie
+  complexity: 3
+  types: [ Grain, Dairy, Sugar, Fruit ]
+  # TG: food/cookie/thumbprint_cookie
+
+- type: imperialFoodData
+  id: ImperialFoodAppleFritter
+  complexity: 3
+  types: [ Grain, Fruit, Fried, Dairy, Breakfast ]
+  # TG: food/apple_fritter
+
+- type: imperialFoodData
+  id: ImperialFoodPieslice
+  complexity: 2
+  types: [ Grain, Dairy ]
+  # TG: food/pieslice
+
+- type: imperialFoodData
+  id: ImperialFoodPiePlain
+  complexity: 2
+  types: [ Grain, Dairy ]
+  # TG: food/pie/plain
+
+- type: imperialFoodData
+  id: ImperialFoodPieEmpty
+  complexity: 2
+  types: [ Grain, Dairy ]
+  # TG: food/pie/empty
+
+- type: imperialFoodData
+  id: ImperialFoodPiesliceEmpty
+  complexity: 2
+  types: [ Grain, Dairy ]
+  # TG: food/pieslice/empty
+
+- type: imperialFoodData
+  id: ImperialFoodPieBearypie
+  complexity: 4
+  types: [ Grain, Dairy, Sugar, Meat, Fruit ]
+  # TG: food/pie/bearypie
+
+- type: imperialFoodData
+  id: ImperialFoodPiesliceMeatpie
+  complexity: 3
+  types: [ Grain, Dairy, Meat ]
+  # TG: food/pieslice/meatpie
+
+- type: imperialFoodData
+  id: ImperialFoodPieTofupie
+  complexity: 3
+  types: [ Grain, Dairy, Vegetables ]
+  # TG: food/pie/tofupie
+
+- type: imperialFoodData
+  id: ImperialFoodPiesliceTofupie
+  complexity: 3
+  types: [ Grain, Dairy, Vegetables ]
+  # TG: food/pieslice/tofupie
+
+- type: imperialFoodData
+  id: ImperialFoodPiesliceXemeatpie
+  complexity: 3
+  types: [ Grain, Dairy, Meat ]
+  # TG: food/pieslice/xemeatpie
+
+- type: imperialFoodData
+  id: FoodPieAppleSlice
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/pieslice/apple
+
+- type: imperialFoodData
+  id: FoodPieCherrySlice
+  complexity: 3
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/pieslice/cherry
+
+- type: imperialFoodData
+  id: FoodPiePumpkinSlice
+  complexity: 3
+  types: [ Grain, Dairy, Vegetables, Sugar ]
+  # TG: food/pieslice/pumpkin
+
+- type: imperialFoodData
+  id: ImperialFoodPieBerrytart
+  complexity: 2
+  types: [ Grain, Dairy, Fruit, Sugar ]
+  # TG: food/pie/berrytart
+
+- type: imperialFoodData
+  id: ImperialFoodPieBlumpkinpie
+  complexity: 3
+  types: [ Grain, Dairy, Vegetables, Sugar ]
+  # TG: food/pie/blumpkinpie
+
+- type: imperialFoodData
+  id: ImperialFoodPiesliceBlumpkin
+  complexity: 3
+  types: [ Grain, Dairy, Vegetables, Sugar ]
+  # TG: food/pieslice/blumpkin
+
+- type: imperialFoodData
+  id: ImperialFoodPieDulcedebatata
+  complexity: 3
+  types: [ Vegetables, Sugar ]
+  # TG: food/pie/dulcedebatata
+
+- type: imperialFoodData
+  id: ImperialFoodPiesliceDulcedebatata
+  complexity: 3
+  types: [ Vegetables, Sugar ]
+  # TG: food/pieslice/dulcedebatata
+
+- type: imperialFoodData
+  id: ImperialFoodPiesliceFrostypie
+  complexity: 3
+  types: [ Grain, Fruit, Sugar ]
+  # TG: food/pieslice/frostypie
+
+- type: imperialFoodData
+  id: FoodPieBaklavaSlice
+  complexity: 4
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/pieslice/baklava
+
+- type: imperialFoodData
+  id: ImperialFoodPieFrenchsilkpie
+  complexity: 3
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/pie/frenchsilkpie
+
+- type: imperialFoodData
+  id: ImperialFoodPiesliceFrenchsilk
+  complexity: 3
+  types: [ Grain, Dairy, Sugar ]
+  # TG: food/pieslice/frenchsilk
+
+- type: imperialFoodData
+  id: ImperialFoodPieShepherdsPie
+  complexity: 5
+  types: [ Meat, Dairy, Vegetables ]
+  # TG: food/pie/shepherds_pie
+
+- type: imperialFoodData
+  id: ImperialFoodPiesliceShepherdsPie
+  complexity: 5
+  types: [ Meat, Dairy, Vegetables ]
+  # TG: food/pieslice/shepherds_pie
+
+- type: imperialFoodData
+  id: ImperialFoodPieAsdfpie
+  complexity: 2
+  types: [ Grain, Dairy ]
+  # TG: food/pie/asdfpie
+
+- type: imperialFoodData
+  id: ImperialFoodPieBacidPie
+  complexity: 3
+  types: [ Grain, Dairy, Toxic ]
+  # TG: food/pie/bacid_pie
+
+- type: imperialFoodData
+  id: ImperialFoodPiesliceBacidPie
+  complexity: 3
+  types: [ Toxic ]
+  # TG: food/pieslice/bacid_pie
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaCustom
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/pizza/custom
+
+- type: imperialFoodData
+  id: ImperialFoodPizzasliceCustom
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/pizzaslice/custom
+
+- type: imperialFoodData
+  id: FoodPizzaMargherita
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/pizza/margherita
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaMargheritaRaw
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy, Raw ]
+  # TG: food/pizza/margherita/raw
+
+- type: imperialFoodData
+  id: FoodPizzaMargheritaSlice
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/pizzaslice/margherita
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaMeatRaw
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy, Meat, Raw ]
+  # TG: food/pizza/meat/raw
+
+- type: imperialFoodData
+  id: FoodPizzaMeatSlice
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy, Meat ]
+  # TG: food/pizzaslice/meat
+
+- type: imperialFoodData
+  id: ImperialFoodPizzasliceMeatPizzeria
+  complexity: 3
+  types: [  ]
+  # TG: food/pizzaslice/meat/pizzeria
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaMushroomRaw
+  complexity: 2
+  types: [ Grain, Vegetables, Dairy, Raw ]
+  # TG: food/pizza/mushroom/raw
+
+- type: imperialFoodData
+  id: FoodPizzaMushroomSlice
+  complexity: 2
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/pizzaslice/mushroom
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaVegetableRaw
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy, Raw ]
+  # TG: food/pizza/vegetable/raw
+
+- type: imperialFoodData
+  id: FoodPizzaVegetableSlice
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/pizzaslice/vegetable
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaDonkpocketRaw
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy, Junkfood, Raw ]
+  # TG: food/pizza/donkpocket/raw
+
+- type: imperialFoodData
+  id: FoodPizzaDonkpocketSlice
+  complexity: 2
+  types: [ Grain, Vegetables, Dairy, Junkfood ]
+  # TG: food/pizzaslice/donkpocket
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaDankRaw
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy, Raw ]
+  # TG: food/pizza/dank/raw
+
+- type: imperialFoodData
+  id: FoodPizzaDankSlice
+  complexity: 2
+  types: [ Grain, Vegetables, Dairy ]
+  # TG: food/pizzaslice/dank
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaSassysageRaw
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy, Meat, Raw ]
+  # TG: food/pizza/sassysage/raw
+
+- type: imperialFoodData
+  id: FoodPizzaSassysageSlice
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy, Meat ]
+  # TG: food/pizzaslice/sassysage
+
+- type: imperialFoodData
+  id: FoodPizzaPineapple
+  complexity: 4
+  types: [ Grain, Vegetables, Dairy, Meat, Fruit, Pineapple ]
+  # TG: food/pizza/pineapple
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaPineappleRaw
+  complexity: 4
+  types: [ Grain, Vegetables, Dairy, Meat, Fruit, Pineapple, Raw ]
+  # TG: food/pizza/pineapple/raw
+
+- type: imperialFoodData
+  id: FoodPizzaPineappleSlice
+  complexity: 2
+  types: [ Grain, Vegetables, Dairy, Meat, Fruit, Pineapple ]
+  # TG: food/pizzaslice/pineapple
+
+- type: imperialFoodData
+  id: FoodPizzaMoldySlice
+  complexity: 2
+  types: [ Grain, Vegetables, Dairy, Gross ]
+  # TG: food/pizzaslice/moldy
+
+- type: imperialFoodData
+  id: ImperialFoodPizzasliceMoldyBacteria
+  complexity: 2
+  types: [ Grain, Vegetables, Dairy, Gross ]
+  # TG: food/pizzaslice/moldy/bacteria
+
+- type: imperialFoodData
+  id: FoodPizzaArnold
+  complexity: 4
+  types: [ Meat, Grain, Dairy, Vegetables ]
+  # TG: food/pizza/arnold
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaArnoldRaw
+  complexity: 4
+  types: [ Meat, Grain, Dairy, Vegetables, Raw ]
+  # TG: food/pizza/arnold/raw
+
+- type: imperialFoodData
+  id: FoodPizzaArnoldSlice
+  complexity: 4
+  types: [ Grain, Vegetables, Dairy, Meat ]
+  # TG: food/pizzaslice/arnold
+
+- type: imperialFoodData
+  id: ImperialFoodPizzasliceAnts
+  complexity: 2
+  types: [ Grain, Vegetables, Dairy, Bugs ]
+  # TG: food/pizzaslice/ants
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaEnergy
+  complexity: 2
+  types: [ Grain, Toxic ]
+  # TG: food/pizza/energy
+
+- type: imperialFoodData
+  id: ImperialFoodPizzaEnergyRaw
+  complexity: 2
+  types: [ Grain, Toxic, Raw ]
+  # TG: food/pizza/energy/raw
+
+- type: imperialFoodData
+  id: ImperialFoodPizzasliceEnergy
+  complexity: 2
+  types: [ Grain, Toxic ]
+  # TG: food/pizzaslice/energy
+
+- type: imperialFoodData
+  id: ImperialFoodRawMeatCalzone
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy, Meat, Raw ]
+  # TG: food/raw_meat_calzone
+
+- type: imperialFoodData
+  id: ImperialFoodMeatCalzone
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy, Meat ]
+  # TG: food/meat_calzone
+
+- type: imperialFoodData
+  id: ImperialFoodRawVegetarianCalzone
+  complexity: 3
+  types: [ Grain, Vegetables, Raw ]
+  # TG: food/raw_vegetarian_calzone
+
+- type: imperialFoodData
+  id: ImperialFoodVegetarianCalzone
+  complexity: 3
+  types: [ Grain, Vegetables ]
+  # TG: food/vegetarian_calzone
+
+- type: imperialFoodData
+  id: FoodSaladAesir
+  complexity: 3
+  types: [ Vegetables, Fruit ]
+  # TG: food/salad/aesirsalad
+
+- type: imperialFoodData
+  id: FoodSaladCitrus
+  complexity: 3
+  types: [ Fruit, Oranges ]
+  # TG: food/salad/citrusdelight
+
+- type: imperialFoodData
+  id: ImperialFoodUncookedRice
+  complexity: 0
+  types: [ Grain, Raw ]
+  # TG: food/uncooked_rice
+
+- type: imperialFoodData
+  id: ImperialFoodSaladRisotto
+  complexity: 3
+  types: [ Grain, Dairy, Vegetables ]
+  # TG: food/salad/risotto
+
+- type: imperialFoodData
+  id: FoodSaladEden
+  complexity: 3
+  types: [ Vegetables ]
+  # TG: food/salad/edensalad
+
+- type: imperialFoodData
+  id: ImperialFoodSaladEmpty
+  complexity: 2
+  types: [  ]
+  # TG: food/salad/empty
+
+- type: imperialFoodData
+  id: ImperialFoodSaladKaleSalad
+  complexity: 3
+  types: [ Vegetables ]
+  # TG: food/salad/kale_salad
+
+- type: imperialFoodData
+  id: ImperialFoodSaladGreekSalad
+  complexity: 4
+  types: [ Vegetables, Fruit, Dairy ]
+  # TG: food/salad/greek_salad
+
+- type: imperialFoodData
+  id: ImperialFoodSaladSpringSalad
+  complexity: 3
+  types: [ Vegetables ]
+  # TG: food/salad/spring_salad
+
+- type: imperialFoodData
+  id: ImperialFoodSaladPotatoSalad
+  complexity: 3
+  types: [ Meat, Vegetables, Breakfast, Egg ]
+  # TG: food/salad/potato_salad
+
+- type: imperialFoodData
+  id: ImperialFoodSaladSpinachFruitSalad
+  complexity: 3
+  types: [ Vegetables, Fruit, Pineapple ]
+  # TG: food/salad/spinach_fruit_salad
+
+- type: imperialFoodData
+  id: ImperialFoodSaladAntipastoSalad
+  complexity: 4
+  types: [ Meat, Vegetables, Fruit, Dairy ]
+  # TG: food/salad/antipasto_salad
+
+- type: imperialFoodData
+  id: ImperialFoodSandwich
+  complexity: 3
+  types: [ Grain, Vegetables, Dairy, Meat ]
+  # TG: food/sandwich
+
+- type: imperialFoodData
+  id: ImperialFoodSandwichCheese
+  complexity: 2
+  types: [ Grain, Dairy ]
+  # TG: food/sandwich/cheese
+
+- type: imperialFoodData
+  id: ImperialFoodSandwichJelly
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/sandwich/jelly
+
+- type: imperialFoodData
+  id: ImperialFoodSandwichJellySlime
+  complexity: 2
+  types: [ Grain, Toxic ]
+  # TG: food/sandwich/jelly/slime
+
+- type: imperialFoodData
+  id: ImperialFoodSandwichJellyCherry
+  complexity: 2
+  types: [ Grain, Fruit, Sugar ]
+  # TG: food/sandwich/jelly/cherry
+
+- type: imperialFoodData
+  id: ImperialFoodSandwichNotasandwich
+  complexity: 2
+  types: [ Grain, Gross ]
+  # TG: food/sandwich/notasandwich
+
+- type: imperialFoodData
+  id: ImperialFoodGriddleToast
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/griddle_toast
+
+- type: imperialFoodData
+  id: ImperialFoodJelliedtoast
+  complexity: 2
+  types: [ Grain, Breakfast ]
+  # TG: food/jelliedtoast
+
+- type: imperialFoodData
+  id: ImperialFoodJelliedtoastCherry
+  complexity: 2
+  types: [ Grain, Fruit, Sugar, Breakfast ]
+  # TG: food/jelliedtoast/cherry
+
+- type: imperialFoodData
+  id: ImperialFoodJelliedtoastSlime
+  complexity: 2
+  types: [ Grain, Toxic, Breakfast ]
+  # TG: food/jelliedtoast/slime
+
+- type: imperialFoodData
+  id: FoodBreadTwoSlice
+  complexity: 2
+  types: [ Grain ]
+  # TG: food/twobread
+
+- type: imperialFoodData
+  id: ImperialFoodHotdog
+  complexity: 3
+  types: [ Grain, Meat ]
+  # TG: food/hotdog
+
+- type: imperialFoodData
+  id: ImperialFoodHotdogDebug
+  complexity: 3
+  types: [ Grain, Meat ]
+  # TG: food/hotdog/debug
+
+- type: imperialFoodData
+  id: ImperialFoodDanishHotdog
+  complexity: 4
+  types: [ Grain, Meat, Vegetables ]
+  # TG: food/danish_hotdog
+
+- type: imperialFoodData
+  id: ImperialFoodSandwichBlt
+  complexity: 3
+  types: [ Grain, Meat, Vegetables, Breakfast ]
+  # TG: food/sandwich/blt
+
+- type: imperialFoodData
+  id: ImperialFoodSandwichPeanutButterJelly
+  complexity: 3
+  types: [ Grain, Fruit, Nuts ]
+  # TG: food/sandwich/peanut_butter_jelly
+
+- type: imperialFoodData
+  id: ImperialFoodSandwichPeanutButterBanana
+  complexity: 3
+  types: [ Grain, Fruit, Nuts ]
+  # TG: food/sandwich/peanut_butter_banana
+
+- type: imperialFoodData
+  id: ImperialFoodSandwichPhillyCheesesteak
+  complexity: 3
+  types: [ Grain, Meat, Dairy, Vegetables ]
+  # TG: food/sandwich/philly_cheesesteak
+
+- type: imperialFoodData
+  id: ImperialFoodSandwichToastSandwich
+  complexity: 2
+  types: [ Grain, Dairy ]
+  # TG: food/sandwich/toast_sandwich
+
+- type: imperialFoodData
+  id: ImperialFoodSandwichDeath
+  complexity: 3
+  types: [ Meat, Vegetables, Grain ]
+  # TG: food/sandwich/death
+
+- type: imperialFoodData
+  id: ImperialFoodCandy
+  complexity: 2
+  types: [ Junkfood, Sugar ]
+  # TG: food/candy
+
+- type: imperialFoodData
+  id: ImperialFoodCandyBronx
+  complexity: 2
+  types: [ Junkfood, Raw, Bugs ]
+  # TG: food/candy/bronx
+
+- type: imperialFoodData
+  id: ImperialFoodSosjerky
+  complexity: 1
+  types: [ Junkfood, Meat, Sugar ]
+  # TG: food/sosjerky
+
+- type: imperialFoodData
+  id: ImperialFoodSosjerkyHealthy
+  complexity: 1
+  types: [ Junkfood, Meat, Sugar ]
+  # TG: food/sosjerky/healthy
+
+- type: imperialFoodData
+  id: ImperialFoodChipsShrimp
+  complexity: 0
+  types: [ Junkfood, Fried, Seafood ]
+  # TG: food/chips/shrimp
+
+- type: imperialFoodData
+  id: FoodSnackRaisins
+  complexity: 1
+  types: [ Junkfood, Fruit, Sugar ]
+  # TG: food/no_raisin
+
+- type: imperialFoodData
+  id: ImperialFoodNoRaisinHealthy
+  complexity: 1
+  types: [ Fruit ]
+  # TG: food/no_raisin/healthy
+
+- type: imperialFoodData
+  id: ImperialFoodCandyTrash
+  complexity: 0
+  types: [ Junkfood, Sugar ]
+  # TG: food/candy_trash
+
+- type: imperialFoodData
+  id: ImperialFoodCandyTrashNicotine
+  complexity: 0
+  types: [ Junkfood, Sugar ]
+  # TG: food/candy_trash/nicotine
+
+- type: imperialFoodData
+  id: FoodSnackCheesie
+  complexity: 0
+  types: [ Junkfood, Dairy, Sugar ]
+  # TG: food/cheesiehonkers
+
+- type: imperialFoodData
+  id: FoodSnackSyndi
+  complexity: 0
+  types: [ Grain, Fruit, Vegetables ]
+  # TG: food/syndicake
+
+- type: imperialFoodData
+  id: FoodSnackEnergyBar
+  complexity: 0
+  types: [ Toxic ]
+  # TG: food/energybar
+
+- type: imperialFoodData
+  id: ImperialFoodPeanutsSalted
+  complexity: 0
+  types: [ Junkfood, Nuts ]
+  # TG: food/peanuts/salted
+
+- type: imperialFoodData
+  id: ImperialFoodPeanutsWasabi
+  complexity: 0
+  types: [ Junkfood, Nuts ]
+  # TG: food/peanuts/wasabi
+
+- type: imperialFoodData
+  id: ImperialFoodPeanutsHoneyRoasted
+  complexity: 0
+  types: [ Junkfood, Nuts ]
+  # TG: food/peanuts/honey_roasted
+
+- type: imperialFoodData
+  id: ImperialFoodPeanutsBarbecue
+  complexity: 0
+  types: [ Junkfood, Nuts ]
+  # TG: food/peanuts/barbecue
+
+- type: imperialFoodData
+  id: FoodSnackCnDs
+  complexity: 0
+  types: [ Junkfood ]
+  # TG: food/cnds
+
+- type: imperialFoodData
+  id: ImperialFoodCndsCaramel
+  complexity: 0
+  types: [ Junkfood ]
+  # TG: food/cnds/caramel
+
+- type: imperialFoodData
+  id: ImperialFoodCndsPretzel
+  complexity: 0
+  types: [ Junkfood, Grain ]
+  # TG: food/cnds/pretzel
+
+- type: imperialFoodData
+  id: ImperialFoodCndsPeanutButter
+  complexity: 0
+  types: [ Junkfood ]
+  # TG: food/cnds/peanut_butter
+
+- type: imperialFoodData
+  id: ImperialFoodCndsBananaHonk
+  complexity: 0
+  types: [ Junkfood ]
+  # TG: food/cnds/banana_honk
+
+- type: imperialFoodData
+  id: ImperialFoodCndsRandom
+  complexity: 0
+  types: [ Junkfood ]
+  # TG: food/cnds/random
+
+- type: imperialFoodData
+  id: FoodSnackPistachios
+  complexity: 0
+  types: [ Junkfood, Nuts ]
+  # TG: food/pistachios
+
+- type: imperialFoodData
+  id: FoodSnackSemki
+  complexity: 0
+  types: [ Junkfood, Nuts ]
+  # TG: food/semki
+
+- type: imperialFoodData
+  id: ImperialFoodSemkiHealthy
+  complexity: 1
+  types: [ Junkfood, Nuts ]
+  # TG: food/semki/healthy
+
+- type: imperialFoodData
+  id: FoodSnackBoritos
+  complexity: 0
+  types: [ Junkfood, Fried ]
+  # TG: food/cornchips
+
+- type: imperialFoodData
+  id: ImperialFoodCornchipsBlue
+  complexity: 0
+  types: [ Junkfood, Fried ]
+  # TG: food/cornchips/blue
+
+- type: imperialFoodData
+  id: ImperialFoodCornchipsGreen
+  complexity: 0
+  types: [ Junkfood, Fried ]
+  # TG: food/cornchips/green
+
+- type: imperialFoodData
+  id: ImperialFoodCornchipsRed
+  complexity: 0
+  types: [ Junkfood, Fried ]
+  # TG: food/cornchips/red
+
+- type: imperialFoodData
+  id: ImperialFoodCornchipsPurple
+  complexity: 0
+  types: [ Junkfood, Fried ]
+  # TG: food/cornchips/purple
+
+- type: imperialFoodData
+  id: ImperialFoodCornchipsRandom
+  complexity: 0
+  types: [ Junkfood, Fried ]
+  # TG: food/cornchips/random
+
+- type: imperialFoodData
+  id: ImperialFoodStickoMatcha
+  complexity: 0
+  types: [ Junkfood, Grain ]
+  # TG: food/sticko/matcha
+
+- type: imperialFoodData
+  id: ImperialFoodStickoNutty
+  complexity: 0
+  types: [ Junkfood, Grain, Nuts ]
+  # TG: food/sticko/nutty
+
+- type: imperialFoodData
+  id: ImperialFoodStickoPineapple
+  complexity: 0
+  types: [ Junkfood, Grain, Pineapple ]
+  # TG: food/sticko/pineapple
+
+- type: imperialFoodData
+  id: ImperialFoodStickoYuyake
+  complexity: 0
+  types: [ Junkfood, Grain ]
+  # TG: food/sticko/yuyake
+
+- type: imperialFoodData
+  id: ImperialFoodShokRoksCitrus
+  complexity: 0
+  types: [  ]
+  # TG: food/shok_roks/citrus
+
+- type: imperialFoodData
+  id: ImperialFoodShokRoksBerry
+  complexity: 0
+  types: [  ]
+  # TG: food/shok_roks/berry
+
+- type: imperialFoodData
+  id: ImperialFoodShokRoksTropical
+  complexity: 0
+  types: [  ]
+  # TG: food/shok_roks/tropical
+
+- type: imperialFoodData
+  id: ImperialFoodShokRoksLanternfruit
+  complexity: 0
+  types: [  ]
+  # TG: food/shok_roks/lanternfruit
+
+- type: imperialFoodData
+  id: ImperialFoodBowledWish
+  complexity: 0
+  types: [  ]
+  # TG: food/bowled/wish
+
+- type: imperialFoodData
+  id: ImperialFoodBowledMammi
+  complexity: 2
+  types: [ Sugar, Dairy, Junkfood, Grain ]
+  # TG: food/bowled/mammi
+
+- type: imperialFoodData
+  id: ImperialFoodBowledSpacylibertyduff
+  complexity: 2
+  types: [ Vegetables ]
+  # TG: food/bowled/spacylibertyduff
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiPastatomatoSoulful
+  complexity: 2
+  types: [ Grain, Vegetables ]
+  # TG: food/spaghetti/pastatomato/soulful
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiBeefnoodle
+  complexity: 3
+  types: [ Grain, Meat, Vegetables ]
+  # TG: food/spaghetti/beefnoodle
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiMacNCheese
+  complexity: 4
+  types: [ Grain, Dairy ]
+  # TG: food/spaghetti/mac_n_cheese
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiShoyuTonkotsuRamen
+  complexity: 4
+  types: [ Grain, Meat, Vegetables, Egg ]
+  # TG: food/spaghetti/shoyu_tonkotsu_ramen
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiKitakataRamen
+  complexity: 4
+  types: [ Grain, Meat, Vegetables ]
+  # TG: food/spaghetti/kitakata_ramen
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiKitsuneUdon
+  complexity: 4
+  types: [ Grain, Vegetables ]
+  # TG: food/spaghetti/kitsune_udon
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiNikujaga
+  complexity: 4
+  types: [ Grain, Vegetables, Meat ]
+  # TG: food/spaghetti/nikujaga
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiPho
+  complexity: 4
+  types: [ Grain, Vegetables, Meat ]
+  # TG: food/spaghetti/pho
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiPadThai
+  complexity: 4
+  types: [ Grain, Vegetables, Nuts, Fruit ]
+  # TG: food/spaghetti/pad_thai
+
+- type: imperialFoodData
+  id: ImperialFoodSpaghettiCarbonara
+  complexity: 4
+  types: [ Grain, Meat, Dairy, Egg ]
+  # TG: food/spaghetti/carbonara
+
+- type: imperialFoodData
+  id: ImperialFoodCandyCorn
+  complexity: 1
+  types: [ Junkfood, Sugar ]
+  # TG: food/candy_corn
+
+- type: imperialFoodData
+  id: ImperialFoodCandiedapple
+  complexity: 1
+  types: [ Junkfood, Fruit, Sugar ]
+  # TG: food/candiedapple
+
+- type: imperialFoodData
+  id: ImperialFoodAntCandy
+  complexity: 1
+  types: [ Junkfood, Sugar, Bugs ]
+  # TG: food/ant_candy
+
+- type: imperialFoodData
+  id: FoodSnackChocolate
+  complexity: 1
+  types: [ Junkfood, Sugar ]
+  # TG: food/chocolatebar
+
+- type: imperialFoodData
+  id: ImperialFoodVirtualChocolate
+  complexity: 0
+  types: [  ]
+  # TG: food/virtual_chocolate
+
+- type: imperialFoodData
+  id: ImperialFoodChococoin
+  complexity: 2
+  types: [ Junkfood, Sugar ]
+  # TG: food/chococoin
+
+- type: imperialFoodData
+  id: ImperialFoodFudgedice
+  complexity: 2
+  types: [ Junkfood, Sugar ]
+  # TG: food/fudgedice
+
+- type: imperialFoodData
+  id: ImperialFoodChocoorange
+  complexity: 2
+  types: [ Junkfood, Fruit, Sugar, Oranges ]
+  # TG: food/chocoorange
+
+- type: imperialFoodData
+  id: ImperialFoodBonbon
+  complexity: 0
+  types: [ Junkfood, Sugar ]
+  # TG: food/bonbon
+
+- type: imperialFoodData
+  id: ImperialFoodBonbonCaramelTruffle
+  complexity: 2
+  types: [ Junkfood, Sugar ]
+  # TG: food/bonbon/caramel_truffle
+
+- type: imperialFoodData
+  id: ImperialFoodBonbonChocolateTruffle
+  complexity: 0
+  types: [ Junkfood, Sugar ]
+  # TG: food/bonbon/chocolate_truffle
+
+- type: imperialFoodData
+  id: ImperialFoodBonbonPeanutTruffle
+  complexity: 1
+  types: [ Sugar, Junkfood, Nuts ]
+  # TG: food/bonbon/peanut_truffle
+
+- type: imperialFoodData
+  id: ImperialFoodBonbonPeanutButterCup
+  complexity: 1
+  types: [ Sugar, Junkfood, Nuts ]
+  # TG: food/bonbon/peanut_butter_cup
+
+- type: imperialFoodData
+  id: ImperialFoodBubblegumBubblegum
+  complexity: 0
+  types: [  ]
+  # TG: food/bubblegum/bubblegum
+
+- type: imperialFoodData
+  id: ImperialFoodGumball
+  complexity: 0
+  types: [ Junkfood ]
+  # TG: food/gumball
+
+- type: imperialFoodData
+  id: ImperialFoodLollipop
+  complexity: 0
+  types: [ Junkfood, Sugar ]
+  # TG: food/lollipop
+
+- type: imperialFoodData
+  id: ImperialFoodLollipopCyborg
+  complexity: 0
+  types: [ Junkfood, Sugar ]
+  # TG: food/lollipop/cyborg
+
+- type: imperialFoodData
+  id: ImperialFoodSpiderlollipop
+  complexity: 1
+  types: [ Junkfood, Sugar, Meat, Bugs ]
+  # TG: food/spiderlollipop
+
+- type: imperialFoodData
+  id: ImperialFoodRoastparsnip
+  complexity: 1
+  types: [ Vegetables ]
+  # TG: food/roastparsnip
+
+- type: imperialFoodData
+  id: ImperialFoodTatortot
+  complexity: 1
+  types: [ Fried, Vegetables ]
+  # TG: food/tatortot
+
+- type: imperialFoodData
+  id: ImperialFoodMashedPotatoes
+  complexity: 2
+  types: [ Vegetables, Dairy ]
+  # TG: food/mashed_potatoes
+
+- type: imperialFoodData
+  id: ImperialFoodBakedPotato
+  complexity: 1
+  types: [ Vegetables ]
+  # TG: food/baked_potato
+
+- type: imperialFoodData
+  id: ImperialFoodButteredBakedPotato
+  complexity: 2
+  types: [ Vegetables, Dairy ]
+  # TG: food/buttered_baked_potato
+
+- type: imperialFoodData
+  id: ImperialFoodPoutine
+  complexity: 3
+  types: [ Vegetables, Dairy, Fried, Meat ]
+  # TG: food/poutine
+
+- type: imperialFoodData
+  id: ImperialFoodSauteedEggplant
+  complexity: 2
+  types: [ Vegetables ]
+  # TG: food/sauteed_eggplant
+
+- type: imperialFoodData
+  id: ImperialFoodBabaGhanoush
+  complexity: 2
+  types: [ Vegetables, Grain ]
+  # TG: food/baba_ghanoush
+
+- type: imperialFoodData
+  id: ImperialFoodFalafel
+  complexity: 3
+  types: [ Vegetables ]
+  # TG: food/falafel
+
+- type: imperialFoodData
+  id: FoodAmbrosiaVulgaris
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/ambrosia
+
+- type: imperialFoodData
+  id: FoodAmbrosiaDeus
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/ambrosia/deus
+
+- type: imperialFoodData
+  id: FoodBerries
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/grown/berries
+
+- type: imperialFoodData
+  id: FoodGrape
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/grown/grapes
+
+- type: imperialFoodData
+  id: FoodCherry
+  complexity: 0
+  types: [ Fruit ]
+  # TG: food/grown/cherries
+
+- type: imperialFoodData
+  id: FoodChiliPepper
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/chili
+
+- type: imperialFoodData
+  id: FoodBlueSpaceTomato
+  complexity: 0
+  types: [ Vegetables ]
+  # TG: food/grown/tomato/blue/bluespace

@@ -1,0 +1,60 @@
+# liked/disliked/toxic_foodtypes языков TG (organ/tongue) по видам SS14.
+# Default — человеческий язык: для видов без своего языка в TG.
+
+- type: imperialSpeciesTaste
+  id: Default
+  liked: [ Junkfood, Fried ]
+  disliked: [ Gross, Raw, Cloth, Bugs, Gore ]
+  toxic: [ Toxic ]
+
+- type: imperialSpeciesTaste
+  id: Human
+  liked: [ Junkfood, Fried ]
+  disliked: [ Gross, Raw, Cloth, Bugs, Gore ]
+  toxic: [ Toxic ]
+
+- type: imperialSpeciesTaste
+  id: Dwarf
+  liked: [ Junkfood, Fried ]
+  disliked: [ Gross, Raw, Cloth, Bugs, Gore ]
+  toxic: [ Toxic ]
+
+# tongue/lizard
+- type: imperialSpeciesTaste
+  id: Reptilian
+  liked: [ Gore, Meat, Seafood, Nuts, Bugs ]
+  disliked: [ Grain, Dairy, Cloth, Gross ]
+  toxic: [ Toxic ]
+
+# tongue/moth
+- type: imperialSpeciesTaste
+  id: Moth
+  liked: [ Vegetables, Dairy, Cloth ]
+  disliked: [ Fruit, Gross, Bugs, Gore ]
+  toxic: [ Meat, Raw, Seafood ]
+
+# tongue/pod
+- type: imperialSpeciesTaste
+  id: Diona
+  liked: [ Vegetables, Fruit, Grain ]
+  disliked: [ Gore, Meat, Dairy, Seafood, Bugs ]
+  toxic: [ Toxic ]
+
+# tongue/jelly
+- type: imperialSpeciesTaste
+  id: SlimePerson
+  liked: [ Meat, Bugs ]
+  disliked: [ Gross ]
+
+# tongue/bone
+- type: imperialSpeciesTaste
+  id: Skeleton
+  liked: [ Gross, Meat, Raw, Gore, Dairy ]
+  toxic: [ Toxic ]
+
+# tongue/vulpkanin (BandaStation)
+- type: imperialSpeciesTaste
+  id: Vulpkanin
+  liked: [ Raw, Meat, Seafood ]
+  disliked: [ Fruit, Nuts, Gross, Grain ]
+  toxic: [ Toxic ]
