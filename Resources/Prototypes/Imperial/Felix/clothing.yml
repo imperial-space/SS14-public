@@ -698,3 +698,55 @@
     - 0,0,7,4
   - type: ExplosionResistance
     damageCoefficient: 0
+
+# Комплект "WEDGE"
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatWedge
+  name: custom "WEDGE" jacket
+  suffix: BlackDivision
+  description: A thick leather jacket with an armored vest underneath. The jacket has extra armor inside, with an especially reinforced fur collar. The vest is a very roomy plate carrier with a tough aramid layer, holding very heavy armor plates. It is made in the unique "Black Division" style.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/BlackDivision/wedge_coat.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/BlackDivision/wedge_coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+  - type: ExplosionResistance
+    damageCoefficient: 0.95
+  # Карманы: 5 в ширину, 3 в высоту.
+  - type: Storage
+    grid:
+    - 0,0,4,2
+
+- type: entity
+  parent: ClothingHeadHelmetBase
+  id: ClothingHeadHelmetWedge
+  name: professional "WEDGE" helmet
+  suffix: BlackDivision
+  description: One of the most advanced tactical helmets. It has all the mounts needed for extra attachments and a high protection class. It is fitted with a bracket holding high-quality night vision goggles and a cover that further reinforces the helmet. An extremely expensive set.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/BlackDivision/wedge_helm.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/BlackDivision/wedge_helm.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+  # ПНВ как у ClothingHeadHelmetVisorDawn: питание от батареи в слоте шлема.
+  - type: PowerCellDraw
+    drawRate: 3
+  - type: ToggleCellDraw
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default

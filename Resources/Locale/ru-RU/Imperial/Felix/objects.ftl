@@ -279,3 +279,27 @@ ent-ImperialSimpleRadio1Felix = {ent-ImperialSimpleRadio}
     .desc = {ent-ImperialSimpleRadio.desc}
 ent-ImperialSimpleRadio2Felix = {ent-ImperialSimpleRadio}
     .desc = {ent-ImperialSimpleRadio.desc}
+
+ent-BaseElysiumPrimeIdTag = идентификационный жетон
+    .desc = Устройство для идентификации, доступа в закрытые районы.
+ent-ElysiumPrimeIdTag1 = { ent-BaseElysiumPrimeIdTag }
+    .desc = { ent-BaseElysiumPrimeIdTag.desc }
+ent-ElysiumPrimeIdTag2 = { ent-BaseElysiumPrimeIdTag }
+    .desc = { ent-BaseElysiumPrimeIdTag.desc }
+ent-ElysiumPrimeIdTag3 = { ent-BaseElysiumPrimeIdTag }
+    .desc = { ent-BaseElysiumPrimeIdTag.desc }
+ent-ElysiumPrimeIdTag4 = { ent-BaseElysiumPrimeIdTag }
+    .desc = { ent-BaseElysiumPrimeIdTag.desc }
+ent-ElysiumPrimeIdTag5 = { ent-BaseElysiumPrimeIdTag }
+    .desc = { ent-BaseElysiumPrimeIdTag.desc }
+ent-ElysiumPrimeIdTag6 = { ent-BaseElysiumPrimeIdTag }
+    .desc = { ent-BaseElysiumPrimeIdTag.desc }
+
+ent-SignElysiumPrimeFirePoint = FirePoint
+    .desc = Вывеска рассказывает о сети магазинов "FirePoint", продающих все для выживания, включая оружие, броню, расходники и прочее.
+ent-SignElysiumPrimeMediMart = MediMart
+    .desc = Вывеска рассказывает о сети магазинов "MediMart", продающих различные лекарственные препараты, наборы и оказывающих разные услуги.
+ent-SignElysiumPrimeToolBox = ToolBox
+    .desc = Вывеска рассказывает о сети магазинов "ToolBox", продающих все техническое, строительное и инженерное, а также снаряжение для работы в космосе и спецкостюмы.
+ent-SignElysiumPrimeWarmClothes = Warm Clothes
+    .desc = Вывеска рассказывает о сети магазинов "WarmClothes", продающих различную одежду и атрибуты к ней.

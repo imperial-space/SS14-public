@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Sir_Felix, PR made by CrookLv",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "tag1"
+    },
+    {
+      "name": "tag2"
+    },
+    {
+      "name": "tag3"
+    },
+    {
+      "name": "tag4"
+    },
+    {
+      "name": "tag5"
+    },
+    {
+      "name": "tag6"
+    }
+  ]
+}
