@@ -1,0 +1,26 @@
+# Навыки должностей SS13 (система CrewSkills): те же группы, что у ближайших станционных должностей.
+
+- type: skillJobSpawn
+  id: Geneticist
+  assignedJob: Geneticist
+  mindGroups: [ScienceHigh]
+
+- type: skillJobSpawn
+  id: Virologist
+  assignedJob: Virologist
+  mindGroups: [MedicalHigh]
+
+- type: skillJobSpawn
+  id: Bitrunner
+  assignedJob: Bitrunner
+  mindGroups: [CargoStandard]
+
+- type: skillJobSpawn
+  id: Xenobiologist
+  assignedJob: Xenobiologist
+  mindGroups: [ScienceHigh]
+
+- type: skillJobSpawn
+  id: ShaftMiner
+  assignedJob: ShaftMiner
+  mindGroups: [Salvage]

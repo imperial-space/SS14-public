@@ -1,0 +1,253 @@
+# Снаряжение должностей SS13 в редакторе персонажа — как у остальных должностей (одежда, сумки, верхняя одежда,
+# аксессуары, коробки выживания). Постоянное (КПК, гарнитура, ваучер) — в startingGear должностей.
+
+# ─── Генетик (научный отдел) ───
+
+- type: roleLoadout
+  id: JobGeneticist
+  groups:
+  - GroupTankHarness
+  - ScientistHead
+  - ScientistNeck
+  - ImperialGeneticistJumpsuit
+  - ImperialGeneticistBackpack
+  - ImperialGeneticistOuterClothing
+  - ScientistGloves
+  - ScientistShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+
+- type: loadoutGroup
+  id: ImperialGeneticistJumpsuit
+  name: loadout-group-imperial-geneticist-jumpsuit
+  loadouts:
+  - ImperialGeneticistJumpsuit
+  - ImperialGeneticistJumpskirt
+
+- type: loadoutGroup
+  id: ImperialGeneticistBackpack
+  name: loadout-group-imperial-geneticist-backpack
+  loadouts:
+  - ImperialGeneticistBackpack
+  - ImperialGeneticistSatchel
+  - ImperialGeneticistDuffel
+
+- type: loadoutGroup
+  id: ImperialGeneticistOuterClothing
+  name: loadout-group-imperial-geneticist-outerclothing
+  minLimit: 0
+  loadouts:
+  - ImperialGeneticistLabCoat
+  - RegularLabCoat
+  - ImperialGeneticistWintercoat
+
+- type: loadout
+  id: ImperialGeneticistJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitImperialGeneticist
+
+- type: loadout
+  id: ImperialGeneticistJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtImperialGeneticist
+
+- type: loadout
+  id: ImperialGeneticistBackpack
+  equipment:
+    back: ClothingBackpackGenetics
+
+- type: loadout
+  id: ImperialGeneticistSatchel
+  equipment:
+    back: ClothingBackpackSatchelGenetics
+
+- type: loadout
+  id: ImperialGeneticistDuffel
+  equipment:
+    back: ClothingBackpackDuffelGenetics
+
+- type: loadout
+  id: ImperialGeneticistLabCoat
+  equipment:
+    outerClothing: ClothingOuterCoatLabGene
+
+- type: loadout
+  id: ImperialGeneticistWintercoat
+  equipment:
+    outerClothing: ClothingOuterWinterGen
+
+# ─── Вирусолог ───
+
+- type: roleLoadout
+  id: JobVirologist
+  groups:
+  - GroupTankHarness
+  - MedicalMask
+  - ImperialVirologistJumpsuit
+  - ImperialVirologistBackpack
+  - ImperialVirologistOuterClothing
+  - MedicalShoes
+  - Glasses
+  - SurvivalMedical
+  - Trinkets
+  - GroupSpeciesBreathToolMedical
+
+- type: loadoutGroup
+  id: ImperialVirologistJumpsuit
+  name: loadout-group-imperial-virologist-jumpsuit
+  loadouts:
+  - ImperialVirologistJumpsuit
+  - ImperialVirologistJumpskirt
+
+- type: loadoutGroup
+  id: ImperialVirologistBackpack
+  name: loadout-group-imperial-virologist-backpack
+  loadouts:
+  - ImperialVirologistBackpack
+  - ImperialVirologistSatchel
+  - ImperialVirologistDuffel
+
+- type: loadoutGroup
+  id: ImperialVirologistOuterClothing
+  name: loadout-group-imperial-virologist-outerclothing
+  minLimit: 0
+  loadouts:
+  - ImperialVirologistLabCoat
+  - RegularLabCoat
+  - ImperialVirologistWintercoat
+
+- type: loadout
+  id: ImperialVirologistJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitImperialVirologist
+
+- type: loadout
+  id: ImperialVirologistJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtImperialVirologist
+
+- type: loadout
+  id: ImperialVirologistBackpack
+  equipment:
+    back: ClothingBackpackVirology
+
+- type: loadout
+  id: ImperialVirologistSatchel
+  equipment:
+    back: ClothingBackpackSatchelVirology
+
+- type: loadout
+  id: ImperialVirologistDuffel
+  equipment:
+    back: ClothingBackpackDuffelVirology
+
+- type: loadout
+  id: ImperialVirologistLabCoat
+  equipment:
+    outerClothing: ClothingOuterCoatLabViro
+
+- type: loadout
+  id: ImperialVirologistWintercoat
+  equipment:
+    outerClothing: ClothingOuterWinterViro
+
+# ─── Битраннер ───
+
+- type: roleLoadout
+  id: JobBitrunner
+  groups:
+  - GroupTankHarness
+  - CargoTechnicianHead
+  - ImperialBitrunnerJumpsuit
+  - CargoTechnicianBackpack
+  - CargoTechnicianOuterClothing
+  - CargoTechnicianShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+
+- type: loadoutGroup
+  id: ImperialBitrunnerJumpsuit
+  name: loadout-group-imperial-bitrunner-jumpsuit
+  loadouts:
+  - ImperialBitrunnerJumpsuit
+
+- type: loadout
+  id: ImperialBitrunnerJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitImperialBitrunner
+
+# ─── Ксенобиолог ───
+
+- type: roleLoadout
+  id: JobXenobiologist
+  groups:
+  - GroupTankHarness
+  - ScientistHead
+  - ScientistNeck
+  - ImperialXenobiologistJumpsuit
+  - ScientistBackpack
+  - ScientistOuterClothing
+  - ScientistGloves
+  - ScientistShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+
+- type: loadoutGroup
+  id: ImperialXenobiologistJumpsuit
+  name: loadout-group-imperial-xenobiologist-jumpsuit
+  loadouts:
+  - ImperialXenobiologistJumpsuit
+  - ImperialXenobiologistJumpskirt
+
+- type: loadout
+  id: ImperialXenobiologistJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitImperialXenobiologist
+
+- type: loadout
+  id: ImperialXenobiologistJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtImperialXenobiologist
+
+# ─── Шахтёр ───
+
+- type: roleLoadout
+  id: JobShaftMiner
+  groups:
+  - GroupTankHarness
+  - ImperialShaftMinerJumpsuit
+  - SalvageSpecialistBackpack
+  - ImperialShaftMinerOuterClothing
+  - SalvageSpecialistShoes
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+
+- type: loadoutGroup
+  id: ImperialShaftMinerJumpsuit
+  name: loadout-group-imperial-shaft-miner-jumpsuit
+  loadouts:
+  - ImperialShaftMinerJumpsuit
+
+- type: loadoutGroup
+  id: ImperialShaftMinerOuterClothing
+  name: loadout-group-imperial-shaft-miner-outerclothing
+  minLimit: 0
+  loadouts:
+  - ImperialShaftMinerWintercoat
+
+- type: loadout
+  id: ImperialShaftMinerJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitImperialShaftMiner
+
+- type: loadout
+  id: ImperialShaftMinerWintercoat
+  equipment:
+    outerClothing: ClothingOuterWinterMiner
