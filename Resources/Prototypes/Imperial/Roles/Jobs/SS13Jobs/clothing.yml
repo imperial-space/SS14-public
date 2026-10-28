@@ -1,0 +1,277 @@
+# Униформа должностей SS13 (спрайты tgstation: icons/obj/clothing/under, icons/mob/clothing/under).
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitImperialGeneticist
+  name: geneticist's jumpsuit
+  description: Made of a special fiber that gives special protection against biohazards. Has a genetics rank stripe on it.
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/SS13Jobs/geneticist_jumpsuit.rsi
+  - type: Clothing
+    sprite: Imperial/Roles/SS13Jobs/geneticist_jumpsuit.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtImperialGeneticist
+  name: geneticist's jumpskirt
+  description: Made of a special fiber that gives special protection against biohazards. Has a genetics rank stripe on it.
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/SS13Jobs/geneticist_jumpskirt.rsi
+  - type: Clothing
+    sprite: Imperial/Roles/SS13Jobs/geneticist_jumpskirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitImperialVirologist
+  name: virologist's jumpsuit
+  description: Made of a special fiber that gives special protection against biohazards. Has a virologist rank stripe on it.
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/SS13Jobs/virologist_jumpsuit.rsi
+  - type: Clothing
+    sprite: Imperial/Roles/SS13Jobs/virologist_jumpsuit.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtImperialVirologist
+  name: virologist's jumpskirt
+  description: Made of a special fiber that gives special protection against biohazards. Has a virologist rank stripe on it.
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/SS13Jobs/virologist_jumpskirt.rsi
+  - type: Clothing
+    sprite: Imperial/Roles/SS13Jobs/virologist_jumpskirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitImperialBitrunner
+  name: bitrunner's jumpsuit
+  description: It's made of a slick, dark material. Perfect for long hours in a netpod.
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/SS13Jobs/bitrunner_jumpsuit.rsi
+  - type: Clothing
+    sprite: Imperial/Roles/SS13Jobs/bitrunner_jumpsuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitImperialXenobiologist
+  name: xenobiologist's jumpsuit
+  description: Made of a special fiber that resists slime acid. Has a green xenobiology rank stripe on it.
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/SS13Jobs/xenobiologist_jumpsuit.rsi
+  - type: Clothing
+    sprite: Imperial/Roles/SS13Jobs/xenobiologist_jumpsuit.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtImperialXenobiologist
+  name: xenobiologist's jumpskirt
+  description: Made of a special fiber that resists slime acid. Has a green xenobiology rank stripe on it.
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/SS13Jobs/xenobiologist_jumpskirt.rsi
+  - type: Clothing
+    sprite: Imperial/Roles/SS13Jobs/xenobiologist_jumpskirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitImperialShaftMiner
+  name: shaft miner's jumpsuit
+  description: It's a snappy jumpsuit with a sturdy set of overalls. It is very dirty.
+  components:
+  - type: Sprite
+    sprite: Imperial/Roles/SS13Jobs/miner_jumpsuit.rsi
+  - type: Clothing
+    sprite: Imperial/Roles/SS13Jobs/miner_jumpsuit.rsi
+
+# ─── ID-карты: полосы отдела и значок должности ───
+
+- type: entity
+  parent: IDCardStandard
+  id: ImperialGeneticistIDCard
+  name: geneticist ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: stripe_top
+      color: "#a53aaa"
+    - state: stripe_bottom
+      color: "#652368"
+    - sprite: Imperial/Roles/SS13Jobs/job_icons.rsi
+      offset: -0.09375, 0.0625
+      state: Geneticist
+  - type: PresetIdCard
+    job: Geneticist
+
+- type: entity
+  parent: IDCardStandard
+  id: ImperialVirologistIDCard
+  name: virologist ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: stripe_top
+      color: "#68aed6"
+    - state: stripe_bottom
+      color: "#325f7a"
+    - sprite: Imperial/Roles/SS13Jobs/job_icons.rsi
+      offset: -0.09375, 0.0625
+      state: Virologist
+  - type: PresetIdCard
+    job: Virologist
+
+- type: entity
+  parent: IDCardStandard
+  id: ImperialBitrunnerIDCard
+  name: bitrunner ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: stripe_top
+      color: "#b18644"
+    - state: stripe_bottom
+      color: "#5b4523"
+    - sprite: Imperial/Roles/SS13Jobs/job_icons.rsi
+      offset: -0.09375, 0.0625
+      state: Bitrunner
+  - type: PresetIdCard
+    job: Bitrunner
+
+- type: entity
+  parent: IDCardStandard
+  id: ImperialXenobiologistIDCard
+  name: xenobiologist ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: stripe_top
+      color: "#a53aaa"
+    - state: stripe_bottom
+      color: "#652368"
+    - sprite: Imperial/Roles/SS13Jobs/job_icons.rsi
+      offset: -0.09375, 0.0625
+      state: Xenobiologist
+  - type: PresetIdCard
+    job: Xenobiologist
+
+- type: entity
+  parent: IDCardStandard
+  id: ImperialShaftMinerIDCard
+  name: shaft miner ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: stripe_top
+      color: "#b18644"
+    - state: stripe_bottom
+      color: "#5b4523"
+    - sprite: Imperial/Roles/SS13Jobs/job_icons.rsi
+      offset: -0.09375, 0.0625
+      state: ShaftMiner
+  - type: PresetIdCard
+    job: ShaftMiner
+
+# ─── КПК ───
+
+- type: entity
+  parent: BasePDA
+  id: ImperialGeneticistPDA
+  name: geneticist PDA
+  description: It's covered in a faint smell of mutagen.
+  components:
+  - type: Pda
+    id: ImperialGeneticistIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-genetics
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentVColor: "#447ed6"
+  - type: Icon
+    state: pda-genetics
+
+- type: entity
+  parent: BasePDA
+  id: ImperialVirologistPDA
+  name: virologist PDA
+  description: It's covered in a faint smell of disinfectant.
+  components:
+  - type: Pda
+    id: ImperialVirologistIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-virology
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentVColor: "#3e9a3e"
+  - type: Icon
+    state: pda-virology
+
+- type: entity
+  parent: BasePDA
+  id: ImperialBitrunnerPDA
+  name: bitrunner PDA
+  description: Its screen is covered in tiny scratches from a netpod's restraints.
+  components:
+  - type: Pda
+    id: ImperialBitrunnerIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-cargo
+  - type: PdaBorderColor
+    borderColor: "#e39751"
+  - type: Icon
+    state: pda-cargo
+
+- type: entity
+  parent: BasePDA
+  id: ImperialXenobiologistPDA
+  name: xenobiologist PDA
+  description: It's covered with a sticky slime residue.
+  components:
+  - type: Pda
+    id: ImperialXenobiologistIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-science
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentVColor: "#3e9a3e"
+  - type: Icon
+    state: pda-science
+
+- type: entity
+  parent: BasePDA
+  id: ImperialShaftMinerPDA
+  name: shaft miner PDA
+  description: Smells like ash and plasma.
+  components:
+  - type: Pda
+    id: ImperialShaftMinerIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-miner
+  - type: PdaBorderColor
+    borderColor: "#af9366"
+    accentVColor: "#8900c9"
+  - type: Icon
+    state: pda-miner

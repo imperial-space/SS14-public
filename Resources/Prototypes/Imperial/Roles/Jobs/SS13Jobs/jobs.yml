@@ -1,0 +1,226 @@
+# Должности SS13 для перенесённого контента: генетик (генетика, ДНК-хранилище), вирусолог (вирусология,
+# PanD.E.M.I.C), битраннер (битраннинг), ксенобиолог (ксенобиология) и шахтёр (Лаваленд, сразу с ваучером).
+# На станции добавляются в availableJobs карты; отделы — Resources/Prototypes/Roles/Jobs/departments.yml;
+# одежда и сумки на выбор — Imperial/Loadouts/Common/Jobs/SS13Jobs (roleLoadout Job<должность>).
+
+# ─── Генетик (/datum/job/geneticist, научный отдел — как в tg) ───
+- type: job
+  id: Geneticist
+  name: job-name-imperial-geneticist
+  description: job-description-imperial-geneticist
+  playTimeTracker: JobGeneticist
+  startingGear: ImperialGeneticistGear
+  icon: JobIconImperialGeneticist
+  supervisors: job-supervisors-rd
+  access:
+  - Research
+  - Maintenance
+
+- type: startingGear
+  id: ImperialGeneticistGear
+  equipment:
+    ears: ClothingHeadsetScience
+    id: ImperialGeneticistPDA
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconImperialGeneticist
+  icon:
+    sprite: /Textures/Imperial/Roles/SS13Jobs/job_icons.rsi
+    state: Geneticist
+  jobName: job-name-imperial-geneticist
+
+- type: playTimeTracker
+  id: JobGeneticist
+
+- type: entity
+  parent: SpawnPointPassenger
+  id: SpawnPointGeneticist
+  name: geneticist
+  components:
+  - type: SpawnPoint
+    job_id: Geneticist
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/Roles/SS13Jobs/job_icons.rsi
+      state: Geneticist
+
+# ─── Вирусолог (/datum/job/virologist) ───
+- type: job
+  id: Virologist
+  name: job-name-imperial-virologist
+  description: job-description-imperial-virologist
+  playTimeTracker: JobVirologist
+  startingGear: ImperialVirologistGear
+  icon: JobIconImperialVirologist
+  supervisors: job-supervisors-cmo
+  access:
+  - Medical
+  - Chemistry
+  - Maintenance
+
+- type: startingGear
+  id: ImperialVirologistGear
+  equipment:
+    gloves: ClothingHandsGlovesLatex
+    ears: ClothingHeadsetMedical
+    id: ImperialVirologistPDA
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconImperialVirologist
+  icon:
+    sprite: /Textures/Imperial/Roles/SS13Jobs/job_icons.rsi
+    state: Virologist
+  jobName: job-name-imperial-virologist
+
+- type: playTimeTracker
+  id: JobVirologist
+
+- type: entity
+  parent: SpawnPointPassenger
+  id: SpawnPointVirologist
+  name: virologist
+  components:
+  - type: SpawnPoint
+    job_id: Virologist
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/Roles/SS13Jobs/job_icons.rsi
+      state: Virologist
+
+# ─── Битраннер (/datum/job/bitrunner) ───
+- type: job
+  id: Bitrunner
+  name: job-name-imperial-bitrunner
+  description: job-description-imperial-bitrunner
+  playTimeTracker: JobBitrunner
+  startingGear: ImperialBitrunnerGear
+  icon: JobIconImperialBitrunner
+  supervisors: job-supervisors-qm
+  access:
+  - Cargo
+  - Maintenance
+
+- type: startingGear
+  id: ImperialBitrunnerGear
+  equipment:
+    ears: ClothingHeadsetCargo
+    id: ImperialBitrunnerPDA
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconImperialBitrunner
+  icon:
+    sprite: /Textures/Imperial/Roles/SS13Jobs/job_icons.rsi
+    state: Bitrunner
+  jobName: job-name-imperial-bitrunner
+
+- type: playTimeTracker
+  id: JobBitrunner
+
+- type: entity
+  parent: SpawnPointPassenger
+  id: SpawnPointBitrunner
+  name: bitrunner
+  components:
+  - type: SpawnPoint
+    job_id: Bitrunner
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/Roles/SS13Jobs/job_icons.rsi
+      state: Bitrunner
+
+# ─── Ксенобиолог (учёный ксенобиологии SS13) ───
+- type: job
+  id: Xenobiologist
+  name: job-name-imperial-xenobiologist
+  description: job-description-imperial-xenobiologist
+  playTimeTracker: JobXenobiologist
+  startingGear: ImperialXenobiologistGear
+  icon: JobIconImperialXenobiologist
+  supervisors: job-supervisors-rd
+  access:
+  - Research
+  - Maintenance
+
+- type: startingGear
+  id: ImperialXenobiologistGear
+  equipment:
+    ears: ClothingHeadsetScience
+    id: ImperialXenobiologistPDA
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconImperialXenobiologist
+  icon:
+    sprite: /Textures/Imperial/Roles/SS13Jobs/job_icons.rsi
+    state: Xenobiologist
+  jobName: job-name-imperial-xenobiologist
+
+- type: playTimeTracker
+  id: JobXenobiologist
+
+- type: entity
+  parent: SpawnPointPassenger
+  id: SpawnPointXenobiologist
+  name: xenobiologist
+  components:
+  - type: SpawnPoint
+    job_id: Xenobiologist
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/Roles/SS13Jobs/job_icons.rsi
+      state: Xenobiologist
+
+# ─── Шахтёр (/datum/job/shaft_miner): сразу с шахтёрским ваучером на набор снаряжения ───
+- type: job
+  id: ShaftMiner
+  name: job-name-imperial-shaft-miner
+  description: job-description-imperial-shaft-miner
+  playTimeTracker: JobShaftMiner
+  startingGear: ImperialShaftMinerGear
+  icon: JobIconImperialShaftMiner
+  supervisors: job-supervisors-qm
+  access:
+  - Cargo
+  - Salvage
+  - Maintenance
+  - External
+
+- type: startingGear
+  id: ImperialShaftMinerGear
+  equipment:
+    eyes: ClothingEyesGlassesMeson
+    ears: ClothingHeadsetMining
+    id: ImperialShaftMinerPDA
+    pocket1: MiningVoucher
+    pocket2: FlashlightSecliteMining
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconImperialShaftMiner
+  icon:
+    sprite: /Textures/Imperial/Roles/SS13Jobs/job_icons.rsi
+    state: ShaftMiner
+  jobName: job-name-imperial-shaft-miner
+
+- type: playTimeTracker
+  id: JobShaftMiner
+
+- type: entity
+  parent: SpawnPointPassenger
+  id: SpawnPointShaftMiner
+  name: shaft miner
+  components:
+  - type: SpawnPoint
+    job_id: ShaftMiner
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/Roles/SS13Jobs/job_icons.rsi
+      state: ShaftMiner
