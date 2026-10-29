@@ -2289,3 +2289,14 @@
     sprite: Imperial/Crook/Misc/arle/uniform.rsi
   - type: Clothing
     sprite: Imperial/Crook/Misc/arle/uniform.rsi
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitSnowLeopard
+  name: poster "Don't hit coworkers"
+  suffix: Crook
+  description: A snow leopard stares at you with huge eyes and holds out its paw. It kindly asks you not to hit your coworkers with a toolbox, a fire extinguisher or anything else heavy. If you really want to hit someone, pet the snow leopard instead.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/poster_snowleopard.rsi
+    state: poster

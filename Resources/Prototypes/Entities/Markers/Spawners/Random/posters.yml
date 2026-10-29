@@ -123,6 +123,7 @@
     - id: PosterLegitTyrone
     - id: PosterLegitHelio
     - id: PosterLegitBotanyFear
+    - id: PosterLegitSnowLeopard # Imperial SnowLeopardPoster
 
 - type: entity
   parent: MarkerBase
