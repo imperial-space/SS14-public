@@ -210,6 +210,21 @@ public abstract class SharedPoweredLightSystem : EntitySystem
         return true;
     }
 
+    // Imperial Weekly Mode Start
+    /// <summary>
+    ///     Clears the prototype that would be spawned into this light during map init.
+    /// </summary>
+    public bool ClearSpawnedPrototype(Entity<PoweredLightComponent> light)
+    {
+        if (light.Comp.HasLampOnSpawn == null)
+            return false;
+
+        light.Comp.HasLampOnSpawn = null;
+        Dirty(light.Owner, light.Comp);
+        return true;
+    }
+    // Imperial Weekly Mode End
+
     /// <summary>
     ///     Try to replace current bulb with a new one
     ///     If succeed old bulb just drops on floor

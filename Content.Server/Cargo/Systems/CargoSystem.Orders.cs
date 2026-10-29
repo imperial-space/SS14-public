@@ -30,6 +30,8 @@ namespace Content.Server.Cargo.Systems
 
         private void InitializeConsole()
         {
+            // Imperial Weekly Mode
+            SubscribeLocalEvent<WeeklyCargoCatalogChangedEvent>(OnWeeklyCargoCatalogChanged);
             SubscribeLocalEvent<CargoOrderConsoleComponent, CargoConsoleAddOrderMessage>(OnAddOrderMessage);
             SubscribeLocalEvent<CargoOrderConsoleComponent, CargoConsoleRemoveOrderMessage>(OnRemoveOrderMessage);
             SubscribeLocalEvent<CargoOrderConsoleComponent, CargoConsoleApproveOrderMessage>(OnApproveOrderMessage);
@@ -173,13 +175,31 @@ namespace Content.Server.Cargo.Systems
                 return;
             }
 
-            // Invalid order
-            if (!_protoMan.Resolve(order.Product, out var product))
+            // Imperial Weekly Mode: Original code removed:
+            // if (!_protoMan.Resolve(order.Product, out var product))
+            // {
+            //     ConsolePopup(args.Actor, Loc.GetString("cargo-console-invalid-product"));
+            //     PlayDenySound(uid, component);
+            //     return;
+            // }
+            // Imperial Weekly Mode Start
+            CargoProductPrototype? product = null;
+            var productName = order.WeeklyProduct?.Name ?? order.Product.Id;
+            var productCost = order.WeeklyProduct?.Cost ?? 0;
+
+            if (!order.IsWeeklyProduct)
             {
-                ConsolePopup(args.Actor, Loc.GetString("cargo-console-invalid-product"));
-                PlayDenySound(uid, component);
-                return;
+                if (!_protoMan.Resolve<CargoProductPrototype>(order.Product, out product))
+                {
+                    ConsolePopup(args.Actor, Loc.GetString("cargo-console-invalid-product"));
+                    PlayDenySound(uid, component);
+                    return;
+                }
+
+                productName = product.Name;
+                productCost = product.Cost;
             }
+            // Imperial Weekly Mode End
 
             var amount = GetOutstandingOrderCount((station.Value, orderDatabase), order.Account);
             var capacity = orderDatabase.Capacity;
@@ -202,7 +222,8 @@ namespace Content.Server.Cargo.Systems
                 PlayDenySound(uid, component);
             }
 
-            var cost = product.Cost * order.OrderQuantity;
+            // Imperial Weekly Mode
+            var cost = (long) productCost * order.OrderQuantity;
             var accountBalance = GetBalanceFromAccount((station.Value, bank), order.Account);
 
             // Not enough balance
@@ -239,7 +260,9 @@ namespace Content.Server.Cargo.Systems
                 order.SetApproverData(tryGetIdentityShortInfoEvent.Title);
 
                 var message = Loc.GetString("cargo-console-unlock-approved-order-broadcast",
-                    ("productName", Loc.GetString(product.Name)),
+                    // Imperial Weekly Mode: Original code removed:
+                    // ("productName", Loc.GetString(product.Name)),
+                    ("productName", productName),
                     ("orderAmount", order.OrderQuantity),
                     ("approver", order.Approver ?? string.Empty),
                     ("cost", cost));
@@ -256,7 +279,8 @@ namespace Content.Server.Cargo.Systems
                 $"{ToPrettyString(player):user} approved order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.Product}, requester:{order.Requester}, reason:{order.Reason}] on account {order.Account} with balance at {accountBalance}");
 
             orderDatabase.Orders[component.Account].Remove(order);
-            UpdateBankAccount((station.Value, bank), -cost, order.Account);
+            // Imperial Weekly Mode
+            UpdateBankAccount((station.Value, bank), -(int) cost, order.Account);
             UpdateOrders(station.Value);
         }
 
@@ -370,24 +394,61 @@ namespace Content.Server.Cargo.Systems
             if (!TryComp<StationBankAccountComponent>(stationUid, out var bank))
                 return;
 
-            if (!_protoMan.TryIndex<CargoProductPrototype>(args.CargoProductId, out var product))
-            {
-                Log.Error($"Tried to add invalid cargo product {args.CargoProductId} as order!");
-                return;
-            }
-
-            if (!GetAvailableProducts((uid, component)).Contains(args.CargoProductId))
-                return;
-
-            if (component.Mode == CargoOrderConsoleMode.PrintSlip)
-            {
-                OnAddOrderMessageSlipPrinter(uid, component, args, product);
-                return;
-            }
-
+            // Imperial Weekly Mode: Original code removed:
+            // if (!_protoMan.TryIndex<CargoProductPrototype>(args.CargoProductId, out var product))
+            // {
+            //     Log.Error($"Tried to add invalid cargo product {args.CargoProductId} as order!");
+            //     return;
+            // }
+            //
+            // if (!GetAvailableProducts((uid, component)).Contains(args.CargoProductId))
+            //     return;
+            //
+            // if (component.Mode == CargoOrderConsoleMode.PrintSlip)
+            // {
+            //     OnAddOrderMessageSlipPrinter(uid, component, args, product);
+            //     return;
+            // }
+            //
+            // var targetAccount = component.Mode == CargoOrderConsoleMode.SendToPrimary ? bank.PrimaryAccount : component.Account;
+            // var data = GetOrderData(args, product, GenerateOrderId(orderDatabase), component.Account);
+            // Imperial Weekly Mode Start
             var targetAccount = component.Mode == CargoOrderConsoleMode.SendToPrimary ? bank.PrimaryAccount : component.Account;
+            CargoOrderData data;
 
-            var data = GetOrderData(args, product, GenerateOrderId(orderDatabase), component.Account);
+            if (_weeklyMode.TryGetActiveWeeklyCargoProduct(args.CargoProductId, out var weeklyProduct))
+            {
+                if (!GetAvailableWeeklyProducts((uid, component)).Any(product => product.ProductId == args.CargoProductId))
+                    return;
+
+                if (component.Mode == CargoOrderConsoleMode.PrintSlip)
+                {
+                    PlayDenySound(uid, component);
+                    return;
+                }
+
+                data = GetOrderData(args, weeklyProduct, GenerateOrderId(orderDatabase), component.Account);
+            }
+            else
+            {
+                if (!_protoMan.TryIndex<CargoProductPrototype>(args.CargoProductId, out var product))
+                {
+                    Log.Error($"Tried to add invalid cargo product {args.CargoProductId} as order!");
+                    return;
+                }
+
+                if (!GetAvailableProducts((uid, component)).Contains(args.CargoProductId))
+                    return;
+
+                if (component.Mode == CargoOrderConsoleMode.PrintSlip)
+                {
+                    OnAddOrderMessageSlipPrinter(uid, component, args, product);
+                    return;
+                }
+
+                data = GetOrderData(args, product, GenerateOrderId(orderDatabase), component.Account);
+            }
+            // Imperial Weekly Mode End
 
             if (!TryAddOrder(stationUid.Value, targetAccount, data, orderDatabase))
             {
@@ -428,7 +489,10 @@ namespace Content.Server.Cargo.Systems
                     orderDatabase.Capacity,
                     GetNetEntity(station.Value),
                     RelevantOrders((station!.Value, orderDatabase), (consoleUid, console)),
-                    GetAvailableProducts((consoleUid, console))
+                    // Imperial Weekly Mode Start
+                    GetAvailableProducts((consoleUid, console)),
+                    GetAvailableWeeklyProducts((consoleUid, console))
+                    // Imperial Weekly Mode End
                 ));
             }
         }
@@ -616,7 +680,14 @@ namespace Content.Server.Cargo.Systems
         /// </summary>
         private bool FulfillOrder(CargoOrderData order, ProtoId<CargoAccountPrototype> account, EntityCoordinates spawn, string? paperProto)
         {
-            if (!_protoMan.Resolve(order.Product, out var product))
+            // Imperial Weekly Mode Start
+            if (order.IsWeeklyProduct)
+                return FulfillWeeklyOrder(order, account, spawn, paperProto);
+            // Imperial Weekly Mode End
+
+            // Imperial Weekly Mode: Original code removed:
+            // if (!_protoMan.Resolve(order.Product, out var product))
+            if (!_protoMan.Resolve<CargoProductPrototype>(order.Product, out var product))
                 return false;
 
             // Create the item itself
@@ -636,7 +707,9 @@ namespace Content.Server.Cargo.Systems
                     !_container.Insert(item, container1, force: true))
                 {
                     DebugTools.Assert(
-                        $"Failed to insert cargo product into its specified container. This indicates an error in the cargo product definition's YAML as the product should be insertable into its container. {nameof(CargoProductPrototype)}: {(ProtoId<CargoProductPrototype>)order.Product.Id}");
+                        // Imperial Weekly Mode: Original code removed:
+                        // $"Failed to insert cargo product into its specified container. This indicates an error in the cargo product definition's YAML as the product should be insertable into its container. {nameof(CargoProductPrototype)}: {(ProtoId<CargoProductPrototype>)order.Product.Id}");
+                        $"Failed to insert cargo product into its specified container. This indicates an error in the cargo product definition's YAML as the product should be insertable into its container. {nameof(CargoProductPrototype)}: {order.Product}");
                     QueueDel(containerEntity);
                 }
                 else
@@ -645,36 +718,9 @@ namespace Content.Server.Cargo.Systems
                 }
             }
 
-            // Create a sheet of paper to write the order details on
-            var printed = Spawn(paperProto, spawn);
-            if (TryComp<PaperComponent>(printed, out var paper))
-            {
-                // fill in the order data
-                var val = Loc.GetString("cargo-console-paper-print-name", ("orderNumber", order.OrderId));
-                _metaSystem.SetEntityName(printed, val);
-
-                var accountProto = _protoMan.Index(account);
-                _paperSystem.SetContent((printed, paper),
-                    Loc.GetString(
-                        "cargo-console-paper-print-text",
-                        ("orderNumber", order.OrderId),
-                        ("itemName", product.Name),
-                        ("orderQuantity", order.OrderQuantity),
-                        ("requester", order.Requester),
-                        ("reason", string.IsNullOrWhiteSpace(order.Reason) ? Loc.GetString("cargo-console-paper-reason-default") : order.Reason),
-                        ("account", Loc.GetString(accountProto.Name)),
-                        ("accountcode", Loc.GetString(accountProto.Code)),
-                        ("approver", string.IsNullOrWhiteSpace(order.Approver) ? Loc.GetString("cargo-console-paper-approver-default") : order.Approver)));
-
-                // attempt to attach the label to the item
-                if (TryComp<PaperLabelComponent>(item, out var label))
-                {
-                    _slots.TryInsert(item, label.LabelSlot, printed, null);
-                }
-            }
-
+            // Imperial Weekly Mode: Original cargo paper creation moved to PrintCargoOrderPaper.
+            PrintCargoOrderPaper(item, order, account, spawn, paperProto, product.Name);
             return true;
-
         }
 
         public List<ProtoId<CargoProductPrototype>> GetAvailableProducts(Entity<CargoOrderConsoleComponent> ent)
@@ -689,6 +735,11 @@ namespace Content.Server.Cargo.Systems
 
             // Note that a market must be both on the station and on the console to be available.
             var markets = ent.Comp.AllowedGroups.Intersect(db.Markets).ToList();
+            // Imperial Weekly Mode Start
+            if (_weeklyMode.TryGetActiveWeeklyCargoProducts(out _))
+                return products;
+            // Imperial Weekly Mode End
+
             foreach (var product in _protoMan.EnumeratePrototypes<CargoProductPrototype>())
             {
                 if (!markets.Contains(product.Group))

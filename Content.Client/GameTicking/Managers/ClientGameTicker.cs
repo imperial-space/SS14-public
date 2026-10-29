@@ -25,6 +25,8 @@ namespace Content.Client.GameTicking.Managers
 
         private Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>>  _jobsAvailable = new();
         private Dictionary<NetEntity, string> _stationNames = new();
+        // Imperial Weekly Mode
+        private Dictionary<ProtoId<JobPrototype>, string> _jobNameOverrides = new();
 
         [ViewVariables] public bool AreWeReady { get; private set; }
         [ViewVariables] public bool IsGameStarted { get; private set; }
@@ -39,6 +41,8 @@ namespace Content.Client.GameTicking.Managers
 
         [ViewVariables] public IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> JobsAvailable => _jobsAvailable;
         [ViewVariables] public IReadOnlyDictionary<NetEntity, string> StationNames => _stationNames;
+        // Imperial Weekly Mode
+        [ViewVariables] public IReadOnlyDictionary<ProtoId<JobPrototype>, string> JobNameOverrides => _jobNameOverrides;
 
         public event Action? InfoBlobUpdated;
         public event Action? LobbyStatusUpdated;
@@ -106,8 +110,35 @@ namespace Content.Client.GameTicking.Managers
                 _stationNames[weh.Key] = weh.Value;
             }
 
+            // Imperial Weekly Mode Start
+            _jobNameOverrides.Clear();
+            foreach (var (jobId, alias) in message.JobNameOverrides)
+            {
+                _jobNameOverrides[jobId] = alias;
+            }
+            // Imperial Weekly Mode End
+
             LobbyJobsAvailableUpdated?.Invoke(JobsAvailable);
         }
+
+        // Imperial Weekly Mode Start
+        public string GetJobDisplayName(JobPrototype job)
+        {
+            return _jobNameOverrides.TryGetValue(job.ID, out var alias) ? alias : job.LocalizedName;
+        }
+        // Imperial Weekly Mode End
+
+        // Imperial Weekly Mode Start
+        public string GetJobDisplayName(ProtoId<JobPrototype> jobId, IPrototypeManager prototypeManager)
+        {
+            if (_jobNameOverrides.TryGetValue(jobId, out var alias))
+                return alias;
+
+            return prototypeManager.TryIndex<JobPrototype>(jobId, out var job)
+                ? job.LocalizedName
+                : jobId.Id;
+        }
+        // Imperial Weekly Mode End
 
         private void JoinLobby(TickerJoinLobbyEvent message)
         {

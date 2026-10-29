@@ -1,4 +1,5 @@
 using Content.Client.Humanoid;
+using Content.Client.GameTicking.Managers; // Imperial Weekly Mode
 using Content.Client.Message;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Sprite;
@@ -35,6 +36,8 @@ namespace Content.Client.Lobby.UI
         private readonly MarkingManager _markingManager;
         private readonly JobRequirementsManager _requirements;
         private readonly LobbyUIController _controller;
+        // Imperial Weekly Mode
+        private readonly ClientGameTicker _gameTicker;
 
         private readonly SpriteSystem _sprite;
 
@@ -102,6 +105,8 @@ namespace Content.Client.Lobby.UI
             _requirements = requirements;
             _controller = UserInterfaceManager.GetUIController<LobbyUIController>();
             _sprite = _entManager.System<SpriteSystem>();
+            // Imperial Weekly Mode
+            _gameTicker = _entManager.System<ClientGameTicker>();
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
