@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for Imperial Space with PixelLab",
+  "size": { "x": 32, "y": 32 },
+  "states": [
+    { "name": "las_pack" },
+    { "name": "laspistol_pack" },
+    { "name": "hotshot_pack" },
+    { "name": "plasma_flask" },
+    { "name": "bolt_mag" },
+    { "name": "boltpistol_mag" },
+    { "name": "heavybolt_box" },
+    { "name": "autogun_mag" },
+    { "name": "autopistol_mag" },
+    { "name": "bolt_tin" },
+    { "name": "bolt_round" },
+    { "name": "charger" },
+    { "name": "crate" }
+  ]
+}

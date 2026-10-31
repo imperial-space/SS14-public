@@ -1,0 +1,241 @@
+; Флагман Хаоса «Терзатель», 54 x 29. Нос на востоке. Пишется flagship_gen.pl.
+; Сетка: 0 пусто  X стена  V окно  K палуба Хаоса  q руны  u плоть  E машинная палуба  G решётка  h разметка  M дверь
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+000000X0000000X0000000X0000000X0000000X000000000000000
+0XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX00000000000
+0XKKKKKKKKKXKKKKKKKKXKKKKKKKKKXKKKKKKKKXKKVX0000000000
+0XKEEEEEEEEXhhhhhhhhXuuuuuuuuuXKKKKKKKKXKKKVX000000000
+0XKEEEEEEEEXhhhhhhhhXuuuuuuuuuXKKKKKKKKXKKKKVX00000000
+0XKEEEEEEEEXhhhhhhhhXuuuuuuuuuXKKKKKKKKXKKKKKV00000000
+0XKEEEEEEEEXhhhhhhhhXuuuuuuuuuXKKKKKKKKXKKKKKXX0000000
+0XKEEEEEEEEXhhhhhhhhXXXXXMXXXXXKKKKKKKKXKKKKKKXX000000
+0XKEEEEEEEEXhhhhhhhhXqqqqqqqqqXKKKKKKKKXKKKKKKKXX00000
+0XKEEEEEEEEXhhhhhhhhXqqqqqqqqqXKKKKKKKKXKKKKKKKKXX0000
+0XKEEEEEEEEXhhhhhhhhXqqqqqqqqqXKKKKKKKKXKqqqqqqKKXX000
+0XGGGGGGGGGMGGGGGGGGMGGGGGGGGGMXXXMXXXXMGqqqqqqGGGX000
+0XGGGGGGGGGMGGGGGGGGMGGGGGGGGGMGGGGGGGGMGqqqqqqGGGX000
+0XGGGGGGGGGMGGGGGGGGMGGGGGGGGGMXXXXMXXXMGqqqqqqGGGX000
+0XKEEEEEEEEXhhhhhhhhXqqqqqqqqqXKKKKKKKKXKqqqqqqKKXX000
+0XKEEEEEEEEXhhhhhhhhXqqqqqqqqqXKKKKKKKKXKKKKKKKKXX0000
+0XKEEEEEEEEXhhhhhhhhXqqqqqqqqqXKKKKKKKKXKKKKKKKXX00000
+0XKEEEEEEEEXhhhhhhhhXXXXXMXXXXXKKKKKKKKXKKKKKKXX000000
+0XKEEEEEEEEXhhhhhhhhXKKKKKKKKKXKKKKKKKKXKKKKKXX0000000
+0XKEEEEEEEEXhhhhhhhhXKKKKKKKKKXKKKKKKKKXKKKKKV00000000
+0XKEEEEEEEEXhhhhhhhhXKKKKKKKKKXKKKKKKKKXKKKKVX00000000
+0XKEEEEEEEEXhhhhhhhhXKKKKKKKKKXKKKKKKKKXKKKVX000000000
+0XKKKKKKKKKXKKKKKKKKXKKKKKKKKKXKKKKKKKKXKKVX0000000000
+0XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX00000000000
+000000X0000000X0000000X0000000X0000000X000000000000000
+000000000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000000000
+* 4 6 CadiaPromethiumHeater 0
+* 4 22 CadiaPromethiumHeater 0
+* 6 6 CadiaFuelBarrel 0
+* 7 6 CadiaFuelBarrel 0
+* 8 6 CadiaFuelBarrel 0
+* 9 6 CadiaFuelBarrel 0
+* 6 22 CadiaFuelBarrel 0
+* 7 22 CadiaFuelBarrel 0
+* 8 22 CadiaFuelBarrel 0
+* 9 22 CadiaFuelBarrel 0
+* 9 9 CadiaWorkbench 0
+* 9 19 CadiaWorkbench 0
+* 6 10 CadiaAmbienceEngine 0
+* 6 18 CadiaAmbienceEngine 0
+* 4 10 CadiaChaosLamp 0
+* 4 18 CadiaChaosLamp 0
+* 16 8 CadiaVoidShieldGenerator 0
+* 13 5 CadiaMacroShell 0
+* 13 23 CadiaMacroShell 0
+* 14 5 CadiaMacroShell 0
+* 14 23 CadiaMacroShell 0
+* 15 5 CadiaMacroShell 0
+* 15 23 CadiaMacroShell 0
+* 16 5 CadiaMacroShell 0
+* 16 23 CadiaMacroShell 0
+* 17 5 CadiaMacroShell 0
+* 17 23 CadiaMacroShell 0
+* 18 5 CadiaMacroShell 0
+* 18 23 CadiaMacroShell 0
+* 13 20 CadiaShellCrate 0
+* 14 20 CadiaShellCrate 0
+* 15 20 CadiaShellCrate 0
+* 18 20 CadiaVoxCaster 0
+* 12 11 CadiaChaosLamp 0
+* 12 17 CadiaChaosLamp 0
+* 25 11 CadiaWarpGate 0
+* 21 10 CadiaSkullLamp 0
+* 29 10 CadiaSkullLamp 0
+* 21 18 CadiaSkullLamp 0
+* 29 18 CadiaSkullLamp 0
+* 25 6 AltarChaos 0
+* 22 7 CandleRedInfinite 0
+* 24 7 CandleRedInfinite 0
+* 26 7 CandleRedInfinite 0
+* 28 7 CandleRedInfinite 0
+* 21 5 BonfireStake 0
+* 29 5 BonfireStake 0
+* 23 8 CadiaAmbienceWhispers 0
+* 25 8 CadiaVeilRitualCircle 0
+* 22 21 CadiaSpawnPointChaosCommand 0
+* 26 21 CadiaSpawnPointChaosCommand 0
+* 22 23 CadiaAmmoCrateChaos 0
+* 23 23 CadiaAmmoCrateChaos 0
+* 24 23 CadiaAmmoCrateChaos 0
+* 25 23 CadiaPackCharger 0
+* 26 23 CadiaPackCharger 0
+* 28 23 LockerSteel 0
+* 29 23 LockerSteel 0
+* 29 21 Bed 0
+* 29 21 BedsheetBrown 0
+* 21 20 CadiaChaosLamp 0
+* 24 20 CadiaSpawnPointChaos 0
+* 27 22 CadiaSpawnPointChaos 0
+* 32 6 CadiaDropBerth 0
+* 36 6 CadiaDropBerth 0
+* 32 10 CadiaDropBerth 0
+* 36 10 CadiaDropBerth 0
+* 34 5 CadiaSpawnPointChaos 0
+* 34 7 CadiaSpawnPointChaos 0
+* 34 9 CadiaSpawnPointChaos 0
+* 34 11 CadiaSpawnPointChaos 0
+* 31 5 BonfireStake 0
+* 38 5 CadiaChaosLamp 0
+* 38 12 CadiaChaosLamp 0
+* 34 8 CadiaAmbienceChant 0
+* 31 12 CadiaShipBannerLegion 0
+* 36 20 TableFancyRed 0
+* 36 20 CandleRedInfinite 0
+* 36 19 ComfyChair 0
+* 32 23 Bookshelf 0
+* 33 23 Bookshelf 0
+* 34 23 Bookshelf 0
+* 38 23 Bed 0
+* 38 23 BedsheetBrown 0
+* 31 23 CadiaSkullLamp 0
+* 33 18 CadiaSpawnPointChaos 0
+* 37 17 CadiaSpawnPointChaos 0
+* 45 14 ComfyChair 90
+* 42 8 CadiaHoloTableChaos 0
+* 43 20 CadiaMacroBatteryConsole 0
+* 44 8 CadiaLanceBatteryConsole 0
+* 41 6 CadiaCogitator 0
+* 42 6 CadiaCogitator 0
+* 41 22 CadiaVoxCaster 0
+* 41 17 CadiaSpawnPointChaosCommand 0
+* 41 11 CadiaSpawnPointChaosCommand 0
+* 41 12 CadiaSkullLamp 0
+* 41 16 CadiaSkullLamp 0
+* 46 12 CadiaSkullLamp 0
+* 46 16 CadiaSkullLamp 0
+* 7 17 CadiaBoardingBreachEngine 0
+* 15 17 CadiaBoardingBreachGuns 0
+* 37 11 CadiaBoardingBreachDrop 0
+* 2 5 CadiaChaosLamp 0
+* 7 5 CadiaChaosLamp 0
+* 12 5 CadiaChaosLamp 0
+* 17 5 CadiaChaosLamp 0
+* 22 5 CadiaChaosLamp 0
+* 27 5 CadiaChaosLamp 0
+* 32 5 CadiaChaosLamp 0
+* 37 5 CadiaChaosLamp 0
+* 42 5 CadiaChaosLamp 0
+* 2 9 CadiaChaosLamp 0
+* 7 9 CadiaChaosLamp 0
+* 12 9 CadiaChaosLamp 0
+* 17 9 CadiaChaosLamp 0
+* 32 9 CadiaChaosLamp 0
+* 37 9 CadiaChaosLamp 0
+* 42 9 CadiaChaosLamp 0
+* 2 13 CadiaChaosLamp 0
+* 7 13 CadiaChaosLamp 0
+* 12 13 CadiaChaosLamp 0
+* 17 13 CadiaChaosLamp 0
+* 22 13 CadiaChaosLamp 0
+* 27 13 CadiaChaosLamp 0
+* 42 13 CadiaChaosLamp 0
+* 47 13 CadiaChaosLamp 0
+* 2 17 CadiaChaosLamp 0
+* 17 17 CadiaChaosLamp 0
+* 22 17 CadiaChaosLamp 0
+* 27 17 CadiaChaosLamp 0
+* 32 17 CadiaChaosLamp 0
+* 42 17 CadiaChaosLamp 0
+* 47 17 CadiaChaosLamp 0
+* 2 21 CadiaChaosLamp 0
+* 7 21 CadiaChaosLamp 0
+* 12 21 CadiaChaosLamp 0
+* 17 21 CadiaChaosLamp 0
+* 27 21 CadiaChaosLamp 0
+* 32 21 CadiaChaosLamp 0
+* 37 21 CadiaChaosLamp 0
+* 42 21 CadiaChaosLamp 0
+* 22 12 CadiaShipBrazier 0
+* 28 12 CadiaShipBrazier 0
+* 22 16 CadiaShipBrazier 0
+* 28 16 CadiaShipBrazier 0
+* 42 10 CadiaShipBrazier 0
+* 42 18 CadiaShipBrazier 0
+* 48 12 CadiaShipBrazier 0
+* 48 16 CadiaShipBrazier 0
+* 3 12 CadiaShipLantern 0
+* 3 16 CadiaShipLantern 0
+* 10 6 CadiaShipLantern 0
+* 10 22 CadiaShipLantern 0
+* 13 14 CadiaShipLantern 0
+* 19 12 CadiaShipLantern 0
+* 19 16 CadiaShipLantern 0
+* 3 13 CadiaChaosLamp 0
+* 10 13 CadiaChaosLamp 0
+* 24 13 CadiaChaosLamp 0
+* 45 13 CadiaChaosLamp 0
+> 16 18 cadia_markings_hazard 0
+> 25 11 cadia_ground_chaos_circle 0
+> 21 7 cadia_ground_bones_scattered 0
+> 23 7 cadia_ground_bones_scattered 0
+> 27 7 cadia_ground_blood_pool 0
+> 29 7 cadia_ground_blood_pool 0
+> 31 5 cadia_markings_hazard 0
+> 33 5 cadia_markings_hazard 0
+> 31 7 cadia_markings_hazard 0
+> 33 7 cadia_markings_hazard 0
+> 35 5 cadia_markings_hazard 0
+> 37 5 cadia_markings_hazard 0
+> 35 7 cadia_markings_hazard 0
+> 37 7 cadia_markings_hazard 0
+> 31 9 cadia_markings_hazard 0
+> 33 9 cadia_markings_hazard 0
+> 31 11 cadia_markings_hazard 0
+> 33 11 cadia_markings_hazard 0
+> 35 9 cadia_markings_hazard 0
+> 37 9 cadia_markings_hazard 0
+> 35 11 cadia_markings_hazard 0
+> 37 11 cadia_markings_hazard 0
+> 34 8 cadia_markings_chaos_star_black_large 0
+> 43 14 cadia_markings_chaos_star 0
+> 47 14 cadia_markings_chaos_star_black_large 0
+> 36 17 cadia_markings_footprints_floor 180
+> 5 19 cadia_markings_footprints_floor 90
+> 19 6 cadia_ground_bones 0
+> 4 23 cadia_ground_bones 90
+> 40 10 cadia_markings_rust 0
+> 13 9 cadia_ground_blood_drops 180
+> 40 4 cadia_markings_rust 90
+> 4 21 cadia_ground_bones 0
+> 26 13 cadia_ground_bones 0
+> 48 14 cadia_markings_rust 90
+> 27 11 cadia_markings_rust 90
+> 24 6 cadia_ground_bones 90
+> 13 20 cadia_ground_blood_drops 90
+> 30 13 cadia_ground_bones 180
+> 5 15 cadia_ground_blood_drops 0
+> 38 12 cadia_markings_heretic_scrawl 270
+> 17 4 cadia_ground_bones 180
+> 7 10 cadia_ground_bones 270
+> 16 12 cadia_markings_heretic_scrawl 270
+> 29 23 cadia_ground_bones 0
+> 40 15 cadia_markings_rust 0
+> 3 8 cadia_ground_blood_drops 180
+> 33 24 cadia_markings_heretic_scrawl 180
+> 9 23 cadia_ground_blood_drops 90

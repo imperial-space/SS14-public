@@ -1,0 +1,492 @@
+# Империум: Кадийский 8-й полк, Кадийский штурмовой корпус (касркины), Адептус Механикус, Экклезиархия,
+# Адепта Сороритас и 2-я рота Ультрамаринов (по Кодексу Астартес: капитан, капеллан, библиарий, апотекарий,
+# технодесантник, тактические, штурмовые и опустошительные отделения), высаживающаяся к штурму.
+# Слоты — сколько бойцов роли может быть в живых одновременно. На пике: 54 гвардейца + 13 Астартес.
+
+# ═══════════════ Астра Милитарум ═══════════════
+
+- type: cadiaRole
+  id: CadiaLordCastellan
+  name: cadia-role-lord-castellan
+  description: cadia-role-lord-castellan-desc
+  briefing: cadia-role-lord-castellan-brief
+  whitelisted: true
+  tips:
+  - cadia-tip-command
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearLordCastellan
+  components:
+  - type: CadiaMoraleAura
+    radius: 10
+    friendRate: 1.5
+  icon: CadiaIconLordCastellan
+  randomName: false
+  commander: true
+  order: 0
+
+- type: cadiaRole
+  id: CadiaColourSergeant
+  name: cadia-role-colour-sergeant
+  description: cadia-role-colour-sergeant-desc
+  briefing: cadia-role-colour-sergeant-brief
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearColourSergeant
+  icon: CadiaIconColourSergeant
+  randomName: false
+  order: 1
+
+- type: cadiaRole
+  id: CadiaLieutenant
+  name: cadia-role-lieutenant
+  description: cadia-role-lieutenant-desc
+  briefing: cadia-role-lieutenant-brief
+  whitelisted: true
+  tips:
+  - cadia-tip-command
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearLieutenant
+  components:
+  - type: CadiaMoraleAura
+    radius: 6
+    friendRate: 0.8
+  icon: CadiaIconLieutenant
+  rank: cadia-rank-lieutenant
+  firstNames: CadiaNamesFirst
+  lastNames: CadiaNamesLast
+  slots: 2
+  commander: true
+  order: 2
+
+- type: cadiaRole
+  id: CadiaCommissar
+  name: cadia-role-commissar
+  description: cadia-role-commissar-desc
+  briefing: cadia-role-commissar-brief
+  whitelisted: true
+  tips:
+  - cadia-tip-commissar
+  - cadia-tip-command
+  medals: 5
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearCommissar
+  components:
+  - type: CadiaMoraleAura
+    radius: 8
+    friendRate: 2
+  icon: CadiaIconCommissar
+  rank: cadia-rank-commissar
+  lastNames: CadiaNamesLast
+  slots: 2
+  commander: true
+  order: 3
+
+- type: cadiaRole
+  id: CadiaSergeant
+  name: cadia-role-sergeant
+  description: cadia-role-sergeant-desc
+  briefing: cadia-role-sergeant-brief
+  tips:
+  - cadia-tip-command
+  - cadia-tip-trench
+  medals: 1
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearSergeant
+  icon: CadiaIconSergeant
+  rank: cadia-rank-sergeant
+  firstNames: CadiaNamesFirst
+  lastNames: CadiaNamesLast
+  slots: 5
+  commander: true
+  order: 4
+
+- type: cadiaRole
+  id: CadiaGuardsman
+  name: cadia-role-guardsman
+  description: cadia-role-guardsman-desc
+  briefing: cadia-role-guardsman-brief
+  tips:
+  - cadia-tip-trench
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearGuardsman
+  icon: CadiaIconGuardsman
+  rank: cadia-rank-trooper
+  firstNames: CadiaNamesFirst
+  lastNames: CadiaNamesLast
+  slots: 18
+  order: 5
+
+- type: cadiaRole
+  id: CadiaMedic
+  name: cadia-role-medic
+  description: cadia-role-medic-desc
+  briefing: cadia-role-medic-brief
+  tips:
+  - cadia-tip-medic
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearMedic
+  components:
+  - type: CadiaMedicSight
+  icon: CadiaIconMedic
+  rank: cadia-rank-medic
+  firstNames: CadiaNamesFirst
+  lastNames: CadiaNamesLast
+  slots: 3
+  order: 6
+
+- type: cadiaRole
+  id: CadiaVoxOperator
+  name: cadia-role-vox
+  description: cadia-role-vox-desc
+  briefing: cadia-role-vox-brief
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearVoxOperator
+  icon: CadiaIconVox
+  rank: cadia-rank-trooper
+  firstNames: CadiaNamesFirst
+  lastNames: CadiaNamesLast
+  slots: 2
+  order: 7
+
+- type: cadiaRole
+  id: CadiaFlamer
+  name: cadia-role-flamer
+  description: cadia-role-flamer-desc
+  briefing: cadia-role-flamer-brief
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearFlamer
+  icon: CadiaIconFlamer
+  rank: cadia-rank-trooper
+  firstNames: CadiaNamesFirst
+  lastNames: CadiaNamesLast
+  slots: 2
+  order: 8
+
+- type: cadiaRole
+  id: CadiaSniper
+  name: cadia-role-sniper
+  description: cadia-role-sniper-desc
+  briefing: cadia-role-sniper-brief
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearSniper
+  icon: CadiaIconSniper
+  rank: cadia-rank-trooper
+  firstNames: CadiaNamesFirst
+  lastNames: CadiaNamesLast
+  slots: 2
+  order: 9
+
+- type: cadiaRole
+  id: CadiaHeavyWeapons
+  name: cadia-role-heavy
+  description: cadia-role-heavy-desc
+  briefing: cadia-role-heavy-brief
+  tips:
+  - cadia-tip-trench
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearHeavyWeapons
+  icon: CadiaIconHeavy
+  rank: cadia-rank-trooper
+  firstNames: CadiaNamesFirst
+  lastNames: CadiaNamesLast
+  slots: 3
+  order: 10
+
+- type: cadiaRole
+  id: CadiaKasrkin
+  name: cadia-role-kasrkin
+  description: cadia-role-kasrkin-desc
+  briefing: cadia-role-kasrkin-brief
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearKasrkin
+  icon: CadiaIconKasrkin
+  rank: cadia-rank-kasrkin
+  firstNames: CadiaNamesFirst
+  lastNames: CadiaNamesLast
+  slots: 5
+  order: 11
+
+- type: cadiaRole
+  id: CadiaEnginseer
+  name: cadia-role-enginseer
+  description: cadia-role-enginseer-desc
+  briefing: cadia-role-enginseer-brief
+  tips:
+  - cadia-tip-engineer
+  - cadia-tip-trench
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearEnginseer
+  icon: CadiaIconEnginseer
+  rank: cadia-rank-enginseer
+  firstNames: CadiaNamesMechanicus
+  slots: 2
+  order: 12
+
+- type: cadiaRole
+  id: CadiaPriest
+  name: cadia-role-priest
+  description: cadia-role-priest-desc
+  briefing: cadia-role-priest-brief
+  tips:
+  - cadia-tip-medic
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearPriest
+  components:
+  - type: CadiaMedicSight
+  - type: CadiaMoraleAura
+    radius: 6
+    friendRate: 1.5
+  - type: CadiaRoleActions
+    actions:
+    - ActionCadiaPrayer
+  icon: CadiaIconPriest
+  rank: cadia-rank-priest
+  lastNames: CadiaNamesLast
+  order: 13
+
+- type: cadiaRole
+  id: CadiaBattleSister
+  name: cadia-role-sister
+  description: cadia-role-sister-desc
+  briefing: cadia-role-sister-brief
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearBattleSister
+  components:
+  - type: CadiaRoleActions
+    actions:
+    - ActionCadiaActOfFaith
+  icon: CadiaIconSister
+  rank: cadia-rank-sister
+  firstNames: CadiaNamesSororitas
+  slots: 3
+  order: 14
+
+- type: cadiaRole
+  id: CadiaPsyker
+  name: cadia-role-psyker
+  description: cadia-role-psyker-desc
+  briefing: cadia-role-psyker-brief
+  tips:
+  - cadia-tip-psyker
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearPsyker
+  icon: CadiaIconPsyker
+  rank: cadia-rank-psyker
+  firstNames: CadiaNamesFirst
+  lastNames: CadiaNamesLast
+  components:
+  - type: CadiaPsyker
+    powers:
+    - ActionCadiaPsySmite
+    - ActionCadiaPsyDome
+    - ActionCadiaPsyScream
+    - ActionCadiaPsySuppression
+  order: 15
+
+- type: cadiaRole
+  id: CadiaAstropath
+  name: cadia-role-astropath
+  description: cadia-role-astropath-desc
+  briefing: cadia-role-astropath-brief
+  tips:
+  - cadia-tip-psyker
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearAstropath
+  components:
+  - type: CadiaPsyker
+    powers:
+    - ActionCadiaPsyForesight
+    - ActionCadiaPsySuppression
+  icon: CadiaIconAstropath
+  rank: cadia-rank-astropath
+  lastNames: CadiaNamesLast
+  order: 16
+
+# ═══════════════ Ультрамарины, 2-я рота ═══════════════
+
+- type: cadiaRole
+  id: CadiaUltramarineCaptain
+  name: cadia-role-um-captain
+  description: cadia-role-um-captain-desc
+  briefing: cadia-role-um-captain-brief
+  whitelisted: true
+  tips:
+  - cadia-tip-astartes
+  - cadia-tip-command
+  faction: Imperium
+  mob: CadiaMobAstartes
+  gear: CadiaGearUltramarineCaptain
+  icon: CadiaIconUltramarineCaptain
+  randomName: false
+  availableFrom: Assault
+  commander: true
+  order: 20
+
+- type: cadiaRole
+  id: CadiaUltramarineChaplain
+  name: cadia-role-um-chaplain
+  description: cadia-role-um-chaplain-desc
+  briefing: cadia-role-um-chaplain-brief
+  tips:
+  - cadia-tip-astartes
+  faction: Imperium
+  mob: CadiaMobAstartes
+  gear: CadiaGearUltramarineChaplain
+  components:
+  - type: CadiaRoleActions
+    actions:
+    - ActionCadiaPrayer
+  icon: CadiaIconUltramarineChaplain
+  rank: cadia-rank-chaplain
+  firstNames: CadiaNamesUltramarines
+  availableFrom: Assault
+  order: 21
+
+- type: cadiaRole
+  id: CadiaUltramarineLibrarian
+  name: cadia-role-um-librarian
+  description: cadia-role-um-librarian-desc
+  briefing: cadia-role-um-librarian-brief
+  tips:
+  - cadia-tip-astartes
+  - cadia-tip-psyker
+  faction: Imperium
+  mob: CadiaMobAstartes
+  gear: CadiaGearUltramarineLibrarian
+  components:
+  - type: CadiaPsyker
+    maxCharge: 140
+    charge: 140
+    regen: 3.5
+    powers:
+    - ActionCadiaPsySmite
+    - ActionCadiaPsyDome
+    - ActionCadiaPsyForesight
+    - ActionCadiaPsyFury
+  icon: CadiaIconUltramarineLibrarian
+  rank: cadia-rank-librarian
+  firstNames: CadiaNamesUltramarines
+  availableFrom: Assault
+  order: 22
+
+- type: cadiaRole
+  id: CadiaUltramarineApothecary
+  name: cadia-role-um-apothecary
+  description: cadia-role-um-apothecary-desc
+  briefing: cadia-role-um-apothecary-brief
+  tips:
+  - cadia-tip-astartes
+  - cadia-tip-medic
+  faction: Imperium
+  mob: CadiaMobAstartes
+  gear: CadiaGearUltramarineApothecary
+  components:
+  - type: CadiaMedicSight
+  icon: CadiaIconUltramarineApothecary
+  rank: cadia-rank-apothecary
+  firstNames: CadiaNamesUltramarines
+  availableFrom: Assault
+  order: 23
+
+- type: cadiaRole
+  id: CadiaUltramarineTechmarine
+  name: cadia-role-um-techmarine
+  description: cadia-role-um-techmarine-desc
+  briefing: cadia-role-um-techmarine-brief
+  tips:
+  - cadia-tip-astartes
+  - cadia-tip-engineer
+  faction: Imperium
+  mob: CadiaMobAstartes
+  gear: CadiaGearUltramarineTechmarine
+  icon: CadiaIconUltramarineTechmarine
+  rank: cadia-rank-techmarine
+  firstNames: CadiaNamesUltramarines
+  availableFrom: Assault
+  order: 24
+
+- type: cadiaRole
+  id: CadiaUltramarineSergeant
+  name: cadia-role-um-sergeant
+  description: cadia-role-um-sergeant-desc
+  briefing: cadia-role-um-sergeant-brief
+  tips:
+  - cadia-tip-astartes
+  - cadia-tip-command
+  medals: 1
+  faction: Imperium
+  mob: CadiaMobAstartes
+  gear: CadiaGearUltramarineSergeant
+  icon: CadiaIconUltramarineSergeant
+  rank: cadia-rank-um-sergeant
+  firstNames: CadiaNamesUltramarines
+  availableFrom: Assault
+  commander: true
+  order: 25
+
+- type: cadiaRole
+  id: CadiaUltramarineTactical
+  name: cadia-role-um-tactical
+  description: cadia-role-um-tactical-desc
+  briefing: cadia-role-um-tactical-brief
+  tips:
+  - cadia-tip-astartes
+  faction: Imperium
+  mob: CadiaMobAstartes
+  gear: CadiaGearUltramarineTactical
+  icon: CadiaIconUltramarineTactical
+  rank: cadia-rank-brother
+  firstNames: CadiaNamesUltramarines
+  slots: 3
+  availableFrom: Assault
+  order: 26
+
+- type: cadiaRole
+  id: CadiaUltramarineAssault
+  name: cadia-role-um-assault
+  description: cadia-role-um-assault-desc
+  briefing: cadia-role-um-assault-brief
+  tips:
+  - cadia-tip-astartes
+  faction: Imperium
+  mob: CadiaMobAstartes
+  gear: CadiaGearUltramarineAssault
+  icon: CadiaIconUltramarineAssault
+  rank: cadia-rank-brother
+  firstNames: CadiaNamesUltramarines
+  slots: 2
+  availableFrom: Assault
+  order: 27
+
+- type: cadiaRole
+  id: CadiaUltramarineDevastator
+  name: cadia-role-um-devastator
+  description: cadia-role-um-devastator-desc
+  briefing: cadia-role-um-devastator-brief
+  tips:
+  - cadia-tip-astartes
+  faction: Imperium
+  mob: CadiaMobAstartes
+  gear: CadiaGearUltramarineDevastator
+  icon: CadiaIconUltramarineDevastator
+  rank: cadia-rank-brother
+  firstNames: CadiaNamesUltramarines
+  slots: 2
+  availableFrom: Assault
+  order: 28

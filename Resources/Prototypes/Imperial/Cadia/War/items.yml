@@ -1,0 +1,710 @@
+# Снаряжение войны за Кадию: одежда ролей, связь, оружие. Спрайты — PixelLab, во всех четырёх направлениях.
+
+# ═══════════════ Базы ═══════════════
+
+# Силовой доспех Астартес: полный, со шлемом, тяжёлый, держит болт и осколки.
+- type: entity
+  abstract: true
+  parent: ClothingOuterArmorBasic
+  id: CadiaPowerArmorBase
+  components:
+  - type: CadiaPowerArmor
+  - type: Item
+    size: Huge
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.35
+        Heat: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - FacialHair
+    - Snout
+    - SnoutCover
+    - HeadTop
+    - HeadSide
+    - Head
+    - Eyes
+    - Chest
+    - RArm
+    - LArm
+    - RHand
+    - LHand
+    - RLeg
+    - LLeg
+    - RFoot
+    - LFoot
+    - UndergarmentTop
+    - UndergarmentBottom
+    - Tail
+
+# Отсеки в ранце силового доспеха: занимают слот спины вместо рюкзака, сами на теле не видны.
+- type: entity
+  parent: ClothingBackpack
+  id: CadiaAstartesPack
+  name: power armour stowage
+  description: Compartments built into a power armour's backpack. They do not come off.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ammo.rsi
+    state: hotshot_pack
+  - type: Clothing
+    sprite: Imperial/Cadia/War/ammo.rsi
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,9,5
+  - type: Unremoveable
+    deleteOnDrop: false
+
+# Роба до пят с капюшоном.
+- type: entity
+  abstract: true
+  parent: ClothingOuterBase
+  id: CadiaRobeBase
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.9
+        Heat: 0.95
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide
+
+# ═══════════════ Империум ═══════════════
+
+- type: entity
+  parent: ClothingOuterBase
+  id: CadiaGreatcoat
+  name: Cadian officer's greatcoat
+  description: A long grey-green greatcoat with gold epaulettes. Lord Castellan Creed's is famously stained with cigar ash.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/greatcoat.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/greatcoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.85
+
+- type: entity
+  parent: ClothingHeadBase
+  id: CadiaOfficerCap
+  name: Cadian officer's cap
+  description: A grey-green peaked cap with the aquila of the Astra Militarum.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/officer_cap.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/officer_cap.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: CadiaCommissarCoat
+  name: commissar's greatcoat
+  description: Black leather lined with red. The coat alone has ended more mutinies than most regiments.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/commissar_coat.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/commissar_coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.8
+
+- type: entity
+  parent: ClothingHeadBase
+  id: CadiaCommissarCap
+  name: commissar's cap
+  description: A tall black peaked cap with the skull and aquila of the Officio Prefectus.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/commissar_cap.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/commissar_cap.rsi
+  - type: CadiaCommissar
+  - type: ActionGrant
+    actions:
+    - ActionCadiaInspire
+    - ActionCadiaExecute
+  - type: ItemActionGrant
+    actions:
+    - ActionCadiaInspire
+    - ActionCadiaExecute
+    activeIfWorn: true
+
+- type: entity
+  parent: CadiaFlakArmor
+  id: CadiaMedicFlak
+  name: Cadian medic's flak armour
+  description: Standard flak armour with a medic's armband and a satchel of bandages.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/medic_flak.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/medic_flak.rsi
+
+- type: entity
+  parent: ClothingOuterArmorBasic
+  id: CadiaKasrkinArmor
+  name: Kasrkin carapace armour
+  description: Rigid carapace plates issued only to the elite Kasrkin of the Cadian Shock Troops.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/kasrkin_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/kasrkin_armor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.5
+        Heat: 0.65
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+
+- type: entity
+  parent: ClothingHeadHelmetArmoredBase
+  id: CadiaKasrkinHelmet
+  name: Kasrkin helmet
+  description: An enclosed carapace helmet with a rebreather and red auto-senses.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/kasrkin_helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/kasrkin_helmet.rsi
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+
+- type: entity
+  parent: CadiaRobeBase
+  id: CadiaMechanicusRobe
+  name: enginseer's robe
+  description: The red robe of the Adeptus Mechanicus, hung with cables and a servo-arm.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/mechanicus_robe.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/mechanicus_robe.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: CadiaPriestRobe
+  name: Ministorum robes
+  description: White and gold vestments of a regimental priest of the Ecclesiarchy.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/priest_robe.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/priest_robe.rsi
+
+- type: entity
+  parent: CadiaPowerArmorBase
+  id: CadiaSororitasArmor
+  name: Sororitas power armour
+  description: Black ceramite armour of the Order of Our Martyred Lady, with a white fleur-de-lis tabard.
+  components:
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+  - type: CadiaPowerArmor
+    requiresCarapace: false
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/sororitas_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/sororitas_armor.rsi
+  - type: Item
+    size: Large
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.45
+        Heat: 0.55
+
+- type: entity
+  parent: CadiaRobeBase
+  id: CadiaPsykerRobe
+  name: sanctioned psyker's robe
+  description: A dark blue hooded robe with a psychic dampening collar.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/psyker_robe.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/psyker_robe.rsi
+  - type: CadiaPsychicHood
+
+- type: entity
+  parent: CadiaRobeBase
+  id: CadiaAstropathRobe
+  name: astropath's robe
+  description: A green hooded robe and blindfold. Astropaths see more without eyes than most do with them.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/astropath_robe.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/astropath_robe.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: CadiaBackpack
+  name: Cadian field pack
+  description: A grey-green pack with a bedroll, canteen and entrenching tool.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/backpack.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/backpack.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: CadiaVoxCasterPack
+  name: vox-caster
+  description: A backpack long-range vox set. Its operator hears the command channel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/vox_caster.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/vox_caster.rsi
+
+# ═══════════════ Ультрамарины ═══════════════
+
+- type: entity
+  parent: ClothingUniformBase
+  id: CadiaAstartesBodyglove
+  name: black carapace bodyglove
+  description: The interface suit worn beneath power armour, linked to the Astartes' Black Carapace.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/bodyglove.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/bodyglove.rsi
+
+- type: entity
+  parent: CadiaPowerArmorBase
+  id: CadiaUltramarineCaptainArmor
+  name: Ultramarines captain's power armour
+  description: Artificer armour of the Captain of the 2nd Company, crowned with laurels and a crimson cloak.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/um_captain.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/um_captain.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.35
+        Slash: 0.35
+        Piercing: 0.3
+        Heat: 0.45
+
+- type: entity
+  parent: CadiaPowerArmorBase
+  id: CadiaUltramarineChaplainArmor
+  name: chaplain's power armour
+  description: Black power armour with a skull helm. The Chaplain is the conscience and the fury of the Chapter.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/um_chaplain.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/um_chaplain.rsi
+
+- type: entity
+  parent: CadiaPowerArmorBase
+  id: CadiaUltramarineLibrarianArmor
+  name: Librarian's power armour
+  description: Ultramarines blue armour with a crystalline psychic hood that shields its wearer from the warp.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/um_librarian.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/um_librarian.rsi
+  - type: CadiaPsychicHood
+
+- type: entity
+  parent: CadiaPowerArmorBase
+  id: CadiaUltramarineApothecaryArmor
+  name: Apothecary's power armour
+  description: White armour with a narthecium gauntlet, worn by those who keep the Chapter's gene-seed.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/um_apothecary.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/um_apothecary.rsi
+
+- type: entity
+  parent: CadiaPowerArmorBase
+  id: CadiaUltramarineTechmarineArmor
+  name: Techmarine's power armour
+  description: Mars-red armour with a servo-harness, the mark of a battle-brother trained by the Mechanicus.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/um_techmarine.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/um_techmarine.rsi
+
+- type: entity
+  parent: CadiaPowerArmorBase
+  id: CadiaUltramarineSergeantArmor
+  name: Ultramarines sergeant's power armour
+  description: Ultramarines blue armour with the red helm of a veteran sergeant.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/um_sergeant.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/um_sergeant.rsi
+
+- type: entity
+  parent: CadiaPowerArmorBase
+  id: CadiaUltramarineAssaultArmor
+  name: assault marine's power armour
+  description: Ultramarines blue armour fitted with a jump pack.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/um_assault.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/um_assault.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: CadiaJumpPack
+  - type: ActionGrant
+    actions:
+    - ActionCadiaJump
+    - ActionCadiaFlyUp
+    - ActionCadiaFlyDown
+  - type: ItemActionGrant
+    actions:
+    - ActionCadiaJump
+    - ActionCadiaFlyUp
+    - ActionCadiaFlyDown
+    activeIfWorn: true
+
+# ═══════════════ Хаос ═══════════════
+
+- type: entity
+  parent: CadiaPowerArmorBase
+  id: CadiaBlackLegionArmor
+  name: Black Legion power armour
+  description: Black and gold armour of the Legion that was once the Sons of Horus.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/cs_blacklegion.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/cs_blacklegion.rsi
+
+- type: entity
+  parent: CadiaPowerArmorBase
+  id: CadiaChaosLordArmor
+  name: Chaos Lord's power armour
+  description: Horned black armour with a fur-trimmed cloak, blessed and cursed by the Dark Gods.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/cs_lord.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/cs_lord.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.35
+        Slash: 0.35
+        Piercing: 0.3
+        Heat: 0.45
+
+- type: entity
+  parent: CadiaPowerArmorBase
+  id: CadiaDarkApostleArmor
+  name: Dark Apostle's power armour
+  description: Crimson and black armour hung with scrolls of blasphemous scripture.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/cs_apostle.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/cs_apostle.rsi
+
+- type: entity
+  parent: CadiaPowerArmorBase
+  id: CadiaSorcererArmor
+  name: sorcerer's power armour
+  description: Black armour and warp-stained robes. The runes on the pauldrons never stop moving.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/cs_sorcerer.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/cs_sorcerer.rsi
+  - type: CadiaPsychicHood
+
+- type: entity
+  parent: CadiaPowerArmorBase
+  id: CadiaChosenArmor
+  name: Chosen power armour
+  description: Spiked black armour bearing the Eye of Horus, worn by the Warmaster's bodyguard.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/cs_chosen.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/cs_chosen.rsi
+
+- type: entity
+  parent: CadiaPowerArmorBase
+  id: CadiaAbaddonArmor
+  name: Abaddon's Terminator armour
+  description: The Warmaster's own Terminator plate, hung with trophies of ten thousand years of war.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/cs_abaddon.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/cs_abaddon.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.25
+        Slash: 0.25
+        Piercing: 0.2
+        Heat: 0.35
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+
+- type: entity
+  parent: ClothingHandsBase
+  id: CadiaTalonOfHorus
+  name: Talon of Horus
+  description: The lightning claw of the Warmaster Horus, fused with a combi-bolter. Now it is Abaddon's.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/talon.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/ammo.rsi
+  - type: Item
+    size: Large
+
+- type: entity
+  parent: ClothingUniformBase
+  id: CadiaCultistRags
+  name: heretic's rags
+  description: Filthy, torn clothing. The wearer has stopped caring about anything but the gods.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/cultist_rags.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/cultist_rags.rsi
+
+- type: entity
+  parent: CadiaRobeBase
+  id: CadiaCultistRobe
+  name: cultist's robe
+  description: A tattered red robe daubed with the eight-pointed star.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/cultist_robe.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/cultist_robe.rsi
+
+- type: entity
+  parent: CadiaRobeBase
+  id: CadiaDemagogueRobe
+  name: prophet's robe
+  description: A black robe bound in chains. Its wearer speaks with a voice that is not entirely their own.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/demagogue_robe.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/demagogue_robe.rsi
+
+- type: entity
+  parent: ClothingMaskBase
+  id: CadiaCultistMask
+  name: iron cult mask
+  description: A crude iron mask scratched with the eight-pointed star.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/cultist_mask.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/cultist_mask.rsi
+  - type: HideLayerClothing
+    slots:
+    - Snout
+
+- type: entity
+  parent: CadiaFlakArmor
+  id: CadiaTraitorFlak
+  name: defiled flak armour
+  description: Cadian flak armour daubed in blood with the star of Chaos. Its owner was once a guardsman.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/traitor_flak.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/traitor_flak.rsi
+
+- type: entity
+  parent: CadiaHelmet
+  id: CadiaTraitorHelmet
+  name: defiled helmet
+  description: A Cadian helmet with bolted-on horns and dripping red paint.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/traitor_helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/traitor_helmet.rsi
+
+- type: entity
+  parent: CadiaRobeBase
+  id: CadiaHeretekRobe
+  name: heretek's robe
+  description: A rust-red robe sprouting corroded mechadendrites. The Dark Mechanicus welcomes all who seek forbidden knowledge.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/heretek_robe.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/heretek_robe.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: CadiaBackpackChaos
+  name: spiked pack
+  description: A black leather pack with spikes and chains.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/backpack_chaos.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/backpack_chaos.rsi
+
+# ═══════════════ Связь ═══════════════
+
+- type: entity
+  parent: EncryptionKey
+  id: CadiaEncryptionKey
+  name: Cadian vox key
+  description: An encryption key for the Cadian regimental vox net.
+  components:
+  - type: EncryptionKey
+    channels:
+    - CadiaVox
+    - CadiaSquad
+    defaultChannel: CadiaVox
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/keys.rsi
+    layers:
+    - state: imperium
+
+- type: entity
+  parent: CadiaEncryptionKey
+  id: CadiaEncryptionKeyCommand
+  name: Cadian command vox key
+  description: An encryption key for the Cadian command net.
+  components:
+  - type: EncryptionKey
+    channels:
+    - CadiaCommand
+    defaultChannel: CadiaCommand
+
+- type: entity
+  parent: EncryptionKey
+  id: CadiaEncryptionKeyChaos
+  name: warband vox key
+  description: A crudely rewired encryption key. Whispers bleed through the static.
+  components:
+  - type: EncryptionKey
+    channels:
+    - CadiaWarband
+    - CadiaWarbandSquad
+    defaultChannel: CadiaWarband
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/keys.rsi
+    layers:
+    - state: chaos
+
+- type: entity
+  parent: ClothingHeadset
+  id: CadiaHeadset
+  name: Cadian vox headset
+  description: A regimental vox bead. Cadians speak little and to the point.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - CadiaEncryptionKey
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/headset.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/headset.rsi
+
+- type: entity
+  parent: ClothingHeadset
+  id: CadiaHeadsetCommand
+  name: Cadian officer's vox headset
+  description: A vox headset tuned to both the regimental and the command nets.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - CadiaEncryptionKey
+      - CadiaEncryptionKeyCommand
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/headset_command.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/headset_command.rsi
+
+- type: entity
+  parent: ClothingHeadset
+  id: CadiaHeadsetChaos
+  name: warband vox headset
+  description: A rusted, spiked headset. The static sometimes speaks back.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - CadiaEncryptionKeyChaos
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/headset_chaos.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/headset_chaos.rsi
+
+# ═══════════════ Прочее ═══════════════
+
+- type: entity
+  parent: FoodSnackBase
+  id: CadiaRation
+  name: Cadian ration brick
+  description: A compressed ration brick. Tastes of cardboard and duty.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Weapons/ration.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Cadia/War/Weapons/ration.rsi
+    heldPrefix: null
+  - type: FlavorProfile
+    flavors:
+    - bread

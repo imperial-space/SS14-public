@@ -1,0 +1,190 @@
+# Кампания: секторы фронта, маяк и транспорт эвакуации, медали и действия памятки.
+
+# ─── Секторы ───
+
+- type: entity
+  abstract: true
+  id: CadiaSectorBase
+  name: sector banner
+  description: Hold the ground around this banner with no enemy near to claim the sector for your side.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/sector.rsi
+    drawdepth: Objects
+    noRot: true
+    offset: 0,0.4
+    layers:
+    - state: neutral
+      map: [ "banner" ]
+  - type: PointLight
+    radius: 3
+    energy: 1
+    color: "#e8c66a"
+  - type: CadiaSpawnPoint
+    enabled: false
+
+- type: entity
+  parent: CadiaSectorBase
+  id: CadiaSectorA
+  suffix: A, Imperium
+  components:
+  - type: CadiaSector
+    letter: А
+    owner: Imperium
+
+- type: entity
+  parent: CadiaSectorBase
+  id: CadiaSectorB
+  suffix: B, Imperium
+  components:
+  - type: CadiaSector
+    letter: Б
+    owner: Imperium
+
+- type: entity
+  parent: CadiaSectorBase
+  id: CadiaSectorC
+  suffix: C, neutral
+  components:
+  - type: CadiaSector
+    letter: В
+
+- type: entity
+  parent: CadiaSectorBase
+  id: CadiaSectorD
+  suffix: D, Chaos
+  components:
+  - type: CadiaSector
+    letter: Г
+    owner: Chaos
+
+- type: entity
+  parent: CadiaSectorBase
+  id: CadiaSectorE
+  suffix: E, Chaos
+  components:
+  - type: CadiaSector
+    letter: Д
+    owner: Chaos
+
+# ─── Падение Кадии ───
+
+- type: entity
+  parent: BaseStructure
+  id: CadiaEvacBeacon
+  name: evacuation beacon
+  description: An amber lamp on an armoured tripod. When Cadia falls, the last transports will land here.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/sector.rsi
+    state: beacon
+    drawdepth: Objects
+    noRot: true
+    offset: 0,0.3
+  - type: PointLight
+    radius: 5
+    energy: 2
+    color: "#ffb030"
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CadiaEvacBeacon
+
+# Транспорт только показывается: посадку и погрузку считает сервер.
+- type: entity
+  id: CadiaEvacShip
+  name: Valkyrie transport
+  description: Engines howling, ramp down. Get aboard.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    drawdepth: Overdoors
+    noRot: true
+    layers:
+    - sprite: Imperial/Cadia/War/fort_small.rsi
+      state: drop_shadow
+      map: [ "shadow" ]
+    - sprite: Imperial/Cadia/War/valkyrie.rsi
+      state: ship
+      map: [ "ship" ]
+  - type: CadiaEvacShip
+
+# ─── Медали ───
+
+- type: entity
+  parent: ClothingNeckGoldmedal
+  id: CadiaMedalImperium
+  name: Cadian Star
+  description: Pinned on the field by an officer of the Astra Militarum, in front of everyone who survived to see it.
+
+- type: entity
+  parent: ClothingNeckBronzeheart
+  id: CadiaMedalChaos
+  name: Mark of Favour
+  description: Branded iron awarded by a champion of the Dark Gods. It is still warm.
+
+# ─── Действия ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaAwardMedal
+  name: Award a medal
+  description: Pin a medal on a soldier of your side. Their name will be announced and recorded in the war's final report.
+  components:
+  - type: Action
+    icon: { sprite: Clothing/Neck/Medals/gold.rsi, state: icon }
+    useDelay: 10
+  - type: TargetAction
+    range: 3
+  - type: EntityTargetAction
+    event: !type:CadiaAwardMedalEvent
+    canTargetSelf: false
+    whitelist:
+      components:
+      - CadiaFactionMember
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaBriefing
+  name: Role guide
+  description: Open the guide for your role again.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/icons.rsi, state: aquila }
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CadiaBriefingActionEvent

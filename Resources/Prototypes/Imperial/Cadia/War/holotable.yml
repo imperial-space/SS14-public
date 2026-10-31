@@ -1,0 +1,249 @@
+# Гололитические столы командования и голограммы чертежей обороны.
+
+- type: entity
+  id: CadiaHoloTable
+  name: Cadian hololithic table
+  description: A strategium table projecting a hololith of the battlefield. Officers draw the plan of battle on it, and every table of the regiment sees it at once.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/holotable.rsi
+    drawdepth: Objects
+    offset: 0.5,0.5
+    noRot: true
+    layers:
+    - state: imperium
+    - state: imperium_glow
+      shader: unshaded
+  - type: PointLight
+    radius: 3.5
+    energy: 1.6
+    color: "#5aff78"
+  - type: AmbientSound
+    range: 5
+    volume: -6
+    sound:
+      path: /Audio/Machines/scan_loop.ogg
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,1.45,1.45"
+        density: 500
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ActivatableUI
+    key: enum.CadiaHoloUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CadiaHoloUiKey.Key:
+        type: CadiaHoloTableBoundUserInterface
+      enum.CadiaSquadUiKey.Key:
+        type: CadiaSquadBoundUserInterface
+  - type: CadiaHoloTable
+    faction: Imperium
+    planner: true
+
+- type: entity
+  parent: CadiaHoloTable
+  id: CadiaHoloTableChaos
+  name: warband war table
+  suffix: Chaos
+  description: A spiked iron table with a blood-red hololith of the doomed world. The warband's lords plot the slaughter on it.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/holotable.rsi
+    drawdepth: Objects
+    offset: 0.5,0.5
+    noRot: true
+    layers:
+    - state: chaos
+    - state: chaos_glow
+      shader: unshaded
+  - type: PointLight
+    color: "#ff3a2a"
+  - type: CadiaHoloTable
+    faction: Chaos
+    planner: true
+
+# Голограмма чертежа: силуэт постройки голубым светом. Подайте листы стали — сапёр построит её на месте.
+- type: entity
+  id: CadiaBlueprintGhost
+  name: defence blueprint
+  description: A flickering hololith of a planned fortification. Bring steel sheets and build it here.
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    drawdepth: Overdoors
+    noRot: true
+    layers:
+    - texture: /Textures/Imperial/Cadia/War/artillery.rsi/macro_shell.png
+      shader: unshaded
+      map: [ "holo" ]
+  - type: PointLight
+    radius: 1.5
+    energy: 0.8
+    color: "#4ad8ff"
+  - type: CadiaBlueprint
+
+# ─── Гололитический визор командира: голокарта стороны перед глазом, только просмотр ───
+
+# Визор в шлеме Астартес: тот же гололит, но на доспехе не рисуется.
+- type: entity
+  parent: CadiaHoloVisor
+  id: CadiaHoloVisorAstartes
+  name: helmet hololith visor
+  description: A hololith built into an Astartes helmet. It shows the plan of battle but cannot change it.
+  components:
+  - type: Clothing
+    sprite: Imperial/Cadia/War/ammo.rsi
+
+- type: entity
+  parent: CadiaHoloVisorChaos
+  id: CadiaHoloVisorChaosAstartes
+  name: helmet hololith visor
+  suffix: Chaos
+  description: A hololith built into a Heretic Astartes helmet. It shows the plan of battle but cannot change it.
+  components:
+  - type: Clothing
+    sprite: Imperial/Cadia/War/ammo.rsi
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaHoloVisor
+  name: Hololith
+  description: Open your side's battle hololith in the visor. View only.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/vehicle_icons.rsi, state: holo }
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CadiaHoloVisorActionEvent
+
+- type: entity
+  parent: ClothingEyesBase
+  id: CadiaHoloVisor
+  name: hololithic command visor
+  description: A brass monocle that projects the regiment's battle hololith over the officer's eye. It shows the plan of battle but cannot change it.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/holo_visor.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/holo_visor.rsi
+  - type: PointLight
+    radius: 1.2
+    energy: 0.6
+    color: "#5aff78"
+  - type: ActionGrant
+    actions:
+    - ActionCadiaHoloVisor
+    - ActionCadiaSquads
+  - type: ItemActionGrant
+    actions:
+    - ActionCadiaHoloVisor
+    - ActionCadiaSquads
+    activeIfWorn: true
+  - type: ActivatableUI
+    key: enum.CadiaHoloUiKey.Key
+    inHandsOnly: true
+  - type: UserInterface
+    interfaces:
+      enum.CadiaHoloUiKey.Key:
+        type: CadiaHoloTableBoundUserInterface
+      enum.CadiaSquadUiKey.Key:
+        type: CadiaSquadBoundUserInterface
+  - type: CadiaHoloTable
+    faction: Imperium
+    planner: false
+    readOnly: true
+
+- type: entity
+  parent: CadiaHoloVisor
+  id: CadiaHoloVisorChaos
+  name: warband hololith eyepiece
+  suffix: Chaos
+  description: A spiked iron eyepiece glowing with the warband's blood-red war map. It shows the plan of slaughter but cannot change it.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/holo_visor_chaos.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/holo_visor_chaos.rsi
+  - type: PointLight
+    color: "#ff3a2a"
+  - type: CadiaHoloTable
+    faction: Chaos
+    planner: false
+    readOnly: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaSquads
+  name: Squads
+  description: Form squads, issue orders and vox-commands.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/vehicle_icons.rsi, state: squads }
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CadiaSquadMenuActionEvent
+
+# ─── Комиссар ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaInspire
+  name: Inspire
+  description: Steel a guardsman's resolve. They stand fast and move with purpose for a short time.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/role_icons.rsi, state: commissar }
+    useDelay: 60
+  - type: TargetAction
+    range: 6
+  - type: EntityTargetAction
+    event: !type:CadiaInspireActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaExecute
+  name: Summary execution
+  description: Execute a coward in front of his comrades. Those who see it will not falter.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/Weapons/boltpistol.rsi, state: icon }
+    useDelay: 120
+  - type: TargetAction
+    range: 2
+  - type: EntityTargetAction
+    event: !type:CadiaExecuteActionEvent

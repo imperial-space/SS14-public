@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for Imperial Space with PixelLab",
+  "size": { "x": 128, "y": 128 },
+  "states": [
+    { "name": "icon" },
+    { "name": "mob", "directions": 4 },
+    { "name": "walk", "directions": 4, "delays": [ [ 0.14, 0.14, 0.14, 0.14 ], [ 0.14, 0.14, 0.14, 0.14 ], [ 0.14, 0.14, 0.14, 0.14 ], [ 0.14, 0.14, 0.14, 0.14 ] ] }
+  ]
+}

@@ -1,0 +1,179 @@
+# «Оборона Кадии»: правило войны, спавнер ролей, мобы сторон, пилоны, цитадель и точки высадки.
+
+- type: entity
+  parent: BaseGameRule
+  id: CadiaDefense
+  components:
+  - type: CadiaDefenseRule
+
+# Спавнер призрачной роли: роль, моб и число мест выставляет правило при каждой волне.
+- type: entity
+  parent: MarkerBase
+  id: CadiaRoleSpawner
+  name: Cadian war role
+  categories: [ HideSpawnMenu, Spawner ]
+  components:
+  - type: GhostRole
+    name: cadia-ghost-role
+    description: cadia-ghost-role
+    rules: cadia-rules-imperium
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: GhostRoleMobSpawner
+    prototype: CadiaMobImperium
+  - type: CadiaRoleSpawner
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+
+# ─── Мобы ───
+
+- type: entity
+  parent: MobHuman
+  id: CadiaMobImperium
+  name: Cadian
+  suffix: Cadia
+  categories: [ HideSpawnMenu ]
+  components:
+  # Снаряжение по умолчанию для ручного спавна; роль из спавнера заменяет его своим.
+  - type: Loadout
+    prototypes:
+    - CadiaGearGuardsman
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: CadiaFactionMember
+    faction: Imperium
+  - type: CadiaMorale
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+
+- type: entity
+  parent: CadiaMobImperium
+  id: CadiaMobChaos
+  name: heretic
+  categories: [ HideSpawnMenu ]
+  components:
+  # Снаряжение по умолчанию для ручного спавна; роль из спавнера заменяет его своим.
+  - type: Loadout
+    prototypes:
+    - CadiaGearCultist
+  - type: CadiaFactionMember
+    faction: Chaos
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+
+# Адептус Астартес: на голову выше человека, переносят раны, от которых гвардеец умер бы трижды.
+- type: entity
+  parent: CadiaMobImperium
+  id: CadiaMobAstartes
+  name: Astartes
+  categories: [ HideSpawnMenu ]
+  components:
+  # Снаряжение по умолчанию для ручного спавна; роль из спавнера заменяет его своим.
+  - type: Loadout
+    prototypes:
+    - CadiaGearUltramarineTactical
+  - type: CadiaAstartes
+  - type: Sprite
+    scale: 1.2, 1.2
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      220: Critical
+      320: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      120: 0.85
+      180: 0.7
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.42
+        density: 400
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+
+- type: entity
+  parent: CadiaMobAstartes
+  id: CadiaMobHereticAstartes
+  name: Heretic Astartes
+  categories: [ HideSpawnMenu ]
+  components:
+  # Снаряжение по умолчанию для ручного спавна; роль из спавнера заменяет его своим.
+  - type: Loadout
+    prototypes:
+    - CadiaGearBlackLegionnaire
+  - type: CadiaFactionMember
+    faction: Chaos
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+
+# ─── Точки высадки ───
+
+- type: entity
+  parent: CadiaSpawnPointImperium
+  id: CadiaSpawnPointFleet
+  suffix: Fleet
+  components:
+  - type: CadiaSpawnPoint
+    faction: Imperium
+    group: Fleet
+
+- type: entity
+  parent: MarkerBase
+  id: CadiaSpawnPointImperium
+  name: Cadian deployment point
+  suffix: Imperium
+  components:
+  - type: CadiaSpawnPoint
+    faction: Imperium
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/Cadia/War/icons.rsi
+      state: aquila
+
+- type: entity
+  parent: MarkerBase
+  id: CadiaSpawnPointChaos
+  name: heretic staging point
+  suffix: Chaos
+  components:
+  - type: CadiaSpawnPoint
+    faction: Chaos
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Imperial/Cadia/War/icons.rsi
+      state: chaos_star
+
+# Высадка командования Хаоса: мостик и казармы флагмана.
+- type: entity
+  parent: CadiaSpawnPointChaos
+  id: CadiaSpawnPointChaosCommand
+  name: flagship muster point
+  suffix: Chaos command
+  components:
+  - type: CadiaSpawnPoint
+    faction: Chaos
+    group: ChaosCommand
+
+# Кабина бомбардировщика Хаоса: здесь появляются только его пилоты.
+- type: entity
+  parent: CadiaSpawnPointChaos
+  id: CadiaSpawnPointChaosBomber
+  name: bomber cockpit
+  suffix: Chaos bomber pilot
+  components:
+  - type: CadiaSpawnPoint
+    faction: Chaos
+    group: ChaosBomber

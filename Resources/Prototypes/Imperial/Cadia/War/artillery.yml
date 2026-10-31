@@ -1,0 +1,688 @@
+# Орбитальный обстрел и ПВО Кадии: батареи кораблей, снаряды, пустотный щит, зенитки, ауспекс и эффекты.
+
+# ═══════════════ Батареи (ставятся на корабли) ═══════════════
+
+- type: entity
+  abstract: true
+  id: CadiaBatteryConsoleBase
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ActivatableUI
+    key: enum.CadiaBatteryUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CadiaBatteryUiKey.Key:
+        type: CadiaBatteryBoundUserInterface
+  - type: AmbientSound
+    range: 4
+    volume: -8
+    sound:
+      path: /Audio/Ambience/Objects/engine_hum.ogg
+
+- type: entity
+  parent: CadiaBatteryConsoleBase
+  id: CadiaMacroBatteryConsole
+  name: macro-cannon fire control
+  description: The fire control lectern of a broadside of macro-cannons. Each shell is the size of a tank and falls like the wrath of the Emperor.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/artillery.rsi
+    state: macro_console
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#6dff8a"
+  - type: CadiaOrbitalBattery
+    kind: Macro
+    ammo: 6
+    maxAmmo: 12
+    salvo: 3
+    reload: 45
+    spread: 4
+    intensity: 260
+    slope: 4
+    maxTileIntensity: 30
+    fireSound:
+      path: /Audio/Corvax/Adminbuse/artillery.ogg
+
+- type: entity
+  parent: CadiaBatteryConsoleBase
+  id: CadiaLanceBatteryConsole
+  name: lance battery control
+  description: Controls a lance battery — a focused energy beam that cuts through ceramite and bedrock alike. Precise, terrible and slow to recharge.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/artillery.rsi
+    state: lance_console
+  - type: PointLight
+    radius: 2
+    energy: 1.2
+    color: "#8fd8ff"
+  - type: CadiaOrbitalBattery
+    kind: Lance
+    ammo: 0
+    maxAmmo: 0
+    salvo: 1
+    reload: 90
+    spread: 0.6
+    intensity: 420
+    slope: 9
+    maxTileIntensity: 60
+    warning: 5
+    fireSound:
+      path: /Audio/Weapons/emitter.ogg
+
+- type: entity
+  parent: BaseItem
+  id: CadiaMacroShell
+  name: macro-cannon shell
+  description: A brass-cased macro-cannon shell blessed by a tech-priest. Load it into the battery's fire control.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/artillery.rsi
+    state: macro_shell
+  - type: Item
+    size: Huge
+  - type: CadiaMacroShell
+    rounds: 1
+
+# ═══════════════ Пустотный щит ═══════════════
+
+- type: entity
+  id: CadiaVoidShieldGenerator
+  name: void shield generator
+  description: A gothic generator that wraps its vessel in a skin of warp-energy. Every hit drains it; when it fails, it collapses and needs a minute to restart.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/artillery.rsi
+    noRot: true
+    layers:
+    - state: void_shield_off
+    - state: void_shield
+      map: [ "enum.CadiaVoidShieldVisuals.Up" ]
+    - state: void_shield_glow
+      shader: unshaded
+      map: [ "glow" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.CadiaVoidShieldVisuals.Up:
+        enum.CadiaVoidShieldVisuals.Up:
+          True: { visible: true }
+          False: { visible: false }
+        glow:
+          True: { visible: true }
+          False: { visible: false }
+  - type: PointLight
+    radius: 3
+    energy: 1.5
+    color: "#7cc8ff"
+  - type: AmbientSound
+    range: 6
+    volume: -4
+    sound:
+      path: /Audio/Ambience/Objects/engine_hum.ogg
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 300
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CadiaVoidShield
+
+# ═══════════════ ПВО ═══════════════
+
+# Зенитная позиция 4×4: капонир с вращающейся башней. Через люк заходят в бункер с огневой консолью.
+- type: entity
+  abstract: true
+  id: CadiaAntiAirBase
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/emplacement.rsi
+    drawdepth: Mobs
+    offset: 0.5,0.5
+    noRot: true
+    layers:
+    - state: base
+    - state: hydra_turret
+      map: [ "turret" ]
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.45,-1.45,2.45,2.45"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 900
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/explosion_small1.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 4
+            max: 8
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# «Гидра»: счетверённая автопушка, длинные очереди по небу.
+- type: entity
+  parent: CadiaAntiAirBase
+  id: CadiaHydraFlak
+  name: Hydra flak emplacement
+  description: A concrete gun pit with a quad-barrelled Hydra turret. Its crew works from the bunker below — climb in through the hatch.
+  components:
+  - type: CadiaAntiAir
+    faction: Imperium
+    range: 24
+    levels: 1
+    fireRate: 0.35
+    spread: 3
+    shellSpeed: 45
+    damage: 12
+    thrusterHitChance: 0.25
+    turnRate: 80
+    ammo: 300
+    maxAmmo: 300
+    fireSound:
+      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+
+# «Мантикора»: ракеты по одной, медленно, тяжело и до орбиты.
+- type: entity
+  parent: CadiaAntiAirBase
+  id: CadiaManticoreLauncher
+  name: Manticore missile emplacement
+  description: A concrete pit with a Manticore launcher. Slow to traverse and reload, but its storm eagle rockets reach low orbit and tear hulls open.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: manticore_turret
+      map: [ "turret" ]
+  - type: CadiaAntiAir
+    faction: Imperium
+    range: 32
+    levels: 2
+    fireRate: 3.5
+    spread: 2
+    shellSpeed: 25
+    damage: 45
+    thrusterHitChance: 0.45
+    turnRate: 35
+    ammo: 16
+    maxAmmo: 16
+    fireSound:
+      path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
+
+# Трофейные позиции Хаоса: бьют по имперским шаттлам, в бункере — вокс банды.
+- type: entity
+  parent: CadiaHydraFlak
+  id: CadiaHydraFlakChaos
+  name: defiled Hydra emplacement
+  suffix: Chaos
+  components:
+  - type: Sprite
+    color: "#d8a49c"
+  - type: CadiaAntiAir
+    faction: Chaos
+    interiorSpeaker: CadiaVoxSpeakerChaos
+
+- type: entity
+  parent: CadiaManticoreLauncher
+  id: CadiaManticoreLauncherChaos
+  name: defiled Manticore emplacement
+  suffix: Chaos
+  components:
+  - type: Sprite
+    color: "#d8a49c"
+  - type: CadiaAntiAir
+    faction: Chaos
+    interiorSpeaker: CadiaVoxSpeakerChaos
+
+# ─── Бункер ───
+
+- type: entity
+  id: CadiaAntiAirConsole
+  name: flak fire control
+  description: The gunner's post. A green auspex scope shows the sky above; the handles traverse the turret, the red trigger fires it.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/bunker.rsi
+    state: console
+    noRot: true
+  - type: PointLight
+    radius: 2.5
+    energy: 1.4
+    color: "#5aff78"
+  - type: AmbientSound
+    range: 4
+    volume: -8
+    sound:
+      path: /Audio/Ambience/Objects/engine_hum.ogg
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: ActivatableUI
+    key: enum.CadiaAntiAirUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CadiaAntiAirUiKey.Key:
+        type: CadiaAntiAirBoundUserInterface
+  - type: CadiaAntiAirConsole
+
+# Вокс-динамик бункера: слышно полковую и командную сеть, сказанное рядом уходит в полковой вокс.
+- type: entity
+  id: CadiaVoxSpeaker
+  name: bunker vox speaker
+  description: A wall-mounted vox grille. The regiment's chatter crackles through it; speak close and you are heard on the regimental net.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/bunker.rsi
+    state: speaker
+    drawdepth: WallMountedItems
+    noRot: true
+  - type: PointLight
+    radius: 1
+    energy: 0.8
+    color: "#5aff78"
+  - type: TelecomExempt
+  - type: RadioSpeaker
+    toggleOnInteract: false
+    enabled: true
+    channels:
+    - CadiaVox
+    - CadiaCommand
+  - type: RadioMicrophone
+    toggleOnInteract: false
+    enabled: true
+    listenRange: 3
+    broadcastChannel: CadiaVox
+  - type: Speech
+    speechVerb: Robotic
+
+- type: entity
+  parent: CadiaVoxSpeaker
+  id: CadiaVoxSpeakerChaos
+  name: warband vox speaker
+  suffix: Chaos
+  components:
+  - type: Sprite
+    color: "#e09080"
+  - type: PointLight
+    color: "#ff4a3a"
+  - type: RadioSpeaker
+    toggleOnInteract: false
+    enabled: true
+    channels:
+    - CadiaWarband
+  - type: RadioMicrophone
+    toggleOnInteract: false
+    enabled: true
+    listenRange: 3
+    broadcastChannel: CadiaWarband
+
+- type: entity
+  id: CadiaEmplacementHatch
+  name: emplacement hatch
+  description: A heavy armoured hatch. Open it to climb back out to the gun pit.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/bunker.rsi
+    state: hatch
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: CadiaEmplacementHatch
+
+- type: entity
+  id: CadiaBunkerLamp
+  name: bunker lamp
+  description: A caged lamp throwing yellow light over the gun crew.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/Cadia/War/bunker.rsi
+    state: lamp
+    drawdepth: WallMountedItems
+    noRot: true
+  - type: PointLight
+    radius: 4
+    energy: 1.6
+    color: "#ffd38a"
+
+- type: entity
+  parent: BaseItem
+  id: CadiaFlakAmmoBox
+  name: flak ammunition crate
+  description: A crate of autocannon shells for a flak emplacement. Load it into the gun or its fire control.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/bunker.rsi
+    state: ammo
+  - type: Item
+    size: Huge
+  - type: CadiaFlakAmmo
+    rounds: 150
+
+- type: entity
+  id: CadiaAuspexRadar
+  name: auspex array
+  description: A sensor mast that sweeps the sky over Kasr Kraf. It warns of enemy craft above and feeds targeting data to nearby flak batteries.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/artillery.rsi
+    noRot: true
+    layers:
+    - state: auspex
+    - state: auspex_sweep
+      shader: unshaded
+  - type: PointLight
+    radius: 1.5
+    energy: 0.8
+    color: "#5aff78"
+  - type: AmbientSound
+    range: 4
+    volume: -10
+    sound:
+      path: /Audio/Ambience/Objects/engine_hum.ogg
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CadiaAuspex
+    faction: Imperium
+
+- type: entity
+  parent: CadiaAuspexRadar
+  id: CadiaAuspexRadarChaos
+  name: defiled auspex array
+  suffix: Chaos
+  components:
+  - type: Sprite
+    color: "#d68a80"
+  - type: CadiaAuspex
+    faction: Chaos
+
+# ═══════════════ Эффекты ═══════════════
+
+- type: entity
+  id: CadiaOrbitalStrikeMarker
+  name: orbital strike
+  description: A red targeting circle. Something enormous is about to fall here. RUN.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/Cadia/War/effects.rsi
+    drawdepth: FloorObjects
+    noRot: true
+    layers:
+    - state: strike_marker
+      shader: unshaded
+  - type: PointLight
+    radius: 3.5
+    energy: 2
+    color: "#ff2a1a"
+  - type: TimedDespawn
+    lifetime: 30
+
+- type: entity
+  parent: CadiaOrbitalStrikeMarker
+  id: CadiaLanceStrikeMarker
+  name: lance strike
+  description: A blue-white targeting circle. A lance beam is about to strike from orbit.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: lance_marker
+  - type: PointLight
+    color: "#8fd8ff"
+
+- type: entity
+  id: CadiaLanceBeam
+  name: lance beam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/Cadia/War/lance_beam.rsi
+    drawdepth: Effects
+    offset: 0,3.5
+    noRot: true
+    layers:
+    - state: beam
+      shader: unshaded
+  - type: PointLight
+    radius: 9
+    energy: 6
+    color: "#bfe8ff"
+  - type: TimedDespawn
+    lifetime: 0.95
+
+- type: entity
+  id: CadiaVoidShieldFlash
+  name: void shield flash
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/Cadia/War/effects.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: shield_flash
+      shader: unshaded
+  - type: PointLight
+    radius: 4
+    energy: 3
+    color: "#7cc8ff"
+  - type: TimedDespawn
+    lifetime: 0.42
+
+- type: entity
+  id: CadiaFlakMuzzle
+  name: muzzle flash
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/Cadia/War/effects_small.rsi
+    drawdepth: Effects
+    offset: 0,0.4
+    noRot: true
+    layers:
+    - state: muzzle
+      shader: unshaded
+  - type: PointLight
+    radius: 2.5
+    energy: 3
+    color: "#ffb35a"
+  - type: TimedDespawn
+    lifetime: 0.18
+
+- type: entity
+  id: CadiaFlakBurst
+  name: flak burst
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/Cadia/War/effects_small.rsi
+    state: flak_burst
+    drawdepth: Effects
+    noRot: true
+  - type: PointLight
+    radius: 2.5
+    energy: 2
+    color: "#ff8a3a"
+  - type: TimedDespawn
+    lifetime: 0.54
+
+# Пустотный щит цитадели: тот же генератор на земле, купол над цитаделью Касра (сетка на земле — всё поле, поэтому радиус).
+- type: entity
+  parent: CadiaVoidShieldGenerator
+  id: CadiaVoidShieldGeneratorGround
+  name: citadel void shield generator
+  description: The citadel's own void shield. Its dome over Kasr's heart drinks orbital fire; when it fails, it needs a minute to restart.
+  components:
+  - type: CadiaVoidShield
+    radius: 10

@@ -1,0 +1,175 @@
+# Кадия: снаряжение Кадийских ударных войск и доспех космодесанта. Надетые спрайты во всех четырёх направлениях.
+
+- type: entity
+  parent: ClothingUniformBase
+  id: CadiaFatigues
+  name: Cadian fatigues
+  description: Grey-green urban camouflage fatigues of the Cadian Shock Troops.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Clothing/fatigues.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Clothing/fatigues.rsi
+
+- type: entity
+  parent: ClothingOuterArmorBasic
+  id: CadiaFlakArmor
+  name: Cadian flak armour
+  description: Layered flak plates that stop shrapnel and, on a good day, a lasbolt.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Clothing/flak_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Clothing/flak_armor.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetArmoredBase
+  id: CadiaHelmet
+  name: Cadian helmet
+  description: A pressed-steel helmet with a chin strap. Scratched with the owner's kill tally.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Clothing/helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Clothing/helmet.rsi
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: CadiaBoots
+  name: Cadian combat boots
+  description: Mid-calf leather boots that have marched through the mud of a hundred trenches.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Clothing/boots.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Clothing/boots.rsi
+
+- type: entity
+  parent: ClothingHandsButcherable
+  id: CadiaGloves
+  name: Cadian fingerless gloves
+  description: Black fingerless gloves — trigger fingers stay free.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Clothing/gloves.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Clothing/gloves.rsi
+
+# Силовой доспех Мк. VII «Аквила» (Ультрамарины): полный доспех со шлемом, надевается как верхняя одежда.
+- type: entity
+  parent: ClothingOuterArmorBasic
+  id: CadiaSpaceMarineArmor
+  name: Mark VII Aquila power armour
+  description: Ceramite power armour of the Adeptus Astartes in Ultramarines blue. The Emperor's own wrath given form.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Clothing/marine_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Clothing/marine_armor.rsi
+  - type: Item
+    size: Huge
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.35
+        Heat: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - FacialHair
+    - Snout
+    - SnoutCover
+    - HeadTop
+    - HeadSide
+    - Head
+    - Eyes
+    - Chest
+    - RArm
+    - LArm
+    - RHand
+    - LHand
+    - RLeg
+    - LLeg
+    - RFoot
+    - LFoot
+    - UndergarmentTop
+    - UndergarmentBottom
+    - Tail
+
+# Шаги Астартес: тяжёлая поступь силовой брони (Freesound, CC0, см. attributions.yml в Footsteps).
+- type: soundCollection
+  id: CadiaAstartesStep
+  files:
+  - /Audio/Imperial/Cadia/Footsteps/astartes_step1.ogg
+  - /Audio/Imperial/Cadia/Footsteps/astartes_step2.ogg
+  - /Audio/Imperial/Cadia/Footsteps/astartes_step3.ogg
+  - /Audio/Imperial/Cadia/Footsteps/astartes_step4.ogg
+  - /Audio/Imperial/Cadia/Footsteps/astartes_step5.ogg
+
+# Силовые сапоги космодесантника: керамитовые сабатоны, от шага которых дрожит земля.
+- type: entity
+  parent: CadiaBoots
+  id: CadiaAstartesBoots
+  name: power armour sabatons
+  description: Ceramite sabatons of Mark VII power armour. Every step rings like a hammer on an anvil.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Clothing/astartes_boots.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Clothing/astartes_boots.rsi
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: CadiaAstartesStep
+      params:
+        volume: 2
+        variation: 0.08
+
+- type: entity
+  parent: CadiaAstartesBoots
+  id: CadiaChaosAstartesBoots
+  name: corrupted sabatons
+  description: Black ceramite sabatons, spiked and brass-chased. The ground remembers where they walked.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Clothing/chaos_astartes_boots.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Clothing/chaos_astartes_boots.rsi
+
+# Шаги существ Кадии (Freesound, CC0, см. attributions.yml в Footsteps).
+- type: soundCollection
+  id: CadiaStepHooves
+  files:
+  - /Audio/Imperial/Cadia/Footsteps/hoof1.ogg
+  - /Audio/Imperial/Cadia/Footsteps/hoof2.ogg
+  - /Audio/Imperial/Cadia/Footsteps/hoof3.ogg
+  - /Audio/Imperial/Cadia/Footsteps/hoof4.ogg
+
+- type: soundCollection
+  id: CadiaStepSquelch
+  files:
+  - /Audio/Imperial/Cadia/Footsteps/squelch1.ogg
+  - /Audio/Imperial/Cadia/Footsteps/squelch2.ogg
+  - /Audio/Imperial/Cadia/Footsteps/squelch3.ogg
+  - /Audio/Imperial/Cadia/Footsteps/squelch4.ogg
+
+- type: soundCollection
+  id: CadiaStepClaws
+  files:
+  - /Audio/Imperial/Cadia/Footsteps/claws1.ogg
+  - /Audio/Imperial/Cadia/Footsteps/claws2.ogg
+  - /Audio/Imperial/Cadia/Footsteps/claws3.ogg
+  - /Audio/Imperial/Cadia/Footsteps/claws4.ogg
+
+- type: soundCollection
+  id: CadiaStepMonster
+  files:
+  - /Audio/Imperial/Cadia/Footsteps/monster1.ogg
+  - /Audio/Imperial/Cadia/Footsteps/monster2.ogg
+  - /Audio/Imperial/Cadia/Footsteps/monster3.ogg

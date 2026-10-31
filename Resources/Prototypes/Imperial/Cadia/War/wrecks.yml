@@ -1,0 +1,347 @@
+# Подбитая техника: у каждой машины свой обгоревший остов, за ним можно укрыться.
+
+- type: entity
+  parent: CadiaVehicleWreck
+  id: CadiaWreckRuss
+  name: burnt-out Leman Russ
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/wrecks.rsi
+    state: russ
+    drawdepth: Objects
+    noRot: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.1,-1.3,1.1,1.3"
+        density: 4000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: CadiaCover
+    block: 0.75
+    overRange: 2
+
+- type: entity
+  parent: CadiaVehicleWreck
+  id: CadiaWreckChimera
+  name: burnt-out Chimera
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/wrecks.rsi
+    state: chimera
+    drawdepth: Objects
+    noRot: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.1,-1.3,1.1,1.3"
+        density: 4000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: CadiaCover
+    block: 0.75
+    overRange: 2
+
+- type: entity
+  parent: CadiaVehicleWreck
+  id: CadiaWreckBasilisk
+  name: burnt-out Basilisk
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/wrecks.rsi
+    state: basilisk
+    drawdepth: Objects
+    noRot: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.1,-1.3,1.1,1.3"
+        density: 4000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: CadiaCover
+    block: 0.75
+    overRange: 2
+
+- type: entity
+  parent: CadiaVehicleWreck
+  id: CadiaWreckRhino
+  name: burnt-out Rhino
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/wrecks.rsi
+    state: rhino
+    drawdepth: Objects
+    noRot: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.1,-1.3,1.1,1.3"
+        density: 4000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: CadiaCover
+    block: 0.75
+    overRange: 2
+
+- type: entity
+  parent: CadiaVehicleWreck
+  id: CadiaWreckSentinel
+  name: toppled Sentinel
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/wrecks.rsi
+    state: sentinel
+    drawdepth: Objects
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.7,-0.45,0.7,0.45"
+        density: 4000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: CadiaCover
+    block: 0.75
+    overRange: 2
+
+- type: entity
+  parent: CadiaVehicleWreck
+  id: CadiaWreckHelbrute
+  name: fallen Helbrute
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/wrecks.rsi
+    state: helbrute
+    drawdepth: Objects
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1,-0.6,1,0.6"
+        density: 4000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: CadiaCover
+    block: 0.75
+    overRange: 2
+
+- type: entity
+  parent: CadiaVehicleWreck
+  id: CadiaWreckDefiler
+  name: shattered Defiler
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/wrecks.rsi
+    state: defiler
+    drawdepth: Objects
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.3,-1.1,1.3,1.1"
+        density: 4000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: CadiaCover
+    block: 0.75
+    overRange: 2
+
+# Огонь и столб дыма над остовом: гаснут сами.
+- type: entity
+  id: CadiaWreckFire
+  name: burning wreck
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    drawdepth: Overdoors
+    noRot: true
+    layers:
+    - sprite: Effects/chemsmoke.rsi
+      state: chemsmoke
+      color: "#26221ea8"
+      scale: 1.8,2.4
+      offset: 0,1.4
+    - sprite: Effects/fire.rsi
+      state: "2"
+      offset: 0.2,0.1
+    - sprite: Effects/fire.rsi
+      state: "1"
+      offset: -0.5,-0.3
+  - type: PointLight
+    radius: 4
+    energy: 2
+    color: "#ff6a2a"
+  - type: AmbientSound
+    range: 7
+    volume: -3
+    sound:
+      path: /Audio/Ambience/Objects/fireplace.ogg
+  - type: TimedDespawn
+    lifetime: 75
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# Пожарище на карте: горит всю войну. Пламя низко, дым поднимается столбом.
+- type: entity
+  id: CadiaEternalFire
+  name: burning wreckage
+  description: Promethium burns for days. Nobody is going to put this out.
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    drawdepth: Overdoors
+    noRot: true
+    layers:
+    - sprite: Effects/chemsmoke.rsi
+      state: chemsmoke
+      color: "#1e1a1690"
+      scale: 2.2,3.2
+      offset: 0.3,2.2
+    - sprite: Effects/fire.rsi
+      state: "2"
+      offset: 0.15,0.05
+    - sprite: Effects/fire.rsi
+      state: "1"
+      offset: -0.35,-0.25
+  - type: PointLight
+    radius: 5
+    energy: 2.4
+    color: "#ff7a30"
+  - type: LightBehaviour
+    behaviours:
+    - !type:RandomizeBehaviour
+      interpolate: Nearest
+      minDuration: 0.08
+      maxDuration: 0.25
+      startValue: 1.9
+      endValue: 2.6
+      property: Energy
+      isLooped: true
+      enabled: true
+  - type: AmbientSound
+    range: 7
+    volume: -4
+    sound:
+      path: /Audio/Ambience/Objects/fireplace.ogg
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# Дым над разрушенным кварталом: без огня, высоко над землёй.
+- type: entity
+  id: CadiaSmokePlume
+  name: smoke
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    drawdepth: Overdoors
+    noRot: true
+    sprite: Effects/chemsmoke.rsi
+    state: chemsmoke
+    color: "#2a262270"
+    scale: 2.6,3.6
+    offset: 0,2.6
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# Ветер над пустошью: невидимый источник звука, ставится по открытому полю.
+- type: entity
+  id: CadiaWindAmbience
+  name: wind
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AmbientSound
+    range: 16
+    volume: -7
+    sound:
+      collection: CadiaWind
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: soundCollection
+  id: CadiaWind
+  files:
+  - /Audio/Effects/Weather/wind_2_1.ogg
+  - /Audio/Effects/Weather/wind_2_2.ogg
+  - /Audio/Effects/Weather/wind_3_1.ogg
+  - /Audio/Effects/Weather/wind_4_1.ogg
+
+# Разбитая «Валькирия»: рухнула на нейтральной полосе, за ней тянется полоса гари.
+- type: entity
+  id: CadiaValkyrieWreck
+  name: crashed Valkyrie
+  description: An Imperial Valkyrie, gutted and burnt black. The crew never got out.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/valkyrie.rsi
+    state: ship
+    drawdepth: Objects
+    color: "#4a423c"
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.4,-1.6,1.4,1.6"
+        density: 4000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: CadiaCover
+    block: 0.8
+    overRange: 2

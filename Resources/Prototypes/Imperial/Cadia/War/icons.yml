@@ -1,0 +1,254 @@
+﻿# Р—РЅР°С‡РєРё СЂРѕР»РµР№ РІРѕР№РЅС‹ Р·Р° РљР°РґРёСЋ. РџРѕРєР°Р·С‹РІР°РµС‚ РєР»РёРµРЅС‚ С‚РѕР»СЊРєРѕ Р±РѕР№С†Р°Рј С‚РѕР№ Р¶Рµ СЃС‚РѕСЂРѕРЅС‹ (CadiaFactionIconSystem).
+
+- type: factionIcon
+  id: CadiaIconLordCastellan
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: lordcastellan
+- type: factionIcon
+  id: CadiaIconColourSergeant
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: coloursergeant
+- type: factionIcon
+  id: CadiaIconLieutenant
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: lieutenant
+- type: factionIcon
+  id: CadiaIconCommissar
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: commissar
+- type: factionIcon
+  id: CadiaIconSergeant
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: sergeant
+- type: factionIcon
+  id: CadiaIconGuardsman
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: guardsman
+- type: factionIcon
+  id: CadiaIconMedic
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: medic
+- type: factionIcon
+  id: CadiaIconVox
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: vox
+- type: factionIcon
+  id: CadiaIconFlamer
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: flamer
+- type: factionIcon
+  id: CadiaIconSniper
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: sniper
+- type: factionIcon
+  id: CadiaIconHeavy
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: heavy
+- type: factionIcon
+  id: CadiaIconKasrkin
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: kasrkin
+- type: factionIcon
+  id: CadiaIconEnginseer
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: enginseer
+- type: factionIcon
+  id: CadiaIconPriest
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: priest
+- type: factionIcon
+  id: CadiaIconSister
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: sister
+- type: factionIcon
+  id: CadiaIconPsyker
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: psyker
+- type: factionIcon
+  id: CadiaIconAstropath
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: astropath
+- type: factionIcon
+  id: CadiaIconUltramarineCaptain
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: ultramarinecaptain
+- type: factionIcon
+  id: CadiaIconUltramarineChaplain
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: ultramarinechaplain
+- type: factionIcon
+  id: CadiaIconUltramarineLibrarian
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: ultramarinelibrarian
+- type: factionIcon
+  id: CadiaIconUltramarineApothecary
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: ultramarineapothecary
+- type: factionIcon
+  id: CadiaIconUltramarineTechmarine
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: ultramarinetechmarine
+- type: factionIcon
+  id: CadiaIconUltramarineSergeant
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: ultramarinesergeant
+- type: factionIcon
+  id: CadiaIconUltramarineTactical
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: ultramarinetactical
+- type: factionIcon
+  id: CadiaIconUltramarineAssault
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: ultramarineassault
+- type: factionIcon
+  id: CadiaIconUltramarineDevastator
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: ultramarinedevastator
+- type: factionIcon
+  id: CadiaIconChaosLord
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: chaoslord
+- type: factionIcon
+  id: CadiaIconDarkApostle
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: darkapostle
+- type: factionIcon
+  id: CadiaIconSorcerer
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: sorcerer
+- type: factionIcon
+  id: CadiaIconDemagogue
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: demagogue
+- type: factionIcon
+  id: CadiaIconCultist
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: cultist
+- type: factionIcon
+  id: CadiaIconTraitor
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: traitor
+- type: factionIcon
+  id: CadiaIconHeretek
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: heretek
+- type: factionIcon
+  id: CadiaIconBlackLegion
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: blacklegion
+- type: factionIcon
+  id: CadiaIconAbaddon
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: abaddon
+- type: factionIcon
+  id: CadiaIconChosen
+  priority: 12
+  isShaded: true
+  icon:
+    sprite: /Textures/Imperial/Cadia/War/role_icons.rsi
+    state: chosen

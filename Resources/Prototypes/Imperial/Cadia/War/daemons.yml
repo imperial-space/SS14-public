@@ -1,0 +1,866 @@
+# Демоны Хаоса: четыре бога, Хелдрейк и принц демонов. Призываются у разлома за силу варпа, пока пилоны стоят — слабее.
+
+- type: entity
+  abstract: true
+  parent: [ SimpleMobBase, MobCombat ]
+  id: CadiaDaemonBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: CadiaFactionMember
+    faction: Chaos
+    role: CadiaDaemonRole
+  - type: CadiaBriefingPending
+  - type: CadiaMoraleAura
+    radius: 7
+    friendRate: 0.5
+    enemyRate: -2
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+
+# Призванный демон: пока никто не занял тело, дерётся сам.
+- type: entity
+  abstract: true
+  parent: CadiaDaemonBase
+  id: CadiaSummonedDaemonBase
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: GhostRole
+    name: cadia-daemon-ghost-name
+    description: cadia-daemon-ghost-desc
+    rules: cadia-rules-chaos
+  - type: GhostTakeoverAvailable
+
+- type: entity
+  parent: CadiaSummonedDaemonBase
+  id: CadiaMobBloodletter
+  name: bloodletter
+  description: A blood-red daemon of Khorne, its hellblade hungry for skulls.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/mob_bloodletter.rsi
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - state: mob
+      map: [ "movement" ]
+  - type: CadiaDaemon
+    god: Khorne
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: MeleeWeapon
+    angle: 60
+    animation: WeaponArcSlash
+    attackRate: 1.1
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    damage:
+      types:
+        Slash: 26
+        Structural: 15
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.6
+    baseSprintSpeed: 5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.38
+        density: 200
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: CadiaStepHooves
+      params:
+        volume: 0
+        variation: 0.1
+- type: entity
+  parent: CadiaSummonedDaemonBase
+  id: CadiaMobPlaguebearer
+  name: plaguebearer
+  description: A shambling rotting daemon of Nurgle. It feels little and spreads much.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/mob_plaguebearer.rsi
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - state: mob
+      map: [ "movement" ]
+  - type: CadiaDaemon
+    god: Nurgle
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      260: Dead
+  - type: MeleeWeapon
+    angle: 60
+    animation: WeaponArcSlash
+    attackRate: 0.8
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    damage:
+      types:
+        Slash: 12
+        Poison: 10
+        Structural: 8
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2.6
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 300
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: CadiaStepSquelch
+      params:
+        volume: 0
+        variation: 0.1
+- type: entity
+  parent: CadiaSummonedDaemonBase
+  id: CadiaMobPinkHorror
+  name: pink horror
+  description: A cackling daemon of Tzeentch that hurls warpfire. Slain, it splits in two sulking blue horrors.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/mob_pink_horror.rsi
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - state: mob
+      map: [ "movement" ]
+  - type: CadiaDaemon
+    god: Tzeentch
+    splitInto: CadiaMobBlueHorror
+    splitCount: 2
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      110: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Heat: 10
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1.2
+  - type: BasicEntityAmmoProvider
+    proto: CadiaWarpBolt
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 0.8
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Imperial/Wizard/fireball.ogg
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 3.8
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.36
+        density: 150
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: CadiaStepSquelch
+      params:
+        volume: -2
+        variation: 0.1
+- type: entity
+  parent: CadiaDaemonBase
+  id: CadiaMobBlueHorror
+  name: blue horror
+  description: A small sulking daemon, furious at being split from something greater.
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Sprite
+    sprite: Imperial/Cadia/War/mob_blue_horror.rsi
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - state: mob
+      map: [ "movement" ]
+  - type: CadiaDaemon
+    god: Tzeentch
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Heat: 8
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.2
+    baseSprintSpeed: 4
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.28
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: CadiaStepSquelch
+      params:
+        volume: -4
+        variation: 0.1
+- type: entity
+  parent: CadiaSummonedDaemonBase
+  id: CadiaMobDaemonette
+  name: daemonette
+  description: A swift clawed daemon of Slaanesh, on you before you can raise your lasgun.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/mob_daemonette.rsi
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - state: mob
+      map: [ "movement" ]
+  - type: CadiaDaemon
+    god: Slaanesh
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcClaw
+    attackRate: 1.6
+    damage:
+      types:
+        Slash: 14
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5
+    baseSprintSpeed: 6.2
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.32
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: CadiaStepClaws
+      params:
+        volume: -2
+        variation: 0.1
+- type: entity
+  parent: CadiaSummonedDaemonBase
+  id: CadiaMobHeldrake
+  name: heldrake
+  description: A winged daemon engine that hunts aircraft and flak crews. It flies freely between the levels.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/mob_heldrake.rsi
+    drawdepth: Overdoors
+    noRot: true
+    layers:
+    - state: mob
+      map: [ "movement" ]
+  - type: CadiaDaemon
+    flyer: true
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Dead
+  - type: MeleeWeapon
+    angle: 90
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    damage:
+      types:
+        Slash: 30
+        Structural: 30
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.25
+  - type: BasicEntityAmmoProvider
+    proto: CadiaAutocannonRound
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 4
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Imperial/Cadia/Weapons/autocannon_fire.ogg
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5
+    baseSprintSpeed: 6.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.9
+        density: 800
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: CadiaStepMonster
+      params:
+        volume: 2
+        variation: 0.1
+- type: entity
+  parent: CadiaSummonedDaemonBase
+  id: CadiaMobDaemonPrince
+  name: daemon prince
+  description: A champion raised to daemonhood. Banish it, and the Black Crusade breaks on Cadia's walls.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/mob_prince.rsi
+    drawdepth: Overdoors
+    noRot: true
+    layers:
+    - state: mob
+      map: [ "movement" ]
+  - type: CadiaDaemon
+    boss: true
+  - type: CadiaMoraleAura
+    radius: 14
+    friendRate: 2
+    enemyRate: -5
+  - type: PointLight
+    radius: 4
+    energy: 1.5
+    color: "#ff3a2a"
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1500: Dead
+  - type: MeleeWeapon
+    angle: 120
+    animation: WeaponArcSlash
+    range: 2.2
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    damage:
+      types:
+        Slash: 45
+        Structural: 80
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 4.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.95
+        density: 1200
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+
+# ─── Роли-чудовища Чёрного легиона ───
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: CadiaStepMonster
+      params:
+        volume: 4
+        variation: 0.1
+- type: entity
+  parent: CadiaDaemonBase
+  id: CadiaMobPossessed
+  name: possessed
+  description: A legionnaire who gave his body to a daemon. Little of the man remains.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/mob_possessed.rsi
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - state: mob
+      map: [ "movement" ]
+  - type: CadiaDaemon
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: MeleeWeapon
+    angle: 60
+    animation: WeaponArcClaw
+    attackRate: 1.2
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    damage:
+      types:
+        Slash: 30
+        Structural: 20
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 5.2
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.42
+        density: 400
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: CadiaStepMonster
+      params:
+        volume: 0
+        variation: 0.1
+- type: entity
+  parent: CadiaDaemonBase
+  id: CadiaMobObliterator
+  name: obliterator
+  description: Flesh and weapon grown into one. Its arms are guns that the warp keeps loaded.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/mob_obliterator.rsi
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - state: mob
+      map: [ "movement" ]
+  - type: CadiaDaemon
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      340: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcFist
+    damage:
+      types:
+        Blunt: 22
+        Structural: 20
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.35
+  - type: BasicEntityAmmoProvider
+    proto: CadiaHeavyBoltRound
+    capacity: 3
+    count: 3
+  - type: Gun
+    fireRate: 3
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Imperial/Cadia/Weapons/heavybolter_fire.ogg
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.6
+    baseSprintSpeed: 3.2
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.42
+        density: 500
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: CadiaAstartesStep
+      params:
+        volume: 2
+        variation: 0.1
+- type: entity
+  parent: BulletLaser
+  id: CadiaWarpBolt
+  name: warpfire bolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/projectiles.rsi
+    color: "#ff6ae0"
+    scale: 0.5,0.5
+    layers:
+    - state: warp_bolt
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Heat: 14
+  - type: PointLight
+    radius: 2
+    energy: 1.5
+    color: "#ff6ae0"
+
+# ─── Разломы ───
+
+- type: entity
+  id: CadiaWarpRift
+  name: warp rift
+  description: A wound in reality. Those sworn to the Dark Gods may spend the warp's power here to call daemons through. Right-click to summon.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/warp_rift.rsi
+    drawdepth: Objects
+    noRot: true
+    layers:
+    - state: rift
+      shader: unshaded
+  - type: PointLight
+    radius: 6
+    energy: 2.5
+    color: "#c02a6a"
+  - type: AmbientSound
+    range: 11
+    volume: 1
+    sound:
+      path: /Audio/Imperial/Cadia/Ambience/rift_drone.ogg
+  - type: CadiaWarpRift
+    summons:
+    - proto: CadiaMobBloodletter
+      name: cadia-summon-bloodletter
+      cost: 10
+    - proto: CadiaMobPlaguebearer
+      name: cadia-summon-plaguebearer
+      cost: 12
+    - proto: CadiaMobPinkHorror
+      name: cadia-summon-pink-horror
+      cost: 12
+    - proto: CadiaMobDaemonette
+      name: cadia-summon-daemonette
+      cost: 8
+    - proto: CadiaMobHeldrake
+      name: cadia-summon-heldrake
+      cost: 40
+      delay: 12
+    - proto: CadiaMobDaemonPrince
+      name: cadia-summon-prince
+      cost: 80
+      requiresFallenPylons: true
+      delay: 20
+
+- type: entity
+  parent: CadiaWarpRift
+  id: CadiaWarpRiftSmall
+  name: lesser warp rift
+  description: A small tear in reality, already closing. Right-click to summon lesser daemons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/warp_rift.rsi
+    drawdepth: Objects
+    noRot: true
+    scale: 0.6,0.6
+    layers:
+    - state: rift
+      shader: unshaded
+  - type: CadiaWarpRift
+    lifetime: 60
+    summons:
+    - proto: CadiaMobBloodletter
+      name: cadia-summon-bloodletter
+      cost: 10
+    - proto: CadiaMobDaemonette
+      name: cadia-summon-daemonette
+      cost: 8
+
+# ─── Действия ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaFlyUp
+  name: Fly up
+  description: Rise to the level above.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: flyup }
+    useDelay: 4
+  - type: InstantAction
+    event: !type:CadiaFlyUpActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaFlyDown
+  name: Fly down
+  description: Descend to the level below.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: flydown }
+    useDelay: 4
+  - type: InstantAction
+    event: !type:CadiaFlyDownActionEvent
+
+- type: entity
+  abstract: true
+  parent: BaseAction
+  id: ActionCadiaMarkBase
+  components:
+  - type: Action
+    useDelay: 1
+
+- type: entity
+  parent: ActionCadiaMarkBase
+  id: ActionCadiaMarkKhorne
+  name: Mark of Khorne
+  description: Pledge yourself to the Blood God. Your melee strikes harder. The choice is final.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: khorne }
+  - type: InstantAction
+    event: !type:CadiaChooseMarkActionEvent
+      god: Khorne
+
+- type: entity
+  parent: ActionCadiaMarkBase
+  id: ActionCadiaMarkNurgle
+  name: Mark of Nurgle
+  description: Pledge yourself to the Plague Father. You endure more. The choice is final.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: nurgle }
+  - type: InstantAction
+    event: !type:CadiaChooseMarkActionEvent
+      god: Nurgle
+
+- type: entity
+  parent: ActionCadiaMarkBase
+  id: ActionCadiaMarkTzeentch
+  name: Mark of Tzeentch
+  description: Pledge yourself to the Changer of Ways. A warp ward absorbs one hit every thirty seconds. The choice is final.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: tzeentch }
+  - type: InstantAction
+    event: !type:CadiaChooseMarkActionEvent
+      god: Tzeentch
+
+- type: entity
+  parent: ActionCadiaMarkBase
+  id: ActionCadiaMarkSlaanesh
+  name: Mark of Slaanesh
+  description: Pledge yourself to the Dark Prince. You move faster. The choice is final.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: slaanesh }
+  - type: InstantAction
+    event: !type:CadiaChooseMarkActionEvent
+      god: Slaanesh
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaJump
+  name: Jump pack strike
+  description: Blast forward and crash down on the enemy.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: jump }
+    useDelay: 12
+  - type: TargetAction
+    range: 8
+  - type: WorldTargetAction
+    event: !type:CadiaJumpActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaPrayer
+  name: Litany of Faith
+  description: Allies nearby are healed and psykers' minds are steadied.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: prayer }
+    useDelay: 25
+  - type: InstantAction
+    event: !type:CadiaPrayerActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaActOfFaith
+  name: Act of Faith
+  description: For eight seconds the Emperor shields you from most harm, and your wounds close.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: faith }
+    useDelay: 90
+  - type: InstantAction
+    event: !type:CadiaActOfFaithActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaExterminatus
+  name: Declare Exterminatus
+  description: The last resort. After thirty seconds of unbroken ritual the fleet is ordered to burn Cadia. Everyone will know.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: exterminatus }
+    useDelay: 120
+  - type: InstantAction
+    event: !type:CadiaExterminatusActionEvent
+
+# ─── Предметы ───
+
+- type: entity
+  parent: BaseItem
+  id: CadiaReductor
+  name: reductor
+  description: An apothecary's gauntlet drill. It takes back the progenoid glands of a fallen Astartes.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/psy_icons.rsi
+    state: reductor
+  - type: Item
+    size: Small
+  - type: CadiaReductor
+
+- type: entity
+  parent: BaseItem
+  id: CadiaGeneSeed
+  name: gene-seed
+  description: The future of a Chapter in a sealed vial. Use it in hand. Loyalists consecrate it so a new brother joins the next wave; heretics sacrifice it to the warp.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/psy_icons.rsi
+    state: seed
+  - type: Item
+    size: Tiny
+  - type: CadiaGeneSeed
+
+# Сервитор: боевой автомат Механикус, разворачивается из люльки.
+- type: entity
+  parent: [ SimpleMobBase, MobCombat ]
+  id: CadiaMobServitor
+  name: combat servitor
+  description: A lobotomised cyborg with a gun for an arm. It obeys the last order burned into it — kill the heretic.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: Sprite
+    sprite: Imperial/Cadia/War/mob_servitor.rsi
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - state: mob
+      map: [ "movement" ]
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Dead
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.6
+  - type: BasicEntityAmmoProvider
+    proto: CadiaLasBolt
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 1.5
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Imperial/Cadia/Weapons/las_fire.ogg
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 200
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepBorg
+      params:
+        volume: 0
+        variation: 0.1
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - StunImmune
+    - FootstepSound
+- type: entity
+  parent: BaseItem
+  id: CadiaServitorCradle
+  name: servitor cradle
+  description: A folded combat servitor in a bronze cradle. Use it in hand to wake it.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/psy_icons.rsi
+    state: cradle
+  - type: Item
+    size: Normal
+  - type: SpawnItemsOnUse
+    items:
+    - id: CadiaMobServitor
+    sound:
+      path: /Audio/Machines/scan_finish.ogg

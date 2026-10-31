@@ -1,0 +1,27 @@
+# Снег Кадии: два слоя с глубиной. Дальний — мелкие тусклые хлопья, падают медленно; ближний — редкие крупные мягкие хлопья,
+# летят быстрее и под углом от ветра. Текстуры большие и без кадров анимации, поэтому снег не мерцает и не рябит сеткой.
+
+- type: entity
+  parent: WeatherBase
+  id: CadiaWeatherSnowFar
+  components:
+  - type: WeatherStatusEffect
+    sprite:
+      sprite: /Textures/Imperial/Cadia/Weather/snow_far.rsi
+      state: snow
+    scrolling: 0.3, -0.75
+    sound:
+      path: /Audio/Effects/Weather/snowstorm_weak.ogg
+      params:
+        loop: true
+        volume: -14
+
+- type: entity
+  parent: WeatherBase
+  id: CadiaWeatherSnowNear
+  components:
+  - type: WeatherStatusEffect
+    sprite:
+      sprite: /Textures/Imperial/Cadia/Weather/snow_near.rsi
+      state: snow
+    scrolling: 0.75, -1.55

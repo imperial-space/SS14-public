@@ -1,0 +1,471 @@
+# Псайкеры Кадии: дисциплины Империума и Хаоса, эффекты сил.
+
+- type: entity
+  abstract: true
+  parent: BaseAction
+  id: CadiaPsyActionBase
+  components:
+  - type: Action
+    useDelay: 6
+
+# ─── Империум ───
+
+- type: entity
+  parent: CadiaPsyActionBase
+  id: ActionCadiaPsySmite
+  name: Smite
+  description: A lance of raw psychic force. 20 charge.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: smite }
+    useDelay: 5
+  - type: TargetAction
+    range: 9
+  - type: EntityTargetAction
+    event: !type:CadiaPsyEntityEvent
+    canTargetSelf: false
+    whitelist:
+      components:
+      - MobState
+  - type: CadiaPsyPower
+    power: Smite
+    cost: 20
+    strain: 14
+
+- type: entity
+  parent: CadiaPsyActionBase
+  id: ActionCadiaPsyDome
+  name: Telekinetic Dome
+  description: A ring of force plates stops bullets and bodies for ten seconds. 35 charge.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: dome }
+    useDelay: 25
+  - type: InstantAction
+    event: !type:CadiaPsyInstantEvent
+  - type: CadiaPsyPower
+    power: Dome
+    cost: 35
+    strain: 22
+
+- type: entity
+  parent: CadiaPsyActionBase
+  id: ActionCadiaPsyScream
+  name: Psychic Scream
+  description: Enemies nearby are thrown down, reeling. 25 charge.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: scream }
+    useDelay: 18
+  - type: InstantAction
+    event: !type:CadiaPsyInstantEvent
+  - type: CadiaPsyPower
+    power: Scream
+    cost: 25
+    strain: 18
+
+- type: entity
+  parent: CadiaPsyActionBase
+  id: ActionCadiaPsyForesight
+  name: Foresight
+  description: Enemies within thirty tiles are marked on your side's hololith. 30 charge.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: foresight }
+    useDelay: 40
+  - type: InstantAction
+    event: !type:CadiaPsyInstantEvent
+  - type: CadiaPsyPower
+    power: Foresight
+    cost: 30
+    strain: 10
+
+- type: entity
+  parent: CadiaPsyActionBase
+  id: ActionCadiaPsySuppression
+  name: Suppression
+  description: Cut an enemy psyker off from the warp for thirty seconds. 30 charge.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: suppress }
+    useDelay: 30
+  - type: TargetAction
+    range: 9
+  - type: EntityTargetAction
+    event: !type:CadiaPsyEntityEvent
+    canTargetSelf: false
+    whitelist:
+      components:
+      - CadiaPsyker
+  - type: CadiaPsyPower
+    power: Suppression
+    cost: 30
+    strain: 12
+
+- type: entity
+  parent: CadiaPsyActionBase
+  id: ActionCadiaPsyFury
+  name: Fury of the Ancients
+  description: A beast of psychic flame charges in a line, burning all enemies in its path. 45 charge.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: fury }
+    useDelay: 30
+  - type: TargetAction
+    range: 10
+  - type: WorldTargetAction
+    event: !type:CadiaPsyWorldEvent
+  - type: CadiaPsyPower
+    power: Fury
+    cost: 45
+    strain: 30
+
+# ─── Хаос ───
+
+- type: entity
+  parent: CadiaPsyActionBase
+  id: ActionCadiaPsyWarpfire
+  name: Warpfire
+  description: Tzeentch's mutating flame engulfs the target point. 25 charge.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: warpfire }
+    useDelay: 8
+  - type: TargetAction
+    range: 10
+  - type: WorldTargetAction
+    event: !type:CadiaPsyWorldEvent
+  - type: CadiaPsyPower
+    power: Warpfire
+    cost: 25
+    strain: 16
+
+- type: entity
+  parent: CadiaPsyActionBase
+  id: ActionCadiaPsyVeil
+  name: Veil of Change
+  description: The warp bends light around you for fifteen seconds. 30 charge.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: veil }
+    useDelay: 45
+  - type: InstantAction
+    event: !type:CadiaPsyInstantEvent
+  - type: CadiaPsyPower
+    power: Veil
+    cost: 30
+    strain: 15
+
+- type: entity
+  parent: CadiaPsyActionBase
+  id: ActionCadiaPsyPlague
+  name: Pestilence
+  description: Nurgle's rot blooms around you, poisoning enemies nearby. 25 charge.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: plague }
+    useDelay: 16
+  - type: InstantAction
+    event: !type:CadiaPsyInstantEvent
+  - type: CadiaPsyPower
+    power: Plague
+    cost: 25
+    strain: 16
+
+- type: entity
+  parent: CadiaPsyActionBase
+  id: ActionCadiaPsyBloodboil
+  name: Boil Blood
+  description: The target's blood seethes for Khorne, and you drink of its pain. 25 charge.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: bloodboil }
+    useDelay: 10
+  - type: TargetAction
+    range: 8
+  - type: EntityTargetAction
+    event: !type:CadiaPsyEntityEvent
+    canTargetSelf: false
+    whitelist:
+      components:
+      - MobState
+  - type: CadiaPsyPower
+    power: Bloodboil
+    cost: 25
+    strain: 18
+
+- type: entity
+  parent: CadiaPsyActionBase
+  id: ActionCadiaPsyCharm
+  name: Enthrall
+  description: Slaanesh's whisper leaves enemies nearby helpless. 30 charge.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: charm }
+    useDelay: 25
+  - type: InstantAction
+    event: !type:CadiaPsyInstantEvent
+  - type: CadiaPsyPower
+    power: Charm
+    cost: 30
+    strain: 20
+
+- type: entity
+  parent: CadiaPsyActionBase
+  id: ActionCadiaPsyPortal
+  name: Open Lesser Rift
+  description: Tear a small rift for a minute. Summoners may call lesser daemons through it. 50 charge.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/psy_icons.rsi, state: portal }
+    useDelay: 120
+  - type: TargetAction
+    range: 6
+  - type: WorldTargetAction
+    event: !type:CadiaPsyWorldEvent
+  - type: CadiaPsyPower
+    power: Portal
+    cost: 50
+    strain: 35
+
+# ─── Эффекты ───
+
+- type: entity
+  abstract: true
+  id: CadiaPsyEffectBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: TimedDespawn
+    lifetime: 0.6
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  parent: CadiaPsyEffectBase
+  id: CadiaPsySmiteEffect
+  name: smite
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/psy_fx.rsi
+    drawdepth: Effects
+    color: "#8fd0ff"
+    noRot: true
+    layers:
+    - state: bolt
+      shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#8fd0ff"
+
+- type: entity
+  parent: CadiaPsyEffectBase
+  id: CadiaPsyRingBlue
+  name: psychic wave
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/psy_fx.rsi
+    drawdepth: Effects
+    color: "#8fd0ff"
+    scale: 2,2
+    noRot: true
+    layers:
+    - state: ring
+      shader: unshaded
+  - type: PointLight
+    radius: 4
+    energy: 1.5
+    color: "#8fd0ff"
+
+- type: entity
+  parent: CadiaPsyRingBlue
+  id: CadiaPsyRingRed
+  name: warp wave
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/psy_fx.rsi
+    drawdepth: Effects
+    color: "#ff3a2a"
+    scale: 2,2
+    noRot: true
+    layers:
+    - state: ring
+      shader: unshaded
+  - type: PointLight
+    radius: 4
+    energy: 1.5
+    color: "#ff3a2a"
+
+- type: entity
+  parent: CadiaPsyRingBlue
+  id: CadiaPsyRingPink
+  name: enthralling wave
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/psy_fx.rsi
+    drawdepth: Effects
+    color: "#ff7ad9"
+    scale: 2,2
+    noRot: true
+    layers:
+    - state: ring
+      shader: unshaded
+  - type: PointLight
+    radius: 4
+    energy: 1.5
+    color: "#ff7ad9"
+
+- type: entity
+  parent: CadiaPsyRingBlue
+  id: CadiaFaithRingEffect
+  name: light of faith
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/psy_fx.rsi
+    drawdepth: Effects
+    color: "#ffe9a8"
+    scale: 2,2
+    noRot: true
+    layers:
+    - state: ring
+      shader: unshaded
+  - type: PointLight
+    radius: 5
+    energy: 2
+    color: "#ffe9a8"
+
+- type: entity
+  parent: CadiaPsyEffectBase
+  id: CadiaPsyPerilsEffect
+  name: warp breach
+  components:
+  - type: TimedDespawn
+    lifetime: 0.8
+  - type: Sprite
+    sprite: Imperial/Cadia/War/psy_fx.rsi
+    drawdepth: Effects
+    color: "#c04aff"
+    noRot: true
+    layers:
+    - state: flame
+      shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 2.5
+    color: "#c04aff"
+
+- type: entity
+  parent: CadiaPsyPerilsEffect
+  id: CadiaPsyFuryEffect
+  name: psychic flame
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/psy_fx.rsi
+    drawdepth: Effects
+    color: "#ffb35a"
+    noRot: true
+    layers:
+    - state: flame
+      shader: unshaded
+  - type: PointLight
+    radius: 2.5
+    energy: 2
+    color: "#ffb35a"
+
+- type: entity
+  parent: CadiaPsyPerilsEffect
+  id: CadiaPsyWarpfireEffect
+  name: warpfire
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/psy_fx.rsi
+    drawdepth: Effects
+    color: "#ff6ae0"
+    scale: 2,2
+    noRot: true
+    layers:
+    - state: flame
+      shader: unshaded
+  - type: PointLight
+    radius: 4
+    energy: 2.5
+    color: "#6ad0ff"
+
+- type: entity
+  parent: CadiaPsyEffectBase
+  id: CadiaPsyPlagueEffect
+  name: plague cloud
+  components:
+  - type: TimedDespawn
+    lifetime: 1.1
+  - type: Sprite
+    sprite: Imperial/Cadia/War/psy_fx.rsi
+    state: cloud
+    drawdepth: Effects
+    color: "#7fae3a"
+    scale: 2,2
+    noRot: true
+
+- type: entity
+  parent: CadiaPsyPlagueEffect
+  id: CadiaPsyBloodEffect
+  name: blood mist
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/psy_fx.rsi
+    state: cloud
+    drawdepth: Effects
+    color: "#b01818"
+    noRot: true
+
+- type: entity
+  parent: CadiaPsyPlagueEffect
+  id: CadiaJumpImpactEffect
+  name: dust
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/psy_fx.rsi
+    state: cloud
+    drawdepth: Effects
+    color: "#b8ad96"
+    scale: 1.5,1.5
+    noRot: true
+
+# Плита телекинетического купола: держит пули и пехоту десять секунд.
+- type: entity
+  id: CadiaPsyDomePlate
+  name: telekinetic barrier
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/Cadia/War/psy_fx.rsi
+    drawdepth: Effects
+    color: "#8fd0ff"
+    noRot: true
+    layers:
+    - state: plate
+      shader: unshaded
+  - type: PointLight
+    radius: 1.5
+    energy: 0.8
+    color: "#8fd0ff"
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.5
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: TimedDespawn
+    lifetime: 10

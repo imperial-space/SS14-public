@@ -1,0 +1,385 @@
+# Вооружение шаттлов и высадка: пушки, бомбоотсеки, пост стрелка, парашюты.
+
+- type: entity
+  id: CadiaShipGun
+  name: shuttle autocannon
+  description: A twin autocannon on a ring mount, bolted to the hull. A gunner at the shuttle's gunnery post traverses it. Feed it with a flak ammunition crate.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ship_weapons.rsi
+    drawdepth: Overdoors
+    noRot: false
+    layers:
+    - state: gun
+      map: [ "turret" ]
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Anchorable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CadiaShipGun
+    projectile: CadiaAutocannonRound
+    sound:
+      path: /Audio/Imperial/Cadia/Weapons/autocannon_fire.ogg
+
+- type: entity
+  parent: CadiaShipGun
+  id: CadiaShipLascannon
+  name: shuttle lascannon
+  description: A single heavy lascannon. One slow, searing shot that burns through hulls and armour alike. Feed it with a flak ammunition crate.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ship_weapons.rsi
+    drawdepth: Overdoors
+    noRot: false
+    layers:
+    - state: gun_las
+      map: [ "turret" ]
+  - type: CadiaShipGun
+    projectile: CadiaShipLasBolt
+    speed: 55
+    spread: 0.5
+    cooldown: 1.6
+    ammo: 60
+    maxAmmo: 60
+    groundDamage: 70
+    sound:
+      path: /Audio/Imperial/Cadia/Weapons/ship_lascannon_fire.ogg
+
+- type: entity
+  parent: CadiaShipGun
+  id: CadiaShipRocketPod
+  name: shuttle rocket pod
+  description: A six-tube rocket pod. Explosive salvoes against hulls and ground positions, with little ammunition to spare. Feed it with a flak ammunition crate.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ship_weapons.rsi
+    drawdepth: Overdoors
+    noRot: false
+    layers:
+    - state: gun_rocket_base
+    - state: gun_rocket
+      map: [ "turret" ]
+  - type: CadiaShipGun
+    projectile: CadiaShipRocket
+    speed: 24
+    spread: 3
+    cooldown: 1.1
+    ammo: 24
+    maxAmmo: 24
+    groundDamage: 20
+    groundExplosion: 45
+    sound:
+      path: /Audio/Imperial/Cadia/Weapons/ship_rocket_fire.ogg
+
+- type: entity
+  parent: BulletLaser
+  id: CadiaShipLasBolt
+  name: lascannon bolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 60
+        Structural: 80
+
+- type: entity
+  parent: BulletRocket
+  id: CadiaShipRocket
+  name: shuttle rocket
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 15
+    intensitySlope: 5
+    totalIntensity: 60
+    maxTileBreak: 1
+    canCreateVacuum: false
+
+- type: entity
+  id: CadiaShipBombBay
+  name: bomb bay
+  description: An armoured hatch with a release rack. Bombs are loaded by hand on the ground and dropped from the gunnery post.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ship_weapons.rsi
+    state: bay
+    drawdepth: FloorObjects
+    noRot: true
+  - type: Anchorable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CadiaShipBombBay
+
+- type: entity
+  parent: BaseItem
+  id: CadiaShipBomb
+  name: aerial bomb
+  description: A fat finned bomb. Load it into a shuttle's bomb bay. It takes both arms and some nerve.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ship_weapons.rsi
+    state: bomb
+  - type: Item
+    size: Huge
+  - type: CadiaShipBomb
+
+- type: entity
+  id: CadiaShipGunConsole
+  name: gunnery post
+  description: A shuttle's fire-control seat. From here one gunner works every gun and bomb bay on board. Stepping away ends the watch.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/bunker.rsi
+    state: console
+    noRot: true
+  - type: PointLight
+    radius: 2
+    energy: 1.2
+    color: "#ffb35a"
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Anchorable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CadiaShipGunConsole
+
+- type: entity
+  id: CadiaFallingBomb
+  name: falling bomb
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ship_weapons.rsi
+    state: falling
+    drawdepth: Effects
+    noRot: true
+  - type: TimedDespawn
+    lifetime: 1.2
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# ─── Парашют ───
+
+- type: entity
+  parent: ClothingBackpack
+  id: CadiaParachutePack
+  name: parachute pack
+  description: A one-shot parachute in a small pack, worn in place of a field pack. Jump from a shuttle in the sky, or simply fall and it opens by itself.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/parachute.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/parachute.rsi
+  - type: CadiaParachute
+  - type: ActionGrant
+    actions:
+    - ActionCadiaParachuteJump
+  - type: ItemActionGrant
+    actions:
+    - ActionCadiaParachuteJump
+    activeIfWorn: true
+
+- type: entity
+  parent: CadiaParachuteCanopy
+  id: CadiaParachuteCanopyOpening
+  name: opening parachute
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ship_weapons.rsi
+    drawdepth: Overdoors
+    noRot: true
+    layers:
+    - state: canopy_open
+      offset: 0,0.85
+
+- type: entity
+  id: CadiaParachuteCanopy
+  name: parachute
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ship_weapons.rsi
+    drawdepth: Overdoors
+    noRot: true
+    layers:
+    - state: canopy
+      offset: 0,0.85
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# ─── Действия ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaShipBomb
+  name: Release bombs
+  description: Every loaded bomb bay drops one bomb on the ground below. Works only from the sky.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/ship_weapons.rsi, state: bomb }
+    useDelay: 0.5
+  - type: InstantAction
+    event: !type:CadiaShipBombActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaShipSelectGun
+  name: Select gun
+  description: Cycle through the guns on board, one at a time or all together.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/vehicle_icons.rsi, state: switch }
+  - type: InstantAction
+    event: !type:CadiaShipSelectGunActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaShipLeaveGun
+  name: Leave gunnery post
+  description: Step away from the guns.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/vehicle_icons.rsi, state: exit }
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CadiaShipLeaveGunActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaParachuteJump
+  name: Jump
+  description: Leave the shuttle and pull the ripcord. You land where the shuttle is now, and can steer on the way down.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/Clothing/parachute.rsi, state: icon }
+    useDelay: 2
+  - type: InstantAction
+    event: !type:CadiaParachuteJumpActionEvent
+
+# Бронещит на крыле: скос брони у пушек. Абордажники и пехота через него не пройдут, а снаряды и лучи
+# летят поверх — пушка стреляет во все стороны, как и раньше. Слой коллизии как у стола, без Wall-слоя.
+- type: entity
+  parent: WallPlastitaniumDiagonal
+  id: CadiaShipBulwarkDiagonal
+  name: gun bulwark
+  description: An angled armour plate shielding the wing guns. Low enough to fire over, too high to climb.
+  suffix: Cadia
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+
+- type: entity
+  parent: WallReinforcedDiagonal
+  id: CadiaShipBulwarkDiagonalImperial
+  name: gun bulwark
+  description: An angled armour plate shielding the wing guns. Low enough to fire over, too high to climb.
+  suffix: Cadia, Imperium
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
