@@ -1,0 +1,220 @@
+# Хаос: 13-й Чёрный крестовый поход. Культисты и Потерянные и Проклятые (предатели из СПО) идут первыми,
+# колдуны и тёмный апостол ведут их; Чёрный легион высаживается к штурму, Абаддон Разоритель с Избранными —
+# к развязке. На пике: 46 еретиков.
+
+- type: cadiaRole
+  id: CadiaChaosLord
+  name: cadia-role-chaos-lord
+  description: cadia-role-chaos-lord-desc
+  briefing: cadia-role-chaos-lord-brief
+  whitelisted: true
+  tips:
+  - cadia-tip-command
+  - cadia-tip-summon
+  faction: Chaos
+  mob: CadiaMobHereticAstartes
+  gear: CadiaGearChaosLord
+  components:
+  - type: CadiaSummoner
+  - type: CadiaMarkCandidate
+  spawnGroup: ChaosCommand
+  icon: CadiaIconChaosLord
+  rank: cadia-rank-chaos-lord
+  firstNames: CadiaNamesChaos
+  commander: true
+  order: 0
+
+- type: cadiaRole
+  id: CadiaDarkApostle
+  name: cadia-role-dark-apostle
+  description: cadia-role-dark-apostle-desc
+  briefing: cadia-role-dark-apostle-brief
+  whitelisted: true
+  tips:
+  - cadia-tip-command
+  - cadia-tip-summon
+  faction: Chaos
+  mob: CadiaMobHereticAstartes
+  gear: CadiaGearDarkApostle
+  components:
+  - type: CadiaSummoner
+  - type: CadiaPsyker
+    powers:
+    - ActionCadiaPsyBloodboil
+    - ActionCadiaPsyPortal
+  spawnGroup: ChaosCommand
+  icon: CadiaIconDarkApostle
+  rank: cadia-rank-dark-apostle
+  firstNames: CadiaNamesChaos
+  commander: true
+  order: 1
+
+- type: cadiaRole
+  id: CadiaSorcerer
+  name: cadia-role-sorcerer
+  description: cadia-role-sorcerer-desc
+  briefing: cadia-role-sorcerer-brief
+  tips:
+  - cadia-tip-psyker
+  - cadia-tip-summon
+  faction: Chaos
+  mob: CadiaMobHereticAstartes
+  gear: CadiaGearSorcerer
+  components:
+  - type: CadiaSummoner
+  - type: CadiaPsyker
+    maxCharge: 130
+    charge: 130
+    regen: 3.5
+    powers:
+    - ActionCadiaPsyWarpfire
+    - ActionCadiaPsyVeil
+    - ActionCadiaPsyPlague
+    - ActionCadiaPsyCharm
+    - ActionCadiaPsyPortal
+  icon: CadiaIconSorcerer
+  rank: cadia-rank-sorcerer
+  firstNames: CadiaNamesChaos
+  slots: 2
+  order: 2
+
+- type: cadiaRole
+  id: CadiaDemagogue
+  name: cadia-role-demagogue
+  description: cadia-role-demagogue-desc
+  briefing: cadia-role-demagogue-brief
+  tips:
+  - cadia-tip-command
+  - cadia-tip-summon
+  faction: Chaos
+  mob: CadiaMobChaos
+  gear: CadiaGearDemagogue
+  components:
+  - type: CadiaMoraleAura
+    radius: 8
+    friendRate: 2
+  - type: CadiaSummoner
+  icon: CadiaIconDemagogue
+  rank: cadia-rank-demagogue
+  firstNames: CadiaNamesCultist
+  slots: 2
+  commander: true
+  order: 3
+
+- type: cadiaRole
+  id: CadiaCultist
+  name: cadia-role-cultist
+  description: cadia-role-cultist-desc
+  briefing: cadia-role-cultist-brief
+  tips:
+  - cadia-tip-trench
+  faction: Chaos
+  mob: CadiaMobChaos
+  gear: CadiaGearCultist
+  icon: CadiaIconCultist
+  firstNames: CadiaNamesCultist
+  slots: 20
+  order: 4
+
+- type: cadiaRole
+  id: CadiaTraitor
+  name: cadia-role-traitor
+  description: cadia-role-traitor-desc
+  briefing: cadia-role-traitor-brief
+  faction: Chaos
+  mob: CadiaMobChaos
+  gear: CadiaGearTraitor
+  icon: CadiaIconTraitor
+  rank: cadia-rank-traitor
+  firstNames: CadiaNamesFirst
+  lastNames: CadiaNamesLast
+  slots: 10
+  order: 5
+
+- type: cadiaRole
+  id: CadiaHeretek
+  name: cadia-role-heretek
+  description: cadia-role-heretek-desc
+  briefing: cadia-role-heretek-brief
+  tips:
+  - cadia-tip-engineer
+  - cadia-tip-summon
+  faction: Chaos
+  mob: CadiaMobChaos
+  gear: CadiaGearHeretek
+  icon: CadiaIconHeretek
+  rank: cadia-rank-heretek
+  firstNames: CadiaNamesMechanicus
+  order: 6
+
+- type: cadiaRole
+  id: CadiaBlackLegionnaire
+  name: cadia-role-black-legion
+  description: cadia-role-black-legion-desc
+  briefing: cadia-role-black-legion-brief
+  faction: Chaos
+  mob: CadiaMobHereticAstartes
+  gear: CadiaGearBlackLegionnaire
+  components:
+  - type: CadiaMarkCandidate
+  icon: CadiaIconBlackLegion
+  firstNames: CadiaNamesChaos
+  slots: 4
+  availableFrom: Assault
+  order: 7
+
+- type: cadiaRole
+  id: CadiaAbaddon
+  name: cadia-role-abaddon
+  description: cadia-role-abaddon-desc
+  briefing: cadia-role-abaddon-brief
+  whitelisted: true
+  tips:
+  - cadia-tip-command
+  faction: Chaos
+  mob: CadiaMobHereticAstartes
+  gear: CadiaGearAbaddon
+  components:
+  - type: CadiaSummoner
+  spawnGroup: ChaosCommand
+  icon: CadiaIconAbaddon
+  randomName: false
+  availableFrom: Finale
+  commander: true
+  order: 8
+
+- type: cadiaRole
+  id: CadiaChosen
+  name: cadia-role-chosen
+  description: cadia-role-chosen-desc
+  briefing: cadia-role-chosen-brief
+  faction: Chaos
+  mob: CadiaMobHereticAstartes
+  gear: CadiaGearChosen
+  components:
+  - type: CadiaMarkCandidate
+  icon: CadiaIconChosen
+  rank: cadia-rank-chosen
+  firstNames: CadiaNamesChaos
+  slots: 4
+  availableFrom: Finale
+  order: 9
+
+# Пилоты «Адских когтей»: экипаж бомбардировщиков. Остальные силы Хаоса собираются на флагмане.
+- type: cadiaRole
+  id: CadiaChaosBomberPilot
+  name: cadia-role-chaos-bomber-pilot
+  description: cadia-role-chaos-bomber-pilot-desc
+  briefing: cadia-role-chaos-bomber-pilot-brief
+  tips:
+  - cadia-tip-bomber
+  faction: Chaos
+  mob: CadiaMobChaos
+  gear: CadiaGearChaosBomberPilot
+  icon: CadiaIconTraitor
+  rank: cadia-rank-chaos-bomber-pilot
+  firstNames: CadiaNamesFirst
+  lastNames: CadiaNamesLast
+  spawnGroup: ChaosBomber
+  slots: 4
+  order: 9

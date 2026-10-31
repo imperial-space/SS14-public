@@ -8,6 +8,7 @@ using Robust.Shared.Graphics;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Client.Imperial.ZLevels;
 
@@ -40,6 +41,8 @@ public sealed class ZLevelLookOverlay : Overlay
 
     /// <summary>Вьюпорт этажа, на который смотрят.</summary>
     public IClydeViewport? View { get; private set; }
+    /// <summary>Какого размера нужен вьюпорт: создаётся в FrameUpdate, не посреди отрисовки.</summary>
+    private Vector2i? _wantView;
     private IRenderTexture? _stencil;
     private List<Entity<MapGridComponent>> _grids = new();
     private readonly List<(Entity<SpriteComponent> Sprite, Vector2 Pos, Angle Rot)> _onGlass = new();
@@ -48,6 +51,17 @@ public sealed class ZLevelLookOverlay : Overlay
     {
         IoCManager.InjectDependencies(this);
         ZIndex = -100;
+    }
+
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+        if (_wantView is not { } size)
+            return;
+        View?.Dispose();
+        View = _clyde.CreateViewport(size, "zlevel-look");
+        View.ClearColor = Color.Black;
+        _wantView = null;
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -64,9 +78,9 @@ public sealed class ZLevelLookOverlay : Overlay
         var size = args.Viewport.Size;
         if (View == null || View.Size != size)
         {
-            View?.Dispose();
-            View = _clyde.CreateViewport(size, "zlevel-look");
-            View.ClearColor = Color.Black;
+            // Clyde перебирает список вьюпортов, пока рисует: новый посреди обхода его ломает. Ждём следующего кадра.
+            _wantView = size;
+            return;
         }
         View.RenderScale = args.Viewport.RenderScale;
         View.Eye = LookEye(eye, map);

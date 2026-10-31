@@ -1,0 +1,327 @@
+# Кадия: предметы Касра вместо ванильных (спрайты PixelLab в стиле декора Кадии), скала Кадийских врат,
+# неразрушимые стены катакомб, двери и окна в кадийской гамме. На поле их ставит map_gen.pl вместо ванильных.
+
+# ═══════════════ Скалы и стены ═══════════════
+
+# Скала поля: холодный базальт с инеем. Ломается и копается, как обычная.
+- type: entity
+  parent: WallRock
+  id: CadiaRock
+  name: Cadian basalt
+  description: Cold, frost-veined basalt of the Cadian moors.
+  suffix: Cadia
+  components:
+  - type: Icon
+    sprite: Imperial/Cadia/cadia_rock.rsi
+    state: rock
+  - type: Sprite
+    sprite: Imperial/Cadia/cadia_rock.rsi
+    layers:
+    - state: rock
+    - map: [ "enum.EdgeLayer.South" ]
+      state: rock_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: rock_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: rock_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: rock_west
+
+# Скалы Кадийских врат: граница поля и толща под катакомбами. Их не берёт ни кирка, ни заряд.
+- type: entity
+  parent: BaseWall
+  id: CadiaBedrock
+  name: bedrock of the Cadian Gate
+  description: The ancient rock spine of the Cadian Gate. No pick, charge or shell has ever moved it.
+  suffix: Cadia, indestructible
+  components:
+  - type: Transform
+    noRot: true
+  - type: IconSmooth
+    key: walls
+    mode: NoSprite
+  - type: SmoothEdge
+  - type: Icon
+    sprite: Imperial/Cadia/cadia_rock.rsi
+    state: rock
+  - type: Sprite
+    sprite: Imperial/Cadia/cadia_rock.rsi
+    layers:
+    - state: rock
+    - map: [ "enum.EdgeLayer.South" ]
+      state: rock_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: rock_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: rock_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: rock_west
+
+# Кладка катакомб: древние своды под Касром, за ними — только скала. Неразрушима.
+- type: entity
+  parent: BaseWall
+  id: CadiaWallCatacomb
+  name: catacomb masonry
+  description: Ancient vaulting beneath Kasr, laid into the living rock. It has outlasted every siege.
+  suffix: Cadia, indestructible
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/cadia_wall_reinforced.rsi
+  - type: Icon
+    sprite: Imperial/Cadia/cadia_wall_reinforced.rsi
+    state: full
+  - type: IconSmooth
+    key: walls
+    base: cadia_wall_reinforced
+
+# ═══════════════ Двери и окна ═══════════════
+
+- type: entity
+  parent: WoodDoor
+  id: CadiaWoodDoor
+  name: oak door
+  suffix: Cadia
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/doors/wood_door.rsi
+
+- type: entity
+  parent: MetalDoor
+  id: CadiaMetalDoor
+  name: bulkhead door
+  suffix: Cadia
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/doors/metal_door.rsi
+
+- type: entity
+  parent: ReinforcedWindow
+  id: CadiaReinforcedWindow
+  name: armoured window
+  suffix: Cadia
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/doors/reinforced_window.rsi
+  - type: Icon
+    sprite: Imperial/Cadia/doors/reinforced_window.rsi
+
+# ═══════════════ Мебель ═══════════════
+
+- type: entity
+  parent: ChairWood
+  id: CadiaChair
+  name: Cadian chair
+  suffix: Cadia
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/furniture.rsi
+    state: chair
+
+- type: entity
+  parent: ChairWood
+  id: CadiaArmchair
+  name: officer's armchair
+  suffix: Cadia
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/furniture.rsi
+    state: armchair
+
+- type: entity
+  parent: Stool
+  id: CadiaStool
+  name: stool
+  suffix: Cadia
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/furniture.rsi
+    state: stool
+
+- type: entity
+  parent: Bed
+  id: CadiaCot
+  name: guard cot
+  description: An iron cot with a grey wool blanket. Every Cadian has slept on one, and few remember the last time it was dry.
+  suffix: Cadia
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/furniture.rsi
+    state: cot
+
+- type: entity
+  parent: MedicalBed
+  id: CadiaMedicalCot
+  name: medicae cot
+  suffix: Cadia
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/furniture.rsi
+    state: medical_cot
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaTable
+  name: oak table
+  description: A heavy table with iron corners. It has served maps, rations and the dead alike.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/furniture.rsi
+    state: table
+  - type: PlaceableSurface
+  - type: Climbable
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaWorkTable
+  name: workshop table
+  description: A riveted steel table covered in tools and grease.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/furniture.rsi
+    state: workbench
+  - type: PlaceableSurface
+  - type: Climbable
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaLocker
+  name: Militarum locker
+  description: An olive drab locker stencilled with the aquila. Whatever it held went to the front.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/furniture.rsi
+    state: locker
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaDresser
+  name: chest of drawers
+  description: Dark wood and brass handles. Someone's letters are still inside.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/furniture.rsi
+    state: dresser
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShelf
+  name: supply shelf
+  description: Olive metal shelving with ammo tins and canisters.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/furniture.rsi
+    state: shelf
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaBookshelf
+  name: scriptorium shelf
+  description: Old tomes of tactics and prayer, a candle stub and a skull for company.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/furniture.rsi
+    state: bookshelf
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaCampfire
+  name: campfire
+  description: Logs burning in a ring of stones. The only warm place for a mile.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/furniture.rsi
+    state: campfire
+  - type: PointLight
+    radius: 5
+    energy: 2
+    color: "#ff9a3c"
+  - type: LightBehaviour
+    behaviours:
+    - !type:RandomizeBehaviour
+      interpolate: Nearest
+      minDuration: 0.08
+      maxDuration: 0.3
+      startValue: 1.6
+      endValue: 2.4
+      property: Energy
+      isLooped: true
+      enabled: true
+  - type: AmbientSound
+    range: 5
+    volume: -6
+    sound:
+      path: /Audio/Ambience/Objects/fireplace.ogg
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaFireplace
+  name: hearth
+  description: A stone hearth carved with the aquila. The fire in it is kept by whoever is still alive.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/furniture.rsi
+    state: fireplace
+  - type: PointLight
+    radius: 4
+    energy: 1.8
+    color: "#ff9a3c"
+  - type: AmbientSound
+    range: 4
+    volume: -8
+    sound:
+      path: /Audio/Ambience/Objects/fireplace.ogg
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaCoffin
+  name: coffin
+  description: A plain coffin with the aquila on its lid. There are never enough of them.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/furniture.rsi
+    state: coffin
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaBasin
+  name: stone basin
+  description: A stone wash basin with an iron tap. The water is ice-cold.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/furniture.rsi
+    state: basin
+
+# Настенный фонарь: висит у стены, светит тёплым, не требует питания.
+- type: entity
+  parent: CadiaDecorPassableBase
+  id: CadiaWallLantern
+  name: wall lantern
+  description: An iron lantern on a wall bracket. Kasr kept its lights burning through every siege.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/furniture.rsi
+    state: lantern
+    drawdepth: WallMountedItems
+  - type: PointLight
+    radius: 6
+    energy: 1.6
+    color: "#ffc27a"
+
+# Шлюзы имперских кораблей: оливковый металл и холодное стекло, огни ванильные — по ним читается состояние двери.
+- type: entity
+  parent: AirlockGlass
+  id: CadiaAirlockGlass
+  name: Militarum glass airlock
+  suffix: Cadia
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/doors/airlock_glass.rsi
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: CadiaAirlockGlassShuttle
+  name: Militarum boarding airlock
+  suffix: Cadia, docking
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/doors/airlock_shuttle.rsi

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for Imperial Space with PixelLab",
+  "size": { "x": 64, "y": 64 },
+  "states": [
+    { "name": "imperium" },
+    { "name": "imperium_glow", "delays": [ [ 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12 ] ] },
+    { "name": "chaos" },
+    { "name": "chaos_glow", "delays": [ [ 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12 ] ] }
+  ]
+}

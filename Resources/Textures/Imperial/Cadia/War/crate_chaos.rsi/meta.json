@@ -1,0 +1,1 @@
+{"version":1,"license":"CC-BY-SA-3.0","copyright":"Made for Imperial Space with PixelLab (Cadia theme); welded and sparking overlays taken from Structures/Storage/Crates/generic.rsi (Citadel-Station-13)","size":{"x":32,"y":32},"states":[{"name":"icon"},{"name":"base"},{"name":"closed"},{"name":"open"},{"name":"welded"},{"name":"sparking","delays":[[0.1,0.1,0.1,0.1,0.1,0.1]]}]}

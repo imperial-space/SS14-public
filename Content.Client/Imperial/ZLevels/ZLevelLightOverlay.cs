@@ -41,7 +41,8 @@ public sealed class ZLevelLightOverlay : Overlay
         var viewport = args.Viewport;
         var lightScale = viewport.LightRenderTarget.Size / (Vector2) viewport.Size;
         var scale = viewport.RenderScale / (Vector2.One / lightScale);
-        var lowerEye = ZLevelOverlay.DepthEye(eye, belowMap);
+        var gap = ZLevelOverlay.Gap(_ents, args.MapId);
+        var lowerEye = ZLevelOverlay.DepthEye(eye, belowMap, gap);
         var box = bounds.CalcBoundingBox().Enlarged(2f);
         var upperMap = args.MapId;
         var eyePos = eye.Position.Position;
@@ -66,7 +67,7 @@ public sealed class ZLevelLightOverlay : Overlay
                 {
                     // Где эта клетка видна на экране (нижний этаж чуть мельче к центру) — там и проверяем верхний пол.
                     var center = maps.GridTileToWorldPos(grid.Owner, grid.Comp, tile.GridIndices);
-                    var apparent = eyePos + (center - eyePos) * ZLevelOverlay.DepthScale;
+                    var apparent = eyePos + (center - eyePos) * MathF.Pow(ZLevelOverlay.DepthScale, gap);
                     if (IsCovered(new MapCoordinates(apparent, upperMap)))
                         continue;
                     var origin = (Vector2) tile.GridIndices * tileSize;
@@ -88,14 +89,6 @@ public sealed class ZLevelLightOverlay : Overlay
 
     private bool TryGetBelow(MapId map, out MapId below)
     {
-        below = MapId.Nullspace;
-        var maps = _ents.System<SharedMapSystem>();
-        if (!maps.TryGetMap(map, out var mapUid)
-            || !_ents.TryGetComponent<ZLevelMapComponent>(mapUid, out var z)
-            || z.Below is not { } belowUid
-            || !_ents.TryGetComponent<MapComponent>(belowUid, out var belowComp))
-            return false;
-        below = belowComp.MapId;
-        return below != MapId.Nullspace;
+        return ZLevelOverlay.ResolveBelow(_ents, map, out below, out _);
     }
 }

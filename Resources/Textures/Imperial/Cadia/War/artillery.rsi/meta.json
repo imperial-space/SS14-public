@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for Imperial Space with PixelLab",
+  "size": { "x": 32, "y": 32 },
+  "states": [
+    { "name": "macro_console" },
+    { "name": "lance_console" },
+    { "name": "macro_shell" },
+    { "name": "hydra" },
+    { "name": "manticore" },
+    { "name": "auspex" },
+    { "name": "void_shield" },
+    { "name": "void_shield_off" },
+    { "name": "void_shield_glow", "delays": [ [ 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12 ] ] },
+    { "name": "tracking", "delays": [ [ 0.15, 0.15, 0.15, 0.15 ] ] },
+    { "name": "auspex_sweep", "delays": [ [ 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1 ] ] }
+  ]
+}

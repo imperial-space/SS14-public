@@ -1,0 +1,556 @@
+# Кадия: декор обороны (спрайты PixelLab, 32×32). Твёрдые — блокируют проход, как столы и баррикады;
+# лёгкие — можно пройти; напольные — рисуются под мобами.
+
+- type: entity
+  abstract: true
+  parent: BaseStructure
+  id: CadiaDecorBase
+  components:
+  - type: Rotatable
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Cadia/decor.rsi
+    drawdepth: Objects
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  abstract: true
+  parent: CadiaDecorBase
+  id: CadiaDecorPassableBase
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        hard: false
+        mask:
+        - MachineMask
+
+- type: entity
+  abstract: true
+  parent: CadiaDecorPassableBase
+  id: CadiaDecorFloorBase
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaSandbags
+  name: sandbag wall
+  components:
+  - type: Sprite
+    state: sandbags
+  - type: CadiaCover
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaSandbagsCorner
+  name: sandbag corner
+  components:
+  - type: Sprite
+    state: sandbags_corner
+  - type: CadiaCover
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaTankTrap
+  name: anti-tank hedgehog
+  components:
+  - type: Sprite
+    state: tank_trap
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 1000
+        layer:
+        - DoorPassable
+
+- type: entity
+  parent: CadiaDecorPassableBase
+  id: CadiaRazorWire
+  name: razor wire
+  components:
+  - type: Sprite
+    state: razor_wire
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        hard: false
+        layer:
+        - MidImpassable
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.35
+    sprintSpeedModifier: 0.35
+  - type: DamageContacts
+    damage:
+      types:
+        Slash: 3
+        Piercing: 2
+  - type: CadiaTankCrushable
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaAmmoCrate
+  name: ammo crate
+  components:
+  - type: Sprite
+    state: ammo_crate
+  - type: CadiaSupply
+    charges: 20
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaSupplyCrates
+  name: supply crates
+  components:
+  - type: Sprite
+    state: supply_crates
+  - type: CadiaSupply
+    charges: 8
+    items:
+    - MedkitFilled
+    - CadiaRation
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaFuelBarrel
+  name: promethium barrel
+  components:
+  - type: Sprite
+    state: fuel_barrel
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/explosion_small1.ogg
+      - !type:ExplodeBehavior
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 12
+    intensitySlope: 4
+    totalIntensity: 90
+    canCreateVacuum: false
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaBanner
+  name: regimental banner
+  components:
+  - type: Sprite
+    state: banner
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaAquilaStatue
+  name: aquila monument
+  components:
+  - type: Sprite
+    state: aquila_statue
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShrine
+  name: field shrine
+  components:
+  - type: Sprite
+    state: shrine
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaVoxCaster
+  name: vox-caster
+  components:
+  - type: Sprite
+    state: vox_caster
+  - type: AmbientSound
+    range: 5
+    volume: -11
+    sound:
+      path: /Audio/Imperial/Cadia/Ambience/vox_static.ogg
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaSearchlight
+  name: field searchlight
+  components:
+  - type: Sprite
+    state: searchlight
+  - type: PointLight
+    radius: 7
+    energy: 2.5
+    color: "#fff4d6"
+  - type: AmbientSound
+    range: 3
+    volume: -14
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaLasgunRack
+  name: lasgun rack
+  components:
+  - type: Sprite
+    state: lasgun_rack
+
+- type: entity
+  parent: CadiaDecorFloorBase
+  id: CadiaDuckboards
+  name: trench duckboards
+  components:
+  - type: Sprite
+    state: duckboards
+
+- type: entity
+  parent: CadiaDecorFloorBase
+  id: CadiaRubble
+  name: ferrocrete rubble
+  components:
+  - type: Sprite
+    state: rubble
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaPillarRuin
+  name: broken pillar
+  components:
+  - type: Sprite
+    state: pillar_ruin
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaCogitator
+  name: cogitator
+  components:
+  - type: Sprite
+    state: cogitator
+  - type: AmbientSound
+    range: 3
+    volume: -12
+    sound:
+      path: /Audio/Ambience/Objects/hdd_buzz.ogg
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaMedicaeStation
+  name: medicae station
+  components:
+  - type: Sprite
+    state: medicae_station
+  - type: CadiaHealStation
+
+- type: entity
+  parent: CadiaDecorPassableBase
+  id: CadiaWarningSign
+  name: warning sign
+  components:
+  - type: Sprite
+    state: warning_sign
+
+- type: entity
+  parent: CadiaDecorFloorBase
+  id: CadiaShellCasings
+  name: spent casings
+  components:
+  - type: Sprite
+    state: shell_casings
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaSkullLamp
+  name: skull lamp
+  components:
+  - type: Sprite
+    state: skull_lamp
+  - type: PointLight
+    radius: 4
+    energy: 1.8
+    color: "#ff9a3c"
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaTent
+  name: field tent
+  components:
+  - type: Sprite
+    state: tent
+  - type: Strap
+    position: Down
+    rotation: -90
+  - type: HealOnBuckle
+    damage:
+      types:
+        Blunt: -2
+        Slash: -2
+        Piercing: -2
+        Heat: -2
+        Poison: -1
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaTankWreck
+  name: tank track wreckage
+  components:
+  - type: Sprite
+    state: tank_wreck
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaWireFence
+  name: wire fence
+  components:
+  - type: Sprite
+    state: wire_fence
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaSandbagBunker
+  name: sandbag bunker
+  components:
+  - type: Sprite
+    state: sandbag_bunker
+  - type: CadiaCover
+    block: 0.85
+
+- type: entity
+  parent: CadiaDecorFloorBase
+  id: CadiaCamoNet
+  name: camouflage net
+  components:
+  - type: Sprite
+    state: camo_net
+
+- type: entity
+  parent: CadiaDecorPassableBase
+  id: CadiaStakes
+  name: wooden stakes
+  components:
+  - type: Sprite
+    state: stakes
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        hard: false
+        layer:
+        - MidImpassable
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.6
+    sprintSpeedModifier: 0.6
+  - type: DamageContacts
+    damage:
+      types:
+        Piercing: 6
+  - type: CadiaTankCrushable
+
+- type: entity
+  parent: CadiaDecorFloorBase
+  id: CadiaStretcher
+  name: stretcher
+  components:
+  - type: Sprite
+    state: stretcher
+  - type: Strap
+    position: Down
+    rotation: -90
+  - type: HealOnBuckle
+    damage:
+      types:
+        Blunt: -0.5
+        Slash: -0.5
+        Piercing: -0.5
+        Heat: -0.5
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShellCrate
+  name: shell crate
+  components:
+  - type: Sprite
+    state: shell_crate
+  - type: CadiaSupply
+    charges: 16
+    items:
+    - CadiaTankShell
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaMapTable
+  name: tactical map table
+  components:
+  - type: Sprite
+    state: map_table
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaFieldStove
+  name: field stove
+  components:
+  - type: Sprite
+    state: field_stove
+  - type: CadiaSupply
+    charges: 24
+    items:
+    - CadiaRation
+  - type: AmbientSound
+    range: 3
+    volume: -10
+    sound:
+      path: /Audio/Ambience/Objects/fireplace.ogg
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaSandbagCache
+  name: sandbag cache
+  components:
+  - type: Sprite
+    state: sandbag_cache
+  - type: CadiaCover
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaPromethiumHeater
+  name: promethium heater
+  components:
+  - type: Sprite
+    state: promethium_heater
+  - type: PointLight
+    radius: 4
+    energy: 1.8
+    color: "#ff9a3c"
+  - type: AmbientSound
+    range: 3
+    volume: -13
+    sound:
+      path: /Audio/Ambience/Objects/gas_hiss.ogg
+- type: entity
+  parent: CadiaDecorFloorBase
+  id: CadiaDebris
+  name: debris
+  components:
+  - type: Sprite
+    state: debris
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaTankTrapConcrete
+  name: concrete tank trap
+  components:
+  - type: Sprite
+    state: tank_trap_concrete
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 1000
+        layer:
+        - DoorPassable
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaFallenGuardsman
+  name: fallen guardsman's marker
+  components:
+  - type: Sprite
+    state: fallen_guardsman
+
+- type: entity
+  parent: CadiaDecorFloorBase
+  id: CadiaFoldingChair
+  name: folding chair
+  components:
+  - type: Sprite
+    state: folding_chair
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,-0.05"
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaWorkbench
+  name: armourer's workbench
+  components:
+  - type: Sprite
+    state: workbench
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaFloodlight
+  name: floodlight
+  components:
+  - type: Sprite
+    state: floodlight
+  - type: PointLight
+    radius: 7
+    energy: 2.5
+    color: "#fff4d6"
+  - type: AmbientSound
+    range: 3
+    volume: -14
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg
+- type: entity
+  parent: CadiaDecorFloorBase
+  id: CadiaFlag
+  name: torn flag
+  components:
+  - type: Sprite
+    state: flag
+
+- type: entity
+  parent: BaseItem
+  id: CadiaWireCoil
+  name: coil of wire
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/decor.rsi
+    state: wire_coil
+  - type: Item
+    size: Normal
+  - type: SpawnItemsOnUse
+    uses: 3
+    items:
+    - id: CadiaRazorWire
+    sound:
+      path: /Audio/Effects/rustle1.ogg
+
+- type: entity
+  parent: CadiaDecorPassableBase
+  id: CadiaDangerSign
+  name: danger sign
+  components:
+  - type: Sprite
+    state: danger_sign
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaGasMaskCrate
+  name: gas mask crate
+  components:
+  - type: Sprite
+    state: gas_mask_crate

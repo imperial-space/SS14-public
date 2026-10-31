@@ -1,0 +1,143 @@
+# Роли, добавленные поверх базовых: флот на орбите, инквизитор, сестра тишины, чудовища Чёрного легиона, демоны.
+
+- type: cadiaRole
+  id: CadiaFleetCaptain
+  name: cadia-role-fleet-captain
+  description: cadia-role-fleet-captain-desc
+  briefing: cadia-role-fleet-captain-brief
+  whitelisted: true
+  tips:
+  - cadia-tip-fleet
+  - cadia-tip-command
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearFleetCaptain
+  icon: CadiaIconLieutenant
+  rank: cadia-rank-fleet-captain
+  firstNames: CadiaNamesFirst
+  lastNames: CadiaNamesLast
+  spawnGroup: Fleet
+  commander: true
+  order: 40
+
+- type: cadiaRole
+  id: CadiaFleetGunner
+  name: cadia-role-fleet-gunner
+  description: cadia-role-fleet-gunner-desc
+  briefing: cadia-role-fleet-gunner-brief
+  tips:
+  - cadia-tip-fleet
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearFleetGunner
+  icon: CadiaIconVox
+  rank: cadia-rank-fleet-gunner
+  firstNames: CadiaNamesFirst
+  lastNames: CadiaNamesLast
+  spawnGroup: Fleet
+  slots: 3
+  order: 41
+
+- type: cadiaRole
+  id: CadiaVoidTech
+  name: cadia-role-void-tech
+  description: cadia-role-void-tech-desc
+  briefing: cadia-role-void-tech-brief
+  tips:
+  - cadia-tip-fleet
+  - cadia-tip-engineer
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearVoidTech
+  icon: CadiaIconEnginseer
+  rank: cadia-rank-void-tech
+  firstNames: CadiaNamesFirst
+  lastNames: CadiaNamesLast
+  spawnGroup: Fleet
+  slots: 2
+  order: 42
+
+- type: cadiaRole
+  id: CadiaInquisitor
+  name: cadia-role-inquisitor
+  description: cadia-role-inquisitor-desc
+  briefing: cadia-role-inquisitor-brief
+  whitelisted: true
+  tips:
+  - cadia-tip-psyker
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearInquisitor
+  icon: CadiaIconCommissar
+  rank: cadia-rank-inquisitor
+  lastNames: CadiaNamesLast
+  availableFrom: Bombardment
+  order: 43
+  components:
+  - type: CadiaRoleActions
+    actions:
+    - ActionCadiaExterminatus
+
+- type: cadiaRole
+  id: CadiaSisterOfSilence
+  name: cadia-role-silence
+  description: cadia-role-silence-desc
+  briefing: cadia-role-silence-brief
+  faction: Imperium
+  mob: CadiaMobImperium
+  gear: CadiaGearSilence
+  icon: CadiaIconSister
+  rank: cadia-rank-silence
+  lastNames: CadiaNamesLast
+  availableFrom: Assault
+  order: 44
+  components:
+  - type: CadiaNullZone
+    radius: 6
+    total: true
+
+- type: cadiaRole
+  id: CadiaPossessed
+  name: cadia-role-possessed
+  description: cadia-role-possessed-desc
+  briefing: cadia-role-possessed-brief
+  tips:
+  - cadia-tip-daemon
+  faction: Chaos
+  mob: CadiaMobPossessed
+  icon: CadiaIconBlackLegion
+  rank: cadia-rank-possessed
+  firstNames: CadiaNamesChaos
+  slots: 3
+  availableFrom: Assault
+  order: 10
+
+- type: cadiaRole
+  id: CadiaObliterator
+  name: cadia-role-obliterator
+  description: cadia-role-obliterator-desc
+  briefing: cadia-role-obliterator-brief
+  tips:
+  - cadia-tip-daemon
+  faction: Chaos
+  mob: CadiaMobObliterator
+  icon: CadiaIconBlackLegion
+  rank: cadia-rank-obliterator
+  firstNames: CadiaNamesChaos
+  slots: 2
+  availableFrom: Assault
+  order: 11
+
+# Мест нет: только значок и вводная для призванных демонов.
+- type: cadiaRole
+  id: CadiaDaemonRole
+  name: cadia-role-daemon
+  description: cadia-role-daemon-desc
+  briefing: cadia-role-daemon-brief
+  tips:
+  - cadia-tip-daemon
+  faction: Chaos
+  mob: CadiaMobBloodletter
+  icon: CadiaIconBlackLegion
+  slots: 0
+  order: 90

@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for Imperial Space with PixelLab",
+  "size": { "x": 32, "y": 32 },
+  "states": [
+    { "name": "at_mine" },
+    { "name": "drop_shadow" },
+    { "name": "trench0" },
+    { "name": "trench1" },
+    { "name": "trench2" },
+    { "name": "trench3" },
+    { "name": "trench4" },
+    { "name": "trench5" },
+    { "name": "trench6" },
+    { "name": "trench7" },
+    { "name": "trench8" },
+    { "name": "trench9" },
+    { "name": "trench10" },
+    { "name": "trench11" },
+    { "name": "trench12" },
+    { "name": "trench13" },
+    { "name": "trench14" },
+    { "name": "trench15" },
+    { "name": "spike_barricade" }
+  ]
+}

@@ -1,0 +1,991 @@
+# Техника Кадии: Леман Расс и Химера с кабиной (люк, ключ, кресла, казённик), Часовой — экипаж прямо в корпусе.
+
+# Броня техники: лазганы и пули почти бессильны, выручают взрывчатка (ракеты, крак-гранаты, снаряды) и мельта.
+- type: damageModifierSet
+  id: CadiaVehicleArmor
+  coefficients:
+    Blunt: 0.35
+    Slash: 0.1
+    Piercing: 0.25
+    Heat: 0.35
+    Shock: 0.5
+    Structural: 1.5
+  flatReductions:
+    Blunt: 4
+    Piercing: 6
+    Heat: 4
+    Slash: 8
+
+- type: entity
+  abstract: true
+  id: CadiaVehicleBase
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    noRot: false
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: true
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: CadiaVehicleArmor
+  - type: ExplosionResistance
+    damageCoefficient: 1.2
+  - type: Repairable
+    fuelCost: 20
+    doAfterDelay: 12
+  - type: AmbientSound
+    range: 10
+    volume: -4
+    sound:
+      path: /Audio/Effects/Vehicle/vehicleengineidle.ogg
+  - type: Appearance
+
+# ─── Леман Расс: основной боевой танк ───
+
+- type: entity
+  parent: CadiaVehicleBase
+  id: CadiaLemanRuss
+  name: Leman Russ battle tank
+  description: The iron backbone of the Astra Militarum. Thick armour, a battle cannon that levels buildings and a hull-mounted heavy bolter. Driver steers with W/S and turns with A/D; the gunner traverses the turret with the mouse.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/vehicles.rsi
+    drawdepth: OverMobs
+    noRot: false
+    layers:
+    - state: russ_hull
+    - state: russ_turret
+      offset: 0,0.25
+      map: [ "turret" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.2,-1.35,1.2,1.35"
+        density: 4000
+        mask:
+        - MobMask
+        - DoorPassable
+        layer:
+        - LargeMobLayer
+  - type: PointLight
+    radius: 4
+    energy: 1.2
+    color: "#fff2c8"
+    offset: 0,1.6
+  - type: CadiaVehicle
+    wreck: CadiaWreckRuss
+    maxIntegrity: 1400
+    interior: true
+    rackShells: 12
+    hasGunnerSeat: true
+    passengers: 0
+    tankControls: true
+    speed: 2.6
+    reverseSpeed: 1.4
+    turnRate: 55
+    hasTurret: true
+    turretTurnRate: 45
+    muzzleOffset: 2.1
+    weapons:
+    - name: cadia-vehicle-weapon-battlecannon
+      projectile: CadiaBattleCannonShell
+      speed: 30
+      spread: 0.8
+      cooldown: 5
+      ammo: 40
+      maxAmmo: 40
+      kick: 3
+      breech: true
+      sound:
+        path: /Audio/Imperial/Cadia/Weapons/battlecannon_fire.ogg
+    - name: cadia-vehicle-weapon-heavybolter
+      projectile: CadiaHeavyBoltRound
+      speed: 35
+      spread: 4
+      cooldown: 0.15
+      automatic: true
+      ammo: 600
+      maxAmmo: 600
+      sound:
+        path: /Audio/Imperial/Cadia/Weapons/heavybolter_fire.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1400
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/explosion_small1.ogg
+      - !type:ExplodeBehavior
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 3
+    totalIntensity: 120
+    canCreateVacuum: false
+
+# ─── Химера: БТР на шесть бойцов с мультилазером ───
+
+- type: entity
+  parent: CadiaVehicleBase
+  id: CadiaChimera
+  name: Chimera armoured transport
+  description: The workhorse of the Guard. Carries a squad of six behind armour, with a turret multilaser and a hull heavy bolter. Faster and lighter than a Leman Russ.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/vehicles.rsi
+    drawdepth: OverMobs
+    noRot: false
+    layers:
+    - state: chimera_hull
+    - state: chimera_turret
+      offset: 0,0.54
+      map: [ "turret" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.15,-1.4,1.15,1.4"
+        density: 3000
+        mask:
+        - MobMask
+        - DoorPassable
+        layer:
+        - LargeMobLayer
+  - type: PointLight
+    radius: 4
+    energy: 1.2
+    color: "#fff2c8"
+    offset: 0,1.6
+  - type: CadiaVehicle
+    wreck: CadiaWreckChimera
+    maxIntegrity: 950
+    interior: true
+    interiorSize: 3,5
+    hasGunnerSeat: true
+    passengers: 6
+    tankControls: true
+    speed: 3.6
+    reverseSpeed: 2
+    turnRate: 70
+    hasTurret: true
+    turretTurnRate: 80
+    muzzleOffset: 1.8
+    weapons:
+    - name: cadia-vehicle-weapon-multilaser
+      projectile: CadiaMultilaserBolt
+      speed: 40
+      spread: 2.5
+      cooldown: 0.22
+      automatic: true
+      ammo: 400
+      maxAmmo: 400
+      sound:
+        path: /Audio/Imperial/Cadia/Weapons/multilaser_fire.ogg
+    - name: cadia-vehicle-weapon-heavybolter
+      projectile: CadiaHeavyBoltRound
+      speed: 35
+      spread: 4
+      cooldown: 0.15
+      automatic: true
+      ammo: 400
+      maxAmmo: 400
+      sound:
+        path: /Audio/Imperial/Cadia/Weapons/heavybolter_fire.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 950
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/explosion_small1.ogg
+      - !type:ExplodeBehavior
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 8
+    intensitySlope: 3
+    totalIntensity: 90
+    canCreateVacuum: false
+
+# ─── Часовой: одноместный разведывательный шагоход ───
+
+- type: entity
+  parent: CadiaVehicleBase
+  id: CadiaSentinel
+  name: Sentinel scout walker
+  description: A one-man walker that strides ahead of the regiment. Lightly armoured, quick, armed with a multilaser that fires in the walker's facing arc.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/sentinel.rsi
+    state: sentinel
+    drawdepth: OverMobs
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.75
+        density: 1200
+        mask:
+        - MobMask
+        layer:
+        - LargeMobLayer
+  - type: AmbientSound
+    range: 7
+    volume: -8
+    sound:
+      path: /Audio/Effects/Vehicle/vehicleengineidle.ogg
+  - type: CadiaVehicle
+    wreck: CadiaWreckSentinel
+    maxIntegrity: 450
+    hasGunnerSeat: false
+    driverIsGunner: true
+    passengers: 0
+    tankControls: false
+    speed: 4.2
+    turnRate: 200
+    hasTurret: false
+    fireArc: 60
+    muzzleOffset: 1.2
+    muzzles:
+      South: -0.63,-0.45
+      East: 0.7,-0.16
+      North: 0.63,0.2
+      West: -0.4,0.05
+    maxSmokeCharges: 2
+    weapons:
+    - name: cadia-vehicle-weapon-multilaser
+      projectile: CadiaMultilaserBolt
+      speed: 40
+      spread: 2
+      cooldown: 0.25
+      automatic: true
+      ammo: 300
+      maxAmmo: 300
+      sound:
+        path: /Audio/Imperial/Cadia/Weapons/multilaser_fire.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 450
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 4
+            max: 8
+      - !type:ExplodeBehavior
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 5
+    intensitySlope: 3
+    totalIntensity: 40
+    canCreateVacuum: false
+
+# ─── Василиск: самоходная артиллерия, навесной огонь по точке под прицелом ───
+
+- type: entity
+  parent: CadiaVehicleBase
+  id: CadiaBasilisk
+  name: Basilisk artillery
+  description: A Chimera chassis carrying the Earthshaker cannon. It shells any point in range, one hand-loaded round at a time, and is nearly helpless up close.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/vehicles_extra.rsi
+    drawdepth: OverMobs
+    noRot: false
+    layers:
+    - state: basilisk_hull
+    - state: basilisk_turret
+      map: [ "turret" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.9,-1.15,0.9,1.15"
+        density: 3000
+        mask:
+        - MobMask
+        - DoorPassable
+        layer:
+        - LargeMobLayer
+  - type: PointLight
+    radius: 4
+    energy: 1.2
+    color: "#fff2c8"
+    offset: 0,1.3
+  - type: CadiaVehicle
+    wreck: CadiaWreckBasilisk
+    maxIntegrity: 700
+    interior: true
+    rackShells: 16
+    hasGunnerSeat: true
+    passengers: 0
+    tankControls: true
+    speed: 2.8
+    reverseSpeed: 1.6
+    turnRate: 60
+    hasTurret: true
+    turretTurnRate: 25
+    muzzleOffset: 1.5
+    gunnerZoom: 1.8
+    weapons:
+    - name: cadia-vehicle-weapon-earthshaker
+      projectile: CadiaBattleCannonShell
+      spread: 2
+      cooldown: 9
+      ammo: 40
+      maxAmmo: 40
+      kick: 4
+      breech: true
+      indirect: true
+      indirectRange: 30
+      indirectIntensity: 140
+      sound:
+        path: /Audio/Imperial/Cadia/Weapons/earthshaker_fire.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 700
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/explosion_small1.ogg
+      - !type:ExplodeBehavior
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 3
+    totalIntensity: 120
+    canCreateVacuum: false
+
+# ─── Хаос-Рино: транспорт Чёрного легиона ───
+
+- type: entity
+  parent: CadiaVehicleBase
+  id: CadiaChaosRhino
+  name: Chaos Rhino
+  description: A spiked, blackened transport of the Black Legion, its roof-mounted combi-bolter tracking anything that lives. Carries a squad of ten.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/vehicles_extra.rsi
+    drawdepth: OverMobs
+    noRot: false
+    layers:
+    - state: rhino_hull
+    - state: rhino_turret
+      offset: 0,0.1
+      scale: 0.7,0.7
+      map: [ "turret" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.9,-1.15,0.9,1.15"
+        density: 3000
+        mask:
+        - MobMask
+        - DoorPassable
+        layer:
+        - LargeMobLayer
+  - type: PointLight
+    radius: 4
+    energy: 1.2
+    color: "#ff9a6a"
+    offset: 0,1.3
+  - type: CadiaVehicle
+    wreck: CadiaWreckRhino
+    maxIntegrity: 850
+    interior: true
+    interiorSize: 3,7
+    interiorSpeaker: CadiaVehicleSpeakerChaos
+    hasGunnerSeat: true
+    passengers: 10
+    tankControls: true
+    speed: 3.8
+    reverseSpeed: 2
+    turnRate: 70
+    hasTurret: true
+    turretTurnRate: 90
+    muzzleOffset: 1.1
+    weapons:
+    - name: cadia-vehicle-weapon-combibolter
+      projectile: CadiaBoltRound
+      speed: 35
+      spread: 3.5
+      cooldown: 0.14
+      automatic: true
+      ammo: 500
+      maxAmmo: 500
+      sound:
+        path: /Audio/Imperial/Cadia/Weapons/bolter_fire.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 850
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/explosion_small1.ogg
+      - !type:ExplodeBehavior
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 8
+    intensitySlope: 3
+    totalIntensity: 90
+    canCreateVacuum: false
+
+# ─── Хелбрут и Дефайлер: шагоходы Хаоса, пилот прямо в корпусе ───
+
+- type: entity
+  parent: CadiaVehicleBase
+  id: CadiaHelbrute
+  name: Helbrute
+  description: A dreadnought whose entombed pilot went mad centuries ago. Twin autocannon on one arm, a claw on the other.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/mob_helbrute.rsi
+    drawdepth: OverMobs
+    noRot: true
+    layers:
+    - state: mob
+      map: [ "movement" ]
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: walk
+    noMovementLayers:
+      movement:
+        state: mob
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.85
+        density: 2000
+        mask:
+        - MobMask
+        layer:
+        - LargeMobLayer
+  - type: CadiaVehicle
+    wreck: CadiaWreckHelbrute
+    maxIntegrity: 800
+    hasGunnerSeat: false
+    driverIsGunner: true
+    passengers: 0
+    tankControls: false
+    speed: 3
+    turnRate: 200
+    hasTurret: false
+    fireArc: 70
+    muzzleOffset: 1.3
+    maxSmokeCharges: 0
+    muzzles:
+      South: -0.7,-0.3
+      East: 0.8,0
+      North: 0.7,0.3
+      West: -0.8,0
+    weapons:
+    - name: cadia-vehicle-weapon-autocannon
+      projectile: CadiaAutocannonRound
+      speed: 35
+      spread: 2.5
+      cooldown: 0.3
+      automatic: true
+      ammo: 400
+      maxAmmo: 400
+      kick: 0.5
+      sound:
+        path: /Audio/Imperial/Cadia/Weapons/autocannon_fire.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/explosion_small1.ogg
+      - !type:ExplodeBehavior
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 8
+    intensitySlope: 3
+    totalIntensity: 70
+    canCreateVacuum: false
+
+- type: entity
+  parent: CadiaVehicleBase
+  id: CadiaDefiler
+  name: Defiler
+  description: A crab-legged daemon engine with a battle cannon on its back. Its presence is an insult to the Omnissiah.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/mob_defiler.rsi
+    drawdepth: OverMobs
+    noRot: true
+    layers:
+    - state: mob
+      map: [ "movement" ]
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: walk
+    noMovementLayers:
+      movement:
+        state: mob
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 1.3
+        density: 5000
+        mask:
+        - MobMask
+        layer:
+        - LargeMobLayer
+  - type: PointLight
+    radius: 3
+    energy: 1.5
+    color: "#ff4a2a"
+  - type: CadiaVehicle
+    wreck: CadiaWreckDefiler
+    maxIntegrity: 1600
+    hasGunnerSeat: false
+    driverIsGunner: true
+    passengers: 0
+    tankControls: false
+    speed: 2.6
+    turnRate: 120
+    hasTurret: false
+    fireArc: 90
+    muzzleOffset: 1.8
+    maxSmokeCharges: 0
+    muzzles:
+      South: 0,-0.6
+      East: 0.7,0.6
+      North: 0,1.2
+      West: -0.7,0.6
+    weapons:
+    - name: cadia-vehicle-weapon-battlecannon
+      projectile: CadiaBattleCannonShell
+      speed: 30
+      spread: 1
+      cooldown: 6
+      ammo: 40
+      maxAmmo: 40
+      kick: 3
+      sound:
+        path: /Audio/Imperial/Cadia/Weapons/battlecannon_fire.ogg
+    - name: cadia-vehicle-weapon-autocannon
+      projectile: CadiaAutocannonRound
+      speed: 35
+      spread: 4
+      cooldown: 0.2
+      automatic: true
+      ammo: 500
+      maxAmmo: 500
+      sound:
+        path: /Audio/Imperial/Cadia/Weapons/autocannon_fire.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1600
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/explosion_small1.ogg
+      - !type:ExplodeBehavior
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 12
+    intensitySlope: 3
+    totalIntensity: 160
+    canCreateVacuum: false
+
+- type: entity
+  parent: CadiaVoxSpeakerChaos
+  id: CadiaVehicleSpeakerChaos
+  name: warband vehicle speaker
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/cabin.rsi
+    state: speaker
+    drawdepth: WallMountedItems
+    noRot: true
+    color: "#e09080"
+
+# ─── Снаряды, дым, остов ───
+
+- type: entity
+  parent: BulletRocket
+  id: CadiaBattleCannonShell
+  name: battle cannon shell
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 30
+    intensitySlope: 8
+    totalIntensity: 180
+    maxTileBreak: 2
+    canCreateVacuum: false
+  - type: PointLight
+    radius: 2.5
+    color: "#ffb35a"
+    energy: 1.5
+
+- type: entity
+  id: CadiaSmokeCloud
+  name: smoke
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Effects/chemsmoke.rsi
+    state: chemsmoke
+    drawdepth: Effects
+    color: "#c8c8bcd8"
+    noRot: true
+  - type: Occluder
+  - type: TimedDespawn
+    lifetime: 18
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: CadiaVehicleWreck
+  name: burnt-out wreck
+  description: The blackened shell of an armoured vehicle. It still smoulders.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    noRot: false
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Cadia/War/vehicles.rsi
+    state: wreck
+    drawdepth: Objects
+    noRot: false
+  - type: PointLight
+    radius: 2.5
+    energy: 1.2
+    color: "#ff6a2a"
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.1,-1.3,1.1,1.3"
+        density: 4000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 6
+            max: 12
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# ─── Кабина ───
+
+- type: entity
+  abstract: true
+  id: CadiaCabinFixtureBase
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+
+- type: entity
+  abstract: true
+  parent: CadiaCabinFixtureBase
+  id: CadiaCabinSeatBase
+  components:
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,-0.05"
+
+- type: entity
+  parent: CadiaCabinSeatBase
+  id: CadiaVehicleDriverSeat
+  name: driver's seat
+  description: Levers, a vision slit and a worn seat. Buckle in to take the controls.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/cabin.rsi
+    state: driver_seat
+    noRot: true
+  - type: CadiaVehicleSeat
+    seat: Driver
+
+- type: entity
+  parent: CadiaCabinSeatBase
+  id: CadiaVehicleGunnerSeat
+  name: gunner's seat
+  description: The auspex scope and traverse wheel of the main gun. Buckle in to take the turret.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/cabin.rsi
+    state: gunner_seat
+    noRot: true
+  - type: CadiaVehicleSeat
+    seat: Gunner
+
+- type: entity
+  parent: CadiaCabinSeatBase
+  id: CadiaVehicleBench
+  name: troop bench
+  description: A hard steel bench with a harness for one guardsman.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/cabin.rsi
+    state: bench
+    noRot: true
+  - type: CadiaVehicleSeat
+    seat: Passenger
+
+- type: entity
+  parent: CadiaCabinFixtureBase
+  id: CadiaVehicleHatch
+  name: vehicle hatch
+  description: The way out. Use the key on it to lock or unlock the vehicle.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/cabin.rsi
+    state: hatch
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: CadiaVehicleHatch
+
+- type: entity
+  parent: CadiaCabinFixtureBase
+  id: CadiaVehicleBreech
+  name: cannon breech
+  description: The breech of the main gun. Each shell is loaded by hand, and the gun will not fire without one.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/cabin.rsi
+    noRot: true
+    layers:
+    - state: breech
+      map: [ "base" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.CadiaVehicleVisuals.Loaded:
+        base:
+          True: { state: breech }
+          False: { state: breech_empty }
+  - type: CadiaVehicleBreech
+
+- type: entity
+  parent: CadiaCabinFixtureBase
+  id: CadiaAmmoRack
+  name: ammunition rack
+  description: Racked shells for the main gun. Take one by hand; spare shells can be put back.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/cabin.rsi
+    noRot: true
+    layers:
+    - state: rack
+      map: [ "base" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.CadiaVehicleVisuals.RackFull:
+        base:
+          True: { state: rack }
+          False: { state: rack_empty }
+  - type: CadiaAmmoRack
+
+- type: entity
+  parent: CadiaVoxSpeaker
+  id: CadiaVehicleSpeaker
+  name: vehicle vox speaker
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/cabin.rsi
+    state: speaker
+    drawdepth: WallMountedItems
+    noRot: true
+
+- type: entity
+  parent: BaseItem
+  id: CadiaVehicleKey
+  name: vehicle key
+  description: A heavy iron key stamped with the vehicle's hull number. Use it on the hull or the hatch to lock or unlock the vehicle.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/cabin.rsi
+    state: key
+  - type: Item
+    size: Tiny
+  - type: CadiaVehicleKey
+
+- type: entity
+  parent: BaseItem
+  id: CadiaTankShell
+  name: battle cannon shell
+  description: A brass-cased shell as long as a guardsman's arm. It goes into the breech of a battle cannon.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/cabin.rsi
+    state: shell
+  - type: Item
+    size: Large
+  - type: CadiaTankShell
+
+# Голограмма визора: висит перед владельцем, пока открыта карта.
+- type: entity
+  id: CadiaHoloProjection
+  name: hololith projection
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/Cadia/War/holo_projection.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: map
+      shader: unshaded
+  - type: PointLight
+    radius: 1.5
+    energy: 0.9
+    color: "#5aff78"
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# ─── Действия экипажа ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaVehicleExit
+  name: Leave vehicle
+  description: Climb out of the vehicle.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/vehicle_icons.rsi, state: exit }
+    useDelay: 1
+  - type: InstantAction
+    event: !type:CadiaVehicleExitActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaVehicleSwitch
+  name: Switch weapon
+  description: Switch between the vehicle's weapons.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/vehicle_icons.rsi, state: switch }
+  - type: InstantAction
+    event: !type:CadiaVehicleSwitchActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCadiaVehicleSmoke
+  name: Smoke launchers
+  description: Fire the smoke launchers to screen the vehicle.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Cadia/War/vehicle_icons.rsi, state: smoke }
+    useDelay: 3
+  - type: InstantAction
+    event: !type:CadiaVehicleSmokeActionEvent

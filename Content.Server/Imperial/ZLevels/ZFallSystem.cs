@@ -22,6 +22,13 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Imperial.ZLevels;
 
+/// <summary>Сущность вот-вот упадёт на этаж ниже. Обработавший берёт падение на себя (парашют).</summary>
+[ByRefEvent]
+public record struct ZBeforeFallEvent(EntityUid Falling, MapCoordinates Target)
+{
+    public bool Handled;
+}
+
 /// <summary>
 /// Падение сквозь этажи (/turf/proc/zFall, zImpact, /mob/living/proc/ZImpactDamage).
 /// На каждой клетке открытого пространства стоит невидимая метка со StepTrigger: всё, что на неё попало
@@ -185,7 +192,7 @@ public sealed class ZFallSystem : EntitySystem
         target = MapCoordinates.Nullspace;
         var falling = FallingEntity(ent);
         var xform = Transform(falling);
-        if (xform.Anchored || HasComp<ThrownItemComponent>(falling) || HasComp<GhostComponent>(falling) || HasComp<JetpackUserComponent>(falling))
+        if (xform.Anchored || HasComp<ThrownItemComponent>(falling) || HasComp<GhostComponent>(falling) || HasComp<JetpackUserComponent>(falling) || HasComp<ZFlyerComponent>(falling))
             return false;
         // На полу без гравитации не падают (!has_gravity). Пустота между этажами — не космос, а проём: там падают всегда.
         if (xform.GridUid != null && _gravity.IsWeightless(falling))
@@ -209,8 +216,19 @@ public sealed class ZFallSystem : EntitySystem
         if (!CanFall(ent, out var target))
             return false;
         var falling = FallingEntity(ent);
+
+        // Кто-то перехватил падение (парашют): на пол это существо уже не упадёт.
+        var before = new ZBeforeFallEvent(falling, target);
+        RaiseLocalEvent(falling, ref before, true);
+        if (before.Handled)
+            return true;
+
         var fromTile = _z.SnapToTile(_xform.GetMapCoordinates(falling));
         var moving = _z.GetZMoveAffected(falling, false);
+
+        // Сквозь пустые этажи (небо над Кадией) падают за всю высоту.
+        if (Transform(falling).MapUid is { } fromMap && TryComp<ZLevelMapComponent>(fromMap, out var fromZ))
+            levels += fromZ.BelowGap - 1;
 
         _z.ZMove(falling, target, false);
         foreach (var mov in moving)

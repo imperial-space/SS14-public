@@ -1,0 +1,64 @@
+- files: ["battle_loop.ogg"]
+  license: "CC0-1.0"
+  copyright: "BattleField Ambience (Loop) by banan_"
+  source: "https://freesound.org/people/banan_/sounds/385895/"
+
+- files: ["war_drone.ogg"]
+  license: "CC0-1.0"
+  copyright: "War Drone/Ambience by Bowesy"
+  source: "https://freesound.org/people/Bowesy/sounds/691481/"
+
+- files: ["far_blast1.ogg"]
+  license: "CC0-1.0"
+  copyright: "distant explosion by Kostrava. Normalized."
+  source: "https://freesound.org/people/Kostrava/sounds/324277/"
+
+- files: ["far_blast2.ogg"]
+  license: "CC0-1.0"
+  copyright: "Huge Distant Explosion by Fission9. Normalized."
+  source: "https://freesound.org/people/Fission9/sounds/476225/"
+
+- files: ["far_blast3.ogg"]
+  license: "CC0-1.0"
+  copyright: "Distant Explosion by Mr_KeybOred. Normalized."
+  source: "https://freesound.org/people/Mr_KeybOred/sounds/372086/"
+
+- files: ["far_blast4.ogg"]
+  license: "CC0-1.0"
+  copyright: "verydistantexplosion by Opticreep. Normalized."
+  source: "https://freesound.org/people/Opticreep/sounds/255527/"
+
+- files: ["artillery.ogg"]
+  license: "CC0-1.0"
+  copyright: "R12-31-Artillery Guns Firing by craigsmith. Trimmed and normalized."
+  source: "https://freesound.org/people/craigsmith/sounds/486027/"
+
+- files: ["far_gun1.ogg"]
+  license: "CC0-1.0"
+  copyright: "Distant Gunfire by iainmccurdy. Normalized."
+  source: "https://freesound.org/people/iainmccurdy/sounds/842326/"
+
+- files: ["far_gun2.ogg"]
+  license: "CC0-1.0"
+  copyright: "Distant Three Round Burst by adrilahan. Normalized."
+  source: "https://freesound.org/people/adrilahan/sounds/337242/"
+
+- files: ["far_firefight.ogg"]
+  license: "CC0-1.0"
+  copyright: "Firefight by TheBuilder15. Normalized."
+  source: "https://freesound.org/people/TheBuilder15/sounds/404334/"
+
+- files: ["vox_static.ogg"]
+  license: "CC0-1.0"
+  copyright: "Radio Noise, Military Transmission by Kinoton. Trimmed and normalized."
+  source: "https://freesound.org/people/Kinoton/sounds/376005/"
+
+- files: ["bell_toll.ogg", "pylon_hum.ogg", "rift_drone.ogg", "chaos_drums.ogg"]
+  license: "CC0-1.0"
+  copyright: "Synthesized for Imperial Space from formulas (scratchpad sfx_synth.sh), no recorded material"
+  source: "https://github.com/imperial-space/SS14-public"
+
+- files: ["hull_groan.ogg", "dark_chant.ogg", "warp_reactor.ogg"]
+  license: "CC0-1.0"
+  copyright: "Synthesized for Imperial Space with ffmpeg (no recorded samples)"
+  source: "https://github.com/imperial-space/SS14-public"

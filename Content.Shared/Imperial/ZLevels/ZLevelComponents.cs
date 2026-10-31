@@ -27,6 +27,17 @@ public sealed partial class ZLevelMapComponent : Component
     /// <summary>Карта этажом выше.</summary>
     [ViewVariables, AutoNetworkedField]
     public EntityUid? Above;
+
+    /// <summary>
+    /// На сколько этажей ниже лежит <see cref="Below"/>. Между ними может быть пустой воздух (небо Кадии — 7 этажей
+    /// над поверхностью): нижний этаж рисуется дальше, падение сквозь разрыв считается за все этажи.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public int BelowGap = 1;
+
+    /// <summary>Пол этого этажа не обрушается без опоры (поле боя Кадии: небо, орбита, крейсеры).</summary>
+    [DataField]
+    public bool NoCollapse;
 }
 
 /// <summary>
@@ -276,6 +287,10 @@ public sealed partial class ZClimbingHookComponent : Component
 
 [Serializable, NetSerializable]
 public sealed partial class ZClimbHookDoAfterEvent : SimpleDoAfterEvent;
+
+/// <summary>Летающее существо: не падает в проёмы между этажами.</summary>
+[RegisterComponent]
+public sealed partial class ZFlyerComponent : Component;
 
 /// <summary>Подняться или опуститься на этаж: призраки, камера ИИ, летящие на джетпаке.</summary>
 public sealed partial class ZMoveUpActionEvent : InstantActionEvent;

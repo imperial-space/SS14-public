@@ -83,13 +83,14 @@ public sealed class ZCollapseSystem : EntitySystem
         var maps = EntityQueryEnumerator<ZLevelMapComponent, MapComponent>();
         while (maps.MoveNext(out var mapUid, out var z, out var map))
         {
-            if (z.Below == null || !map.MapInitialized || map.MapPaused)
+            if (z.Below == null || z.NoCollapse || !map.MapInitialized || map.MapPaused)
                 continue;
             var grids = new List<Entity<MapGridComponent>>();
             var children = Transform(mapUid).ChildEnumerator;
             while (children.MoveNext(out var child))
             {
-                if (TryComp<MapGridComponent>(child, out var grid))
+                // Корабли и шаттлы летают — опора снизу им не нужна.
+                if (TryComp<MapGridComponent>(child, out var grid) && !HasComp<Content.Server.Shuttles.Components.ShuttleComponent>(child))
                     grids.Add((child, grid));
             }
             foreach (var grid in grids)

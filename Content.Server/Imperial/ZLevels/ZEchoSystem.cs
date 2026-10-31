@@ -154,6 +154,10 @@ public sealed class ZEchoSystem : EntitySystem
             {
                 if (_z.GetStep(epicenter, up) is not { } target)
                     continue;
+                // Через большой разрыв (небо над Кадией) взрыв не доходит: шаттл над полем боя в безопасности.
+                var upper = up ? target.MapId : epicenter.MapId;
+                if (_map.TryGetMap(upper, out var upperMap) && TryComp<ZLevelMapComponent>(upperMap, out var upperZ) && upperZ.BelowGap > 1)
+                    continue;
                 _propagated[(target.MapId, (Vector2i) target.Position.Floored())] = (up, depth);
                 _explosion.QueueExplosion(target, visuals.ExplosionType, total, slope, max * ExplosionFalloff, null);
             }

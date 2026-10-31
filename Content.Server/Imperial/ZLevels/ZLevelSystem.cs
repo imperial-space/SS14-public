@@ -115,8 +115,10 @@ public sealed class ZLevelSystem : SharedZLevelSystem
         for (var i = 0; i < levels.Count; i++)
         {
             var z = levels[i].Comp;
-            z.Below = i > 0 && levels[i - 1].Comp.Level == z.Level - 1 ? levels[i - 1].Owner : null;
-            z.Above = i < levels.Count - 1 && levels[i + 1].Comp.Level == z.Level + 1 ? levels[i + 1].Owner : null;
+            // Соседи — ближайшие существующие этажи; пустые этажи между ними — открытый воздух (разрыв).
+            z.Below = i > 0 ? levels[i - 1].Owner : null;
+            z.Above = i < levels.Count - 1 ? levels[i + 1].Owner : null;
+            z.BelowGap = i > 0 ? Math.Max(1, z.Level - levels[i - 1].Comp.Level) : 1;
             Dirty(levels[i]);
             // Верхние этажи стоят на нижнем — гравитация у них своя, постоянная (гравгенератор только внизу).
             // Нижний этаж — обычный космос со станцией, его не трогаем.
@@ -397,6 +399,12 @@ public sealed class ZLevelSystem : SharedZLevelSystem
     }
 
     // ---------- Выравнивание новых сеток по этажам ----------
+
+    /// <summary>Сетка, поставленная кодом в точные координаты, не выравнивается по соседнему этажу при первом тайле.</summary>
+    public void KeepPlacement(EntityUid grid)
+    {
+        _freshGrids.Remove(grid);
+    }
 
     private void OnGridStartup(GridStartupEvent ev)
     {

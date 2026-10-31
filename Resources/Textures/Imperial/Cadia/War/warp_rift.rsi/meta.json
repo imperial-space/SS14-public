@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for Imperial Space with PixelLab",
+  "size": { "x": 96, "y": 96 },
+  "states": [
+    { "name": "rift", "delays": [ [ 0.14, 0.14, 0.14, 0.14, 0.14, 0.14, 0.14, 0.14 ] ] }
+  ]
+}

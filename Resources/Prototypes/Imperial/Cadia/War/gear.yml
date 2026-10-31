@@ -1,0 +1,663 @@
+# Стартовое снаряжение ролей войны за Кадию.
+# Базы НЕ помечать abstract: у startingGear этот признак наследуется, и все потомки становятся недоступны.
+
+# ═══════════════ Астра Милитарум ═══════════════
+
+- type: startingGear
+  id: CadiaGearGuardsmanBase
+  equipment:
+    jumpsuit: CadiaFatigues
+    outerClothing: CadiaFlakArmor
+    head: CadiaHelmet
+    shoes: CadiaBoots
+    gloves: CadiaGloves
+    ears: CadiaHeadset
+    back: CadiaBackpack
+    belt: ClothingBeltMilitaryWebbing
+    pocket1: CadiaCombatKnife
+    pocket2: CadiaFragGrenade
+
+- type: startingGear
+  id: CadiaGearLordCastellan
+  equipment:
+    eyes: CadiaHoloVisor
+    jumpsuit: CadiaFatigues
+    outerClothing: CadiaGreatcoat
+    head: CadiaOfficerCap
+    shoes: CadiaBoots
+    gloves: CadiaGloves
+    ears: CadiaHeadsetCommand
+    back: CadiaBackpack
+    belt: CadiaLaspistol
+    pocket1: CadiaCombatKnife
+  inhand:
+  - CadiaPowerSword
+  storage:
+    back:
+    - CadiaLaspistolPack
+    - CadiaLaspistolPack
+    - Binoculars
+    - CadiaFragGrenade
+
+- type: startingGear
+  id: CadiaGearColourSergeant
+  parent: CadiaGearGuardsmanBase
+  equipment:
+    eyes: CadiaHoloVisor
+    ears: CadiaHeadsetCommand
+    belt: CadiaLaspistol
+  inhand:
+  - CadiaRegimentalStandard
+  storage:
+    back:
+    - CadiaLaspistolPack
+    - CadiaLaspistolPack
+    - CadiaShotgun
+    - BoxShotgunSlug
+
+- type: startingGear
+  id: CadiaGearLieutenant
+  equipment:
+    eyes: CadiaHoloVisor
+    jumpsuit: CadiaFatigues
+    outerClothing: CadiaFlakArmor
+    head: CadiaOfficerCap
+    shoes: CadiaBoots
+    gloves: CadiaGloves
+    ears: CadiaHeadsetCommand
+    back: CadiaBackpack
+    belt: CadiaLaspistol
+    pocket1: CadiaCombatKnife
+    pocket2: Binoculars
+  inhand:
+  - CadiaChainsword
+  storage:
+    back:
+    - CadiaLaspistolPack
+    - CadiaLaspistolPack
+    - CadiaFragGrenade
+    - CadiaFragGrenade
+
+- type: startingGear
+  id: CadiaGearCommissar
+  equipment:
+    eyes: CadiaHoloVisor
+    jumpsuit: CadiaFatigues
+    outerClothing: CadiaCommissarCoat
+    head: CadiaCommissarCap
+    shoes: CadiaBoots
+    gloves: CadiaGloves
+    ears: CadiaHeadsetCommand
+    back: CadiaBackpack
+    belt: CadiaBoltPistol
+    pocket1: CadiaCombatKnife
+  inhand:
+  - CadiaChainsword
+  storage:
+    back:
+    - CadiaBoltPistolMag
+    - CadiaBoltPistolMag
+
+- type: startingGear
+  id: CadiaGearSergeant
+  parent: CadiaGearGuardsmanBase
+  equipment:
+    eyes: CadiaHoloVisor
+    ears: CadiaHeadsetCommand
+    belt: CadiaLaspistol
+  inhand:
+  - CadiaChainsword
+  storage:
+    back:
+    - SmokeGrenade
+    - CadiaEntrenchingTool
+    - CadiaLasPack
+    - CadiaLasPack
+    - CadiaLasPack
+    - CadiaLaspistolPack
+    - CadiaLaspistolPack
+    - CadiaLasgun
+    - CadiaFragGrenade
+
+- type: startingGear
+  id: CadiaGearGuardsman
+  parent: CadiaGearGuardsmanBase
+  inhand:
+  - CadiaLasgun
+  storage:
+    back:
+    - CadiaLasPack
+    - CadiaLasPack
+    - CadiaLasPack
+    - CadiaFragGrenade
+    - CadiaRation
+
+- type: startingGear
+  id: CadiaGearMedic
+  parent: CadiaGearGuardsmanBase
+  equipment:
+    outerClothing: CadiaMedicFlak
+    belt: CadiaLaspistol
+  inhand:
+  - MedkitCombatFilled
+  storage:
+    back:
+    - CadiaFieldStretcher
+    - CadiaLaspistolPack
+    - CadiaLaspistolPack
+    - MedkitFilled
+    - MedkitBruteFilled
+    - MedkitBurnFilled
+
+- type: startingGear
+  id: CadiaGearVoxOperator
+  parent: CadiaGearGuardsmanBase
+  equipment:
+    ears: CadiaHeadsetCommand
+    back: CadiaVoxCasterPack
+  inhand:
+  - CadiaLasgun
+  storage:
+    back:
+    - CadiaLasPack
+    - CadiaLasPack
+    - CadiaLasPack
+
+- type: startingGear
+  id: CadiaGearFlamer
+  parent: CadiaGearGuardsmanBase
+  equipment:
+    belt: CadiaLaspistol
+  inhand:
+  - FlameThrower
+  storage:
+    back:
+    - CadiaLaspistolPack
+    - CadiaLaspistolPack
+    - FuelTankFlamethrowerMedium
+    - FuelTankFlamethrowerMedium
+
+- type: startingGear
+  id: CadiaGearSniper
+  parent: CadiaGearGuardsmanBase
+  equipment:
+    belt: CadiaLaspistol
+    pocket2: Binoculars
+  inhand:
+  - CadiaLongLas
+  storage:
+    back:
+    - CadiaLaspistolPack
+    - CadiaLaspistolPack
+    - CadiaLongLasPack
+    - CadiaLongLasPack
+    - CadiaLongLasPack
+
+- type: startingGear
+  id: CadiaGearHeavyWeapons
+  parent: CadiaGearGuardsmanBase
+  equipment:
+    belt: CadiaLaspistol
+  inhand:
+  - WeaponLauncherRocket
+  storage:
+    back:
+    - CadiaEntrenchingTool
+    - CadiaLaspistolPack
+    - CadiaLaspistolPack
+    - CartridgeRocket
+    - CartridgeRocket
+    - CartridgeRocket
+    - CadiaKrakGrenade
+
+- type: startingGear
+  id: CadiaGearKasrkin
+  equipment:
+    jumpsuit: CadiaFatigues
+    outerClothing: CadiaKasrkinArmor
+    head: CadiaKasrkinHelmet
+    shoes: CadiaBoots
+    gloves: CadiaGloves
+    ears: CadiaHeadset
+    back: CadiaBackpack
+    belt: ClothingBeltMilitaryWebbing
+    pocket1: CadiaCombatKnife
+    pocket2: CadiaKrakGrenade
+  inhand:
+  - CadiaHotShotLasgun
+  storage:
+    back:
+    - CadiaHotShotPack
+    - CadiaHotShotPack
+    - CadiaHotShotPack
+    - CadiaLaspistolPack
+    - CadiaLaspistolPack
+    - CadiaLaspistol
+    - CadiaFragGrenade
+    - CadiaFragGrenade
+
+- type: startingGear
+  id: CadiaGearEnginseer
+  equipment:
+    jumpsuit: CadiaFatigues
+    outerClothing: CadiaMechanicusRobe
+    shoes: CadiaBoots
+    gloves: ClothingHandsGlovesColorYellow
+    ears: CadiaHeadset
+    back: CadiaBackpack
+    belt: ClothingBeltUtilityFilled
+    pocket1: CadiaLaspistol
+  inhand:
+  - CadiaOmnissianAxe
+  storage:
+    back:
+    - CadiaLaspistolPack
+    - CadiaLaspistolPack
+    - CadiaServitorCradle
+    - CadiaServitorCradle
+    - SheetSteel
+    - SheetPlasteel
+    - CableHVStack
+
+- type: startingGear
+  id: CadiaGearPriest
+  equipment:
+    jumpsuit: CadiaFatigues
+    outerClothing: CadiaPriestRobe
+    shoes: CadiaBoots
+    ears: CadiaHeadset
+    back: CadiaBackpack
+    pocket1: Bible
+  inhand:
+  - CadiaShotgun
+  storage:
+    back:
+    - BoxShotgunSlug
+    - CadiaChainsword
+
+- type: startingGear
+  id: CadiaGearBattleSister
+  equipment:
+    jumpsuit: CadiaFatigues
+    outerClothing: CadiaSororitasArmor
+    shoes: CadiaBoots
+    gloves: CadiaGloves
+    ears: CadiaHeadset
+    back: CadiaBackpack
+    belt: CadiaBoltPistol
+    pocket1: CadiaCombatKnife
+  inhand:
+  - CadiaBolter
+  storage:
+    back:
+    - CadiaBoltPistolMag
+    - CadiaBoltPistolMag
+    - CadiaBoltMag
+    - CadiaBoltMag
+    - CadiaBoltMag
+
+- type: startingGear
+  id: CadiaGearPsyker
+  equipment:
+    jumpsuit: CadiaFatigues
+    outerClothing: CadiaPsykerRobe
+    shoes: CadiaBoots
+    ears: CadiaHeadset
+    back: CadiaBackpack
+    belt: CadiaLaspistol
+  inhand:
+  - CadiaPsykerStaff
+  storage:
+    back:
+    - CadiaLaspistolPack
+    - CadiaLaspistolPack
+
+- type: startingGear
+  id: CadiaGearAstropath
+  equipment:
+    jumpsuit: CadiaFatigues
+    outerClothing: CadiaAstropathRobe
+    shoes: CadiaBoots
+    ears: CadiaHeadsetCommand
+    back: CadiaBackpack
+  inhand:
+  - CadiaPsykerStaff
+
+# ═══════════════ Ультрамарины ═══════════════
+
+- type: startingGear
+  id: CadiaGearAstartesBase
+  equipment:
+    jumpsuit: CadiaAstartesBodyglove
+    outerClothing: CadiaSpaceMarineArmor
+    shoes: CadiaAstartesBoots
+    ears: CadiaHeadset
+    back: CadiaAstartesPack
+    pocket1: CadiaFragGrenade
+    pocket2: CadiaKrakGrenade
+
+- type: startingGear
+  id: CadiaGearUltramarineCaptain
+  parent: CadiaGearAstartesBase
+  equipment:
+    eyes: CadiaHoloVisorAstartes
+    outerClothing: CadiaUltramarineCaptainArmor
+    ears: CadiaHeadsetCommand
+    belt: CadiaBoltPistol
+  inhand:
+  - CadiaPowerSword
+  storage:
+    back:
+    - CadiaBoltPistolMag
+    - CadiaBoltPistolMag
+
+- type: startingGear
+  id: CadiaGearUltramarineChaplain
+  parent: CadiaGearAstartesBase
+  equipment:
+    outerClothing: CadiaUltramarineChaplainArmor
+    belt: CadiaBoltPistol
+  inhand:
+  - CadiaCrozius
+  storage:
+    back:
+    - CadiaBoltPistolMag
+    - CadiaBoltPistolMag
+
+- type: startingGear
+  id: CadiaGearUltramarineLibrarian
+  parent: CadiaGearAstartesBase
+  equipment:
+    outerClothing: CadiaUltramarineLibrarianArmor
+    belt: CadiaBoltPistol
+  inhand:
+  - CadiaForceStaff
+  storage:
+    back:
+    - CadiaBoltPistolMag
+    - CadiaBoltPistolMag
+
+- type: startingGear
+  id: CadiaGearUltramarineApothecary
+  parent: CadiaGearAstartesBase
+  equipment:
+    outerClothing: CadiaUltramarineApothecaryArmor
+    belt: CadiaBoltPistol
+  inhand:
+  - MedkitCombatFilled
+  storage:
+    back:
+    - CadiaFieldStretcher
+    - CadiaBoltPistolMag
+    - CadiaBoltPistolMag
+    - MedkitBruteFilled
+    - MedkitBurnFilled
+    - CadiaChainsword
+    - CadiaReductor
+
+- type: startingGear
+  id: CadiaGearUltramarineTechmarine
+  parent: CadiaGearAstartesBase
+  equipment:
+    outerClothing: CadiaUltramarineTechmarineArmor
+    belt: ClothingBeltUtilityFilled
+  inhand:
+  - CadiaOmnissianAxe
+  storage:
+    back:
+    - CadiaBoltPistolMag
+    - CadiaBoltPistolMag
+    - CadiaBoltPistol
+    - SheetPlasteel
+    - SheetSteel
+
+- type: startingGear
+  id: CadiaGearUltramarineSergeant
+  parent: CadiaGearAstartesBase
+  equipment:
+    eyes: CadiaHoloVisorAstartes
+    outerClothing: CadiaUltramarineSergeantArmor
+    ears: CadiaHeadsetCommand
+    belt: CadiaChainsword
+  inhand:
+  - CadiaBolter
+  storage:
+    back:
+    - CadiaBoltMag
+    - CadiaBoltMag
+    - CadiaBoltMag
+
+- type: startingGear
+  id: CadiaGearUltramarineTactical
+  parent: CadiaGearAstartesBase
+  equipment:
+    belt: CadiaBoltPistol
+  inhand:
+  - CadiaBolter
+  storage:
+    back:
+    - CadiaBoltPistolMag
+    - CadiaBoltPistolMag
+    - CadiaBoltMag
+    - CadiaBoltMag
+    - CadiaBoltMag
+
+- type: startingGear
+  id: CadiaGearUltramarineAssault
+  parent: CadiaGearAstartesBase
+  equipment:
+    outerClothing: CadiaUltramarineAssaultArmor
+    belt: CadiaBoltPistol
+  inhand:
+  - CadiaChainsword
+  storage:
+    back:
+    - CadiaBoltPistolMag
+    - CadiaBoltPistolMag
+
+- type: startingGear
+  id: CadiaGearUltramarineDevastator
+  parent: CadiaGearAstartesBase
+  equipment:
+    belt: CadiaBoltPistol
+  inhand:
+  - CadiaHeavyBolter
+  storage:
+    back:
+    - CadiaBoltPistolMag
+    - CadiaBoltPistolMag
+    - CadiaHeavyBoltBox
+    - CadiaHeavyBoltBox
+
+# ═══════════════ Хаос ═══════════════
+
+- type: startingGear
+  id: CadiaGearHereticAstartesBase
+  equipment:
+    jumpsuit: CadiaAstartesBodyglove
+    outerClothing: CadiaBlackLegionArmor
+    shoes: CadiaChaosAstartesBoots
+    ears: CadiaHeadsetChaos
+    back: CadiaAstartesPack
+    pocket1: CadiaFragGrenade
+
+- type: startingGear
+  id: CadiaGearChaosLord
+  parent: CadiaGearHereticAstartesBase
+  equipment:
+    eyes: CadiaHoloVisorChaosAstartes
+    outerClothing: CadiaChaosLordArmor
+    belt: CadiaBoltPistol
+  inhand:
+  - CadiaDaemonSword
+  storage:
+    back:
+    - CadiaBoltPistolMag
+    - CadiaBoltPistolMag
+
+- type: startingGear
+  id: CadiaGearDarkApostle
+  parent: CadiaGearHereticAstartesBase
+  equipment:
+    eyes: CadiaHoloVisorChaosAstartes
+    outerClothing: CadiaDarkApostleArmor
+    belt: CadiaBoltPistol
+  inhand:
+  - CadiaChaosCrozius
+  storage:
+    back:
+    - CadiaBoltPistolMag
+    - CadiaBoltPistolMag
+
+- type: startingGear
+  id: CadiaGearSorcerer
+  parent: CadiaGearHereticAstartesBase
+  equipment:
+    outerClothing: CadiaSorcererArmor
+    belt: CadiaBoltPistol
+  inhand:
+  - CadiaChaosForceStaff
+  storage:
+    back:
+    - CadiaBoltPistolMag
+    - CadiaBoltPistolMag
+
+- type: startingGear
+  id: CadiaGearBlackLegionnaire
+  parent: CadiaGearHereticAstartesBase
+  equipment:
+    belt: CadiaChainAxe
+  inhand:
+  - CadiaChaosBolter
+  storage:
+    back:
+    - CadiaBoltMag
+    - CadiaBoltMag
+    - CadiaBoltMag
+
+- type: startingGear
+  id: CadiaGearChosen
+  parent: CadiaGearHereticAstartesBase
+  equipment:
+    outerClothing: CadiaChosenArmor
+    belt: CadiaBoltPistol
+  inhand:
+  - CadiaChaosBolter
+  storage:
+    back:
+    - CadiaBoltPistolMag
+    - CadiaBoltPistolMag
+    - CadiaBoltMag
+    - CadiaBoltMag
+    - CadiaBoltMag
+    - CadiaChainAxe
+
+- type: startingGear
+  id: CadiaGearAbaddon
+  parent: CadiaGearHereticAstartesBase
+  equipment:
+    eyes: CadiaHoloVisorChaosAstartes
+    outerClothing: CadiaAbaddonArmor
+    gloves: CadiaTalonOfHorus
+  inhand:
+  - CadiaDrachnyen
+
+- type: startingGear
+  id: CadiaGearCultistBase
+  equipment:
+    jumpsuit: CadiaCultistRags
+    outerClothing: CadiaCultistRobe
+    shoes: ClothingShoesBootsWork
+    ears: CadiaHeadsetChaos
+    back: CadiaBackpackChaos
+    pocket1: CadiaCombatKnife
+
+- type: startingGear
+  id: CadiaGearDemagogue
+  parent: CadiaGearCultistBase
+  equipment:
+    eyes: CadiaHoloVisorChaos
+    outerClothing: CadiaDemagogueRobe
+    mask: CadiaCultistMask
+    belt: CadiaAutopistol
+  inhand:
+  - CadiaChainAxe
+  storage:
+    back:
+    - CadiaAutopistolMag
+    - CadiaAutopistolMag
+
+- type: startingGear
+  id: CadiaGearCultist
+  parent: CadiaGearCultistBase
+  equipment:
+    mask: CadiaCultistMask
+    pocket2: CadiaFragGrenade
+  inhand:
+  - CadiaAutogun
+  storage:
+    back:
+    - SmokeGrenade
+    - CadiaEntrenchingTool
+    - CadiaAutogunMag
+    - CadiaAutogunMag
+    - CadiaAutogunMag
+
+- type: startingGear
+  id: CadiaGearTraitor
+  equipment:
+    jumpsuit: CadiaFatigues
+    outerClothing: CadiaTraitorFlak
+    head: CadiaTraitorHelmet
+    shoes: CadiaBoots
+    gloves: CadiaGloves
+    ears: CadiaHeadsetChaos
+    back: CadiaBackpackChaos
+    belt: ClothingBeltMilitaryWebbing
+    pocket1: CadiaCombatKnife
+    pocket2: CadiaFragGrenade
+  inhand:
+  - CadiaLasgun
+  storage:
+    back:
+    - CadiaLasPack
+    - CadiaLasPack
+    - CadiaLasPack
+
+- type: startingGear
+  id: CadiaGearHeretek
+  equipment:
+    jumpsuit: CadiaCultistRags
+    outerClothing: CadiaHeretekRobe
+    shoes: ClothingShoesBootsWork
+    gloves: ClothingHandsGlovesColorYellow
+    ears: CadiaHeadsetChaos
+    back: CadiaBackpackChaos
+    belt: ClothingBeltUtilityFilled
+    pocket1: CadiaAutopistol
+  inhand:
+  - CadiaOmnissianAxe
+  storage:
+    back:
+    - CadiaAutopistolMag
+    - CadiaAutopistolMag
+    - SheetSteel
+    - SheetPlasteel
+
+# Пилот бомбардировщика Хаоса: лётная форма предателя, пистолет и нож, без тяжёлого оружия.
+- type: startingGear
+  id: CadiaGearChaosBomberPilot
+  equipment:
+    jumpsuit: CadiaFatigues
+    outerClothing: CadiaTraitorFlak
+    head: CadiaTraitorHelmet
+    shoes: CadiaBoots
+    gloves: CadiaGloves
+    ears: CadiaHeadsetChaos
+    back: CadiaBackpackChaos
+    belt: CadiaLaspistol
+    pocket1: CadiaCombatKnife
+  storage:
+    back:
+    - CadiaLaspistolPack
+    - CadiaLaspistolPack

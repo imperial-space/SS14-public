@@ -9,6 +9,7 @@ using Robust.Shared.Graphics;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Client.Imperial.ZLevels;
 
@@ -49,6 +50,9 @@ public sealed class ZLevelOverlay : Overlay
     /// <summary>Вьюпорт этажа ниже и (для вложенного рендера) ещё одного ниже.</summary>
     private IClydeViewport? _lower;
     private IClydeViewport? _nestedLower;
+    /// <summary>Какого размера нужны вьюпорты этажей ниже: создаются в FrameUpdate, не посреди отрисовки.</summary>
+    private Vector2i? _wantLower;
+    private Vector2i? _wantNested;
     private IRenderTexture? _stencil;
     private IRenderTexture? _nestedStencil;
     private List<Entity<MapGridComponent>> _grids = new();
@@ -86,9 +90,13 @@ public sealed class ZLevelOverlay : Overlay
         ref var lower = ref nested ? ref _nestedLower : ref _lower;
         if (lower == null || lower.Size != size)
         {
-            lower?.Dispose();
-            lower = _clyde.CreateViewport(size, nested ? "zlevel-below-2" : "zlevel-below");
-            lower.ClearColor = Color.Black;
+            // Clyde перебирает список вьюпортов, пока рисует: новый посреди обхода его ломает. Ждём следующего кадра.
+            if (nested)
+                _wantNested = size;
+            else
+                _wantLower = size;
+            Pause(nested);
+            return;
         }
         // Без этого при масштабировании рендера (render scale > 1) нижний этаж рисовался вдвое мельче — «далеко».
         lower.RenderScale = args.Viewport.RenderScale;
@@ -109,9 +117,11 @@ public sealed class ZLevelOverlay : Overlay
         var map = args.MapId;
         var below2 = TryGetBelow(belowMap, out var b2) ? b2 : MapId.Nullspace;
         var any = false;
-        var lowerEye = DepthEye(eye, belowMap);
+        var gap = Gap(_ents, map);
+        var gap2 = below2 != MapId.Nullspace ? Gap(_ents, belowMap) : 0;
+        var lowerEye = DepthEye(eye, belowMap, gap);
         // Нижние этажи мельче — их пол может выглядывать из-за края экрана.
-        var lowBox = box.Enlarged(box.Size.Length() * (1f / (DepthScale * DepthScale) - 1f));
+        var lowBox = box.Enlarged(box.Size.Length() * (1f / MathF.Pow(DepthScale, gap + gap2) - 1f));
 
         handle.RenderInRenderTarget(st, () =>
         {
@@ -121,7 +131,7 @@ public sealed class ZLevelOverlay : Overlay
             handle.UseShader(_proto.Index(UnshadedShader).Instance());
             any |= DrawFloor(handle, belowMap, lowBox, st.GetWorldToLocalMatrix(lowerEye, scale), Color.White, false);
             if (below2 != MapId.Nullspace)
-                any |= DrawFloor(handle, below2, lowBox, st.GetWorldToLocalMatrix(DepthEye(lowerEye, below2), scale), Color.White, false);
+                any |= DrawFloor(handle, below2, lowBox, st.GetWorldToLocalMatrix(DepthEye(lowerEye, below2, gap2), scale), Color.White, false);
 
             // 2. Непрозрачный пол верхнего этажа закрывает вид вниз (перезапись в прозрачное).
             handle.UseShader(_proto.Index(OverwriteShader).Instance());
@@ -145,7 +155,7 @@ public sealed class ZLevelOverlay : Overlay
         handle.UseShader(_proto.Index(StencilMaskShader).Instance());
         handle.DrawTextureRect(st.Texture, args.WorldBounds);
         handle.UseShader(_proto.Index(StencilEqualDrawShader).Instance());
-        handle.DrawTextureRect(lower.RenderTarget.Texture, args.WorldBounds, DepthTint);
+        handle.DrawTextureRect(lower.RenderTarget.Texture, args.WorldBounds, HazeTint(gap));
         handle.UseShader(null);
 
         // Стекло поверх вида вниз: сам пол видно, нижний этаж — сквозь него.
@@ -192,19 +202,73 @@ public sealed class ZLevelOverlay : Overlay
     {
         if (_lower == null || !TryGetBelow(source.Position.MapId, out var below))
             return;
-        var lowerEye = DepthEye(source, below);
+        var lowerEye = DepthEye(source, below, Gap(_ents, source.Position.MapId));
         _lower.Eye = lowerEye;
         if (_nestedLower != null && TryGetBelow(below, out var below2))
-            _nestedLower.Eye = DepthEye(lowerEye, below2);
+            _nestedLower.Eye = DepthEye(lowerEye, below2, Gap(_ents, below));
     }
 
-    /// <summary>Глаз этажом ниже: та же точка (этажи совмещены), но чуть дальше. Свет — как у основного глаза.</summary>
-    internal static Robust.Shared.Graphics.Eye DepthEye(IEye eye, MapId map)
+    /// <summary>На сколько этажей ниже лежит этаж под картой (1 — соседний, больше — сквозь пустой воздух).</summary>
+    internal static int Gap(IEntityManager ents, MapId map)
+    {
+        return ResolveBelow(ents, map, out _, out var gap) ? gap : 1;
+    }
+
+    /// <summary>
+    /// Этаж ниже и сколько этажей до него. Сначала по связи стопки Z-уровней; если её нет (не дошла или не
+    /// выставлена) — по полю Кадии: тот же Field, высота на ступень ниже, разрыв — по номерам Z или 7 для неба.
+    /// </summary>
+    internal static bool ResolveBelow(IEntityManager ents, MapId map, out MapId below, out int gap)
+    {
+        below = MapId.Nullspace;
+        gap = 1;
+        var maps = ents.System<SharedMapSystem>();
+        if (!maps.TryGetMap(map, out var mapUid))
+            return false;
+
+        ents.TryGetComponent<ZLevelMapComponent>(mapUid, out var z);
+        if (z?.Below is { } belowUid && ents.TryGetComponent<MapComponent>(belowUid, out var belowComp) && belowComp.MapId != MapId.Nullspace)
+        {
+            below = belowComp.MapId;
+            gap = Math.Max(1, z.BelowGap);
+            return true;
+        }
+
+        if (!ents.TryGetComponent<Content.Shared.Imperial.Cadia.CadiaFlightLevelComponent>(mapUid, out var level) ||
+            string.IsNullOrEmpty(level.Field) || level.Level == Content.Shared.Imperial.Cadia.CadiaFlightLevel.Surface)
+            return false;
+
+        var wanted = level.Level - 1;
+        var query = ents.EntityQueryEnumerator<Content.Shared.Imperial.Cadia.CadiaFlightLevelComponent, MapComponent>();
+        while (query.MoveNext(out var uid, out var other, out var otherMap))
+        {
+            if (other.Field != level.Field || other.Level != wanted)
+                continue;
+            below = otherMap.MapId;
+            gap = z != null && ents.TryGetComponent<ZLevelMapComponent>(uid, out var otherZ) && z.Level > otherZ.Level
+                ? z.Level - otherZ.Level
+                : level.Level == Content.Shared.Imperial.Cadia.CadiaFlightLevel.Air ? 7 : 1;
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>Чем дальше вниз, тем гуще воздушная дымка: темнее и голубее.</summary>
+    internal static Color HazeTint(int gap)
+    {
+        if (gap <= 1)
+            return DepthTint;
+        var k = Math.Min(1f, (gap - 1) / 8f);
+        return new Color(0.88f - 0.18f * k, 0.88f - 0.12f * k, 0.92f - 0.02f * k);
+    }
+
+    /// <summary>Глаз этажом ниже: та же точка (этажи совмещены), но дальше на столько этажей, сколько между ними. Свет — как у основного глаза.</summary>
+    internal static Robust.Shared.Graphics.Eye DepthEye(IEye eye, MapId map, int gap = 1)
     {
         return new Robust.Shared.Graphics.Eye
         {
             Position = new MapCoordinates(eye.Position.Position, map),
-            Zoom = eye.Zoom / DepthScale,
+            Zoom = eye.Zoom / MathF.Pow(DepthScale, Math.Max(1, gap)),
             Rotation = eye.Rotation,
             Offset = eye.Offset,
             DrawFov = false,
@@ -261,17 +325,29 @@ public sealed class ZLevelOverlay : Overlay
         below = MapId.Nullspace;
         if (_player.LocalEntity == null)
             return false;
-        var maps = _ents.System<SharedMapSystem>();
-        if (!maps.TryGetMap(map, out var mapUid)
-            || !_ents.TryGetComponent<ZLevelMapComponent>(mapUid, out var z)
-            || z.Below is not { } belowUid
-            || !_ents.TryGetComponent<MapComponent>(belowUid, out var belowMap))
-            return false;
-        below = belowMap.MapId;
-        return below != MapId.Nullspace;
+        return ResolveBelow(_ents, map, out below, out _);
     }
 
     /// <summary>Нечего показывать: выключаем рендер этажа ниже (а для основного кадра — и ещё ниже).</summary>
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+        if (_wantLower is { } size)
+        {
+            _lower?.Dispose();
+            _lower = _clyde.CreateViewport(size, "zlevel-below");
+            _lower.ClearColor = Color.Black;
+            _wantLower = null;
+        }
+        if (_wantNested is { } nestedSize)
+        {
+            _nestedLower?.Dispose();
+            _nestedLower = _clyde.CreateViewport(nestedSize, "zlevel-below-2");
+            _nestedLower.ClearColor = Color.Black;
+            _wantNested = null;
+        }
+    }
+
     private void Pause(bool nested)
     {
         if (_nestedLower != null)

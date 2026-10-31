@@ -49,6 +49,8 @@ public sealed class ZLightProxySystem : EntitySystem
         {
             var center = _xform.GetMapCoordinates(player);
             var stackMaps = StackMaps(center.MapId);
+            // Отражения создаются после обхода: новая лампа посреди перебора ломает перечисление компонентов.
+            var found = new List<(EntityUid Source, PointLightComponent Light, MapCoordinates Below)>();
             var query = EntityQueryEnumerator<PointLightComponent, TransformComponent>();
             while (query.MoveNext(out var uid, out var light, out var xform))
             {
@@ -59,8 +61,12 @@ public sealed class ZLightProxySystem : EntitySystem
                     continue;
                 if (_z.GetStep(pos, false) is not { } below || !HasOpenNear(pos))
                     continue;
-                alive.Add(uid);
-                UpdateProxy(uid, light, below);
+                found.Add((uid, light, below));
+            }
+            foreach (var (source, light, below) in found)
+            {
+                alive.Add(source);
+                UpdateProxy(source, light, below);
             }
         }
 

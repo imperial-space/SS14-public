@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for Imperial Space with PixelLab",
+  "size": { "x": 64, "y": 64 },
+  "states": [
+    { "name": "gun" },
+    { "name": "gun_las" },
+    { "name": "gun_rocket" },
+    { "name": "gun_rocket_base" },
+    { "name": "bay" },
+    { "name": "bomb" },
+    { "name": "falling", "delays": [ [ 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15 ] ] },
+    { "name": "canopy_open", "delays": [ [ 0.12, 0.12, 0.12 ] ] },
+    { "name": "canopy", "delays": [ [ 0.5, 0.5 ] ] }
+  ]
+}

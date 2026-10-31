@@ -1,0 +1,4 @@
+- files: ["card1.png", "card2.png", "card3.png", "lobby1.png", "lobby2.png", "lobby3.png", "fog_mask.png", "ending_held.png", "ending_banished.png", "ending_exterminatus.png", "ending_retreat.png", "ending_bitter.png", "ending_annihilation.png", "ending_triumph.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made for Imperial Space with PixelLab"
+  source: "https://pixellab.ai"

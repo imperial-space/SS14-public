@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for Imperial Space with PixelLab",
+  "size": { "x": 32, "y": 32 },
+  "states": [
+    { "name": "key" },
+    { "name": "shell" },
+    { "name": "driver_seat" },
+    { "name": "gunner_seat" },
+    { "name": "breech" },
+    { "name": "rack" },
+    { "name": "hatch" },
+    { "name": "bench" },
+    { "name": "speaker" },
+    { "name": "rack_empty" },
+    { "name": "breech_empty" }
+  ]
+}

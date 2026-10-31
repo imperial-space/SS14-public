@@ -6,8 +6,12 @@ using Content.Shared.Examine;
 using Content.Shared.Imperial.ZLevels;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Popups;
+using System.Linq;
+using Content.Shared.StepTrigger.Components;
 using Content.Shared.StepTrigger.Systems;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
@@ -15,6 +19,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.ZLevels;
 
@@ -37,8 +42,19 @@ public sealed class ZStairsSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedMoverController _mover = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     private const string TopPrototype = "ZStairsTopMarker";
+
+    /// <summary>Как часто проверять, не упирается ли кто-то в стену перед последней ступенью.</summary>
+    private static readonly TimeSpan PushCheckRate = TimeSpan.FromSeconds(0.1);
+
+    /// <summary>Повторная попытка подъёма с заблокированной лестницы — не чаще, чтобы не сыпать подсказками.</summary>
+    private static readonly TimeSpan PushRetry = TimeSpan.FromSeconds(1.5);
+
+    private TimeSpan _nextPushCheck;
+    private readonly Dictionary<EntityUid, TimeSpan> _pushCooldown = new();
 
     public override void Initialize()
     {
@@ -193,6 +209,65 @@ public sealed class ZStairsSystem : EntitySystem
         if (forward < 0.4f || side > 0.6f)
             return;
         StairAscend(ent, args.Tripper);
+    }
+
+    /// <summary>
+    /// Лестница, упёртая в стену (на стену крепости, на второй этаж дома): сойти со ступени вперёд нельзя — стена не
+    /// пускает. Как в SS13, где лестница перехватывает попытку уйти в сторону подъёма: кто стоит на последней ступени
+    /// и жмёт вперёд в преграду, тот поднимается.
+    /// </summary>
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        var now = _timing.CurTime;
+        if (now < _nextPushCheck)
+            return;
+        _nextPushCheck = now + PushCheckRate;
+
+        var query = EntityQueryEnumerator<ZStairsComponent, StepTriggerComponent>();
+        while (query.MoveNext(out var uid, out var stairs, out var trigger))
+        {
+            if (trigger.Colliding.Count == 0 || !IsTerminator((uid, stairs)))
+                continue;
+            var dir = GetWorldDir(uid);
+            var here = _z.SnapToTile(_xform.GetMapCoordinates(uid));
+            // Впереди проходимо — поднимаются обычным сходом со ступени.
+            if (!_z.HasWall(new MapCoordinates(here.Position + dir, here.MapId)))
+                continue;
+            foreach (var climber in trigger.Colliding)
+            {
+                if (!PushingForward(climber, dir) || _pushCooldown.TryGetValue(climber, out var until) && now < until)
+                    continue;
+                var rel = _xform.GetWorldPosition(climber) - _xform.GetWorldPosition(uid);
+                if (Vector2.Dot(rel, dir) < 0f || MathF.Abs(rel.X * dir.Y - rel.Y * dir.X) > 0.6f)
+                    continue;
+                _pushCooldown[climber] = now + PushRetry;
+                StairAscend((uid, stairs), climber);
+                break;
+            }
+        }
+
+        if (_pushCooldown.Count > 64)
+        {
+            foreach (var (guy, until) in _pushCooldown.ToArray())
+            {
+                if (until < now)
+                    _pushCooldown.Remove(guy);
+            }
+        }
+    }
+
+    /// <summary>Моб жмёт движение в сторону подъёма (в мировых осях, с поворотом сетки).</summary>
+    private bool PushingForward(EntityUid climber, Vector2 dir)
+    {
+        if (!TryComp<InputMoverComponent>(climber, out var mover) || !HasComp<MobStateComponent>(climber))
+            return false;
+        var (walk, sprint) = _mover.GetVelocityInput(mover);
+        var wish = walk + sprint;
+        if (wish.LengthSquared() < 0.01f)
+            return false;
+        wish = _mover.GetParentGridAngle(mover).RotateVec(wish);
+        return Vector2.Dot(Vector2.Normalize(wish), dir) > 0.7f;
     }
 
     /// <summary>

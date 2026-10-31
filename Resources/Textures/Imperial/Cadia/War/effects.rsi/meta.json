@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for Imperial Space with PixelLab",
+  "size": { "x": 96, "y": 96 },
+  "states": [
+    { "name": "strike_marker", "delays": [ [ 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1 ] ] },
+    { "name": "lance_marker", "delays": [ [ 0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.08, 0.08 ] ] },
+    { "name": "shield_flash", "delays": [ [ 0.07, 0.07, 0.07, 0.07, 0.07, 0.07 ] ] }
+  ]
+}

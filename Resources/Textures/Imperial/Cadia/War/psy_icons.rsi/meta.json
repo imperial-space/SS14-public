@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for Imperial Space with PixelLab",
+  "size": { "x": 32, "y": 32 },
+  "states": [
+    { "name": "smite" },
+    { "name": "dome" },
+    { "name": "scream" },
+    { "name": "foresight" },
+    { "name": "suppress" },
+    { "name": "fury" },
+    { "name": "warpfire" },
+    { "name": "veil" },
+    { "name": "plague" },
+    { "name": "bloodboil" },
+    { "name": "charm" },
+    { "name": "portal" },
+    { "name": "flyup" },
+    { "name": "flydown" },
+    { "name": "jump" },
+    { "name": "prayer" },
+    { "name": "faith" },
+    { "name": "exterminatus" },
+    { "name": "khorne" },
+    { "name": "nurgle" },
+    { "name": "tzeentch" },
+    { "name": "slaanesh" },
+    { "name": "seed" },
+    { "name": "reductor" },
+    { "name": "cradle" }
+  ]
+}

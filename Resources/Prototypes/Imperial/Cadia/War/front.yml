@@ -1,0 +1,403 @@
+# Окопы, эвакуация раненых, укрепления Хаоса и одежда новых ролей.
+
+# ─── Окоп: лопатой на голой земле, замедляет, но большая часть пуль издали проходит над головой ───
+
+- type: entity
+  parent: BaseStructure
+  id: CadiaTrench
+  name: trench
+  description: A section of dug earth. You move slower in it, but most shots from afar pass overhead.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/fort_small.rsi
+    state: trench0
+    drawdepth: FloorObjects
+    noRot: true
+  - type: IconSmooth
+    key: cadiaTrench
+    base: trench
+    mode: CardinalFlags
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.48,-0.48,0.48,0.48"
+        hard: false
+        layer:
+        - MidImpassable
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.8
+    sprintSpeedModifier: 0.8
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CadiaTrench
+
+- type: entity
+  parent: Shovel
+  id: CadiaEntrenchingTool
+  name: entrenching tool
+  description: A folding spade. Click on bare ground to dig a section of trench. Every Guardsman knows it is the most important tool he owns.
+  components:
+  - type: CadiaEntrenchingTool
+
+# ─── Эвакуация: носилки на колёсах для медика и полевой госпиталь ───
+
+- type: entity
+  parent: RollerBedSpawnFolded
+  id: CadiaFieldStretcher
+  name: field stretcher
+  description: Folding wheeled stretcher. Unfold it, strap the wounded on and pull them out of the fire.
+  components:
+  - type: HealOnBuckle
+    damage:
+      types:
+        Blunt: -0.3
+        Slash: -0.3
+        Piercing: -0.3
+        Heat: -0.3
+
+# ─── Хаос: алтарь, шипастая баррикада, варп-ловушка ───
+
+- type: entity
+  id: CadiaChaosAltar
+  name: blood altar
+  description: A black slab running with blood. Warp power seeps from it for the Dark Gods' servants, it steels the faithful and sickens everyone else.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/fort.rsi
+    state: chaos_altar
+    drawdepth: Objects
+    noRot: true
+  - type: PointLight
+    radius: 4
+    energy: 1.6
+    color: "#ff2a1a"
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.8,-0.8,0.8,0.8"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CadiaMoraleAura
+    faction: Chaos
+    radius: 9
+    friendRate: 2
+    enemyRate: -2
+  - type: CadiaWarpSource
+    perMinute: 2
+
+- type: entity
+  parent: BaseStructure
+  id: CadiaSpikeBarricade
+  name: spiked barricade
+  description: Rusted sheets and iron stakes hung with skulls. Bullets stick in it and anyone pressing against it bleeds.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/fort_small.rsi
+    state: spike_barricade
+    drawdepth: Objects
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.48,-0.48,0.48,0.48"
+        density: 800
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: DamageContacts
+    damage:
+      types:
+        Piercing: 4
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CadiaCover
+
+- type: entity
+  parent: BaseStructure
+  id: CadiaWarpTrap
+  name: warp trap
+  description: A sigil scratched into the dirt. It wakes when an enemy of the Dark Gods steps on it.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/fort_small.rsi
+    state: at_mine
+    drawdepth: FloorObjects
+    noRot: true
+    color: "#c02a6a70"
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        hard: false
+        layer:
+        - MidImpassable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: CadiaWarpTrap
+
+# ─── Одежда новых ролей: рисунок заменяет всё тело ───
+
+- type: entity
+  abstract: true
+  parent: ClothingOuterBase
+  id: CadiaFullBodyBase
+  components:
+  - type: Item
+    size: Large
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - FacialHair
+    - Snout
+    - SnoutCover
+    - HeadTop
+    - HeadSide
+    - Head
+    - Eyes
+    - Chest
+    - RArm
+    - LArm
+    - RHand
+    - LHand
+    - RLeg
+    - LLeg
+    - RFoot
+    - LFoot
+    - UndergarmentTop
+    - UndergarmentBottom
+    - Tail
+
+- type: entity
+  parent: CadiaFullBodyBase
+  id: CadiaInquisitorCoat
+  name: inquisitor's greatcoat
+  description: Black armourweave and a wide-brimmed hat. Nobody looks an Inquisitor in the eye twice.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/fb_inquisitor.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/fb_inquisitor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.55
+        Heat: 0.6
+
+- type: entity
+  parent: CadiaFullBodyBase
+  id: CadiaSilenceArmor
+  name: Sister of Silence armour
+  description: Golden plate and a red plume. Its wearer has no voice and no soul the warp can touch.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/fb_silence.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/fb_silence.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.6
+
+- type: entity
+  parent: CadiaFullBodyBase
+  id: CadiaFleetCaptainCoat
+  name: naval captain's coat
+  description: Navy greatcoat, gold braid and an officer's cap. On this deck, the word of its wearer is the Emperor's law.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/fb_fleet_captain.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/fb_fleet_captain.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+
+- type: entity
+  parent: CadiaFullBodyBase
+  id: CadiaFleetGunnerUniform
+  name: naval gunner's uniform
+  description: Padded blues and a leather apron scorched by the macrocannons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/fb_fleet_gunner.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/fb_fleet_gunner.rsi
+
+- type: entity
+  parent: CadiaFullBodyBase
+  id: CadiaVoidTechUniform
+  name: void technician's coveralls
+  description: Grey coveralls, brass goggles and a harness of cables that hums faintly.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Clothing/fb_void_tech.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Clothing/fb_void_tech.rsi
+
+- type: startingGear
+  id: CadiaGearInquisitor
+  equipment:
+    jumpsuit: CadiaAstartesBodyglove
+    shoes: CadiaBoots
+    outerClothing: CadiaInquisitorCoat
+    eyes: CadiaHoloVisorAstartes
+    ears: CadiaHeadsetCommand
+    back: CadiaBackpack
+    belt: CadiaBoltPistol
+    pocket1: CadiaCombatKnife
+  inhand:
+  - CadiaPowerSword
+  storage:
+    back:
+    - CadiaBoltPistolMag
+    - CadiaBoltPistolMag
+
+- type: startingGear
+  id: CadiaGearSilence
+  equipment:
+    jumpsuit: CadiaAstartesBodyglove
+    shoes: CadiaBoots
+    outerClothing: CadiaSilenceArmor
+    ears: CadiaHeadset
+    back: CadiaBackpack
+    belt: CadiaBoltPistol
+    pocket1: CadiaCombatKnife
+  inhand:
+  - CadiaPowerSword
+  storage:
+    back:
+    - CadiaBoltPistolMag
+    - CadiaBoltPistolMag
+
+- type: startingGear
+  id: CadiaGearFleetCaptain
+  equipment:
+    jumpsuit: CadiaAstartesBodyglove
+    shoes: CadiaBoots
+    outerClothing: CadiaFleetCaptainCoat
+    eyes: CadiaHoloVisorAstartes
+    ears: CadiaHeadsetCommand
+    back: CadiaBackpack
+    belt: CadiaLaspistol
+    pocket1: CadiaCombatKnife
+  inhand:
+  - CadiaPowerSword
+  storage:
+    back:
+    - CadiaLaspistolPack
+    - CadiaLaspistolPack
+
+- type: startingGear
+  id: CadiaGearFleetGunner
+  equipment:
+    jumpsuit: CadiaAstartesBodyglove
+    shoes: CadiaBoots
+    outerClothing: CadiaFleetGunnerUniform
+    ears: CadiaHeadset
+    back: CadiaBackpack
+    belt: CadiaLaspistol
+    pocket1: CadiaCombatKnife
+  storage:
+    back:
+    - CadiaLaspistolPack
+    - CadiaLaspistolPack
+
+- type: startingGear
+  id: CadiaGearVoidTech
+  equipment:
+    jumpsuit: CadiaAstartesBodyglove
+    shoes: CadiaBoots
+    outerClothing: CadiaVoidTechUniform
+    ears: CadiaHeadset
+    back: CadiaBackpack
+    belt: ClothingBeltUtilityFilled
+    pocket1: CadiaLaspistol
+  inhand:
+  - CadiaOmnissianAxe
+  storage:
+    back:
+    - CadiaLaspistolPack
+    - CadiaLaspistolPack
+    - SheetSteel
