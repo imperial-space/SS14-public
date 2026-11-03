@@ -24,30 +24,30 @@ public sealed partial class ElectrovaeProductionReaction : IGasReactionEffect
         if (totalMoles <= 0f)
             return ReactionResult.NoReaction;
 
-        const float waterVaporRatio = 2f;
-        const float nitrousOxideRatio = 11f;
-        const float inhibitorSensitivity = 0.05f;
-        const float minimumEfficiency = 0.01f;
-
         var catalystFactor = Math.Clamp(
             initialNitrogen / totalMoles / Atmospherics.ElectrovaeProductionNitrogenRatio,
             0f,
             1f);
-        var inhibitorFactor = Math.Clamp(1f - initialCarbonDioxide / totalMoles / inhibitorSensitivity, 0f, 1f);
+        var inhibitorFactor = Math.Clamp(
+            1f - initialCarbonDioxide / totalMoles / Atmospherics.ElectrovaeProductionCarbonDioxideInhibitorSensitivity,
+            0f,
+            1f);
 
-        var possibleSets = Math.Min(initialWaterVapor / waterVaporRatio, initialNitrousOxide / nitrousOxideRatio);
+        var possibleSets = Math.Min(
+            initialWaterVapor / Atmospherics.ElectrovaeProductionWaterVaporRatio,
+            initialNitrousOxide / Atmospherics.ElectrovaeProductionNitrousOxideRatio);
         possibleSets *= catalystFactor * inhibitorFactor;
 
         var temperatureEfficiency = CalculateTemperatureEfficiency(mixture.Temperature);
-        if (catalystFactor * inhibitorFactor * temperatureEfficiency < minimumEfficiency)
+        if (catalystFactor * inhibitorFactor * temperatureEfficiency < Atmospherics.ElectrovaeProductionMinimumEfficiency)
             return ReactionResult.NoReaction;
 
         var reactionSets = possibleSets * temperatureEfficiency;
         if (reactionSets <= 0f)
             return ReactionResult.NoReaction;
 
-        mixture.AdjustMoles(Gas.NitrousOxide, -reactionSets * nitrousOxideRatio);
-        mixture.AdjustMoles(Gas.WaterVapor, -reactionSets * waterVaporRatio);
+        mixture.AdjustMoles(Gas.NitrousOxide, -reactionSets * Atmospherics.ElectrovaeProductionNitrousOxideRatio);
+        mixture.AdjustMoles(Gas.WaterVapor, -reactionSets * Atmospherics.ElectrovaeProductionWaterVaporRatio);
         mixture.AdjustMoles(Gas.Electrovae, reactionSets);
         mixture.AdjustMoles(Gas.Oxygen, reactionSets);
 

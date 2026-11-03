@@ -17,8 +17,6 @@ namespace Content.Server.Atmos.EntitySystems;
 
 public sealed partial class AtmosphereSystem
 {
-    private const float MinimumIntensityForEquipmentEffect = 0.1f;
-
     [Dependency] private readonly ElectrocutionSystem _electrocution = default!;
     [Dependency] private readonly BatterySystem _battery = default!;
 
@@ -53,10 +51,8 @@ public sealed partial class AtmosphereSystem
             return;
 
         var intensity = Math.Min(chargedMoles / Atmospherics.ChargedElectrovaeIntensityDivisor, 1f);
-        const float chargeRatePerIntensity = 400f;
-
-        if (intensity >= MinimumIntensityForEquipmentEffect)
-            args.NewChargeRate += intensity * chargeRatePerIntensity;
+        if (intensity >= Atmospherics.ChargedElectrovaeMinimumEquipmentIntensity)
+            args.NewChargeRate += intensity * Atmospherics.ChargedElectrovaeChargeRatePerIntensity;
     }
 
     private void OnChargedElectrovaeAffectedShutdown(
@@ -173,7 +169,7 @@ public sealed partial class AtmosphereSystem
         float intensity,
         float chargedMoles)
     {
-        if (intensity >= MinimumIntensityForEquipmentEffect)
+        if (intensity >= Atmospherics.ChargedElectrovaeMinimumEquipmentIntensity)
             ExpandBatteryCapacity(ent, chargedMoles);
         else
             RestoreBatteryCapacity(ent);
@@ -183,8 +179,6 @@ public sealed partial class AtmosphereSystem
         Entity<BatteryComponent, ChargedElectrovaeAffectedComponent> ent,
         float chargedMoles)
     {
-        const float expansionDecayConstant = 20f;
-
         if (ent.Comp2.OriginalBatteryMaxCharge == null)
         {
             ent.Comp2.OriginalBatteryMaxCharge = ent.Comp1.MaxCharge;
@@ -192,7 +186,8 @@ public sealed partial class AtmosphereSystem
                 $"Battery {ToPrettyString(ent)} capacity expanded by charged electrovae from {ent.Comp1.MaxCharge:F0}W to potentially 2x");
         }
 
-        var expansionMultiplier = 1f + (1f - MathF.Exp(-chargedMoles / expansionDecayConstant));
+        var expansionMultiplier =
+            1f + (1f - MathF.Exp(-chargedMoles / Atmospherics.ChargedElectrovaeBatteryExpansionDecayConstant));
         _battery.SetMaxCharge((ent.Owner, ent.Comp1), ent.Comp2.OriginalBatteryMaxCharge.Value * expansionMultiplier);
     }
 
@@ -210,7 +205,7 @@ public sealed partial class AtmosphereSystem
         ApcPowerReceiverComponent receiver,
         float intensity)
     {
-        if (intensity < MinimumIntensityForEquipmentEffect)
+        if (intensity < Atmospherics.ChargedElectrovaeMinimumEquipmentIntensity)
         {
             if (ent.Comp.OriginalNeedsPower == null)
                 return;
@@ -226,13 +221,10 @@ public sealed partial class AtmosphereSystem
 
     private void ApplyLightningStrike(EntityUid target, float intensity)
     {
-        const int baseDamage = 5;
-        const int damagePerIntensity = 5;
-        const float baseStunSeconds = 1f;
-        const float stunSecondsPerIntensity = 2f;
-
-        var damage = (int)(baseDamage + intensity * damagePerIntensity);
-        var stunTime = TimeSpan.FromSeconds(baseStunSeconds + intensity * stunSecondsPerIntensity);
+        var damage = (int) (Atmospherics.ChargedElectrovaeLightningBaseDamage +
+                            intensity * Atmospherics.ChargedElectrovaeLightningDamagePerIntensity);
+        var stunTime = TimeSpan.FromSeconds(Atmospherics.ChargedElectrovaeLightningBaseStunSeconds +
+                                            intensity * Atmospherics.ChargedElectrovaeLightningStunSecondsPerIntensity);
 
         _adminLog.Add(LogType.Electrocution, LogImpact.Medium,
             $"{ToPrettyString(target):target} struck by charged electrovae lightning ({damage} damage, {stunTime.TotalSeconds:F1}s stun, intensity {intensity:F2})");

@@ -18,16 +18,12 @@ public sealed partial class ElectrovaeChargeReaction : IGasReactionEffect
         if (holder is not TileAtmosphere tile)
             return ReactionResult.NoReaction;
 
-        const float chargeRateMultiplier = 0.1f;
-        const float energyPerMole = 5000f;
-        const float minimumEfficiency = 0.01f;
-
         var initialMoles = mixture.GetMoles(Gas.Electrovae);
         var efficiency = CalculateTemperatureEfficiency(mixture.Temperature);
-        if (efficiency < minimumEfficiency)
+        if (efficiency < Atmospherics.ElectrovaeChargeMinimumEfficiency)
             return ReactionResult.NoReaction;
 
-        var chargedMoles = Math.Min(initialMoles * efficiency * chargeRateMultiplier, initialMoles);
+        var chargedMoles = Math.Min(initialMoles * efficiency * Atmospherics.ElectrovaeChargeRateMultiplier, initialMoles);
         if (chargedMoles <= 0f)
             return ReactionResult.NoReaction;
 
@@ -38,7 +34,7 @@ public sealed partial class ElectrovaeChargeReaction : IGasReactionEffect
             mixture.GetMoles(Gas.ChargedElectrovae) / Atmospherics.ChargedElectrovaeIntensityDivisor,
             1f);
         atmosphereSystem.ChargedElectrovaeExpose(tile.GridIndex, tile, intensity);
-        atmosphereSystem.AddHeat(mixture, -chargedMoles * energyPerMole);
+        atmosphereSystem.AddHeat(mixture, -chargedMoles * Atmospherics.ElectrovaeChargeEnergyPerMole);
 
         return ReactionResult.Reacting;
     }

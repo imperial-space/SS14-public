@@ -18,13 +18,11 @@ public sealed partial class ChargedElectrovaeDischargeReaction : IGasReactionEff
         if (holder is not TileAtmosphere tile)
             return ReactionResult.NoReaction;
 
-        const float decayConstant = 0.025f;
-
         var chargedMoles = mixture.GetMoles(Gas.ChargedElectrovae);
         var intensity = Math.Min(chargedMoles / Atmospherics.ChargedElectrovaeIntensityDivisor, 1f);
         atmosphereSystem.ChargedElectrovaeExpose(tile.GridIndex, tile, intensity);
 
-        var decayAmount = chargedMoles * decayConstant;
+        var decayAmount = chargedMoles * Atmospherics.ChargedElectrovaeDischargeDecayConstant;
         mixture.AdjustMoles(Gas.ChargedElectrovae, -decayAmount);
         mixture.AdjustMoles(Gas.Electrovae, decayAmount);
 

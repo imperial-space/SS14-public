@@ -333,18 +333,33 @@ namespace Content.Shared.Atmos
 
         /// # Imperial-Start ChargedElectrovae/Electrovae
         public const float ElectrovaeProductionNitrogenRatio = 6f;
+        public const float ElectrovaeProductionWaterVaporRatio = 2f;
+        public const float ElectrovaeProductionNitrousOxideRatio = 11f;
+        public const float ElectrovaeProductionCarbonDioxideInhibitorSensitivity = 0.05f;
+        public const float ElectrovaeProductionMinimumEfficiency = 0.01f;
         public const float ElectrovaeProductionMinTemperature = 373.15f;
         public const float ElectrovaeProductionMaxTemperature = 1370f;
         public const float ElectrovaeProductionTemperatureExponent = 1.5f;
+        public const float ElectrovaeChargeRateMultiplier = 0.1f;
+        public const float ElectrovaeChargeEnergyPerMole = 5000f;
+        public const float ElectrovaeChargeMinimumEfficiency = 0.01f;
         public const float ElectrovaeChargeMinTemperature = 1508f;
         public const float ElectrovaeChargeMaxTemperature = 1984f;
         public const float ElectrovaeChargeTemperatureExponent = 1.2f;
+        public const float ChargedElectrovaeDischargeDecayConstant = 0.025f;
         public const float ChargedElectrovaeMinimumMoles = 0.01f;
         public const float ChargedElectrovaeIntensityDivisor = 2f;
         public const float ChargedElectrovaeHighIntensityThreshold = 0.75f;
         public const float ChargedElectrovaeMediumIntensityThreshold = 0.5f;
         public const float ChargedElectrovaeLowIntensityThreshold = 0.25f;
         public const float ChargedElectrovaeLightningChanceMultiplier = 0.01f;
+        public const float ChargedElectrovaeMinimumEquipmentIntensity = 0.1f;
+        public const float ChargedElectrovaeChargeRatePerIntensity = 400f;
+        public const float ChargedElectrovaeBatteryExpansionDecayConstant = 20f;
+        public const int ChargedElectrovaeLightningBaseDamage = 5;
+        public const int ChargedElectrovaeLightningDamagePerIntensity = 5;
+        public const float ChargedElectrovaeLightningBaseStunSeconds = 1f;
+        public const float ChargedElectrovaeLightningStunSecondsPerIntensity = 2f;
         /// # Imperial-End ChargedElectrovae/Electrovae
 
         /// <summary>
