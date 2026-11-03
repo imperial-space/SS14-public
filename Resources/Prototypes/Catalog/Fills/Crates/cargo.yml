@@ -96,6 +96,7 @@
     - id: AirCanister
     - id: AmmoniaCanister
     - id: CarbonDioxideCanister
+    - id: ElectrovaeCanister # Imperial
     - id: FrezonCanister
     - id: NitrogenCanister
     - id: NitrousOxideCanister

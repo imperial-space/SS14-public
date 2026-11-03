@@ -1,5 +1,6 @@
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
+using Content.Shared.Imperial.Atmos; // # Imperial
 
 namespace Content.Shared.Atmos;
 
@@ -103,6 +104,11 @@ public sealed class TileAtmosphere : IGasMixtureHolder
     /// </summary>
     [ViewVariables]
     public Hotspot Hotspot;
+
+    // # Imperial-Start
+    [ViewVariables]
+    public ChargedElectrovaeEffect ChargedEffect;
+    // # Imperial-End
 
     /// <summary>
     /// Points to the direction of the recipient tile for pressure equalization logic

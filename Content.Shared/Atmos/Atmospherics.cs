@@ -223,7 +223,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 17; /// Imperial Added Thermonium
+        public const int TotalNumberOfGases = 19; /// Imperial Added Thermonium
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -331,6 +331,22 @@ namespace Content.Shared.Atmos
         public const float HydrogenMaxOutputPressure = 9000;
         /// Imperial Imperial Atmos Update end
 
+        /// # Imperial-Start ChargedElectrovae/Electrovae
+        public const float ElectrovaeProductionNitrogenRatio = 6f;
+        public const float ElectrovaeProductionMinTemperature = 373.15f;
+        public const float ElectrovaeProductionMaxTemperature = 1370f;
+        public const float ElectrovaeProductionTemperatureExponent = 1.5f;
+        public const float ElectrovaeChargeMinTemperature = 1508f;
+        public const float ElectrovaeChargeMaxTemperature = 1984f;
+        public const float ElectrovaeChargeTemperatureExponent = 1.2f;
+        public const float ChargedElectrovaeMinimumMoles = 0.01f;
+        public const float ChargedElectrovaeIntensityDivisor = 2f;
+        public const float ChargedElectrovaeHighIntensityThreshold = 0.75f;
+        public const float ChargedElectrovaeMediumIntensityThreshold = 0.5f;
+        public const float ChargedElectrovaeLowIntensityThreshold = 0.25f;
+        public const float ChargedElectrovaeLightningChanceMultiplier = 0.01f;
+        /// # Imperial-End ChargedElectrovae/Electrovae
+
         /// <summary>
         ///     Determines at what pressure the ultra-high pressure red icon is displayed.
         /// </summary>
@@ -424,6 +440,8 @@ namespace Content.Shared.Atmos
         Deuterium = 13, // Imperial Imperial Atmos Update start
         HyperNoblium = 14,
         AntiNoblium = 15,
-        BZ = 16 // Imperial Imperial Atmos Update end
+        BZ = 16, // Imperial Imperial Atmos Update end
+        Electrovae = 17, /// Imperial Added Electrovae
+        ChargedElectrovae = 18 /// Imperial Added ChargedElectrovae
     }
 }

@@ -37,7 +37,11 @@ namespace Content.Server.Atmos.Portable
             Gas.Deuterium, /// Imperial Atmos Update start
             Gas.HyperNoblium,
             Gas.AntiNoblium,
-            Gas.BZ /// Imperial Atmos Update end
+            Gas.BZ, /// Imperial Atmos Update end
+            // # Imperial-Start
+            Gas.Electrovae,
+            Gas.ChargedElectrovae
+            // # Imperial-End
         };
 
         [ViewVariables(VVAccess.ReadWrite)]
