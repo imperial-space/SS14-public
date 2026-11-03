@@ -35,6 +35,8 @@
                     <Button Name="EraseButton" ToggleMode="True"
                         HorizontalExpand="True" SizeFlagsStretchRatio="0.7"/>
                     <Button Name="ClearButton" HorizontalExpand="True" SizeFlagsStretchRatio="0.3"/>
+                    <!-- Imperial Space Blueprints -->
+                    <Button Name="ImperialBlueprintsButton" HorizontalExpand="True" SizeFlagsStretchRatio="0.3"/>
                 </BoxContainer>
             </BoxContainer>
         </BoxContainer>
