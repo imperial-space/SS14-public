@@ -14,15 +14,15 @@ using Robust.Shared.Utility;
 namespace Content.Client.Imperial.Genetics;
 
 /// <summary>
-/// РљРѕРЅСЃРѕР»СЊ Р”РќРљ, РїРѕРІС‚РѕСЂСЏСЋС‰Р°СЏ tgui-РёРЅС‚РµСЂС„РµР№СЃ SS13 (DnaConsole): СЃРєР°РЅРµСЂ, СЂРµР¶РёРјС‹ В«РҐСЂР°РЅРёР»РёС‰РµВ», В«РЎРµРєРІРµРЅСЃРѕСЂВ»,
-/// В«Р¤РµСЂРјРµРЅС‚С‹В», В«РћСЃРѕР±РµРЅРЅРѕСЃС‚РёВ», С…СЂР°РЅРёР»РёС‰Р° РєРѕРЅСЃРѕР»Рё, РґРёСЃРєРµС‚С‹ Рё РїСЂРѕРґРІРёРЅСѓС‚С‹С… РёРЅР¶РµРєС‚РѕСЂРѕРІ, Р±СѓС„РµСЂС‹ РіРµРЅРµС‚РёС‡РµСЃРєРѕРіРѕ РѕР±Р»РёРєР°.
+/// Консоль ДНК, повторяющая tgui-интерфейс SS13 (DnaConsole): сканер, режимы «Хранилище», «Секвенсор»,
+/// «Ферменты», «Особенности», хранилища консоли, дискеты и продвинутых инжекторов, буферы генетического облика.
 /// </summary>
 public sealed class DnaConsoleWindow : DefaultWindow
 {
     private enum ConsoleMode { Storage, Sequencer, Enzymes, Features }
     private enum StorageMode { Console, Disk, Injector }
 
-    // РџР°Р»РёС‚СЂР° tgui.
+    // Палитра tgui.
     private static readonly Color Good = Color.FromHex("#5baa27");
     private static readonly Color Average = Color.FromHex("#f08f11");
     private static readonly Color Bad = Color.FromHex("#db2828");
@@ -45,7 +45,7 @@ public sealed class DnaConsoleWindow : DefaultWindow
     private readonly BoxContainer _root = new() { Orientation = BoxContainer.LayoutOrientation.Vertical, SeparationOverride = 6 };
     private DnaConsoleBoundUserInterfaceState? _state;
 
-    // РЎРѕСЃС‚РѕСЏРЅРёРµ РІРёРґР° (tgui_view_state).
+    // Состояние вида (tgui_view_state).
     private ConsoleMode _mode = ConsoleMode.Storage;
     private StorageMode _storageMode = StorageMode.Console;
     private bool _consoleChromosomes;
@@ -112,7 +112,7 @@ public sealed class DnaConsoleWindow : DefaultWindow
         }
     }
 
-    #region РЎС‚СЂРѕРёС‚РµР»СЊРЅС‹Рµ Р±Р»РѕРєРё
+    #region Строительные блоки
 
     private static Control Section(string? title, Control? buttons, Control content, float minHeight = 0)
     {
@@ -256,7 +256,7 @@ public sealed class DnaConsoleWindow : DefaultWindow
 
     #endregion
 
-    #region РЎРєР°РЅРµСЂ Р”РќРљ
+    #region Сканер ДНК
 
     private Control BuildScanner()
     {
@@ -275,7 +275,7 @@ public sealed class DnaConsoleWindow : DefaultWindow
             {
                 var scramble = Loc.GetString("dna-console-scramble");
                 if (!state.IsScrambleReady)
-                    scramble += $" ({state.ScrambleSeconds}СЃ)";
+                    scramble += $" ({state.ScrambleSeconds}с)";
                 buttons.AddChild(MakeButton(scramble, () => Send(new DnaConsoleScrambleMessage()), !state.IsScrambleReady || state.IsPulsing));
             }
 
@@ -310,7 +310,7 @@ public sealed class DnaConsoleWindow : DefaultWindow
 
             content = VBox(
                 LabeledItem(Loc.GetString("dna-console-label-status"),
-                    HBox(Text(state.SubjectName), Text("в†’", LabelColor), Text(Loc.GetString(statusText), statusColor))),
+                    HBox(Text(state.SubjectName), Text("→", LabelColor), Text(Loc.GetString(statusText), statusColor))),
                 LabeledItem(Loc.GetString("dna-console-label-health"),
                     ProgressBarWithText(state.SubjectHealth, 100, healthColor, $"{state.SubjectHealth}%")),
                 LabeledItem(Loc.GetString("dna-console-label-genetic-damage"),
@@ -322,7 +322,7 @@ public sealed class DnaConsoleWindow : DefaultWindow
 
     #endregion
 
-    #region РљРѕРЅСЃРѕР»СЊ Р”РќРљ
+    #region Консоль ДНК
 
     private Control BuildCommands()
     {
@@ -358,7 +358,7 @@ public sealed class DnaConsoleWindow : DefaultWindow
 
     #endregion
 
-    #region РЎРµРєРІРµРЅСЃРѕСЂ
+    #region Секвенсор
 
     private void BuildSequencer()
     {
@@ -517,7 +517,7 @@ public sealed class DnaConsoleWindow : DefaultWindow
             Send(new DnaConsolePulseGeneMessage(mutation.Mutation, index, action, joker));
         };
 
-        // РћСЂР°РЅР¶РµРІР°СЏ СЂР°РјРєР° РЅР° РёР·РЅР°С‡Р°Р»СЊРЅРѕ РЅРµРёР·РІРµСЃС‚РЅС‹С… РїРѕР·РёС†РёСЏС….
+        // Оранжевая рамка на изначально неизвестных позициях.
         var unknownByDefault = index < mutation.DefaultSequence.Length && mutation.DefaultSequence[index] == 'X' && !mutation.Active;
         return new PanelContainer
         {
@@ -542,7 +542,7 @@ public sealed class DnaConsoleWindow : DefaultWindow
 
     #endregion
 
-    #region РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РјСѓС‚Р°С†РёРё
+    #region Информация о мутации
 
     private Control MutationInfo(DnaMutationState? mutation)
     {
@@ -646,7 +646,7 @@ public sealed class DnaConsoleWindow : DefaultWindow
 
     #endregion
 
-    #region РҐСЂР°РЅРёР»РёС‰Рµ
+    #region Хранилище
 
     private Control BuildStorage()
     {
@@ -739,10 +739,10 @@ public sealed class DnaConsoleWindow : DefaultWindow
             var key = $"advinj{i}";
             var expanded = _expanded.Contains(key);
             var header = HBox(
-                MakeButton((expanded ? "в–ј " : "в–є ") + injector.Name, () => Toggle(key)),
+                MakeButton((expanded ? "▼ " : "► ") + injector.Name, () => Toggle(key)),
                 new Control { HorizontalExpand = true },
                 MakeButton(Loc.GetString("dna-console-print"), () => Send(new DnaConsolePrintAdvInjMessage(injector.Name)), !state.IsInjectorReady),
-                MakeButton("вњ•", () => Send(new DnaConsoleDeleteAdvInjMessage(injector.Name)), false, Bad));
+                MakeButton("✕", () => Send(new DnaConsoleDeleteAdvInjMessage(injector.Name)), false, Bad));
             header.HorizontalExpand = true;
             box.AddChild(header);
             if (expanded)
@@ -770,7 +770,7 @@ public sealed class DnaConsoleWindow : DefaultWindow
 
     #endregion
 
-    #region Р¤РµСЂРјРµРЅС‚С‹
+    #region Ферменты
 
     private void BuildEnzymes(string block, bool features)
     {
@@ -842,11 +842,11 @@ public sealed class DnaConsoleWindow : DefaultWindow
             var expanded = _expanded.Contains(key);
             var title = makeup?.Name is { Length: > 0 } name ? name : Loc.GetString("dna-console-slot", ("index", i + 1));
 
-            var header = HBox(MakeButton((expanded ? "в–ј " : "в–є ") + title, () => Toggle(key)), new Control { HorizontalExpand = true });
+            var header = HBox(MakeButton((expanded ? "▼ " : "► ") + title, () => Toggle(key)), new Control { HorizontalExpand = true });
             if (state.HasDisk && state.DiskMakeup != null)
                 header.AddChild(MakeButton(Loc.GetString("dna-console-import-disk"), () => Send(new DnaConsoleLoadMakeupDiskMessage(index))));
             header.AddChild(MakeButton(Loc.GetString("dna-console-save"), () => Send(new DnaConsoleSaveMakeupMessage(index)), !state.IsViableSubject));
-            header.AddChild(MakeButton("вњ•", () => Send(new DnaConsoleDeleteMakeupMessage(index)), makeup == null, Bad));
+            header.AddChild(MakeButton("✕", () => Send(new DnaConsoleDeleteMakeupMessage(index)), makeup == null, Bad));
             box.AddChild(header);
 
             if (expanded)

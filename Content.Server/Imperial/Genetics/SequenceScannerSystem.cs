@@ -17,30 +17,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Genetics;
 
-/// <summary>Ручной сканер генетических последовательностей (sequence_scanner из SS13).</summary>
-[RegisterComponent]
-public sealed partial class SequenceScannerComponent : Component
-{
-    /// <summary>Мутации последнего просканированного существа и активны ли они.</summary>
-    [ViewVariables]
-    public List<(ProtoId<GeneticMutationPrototype> Mutation, bool Active)> Buffer = new();
-
-    [ViewVariables]
-    public GeneticMakeupData? Makeup;
-
-    [DataField]
-    public TimeSpan Cooldown = TimeSpan.FromSeconds(20);
-
-    [DataField]
-    public TimeSpan MakeupScanTime = TimeSpan.FromSeconds(3);
-
-    [ViewVariables]
-    public TimeSpan ReadyAt;
-
-    [DataField]
-    public SoundSpecifier ScanSound = new SoundPathSpecifier("/Audio/Items/Medical/healthscanner.ogg");
-}
-
 /// <summary>
 /// ЛКМ по существу — сохранить его последовательности в буфер, ПКМ-действие «Сканировать облик» — снять
 /// генетический облик, по консоли ДНК — выгрузить облик в свободный буфер консоли.
