@@ -7,6 +7,8 @@
   - CargoTechnician
   - Quartermaster
   - SalvageSpecialist
+  - Bitrunner # Imperial Space ss13 jobs
+  - ShaftMiner # Imperial Space ss13 jobs
 
 - type: department
   id: Civilian
@@ -100,6 +102,7 @@
   - Psychologist
   - Paramedic
   - SeniorPhysician # imperial space senior roles
+  - Virologist # Imperial Space ss13 jobs
 
 - type: department
   id: Security
@@ -126,6 +129,8 @@
   - Scientist
   - ResearchAssistant
   - SeniorResearcher # imperial space senior roles
+  - Geneticist # Imperial Space ss13 jobs
+  - Xenobiologist # Imperial Space ss13 jobs
 
 - type: department
   id: Silicon
