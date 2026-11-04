@@ -31,54 +31,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.MeteorShield;
 
-/// <summary>Спутник метеоритного щита (obj/machinery/satellite/meteor_shield).</summary>
-[RegisterComponent]
-public sealed partial class MeteorShieldSatelliteComponent : Component
-{
-    [DataField]
-    public string Mode = "M-SHIELD";
-
-    /// <summary>kill_range: радиус, в котором спутник сбивает метеоры.</summary>
-    [DataField]
-    public int KillRange = 14;
-
-    [DataField]
-    public EntProtoId Beam = "ImperialMeteorShieldBeam";
-
-    [DataField]
-    public EntProtoId Signal = "ImperialMeteorShieldSignal";
-
-    /// <summary>Звук луча. В SS13 луч щита беззвучен — добавлен лазерный выстрел.</summary>
-    [DataField]
-    public SoundSpecifier BeamSound = new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/laser.ogg");
-
-    [ViewVariables] public int Id;
-    [ViewVariables] public bool Active;
-    [ViewVariables] public TimeSpan NextCheck;
-    [ViewVariables] public EntityUid? SignalEntity;
-}
-
-/// <summary>Консоль управления спутниками (computer/sat_control).</summary>
-[RegisterComponent]
-public sealed partial class SatelliteControlComponent : Component;
-
-/// <summary>Тёмно-материальный метеор: отражает лучи щитов и роняет сингулярность.</summary>
-[RegisterComponent]
-public sealed partial class DarkMatteorComponent : Component
-{
-    /// <summary>meteorsound: при каждом ударе и при финальном взрыве (meteor_effect) для всех на карте.</summary>
-    [DataField]
-    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Imperial/MeteorShield/curse1.ogg");
-
-    [DataField]
-    public SoundSpecifier AnnouncementSound = new SoundPathSpecifier("/Audio/Imperial/MeteorShield/airraid.ogg");
-
-    [ViewVariables] public TimeSpan NextImpactSound;
-    [ViewVariables] public EntityUid? Station;
-    [ViewVariables] public string? PreviousLevel;
-    [ViewVariables] public bool Hit;
-}
-
 public sealed class MeteorShieldSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
