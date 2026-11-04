@@ -16,18 +16,16 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Kitchen;
 
-[RegisterComponent]
-public sealed partial class ImperialCraftUserComponent : Component
-{
-    public EntityUid? Action;
-}
-
 /// <summary>
 /// /datum/component/personal_crafting для еды TG: ингредиенты берутся из рук и с соседних клеток,
 /// реагенты — из открытых ёмкостей рядом; реагенты ингредиентов переходят в блюдо.
 /// </summary>
 public sealed class ImperialCraftingSystem : EntitySystem
 {
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
+    private static readonly TimeSpan RequestCooldown = TimeSpan.FromSeconds(0.5);
+    private readonly Dictionary<Robust.Shared.Network.NetUserId, TimeSpan> _requestCooldowns = new();
+
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
@@ -148,6 +146,11 @@ public sealed class ImperialCraftingSystem : EntitySystem
     {
         if (args.SenderSession.AttachedEntity is not { } user)
             return;
+        // Запрос от клиента пересчитывает список — не чаще раза в полсекунды на игрока.
+        if (_requestCooldowns.TryGetValue(args.SenderSession.UserId, out var next) && _timing.CurTime < next)
+            return;
+
+        _requestCooldowns[args.SenderSession.UserId] = _timing.CurTime + RequestCooldown;
 
         var env = Environment(user);
         var craftable = new HashSet<string>();

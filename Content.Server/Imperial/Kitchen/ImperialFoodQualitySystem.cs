@@ -20,32 +20,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Kitchen;
 
-/// <summary>TRAIT_HANDMADE: блюдо приготовил игрок, его качество — сложность рецепта.</summary>
-[RegisterComponent]
-public sealed partial class ImperialHandmadeComponent : Component
-{
-    [DataField]
-    public int Complexity;
-
-    /// <summary>bitecount == 0: бафф даёт только первый укус.</summary>
-    public bool Bitten;
-}
-
-/// <summary>/datum/status_effect/food: бафф от блюда, сделанного руками.</summary>
-[RegisterComponent]
-public sealed partial class ImperialFoodBuffComponent : Component
-{
-    public int Strength;
-    public TimeSpan End;
-}
-
-/// <summary>Когда существо в последний раз оценивало блюдо (last_check_time, 5 секунд).</summary>
-[RegisterComponent]
-public sealed partial class ImperialFoodTasterComponent : Component
-{
-    public Dictionary<EntityUid, TimeSpan> LastChecks = new();
-}
-
 /// <summary>
 /// edible/checkLiked TG: качество блюда = сложность рукотворного рецепта ± вкусы вида,
 /// напитки дают настроение по quality реагентов, рукотворная еда даёт бафф.

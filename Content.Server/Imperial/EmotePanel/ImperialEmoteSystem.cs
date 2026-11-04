@@ -33,6 +33,9 @@ namespace Content.Server.Imperial.EmotePanel;
 /// </summary>
 public sealed partial class ImperialEmoteSystem : EntitySystem
 {
+    private static readonly TimeSpan RequestCooldown = TimeSpan.FromSeconds(0.5);
+    private readonly Dictionary<Robust.Shared.Network.NetUserId, TimeSpan> _requestCooldowns = new();
+
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
@@ -90,6 +93,11 @@ public sealed partial class ImperialEmoteSystem : EntitySystem
     {
         if (args.SenderSession.AttachedEntity is not { } uid)
             return;
+        // Запрос от клиента пересчитывает список — не чаще раза в полсекунды на игрока.
+        if (_requestCooldowns.TryGetValue(args.SenderSession.UserId, out var next) && _timing.CurTime < next)
+            return;
+
+        _requestCooldowns[args.SenderSession.UserId] = _timing.CurTime + RequestCooldown;
 
         var list = new List<ImperialEmoteEntry>();
         foreach (var proto in _proto.EnumeratePrototypes<ImperialEmotePrototype>())
