@@ -6,16 +6,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Hypertorus;
 
-/// <summary>Роль детали гиперторуса.</summary>
-public enum HypertorusPartType : byte
-{
-    FuelInput,
-    ModeratorInput,
-    WasteOutput,
-    Interface,
-    Corner,
-}
-
 /// <summary>
 /// Ядро термоядерного реактора «Гиперторус» (hfr_core.dm). Держит две внутренние смеси — топливо (5000 л)
 /// и модератор (10 000 л); охладитель — газ в трубе ядра на втором слое.
@@ -171,65 +161,4 @@ public sealed partial class HypertorusCoreComponent : Component
 
     [DataField]
     public EntProtoId NuclearParticle = "ImperialHypertorusParticle";
-}
-
-/// <summary>warning_damage_flags: что именно разрушает гиперторус.</summary>
-[Flags]
-public enum HypertorusDamageFlags
-{
-    None = 0,
-    HighPowerDamage = 1 << 0,
-    HighFuelMixMole = 1 << 1,
-    IronContentDamage = 1 << 2,
-    IronContentIncrease = 1 << 3,
-    Emped = 1 << 4,
-}
-
-/// <summary>Деталь гиперторуса вокруг ядра: порт, интерфейс или угол.</summary>
-[RegisterComponent]
-public sealed partial class HypertorusPartComponent : Component
-{
-    [DataField(required: true)]
-    public HypertorusPartType PartType;
-
-    /// <summary>Коробка, в которую деталь разбирается ломом.</summary>
-    [DataField(required: true)]
-    public EntProtoId Box;
-
-    [ViewVariables] public bool Active;
-    [ViewVariables] public bool FusionStarted;
-    [ViewVariables] public bool PanelOpen;
-    [ViewVariables] public bool Cracked;
-    [ViewVariables] public EntityUid? Core;
-
-    /// <summary>Интерфейс выдаёт памятку при первой активации.</summary>
-    [ViewVariables] public bool Activated;
-}
-
-/// <summary>Панель ядра (screwdriver_act у core).</summary>
-[RegisterComponent]
-public sealed partial class HypertorusCorePanelComponent : Component
-{
-    [ViewVariables] public bool PanelOpen;
-
-    [DataField]
-    public EntProtoId Box = "ImperialHypertorusBoxCore";
-}
-
-public enum HypertorusBoxType : byte
-{
-    Corner,
-    Body,
-    Core,
-}
-
-/// <summary>Коробка детали (obj/item/hfr_box): ставится 3×3, ядро разворачивает всё мультитулом.</summary>
-[RegisterComponent]
-public sealed partial class HypertorusBoxComponent : Component
-{
-    [DataField(required: true)]
-    public HypertorusBoxType BoxType;
-
-    [DataField(required: true)]
-    public EntProtoId Part;
 }
