@@ -27,29 +27,3 @@ public sealed class XenoItemPickySystem : EntitySystem
             _popup.PopupClient(Loc.GetString("xeno-claws-too-clumsy", ("item", args.Item)), ent, ent);
     }
 }
-
-/// <summary>
-/// facehugger/can_mob_unequip: присосавшегося живого лицехвата не может снять сам носитель
-/// («Get help or wait for it to let go!»), а другие — могут.
-/// </summary>
-[RegisterComponent, Robust.Shared.GameStates.NetworkedComponent]
-public sealed partial class XenoLatchedComponent : Component;
-
-public sealed class XenoLatchedSystem : EntitySystem
-{
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<XenoLatchedComponent, Content.Shared.Inventory.Events.BeingUnequippedAttemptEvent>(OnUnequipAttempt);
-    }
-
-    private void OnUnequipAttempt(Entity<XenoLatchedComponent> ent, ref Content.Shared.Inventory.Events.BeingUnequippedAttemptEvent args)
-    {
-        if (args.User != args.UnEquipTarget)
-            return;
-
-        args.Cancel();
-        args.Reason = "xeno-hugger-latched";
-    }
-}
