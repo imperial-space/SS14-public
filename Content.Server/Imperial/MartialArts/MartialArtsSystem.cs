@@ -24,31 +24,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.MartialArts;
 
-/// <summary>Итог приёма: MARTIAL_ATTACK_INVALID / FAIL / SUCCESS.</summary>
-public enum MartialResult : byte
-{
-    /// <summary>Приём не подошёл — обычная атака.</summary>
-    Invalid,
-
-    /// <summary>Приём сорвался, обычной атаки тоже нет.</summary>
-    Fail,
-
-    /// <summary>Приём удался, обычной атаки нет.</summary>
-    Success,
-
-    /// <summary>Только для захвата: приём удался, и захват при этом состоялся.</summary>
-    SuccessKeepGrab,
-}
-
-/// <summary>Кто нанёс удар, чтобы правильно посчитать блок (attack_type в check_block).</summary>
-public enum MartialAttackType : byte
-{
-    Unarmed,
-    Melee,
-    Projectile,
-    Thrown,
-}
-
 /// <summary>
 /// Боевые искусства 1 в 1 с tgstation/BandaStation (code/datums/martial):
 /// CQC, Спящий карп, бокс, борьба, плазменный кулак, Каза Рук, корпоративное дзюдо и остальные.

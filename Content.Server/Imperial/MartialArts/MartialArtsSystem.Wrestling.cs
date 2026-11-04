@@ -87,10 +87,10 @@ public sealed partial class MartialArtsSystem
             };
 
             var step = i;
-            Timer.Spawn(TimeSpan.FromSeconds(delay), () => WrestlingSpinStep(ent, target, step));
+            _schedule.Schedule(TimeSpan.FromSeconds(delay), () => WrestlingSpinStep(ent, target, step));
         }
 
-        Timer.Spawn(TimeSpan.FromSeconds(delay + 0.1f), () => WrestlingThrowRelease(ent, target));
+        _schedule.Schedule(TimeSpan.FromSeconds(delay + 0.1f), () => WrestlingThrowRelease(ent, target));
     }
 
     private void WrestlingSpinStep(EntityUid user, EntityUid target, int step)
@@ -126,7 +126,7 @@ public sealed partial class MartialArtsSystem
             Emote(target, "Scream");
 
         ThrowAway(target, user, 10, 4);
-        Timer.Spawn(TimeSpan.FromSeconds(1), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(1), () =>
         {
             if (Exists(target))
                 Paralyze(target, TimeSpan.FromSeconds(2));
@@ -145,7 +145,7 @@ public sealed partial class MartialArtsSystem
         _xform.SetCoordinates(target, Transform(ent).Coordinates);
         PopupPair(ent, target, "martial-wrestling-lift-others", "martial-wrestling-lift-self", "martial-wrestling-lift-target");
 
-        Timer.Spawn(TimeSpan.FromSeconds(0.3), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(0.3), () =>
         {
             if (!Exists(ent) || !Exists(target) || !_xform.InRange(ent.Owner, target, MeleeRange))
                 return;
@@ -183,7 +183,7 @@ public sealed partial class MartialArtsSystem
     {
         var origin = Transform(ent).Coordinates;
         _xform.SetCoordinates(ent, Transform(target).Coordinates);
-        Timer.Spawn(TimeSpan.FromSeconds(0.4), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(0.4), () =>
         {
             if (Exists(ent))
                 _xform.SetCoordinates(ent, origin);
@@ -213,7 +213,7 @@ public sealed partial class MartialArtsSystem
         if (falling)
             PopupPair(ent, ent, "martial-wrestling-climb-others", "martial-wrestling-climb-self");
 
-        Timer.Spawn(TimeSpan.FromSeconds(falling ? 2 : 1), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(falling ? 2 : 1), () =>
         {
             if (!Exists(ent) || !Exists(target))
                 return;

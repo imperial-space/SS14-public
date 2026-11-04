@@ -15,6 +15,7 @@ namespace Content.Server.Imperial.MartialArts;
 /// </summary>
 public sealed partial class MartialArtsSystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     private const string JudoArmbar = "DDG";
     private const string JudoEyepoke = "DH";
     private const string JudoGoldenBlast = "EDEGDDGEDDGE";
@@ -106,7 +107,7 @@ public sealed partial class MartialArtsSystem
         // blow_followup(): в половине обычных ударов — добивающий удар локтем через 0.25 секунды.
         if (_random.Prob(0.5f))
         {
-            Timer.Spawn(TimeSpan.FromSeconds(0.25), () =>
+            _schedule.Schedule(TimeSpan.FromSeconds(0.25), () =>
             {
                 if (!Exists(ent) || !Exists(target) || !_xform.InRange(ent.Owner, target, MeleeRange))
                     return;

@@ -18,8 +18,8 @@ public sealed class MartialArtCommand : IConsoleCommand
     [Dependency] private readonly IPrototypeManager _proto = default!;
 
     public string Command => "martialart";
-    public string Description => "Обучает боевому искусству или заставляет его забыть.";
-    public string Help => $"Использование: {Command} <teach|forget> <искусство> [entityUid]";
+    public string Description => Loc.GetString("imperial-martial-arts-martial-art-command-1");
+    public string Help => Loc.GetString("imperial-martial-arts-martial-art-command-2", ("arg0", Command));
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {
@@ -44,7 +44,7 @@ public sealed class MartialArtCommand : IConsoleCommand
 
         if (!_proto.HasIndex<MartialArtPrototype>(args[1]))
         {
-            shell.WriteLine($"Нет такого искусства: «{args[1]}».");
+            shell.WriteLine(Loc.GetString("imperial-martial-arts-martial-art-command-3", ("arg0", args[1])));
             return;
         }
 
@@ -53,7 +53,7 @@ public sealed class MartialArtCommand : IConsoleCommand
         {
             if (!_entManager.TryParseNetEntity(args[2], out var netEnt) || !_entManager.EntityExists(netEnt))
             {
-                shell.WriteLine($"Сущность не найдена: «{args[2]}».");
+                shell.WriteLine(Loc.GetString("imperial-martial-arts-martial-art-command-4", ("arg0", args[2])));
                 return;
             }
 
@@ -65,7 +65,7 @@ public sealed class MartialArtCommand : IConsoleCommand
         }
         else
         {
-            shell.WriteLine("Укажите entityUid цели или выберите персонажа.");
+            shell.WriteLine(Loc.GetString("imperial-martial-arts-martial-art-command-5"));
             return;
         }
 
@@ -75,12 +75,12 @@ public sealed class MartialArtCommand : IConsoleCommand
         {
             case "teach":
                 shell.WriteLine(system.Teach(target, art)
-                    ? $"{target} изучил {art}."
-                    : $"Не удалось обучить {target} искусству {art}.");
+                    ? Loc.GetString("imperial-martial-arts-martial-art-command-6", ("arg0", target), ("arg1", art))
+                    : Loc.GetString("imperial-martial-arts-martial-art-command-7", ("arg0", target), ("arg1", art)));
                 break;
             case "forget":
                 system.Unlearn(target, art);
-                shell.WriteLine($"{target} забыл {art}.");
+                shell.WriteLine(Loc.GetString("imperial-martial-arts-martial-art-command-8", ("arg0", target), ("arg1", art)));
                 break;
             default:
                 shell.WriteLine(Help);

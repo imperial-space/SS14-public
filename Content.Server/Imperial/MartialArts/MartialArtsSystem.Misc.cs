@@ -150,7 +150,7 @@ public sealed partial class MartialArtsSystem
         if (_sharedMind.TryGetMind(ent, out var mindId, out var mind))
             _sharedMind.WipeMind(mindId, mind);
 
-        Timer.Spawn(TimeSpan.FromSeconds(6), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(6), () =>
         {
             if (Exists(ent) && !_mobs.IsDead(ent))
                 _mobs.ChangeMobState(ent, Content.Shared.Mobs.MobState.Dead);
