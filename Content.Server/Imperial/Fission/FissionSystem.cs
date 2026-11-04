@@ -300,9 +300,3 @@ public sealed partial class FissionSystem : EntitySystem
             Spawn(FissionReactorProtoDefaults.Smoke, coords.Offset(offset));
     }
 }
-
-internal static class FissionReactorProtoDefaults
-{
-    public static readonly EntProtoId RadiationPulse = "ImperialFissionRadiationPulse";
-    public static readonly EntProtoId Smoke = "ImperialFissionSmoke";
-}

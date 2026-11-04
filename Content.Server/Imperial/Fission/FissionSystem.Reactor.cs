@@ -10,6 +10,7 @@ namespace Content.Server.Imperial.Fission;
 
 public sealed partial class FissionSystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     /// <summary>Эффекты газов теплоносителя (reactor_gas_effect/coolant): перегрев, шанс аварий, реактивность.</summary>
     private static readonly Dictionary<Gas, (float Overheat, float Event, float Reactivity)> CoolantEffects = new()
     {
@@ -916,7 +917,7 @@ public sealed partial class FissionSystem
         var reactor = ent.Comp;
         reactor.ActiveMeltdown = true;
         UpdateReactorVisuals(ent);
-        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(5), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(5), () =>
         {
             if (TryComp<FissionReactorComponent>(ent, out var comp))
             {
