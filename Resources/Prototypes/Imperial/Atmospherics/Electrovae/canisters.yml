@@ -5,10 +5,11 @@
   description: A canister containing electrovae. It can be attached to connector ports using a wrench.
   components:
   - type: Sprite
-    sprite: /Textures/Imperial/Gases/Electrovae/canister.rsi
+    sprite: /Textures/Structures/Storage/canister.rsi
     noRot: true
     layers:
-    - state: electrovae
+    - sprite: /Textures/Imperial/Gases/Electrovae/canister.rsi
+      state: electrovae
     - state: paper
       visible: false
       map: [ "enum.PaperLabelVisuals.Layer" ]
@@ -16,7 +17,8 @@
       map: [ "enum.MaxPressureVisualLayers.BaseUnshaded" ]
       shader: unshaded
       visible: false
-    - state: mask-electrovae
+    - sprite: /Textures/Imperial/Gases/Electrovae/canister.rsi
+      state: mask-electrovae
       map: [ "enum.MaxPressureVisualLayers.Base" ]
       visible: false
   - type: MaxPressureVisuals
@@ -66,10 +68,11 @@
   description: A canister containing charged electrovae. It can be attached to connector ports using a wrench.
   components:
   - type: Sprite
-    sprite: /Textures/Imperial/Gases/Electrovae/canister.rsi
+    sprite: /Textures/Structures/Storage/canister.rsi
     noRot: true
     layers:
-    - state: chargedelectrovae
+    - sprite: /Textures/Imperial/Gases/Electrovae/canister.rsi
+      state: chargedelectrovae
     - state: paper
       visible: false
       map: [ "enum.PaperLabelVisuals.Layer" ]
@@ -77,7 +80,8 @@
       map: [ "enum.MaxPressureVisualLayers.BaseUnshaded" ]
       shader: unshaded
       visible: false
-    - state: mask-chargedelectrovae
+    - sprite: /Textures/Imperial/Gases/Electrovae/canister.rsi
+      state: mask-chargedelectrovae
       map: [ "enum.MaxPressureVisualLayers.Base" ]
       visible: false
   - type: MaxPressureVisuals
