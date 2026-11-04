@@ -4,9 +4,6 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client.Imperial.Voidwalker;
 
-/// <summary>Клиентская часть прохода сквозь стекло (решётки под током знает только сервер).</summary>
-public sealed class ImperialGlassPasserSystem : SharedImperialGlassPasserSystem;
-
 /// <summary>texture_limb(): части тела «опустошённого» окрашены в цвет космоса.</summary>
 public sealed class ImperialVoidwalkerVisualsSystem : EntitySystem
 {

@@ -22,29 +22,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Voidwalker;
 
-/// <summary>/obj/effect/wisp_mobile: огонёк, на котором похищенный катается по пустоте.</summary>
-[RegisterComponent]
-public sealed partial class ImperialWispComponent : Component
-{
-    [ViewVariables]
-    public EntityUid? Driver;
-
-    [ViewVariables]
-    public TimeSpan ReleaseAt;
-
-    /// <summary>heal_per_food.</summary>
-    [DataField]
-    public float HealPerFood = 15f;
-}
-
-/// <summary>/obj/effect/wisp_food.</summary>
-[RegisterComponent]
-public sealed partial class ImperialWispFoodComponent : Component;
-
-/// <summary>Похищенный за рулём огонька: неуязвим, руки заняты.</summary>
-[RegisterComponent]
-public sealed partial class ImperialWispDriverComponent : Component;
-
 /// <summary>
 /// voidwalker_void: чёрная комната 32×32, куда попадают похищенные. Огонёк ест еду и лечит водителя,
 /// через 60 секунд водителя выбрасывает в безопасное место станции.

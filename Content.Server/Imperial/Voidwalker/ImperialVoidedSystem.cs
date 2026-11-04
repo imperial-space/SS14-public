@@ -26,37 +26,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Voidwalker;
 
-/// <summary>Серверные данные проклятия /datum/brain_trauma/voided.</summary>
-[RegisterComponent]
-public sealed partial class ImperialVoidedStateComponent : Component
-{
-    /// <summary>banned_from_space: последние клетки не в космосе.</summary>
-    [ViewVariables]
-    public readonly List<EntityCoordinates> LastTiles = new();
-
-    [ViewVariables]
-    public TimeSpan NextTick;
-
-    /// <summary>Аллергия на планеты: только если проклятие получено не на планете.</summary>
-    [ViewVariables]
-    public bool PlanetAllergy;
-
-    [ViewVariables]
-    public bool AddedPacified;
-}
-
-/// <summary>/obj/item/clothing/head/helmet/skull/cosmic.</summary>
-[RegisterComponent]
-public sealed partial class ImperialCosmicSkullComponent : Component
-{
-    [DataField]
-    public int Uses = 1;
-}
-
-/// <summary>/obj/item/void_eater: временно разбивает стекло касанием.</summary>
-[RegisterComponent]
-public sealed partial class ImperialVoidEaterComponent : Component;
-
 public sealed class ImperialVoidedSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;

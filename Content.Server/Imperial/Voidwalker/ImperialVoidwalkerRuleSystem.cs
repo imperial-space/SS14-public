@@ -20,40 +20,6 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Voidwalker;
 
-/// <summary>/datum/dynamic_ruleset/midround/from_ghosts/voidwalker (и гелиарх).</summary>
-[RegisterComponent]
-public sealed partial class ImperialVoidwalkerRuleComponent : Component
-{
-    [DataField]
-    public EntProtoId Spawner = "ImperialSpawnPointVoidwalker";
-}
-
-/// <summary>Роль пустоходца на разуме.</summary>
-[RegisterComponent]
-public sealed partial class ImperialVoidwalkerRoleComponent : Component;
-
-/// <summary>/datum/objective/voidwalker_objective: выполнена, пока пустоходец жив.</summary>
-[RegisterComponent]
-public sealed partial class ImperialVoidwalkerConditionComponent : Component;
-
-/// <summary>Тело, которое при вселении получает роль, цель и приветствие.</summary>
-[RegisterComponent]
-public sealed partial class ImperialVoidwalkerAntagComponent : Component
-{
-    [DataField]
-    public EntProtoId Objective = "ImperialVoidwalkerObjective";
-
-    [DataField]
-    public LocId Greeting = "imperial-voidwalker-greeting";
-
-    /// <summary>Варианты текста цели (pick(explanation_texts), 5% — про стекло).</summary>
-    [DataField]
-    public List<LocId> ObjectiveTexts = new();
-
-    [ViewVariables]
-    public bool Given;
-}
-
 public sealed class ImperialVoidwalkerRuleSystem : GameRuleSystem<ImperialVoidwalkerRuleComponent>
 {
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -130,24 +96,5 @@ public sealed class ImperialVoidwalkerRuleSystem : GameRuleSystem<ImperialVoidwa
     private void OnProgress(Entity<ImperialVoidwalkerConditionComponent> ent, ref ObjectiveGetProgressEvent args)
     {
         args.Progress = args.Mind.OwnedEntity is { } body && !_mobs.IsDead(body) ? 1f : 0f;
-    }
-}
-
-/// <summary>Серверная часть glass_passer: решётка под током (с питанием) не пропускает.</summary>
-public sealed class ImperialGlassPasserSystem : SharedImperialGlassPasserSystem
-{
-    [Dependency] private readonly ElectrocutionSystem _electrocution = default!;
-
-    private static readonly System.Reflection.MethodInfo? IsPoweredMethod = typeof(ElectrocutionSystem).GetMethod("IsPowered",
-        System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic, null,
-        new[] { typeof(EntityUid), typeof(ElectrifiedComponent), typeof(TransformComponent) }, null);
-
-    protected override bool IsShocked(EntityUid grille)
-    {
-        if (!TryComp<ElectrifiedComponent>(grille, out var electrified) || !electrified.Enabled)
-            return false;
-
-        // ElectrocutionSystem.IsPowered приватный: та же проверка, что и при ударе током.
-        return IsPoweredMethod?.Invoke(_electrocution, new object[] { grille, electrified, Transform(grille) }) is true;
     }
 }
