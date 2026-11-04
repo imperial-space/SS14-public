@@ -10,26 +10,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Epsilon;
 
-/// <summary>Оперативник протокола «Эпсилон»: получает цель, как только в тело входит игрок.</summary>
-[RegisterComponent]
-public sealed partial class ImperialEpsilonOperativeComponent : Component
-{
-    [DataField]
-    public string Objective = "ImperialEpsilonKillCrewObjective";
-}
-
-/// <summary>Цель «уничтожить весь экипаж»: в описании счётчик оставшихся живых.</summary>
-[RegisterComponent]
-public sealed partial class ImperialEpsilonKillCrewConditionComponent : Component
-{
-    /// <summary>Наибольшее число живого экипажа за время цели — от него считается прогресс.</summary>
-    [ViewVariables]
-    public int MaxCrew;
-
-    [ViewVariables]
-    public int LastRemaining = -1;
-}
-
 public sealed class ImperialEpsilonObjectiveSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;

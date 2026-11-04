@@ -23,65 +23,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Epsilon;
 
-/// <summary>
-/// Протокол «Эпсилон»: под эскадрона смерти ждёт у ЦК, экипаж пода выбирает зону высадки,
-/// а сценарий сам запускает оповещение, гасит станцию и сажает под ровно на 1:28 трека.
-/// </summary>
-[RegisterComponent]
-public sealed partial class ImperialEpsilonRuleComponent : Component
-{
-    /// <summary>Через сколько после появления пода оповещение начнётся само (команда «epsilon start» — сразу).</summary>
-    [DataField]
-    public TimeSpan PrepTime = TimeSpan.FromMinutes(5);
-
-    [DataField]
-    public int Operatives = 8;
-
-    [DataField]
-    public EntProtoId Operative = "ImperialEpsilonOperative";
-
-    /// <summary>Во сколько раз тусклее светят лампы после смены кода.</summary>
-    [DataField]
-    public float LightDim = 0.35f;
-
-    [DataField]
-    public string AlertLevel = "epsilon";
-
-    [ViewVariables]
-    public TimeSpan AutoStartAt;
-
-    [ViewVariables]
-    public TimeSpan? SequenceStart;
-
-    [ViewVariables]
-    public EntityUid? Pod;
-
-    [ViewVariables]
-    public EntityUid? Console;
-
-    [ViewVariables]
-    public EpsilonStage Stage = EpsilonStage.Waiting;
-
-    [ViewVariables]
-    public List<EntityUid> Lights = new();
-
-    [ViewVariables]
-    public int LightsOff;
-
-    [ViewVariables]
-    public TimeSpan NextEmergencyRefresh;
-}
-
-public enum EpsilonStage : byte
-{
-    Waiting,
-    Announcing,
-    LightsOut,
-    Emergency,
-    Launched,
-    Done,
-}
-
 public sealed class ImperialEpsilonRuleSystem : GameRuleSystem<ImperialEpsilonRuleComponent>
 {
     [Dependency] private readonly IGameTiming _timing = default!;
