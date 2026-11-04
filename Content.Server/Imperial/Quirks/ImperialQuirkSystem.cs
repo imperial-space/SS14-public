@@ -215,7 +215,3 @@ public sealed partial class ImperialQuirkSystem : EntitySystem
             Message(actor.PlayerSession, message);
     }
 }
-
-/// <summary>Причуда выдана: системы эффектов делают одноразовую настройку (add_unique, post_add).</summary>
-[ByRefEvent]
-public readonly record struct ImperialQuirkAddedEvent(ProtoId<TraitPrototype> Quirk, ICommonSession? Player);
