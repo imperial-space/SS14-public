@@ -740,7 +740,7 @@ public sealed class ContractorSystem : EntitySystem
         var options = DeserializationOptions.Default with { InitializeMaps = true, PauseMaps = false };
         if (!_mapLoader.TryLoadGrid(new ResPath(HoldingMapPath), out _, out var grid, options))
         {
-            gridUid = EntityUid.Invalid;
+            gridUid = default;
             return false;
         }
 

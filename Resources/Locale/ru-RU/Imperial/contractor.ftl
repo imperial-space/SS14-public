@@ -183,3 +183,52 @@ contractor-guide-content = Приветствую вас, агент, поздр
     Нам нужна ваша цель по нашим собственным причинам, но мы вернём её за выкуп в район вашей миссии, как только она будет больше не нужна. Она вернётся обратно туда, откуда вы её отправили, через несколько минут. Не волнуйтесь, мы отдаём вам часть выкупа — наличными, помимо оплаты телекристаллами.
 
     Удачи, агент. Вы можете сжечь этот документ с помощью прилагаемой зажигалки.
+
+## Окно аплинка контрактника: загрузка терминала и справка
+contractor-uplink-terminal-1 = Запись биометрических данных...
+contractor-uplink-terminal-2 = Анализ встроенной информации о синдикате...
+contractor-uplink-terminal-3 = СТАТУС ПОДТВЕРЖДЕН
+contractor-uplink-terminal-4 = Обращение к базе данных синдиката...
+contractor-uplink-terminal-5 = Ожидание ответа...
+contractor-uplink-terminal-6 = Ожидание ответа...
+contractor-uplink-terminal-7 = Ожидание ответа...
+contractor-uplink-terminal-8 = Ожидание ответа...
+contractor-uplink-terminal-9 = Ожидание ответа...
+contractor-uplink-terminal-10 = Ожидание ответа...
+contractor-uplink-terminal-11 = Ответ получен, аккаунт 4851234...
+contractor-uplink-terminal-12 = ПОДТВЕРДИТЬ АККАУНТ { $account }
+contractor-uplink-terminal-13 = Настройка личных аккаунтов...
+contractor-uplink-terminal-14 = АККАУНТ КОНТРАКТНИКА СОЗДАН
+contractor-uplink-terminal-15 = Поиск доступных контрактов...
+contractor-uplink-terminal-16 = Поиск доступных контрактов...
+contractor-uplink-terminal-17 = Поиск доступных контрактов...
+contractor-uplink-terminal-18 = Поиск доступных контрактов...
+contractor-uplink-terminal-19 = КОНТРАКТЫ НАЙДЕНЫ
+contractor-uplink-terminal-20 = ДОБРО ПОЖАЛОВАТЬ, АГЕНТ
+contractor-uplink-info-1 = SyndTract v2.0
+contractor-uplink-info-2 = {""}
+contractor-uplink-info-3 = Мы определили потенциально ценные цели, которые
+contractor-uplink-info-4 = в настоящее время находятся в районе вашей миссии. Они могут
+contractor-uplink-info-5 = хранить ценную информацию, которая может иметь важное
+contractor-uplink-info-6 = значение для нашей организации.
+contractor-uplink-info-7 = {""}
+contractor-uplink-info-8 = Ниже перечислены все доступные вам контракты. Вы
+contractor-uplink-info-9 = должны довести заданную цель до назначенной
+contractor-uplink-info-10 = зоны отправки, и связаться с нами через аплинк. Мы отправим
+contractor-uplink-info-11 = специализированную капсулу для транспортировки, куда нужно поместить тело.
+contractor-uplink-info-12 = {""}
+contractor-uplink-info-13 = Мы хотим, чтобы цели были живыми; мы платим меньшие
+contractor-uplink-info-14 = суммы если цель будет мертва, так как вы просто не получите указанный
+contractor-uplink-info-15 = бонус. Вы можете получить свою оплату через этот аплинк в
+contractor-uplink-info-16 = форме телекристаллов, которые могут быть вложены в
+contractor-uplink-info-17 = обычный аплинк Синдиката для приобретения необходимого вам снаряжения.
+contractor-uplink-info-18 = Мы предоставим вам эти кристаллы в тот момент, когда вы отправите
+contractor-uplink-info-19 = цель к нам, телекристаллы можно получить в любое время через
+contractor-uplink-info-20 = эту систему.
+contractor-uplink-info-21 = {""}
+contractor-uplink-info-22 = Похищенные цели будут выкуплены обратно на станцию после того,
+contractor-uplink-info-23 = как их знания будут извлечены, и вам будет предоставлена
+contractor-uplink-info-24 = часть выкупа. Вам следует помнить, что они могут
+contractor-uplink-info-25 = идентифицировать вас, когда они вернутся. Мы предоставляем вам
+contractor-uplink-info-26 = стандартное снаряжение контрактника, которое поможет скрыть вашу
+contractor-uplink-info-27 = личность.

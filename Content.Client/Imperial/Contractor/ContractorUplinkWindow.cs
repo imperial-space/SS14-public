@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using Content.Client.Imperial.UI;
 using Content.Shared.Imperial.Contractor;
@@ -37,57 +38,57 @@ public sealed class ContractorUplinkWindow : DefaultWindow
 
     private static readonly string[] TerminalMessages =
     {
-        "Запись биометрических данных...",
-        "Анализ встроенной информации о синдикате...",
-        "СТАТУС ПОДТВЕРЖДЕН",
-        "Обращение к базе данных синдиката...",
-        "Ожидание ответа...",
-        "Ожидание ответа...",
-        "Ожидание ответа...",
-        "Ожидание ответа...",
-        "Ожидание ответа...",
-        "Ожидание ответа...",
-        "Ответ получен, аккаунт 4851234...",
-        "ПОДТВЕРДИТЬ АККАУНТ {0}",
-        "Настройка личных аккаунтов...",
-        "АККАУНТ КОНТРАКТНИКА СОЗДАН",
-        "Поиск доступных контрактов...",
-        "Поиск доступных контрактов...",
-        "Поиск доступных контрактов...",
-        "Поиск доступных контрактов...",
-        "КОНТРАКТЫ НАЙДЕНЫ",
-        "ДОБРО ПОЖАЛОВАТЬ, АГЕНТ",
+        "contractor-uplink-terminal-1",
+        "contractor-uplink-terminal-2",
+        "contractor-uplink-terminal-3",
+        "contractor-uplink-terminal-4",
+        "contractor-uplink-terminal-5",
+        "contractor-uplink-terminal-6",
+        "contractor-uplink-terminal-7",
+        "contractor-uplink-terminal-8",
+        "contractor-uplink-terminal-9",
+        "contractor-uplink-terminal-10",
+        "contractor-uplink-terminal-11",
+        "contractor-uplink-terminal-12",
+        "contractor-uplink-terminal-13",
+        "contractor-uplink-terminal-14",
+        "contractor-uplink-terminal-15",
+        "contractor-uplink-terminal-16",
+        "contractor-uplink-terminal-17",
+        "contractor-uplink-terminal-18",
+        "contractor-uplink-terminal-19",
+        "contractor-uplink-terminal-20",
     };
 
     private static readonly string[] InfoEntries =
     {
-        "SyndTract v2.0",
-        "",
-        "Мы определили потенциально ценные цели, которые",
-        "в настоящее время находятся в районе вашей миссии. Они могут",
-        "хранить ценную информацию, которая может иметь важное",
-        "значение для нашей организации.",
-        "",
-        "Ниже перечислены все доступные вам контракты. Вы",
-        "должны довести заданную цель до назначенной",
-        "зоны отправки, и связаться с нами через аплинк. Мы отправим",
-        "специализированную капсулу для транспортировки, куда нужно поместить тело.",
-        "",
-        "Мы хотим, чтобы цели были живыми; мы платим меньшие",
-        "суммы если цель будет мертва, так как вы просто не получите указанный",
-        "бонус. Вы можете получить свою оплату через этот аплинк в",
-        "форме телекристаллов, которые могут быть вложены в",
-        "обычный аплинк Синдиката для приобретения необходимого вам снаряжения.",
-        "Мы предоставим вам эти кристаллы в тот момент, когда вы отправите",
-        "цель к нам, телекристаллы можно получить в любое время через",
-        "эту систему.",
-        "",
-        "Похищенные цели будут выкуплены обратно на станцию после того,",
-        "как их знания будут извлечены, и вам будет предоставлена",
-        "часть выкупа. Вам следует помнить, что они могут",
-        "идентифицировать вас, когда они вернутся. Мы предоставляем вам",
-        "стандартное снаряжение контрактника, которое поможет скрыть вашу",
-        "личность.",
+        "contractor-uplink-info-1",
+        "contractor-uplink-info-2",
+        "contractor-uplink-info-3",
+        "contractor-uplink-info-4",
+        "contractor-uplink-info-5",
+        "contractor-uplink-info-6",
+        "contractor-uplink-info-7",
+        "contractor-uplink-info-8",
+        "contractor-uplink-info-9",
+        "contractor-uplink-info-10",
+        "contractor-uplink-info-11",
+        "contractor-uplink-info-12",
+        "contractor-uplink-info-13",
+        "contractor-uplink-info-14",
+        "contractor-uplink-info-15",
+        "contractor-uplink-info-16",
+        "contractor-uplink-info-17",
+        "contractor-uplink-info-18",
+        "contractor-uplink-info-19",
+        "contractor-uplink-info-20",
+        "contractor-uplink-info-21",
+        "contractor-uplink-info-22",
+        "contractor-uplink-info-23",
+        "contractor-uplink-info-24",
+        "contractor-uplink-info-25",
+        "contractor-uplink-info-26",
+        "contractor-uplink-info-27",
     };
 
     private readonly BoxContainer _body = new() { Orientation = BoxContainer.LayoutOrientation.Vertical, VerticalExpand = true };
@@ -164,12 +165,12 @@ public sealed class ContractorUplinkWindow : DefaultWindow
                 break;
             case Screen.FirstLoad:
                 _finishedSent = false;
-                var lines = (string[]) TerminalMessages.Clone();
-                lines[11] = string.Format(lines[11], new Random().Next(20000));
+                var account = new Random().Next(20000);
+                var lines = TerminalMessages.Select(key => Loc.GetString(key, ("account", account))).ToArray();
                 StartTerminal(lines, 2.5f);
                 break;
             case Screen.Info:
-                StartTerminal(InfoEntries, 10f);
+                StartTerminal(InfoEntries.Select(key => Loc.GetString(key)).ToArray(), 10f);
                 _body.AddChild(Tgui.Button(Loc.GetString("contractor-uplink-continue"), () => ToggleInfo?.Invoke(),
                     color: Tgui.Transparent, fluid: true, fontSize: 13, bold: true));
                 break;
@@ -416,59 +417,4 @@ public sealed class ContractorUplinkWindow : DefaultWindow
     }
 
     #endregion
-}
-
-/// <summary>Значок сети NTOS: четыре столбика нарастающей высоты.</summary>
-public sealed class SignalIcon : Control
-{
-    private static readonly Color Bar = Color.FromHex("#9fd09f");
-
-    public SignalIcon()
-    {
-        MinSize = new Vector2(16, 14);
-        VerticalAlignment = VAlignment.Center;
-    }
-
-    protected override void Draw(DrawingHandleScreen handle)
-    {
-        base.Draw(handle);
-
-        var size = PixelSize;
-        var scale = UIScale;
-        var barWidth = 3 * scale;
-        var gap = 1 * scale;
-        for (var i = 0; i < 4; i++)
-        {
-            var height = size.Y * (i + 1) / 4f;
-            var x = i * (barWidth + gap);
-            handle.DrawRect(new UIBox2(x, size.Y - height, x + barWidth, size.Y), Bar);
-        }
-    }
-}
-
-/// <summary>Значок батареи NTOS: корпус с полной заливкой и контакт справа.</summary>
-public sealed class BatteryIcon : Control
-{
-    private static readonly Color Body = Color.FromHex("#9fd09f");
-
-    public BatteryIcon()
-    {
-        MinSize = new Vector2(22, 12);
-        VerticalAlignment = VAlignment.Center;
-    }
-
-    protected override void Draw(DrawingHandleScreen handle)
-    {
-        base.Draw(handle);
-
-        var size = PixelSize;
-        var scale = UIScale;
-        var tip = 2 * scale;
-        var border = 1 * scale;
-        var body = new UIBox2(0, 0, size.X - tip, size.Y);
-
-        handle.DrawRect(body, Body, filled: false);
-        handle.DrawRect(new UIBox2(body.Left + border * 2, body.Top + border * 2, body.Right - border * 2, body.Bottom - border * 2), Body);
-        handle.DrawRect(new UIBox2(size.X - tip, size.Y * 0.3f, size.X, size.Y * 0.7f), Body);
-    }
 }
