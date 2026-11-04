@@ -2,12 +2,6 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.BSA;
 
-[NetSerializable, Serializable]
-public enum BSAConsoleUiKey : byte
-{
-    Key,
-}
-
 /// <summary>
 /// Состояние консоли управления блюспейс-артиллерией (tgui BluespaceArtillery из SS13).
 /// </summary>
@@ -28,19 +22,4 @@ public sealed class BSAConsoleUiState(
 
     /// <summary>Маяки (WarpPoint), на которые можно навести орудие.</summary>
     public readonly List<(NetEntity Uid, string Name)> Targets = targets;
-}
-
-/// <summary>«Complete Deployment»: собрать пушку из привязанных частей.</summary>
-[NetSerializable, Serializable]
-public sealed class BSABuildMessage : BoundUserInterfaceMessage;
-
-/// <summary>«FIRE».</summary>
-[NetSerializable, Serializable]
-public sealed class BSAFireMessage : BoundUserInterfaceMessage;
-
-/// <summary>«Recalibrate»: навести орудие на маяк.</summary>
-[NetSerializable, Serializable]
-public sealed class BSASetTargetMessage(NetEntity target) : BoundUserInterfaceMessage
-{
-    public readonly NetEntity Target = target;
 }
