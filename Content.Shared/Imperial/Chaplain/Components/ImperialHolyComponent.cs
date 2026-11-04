@@ -16,19 +16,3 @@ public sealed partial class ImperialHolyComponent : Component
     [ViewVariables]
     public EntityUid? PrayAction;
 }
-
-/// <summary>
-/// Уровни святой роли, от младшего к старшему.
-/// </summary>
-[Serializable, NetSerializable]
-public enum HolyRole : byte
-{
-    /// <summary>Дьякон: пользуется святыми предметами, но не проводит обряды.</summary>
-    Deacon = 1,
-
-    /// <summary>Жрец: обычный капеллан.</summary>
-    Priest = 2,
-
-    /// <summary>Верховный жрец: задаёт религию станции и выбирает секту.</summary>
-    HighPriest = 3,
-}

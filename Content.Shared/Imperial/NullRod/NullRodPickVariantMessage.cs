@@ -3,12 +3,6 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.NullRod;
 
-[Serializable, NetSerializable]
-public enum NullRodUiKey : byte
-{
-    Key,
-}
-
 /// <summary>
 /// Клиент выбрал форму святого оружия в радиальном меню нулевого стержня.
 /// </summary>

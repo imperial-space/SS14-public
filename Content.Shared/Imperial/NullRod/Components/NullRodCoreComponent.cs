@@ -19,13 +19,3 @@ public sealed partial class NullRodCoreComponent : Component
     [DataField]
     public List<NullRodBane> Banes = new();
 }
-
-[DataDefinition]
-public sealed partial class NullRodBane
-{
-    [DataField(required: true)]
-    public EntityWhitelist Whitelist = new();
-
-    [DataField(required: true)]
-    public DamageSpecifier Damage = new();
-}
