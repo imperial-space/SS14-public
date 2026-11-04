@@ -179,7 +179,7 @@ public sealed partial class AtmosphereSystem
         var query = EntityQueryEnumerator<ChargedElectrovaeAffectedComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out _, out var transform))
         {
-            if (transform.GridUid != grid.Owner)
+            if (transform.GridUid != null && transform.GridUid != grid.Owner)
                 continue;
 
             var mixture = GetTileMixture((uid, transform));
@@ -196,17 +196,19 @@ public sealed partial class AtmosphereSystem
         var chargeRate = intensity >= Atmospherics.ChargedElectrovaeMinimumEquipmentIntensity
             ? intensity * Atmospherics.ChargedElectrovaeChargeRatePerIntensity
             : 0f;
+        var chargeRateChanged = ent.Comp2.ChargedElectrovaeChargeRate != chargeRate;
 
-        if (ent.Comp2.ChargedElectrovaeChargeRate != chargeRate)
-        {
+        if (chargeRateChanged)
             ent.Comp2.ChargedElectrovaeChargeRate = chargeRate;
-            _battery.RefreshChargeRate((ent.Owner, ent.Comp1));
-        }
 
+        var previousMaxCharge = ent.Comp1.MaxCharge;
         if (intensity >= Atmospherics.ChargedElectrovaeMinimumEquipmentIntensity)
             ExpandBatteryCapacity(ent, chargedMoles);
         else
             RestoreBatteryCapacity(ent);
+
+        if (chargeRateChanged || previousMaxCharge != ent.Comp1.MaxCharge)
+            _battery.RefreshChargeRate((ent.Owner, ent.Comp1));
     }
 
     private void ExpandBatteryCapacity(

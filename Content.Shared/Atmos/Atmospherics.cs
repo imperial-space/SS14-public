@@ -332,7 +332,7 @@ namespace Content.Shared.Atmos
         /// Imperial Imperial Atmos Update end
 
         /// # Imperial-Start ChargedElectrovae/Electrovae
-        public const float ElectrovaeProductionNitrogenRatio = 6f;
+        public const float ElectrovaeProductionNitrogenCatalystSaturationProportion = 0.06f;
         public const float ElectrovaeProductionWaterVaporRatio = 2f;
         public const float ElectrovaeProductionNitrousOxideRatio = 11f;
         public const float ElectrovaeProductionCarbonDioxideInhibitorSensitivity = 0.05f;
@@ -354,7 +354,7 @@ namespace Content.Shared.Atmos
         public const float ChargedElectrovaeLowIntensityThreshold = 0.25f;
         public const float ChargedElectrovaeLightningChanceMultiplier = 0.01f;
         public const float ChargedElectrovaeMinimumEquipmentIntensity = 0.1f;
-        public const float ChargedElectrovaeChargeRatePerIntensity = 72f;
+        public const float ChargedElectrovaeChargeRatePerIntensity = 100f;
         public const float ChargedElectrovaeBatteryExpansionDecayConstant = 20f;
         public const int ChargedElectrovaeLightningBaseDamage = 5;
         public const int ChargedElectrovaeLightningDamagePerIntensity = 5;

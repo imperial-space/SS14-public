@@ -25,7 +25,7 @@ public sealed partial class ElectrovaeProductionReaction : IGasReactionEffect
             return ReactionResult.NoReaction;
 
         var catalystFactor = Math.Clamp(
-            initialNitrogen / totalMoles / Atmospherics.ElectrovaeProductionNitrogenRatio,
+            initialNitrogen / totalMoles / Atmospherics.ElectrovaeProductionNitrogenCatalystSaturationProportion,
             0f,
             1f);
         var inhibitorFactor = Math.Clamp(
