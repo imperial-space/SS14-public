@@ -22,6 +22,7 @@ namespace Content.Server.Imperial.Morph;
 
 public sealed partial class MorphSystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     /// <summary>Сколько секунд ИИ-морф ждёт, прежде чем снова притвориться предметом.</summary>
     private static readonly TimeSpan AiDisguiseInterval = TimeSpan.FromSeconds(5);
 
@@ -482,7 +483,7 @@ public sealed partial class MorphSystem
         {
             _audio.PlayPvs(WelderSound, vent);
             var captured = vent;
-            Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(2), () =>
+            _schedule.Schedule(TimeSpan.FromSeconds(2), () =>
             {
                 if (!TerminatingOrDeleted(captured))
                     _weldable.SetWeldedState(captured, false);

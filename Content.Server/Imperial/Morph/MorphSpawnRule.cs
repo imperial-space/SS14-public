@@ -8,14 +8,6 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Morph;
 
-/// <summary>events/spawn_morph: один морф из случайной вентиляции станции.</summary>
-[RegisterComponent]
-public sealed partial class MorphSpawnRuleComponent : Component
-{
-    [DataField]
-    public EntProtoId MorphProto = "MobMorph";
-}
-
 public sealed class MorphSpawnRule : StationEventSystem<MorphSpawnRuleComponent>
 {
     protected override void Started(EntityUid uid, MorphSpawnRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)

@@ -577,7 +577,3 @@ public sealed partial class MorphSystem : EntitySystem
 
     #endregion
 }
-
-/// <summary>Роль морфа на сущности роли разума.</summary>
-[RegisterComponent]
-public sealed partial class MorphRoleComponent : Component;

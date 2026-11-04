@@ -1,0 +1,56 @@
+using System.Linq;
+using System.Numerics;
+using Content.Server.Administration.Logs;
+using Content.Server.Atmos.Piping.Components;
+using Content.Server.Atmos.Piping.Unary.Components;
+using Content.Server.Chat.Managers;
+using Content.Server.Mind;
+using Content.Server.Objectives;
+using Content.Server.Popups;
+using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
+using Content.Shared.Alert;
+using Content.Shared.Chat;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Database;
+using Content.Shared.DoAfter;
+using Content.Shared.Doors.Components;
+using Content.Shared.Examine;
+using Content.Shared.FixedPoint;
+using Content.Shared.Gibbing;
+using Content.Shared.Humanoid;
+using Content.Shared.Imperial.Morph;
+using Content.Shared.Interaction;
+using Content.Shared.Inventory;
+using Content.Shared.Item;
+using Content.Shared.Medical.SuitSensor;
+using Content.Shared.Medical.SuitSensors;
+using Content.Shared.Mind.Components;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Movement.Pulling.Systems;
+using Content.Shared.Movement.Systems;
+using Content.Shared.Popups;
+using Content.Shared.Roles;
+using Content.Shared.Stunnable;
+using Content.Shared.Tools.Systems;
+using Content.Shared.Weapons.Melee.Events;
+using Robust.Server.GameObjects;
+using Robust.Server.Player;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+using Robust.Shared.Timing;
+
+namespace Content.Server.Imperial.Morph;
+
+/// <summary>Роль морфа на сущности роли разума.</summary>
+[RegisterComponent]
+public sealed partial class MorphRoleComponent : Component;
