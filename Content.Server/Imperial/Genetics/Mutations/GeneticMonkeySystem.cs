@@ -102,7 +102,3 @@ public sealed class GeneticMonkeySystem : EntitySystem
         return genome.Blocks.Select(b => new GeneBlock { Mutation = b.Mutation, Sequence = b.Sequence, Default = b.Default }).ToList();
     }
 }
-
-/// <summary>Обезьяна, в которую превратился гуманоид из-за обезьяньего гена.</summary>
-[RegisterComponent]
-public sealed partial class GeneticMonkeyComponent : Component;

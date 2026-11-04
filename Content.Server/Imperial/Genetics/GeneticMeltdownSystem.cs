@@ -137,22 +137,3 @@ public sealed class GeneticMeltdownSystem : EntitySystem
         args.Damage *= ent.Comp.Multiplier;
     }
 }
-
-/// <summary>Срыв «всё в порядке… нет»: урон по носителю умножается (damage_resistance −20000).</summary>
-[RegisterComponent]
-public sealed partial class GeneticFragileComponent : Component
-{
-    [DataField]
-    public float Multiplier = 200f;
-}
-
-/// <summary>Медленный клеточный распад после срыва. Лечится мутадоном.</summary>
-[RegisterComponent]
-public sealed partial class GeneticDecloningComponent : Component
-{
-    [DataField]
-    public DamageSpecifier Damage = new() { DamageDict = { ["Cellular"] = 1 } };
-
-    [ViewVariables]
-    public TimeSpan NextDamage;
-}

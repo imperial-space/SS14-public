@@ -14,11 +14,3 @@ public sealed partial class DnaInfuserComponent : Component
     [DataField]
     public TimeSpan InfuseTime = TimeSpan.FromSeconds(8);
 }
-
-/// <summary>Сколько инфузий каждого набора получило существо.</summary>
-[RegisterComponent]
-public sealed partial class GeneticInfusionsComponent : Component
-{
-    [DataField]
-    public Dictionary<ProtoId<GeneticInfusionPrototype>, int> Counts = new();
-}

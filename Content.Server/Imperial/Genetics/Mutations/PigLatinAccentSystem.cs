@@ -4,12 +4,6 @@ using Content.Shared.Speech;
 
 namespace Content.Server.Imperial.Genetics.Mutations;
 
-/// <summary>
-/// Поросячья латынь (мутация piglatin из SS13): начальные согласные слова переносятся в конец, добавляется «ай».
-/// </summary>
-[RegisterComponent]
-public sealed partial class PigLatinAccentComponent : Component;
-
 public sealed class PigLatinAccentSystem : EntitySystem
 {
     private static readonly Regex Words = new(@"[\p{L}]+", RegexOptions.Compiled);

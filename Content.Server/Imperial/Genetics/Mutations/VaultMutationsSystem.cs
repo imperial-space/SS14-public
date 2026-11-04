@@ -12,46 +12,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Genetics.Mutations;
 
-/// <summary>Без дыхания (breathless): лёгкие не нужны, удушья нет.</summary>
-[RegisterComponent]
-public sealed partial class GeneticBreathlessComponent : Component;
-
-/// <summary>Быстрота (quick): мышцы ног работают на 7.5 % эффективнее.</summary>
-[RegisterComponent]
-public sealed partial class GeneticQuickComponent : Component
-{
-    [DataField]
-    public float SpeedModifier = 1.075f;
-}
-
-/// <summary>Ловкость (dextrous): удары без оружия вдвое чаще.</summary>
-[RegisterComponent]
-public sealed partial class GeneticDextrousComponent : Component
-{
-    [DataField]
-    public float AttackRateMultiplier = 2f;
-}
-
-/// <summary>Огнеупорность (fire immunity): носитель не горит.</summary>
-[RegisterComponent]
-public sealed partial class GeneticFireproofComponent : Component;
-
-/// <summary>Быстрое восстановление (quick recovery): оглушение вдвое короче.</summary>
-[RegisterComponent]
-public sealed partial class GeneticQuickRecoveryComponent : Component
-{
-    [DataField]
-    public float StunMultiplier = 0.5f;
-}
-
-/// <summary>Плазмоцил (plasmocile): плазма в крови не отравляет.</summary>
-[RegisterComponent]
-public sealed partial class GeneticPlasmocileComponent : Component
-{
-    [DataField]
-    public string Reagent = "Plasma";
-}
-
 /// <summary>Улучшения ДНК-хранилища (vault_mutation.dm).</summary>
 public sealed class VaultMutationsSystem : EntitySystem
 {
