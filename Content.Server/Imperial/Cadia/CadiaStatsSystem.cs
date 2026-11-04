@@ -15,20 +15,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Cadia;
 
-/// <summary>Итоги войны: кто чем отличился, плюс медали, которые офицеры вручают прямо в бою.</summary>
-/// <summary>События войны, которые попадают в итоги числом.</summary>
-public enum CadiaWarCount : byte
-{
-    PodsLanded,
-    PodsShotDown,
-    RefugeesSaved,
-    RefugeesDied,
-    RitualsChaos,
-    RitualsImperium,
-    Boardings,
-    BerthsWrecked,
-}
-
 public sealed class CadiaStatsSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;

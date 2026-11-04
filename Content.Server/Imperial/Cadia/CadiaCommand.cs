@@ -362,7 +362,7 @@ public sealed class CadiaCommand : LocalizedEntityCommands
         foreach (var (uid, level) in levels)
         {
             var z = EntityManager.GetComponentOrNull<ZLevelMapComponent>(uid);
-            shell.WriteLine($"  {level}: Z{z?.Level} ниже={(z?.Below is { } b ? EntityManager.GetComponent<MetaDataComponent>(b).EntityName : "—")} выше={(z?.Above is { } a ? EntityManager.GetComponent<MetaDataComponent>(a).EntityName : "—")} разрыв={z?.BelowGap}");
+            shell.WriteLine(Loc.GetString("imperial-cadia-cadia-command-1", ("arg0", level), ("arg1", z?.Level.ToString() ?? "—"), ("arg2", ((z?.Below is { } b ? EntityManager.GetComponent<MetaDataComponent>(b).EntityName : "—"))), ("arg3", ((z?.Above is { } a ? EntityManager.GetComponent<MetaDataComponent>(a).EntityName : "—"))), ("arg4", z?.BelowGap.ToString() ?? "—")));
         }
 
         // Воздух на палубах построенных кораблей.

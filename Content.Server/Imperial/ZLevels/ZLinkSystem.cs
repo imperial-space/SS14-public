@@ -4,10 +4,6 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Server.Imperial.ZLevels;
 
-/// <summary>Связь коммуникаций между этажами поменялась (кто-то выше или ниже появился или пропал).</summary>
-[ByRefEvent]
-public readonly record struct ZLinkChangedEvent;
-
 /// <summary>
 /// Связывает межэтажные коммуникации (<see cref="ZLinkComponent"/>) так же, как трапы: с сущностью того же вида
 /// ровно этажом выше и ниже в той же клетке. При каждом изменении связи на обеих сторонах поднимается

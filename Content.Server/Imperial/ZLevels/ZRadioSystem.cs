@@ -11,10 +11,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.ZLevels;
 
-/// <summary>Невидимый ретранслятор рации на этаже (только сервер).</summary>
-[RegisterComponent]
-public sealed partial class ZRadioRelayComponent : Component;
-
 /// <summary>
 /// Рация между этажами. В SS14 обычные каналы работают только в пределах одной карты и только при сервере
 /// телекоммуникаций на ней, а этажи — разные карты. На каждом этаже стопки стоит невидимый ретранслятор:

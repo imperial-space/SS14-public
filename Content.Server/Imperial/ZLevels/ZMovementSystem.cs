@@ -15,17 +15,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.ZLevels;
 
-/// <summary>Действия «подняться/опуститься на этаж», выданные призраку, ИИ или летящему на джетпаке.</summary>
-[RegisterComponent]
-public sealed partial class ZFlyActionsComponent : Component
-{
-    [ViewVariables]
-    public EntityUid? Up;
-
-    [ViewVariables]
-    public EntityUid? Down;
-}
-
 /// <summary>
 /// Перемещение между этажами без лестниц (SS13 Move Up / Move Down):
 /// призраки и админы — свободно; камера ИИ — свободно (обзор всё равно через камеры этажа);

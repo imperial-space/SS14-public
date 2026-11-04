@@ -8,10 +8,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Client.Imperial.ZLevels;
 
-/// <summary>Отражение лампы верхнего этажа на нижнем (только у клиента).</summary>
-[RegisterComponent]
-public sealed partial class ZLightProxyComponent : Component;
-
 /// <summary>
 /// Свет сверху вниз: лампа у проёма (открытое пространство, пустота, решётка, стекло) светит и на этаж ниже.
 /// Клиент ставит под ней на нижнем этаже такую же, но слабее лампу — её видно и тем, кто внизу, и сверху сквозь дыру;

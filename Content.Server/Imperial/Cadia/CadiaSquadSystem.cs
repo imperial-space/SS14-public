@@ -668,11 +668,3 @@ public sealed class CadiaSquadSystem : EntitySystem
         UpdateFaction(CadiaFaction.Chaos);
     }
 }
-
-/// <summary>Оружие бойца под «огнём на подавление».</summary>
-[RegisterComponent]
-public sealed partial class CadiaSuppressedGunComponent : Component;
-
-/// <summary>Фуражка комиссара: даёт действия «Воодушевить» и «Казнь».</summary>
-[RegisterComponent]
-public sealed partial class CadiaCommissarComponent : Component;

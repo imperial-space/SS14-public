@@ -28,14 +28,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Cadia;
 
-/// <summary>Чей корабль: ставится на сетку при постройке по планировке.</summary>
-[RegisterComponent]
-public sealed partial class CadiaShipFactionComponent : Component
-{
-    [DataField]
-    public CadiaFaction Faction;
-}
-
 /// <summary>
 /// Шаттлы над Кадией на ванильном FTL. Этажи стопки — точки назначения в карте консоли:
 /// на соседний этаж вместо прыжка идёт короткий вертикальный перелёт (взлёт/посадка), в космос — только с орбиты.
@@ -624,56 +616,3 @@ public sealed class CadiaFlightSystem : EntitySystem
         }
     }
 }
-
-/// <summary>Консоль шаттла, чьи прыжки проверяются правилами полётов Кадии.</summary>
-[RegisterComponent]
-public sealed partial class CadiaFlightConsoleComponent : Component;
-
-/// <summary>Прыжок шаттла запрещён правилами Кадии — CanFTL откажет с этой причиной.</summary>
-[RegisterComponent]
-public sealed partial class CadiaFlightBlockComponent : Component
-{
-    [ViewVariables]
-    public string Reason = string.Empty;
-}
-
-/// <summary>Шаттл летит на соседний этаж: короткий взлёт или посадка вместо прыжка.</summary>
-[RegisterComponent]
-public sealed partial class CadiaVerticalFlightComponent : Component
-{
-    [ViewVariables]
-    public bool Up;
-
-    [ViewVariables]
-    public CadiaFlightLevel To;
-}
-
-/// <summary>Шаттл потерял тягу в небе и падает.</summary>
-[RegisterComponent]
-public sealed partial class CadiaShuttleFallComponent : Component
-{
-    [ViewVariables]
-    public TimeSpan CrashAt;
-}
-
-
-/// <summary>Последнее положение шаттла над Кадией, где он ни во что не упирался.</summary>
-[RegisterComponent]
-public sealed partial class CadiaShuttleCollisionComponent : Component
-{
-    [ViewVariables]
-    public EntityUid? Map;
-
-    [ViewVariables]
-    public Vector2 SafePosition;
-
-    [ViewVariables]
-    public Angle SafeRotation;
-
-    [ViewVariables]
-    public TimeSpan NextImpact;
-}
-
-/// <summary>Борт держится в небе без тяги (учебные мишени, дирижабли) — механика падения его не трогает.</summary>
-[RegisterComponent]
-public sealed partial class CadiaHoverComponent : Component;

@@ -11,18 +11,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Cadia;
 
-/// <summary>Горожанин Касра: бродит по улицам, пока его не уведут в убежище.</summary>
-[RegisterComponent]
-public sealed partial class CadiaRefugeeComponent : Component;
-
-/// <summary>Убежище в катакомбах: горожанин, доведённый сюда, укрыт.</summary>
-[RegisterComponent]
-public sealed partial class CadiaRefugeeShelterComponent : Component
-{
-    [DataField]
-    public float Radius = 6f;
-}
-
 /// <summary>
 /// Беженцы Касра. Пока идёт подготовка, по улицам бродят горожане; гвардия уводит их в убежище в катакомбах — за руку
 /// (тащить) по трапу вниз. Укрытый горожанин поднимает дух защитников рядом, а с падением завесы обе стороны узнают,

@@ -11,40 +11,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Cadia;
 
-/// <summary>Место ритуала над завесой: круг в часовне флагмана для Хаоса, пилон для Империума.</summary>
-[RegisterComponent]
-public sealed partial class CadiaVeilRitualComponent : Component
-{
-    [DataField(required: true)]
-    public CadiaFaction Faction;
-
-    /// <summary>Кто может вести ритуал.</summary>
-    [DataField(required: true)]
-    public List<string> Roles = new();
-
-    /// <summary>На сколько ритуал сдвигает конец подготовки: Хаос — раньше, Империум — позже.</summary>
-    [DataField]
-    public TimeSpan Shift = TimeSpan.FromMinutes(1);
-
-    [DataField]
-    public TimeSpan Duration = TimeSpan.FromSeconds(20);
-}
-
-/// <summary>След ритуала: бойцы стороны рядом понемногу теряют или набирают мораль.</summary>
-[RegisterComponent]
-public sealed partial class CadiaRitualMarkComponent : Component
-{
-    [DataField(required: true)]
-    public CadiaFaction Faction;
-
-    /// <summary>Сколько морали за один такт (раз в две секунды).</summary>
-    [DataField(required: true)]
-    public float Delta;
-
-    [DataField]
-    public float Radius = 4f;
-}
-
 /// <summary>
 /// Борьба за завесу, пока идёт подготовка. Колдуны и апостолы Хаоса у ритуального круга флагмана раскачивают её —
 /// обстрел начинается раньше; жрецы, псайкеры, астропаты и техножрецы у пилонов поют литанию — завеса держится дольше,

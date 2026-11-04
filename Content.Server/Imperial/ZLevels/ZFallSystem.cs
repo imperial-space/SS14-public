@@ -22,13 +22,6 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Imperial.ZLevels;
 
-/// <summary>Сущность вот-вот упадёт на этаж ниже. Обработавший берёт падение на себя (парашют).</summary>
-[ByRefEvent]
-public record struct ZBeforeFallEvent(EntityUid Falling, MapCoordinates Target)
-{
-    public bool Handled;
-}
-
 /// <summary>
 /// Падение сквозь этажи (/turf/proc/zFall, zImpact, /mob/living/proc/ZImpactDamage).
 /// На каждой клетке открытого пространства стоит невидимая метка со StepTrigger: всё, что на неё попало

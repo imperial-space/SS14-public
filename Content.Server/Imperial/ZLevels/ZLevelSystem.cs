@@ -22,17 +22,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.ZLevels;
 
-/// <summary>Действия «посмотреть вверх/вниз», выданные игроку, пока он на многоэтажной карте.</summary>
-[RegisterComponent]
-public sealed partial class ZLevelActionsComponent : Component
-{
-    [ViewVariables]
-    public EntityUid? LookUp;
-
-    [ViewVariables]
-    public EntityUid? LookDown;
-}
-
 /// <summary>
 /// Этажи как в SS13: связывание карт в стопку, подгрузка этажей из файлов, перенос сущностей между этажами (zMove),
 /// подписка игроков на нижний этаж (чтобы клиент видел его сквозь открытое пространство) и взгляд вверх/вниз.
@@ -632,6 +621,3 @@ public sealed class ZLevelSystem : SharedZLevelSystem
             EndLook(uid);
     }
 }
-
-/// <summary>Связи этажей стопки пересчитаны: трапы перепривязываются.</summary>
-public readonly record struct ZLevelsRelinkedEvent(string Stack);

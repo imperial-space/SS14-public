@@ -184,15 +184,3 @@ public sealed partial class CadiaDefenseRuleComponent : Component
     [DataField]
     public TimeSpan EndRoundDelay = TimeSpan.FromSeconds(26);
 }
-
-/// <summary>Спавнер призрачной роли войны: какую роль он выдаёт.</summary>
-[RegisterComponent]
-public sealed partial class CadiaRoleSpawnerComponent : Component
-{
-    [DataField]
-    public ProtoId<CadiaRolePrototype> Role;
-}
-
-/// <summary>Боец ещё не получил вводную — отдадим, когда в тело войдёт игрок.</summary>
-[RegisterComponent]
-public sealed partial class CadiaBriefingPendingComponent : Component;
