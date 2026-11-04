@@ -108,13 +108,13 @@ public sealed class ColossusLootSystem : EntitySystem
         if (_timing.CurTime < cords.NextUse)
         {
             var left = (cords.NextUse - _timing.CurTime).TotalSeconds;
-            _popup.PopupEntity($"Связки не слушаются. Подождите {left:0} сек.", args.Performer, args.Performer);
+            _popup.PopupEntity(Loc.GetString("imperial-lavaland-colossus-loot-system-1", ("arg0", (left).ToString("0"))), args.Performer, args.Performer);
             args.Handled = true;
             return;
         }
 
         _awaitingVoiceCommand.Add(args.Performer);
-        _popup.PopupEntity("Произнесите команду Гласа Бога. Можно использовать :~ в начале фразы.", args.Performer, args.Performer);
+        _popup.PopupEntity(Loc.GetString("imperial-lavaland-colossus-loot-system-2"), args.Performer, args.Performer);
         args.Handled = true;
     }
 

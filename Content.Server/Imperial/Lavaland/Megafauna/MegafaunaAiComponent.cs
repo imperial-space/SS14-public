@@ -57,19 +57,3 @@ public sealed partial class MegafaunaAiComponent : Component
     [ViewVariables]
     public bool Invulnerable;
 }
-
-/// <summary>Метка выпотрошенного трупа: мегафауна его больше не трогает (status_effect/gutted).</summary>
-[RegisterComponent]
-public sealed partial class MegafaunaGuttedComponent : Component;
-
-/// <summary>GiveTarget / LoseTarget.</summary>
-[ByRefEvent]
-public record struct MegafaunaTargetChangedEvent(EntityUid? OldTarget, EntityUid? NewTarget);
-
-/// <summary>celebrate_kill: босс выпотрошил жертву.</summary>
-[ByRefEvent]
-public record struct MegafaunaDevourEvent(EntityUid Victim);
-
-/// <summary>Вызывается раз в тик ИИ, если у босса есть цель и способности не заняты (OpenFire).</summary>
-[ByRefEvent]
-public record struct MegafaunaOpenFireEvent(EntityUid Target, float Distance);

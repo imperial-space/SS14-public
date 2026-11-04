@@ -42,7 +42,7 @@ public sealed class LavalandPlanetRuleSystem : GameRuleSystem<LavalandPlanetRule
     protected override void Started(EntityUid uid, LavalandPlanetRuleComponent comp, GameRuleComponent rule, GameRuleStartedEvent args)
     {
         var mapUid = _maps.CreateMap(out var mapId, runMapInit: false);
-        _meta.SetEntityName(mapUid, "Лаваленд");
+        _meta.SetEntityName(mapUid, Loc.GetString("imperial-lavaland-lavaland-planet-rule-system-1"));
         EnsureComp<LavalandMapComponent>(mapUid);
 
         var biomeTemplate = _proto.Index<BiomeTemplatePrototype>(comp.BiomeTemplate);

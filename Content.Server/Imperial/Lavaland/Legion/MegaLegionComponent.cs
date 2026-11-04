@@ -45,10 +45,3 @@ public sealed partial class MegaLegionComponent : Component
     [ViewVariables] public bool Charging;
     [ViewVariables] public EntityUid? ThrowTarget;
 }
-
-/// <summary>Страж легиона: через 1.8 с стреляет кровавым импульсом и исчезает.</summary>
-[RegisterComponent]
-public sealed partial class LegionTurretComponent : Component
-{
-    [ViewVariables] public EntityUid? Owner;
-}

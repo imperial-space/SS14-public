@@ -206,7 +206,7 @@ public sealed class MiningShopSystem : EntitySystem
         {
             return map.StormState switch
             {
-                LavalandStormState.Idle => (map.StormTimer <= comp.ClearDelay ? WeatherAlertLevel.Incoming : WeatherAlertLevel.Clear, true),
+                LavalandStormState.Idle => ((map.NextStorm - _timing.CurTime).TotalSeconds <= comp.ClearDelay ? WeatherAlertLevel.Incoming : WeatherAlertLevel.Clear, true),
                 LavalandStormState.Warning or LavalandStormState.Active => (WeatherAlertLevel.ImminentOrActive, true),
                 LavalandStormState.PassingBy => (WeatherAlertLevel.ImminentOrActive, false),
                 _ => (WeatherAlertLevel.Clear, true),

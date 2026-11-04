@@ -11,12 +11,14 @@ using Robust.Server.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Lavaland.Storm;
 
 public sealed class LavalandStormSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
@@ -31,7 +33,7 @@ public sealed class LavalandStormSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, LavalandMapComponent comp, ComponentStartup args)
     {
-        comp.StormTimer = _random.NextFloat(comp.MinStormInterval, comp.MaxStormInterval);
+        comp.NextStorm = _timing.CurTime + RandomInterval(comp);
     }
 
     public override void Update(float frameTime)
@@ -40,28 +42,31 @@ public sealed class LavalandStormSystem : EntitySystem
 
         var query = EntityQueryEnumerator<LavalandMapComponent>();
         while (query.MoveNext(out var mapUid, out var comp))
-            UpdateMap(mapUid, comp, frameTime);
+            UpdateMap(mapUid, comp);
     }
 
-    private void UpdateMap(EntityUid mapUid, LavalandMapComponent comp, float frameTime)
+    private TimeSpan RandomInterval(LavalandMapComponent comp)
     {
+        return comp.MinStormInterval + (comp.MaxStormInterval - comp.MinStormInterval) * _random.NextDouble();
+    }
+
+    private void UpdateMap(EntityUid mapUid, LavalandMapComponent comp)
+    {
+        var now = _timing.CurTime;
         switch (comp.StormState)
         {
             case LavalandStormState.Idle:
-                comp.StormTimer -= frameTime;
-                if (comp.StormTimer <= 0f)
+                if (now >= comp.NextStorm)
                     DecideStormEvent(mapUid, comp);
                 break;
 
             case LavalandStormState.Warning:
-                comp.StateTimer -= frameTime;
-                if (comp.StateTimer <= 0f)
+                if (now >= comp.StateEnd)
                     ActivateStorm(mapUid, comp);
                 break;
 
             case LavalandStormState.PassingBy:
-                comp.StateTimer -= frameTime;
-                if (comp.StateTimer <= 0f)
+                if (now >= comp.StateEnd)
                 {
                     BroadcastToMap(mapUid, Loc.GetString("lavaland-storm-passed-by"));
                     ResetStorm(mapUid, comp);
@@ -69,23 +74,20 @@ public sealed class LavalandStormSystem : EntitySystem
                 break;
 
             case LavalandStormState.Active:
-                comp.DamageTimer -= frameTime;
-                if (comp.DamageTimer <= 0f)
+                if (now >= comp.NextDamage)
                 {
-                    comp.DamageTimer = comp.DamageInterval;
+                    comp.NextDamage = now + comp.DamageInterval;
                     ApplyStormDamage(mapUid);
                 }
 
-                comp.StateTimer -= frameTime;
-                if (comp.StateTimer <= 0f)
+                if (now >= comp.StateEnd)
                     EndStorm(mapUid, comp);
                 break;
 
             case LavalandStormState.Ending:
-                comp.StateTimer -= frameTime;
-                if (comp.StateTimer <= 0f)
+                if (now >= comp.StateEnd)
                 {
-                    _weather.TryRemoveWeather(mapUid, "WeatherAshfallLight");
+                    _weather.TryRemoveWeather(mapUid, comp.LightWeather);
                     ResetStorm(mapUid, comp);
                 }
                 break;
@@ -103,17 +105,17 @@ public sealed class LavalandStormSystem : EntitySystem
         }
 
         BroadcastToMap(mapUid, Loc.GetString("lavaland-storm-warning"));
-        _weather.TryAddWeather(mapUid, "WeatherAshfallLight", out _);
+        _weather.TryAddWeather(mapUid, comp.LightWeather, out _);
 
         if (roll < comp.NoEventChance + comp.PassByChance)
         {
             comp.StormState = LavalandStormState.PassingBy;
-            comp.StateTimer = comp.WarningDuration;
+            comp.StateEnd = _timing.CurTime + comp.WarningDuration;
         }
         else
         {
             comp.StormState = LavalandStormState.Warning;
-            comp.StateTimer = comp.WarningDuration;
+            comp.StateEnd = _timing.CurTime + comp.WarningDuration;
         }
     }
 
@@ -143,28 +145,28 @@ public sealed class LavalandStormSystem : EntitySystem
     private void ActivateStorm(EntityUid mapUid, LavalandMapComponent comp)
     {
         comp.StormState = LavalandStormState.Active;
-        comp.StateTimer = comp.StormDuration;
-        comp.DamageTimer = 0f;
+        comp.StateEnd = _timing.CurTime + comp.StormDuration;
+        comp.NextDamage = _timing.CurTime;
         BroadcastToMap(mapUid, Loc.GetString("lavaland-storm-started"));
-        _weather.TryRemoveWeather(mapUid, "WeatherAshfallLight");
-        _weather.TryAddWeather(mapUid, "WeatherAshfallHeavy", out _);
+        _weather.TryRemoveWeather(mapUid, comp.LightWeather);
+        _weather.TryAddWeather(mapUid, comp.HeavyWeather, out _);
     }
 
     private void EndStorm(EntityUid mapUid, LavalandMapComponent comp)
     {
         comp.StormState = LavalandStormState.Ending;
-        comp.StateTimer = comp.StormEndingDuration;
+        comp.StateEnd = _timing.CurTime + comp.StormEndingDuration;
         BroadcastToMap(mapUid, Loc.GetString("lavaland-storm-ended"));
-        _weather.TryRemoveWeather(mapUid, "WeatherAshfallHeavy");
-        _weather.TryAddWeather(mapUid, "WeatherAshfallLight", out _);
+        _weather.TryRemoveWeather(mapUid, comp.HeavyWeather);
+        _weather.TryAddWeather(mapUid, comp.LightWeather, out _);
     }
 
     private void ResetStorm(EntityUid mapUid, LavalandMapComponent comp)
     {
         comp.StormState = LavalandStormState.Idle;
-        comp.StormTimer = _random.NextFloat(comp.MinStormInterval, comp.MaxStormInterval);
-        _weather.TryRemoveWeather(mapUid, "WeatherAshfallLight");
-        _weather.TryRemoveWeather(mapUid, "WeatherAshfallHeavy");
+        comp.NextStorm = _timing.CurTime + RandomInterval(comp);
+        _weather.TryRemoveWeather(mapUid, comp.LightWeather);
+        _weather.TryRemoveWeather(mapUid, comp.HeavyWeather);
     }
 
     private void ApplyStormDamage(EntityUid mapUid)

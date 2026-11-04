@@ -45,7 +45,7 @@ public sealed class PrisonCubeTeleportSystem : EntitySystem
 
         if (!TryFindDestination(ent, out var destination))
         {
-            _popup.PopupClient("Куб не находит свою пару.", args.User, args.User, PopupType.SmallCaution);
+            _popup.PopupClient(Loc.GetString("imperial-lavaland-prison-cube-teleport-system-1"), args.User, args.User, PopupType.SmallCaution);
             args.Handled = true;
             return;
         }

@@ -48,7 +48,3 @@ public sealed partial class BubblegumComponent : Component
     [ViewVariables] public TimeSpan EnrageTill;
     [ViewVariables] public Vector2i? LastTile;
 }
-
-/// <summary>Кровь, по которой Пузырь умеет перемещаться (can_bloodcrawl_in).</summary>
-[RegisterComponent]
-public sealed partial class BubblegumBloodComponent : Component;

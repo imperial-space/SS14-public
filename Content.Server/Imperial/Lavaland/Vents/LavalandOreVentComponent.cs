@@ -5,38 +5,6 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Imperial.Lavaland.Vents;
 
 /// <summary>
-/// Гейзер лаваленда (structure/geyser из SS13): копит реагент до 500 единиц, восполняя по 2 за 2 с.
-/// Обнаружение шахтёрским сканером даёт очки и настоящее имя.
-/// </summary>
-[RegisterComponent]
-public sealed partial class LavalandGeyserComponent : Component
-{
-    /// <summary>reagent_id; null — случайный (geyser/random).</summary>
-    [DataField] public ProtoId<ReagentPrototype>? Reagent;
-
-    [DataField] public float Potency = 2f;
-    [DataField] public float MaxVolume = 500f;
-    [DataField] public float Interval = 2f;
-    [DataField] public int PointValue = 100;
-    [DataField] public LocId? TrueName;
-    [DataField] public LocId? DiscoveryMessage;
-    [DataField] public string Solution = "geyser";
-
-    [DataField] public SoundSpecifier DiscoverSound = new SoundPathSpecifier("/Audio/Imperial/Lavaland/twobeep_high.ogg");
-    [DataField] public SoundSpecifier ScanSound = new SoundCollectionSpecifier("ImperialIndustrialScan");
-
-    [ViewVariables] public bool Discovered;
-    [ViewVariables] public TimeSpan NextRefill;
-}
-
-public enum OreVentSize : byte
-{
-    Small = 5,
-    Medium = 10,
-    Large = 15,
-}
-
-/// <summary>
 /// Рудная жила (structure/ore_vent из SS13): сканируется, затем оборона дрона NODE от волн мобов;
 /// после победы раз в минуту выдаёт валун с минералами.
 /// </summary>
@@ -102,35 +70,4 @@ public sealed partial class LavalandOreVentComponent : Component
     [ViewVariables] public List<EntityUid> Spawned = new();
     [ViewVariables] public TimeSpan NextBoulder;
     [ViewVariables] public string BoulderStyle = "boulder";
-}
-
-/// <summary>Дрон NODE: держит жилу во время обороны.</summary>
-[RegisterComponent]
-public sealed partial class LavalandNodeDroneComponent : Component
-{
-    [ViewVariables] public EntityUid? Vent;
-    [ViewVariables] public bool Escaping;
-}
-
-/// <summary>
-/// Валун (item/boulder): разбивается киркой за durability шагов в руду; на лаве становится плотом.
-/// </summary>
-[RegisterComponent]
-public sealed partial class LavalandBoulderComponent : Component
-{
-    [DataField] public OreVentSize Size = OreVentSize.Small;
-    [DataField] public int Durability = 5;
-
-    /// <summary>Руда и число единиц материала (100 = лист).</summary>
-    [DataField] public Dictionary<EntProtoId, int> Materials = new();
-
-    /// <summary>Артефакт внутри (boulder/artifact).</summary>
-    [DataField] public EntProtoId? Artifact;
-
-    [DataField] public float PlatformLifespan = 20f;
-    [DataField] public string Style = "boulder";
-    [DataField] public EntProtoId Platform = "ImperialBoulderPlatform";
-
-    [DataField] public SoundSpecifier HitSound = new SoundCollectionSpecifier("ImperialPickaxe");
-    [DataField] public SoundSpecifier BreakSound = new SoundPathSpecifier("/Audio/Imperial/Lavaland/rock_break.ogg");
 }

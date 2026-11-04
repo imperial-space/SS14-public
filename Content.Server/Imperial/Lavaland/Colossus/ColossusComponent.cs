@@ -31,7 +31,3 @@ public sealed partial class ColossusComponent : Component
 
     [ViewVariables] public bool FinalAvailable = true;
 }
-
-/// <summary>Смертельный болт колосса: превращает трупы в пепел и разрушает породу.</summary>
-[RegisterComponent]
-public sealed partial class ColossusBoltComponent : Component;

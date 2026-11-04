@@ -35,6 +35,7 @@ namespace Content.Server.Imperial.Lavaland.OrePoints.Mining.Systems;
 /// </summary>
 public sealed partial class KineticCrusherSystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly CrusherStatusSystem _status = default!;
     [Dependency] private readonly FlammableSystem _flammable = default!;
     [Dependency] private readonly GatherableSystem _gather = default!;
@@ -120,7 +121,7 @@ public sealed partial class KineticCrusherSystem
                 if (HealthFraction(user) <= 0.5f)
                 {
                     var crusherUid = crusher.Owner;
-                    Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(0.1), () => SecondStrike(crusherUid, user, target));
+                    _schedule.Schedule(TimeSpan.FromSeconds(0.1), () => SecondStrike(crusherUid, user, target));
                 }
                 break;
 

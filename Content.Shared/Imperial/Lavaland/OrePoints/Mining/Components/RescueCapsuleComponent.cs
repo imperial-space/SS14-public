@@ -23,8 +23,3 @@ public sealed partial class RescueCapsuleComponent : Component
     [DataField]
     public string GridPath = "/Imperial/Lavaland/mining.yml";
 }
-
-[Serializable, NetSerializable]
-public sealed partial class RescueCapsuleDoAfterEvent : SimpleDoAfterEvent
-{
-}

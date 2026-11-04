@@ -67,7 +67,7 @@ public sealed class LavalandAnvilSystem : EntitySystem
 
             var mapCoords = _transform.GetMapCoordinates(uid);
             _popup.PopupEntity(
-                "Улучшение истекло! Оружие вернулось в исходное состояние.",
+                Loc.GetString("imperial-lavaland-lavaland-anvil-system-1"),
                 uid,
                 Filter.Pvs(uid, entityManager: EntityManager),
                 true,
@@ -81,13 +81,13 @@ public sealed class LavalandAnvilSystem : EntitySystem
 
     private void OnExamined(Entity<LavalandAnvilComponent> ent, ref ExaminedEvent args)
     {
-        args.PushMarkup($"Заряды улучшения: [bold]{ent.Comp.CurrentCharges}/{ent.Comp.MaxCharges}[/bold].");
+        args.PushMarkup(Loc.GetString("imperial-lavaland-lavaland-anvil-system-2", ("arg0", ent.Comp.CurrentCharges), ("arg1", ent.Comp.MaxCharges)));
         if (ent.Comp.CurrentCharges < ent.Comp.MaxCharges)
         {
             var remaining = ent.Comp.RechargeTime - ent.Comp.RechargeTimer;
             var minutes = (int) (remaining / 60);
             var seconds = (int) (remaining % 60);
-            args.PushMarkup($"Следующий заряд через: [bold]{minutes}:{seconds:D2}[/bold].");
+            args.PushMarkup(Loc.GetString("imperial-lavaland-lavaland-anvil-system-3", ("arg0", minutes), ("arg1", (seconds).ToString("D2"))));
         }
     }
 
@@ -117,7 +117,7 @@ public sealed class LavalandAnvilSystem : EntitySystem
         {
             if (gibCount >= 2)
             {
-                _popup.PopupEntity("Уже достаточно гибтонита!", ent, args.User);
+                _popup.PopupEntity(Loc.GetString("imperial-lavaland-lavaland-anvil-system-4"), ent, args.User);
                 return;
             }
         }
@@ -125,7 +125,7 @@ public sealed class LavalandAnvilSystem : EntitySystem
         {
             if (magCount >= 2)
             {
-                _popup.PopupEntity("Уже достаточно магмита!", ent, args.User);
+                _popup.PopupEntity(Loc.GetString("imperial-lavaland-lavaland-anvil-system-5"), ent, args.User);
                 return;
             }
         }
@@ -133,18 +133,18 @@ public sealed class LavalandAnvilSystem : EntitySystem
         {
             if (weaponCount >= 1)
             {
-                _popup.PopupEntity("Оружие уже вложено в наковальню!", ent, args.User);
+                _popup.PopupEntity(Loc.GetString("imperial-lavaland-lavaland-anvil-system-6"), ent, args.User);
                 return;
             }
         }
         else
         {
-            _popup.PopupEntity("Этот предмет нельзя улучшить на наковальне.", ent, args.User);
+            _popup.PopupEntity(Loc.GetString("imperial-lavaland-lavaland-anvil-system-7"), ent, args.User);
             return;
         }
 
         _container.Insert(args.Used, container);
-        _popup.PopupEntity("Предмет вложен в наковальню.", ent, args.User);
+        _popup.PopupEntity(Loc.GetString("imperial-lavaland-lavaland-anvil-system-8"), ent, args.User);
         args.Handled = true;
     }
 
@@ -158,7 +158,7 @@ public sealed class LavalandAnvilSystem : EntitySystem
 
         if (container.ContainedEntities.Count == 0)
         {
-            _popup.PopupEntity($"Наковальня пуста. Заряды: {comp.CurrentCharges}/{comp.MaxCharges}.", ent, args.User);
+            _popup.PopupEntity(Loc.GetString("imperial-lavaland-lavaland-anvil-system-9", ("arg0", comp.CurrentCharges), ("arg1", comp.MaxCharges)), ent, args.User);
             return;
         }
 
@@ -167,12 +167,12 @@ public sealed class LavalandAnvilSystem : EntitySystem
             var remaining = comp.RechargeTime - comp.RechargeTimer;
             var minutes = (int) (remaining / 60);
             var seconds = (int) (remaining % 60);
-            _popup.PopupEntity($"Наковальня перезаряжается... ({minutes}:{seconds:D2})", ent, args.User);
+            _popup.PopupEntity(Loc.GetString("imperial-lavaland-lavaland-anvil-system-10", ("arg0", minutes), ("arg1", (seconds).ToString("D2"))), ent, args.User);
             return;
         }
 
         string? weaponId = null;
-        var weaponEntity = EntityUid.Invalid;
+        EntityUid? weaponEntity = null;
         var gibCount = 0;
         var magCount = 0;
 
@@ -188,16 +188,16 @@ public sealed class LavalandAnvilSystem : EntitySystem
             }
         }
 
-        if (weaponId == null || gibCount < 2 || magCount < 2)
+        if (weaponId == null || weaponEntity is not { } weapon || gibCount < 2 || magCount < 2)
         {
-            _popup.PopupEntity("Нужно: оружие + 2 гибтонита + 2 магмита.", ent, args.User);
+            _popup.PopupEntity(Loc.GetString("imperial-lavaland-lavaland-anvil-system-11"), ent, args.User);
             _container.EmptyContainer(container);
             return;
         }
 
         // Extract slot upgrades from original weapon before it's deleted
         var saved = new List<EntityUid>();
-        TransferUpgradesOut(weaponEntity, saved);
+        TransferUpgradesOut(weapon, saved);
 
         var upgradeId = UpgradeMap[weaponId];
         var items = container.ContainedEntities.ToArray();
@@ -218,7 +218,7 @@ public sealed class LavalandAnvilSystem : EntitySystem
 
         comp.CurrentCharges--;
         _popup.PopupEntity(
-            $"КЛИНК! Наковальня улучшает оружие! Осталось зарядов: {comp.CurrentCharges}/{comp.MaxCharges}. Действует 20 минут.",
+            Loc.GetString("imperial-lavaland-lavaland-anvil-system-12", ("arg0", comp.CurrentCharges), ("arg1", comp.MaxCharges)),
             ent, args.User, PopupType.Large);
         args.Handled = true;
     }

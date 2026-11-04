@@ -48,10 +48,3 @@ public sealed partial class HierophantComponent : Component
     [ViewVariables] public EntityUid? SpawnedBeacon;
     [ViewVariables] public Vector2i? LastTile;
 }
-
-/// <summary>Временная стена арены: пропускает только своего иерофанта.</summary>
-[RegisterComponent]
-public sealed partial class HierophantWallComponent : Component
-{
-    [ViewVariables] public EntityUid? Caster;
-}

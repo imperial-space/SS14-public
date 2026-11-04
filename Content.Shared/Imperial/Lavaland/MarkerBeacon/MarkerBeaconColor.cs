@@ -18,9 +18,3 @@ public enum MarkerBeaconColor : byte
     Violet,
     Fuchsia
 }
-
-[Serializable, NetSerializable]
-public enum MarkerBeaconVisuals : byte
-{
-    Color
-}

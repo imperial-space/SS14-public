@@ -15,12 +15,3 @@ public enum MegafaunaVisuals : byte
     /// <summary>Color — цвет второго слоя (geyser_soup по цвету реагента).</summary>
     OverlayColor,
 }
-
-/// <summary>Сущность меняет базовый слой по <see cref="MegafaunaVisuals"/>.</summary>
-[RegisterComponent]
-public sealed partial class MegafaunaAppearanceComponent : Component
-{
-    /// <summary>Состояние базового слоя, когда <see cref="MegafaunaVisuals.State"/> пуст.</summary>
-    [DataField(required: true)]
-    public string BaseState = string.Empty;
-}

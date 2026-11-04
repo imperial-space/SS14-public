@@ -322,14 +322,3 @@ public sealed class KineticAcceleratorSystem : EntitySystem
 
     #endregion
 }
-
-/// <summary>status_effect/syphon_mark.</summary>
-[RegisterComponent]
-public sealed partial class KineticSyphonMarkComponent : Component
-{
-    [ViewVariables]
-    public EntityUid Modkit;
-
-    [ViewVariables]
-    public TimeSpan ExpiresAt;
-}
