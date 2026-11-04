@@ -43,6 +43,7 @@ namespace Content.Server.Imperial.Blob;
 /// </summary>
 public sealed class BlobMobSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -280,7 +281,7 @@ public sealed class BlobMobSystem : EntitySystem
         spawner.Factory = null;
         QueueDel(args.Spawner);
 
-        Timer.Spawn(TimeSpan.FromSeconds(0.5), () => GreetBlobbernaut(ent));
+        _schedule.Schedule(TimeSpan.FromSeconds(0.5), () => GreetBlobbernaut(ent));
     }
 
     private void GreetBlobbernaut(EntityUid naut)

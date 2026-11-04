@@ -20,12 +20,3 @@ public enum BlobVisuals : byte
     /// <summary>Жив ли моб (bool) — скрывает вены и глаза у мёртвого блоббернаута.</summary>
     Alive,
 }
-
-public enum BlobVisualLayers : byte
-{
-    Base,
-    Blob,
-    Overlay,
-    Veins,
-    Eyes,
-}

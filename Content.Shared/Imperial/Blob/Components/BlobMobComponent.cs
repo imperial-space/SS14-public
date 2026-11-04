@@ -4,16 +4,6 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Blob.Components;
 
-[Serializable, NetSerializable]
-public enum BlobMobType : byte
-{
-    Spore,
-    WeakSpore,
-    IndependentSpore,
-    Zombie,
-    Blobbernaut,
-}
-
 /// <summary>
 /// Миньон блоба (mob/living/basic/blob_minion + datum/component/blob_minion).
 /// </summary>

@@ -5,31 +5,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Imperial.Blob.Components;
 
-[Serializable, NetSerializable]
-public enum BlobStructureType : byte
-{
-    Normal,
-    Strong,
-    Reflective,
-    Core,
-    Node,
-    Factory,
-    Resource,
-}
-
-/// <summary>Флаги урона SS13 (damage_flag) — от них зависят броня и реакции штамма.</summary>
-public enum BlobDamageFlag : byte
-{
-    None,
-    Melee,
-    Bullet,
-    Laser,
-    Energy,
-    Bomb,
-    Fire,
-    Acid,
-}
-
 /// <summary>
 /// Структура блоба (obj/structure/blob). Здоровье — atom_integrity, считается вручную,
 /// чтобы повторить brute_resist/fire_resist, броню по флагам и реакции штамма.

@@ -49,6 +49,7 @@ namespace Content.Server.Imperial.Blob;
 /// </summary>
 public sealed class BlobOvermindSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -351,7 +352,7 @@ public sealed class BlobOvermindSystem : EntitySystem
 
         _chatManager.DispatchServerAnnouncement(Loc.GetString("blob-victory-world", ("name", Name(uid))), Color.FromHex("#4aa34a"));
         _audio.PlayGlobal(comp.NukeAlarmSound, Filter.Broadcast(), true, AudioParams.Default.WithVolume(BlobStructureSystem.Db(70)));
-        Timer.Spawn(TimeSpan.FromSeconds(10), () => VictorySequence(uid));
+        _schedule.Schedule(TimeSpan.FromSeconds(10), () => VictorySequence(uid));
     }
 
     /// <summary>victory_sequence(): все не-блобы на станции погибают, на их месте появляются споры.</summary>

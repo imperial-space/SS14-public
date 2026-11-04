@@ -67,22 +67,3 @@ public sealed partial class BlobStrainPrototype : IPrototype
     [DataField]
     public bool Selectable = true;
 }
-
-[Serializable, NetSerializable]
-public enum BlobStrainKind : byte
-{
-    BlazingOil,
-    CryogenicPoison,
-    DebrisDevourer,
-    DistributedNeurons,
-    ElectromagneticWeb,
-    EnergizedJelly,
-    ExplosiveLattice,
-    NetworkedFibers,
-    PressurizedSlime,
-    ReactiveSpines,
-    RegenerativeMateria,
-    ReplicatingFoam,
-    ShiftingFragments,
-    SynchronousMesh,
-}

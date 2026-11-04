@@ -102,24 +102,3 @@ public sealed class BlobHudOverlay : Overlay
         handle.DrawString(_bigFont, pos + new Vector2((IconSize - size.X) / 2 + 6, (IconSize - size.Y) / 2), text, color);
     }
 }
-
-public sealed class BlobHudSystem : EntitySystem
-{
-    [Dependency] private readonly IOverlayManager _overlay = default!;
-
-    private BlobHudOverlay? _hud;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        _hud = new BlobHudOverlay();
-        _overlay.AddOverlay(_hud);
-    }
-
-    public override void Shutdown()
-    {
-        base.Shutdown();
-        if (_hud != null)
-            _overlay.RemoveOverlay(_hud);
-    }
-}

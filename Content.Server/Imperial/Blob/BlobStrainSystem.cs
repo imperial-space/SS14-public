@@ -737,18 +737,3 @@ public sealed class BlobStrainSystem : EntitySystem
 
     #endregion
 }
-
-/// <summary>Реагент штамма при контакте (облако спор) действует как атака блоба.</summary>
-public sealed class BlobStrainExposureEffectSystem : EntityEffectSystem<MobStateComponent, BlobStrainExposure>
-{
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly BlobStrainSystem _strain = default!;
-
-    protected override void Effect(Entity<MobStateComponent> entity, ref EntityEffectEvent<BlobStrainExposure> args)
-    {
-        if (!_proto.TryIndex(args.Effect.Strain, out var strain))
-            return;
-
-        _strain.ExposeMob(entity, strain, args.Scale, _strain.GetBioProtection(entity), null, primary: false);
-    }
-}
