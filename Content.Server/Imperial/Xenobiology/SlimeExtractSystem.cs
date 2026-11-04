@@ -524,6 +524,3 @@ public sealed class SlimeExtractSystem : EntitySystem
         }
     }
 }
-
-/// <summary>Сигнал гранате-кластеру слаймов взорваться.</summary>
-public sealed class SlimeGrenadeDetonateEvent : EntityEventArgs;

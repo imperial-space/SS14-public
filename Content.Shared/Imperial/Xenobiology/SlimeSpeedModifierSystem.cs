@@ -3,16 +3,6 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.Xenobiology;
 
-/// <summary>
-/// Модификаторы скорости ксенобиологии: блюспейс/сепия плитка (turf slowdown), смола, сепиевый стабилизированный экстракт и т.д.
-/// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
-public sealed partial class SlimeSpeedModifierComponent : Component
-{
-    [DataField, AutoNetworkedField]
-    public Dictionary<string, float> Modifiers = new();
-}
-
 public sealed class SlimeSpeedModifierSystem : EntitySystem
 {
     [Dependency] private readonly MovementSpeedModifierSystem _speed = default!;

@@ -4,35 +4,6 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Xenobiology.Components;
 
-[Serializable, NetSerializable]
-public enum SlimeLifeStage : byte
-{
-    Baby,
-    Adult,
-}
-
-/// <summary>SLIME_MOOD_*: лицо слайма.</summary>
-[Serializable, NetSerializable]
-public enum SlimeMood : byte
-{
-    None,
-    Angry,
-    Mischievous,
-    Pout,
-    Sad,
-    Smile,
-    Cat,
-}
-
-/// <summary>SLIME_HUNGER_*.</summary>
-[Serializable, NetSerializable]
-public enum SlimeHunger : byte
-{
-    None,
-    Hungry,
-    Starving,
-}
-
 /// <summary>
 /// mob/living/basic/slime: состояние слайма, нужное и серверу, и клиенту (спрайт, осмотр).
 /// </summary>
@@ -102,24 +73,4 @@ public sealed partial class SlimeComponent : Component
     /// <summary>Слайм лишён ядер (спрайт «-cut»).</summary>
     [ViewVariables]
     public bool Cut => Cores <= 0;
-}
-
-public static class SlimeConstants
-{
-    public const int MinPower = 0;
-    public const int MediumPower = 5;
-    public const int MaxPower = 10;
-    public const float MaxNutrition = 200f;
-    public const float StartingNutrition = 100f;
-    public const float GrowNutrition = 150f;
-    public const float HungerNutrition = 50f;
-    public const float StarveNutrition = 10f;
-    public const int EvolutionThreshold = 10;
-    public const float EvolutionCost = 100f;
-    public const int ExtractCrossingRequired = 10;
-    public const int OvercrowdAmount = 2;
-    public const float TransparencyAlpha = 180f / 255f;
-    public const int ExtraShockCost = 3;
-    public const int BaseShockPercentage = 10;
-    public const int ShockPercentagePerLevel = 7;
 }

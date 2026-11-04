@@ -34,6 +34,7 @@ namespace Content.Server.Imperial.Xenobiology;
 /// </summary>
 public sealed class XenobioConsoleSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
@@ -463,7 +464,7 @@ public sealed class XenobioConsoleSystem : EntitySystem
         // spit_atom(): зелье вылетает и разбивается о слайма.
         _container.Remove(potion, slot, destination: coords);
         SpitOut(coords);
-        Timer.Spawn(TimeSpan.FromSeconds(0.3), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(0.3), () =>
         {
             if (!TerminatingOrDeleted(potion))
                 _audio.PlayPvs(Shatter, coords);
@@ -484,14 +485,14 @@ public sealed class XenobioConsoleSystem : EntitySystem
     {
         var coords = _transform.GetMoverCoordinates(target);
         Spawn(SuctionEffect, coords);
-        Timer.Spawn(TimeSpan.FromSeconds(0.1), () => _audio.PlayPvs(AirSuck, coords));
+        _schedule.Schedule(TimeSpan.FromSeconds(0.1), () => _audio.PlayPvs(AirSuck, coords));
     }
 
     /// <summary>spit_out().</summary>
     private void SpitOut(EntityCoordinates coords)
     {
         Spawn(SuctionEffect, coords);
-        Timer.Spawn(TimeSpan.FromSeconds(0.1), () => _audio.PlayPvs(AirShoot, coords));
+        _schedule.Schedule(TimeSpan.FromSeconds(0.1), () => _audio.PlayPvs(AirShoot, coords));
     }
 
     private void SendScan(EntityUid viewer, Entity<SlimeComponent> slime)

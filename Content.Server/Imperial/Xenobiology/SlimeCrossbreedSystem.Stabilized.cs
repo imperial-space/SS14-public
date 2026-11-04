@@ -521,8 +521,8 @@ public sealed partial class SlimeCrossbreedSystem
 
     private string RandomHumanName(EntityUid holder)
     {
-        var first = new[] { "Алекс", "Сэм", "Джордан", "Тейлор", "Морган", "Кейси", "Райли", "Джейми", "Робин", "Саша" };
-        var last = new[] { "Смит", "Ли", "Джонсон", "Браун", "Кларк", "Уокер", "Холл", "Янг", "Кинг", "Райт" };
+        var first = new[] { Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-1"), Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-2"), Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-3"), Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-4"), Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-5"), Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-6"), Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-7"), Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-8"), Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-9"), Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-10") };
+        var last = new[] { Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-11"), Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-12"), Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-13"), Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-14"), Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-15"), Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-16"), Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-17"), Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-18"), Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-19"), Loc.GetString("imperial-xenobiology-slime-crossbreed-system-stabilized-20") };
         return $"{_random.Pick(first)} {_random.Pick(last)}";
     }
 

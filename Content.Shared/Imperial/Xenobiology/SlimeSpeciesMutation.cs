@@ -16,6 +16,3 @@ public sealed partial class SlimeSpeciesMutation : EntityEffectBase<SlimeSpecies
     [DataField]
     public int Cycles = 40;
 }
-
-/// <summary>reagent/aslimetoxin: заражение disease/transformation/slime.</summary>
-public sealed partial class SlimeTransformationExposure : EntityEffectBase<SlimeTransformationExposure>;

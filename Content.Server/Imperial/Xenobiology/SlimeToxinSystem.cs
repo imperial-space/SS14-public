@@ -17,25 +17,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Xenobiology;
 
-/// <summary>Прогресс мутационных токсинов на существе.</summary>
-[RegisterComponent]
-public sealed partial class SlimeMutationProgressComponent : Component
-{
-    [ViewVariables]
-    public Dictionary<string, int> Cycles = new();
-}
-
-/// <summary>disease/transformation/slime.</summary>
-[RegisterComponent]
-public sealed partial class SlimeTransformationComponent : Component
-{
-    [ViewVariables]
-    public int Stage = 1;
-
-    [ViewVariables]
-    public TimeSpan NextTick;
-}
-
 /// <summary>
 /// reagent/mutationtoxin и disease/transformation/slime.
 /// </summary>
@@ -155,25 +136,5 @@ public sealed class SlimeToxinSystem : EntitySystem
 
         if (TryComp<MindContainerComponent>(slime, out var mind) && mind.HasMind)
             _slime.SetSlimeType((slime, slimeComp), _slime.RandomSlimeType());
-    }
-}
-
-public sealed class SlimeSpeciesMutationEffectSystem : EntityEffectSystem<MetaDataComponent, SlimeSpeciesMutation>
-{
-    [Dependency] private readonly SlimeToxinSystem _toxin = default!;
-
-    protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<SlimeSpeciesMutation> args)
-    {
-        _toxin.Mutate(entity, args.Effect);
-    }
-}
-
-public sealed class SlimeTransformationExposureEffectSystem : EntityEffectSystem<MetaDataComponent, SlimeTransformationExposure>
-{
-    [Dependency] private readonly SlimeToxinSystem _toxin = default!;
-
-    protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<SlimeTransformationExposure> args)
-    {
-        _toxin.Infect(entity);
     }
 }

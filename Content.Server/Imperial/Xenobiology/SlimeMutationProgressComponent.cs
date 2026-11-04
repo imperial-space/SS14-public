@@ -1,0 +1,26 @@
+using Content.Server.Polymorph.Systems;
+using Content.Shared.Body.Components;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
+using Content.Shared.EntityEffects;
+using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Imperial.Xenobiology;
+using Content.Shared.Imperial.Xenobiology.Components;
+using Content.Shared.Mind.Components;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Polymorph;
+using Content.Shared.Popups;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+using Robust.Shared.Timing;
+
+namespace Content.Server.Imperial.Xenobiology;
+
+/// <summary>Прогресс мутационных токсинов на существе.</summary>
+[RegisterComponent]
+public sealed partial class SlimeMutationProgressComponent : Component
+{
+    [ViewVariables]
+    public Dictionary<string, int> Cycles = new();
+}

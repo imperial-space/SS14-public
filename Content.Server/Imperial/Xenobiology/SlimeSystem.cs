@@ -33,6 +33,7 @@ namespace Content.Server.Imperial.Xenobiology;
 /// </summary>
 public sealed partial class SlimeSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -623,7 +624,7 @@ public sealed partial class SlimeSystem : EntitySystem
 
         var coords = _transform.GetMoverCoordinates(ent);
         var type = ent.Comp.SlimeType;
-        Timer.Spawn(0, () =>
+        _schedule.Schedule(TimeSpan.Zero, () =>
         {
             if (TerminatingOrDeleted(ent))
                 return;
@@ -696,15 +697,4 @@ public sealed partial class SlimeSystem : EntitySystem
                      !brain.Frozen && brain.FeedingOn == null && !HasComp<Robust.Shared.Player.ActorComponent>(ent);
         _htn.SetHTNEnabled((ent, htn), active);
     }
-}
-
-/// <summary>Номер в имени слайма и признак имени, данного зельем.</summary>
-[RegisterComponent]
-public sealed partial class SlimeNameComponent : Component
-{
-    [ViewVariables]
-    public int Number;
-
-    [ViewVariables]
-    public bool CustomName;
 }
