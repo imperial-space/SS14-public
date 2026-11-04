@@ -15,51 +15,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Security;
 
-/// <summary>Имплант изгнания (implant/exile).</summary>
-[RegisterComponent]
-public sealed partial class ExileImplantComponent : Component;
-
-/// <summary>Имплант запрета телепортации (implant/teleport_blocker).</summary>
-[RegisterComponent]
-public sealed partial class TeleportBlockerImplantComponent : Component;
-
-/// <summary>Имплант-маяк (implant/beacon): носитель — точка для телепортации.</summary>
-[RegisterComponent]
-public sealed partial class BeaconImplantComponent : Component
-{
-    /// <summary>lifespan_postmortem: 10 минут после смерти.</summary>
-    [DataField]
-    public TimeSpan LifespanPostmortem = TimeSpan.FromMinutes(10);
-
-    [ViewVariables]
-    public TimeSpan? DiedAt;
-
-    /// <summary>Точку телепортации добавил сам имплант (у моба её раньше не было).</summary>
-    [ViewVariables]
-    public bool AddedWarp;
-}
-
-/// <summary>Метка на носителе: следит за мгновенными перемещениями.</summary>
-[RegisterComponent]
-public sealed partial class TeleportGuardComponent : Component
-{
-    [ViewVariables]
-    public int Exile;
-
-    [ViewVariables]
-    public int Blockers;
-
-    /// <summary>Куда вернуть после пресечённого телепорта.</summary>
-    [ViewVariables]
-    public MapCoordinates? RevertTo;
-
-    [ViewVariables]
-    public bool RevertStun;
-
-    [ViewVariables]
-    public bool Reverting;
-}
-
 /// <summary>
 /// Импланты СБ: изгнание (нельзя вернуться на станцию с другой карты и пользоваться шаттлом Лаваленда),
 /// запрет телепортации (любой телепорт отбрасывает назад с параличом на 5 с) и маяк.

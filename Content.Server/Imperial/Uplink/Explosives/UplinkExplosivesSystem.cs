@@ -157,7 +157,7 @@ public sealed class UplinkExplosivesSystem : EntitySystem
 
         if (ent.Comp.Open && ent.Comp.Armed && ent.Comp.DetonateAt == null)
         {
-            _popup.PopupEntity("*бип*", ent, PopupType.MediumCaution);
+            _popup.PopupEntity(Loc.GetString("imperial-uplink-uplink-explosives-system-1"), ent, PopupType.MediumCaution);
             _audio.PlayPvs(BeepSound, ent);
             ent.Comp.DetonateAt = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.Timer);
             _appearance.SetData(ent, UplinkPizzaBombVisuals.State, "active");

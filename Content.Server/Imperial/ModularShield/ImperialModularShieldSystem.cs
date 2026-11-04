@@ -56,7 +56,7 @@ public sealed partial class ImperialModularShieldSystem : EntitySystem
     /// <summary>T0C + 200: клетки слабеют в горячем воздухе.</summary>
     private const float HotAtmosTemperature = 473.15f;
 
-    private float _slowAccumulator;
+    private TimeSpan _nextSlowUpdate;
 
     public override void Initialize()
     {
@@ -519,10 +519,9 @@ public sealed partial class ImperialModularShieldSystem : EntitySystem
         base.Update(frameTime);
 
         var now = _timing.CurTime;
-        _slowAccumulator += frameTime;
-        var slow = _slowAccumulator >= 1f;
+        var slow = _timing.CurTime >= _nextSlowUpdate;
         if (slow)
-            _slowAccumulator = 0;
+            _nextSlowUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
 
         var query = EntityQueryEnumerator<ImperialModularShieldGeneratorComponent>();
         while (query.MoveNext(out var uid, out var comp))

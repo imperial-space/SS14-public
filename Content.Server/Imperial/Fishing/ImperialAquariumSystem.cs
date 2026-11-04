@@ -67,7 +67,8 @@ public sealed class ImperialAquariumSystem : EntitySystem
         ImperialFishFluid.Air,
     };
 
-    private float _accumulator;
+    private TimeSpan _nextUpdate;
+    private TimeSpan _lastUpdate;
 
     public override void Initialize()
     {
@@ -959,12 +960,12 @@ public sealed class ImperialAquariumSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        _accumulator += frameTime;
-        if (_accumulator < 1f)
+        if (_timing.CurTime < _nextUpdate)
             return;
 
-        var dt = _accumulator;
-        _accumulator = 0;
+        _nextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
+        var dt = _lastUpdate == TimeSpan.Zero ? 1f : (float) (_timing.CurTime - _lastUpdate).TotalSeconds;
+        _lastUpdate = _timing.CurTime;
         var now = _timing.CurTime;
 
         var query = EntityQueryEnumerator<ImperialAquariumComponent>();

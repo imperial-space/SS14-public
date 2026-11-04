@@ -4,25 +4,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Fishing;
 
-public enum ImperialFishingPhase : byte
-{
-    /// <summary>WAIT_PHASE: поплавок покачивается.</summary>
-    Wait,
-
-    /// <summary>BITING_PHASE: клюёт, нужно подсечь.</summary>
-    Biting,
-
-    /// <summary>MINIGAME_PHASE: вываживание.</summary>
-    Minigame,
-}
-
-public enum ImperialReelingState : byte
-{
-    Idle,
-    Up,
-    Down,
-}
-
 /// <summary>
 /// Одна рыбалка (/datum/fishing_challenge): фазы, награда и физика мини-игры.
 /// Логикой наград и событиями занимается <see cref="ImperialFishingSystem"/>.

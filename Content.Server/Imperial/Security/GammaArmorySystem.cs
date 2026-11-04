@@ -20,14 +20,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Security;
 
-/// <summary>Гамма-автолат: предзагружен 50 листами стали и стекла (autolathe/loaded/upgraded/gamma).</summary>
-[RegisterComponent]
-public sealed partial class GammaAutolatheComponent : Component
-{
-    [DataField]
-    public Dictionary<string, int> StartingMaterials = new() { ["Steel"] = 5000, ["Glass"] = 5000 };
-}
-
 /// <summary>
 /// Шаттл гамма-оружейки из ParadiseSS13 (move_gamma_ship): ЦК присылает к станции оружейку
 /// с особым снаряжением и может отозвать её обратно. Шаттл собирается кодом при первом вызове.
@@ -337,20 +329,4 @@ public sealed class GammaArmorySystem : EntitySystem
     }
 
     #endregion
-}
-
-/// <summary>Админ-команда: прислать или отозвать гамма-оружейку.</summary>
-[AdminCommand(AdminFlags.Fun)]
-public sealed class GammaArmoryCommand : IConsoleCommand
-{
-    [Dependency] private readonly IEntityManager _entManager = default!;
-
-    public string Command => "gammaarmory";
-    public string Description => "Присылает к станции шаттл гамма-оружейки или отзывает его на ЦК.";
-    public string Help => Command;
-
-    public void Execute(IConsoleShell shell, string argStr, string[] args)
-    {
-        shell.WriteLine(_entManager.System<GammaArmorySystem>().Toggle());
-    }
 }

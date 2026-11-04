@@ -28,34 +28,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Security;
 
-/// <summary>shield/riot/flash: щит со встроенной вспышкой.</summary>
-[RegisterComponent]
-public sealed partial class StrobeShieldComponent : Component
-{
-    public const string FlashContainer = "strobe-flash";
-
-    [DataField]
-    public string FlashProto = "Flash";
-
-    [ViewVariables]
-    public TimeSpan? FlashingUntil;
-}
-
-/// <summary>Метка на том, кто держит щит со вспышкой.</summary>
-[RegisterComponent]
-public sealed partial class StrobeShieldHolderComponent : Component;
-
-/// <summary>clothing/accessory/holobadge.</summary>
-[RegisterComponent]
-public sealed partial class HolobadgeComponent : Component
-{
-    [ViewVariables]
-    public string? StoredName;
-
-    [ViewVariables]
-    public bool Emagged;
-}
-
 /// <summary>
 /// Щит со вспышкой (tgstation), пакет для улик (tgstation) и голобейдж (Paradise),
 /// а также их коробки в шкафах смотрителя и детектива.

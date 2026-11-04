@@ -17,31 +17,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Fishing;
 
-/// <summary>Один рост рыбы (/datum/component/fish_growth).</summary>
-public sealed class ImperialFishGrowth
-{
-    /// <summary>Прототип сущности или эволюция ("evolution:Id").</summary>
-    public string Result = string.Empty;
-
-    /// <summary>Прирост за секунду (100 / время роста).</summary>
-    public float Rate;
-
-    public float Maturation;
-    public bool UseDropLoc = true;
-    public bool DelOnGrow = true;
-    public bool InheritName = true;
-
-    public bool IsEvolution => Result.StartsWith(ImperialSpecialFishSystem.EvolutionPrefix);
-}
-
-/// <summary>Рост рыбы: в существо, в другой вид или откладывание икры. У одной рыбы может быть несколько ростов.</summary>
-[RegisterComponent]
-public sealed partial class ImperialFishGrowthComponent : Component
-{
-    [ViewVariables]
-    public List<ImperialFishGrowth> Growths = new();
-}
-
 /// <summary>
 /// Особые виды рыб: рост детёныша карпа, головастика, пропастного краба, жарешей и луна-рыб, икра;
 /// исчезающие голо-рыбы и головастики; кристальная звезда; кусачий моржедельфин; вой бабелрыбы; цена рыбы для карго.

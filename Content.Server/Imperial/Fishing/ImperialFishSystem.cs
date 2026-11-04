@@ -57,7 +57,8 @@ public sealed partial class ImperialFishSystem : EntitySystem
     /// <summary>STARVING_FISH_SUBMERGING_THRESHOLD.</summary>
     private const float StarvingSubmergingThreshold = 20f;
 
-    private float _accumulator;
+    private TimeSpan _nextUpdate;
+    private TimeSpan _lastUpdate;
 
     public override void Initialize()
     {
@@ -370,12 +371,12 @@ public sealed partial class ImperialFishSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        _accumulator += frameTime;
-        if (_accumulator < 1f)
+        if (_timing.CurTime < _nextUpdate)
             return;
 
-        var dt = _accumulator;
-        _accumulator = 0;
+        _nextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
+        var dt = _lastUpdate == TimeSpan.Zero ? 1f : (float) (_timing.CurTime - _lastUpdate).TotalSeconds;
+        _lastUpdate = _timing.CurTime;
 
         // Размножение и рост создают и удаляют рыб: сначала собираем список.
         var all = new List<Entity<ImperialFishComponent>>();
@@ -721,43 +722,3 @@ public sealed partial class ImperialFishSystem : EntitySystem
 
     #endregion
 }
-
-/// <summary>Рыба умерла или ожила.</summary>
-[ByRefEvent]
-public readonly record struct ImperialFishStatusChangedEvent(bool Dead);
-
-/// <summary>Контейнер рыбы (аквариум) решает, подходит ли среда.</summary>
-[ByRefEvent]
-public record struct ImperialFishEnvironmentCheckEvent(Entity<ImperialFishComponent> Fish, bool Handled = false, bool Proper = false);
-
-/// <summary>Контейнер держит рыбу в стазисе.</summary>
-[ByRefEvent]
-public record struct ImperialFishStasisCheckEvent(bool Stasis = false);
-
-/// <summary>Контейнер останавливает рост и размножение (TRAIT_STOP_FISH_REPRODUCTION_AND_GROWTH).</summary>
-[ByRefEvent]
-public record struct ImperialFishGrowthCheckEvent(bool Stopped = false);
-
-/// <summary>Рыба готова размножиться — аквариум решает.</summary>
-[ByRefEvent]
-public readonly record struct ImperialFishTryReproduceEvent(Entity<ImperialFishComponent> Fish);
-
-/// <summary>Рыбу выпустили в место ловли.</summary>
-[ByRefEvent]
-public readonly record struct ImperialFishReleasedEvent(Entity<ImperialFishComponent> Fish, EntityUid? User);
-
-/// <summary>Рыбу разделали.</summary>
-[ByRefEvent]
-public readonly record struct ImperialFishProcessedEvent(EntityUid User);
-
-/// <summary>Размер или вес рыбы изменились (COMSIG_FISH_UPDATE_SIZE_AND_WEIGHT).</summary>
-[ByRefEvent]
-public readonly record struct ImperialFishSizeUpdatedEvent;
-
-/// <summary>Тик жизни живой рыбы (COMSIG_FISH_LIFE).</summary>
-[ByRefEvent]
-public readonly record struct ImperialFishLifeEvent(float FrameTime);
-
-/// <summary>Рыба внутри контейнера (аквариума) умерла или ожила; поднимается на владельце контейнера.</summary>
-[ByRefEvent]
-public readonly record struct ImperialFishInContainerStatusChangedEvent(Entity<ImperialFishComponent> Fish, bool Dead);

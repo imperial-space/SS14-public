@@ -837,9 +837,3 @@ public sealed class BitrunningAvatarSystem : EntitySystem
 
     #endregion
 }
-
-/// <summary>Домен пройден, пока тело было подключено — для начисления очков битраннинга (Б2).</summary>
-public sealed class BitrunningDomainCompletedEvent(int reward) : EntityEventArgs
-{
-    public readonly int Reward = reward;
-}

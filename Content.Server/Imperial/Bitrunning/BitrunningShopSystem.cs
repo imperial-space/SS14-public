@@ -29,44 +29,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Bitrunning;
 
-/// <summary>/obj/machinery/computer/order_console/bitrunning (objects/vendor.dm, order_computer.dm).</summary>
-[RegisterComponent]
-public sealed partial class BitrunningVendorComponent : Component
-{
-    /// <summary>cargo_cost_multiplier: доставка грузовым рейсом дешевле на 35%.</summary>
-    [DataField]
-    public float CargoMultiplier = 0.65f;
-
-    /// <summary>express_cost_multiplier.</summary>
-    [DataField]
-    public float ExpressMultiplier = 1f;
-
-    /// <summary>cooldown_time.</summary>
-    [DataField]
-    public TimeSpan CooldownTime = TimeSpan.FromSeconds(10);
-
-    /// <summary>CARGO_CRATE_VALUE: заказ рейсом не дешевле ящика.</summary>
-    [DataField]
-    public int CargoValue = 200;
-
-    /// <summary>grocery_list: заказ → количество.</summary>
-    [ViewVariables]
-    public Dictionary<string, int> Cart = new();
-
-    [ViewVariables]
-    public TimeSpan NextOrder;
-
-    [ViewVariables]
-    public bool CooldownShown;
-
-    [ViewVariables]
-    public EntityUid? LastUser;
-}
-
-/// <summary>/datum/supply_pack/bitrunning: ящик доставки, наполняется содержимым корзины при появлении.</summary>
-[RegisterComponent]
-public sealed partial class BitrunningDeliveryCrateComponent : Component;
-
 /// <summary>
 /// Очки битраннинга (bank_account.bitrunning_points), торгомат, программы-диски и их загрузка в аватара (stock_gear),
 /// заклинания дисков.

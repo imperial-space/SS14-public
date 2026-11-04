@@ -252,7 +252,7 @@ public sealed class WantedPosterSystem : EntitySystem
         if (string.IsNullOrEmpty(ent.Comp.WantedName))
             return;
 
-        args.PushMarkup(Loc.GetString("wanted-poster-examine-header", ("header", ent.Comp.Header)));
+        args.PushMarkup(Loc.GetString("wanted-poster-examine-header", ("header", Robust.Shared.Utility.FormattedMessage.EscapeText(ent.Comp.Header))));
         args.PushText(ent.Comp.Description);
     }
 

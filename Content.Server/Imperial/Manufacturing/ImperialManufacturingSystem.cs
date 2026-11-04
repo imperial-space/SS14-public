@@ -61,7 +61,7 @@ public sealed partial class ImperialManufacturingSystem : EntitySystem
     /// <summary>Холостая нагрузка между действиями, Вт.</summary>
     private const float IdleLoad = 50f;
 
-    private float _bumpAccumulator;
+    private TimeSpan _nextBumpUpdate;
 
     public override void Initialize()
     {
@@ -415,10 +415,9 @@ public sealed partial class ImperialManufacturingSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        _bumpAccumulator += frameTime;
-        if (_bumpAccumulator >= 0.1f)
+        if (_timing.CurTime >= _nextBumpUpdate)
         {
-            _bumpAccumulator = 0;
+            _nextBumpUpdate = _timing.CurTime + TimeSpan.FromSeconds(0.1);
             ScanBumps();
         }
 

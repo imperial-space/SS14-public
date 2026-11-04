@@ -24,6 +24,7 @@ namespace Content.Server.Imperial.Fishing;
 /// </summary>
 public sealed class ImperialFishingPortalSystem : EntitySystem
 {
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
@@ -60,7 +61,7 @@ public sealed class ImperialFishingPortalSystem : EntitySystem
 
     private static readonly ProtoId<Content.Shared.Tools.ToolQualityPrototype> Pulsing = "Pulsing";
 
-    private float _accumulator;
+    private TimeSpan _nextUpdate;
 
     public override void Initialize()
     {
@@ -302,11 +303,10 @@ public sealed class ImperialFishingPortalSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        _accumulator += frameTime;
-        if (_accumulator < 1f)
+        if (_timing.CurTime < _nextUpdate)
             return;
 
-        _accumulator = 0;
+        _nextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
         var query = EntityQueryEnumerator<ImperialFishingPortalComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {

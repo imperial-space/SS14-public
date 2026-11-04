@@ -20,29 +20,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Research;
 
-/// <summary>Очередь изучения сервера techweb TG (queue_nodes).</summary>
-[RegisterComponent]
-public sealed partial class ImperialTgResearchQueueComponent : Component
-{
-    [ViewVariables]
-    public List<(string Node, string By, EntityUid Console, EntityUid User)> Queue = new();
-}
-
-/// <summary>Состояние сервера исследований TG: research_disabled и EMPED.</summary>
-[RegisterComponent]
-public sealed partial class ImperialTgServerStateComponent : Component
-{
-    [ViewVariables]
-    public bool Disabled;
-
-    [ViewVariables]
-    public TimeSpan EmpedUntil;
-
-    /// <summary>deconstructed_items: типы, уже давшие очки в деструктивном анализаторе.</summary>
-    [ViewVariables]
-    public HashSet<string> DeconstructedItems = new();
-}
-
 /// <summary>
 /// Консоль и сервер techweb TG: изучение со скидкой discount_experiments, очередь (enqueueNode/dequeueNode),
 /// блокировка (toggleLock), объявления announce_channels и пассивный доход 1 очко TG/сек при работающем сервере.

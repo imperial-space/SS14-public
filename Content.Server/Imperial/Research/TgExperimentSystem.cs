@@ -34,25 +34,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Research;
 
-/// <summary>Прогресс экспериментов TG на сервере исследований.</summary>
-[RegisterComponent]
-public sealed partial class TgExperimentStateComponent : Component
-{
-    [ViewVariables]
-    public Dictionary<string, int> Progress = new();
-
-    [ViewVariables]
-    public HashSet<string> Completed = new();
-
-    /// <summary>Уже засчитанные объекты (каждый сканируется один раз на эксперимент).</summary>
-    [ViewVariables]
-    public Dictionary<string, HashSet<EntityUid>> Scanned = new();
-
-    /// <summary>Привязанные аркадные автоматы и их запас призов на момент проверки.</summary>
-    [ViewVariables]
-    public Dictionary<EntityUid, int> Arcades = new();
-}
-
 /// <summary>
 /// Эксперименты techweb TG (code/modules/experisci): сканер экспериментов, взрывы, аркады.
 /// Обязательный эксперимент раскрывает узел, скидочный — возвращает серверу очки (discount × 75).

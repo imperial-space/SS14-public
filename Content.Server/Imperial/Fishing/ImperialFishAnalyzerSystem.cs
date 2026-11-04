@@ -26,7 +26,7 @@ public sealed class ImperialFishAnalyzerSystem : EntitySystem
 
     private static readonly string[] FishExperiments = { "TgExpFish", "TgExpFishSecond" };
 
-    private float _accumulator;
+    private TimeSpan _nextUpdate;
 
     public override void Initialize()
     {
@@ -62,11 +62,10 @@ public sealed class ImperialFishAnalyzerSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        _accumulator += frameTime;
-        if (_accumulator < 1f)
+        if (_timing.CurTime < _nextUpdate)
             return;
 
-        _accumulator = 0;
+        _nextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
         var query = EntityQueryEnumerator<ImperialFishAnalyzerComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {

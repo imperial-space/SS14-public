@@ -16,49 +16,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Fishing;
 
-/// <summary>
-/// Перчатки, которые сами служат удочкой (/obj/item/clothing/gloves/fishing + profound_fisher).
-/// Атлетические перчатки изматывают во время вываживания и ранят руки при поимке крупной рыбы.
-/// </summary>
-[RegisterComponent]
-public sealed partial class ImperialProfoundFisherComponent : Component
-{
-    /// <summary>/obj/item/fishing_rod/mob_fisher/athletic.</summary>
-    [DataField]
-    public bool Athletic;
-}
-
-/// <summary>Модуль МОДа «рыболовная перчатка» (/obj/item/mod/module/fishing_glove): удочка вставляется в модуль.</summary>
-[RegisterComponent]
-public sealed partial class ImperialModFishingGloveComponent : Component
-{
-    public const string SlotId = "mod_fishing_rod";
-
-    [DataField]
-    public float DifficultyModifier = -5;
-
-    [ViewVariables]
-    public EntityUid? Wearer;
-}
-
-/// <summary>Владелец может рыбачить пустой рукой этой удочкой (TRAIT_PROFOUND_FISHER).</summary>
-[RegisterComponent]
-public sealed partial class ImperialProfoundFisherUserComponent : Component
-{
-    [ViewVariables]
-    public EntityUid Rod;
-
-    /// <summary>Перчатки или модуль, давшие способность.</summary>
-    [ViewVariables]
-    public EntityUid Source;
-
-    [ViewVariables]
-    public float DifficultyModifier;
-
-    [ViewVariables]
-    public bool Athletic;
-}
-
 public sealed class ImperialProfoundFisherSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;

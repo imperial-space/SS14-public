@@ -34,6 +34,9 @@ public static class ImperialPng
             switch (type)
             {
                 case "IHDR":
+                    if (len < 13)
+                        return false;
+
                     width = (png[data] << 24) | (png[data + 1] << 16) | (png[data + 2] << 8) | png[data + 3];
                     height = (png[data + 4] << 24) | (png[data + 5] << 16) | (png[data + 6] << 8) | png[data + 7];
                     depth = png[data + 8];
@@ -63,18 +66,27 @@ public static class ImperialPng
         if (channels == 0 || colorType == 3 && palette == null)
             return false;
 
-        idat.Position = 0;
-        byte[] raw;
-        using (var z = new ZLibStream(idat, CompressionMode.Decompress))
-        using (var outStream = new MemoryStream())
-        {
-            z.CopyTo(outStream);
-            raw = outStream.ToArray();
-        }
-
         var stride = width * channels;
-        if (raw.Length < (stride + 1) * height)
-            return false;
+        var expected = (stride + 1) * height;
+
+        // Данные приходят от клиента: распаковываем не больше ожидаемого объёма (защита от zip-бомбы).
+        idat.Position = 0;
+        var raw = new byte[expected];
+        using (var z = new ZLibStream(idat, CompressionMode.Decompress))
+        {
+            var read = 0;
+            while (read < expected)
+            {
+                var n = z.Read(raw, read, expected - read);
+                if (n <= 0)
+                    break;
+
+                read += n;
+            }
+
+            if (read < expected)
+                return false;
+        }
 
         var prev = new byte[stride];
         var line = new byte[stride];

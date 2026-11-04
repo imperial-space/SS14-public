@@ -30,6 +30,7 @@ namespace Content.Server.Imperial.Vending;
 /// </summary>
 public sealed class ImperialPhotoCameraSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ExamineSystemShared _examine = default!;
@@ -124,7 +125,7 @@ public sealed class ImperialPhotoCameraSystem : EntitySystem
         {
             RaiseNetworkEvent(new ImperialCameraCaptureRequestEvent(id, target, rotation, Meters(ent.Comp.SizeX), Meters(ent.Comp.SizeY), ent.Comp.Monochrome), actor.PlayerSession);
             var uid = ent.Owner;
-            Robust.Shared.Timing.Timer.Spawn(CaptureTimeout, () =>
+            _schedule.Schedule(CaptureTimeout, () =>
             {
                 if (TryComp<ImperialPhotoCameraComponent>(uid, out var cam) && cam.Blending && cam.RequestId == id)
                     cam.Blending = false;
@@ -144,12 +145,12 @@ public sealed class ImperialPhotoCameraSystem : EntitySystem
         _light.SetEnabled(ent, true);
 
         var uid = ent.Owner;
-        Robust.Shared.Timing.Timer.Spawn(ent.Comp.FlashDuration, () =>
+        _schedule.Schedule(ent.Comp.FlashDuration, () =>
         {
             if (!Deleted(uid))
                 _light.SetEnabled(uid, false);
         });
-        Robust.Shared.Timing.Timer.Spawn(ent.Comp.Cooldown, () =>
+        _schedule.Schedule(ent.Comp.Cooldown, () =>
         {
             if (!TryComp<ImperialPhotoCameraComponent>(uid, out var cam))
                 return;

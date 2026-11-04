@@ -29,6 +29,7 @@ namespace Content.Server.Imperial.Vending;
 /// <summary>Машины сервиса из торгоматов TG: дисковод для посуды (dish_drive) и сортировщик почты (mailsorter).</summary>
 public sealed class ImperialServiceMachinesSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
@@ -413,7 +414,7 @@ public sealed class ImperialServiceMachinesSystem : EntitySystem
         ent.Comp.Sorting = true;
         _audio.PlayPvs(ent.Comp.SortSound, ent);
         var uid = ent.Owner;
-        Robust.Shared.Timing.Timer.Spawn(ent.Comp.SortDelay, () =>
+        _schedule.Schedule(ent.Comp.SortDelay, () =>
         {
             if (TryComp<ImperialMailSorterComponent>(uid, out var comp))
                 ContinueSort((uid, comp), department);

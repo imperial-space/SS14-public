@@ -3,12 +3,6 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Vending;
 
-[Serializable, NetSerializable]
-public enum ImperialVendingUiKey : byte
-{
-    Key,
-}
-
 /// <summary>
 /// Окно с ценами открывается по своему ключу: ванильный клиент ищет под VendingMachineUiKey
 /// только VendingMachineBoundUserInterface. Ключ ActivatableUI не синхронизируется, поэтому меняется на обеих сторонах.

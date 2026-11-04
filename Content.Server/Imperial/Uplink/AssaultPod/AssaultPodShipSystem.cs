@@ -24,42 +24,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Uplink.AssaultPod;
 
-/// <summary>Консоль большого штурмового пода «Steel Rain» (computer/shuttle/syndicate/drop_pod).</summary>
-[RegisterComponent]
-public sealed partial class AssaultPodConsoleComponent : Component
-{
-    [DataField]
-    public TimeSpan Countdown = TimeSpan.FromSeconds(10);
-
-    [DataField]
-    public TimeSpan FlightTime = TimeSpan.FromSeconds(20);
-
-    /// <summary>false — экипаж выбирает только зону, а старт даёт сценарий (протокол «Эпсилон»).</summary>
-    [DataField]
-    public bool ManualLaunch = true;
-
-    [ViewVariables]
-    public EntityUid? Target;
-
-    [ViewVariables]
-    public string? TargetName;
-
-    [ViewVariables]
-    public AssaultPodState State = AssaultPodState.Ready;
-
-    [ViewVariables]
-    public TimeSpan NextStage;
-}
-
-/// <summary>Стиль большого пода: ЯО, ОБР или эскадрон смерти.</summary>
-public enum AssaultPodShipStyle : byte
-{
-    Syndicate,
-    Ert,
-    DeathSquad,
-    Epsilon,
-}
-
 /// <summary>
 /// Большие штурмовые поды Paradise (assault_pod.dm, «Steel Rain» на centcomm.dmm): отдельный грид 7×7.
 /// Консоль выбирает маяк станции; под летит через гиперпространство и врезается в станцию:

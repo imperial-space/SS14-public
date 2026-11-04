@@ -25,6 +25,7 @@ namespace Content.Server.Imperial.Vending;
 /// </summary>
 public sealed class ImperialBlackMarketSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -187,7 +188,7 @@ public sealed class ImperialBlackMarketSystem : EntitySystem
         var pos = _transform.ToMapCoordinates(coords).Position;
         _popup.PopupEntity(Loc.GetString("imperial-market-teleporting", ("x", (int) pos.X), ("y", (int) pos.Y)), user, user, PopupType.Medium);
 
-        Robust.Shared.Timing.Timer.Spawn(TeleportDelay, () =>
+        _schedule.Schedule(TeleportDelay, () =>
         {
             Spawn(item.Item, coords);
             Spawn("EffectSparks", coords);

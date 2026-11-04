@@ -11,21 +11,21 @@ public sealed class LaborCampCommand : IConsoleCommand
     [Dependency] private readonly IEntityManager _entManager = default!;
 
     public string Command => "laborcamp";
-    public string Description => "Загружает трудовой лагерь, если его ещё нет, и показывает маяк гулага.";
+    public string Description => Loc.GetString("imperial-security-labor-camp-command-1");
     public string Help => Command;
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
         if (!_entManager.System<LaborCampMapSystem>().EnsureCamp())
         {
-            shell.WriteLine("Не удалось загрузить трудовой лагерь.");
+            shell.WriteLine(Loc.GetString("imperial-security-labor-camp-command-2"));
             return;
         }
 
         var query = _entManager.EntityQueryEnumerator<GulagBeaconComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out _, out var xform))
         {
-            shell.WriteLine($"Маяк гулага: {_entManager.ToPrettyString(uid)}, карта {xform.MapID}.");
+            shell.WriteLine(Loc.GetString("imperial-security-labor-camp-command-3", ("arg0", _entManager.ToPrettyString(uid)), ("arg1", xform.MapID)));
         }
     }
 }

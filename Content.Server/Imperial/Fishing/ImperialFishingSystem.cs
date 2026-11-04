@@ -886,9 +886,3 @@ public sealed partial class ImperialFishingSystem : EntitySystem
 
     #endregion
 }
-
-/// <summary>
-/// Источник с особой логикой (аквариум, портал и т. п.) сам выбирает награду (COMSIG_FISHING_CHALLENGE_ROLL_REWARD).
-/// </summary>
-[ByRefEvent]
-public record struct ImperialFishingRollRewardEvent(ImperialFishingChallenge Challenge, ImperialFishingRodInfo Rod, string? RewardProto = null, EntityUid? RewardEntity = null);

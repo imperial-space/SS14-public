@@ -6,15 +6,6 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.Fishing;
 
-/// <summary>Тяжёлая рыба или полный переносной аквариум замедляют того, кто их держит (slowdown / GET_FISH_SLOWDOWN).</summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class ImperialFishingSlowdownComponent : Component
-{
-    /// <summary>Замедление в единицах TG (добавка к задержке шага).</summary>
-    [DataField, AutoNetworkedField]
-    public float Slowdown;
-}
-
 public sealed class ImperialFishingSlowdownSystem : EntitySystem
 {
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;

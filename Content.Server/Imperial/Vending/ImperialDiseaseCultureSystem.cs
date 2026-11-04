@@ -7,18 +7,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Vending;
 
-/// <summary>Пробирка с готовой культурой болезни (reagent_containers/cup/bottle/&lt;болезнь&gt; TG).</summary>
-[RegisterComponent]
-public sealed partial class ImperialDiseaseCultureComponent : Component
-{
-    [DataField(required: true)]
-    public ProtoId<DiseasePrototype> Disease;
-
-    /// <summary>Кровь-носитель культуры.</summary>
-    [DataField]
-    public FixedPoint2 Blood = 20;
-}
-
 public sealed class ImperialDiseaseCultureSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;

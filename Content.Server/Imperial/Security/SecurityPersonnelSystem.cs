@@ -19,15 +19,6 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Security;
 
-/// <summary>organ/cyberimp/eyes/hud/security: HUD СБ без очков.</summary>
-[RegisterComponent]
-public sealed partial class SecurityHudImplantComponent : Component
-{
-    /// <summary>Какие HUD-компоненты добавил сам имплант (остальные у носителя уже были).</summary>
-    [ViewVariables]
-    public List<string> Added = new();
-}
-
 /// <summary>
 /// Перцовый баллончик (эффект конденсированного капсаицина), HUD-имплант СБ
 /// и раскладка снаряжения по шкафам: баллончики у офицеров и смотрителя, нарукавники помощников у ГСБ.

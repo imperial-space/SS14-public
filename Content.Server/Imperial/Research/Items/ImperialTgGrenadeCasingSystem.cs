@@ -16,6 +16,7 @@ namespace Content.Server.Imperial.Research.Items;
 /// </summary>
 public sealed class ImperialTgGrenadeCasingSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly PayloadSystem _payload = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly TriggerSystem _trigger = default!;
@@ -62,7 +63,7 @@ public sealed class ImperialTgGrenadeCasingSystem : EntitySystem
             }
 
             if (TryComp<TimerTriggerComponent>(ent, out _))
-                Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(comp.ReleaseDelay), () =>
+                _schedule.Schedule(TimeSpan.FromSeconds(comp.ReleaseDelay), () =>
                 {
                     if (!TerminatingOrDeleted(ent) && ent.Comp.Stash.Count > 0)
                         _trigger.ActivateTimerTrigger(ent.Owner);

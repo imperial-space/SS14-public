@@ -77,7 +77,7 @@ public sealed class ImperialExpressConsoleSystem : EntitySystem
     /// <summary>printed_beacons.</summary>
     private int _printedBeacons;
 
-    private float _uiAccumulator;
+    private TimeSpan _nextUiUpdate;
 
     public override void Initialize()
     {
@@ -443,10 +443,9 @@ public sealed class ImperialExpressConsoleSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        _uiAccumulator += frameTime;
-        if (_uiAccumulator >= 1f)
+        if (_timing.CurTime >= _nextUiUpdate)
         {
-            _uiAccumulator = 0;
+            _nextUiUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
             var consoles = EntityQueryEnumerator<ImperialExpressConsoleComponent>();
             while (consoles.MoveNext(out var uid, out var comp))
             {

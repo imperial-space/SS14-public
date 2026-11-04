@@ -14,44 +14,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.MachineParts;
 
-/// <summary>Исходные значения улучшаемых полей машины (до учёта деталей).</summary>
-[RegisterComponent]
-public sealed partial class ImperialMachineUpgradeComponent : Component
-{
-    [ViewVariables]
-    public Dictionary<string, object?> Base = new();
-}
-
-/// <summary>Детали машины изменились (RefreshParts). Поднимается на машине.</summary>
-[ByRefEvent]
-public readonly record struct ImperialMachinePartsRefreshEvent(ImperialMachineRatings Ratings);
-
-/// <summary>Уровни деталей машины по типам.</summary>
-public sealed class ImperialMachineRatings
-{
-    public readonly Dictionary<ImperialStockPartType, List<int>> Tiers = new();
-
-    /// <summary>Универсальные детали (стак «Manipulator») — 1-й уровень любого типа.</summary>
-    public int Generic;
-
-    /// <summary>Средний уровень деталей этого типа; без таких деталей — 1.</summary>
-    public float Avg(ImperialStockPartType type)
-    {
-        return Tiers.TryGetValue(type, out var list) && list.Count > 0 ? (float) list.Average() : 1f;
-    }
-
-    /// <summary>Сумма уровней деталей этого типа (как цикл по component_parts в TG); без таких деталей — fallback.</summary>
-    public int Sum(ImperialStockPartType type, int fallback)
-    {
-        return Tiers.TryGetValue(type, out var list) && list.Count > 0 ? list.Sum() : fallback;
-    }
-
-    public int Max(ImperialStockPartType type)
-    {
-        return Tiers.TryGetValue(type, out var list) && list.Count > 0 ? list.Max() : 1;
-    }
-}
-
 /// <summary>
 /// Уровни деталей машин (stock_parts TG): детали с уровнем вставляются в рамку вместо универсальной детали,
 /// рейтинг машины пересчитывается при каждой смене деталей и меняет её характеристики по формулам RefreshParts().
