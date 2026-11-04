@@ -73,31 +73,3 @@ public sealed partial class BloodBrotherTeamComponent : Component
     [DataField]
     public EntProtoId FlashProto = "Flash";
 }
-
-/// <summary>datum/antagonist/brother: отметка на разуме брата со ссылкой на его команду.</summary>
-[RegisterComponent]
-public sealed partial class BloodBrotherComponent : Component
-{
-    /// <summary>Сущность игрового правила, на которой живёт команда.</summary>
-    [ViewVariables]
-    public EntityUid Team;
-}
-
-/// <summary>
-/// grant_conversion_skills(): пока команда может пробудить ещё брата, носитель
-/// вербует вспышкой. Висит на теле брата.
-/// </summary>
-[RegisterComponent]
-public sealed partial class BloodBrotherConverterComponent : Component
-{
-    [ViewVariables]
-    public EntityUid Team;
-}
-
-/// <summary>objective/convert_brother: засчитывается, когда в команде больше одного брата.</summary>
-[RegisterComponent]
-public sealed partial class BloodBrotherConvertConditionComponent : Component;
-
-/// <summary>Роль брата по крови на сущности роли разума.</summary>
-[RegisterComponent]
-public sealed partial class BloodBrotherRoleComponent : Component;
