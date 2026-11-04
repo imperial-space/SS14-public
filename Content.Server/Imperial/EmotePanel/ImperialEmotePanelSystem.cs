@@ -11,29 +11,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.EmotePanel;
 
-/// <summary>Действие панели эмоций и состояние эмоций существа.</summary>
-[RegisterComponent]
-public sealed partial class ImperialEmotePanelComponent : Component
-{
-    public EntityUid? Action;
-    public TimeSpan NextCustomEmote;
-
-    /// <summary>emotes_used: когда каждая эмоция снова доступна.</summary>
-    public Dictionary<string, TimeSpan> Cooldowns = new();
-
-    /// <summary>MANUAL_GENERAL_EMOTE_AUDIO_COOLDOWN.</summary>
-    public TimeSpan NextSound;
-
-    /// <summary>MANUAL_SPECIFIC_EMOTE_AUDIO_COOLDOWN по эмоциям.</summary>
-    public Dictionary<string, TimeSpan> NextSpecificSound = new();
-
-    /// <summary>COOLDOWN_YAWN_PROPAGATION.</summary>
-    public TimeSpan YawnImmuneUntil;
-
-    /// <summary>client.recent_examines: кого и когда осматривало существо.</summary>
-    public Dictionary<EntityUid, TimeSpan> RecentExamines = new();
-}
-
 /// <summary>Выдаёт действие панели эмоций и исполняет свои эмоции игрока.</summary>
 public sealed class ImperialEmotePanelSystem : EntitySystem
 {

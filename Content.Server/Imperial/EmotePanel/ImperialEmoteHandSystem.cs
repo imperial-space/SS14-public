@@ -43,45 +43,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.EmotePanel;
 
-/// <summary>status_effect/offering TG: протянутый предмет-рука и те, кто может его принять.</summary>
-[RegisterComponent]
-public sealed partial class ImperialEmoteOfferComponent : Component
-{
-    public EntityUid Item;
-    public ImperialHandItemKind Kind;
-
-    /// <summary>offering/no_item_received/needs_resting: рука помогает подняться лежащему.</summary>
-    public bool HelpUp;
-
-    public ProtoId<AlertPrototype> Alert;
-    public List<EntityUid> Takers = new();
-
-    /// <summary>too_slowing_this_guy: кто уже попался на «слишком медленно».</summary>
-    public HashSet<EntityUid> TooSlowing = new();
-}
-
-/// <summary>Кому сейчас что-то предлагают.</summary>
-[RegisterComponent]
-public sealed partial class ImperialEmoteTakerComponent : Component
-{
-    public EntityUid Offerer;
-}
-
-/// <summary>Держит руку-кольцо: тот, кто осмотрит его вблизи, получит щелбан.</summary>
-[RegisterComponent]
-public sealed partial class ImperialCircleOwnerComponent : Component
-{
-    public EntityUid Item;
-}
-
-/// <summary>Идёт подзатыльник: номер круга и «жестокость» (усики молей).</summary>
-[RegisterComponent]
-public sealed partial class ImperialNoogieComponent : Component
-{
-    public int Iteration;
-    public bool Brutal;
-}
-
 /// <summary>/obj/item/hand_item TG: пощёчина и «дать пять», поцелуй, кольцо, подзатыльник, рука, кража обуви.</summary>
 public sealed class ImperialEmoteHandSystem : EntitySystem
 {
