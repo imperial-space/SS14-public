@@ -422,25 +422,3 @@ public sealed partial class ImperialLanguageSystem : EntitySystem
 
     #endregion
 }
-
-/// <summary>
-/// Языковые причуды TG: bilingual (ещё один язык), foreigner (не знает общего), csl (общий понимает частично).
-/// Добавляется причудой; применяется один раз при появлении компонента.
-/// </summary>
-[RegisterComponent]
-public sealed partial class ImperialQuirkLanguageComponent : Component
-{
-    /// <summary>Выдать один случайный язык из списка, которого ещё нет (bilingual).</summary>
-    [DataField]
-    public List<ProtoId<ImperialLanguagePrototype>> GrantRandom = new();
-
-    [DataField]
-    public List<ProtoId<ImperialLanguagePrototype>> Grant = new();
-
-    [DataField]
-    public List<ProtoId<ImperialLanguagePrototype>> Block = new();
-
-    /// <summary>Язык перестаёт пониматься полностью, остаётся указанный процент.</summary>
-    [DataField]
-    public Dictionary<ProtoId<ImperialLanguagePrototype>, int> Partial = new();
-}

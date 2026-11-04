@@ -215,6 +215,7 @@ public sealed partial class ImperialQuirkParaplegicComponent : Component
 
 public sealed partial class ImperialQuirkSystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
@@ -833,7 +834,7 @@ public sealed partial class ImperialQuirkSystem
     private void OnHemiplegicHandFreed(Entity<ImperialQuirkHemiplegicComponent> ent, ref VirtualItemDeletedEvent args)
     {
         if (args.BlockingEntity == ent.Owner)
-            Robust.Shared.Timing.Timer.Spawn(0, () => BlockHand(ent));
+            _schedule.Schedule(TimeSpan.Zero, () => BlockHand(ent));
     }
 
     private void OnParaplegicAdded(Entity<ImperialQuirkParaplegicComponent> ent, ref ImperialQuirkAddedEvent args)
@@ -930,7 +931,7 @@ public sealed partial class ImperialQuirkSystem
         {
             if (i > 0 && _random.Prob(Math.Max(5f, mod) / 100f))
             {
-                result.Add(_random.Pick(new[] { "ээ,", "эмм,", "ам," }));
+                result.Add(_random.Pick(new[] { Loc.GetString("imperial-quirks-imperial-quirk-system-negative-1"), Loc.GetString("imperial-quirks-imperial-quirk-system-negative-2"), Loc.GetString("imperial-quirks-imperial-quirk-system-negative-3") }));
                 if (_random.Prob(Math.Min(5f, mod) / 100f))
                 {
                     ent.Comp.SilencedUntil = _timing.CurTime + TimeSpan.FromSeconds(6);
@@ -962,7 +963,7 @@ public sealed partial class ImperialQuirkSystem
             }
         }
 
-        args.Message = _random.Pick(new[] { "Ээ.", "Эмм.", "Ам." });
+        args.Message = _random.Pick(new[] { Loc.GetString("imperial-quirks-imperial-quirk-system-negative-4"), Loc.GetString("imperial-quirks-imperial-quirk-system-negative-5"), Loc.GetString("imperial-quirks-imperial-quirk-system-negative-6") });
     }
 
     /// <summary>calculate_mood_mod без настроения: 12.5 за каждого человека в трёх клетках.</summary>
