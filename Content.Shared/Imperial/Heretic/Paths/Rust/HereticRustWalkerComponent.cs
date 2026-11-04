@@ -11,6 +11,7 @@ public sealed partial class HereticRustWalkerComponent : Component
     [DataField]
     public float HealAmount = 3f;
 
+    [ViewVariables]
     public float HealAccum;
 
     /// <summary>Спрайт при движении/стоянии лицом на север.</summary>

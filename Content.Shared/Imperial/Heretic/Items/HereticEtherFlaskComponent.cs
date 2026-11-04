@@ -4,8 +4,3 @@ namespace Content.Shared.Imperial.Heretic.Items;
 public sealed partial class HereticEtherFlaskComponent : Component
 {
 }
-
-[RegisterComponent]
-public sealed partial class HereticEtherFlaskSleepingComponent : Component
-{
-}

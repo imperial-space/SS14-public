@@ -10,7 +10,9 @@ public sealed partial class HereticMansusBookComponent : Component
     [DataField]
     public float ClosingAnimDuration = 1.7f;
 
+    [ViewVariables]
     public float TransitionTimeRemaining;
 
+    [ViewVariables]
     public HereticMansusBookVisualState? NextState;
 }

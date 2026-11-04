@@ -5,10 +5,3 @@ namespace Content.Client.Imperial.Heretic.Effects;
 /// </summary>
 [RegisterComponent]
 public sealed partial class HereticWeepingHallucinationVisualsComponent : Component;
-
-public enum HereticWeepingHallucinationLayers : byte
-{
-    Armor,
-    Hood,
-    Blade,
-}

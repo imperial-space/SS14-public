@@ -140,14 +140,11 @@ public sealed partial class HereticSystem
         if (!Resolve(uid, ref comp))
             return EntityUid.Invalid;
 
-        var index = comp.OrbitingBlades.Count;
         var blade = Spawn("HereticOrbitingBlade", Transform(uid).Coordinates);
         _xform.SetParent(blade, uid);
         var orbitComp = EnsureComp<HereticOrbitingBladeComponent>(blade);
         orbitComp.OwnerHeretic = uid;
-        var orbitVisuals = EnsureComp<OrbitVisualsComponent>(blade);
-        orbitVisuals.PhaseOffset = index / 3f;
-        Dirty(blade, orbitVisuals);
+        EnsureComp<OrbitVisualsComponent>(blade);
         comp.OrbitingBlades.Add(blade);
         comp.BladesCreated++;
         Dirty(uid, comp);

@@ -18,5 +18,6 @@ public sealed partial class MoonParadeProjectileComponent : Component
     public float Speed = 4f;
 
     // Runtime only — not networked
+    [ViewVariables]
     public HashSet<EntityUid> HitMobs = new();
 }

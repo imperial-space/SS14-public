@@ -1,7 +1,5 @@
 namespace Content.Shared.Imperial.Heretic.Items;
 
-public enum HereticPaintingType { Weeping, Beauty, Vines, Rust, Desire }
-
 [RegisterComponent]
 public sealed partial class HereticPaintingComponent : Component
 {
@@ -17,7 +15,9 @@ public sealed partial class HereticPaintingComponent : Component
     [DataField]
     public float VisibilityRange = 7f;
 
+    [ViewVariables]
     public TimeSpan NextUpdate;
 
+    [ViewVariables]
     public Dictionary<EntityUid, TimeSpan> PlayerCooldowns = new();
 }

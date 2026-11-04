@@ -7,6 +7,7 @@ namespace Content.Shared.Imperial.Heretic.Items;
 [AutoGenerateComponentState(true)]
 public sealed partial class HereticCodexComponent : Component
 {
+    [ViewVariables]
     [AutoNetworkedField]
     public bool IsOpen = false;
 

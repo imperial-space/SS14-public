@@ -20,6 +20,7 @@ namespace Content.Server.Imperial.Heretic.Paths.Blade;
 
 public sealed class HereticArenaSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly DecalSystem _decals = default!;
     [Dependency] private readonly HereticSystem _heretic = default!;
@@ -121,7 +122,7 @@ public sealed class HereticArenaSystem : EntitySystem
             arena.Participants.Remove(victor);
 
             // Через 60 секунд — убираем маркерный компонент
-            Timer.Spawn(60_000, () =>
+            _schedule.Schedule(TimeSpan.FromMilliseconds(60_000), () =>
             {
                 if (Exists(victor))
                     RemCompDeferred<HereticArenaParticipantComponent>(victor);

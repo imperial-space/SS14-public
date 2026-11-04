@@ -8,6 +8,7 @@ public sealed partial class HereticMawedCrucibleComponent : Component
     [DataField]
     public int MaxCharges = 5;
 
+    [ViewVariables]
     [AutoNetworkedField]
     public int Charges = 5;
 
@@ -23,6 +24,7 @@ public sealed partial class HereticMawedCrucibleComponent : Component
     [DataField]
     public float MarshalDuration = 60f;
 
+    [ViewVariables]
     [AutoNetworkedField]
     public TimeSpan CooldownEnd = TimeSpan.Zero;
 }

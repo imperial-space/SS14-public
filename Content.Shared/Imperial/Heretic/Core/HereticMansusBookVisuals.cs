@@ -7,12 +7,3 @@ public enum HereticMansusBookVisuals : byte
 {
     State,
 }
-
-[Serializable, NetSerializable]
-public enum HereticMansusBookVisualState : byte
-{
-    Closed,
-    Opening,
-    Open,
-    Closing,
-}

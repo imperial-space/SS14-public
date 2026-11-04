@@ -8,6 +8,8 @@ public sealed partial class HereticFleshWeaveItemComponent : Component
     [DataField]
     public EntityUid HereticUid;
 
+    [ViewVariables]
     public EntityUid? PendingOrgan;
+    [ViewVariables]
     public EntityUid? PendingTarget;
 }

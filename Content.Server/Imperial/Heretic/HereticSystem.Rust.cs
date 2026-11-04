@@ -184,7 +184,7 @@ public sealed partial class HereticSystem
             var capturedGrid = grid;
             var capturedTiles = new List<Vector2i>(indices);
 
-            Timer.Spawn(ringDelay, () =>
+            _schedule.Schedule(TimeSpan.FromMilliseconds(ringDelay), () =>
             {
                 if (!Exists(capturedGrid) || !TryComp<MapGridComponent>(capturedGrid, out var gc))
                     return;
@@ -200,7 +200,7 @@ public sealed partial class HereticSystem
                                   : i < third * 2 ? 3300
                                                     : 5000;
 
-                    Timer.Spawn(staggerMs, () =>
+                    _schedule.Schedule(TimeSpan.FromMilliseconds(staggerMs), () =>
                     {
                         if (!Exists(capturedGrid) || !TryComp<MapGridComponent>(capturedGrid, out var gcInner))
                             return;

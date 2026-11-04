@@ -12,5 +12,6 @@ public sealed partial class HereticLockRiftComponent : Component
     [DataField]
     public string SpawnEntity = "HereticFamiliarStalker";
 
+    [ViewVariables]
     public float Timer;
 }

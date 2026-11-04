@@ -7,11 +7,3 @@ public enum HereticPhylacteryVisuals : byte
 {
     FillLevel,
 }
-
-[Serializable, NetSerializable]
-public enum HereticPhylacteryFillLevel : byte
-{
-    Empty,
-    Half,
-    Full,
-}

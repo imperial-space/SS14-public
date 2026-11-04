@@ -18,11 +18,18 @@ public sealed partial class HereticRustDashComponent : Component
     [DataField] public string DashMarkerPrototype = "BubblegumDashMarker";
     [DataField] public SoundSpecifier DashSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_weapons_kenetic_accel.ogg");
 
+    [ViewVariables]
     public bool IsWaiting;
+    [ViewVariables]
     public bool IsActive;
+    [ViewVariables]
     public EntityCoordinates Destination;
+    [ViewVariables]
     public float WaitAccum;
+    [ViewVariables]
     public float TrailAccum;
+    [ViewVariables]
     public float RustAccum;
+    [ViewVariables]
     public float DamageAccum;
 }

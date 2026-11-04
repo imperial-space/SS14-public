@@ -18,6 +18,7 @@ namespace Content.Server.Imperial.Heretic.Items;
 
 public sealed class HereticEldritchCoinSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly DoorSystem _door = default!;
@@ -56,7 +57,7 @@ public sealed class HereticEldritchCoinSystem : EntitySystem
         var coords = Transform(user).Coordinates;
         var flipRange = comp.FlipRange;
 
-        Timer.Spawn(TimeSpan.FromSeconds(1), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(1), () =>
         {
             if (Deleted(coinUid))
                 return;

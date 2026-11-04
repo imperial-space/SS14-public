@@ -595,12 +595,3 @@ public sealed class HereticStarGazerSystem : EntitySystem
         _damage.TryChangeDamage(comp.Master.Value, dmg, ignoreResistances: false);
     }
 }
-
-/// <summary>Маркер для снарядов Star Gazer, чтобы не конфликтовать с HereticStarBlastProjectileComponent.</summary>
-[RegisterComponent]
-public sealed partial class HereticStarGazerProjectileComponent : Component
-{
-    [DataField] public EntityUid Shooter = EntityUid.Invalid;
-    [DataField] public float TrailTimer;
-    [DataField] public float TrailInterval = 0.3f;
-}

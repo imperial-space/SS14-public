@@ -194,10 +194,3 @@ public sealed class HereticRuleSystem : GameRuleSystem<HereticRuleComponent>
         _roundEnd.RequestRoundEnd(TimeSpan.FromMinutes(10), checkCooldown: false);
     }
 }
-
-/// <summary>Raised on the server when a heretic completes their ascension ritual.</summary>
-public sealed class HereticAscendedEvent : EntityEventArgs
-{
-    public EntityUid Heretic;
-    public HereticAscendedEvent(EntityUid heretic) => Heretic = heretic;
-}

@@ -9,5 +9,6 @@ public sealed partial class HereticRuleComponent : Component
     public int MaxHeretics = 1;
 
     /// <summary>Minds of selected heretics, stored for round-end summary.</summary>
+    [ViewVariables]
     public readonly List<EntityUid> HereticMinds = new();
 }

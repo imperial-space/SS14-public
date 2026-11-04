@@ -86,6 +86,7 @@ namespace Content.Server.Imperial.Heretic.Paths.Ash;
 /// </summary>
 public sealed class HereticAshActionsSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly SharedCuffableSystem _cuffs = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -357,7 +358,7 @@ public sealed class HereticAshActionsSystem : EntitySystem
             return;
         }
 
-        Timer.Spawn(TimeSpan.FromSeconds(1.0), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(1.0), () =>
             ContinueVolcanoBeam(caster, target, bounces - 1, empowered, hitSet, chainRadius));
     }
 
@@ -789,7 +790,7 @@ public sealed class HereticAshActionsSystem : EntitySystem
         FireCascadeWave(targetCoords, 1.5f, innerDmg, 1f, alreadyHit);
 
         // Wave 2 — t+250ms, radius 2.5
-        Timer.Spawn(250, () =>
+        _schedule.Schedule(TimeSpan.FromMilliseconds(250), () =>
         {
             if (!Exists(uid))
                 return;
@@ -798,7 +799,7 @@ public sealed class HereticAshActionsSystem : EntitySystem
         });
 
         // Wave 3 — t+500ms, radius 4 (outermost, hits harder)
-        Timer.Spawn(500, () =>
+        _schedule.Schedule(TimeSpan.FromMilliseconds(500), () =>
         {
             if (!Exists(uid))
                 return;
@@ -890,7 +891,7 @@ public sealed class HereticAshActionsSystem : EntitySystem
                 }
             }
 
-        Timer.Spawn(300, () =>
+        _schedule.Schedule(TimeSpan.FromMilliseconds(300), () =>
         {
             if (!Exists(uid))
                 return;

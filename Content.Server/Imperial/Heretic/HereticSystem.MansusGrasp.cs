@@ -81,6 +81,7 @@ namespace Content.Server.Imperial.Heretic;
 /// </summary>
 public sealed partial class HereticSystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     private void OnMansusGrasp(EntityUid uid, HereticComponent comp, HereticMansusGraspActionEvent args)
     {
         if (args.Handled)
@@ -179,7 +180,7 @@ public sealed partial class HereticSystem
         if (!_mobs.IsAlive(victim))
             return;
 
-        Timer.Spawn(TimeSpan.FromSeconds(0.4), () => DoMansusGraspSuicideTick(victim, tick + 1));
+        _schedule.Schedule(TimeSpan.FromSeconds(0.4), () => DoMansusGraspSuicideTick(victim, tick + 1));
     }
 
     /// <summary>Святая вода в теле нарушает ритуалы еретика (remove_charges в SS13).</summary>
@@ -475,7 +476,7 @@ public sealed partial class HereticSystem
             return;
 
         var offhand = offhandBlade.Value;
-        Timer.Spawn(TimeSpan.FromSeconds(0.25), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(0.25), () =>
         {
             if (TerminatingOrDeleted(heretic) || TerminatingOrDeleted(target) || TerminatingOrDeleted(offhand))
                 return;

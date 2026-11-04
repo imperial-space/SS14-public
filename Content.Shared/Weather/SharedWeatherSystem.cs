@@ -28,7 +28,10 @@ public abstract class SharedWeatherSystem : EntitySystem
     public static readonly TimeSpan StartupTime = TimeSpan.FromSeconds(15);
     public static readonly TimeSpan ShutdownTime = TimeSpan.FromSeconds(15);
 
+    // Imperial Space start - ignoreRoof: погода и под крышей (Пустотная буря еретика)
+    // public bool CanWeatherAffect(Entity<MapGridComponent?, RoofComponent?> ent, TileRef tileRef)
     public bool CanWeatherAffect(Entity<MapGridComponent?, RoofComponent?> ent, TileRef tileRef, bool ignoreRoof = false)
+    // Imperial Space end
     {
         if (tileRef.Tile.IsEmpty)
             return true;
@@ -36,16 +39,19 @@ public abstract class SharedWeatherSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp1))
             return false;
 
-        if (!ignoreRoof)
-        {
-            if (Resolve(ent, ref ent.Comp2, false) && _roof.IsRooved((ent, ent.Comp1, ent.Comp2), tileRef.GridIndices))
-                return false;
+        // Imperial Space start
+        // if (Resolve(ent, ref ent.Comp2, false) && _roof.IsRooved((ent, ent.Comp1, ent.Comp2), tileRef.GridIndices))
+        if (!ignoreRoof && Resolve(ent, ref ent.Comp2, false) && _roof.IsRooved((ent, ent.Comp1, ent.Comp2), tileRef.GridIndices))
+        // Imperial Space end
+            return false;
 
-            var tileDef = (ContentTileDefinition)_tileDefManager[tileRef.Tile.TypeId];
+        var tileDef = (ContentTileDefinition)_tileDefManager[tileRef.Tile.TypeId];
 
-            if (!tileDef.Weather)
-                return false;
-        }
+        // Imperial Space start
+        // if (!tileDef.Weather)
+        if (!ignoreRoof && !tileDef.Weather)
+        // Imperial Space end
+            return false;
 
         var anchoredEntities = _mapSystem.GetAnchoredEntitiesEnumerator(ent, ent.Comp1, tileRef.GridIndices);
 

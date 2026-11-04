@@ -19,6 +19,7 @@ namespace Content.Server.Imperial.Heretic.Reality;
 
 public sealed class HereticRealityRiftSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly HereticSystem _heretic = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -242,7 +243,7 @@ public sealed class HereticRealityRiftSystem : EntitySystem
         var delay = TimeSpan.FromSeconds(rift.RespawnDelay);
         QueueDel(args.Used.Value);
 
-        Timer.Spawn(delay, () => SpawnBreach(coords));
+        _schedule.Schedule(delay, () => SpawnBreach(coords));
     }
 
     // ─── Spawn API ────────────────────────────────────────────────────────────

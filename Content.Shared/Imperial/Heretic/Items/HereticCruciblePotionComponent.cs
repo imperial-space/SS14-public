@@ -18,10 +18,6 @@ public sealed partial class HereticCruciblePotionComponent : Component
     public float SoulCooldown = 120f;
 
     // Crucible that produced this potion; used to read SoulCooldown at drink time
+    [ViewVariables]
     public EntityUid? SourceCrucible;
-}
-
-[Serializable, NetSerializable]
-public sealed partial class HereticCruciblePotionDoAfterEvent : SimpleDoAfterEvent
-{
 }

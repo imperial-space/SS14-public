@@ -97,6 +97,7 @@ namespace Content.Server.Imperial.Heretic.Actions;
 /// </summary>
 public sealed class HereticGeneralActionsSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
@@ -159,7 +160,7 @@ public sealed class HereticGeneralActionsSystem : EntitySystem
         _xform.SetParent(effectUid, uid);
 
         // Rename player, apply 25% speed boost, hide original sprite
-        _metaData.SetEntityName(uid, "Тень");
+        _metaData.SetEntityName(uid, Loc.GetString("imperial-heretic-heretic-general-actions-system-1"));
         _movementSpeed.ChangeBaseSpeed(uid, origWalk, origSprint * 1.25f, origAccel);
         var addedStealth = !HasComp<StealthComponent>(uid);
         var stealthComp = EnsureComp<StealthComponent>(uid);
@@ -187,11 +188,11 @@ public sealed class HereticGeneralActionsSystem : EntitySystem
             if (!cloakComp.IsActive || Deleted(uid))
                 return;
             Spawn("HereticCloakTrailEffect", Transform(uid).Coordinates);
-            Timer.Spawn(TimeSpan.FromMilliseconds(100), SpawnTrail);
+            _schedule.Schedule(TimeSpan.FromMilliseconds(100), SpawnTrail);
         }
-        Timer.Spawn(TimeSpan.FromMilliseconds(100), SpawnTrail);
+        _schedule.Schedule(TimeSpan.FromMilliseconds(100), SpawnTrail);
 
-        Timer.Spawn(TimeSpan.FromSeconds(durationSeconds), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(durationSeconds), () =>
         {
             if (Deleted(uid))
                 return;

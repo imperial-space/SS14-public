@@ -11,6 +11,7 @@ public sealed partial class HereticCurioShieldComponent : Component
     [DataField]
     public TimeSpan RechargeDelay = TimeSpan.FromSeconds(25);
 
+    [ViewVariables]
     public TimeSpan? LastAbsorbedTime;
 
     [DataField, AutoNetworkedField]

@@ -98,6 +98,7 @@ namespace Content.Server.Imperial.Heretic.Paths.Void;
 /// </summary>
 public sealed class HereticVoidActionsSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly SharedCuffableSystem _cuffs = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -425,7 +426,7 @@ public sealed class HereticVoidActionsSystem : EntitySystem
 
         // Caster loses consciousness 12 seconds after the spell fires (not immediately).
         var capturedUid = uid;
-        Timer.Spawn(TimeSpan.FromSeconds(12), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(12), () =>
         {
             if (Deleted(capturedUid) || !_mobs.IsAlive(capturedUid))
                 return;

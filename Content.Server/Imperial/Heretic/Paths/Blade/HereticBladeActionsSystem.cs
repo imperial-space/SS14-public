@@ -92,6 +92,7 @@ namespace Content.Server.Imperial.Heretic.Paths.Blade;
 /// </summary>
 public sealed class HereticBladeActionsSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly MobStateSystem _mobs = default!;
@@ -349,7 +350,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         _alert.ShowAlert(uid, "HereticRealignment");
 
         var captured = uid;
-        Timer.Spawn(TimeSpan.FromSeconds(8), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(8), () =>
         {
             if (!Deleted(captured))
             {
@@ -364,7 +365,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
         _actions.SetCooldown(new Entity<ActionComponent?>(args.Action.Owner, args.Action.Comp), cooldown);
 
-        Timer.Spawn(TimeSpan.FromSeconds(90), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(90), () =>
         {
             if (Deleted(captured))
                 return;
@@ -479,7 +480,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         for (var i = 0; i < 3; i++)
         {
             var delay = i * 660;
-            Timer.Spawn(delay, () =>
+            _schedule.Schedule(TimeSpan.FromMilliseconds(delay), () =>
             {
                 if (!TryComp<HereticComponent>(uid, out var hComp))
                     return;
@@ -533,7 +534,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         // SS13: protective_blades/recharging — 60s recharge after ascension
         if (HasComp<HereticMaelstromOfSilverComponent>(uid))
         {
-            Timer.Spawn(TimeSpan.FromSeconds(60), () =>
+            _schedule.Schedule(TimeSpan.FromSeconds(60), () =>
             {
                 if (Deleted(uid) || !HasComp<HereticMaelstromOfSilverComponent>(uid))
                     return;
@@ -560,7 +561,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         // SS13: protective_blades/recharging — 60s recharge after ascension
         if (HasComp<HereticMaelstromOfSilverComponent>(uid))
         {
-            Timer.Spawn(TimeSpan.FromSeconds(60), () =>
+            _schedule.Schedule(TimeSpan.FromSeconds(60), () =>
             {
                 if (Deleted(uid) || !HasComp<HereticMaelstromOfSilverComponent>(uid))
                     return;
@@ -754,7 +755,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
         // SS220: "Прицеливание даёт теплозрение" — выстрел даёт временное теплозрение
         EnsureComp<ThermalEntityVisionComponent>(uid);
-        Timer.Spawn(TimeSpan.FromSeconds(6), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(6), () =>
         {
             if (!TerminatingOrDeleted(uid))
                 RemComp<ThermalEntityVisionComponent>(uid);
@@ -777,7 +778,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
                 {
                     comp.StunAbsorbedSeconds = 0f;
                     comp.StunAbsorptionRechargeDoneAt = _timing.CurTime + TimeSpan.FromMinutes(2);
-                    Timer.Spawn(TimeSpan.FromMinutes(2), () =>
+                    _schedule.Schedule(TimeSpan.FromMinutes(2), () =>
                     {
                         if (!Deleted(uid) && TryComp<HereticMaelstromOfSilverComponent>(uid, out var c))
                             c.StunAbsorptionRechargeDoneAt = null;
@@ -812,7 +813,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         for (var i = 1; i < 8; i++)
         {
             var delayIndex = i;
-            Timer.Spawn(TimeSpan.FromSeconds(delayIndex * 0.25), () =>
+            _schedule.Schedule(TimeSpan.FromSeconds(delayIndex * 0.25), () =>
             {
                 if (Deleted(uid))
                     return;

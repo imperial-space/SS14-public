@@ -21,11 +21,3 @@ public sealed partial class LunaticObjectiveConditionComponent : Component
     [DataField]
     public bool IsMaster;
 }
-
-/// <summary>Роль лунатика на сущности роли разума.</summary>
-[RegisterComponent]
-public sealed partial class LunaticRoleComponent : Component;
-
-/// <summary>Роль Постановщика на сущности роли разума.</summary>
-[RegisterComponent]
-public sealed partial class LunaticMasterRoleComponent : Component;

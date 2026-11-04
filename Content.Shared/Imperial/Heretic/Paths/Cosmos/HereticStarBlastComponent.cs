@@ -8,5 +8,6 @@ public sealed partial class HereticStarBlastComponent : Component
     [DataField]
     public EntityUid? ActiveProjectile;
 
+    [ViewVariables]
     public EntityUid? StarBlastAction;
 }

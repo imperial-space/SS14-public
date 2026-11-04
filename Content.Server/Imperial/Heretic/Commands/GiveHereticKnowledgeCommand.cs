@@ -11,8 +11,8 @@ sealed class GiveHereticKnowledgeCommand : IConsoleCommand
     [Dependency] private readonly IEntityManager _entManager = default!;
 
     public string Command => "hereticknowledge";
-    public string Description => "Выдаёт очки знания еретику.";
-    public string Help => $"Использование: {Command} <количество> [entityUid]";
+    public string Description => Loc.GetString("imperial-heretic-give-heretic-knowledge-command-1");
+    public string Help => Loc.GetString("imperial-heretic-give-heretic-knowledge-command-2", ("arg0", Command));
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {
@@ -33,7 +33,7 @@ sealed class GiveHereticKnowledgeCommand : IConsoleCommand
 
         if (!int.TryParse(args[0], out var amount))
         {
-            shell.WriteLine($"Не удалось распознать количество: «{args[0]}».");
+            shell.WriteLine(Loc.GetString("imperial-heretic-give-heretic-knowledge-command-3", ("arg0", args[0])));
             return;
         }
 
@@ -43,7 +43,7 @@ sealed class GiveHereticKnowledgeCommand : IConsoleCommand
         {
             if (!_entManager.TryParseNetEntity(args[1], out var netEnt) || !_entManager.EntityExists(netEnt))
             {
-                shell.WriteLine($"Сущность не найдена: «{args[1]}».");
+                shell.WriteLine(Loc.GetString("imperial-heretic-give-heretic-knowledge-command-4", ("arg0", args[1])));
                 return;
             }
             target = netEnt.Value;
@@ -54,17 +54,17 @@ sealed class GiveHereticKnowledgeCommand : IConsoleCommand
         }
         else
         {
-            shell.WriteLine("Укажите entityUid цели или выберите персонажа.");
+            shell.WriteLine(Loc.GetString("imperial-heretic-give-heretic-knowledge-command-5"));
             return;
         }
 
         if (!_entManager.TryGetComponent<HereticComponent>(target, out var comp))
         {
-            shell.WriteLine("Цель не является еретиком.");
+            shell.WriteLine(Loc.GetString("imperial-heretic-give-heretic-knowledge-command-6"));
             return;
         }
 
         _entManager.System<HereticSystem>().AddKnowledgePoints(target, comp, amount);
-        shell.WriteLine($"Выдано {amount} очков знания еретику {target}.");
+        shell.WriteLine(Loc.GetString("imperial-heretic-give-heretic-knowledge-command-7", ("arg0", amount), ("arg1", target)));
     }
 }

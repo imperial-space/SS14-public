@@ -5,6 +5,7 @@ namespace Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
 public sealed partial class HereticMoonIllusionComponent : Component
 {
+    [ViewVariables]
     [AutoNetworkedField]
     public List<PrototypeLayerData> ClothingLayers = new();
 

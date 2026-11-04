@@ -16,6 +16,7 @@ namespace Content.Server.Imperial.Heretic.Rituals;
 
 public sealed class HereticMadnessRuneSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
     [Dependency] private readonly ParacusiaSystem _paracusia = default!;
@@ -50,7 +51,7 @@ public sealed class HereticMadnessRuneSystem : EntitySystem
             _paracusia.SetDistance(target, 5f);
         }
 
-        Timer.Spawn(15000, () =>
+        _schedule.Schedule(TimeSpan.FromMilliseconds(15000), () =>
         {
             if (Exists(target))
                 RemComp<ParacusiaComponent>(target);
@@ -58,7 +59,7 @@ public sealed class HereticMadnessRuneSystem : EntitySystem
 
         EnsureComp<JitteringComponent>(target);
 
-        Timer.Spawn(10000, () =>
+        _schedule.Schedule(TimeSpan.FromMilliseconds(10000), () =>
         {
             if (Exists(target))
                 RemComp<JitteringComponent>(target);

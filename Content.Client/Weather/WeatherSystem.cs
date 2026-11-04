@@ -84,7 +84,10 @@ public sealed class WeatherSystem : SharedWeatherSystem
                     if (!visited.Add(node.GridIndices))
                         continue;
 
+                    // Imperial Space start - погода под крышей
+                    // if (!CanWeatherAffect((playerXform.GridUid.Value, grid, roofComp), node))
                     if (!CanWeatherAffect((playerXform.GridUid.Value, grid, roofComp), node, weather.IgnoreRoof))
+                    // Imperial Space end
                     {
                         // Add neighbors
                         // TODO: Ideally we pick some deterministically random direction and use that

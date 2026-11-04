@@ -42,7 +42,7 @@ public sealed class HereticTargetWindow : DefaultWindow
         _playerMgr = IoCManager.Resolve<IPlayerManager>();
         _xformSys = _entMan.System<SharedTransformSystem>();
 
-        Title = "Цели Мансуса";
+        Title = Loc.GetString("imperial-heretic-heretic-target-window-1");
         MinSize = new Vector2(340, 280);
 
         // ── Root layout: target list on the left, tracker on the right ──────
@@ -80,7 +80,7 @@ public sealed class HereticTargetWindow : DefaultWindow
 
         var trackerHeader = new Label
         {
-            Text = "Направление:",
+            Text = Loc.GetString("imperial-heretic-heretic-target-window-2"),
             FontColorOverride = HeaderGold,
             HorizontalAlignment = Control.HAlignment.Center,
         };
@@ -105,7 +105,7 @@ public sealed class HereticTargetWindow : DefaultWindow
 
         var hint = new Label
         {
-            Text = "(нажмите на цель)",
+            Text = Loc.GetString("imperial-heretic-heretic-target-window-3"),
             FontColorOverride = Color.Gray,
             HorizontalAlignment = Control.HAlignment.Center,
         };
@@ -123,7 +123,7 @@ public sealed class HereticTargetWindow : DefaultWindow
         {
             var empty = new Label
             {
-                Text = "Нет именных целей.",
+                Text = Loc.GetString("imperial-heretic-heretic-target-window-4"),
                 FontColorOverride = Color.Gray,
             };
             _targetList.AddChild(empty);

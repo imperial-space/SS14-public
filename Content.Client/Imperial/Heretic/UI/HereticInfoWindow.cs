@@ -907,7 +907,7 @@ public sealed class HereticInfoWindow : DefaultWindow
         // РАССВЕТ header
         var dawnLabel = new Label
         {
-            Text = "РАССВЕТ",
+            Text = Loc.GetString("imperial-heretic-heretic-info-window-1"),
             Align = Label.AlignMode.Center,
             HorizontalExpand = true,
         };
@@ -1045,7 +1045,7 @@ public sealed class HereticInfoWindow : DefaultWindow
                     {
                         wrapper.AddChild(new Label
                         {
-                            Text = "ЗАКАТ",
+                            Text = Loc.GetString("imperial-heretic-heretic-info-window-2"),
                             FontColorOverride = Color.FromHex("#aa55cc"),
                             Align = Label.AlignMode.Center,
                         });
@@ -1100,7 +1100,7 @@ public sealed class HereticInfoWindow : DefaultWindow
                         };
                         giftWrapper.AddChild(new Label
                         {
-                            Text = "ДАР",
+                            Text = Loc.GetString("imperial-heretic-heretic-info-window-3"),
                             FontColorOverride = HeaderGold,
                             Align = Label.AlignMode.Center,
                         });
@@ -1311,7 +1311,7 @@ public sealed class HereticInfoWindow : DefaultWindow
                 ? Loc.GetString("heretic-info-shop-learned")
                 : isGift
                     ? Loc.GetString("heretic-info-shop-learn")
-                    : $"{node.Cost} оч.",
+                    : Loc.GetString("imperial-heretic-heretic-info-window-4", ("arg0", node.Cost)),
             FontColorOverride = isResearched ? DimGreen : canAfford ? BrightGreen : LockGray,
         });
 

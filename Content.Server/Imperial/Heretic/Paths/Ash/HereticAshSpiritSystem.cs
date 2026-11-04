@@ -24,6 +24,7 @@ namespace Content.Server.Imperial.Heretic.Paths.Ash;
 
 public sealed class HereticAshSpiritSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -149,7 +150,7 @@ public sealed class HereticAshSpiritSystem : EntitySystem
 
         _popup.PopupEntity(Loc.GetString("heretic-ash-passage"), uid, uid, PopupType.Medium);
 
-        Timer.Spawn(TimeSpan.FromSeconds(1.1), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(1.1), () =>
         {
             if (!Exists(uid))
                 return;

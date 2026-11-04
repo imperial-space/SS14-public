@@ -19,6 +19,7 @@ namespace Content.Server.Imperial.Heretic.Paths.Flesh;
 
 public sealed class HereticStalkerSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly EmpSystem _emp = default!;
@@ -73,7 +74,7 @@ public sealed class HereticStalkerSystem : EntitySystem
 
         Spawn("HereticEffectAshBlink", Transform(uid).Coordinates);
 
-        Timer.Spawn(TimeSpan.FromSeconds(2.5), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(2.5), () =>
         {
             if (!Exists(uid))
                 return;

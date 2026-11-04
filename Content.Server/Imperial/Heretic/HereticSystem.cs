@@ -524,14 +524,3 @@ public sealed partial class HereticSystem : SharedHereticSystem
         return true;
     }
 }
-
-public record struct HereticRoundEndData(
-    HereticPath CurrentPath,
-    int SacrificeCount,
-    int RequiredSacrifices,
-    int HighValueSacrificeCount,
-    int TotalKnowledgeGained,
-    int RequiredKnowledge,
-    bool AscensionTriggered,
-    IReadOnlyList<ProtoId<HereticKnowledgePrototype>> ResearchedKnowledge
-);

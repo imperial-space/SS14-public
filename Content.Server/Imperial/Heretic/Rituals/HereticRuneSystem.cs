@@ -56,6 +56,7 @@ namespace Content.Server.Imperial.Heretic.Rituals;
 
 public sealed class HereticRuneSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
@@ -250,7 +251,7 @@ public sealed class HereticRuneSystem : EntitySystem
         var coords = _xform.GetMapCoordinates(args.Used.Value);
         var delay = TimeSpan.FromSeconds(rift.RespawnDelay);
         QueueDel(args.Used.Value);
-        Timer.Spawn(delay, () => Spawn("HereticRealityBreach", coords));
+        _schedule.Schedule(delay, () => Spawn("HereticRealityBreach", coords));
     }
 
     private void EraseRune(EntityUid runeUid, HereticRuneComponent rune, EntityUid user)
@@ -706,7 +707,7 @@ public sealed class HereticRuneSystem : EntitySystem
                         // Спящая цель: трясётся 5 секунд, затем гибается
                         var isHead = HasComp<CommandStaffComponent>(target);
                         _jitter.AddJitter(target, 20f, 6f);
-                        Timer.Spawn(5000, () =>
+                        _schedule.Schedule(TimeSpan.FromMilliseconds(5000), () =>
                         {
                             if (!Exists(target))
                                 return;

@@ -21,13 +21,10 @@ public sealed partial class HereticVoidConduitComponent : Component
     [DataField]
     public int StructureDamageMax = 30;
 
+    [ViewVariables]
     public float PulseTimer;
+    [ViewVariables]
     public float LifetimeTimer;
+    [ViewVariables]
     public EntityUid? AmbientSound;
-}
-
-[RegisterComponent]
-public sealed partial class VoidConduitPressureComponent : Component
-{
-    public TimeSpan ExpiresAt;
 }

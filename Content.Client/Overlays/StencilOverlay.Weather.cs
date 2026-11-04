@@ -35,15 +35,17 @@ public sealed partial class StencilOverlay
                 // idk if this is safe to cache in a field and clear sloth help
                 _mapManager.FindGridsIntersecting(mapId, worldAABB, ref _grids);
 
+                // Imperial Space start - погода под крышей
                 var ignoreRoof = false;
                 foreach (var (_, weatherComp, _) in weathers)
                 {
-                    if (weatherComp.IgnoreRoof)
-                    {
-                        ignoreRoof = true;
-                        break;
-                    }
+                    if (!weatherComp.IgnoreRoof)
+                        continue;
+
+                    ignoreRoof = true;
+                    break;
                 }
+                // Imperial Space end
 
                 foreach (var grid in _grids)
                 {
@@ -55,7 +57,10 @@ public sealed partial class StencilOverlay
                     foreach (var tile in _map.GetTilesIntersecting(grid.Owner, grid, worldAABB))
                     {
                         // Ignored tiles for stencil
+                        // Imperial Space start
+                        // if (_weather.CanWeatherAffect((grid.Owner, grid, roofComp), tile))
                         if (_weather.CanWeatherAffect((grid.Owner, grid, roofComp), tile, ignoreRoof))
+                        // Imperial Space end
                             continue;
 
                         var gridTile = new Box2(tile.GridIndices * grid.Comp.TileSize,

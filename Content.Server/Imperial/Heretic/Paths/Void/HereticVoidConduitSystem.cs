@@ -33,6 +33,7 @@ namespace Content.Server.Imperial.Heretic.Paths.Void;
 
 public sealed class HereticVoidConduitSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly DamageableSystem           _damage         = default!;
     [Dependency] private readonly EntityLookupSystem         _lookup         = default!;
     [Dependency] private readonly SharedAudioSystem          _audio          = default!;
@@ -120,7 +121,7 @@ public sealed class HereticVoidConduitSystem : EntitySystem
         {
             var capturedProto = WaveRings[i];
             var capturedCoords = coords;
-            Timer.Spawn(TimeSpan.FromSeconds(i * 2.5), () =>
+            _schedule.Schedule(TimeSpan.FromSeconds(i * 2.5), () =>
             {
                 if (!Exists(uid)) return;
                 Spawn(capturedProto, capturedCoords);
@@ -181,7 +182,7 @@ public sealed class HereticVoidConduitSystem : EntitySystem
         {
             var capturedTargets = targets;
             var capturedUid = uid;
-            Timer.Spawn(TimeSpan.FromSeconds(dist), () =>
+            _schedule.Schedule(TimeSpan.FromSeconds(dist), () =>
             {
                 if (!Exists(capturedUid)) return;
                 foreach (var target in capturedTargets)

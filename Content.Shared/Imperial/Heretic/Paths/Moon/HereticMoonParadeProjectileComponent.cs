@@ -17,5 +17,6 @@ public sealed partial class HereticMoonParadeProjectileComponent : Component
     [DataField]
     public float Speed = 2f;
 
+    [ViewVariables]
     public HashSet<EntityUid> MobsHit = new();
 }

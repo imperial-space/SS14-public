@@ -9,6 +9,8 @@ public sealed partial class HereticAmokComponent : Component
     [DataField]
     public float AttackCooldown = 1.5f;
 
+    [ViewVariables]
     public float Elapsed;
+    [ViewVariables]
     public float AttackTimer;
 }

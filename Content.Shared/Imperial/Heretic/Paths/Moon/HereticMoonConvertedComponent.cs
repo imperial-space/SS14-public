@@ -6,6 +6,7 @@ namespace Content.Shared.Imperial.Heretic.Paths.Moon;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class HereticMoonConvertedComponent : Component
 {
+    [ViewVariables]
     public float DamageAccumulated = 0f;
     public const float DamageBreakThreshold = 75f;
 
