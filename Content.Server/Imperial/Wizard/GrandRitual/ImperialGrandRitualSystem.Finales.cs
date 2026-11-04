@@ -248,7 +248,7 @@ public sealed partial class ImperialGrandRitualSystem
         _popup.PopupEntity(Loc.GetString("imperial-grand-finale-vendetta-popup"), victim, victim, PopupType.LargeCaution);
     }
 
-    private IEnumerable<EntityUid> CrewWithMinds(EntityUid exclude)
+    private IEnumerable<EntityUid> CrewWithMinds(EntityUid? exclude = null)
     {
         var query = EntityQueryEnumerator<HumanoidProfileComponent>();
         while (query.MoveNext(out var uid, out _))
@@ -356,7 +356,7 @@ public sealed partial class ImperialGrandRitualSystem
     /// <summary>clown: весь экипаж «всегда работал» на клоунской станции.</summary>
     private void Clown(EntityUid invoker)
     {
-        foreach (var victim in CrewWithMinds(EntityUid.Invalid).ToList())
+        foreach (var victim in CrewWithMinds().ToList())
         {
             _stun.TryUpdateParalyzeDuration(victim, TimeSpan.FromSeconds(3));
             if (victim == invoker)
@@ -432,7 +432,7 @@ public sealed partial class ImperialGrandRitualSystem
         _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Wizard/timeparadox2.ogg"), Filter.Broadcast(), true);
         var formerCaptains = new List<EntityUid>();
         var otherCrew = new List<EntityUid>();
-        foreach (var crew in CrewWithMinds(EntityUid.Invalid).ToList())
+        foreach (var crew in CrewWithMinds().ToList())
         {
             _stun.TryUpdateParalyzeDuration(crew, TimeSpan.FromSeconds(3));
             if (crew == invoker)

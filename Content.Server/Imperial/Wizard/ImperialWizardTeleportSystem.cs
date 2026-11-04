@@ -20,14 +20,6 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Wizard;
 
-/// <summary>/obj/item/teleportation_scroll: свиток с несколькими телепортами по зонам станции.</summary>
-[RegisterComponent]
-public sealed partial class ImperialTeleportScrollComponent : Component
-{
-    [DataField]
-    public int Uses = 4;
-}
-
 /// <summary>
 /// Телепорт по зонам (area_teleport). Зоны станции — именованные маяки навигационной карты:
 /// телепорт переносит на случайную свободную клетку рядом с маяком.

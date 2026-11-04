@@ -14,26 +14,6 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Wizard;
 
-/// <summary>Покупка записи с особым эффектом (призывы, перки, испытания): true — куплено.</summary>
-[ByRefEvent]
-public record struct ImperialSpellbookSpecialEvent(EntityUid User, EntityUid Book, ImperialSpellbookEntryPrototype Entry, bool Handled = false, bool Success = false);
-
-/// <summary>Возврат записи-предмета (контракт ученика, бутылки демонов): предмет возвращается в книгу.</summary>
-[RegisterComponent]
-public sealed partial class ImperialSpellbookRefundableItemComponent : Component
-{
-    [DataField(required: true)]
-    public ProtoId<ImperialSpellbookEntryPrototype> Entry;
-
-    /// <summary>Сообщение при возврате.</summary>
-    [DataField]
-    public LocId Message = "imperial-spellbook-item-refunded";
-
-    /// <summary>Предмет уже использован — вернуть нельзя (contract.used).</summary>
-    [ViewVariables]
-    public bool Used;
-}
-
 /// <summary>
 /// /obj/item/spellbook: привязка к владельцу, покупка и возврат записей, наборы и случайный выбор.
 /// </summary>

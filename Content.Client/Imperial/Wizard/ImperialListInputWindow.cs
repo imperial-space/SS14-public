@@ -6,34 +6,6 @@ using Robust.Client.UserInterface.CustomControls;
 
 namespace Content.Client.Imperial.Wizard;
 
-/// <summary>Открывает окно выбора из списка по запросу сервера.</summary>
-public sealed class ImperialListInputSystem : EntitySystem
-{
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeNetworkEvent<ImperialWizardListInputEvent>(OnInput);
-    }
-
-    private void OnInput(ImperialWizardListInputEvent ev)
-    {
-        var answered = false;
-        var window = new ImperialListInputWindow(ev.Title, ev.Message, ev.Options);
-        window.OnChoice += choice =>
-        {
-            answered = true;
-            RaiseNetworkEvent(new ImperialWizardListChoiceEvent(ev.Id, choice));
-            window.Close();
-        };
-        window.OnClose += () =>
-        {
-            if (!answered)
-                RaiseNetworkEvent(new ImperialWizardListChoiceEvent(ev.Id, null));
-        };
-        window.OpenCentered();
-    }
-}
-
 /// <summary>ListInputModal tgui: сообщение, поиск, список, «Выбрать» / «Отмена».</summary>
 public sealed class ImperialListInputWindow : DefaultWindow
 {

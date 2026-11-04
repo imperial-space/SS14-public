@@ -10,10 +10,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Wizard.Spells;
 
-/// <summary>/obj/effect/particle_effect/fluid/smoke/bad: душащий дым.</summary>
-[RegisterComponent]
-public sealed partial class ImperialBadSmokeComponent : Component;
-
 /// <summary>smoke/bad/smoke_mob(): без дыхательной маски — кашель, вещи из рук, немного удушья.</summary>
 public sealed class ImperialWizardSmokeSystem : EntitySystem
 {

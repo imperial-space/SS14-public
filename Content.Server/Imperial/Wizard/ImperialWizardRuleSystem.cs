@@ -23,52 +23,6 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Wizard;
 
-[RegisterComponent]
-public sealed partial class ImperialWizardRuleComponent : Component
-{
-    [ViewVariables]
-    public List<EntityUid> Wizards = new();
-}
-
-/// <summary>Роль разума мага (/datum/antagonist/wizard).</summary>
-[RegisterComponent]
-public sealed partial class ImperialWizardRoleComponent : Component;
-
-/// <summary>Роль разума ученика или прислужника (/datum/antagonist/wizard_minion, apprentice).</summary>
-[RegisterComponent]
-public sealed partial class ImperialWizardApprenticeRoleComponent : Component;
-
-/// <summary>Данные мага на разуме: перки, покупки для итогов раунда, учитель ученика.</summary>
-[RegisterComponent]
-public sealed partial class ImperialWizardMindComponent : Component
-{
-    /// <summary>perks.</summary>
-    [ViewVariables]
-    public HashSet<string> Perks = new();
-
-    /// <summary>GLOB.wizard_spellbook_purchases_by_key: запись → сколько раз куплена.</summary>
-    [ViewVariables]
-    public Dictionary<string, int> Purchases = new();
-
-    [ViewVariables]
-    public bool Apprentice;
-
-    [ViewVariables]
-    public EntityUid? Master;
-
-    /// <summary>Выживальщик после «Призыва оружия/магии» — не маг и не прислужник.</summary>
-    [ViewVariables]
-    public bool Survivalist;
-}
-
-/// <summary>Цель прислужника: хозяин должен дожить до конца раунда.</summary>
-[RegisterComponent]
-public sealed partial class ImperialWizardServeConditionComponent : Component;
-
-/// <summary>Сетка логова мага (/area/centcom/wizard_station).</summary>
-[RegisterComponent]
-public sealed partial class ImperialWizardDenComponent : Component;
-
 /// <summary>
 /// /datum/antagonist/wizard: правило, цели (create_objectives), смена имени, логово, итоги раунда.
 /// </summary>
@@ -369,40 +323,5 @@ public sealed class ImperialWizardRuleSystem : GameRuleSystem<ImperialWizardRule
             });
             args.AddLine(Loc.GetString("imperial-wizard-roundend-used", ("name", name), ("spells", string.Join(", ", purchases))));
         }
-    }
-}
-
-/// <summary>makewizard [entityUid]: сделать персонажа магом Федерации (снаряжение, книга, цели).</summary>
-[AdminCommand(AdminFlags.Fun)]
-public sealed class MakeImperialWizardCommand : IConsoleCommand
-{
-    [Dependency] private readonly IEntityManager _entManager = default!;
-
-    public string Command => "makewizard";
-    public string Description => "Делает персонажа магом Федерации волшебников (TG): снаряжение, книга заклинаний, цели.";
-    public string Help => $"Использование: {Command} [entityUid]";
-
-    public void Execute(IConsoleShell shell, string argStr, string[] args)
-    {
-        EntityUid? target = shell.Player?.AttachedEntity;
-        if (args.Length > 0)
-        {
-            if (!_entManager.TryParseNetEntity(args[0], out var net) || !_entManager.EntityExists(net))
-            {
-                shell.WriteLine($"Сущность не найдена: «{args[0]}».");
-                return;
-            }
-
-            target = net.Value;
-        }
-
-        if (target == null)
-        {
-            shell.WriteLine(Help);
-            return;
-        }
-
-        var ok = _entManager.System<ImperialWizardRuleSystem>().MakeWizard(target.Value);
-        shell.WriteLine(ok ? "Готово." : "Не удалось: нет разума или уже маг.");
     }
 }

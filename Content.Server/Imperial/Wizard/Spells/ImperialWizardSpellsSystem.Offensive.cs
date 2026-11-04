@@ -279,6 +279,7 @@ public sealed partial class ImperialSanguineEnchantedComponent : Component
 
 public sealed partial class ImperialWizardSpellsSystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly GibbingSystem _gibbing = default!;
     [Dependency] private readonly FlashSystem _flash = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
@@ -497,7 +498,7 @@ public sealed partial class ImperialWizardSpellsSystem
         if (far)
         {
             spell.SkipCooldown = true;
-            Timer.Spawn(0, () => _actions.SetCooldown(ent.Owner, _spells.GetCooldown(spell) * 11));
+            _schedule.Schedule(TimeSpan.Zero, () => _actions.SetCooldown(ent.Owner, _spells.GetCooldown(spell) * 11));
         }
     }
 

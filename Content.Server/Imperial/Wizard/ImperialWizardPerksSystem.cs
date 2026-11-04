@@ -28,84 +28,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Wizard;
 
-/// <summary>/datum/component/wormborn: после смерти — перерождение огромным червём.</summary>
-[RegisterComponent]
-public sealed partial class ImperialWormbornComponent : Component;
-
-/// <summary>/datum/component/dejavu/wizard: раз в 60 секунд — назад в прошлое место и состояние.</summary>
-[RegisterComponent]
-public sealed partial class ImperialDejavuComponent : Component
-{
-    [ViewVariables]
-    public TimeSpan NextRewind;
-
-    [ViewVariables]
-    public EntityCoordinates? Position;
-
-    [ViewVariables]
-    public DamageSpecifier? Damage;
-}
-
-/// <summary>/datum/component/heart_eater: вырывать сердца у беззащитных и есть их ради силы.</summary>
-[RegisterComponent]
-public sealed partial class ImperialHeartEaterComponent : Component
-{
-    /// <summary>Накопленное снижение урона (damage_modifier).</summary>
-    [ViewVariables]
-    public float Resistance;
-}
-
-/// <summary>Вырванное сердце: съесть — исцеление и сила.</summary>
-[RegisterComponent]
-public sealed partial class ImperialRippedHeartComponent : Component;
-
-/// <summary>/datum/component/slime_friends: раз в 20 секунд — злой взрослый слайм-союзник.</summary>
-[RegisterComponent]
-public sealed partial class ImperialSlimeFriendsComponent : Component
-{
-    [ViewVariables]
-    public TimeSpan NextSlime;
-}
-
-/// <summary>transparence: снаряды пролетают насквозь, здоровье ×0,75, проклятие-преследователь.</summary>
-[RegisterComponent]
-public sealed partial class ImperialTransparentComponent : Component
-{
-    [ViewVariables]
-    public bool StalkerSent;
-}
-
-/// <summary>/datum/brain_trauma/magic/stalker: призрак медленно ползёт к жертве; рядом — рвёт когтями.</summary>
-[RegisterComponent]
-public sealed partial class ImperialStalkerComponent : Component
-{
-    [ViewVariables]
-    public EntityUid Target;
-
-    /// <summary>on_life(): тик раз в 2 секунды.</summary>
-    [ViewVariables]
-    public TimeSpan NextTick;
-}
-
-/// <summary>Сегмент хвоста магического червя (/datum/component/mob_chain).</summary>
-[RegisterComponent]
-public sealed partial class ImperialWormSegmentComponent : Component
-{
-    [ViewVariables]
-    public EntityUid Front;
-
-    [ViewVariables]
-    public EntityUid Head;
-}
-
-/// <summary>magnetism: всё в радиусе 5 притягивается к магу.</summary>
-[RegisterComponent]
-public sealed partial class ImperialMagnetismComponent : Component
-{
-    [ViewVariables]
-    public TimeSpan NextPull;
-}
-
 /// <summary>Перки мага: работают вне логова.</summary>
 public sealed class ImperialWizardPerksSystem : EntitySystem
 {
@@ -434,7 +356,3 @@ public sealed class ImperialWizardPerksSystem : EntitySystem
         comp.NextRewind = _timing.CurTime + DejavuInterval;
     }
 }
-
-/// <summary>Сердце уже вырвано.</summary>
-[RegisterComponent]
-public sealed partial class ImperialHeartRippedComponent : Component;

@@ -4,31 +4,6 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Wizard;
 
-/// <summary>INVOCATION_NONE / WHISPER / SHOUT / EMOTE.</summary>
-[Serializable, NetSerializable]
-public enum ImperialInvocationType : byte
-{
-    None,
-    Whisper,
-    Shout,
-    Emote,
-}
-
-/// <summary>spell_requirements: флаги SPELL_REQUIRES_*.</summary>
-[Flags, Serializable, NetSerializable]
-public enum ImperialSpellRequirements : ushort
-{
-    None = 0,
-    WizardGarb = 1 << 0,
-    NoAntimagic = 1 << 1,
-    Station = 1 << 2,
-    Human = 1 << 3,
-    Mind = 1 << 4,
-    MimeVow = 1 << 5,
-    CastableAsBrain = 1 << 6,
-    CastableWithoutInvocation = 1 << 7,
-}
-
 /// <summary>
 /// /datum/action/cooldown/spell: заклинание мага. Висит на сущности-действии; откат — UseDelay действия,
 /// уровни (spell_level) сокращают его на <see cref="CooldownReductionPerRank"/>.
@@ -98,15 +73,3 @@ public sealed partial class ImperialSpellComponent : Component
     [DataField, AutoNetworkedField]
     public string? BaseName;
 }
-
-/// <summary>Попытка каста: другие системы могут отменить (COMSIG_SPELL_CAN_CAST_CHECK / COMSIG_MOB_BEFORE_SPELL_CAST).</summary>
-[ByRefEvent]
-public record struct ImperialSpellCastAttemptEvent(EntityUid Caster, EntityUid Spell, bool Cancelled = false);
-
-/// <summary>Заклинание прочитано (COMSIG_MOB_CAST_SPELL): поднимается на заклинателе.</summary>
-[ByRefEvent]
-public readonly record struct ImperialSpellCastEvent(EntityUid Caster, EntityUid Spell);
-
-/// <summary>COMSIG_MOB_PRE_INVOCATION: можно подменить фразу и тип произнесения.</summary>
-[ByRefEvent]
-public record struct ImperialSpellInvocationEvent(EntityUid Spell, string? Message, ImperialInvocationType Type);

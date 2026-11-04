@@ -17,33 +17,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Wizard.Spells;
 
-/// <summary>/obj/item/soulstone/mystic: камень душ мага — пленит душу павшего в тень.</summary>
-[RegisterComponent]
-public sealed partial class ImperialSoulstoneComponent : Component
-{
-    [DataField]
-    public string Container = "imperial_soulstone";
-
-    /// <summary>required_role: камнем пользуются только маги и их прислужники.</summary>
-    [DataField]
-    public bool WizardOnly = true;
-
-    [DataField]
-    public EntProtoId Shade = "ImperialWizardShade";
-}
-
-/// <summary>/mob/living/basic/shade: тень в камне, служит хозяину камня.</summary>
-[RegisterComponent]
-public sealed partial class ImperialWizardShadeComponent : Component
-{
-    [ViewVariables]
-    public EntityUid? Master;
-}
-
-/// <summary>/obj/structure/constructshell: оболочка, в которую вкладывают камень с тенью.</summary>
-[RegisterComponent]
-public sealed partial class ImperialConstructShellComponent : Component;
-
 /// <summary>
 /// Камни душ мага (soulstone.dm): захват души в тень, выпуск тени, превращение в конструкт мага
 /// (джаггернаут, призрак, мастеровой).

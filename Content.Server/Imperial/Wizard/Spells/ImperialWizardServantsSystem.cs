@@ -23,68 +23,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Wizard.Spells;
 
-/// <summary>/obj/item/antag_spawner/contract: призвать ученика выбранной школы.</summary>
-[RegisterComponent]
-public sealed partial class ImperialApprenticeContractComponent : Component
-{
-    [ViewVariables]
-    public bool Used;
-
-    [ViewVariables]
-    public bool Polling;
-}
-
-/// <summary>Тело ученика ждёт призрака: школа и учитель.</summary>
-[RegisterComponent]
-public sealed partial class ImperialApprenticePendingComponent : Component
-{
-    [ViewVariables]
-    public string School = "destruction";
-
-    [ViewVariables]
-    public EntityUid Master;
-
-    [ViewVariables]
-    public EntityUid? Contract;
-}
-
-/// <summary>/obj/item/highfrequencyblade/wizard: в двух руках — только у мага.</summary>
-[RegisterComponent]
-public sealed partial class ImperialWizardOnlyWieldComponent : Component;
-
-/// <summary>Мёртвую цель удар может разорвать (gib с шансом force × 0,5 %).</summary>
-[RegisterComponent]
-public sealed partial class ImperialGibDeadOnHitComponent : Component
-{
-    [DataField]
-    public float Chance = 0.1f;
-}
-
-/// <summary>/obj/item/frog_contract: создать древнюю лягушку-стража, запертую в статуэтке.</summary>
-[RegisterComponent]
-public sealed partial class ImperialFrogContractComponent : Component
-{
-    [DataField]
-    public EntProtoId Frog = "ImperialMobWizardFrog";
-
-    [DataField]
-    public EntProtoId Statue = "ImperialFrogStatue";
-}
-
-/// <summary>/obj/item/frog_statue: выпустить или отозвать лягушку (раз в 30 секунд).</summary>
-[RegisterComponent]
-public sealed partial class ImperialFrogStatueComponent : Component
-{
-    [ViewVariables]
-    public EntityUid? Frog;
-
-    [ViewVariables]
-    public TimeSpan NextUse;
-
-    [DataField]
-    public string Container = "imperial_frog";
-}
-
 /// <summary>Ученики, прислужники, стражи мага.</summary>
 public sealed class ImperialWizardServantsSystem : EntitySystem
 {

@@ -15,35 +15,6 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Wizard;
 
-/// <summary>/obj/structure/mirror/magic: кроме причёски, позволяет сменить имя.</summary>
-[RegisterComponent]
-public sealed partial class ImperialWizardMagicMirrorComponent : Component;
-
-/// <summary>/obj/machinery/computer/camera_advanced логова: свободный глаз над станцией.</summary>
-[RegisterComponent]
-public sealed partial class ImperialWizardScryingConsoleComponent : Component
-{
-    [DataField]
-    public EntProtoId Eye = "ImperialWizardScryingEye";
-
-    [DataField]
-    public EntProtoId ExitAction = "ImperialActionScryingExit";
-}
-
-/// <summary>Тот, кто сейчас смотрит через консоль.</summary>
-[RegisterComponent]
-public sealed partial class ImperialWizardScryingUserComponent : Component
-{
-    [ViewVariables]
-    public EntityUid Eye;
-
-    [ViewVariables]
-    public EntityUid Console;
-
-    [ViewVariables]
-    public EntityUid? Action;
-}
-
 /// <summary>Логово мага TG: волшебное зеркало и консоль наблюдения.</summary>
 public sealed class ImperialWizardDenSystem : EntitySystem
 {
