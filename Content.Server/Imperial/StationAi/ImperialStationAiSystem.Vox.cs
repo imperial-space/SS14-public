@@ -11,6 +11,9 @@ namespace Content.Server.Imperial.StationAi;
 /// <summary>Объявления голосом VOX (ai_say.dm) и картинки ИИ на экранах станции (status_display/ai).</summary>
 public sealed partial class ImperialStationAiSystem
 {
+    /// <summary>Объявление приходит от клиента — длиннее не принимаем.</summary>
+    private const int MaxAnnouncementLength = 512;
+
     [Dependency] private readonly IResourceManager _resources = default!;
     [Dependency] private readonly ISharedPlayerManager _players = default!;
 
@@ -74,7 +77,7 @@ public sealed partial class ImperialStationAiSystem
             return false;
 
         var message = text.Trim();
-        if (message.Length == 0)
+        if (message.Length == 0 || message.Length > MaxAnnouncementLength)
             return false;
 
         if (_timing.CurTime < _nextVox)

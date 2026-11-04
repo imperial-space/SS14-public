@@ -15,25 +15,6 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.StationAi.Malf;
 
-[RegisterComponent]
-public sealed partial class ImperialMalfAiRuleComponent : Component
-{
-    [ViewVariables]
-    public List<EntityUid> Ais = new();
-}
-
-/// <summary>/datum/objective/block: ни одно разумное органическое существо не должно улететь на шаттле живым.</summary>
-[RegisterComponent]
-public sealed partial class ImperialMalfBlockConditionComponent : Component;
-
-/// <summary>/datum/objective/robot_army: восемь активных киборгов, синхронизированных с ИИ.</summary>
-[RegisterComponent]
-public sealed partial class ImperialMalfRobotArmyConditionComponent : Component
-{
-    [DataField]
-    public int Required = 8;
-}
-
 /// <summary>
 /// Правило сбойного ИИ (malf_ai.dm): выбор ИИ станции, forge_ai_objectives() — особая цель, убийство и выживание.
 /// </summary>
@@ -122,47 +103,5 @@ public sealed class ImperialMalfAiRuleSystem : GameRuleSystem<ImperialMalfAiRule
         }
 
         args.Progress = Math.Clamp((float) count / ent.Comp.Required, 0f, 1f);
-    }
-}
-
-/// <summary>makemalfai [entityUid]: сделать ИИ сбойным (без uid — первый ИИ в ядре).</summary>
-[AdminCommand(AdminFlags.Fun)]
-public sealed class MakeMalfAiCommand : IConsoleCommand
-{
-    [Dependency] private readonly IEntityManager _entManager = default!;
-
-    public string Command => "makemalfai";
-    public string Description => "Делает ИИ станции сбойным: закон 0, модули, цели.";
-    public string Help => $"Использование: {Command} [entityUid мозга ИИ]";
-
-    public void Execute(IConsoleShell shell, string argStr, string[] args)
-    {
-        EntityUid? ai = null;
-        if (args.Length > 0)
-        {
-            if (!_entManager.TryParseNetEntity(args[0], out var net) || !_entManager.EntityExists(net))
-            {
-                shell.WriteLine($"Сущность не найдена: «{args[0]}».");
-                return;
-            }
-
-            ai = net.Value;
-        }
-        else
-        {
-            var query = _entManager.EntityQueryEnumerator<StationAiHeldComponent>();
-            if (query.MoveNext(out var found, out _))
-                ai = found;
-        }
-
-        if (ai == null)
-        {
-            shell.WriteLine("ИИ в ядре не найден.");
-            return;
-        }
-
-        shell.WriteLine(_entManager.System<ImperialMalfAiRuleSystem>().MakeMalf(ai.Value)
-            ? $"{_entManager.ToPrettyString(ai.Value)} теперь сбойный ИИ."
-            : "Не удалось: это не ИИ в ядре или он уже сбойный.");
     }
 }

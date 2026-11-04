@@ -36,58 +36,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.StationAi;
 
-/// <summary>Состояние доработок ИИ на мозге в ядре.</summary>
-[RegisterComponent]
-public sealed partial class ImperialStationAiComponent : Component
-{
-    /// <summary>last_announcement.</summary>
-    [ViewVariables]
-    public string LastAnnouncement = string.Empty;
-
-    [ViewVariables]
-    public List<EntityUid> Actions = new();
-
-    /// <summary>ai_tracking_tool.tracked_mob.</summary>
-    [ViewVariables]
-    public EntityUid? Tracked;
-
-    /// <summary>cameraticks: сколько раз цель не нашлась на камерах.</summary>
-    [ViewVariables]
-    public int TrackFails;
-
-    /// <summary>Куда «глаз» поставлен слежением — сдвиг оттуда значит, что ИИ двигается сам.</summary>
-    [ViewVariables]
-    public EntityCoordinates? TrackPlaced;
-
-    [ViewVariables]
-    public TimeSpan NextTrackCheck;
-
-    /// <summary>camera_light_on.</summary>
-    [ViewVariables]
-    public bool CameraLights;
-
-    /// <summary>lit_cameras.</summary>
-    [ViewVariables]
-    public HashSet<EntityUid> LitCameras = new();
-
-    [ViewVariables]
-    public TimeSpan NextLightUpdate;
-
-    /// <summary>sensors_on: медицинский и охранный HUD.</summary>
-    [ViewVariables]
-    public bool Sensors;
-
-    /// <summary>Очередь оглашения законов: по строке в секунду.</summary>
-    [ViewVariables]
-    public Queue<string> PendingLaws = new();
-
-    [ViewVariables]
-    public string? LawChannel;
-
-    [ViewVariables]
-    public TimeSpan NextLaw;
-}
-
 /// <summary>
 /// Возможности ИИ из TG, которых нет в SS14: список камер, слежение, шлюз у цели, подсветка камер,
 /// тревоги станции, оглашение законов и сенсоры. Действия выдаются мозгу, пока он в ядре (StationAiHeld).
