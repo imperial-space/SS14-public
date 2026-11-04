@@ -10,6 +10,7 @@ using Content.Shared.Imperial.Atmos;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Power;
 using Content.Shared.Power.Components;
+using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 
@@ -32,6 +33,7 @@ public sealed partial class AtmosphereSystem
 
         SubscribeLocalEvent<BatteryComponent, ComponentShutdown>(OnBatteryShutdown);
         SubscribeLocalEvent<ChargedElectrovaeAffectedComponent, ComponentShutdown>(OnChargedElectrovaeAffectedShutdown);
+        SubscribeLocalEvent<ChargedElectrovaeAffectedComponent, ComponentRemove>(OnChargedElectrovaeAffectedRemove);
         SubscribeLocalEvent<ChargedElectrovaeAffectedComponent, RefreshChargeRateEvent>(OnRefreshChargeRate);
     }
 
@@ -67,6 +69,14 @@ public sealed partial class AtmosphereSystem
             receiver.NeedsPower = ent.Comp.OriginalNeedsPower.Value;
             ent.Comp.OriginalNeedsPower = null;
         }
+    }
+
+    private void OnChargedElectrovaeAffectedRemove(
+        Entity<ChargedElectrovaeAffectedComponent> ent,
+        ref ComponentRemove args)
+    {
+        if (_batteryQuery.TryComp(ent, out var battery))
+            _battery.RefreshChargeRate((ent.Owner, battery));
     }
 
     public void ChargedElectrovaeExpose(Entity<GridAtmosphereComponent?> ent, TileAtmosphere tile, float intensity)
@@ -120,11 +130,7 @@ public sealed partial class AtmosphereSystem
 
         foreach (var entity in _entSet)
         {
-            if (_batteryQuery.TryComp(entity, out var battery))
-            {
-                var affected = EnsureComp<ChargedElectrovaeAffectedComponent>(entity);
-                ProcessBattery((entity, battery, affected), tile.ChargedEffect.Intensity, chargedMoles);
-            }
+            ProcessChargedElectrovaeBatteries(entity, tile.ChargedEffect.Intensity, chargedMoles);
 
             if (_powerReceiverQuery.TryComp(entity, out var receiver))
             {
@@ -138,6 +144,24 @@ public sealed partial class AtmosphereSystem
             var strikeChance = tile.ChargedEffect.Intensity * Atmospherics.ChargedElectrovaeLightningChanceMultiplier;
             if (_random.Prob(strikeChance))
                 ApplyLightningStrike(entity, tile.ChargedEffect.Intensity);
+        }
+    }
+
+    private void ProcessChargedElectrovaeBatteries(EntityUid entity, float intensity, float chargedMoles)
+    {
+        if (_batteryQuery.TryComp(entity, out var battery))
+        {
+            EnsureComp<ChargedElectrovaeAffectedComponent>(entity, out var affected);
+            ProcessBattery((entity, battery, affected), intensity, chargedMoles);
+        }
+
+        if (!TryComp<ContainerManagerComponent>(entity, out var containerManager))
+            return;
+
+        foreach (var container in _containers.GetAllContainers(entity, containerManager))
+        {
+            foreach (var contained in container.ContainedEntities)
+                ProcessChargedElectrovaeBatteries(contained, intensity, chargedMoles);
         }
     }
 
@@ -169,6 +193,16 @@ public sealed partial class AtmosphereSystem
         float intensity,
         float chargedMoles)
     {
+        var chargeRate = intensity >= Atmospherics.ChargedElectrovaeMinimumEquipmentIntensity
+            ? intensity * Atmospherics.ChargedElectrovaeChargeRatePerIntensity
+            : 0f;
+
+        if (ent.Comp2.ChargedElectrovaeChargeRate != chargeRate)
+        {
+            ent.Comp2.ChargedElectrovaeChargeRate = chargeRate;
+            _battery.RefreshChargeRate((ent.Owner, ent.Comp1));
+        }
+
         if (intensity >= Atmospherics.ChargedElectrovaeMinimumEquipmentIntensity)
             ExpandBatteryCapacity(ent, chargedMoles);
         else

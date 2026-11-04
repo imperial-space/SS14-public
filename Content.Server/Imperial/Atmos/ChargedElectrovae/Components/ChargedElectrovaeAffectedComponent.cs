@@ -7,5 +7,8 @@ public sealed partial class ChargedElectrovaeAffectedComponent : Component
     public float? OriginalBatteryMaxCharge;
 
     [DataField]
+    public float? ChargedElectrovaeChargeRate;
+
+    [DataField]
     public bool? OriginalNeedsPower;
 }

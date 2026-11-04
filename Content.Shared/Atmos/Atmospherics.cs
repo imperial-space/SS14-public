@@ -354,7 +354,7 @@ namespace Content.Shared.Atmos
         public const float ChargedElectrovaeLowIntensityThreshold = 0.25f;
         public const float ChargedElectrovaeLightningChanceMultiplier = 0.01f;
         public const float ChargedElectrovaeMinimumEquipmentIntensity = 0.1f;
-        public const float ChargedElectrovaeChargeRatePerIntensity = 400f;
+        public const float ChargedElectrovaeChargeRatePerIntensity = 72f;
         public const float ChargedElectrovaeBatteryExpansionDecayConstant = 20f;
         public const int ChargedElectrovaeLightningBaseDamage = 5;
         public const int ChargedElectrovaeLightningDamagePerIntensity = 5;
