@@ -32,61 +32,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Fugitives;
 
-/// <summary>Действие маскировки выдано (implant/camouflage).</summary>
-[RegisterComponent]
-public sealed partial class ImperialCamouflageImplantComponent : Component
-{
-    [ViewVariables]
-    public EntityUid? Action;
-}
-
-/// <summary>Стабилизированный Сатурн-X: невидимость до момента <see cref="Until"/>.</summary>
-[RegisterComponent]
-public sealed partial class ImperialInvisibilityComponent : Component
-{
-    [ViewVariables]
-    public TimeSpan Until;
-}
-
-/// <summary>/obj/item/reagent_containers/hypospray/medipen/invisibility.</summary>
-[RegisterComponent]
-public sealed partial class ImperialInvisibilityInjectorComponent : Component
-{
-    /// <summary>volume 20: «примерно 10 минут».</summary>
-    [DataField]
-    public TimeSpan Duration = TimeSpan.FromMinutes(10);
-}
-
-/// <summary>/obj/machinery/fugitive_locator.</summary>
-[RegisterComponent]
-public sealed partial class ImperialFugitiveLocatorComponent : Component
-{
-    [DataField]
-    public TimeSpan Cooldown = TimeSpan.FromSeconds(40);
-
-    [ViewVariables]
-    public TimeSpan NextLocate;
-}
-
-/// <summary>Психическая проекция: цель в ужасе палит из оружия в руках.</summary>
-[RegisterComponent]
-public sealed partial class ImperialPsychicProjectedComponent : Component
-{
-    [ViewVariables]
-    public TimeSpan Until;
-
-    [ViewVariables]
-    public TimeSpan NextShot;
-}
-
-/// <summary>Психический ускоритель: двойная скорострельность на 10 секунд.</summary>
-[RegisterComponent]
-public sealed partial class ImperialPsychicBoostedComponent : Component
-{
-    [ViewVariables]
-    public TimeSpan Until;
-}
-
 /// <summary>Снаряжение и машины беглецов и охотников TG (fugitive_equipment.dm, hunter_gear.dm, psyker.dm).</summary>
 public sealed class ImperialFugitiveGearSystem : EntitySystem
 {
