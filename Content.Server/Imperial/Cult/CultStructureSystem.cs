@@ -706,9 +706,3 @@ public sealed partial class CultStructureSystem : EntitySystem
         QueueDel(uid);
     }
 }
-
-/// <summary>Путь к RSI построек (для иконок меню).</summary>
-internal readonly record struct ResPathSpecifier(string Value)
-{
-    public Robust.Shared.Utility.ResPath Path => new(Value);
-}

@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
@@ -11,7 +12,10 @@ namespace Content.Server.Imperial.Cult;
 
 public sealed partial class CultSystem
 {
-    private readonly Dictionary<EntityUid, Action<string>> _pendingChoice = new();
+    private readonly Dictionary<EntityUid, (HashSet<string> Options, Action<string> Callback)> _pendingChoice = new();
+
+    /// <summary>Текст приходит от клиента — длиннее не принимаем.</summary>
+    private const int MaxInputLength = 128;
     private readonly Dictionary<EntityUid, Action<string>> _pendingText = new();
 
     private void InitializeMenus()
@@ -27,7 +31,7 @@ public sealed partial class CultSystem
             return;
 
         _ui.SetUi(user, CultMenuUiKey.Choice, new InterfaceData("CultChoiceBoundUserInterface", -1f, false));
-        _pendingChoice[user] = callback;
+        _pendingChoice[user] = (options.Select(o => o.Id).ToHashSet(), callback);
         _ui.CloseUi(user, CultMenuUiKey.Choice);
         _ui.SetUiState(user, CultMenuUiKey.Choice, new CultChoiceState(title, options, radial));
         _ui.OpenUi(user, CultMenuUiKey.Choice, user);
@@ -64,9 +68,14 @@ public sealed partial class CultSystem
     {
         var user = GetEntity(msg.Entity);
         _ui.CloseUi(user, CultMenuUiKey.Choice);
-        if (msg.Actor != user || !_pendingChoice.Remove(user, out var callback))
+        if (msg.Actor != user || !_pendingChoice.Remove(user, out var pending))
             return;
-        callback(msg.Id);
+
+        // Принимаем только один из предложенных вариантов.
+        if (!pending.Options.Contains(msg.Id))
+            return;
+
+        pending.Callback(msg.Id);
     }
 
     private void OnTextMessage(CultTextMessage msg)
@@ -78,6 +87,9 @@ public sealed partial class CultSystem
         var text = msg.Text.Trim();
         if (text.Length == 0)
             return;
+
+        if (text.Length > MaxInputLength)
+            text = text[..MaxInputLength];
         callback(text);
     }
 

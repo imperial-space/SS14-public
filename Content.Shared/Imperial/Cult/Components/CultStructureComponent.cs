@@ -39,19 +39,3 @@ public sealed partial class CultStructureComponent : Component
     [ViewVariables] public TimeSpan NextUse;
     [ViewVariables] public bool Concealed;
 }
-
-[DataDefinition]
-public sealed partial class CultDispenserOption
-{
-    [DataField(required: true)]
-    public LocId Name;
-
-    [DataField(required: true)]
-    public LocId Description;
-
-    [DataField(required: true)]
-    public List<EntProtoId> Items = new();
-
-    [DataField(required: true)]
-    public SpriteSpecifier Icon = default!;
-}

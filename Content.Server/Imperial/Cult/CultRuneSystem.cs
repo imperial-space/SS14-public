@@ -60,6 +60,7 @@ namespace Content.Server.Imperial.Cult;
 /// </summary>
 public sealed class CultRuneSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -410,7 +411,7 @@ public sealed class CultRuneSystem : EntitySystem
 
         _cult.CheckSize();
 
-        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(0.5), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(0.5), () =>
         {
             if (!TerminatingOrDeleted(rune))
                 SetRuneColor(rune, rune.Comp.RuneColor);
@@ -715,7 +716,7 @@ public sealed class CultRuneSystem : EntitySystem
         _light.SetEnabled(rune, true, light);
 
         var target = rune.Owner;
-        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(60), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(60), () =>
         {
             if (!TerminatingOrDeleted(target) && TryComp<CultRuneComponent>(target, out var comp) && comp.Portal == inner)
                 ClosePortal((target, comp));
@@ -796,7 +797,7 @@ public sealed class CultRuneSystem : EntitySystem
 
         var coords = _transform.GetMapCoordinates(rune);
         var runeUid = rune.Owner;
-        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(4), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(4), () =>
         {
             if (!TerminatingOrDeleted(runeUid))
                 SetRuneColor((runeUid, rune.Comp), ColorRed);
@@ -1054,19 +1055,19 @@ public sealed class CultRuneSystem : EntitySystem
 
         var uid = rune.Owner;
         SetRuneColor(rune, Color.FromHex("#FCB56D"));
-        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(0.4), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(0.4), () =>
         {
             if (TerminatingOrDeleted(uid))
                 return;
             DoAreaBurn(rune, 0.5f);
             SetRuneColor(rune, Color.FromHex("#FFDF80"));
-            Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(0.5), () =>
+            _schedule.Schedule(TimeSpan.FromSeconds(0.5), () =>
             {
                 if (TerminatingOrDeleted(uid))
                     return;
                 DoAreaBurn(rune, 1f);
                 SetRuneColor(rune, Color.FromHex("#FFFDF4"));
-                Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(0.6), () =>
+                _schedule.Schedule(TimeSpan.FromSeconds(0.6), () =>
                 {
                     if (TerminatingOrDeleted(uid))
                         return;
@@ -1852,19 +1853,3 @@ public sealed class CultRuneSystem : EntitySystem
         UpdateDarkSpirits(now);
     }
 }
-
-/// <summary>Вызывается, когда жертва принесена на руне подношения (совместимость со старыми целями).</summary>
-public sealed class CultSacrificeCompletedEvent : EntityEventArgs
-{
-    public EntityUid Victim { get; }
-    public EntityUid? VictimMind { get; }
-
-    public CultSacrificeCompletedEvent(EntityUid victim, EntityUid? victimMind = null)
-    {
-        Victim = victim;
-        VictimMind = victimMind;
-    }
-}
-
-/// <summary>Вызывается, когда призвана Нар'Си.</summary>
-public sealed class CultNarSieSummonedEvent : EntityEventArgs;

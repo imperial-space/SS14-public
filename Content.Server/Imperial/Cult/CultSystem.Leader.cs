@@ -253,7 +253,7 @@ public sealed partial class CultSystem
                     var final = _random.Pick(destinations);
                     Effect("CultEffectBloodIn", final);
                     var target = member;
-                    Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(1), () =>
+                    _schedule.Schedule(TimeSpan.FromSeconds(1), () =>
                     {
                         if (TerminatingOrDeleted(target))
                             return;

@@ -49,6 +49,7 @@ namespace Content.Server.Imperial.Cult;
 /// <summary>Предметы культа (cult_items.dm, cult_armor.dm).</summary>
 public sealed partial class CultItemSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly CultSystem _cult = default!;
@@ -180,7 +181,7 @@ public sealed partial class CultItemSystem : EntitySystem
         if (!_cult.IsCultist(args.Target) || !TryComp<EnsnaringComponent>(ent, out var ensnaring))
             return;
         // Проходит сквозь культистов.
-        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromMilliseconds(1), () =>
+        _schedule.Schedule(TimeSpan.FromMilliseconds(1), () =>
         {
             if (!TerminatingOrDeleted(ent) && ensnaring.Ensnared != null)
                 _ensnare.ForceFree(ent, ensnaring);
@@ -194,7 +195,7 @@ public sealed partial class CultItemSystem : EntitySystem
         if (_cult.IsCultist(user) || !HasComp<HumanoidProfileComponent>(user) || !TryComp<EnsnaringComponent>(ent, out var ensnaring))
             return;
 
-        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromMilliseconds(1), () =>
+        _schedule.Schedule(TimeSpan.FromMilliseconds(1), () =>
         {
             if (TerminatingOrDeleted(ent) || TerminatingOrDeleted(user))
                 return;
@@ -319,7 +320,7 @@ public sealed partial class CultItemSystem : EntitySystem
         if (rule.Comp.ShuttleCurses >= MaxShuttleCurses && _timing.CurTime < rule.Comp.FirstCurseTime + TimeSpan.FromSeconds(10))
         {
             var omfg = Loc.GetString($"cult-curse-omfg-{_random.Next(1, 8)}");
-            Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(_random.NextFloat(2f, 6f)), () =>
+            _schedule.Schedule(TimeSpan.FromSeconds(_random.NextFloat(2f, 6f)), () =>
                 _chat().DispatchGlobalAnnouncement(omfg, Loc.GetString("cult-curse-omfg-sender"), true, CultSounds.AnnounceSyndi, Color.Gold));
         }
 

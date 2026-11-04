@@ -16,6 +16,7 @@ namespace Content.Server.Imperial.Cult;
 /// </summary>
 public sealed class CultPortalStormSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ImperialCultRuleSystem _rule = default!;
@@ -57,10 +58,10 @@ public sealed class CultPortalStormSystem : EntitySystem
 
         // announce()
         _audio.PlayGlobal(CultSounds.LightningChargeup, Filter.Broadcast(), true);
-        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(8), () =>
+        _schedule.Schedule(TimeSpan.FromSeconds(8), () =>
         {
             _chat.DispatchGlobalAnnouncement(Loc.GetString("cult-portal-storm-announcement"), playSound: true);
-            Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(2), () => _audio.PlayGlobal(Lightning, Filter.Broadcast(), true));
+            _schedule.Schedule(TimeSpan.FromSeconds(2), () => _audio.PlayGlobal(Lightning, Filter.Broadcast(), true));
         });
     }
 

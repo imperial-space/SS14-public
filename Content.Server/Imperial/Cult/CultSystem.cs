@@ -40,6 +40,7 @@ namespace Content.Server.Imperial.Cult;
 /// </summary>
 public sealed partial class CultSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -328,7 +329,7 @@ public sealed partial class CultSystem : EntitySystem
                 Message(member, Loc.GetString("cult-risen"));
                 // cult_eyes: initial_delay 20 секунд.
                 var eyes = member;
-                Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(20), () =>
+                _schedule.Schedule(TimeSpan.FromSeconds(20), () =>
                 {
                     if (!TerminatingOrDeleted(eyes))
                         SetRedEyes(eyes, true);
@@ -345,7 +346,7 @@ public sealed partial class CultSystem : EntitySystem
                 Message(member, Loc.GetString("cult-ascendent"));
                 // Нимб появляется через 20 секунд (initial_delay).
                 var target = member;
-                Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(20), () =>
+                _schedule.Schedule(TimeSpan.FromSeconds(20), () =>
                 {
                     if (!TerminatingOrDeleted(target))
                         SetHalo(target, true);

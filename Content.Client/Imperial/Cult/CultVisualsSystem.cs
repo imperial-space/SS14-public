@@ -346,23 +346,3 @@ public sealed class CultVisualsSystem : EntitySystem
         return n1 * (t -= 2.625f / d1) * t + 0.984375f;
     }
 }
-
-/// <summary>illusion/mock_as(): appearance = original.appearance.</summary>
-public sealed class CultIllusionVisualsSystem : EntitySystem
-{
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<CultIllusionComponent, AfterAutoHandleStateEvent>((uid, comp, _) => Copy(uid, comp));
-        SubscribeLocalEvent<CultIllusionComponent, ComponentStartup>((uid, comp, _) => Copy(uid, comp));
-    }
-
-    private void Copy(EntityUid uid, CultIllusionComponent comp)
-    {
-        if (comp.Source is not { } source || !TryComp<SpriteComponent>(source, out var src) || !TryComp<SpriteComponent>(uid, out var dst))
-            return;
-        _sprite.CopySprite((source, src), (uid, dst));
-    }
-}

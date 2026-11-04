@@ -931,12 +931,3 @@ public sealed partial class CultConstructSystem : EntitySystem
         }
     }
 }
-
-internal static class CultObjectExtensions
-{
-    public static T Also<T>(this T value, Action<T> action)
-    {
-        action(value);
-        return value;
-    }
-}

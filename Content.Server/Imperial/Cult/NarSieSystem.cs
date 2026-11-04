@@ -25,6 +25,7 @@ namespace Content.Server.Imperial.Cult;
 /// <summary>Нар'Си (power/singularity/narsie.dm) и конец раунда культа.</summary>
 public sealed class NarSieSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ISharedPlayerManager _players = default!;
@@ -277,7 +278,7 @@ public sealed class NarSieSystem : EntitySystem
                 soulRule.Value.Comp.Resolved = true;
                 soulRule.Value.Comp.EndStage = 0;
                 _audio.PlayGlobal(CultSounds.NukeAlarm, Filter.Broadcast(), true, AudioParams.Default.WithVolume(CultSystem.Db(70)));
-                Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(12), () => PlayCinematic(CultCinematic.Arm));
+                _schedule.Schedule(TimeSpan.FromSeconds(12), () => PlayCinematic(CultCinematic.Arm));
             }
         }
         var coords = Transform(mob).Coordinates;
@@ -409,7 +410,7 @@ public sealed class NarSieSystem : EntitySystem
         }
         rule.NarSieKilled = true;
         // addtimer(cult_ending_helper(CULT_FAILURE_NARSIE_KILLED), 2 SECONDS)
-        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(2), () => PlayCinematic(CultCinematic.Fail));
+        _schedule.Schedule(TimeSpan.FromSeconds(2), () => PlayCinematic(CultCinematic.Fail));
     }
 
     /// <summary>cult_ending_helper(): синематик, затем конец раунда.</summary>
@@ -438,11 +439,11 @@ public sealed class NarSieSystem : EntitySystem
                 end = 13.4f;
                 break;
         }
-        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(end), () => _roundEnd.EndRound());
+        _schedule.Schedule(TimeSpan.FromSeconds(end), () => _roundEnd.EndRound());
     }
 
     private void Sound(float delay, SoundSpecifier sound)
     {
-        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(delay), () => _audio.PlayGlobal(sound, Filter.Broadcast(), true));
+        _schedule.Schedule(TimeSpan.FromSeconds(delay), () => _audio.PlayGlobal(sound, Filter.Broadcast(), true));
     }
 }
