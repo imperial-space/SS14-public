@@ -1,0 +1,14 @@
+# MartialArtsSystem.Boxing.cs: HunterFirstWords
+- type: localizedDataset
+  id: ImperialMartialArtsSystemBoxingHunterFirstWords
+  values:
+    prefix: imperial-martial-arts-martial-arts-system-boxing-hunter-first-words-
+    count: 12
+
+# MartialArtsSystem.Boxing.cs: HunterSecondWords
+- type: localizedDataset
+  id: ImperialMartialArtsSystemBoxingHunterSecondWords
+  values:
+    prefix: imperial-martial-arts-martial-arts-system-boxing-hunter-second-words-
+    count: 8
+

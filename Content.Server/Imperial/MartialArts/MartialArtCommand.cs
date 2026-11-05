@@ -28,7 +28,7 @@ public sealed class MartialArtCommand : IConsoleCommand
             1 => CompletionResult.FromHintOptions(new[] { "teach", "forget" }, "<teach|forget>"),
             2 => CompletionResult.FromHintOptions(
                 _proto.EnumeratePrototypes<MartialArtPrototype>().Select(p => p.ID).Order(),
-                "<искусство>"),
+                Loc.GetString("imperial-martial-art-command-hint-art")),
             3 => CompletionResult.FromHint("[entityUid]"),
             _ => CompletionResult.Empty,
         };

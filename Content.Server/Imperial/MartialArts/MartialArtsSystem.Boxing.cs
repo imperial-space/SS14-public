@@ -1,3 +1,7 @@
+using System.Linq;
+using Robust.Shared.Prototypes;
+using Content.Shared.Imperial.Helpers;
+using Content.Shared.Dataset;
 using Robust.Shared.Random;
 using System.Numerics;
 using Content.Server.Mind;
@@ -44,11 +48,13 @@ public sealed partial class MartialArtsSystem
         CravenBlow,
     }
 
-    private static readonly string[] HunterFirstWords =
-        ["Вымирающим", "Брутализирующим", "Взрывным", "Приключенческим", "Громовым", "Молниеносным", "Сверхзвуковым", "Атомизирующим", "Вихривым", "Торнадо", "Акульим", "Сокольным"];
+    private static readonly ProtoId<LocalizedDatasetPrototype> HunterFirstWordsDataset = "ImperialMartialArtsSystemBoxingHunterFirstWords";
 
-    private static readonly string[] HunterSecondWords =
-        [" ударом", " джебом", " хуком", " кулаком", " апперкотом", " стрейтом", " страйком", " выпадом"];
+    private static string[] HunterFirstWords => ImperialLocalizedLists.Get(HunterFirstWordsDataset);
+
+    private static readonly ProtoId<LocalizedDatasetPrototype> HunterSecondWordsDataset = "ImperialMartialArtsSystemBoxingHunterSecondWords";
+
+    private static string[] HunterSecondWords => ImperialLocalizedLists.Get(HunterSecondWordsDataset);
 
     /// <summary>get_skill_level(athletics): уровни 1–7.</summary>
     private int AthleticsLevel(MartialArtsComponent comp)
