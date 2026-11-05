@@ -400,7 +400,3 @@ public sealed partial class ImperialFishTraitSystem
             Spawn("ImperialFoodInkSac", Transform(ent).Coordinates);
     }
 }
-
-/// <summary>Рыба с электрогенезом даёт разряд. Аквариум-генератор забирает энергию и ставит Handled.</summary>
-[ByRefEvent]
-public record struct ImperialFishElectrogenesisEvent(Entity<ImperialFishComponent> Fish, float Power, bool Handled = false);

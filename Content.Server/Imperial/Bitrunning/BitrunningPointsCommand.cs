@@ -14,16 +14,14 @@ public sealed class BitrunningPointsCommand : IConsoleCommand
 
     public string Command => "bitrunpoints";
     public string Description => Loc.GetString("imperial-bitrunning-bitrunning-points-command-1");
-    public string Help => $"Использование: {Command} <server|nexa> <количество> [entityUid]\n" +
-                          "server — очки квантового сервера (без entityUid — всем серверам; можно указать сервер или консоль).\n" +
-                          "nexa — очки NexaCache на банковский счёт (без entityUid — вашему персонажу).";
+    public string Help => Loc.GetString("imperial-bitrunning-points-command-help", ("command", Command));
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {
         return args.Length switch
         {
             1 => CompletionResult.FromHintOptions(new[] { "server", "nexa" }, "<server|nexa>"),
-            2 => CompletionResult.FromHint("<количество>"),
+            2 => CompletionResult.FromHint(Loc.GetString("imperial-bitrunning-points-command-hint-amount")),
             3 => CompletionResult.FromHint("[entityUid]"),
             _ => CompletionResult.Empty,
         };

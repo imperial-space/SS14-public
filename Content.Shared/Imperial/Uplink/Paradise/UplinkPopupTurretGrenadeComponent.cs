@@ -12,5 +12,5 @@ public sealed partial class UplinkPopupTurretGrenadeComponent : Component
     public EntProtoId Turret = "ImperialPopupTurret";
 
     [ViewVariables]
-    public EntityUid? Owner;
+    public EntityUid? OwnerEntity;
 }

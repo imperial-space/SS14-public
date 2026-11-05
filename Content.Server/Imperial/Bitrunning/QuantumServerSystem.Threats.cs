@@ -340,31 +340,3 @@ public sealed partial class QuantumServerSystem
 
     #endregion
 }
-
-/// <summary>/datum/round_event/ghost_role/bitrunning_glitch: админ-ивент «Глюк битраннинга».</summary>
-public sealed class BitrunningGlitchRuleSystem : GameRuleSystem<BitrunningGlitchRuleComponent>
-{
-    [Dependency] private readonly QuantumServerSystem _servers = default!;
-
-    protected override void Started(EntityUid uid, BitrunningGlitchRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
-    {
-        base.Started(uid, component, gameRule, args);
-
-        var servers = new List<Entity<QuantumServerComponent>>();
-        var query = EntityQueryEnumerator<QuantumServerComponent>();
-        while (query.MoveNext(out var server, out var comp))
-        {
-            if (comp.Domain != null && comp.Ready)
-                servers.Add((server, comp));
-        }
-
-        RobustRandom.Shuffle(servers);
-        foreach (var server in servers)
-        {
-            if (_servers.SetupGlitch(server, component.ForcedSpawner))
-                break;
-        }
-
-        GameTicker.EndGameRule(uid, gameRule);
-    }
-}

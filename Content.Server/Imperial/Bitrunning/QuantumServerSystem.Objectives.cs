@@ -5,30 +5,6 @@ using Content.Shared.Objectives.Components;
 
 namespace Content.Server.Imperial.Bitrunning;
 
-public enum BitrunningObjectiveKind : byte
-{
-    /// <summary>Добыть зашифрованный тайник (найти, убить стража или набрать очки).</summary>
-    Cache,
-    /// <summary>Доставить тайник на точку отправки в убежище.</summary>
-    Deliver,
-    /// <summary>Доставить диковинки (secondary objectives).</summary>
-    Curiosity,
-}
-
-/// <summary>Цель аватара в домене: что делать на локации, с живым счётчиком.</summary>
-[RegisterComponent]
-public sealed partial class BitrunningObjectiveConditionComponent : Component
-{
-    [DataField]
-    public BitrunningObjectiveKind Kind;
-
-    [ViewVariables]
-    public EntityUid? Server;
-
-    [ViewVariables]
-    public string? LastDescription;
-}
-
 /// <summary>
 /// Цели в меню персонажа на время подключения: TG объясняет домен окном AvatarHelp и контекстными подсказками,
 /// здесь то же самое видно как обычные цели с прогрессом.

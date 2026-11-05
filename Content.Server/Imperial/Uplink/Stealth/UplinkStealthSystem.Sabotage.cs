@@ -204,7 +204,7 @@ public sealed partial class UplinkStealthSystem
         args.Handled = true;
         var machine = Spawn(ent.Comp.Machine, Transform(args.User).Coordinates);
         var comp = EnsureComp<UplinkCrabMachineComponent>(machine);
-        comp.Owner = args.User;
+        comp.OwnerEntity = args.User;
         comp.EndTime = _timing.CurTime + comp.Duration;
         comp.NextDrain = _timing.CurTime + comp.Interval;
 

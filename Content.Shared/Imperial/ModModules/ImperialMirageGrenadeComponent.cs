@@ -19,5 +19,5 @@ public sealed partial class ImperialMirageGrenadeComponent : Component
     public int Count = 4;
 
     [ViewVariables]
-    public EntityUid? Owner;
+    public EntityUid? OwnerEntity;
 }

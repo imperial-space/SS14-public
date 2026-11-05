@@ -206,7 +206,7 @@ public sealed class AssaultPodCommand : IConsoleCommand
         {
             1 => CompletionResult.FromOptions(Targeters.Keys.Append("drop").Append("ship")),
             2 when args[0] is "drop" or "ship" => CompletionResult.FromOptions(Pods.Keys),
-            2 => CompletionResult.FromHintOptions(CompletionHelper.SessionNames(), "<игрок>"),
+            2 => CompletionResult.FromHintOptions(CompletionHelper.SessionNames(), Loc.GetString("imperial-assault-pod-command-hint-player")),
             _ => CompletionResult.Empty,
         };
     }

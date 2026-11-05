@@ -10,7 +10,7 @@ namespace Content.Shared.Imperial.ModModules;
 /// <summary>
 /// Блок управления МОДа: хранит модули, считает сложность и питает их от своей батареи.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class ImperialModSuitComponent : Component
 {
     public const string ContainerId = "imperial-mod-modules";
@@ -38,7 +38,11 @@ public sealed partial class ImperialModSuitComponent : Component
     [ViewVariables]
     public EntityUid? Wearer;
 
-    /// <summary>Накопитель времени до следующего тика расхода энергии.</summary>
-    [ViewVariables]
-    public float Accumulator;
+    /// <summary>Когда следующий тик расхода энергии.</summary>
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextProcess;
+
+    /// <summary>Когда был прошлый тик (для расчёта прошедшего времени).</summary>
+    [ViewVariables, AutoPausedField]
+    public TimeSpan LastProcess;
 }

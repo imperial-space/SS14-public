@@ -17,6 +17,9 @@ namespace Content.Server.Imperial.ModModules;
 /// </summary>
 public sealed class ImperialModSuitSystem : SharedImperialModSuitSystem
 {
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
+    private static readonly TimeSpan ProcessInterval = TimeSpan.FromSeconds(1);
+
     [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly PowerCellSystem _cell = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
@@ -403,12 +406,13 @@ public sealed class ImperialModSuitSystem : SharedImperialModSuitSystem
         var query = EntityQueryEnumerator<ImperialModSuitComponent>();
         while (query.MoveNext(out var uid, out var suit))
         {
-            suit.Accumulator += frameTime;
-            if (suit.Accumulator < 1f)
+            var now = _timing.CurTime;
+            if (now < suit.NextProcess)
                 continue;
 
-            var elapsed = suit.Accumulator;
-            suit.Accumulator = 0f;
+            var elapsed = suit.LastProcess == TimeSpan.Zero ? (float) ProcessInterval.TotalSeconds : (float) (now - suit.LastProcess).TotalSeconds;
+            suit.NextProcess = now + ProcessInterval;
+            suit.LastProcess = now;
             Process((uid, suit), elapsed);
         }
     }

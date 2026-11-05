@@ -29,5 +29,5 @@ public sealed partial class UplinkCrabMachineComponent : Component
     public TimeSpan NextDrain;
 
     [ViewVariables]
-    public EntityUid? Owner;
+    public EntityUid? OwnerEntity;
 }

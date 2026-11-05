@@ -473,7 +473,7 @@ public sealed class ImperialModAdvancedModulesSystem : EntitySystem
     {
         var item = Spawn(ent.Comp.Item, Transform(args.Wearer).Coordinates);
         if (TryComp<ImperialMirageGrenadeComponent>(item, out var mirage))
-            mirage.Owner = args.Wearer;
+            mirage.OwnerEntity = args.Wearer;
 
         _hands.PickupOrDrop(args.Wearer, item);
 
@@ -489,7 +489,7 @@ public sealed class ImperialModAdvancedModulesSystem : EntitySystem
         if (args.Key != "timer")
             return;
 
-        var source = ent.Comp.Owner ?? args.User;
+        var source = ent.Comp.OwnerEntity ?? args.User;
         if (source == null || TerminatingOrDeleted(source))
             return;
 

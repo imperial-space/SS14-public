@@ -139,3 +139,5 @@ imperial-photo-rename-prompt = Как подписать фото?
 imperial-photo-name = фотография
 imperial-photo-name-label = фото - «{ $label }»
 imperial-photo-scribble = На обороте написано: [italic]{ $text }[/italic]
+
+imperial-market-stolen-category = Краденое

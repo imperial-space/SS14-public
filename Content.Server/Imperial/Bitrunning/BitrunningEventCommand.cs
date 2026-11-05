@@ -22,15 +22,14 @@ public sealed class BitrunningEventCommand : IConsoleCommand
 
     public string Command => "bitrunevent";
     public string Description => Loc.GetString("imperial-bitrunning-bitrunning-event-command-1");
-    public string Help => $"Использование: {Command} <police|tac|netguardian|random> [entityUid сервера]\n" +
-                          "random — роль по уровню угрозы сервера, как в обычном сбое.";
+    public string Help => Loc.GetString("imperial-bitrunning-event-command-help", ("command", Command));
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {
         return args.Length switch
         {
-            1 => CompletionResult.FromHintOptions(Events.Keys, "<событие>"),
-            2 => CompletionResult.FromHint("[entityUid сервера]"),
+            1 => CompletionResult.FromHintOptions(Events.Keys, Loc.GetString("imperial-bitrunning-event-command-hint-event")),
+            2 => CompletionResult.FromHint(Loc.GetString("imperial-bitrunning-event-command-hint-server")),
             _ => CompletionResult.Empty,
         };
     }

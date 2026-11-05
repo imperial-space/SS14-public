@@ -498,11 +498,3 @@ public sealed partial class ImperialFishingSystem
 
     public ImperialFishingChallenge? GetChallenge(EntityUid user) => _challenges.GetValueOrDefault(user);
 }
-
-/// <summary>Рыбалка закончилась (COMSIG_MOB_COMPLETE_FISHING). Источник с особой логикой может выдать награду сам.</summary>
-[ByRefEvent]
-public record struct ImperialFishingCompletedEvent(ImperialFishingChallenge Challenge, bool Win, bool Handled = false);
-
-/// <summary>Поймано (COMSIG_FISHING_ROD_CAUGHT_FISH), поднимается на удочке.</summary>
-[ByRefEvent]
-public readonly record struct ImperialFishingCaughtEvent(EntityUid User, EntityUid? Reward);

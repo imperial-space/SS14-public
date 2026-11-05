@@ -1,3 +1,5 @@
+using Content.Shared.Imperial.Helpers;
+using Content.Shared.Dataset;
 using System.Linq;
 using System.Text.Json;
 using Content.Shared.CombatMode;
@@ -43,10 +45,9 @@ public sealed class ImperialFishMountSystem : EntitySystem
 
     private static readonly ResPath TrophyPath = new("/imperial_trophy_fish.json");
 
-    private static readonly string[] FluffCatchers =
-    {
-        "Джон Трейзен III", "безымянный стажёр", "Пун-Пун", "Аквариумы Лакса", "Неизвестный", "Центральное Командование",
-    };
+    private static readonly ProtoId<LocalizedDatasetPrototype> FluffCatchersDataset = "ImperialImperialFishMountSystemFluffCatchers";
+
+    private static string[] FluffCatchers => ImperialLocalizedLists.Get(FluffCatchersDataset);
 
     private sealed class SavedTrophy
     {

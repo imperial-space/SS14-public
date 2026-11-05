@@ -15,3 +15,15 @@ imperial-bitrunning-bitrunning-points-command-4 = { $arg0 }: очков серв
 imperial-bitrunning-bitrunning-points-command-5 = Укажите entityUid персонажа или выберите его.
 imperial-bitrunning-bitrunning-points-command-6 = У { $arg0 } нет банковского счёта (ID-карта или КПК с NT Pay).
 imperial-bitrunning-bitrunning-points-command-7 = { $arg0 }: очков NexaCache { $arg1 }.
+
+## Справка и подсказки команд битраннинга
+imperial-bitrunning-event-command-help =
+    Использование: { $command } <police|tac|netguardian|random> [entityUid сервера]
+    random — роль по уровню угрозы сервера, как в обычном сбое.
+imperial-bitrunning-event-command-hint-event = <событие>
+imperial-bitrunning-event-command-hint-server = [entityUid сервера]
+imperial-bitrunning-points-command-help =
+    Использование: { $command } <server|nexa> <количество> [entityUid]
+    server — очки квантового сервера (без entityUid — всем серверам; можно указать сервер или консоль).
+    nexa — очки NexaCache на банковский счёт (без entityUid — вашему персонажу).
+imperial-bitrunning-points-command-hint-amount = <количество>

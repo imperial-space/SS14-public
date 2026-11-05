@@ -277,7 +277,7 @@ public sealed class UplinkParadiseSystem : EntitySystem
     private void OnTurretGrenadeUse(Entity<UplinkPopupTurretGrenadeComponent> ent, ref UseInHandEvent args)
     {
         // activate_self(): запоминаем того, кто выдернул чеку. Сам таймер запускает ванильная граната.
-        ent.Comp.Owner = args.User;
+        ent.Comp.OwnerEntity = args.User;
     }
 
     /// <summary>prime(): надувная турель стреляет во всех, кроме владельца.</summary>
@@ -286,7 +286,7 @@ public sealed class UplinkParadiseSystem : EntitySystem
         var turret = Spawn(ent.Comp.Turret, _transform.GetMapCoordinates(ent));
         _transform.AnchorEntity(turret);
 
-        if (ent.Comp.Owner is { } owner && !TerminatingOrDeleted(owner))
+        if (ent.Comp.OwnerEntity is { } owner && !TerminatingOrDeleted(owner))
         {
             var exception = EnsureComp<FactionExceptionComponent>(turret);
             _faction.IgnoreEntity((turret, exception), owner);

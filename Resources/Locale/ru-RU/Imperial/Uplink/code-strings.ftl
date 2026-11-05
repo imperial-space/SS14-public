@@ -5,3 +5,6 @@ imperial-uplink-assault-pod-command-1 = assaultpod <ert|deathsquad|syndicate> [�
 
 ## UplinkExplosivesSystem.cs
 imperial-uplink-uplink-explosives-system-1 = {""}*бип*
+
+## Подсказка команды assaultpod
+imperial-assault-pod-command-hint-player = <игрок>
