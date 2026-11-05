@@ -38,3 +38,6 @@ blood-brother-assassinate-objective-desc = Эта помеха должна по
 blood-brother-maroon-objective-desc = Сделайте так, чтобы эта помеха не добралась до ЦентКома живой.
 blood-brother-hijack-objective-name = Захватить эвакуационный шаттл
 blood-brother-hijack-objective-desc = Улетите на эвакуационном шаттле, не оставив на борту ни одного лояльного Нанотрейзен члена экипажа. Союзники Синдиката, заключённые в наручниках и домашние животные не в счёт.
+
+## Соединитель фамилий в названии команды
+imperial-blood-brother-names-and = {" "}и{" "}

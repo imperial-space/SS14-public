@@ -405,7 +405,7 @@ public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComp
         {
             0 => Loc.GetString("blood-brother-team-name-empty"),
             1 => Loc.GetString("blood-brother-team-name-lone", ("name", lastNames[0])),
-            _ => Loc.GetString("blood-brother-team-name", ("names", string.Join(" и ", lastNames))),
+            _ => Loc.GetString("blood-brother-team-name", ("names", string.Join(Loc.GetString("imperial-blood-brother-names-and"), lastNames))),
         };
     }
 
