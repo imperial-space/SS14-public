@@ -636,3 +636,6 @@ cult-seek-prey-on = [color=#960000][italic]Теперь вы отслежива�
 cult-blessed-block = Святые энергии преграждают вам путь!
 cult-blessing-name = святое благословение
 cult-portal-storm-announcement = Обнаружена внушительная блюспейс аномалия на встречном с станцией курсе. Приготовьтесь к удару.
+
+## Секунды до готовности постройки
+imperial-cult-structure-seconds = { $seconds } с

@@ -159,7 +159,7 @@ public sealed partial class CultStructureSystem : EntitySystem
     {
         return time.TotalMinutes >= 1
             ? $"{(int) time.TotalMinutes}:{time.Seconds:00}"
-            : $"{(int) Math.Ceiling(time.TotalSeconds)} с";
+            : Robust.Shared.Localization.Loc.GetString("imperial-cult-structure-seconds", ("seconds", (int) Math.Ceiling(time.TotalSeconds)));
     }
 
     private void OnStructureActivate(Entity<CultStructureComponent> ent, ref ActivateInWorldEvent args)

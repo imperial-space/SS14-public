@@ -33,7 +33,7 @@ public sealed partial class CultBloodSpellComponent : Component
     [DataField]
     public string BaseDescription = string.Empty;
 
-    [ViewVariables] public EntityUid? Owner;
+    [ViewVariables] public EntityUid? OwnerEntity;
     [ViewVariables] public EntityUid? Hand;
 
     /// <summary>Conceal Presence: следующее применение раскроет.</summary>

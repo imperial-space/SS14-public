@@ -8,6 +8,6 @@ namespace Content.Server.Imperial.Cult.Components;
 [RegisterComponent]
 public sealed partial class CultHalberdComponent : Component
 {
-    [ViewVariables] public EntityUid? Owner;
+    [ViewVariables] public EntityUid? OwnerEntity;
     [ViewVariables] public EntityUid? BondAction;
 }

@@ -252,7 +252,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
             return null;
 
         var comp = EnsureComp<CultBloodSpellComponent>(action.Value);
-        comp.Owner = ent;
+        comp.OwnerEntity = ent;
         comp.BaseDescription = MetaData(action.Value).EntityDescription;
         ent.Comp.Spells.Add(action.Value);
         UpdateSpellDescription(action.Value, comp);
@@ -292,7 +292,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
                 aura.Source = null;
             QueueDel(hand);
         }
-        if (ent.Comp.Owner is { } owner && TryComp<CultistComponent>(owner, out var cultist))
+        if (ent.Comp.OwnerEntity is { } owner && TryComp<CultistComponent>(owner, out var cultist))
             cultist.Spells.Remove(ent);
     }
 
@@ -443,7 +443,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
         spell.Hand = null;
         if (ent.Comp.Uses <= 0 && spell.DeletesOnEmpty)
         {
-            if (spell.Owner is { } owner)
+            if (spell.OwnerEntity is { } owner)
                 RemoveSpell(owner, source);
             return;
         }

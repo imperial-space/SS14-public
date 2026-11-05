@@ -439,7 +439,7 @@ public sealed partial class CultItemSystem : EntitySystem
     {
         if (!TryComp<CultHalberdComponent>(halberd, out var comp))
             return;
-        comp.Owner = owner;
+        comp.OwnerEntity = owner;
         EntityUid? action = null;
         if (_actions.AddAction(owner, ref action, BondAction))
             comp.BondAction = action;
@@ -447,7 +447,7 @@ public sealed partial class CultItemSystem : EntitySystem
 
     private void OnHalberdShutdown(Entity<CultHalberdComponent> ent, ref ComponentShutdown args)
     {
-        if (ent.Comp.Owner is { } owner && ent.Comp.BondAction is { } action)
+        if (ent.Comp.OwnerEntity is { } owner && ent.Comp.BondAction is { } action)
             _actions.RemoveAction(owner, action);
     }
 
@@ -465,7 +465,7 @@ public sealed partial class CultItemSystem : EntitySystem
         var query = EntityQueryEnumerator<CultHalberdComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (comp.Owner == ent.Owner)
+            if (comp.OwnerEntity == ent.Owner)
                 halberd = uid;
         }
         if (halberd == null || _hands.IsHolding(ent.Owner, halberd.Value))
