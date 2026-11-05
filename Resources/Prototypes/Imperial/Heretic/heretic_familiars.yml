@@ -381,6 +381,7 @@
   - BaseSimpleMob
   - MobCombat
   components:
+  - type: HereticFireShark
   - type: GhostRole
     allowMovement: true
     makeSentient: true
@@ -967,3 +968,39 @@
   - type: Tag
     tags:
     - HideContextMenu
+
+# Пепельный человек: призывается ритуалом пути Пепла, сам ищет и атакует ближайших врагов, сгорает через минуту.
+- type: entity
+  id: HereticAshMan
+  suffix: "Еретик, существо"
+  name: heretic-familiar-ash-man-name
+  description: heretic-familiar-ash-man-desc
+  parent:
+  - BaseSimpleMob
+  - MobCombat
+  components:
+  - type: HereticAshMan
+  - type: CombatMode
+    isInCombatMode: true
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: ash_walker
+      sprite: Imperial/heretic/eldritch_mobs.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: ash_walker
+      Dead:
+        Base: ash_walker
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Dead
+  - type: ZombieImmune
+  - type: PointLight
+    radius: 2
+    energy: 1.5
+    color: "#FF6A00"

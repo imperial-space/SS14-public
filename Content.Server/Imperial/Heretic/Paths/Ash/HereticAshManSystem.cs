@@ -2,12 +2,17 @@ using System.Numerics;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Atmos.Components;
 using Content.Shared.FixedPoint;
+using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Ash;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.NPC.Prototypes;
+using Content.Shared.NPC.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Ash;
 
@@ -23,6 +28,9 @@ public sealed class HereticAshManSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly FlammableSystem _flammable = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly NpcFactionSystem _faction = default!;
+
+    private static readonly ProtoId<NpcFactionPrototype> FamiliarFaction = "HereticFamiliar";
 
     private static readonly SoundPathSpecifier AttackSound =
         new("/Audio/Imperial/heretic/sound_effects_curse_curse2.ogg");
@@ -79,7 +87,8 @@ public sealed class HereticAshManSystem : EntitySystem
                     dmg.DamageDict["Heat"] = FixedPoint2.New(8);
                     dmg.DamageDict["Blunt"] = FixedPoint2.New(5);
                     _damage.TryChangeDamage(target.Value, dmg, ignoreResistances: false);
-                    _flammable.AdjustFireStacks(target.Value, 3f, ignite: true);
+                    if (HasComp<FlammableComponent>(target.Value))
+                        _flammable.AdjustFireStacks(target.Value, 3f, ignite: true);
                     _audio.PlayPvs(AttackSound, uid);
                     Spawn("HereticEffectAshBlink", Transform(target.Value).Coordinates);
                 }
@@ -109,6 +118,8 @@ public sealed class HereticAshManSystem : EntitySystem
         {
             if (ent.Owner == self || ent.Owner == caster)
                 continue;
+            if (IsAlly(ent.Owner))
+                continue;
             if (!TryComp<MobStateComponent>(ent.Owner, out var mobState))
                 continue;
             if (mobState.CurrentState == MobState.Dead)
@@ -123,5 +134,16 @@ public sealed class HereticAshManSystem : EntitySystem
         }
 
         return nearest;
+    }
+
+    /// <summary>
+    /// Еретики и их фамильяры — свои: миньоны пепла их не атакуют.
+    /// </summary>
+    private bool IsAlly(EntityUid uid)
+    {
+        return HasComp<HereticComponent>(uid)
+            || HasComp<HereticAshManComponent>(uid)
+            || HasComp<HereticFireSharkComponent>(uid)
+            || _faction.IsMember(uid, FamiliarFaction);
     }
 }
