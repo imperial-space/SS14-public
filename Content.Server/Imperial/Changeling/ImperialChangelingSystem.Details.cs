@@ -422,35 +422,3 @@ public sealed partial class ImperialChangelingSystem
 
     #endregion
 }
-
-/// <summary>Последние реплики гуманоида для copy_recent_speech().</summary>
-[RegisterComponent]
-public sealed partial class ImperialChangelingRecentSpeechComponent : Component
-{
-    [ViewVariables]
-    public List<string> Lines = new();
-}
-
-/// <summary>beegent пчелы из головы-улья.</summary>
-[RegisterComponent]
-public sealed partial class ImperialChangelingBeeVenomComponent : Component
-{
-    [ViewVariables]
-    public string Reagent = string.Empty;
-}
-
-/// <summary>Вещи, которые обезьяна не может надеть: слот, куда их вернуть в человеческой форме.</summary>
-[RegisterComponent]
-public sealed partial class ImperialChangelingStashComponent : Component
-{
-    [ViewVariables]
-    public Dictionary<EntityUid, string> Slots = new();
-}
-
-/// <summary>Оглушён резонирующим криком: не слышит чужую речь до ExpiresAt.</summary>
-[RegisterComponent]
-public sealed partial class ImperialChangelingDeafComponent : Component
-{
-    [ViewVariables]
-    public TimeSpan ExpiresAt;
-}

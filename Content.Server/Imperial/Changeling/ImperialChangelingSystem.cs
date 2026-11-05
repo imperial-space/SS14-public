@@ -1,3 +1,5 @@
+using Content.Shared.Imperial.Helpers;
+using Content.Shared.Dataset;
 using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Radio.EntitySystems;
@@ -47,11 +49,9 @@ public sealed partial class ImperialChangelingSystem : EntitySystem
     };
 
     /// <summary>strings/names/hive_names.txt.</summary>
-    private static readonly string[] HiveNames =
-    {
-        "Алеф", "Айин", "Бет", "Далет", "Дигг", "Гами", "Гимел", "Хе", "Хет", "Хлл", "Кап", "Ламед", "Мем", "Нахс",
-        "Нун", "Пе", "Пит", "Коф", "Реш", "Самех", "Шин", "Симс", "Таф", "Тау", "Тет", "Цейд", "Вав", "Вет", "Йод", "Заин", "Цик",
-    };
+    private static readonly ProtoId<LocalizedDatasetPrototype> HiveNamesDataset = "ImperialImperialChangelingSystemHiveNames";
+
+    private static string[] HiveNames => ImperialLocalizedLists.Get(HiveNamesDataset);
 
     /// <summary>possible_changeling_IDs: общий на раунд пул букв.</summary>
     private readonly List<string> _freeIds = new();

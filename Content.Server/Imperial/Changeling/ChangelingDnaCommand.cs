@@ -22,8 +22,8 @@ public sealed class ChangelingDnaCommand : LocalizedEntityCommands
         return args.Length switch
         {
             1 => CompletionResult.FromHintOptions(CompletionHelper.SessionNames(players: _players), "<ckey>"),
-            2 => CompletionResult.FromHint("<ДНК>"),
-            3 => CompletionResult.FromHint("[поглощения]"),
+            2 => CompletionResult.FromHint(Loc.GetString("imperial-changeling-dna-command-hint-dna")),
+            3 => CompletionResult.FromHint(Loc.GetString("imperial-changeling-dna-command-hint-absorbs")),
             _ => CompletionResult.Empty,
         };
     }

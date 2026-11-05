@@ -1,0 +1,7 @@
+# ImperialChangelingSystem.cs: HiveNames
+- type: localizedDataset
+  id: ImperialImperialChangelingSystemHiveNames
+  values:
+    prefix: imperial-changeling-imperial-changeling-system-hive-names-
+    count: 31
+
