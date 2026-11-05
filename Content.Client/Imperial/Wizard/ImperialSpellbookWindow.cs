@@ -1,3 +1,5 @@
+using Content.Shared.Imperial.Helpers;
+using Content.Shared.Dataset;
 using System.Linq;
 using System.Numerics;
 using Content.Client.Imperial.UI;
@@ -40,11 +42,9 @@ public sealed class ImperialSpellbookWindow : DefaultWindow
         Header = Color.FromHex("#14162e"),
     };
 
-    private static readonly string[] SearchVerbs =
-    {
-        "Поиск", "В поиске", "Размышление", "Предсказание", "Ясновидение", "Подглядывание", "Раздумье", "Вглядывание",
-        "Изучение", "Просмотр",
-    };
+    private static readonly ProtoId<LocalizedDatasetPrototype> SearchVerbsDataset = "ImperialImperialSpellbookWindowSearchVerbs";
+
+    private static string[] SearchVerbs => ImperialLocalizedLists.Get(SearchVerbsDataset);
 
     /// <summary>Страницы TAB2NAME.</summary>
     private enum Page

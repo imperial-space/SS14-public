@@ -14,45 +14,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Wizard.Spells;
 
-/// <summary>summonitem: отмеченный предмет возвращается в руку откуда угодно.</summary>
-[RegisterComponent]
-public sealed partial class ImperialSummonItemSpellComponent : Component
-{
-    [ViewVariables]
-    public EntityUid? Marked;
-
-    [ViewVariables]
-    public string BaseName = string.Empty;
-}
-
-/// <summary>charge: перезарядить предмет в руке или вернуть откаты тащимому магу.</summary>
-[RegisterComponent]
-public sealed partial class ImperialChargeSpellComponent : Component;
-
-/// <summary>tap: обновить все заклинания ценой 20 единиц максимального здоровья.</summary>
-[RegisterComponent]
-public sealed partial class ImperialSoulTapSpellComponent : Component;
-
-/// <summary>shapeshift/wizard: облик выбирается один раз, повторный каст возвращает обратно.</summary>
-[RegisterComponent]
-public sealed partial class ImperialShapeshiftSpellComponent : Component
-{
-    /// <summary>possible_shapes: существо → прототип превращения.</summary>
-    [DataField(required: true)]
-    public List<EntProtoId> Shapes = new();
-
-    [ViewVariables]
-    public EntProtoId? Chosen;
-}
-
-/// <summary>Сколько здоровья отнял soul tap (у лича и духа души нет).</summary>
-[RegisterComponent]
-public sealed partial class ImperialSoulTappedComponent : Component
-{
-    [ViewVariables]
-    public float Taken;
-}
-
 public sealed partial class ImperialWizardSpellsSystem
 {
     [Dependency] private readonly ImperialListInputSystem _listInput = default!;

@@ -124,7 +124,7 @@ public sealed class ImperialWizardRuleSystem : GameRuleSystem<ImperialWizardRule
     {
         foreach (var item in AllItems(body))
         {
-            if (TryComp<ImperialSpellbookComponent>(item, out var book) && book.Owner == null)
+            if (TryComp<ImperialSpellbookComponent>(item, out var book) && book.OwnerEntity == null)
                 _spellbook.SetOwner((item, book), mindId, mind);
         }
     }
@@ -207,7 +207,7 @@ public sealed class ImperialWizardRuleSystem : GameRuleSystem<ImperialWizardRule
 
         foreach (var item in AllItems(body))
         {
-            if (TryComp<ImperialSpellbookComponent>(item, out var book) && book.Owner == mindId)
+            if (TryComp<ImperialSpellbookComponent>(item, out var book) && book.OwnerEntity == mindId)
                 book.OwnerName = name;
         }
     }

@@ -38,99 +38,6 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Wizard.Spells;
 
-#region Компоненты
-
-/// <summary>/obj/item/scrying: в руках — зрение сквозь всё; в руке «использовать» — выйти духом из тела.</summary>
-[RegisterComponent]
-public sealed partial class ImperialScryingOrbComponent : Component
-{
-    [ViewVariables]
-    public EntityUid? Holder;
-}
-
-/// <summary>/obj/item/necromantic_stone: поднимает мёртвых скелетами-рабами (до трёх).</summary>
-[RegisterComponent]
-public sealed partial class ImperialNecromanticStoneComponent : Component
-{
-    [DataField]
-    public int MaxThralls = 3;
-
-    [DataField]
-    public bool Unlimited;
-
-    [ViewVariables]
-    public List<EntityUid> Thralls = new();
-}
-
-/// <summary>/obj/item/warp_whistle: смерч уносит в случайное безопасное место станции.</summary>
-[RegisterComponent]
-public sealed partial class ImperialWarpWhistleComponent : Component
-{
-    [ViewVariables]
-    public EntityUid? Whistler;
-
-    [ViewVariables]
-    public TimeSpan SendAt;
-}
-
-/// <summary>/obj/item/runic_vendor_scepter: три заряда рунических торгоматов.</summary>
-[RegisterComponent]
-public sealed partial class ImperialRunicScepterComponent : Component
-{
-    [DataField]
-    public int MaxCharges = 3;
-
-    [DataField]
-    public int Charges = 3;
-
-    [DataField]
-    public float Range = 7f;
-
-    [DataField]
-    public EntProtoId Vendor = "ImperialRunicVendor";
-
-    [ViewVariables]
-    public NetCoordinates? PendingTarget;
-}
-
-/// <summary>Рунический торгомат: отталкивает при появлении, распадается через 30 секунд, может взорваться.</summary>
-[RegisterComponent]
-public sealed partial class ImperialRunicVendorComponent : Component
-{
-    [ViewVariables]
-    public TimeSpan DecayAt;
-}
-
-/// <summary>/obj/item/mjollnir: удар в двух руках или бросок — оглушение и отбрасывание.</summary>
-[RegisterComponent]
-public sealed partial class ImperialMjolnirComponent : Component;
-
-/// <summary>/obj/item/singularityhammer: удар в двух руках стягивает всё вокруг к точке удара (раз в 10 секунд).</summary>
-[RegisterComponent]
-public sealed partial class ImperialSingularityHammerComponent : Component
-{
-    [ViewVariables]
-    public TimeSpan NextCharge;
-}
-
-/// <summary>/obj/item/teleport_rod: телепорт в видимую точку до 8 клеток; поток причиняет урон при частых прыжках.</summary>
-[RegisterComponent]
-public sealed partial class ImperialTeleportRodComponent : Component
-{
-    [DataField]
-    public float Range = 8f;
-}
-
-/// <summary>teleport_flux: повторный телепорт в течение 6 секунд ранит.</summary>
-[RegisterComponent]
-public sealed partial class ImperialTeleportFluxComponent : Component
-{
-    [ViewVariables]
-    public TimeSpan End;
-}
-
-#endregion
-
 /// <summary>Артефакты мага TG (equipment/artefact.dm, wizard_hammer.dm, teleport_rod.dm).</summary>
 public sealed class ImperialWizardArtefactsSystem : EntitySystem
 {
@@ -647,7 +554,3 @@ public sealed class ImperialWizardArtefactsSystem : EntitySystem
         return false;
     }
 }
-
-/// <summary>Постоянное «рентгеновское зрение» от покупки шара предсказаний.</summary>
-[RegisterComponent]
-public sealed partial class ImperialPermanentXrayComponent : Component;

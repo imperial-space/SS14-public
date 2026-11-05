@@ -1,0 +1,182 @@
+# ImperialSpellbookWindow.cs: SearchVerbs
+- type: localizedDataset
+  id: ImperialImperialSpellbookWindowSearchVerbs
+  values:
+    prefix: imperial-wizard-imperial-spellbook-window-search-verbs-
+    count: 10
+
+# ImperialGrandRitualSystem.Finales.cs: LastWords
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemFinalesLastWords
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-finales-last-words-
+    count: 13
+
+# ImperialGrandRitualSystem.cs: CheesyWords
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemCheesyWords
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-cheesy-words-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[1]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords1
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-1-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[2]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords2
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-2-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[3]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords3
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-3-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[4]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords4
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-4-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[5]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords5
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-5-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[6]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords6
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-6-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[7]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords7
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-7-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[8]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords8
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-8-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[9]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords9
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-9-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[10]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords10
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-10-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[11]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords11
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-11-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[12]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords12
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-12-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[13]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords13
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-13-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[14]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords14
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-14-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[15]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords15
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-15-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[16]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords16
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-16-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[17]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords17
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-17-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[18]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords18
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-18-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[19]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords19
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-19-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[20]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords20
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-20-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[21]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords21
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-21-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[22]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords22
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-22-
+    count: 3
+
+# ImperialGrandRitualSystem.cs: PossibleMagicWords[23]
+- type: localizedDataset
+  id: ImperialImperialGrandRitualSystemPossibleMagicWords23
+  values:
+    prefix: imperial-wizard-imperial-grand-ritual-system-possible-magic-words-23-
+    count: 3
+

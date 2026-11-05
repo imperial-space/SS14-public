@@ -22,9 +22,6 @@ using Robust.Shared.Spawners;
 
 namespace Content.Server.Imperial.Wizard.GrandRitual;
 
-/// <summary>Тема измерения (/datum/dimension_theme): пол и стены.</summary>
-public readonly record struct ImperialDimensionTheme(string Floor, EntProtoId? Wall);
-
 /// <summary>/datum/grand_side_effect: местные последствия каждой руны после первой.</summary>
 public sealed partial class ImperialGrandRitualSystem
 {

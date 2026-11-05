@@ -27,7 +27,7 @@ public sealed partial class ImperialSpellbookComponent : Component
 
     /// <summary>owner: разум, к которому привязана книга.</summary>
     [ViewVariables]
-    public EntityUid? Owner;
+    public EntityUid? OwnerEntity;
 
     [ViewVariables]
     public string OwnerName = string.Empty;

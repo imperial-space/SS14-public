@@ -1,3 +1,5 @@
+using Content.Shared.Imperial.Helpers;
+using Content.Shared.Dataset;
 using System.Linq;
 using Content.Server.Imperial.Wizard;
 using Content.Server.Objectives.Systems;
@@ -23,20 +25,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Wizard.GrandRitual;
-
-/// <summary>/datum/grand_finale: описание варианта гранд-финала.</summary>
-public sealed record ImperialGrandFinale(string Id, TimeSpan MinimumTime, TimeSpan InvokeTime, bool DireWarning);
-
-/// <summary>Тело, ждущее воскрешения при «Увековечивании» (/obj/effect/spectre_of_resurrection).</summary>
-[RegisterComponent]
-public sealed partial class ImperialSpectreOfResurrectionComponent : Component
-{
-    [ViewVariables]
-    public EntityUid? Corpse;
-
-    [ViewVariables]
-    public TimeSpan ReviveAt;
-}
 
 /// <summary>/datum/grand_finale/*: семь финалов, сырный финал и «Продолжение».</summary>
 public sealed partial class ImperialGrandRitualSystem
@@ -72,13 +60,9 @@ public sealed partial class ImperialGrandRitualSystem
     private static readonly ImperialGrandFinale CheeseFinale = new("Cheese", TimeSpan.FromMinutes(45), TimeSpan.FromSeconds(30), true);
 
     /// <summary>Annihilation: possible_last_words.</summary>
-    private static readonly string[] LastWords =
-    {
-        "Пламя и разрушение!", "Ро-о-о-о-ок!!", "ХА-ХА-ХА-ХА-ХА!! А-ХА-ХА-ХА-ХА-ХА-ХА-ХА!!", "Хи-хи-хи!! Ху-ху-ху!! Ха-ха-ха-а!!",
-        "О-хо-хо-хо-хо-хо!!", "Трепещите, жалкие смертные!", "Дрожите перед моим величием!", "Выбирайте бога и молитесь!",
-        "Это бесполезно!", "Если бы боги хотели, чтобы вы жили, они не создали бы меня!",
-        "Бог остаётся на небесах из страха перед тем, что я создал!", "Пришло разорение!", "Всё сущее, склонись перед моей волей!",
-    };
+    private static readonly ProtoId<LocalizedDatasetPrototype> LastWordsDataset = "ImperialImperialGrandRitualSystemFinalesLastWords";
+
+    private static string[] LastWords => ImperialLocalizedLists.Get(LastWordsDataset);
 
     /// <summary>midas: permitted_transforms (без пиццы — её измерения в SS14 нет).</summary>
     private static readonly ImperialDimensionTheme[] MidasThemes =

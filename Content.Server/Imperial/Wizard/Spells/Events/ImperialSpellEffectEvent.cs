@@ -1,9 +1,7 @@
 using System.Numerics;
-using Content.Server.Imperial.Antimagic;
 using Content.Shared.Actions;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Imperial.Antimagic;
 using Content.Shared.Imperial.Wizard;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;

@@ -77,7 +77,7 @@ public sealed class ImperialSpellbookSystem : EntitySystem
     /// <summary>Привязать книгу к разуму (owner = user.mind).</summary>
     public void SetOwner(Entity<ImperialSpellbookComponent> book, EntityUid mindId, MindComponent mind)
     {
-        book.Comp.Owner = mindId;
+        book.Comp.OwnerEntity = mindId;
         book.Comp.OwnerName = mind.CharacterName ?? string.Empty;
     }
 
@@ -91,14 +91,14 @@ public sealed class ImperialSpellbookSystem : EntitySystem
         if (!_mind.TryGetMind(user, out var mindId, out var mind))
             return;
 
-        if (ent.Comp.Owner == null)
+        if (ent.Comp.OwnerEntity == null)
         {
             _popup.PopupEntity(Loc.GetString("imperial-spellbook-bind", ("book", ent.Owner)), user, user);
             SetOwner(ent, mindId, mind);
             return;
         }
 
-        if (ent.Comp.Owner != mindId)
+        if (ent.Comp.OwnerEntity != mindId)
         {
             _popup.PopupEntity(Loc.GetString(_wizard.IsApprentice(mindId) ? "imperial-spellbook-apprentice" : "imperial-spellbook-not-owner",
                 ("book", ent.Owner)), user, user, PopupType.SmallCaution);
@@ -111,7 +111,7 @@ public sealed class ImperialSpellbookSystem : EntitySystem
 
     private void OnExamined(Entity<ImperialSpellbookComponent> ent, ref ExaminedEvent args)
     {
-        args.PushMarkup(ent.Comp.Owner != null
+        args.PushMarkup(ent.Comp.OwnerEntity != null
             ? Loc.GetString("imperial-spellbook-examine-owner", ("owner", ent.Comp.OwnerName))
             : Loc.GetString("imperial-spellbook-examine-no-owner"));
     }
@@ -137,7 +137,7 @@ public sealed class ImperialSpellbookSystem : EntitySystem
             return false;
         }
 
-        return _mind.TryGetMind(user, out var mindId, out _) && book.Comp.Owner == mindId;
+        return _mind.TryGetMind(user, out var mindId, out _) && book.Comp.OwnerEntity == mindId;
     }
 
     public int Times(ImperialSpellbookComponent book, string entry)

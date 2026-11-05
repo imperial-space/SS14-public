@@ -1,3 +1,5 @@
+using Content.Shared.Imperial.Helpers;
+using Content.Shared.Dataset;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Chat.Managers;
@@ -96,39 +98,13 @@ public sealed partial class ImperialGrandRitualSystem : EntitySystem
     private const float AreaRadius = 7f;
 
     /// <summary>possible_magic_words.</summary>
-    private static readonly string[][] PossibleMagicWords =
-    {
-        new[] { "А-А-А-А!!", "А-А-А-А-А!!", "А-А-А-А-А-А-А!!" },
-        new[] { "Абра...", "Кадабра...", "Алаказам!" },
-        new[] { "Азарат!", "Метрион!", "Зинтрос!!" },
-        new[] { "Бибити!", "Бобити!", "Буу!" },
-        new[] { "Биш", "Баш", "Бош!" },
-        new[] { "Эни... ", "Мени... ", "Миниму!!" },
-        new[] { "Эсальп!", "Оу Натх!", "Ем Есукзме!!" },
-        new[] { "Фус", "Ро", "Да!!" },
-        new[] { "git checkout origin master", "git reset --hard HEAD~2", "git push origin master --force!!" },
-        new[] { "Фокус Покус!", "Флим Флам!", "Вабаджак!" },
-        new[] { "Я желаю...", "Я бы хотел...", "Желание, которое я загадаю сегодня вечером!" },
-        new[] { "Клату!", "Барада!", "Никто!!" },
-        new[] { "Пусть расширяются просторы!", "Пусть эон станет мгновением!", "Распахните ворота настежь!!" },
-        new[] { "Левиос!", "Гравиоле!", "Експломб!!" },
-        new[] { "Микрато", "Рапиж", "Сактонишь!" },
-        new[] { "Нокту!", "Орфей!", "Ауде! Фраетор!" },
-        new[] { "Квуас!", "Векс!", "Ексорт!" },
-        new[] { "Сим!", "Сала!", "Бим!" },
-        new[] { "Семь теней отброшены, семь судеб предсказаны!", "Пусть их слова отзвучат в вашей пустой душе!", "Разрушение наступило!!" },
-        new[]
-        {
-            "Свифткаст! Хастега! Ограждающее поле 2! Продление 4! Продвинутое усиление Тенсера! Защита от добра! Усиление эффекта 3! Аркановое ус...",
-            "...иление 4! Превращение паразитов 10! Защита от зла 2! Щит мага! Посредственное усиление Венериуса 2! Расширить силу! Изгнать го...",
-            "...лод 2! Защита от нейтралов! Сурекастага! Обновление! Обновление 2! Шарпкаст 10! Эфирная манипуляция! Поглощение Лей-линии! Вызвать Великий Ритуал!!",
-        },
-        new[] { "Тен!", "Чи!", "Джи!" },
-        new[] { "Высшая школа магии!", "Ультимативный ритуал!", "Макрокосмос!!" },
-        new[] { "Яаба", "Да Ба", "Дуум!!" },
-    };
+    private static readonly ProtoId<LocalizedDatasetPrototype>[] PossibleMagicWordsDatasets = ["ImperialImperialGrandRitualSystemPossibleMagicWords1", "ImperialImperialGrandRitualSystemPossibleMagicWords2", "ImperialImperialGrandRitualSystemPossibleMagicWords3", "ImperialImperialGrandRitualSystemPossibleMagicWords4", "ImperialImperialGrandRitualSystemPossibleMagicWords5", "ImperialImperialGrandRitualSystemPossibleMagicWords6", "ImperialImperialGrandRitualSystemPossibleMagicWords7", "ImperialImperialGrandRitualSystemPossibleMagicWords8", "ImperialImperialGrandRitualSystemPossibleMagicWords9", "ImperialImperialGrandRitualSystemPossibleMagicWords10", "ImperialImperialGrandRitualSystemPossibleMagicWords11", "ImperialImperialGrandRitualSystemPossibleMagicWords12", "ImperialImperialGrandRitualSystemPossibleMagicWords13", "ImperialImperialGrandRitualSystemPossibleMagicWords14", "ImperialImperialGrandRitualSystemPossibleMagicWords15", "ImperialImperialGrandRitualSystemPossibleMagicWords16", "ImperialImperialGrandRitualSystemPossibleMagicWords17", "ImperialImperialGrandRitualSystemPossibleMagicWords18", "ImperialImperialGrandRitualSystemPossibleMagicWords19", "ImperialImperialGrandRitualSystemPossibleMagicWords20", "ImperialImperialGrandRitualSystemPossibleMagicWords21", "ImperialImperialGrandRitualSystemPossibleMagicWords22", "ImperialImperialGrandRitualSystemPossibleMagicWords23"];
 
-    private static readonly string[] CheesyWords = { "Здравствуйте! Приветствую!", "Добро пожаловать! А теперь уходи.", "Уходи. Беги. Или умри." };
+    private static string[][] PossibleMagicWords => PossibleMagicWordsDatasets.Select(ImperialLocalizedLists.Get).ToArray();
+
+    private static readonly ProtoId<LocalizedDatasetPrototype> CheesyWordsDataset = "ImperialImperialGrandRitualSystemCheesyWords";
+
+    private static string[] CheesyWords => ImperialLocalizedLists.Get(CheesyWordsDataset);
 
     /// <summary>Отложенные действия (addtimer).</summary>
     private readonly List<(TimeSpan At, Action Action)> _scheduled = new();
