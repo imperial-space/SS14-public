@@ -8,60 +8,6 @@ using Content.Shared.Tag;
 
 namespace Content.Server.Imperial.Quirks;
 
-/// <summary>FOOD_FLAGS из TG: типы пищи, по которым работают аллергии и вкусы.</summary>
-[Flags]
-public enum ImperialFoodType
-{
-    None = 0,
-    Meat = 1 << 0,
-    Seafood = 1 << 1,
-    Dairy = 1 << 2,
-    Fruit = 1 << 3,
-    Vegetables = 1 << 4,
-    Grain = 1 << 5,
-    Sugar = 1 << 6,
-    Nuts = 1 << 7,
-    Bugs = 1 << 8,
-    Alcohol = 1 << 9,
-    Junkfood = 1 << 10,
-    Pineapple = 1 << 11,
-    Raw = 1 << 12,
-    Gross = 1 << 13,
-}
-
-/// <summary>/datum/quirk/item_quirk/food_allergic.</summary>
-[RegisterComponent]
-public sealed partial class ImperialQuirkFoodAllergyComponent : Component
-{
-    public ImperialFoodType Allergy;
-}
-
-/// <summary>Вкусы языка (liked_foodtypes / disliked_foodtypes), которые меняют причуды.</summary>
-[RegisterComponent]
-public sealed partial class ImperialQuirkTasteComponent : Component
-{
-    /// <summary>Язык человека: любит фастфуд и жареное, не любит гадость, сырое и жуков.</summary>
-    [DataField]
-    public ImperialFoodType Liked = ImperialFoodType.Junkfood;
-
-    [DataField]
-    public ImperialFoodType Disliked = ImperialFoodType.Gross | ImperialFoodType.Raw | ImperialFoodType.Bugs;
-
-    public TimeSpan NextReaction;
-}
-
-/// <summary>TRAIT_AGEUSIA: вкусы не ощущаются.</summary>
-[RegisterComponent]
-public sealed partial class ImperialQuirkAgeusiaComponent : Component;
-
-/// <summary>TRAIT_VORACIOUS: ест быстрее (большими кусками).</summary>
-[RegisterComponent]
-public sealed partial class ImperialQuirkVoraciousComponent : Component;
-
-/// <summary>TRAIT_STRONG_STOMACH: невкусная и аллергенная еда не вызывает рвоту.</summary>
-[RegisterComponent]
-public sealed partial class ImperialQuirkStrongStomachComponent : Component;
-
 public sealed partial class ImperialQuirkSystem
 {
     [Dependency] private readonly TagSystem _tag = default!;

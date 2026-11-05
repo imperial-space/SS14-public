@@ -1,3 +1,5 @@
+using Content.Shared.Imperial.Helpers;
+using Content.Shared.Dataset;
 using Robust.Shared.Random;
 using System.Linq;
 using Content.Server.Chat.Systems;
@@ -16,35 +18,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Quirks;
-
-/// <summary>
-/// /datum/component/fearful: страх копится от источников и пропадает сам, пороги — испуг, ужас, паника, сердечный приступ.
-/// </summary>
-[RegisterComponent]
-public sealed partial class ImperialQuirkFearComponent : Component
-{
-    [DataField]
-    public bool Claustrophobia;
-
-    [DataField]
-    public bool Nyctophobia;
-
-    [DataField]
-    public bool Monophobia;
-
-    /// <summary>Фобия (/datum/brain_trauma/mild/phobia): случайная при появлении.</summary>
-    [DataField]
-    public bool Phobia;
-
-    public string? PhobiaType;
-    public float Buildup;
-    public float LastBuildup;
-    public TimeSpan NextTick;
-    public TimeSpan NextPhobiaCheck;
-    public TimeSpan ScareCooldown;
-    public TimeSpan NextMessage;
-    public TimeSpan PanicEnd;
-}
 
 public sealed partial class ImperialQuirkSystem
 {
@@ -65,25 +38,26 @@ public sealed partial class ImperialQuirkSystem
     private static readonly ProtoId<Content.Shared.Chemistry.Reagent.ReagentPrototype> Psicodine = "Psicodine";
 
     /// <summary>GLOB.phobia_types, которые SS14 умеет распознать, и слова-триггеры.</summary>
-    private static readonly Dictionary<string, string[]> PhobiaWords = new()
+    /// <summary>Фобии: тип -> датасет слов-триггеров (слова — в локали).</summary>
+    private static readonly Dictionary<string, ProtoId<LocalizedDatasetPrototype>> PhobiaWords = new()
     {
-        ["spiders"] = ["паук", "паучих", "арахнид"],
-        ["clowns"] = ["клоун", "хонк"],
-        ["security"] = ["охран", "офицер", "смотрител", "варден", "сбшник"],
-        ["doctors"] = ["врач", "доктор", "медик", "хирург"],
-        ["authority"] = ["капитан", "глава", "командован", "начальств"],
-        ["robots"] = ["робот", "борг", "киборг", "андроид"],
-        ["skeletons"] = ["скелет", "кост"],
-        ["lizards"] = ["ящер", "унатх", "рептил"],
-        ["insects"] = ["жук", "насеком", "моль", "мотыл", "пчел"],
-        ["aliens"] = ["ксено", "чужой", "чужие", "пришелец"],
-        ["guns"] = ["пушк", "ствол", "пистолет", "винтовк", "стреля"],
-        ["blood"] = ["кровь", "крови", "кровав"],
-        ["birds"] = ["птиц", "куриц", "утк", "ворон"],
-        ["snakes"] = ["змея", "змеи", "змей"],
-        ["fish"] = ["рыб", "карп"],
-        ["greytide"] = ["ассистент", "грейтайд", "изолк"],
-        ["space"] = ["космос", "вакуум"],
+        ["spiders"] = "ImperialPhobiaWordsSpiders",
+        ["clowns"] = "ImperialPhobiaWordsClowns",
+        ["security"] = "ImperialPhobiaWordsSecurity",
+        ["doctors"] = "ImperialPhobiaWordsDoctors",
+        ["authority"] = "ImperialPhobiaWordsAuthority",
+        ["robots"] = "ImperialPhobiaWordsRobots",
+        ["skeletons"] = "ImperialPhobiaWordsSkeletons",
+        ["lizards"] = "ImperialPhobiaWordsLizards",
+        ["insects"] = "ImperialPhobiaWordsInsects",
+        ["aliens"] = "ImperialPhobiaWordsAliens",
+        ["guns"] = "ImperialPhobiaWordsGuns",
+        ["blood"] = "ImperialPhobiaWordsBlood",
+        ["birds"] = "ImperialPhobiaWordsBirds",
+        ["snakes"] = "ImperialPhobiaWordsSnakes",
+        ["fish"] = "ImperialPhobiaWordsFish",
+        ["greytide"] = "ImperialPhobiaWordsGreytide",
+        ["space"] = "ImperialPhobiaWordsSpace",
     };
 
     private void InitializeFear()
@@ -288,7 +262,7 @@ public sealed partial class ImperialQuirkSystem
         var query = EntityQueryEnumerator<ImperialQuirkFearComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (comp.PhobiaType is not { } phobia || !PhobiaWords[phobia].Any(message.Contains) || Fearless(uid))
+            if (comp.PhobiaType is not { } phobia || !ImperialLocalizedLists.Get(PhobiaWords[phobia]).Any(message.Contains) || Fearless(uid))
                 continue;
 
             if (uid == args.Source)
