@@ -1,0 +1,119 @@
+# ImperialQuirkSystem.Fear.cs: spiders
+- type: localizedDataset
+  id: ImperialPhobiaWordsSpiders
+  values:
+    prefix: imperial-quirks-phobia-words-spiders-
+    count: 3
+
+# ImperialQuirkSystem.Fear.cs: clowns
+- type: localizedDataset
+  id: ImperialPhobiaWordsClowns
+  values:
+    prefix: imperial-quirks-phobia-words-clowns-
+    count: 2
+
+# ImperialQuirkSystem.Fear.cs: security
+- type: localizedDataset
+  id: ImperialPhobiaWordsSecurity
+  values:
+    prefix: imperial-quirks-phobia-words-security-
+    count: 5
+
+# ImperialQuirkSystem.Fear.cs: doctors
+- type: localizedDataset
+  id: ImperialPhobiaWordsDoctors
+  values:
+    prefix: imperial-quirks-phobia-words-doctors-
+    count: 4
+
+# ImperialQuirkSystem.Fear.cs: authority
+- type: localizedDataset
+  id: ImperialPhobiaWordsAuthority
+  values:
+    prefix: imperial-quirks-phobia-words-authority-
+    count: 4
+
+# ImperialQuirkSystem.Fear.cs: robots
+- type: localizedDataset
+  id: ImperialPhobiaWordsRobots
+  values:
+    prefix: imperial-quirks-phobia-words-robots-
+    count: 4
+
+# ImperialQuirkSystem.Fear.cs: skeletons
+- type: localizedDataset
+  id: ImperialPhobiaWordsSkeletons
+  values:
+    prefix: imperial-quirks-phobia-words-skeletons-
+    count: 2
+
+# ImperialQuirkSystem.Fear.cs: lizards
+- type: localizedDataset
+  id: ImperialPhobiaWordsLizards
+  values:
+    prefix: imperial-quirks-phobia-words-lizards-
+    count: 3
+
+# ImperialQuirkSystem.Fear.cs: insects
+- type: localizedDataset
+  id: ImperialPhobiaWordsInsects
+  values:
+    prefix: imperial-quirks-phobia-words-insects-
+    count: 5
+
+# ImperialQuirkSystem.Fear.cs: aliens
+- type: localizedDataset
+  id: ImperialPhobiaWordsAliens
+  values:
+    prefix: imperial-quirks-phobia-words-aliens-
+    count: 4
+
+# ImperialQuirkSystem.Fear.cs: guns
+- type: localizedDataset
+  id: ImperialPhobiaWordsGuns
+  values:
+    prefix: imperial-quirks-phobia-words-guns-
+    count: 5
+
+# ImperialQuirkSystem.Fear.cs: blood
+- type: localizedDataset
+  id: ImperialPhobiaWordsBlood
+  values:
+    prefix: imperial-quirks-phobia-words-blood-
+    count: 3
+
+# ImperialQuirkSystem.Fear.cs: birds
+- type: localizedDataset
+  id: ImperialPhobiaWordsBirds
+  values:
+    prefix: imperial-quirks-phobia-words-birds-
+    count: 4
+
+# ImperialQuirkSystem.Fear.cs: snakes
+- type: localizedDataset
+  id: ImperialPhobiaWordsSnakes
+  values:
+    prefix: imperial-quirks-phobia-words-snakes-
+    count: 3
+
+# ImperialQuirkSystem.Fear.cs: fish
+- type: localizedDataset
+  id: ImperialPhobiaWordsFish
+  values:
+    prefix: imperial-quirks-phobia-words-fish-
+    count: 2
+
+# ImperialQuirkSystem.Fear.cs: greytide
+- type: localizedDataset
+  id: ImperialPhobiaWordsGreytide
+  values:
+    prefix: imperial-quirks-phobia-words-greytide-
+    count: 3
+
+# ImperialQuirkSystem.Fear.cs: space
+- type: localizedDataset
+  id: ImperialPhobiaWordsSpace
+  values:
+    prefix: imperial-quirks-phobia-words-space-
+    count: 2
+
