@@ -143,7 +143,7 @@ public sealed partial class ImperialMoodSystem
         var name = Name(ent);
         var parts = name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
         var heirloom = EnsureComp<ImperialHeirloomComponent>(item);
-        heirloom.Owner = ent;
+        heirloom.OwnerEntity = ent;
         heirloom.Family = parts.Length > 0 ? parts[^1] : name;
 
         var placed = false;
@@ -183,7 +183,7 @@ public sealed partial class ImperialMoodSystem
     /// <summary>component/heirloom: хозяин узнаёт свою реликвию, остальные — чья она.</summary>
     private void OnHeirloomExamined(Entity<ImperialHeirloomComponent> ent, ref ExaminedEvent args)
     {
-        args.PushMarkup(args.Examiner == ent.Comp.Owner
+        args.PushMarkup(args.Examiner == ent.Comp.OwnerEntity
             ? Loc.GetString("imperial-mood-heirloom-examine-owner", ("family", ent.Comp.Family))
             : Loc.GetString("imperial-mood-heirloom-examine", ("family", ent.Comp.Family)));
     }

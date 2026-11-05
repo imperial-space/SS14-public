@@ -8,7 +8,7 @@ namespace Content.Shared.Imperial.Mood;
 public sealed partial class ImperialHeirloomComponent : Component
 {
     [ViewVariables]
-    public EntityUid Owner;
+    public EntityUid OwnerEntity;
     [ViewVariables]
     public string Family = string.Empty;
 }
