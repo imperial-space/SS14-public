@@ -215,15 +215,15 @@ public sealed class HereticInfoWindow : DefaultWindow
             Align = Label.AlignMode.Center,
         };
 
-        var _cache = IoCManager.Resolve<IResourceCache>();
-        var _fontRes = _cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Bold.ttf");
-        var _bigFont = new VectorFont(_fontRes, 16);
+        var resourceCache = IoCManager.Resolve<IResourceCache>();
+        var fontResource = resourceCache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Bold.ttf");
+        var bigFont = new VectorFont(fontResource, 16);
 
         var choosePathLabelText = new Label
         {
             Text = Loc.GetString("heretic-info-choose-path"),
             FontColorOverride = HeaderGold,
-            FontOverride = _bigFont,
+            FontOverride = bigFont,
             HorizontalExpand = true,
             Align = Label.AlignMode.Center,
         };

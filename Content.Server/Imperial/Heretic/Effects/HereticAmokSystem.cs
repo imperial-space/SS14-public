@@ -7,6 +7,7 @@ namespace Content.Server.Imperial.Heretic.Effects;
 
 public sealed class HereticAmokSystem : EntitySystem
 {
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedMeleeWeaponSystem _melee = default!;
@@ -19,22 +20,23 @@ public sealed class HereticAmokSystem : EntitySystem
         var query = EntityQueryEnumerator<HereticAmokComponent>();
         while (query.MoveNext(out var uid, out var amok))
         {
-            amok.Elapsed += frameTime;
-            if (amok.Elapsed >= amok.Duration)
+            if (amok.End == TimeSpan.Zero)
+                amok.End = _timing.CurTime + TimeSpan.FromSeconds(amok.Duration);
+
+            if (_timing.CurTime >= amok.End)
             {
                 RemComp<HereticAmokComponent>(uid);
                 continue;
             }
 
-            amok.AttackTimer += frameTime;
-            if (amok.AttackTimer < amok.AttackCooldown)
+            if (_timing.CurTime < amok.NextAttack)
                 continue;
 
             var target = FindNearest(uid);
             if (target == null)
                 continue;
 
-            amok.AttackTimer = 0f;
+            amok.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(amok.AttackCooldown);
 
             if (!_melee.TryGetWeapon(uid, out var weaponUid, out var weapon))
                 continue;

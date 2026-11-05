@@ -1,6 +1,6 @@
 namespace Content.Server.Imperial.Heretic.Effects;
 
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class HereticAmokComponent : Component
 {
     [DataField]
@@ -9,8 +9,8 @@ public sealed partial class HereticAmokComponent : Component
     [DataField]
     public float AttackCooldown = 1.5f;
 
-    [ViewVariables]
-    public float Elapsed;
-    [ViewVariables]
-    public float AttackTimer;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan End;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextAttack;
 }

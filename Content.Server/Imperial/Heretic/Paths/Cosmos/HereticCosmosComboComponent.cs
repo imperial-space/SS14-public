@@ -7,10 +7,10 @@ namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 public sealed partial class HereticCosmosComboComponent : Component
 {
     [ViewVariables]
-    public EntityUid FirstTarget = EntityUid.Invalid;
+    public EntityUid? FirstTarget;
 
     [ViewVariables]
-    public EntityUid SecondTarget = EntityUid.Invalid;
+    public EntityUid? SecondTarget;
 
     [ViewVariables]
     public int ComboCount;

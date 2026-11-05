@@ -160,9 +160,9 @@ public sealed partial class HereticSystem
             selected.Add(sameDeptPool[0]);
 
         // Fill remaining slots (up to 5 total) from everyone else.
-        var fallback = commandPool.Skip(selected.Contains(commandPool.Count > 0 ? commandPool[0] : EntityUid.Invalid) ? 1 : 0)
-            .Concat(securityPool.Skip(selected.Contains(securityPool.Count > 0 ? securityPool[0] : EntityUid.Invalid) ? 1 : 0))
-            .Concat(sameDeptPool.Skip(selected.Contains(sameDeptPool.Count > 0 ? sameDeptPool[0] : EntityUid.Invalid) ? 1 : 0))
+        var fallback = commandPool.Skip(commandPool.Count > 0 && selected.Contains(commandPool[0]) ? 1 : 0)
+            .Concat(securityPool.Skip(securityPool.Count > 0 && selected.Contains(securityPool[0]) ? 1 : 0))
+            .Concat(sameDeptPool.Skip(sameDeptPool.Count > 0 && selected.Contains(sameDeptPool[0]) ? 1 : 0))
             .Concat(otherPool)
             .Where(e => !selected.Contains(e))
             .ToList();
@@ -271,10 +271,11 @@ public sealed partial class HereticSystem
     /// </summary>
     public void OpenTargetBui(EntityUid uid, HereticComponent comp)
     {
-        if (comp.BuiHolder == EntityUid.Invalid || !Exists(comp.BuiHolder))
+        if (comp.BuiHolder == null || !Exists(comp.BuiHolder))
             return;
         SendTargetBuiState(uid, comp);
-        _ui.TryOpenUi(comp.BuiHolder, HereticTargetBuiKey.Key, uid);
+        if (comp.BuiHolder is { } holder)
+            _ui.TryOpenUi(holder, HereticTargetBuiKey.Key, uid);
     }
 
     private void OnTargetSelectedMessage(EntityUid holderUid, HereticKnowledgeHolderComponent holderComp, HereticTargetSelectedMessage args)
@@ -298,7 +299,8 @@ public sealed partial class HereticSystem
                 IsDead = isDead,
             });
         }
-        _ui.SetUiState(comp.BuiHolder, HereticTargetBuiKey.Key, new HereticTargetBuiState { Targets = targets });
+        if (comp.BuiHolder is { } holder)
+            _ui.SetUiState(holder, HereticTargetBuiKey.Key, new HereticTargetBuiState { Targets = targets });
     }
 
 }

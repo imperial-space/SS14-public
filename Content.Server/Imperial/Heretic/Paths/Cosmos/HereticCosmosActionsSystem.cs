@@ -203,8 +203,8 @@ public sealed class HereticCosmosActionsSystem : EntitySystem
 
         if (combo.ComboCount > 0 && now > combo.ResetAt)
         {
-            combo.FirstTarget = EntityUid.Invalid;
-            combo.SecondTarget = EntityUid.Invalid;
+            combo.FirstTarget = null;
+            combo.SecondTarget = null;
             combo.ComboCount = 0;
         }
 

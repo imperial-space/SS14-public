@@ -62,12 +62,15 @@ public sealed class HereticFleshWeaveSystem : EntitySystem
             return;
         }
 
-        _ui.SetUiState(comp.BuiHolder, HereticFleshWeaveOrganBuiKey.Key, new HereticFleshWeaveOrganBuiState
+        if (comp.BuiHolder is not { } holder)
+            return;
+
+        _ui.SetUiState(holder, HereticFleshWeaveOrganBuiKey.Key, new HereticFleshWeaveOrganBuiState
         {
             Organs = organList,
             Target = GetNetEntity(target),
         });
-        _ui.TryOpenUi(comp.BuiHolder, HereticFleshWeaveOrganBuiKey.Key, uid);
+        _ui.TryOpenUi(holder, HereticFleshWeaveOrganBuiKey.Key, uid);
 
         args.Handled = true;
     }

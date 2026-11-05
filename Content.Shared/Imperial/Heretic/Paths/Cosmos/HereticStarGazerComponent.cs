@@ -4,7 +4,7 @@ using Robust.Shared.Map;
 
 namespace Content.Shared.Imperial.Heretic.Paths.Cosmos;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, AutoGenerateComponentPause, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class HereticStarGazerComponent : Component
 {
     /// <summary>Мастер, которому принадлежит Созерцатель.</summary>
@@ -13,8 +13,8 @@ public sealed partial class HereticStarGazerComponent : Component
     // Регенерация HP
     [DataField] public float HealInterval = 1f;
     [DataField] public float HealAmount = 5f;
-    [ViewVariables]
-    public float HealAccum;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextHeal;
 
     // Star Blast — активный снаряд
     [ViewVariables]
@@ -27,8 +27,8 @@ public sealed partial class HereticStarGazerComponent : Component
     [DataField] public float BeamWindUpDuration = 3.0f;
     [ViewVariables]
     [AutoNetworkedField] public bool BeamWindUp;
-    [ViewVariables]
-    public float BeamWindUpTimer;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan BeamWindUpEnd;
     [ViewVariables]
     public bool BeamVisualShown;
     [ViewVariables]
@@ -40,10 +40,10 @@ public sealed partial class HereticStarGazerComponent : Component
     [DataField] public int BeamRange = 20;
     [ViewVariables]
     [AutoNetworkedField] public bool BeamChanneling;
-    [ViewVariables]
-    public float BeamChannelTimer;
-    [ViewVariables]
-    public float BeamDmgAccum;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan BeamChannelEnd;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextBeamDmg;
 
     // Зафиксированная начальная позиция и направление луча
     [ViewVariables]

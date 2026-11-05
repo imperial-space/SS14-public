@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Heretic.Core;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, AutoGenerateComponentPause, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(SharedHereticSystem))]
 public sealed partial class HereticComponent : Component
 {
@@ -40,9 +40,8 @@ public sealed partial class HereticComponent : Component
     [DataField]
     public float PassiveGainIntervalSeconds = 1200f;
 
-    [ViewVariables]
-    [AutoNetworkedField]
-    public float PassiveGainAccumulator = 0f;
+    [ViewVariables, AutoPausedField, AutoNetworkedField]
+    public TimeSpan NextPassiveGain;
 
     // Sacrifice count for objective tracking
     [ViewVariables]
@@ -78,24 +77,23 @@ public sealed partial class HereticComponent : Component
     public int AscensionCorpsesQualified = 0;
 
     // Accumulator for aura tick
-    [ViewVariables]
-    [AutoNetworkedField]
-    public float AuraAccumulator = 0f;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextAuraTick;
 
     // Holder entity for the Knowledge BUI
     [ViewVariables]
     [AutoNetworkedField]
-    public EntityUid BuiHolder = EntityUid.Invalid;
+    public EntityUid? BuiHolder;
 
     // Mansus book entity, used to drive its open/close sprite animation
     [ViewVariables]
     [AutoNetworkedField]
-    public EntityUid MansusBook = EntityUid.Invalid;
+    public EntityUid? MansusBook;
 
     // Current blade entity
     [ViewVariables]
     [AutoNetworkedField]
-    public EntityUid CurrentBlade = EntityUid.Invalid;
+    public EntityUid? CurrentBlade;
 
     [ViewVariables]
     [AutoNetworkedField]

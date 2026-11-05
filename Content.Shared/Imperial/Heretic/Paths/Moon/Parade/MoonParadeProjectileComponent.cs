@@ -6,7 +6,7 @@ namespace Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
 public sealed partial class MoonParadeProjectileComponent : Component
 {
     [DataField]
-    public EntityUid Shooter = EntityUid.Invalid;
+    public EntityUid? Shooter;
 
     [DataField]
     public int MaxBounces = 40;

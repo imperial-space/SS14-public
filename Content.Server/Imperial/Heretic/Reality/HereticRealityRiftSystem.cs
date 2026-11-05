@@ -53,7 +53,7 @@ public sealed class HereticRealityRiftSystem : EntitySystem
         "heretic-dream-rift-loc-4",
     };
 
-    private float _updateTimer;
+    private TimeSpan _nextUpdate;
 
     public override void Initialize()
     {
@@ -84,10 +84,10 @@ public sealed class HereticRealityRiftSystem : EntitySystem
             RemCompDeferred<HereticRiftFovEffectComponent>(fovUid);
         }
 
-        _updateTimer += frameTime;
-        if (_updateTimer < UpdateInterval)
+        if (_timing.CurTime < _nextUpdate)
             return;
-        _updateTimer = 0f;
+
+        _nextUpdate = _timing.CurTime + TimeSpan.FromSeconds(UpdateInterval);
 
         var riftQuery = EntityQueryEnumerator<HereticRealityRiftComponent, TransformComponent>();
         while (riftQuery.MoveNext(out var riftUid, out var rift, out var riftXform))

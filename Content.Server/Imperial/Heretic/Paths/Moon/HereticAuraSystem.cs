@@ -84,7 +84,7 @@ public sealed class HereticAuraSystem : EntitySystem
         var query = EntityQueryEnumerator<HereticComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (!_heretic.TryTickAuraAccumulator(uid, comp, frameTime, AuraTickInterval)) continue;
+            if (!_heretic.TryTickAura(comp, AuraTickInterval)) continue;
             TickAura(uid, comp);
             TickLeechingWalk(uid, comp);
         }

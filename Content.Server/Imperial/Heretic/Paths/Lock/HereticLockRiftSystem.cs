@@ -4,6 +4,7 @@ namespace Content.Server.Imperial.Heretic.Paths.Lock;
 
 public sealed class HereticLockRiftSystem : EntitySystem
 {
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -11,11 +12,10 @@ public sealed class HereticLockRiftSystem : EntitySystem
         var query = EntityQueryEnumerator<HereticLockRiftComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            comp.Timer += frameTime;
-            if (comp.Timer < comp.SpawnInterval)
+            if (_timing.CurTime < comp.NextSpawn)
                 continue;
 
-            comp.Timer = 0f;
+            comp.NextSpawn = _timing.CurTime + TimeSpan.FromSeconds(comp.SpawnInterval);
             Spawn(comp.SpawnEntity, Transform(uid).Coordinates);
         }
     }

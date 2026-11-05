@@ -2,28 +2,35 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.Heretic.Paths.Ash;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, AutoGenerateComponentPause, NetworkedComponent]
 public sealed partial class HereticFireSharkComponent : Component
 {
     [ViewVariables]
-    public EntityUid TargetUid = EntityUid.Invalid;
+    public EntityUid? TargetUid;
 
     [DataField] public float Lifetime = 25f;
-    [ViewVariables]
-    public float LifetimeElapsed = 0f;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan LifetimeEnd;
 
     [DataField] public float MoveSpeed = 7f;
     [DataField] public float AttackRange = 1.3f;
     [DataField] public float AttackCooldown = 0.6f;
-    [ViewVariables]
-    public float AttackTimer = 0f;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextAttack;
 
     [DataField] public float FireTrailInterval = 0.35f;
-    [ViewVariables]
-    public float FireTrailTimer = 0f;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextFireTrail;
 
     [DataField] public float RegenInterval = 1f;
     [DataField] public float RegenAmount = 1f;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextRegen;
+
+    /// <summary>Цель, найденная последним поиском (поиск по области — не чаще раза в полсекунды).</summary>
     [ViewVariables]
-    public float RegenTimer = 0f;
+    public EntityUid? CachedTarget;
+
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextRetarget;
 }

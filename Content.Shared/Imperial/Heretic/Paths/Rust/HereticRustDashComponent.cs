@@ -4,7 +4,7 @@ using Robust.Shared.Map;
 
 namespace Content.Shared.Imperial.Heretic.Paths.Rust;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, AutoGenerateComponentPause, NetworkedComponent]
 public sealed partial class HereticRustDashComponent : Component
 {
     [DataField] public float DashSpeed = 18f;
@@ -24,12 +24,12 @@ public sealed partial class HereticRustDashComponent : Component
     public bool IsActive;
     [ViewVariables]
     public EntityCoordinates Destination;
-    [ViewVariables]
-    public float WaitAccum;
-    [ViewVariables]
-    public float TrailAccum;
-    [ViewVariables]
-    public float RustAccum;
-    [ViewVariables]
-    public float DamageAccum;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan WaitEnd;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextTrail;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextRust;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextDamage;
 }

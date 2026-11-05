@@ -12,7 +12,7 @@ namespace Content.Shared.Imperial.Heretic.Paths.Blade;
 public sealed partial class HereticBladeMarkComponent : Component, IHereticMarkComponent
 {
     [DataField]
-    public EntityUid Heretic = EntityUid.Invalid;
+    public EntityUid? Heretic;
 
     [DataField]
     public List<EntityUid> LockedDoors = new();

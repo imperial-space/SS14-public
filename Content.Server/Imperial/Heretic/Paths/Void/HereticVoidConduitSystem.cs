@@ -77,18 +77,19 @@ public sealed class HereticVoidConduitSystem : EntitySystem
         var query = EntityQueryEnumerator<HereticVoidConduitComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            comp.LifetimeTimer += frameTime;
-            if (comp.LifetimeTimer >= comp.Lifetime)
+            if (comp.LifetimeEnd == TimeSpan.Zero)
+                comp.LifetimeEnd = _timing.CurTime + TimeSpan.FromSeconds(comp.Lifetime);
+
+            if (_timing.CurTime >= comp.LifetimeEnd)
             {
                 QueueDel(uid);
                 continue;
             }
 
-            comp.PulseTimer += frameTime;
-            if (comp.PulseTimer < comp.PulseInterval)
+            if (_timing.CurTime < comp.NextPulse)
                 continue;
 
-            comp.PulseTimer = 0f;
+            comp.NextPulse = _timing.CurTime + TimeSpan.FromSeconds(comp.PulseInterval);
             StartPulseWave(uid, comp);
         }
 

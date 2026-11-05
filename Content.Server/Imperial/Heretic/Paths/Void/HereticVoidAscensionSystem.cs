@@ -179,9 +179,10 @@ public sealed class HereticVoidAscensionSystem : EntitySystem
         var query = EntityQueryEnumerator<HereticVoidAscendedComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            comp.WaveTimer += frameTime;
-            if (comp.WaveTimer < WaveInterval) continue;
-            comp.WaveTimer = 0f;
+            if (_timing.CurTime < comp.NextWave)
+                continue;
+
+            comp.NextWave = _timing.CurTime + TimeSpan.FromSeconds(WaveInterval);
             TriggerWave(uid);
         }
     }

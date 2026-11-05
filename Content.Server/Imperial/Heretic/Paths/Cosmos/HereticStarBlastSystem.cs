@@ -20,6 +20,7 @@ namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
 public sealed class HereticStarBlastSystem : EntitySystem
 {
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -45,13 +46,13 @@ public sealed class HereticStarBlastSystem : EntitySystem
         var query = EntityQueryEnumerator<HereticStarBlastProjectileComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var comp, out var xform))
         {
-            comp.TrailTimer += frameTime;
-            if (comp.TrailTimer < comp.TrailInterval)
+            if (_timing.CurTime < comp.NextTrail)
                 continue;
-            comp.TrailTimer = 0f;
+
+            comp.NextTrail = _timing.CurTime + TimeSpan.FromSeconds(comp.TrailInterval);
             var localPos = xform.LocalPosition;
             var snapped = new Vector2(MathF.Floor(localPos.X) + 0.5f, MathF.Floor(localPos.Y) + 0.5f);
-            var trailLevel = comp.Shooter != EntityUid.Invalid && TryComp<HereticComponent>(comp.Shooter, out var trailH)
+            var trailLevel = comp.Shooter != null && TryComp<HereticComponent>(comp.Shooter, out var trailH)
                 ? trailH.PassiveLevel : 0;
             SpawnCarpet(trailLevel, xform.ParentUid, snapped);
         }

@@ -2,16 +2,16 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.Heretic.Paths.Ash;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, AutoGenerateComponentPause, NetworkedComponent]
 public sealed partial class HereticAshManComponent : Component
 {
     [ViewVariables]
-    public EntityUid CasterUid = EntityUid.Invalid;
+    public EntityUid? CasterUid;
 
     [DataField]
     public float Lifetime = 60f;
-    [ViewVariables]
-    public float LifetimeElapsed = 0f;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan LifetimeEnd;
 
     [DataField]
     public float MoveSpeed = 4.5f;
@@ -21,11 +21,18 @@ public sealed partial class HereticAshManComponent : Component
 
     [DataField]
     public float AttackCooldown = 1.2f;
-    [ViewVariables]
-    public float AttackTimer = 0f;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextAttack;
 
     [DataField]
     public float FireTrailInterval = 0.6f;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextFireTrail;
+
+    /// <summary>Цель, найденная последним поиском (поиск по области — не чаще раза в полсекунды).</summary>
     [ViewVariables]
-    public float FireTrailTimer = 0f;
+    public EntityUid? CachedTarget;
+
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextRetarget;
 }

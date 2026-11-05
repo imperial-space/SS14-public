@@ -26,6 +26,7 @@ namespace Content.Server.Imperial.Heretic.Paths.Rust;
 /// </summary>
 public sealed class HereticRustEffectsSystem : EntitySystem
 {
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
@@ -41,8 +42,8 @@ public sealed class HereticRustEffectsSystem : EntitySystem
     // Healing tick: every 1 second (matches SS13 rust_healing 3/s)
     private const float HealInterval = 1f;
 
-    private float _corruptionAccum;
-    private float _healAccum;
+    private TimeSpan _nextCorruption;
+    private TimeSpan _nextHeal;
 
     public override void Initialize()
     {
@@ -91,19 +92,17 @@ public sealed class HereticRustEffectsSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        _corruptionAccum += frameTime;
-        _healAccum += frameTime;
-
-        var doCorruption = _corruptionAccum >= CorruptionInterval;
-        var doHeal = _healAccum >= HealInterval;
+        var now = _timing.CurTime;
+        var doCorruption = now >= _nextCorruption;
+        var doHeal = now >= _nextHeal;
 
         if (!doCorruption && !doHeal)
             return;
 
         if (doCorruption)
-            _corruptionAccum = 0f;
+            _nextCorruption = now + TimeSpan.FromSeconds(CorruptionInterval);
         if (doHeal)
-            _healAccum = 0f;
+            _nextHeal = now + TimeSpan.FromSeconds(HealInterval);
 
         // Iterate every living mob, check if on rust
         var query = EntityQueryEnumerator<MobStateComponent>();

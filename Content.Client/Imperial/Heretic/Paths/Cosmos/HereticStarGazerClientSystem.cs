@@ -9,19 +9,19 @@ namespace Content.Client.Imperial.Heretic.Paths.Cosmos;
 
 public sealed class HereticStarGazerClientSystem : EntitySystem
 {
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IEyeManager _eye = default!;
     [Dependency] private readonly IInputManager _input = default!;
 
-    private float _sendTimer;
-    private const float SendInterval = 0.1f; // 10 обновлений в секунду
+    private TimeSpan _nextSend;
+    private static readonly TimeSpan SendInterval = TimeSpan.FromSeconds(0.1); // 10 обновлений в секунду
 
     public override void FrameUpdate(float frameTime)
     {
         base.FrameUpdate(frameTime);
 
-        _sendTimer -= frameTime;
-        if (_sendTimer > 0f)
+        if (_timing.RealTime < _nextSend)
             return;
 
         var player = _player.LocalEntity;
@@ -39,6 +39,6 @@ public sealed class HereticStarGazerClientSystem : EntitySystem
             return;
 
         RaiseNetworkEvent(new HereticStarGazerCursorUpdateEvent(GetNetEntity(player.Value), mousePos));
-        _sendTimer = SendInterval;
+        _nextSend = _timing.RealTime + SendInterval;
     }
 }

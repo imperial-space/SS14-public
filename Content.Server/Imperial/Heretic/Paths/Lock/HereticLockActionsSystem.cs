@@ -146,7 +146,8 @@ public sealed class HereticLockActionsSystem : EntitySystem
 
         args.Handled = true;
 
-        _ui.TryOpenUi(comp.BuiHolder, HereticLockShapeshiftUiKey.Key, uid);
+        if (comp.BuiHolder is { } holder)
+            _ui.TryOpenUi(holder, HereticLockShapeshiftUiKey.Key, uid);
     }
 
     private void OnLockShapeshiftSelect(EntityUid holderUid, HereticKnowledgeHolderComponent holderComp, HereticLockShapeshiftSelectMessage args)

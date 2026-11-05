@@ -61,7 +61,7 @@ public sealed class HereticStarTouchBeamOverlay : Overlay
         var query = _ent.EntityQueryEnumerator<HereticStarTouchBeamComponent>();
         while (query.MoveNext(out var uid, out var beam))
         {
-            if (beam.Target == EntityUid.Invalid)
+            if (!beam.Target.Valid)
                 continue;
 
             if (!xformQuery.TryGetComponent(uid, out var xform) ||

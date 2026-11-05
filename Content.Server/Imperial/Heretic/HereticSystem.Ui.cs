@@ -88,7 +88,7 @@ public sealed partial class HereticSystem
     private void OnKnowledgeMenu(EntityUid uid, HereticComponent comp, HereticKnowledgeMenuActionEvent args)
     {
         args.Handled = true;
-        if (comp.BuiHolder == EntityUid.Invalid || !Exists(comp.BuiHolder))
+        if (comp.BuiHolder == null || !Exists(comp.BuiHolder))
             return;
 
         OpenInfoBui(uid, comp);
@@ -101,13 +101,13 @@ public sealed partial class HereticSystem
 
         args.Handled = true;
         hereticComp.MansusBook = uid;
-        if (hereticComp.BuiHolder == EntityUid.Invalid || !Exists(hereticComp.BuiHolder))
+        if (hereticComp.BuiHolder == null || !Exists(hereticComp.BuiHolder))
             return;
 
         OpenInfoBui(args.User, hereticComp);
 
         comp.NextState = HereticMansusBookVisualState.Open;
-        comp.TransitionTimeRemaining = comp.OpeningAnimDuration;
+        comp.TransitionEnd = _timing.CurTime + TimeSpan.FromSeconds(comp.OpeningAnimDuration);
         _appearance.SetData(uid, HereticMansusBookVisuals.State, HereticMansusBookVisualState.Opening);
     }
 
@@ -117,18 +117,19 @@ public sealed partial class HereticSystem
             return;
 
         var book = hereticComp.MansusBook;
-        if (book == EntityUid.Invalid || !Exists(book) || !TryComp<HereticMansusBookComponent>(book, out var bookComp))
+        if (book is not { } bookUid || !TryComp<HereticMansusBookComponent>(bookUid, out var bookComp))
             return;
 
         bookComp.NextState = HereticMansusBookVisualState.Closed;
-        bookComp.TransitionTimeRemaining = bookComp.ClosingAnimDuration;
-        _appearance.SetData(book, HereticMansusBookVisuals.State, HereticMansusBookVisualState.Closing);
+        bookComp.TransitionEnd = _timing.CurTime + TimeSpan.FromSeconds(bookComp.ClosingAnimDuration);
+        _appearance.SetData(bookUid, HereticMansusBookVisuals.State, HereticMansusBookVisualState.Closing);
     }
 
     private void OpenInfoBui(EntityUid uid, HereticComponent comp)
     {
         SendInfoBuiState(uid, comp);
-        _ui.TryOpenUi(comp.BuiHolder, HereticInfoBuiKey.Key, uid);
+        if (comp.BuiHolder is { } holder)
+            _ui.TryOpenUi(holder, HereticInfoBuiKey.Key, uid);
     }
 
     private void OnSelectPathMessage(EntityUid holderUid, HereticKnowledgeHolderComponent holderComp, HereticSelectPathMessage args)
@@ -193,7 +194,7 @@ public sealed partial class HereticSystem
 
     public void SendInfoBuiState(EntityUid uid, HereticComponent comp)
     {
-        if (comp.BuiHolder == EntityUid.Invalid || !Exists(comp.BuiHolder))
+        if (comp.BuiHolder == null || !Exists(comp.BuiHolder))
             return;
 
         var nodes = new List<HereticKnowledgeNodeData>();
@@ -242,7 +243,7 @@ public sealed partial class HereticSystem
         }
         paths.Sort((a, b) => (int)a.Path - (int)b.Path);
 
-        _ui.SetUiState(comp.BuiHolder, HereticInfoBuiKey.Key, new HereticInfoBuiState
+        _ui.SetUiState(comp.BuiHolder.Value, HereticInfoBuiKey.Key, new HereticInfoBuiState
         {
             KnowledgePoints = comp.KnowledgePoints,
             CurrentPath = comp.CurrentPath,

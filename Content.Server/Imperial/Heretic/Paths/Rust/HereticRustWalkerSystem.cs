@@ -18,6 +18,7 @@ namespace Content.Server.Imperial.Heretic.Paths.Rust;
 
 public sealed class HereticRustWalkerSystem : EntitySystem
 {
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -54,10 +55,9 @@ public sealed class HereticRustWalkerSystem : EntitySystem
         var walkerQuery = EntityQueryEnumerator<HereticRustWalkerComponent>();
         while (walkerQuery.MoveNext(out var uid, out var comp))
         {
-            comp.HealAccum += frameTime;
-            if (comp.HealAccum >= comp.HealInterval)
+            if (_timing.CurTime >= comp.NextHeal)
             {
-                comp.HealAccum = 0f;
+                comp.NextHeal = _timing.CurTime + TimeSpan.FromSeconds(comp.HealInterval);
                 if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(_xform.GetMapCoordinates(uid), 0.6f).Count > 0)
                 {
                     var heal = new DamageSpecifier();

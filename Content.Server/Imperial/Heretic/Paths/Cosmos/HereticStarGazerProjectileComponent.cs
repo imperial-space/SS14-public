@@ -25,10 +25,11 @@ using Robust.Shared.Random;
 namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
 /// <summary>Маркер для снарядов Star Gazer, чтобы не конфликтовать с HereticStarBlastProjectileComponent.</summary>
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class HereticStarGazerProjectileComponent : Component
 {
-    [DataField] public EntityUid Shooter = EntityUid.Invalid;
-    [DataField] public float TrailTimer;
+    [DataField] public EntityUid? Shooter;
+    [DataField] [ViewVariables, AutoPausedField]
+ public TimeSpan NextTrail;
     [DataField] public float TrailInterval = 0.3f;
 }

@@ -9,5 +9,5 @@ namespace Content.Shared.Imperial.Heretic.Paths.Blade;
 public sealed partial class HereticOrbitingBladeComponent : Component
 {
     [DataField]
-    public EntityUid OwnerHeretic = EntityUid.Invalid;
+    public EntityUid? OwnerHeretic;
 }

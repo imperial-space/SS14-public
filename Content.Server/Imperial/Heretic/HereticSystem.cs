@@ -1,3 +1,6 @@
+using System.Linq;
+using Content.Shared.Imperial.Helpers;
+using Content.Shared.Dataset;
 using System.Numerics;
 using System.Text;
 using Content.Server.Actions;
@@ -133,25 +136,9 @@ public sealed partial class HereticSystem : SharedHereticSystem
 
     private const string RustDecalId = "Rust";
 
-    private static readonly string[] DrainMessages =
-    [
-        "МЕРЦАНИЕ... ПОТЕНЦИАЛ... СИЛА.",
-        "ШЁПОТ.",
-        "ПОКРЫТ И ЗАБЫТ.",
-        "ПРОКЛЯТАЯ ЗЕМЛЯ, ПРОКЛЯТЫЙ ЧЕЛОВЕК, ПРОКЛЯТЫЙ РАЗУМ.",
-        "ВЕЛИКИЕ ВЫСОТЫ.",
-        "ЗА МНОЙ НАБЛЮДАЮТ... ОТКУДА? ЧТО ЭТО?",
-        "Я ОПАЗДЫВАЮ К СВОЕЙ СУДЬБЕ.",
-        "ЖИЗНЬ МИМОЛЁТНА, НО ЧТО ОСТАЁТСЯ?",
-        "ДОЖДЬ ИЗ КРОВИ. ЦАРСТВО КРОВИ.",
-        "СИЛА... НЕСРАВНЕННАЯ. НЕНАТУРАЛЬНАЯ.",
-        "ВРАТА МАНСУСА ЗДЕСЬ, ОТКРЫТЫ.",
-        "ЧЕМ ВЫШЕ Я ПОДНИМАЮСЬ, ТЕМ БОЛЬШЕ ВИЖУ.",
-        "ЗАВЕСА РАЗОРВАНА.",
-        "ИХ РУКА РЯДОМ СО МНОЙ.",
-        "ОНИ ХОДЯТ ПО МИРУ. НЕЗАМЕЧЕННЫЕ.",
-        "ПОХОД СКВОЗЬ ИЗМЕРЕНИЯ."
-    ];
+    private static readonly ProtoId<LocalizedDatasetPrototype> DrainMessagesDataset = "ImperialHereticSystemDrainMessages";
+
+    private static string[] DrainMessages => ImperialLocalizedLists.Get(DrainMessagesDataset);
 
     private static readonly string[] RustAscensionRuneEffects =
     [
@@ -355,13 +342,12 @@ public sealed partial class HereticSystem : SharedHereticSystem
     public bool HasKnowledge(HereticComponent comp, ProtoId<HereticKnowledgePrototype> knowledgeId)
         => comp.ResearchedKnowledge.Contains(knowledgeId);
 
-    public bool TryTickAuraAccumulator(EntityUid uid, HereticComponent comp, float frameTime, float interval)
+    public bool TryTickAura(HereticComponent comp, float interval)
     {
-        comp.AuraAccumulator += frameTime;
-        if (comp.AuraAccumulator < interval)
+        if (_timing.CurTime < comp.NextAuraTick)
             return false;
-        comp.AuraAccumulator = 0f;
-        Dirty(uid, comp);
+
+        comp.NextAuraTick = _timing.CurTime + TimeSpan.FromSeconds(interval);
         return true;
     }
 
@@ -455,10 +441,9 @@ public sealed partial class HereticSystem : SharedHereticSystem
         var query = AllEntityQuery<HereticComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            comp.PassiveGainAccumulator += frameTime;
-            if (comp.PassiveGainAccumulator >= comp.PassiveGainIntervalSeconds)
+            if (_timing.CurTime >= comp.NextPassiveGain)
             {
-                comp.PassiveGainAccumulator = 0f;
+                comp.NextPassiveGain = _timing.CurTime + TimeSpan.FromSeconds(comp.PassiveGainIntervalSeconds);
                 comp.KnowledgePoints++;
                 _popup.PopupEntity(Loc.GetString("heretic-passive-knowledge-gain"), uid, uid, PopupType.Small);
                 var drain = DrainMessages[_random.Next(DrainMessages.Length)];
@@ -495,8 +480,7 @@ public sealed partial class HereticSystem : SharedHereticSystem
             if (bookComp.NextState == null)
                 continue;
 
-            bookComp.TransitionTimeRemaining -= frameTime;
-            if (bookComp.TransitionTimeRemaining <= 0f)
+            if (_timing.CurTime >= bookComp.TransitionEnd)
             {
                 _appearance.SetData(bookUid, HereticMansusBookVisuals.State, bookComp.NextState.Value);
                 bookComp.NextState = null;

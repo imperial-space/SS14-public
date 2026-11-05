@@ -20,6 +20,7 @@ namespace Content.Server.Imperial.Heretic.Items;
 
 public sealed class HereticMaskOfMadnessSystem : EntitySystem
 {
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
     [Dependency] private readonly ParacusiaSystem _paracusia = default!;
@@ -83,10 +84,10 @@ public sealed class HereticMaskOfMadnessSystem : EntitySystem
         var query = EntityQueryEnumerator<HereticMaskOfMadnessComponent>();
         while (query.MoveNext(out var uid, out var mask))
         {
-            mask.TickAccumulator += frameTime;
-            if (mask.TickAccumulator < mask.TickInterval)
+            if (_timing.CurTime < mask.NextTick)
                 continue;
-            mask.TickAccumulator = 0f;
+
+            mask.NextTick = _timing.CurTime + TimeSpan.FromSeconds(mask.TickInterval);
 
             if (!_container.TryGetContainingContainer(uid, out var container))
                 continue;

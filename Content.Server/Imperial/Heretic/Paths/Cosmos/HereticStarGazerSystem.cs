@@ -26,6 +26,7 @@ namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
 public sealed class HereticStarGazerSystem : EntitySystem
 {
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
@@ -70,10 +71,9 @@ public sealed class HereticStarGazerSystem : EntitySystem
         while (query.MoveNext(out var uid, out var comp))
         {
             // Регенерация HP
-            comp.HealAccum += frameTime;
-            if (comp.HealAccum >= comp.HealInterval)
+            if (_timing.CurTime >= comp.NextHeal)
             {
-                comp.HealAccum = 0f;
+                comp.NextHeal = _timing.CurTime + TimeSpan.FromSeconds(comp.HealInterval);
                 var heal = new DamageSpecifier();
                 heal.DamageDict["Blunt"] = FixedPoint2.New(-comp.HealAmount);
                 _damage.TryChangeDamage(uid, heal, ignoreResistances: true);
@@ -89,16 +89,15 @@ public sealed class HereticStarGazerSystem : EntitySystem
                     continue;
                 }
 
-                comp.BeamWindUpTimer -= frameTime;
 
                 // t=2.2с: показываем предпросмотр луча без урона (как в BandaStation)
-                if (!comp.BeamVisualShown && comp.BeamWindUpTimer <= 0.8f)
+                if (!comp.BeamVisualShown && (comp.BeamWindUpEnd - _timing.CurTime).TotalSeconds <= 0.8)
                 {
                     comp.BeamVisualShown = true;
                     ShowBeamPreview(uid, comp);
                 }
 
-                if (comp.BeamWindUpTimer <= 0f)
+                if (_timing.CurTime >= comp.BeamWindUpEnd)
                     StartBeamChanneling(uid, comp);
                 continue;
             }
@@ -113,16 +112,13 @@ public sealed class HereticStarGazerSystem : EntitySystem
                     continue;
                 }
 
-                comp.BeamChannelTimer -= frameTime;
-                comp.BeamDmgAccum += frameTime;
-
-                if (comp.BeamDmgAccum >= comp.BeamDmgInterval)
+                if (_timing.CurTime >= comp.NextBeamDmg)
                 {
-                    comp.BeamDmgAccum = 0f;
+                    comp.NextBeamDmg = _timing.CurTime + TimeSpan.FromSeconds(comp.BeamDmgInterval);
                     FireBeamTick(uid, comp);
                 }
 
-                if (comp.BeamChannelTimer <= 0f)
+                if (_timing.CurTime >= comp.BeamChannelEnd)
                     StopBeam(uid, comp);
 
                 continue;
@@ -133,10 +129,10 @@ public sealed class HereticStarGazerSystem : EntitySystem
         var projQuery = EntityQueryEnumerator<HereticStarGazerProjectileComponent, TransformComponent>();
         while (projQuery.MoveNext(out var uid, out var proj, out var xform))
         {
-            proj.TrailTimer += frameTime;
-            if (proj.TrailTimer < proj.TrailInterval)
+            if (_timing.CurTime < proj.NextTrail)
                 continue;
-            proj.TrailTimer = 0f;
+
+            proj.NextTrail = _timing.CurTime + TimeSpan.FromSeconds(proj.TrailInterval);
             var localPos = xform.LocalPosition;
             var snapped = new Vector2(MathF.Floor(localPos.X) + 0.5f, MathF.Floor(localPos.Y) + 0.5f);
             Spawn("HereticCosmicCarpet", new EntityCoordinates(xform.ParentUid, snapped));
@@ -313,11 +309,11 @@ public sealed class HereticStarGazerSystem : EntitySystem
 
         var xform = Transform(uid);
         comp.BeamWindUp = true;
-        comp.BeamWindUpTimer = comp.BeamWindUpDuration;
+        comp.BeamWindUpEnd = _timing.CurTime + TimeSpan.FromSeconds(comp.BeamWindUpDuration);
         comp.BeamVisualShown = false;
         comp.BeamDeathGazeAction = args.Action.Owner;
         comp.BeamStartPos = xform.LocalPosition;
-        comp.BeamDmgAccum = 0f;
+        comp.NextBeamDmg = TimeSpan.Zero;
 
         // Направление — от гейзера к курсору
         var originWorldPos = _xform.GetWorldPosition(uid);
@@ -367,8 +363,8 @@ public sealed class HereticStarGazerSystem : EntitySystem
 
         comp.BeamWindUp = false;
         comp.BeamChanneling = true;
-        comp.BeamChannelTimer = comp.BeamChannelDuration;
-        comp.BeamDmgAccum = 0f;
+        comp.BeamChannelEnd = _timing.CurTime + TimeSpan.FromSeconds(comp.BeamChannelDuration);
+        comp.NextBeamDmg = TimeSpan.Zero;
 
         _audio.PlayPvs(BeamLoopSound, uid);
         _movement.RefreshMovementSpeedModifiers(uid);
@@ -444,7 +440,7 @@ public sealed class HereticStarGazerSystem : EntitySystem
 
         // Хвост — в конце жизни луча показываем анимацию закрытия
         var tailCenter = worldPos + forward * (comp.BeamRange - 0.5f);
-        var tailId = comp.BeamChannelTimer <= 0.8f ? "HereticStarGazerBeamTileClosing" : "HereticStarGazerBeamTail";
+        var tailId = (comp.BeamChannelEnd - _timing.CurTime).TotalSeconds <= 0.8 ? "HereticStarGazerBeamTileClosing" : "HereticStarGazerBeamTail";
         var tailEnt = Spawn(tailId, new MapCoordinates(tailCenter, mapId));
         _xform.SetWorldRotation(tailEnt, new Angle(worldRot.Theta + Math.PI / 2));
 

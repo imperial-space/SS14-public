@@ -17,6 +17,7 @@ namespace Content.Server.Imperial.Heretic.Paths.Ash;
 /// </summary>
 public sealed class HereticAshManSystem : EntitySystem
 {
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
@@ -33,8 +34,10 @@ public sealed class HereticAshManSystem : EntitySystem
         var query = EntityQueryEnumerator<HereticAshManComponent>();
         while (query.MoveNext(out var uid, out var ash))
         {
-            ash.LifetimeElapsed += frameTime;
-            if (ash.LifetimeElapsed >= ash.Lifetime)
+            if (ash.LifetimeEnd == TimeSpan.Zero)
+                ash.LifetimeEnd = _timing.CurTime + TimeSpan.FromSeconds(ash.Lifetime);
+
+            if (_timing.CurTime >= ash.LifetimeEnd)
             {
                 Spawn("HereticEffectFireExplosion", Transform(uid).Coordinates);
                 QueueDel(uid);
@@ -42,15 +45,20 @@ public sealed class HereticAshManSystem : EntitySystem
             }
 
             // Fire trail
-            ash.FireTrailTimer += frameTime;
-            if (ash.FireTrailTimer >= ash.FireTrailInterval)
+            if (_timing.CurTime >= ash.NextFireTrail)
             {
-                ash.FireTrailTimer = 0f;
+                ash.NextFireTrail = _timing.CurTime + TimeSpan.FromSeconds(ash.FireTrailInterval);
                 Spawn("HereticEffectAshBlink", Transform(uid).Coordinates);
             }
 
             // Find nearest enemy
-            var target = FindNearestEnemy(uid, ash.CasterUid);
+            if (_timing.CurTime >= ash.NextRetarget || ash.CachedTarget is { } old && !IsValidTarget(old))
+            {
+                ash.CachedTarget = FindNearestEnemy(uid, ash.CasterUid);
+                ash.NextRetarget = _timing.CurTime + RetargetInterval;
+            }
+
+            var target = ash.CachedTarget;
             if (target == null)
                 continue;
 
@@ -59,14 +67,12 @@ public sealed class HereticAshManSystem : EntitySystem
             var dir = targetPos - myPos;
             var dist = dir.Length();
 
-            ash.AttackTimer += frameTime;
-
             if (dist <= ash.AttackRange)
             {
                 // In range: deal damage
-                if (ash.AttackTimer >= ash.AttackCooldown)
+                if (_timing.CurTime >= ash.NextAttack)
                 {
-                    ash.AttackTimer = 0f;
+                    ash.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(ash.AttackCooldown);
                     var dmg = new DamageSpecifier();
                     // SS13 ash man: slash + heat + brute (bleed)
                     dmg.DamageDict["Slash"] = FixedPoint2.New(10);
@@ -87,7 +93,14 @@ public sealed class HereticAshManSystem : EntitySystem
         }
     }
 
-    private EntityUid? FindNearestEnemy(EntityUid self, EntityUid caster)
+    private static readonly TimeSpan RetargetInterval = TimeSpan.FromSeconds(0.5);
+
+    private bool IsValidTarget(EntityUid target)
+    {
+        return !TerminatingOrDeleted(target) && TryComp<MobStateComponent>(target, out var mob) && mob.CurrentState != MobState.Dead;
+    }
+
+    private EntityUid? FindNearestEnemy(EntityUid self, EntityUid? caster)
     {
         EntityUid? nearest = null;
         float nearestDist = float.MaxValue;

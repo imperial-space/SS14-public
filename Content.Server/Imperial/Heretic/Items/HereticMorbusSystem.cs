@@ -19,6 +19,9 @@ namespace Content.Server.Imperial.Heretic.Items;
 
 public sealed class HereticMorbusSystem : EntitySystem
 {
+    private static readonly TimeSpan CheckInterval = TimeSpan.FromSeconds(0.2);
+    private TimeSpan _nextCheck;
+
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -39,6 +42,11 @@ public sealed class HereticMorbusSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        // Ловушки проверяются не каждый кадр: поиск по области на каждую руну дорогой.
+        if (_timing.CurTime < _nextCheck)
+            return;
+
+        _nextCheck = _timing.CurTime + CheckInterval;
         var toProcess = new List<(EntityUid Rune, EntityUid Tripper)>();
 
         var query = EntityQueryEnumerator<HereticCursedRuneComponent>();

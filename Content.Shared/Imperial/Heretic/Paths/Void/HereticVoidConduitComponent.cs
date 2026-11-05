@@ -1,6 +1,6 @@
 namespace Content.Shared.Imperial.Heretic.Paths.Void;
 
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class HereticVoidConduitComponent : Component
 {
     [DataField]
@@ -21,10 +21,10 @@ public sealed partial class HereticVoidConduitComponent : Component
     [DataField]
     public int StructureDamageMax = 30;
 
-    [ViewVariables]
-    public float PulseTimer;
-    [ViewVariables]
-    public float LifetimeTimer;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextPulse;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan LifetimeEnd;
     [ViewVariables]
     public EntityUid? AmbientSound;
 }

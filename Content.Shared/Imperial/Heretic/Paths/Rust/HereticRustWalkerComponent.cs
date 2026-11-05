@@ -2,7 +2,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.Heretic.Paths.Rust;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, AutoGenerateComponentPause, NetworkedComponent]
 public sealed partial class HereticRustWalkerComponent : Component
 {
     [DataField]
@@ -11,8 +11,8 @@ public sealed partial class HereticRustWalkerComponent : Component
     [DataField]
     public float HealAmount = 3f;
 
-    [ViewVariables]
-    public float HealAccum;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextHeal;
 
     /// <summary>Спрайт при движении/стоянии лицом на север.</summary>
     [DataField]

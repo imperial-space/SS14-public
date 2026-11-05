@@ -6,7 +6,7 @@ namespace Content.Shared.Imperial.Heretic.Items;
 /// Worn Mask of Madness: periodically applies stamina damage and auditory hallucinations
 /// to all entities within range. When forced onto a non-believer, cannot be removed.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, AutoGenerateComponentPause, NetworkedComponent]
 public sealed partial class HereticMaskOfMadnessComponent : Component
 {
     [DataField]
@@ -21,8 +21,8 @@ public sealed partial class HereticMaskOfMadnessComponent : Component
     [DataField]
     public float TickInterval = 2.5f;
 
-    [DataField]
-    public float TickAccumulator = 0f;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextTick;
 
     /// <summary>
     /// If true, this mask was forced onto a non-believer and cannot be removed by them.

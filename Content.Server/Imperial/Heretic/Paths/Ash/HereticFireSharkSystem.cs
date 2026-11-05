@@ -13,6 +13,7 @@ namespace Content.Server.Imperial.Heretic.Paths.Ash;
 
 public sealed class HereticFireSharkSystem : EntitySystem
 {
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
@@ -36,8 +37,10 @@ public sealed class HereticFireSharkSystem : EntitySystem
                 continue;
             }
 
-            shark.LifetimeElapsed += frameTime;
-            if (shark.LifetimeElapsed >= shark.Lifetime)
+            if (shark.LifetimeEnd == TimeSpan.Zero)
+                shark.LifetimeEnd = _timing.CurTime + TimeSpan.FromSeconds(shark.Lifetime);
+
+            if (_timing.CurTime >= shark.LifetimeEnd)
             {
                 Spawn("HereticEffectFireExplosion", Transform(uid).Coordinates);
                 QueueDel(uid);
@@ -45,24 +48,29 @@ public sealed class HereticFireSharkSystem : EntitySystem
             }
 
             // Passive regen
-            shark.RegenTimer += frameTime;
-            if (shark.RegenTimer >= shark.RegenInterval)
+            if (_timing.CurTime >= shark.NextRegen)
             {
-                shark.RegenTimer = 0f;
+                shark.NextRegen = _timing.CurTime + TimeSpan.FromSeconds(shark.RegenInterval);
                 var heal = new DamageSpecifier();
                 heal.DamageDict["Blunt"] = FixedPoint2.New(-shark.RegenAmount);
                 _damage.TryChangeDamage(uid, heal, ignoreResistances: true);
             }
 
             // Fire trail
-            shark.FireTrailTimer += frameTime;
-            if (shark.FireTrailTimer >= shark.FireTrailInterval)
+            if (_timing.CurTime >= shark.NextFireTrail)
             {
-                shark.FireTrailTimer = 0f;
+                shark.NextFireTrail = _timing.CurTime + TimeSpan.FromSeconds(shark.FireTrailInterval);
                 Spawn("HereticEffectAshBlink", Transform(uid).Coordinates);
             }
 
-            var target = ResolveTarget(uid, shark);
+            if (_timing.CurTime >= shark.NextRetarget || shark.CachedTarget is { } old && (TerminatingOrDeleted(old)
+                    || !TryComp<MobStateComponent>(old, out var oldMob) || oldMob.CurrentState == MobState.Dead))
+            {
+                shark.CachedTarget = ResolveTarget(uid, shark);
+                shark.NextRetarget = _timing.CurTime + RetargetInterval;
+            }
+
+            var target = shark.CachedTarget;
             if (target == null)
                 continue;
 
@@ -71,13 +79,11 @@ public sealed class HereticFireSharkSystem : EntitySystem
             var dir = targetPos - myPos;
             var dist = dir.Length();
 
-            shark.AttackTimer += frameTime;
-
             if (dist <= shark.AttackRange)
             {
-                if (shark.AttackTimer >= shark.AttackCooldown)
+                if (_timing.CurTime >= shark.NextAttack)
                 {
-                    shark.AttackTimer = 0f;
+                    shark.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(shark.AttackCooldown);
 
                     var dmg = new DamageSpecifier();
                     dmg.DamageDict["Blunt"] = FixedPoint2.New(8);
@@ -106,10 +112,12 @@ public sealed class HereticFireSharkSystem : EntitySystem
         }
     }
 
+    private static readonly TimeSpan RetargetInterval = TimeSpan.FromSeconds(0.5);
+
     private EntityUid? ResolveTarget(EntityUid self, HereticFireSharkComponent shark)
     {
         // Prefer the designated target while alive
-        if (shark.TargetUid != EntityUid.Invalid && !Deleted(shark.TargetUid))
+        if (shark.TargetUid != null && !Deleted(shark.TargetUid))
         {
             if (TryComp<MobStateComponent>(shark.TargetUid, out var ms) && ms.CurrentState != MobState.Dead)
                 return shark.TargetUid;

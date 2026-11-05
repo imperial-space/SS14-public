@@ -8,7 +8,7 @@ public sealed partial class HereticRuneComponent : Component
 {
     /// <summary>EntityUid of the heretic who drew this rune.</summary>
     [DataField]
-    public EntityUid Caster = EntityUid.Invalid;
+    public EntityUid? Caster;
 
     /// <summary>Radius (in tiles) around the rune to search for ritual ingredients.</summary>
     [DataField]

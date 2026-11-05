@@ -1,10 +1,10 @@
 namespace Content.Shared.Imperial.Heretic.Paths.Void;
 
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class HereticVoidAscendedComponent : Component
 {
-    [DataField]
-    public float WaveTimer;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextWave;
 
     [ViewVariables]
     public EntityUid? AmbientSoundEntity;

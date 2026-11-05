@@ -12,6 +12,7 @@ namespace Content.Server.Imperial.Heretic.Items;
 
 public sealed class HereticLivingHeartSystem : EntitySystem
 {
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
@@ -45,7 +46,7 @@ public sealed class HereticLivingHeartSystem : EntitySystem
             return;
 
         comp.Target = args.Target.Value;
-        comp.HeartbeatTimer = 0f;
+        comp.NextHeartbeat = TimeSpan.Zero;
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString("heretic-living-heart-target-set"), uid, args.User, PopupType.Medium);
     }
@@ -55,20 +56,20 @@ public sealed class HereticLivingHeartSystem : EntitySystem
         if (!TryComp<HereticComponent>(user, out var heretic))
             return;
 
-        if (comp.Target == EntityUid.Invalid || !Exists(comp.Target))
+        if (comp.Target == null || !Exists(comp.Target))
         {
             _popup.PopupEntity(Loc.GetString("heretic-living-heart-no-target"), heartUid, user, PopupType.SmallCaution);
             return;
         }
 
-        if (!_heretic.IsNamedTarget(user, comp.Target))
+        if (!_heretic.IsNamedTarget(user, comp.Target.Value))
         {
             _popup.PopupEntity(Loc.GetString("heretic-living-heart-not-named"), heartUid, user, PopupType.SmallCaution);
             return;
         }
 
         var runePos = _xform.GetWorldPosition(runeUid);
-        var targetPos = _xform.GetWorldPosition(comp.Target);
+        var targetPos = _xform.GetWorldPosition(comp.Target.Value);
         if ((targetPos - runePos).Length() > 2f)
         {
             _popup.PopupEntity(Loc.GetString("heretic-living-heart-target-far"), heartUid, user, PopupType.SmallCaution);
@@ -77,7 +78,7 @@ public sealed class HereticLivingHeartSystem : EntitySystem
 
         var runeCoords = Transform(runeUid).Coordinates;
 
-        var targetName = MetaData(comp.Target).EntityName;
+        var targetName = MetaData(comp.Target.Value).EntityName;
         _heretic.AddKnowledgePoints(user, heretic, 4);
         _heretic.AddSacrifice(user, 2);
 
@@ -89,7 +90,7 @@ public sealed class HereticLivingHeartSystem : EntitySystem
             user, user, PopupType.Large);
 
         QueueDel(comp.Target);
-        comp.Target = EntityUid.Invalid;
+        comp.Target = null;
     }
 
     public override void Update(float frameTime)
@@ -99,21 +100,20 @@ public sealed class HereticLivingHeartSystem : EntitySystem
         var query = EntityQueryEnumerator<HereticLivingHeartComponent>();
         while (query.MoveNext(out var uid, out var heart))
         {
-            if (heart.Target == EntityUid.Invalid || !Exists(heart.Target))
+            if (heart.Target == null || !Exists(heart.Target))
                 continue;
 
             var myPos = _xform.GetWorldPosition(uid);
-            var tgtPos = _xform.GetWorldPosition(heart.Target);
+            var tgtPos = _xform.GetWorldPosition(heart.Target.Value);
             var dist = (tgtPos - myPos).Length();
 
             var t = Math.Clamp(dist / heart.TrackRange, 0f, 1f);
             var interval = heart.MinInterval + (heart.MaxInterval - heart.MinInterval) * t;
 
-            heart.HeartbeatTimer += frameTime;
-            if (!(heart.HeartbeatTimer >= interval))
+            if (_timing.CurTime < heart.NextHeartbeat)
                 continue;
 
-            heart.HeartbeatTimer = 0f;
+            heart.NextHeartbeat = _timing.CurTime + TimeSpan.FromSeconds(interval);
             _audio.PlayPvs(HeartbeatSound, uid);
         }
     }

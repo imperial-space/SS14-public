@@ -6,5 +6,5 @@ namespace Content.Shared.Imperial.Heretic.Paths.Flesh;
 public sealed partial class HereticRawProphetComponent : Component
 {
     [DataField]
-    public EntityUid Master = EntityUid.Invalid;
+    public EntityUid? Master;
 }

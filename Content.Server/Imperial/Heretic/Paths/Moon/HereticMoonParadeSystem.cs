@@ -29,6 +29,7 @@ namespace Content.Server.Imperial.Heretic.Paths.Moon;
 
 public sealed class HereticMoonParadeSystem : EntitySystem
 {
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
     [Dependency] private readonly ChatSystem                  _chat           = default!;
     [Dependency] private readonly SharedAudioSystem          _audio          = default!;
     [Dependency] private readonly SharedPhysicsSystem        _physics        = default!;
@@ -87,7 +88,7 @@ public sealed class HereticMoonParadeSystem : EntitySystem
                 {
                     var leash = EnsureComp<HereticMoonParadeLeashComponent>(args.OtherEntity);
                     leash.Projectile = uid;
-                    leash.TimeRemaining = 20f;
+                    leash.End = _timing.CurTime + TimeSpan.FromSeconds(20f);
                     leash.DamageAccumulated = 0f;
                 }
 
@@ -142,8 +143,7 @@ public sealed class HereticMoonParadeSystem : EntitySystem
                 continue;
             }
 
-            leash.TimeRemaining -= frameTime;
-            if (leash.TimeRemaining <= 0f)
+            if (_timing.CurTime >= leash.End)
             {
                 RemComp<HereticMoonParadeLeashComponent>(uid);
                 continue;

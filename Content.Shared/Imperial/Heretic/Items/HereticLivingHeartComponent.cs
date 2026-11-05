@@ -2,14 +2,14 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.Heretic.Items;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, AutoGenerateComponentPause, NetworkedComponent]
 public sealed partial class HereticLivingHeartComponent : Component
 {
     [DataField]
-    public EntityUid Target = EntityUid.Invalid;
+    public EntityUid? Target;
 
-    [DataField]
-    public float HeartbeatTimer = 0f;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextHeartbeat;
 
     [DataField]
     public float MinInterval = 0.35f;

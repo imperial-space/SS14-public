@@ -135,10 +135,10 @@ public sealed partial class HereticSystem
         return comp.ShatteredGhoulCount < 1;
     }
 
-    public EntityUid SpawnOrbitingBlade(EntityUid uid, HereticComponent? comp = null)
+    public EntityUid? SpawnOrbitingBlade(EntityUid uid, HereticComponent? comp = null)
     {
         if (!Resolve(uid, ref comp))
-            return EntityUid.Invalid;
+            return null;
 
         var blade = Spawn("HereticOrbitingBlade", Transform(uid).Coordinates);
         _xform.SetParent(blade, uid);
@@ -199,10 +199,10 @@ public sealed partial class HereticSystem
 
     private void SpawnBlade(EntityUid uid, HereticComponent comp, string bladeEntityId)
     {
-        if (comp.CurrentBlade != EntityUid.Invalid && Exists(comp.CurrentBlade))
-            Del(comp.CurrentBlade);
+        if (Exists(comp.CurrentBlade))
+            Del(comp.CurrentBlade.Value);
 
-        comp.CurrentBlade = EntityUid.Invalid;
+        comp.CurrentBlade = null;
         var blade = Spawn(bladeEntityId, Transform(uid).Coordinates);
         _hands.TryPickupAnyHand(uid, blade);
         comp.CurrentBlade = blade;
@@ -226,7 +226,7 @@ public sealed partial class HereticSystem
         }
     }
 
-    private EntityUid FindHeldPathBlade(EntityUid uid, HereticPath path)
+    private EntityUid? FindHeldPathBlade(EntityUid uid, HereticPath path)
     {
         foreach (var held in _hands.EnumerateHeld(uid))
         {
@@ -245,37 +245,40 @@ public sealed partial class HereticSystem
             if (isPathBlade)
                 return held;
         }
-        return EntityUid.Invalid;
+        return null;
     }
 
     private void ApplyBladeUpgrade(EntityUid uid, HereticComponent comp)
     {
-        EntityUid blade;
-        if (comp.CurrentBlade != EntityUid.Invalid && Exists(comp.CurrentBlade))
+        var found = Exists(comp.CurrentBlade) ? comp.CurrentBlade : null;
+        if (found == null)
         {
-            blade = comp.CurrentBlade;
-        }
-        else
-        {
-            blade = FindHeldPathBlade(uid, comp.CurrentPath);
-            if (blade == EntityUid.Invalid)
+            found = FindHeldPathBlade(uid, comp.CurrentPath);
+            if (found == null)
             {
                 // Fallback: find any held item with the HereticBlade tag (e.g. HereticBladeBase from ritual)
                 foreach (var held in _hands.EnumerateHeld(uid))
                 {
                     if (_tag.HasTag(held, HereticBladeTag))
                     {
-                        blade = held;
+                        found = held;
                         break;
                     }
                 }
-                if (blade == EntityUid.Invalid)
+
+                if (found is not { } fallback)
                     return;
-                AddPathBladeComponent(uid, comp, blade);
+
+                AddPathBladeComponent(uid, comp, fallback);
             }
-            comp.CurrentBlade = blade;
+
+            comp.CurrentBlade = found;
             Dirty(uid, comp);
         }
+
+        if (found is not { } blade)
+            return;
+
         if (!TryComp<MeleeWeaponComponent>(blade, out var melee))
             return;
 

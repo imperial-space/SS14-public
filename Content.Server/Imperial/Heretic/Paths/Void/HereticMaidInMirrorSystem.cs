@@ -63,10 +63,10 @@ public sealed class HereticMaidInMirrorSystem : EntitySystem
         var query = EntityQueryEnumerator<HereticMaidMirrorBallComponent>();
         while (query.MoveNext(out _, out var ball))
         {
-            ball.HealTimer += frameTime;
-            if (ball.HealTimer < ball.HealInterval)
+            if (_timing.CurTime < ball.NextHeal)
                 continue;
-            ball.HealTimer = 0f;
+
+            ball.NextHeal = _timing.CurTime + TimeSpan.FromSeconds(ball.HealInterval);
             var heal = new DamageSpecifier();
             heal.DamageDict["Blunt"] = FixedPoint2.New(-ball.HealAmount);
             _damage.TryChangeDamage(ball.MaidUid, heal, ignoreResistances: true);

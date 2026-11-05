@@ -1,12 +1,12 @@
 namespace Content.Server.Imperial.Heretic.Paths.Moon;
 
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class HereticMoonParadeLeashComponent : Component
 {
     [ViewVariables]
     public EntityUid Projectile;
-    [ViewVariables]
-    public float TimeRemaining = 20f;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan End;
     [ViewVariables]
     public float DamageAccumulated = 0f;
 

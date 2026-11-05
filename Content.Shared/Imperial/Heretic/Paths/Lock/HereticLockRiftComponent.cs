@@ -1,6 +1,6 @@
 namespace Content.Shared.Imperial.Heretic.Paths.Lock;
 
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class HereticLockRiftComponent : Component
 {
     [DataField]
@@ -12,6 +12,6 @@ public sealed partial class HereticLockRiftComponent : Component
     [DataField]
     public string SpawnEntity = "HereticFamiliarStalker";
 
-    [ViewVariables]
-    public float Timer;
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextSpawn;
 }

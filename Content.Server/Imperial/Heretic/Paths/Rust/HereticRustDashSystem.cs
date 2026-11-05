@@ -14,6 +14,7 @@ namespace Content.Server.Imperial.Heretic.Paths.Rust;
 
 public sealed class HereticRustDashSystem : EntitySystem
 {
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
@@ -43,8 +44,10 @@ public sealed class HereticRustDashSystem : EntitySystem
         {
             if (comp.IsWaiting)
             {
-                comp.WaitAccum += frameTime;
-                if (comp.WaitAccum >= comp.DashWaitDuration)
+                if (comp.WaitEnd == TimeSpan.Zero)
+                    comp.WaitEnd = _timing.CurTime + TimeSpan.FromSeconds(comp.DashWaitDuration);
+
+                if (_timing.CurTime >= comp.WaitEnd)
                 {
                     comp.IsWaiting = false;
                     comp.IsActive = true;
@@ -79,10 +82,10 @@ public sealed class HereticRustDashSystem : EntitySystem
         comp.Destination = args.Target;
         comp.IsWaiting = true;
         comp.IsActive = false;
-        comp.WaitAccum = 0f;
-        comp.TrailAccum = 0f;
-        comp.RustAccum = 0f;
-        comp.DamageAccum = 0f;
+        comp.WaitEnd = TimeSpan.Zero;
+        comp.NextTrail = TimeSpan.Zero;
+        comp.NextRust = TimeSpan.Zero;
+        comp.NextDamage = TimeSpan.Zero;
 
         Spawn(comp.DashMarkerPrototype, args.Target);
         _audio.PlayPvs(comp.DashSound, ent.Owner);
@@ -103,25 +106,22 @@ public sealed class HereticRustDashSystem : EntitySystem
 
         var nowMap = _xform.GetMapCoordinates(uid);
 
-        comp.TrailAccum += frameTime;
-        if (comp.TrailAccum >= comp.TrailInterval)
+        if (_timing.CurTime >= comp.NextTrail)
         {
-            comp.TrailAccum = 0f;
+            comp.NextTrail = _timing.CurTime + TimeSpan.FromSeconds(comp.TrailInterval);
             Spawn(comp.DashTrailPrototype, nowMap);
         }
 
-        comp.RustAccum += frameTime;
-        if (comp.RustAccum >= comp.RustInterval)
+        if (_timing.CurTime >= comp.NextRust)
         {
-            comp.RustAccum = 0f;
+            comp.NextRust = _timing.CurTime + TimeSpan.FromSeconds(comp.RustInterval);
             SpawnRustOverlayAt(nowMap);
             Spawn(_random.Pick(RuneEffects), nowMap);
         }
 
-        comp.DamageAccum += frameTime;
-        if (comp.DamageAccum >= comp.DamageInterval)
+        if (_timing.CurTime >= comp.NextDamage)
         {
-            comp.DamageAccum = 0f;
+            comp.NextDamage = _timing.CurTime + TimeSpan.FromSeconds(comp.DamageInterval);
             HitEntitiesNear(uid, nowMap, comp);
         }
     }
