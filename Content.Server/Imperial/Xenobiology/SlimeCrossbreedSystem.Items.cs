@@ -541,19 +541,3 @@ public sealed partial class SlimeCrossbreedSystem
 
     #endregion
 }
-
-/// <summary>Снаряд кровавого охладителя.</summary>
-[RegisterComponent]
-public sealed partial class SlimeBloodChillProjectileComponent : Component;
-
-/// <summary>Призма света.</summary>
-[RegisterComponent]
-public sealed partial class SlimeLightPrismComponent : Component;
-
-/// <summary>camera/rewind: одна фотография, запоминающая момент.</summary>
-[RegisterComponent]
-public sealed partial class SlimeRewindCameraComponent : Component;
-
-/// <summary>Адамантиновый голем: эффект голема при появлении.</summary>
-[RegisterComponent]
-public sealed partial class SlimeGolemComponent : Component;

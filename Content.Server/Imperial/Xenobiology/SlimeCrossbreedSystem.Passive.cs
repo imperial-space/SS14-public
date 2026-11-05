@@ -68,7 +68,7 @@ public sealed partial class SlimeCrossbreedSystem
     private void UpdatePassive(TimeSpan now, float frameTime)
     {
         UpdateIndustrial(now);
-        UpdateRecurring(frameTime);
+        UpdateRecurring();
         UpdateChargedGold(now);
     }
 
@@ -190,22 +190,19 @@ public sealed partial class SlimeCrossbreedSystem
     }
 
     /// <summary>recurring/process(): новый заряд каждые max_cooldown секунд, максимум 10.</summary>
-    private void UpdateRecurring(float frameTime)
+    private void UpdateRecurring()
     {
         var query = EntityQueryEnumerator<SlimeRecurringComponent, SlimeExtractComponent>();
         while (query.MoveNext(out var uid, out var recurring, out var extract))
         {
-            if (recurring.Cooldown > 0f)
-            {
-                recurring.Cooldown -= frameTime;
+            if (_timing.CurTime < recurring.NextCharge)
                 continue;
-            }
 
             if (extract.Uses < 10 && extract.Uses > 0)
             {
                 extract.Uses++;
                 Dirty(uid, extract);
-                recurring.Cooldown = recurring.MaxCooldown;
+                recurring.NextCharge = _timing.CurTime + recurring.MaxCooldown;
             }
             else if (extract.Uses <= 0)
             {

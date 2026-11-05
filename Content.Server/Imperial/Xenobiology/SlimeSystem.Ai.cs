@@ -1,3 +1,6 @@
+using Robust.Shared.Prototypes;
+using Content.Shared.Imperial.Helpers;
+using Content.Shared.Dataset;
 using Robust.Shared.Random;
 using System.Linq;
 using Content.Server.Imperial.Xenobiology.Components;
@@ -27,10 +30,18 @@ public sealed partial class SlimeSystem
 
     private const float HuntRange = 7f;
 
-    private static readonly string[] StayCommands = { "sit", "stay", "stop", "сидеть", "лежать", "место", "фу", "стоп", "стой", "стоять" };
-    private static readonly string[] FreeCommands = { "free", "loose", "гулять", "вон", "свобод", "брысь" };
-    private static readonly string[] FollowCommands = { "heel", "follow", "за мной", "след", "охран", "к ноге", "ко мне" };
-    private static readonly string[] AttackCommands = { "attack", "sic", "kill", "eat", "feed", "атакуй", "фас", "убей", "ешь", "съешь", "корм" };
+    private static readonly ProtoId<LocalizedDatasetPrototype> StayCommandsDataset = "ImperialSlimeSystemAiStayCommands";
+
+    private static string[] StayCommands => ImperialLocalizedLists.Get(StayCommandsDataset);
+    private static readonly ProtoId<LocalizedDatasetPrototype> FreeCommandsDataset = "ImperialSlimeSystemAiFreeCommands";
+
+    private static string[] FreeCommands => ImperialLocalizedLists.Get(FreeCommandsDataset);
+    private static readonly ProtoId<LocalizedDatasetPrototype> FollowCommandsDataset = "ImperialSlimeSystemAiFollowCommands";
+
+    private static string[] FollowCommands => ImperialLocalizedLists.Get(FollowCommandsDataset);
+    private static readonly ProtoId<LocalizedDatasetPrototype> AttackCommandsDataset = "ImperialSlimeSystemAiAttackCommands";
+
+    private static string[] AttackCommands => ImperialLocalizedLists.Get(AttackCommandsDataset);
     private static readonly string[] RandomSpeech = { "slime-speech-1", "slime-speech-2" };
     private static readonly string[] RandomEmotes = { "slime-emote-blorbles", "slime-emote-light", "slime-emote-bounce", "slime-emote-jiggle", "slime-emote-vibrate" };
 

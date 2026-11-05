@@ -1,0 +1,28 @@
+# SlimeSystem.Ai.cs: StayCommands
+- type: localizedDataset
+  id: ImperialSlimeSystemAiStayCommands
+  values:
+    prefix: imperial-xenobiology-slime-system-ai-stay-commands-
+    count: 10
+
+# SlimeSystem.Ai.cs: FreeCommands
+- type: localizedDataset
+  id: ImperialSlimeSystemAiFreeCommands
+  values:
+    prefix: imperial-xenobiology-slime-system-ai-free-commands-
+    count: 6
+
+# SlimeSystem.Ai.cs: FollowCommands
+- type: localizedDataset
+  id: ImperialSlimeSystemAiFollowCommands
+  values:
+    prefix: imperial-xenobiology-slime-system-ai-follow-commands-
+    count: 7
+
+# SlimeSystem.Ai.cs: AttackCommands
+- type: localizedDataset
+  id: ImperialSlimeSystemAiAttackCommands
+  values:
+    prefix: imperial-xenobiology-slime-system-ai-attack-commands-
+    count: 11
+

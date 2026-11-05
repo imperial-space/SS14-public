@@ -4,12 +4,14 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Imperial.Xenobiology.Components;
 
 /// <summary>slimecross/recurring: экстракт сам восстанавливает заряды.</summary>
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class SlimeRecurringComponent : Component
 {
+    /// <summary>Время восстановления одного заряда.</summary>
     [DataField]
-    public float MaxCooldown = 10f;
+    public TimeSpan MaxCooldown = TimeSpan.FromSeconds(10);
 
-    [ViewVariables]
-    public float Cooldown;
+    /// <summary>Когда восстановится следующий заряд.</summary>
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextCharge;
 }
