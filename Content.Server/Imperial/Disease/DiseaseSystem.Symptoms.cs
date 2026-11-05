@@ -1090,14 +1090,3 @@ public sealed partial class DiseaseSystem
 
     #endregion
 }
-
-/// <summary>Симптом «Активатор спящей ДНК» просит генетику включить случайную мутацию.</summary>
-public sealed class DiseaseActivateMutationEvent : EntityEventArgs
-{
-    public bool NegativeOnly { get; }
-
-    public DiseaseActivateMutationEvent(bool negativeOnly)
-    {
-        NegativeOnly = negativeOnly;
-    }
-}
