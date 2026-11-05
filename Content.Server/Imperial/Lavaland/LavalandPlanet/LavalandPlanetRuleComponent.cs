@@ -57,5 +57,6 @@ public sealed partial class LavalandPlanetRuleComponent : Component
     public Color MapLight = Color.FromHex("#A34931");
 
     // Structure grids waiting for atmosphere rebuild (deferred one tick so atmos Tiles are populated).
+    [ViewVariables]
     public List<EntityUid> PendingAtmosRebuild = new();
 }

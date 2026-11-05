@@ -2,7 +2,7 @@ using Robust.Shared.GameObjects;
 
 namespace Content.Shared.Imperial.Lavaland.Resonator;
 
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class ResonanceFieldComponent : Component
 {
     [DataField]
@@ -23,9 +23,14 @@ public sealed partial class ResonanceFieldComponent : Component
     [DataField]
     public ResonatorMode Mode = ResonatorMode.Auto;
 
+    [ViewVariables]
     public bool Rupturing = false;
 
-    public float Timer = 0f;
+    /// <summary>Сколько поле живёт до взрыва.</summary>
+    [DataField]
+    public TimeSpan Duration = TimeSpan.FromSeconds(2);
 
-    public float Duration = 2f;
+    /// <summary>Когда поле взорвётся.</summary>
+    [ViewVariables, AutoPausedField]
+    public TimeSpan BurstAt;
 }

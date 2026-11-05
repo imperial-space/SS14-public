@@ -14,6 +14,7 @@ namespace Content.Server.Imperial.Lavaland.Anvil;
 
 public sealed class LavalandAnvilSystem : EntitySystem
 {
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -46,20 +47,21 @@ public sealed class LavalandAnvilSystem : EntitySystem
             if (comp.CurrentCharges >= comp.MaxCharges)
                 continue;
 
-            comp.RechargeTimer += frameTime;
-            if (comp.RechargeTimer >= comp.RechargeTime)
-            {
-                comp.RechargeTimer -= comp.RechargeTime;
-                comp.CurrentCharges++;
-            }
+            if (comp.NextCharge == TimeSpan.Zero)
+                comp.NextCharge = _timing.CurTime + comp.RechargeTime;
+
+            if (_timing.CurTime < comp.NextCharge)
+                continue;
+
+            comp.CurrentCharges++;
+            comp.NextCharge = comp.CurrentCharges < comp.MaxCharges ? _timing.CurTime + comp.RechargeTime : TimeSpan.Zero;
         }
 
         // Temporary upgrade expiry
         var upgradeQuery = EntityQueryEnumerator<TemporaryUpgradeComponent>();
         while (upgradeQuery.MoveNext(out var uid, out var upgrade))
         {
-            upgrade.TimeRemaining -= frameTime;
-            if (upgrade.TimeRemaining > 0f)
+            if (_timing.CurTime < upgrade.ExpireAt)
                 continue;
 
             var saved = new List<EntityUid>();
@@ -79,14 +81,20 @@ public sealed class LavalandAnvilSystem : EntitySystem
         }
     }
 
+    private TimeSpan RemainingRecharge(LavalandAnvilComponent comp)
+    {
+        var left = comp.NextCharge - _timing.CurTime;
+        return left > TimeSpan.Zero ? left : comp.RechargeTime;
+    }
+
     private void OnExamined(Entity<LavalandAnvilComponent> ent, ref ExaminedEvent args)
     {
         args.PushMarkup(Loc.GetString("imperial-lavaland-lavaland-anvil-system-2", ("arg0", ent.Comp.CurrentCharges), ("arg1", ent.Comp.MaxCharges)));
         if (ent.Comp.CurrentCharges < ent.Comp.MaxCharges)
         {
-            var remaining = ent.Comp.RechargeTime - ent.Comp.RechargeTimer;
-            var minutes = (int) (remaining / 60);
-            var seconds = (int) (remaining % 60);
+            var remaining = RemainingRecharge(ent.Comp);
+            var minutes = (int) remaining.TotalMinutes;
+            var seconds = remaining.Seconds;
             args.PushMarkup(Loc.GetString("imperial-lavaland-lavaland-anvil-system-3", ("arg0", minutes), ("arg1", (seconds).ToString("D2"))));
         }
     }
@@ -164,9 +172,9 @@ public sealed class LavalandAnvilSystem : EntitySystem
 
         if (comp.CurrentCharges <= 0)
         {
-            var remaining = comp.RechargeTime - comp.RechargeTimer;
-            var minutes = (int) (remaining / 60);
-            var seconds = (int) (remaining % 60);
+            var remaining = RemainingRecharge(comp);
+            var minutes = (int) remaining.TotalMinutes;
+            var seconds = remaining.Seconds;
             _popup.PopupEntity(Loc.GetString("imperial-lavaland-lavaland-anvil-system-10", ("arg0", minutes), ("arg1", (seconds).ToString("D2"))), ent, args.User);
             return;
         }
@@ -212,7 +220,7 @@ public sealed class LavalandAnvilSystem : EntitySystem
 
         var tempComp = EnsureComp<TemporaryUpgradeComponent>(upgraded);
         tempComp.RevertProto = weaponId;
-        tempComp.TimeRemaining = tempComp.Duration;
+        tempComp.ExpireAt = _timing.CurTime + tempComp.Duration;
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Weapons/smash.ogg"), ent);
 

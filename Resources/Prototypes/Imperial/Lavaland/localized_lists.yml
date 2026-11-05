@@ -1,0 +1,77 @@
+# ColossusLootSystem.cs: Stop
+- type: localizedDataset
+  id: ImperialColossusVoiceStop
+  values:
+    prefix: imperial-lavaland-colossus-voice-stop-
+    count: 5
+
+# ColossusLootSystem.cs: Weaken
+- type: localizedDataset
+  id: ImperialColossusVoiceWeaken
+  values:
+    prefix: imperial-lavaland-colossus-voice-weaken-
+    count: 4
+
+# ColossusLootSystem.cs: Sleep
+- type: localizedDataset
+  id: ImperialColossusVoiceSleep
+  values:
+    prefix: imperial-lavaland-colossus-voice-sleep-
+    count: 4
+
+# ColossusLootSystem.cs: Vomit
+- type: localizedDataset
+  id: ImperialColossusVoiceVomit
+  values:
+    prefix: imperial-lavaland-colossus-voice-vomit-
+    count: 3
+
+# ColossusLootSystem.cs: Silence
+- type: localizedDataset
+  id: ImperialColossusVoiceSilence
+  values:
+    prefix: imperial-lavaland-colossus-voice-silence-
+    count: 5
+
+# ColossusLootSystem.cs: Wake
+- type: localizedDataset
+  id: ImperialColossusVoiceWake
+  values:
+    prefix: imperial-lavaland-colossus-voice-wake-
+    count: 3
+
+# ColossusLootSystem.cs: Heal
+- type: localizedDataset
+  id: ImperialColossusVoiceHeal
+  values:
+    prefix: imperial-lavaland-colossus-voice-heal-
+    count: 5
+
+# ColossusLootSystem.cs: Pain
+- type: localizedDataset
+  id: ImperialColossusVoicePain
+  values:
+    prefix: imperial-lavaland-colossus-voice-pain-
+    count: 4
+
+# ColossusLootSystem.cs: Burn
+- type: localizedDataset
+  id: ImperialColossusVoiceBurn
+  values:
+    prefix: imperial-lavaland-colossus-voice-burn-
+    count: 4
+
+# ColossusLootSystem.cs: Stand
+- type: localizedDataset
+  id: ImperialColossusVoiceStand
+  values:
+    prefix: imperial-lavaland-colossus-voice-stand-
+    count: 3
+
+# ColossusLootSystem.cs: Rest
+- type: localizedDataset
+  id: ImperialColossusVoiceRest
+  values:
+    prefix: imperial-lavaland-colossus-voice-rest-
+    count: 3
+

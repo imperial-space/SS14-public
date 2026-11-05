@@ -20,5 +20,14 @@ public sealed partial class ResonatorComponent : Component
     [DataField]
     public bool CanMatrix = false;
 
+    [ViewVariables]
     public List<EntityUid> Fields = new();
+
+    /// <summary>Жизнь поля в автоматическом режиме.</summary>
+    [DataField]
+    public TimeSpan AutoFieldDuration = TimeSpan.FromSeconds(2);
+
+    /// <summary>Жизнь поля в ручном режиме и в режиме матрицы.</summary>
+    [DataField]
+    public TimeSpan ManualFieldDuration = TimeSpan.FromSeconds(60);
 }

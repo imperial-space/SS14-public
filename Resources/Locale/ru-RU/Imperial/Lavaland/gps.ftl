@@ -33,3 +33,5 @@ imperial-gps-signal-angelic = Ангельский сигнал
 imperial-gps-signal-zealous = Ревностный сигнал
 imperial-gps-signal-echoing = Отзывающийся сигнал
 imperial-gps-signal-resonant = Резонирующий сигнал
+imperial-gps-signal-berserk = Сигнал берсерка
+imperial-gps-signal-bloodchilling = Леденящий кровь сигнал

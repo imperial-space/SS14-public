@@ -1,3 +1,6 @@
+using Robust.Shared.Prototypes;
+using Content.Shared.Imperial.Helpers;
+using Content.Shared.Dataset;
 using Content.Server.Actions;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Systems;
@@ -274,77 +277,77 @@ public sealed class ColossusLootSystem : EntitySystem
 
     private static bool TryResolveCommand(string text, out VoiceOfGodCommand command, out float cooldown)
     {
-        if (ContainsAny(text, "стоп", "стой", "замри", "остановись", "оглушись"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceStop")))
         {
             command = VoiceOfGodCommand.Stop;
             cooldown = 120f;
             return true;
         }
 
-        if (ContainsAny(text, "ослабни", "упади", "споткнись", "ослабься"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceWeaken")))
         {
             command = VoiceOfGodCommand.Weaken;
             cooldown = 120f;
             return true;
         }
 
-        if (ContainsAny(text, "усни", "засни", "дремли", "спи"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceSleep")))
         {
             command = VoiceOfGodCommand.Sleep;
             cooldown = 120f;
             return true;
         }
 
-        if (ContainsAny(text, "блюй", "тошни", "вырви"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceVomit")))
         {
             command = VoiceOfGodCommand.Vomit;
             cooldown = 120f;
             return true;
         }
 
-        if (ContainsAny(text, "заткнись", "молчи", "тихо", "шшш", "тише"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceSilence")))
         {
             command = VoiceOfGodCommand.Silence;
             cooldown = 120f;
             return true;
         }
 
-        if (ContainsAny(text, "проснись", "очнись", "пробудись"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceWake")))
         {
             command = VoiceOfGodCommand.Wake;
             cooldown = 60f;
             return true;
         }
 
-        if (ContainsAny(text, "исцелись", "живи", "восстановись", "выживи", "поправься"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceHeal")))
         {
             command = VoiceOfGodCommand.Heal;
             cooldown = 60f;
             return true;
         }
 
-        if (ContainsAny(text, "боль", "страдай", "умри", "кровоточь"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoicePain")))
         {
             command = VoiceOfGodCommand.Pain;
             cooldown = 60f;
             return true;
         }
 
-        if (ContainsAny(text, "гори", "загорись", "пылай", "сожгись"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceBurn")))
         {
             command = VoiceOfGodCommand.Burn;
             cooldown = 60f;
             return true;
         }
 
-        if (ContainsAny(text, "встань", "поднимись", "подъём"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceStand")))
         {
             command = VoiceOfGodCommand.Stand;
             cooldown = 60f;
             return true;
         }
 
-        if (ContainsAny(text, "отдыхай", "ляг", "лежи"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceRest")))
         {
             command = VoiceOfGodCommand.Rest;
             cooldown = 30f;

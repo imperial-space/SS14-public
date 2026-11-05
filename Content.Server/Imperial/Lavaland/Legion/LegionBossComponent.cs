@@ -47,8 +47,11 @@ public sealed partial class LegionBossComponent : Component
     [DataField]
     public float NormalMeleeRange = 4f;
 
+    [ViewVariables]
     public bool IsCharging;
+    [ViewVariables]
     public TimeSpan ChargeEndTime;
+    [ViewVariables]
     public TimeSpan ChargeStartTime;
 
     // ── Split on death ────────────────────────────────────────────────────────

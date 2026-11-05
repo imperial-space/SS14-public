@@ -22,6 +22,7 @@ lavaland-shuttle-status-missing = Шаттл не найден
 
 lavaland-shuttle-location-station = Станция
 lavaland-shuttle-location-lavaland = Лаваленд
+lavaland-shuttle-location-icemoon = Ледяная луна
 lavaland-shuttle-location-unknown = Неизвестно
 lavaland-shuttle-location-transit = В пути: { $destination }
 

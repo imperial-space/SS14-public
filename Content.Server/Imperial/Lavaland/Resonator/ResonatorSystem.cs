@@ -23,6 +23,9 @@ namespace Content.Server.Imperial.Lavaland.Resonator;
 public sealed class ResonatorSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
+
+    /// <summary>Поле от кинетического модуля держится дольше автоматического.</summary>
+    private static readonly TimeSpan KineticFieldDuration = TimeSpan.FromSeconds(10);
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly TransformSystem _xform = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
@@ -116,8 +119,8 @@ public sealed class ResonatorSystem : EntitySystem
         newField.ParentResonator = uid;
         newField.AddingFailure = comp.AddingFailure;
         newField.Mode = comp.Mode;
-        newField.Duration = comp.Mode == ResonatorMode.Auto ? 2f : 60f;
-        newField.Timer = newField.Duration;
+        newField.Duration = comp.Mode == ResonatorMode.Auto ? comp.AutoFieldDuration : comp.ManualFieldDuration;
+        newField.BurstAt = _timing.CurTime + newField.Duration;
 
         comp.Fields.Add(fieldEnt);
 
@@ -162,8 +165,7 @@ public sealed class ResonatorSystem : EntitySystem
                 }
             }
 
-            comp.Timer -= frameTime;
-            if (comp.Timer <= 0f)
+            if (_timing.CurTime >= comp.BurstAt)
                 BurstField(uid, comp);
         }
     }
@@ -187,8 +189,8 @@ public sealed class ResonatorSystem : EntitySystem
         var newField = EnsureComp<ResonanceFieldComponent>(fieldEnt);
         newField.Creator = creator;
         newField.Mode = ResonatorMode.Manual;
-        newField.Duration = 10f;
-        newField.Timer = newField.Duration;
+        newField.Duration = KineticFieldDuration;
+        newField.BurstAt = _timing.CurTime + newField.Duration;
         _audio.PlayPvs(FireSound, fieldEnt);
     }
 
@@ -264,8 +266,8 @@ public sealed class ResonatorSystem : EntitySystem
                     newField.ParentResonator = comp.ParentResonator;
                     newField.AddingFailure = 50f;
                     newField.Mode = resonator.Mode;
-                    newField.Duration = resonator.Mode == ResonatorMode.Auto ? 2f : 60f;
-                    newField.Timer = newField.Duration;
+                    newField.Duration = resonator.Mode == ResonatorMode.Auto ? resonator.AutoFieldDuration : resonator.ManualFieldDuration;
+                    newField.BurstAt = _timing.CurTime + newField.Duration;
                     newField.FailureProb = comp.FailureProb + comp.AddingFailure;
 
                     resonator.Fields.Add(newFieldEnt);

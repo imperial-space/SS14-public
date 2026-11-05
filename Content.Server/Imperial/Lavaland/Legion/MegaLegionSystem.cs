@@ -162,7 +162,7 @@ public sealed class MegaLegionSystem : EntitySystem
             {
                 var tile = _random.PickAndTake(possible);
                 var turret = _ai.SpawnAt(ent.Comp.Turret, grid, tile);
-                EnsureComp<LegionTurretComponent>(turret).Owner = ent;
+                EnsureComp<LegionTurretComponent>(turret).OwnerEntity = ent;
                 _ai.Schedule(null, ent.Comp.TurretInitialDelay, () => TurretSetUpShot(ent.Comp, turret, grid));
             }
         }

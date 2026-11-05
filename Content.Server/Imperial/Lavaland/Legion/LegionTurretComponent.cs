@@ -7,5 +7,5 @@ namespace Content.Server.Imperial.Lavaland.Legion;
 [RegisterComponent]
 public sealed partial class LegionTurretComponent : Component
 {
-    [ViewVariables] public EntityUid? Owner;
+    [ViewVariables] public EntityUid? OwnerEntity;
 }

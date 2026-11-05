@@ -406,27 +406,3 @@ public sealed partial class KineticCrusherSystem
         }
     }
 }
-
-/// <summary>Кислотный плевок bileworm_spewlet.</summary>
-[RegisterComponent]
-public sealed partial class CrusherBileComponent : Component
-{
-    [ViewVariables]
-    public EntityUid? Firer;
-}
-
-/// <summary>status_effect/rebuked.</summary>
-[RegisterComponent]
-public sealed partial class CrusherRebukedComponent : Component
-{
-    [ViewVariables]
-    public TimeSpan Until;
-}
-
-/// <summary>TRAIT_LAVA_IMMUNE от broodmother_tongue.</summary>
-[RegisterComponent]
-public sealed partial class CrusherLavaImmuneComponent : Component
-{
-    [ViewVariables]
-    public TimeSpan Until;
-}
