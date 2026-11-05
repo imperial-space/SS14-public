@@ -1,3 +1,5 @@
+using Content.Shared.Imperial.Helpers;
+using Content.Shared.Dataset;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Administration;
@@ -127,10 +129,9 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
         SubscribeLocalEvent<ImperialVoidChompedComponent, UpdateMobStateEvent>(OnChompedUpdateState, after: new[] { typeof(MobThresholdSystem) });
     }
 
-    private static readonly string[] Names =
-    {
-        "Пустоход", "Сквозящий", "Звёздный странник", "Межзвёздник", "Тот-что-между", "Бездонный", "Стеклорождённый", "Шёпот пустоты",
-    };
+    private static readonly ProtoId<LocalizedDatasetPrototype> NamesDataset = "ImperialImperialVoidwalkerSystemNames";
+
+    private static string[] Names => ImperialLocalizedLists.Get(NamesDataset);
 
     private void OnMapInit(Entity<ImperialVoidwalkerComponent> ent, ref MapInitEvent args)
     {
