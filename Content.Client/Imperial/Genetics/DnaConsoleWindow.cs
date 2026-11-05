@@ -275,7 +275,7 @@ public sealed class DnaConsoleWindow : DefaultWindow
             {
                 var scramble = Loc.GetString("dna-console-scramble");
                 if (!state.IsScrambleReady)
-                    scramble += $" ({state.ScrambleSeconds}с)";
+                    scramble += Loc.GetString("imperial-dna-console-scramble-seconds", ("seconds", state.ScrambleSeconds));
                 buttons.AddChild(MakeButton(scramble, () => Send(new DnaConsoleScrambleMessage()), !state.IsScrambleReady || state.IsPulsing));
             }
 
