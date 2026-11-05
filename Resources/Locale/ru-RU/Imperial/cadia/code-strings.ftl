@@ -11,3 +11,6 @@ imperial-cadia-cadia-sky-radar-control-4 = З
 
 ## CadiaCommand.cs
 imperial-cadia-cadia-command-1 = {" "}{ $arg0 }: Z{ $arg1 } ниже={ $arg2 } выше={ $arg3 } разрыв={ $arg4 }
+
+## Окно отряда
+imperial-cadia-squad-distance = {" "}· { $meters } м
