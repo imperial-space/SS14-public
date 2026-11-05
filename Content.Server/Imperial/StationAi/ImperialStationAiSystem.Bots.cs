@@ -11,20 +11,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.StationAi;
 
-/// <summary>call_bot(): бот идёт к точке, потом возвращается к своим делам.</summary>
-[RegisterComponent]
-public sealed partial class ImperialAiBotSummonComponent : Component
-{
-    [ViewVariables]
-    public HTNCompoundTask? OldRoot;
-
-    [ViewVariables]
-    public EntityCoordinates Target;
-
-    [ViewVariables]
-    public TimeSpan Until;
-}
-
 /// <summary>Боты станции (robot_control.dm), болты ядра (toggle_anchor) и потеря питания ядра (disconnect_shell).</summary>
 public sealed partial class ImperialStationAiSystem
 {

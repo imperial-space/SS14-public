@@ -13,18 +13,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.StationAi.Malf;
 
-/// <summary>Ядро-укрытие внутри взломанного ЛКП (shunt).</summary>
-[RegisterComponent]
-public sealed partial class ImperialMalfShuntCoreComponent : Component
-{
-    [ViewVariables]
-    public EntityUid Apc;
-
-    /// <summary>Покинутое ядро, куда можно вернуться.</summary>
-    [ViewVariables]
-    public EntityUid Home;
-}
-
 /// <summary>
 /// nuke_station (устройство Судного дня, 450 секунд) и перенос в ЛКП (shunt / return_to_core).
 /// </summary>

@@ -45,10 +45,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.StationAi.Malf;
 
-/// <summary>Оживлённая машина (mimic/copy/machine): облик берётся с прототипа машины.</summary>
-[RegisterComponent]
-public sealed partial class ImperialMalfLockdownDoorComponent : Component;
-
 /// <summary>Отложенное действие модуля (5 секунд «жужжания» перед оживлением или взрывом).</summary>
 public sealed partial class ImperialMalfAiSystem
 {
@@ -823,37 +819,4 @@ public sealed partial class ImperialMalfAiSystem
     {
         ApplyUpgrade(ent, args.Module);
     }
-}
-
-/// <summary>Автомат уже опрокинут.</summary>
-[RegisterComponent]
-public sealed partial class ImperialMalfTiltedComponent : Component;
-
-/// <summary>«Пилот-призрак» меха под управлением ИИ.</summary>
-[RegisterComponent]
-public sealed partial class ImperialMalfMechProxyComponent : Component
-{
-    [ViewVariables]
-    public EntityUid Ai;
-
-    [ViewVariables]
-    public EntityUid Mech;
-
-    [ViewVariables]
-    public EntityUid Mind;
-
-    [ViewVariables]
-    public EntityUid? ReturnAction;
-}
-
-/// <summary>Роботизированная фабрика (transformer): кладёт людей и превращает в киборгов ИИ.</summary>
-[RegisterComponent]
-public sealed partial class ImperialMalfFactoryComponent : Component
-{
-    [ViewVariables]
-    public EntityUid Ai;
-
-    /// <summary>Перезарядка между превращениями (cooldown_duration 60 с у TG).</summary>
-    [ViewVariables]
-    public TimeSpan NextUse;
 }

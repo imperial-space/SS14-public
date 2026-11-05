@@ -23,47 +23,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.StationAi;
 
-/// <summary>connected_ai: киборг подключён к ИИ и повторяет его законы (lawupdate).</summary>
-[RegisterComponent]
-public sealed partial class ImperialAiBorgLinkComponent : Component
-{
-    [ViewVariables]
-    public EntityUid? Ai;
-
-    /// <summary>Подпись законов на момент последней синхронизации.</summary>
-    [ViewVariables]
-    public string? LawSignature;
-
-    /// <summary>Связь разорвана (эмаг, смерть ИИ) — сама не восстанавливается.</summary>
-    [ViewVariables]
-    public bool Severed;
-}
-
-/// <summary>/obj/item/borg/upgrade/ai: модуль Б.О.Р.И.С. вместо мозга делает корпус оболочкой ИИ.</summary>
-[RegisterComponent]
-public sealed partial class ImperialAiShellBoardComponent : Component;
-
-/// <summary>deployed: ИИ сейчас в этой оболочке.</summary>
-[RegisterComponent]
-public sealed partial class ImperialAiDeployedComponent : Component
-{
-    [ViewVariables]
-    public EntityUid Ai;
-
-    [ViewVariables]
-    public EntityUid Mind;
-
-    [ViewVariables]
-    public EntityUid? ReturnAction;
-
-    [ViewVariables]
-    public string OldName = string.Empty;
-}
-
-/// <summary>Фабрикатор экзокостюмов умеет печатать модуль Б.О.Р.И.С.</summary>
-[RegisterComponent]
-public sealed partial class ImperialAiShellLatheComponent : Component;
-
 /// <summary>
 /// Киборги ИИ (robot.dm, ai.dm): подключение к ИИ с меньшим числом боргов, синхронизация законов,
 /// панель киборгов, оболочки Б.О.Р.И.С. (deploy_to_shell / undeploy).
