@@ -1,3 +1,6 @@
+using Robust.Shared.Prototypes;
+using Content.Shared.Imperial.Helpers;
+using Content.Shared.Dataset;
 using Robust.Shared.Random;
 using System.Linq;
 using System.Text;
@@ -15,14 +18,9 @@ public sealed partial class ImperialLanguageSystem
     private static readonly Regex Sentences = new(@"(.+?(?:[\.!\?]|$))", RegexOptions.Compiled);
 
     /// <summary>generate_code_phrase: напитки, имена и места вперемешку.</summary>
-    private static readonly string[] CodeWords =
-    [
-        "Водка", "Текила", "Пиво", "Виски", "Ром", "Джин", "Абсент", "Отвёртка", "Кровавая Мэри", "Кофе", "Чай", "Гоночный болид",
-        "Капитан", "Брюс", "Агата", "Иван", "Мартин", "Ричард", "Сара", "Джонни", "Матильда", "Эрих",
-        "мостик", "техи", "медблок", "бриг", "карго", "кухня", "дормы", "эвакуация", "реактор", "морг",
-        "красный", "синий", "зелёный", "жёлтый", "золотой", "серебряный", "небо", "буря", "рассвет", "закат",
-        "кот", "пёс", "ворон", "змея", "медведь", "лиса", "сова", "ящерица", "дельфин", "тигр",
-    ];
+    private static readonly ProtoId<LocalizedDatasetPrototype> CodeWordsDataset = "ImperialImperialLanguageSystemScrambleCodeWords";
+
+    private static string[] CodeWords => ImperialLocalizedLists.Get(CodeWordsDataset);
 
     private sealed class ScrambleCache
     {
