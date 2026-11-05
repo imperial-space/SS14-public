@@ -21,14 +21,17 @@ public sealed class EpsilonTextOverlay : Overlay
     /// <param name="Typed">К этому моменту напечатана вся строка.</param>
     /// <param name="Until">Строка исчезает (последняя — плавно гаснет к этому моменту).</param>
     /// <param name="Mix">0 — жёлтый ЦК, 1 — фиолетовый «Эпсилон».</param>
-    private readonly record struct Line(float From, float Typed, float Until, string Text, float Mix, bool Big);
+    private readonly record struct Line(float From, float Typed, float Until, string TextKey, float Mix, bool Big)
+    {
+        public string Text => Loc.GetString(TextKey);
+    }
 
     private static readonly Line[] Lines =
     {
-        new(3.8f, 4.5f, 5.1f, "внимание", 0f, true),
-        new(5.1f, 5.8f, 6.1f, "Внимание", 0.5f, true),
-        new(6.1f, 6.8f, 7f, "ВНИМАНИЕ", 0.85f, true),
-        new(EpsilonTimeline.LightsOutStart, EpsilonTimeline.LightsOutEnd, 16f, "Станция теперь под контролем центрального командования", 1f, false),
+        new(3.8f, 4.5f, 5.1f, "imperial-epsilon-overlay-attention-1", 0f, true),
+        new(5.1f, 5.8f, 6.1f, "imperial-epsilon-overlay-attention-2", 0.5f, true),
+        new(6.1f, 6.8f, 7f, "imperial-epsilon-overlay-attention-3", 0.85f, true),
+        new(EpsilonTimeline.LightsOutStart, EpsilonTimeline.LightsOutEnd, 16f, "imperial-epsilon-overlay-takeover", 1f, false),
     };
 
     private const float FadeOut = 2f;
