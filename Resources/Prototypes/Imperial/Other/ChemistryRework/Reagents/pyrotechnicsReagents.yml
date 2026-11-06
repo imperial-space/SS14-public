@@ -217,6 +217,7 @@
     Bloodstream:
       metabolismRate: 5.0
       effects:
+      - !type:GeneticCure
       - !type:ChangeMarkingColor
         markingCategory: "Skin"
         invertColor: true

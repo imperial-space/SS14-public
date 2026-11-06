@@ -10,6 +10,8 @@
   id: MedicalImperialVehicleStatic
   recipes:
   - ImperialVehicleWheelchairFolded
+  - ImperialSequenceScanner # Imperial Genetics
+  - ImperialGeneticDataDisk # Imperial Genetics
 
 - type: trait
   id: ImperialWheelchairBound

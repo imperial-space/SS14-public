@@ -1,0 +1,137 @@
+# ДНК-инфузер (dna_infuser из SS13). Упрощённо: вместо замены органов каждая инфузия даёт стадию набора,
+# после порога — бонус набора. Источник — мёртвое существо рядом с машиной.
+
+- type: entity
+  id: ImperialDnaInfuser
+  parent: MedicalScanner
+  name: DNA infuser
+  description: A machine that infuses its occupant with the DNA of a creature lying nearby.
+  components:
+  - type: DnaInfuser
+  - type: Sprite
+    sprite: Imperial/Genetics/dna_infuser.rsi
+    snapCardinals: true
+    layers:
+    - state: infuser
+      map: [machineLayer]
+    - state: infuser
+      map: [terminalLayer]
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.MedicalScannerVisuals.Status:
+        machineLayer:
+          Off: { state: infuser }
+          Open: { state: infuser }
+          Red: { state: infuser }
+          Death: { state: infuser }
+          Green: { state: infuser }
+          Yellow: { state: infuser }
+        terminalLayer:
+          Off: { visible: false }
+          Open: { visible: false }
+          Red: { visible: false }
+          Death: { visible: false }
+          Green: { visible: false }
+          Yellow: { visible: false }
+  - type: Machine
+    board: ImperialDnaInfuserMachineCircuitboard
+  - type: GuideHelp
+    guides: []
+
+- type: entity
+  id: ImperialDnaInfuserMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: DNA infuser machine board
+  description: A machine printed circuit board for a DNA infuser.
+  components:
+  - type: Sprite
+    state: medical
+  - type: MachineBoard
+    prototype: ImperialDnaInfuser
+    stackRequirements:
+      Manipulator: 2
+      Glass: 5
+      Cable: 2
+
+# ─── Наборы ─────────────────────────────────────────────────────────────────
+
+- type: geneticInfusion
+  id: InfusionCarp
+  name: dna-infusion-carp
+  sources:
+  - MobCarp
+  - MobCarpSalvage
+  - MobCarpRainbow
+  - MobCarpHolo
+  threshold: 3
+  bonusText: dna-infusion-carp-bonus
+  stages:
+  - - type: GeneticStrength
+      multiplier: 1.25
+  - - type: PressureImmunity
+  - []
+  bonus:
+  - type: MovementAlwaysTouching
+
+- type: geneticInfusion
+  id: InfusionRat
+  name: dna-infusion-rat
+  sources:
+  - MobMouse
+  - MobMouseAdmeme
+  - MobMouseCancer
+  - MobMouseDead
+  threshold: 3
+  bonusText: dna-infusion-rat-bonus
+  stages:
+  - - type: GeneticVenom
+      damage:
+        types:
+          Poison: 2
+  - []
+  - []
+  bonus:
+  - type: VentCrawler
+
+- type: geneticInfusion
+  id: InfusionRoach
+  name: dna-infusion-roach
+  sources:
+  - MobCockroach
+  threshold: 3
+  bonusText: dna-infusion-roach-bonus
+  stages:
+  - - type: GeneticDamageResistance
+      modifiers:
+        coefficients:
+          Radiation: 0.5
+          Poison: 0.8
+  - []
+  - []
+  bonus:
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+    worn: false
+
+- type: geneticInfusion
+  id: InfusionGoliath
+  name: dna-infusion-goliath
+  sources:
+  - MobGoliath
+  - MobGoliathAncient
+  threshold: 3
+  bonusText: dna-infusion-goliath-bonus
+  stages:
+  - - type: GeneticDamageResistance
+      modifiers:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.9
+  - - type: GeneticStrength
+      multiplier: 1.5
+  - []
+  bonus:
+  - type: GeneticAdaptation
+    heat: true

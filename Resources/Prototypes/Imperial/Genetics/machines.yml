@@ -1,0 +1,235 @@
+# Машины генетики (dna_scanner.dm, dna_console.dm из SS13).
+
+- type: entity
+  id: ImperialDnaScanner
+  parent: MedicalScanner
+  name: DNA scanner
+  description: It scans DNA structures.
+  components:
+  - type: DnaScanner
+  - type: Sprite
+    sprite: Imperial/Genetics/dna_scanner.rsi
+    snapCardinals: true
+    layers:
+    - state: open
+      map: [machineLayer]
+    - state: open
+      map: [terminalLayer]
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.MedicalScannerVisuals.Status:
+        machineLayer:
+          Off: { state: off }
+          Open: { state: open }
+          Red: { state: occupied }
+          Death: { state: occupied }
+          Green: { state: occupied }
+          Yellow: { state: occupied }
+        terminalLayer:
+          Off: { visible: false }
+          Open: { visible: false }
+          Red: { visible: false }
+          Death: { visible: false }
+          Green: { visible: false }
+          Yellow: { visible: false }
+  - type: Machine
+    board: ImperialDnaScannerMachineCircuitboard
+  - type: GuideHelp
+    guides: []
+
+- type: entity
+  id: ImperialDnaConsole
+  parent: BaseComputer
+  name: DNA console
+  description: Scan, analyze and modify DNA structures.
+  components:
+  - type: DnaConsole
+  - type: ItemSlots
+    slots:
+      disk:
+        name: dna-console-disk-slot
+        whitelist:
+          components:
+          - GeneticDataDisk
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+        ents: []
+      disk: !type:ContainerSlot
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: dna
+    - map: ["computerLayerKeys"]
+      state: med_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Computer
+    board: ImperialDnaConsoleComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#1f8c28"
+  - type: ActivatableUI
+    key: enum.DnaConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.DnaConsoleUiKey.Key:
+        type: DnaConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+
+- type: entity
+  id: ImperialGeneticDataDisk
+  parent: BaseItem
+  name: genetic data disk
+  description: A disk for storing genetic data.
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/Hydroponics/disk.rsi
+    state: disk
+    color: "#7fd0ff"
+  - type: Item
+    size: Tiny
+  - type: GeneticDataDisk
+  - type: StaticPrice
+    price: 20
+
+- type: entity
+  id: ImperialDnaScannerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: DNA scanner machine board
+  description: A machine printed circuit board for a DNA scanner.
+  components:
+  - type: Sprite
+    state: medical
+  - type: MachineBoard
+    prototype: ImperialDnaScanner
+    stackRequirements:
+      Manipulator: 1
+      Glass: 5
+      Cable: 1
+
+- type: entity
+  id: ImperialDnaConsoleComputerCircuitboard
+  parent: BaseComputerCircuitboard
+  name: DNA console computer board
+  description: A computer printed circuit board for a DNA console.
+  components:
+  - type: Sprite
+    state: cpu_medical
+  - type: ComputerBoard
+    prototype: ImperialDnaConsole
+
+# ─── Инжекторы и хромосомы ──────────────────────────────────────────────────
+
+- type: entity
+  id: ImperialDnaInjector
+  parent: BaseItem
+  name: DNA injector
+  description: This injects the person with DNA.
+  components:
+  - type: Sprite
+    sprite: Imperial/Genetics/dna_injector.rsi
+    layers:
+    - state: icon
+      map: [ "base" ]
+  - type: Item
+    size: Tiny
+    sprite: Imperial/Genetics/dna_injector.rsi
+  - type: DnaInjector
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.DnaInjectorVisuals.Used:
+        base:
+          True: { state: used }
+          False: { state: icon }
+  - type: StaticPrice
+    price: 30
+
+- type: entity
+  id: ImperialChromosomeBase
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Genetics/chromosomes.rsi
+  - type: Item
+    size: Tiny
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  id: ImperialChromosomeStabilizer
+  parent: ImperialChromosomeBase
+  name: stabilizer chromosome
+  description: A chromosome that reduces mutation instability by 20%.
+  components:
+  - type: Sprite
+    state: stabilizer
+  - type: Chromosome
+    kind: Stabilizer
+
+- type: entity
+  id: ImperialChromosomeSynchronizer
+  parent: ImperialChromosomeBase
+  name: synchronizer chromosome
+  description: A chromosome that reduces mutation knockback and downsides by 50%.
+  components:
+  - type: Sprite
+    state: synchronizer
+  - type: Chromosome
+    kind: Synchronizer
+
+- type: entity
+  id: ImperialChromosomePower
+  parent: ImperialChromosomeBase
+  name: power chromosome
+  description: A chromosome that increases mutation power by 50%.
+  components:
+  - type: Sprite
+    state: power
+  - type: Chromosome
+    kind: Power
+
+- type: entity
+  id: ImperialChromosomeEnergy
+  parent: ImperialChromosomeBase
+  name: energetic chromosome
+  description: A chromosome that reduces action based mutation cooldowns by 50%.
+  components:
+  - type: Sprite
+    state: energy
+  - type: Chromosome
+    kind: Energy
+
+- type: entity
+  id: ImperialSequenceScanner
+  parent: BaseItem
+  name: genetic sequence scanner
+  description: A hand-held scanner for analyzing someone's gene sequence on the fly.
+  components:
+  - type: Sprite
+    sprite: Imperial/Genetics/sequence_scanner.rsi
+    layers:
+    - state: icon
+      map: [ "base" ]
+  - type: Item
+    size: Tiny
+    sprite: Imperial/Genetics/sequence_scanner.rsi
+  - type: SequenceScanner
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SequenceScannerVisuals.Recharging:
+        base:
+          True: { state: recharging }
+          False: { state: icon }
+  - type: StaticPrice
+    price: 40
