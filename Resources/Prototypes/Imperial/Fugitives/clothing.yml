@@ -1,0 +1,178 @@
+# Одежда беглецов и охотников TG (спрайты icons/obj|mob/clothing).
+
+# /obj/item/clothing/head/waldo
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadHatWaldo
+  name: шапка Вальдо
+  description: Если вы когда-нибудь заблудитесь, вас точно найдут.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fugitives/Clothing/waldo_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Fugitives/Clothing/waldo_hat.rsi
+
+# /obj/item/clothing/suit/costume/striped_sweater
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterWaldoSweater
+  name: полосатый свитер
+  description: Хотите узнать, кто я? Найдите меня.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fugitives/Clothing/waldo_shirt.rsi
+  - type: Clothing
+    sprite: Imperial/Fugitives/Clothing/waldo_shirt.rsi
+
+# /obj/item/clothing/mask/gas/tiki_mask/yalp_elor
+- type: entity
+  parent: ClothingMaskBase
+  id: ImperialClothingMaskTikiYalpElor
+  name: маска Ялп Элор
+  description: Маска, которую носят последователи культа Ялп Элор.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fugitives/Clothing/tiki_yalp.rsi
+  - type: Clothing
+    sprite: Imperial/Fugitives/Clothing/tiki_yalp.rsi
+
+# /obj/item/clothing/suit/chaplainsuit/holidaypriest
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialClothingOuterHolidayPriest
+  name: праздничное облачение
+  description: Праздничный наряд для праздничного служения.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fugitives/Clothing/holidaypriest.rsi
+  - type: Clothing
+    sprite: Imperial/Fugitives/Clothing/holidaypriest.rsi
+
+# /obj/item/clothing/under/costume/soviet
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformSoviet
+  name: советская форма
+  description: За Родину!
+  components:
+  - type: Sprite
+    sprite: Imperial/Fugitives/Clothing/soviet.rsi
+  - type: Clothing
+    sprite: Imperial/Fugitives/Clothing/soviet.rsi
+
+# /obj/item/clothing/head/costume/scarecrow_hat
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadHatScarecrow
+  name: шляпа пугала
+  description: Простая соломенная шляпа.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fugitives/Clothing/scarecrow_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Fugitives/Clothing/scarecrow_hat.rsi
+
+# /obj/item/clothing/mask/scarecrow
+- type: entity
+  parent: ClothingMaskBase
+  id: ImperialClothingMaskScarecrow
+  name: мешок пугала
+  description: Мешок из мешковины с прорезями для глаз.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fugitives/Clothing/scarecrow_sack.rsi
+  - type: Clothing
+    sprite: Imperial/Fugitives/Clothing/scarecrow_sack.rsi
+  - type: IdentityBlocker
+
+# /obj/item/clothing/suit/space/hunter
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ImperialClothingOuterHardsuitHunter
+  name: костюм охотника за головами
+  description: Специализированная броня охотника за головами. Изрядно потрёпана.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fugitives/Clothing/hunter_suit.rsi
+  - type: Clothing
+    sprite: Imperial/Fugitives/Clothing/hunter_suit.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.5
+        Heat: 0.6
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.1
+
+# /obj/item/clothing/mask/gas/hunter
+- type: entity
+  parent: ClothingMaskGas
+  id: ImperialClothingMaskGasHunter
+  name: противогаз охотника за головами
+  description: Модифицированный противогаз с прочным покрытием.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fugitives/Clothing/hunter_mask.rsi
+  - type: Clothing
+    sprite: Imperial/Fugitives/Clothing/hunter_mask.rsi
+
+# /obj/item/clothing/glasses/trickblindfold
+- type: entity
+  parent: ClothingEyesBase
+  id: ImperialClothingEyesTrickBlindfold
+  name: повязка на глаза
+  description: Повязка, сквозь которую видно. Псайкеры носят её, чтобы казаться загадочнее.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fugitives/Clothing/trickblindfold.rsi
+  - type: Clothing
+    sprite: Imperial/Fugitives/Clothing/trickblindfold.rsi
+
+# /obj/item/clothing/under/rank/security/officer/spacepol
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformSpacepol
+  name: форма полиции Космопола
+  description: Форма межгалактической полиции Космопола.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fugitives/Clothing/spacepol.rsi
+  - type: Clothing
+    sprite: Imperial/Fugitives/Clothing/spacepol.rsi
+
+# /obj/item/clothing/suit/armor/vest/blueshirt
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ImperialClothingOuterVestBlueshirt
+  name: большой бронежилет
+  description: Большой, но удобный бронежилет.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fugitives/Clothing/blueshift_vest.rsi
+  - type: Clothing
+    sprite: Imperial/Fugitives/Clothing/blueshift_vest.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.8
+
+# /obj/item/clothing/shoes/russian
+- type: entity
+  parent: ClothingShoesBase
+  id: ImperialClothingShoesRussian
+  name: русские сапоги
+  description: Удобные сапоги.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fugitives/Clothing/rus_shoes.rsi
+  - type: Clothing
+    sprite: Imperial/Fugitives/Clothing/rus_shoes.rsi
