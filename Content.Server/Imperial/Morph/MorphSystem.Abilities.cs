@@ -31,6 +31,8 @@ public sealed partial class MorphSystem
 
     private readonly Dictionary<EntityUid, TimeSpan> _nextAiDisguise = new();
 
+    private const float FindWeldedVentsRange = 1.5f;
+
     private void InitializeAbilities()
     {
         SubscribeLocalEvent<MorphComponent, MorphMimicActionEvent>(OnMimic);
@@ -127,7 +129,7 @@ public sealed partial class MorphSystem
 
         _popup.PopupEntity(Loc.GetString("morph-mimic-remember-start", ("target", args.Target)), ent, ent);
 
-        var doAfter = new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(2), new MorphRememberFormDoAfterEvent(), ent, target: args.Target)
+        var doAfter = new DoAfterArgs(EntityManager, ent, ent.Comp.MimicDelay, new MorphRememberFormDoAfterEvent(), ent, target: args.Target)
         {
             BreakOnMove = true,
             NeedHand = false,
@@ -205,7 +207,7 @@ public sealed partial class MorphSystem
 
         _popup.PopupEntity(Loc.GetString("morph-mimic-take-start", ("form", ent.Comp.Forms[args.Index].Name)), ent, ent);
 
-        var doAfter = new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(2), new MorphTakeFormDoAfterEvent(args.Index), ent)
+        var doAfter = new DoAfterArgs(EntityManager, ent, ent.Comp.FormChosenDelay, new MorphTakeFormDoAfterEvent(args.Index), ent)
         {
             BreakOnMove = true,
             NeedHand = false,
@@ -304,7 +306,7 @@ public sealed partial class MorphSystem
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString("morph-ambush-start"), ent, ent);
 
-        var doAfter = new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(6), new MorphAmbushDoAfterEvent(), ent)
+        var doAfter = new DoAfterArgs(EntityManager, ent, ent.Comp.AmbushActionDelay, new MorphAmbushDoAfterEvent(), ent)
         {
             BreakOnMove = true,
             NeedHand = false,
@@ -363,7 +365,7 @@ public sealed partial class MorphSystem
         _popup.PopupEntity(Loc.GetString("morph-airlock-start-others", ("morph", ent.Owner), ("airlock", args.Target)), ent, Filter.PvsExcept(ent), true, PopupType.MediumCaution);
         _popup.PopupEntity(Loc.GetString("morph-airlock-start-self", ("airlock", args.Target)), ent, ent);
 
-        var doAfter = new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(6), new MorphPassAirlockDoAfterEvent(), ent, target: args.Target)
+        var doAfter = new DoAfterArgs(EntityManager, ent, ent.Comp.PassAirlockDelay, new MorphPassAirlockDoAfterEvent(), ent, target: args.Target)
         {
             BreakOnMove = true,
             NeedHand = false,
@@ -441,7 +443,7 @@ public sealed partial class MorphSystem
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString("morph-vent-start"), ent, ent);
 
-        var doAfter = new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(2), new MorphOpenVentDoAfterEvent(), ent)
+        var doAfter = new DoAfterArgs(EntityManager, ent, ent.Comp.OpenVentDelay, new MorphOpenVentDoAfterEvent(), ent)
         {
             BreakOnMove = true,
             NeedHand = false,
@@ -452,7 +454,7 @@ public sealed partial class MorphSystem
     private List<EntityUid> FindWeldedVents(EntityUid morph)
     {
         var result = new List<EntityUid>();
-        foreach (var ent in _lookup.GetEntitiesInRange<WeldableComponent>(Transform(morph).Coordinates, 1.5f))
+        foreach (var ent in _lookup.GetEntitiesInRange<WeldableComponent>(Transform(morph).Coordinates, FindWeldedVentsRange))
         {
             if (!HasComp<GasVentPumpComponent>(ent) && !HasComp<GasVentScrubberComponent>(ent))
                 continue;
@@ -483,7 +485,7 @@ public sealed partial class MorphSystem
         {
             _audio.PlayPvs(WelderSound, vent);
             var captured = vent;
-            _schedule.Schedule(TimeSpan.FromSeconds(2), () =>
+            _schedule.Schedule(ent.Comp.OpenVentDoAfterDelay, () =>
             {
                 if (!TerminatingOrDeleted(captured))
                     _weldable.SetWeldedState(captured, false);

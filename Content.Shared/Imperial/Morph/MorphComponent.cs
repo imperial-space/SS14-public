@@ -129,4 +129,25 @@ public sealed partial class MorphComponent : Component
     /// <summary>Что получает новый морф при размножении.</summary>
     [DataField]
     public EntProtoId ReproduceProto = "MobMorph";
+
+    [DataField]
+    public TimeSpan MimicDelay = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan FormChosenDelay = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan AmbushActionDelay = TimeSpan.FromSeconds(6);
+
+    [DataField]
+    public TimeSpan PassAirlockDelay = TimeSpan.FromSeconds(6);
+
+    [DataField]
+    public TimeSpan OpenVentDelay = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan OpenVentDoAfterDelay = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan InteractUsingDelay = TimeSpan.FromSeconds(8);
 }

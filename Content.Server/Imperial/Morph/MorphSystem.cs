@@ -48,6 +48,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Morph;
 
@@ -102,6 +103,10 @@ public sealed partial class MorphSystem : EntitySystem
 
     /// <summary>Дистанция, с которой при осмотре видно «что-то не так».</summary>
     private const float WrongnessRange = 3f;
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+
+    private const float EjectContentsChance = 0.9f;
 
     public override void Initialize()
     {
@@ -297,7 +302,7 @@ public sealed partial class MorphSystem : EntitySystem
         foreach (var item in stomach.ContainedEntities.ToArray())
         {
             _container.Remove(item, stomach, destination: coords);
-            if (_random.Prob(0.9f))
+            if (_random.Prob(EjectContentsChance))
                 _xform.SetCoordinates(item, coords.Offset(_random.NextAngle().ToVec()));
         }
     }
@@ -407,7 +412,7 @@ public sealed partial class MorphSystem : EntitySystem
         _audio.PlayPvs(SliceSound, ent);
         _popup.PopupEntity(Loc.GetString("morph-jaws-pry-start", ("user", args.User)), ent, PopupType.MediumCaution);
 
-        var doAfter = new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(8), new MorphPryJawsDoAfterEvent(), ent, target: ent, used: args.Used)
+        var doAfter = new DoAfterArgs(EntityManager, args.User, ent.Comp.InteractUsingDelay, new MorphPryJawsDoAfterEvent(), ent, target: ent, used: args.Used)
         {
             BreakOnMove = true,
         };
@@ -428,6 +433,7 @@ public sealed partial class MorphSystem : EntitySystem
     public void AmbushAttack(Entity<MorphComponent> morph, EntityUid target, bool touched)
     {
         morph.Comp.AmbushPrepared = false;
+        Dirty(morph);
 
         var weaken = morph.Comp.AmbushWeaken;
         var damage = morph.Comp.AmbushDamage;
@@ -440,7 +446,7 @@ public sealed partial class MorphSystem : EntitySystem
         _stun.TryUpdateParalyzeDuration(target, weaken);
 
         var spec = new DamageSpecifier();
-        spec.DamageDict["Blunt"] = FixedPoint2.New(damage);
+        spec.DamageDict[BluntDamageType] = FixedPoint2.New(damage);
         _damage.TryChangeDamage(target, spec, origin: morph);
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Morph/blobattack.ogg"), morph);
