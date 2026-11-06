@@ -40,7 +40,7 @@ public sealed class ZlatozhorSystem : EntitySystem
 
     private void OnMapInit(Entity<ZlatozhorComponent> ent, ref MapInitEvent args)
     {
-        ent.Comp.BurrowTime = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.BurrowDelay);
+        ent.Comp.BurrowTime = _timing.CurTime + ent.Comp.BurrowDelay;
     }
 
     // ── Нырок под землю ─────────────────────────────────────────────────────
@@ -105,7 +105,7 @@ public sealed class ZlatozhorSystem : EntitySystem
         _audio.PlayPvs("/Audio/Effects/teleport_arrival.ogg", uid);
 
         // Сбросить таймер
-        comp.BurrowTime = _timing.CurTime + TimeSpan.FromSeconds(comp.BurrowDelay);
+        comp.BurrowTime = _timing.CurTime + comp.BurrowDelay;
     }
 
     // ── Смерть — выдача руды ─────────────────────────────────────────────────

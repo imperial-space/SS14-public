@@ -51,12 +51,3 @@ public sealed partial class LavalandMapComponent : Component
     [ViewVariables, AutoPausedField]
     public TimeSpan NextDamage;
 }
-
-public enum LavalandStormState : byte
-{
-    Idle,
-    Warning,
-    PassingBy,
-    Active,
-    Ending,
-}
