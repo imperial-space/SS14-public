@@ -1,0 +1,966 @@
+# Причуды TG (code/datums/quirks). Стоимость черты = value TG: отрицательные дают очки,
+# положительные тратят. Категория позволяет набрать сумму не больше 2 (default_quirk_points),
+# сервер при появлении ещё раз применяет правила TG (несовместимые пары, не больше 6 положительных).
+
+- type: traitCategory
+  id: ImperialQuirks
+  name: trait-category-imperial-quirks
+  maxTraitPoints: 2
+
+# ─── Отрицательные ───
+
+- type: trait
+  id: ImperialQuirkJunkie
+  name: imperial-quirk-junkie-name
+  description: imperial-quirk-junkie-desc
+  category: ImperialQuirks
+  cost: -6
+
+- type: imperialQuirk
+  id: ImperialQuirkJunkie
+  gainText: imperial-quirk-junkie-gain
+  components:
+  - type: ImperialQuirkAddiction
+    pickOne: true
+    container: PillCanister
+    pills: 7
+    pillVolume: 3
+
+- type: trait
+  id: ImperialQuirkSmoker
+  name: imperial-quirk-smoker-name
+  description: imperial-quirk-smoker-desc
+  category: ImperialQuirks
+  cost: -4
+
+- type: imperialQuirk
+  id: ImperialQuirkSmoker
+  gainText: imperial-quirk-smoker-gain
+  items: [ CigPackGreen, CheapLighter ]
+  components:
+  - type: ImperialQuirkAddiction
+    reagents: [ Nicotine ]
+
+- type: trait
+  id: ImperialQuirkAlcoholic
+  name: imperial-quirk-alcoholic-name
+  description: imperial-quirk-alcoholic-desc
+  category: ImperialQuirks
+  cost: -4
+
+- type: imperialQuirk
+  id: ImperialQuirkAlcoholic
+  gainText: imperial-quirk-alcoholic-gain
+  items: [ DrinkWhiskeyBottleFull ]
+  components:
+  - type: ImperialQuirkAddiction
+    drunk: true
+    reagents: [ Ethanol ]
+
+- type: trait
+  id: ImperialQuirkMedicineAllergy
+  name: imperial-quirk-medicine-allergy-name
+  description: imperial-quirk-medicine-allergy-desc
+  category: ImperialQuirks
+  cost: -6
+
+- type: imperialQuirk
+  id: ImperialQuirkMedicineAllergy
+  gainText: imperial-quirk-medicine-allergy-gain
+  components:
+  - type: ImperialQuirkMedicineAllergy
+
+- type: trait
+  id: ImperialQuirkAsthma
+  name: imperial-quirk-asthma-name
+  description: imperial-quirk-asthma-desc
+  category: ImperialQuirks
+  cost: -4
+
+- type: imperialQuirk
+  id: ImperialQuirkAsthma
+  gainText: imperial-quirk-asthma-gain
+  items: [ ImperialQuirkPillCanisterSalbutamol ]
+  components:
+  - type: ImperialQuirkAsthma
+
+- type: trait
+  id: ImperialQuirkBlind
+  name: imperial-quirk-blind-name
+  description: imperial-quirk-blind-desc
+  category: ImperialQuirks
+  cost: -16
+  whitelist:
+    components:
+    - Blindable
+
+- type: imperialQuirk
+  id: ImperialQuirkBlind
+  gainText: imperial-quirk-blind-gain
+  incompatible: [ ImperialQuirkNearsighted, ImperialQuirkScarredEye, ImperialQuirkFluorideStare ]
+  equip:
+    eyes: ClothingEyesBlindfold
+  components:
+  - type: PermanentBlindness
+
+- type: trait
+  id: ImperialQuirkBloodDeficiency
+  name: imperial-quirk-blood-deficiency-name
+  description: imperial-quirk-blood-deficiency-desc
+  category: ImperialQuirks
+  cost: -8
+
+- type: imperialQuirk
+  id: ImperialQuirkBloodDeficiency
+  gainText: imperial-quirk-blood-deficiency-gain
+  components:
+  - type: ImperialQuirkBloodDeficiency
+
+- type: trait
+  id: ImperialQuirkBrainTumor
+  name: imperial-quirk-brain-tumor-name
+  description: imperial-quirk-brain-tumor-desc
+  category: ImperialQuirks
+  cost: -12
+
+- type: imperialQuirk
+  id: ImperialQuirkBrainTumor
+  gainText: imperial-quirk-brain-tumor-gain
+  items: [ ImperialQuirkPillCanisterMannitol ]
+  components:
+  - type: ImperialQuirkBrainTumor
+
+- type: trait
+  id: ImperialQuirkChronicIllness
+  name: imperial-quirk-chronic-illness-name
+  description: imperial-quirk-chronic-illness-desc
+  category: ImperialQuirks
+  cost: -12
+
+- type: imperialQuirk
+  id: ImperialQuirkChronicIllness
+  gainText: imperial-quirk-chronic-illness-gain
+  items: [ ImperialQuirkPillCanisterSansufentanyl ]
+  components:
+  - type: ImperialQuirkChronicIllness
+
+- type: trait
+  id: ImperialQuirkClaustrophobia
+  name: imperial-quirk-claustrophobia-name
+  description: imperial-quirk-claustrophobia-desc
+  category: ImperialQuirks
+  cost: -4
+
+- type: imperialQuirk
+  id: ImperialQuirkClaustrophobia
+
+- type: trait
+  id: ImperialQuirkClumsy
+  name: imperial-quirk-clumsy-name
+  description: imperial-quirk-clumsy-desc
+  category: ImperialQuirks
+  cost: -8
+
+- type: imperialQuirk
+  id: ImperialQuirkClumsy
+  gainText: imperial-quirk-clumsy-gain
+  components:
+  - type: Clumsy
+
+- type: trait
+  id: ImperialQuirkCursed
+  name: imperial-quirk-cursed-name
+  description: imperial-quirk-cursed-desc
+  category: ImperialQuirks
+  cost: -8
+
+- type: imperialQuirk
+  id: ImperialQuirkCursed
+  gainText: imperial-quirk-cursed-gain
+  components:
+  - type: ImperialQuirkCursed
+
+- type: trait
+  id: ImperialQuirkDeaf
+  name: imperial-quirk-deaf-name
+  description: imperial-quirk-deaf-desc
+  category: ImperialQuirks
+  cost: -8
+
+- type: imperialQuirk
+  id: ImperialQuirkDeaf
+  gainText: imperial-quirk-deaf-gain
+  components:
+  - type: ImperialQuirkDeaf
+
+- type: trait
+  id: ImperialQuirkFluorideStare
+  name: imperial-quirk-fluoride-stare-name
+  description: imperial-quirk-fluoride-stare-desc
+  category: ImperialQuirks
+  cost: -6
+  whitelist:
+    components:
+    - Blindable
+
+- type: imperialQuirk
+  id: ImperialQuirkFluorideStare
+  gainText: imperial-quirk-fluoride-stare-gain
+  items: [ ChemistryBottleSaline, Dropper ]
+  components:
+  - type: ImperialQuirkFluorideStare
+
+- type: trait
+  id: ImperialQuirkFoodAllergy
+  name: imperial-quirk-food-allergy-name
+  description: imperial-quirk-food-allergy-desc
+  category: ImperialQuirks
+  cost: -2
+
+- type: imperialQuirk
+  id: ImperialQuirkFoodAllergy
+  gainText: imperial-quirk-medicine-allergy-gain
+  components:
+  - type: ImperialQuirkFoodAllergy
+
+- type: trait
+  id: ImperialQuirkFrail
+  name: imperial-quirk-frail-name
+  description: imperial-quirk-frail-desc
+  category: ImperialQuirks
+  cost: -6
+
+- type: imperialQuirk
+  id: ImperialQuirkFrail
+  gainText: imperial-quirk-frail-gain
+  components:
+  - type: ImperialQuirkFrail
+
+- type: trait
+  id: ImperialQuirkGlassJaw
+  name: imperial-quirk-glass-jaw-name
+  description: imperial-quirk-glass-jaw-desc
+  category: ImperialQuirks
+  cost: -4
+
+- type: imperialQuirk
+  id: ImperialQuirkGlassJaw
+  gainText: imperial-quirk-glass-jaw-gain
+  components:
+  - type: ImperialQuirkGlassJaw
+
+- type: trait
+  id: ImperialQuirkHemiplegic
+  name: imperial-quirk-hemiplegic-name
+  description: imperial-quirk-hemiplegic-desc
+  category: ImperialQuirks
+  cost: -10
+
+- type: imperialQuirk
+  id: ImperialQuirkHemiplegic
+  gainText: imperial-quirk-hemiplegic-gain
+  incompatible: [ ImperialQuirkParaplegic ]
+  components:
+  - type: ImperialQuirkHemiplegic
+
+- type: trait
+  id: ImperialQuirkIlliterate
+  name: imperial-quirk-illiterate-name
+  description: imperial-quirk-illiterate-desc
+  category: ImperialQuirks
+  cost: -8
+
+- type: imperialQuirk
+  id: ImperialQuirkIlliterate
+  components:
+  - type: ImperialQuirkIlliterate
+
+- type: trait
+  id: ImperialQuirkInsanity
+  name: imperial-quirk-insanity-name
+  description: imperial-quirk-insanity-desc
+  category: ImperialQuirks
+  cost: -8
+
+- type: imperialQuirk
+  id: ImperialQuirkInsanity
+  components:
+  - type: ImperialQuirkInsanity
+  - type: Paracusia
+    minTimeBetweenIncidents: 0.1
+    maxTimeBetweenIncidents: 300
+    maxSoundDistance: 7
+    sounds:
+      collection: Paracusia
+
+- type: trait
+  id: ImperialQuirkLightDrinker
+  name: imperial-quirk-light-drinker-name
+  description: imperial-quirk-light-drinker-desc
+  category: ImperialQuirks
+  cost: -2
+
+- type: imperialQuirk
+  id: ImperialQuirkLightDrinker
+  incompatible: [ ImperialQuirkAlcoholTolerance ]
+  components:
+  - type: LightweightDrunk
+    boozeStrengthMultiplier: 2
+
+- type: trait
+  id: ImperialQuirkLimper
+  name: imperial-quirk-limper-name
+  description: imperial-quirk-limper-desc
+  category: ImperialQuirks
+  cost: -6
+
+- type: imperialQuirk
+  id: ImperialQuirkLimper
+  items: [ OffsetCane ]
+  components:
+  - type: ImpairedMobility
+
+- type: trait
+  id: ImperialQuirkMonophobia
+  name: imperial-quirk-monophobia-name
+  description: imperial-quirk-monophobia-desc
+  category: ImperialQuirks
+  cost: -3
+
+- type: imperialQuirk
+  id: ImperialQuirkMonophobia
+
+- type: trait
+  id: ImperialQuirkMute
+  name: imperial-quirk-mute-name
+  description: imperial-quirk-mute-desc
+  category: ImperialQuirks
+  cost: -4
+
+- type: imperialQuirk
+  id: ImperialQuirkMute
+  incompatible: [ ImperialQuirkSocialAnxiety, ImperialQuirkSoftSpoken ]
+  components:
+  - type: Muted
+
+- type: trait
+  id: ImperialQuirkNarcolepsy
+  name: imperial-quirk-narcolepsy-name
+  description: imperial-quirk-narcolepsy-desc
+  category: ImperialQuirks
+  cost: -8
+
+- type: imperialQuirk
+  id: ImperialQuirkNarcolepsy
+  items: [ ImperialQuirkPillCanisterEphedrine ]
+  components:
+  - type: ImperialQuirkNarcolepsy
+  - type: Narcolepsy
+    maxTimeBetweenIncidents: 600
+    minTimeBetweenIncidents: 300
+    maxDurationOfIncident: 30
+    minDurationOfIncident: 10
+
+- type: trait
+  id: ImperialQuirkNearsighted
+  name: imperial-quirk-nearsighted-name
+  description: imperial-quirk-nearsighted-desc
+  category: ImperialQuirks
+  cost: -4
+  whitelist:
+    components:
+    - Blindable
+
+- type: imperialQuirk
+  id: ImperialQuirkNearsighted
+  equip:
+    eyes: ClothingEyesGlasses
+  components:
+  - type: PermanentBlindness
+    blindness: 4
+
+- type: trait
+  id: ImperialQuirkPacifist
+  name: imperial-quirk-pacifist-name
+  description: imperial-quirk-pacifist-desc
+  category: ImperialQuirks
+  cost: -8
+
+- type: imperialQuirk
+  id: ImperialQuirkPacifist
+  components:
+  - type: Pacified
+
+- type: trait
+  id: ImperialQuirkNumb
+  name: imperial-quirk-numb-name
+  description: imperial-quirk-numb-desc
+  category: ImperialQuirks
+  cost: -4
+
+- type: imperialQuirk
+  id: ImperialQuirkNumb
+  incompatible: [ ImperialQuirkSelfAware ]
+  specials:
+  - !type:ApplyStatusEffectSpecial
+    statusEffects:
+    - TraitStatusEffectPainNumbness
+
+- type: trait
+  id: ImperialQuirkNyctophobia
+  name: imperial-quirk-nyctophobia-name
+  description: imperial-quirk-nyctophobia-desc
+  category: ImperialQuirks
+  cost: -3
+
+- type: imperialQuirk
+  id: ImperialQuirkNyctophobia
+  incompatible: [ ImperialQuirkPhotophobia ]
+
+- type: trait
+  id: ImperialQuirkParaplegic
+  name: imperial-quirk-paraplegic-name
+  description: imperial-quirk-paraplegic-desc
+  category: ImperialQuirks
+  cost: -12
+
+- type: imperialQuirk
+  id: ImperialQuirkParaplegic
+  components:
+  - type: LegsParalyzed
+  - type: ImperialQuirkParaplegic
+
+- type: trait
+  id: ImperialQuirkPhotophobia
+  name: imperial-quirk-photophobia-name
+  description: imperial-quirk-photophobia-desc
+  category: ImperialQuirks
+  cost: -4
+
+- type: imperialQuirk
+  id: ImperialQuirkPhotophobia
+  components:
+  - type: ImperialQuirkPhotophobia
+
+- type: trait
+  id: ImperialQuirkPoorAim
+  name: imperial-quirk-poor-aim-name
+  description: imperial-quirk-poor-aim-desc
+  category: ImperialQuirks
+  cost: -4
+
+- type: imperialQuirk
+  id: ImperialQuirkPoorAim
+  components:
+  - type: ImperialQuirkPoorAim
+
+- type: trait
+  id: ImperialQuirkPushover
+  name: imperial-quirk-pushover-name
+  description: imperial-quirk-pushover-desc
+  category: ImperialQuirks
+  cost: -8
+
+- type: imperialQuirk
+  id: ImperialQuirkPushover
+  components:
+  - type: ImperialQuirkPushover
+
+- type: trait
+  id: ImperialQuirkScarredEye
+  name: imperial-quirk-scarred-eye-name
+  description: imperial-quirk-scarred-eye-desc
+  category: ImperialQuirks
+  cost: -2
+  whitelist:
+    components:
+    - Blindable
+
+- type: imperialQuirk
+  id: ImperialQuirkScarredEye
+  equip:
+    eyes: ClothingEyesEyepatch
+  components:
+  - type: PermanentBlindness
+    blindness: 2
+
+- type: trait
+  id: ImperialQuirkSocialAnxiety
+  name: imperial-quirk-social-anxiety-name
+  description: imperial-quirk-social-anxiety-desc
+  category: ImperialQuirks
+  cost: -3
+
+- type: imperialQuirk
+  id: ImperialQuirkSocialAnxiety
+  components:
+  - type: StutteringAccent
+  - type: ImperialQuirkSocialAnxiety
+
+- type: trait
+  id: ImperialQuirkSoftSpoken
+  name: imperial-quirk-soft-spoken-name
+  description: imperial-quirk-soft-spoken-desc
+  category: ImperialQuirks
+  cost: -2
+
+- type: imperialQuirk
+  id: ImperialQuirkSoftSpoken
+  components:
+  - type: ImperialQuirkSoftSpoken
+
+- type: trait
+  id: ImperialQuirkTinMan
+  name: imperial-quirk-tin-man-name
+  description: imperial-quirk-tin-man-desc
+  category: ImperialQuirks
+  cost: -6
+
+- type: imperialQuirk
+  id: ImperialQuirkTinMan
+  gainText: imperial-quirk-tin-man-gain
+  components:
+  - type: ImperialQuirkTinMan
+
+# ─── Нейтральные ───
+
+- type: trait
+  id: ImperialQuirkBald
+  name: imperial-quirk-bald-name
+  description: imperial-quirk-bald-desc
+  category: ImperialQuirks
+
+- type: imperialQuirk
+  id: ImperialQuirkBald
+  items: [ ClothingHeadPerformerWig ]
+
+- type: trait
+  id: ImperialQuirkDeviantTastes
+  name: imperial-quirk-deviant-tastes-name
+  description: imperial-quirk-deviant-tastes-desc
+  category: ImperialQuirks
+
+- type: imperialQuirk
+  id: ImperialQuirkDeviantTastes
+  incompatible: [ ImperialQuirkAgeusia, ImperialQuirkVegetarian ]
+
+- type: trait
+  id: ImperialQuirkEvil
+  name: imperial-quirk-evil-name
+  description: imperial-quirk-evil-desc
+  category: ImperialQuirks
+
+- type: imperialQuirk
+  id: ImperialQuirkEvil
+  incompatible: [ ImperialQuirkEmpath ]
+  components:
+  - type: ImperialQuirkEvil
+
+- type: trait
+  id: ImperialQuirkMonochromacy
+  name: imperial-quirk-monochromacy-name
+  description: imperial-quirk-monochromacy-desc
+  category: ImperialQuirks
+
+- type: imperialQuirk
+  id: ImperialQuirkMonochromacy
+  components:
+  - type: BlackAndWhiteOverlay
+
+- type: trait
+  id: ImperialQuirkAgeusia
+  name: imperial-quirk-ageusia-name
+  description: imperial-quirk-ageusia-desc
+  category: ImperialQuirks
+
+- type: imperialQuirk
+  id: ImperialQuirkAgeusia
+  incompatible: [ ImperialQuirkVegetarian ]
+  components:
+  - type: ImperialQuirkAgeusia
+
+- type: trait
+  id: ImperialQuirkPhobia
+  name: imperial-quirk-phobia-name
+  description: imperial-quirk-phobia-desc
+  category: ImperialQuirks
+
+- type: imperialQuirk
+  id: ImperialQuirkPhobia
+
+- type: trait
+  id: ImperialQuirkPhotographer
+  name: imperial-quirk-photographer-name
+  description: imperial-quirk-photographer-desc
+  category: ImperialQuirks
+
+- type: imperialQuirk
+  id: ImperialQuirkPhotographer
+  items: [ TravelCamera ]
+
+- type: trait
+  id: ImperialQuirkPineappleHater
+  name: imperial-quirk-pineapple-hater-name
+  description: imperial-quirk-pineapple-hater-desc
+  category: ImperialQuirks
+
+- type: imperialQuirk
+  id: ImperialQuirkPineappleHater
+  incompatible: [ ImperialQuirkPineappleLiker ]
+
+- type: trait
+  id: ImperialQuirkPineappleLiker
+  name: imperial-quirk-pineapple-liker-name
+  description: imperial-quirk-pineapple-liker-desc
+  category: ImperialQuirks
+
+- type: imperialQuirk
+  id: ImperialQuirkPineappleLiker
+
+- type: trait
+  id: ImperialQuirkShiftyEyes
+  name: imperial-quirk-shifty-eyes-name
+  description: imperial-quirk-shifty-eyes-desc
+  category: ImperialQuirks
+
+- type: imperialQuirk
+  id: ImperialQuirkShiftyEyes
+  components:
+  - type: ImperialQuirkShiftyEyes
+
+- type: trait
+  id: ImperialQuirkThanatorenasia
+  name: imperial-quirk-thanatorenasia-name
+  description: imperial-quirk-thanatorenasia-desc
+  category: ImperialQuirks
+
+- type: imperialQuirk
+  id: ImperialQuirkThanatorenasia
+  components:
+  - type: ImperialQuirkThanatorenasia
+
+- type: trait
+  id: ImperialQuirkVegetarian
+  name: imperial-quirk-vegetarian-name
+  description: imperial-quirk-vegetarian-desc
+  category: ImperialQuirks
+
+- type: imperialQuirk
+  id: ImperialQuirkVegetarian
+
+# ─── Положительные ───
+
+- type: trait
+  id: ImperialQuirkAlcoholTolerance
+  name: imperial-quirk-alcohol-tolerance-name
+  description: imperial-quirk-alcohol-tolerance-desc
+  category: ImperialQuirks
+  cost: 4
+
+- type: imperialQuirk
+  id: ImperialQuirkAlcoholTolerance
+  components:
+  - type: ImperialQuirkAlcoholTolerance
+
+- type: trait
+  id: ImperialQuirkDrunkHealing
+  name: imperial-quirk-drunk-healing-name
+  description: imperial-quirk-drunk-healing-desc
+  category: ImperialQuirks
+  cost: 8
+
+- type: imperialQuirk
+  id: ImperialQuirkDrunkHealing
+  components:
+  - type: ImperialQuirkDrunkHealing
+
+- type: trait
+  id: ImperialQuirkEmpath
+  name: imperial-quirk-empath-name
+  description: imperial-quirk-empath-desc
+  category: ImperialQuirks
+  cost: 8
+
+- type: imperialQuirk
+  id: ImperialQuirkEmpath
+  components:
+  - type: ImperialQuirkEmpath
+
+- type: trait
+  id: ImperialQuirkKeenNose
+  name: imperial-quirk-keen-nose-name
+  description: imperial-quirk-keen-nose-desc
+  category: ImperialQuirks
+  cost: 3
+
+- type: imperialQuirk
+  id: ImperialQuirkKeenNose
+  components:
+  - type: ImperialQuirkKeenNose
+
+- type: trait
+  id: ImperialQuirkLightStep
+  name: imperial-quirk-light-step-name
+  description: imperial-quirk-light-step-desc
+  category: ImperialQuirks
+  cost: 4
+
+- type: imperialQuirk
+  id: ImperialQuirkLightStep
+  components:
+  - type: ImperialQuirkLightStep
+
+- type: trait
+  id: ImperialQuirkMusician
+  name: imperial-quirk-musician-name
+  description: imperial-quirk-musician-desc
+  category: ImperialQuirks
+  cost: 2
+
+- type: imperialQuirk
+  id: ImperialQuirkMusician
+  items: [ AcousticGuitarInstrument ]
+
+- type: trait
+  id: ImperialQuirkSelfAware
+  name: imperial-quirk-self-aware-name
+  description: imperial-quirk-self-aware-desc
+  category: ImperialQuirks
+  cost: 8
+
+- type: imperialQuirk
+  id: ImperialQuirkSelfAware
+  components:
+  - type: ImperialQuirkSelfAware
+
+- type: trait
+  id: ImperialQuirkSettler
+  name: imperial-quirk-settler-name
+  description: imperial-quirk-settler-desc
+  category: ImperialQuirks
+  cost: 4
+
+- type: imperialQuirk
+  id: ImperialQuirkSettler
+  incompatible: [ ImperialQuirkSpacer ]
+  components:
+  - type: ImperialQuirkSettler
+
+- type: trait
+  id: ImperialQuirkSkittish
+  name: imperial-quirk-skittish-name
+  description: imperial-quirk-skittish-desc
+  category: ImperialQuirks
+  cost: 8
+
+- type: imperialQuirk
+  id: ImperialQuirkSkittish
+  components:
+  - type: ImperialQuirkSkittish
+
+- type: trait
+  id: ImperialQuirkSpacer
+  name: imperial-quirk-spacer-name
+  description: imperial-quirk-spacer-desc
+  category: ImperialQuirks
+  cost: 5
+
+- type: imperialQuirk
+  id: ImperialQuirkSpacer
+  components:
+  - type: ImperialQuirkSpacer
+
+- type: trait
+  id: ImperialQuirkStrongStomach
+  name: imperial-quirk-strong-stomach-name
+  description: imperial-quirk-strong-stomach-desc
+  category: ImperialQuirks
+  cost: 4
+
+- type: imperialQuirk
+  id: ImperialQuirkStrongStomach
+  components:
+  - type: ImperialQuirkStrongStomach
+
+- type: trait
+  id: ImperialQuirkTagger
+  name: imperial-quirk-tagger-name
+  description: imperial-quirk-tagger-desc
+  category: ImperialQuirks
+  cost: 4
+
+- type: imperialQuirk
+  id: ImperialQuirkTagger
+  items: [ CrayonBox ]
+
+- type: trait
+  id: ImperialQuirkThrowingArm
+  name: imperial-quirk-throwing-arm-name
+  description: imperial-quirk-throwing-arm-desc
+  category: ImperialQuirks
+  cost: 7
+
+- type: imperialQuirk
+  id: ImperialQuirkThrowingArm
+  components:
+  - type: ImperialQuirkThrowingArm
+
+- type: trait
+  id: ImperialQuirkVoracious
+  name: imperial-quirk-voracious-name
+  description: imperial-quirk-voracious-desc
+  category: ImperialQuirks
+  cost: 4
+
+- type: imperialQuirk
+  id: ImperialQuirkVoracious
+  components:
+  - type: ImperialQuirkVoracious
+
+# ─── Предметы и действия ───
+
+- type: entity
+  parent: BaseAction
+  id: ImperialActionQuirkBlink
+  name: Моргнуть
+  description: У вас нет век — моргать приходится вручную, иначе глаза высохнут.
+  components:
+  - type: Action
+    useDelay: 1
+    icon: Interface/Actions/eyeclose.png
+  - type: InstantAction
+    event: !type:ImperialQuirkBlinkActionEvent
+
+- type: entity
+  parent: Pill
+  id: ImperialQuirkPillSalbutamol
+  name: таблетка сальбутамола
+  suffix: Сальбутамол 5
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Salbutamol
+          Quantity: 5
+
+- type: entity
+  parent: PillCanister
+  id: ImperialQuirkPillCanisterSalbutamol
+  name: баночка таблеток от астмы
+  suffix: Сальбутамол
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: ImperialQuirkPillSalbutamol
+        amount: 5
+
+- type: entity
+  parent: Pill
+  id: ImperialQuirkPillMannitol
+  name: таблетка маннитола
+  suffix: Маннитол 10
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: ImperialMannitol
+          Quantity: 10
+
+- type: entity
+  parent: PillCanister
+  id: ImperialQuirkPillCanisterMannitol
+  name: баночка маннитола
+  suffix: Опухоль мозга
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: ImperialQuirkPillMannitol
+        amount: 3
+
+- type: entity
+  parent: Pill
+  id: ImperialQuirkPillSansufentanyl
+  name: таблетка сансуфентанила
+  suffix: Сансуфентанил 5
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: ImperialSansufentanyl
+          Quantity: 5
+
+- type: entity
+  parent: PillCanister
+  id: ImperialQuirkPillCanisterSansufentanyl
+  name: баночка сансуфентанила
+  suffix: Хроническая болезнь
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: ImperialQuirkPillSansufentanyl
+        amount: 7
+
+- type: entity
+  parent: Pill
+  id: ImperialQuirkPillEphedrine
+  name: таблетка стимулятора
+  suffix: Эфедрин 5
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Ephedrine
+          Quantity: 5
+
+- type: entity
+  parent: PillCanister
+  id: ImperialQuirkPillCanisterEphedrine
+  name: баночка рецептурного стимулятора
+  suffix: Нарколепсия
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: ImperialQuirkPillEphedrine
+        amount: 5
+
+# /datum/reagent/medicine/mannitol: восстанавливает мозг (у нас — клеточный урон).
+- type: reagent
+  id: ImperialMannitol
+  name: reagent-name-imperial-mannitol
+  group: Medicine
+  desc: reagent-desc-imperial-mannitol
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: medicine
+  color: "#A0A0A0"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: -1.5
+
+# /datum/reagent/medicine/sansufentanyl: сдерживает хроническую болезнь, кружит голову.
+- type: reagent
+  id: ImperialSansufentanyl
+  name: reagent-name-imperial-sansufentanyl
+  group: Medicine
+  desc: reagent-desc-imperial-sansufentanyl
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: medicine
+  color: "#9a6b9e"
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.5
