@@ -23,6 +23,18 @@ public sealed partial class FissionSystem
     private const string SteelSheet = "SheetSteel1";
     private const string HvCableStack = "CableHV";
 
+    private static readonly TimeSpan ReactorInteractUsingDelay = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan PlasteelUsedDelay = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan StartTerminalDelay = TimeSpan.FromSeconds(2);
+
+    private const float ReactorInteractUsingDoAfterDelay = 8f;
+    private const float PlasteelUsedDoAfterDelay = 4f;
+    private const float ReactorDoAfterReactorDigChance = 0.2f;
+    private const int ReactorDoAfterReactorPlastitaniumAmount = 5;
+    private const int ReactorDoAfterReactorPlasteelAmount = 5;
+    private const int ReactorDoAfterReactorPatchAmount = 5;
+    private const int ReactorDoAfterReactorTerminalAmount = 10;
+
     private void InitializeRepair()
     {
         SubscribeLocalEvent<FissionReactorComponent, InteractUsingEvent>(OnReactorInteractUsing);
@@ -42,7 +54,7 @@ public sealed partial class FissionSystem
         if (HasComp<ShovelComponent>(used) && reactor.Broken && reactor.RepairStep == FissionRepairStep.Digging)
         {
             args.Handled = true;
-            StartDoAfter(user, ent, TimeSpan.FromSeconds(3), FissionDoAfterAction.ReactorDig, used);
+            StartDoAfter(user, ent, ReactorInteractUsingDelay, FissionDoAfterAction.ReactorDig, used);
             return;
         }
 
@@ -73,7 +85,7 @@ public sealed partial class FissionSystem
             else if (!reactor.Broken && reactor.Venting)
             {
                 args.Handled = true;
-                _tool.UseTool(used, user, ent, 8, PryingQuality, new FissionDoAfterEvent(FissionDoAfterAction.ReactorCloseVent));
+                _tool.UseTool(used, user, ent, ReactorInteractUsingDoAfterDelay, PryingQuality, new FissionDoAfterEvent(FissionDoAfterAction.ReactorCloseVent));
             }
 
             return;
@@ -89,7 +101,7 @@ public sealed partial class FissionSystem
             else if (!reactor.Broken && reactor.ControlRodsRemaining < FissionReactorComponent.TotalControlRods)
             {
                 args.Handled = true;
-                _tool.UseTool(used, user, ent, 8, AnchoringQuality, new FissionDoAfterEvent(FissionDoAfterAction.ReactorControlRod));
+                _tool.UseTool(used, user, ent, ReactorInteractUsingDoAfterDelay, AnchoringQuality, new FissionDoAfterEvent(FissionDoAfterAction.ReactorControlRod));
             }
 
             return;
@@ -125,9 +137,9 @@ public sealed partial class FissionSystem
         if (reactor.Broken)
         {
             if (reactor.RepairStep == FissionRepairStep.Plastitanium)
-                StartDoAfter(user, ent, TimeSpan.FromSeconds(3), FissionDoAfterAction.ReactorPlastitanium, used);
+                StartDoAfter(user, ent, PlasteelUsedDelay, FissionDoAfterAction.ReactorPlastitanium, used);
             else if (reactor.RepairStep == FissionRepairStep.Plasteel)
-                StartDoAfter(user, ent, TimeSpan.FromSeconds(3), FissionDoAfterAction.ReactorPlasteel, used);
+                StartDoAfter(user, ent, PlasteelUsedDelay, FissionDoAfterAction.ReactorPlasteel, used);
             return;
         }
 
@@ -156,7 +168,7 @@ public sealed partial class FissionSystem
             return;
         }
 
-        _tool.UseTool(welder.Value, user, ent, 4, WeldingQuality, new FissionDoAfterEvent(FissionDoAfterAction.ReactorPatch), fuel: 1);
+        _tool.UseTool(welder.Value, user, ent, PlasteelUsedDoAfterDelay, WeldingQuality, new FissionDoAfterEvent(FissionDoAfterAction.ReactorPatch), fuel: 1);
     }
 
     /// <summary>Сборка выходного терминала из 10 отрезков ВВ кабеля на клетке между ядром и инженером.</summary>
@@ -194,7 +206,7 @@ public sealed partial class FissionSystem
 
         _popup.PopupEntity(Loc.GetString("fission-reactor-wiring"), ent, user);
         var coords = GetNetCoordinates(_map.GridTileToLocal(grid.Value, grid.Value, tile));
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(2),
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, StartTerminalDelay,
             new FissionDoAfterEvent(FissionDoAfterAction.ReactorTerminal, coords), ent, ent, used)
         {
             BreakOnMove = true,
@@ -218,7 +230,7 @@ public sealed partial class FissionSystem
                 if (!reactor.Broken || reactor.RepairStep != FissionRepairStep.Digging)
                     return;
                 Spawn(reactor.Slag, Transform(ent).Coordinates);
-                if (_random.Prob(0.2f))
+                if (_random.Prob(ReactorDoAfterReactorDigChance))
                 {
                     reactor.RepairStep++;
                     _popup.PopupEntity(Loc.GetString("fission-repair-dig-done"), ent, user);
@@ -239,7 +251,7 @@ public sealed partial class FissionSystem
                 break;
 
             case FissionDoAfterAction.ReactorPlastitanium:
-                if (!reactor.Broken || reactor.RepairStep != FissionRepairStep.Plastitanium || !UseSheets(args.Used, 5))
+                if (!reactor.Broken || reactor.RepairStep != FissionRepairStep.Plastitanium || !UseSheets(args.Used, ReactorDoAfterReactorPlastitaniumAmount))
                     return;
                 reactor.RepairStep++;
                 _popup.PopupEntity(Loc.GetString("fission-repair-plastitanium"), ent, user);
@@ -264,7 +276,7 @@ public sealed partial class FissionSystem
                 break;
 
             case FissionDoAfterAction.ReactorPlasteel:
-                if (!reactor.Broken || reactor.RepairStep != FissionRepairStep.Plasteel || !UseSheets(args.Used, 5))
+                if (!reactor.Broken || reactor.RepairStep != FissionRepairStep.Plasteel || !UseSheets(args.Used, ReactorDoAfterReactorPlasteelAmount))
                     return;
                 reactor.RepairStep++;
                 _popup.PopupEntity(Loc.GetString("fission-repair-plasteel"), ent, user);
@@ -278,23 +290,23 @@ public sealed partial class FissionSystem
                 break;
 
             case FissionDoAfterAction.ReactorPatch:
-            {
-                if (reactor.Broken || !reactor.Offline)
-                    return;
-
-                EntityUid? sheets = null;
-                foreach (var held in _hands.EnumerateHeld(user))
                 {
-                    if (TryComp<StackComponent>(held, out var stack) && stack.StackTypeId == PlasteelStack)
-                        sheets = held;
+                    if (reactor.Broken || !reactor.Offline)
+                        return;
+
+                    EntityUid? sheets = null;
+                    foreach (var held in _hands.EnumerateHeld(user))
+                    {
+                        if (TryComp<StackComponent>(held, out var stack) && stack.StackTypeId == PlasteelStack)
+                            sheets = held;
+                    }
+
+                    if (!UseSheets(sheets, ReactorDoAfterReactorPatchAmount))
+                        return;
+
+                    AdjustDamage(ent, -FissionReactorComponent.MeltdownPoint * 0.1f);
+                    break;
                 }
-
-                if (!UseSheets(sheets, 5))
-                    return;
-
-                AdjustDamage(ent, -FissionReactorComponent.MeltdownPoint * 0.1f);
-                break;
-            }
 
             case FissionDoAfterAction.ReactorCloseVent:
                 if (!reactor.Broken)
@@ -307,19 +319,19 @@ public sealed partial class FissionSystem
                 break;
 
             case FissionDoAfterAction.ReactorTerminal:
-            {
-                if (args.Location is not { } netCoords || !UseSheets(args.Used, 10))
-                    return;
+                {
+                    if (args.Location is not { } netCoords || !UseSheets(args.Used, ReactorDoAfterReactorTerminalAmount))
+                        return;
 
-                var coords = GetCoordinates(netCoords);
-                var terminal = Spawn(reactor.Terminal, coords);
-                _xform.AnchorEntity(terminal);
-                EnsureTerminalCable(terminal);
-                if (TryComp<FissionPowerTerminalComponent>(terminal, out var terminalComp))
-                    terminalComp.Reactor = ent;
-                _popup.PopupEntity(Loc.GetString("fission-reactor-wired"), ent, user);
-                break;
-            }
+                    var coords = GetCoordinates(netCoords);
+                    var terminal = Spawn(reactor.Terminal, coords);
+                    _xform.AnchorEntity(terminal);
+                    EnsureTerminalCable(terminal);
+                    if (TryComp<FissionPowerTerminalComponent>(terminal, out var terminalComp))
+                        terminalComp.Reactor = ent;
+                    _popup.PopupEntity(Loc.GetString("fission-reactor-wired"), ent, user);
+                    break;
+                }
         }
 
         UpdateReactorVisuals(ent);

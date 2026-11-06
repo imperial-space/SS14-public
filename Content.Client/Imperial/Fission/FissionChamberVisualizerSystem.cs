@@ -89,7 +89,7 @@ public sealed class FissionChamberVisualizerSystem : VisualizerSystem<FissionCha
         if (status != FissionChamberStatus.None)
             SpriteSystem.LayerSetRsiState(spriteEnt, FissionChamberLayers.Status, status.ToString().ToLowerInvariant());
 
-        var category = rod >= 0 ? ((FissionRodCategory) rod).ToString().ToLowerInvariant() : null;
+        var category = rod >= 0 ? ((FissionRodCategory)rod).ToString().ToLowerInvariant() : null;
         var down = state == FissionChamberState.Down;
         SpriteSystem.LayerSetVisible(spriteEnt, FissionChamberLayers.Display, down && category != null);
         if (down && category != null)
@@ -109,7 +109,7 @@ public sealed class FissionChamberVisualizerSystem : VisualizerSystem<FissionCha
             SpriteSystem.LayerSetRsiState(spriteEnt, FissionChamberLayers.Door, "door_open");
 
         var raised = state is FissionChamberState.Up or FissionChamberState.Open;
-        SpriteSystem.SetDrawDepth(spriteEnt, (int) (raised ? DrawDepth.OverMobs : DrawDepth.FloorObjects));
+        SpriteSystem.SetDrawDepth(spriteEnt, (int)(raised ? DrawDepth.OverMobs : DrawDepth.FloorObjects));
 
         var last = ent.Comp.LastState;
         ent.Comp.LastState = state;

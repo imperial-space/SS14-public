@@ -132,7 +132,7 @@ public sealed partial class FissionSystem
                     Id = material,
                     Name = MaterialName(material),
                     Amount = amount,
-                    Sheets = (int) MathF.Round(amount / (float) SheetUnits, MidpointRounding.AwayFromZero),
+                    Sheets = (int)MathF.Round(amount / (float)SheetUnits, MidpointRounding.AwayFromZero),
                 });
             }
 

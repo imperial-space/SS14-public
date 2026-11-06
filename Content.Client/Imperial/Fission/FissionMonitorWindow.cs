@@ -188,7 +188,7 @@ public sealed class FissionMonitorWindow : DefaultWindow
         for (var i = 0; i < chars.Length; i++)
         {
             if (chars[i] >= '₀' && chars[i] <= '₉')
-                chars[i] = (char) ('0' + (chars[i] - '₀'));
+                chars[i] = (char)('0' + (chars[i] - '₀'));
         }
 
         return new string(chars);

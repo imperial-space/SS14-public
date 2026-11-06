@@ -41,6 +41,15 @@ public sealed partial class FissionSystem
 
     private readonly List<(EntityUid? Grid, MapId Map, TimeSpan End)> _fallouts = new();
 
+    private static readonly TimeSpan FalloutTickDelay = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan NodeInteractUsingDelay = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan StartFalloutDelay = TimeSpan.FromSeconds(5);
+
+    private const float WasteCollideChance = 0.5f;
+    private const float WasteInteractUsingIntensity = 5f;
+    private const float UpdatePoolsRange = 0.45f;
+    private const float UpdateFalloutTime = 2f;
+
     private void InitializeMachines()
     {
         SubscribeLocalEvent<FissionRodComponent, MapInitEvent>(OnRodMapInit);
@@ -86,7 +95,7 @@ public sealed partial class FissionSystem
 
         if (now >= _nextFalloutTick)
         {
-            _nextFalloutTick = now + TimeSpan.FromSeconds(2);
+            _nextFalloutTick = now + FalloutTickDelay;
             UpdateFallout(now);
             UpdatePools();
         }
@@ -293,7 +302,7 @@ public sealed partial class FissionSystem
 
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString("fission-node-flipping"), ent, args.User);
-        StartDoAfter(args.User, ent, TimeSpan.FromSeconds(1), FissionDoAfterAction.NodeFlip, args.Used);
+        StartDoAfter(args.User, ent, NodeInteractUsingDelay, FissionDoAfterAction.NodeFlip, args.Used);
     }
 
     private void OnNodeDoAfter(Entity<FissionGasNodeComponent> ent, ref FissionDoAfterEvent args)
@@ -726,7 +735,7 @@ public sealed partial class FissionSystem
             return;
 
         _audio.PlayPvs(ent.Comp.StepSound, ent);
-        if (_random.Prob(0.5f))
+        if (_random.Prob(WasteCollideChance))
             _radiation.IrradiateEntity(args.OtherEntity, 5, 1, ent);
     }
 
@@ -736,7 +745,7 @@ public sealed partial class FissionSystem
             return;
 
         args.Handled = true;
-        SpawnRadiationPulse(ent, 5);
+        SpawnRadiationPulse(ent, WasteInteractUsingIntensity);
         _popup.PopupEntity(Loc.GetString("fission-waste-clearing"), ent, args.User);
         StartDoAfter(args.User, ent, ent.Comp.ClearTime, FissionDoAfterAction.WasteClear, args.Used);
     }
@@ -778,7 +787,7 @@ public sealed partial class FissionSystem
         while (query.MoveNext(out _, out _, out var xform))
         {
             nearby.Clear();
-            _lookup.GetEntitiesInRange(xform.Coordinates, 0.45f, nearby);
+            _lookup.GetEntitiesInRange(xform.Coordinates, UpdatePoolsRange, nearby);
             foreach (var flammable in nearby)
             {
                 if (flammable.Comp.OnFire || flammable.Comp.FireStacks > 0)
@@ -805,7 +814,7 @@ public sealed partial class FissionSystem
 
     private void StartFallout(EntityUid? grid, MapId map, TimeSpan duration)
     {
-        _fallouts.Add((grid, map, _timing.CurTime + TimeSpan.FromSeconds(5) + duration));
+        _fallouts.Add((grid, map, _timing.CurTime + StartFalloutDelay + duration));
     }
 
     /// <summary>rad_storm/nuclear_fallout: облучение всех живых на станции, пока идут осадки.</summary>
@@ -826,7 +835,7 @@ public sealed partial class FissionSystem
                 if (xform.MapID != map || grid != null && xform.GridUid != grid)
                     continue;
 
-                _radiation.IrradiateEntity(uid, 0.3f, 2);
+                _radiation.IrradiateEntity(uid, 0.3f, UpdateFalloutTime);
                 break;
             }
         }

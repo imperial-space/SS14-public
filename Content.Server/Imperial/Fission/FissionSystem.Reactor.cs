@@ -36,6 +36,31 @@ public sealed partial class FissionSystem
         [Gas.Oxygen] = new ModeratorEffect { PowerMod = 10 },
     };
 
+    private static readonly TimeSpan CountdownStepDelay = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan BlowoutDelay = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan MeltdownDelay = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan MeltdownDuration = TimeSpan.FromSeconds(60);
+    private static readonly TimeSpan OverloadPrepDelay = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan OverloadDetonateDelay = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan DetonateOverloadCountdownTimeDelay = TimeSpan.FromSeconds(30);
+
+    private const float ProcessReactorChance = 0.5f;
+    private const float ProcessReactorIntensity = 6f;
+    private const float RollEventsChance = 0.6f;
+    private const float CheckPressureHazardChance = 0.2f;
+    private const float ProcessModeratorGasesChance = 0.3f;
+    private const float BecomeOperationalRadius = 2f;
+    private const float BeginVentingIntensity = 4f;
+    private const float MeltdownIntensity = 40f;
+    private const int MeltdownRange = 10;
+    private const float MeltdownChance = 0.7f;
+    private const float MeltdownRange2 = 15f;
+    private const float MeltdownEnergyConsumption = 100000f;
+    private const float SpawnWasteChance = 0.35f;
+    private const float DetonateOverloadTotalIntensity = 2000000f;
+    private const float DetonateOverloadSlope = 5f;
+    private const float DetonateOverloadMaxTileIntensity = 150f;
+
     private struct ModeratorEffect
     {
         public float Control;
@@ -159,8 +184,8 @@ public sealed partial class FissionSystem
         if (reactor.Broken)
         {
             // radiation_pulse(src, 6, chance = 50) у разрушенного ядра.
-            if (_random.Prob(0.5f))
-                SpawnRadiationPulse(ent, 6);
+            if (_random.Prob(ProcessReactorChance))
+                SpawnRadiationPulse(ent, ProcessReactorIntensity);
             return;
         }
 
@@ -235,7 +260,7 @@ public sealed partial class FissionSystem
             else
                 reactor.Reactivity = 20;
 
-            reactor.Damage += MathF.Max(0.5f, _random.Next(1, (int) (FissionReactorComponent.DamageMaximum * 20) + 1) / 20f);
+            reactor.Damage += MathF.Max(0.5f, _random.Next(1, (int)(FissionReactorComponent.DamageMaximum * 20) + 1) / 20f);
             UpdateRadiation(ent, true);
             return;
         }
@@ -488,7 +513,7 @@ public sealed partial class FissionSystem
             if (coolers.Count > 0)
             {
                 var failure = _random.Pick(coolers);
-                if (_random.Prob(0.6f) || !failure.Comp.Welded)
+                if (_random.Prob(RollEventsChance) || !failure.Comp.Welded)
                     EjectRod(failure);
             }
         }
@@ -547,7 +572,7 @@ public sealed partial class FissionSystem
             return;
         }
 
-        if (pressure >= reactor.PressureWarningThreshold && _random.Prob(0.2f))
+        if (pressure >= reactor.PressureWarningThreshold && _random.Prob(CheckPressureHazardChance))
             _audio.PlayPvs(reactor.HissSound, ent);
     }
 
@@ -674,7 +699,7 @@ public sealed partial class FissionSystem
         if (reactor.GasIsFueled && reactor.GasFuelMoles > 0)
         {
             reactor.GasFuelPower *= reactor.GasPowerMod * 5;
-            if (reactor.OperatingPower >= 20 && _random.Prob(0.3f))
+            if (reactor.OperatingPower >= 20 && _random.Prob(ProcessModeratorGasesChance))
                 reactor.Air.AdjustMoles(Gas.NitrousOxide, reactor.GasFuelMoles / 50);
         }
 
@@ -723,7 +748,7 @@ public sealed partial class FissionSystem
         _audio.PlayPvs(reactor.StartupSound, ent, AudioParams.Default.WithMaxDistance(15));
         _ambient.SetSound(ent, reactor.LoopSound);
         _ambient.SetAmbience(ent, true);
-        _light.SetRadius(ent, 2);
+        _light.SetRadius(ent, BecomeOperationalRadius);
         _light.SetEnabled(ent, true);
     }
 
@@ -762,7 +787,7 @@ public sealed partial class FissionSystem
         if (ent.Comp.Venting)
             return;
 
-        SpawnRadiationPulse(ent, 4);
+        SpawnRadiationPulse(ent, BeginVentingIntensity);
         SpawnSmoke(ent);
         ent.Comp.Venting = true;
         ent.Comp.VentLockout = true;
@@ -825,7 +850,7 @@ public sealed partial class FissionSystem
     private void CountdownStep(Entity<FissionReactorComponent> ent)
     {
         var reactor = ent.Comp;
-        reactor.NextCountdownStep = _timing.CurTime + TimeSpan.FromSeconds(1);
+        reactor.NextCountdownStep = _timing.CurTime + CountdownStepDelay;
 
         if (reactor.AdminIntervention)
         {
@@ -908,7 +933,7 @@ public sealed partial class FissionSystem
 
         // SSweather.run_weather(/datum/weather/rad_storm/nuclear_fallout)
         var duration = TimeSpan.FromSeconds(_random.Next(60, 151));
-        _weather.TryAddWeather(coords.MapId, ent.Comp.Fallout, out _, duration + TimeSpan.FromSeconds(5));
+        _weather.TryAddWeather(coords.MapId, ent.Comp.Fallout, out _, duration + BlowoutDelay);
         StartFallout(Transform(ent).GridUid, coords.MapId, duration);
     }
 
@@ -917,7 +942,7 @@ public sealed partial class FissionSystem
         var reactor = ent.Comp;
         reactor.ActiveMeltdown = true;
         UpdateReactorVisuals(ent);
-        _schedule.Schedule(TimeSpan.FromSeconds(5), () =>
+        _schedule.Schedule(MeltdownDelay, () =>
         {
             if (TryComp<FissionReactorComponent>(ent, out var comp))
             {
@@ -926,8 +951,8 @@ public sealed partial class FissionSystem
             }
         });
 
-        SpawnRadiationPulse(ent, 40);
-        SpawnWaste(ent, 10);
+        SpawnRadiationPulse(ent, MeltdownIntensity);
+        SpawnWaste(ent, MeltdownRange);
         PlayGlobalOnMap(ent, reactor.MeltdownSound, Loc.GetString("fission-meltdown-hiss"));
 
         // Перегрузка освещения на станции: 70 % ламп.
@@ -936,7 +961,7 @@ public sealed partial class FissionSystem
             var lights = EntityQueryEnumerator<PoweredLightComponent, TransformComponent>();
             while (lights.MoveNext(out var light, out var lightComp, out var lightXform))
             {
-                if (lightXform.GridUid == grid && _random.Prob(0.7f))
+                if (lightXform.GridUid == grid && _random.Prob(MeltdownChance))
                     _poweredLight.TryDestroyBulb(light, lightComp);
             }
         }
@@ -954,7 +979,7 @@ public sealed partial class FissionSystem
         var modifier = Math.Clamp(reactor.Reactivity * FissionReactorComponent.ExplosionModifier, 8, 40);
         var coords = _xform.GetMapCoordinates(ent);
         QueueSs13Explosion(coords, modifier / 2, modifier, modifier + 3, ent);
-        _emp.EmpPulse(coords, 15, 100000, TimeSpan.FromSeconds(60));
+        _emp.EmpPulse(coords, MeltdownRange2, MeltdownEnergyConsumption, MeltdownDuration);
     }
 
     /// <summary>Пересчёт радиусов SS13 (devastation/heavy/light) в интенсивность взрыва SS14.</summary>
@@ -978,7 +1003,7 @@ public sealed partial class FissionSystem
         {
             for (var dy = -range; dy <= range; dy++)
             {
-                if (dx == 0 && dy == 0 || !_random.Prob(0.35f))
+                if (dx == 0 && dy == 0 || !_random.Prob(SpawnWasteChance))
                     continue;
 
                 var tile = center + new Vector2i(dx, dy);
@@ -1003,7 +1028,7 @@ public sealed partial class FissionSystem
         if (_stationSystem.GetOwningStation(ent) is { } station)
             _alertLevel.SetLevel(station, "delta", true, true, true);
 
-        ent.Comp.OverloadPrepAt = _timing.CurTime + TimeSpan.FromSeconds(5);
+        ent.Comp.OverloadPrepAt = _timing.CurTime + OverloadPrepDelay;
         return true;
     }
 
@@ -1056,7 +1081,7 @@ public sealed partial class FissionSystem
         ent.Comp.ActiveMeltdown = true;
         UpdateReactorVisuals(ent);
         _audio.PlayPvs(ent.Comp.AlarmSound, ent, AudioParams.Default.WithVolume(6).WithMaxDistance(30));
-        ent.Comp.OverloadDetonateAt = _timing.CurTime + TimeSpan.FromSeconds(10);
+        ent.Comp.OverloadDetonateAt = _timing.CurTime + OverloadDetonateDelay;
     }
 
     private void DetonateOverload(Entity<FissionReactorComponent> ent)
@@ -1068,8 +1093,8 @@ public sealed partial class FissionSystem
 
         // Взрыв уровня ядерной боеголовки и конец раунда.
         var coords = _xform.GetMapCoordinates(ent);
-        _explosion.QueueExplosion(coords, "Default", 2000000, 5, 150, ent, maxTileBreak: int.MaxValue);
-        _roundEnd.EndRound(TimeSpan.FromSeconds(30));
+        _explosion.QueueExplosion(coords, "Default", DetonateOverloadTotalIntensity, DetonateOverloadSlope, DetonateOverloadMaxTileIntensity, ent, maxTileBreak: int.MaxValue);
+        _roundEnd.EndRound(DetonateOverloadCountdownTimeDelay);
     }
 
     #endregion
@@ -1098,7 +1123,7 @@ public sealed partial class FissionSystem
         _appearance.SetData(ent, FissionReactorVisuals.State, state);
 
         // rods_[remaining]_[state]: чем глубже стержни, тем выше индекс.
-        var rodState = Math.Clamp((int) MathF.Round((100 - reactor.OperatingPower) / 20), 0, 5);
+        var rodState = Math.Clamp((int)MathF.Round((100 - reactor.OperatingPower) / 20), 0, 5);
         _appearance.SetData(ent, FissionReactorVisuals.Rods, reactor.Broken ? -1 : rodState);
     }
 

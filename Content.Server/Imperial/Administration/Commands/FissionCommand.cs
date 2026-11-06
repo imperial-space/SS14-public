@@ -66,7 +66,7 @@ public sealed class FissionCommand : LocalizedCommands
             return;
         }
 
-        var number = args.Length > 1 && float.TryParse(args[1], NumberStyles.Float, CultureInfo.InvariantCulture, out var n) ? n : (float?) null;
+        var number = args.Length > 1 && float.TryParse(args[1], NumberStyles.Float, CultureInfo.InvariantCulture, out var n) ? n : (float?)null;
         var query = _entityManager.EntityQueryEnumerator<FissionReactorComponent>();
         var any = false;
         while (query.MoveNext(out var uid, out _))

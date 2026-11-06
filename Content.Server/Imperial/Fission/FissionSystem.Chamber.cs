@@ -30,6 +30,20 @@ public sealed partial class FissionSystem
     private static readonly TimeSpan ChamberHeatInterval = TimeSpan.FromSeconds(0.5);
     private TimeSpan _nextChamberHeat;
 
+    private static readonly TimeSpan ChamberActivateDownDelay = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan Delay = TimeSpan.FromSeconds(8);
+    private static readonly TimeSpan ChamberActivateUpDelay = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan LockoutDelay = TimeSpan.FromSeconds(0.7);
+    private static readonly TimeSpan LockoutDelay2 = TimeSpan.FromSeconds(0.5);
+
+    private const float ChamberInteractUsingDoAfterDelay = 6f;
+    private const float ChamberInteractUsingDoAfterDelay2 = 3f;
+    private const float DensityCheckRange = 0.2f;
+    private const float EjectRodIntensity = 4f;
+    private const float ProcessChamberChance = 0.2f;
+    private const float ProcessChamberChance2 = 0.15f;
+    private const float ProcessChamberChance3 = 0.01f;
+
     private void InitializeChambers()
     {
         SubscribeLocalEvent<FissionChamberComponent, MapInitEvent>(OnChamberMapInit);
@@ -107,48 +121,48 @@ public sealed partial class FissionSystem
         {
             case FissionChamberState.Down:
             case FissionChamberState.OverloadIdle:
-            {
-                if (chamber.Welded)
                 {
-                    _popup.PopupEntity(Loc.GetString("fission-chamber-welded"), ent, user);
+                    if (chamber.Welded)
+                    {
+                        _popup.PopupEntity(Loc.GetString("fission-chamber-welded"), ent, user);
+                        return;
+                    }
+
+                    if (!DensityCheck(ent, user))
+                        return;
+
+                    var delay = ChamberActivateDownDelay;
+                    if (ReactorOnline(chamber))
+                    {
+                        delay = Delay;
+                        BurnHandler(ent, user);
+                    }
+
+                    StartDoAfter(user, ent, delay, FissionDoAfterAction.ChamberRaise);
                     return;
                 }
-
-                if (!DensityCheck(ent, user))
-                    return;
-
-                var delay = TimeSpan.FromSeconds(1);
-                if (ReactorOnline(chamber))
-                {
-                    delay = TimeSpan.FromSeconds(8);
-                    BurnHandler(ent, user);
-                }
-
-                StartDoAfter(user, ent, delay, FissionDoAfterAction.ChamberRaise);
-                return;
-            }
             case FissionChamberState.Up:
                 if (DensityCheck(ent, user))
-                    StartDoAfter(user, ent, TimeSpan.FromSeconds(2), FissionDoAfterAction.ChamberLower);
+                    StartDoAfter(user, ent, ChamberActivateUpDelay, FissionDoAfterAction.ChamberLower);
                 return;
             case FissionChamberState.Open:
-            {
-                if (GetRod(ent) is not { } rod)
                 {
-                    _popup.PopupEntity(Loc.GetString("fission-chamber-no-rod"), ent, user);
+                    if (GetRod(ent) is not { } rod)
+                    {
+                        _popup.PopupEntity(Loc.GetString("fission-chamber-no-rod"), ent, user);
+                        return;
+                    }
+
+                    if (!_hands.TryPickupAnyHand(user, rod))
+                    {
+                        _popup.PopupEntity(Loc.GetString("fission-chamber-hands-full"), ent, user);
+                        return;
+                    }
+
+                    _audio.PlayPvs(chamber.RemoveSound, ent);
+                    UpdateChamberVisuals(ent);
                     return;
                 }
-
-                if (!_hands.TryPickupAnyHand(user, rod))
-                {
-                    _popup.PopupEntity(Loc.GetString("fission-chamber-hands-full"), ent, user);
-                    return;
-                }
-
-                _audio.PlayPvs(chamber.RemoveSound, ent);
-                UpdateChamberVisuals(ent);
-                return;
-            }
             case FissionChamberState.OverloadActive:
                 _popup.PopupEntity(Loc.GetString("fission-chamber-lockdown"), ent, user, PopupType.MediumCaution);
                 return;
@@ -255,14 +269,14 @@ public sealed partial class FissionSystem
                     return;
 
                 _popup.PopupEntity(Loc.GetString(chamber.Welded ? "fission-chamber-unwelding" : "fission-chamber-welding"), ent, user);
-                _tool.UseTool(args.Used, user, ent, 6, WeldingQuality, new FissionDoAfterEvent(FissionDoAfterAction.ChamberWeld), fuel: 1);
+                _tool.UseTool(args.Used, user, ent, ChamberInteractUsingDoAfterDelay, WeldingQuality, new FissionDoAfterEvent(FissionDoAfterAction.ChamberWeld), fuel: 1);
                 return;
             }
 
             if (TryComp<DamageableComponent>(ent, out var damageable) && _damageable.GetAllDamage((ent.Owner, damageable)).GetTotal() > 0)
             {
                 _popup.PopupEntity(Loc.GetString("fission-chamber-repairing"), ent, user);
-                _tool.UseTool(args.Used, user, ent, 3, WeldingQuality, new FissionDoAfterEvent(FissionDoAfterAction.ChamberRepair), fuel: 1);
+                _tool.UseTool(args.Used, user, ent, ChamberInteractUsingDoAfterDelay2, WeldingQuality, new FissionDoAfterEvent(FissionDoAfterAction.ChamberRepair), fuel: 1);
                 return;
             }
 
@@ -446,7 +460,7 @@ public sealed partial class FissionSystem
 
     private bool DensityCheck(EntityUid chamber, EntityUid user)
     {
-        foreach (var other in _lookup.GetEntitiesInRange(Transform(chamber).Coordinates, 0.2f, LookupFlags.Dynamic | LookupFlags.Static))
+        foreach (var other in _lookup.GetEntitiesInRange(Transform(chamber).Coordinates, DensityCheckRange, LookupFlags.Dynamic | LookupFlags.Static))
         {
             if (other == chamber)
                 continue;
@@ -492,7 +506,7 @@ public sealed partial class FissionSystem
     {
         var chamber = ent.Comp;
         chamber.State = FissionChamberState.Up;
-        chamber.LockoutUntil = _timing.CurTime + TimeSpan.FromSeconds(0.7);
+        chamber.LockoutUntil = _timing.CurTime + LockoutDelay;
         SetChamberDensity(ent, true);
         chamber.Operational = false;
         chamber.Enriching = false;
@@ -544,7 +558,7 @@ public sealed partial class FissionSystem
     private void OpenChamber(Entity<FissionChamberComponent> ent, bool playSound = true)
     {
         ent.Comp.State = FissionChamberState.Open;
-        ent.Comp.LockoutUntil = _timing.CurTime + TimeSpan.FromSeconds(0.5);
+        ent.Comp.LockoutUntil = _timing.CurTime + LockoutDelay2;
         if (playSound)
             _audio.PlayPvs(ent.Comp.SwitchSound, ent);
         UpdateChamberVisuals(ent);
@@ -553,7 +567,7 @@ public sealed partial class FissionSystem
     private void CloseChamber(Entity<FissionChamberComponent> ent, bool playSound = true)
     {
         ent.Comp.State = FissionChamberState.Up;
-        ent.Comp.LockoutUntil = _timing.CurTime + TimeSpan.FromSeconds(0.5);
+        ent.Comp.LockoutUntil = _timing.CurTime + LockoutDelay2;
         if (playSound)
             _audio.PlayPvs(ent.Comp.SwitchSound, ent);
         UpdateChamberVisuals(ent);
@@ -597,7 +611,7 @@ public sealed partial class FissionSystem
         RaiseChamber(ent, false);
         OpenChamber(ent, false);
         SpawnSmoke(ent);
-        SpawnRadiationPulse(ent, 4);
+        SpawnRadiationPulse(ent, EjectRodIntensity);
 
         if (GetRod(ent) is not { } rod)
             return;
@@ -655,7 +669,7 @@ public sealed partial class FissionSystem
 
         if (chamber.RequirementsMet && !chamber.Operational)
         {
-            if (_random.Prob(0.2f))
+            if (_random.Prob(ProcessChamberChance))
             {
                 chamber.Operational = true;
                 UpdateChamberVisuals(ent);
@@ -668,13 +682,13 @@ public sealed partial class FissionSystem
             // Охладители, потеряв условия, отказывают чаще.
             if (rod.Comp.Category == FissionRodCategory.Coolant)
             {
-                if (_random.Prob(0.15f))
+                if (_random.Prob(ProcessChamberChance2))
                 {
                     chamber.Operational = false;
                     UpdateChamberVisuals(ent);
                 }
             }
-            else if (_random.Prob(0.01f))
+            else if (_random.Prob(ProcessChamberChance3))
             {
                 chamber.Enriching = false;
                 chamber.Operational = false;
@@ -787,7 +801,7 @@ public sealed partial class FissionSystem
         if (rod.Infinite)
             return 5;
 
-        return Math.Clamp((int) MathF.Ceiling(rod.Durability / rod.MaxDurability * 5 - 0.8f), 0, 5);
+        return Math.Clamp((int)MathF.Ceiling(rod.Durability / rod.MaxDurability * 5 - 0.8f), 0, 5);
     }
 
     /// <summary>calc_stat_decrease: y = (x * A) + (1 - A).</summary>
@@ -843,7 +857,7 @@ public sealed partial class FissionSystem
 
         _appearance.SetData(ent, FissionChamberVisuals.State, chamber.State);
         _appearance.SetData(ent, FissionChamberVisuals.Status, status);
-        _appearance.SetData(ent, FissionChamberVisuals.Rod, rod is { } r ? (int) r.Comp.Category : -1);
+        _appearance.SetData(ent, FissionChamberVisuals.Rod, rod is { } r ? (int)r.Comp.Category : -1);
         _appearance.SetData(ent, FissionChamberVisuals.Durability, rod != null ? chamber.DurabilityLevel : -1);
         _appearance.SetData(ent, FissionChamberVisuals.Welded, chamber.Welded);
         _appearance.SetData(ent, FissionChamberVisuals.Panel, chamber.PanelOpen);
