@@ -74,7 +74,7 @@ public sealed partial class ImperialModularShieldSystem
             list.Add(new ImperialModularShieldConsoleEntry
             {
                 Id = i + 1,
-                Name = gen.DisplayName,
+                Name = gen.DisplayName ?? Loc.GetString(gen.DefaultName),
                 MaxStrength = gen.MaxStrength,
                 CurrentStrength = gen.StoredStrength,
                 CurrentRegeneration = gen.CurrentRegeneration,

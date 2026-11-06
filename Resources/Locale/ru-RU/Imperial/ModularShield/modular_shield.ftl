@@ -34,3 +34,6 @@ imperial-modular-shield-console-name = Название
 imperial-modular-shield-console-status = Состояние
 imperial-modular-shield-console-toggle = Переключить
 imperial-modular-shield-hit = Удар ослабляет поддерживающий генератор.
+
+imperial-modular-shield-generator-name = Генератор щита
+imperial-modular-shield-gate-name = Щитовой шлюз

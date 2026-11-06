@@ -22,8 +22,13 @@ public sealed partial class ImperialModularShieldGeneratorComponent : Component
     [DataField]
     public string IconType = "gen";
 
+    /// <summary>Название в консоли, пока игрок не переименовал устройство.</summary>
     [DataField]
-    public string DisplayName = "Генератор щита";
+    public LocId DefaultName = "imperial-modular-shield-generator-name";
+
+    /// <summary>Имя, заданное игроком в консоли.</summary>
+    [DataField]
+    public string? DisplayName;
 
     [ViewVariables] public bool Active;
     [ViewVariables] public bool Initiating;

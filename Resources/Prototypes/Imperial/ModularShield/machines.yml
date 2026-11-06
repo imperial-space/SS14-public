@@ -51,7 +51,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: ImperialModularShieldGenerator
-    displayName: Генератор щита
+    defaultName: imperial-modular-shield-generator-name
   - type: Wires
     boardName: imperial-modular-shield-wires-board
     layoutId: ImperialModularShieldGenerator
@@ -115,7 +115,7 @@
     gate: true
     internalPenalty: false
     iconType: gate
-    displayName: Щитовой шлюз
+    defaultName: imperial-modular-shield-gate-name
   - type: Rotatable
     rotateWhileAnchored: true
   - type: Wires
