@@ -19,6 +19,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Xenomorph;
 
@@ -57,6 +58,16 @@ public sealed partial class XenomorphSystem
     private const int TailSweepMaxThrow = 5;
     private const float TailSweepRadius = 2;
 
+    private static readonly ProtoId<DamageTypePrototype> HeatDamageType = "Heat";
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+
+    private static readonly TimeSpan TailSweepDuration = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan TailSweepDuration2 = TimeSpan.FromSeconds(4);
+
+    private const float NeurotoxinSpeed = 20f;
+    private const float TailSweepBaseThrowSpeed = 10f;
+    private const float RegurgitateBaseThrowSpeed = 15f;
+
     private void InitializeAbilities()
     {
         SubscribeLocalEvent<XenomorphComponent, XenoNeurotoxinActionEvent>(OnNeurotoxin);
@@ -82,7 +93,7 @@ public sealed partial class XenomorphSystem
                 continue;
 
             acid.NextTick = now + AcidTick;
-            var seconds = (float) AcidTick.TotalSeconds;
+            var seconds = (float)AcidTick.TotalSeconds;
 
             // process_turf: стена держится 30 секунд и рассыпается.
             if (acid.Wall)
@@ -108,7 +119,7 @@ public sealed partial class XenomorphSystem
             if (HasComp<DamageableComponent>(uid))
             {
                 var damage = Math.Min(1 + MathF.Round(MathF.Sqrt(acid.Power * acid.Volume) * 0.3f), 300) * seconds;
-                _damageable.TryChangeDamage(uid, new DamageSpecifier { DamageDict = { ["Heat"] = damage } }, ignoreResistances: true);
+                _damageable.TryChangeDamage(uid, new DamageSpecifier { DamageDict = { [HeatDamageType] = damage } }, ignoreResistances: true);
             }
             else
             {
@@ -138,7 +149,7 @@ public sealed partial class XenomorphSystem
             return;
 
         var spit = Spawn(NeurotoxinProjectile, from);
-        _gun.ShootProjectile(spit, direction, Vector2.Zero, null, ent, 20f);
+        _gun.ShootProjectile(spit, direction, Vector2.Zero, null, ent, NeurotoxinSpeed);
         _audio.PlayPvs(SpitSound, ent);
     }
 
@@ -299,26 +310,26 @@ public sealed partial class XenomorphSystem
             }
 
             var offset = _xform.GetMapCoordinates(victim).Position - center.Position;
-            var distance = (int) MathF.Round(Math.Max(Math.Abs(offset.X), Math.Abs(offset.Y)));
+            var distance = (int)MathF.Round(Math.Max(Math.Abs(offset.X), Math.Abs(offset.Y)));
             if (distance == 0)
             {
                 if (!HasComp<MobStateComponent>(victim))
                     continue;
 
-                _stun.TryUpdateParalyzeDuration(victim, TimeSpan.FromSeconds(10));
-                _damageable.TryChangeDamage(victim, new DamageSpecifier { DamageDict = { ["Blunt"] = 5 } });
+                _stun.TryUpdateParalyzeDuration(victim, TailSweepDuration);
+                _damageable.TryChangeDamage(victim, new DamageSpecifier { DamageDict = { [BluntDamageType] = 5 } });
                 _popup.PopupEntity(Loc.GetString("xeno-tail-sweep-slam", ("xeno", ent.Owner)), victim, victim, PopupType.LargeCaution);
                 continue;
             }
 
             if (HasComp<MobStateComponent>(victim))
             {
-                _stun.TryUpdateParalyzeDuration(victim, TimeSpan.FromSeconds(4));
+                _stun.TryUpdateParalyzeDuration(victim, TailSweepDuration2);
                 _popup.PopupEntity(Loc.GetString("xeno-tail-sweep-thrown", ("xeno", ent.Owner)), victim, victim, PopupType.LargeCaution);
             }
 
             var range = Math.Clamp(TailSweepMaxThrow - Math.Clamp(distance - 2, 0, distance), 3, TailSweepMaxThrow);
-            _throwing.TryThrow(victim, Vector2.Normalize(offset) * range, 10f, ent, pushbackRatio: 0, compensateFriction: true);
+            _throwing.TryThrow(victim, Vector2.Normalize(offset) * range, TailSweepBaseThrowSpeed, ent, pushbackRatio: 0, compensateFriction: true);
         }
     }
 
@@ -448,7 +459,7 @@ public sealed partial class XenomorphSystem
         foreach (var thing in _container.EmptyContainer(container, true, Transform(ent).Coordinates))
         {
             var angle = facing + Angle.FromDegrees(_random.NextFloat(-45, 45));
-            _throwing.TryThrow(thing, angle.ToWorldVec() * 4, 15f, ent, pushbackRatio: 0);
+            _throwing.TryThrow(thing, angle.ToWorldVec() * 4, RegurgitateBaseThrowSpeed, ent, pushbackRatio: 0);
         }
 
         _audio.PlayPvs(stomach.RegurgitateSound, ent);

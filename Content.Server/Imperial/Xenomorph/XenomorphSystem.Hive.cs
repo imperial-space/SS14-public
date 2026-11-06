@@ -63,6 +63,8 @@ public sealed partial class XenomorphSystem
     /// <summary>egg/integrity_failure = 0.05: при 95 уроне яйцо лопается, а лицехват внутри погибает.</summary>
     private const float EggBreakDamage = 95;
 
+    private static readonly TimeSpan EggCheckDelay = TimeSpan.FromSeconds(0.5);
+
     private void InitializeHive()
     {
         SubscribeLocalEvent<XenomorphComponent, XenoPlantWeedsActionEvent>(OnPlantWeeds);
@@ -117,7 +119,7 @@ public sealed partial class XenomorphSystem
         var eggs = EntityQueryEnumerator<XenoEggComponent>();
         var checkHosts = now >= _nextEggCheck;
         if (checkHosts)
-            _nextEggCheck = now + TimeSpan.FromSeconds(0.5);
+            _nextEggCheck = now + EggCheckDelay;
 
         while (eggs.MoveNext(out var uid, out var egg))
         {
@@ -131,7 +133,7 @@ public sealed partial class XenomorphSystem
     private void BurnIfHot(EntityUid uid, float temperature)
     {
         if (_atmos.GetContainingMixture(uid) is { } air && air.Temperature > temperature)
-            _damageable.TryChangeDamage(uid, new DamageSpecifier { DamageDict = { ["Heat"] = 5 } });
+            _damageable.TryChangeDamage(uid, new DamageSpecifier { DamageDict = { [HeatDamageType] = 5 } });
     }
 
     private bool TryGetTile(EntityUid uid, out EntityUid grid, out MapGridComponent gridComp, out Vector2i tile)
@@ -164,7 +166,7 @@ public sealed partial class XenomorphSystem
 
     private TimeSpan RandomGrowTime(XenoWeedNodeComponent node)
     {
-        return TimeSpan.FromSeconds(_random.NextFloat((float) node.MinGrowTime.TotalSeconds, (float) node.MaxGrowTime.TotalSeconds));
+        return TimeSpan.FromSeconds(_random.NextFloat((float)node.MinGrowTime.TotalSeconds, (float)node.MaxGrowTime.TotalSeconds));
     }
 
     /// <summary>Plant Weeds: узел на клетке, где его ещё нет.</summary>
@@ -421,7 +423,7 @@ public sealed partial class XenomorphSystem
         if (!ent.Comp.StartGrown)
         {
             ent.Comp.NextStateAt = _timing.CurTime + TimeSpan.FromSeconds(
-                _random.NextFloat((float) ent.Comp.MinGrowth.TotalSeconds, (float) ent.Comp.MaxGrowth.TotalSeconds));
+                _random.NextFloat((float)ent.Comp.MinGrowth.TotalSeconds, (float)ent.Comp.MaxGrowth.TotalSeconds));
         }
     }
 
@@ -464,7 +466,7 @@ public sealed partial class XenomorphSystem
 
         ent.Comp.KillChild = kill;
         SetEggState(ent, XenoEggState.Opening);
-        ent.Comp.NextStateAt = _timing.CurTime + TimeSpan.FromSeconds(1.5);
+        ent.Comp.NextStateAt = _timing.CurTime + ent.Comp.StateDelay;
         _audio.PlayPvs(ResinSound, ent);
     }
 

@@ -86,6 +86,8 @@ public sealed partial class XenomorphSystem : EntitySystem
 
     private TimeSpan _nextLife;
 
+    private static readonly TimeSpan QueenDeathTime = TimeSpan.FromMinutes(1);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -145,7 +147,7 @@ public sealed partial class XenomorphSystem : EntitySystem
             // larva/Life: +0.5 в секунду, и ещё +1 за каждое пополнение плазмы (larva/adjustPlasma).
             if (TryComp<XenoLarvaComponent>(uid, out var larva) && larva.Growth < larva.MaxGrowth)
             {
-                var growth = 0.5f * (float) LifeInterval.TotalSeconds + (gained ? 1 : 0);
+                var growth = 0.5f * (float)LifeInterval.TotalSeconds + (gained ? 1 : 0);
                 larva.Growth = Math.Min(larva.MaxGrowth, larva.Growth + growth);
                 UpdateLarvaVisuals((uid, larva));
                 if (larva.Growth >= larva.MaxGrowth)
@@ -198,7 +200,7 @@ public sealed partial class XenomorphSystem : EntitySystem
             if (health >= maxHealth)
                 severity = 0;
             else if (health > 0)
-                severity = (short) (6 - MathF.Ceiling(health / (maxHealth * 0.2f)));
+                severity = (short)(6 - MathF.Ceiling(health / (maxHealth * 0.2f)));
             else
                 severity = 6;
         }
@@ -226,7 +228,7 @@ public sealed partial class XenomorphSystem : EntitySystem
                 break;
 
             var delta = target.Position - own.Position;
-            var tiles = (int) MathF.Round(Math.Max(Math.Abs(delta.X), Math.Abs(delta.Y)));
+            var tiles = (int)MathF.Round(Math.Max(Math.Abs(delta.X), Math.Abs(delta.Y)));
             distance = tiles switch
             {
                 <= 1 => 0,
@@ -262,7 +264,7 @@ public sealed partial class XenomorphSystem : EntitySystem
     /// </summary>
     private bool Life(Entity<XenoPlasmaComponent> ent)
     {
-        var seconds = (float) LifeInterval.TotalSeconds;
+        var seconds = (float)LifeInterval.TotalSeconds;
         var gain = 0.1f * ent.Comp.PlasmaRate * seconds;
 
         if (IsOnWeeds(ent))
@@ -361,7 +363,7 @@ public sealed partial class XenomorphSystem : EntitySystem
     private void OnExamined(Entity<XenomorphComponent> ent, ref ExaminedEvent args)
     {
         if (TryComp<XenoPlasmaComponent>(ent, out var plasma) && HasComp<XenomorphComponent>(args.Examiner))
-            args.PushMarkup(Loc.GetString("xeno-examine-plasma", ("plasma", (int) plasma.Plasma), ("max", (int) plasma.MaxPlasma)));
+            args.PushMarkup(Loc.GetString("xeno-examine-plasma", ("plasma", (int)plasma.Plasma), ("max", (int)plasma.MaxPlasma)));
     }
 
     private void OnMobStateChanged(Entity<XenomorphComponent> ent, ref MobStateChangedEvent args)
@@ -389,8 +391,8 @@ public sealed partial class XenomorphSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("xeno-queen-died"), uid, uid, PopupType.LargeCaution);
             _audio.PlayPvs(RoarSound, uid);
             _stun.TryUpdateStunDuration(uid, QueenDeathStun);
-            _jitter.DoJitter(uid, TimeSpan.FromMinutes(1), true);
-            _stutter.DoStutter(uid, TimeSpan.FromMinutes(1), true);
+            _jitter.DoJitter(uid, QueenDeathTime, true);
+            _stutter.DoStutter(uid, QueenDeathTime, true);
             Comp<XenomorphComponent>(uid).NoQueenUntil = _timing.CurTime + QueenDeathDebuff;
             _alerts.ShowAlert(uid, NoQueenAlert);
         }
@@ -466,8 +468,8 @@ public sealed partial class XenomorphSystem : EntitySystem
                 var transfer = Math.Min(amount, own.Plasma);
                 AdjustPlasma((ent, own), -transfer);
                 AdjustPlasma((target, other), transfer);
-                _popup.PopupEntity(Loc.GetString("xeno-transfer-done", ("amount", (int) transfer), ("target", target)), ent, ent);
-                _popup.PopupEntity(Loc.GetString("xeno-transfer-received", ("amount", (int) transfer), ("source", ent.Owner)), target, target);
+                _popup.PopupEntity(Loc.GetString("xeno-transfer-done", ("amount", (int)transfer), ("target", target)), ent, ent);
+                _popup.PopupEntity(Loc.GetString("xeno-transfer-received", ("amount", (int)transfer), ("source", ent.Owner)), target, target);
             });
     }
 
@@ -489,7 +491,7 @@ public sealed partial class XenomorphSystem : EntitySystem
         {
             if (larva.Growth < larva.MaxGrowth)
             {
-                _popup.PopupEntity(Loc.GetString("xeno-larva-not-grown", ("growth", (int) larva.Growth), ("max", (int) larva.MaxGrowth)), ent, ent);
+                _popup.PopupEntity(Loc.GetString("xeno-larva-not-grown", ("growth", (int)larva.Growth), ("max", (int)larva.MaxGrowth)), ent, ent);
                 return;
             }
 
@@ -543,7 +545,7 @@ public sealed partial class XenomorphSystem : EntitySystem
         if (args.Actor != ent.Owner)
             return;
 
-        var key = (XenoRadialUiKey) args.UiKey;
+        var key = (XenoRadialUiKey)args.UiKey;
         var picked = args.Id;
         _ui.CloseUi(ent.Owner, key);
 

@@ -19,6 +19,7 @@ using Content.Shared.Popups;
 using Content.Shared.Throwing;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Xenomorph;
 
@@ -61,6 +62,17 @@ public sealed partial class XenomorphSystem
     private TimeSpan _nextHuggerCheck;
     private TimeSpan _nextEmbryoLife;
 
+    private static readonly ProtoId<DamageTypePrototype> PoisonDamageType = "Poison";
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+
+    private static readonly TimeSpan HuggerCheckDelay = TimeSpan.FromSeconds(0.5);
+
+    private const float UpdateEmbryoChance = 0.02f;
+    private const float UpdateEmbryoChance2 = 0.04f;
+    private const float UpdateEmbryoChance3 = 0.2f;
+    private const float BurstChance = 0.5f;
+    private const float EmbryoRemovalChance = 0.1f;
+
     private void InitializeInfection()
     {
         SubscribeLocalEvent<XenoFacehuggerComponent, MapInitEvent>(OnHuggerMapInit);
@@ -101,7 +113,7 @@ public sealed partial class XenomorphSystem
     {
         if (now >= _nextHuggerCheck)
         {
-            _nextHuggerCheck = now + TimeSpan.FromSeconds(0.5);
+            _nextHuggerCheck = now + HuggerCheckDelay;
             var huggers = EntityQueryEnumerator<XenoFacehuggerComponent>();
             while (huggers.MoveNext(out var uid, out var hugger))
             {
@@ -160,7 +172,7 @@ public sealed partial class XenomorphSystem
     /// <summary>nest_sustenance/tick: в секунду −2 brute, −2 burn, −4 oxy, −4 выносливости; температура тела в норме.</summary>
     private void NestSustenance(EntityUid uid)
     {
-        var seconds = (float) LifeInterval.TotalSeconds;
+        var seconds = (float)LifeInterval.TotalSeconds;
         _damageable.HealEvenly(uid, -2 * seconds, BruteGroup);
         _damageable.HealEvenly(uid, -2 * seconds, BurnGroup);
         _damageable.HealEvenly(uid, -4 * seconds, AirlossGroup);
@@ -183,7 +195,7 @@ public sealed partial class XenomorphSystem
         if (state is XenoFacehuggerState.Active or XenoFacehuggerState.Idle)
         {
             ent.Comp.NextStateAt = _timing.CurTime + TimeSpan.FromSeconds(
-                _random.NextFloat((float) ent.Comp.MinActive.TotalSeconds, (float) ent.Comp.MaxActive.TotalSeconds));
+                _random.NextFloat((float)ent.Comp.MinActive.TotalSeconds, (float)ent.Comp.MaxActive.TotalSeconds));
         }
 
         _appearance.SetData(ent, XenoVisuals.FacehuggerState, state);
@@ -308,13 +320,13 @@ public sealed partial class XenomorphSystem
     {
         ent.Comp.Victim = victim;
         ent.Comp.ImpregnateAt = _timing.CurTime + TimeSpan.FromSeconds(
-            _random.NextFloat((float) ent.Comp.MinImpregnation.TotalSeconds, (float) ent.Comp.MaxImpregnation.TotalSeconds));
+            _random.NextFloat((float)ent.Comp.MinImpregnation.TotalSeconds, (float)ent.Comp.MaxImpregnation.TotalSeconds));
         EnsureComp<XenoLatchedComponent>(ent);
 
         if (!ent.Comp.Sterile)
         {
             _damageable.TryChangeDamage(victim, ent.Comp.AttachDamage);
-            _stun.TryUpdateParalyzeDuration(victim, TimeSpan.FromSeconds(1));
+            _stun.TryUpdateParalyzeDuration(victim, ent.Comp.AttachDuration);
             _stun.TryKnockdown(victim, ent.Comp.AttachKnockdown, true, force: true);
         }
 
@@ -416,36 +428,36 @@ public sealed partial class XenomorphSystem
         switch (embryo.Stage)
         {
             case 3 or 4:
-                if (_random.Prob(0.02f))
+                if (_random.Prob(UpdateEmbryoChance))
                     _chat.TryEmoteWithChat(ent, "Sneeze");
-                if (_random.Prob(0.02f))
+                if (_random.Prob(UpdateEmbryoChance))
                     _chat.TryEmoteWithChat(ent, "Cough");
-                if (_random.Prob(0.02f))
+                if (_random.Prob(UpdateEmbryoChance))
                     _popup.PopupEntity(Loc.GetString("xeno-embryo-throat"), ent, ent, PopupType.SmallCaution);
-                if (_random.Prob(0.02f))
+                if (_random.Prob(UpdateEmbryoChance))
                     _popup.PopupEntity(Loc.GetString("xeno-embryo-mucous"), ent, ent, PopupType.SmallCaution);
                 break;
             case 5:
-                if (_random.Prob(0.02f))
+                if (_random.Prob(UpdateEmbryoChance))
                     _chat.TryEmoteWithChat(ent, "Sneeze");
-                if (_random.Prob(0.02f))
+                if (_random.Prob(UpdateEmbryoChance))
                     _chat.TryEmoteWithChat(ent, "Cough");
-                if (_random.Prob(0.04f))
+                if (_random.Prob(UpdateEmbryoChance2))
                 {
                     _popup.PopupEntity(Loc.GetString("xeno-embryo-muscles"), ent, ent, PopupType.SmallCaution);
-                    if (_random.Prob(0.2f))
-                        _damageable.TryChangeDamage(ent.Owner, new DamageSpecifier { DamageDict = { ["Blunt"] = 1 } });
+                    if (_random.Prob(UpdateEmbryoChance3))
+                        _damageable.TryChangeDamage(ent.Owner, new DamageSpecifier { DamageDict = { [BluntDamageType] = 1 } });
                 }
-                if (_random.Prob(0.04f))
+                if (_random.Prob(UpdateEmbryoChance2))
                 {
                     _popup.PopupEntity(Loc.GetString("xeno-embryo-stomach"), ent, ent, PopupType.SmallCaution);
-                    if (_random.Prob(0.2f))
-                        _damageable.TryChangeDamage(ent.Owner, new DamageSpecifier { DamageDict = { ["Poison"] = 1 } });
+                    if (_random.Prob(UpdateEmbryoChance3))
+                        _damageable.TryChangeDamage(ent.Owner, new DamageSpecifier { DamageDict = { [PoisonDamageType] = 1 } });
                 }
                 break;
             case 6:
                 _popup.PopupEntity(Loc.GetString("xeno-embryo-tearing"), ent, ent, PopupType.MediumCaution);
-                _damageable.TryChangeDamage(ent.Owner, new DamageSpecifier { DamageDict = { ["Poison"] = 10 } }, interruptsDoAfters: false);
+                _damageable.TryChangeDamage(ent.Owner, new DamageSpecifier { DamageDict = { [PoisonDamageType] = 10 } }, interruptsDoAfters: false);
                 TryBurst(ent, now);
                 break;
         }
@@ -472,7 +484,7 @@ public sealed partial class XenomorphSystem
             return;
         }
 
-        if (!_random.Prob(0.5f))
+        if (!_random.Prob(BurstChance))
             return;
 
         StartBurst(ent, now);
@@ -506,7 +518,7 @@ public sealed partial class XenomorphSystem
         {
             RemComp<XenoEmbryoComponent>(host);
             _popup.PopupEntity(Loc.GetString("xeno-burst-wriggle", ("larva", ent.Owner), ("host", host)), ent, PopupType.LargeCaution);
-            _damageable.TryChangeDamage(host, new DamageSpecifier { DamageDict = { ["Slash"] = 40 } });
+            _damageable.TryChangeDamage(host, new DamageSpecifier { DamageDict = { [SlashDamageType] = 40 } });
             return;
         }
 
@@ -550,10 +562,10 @@ public sealed partial class XenomorphSystem
             return;
 
         args.Handled = true;
-        _damageable.TryChangeDamage(ent.Owner, new DamageSpecifier { DamageDict = { ["Slash"] = 15 } }, origin: args.User);
+        _damageable.TryChangeDamage(ent.Owner, new DamageSpecifier { DamageDict = { [SlashDamageType] = 15 } }, origin: args.User);
 
         // body_egg/alien_embryo/on_find: созревший эмбрион с шансом 10 % выползает сам, не разрывая носителя.
-        if (ent.Comp.Stage >= 5 && !ent.Comp.Bursting && _random.Prob(0.1f))
+        if (ent.Comp.Stage >= 5 && !ent.Comp.Bursting && _random.Prob(EmbryoRemovalChance))
         {
             _popup.PopupEntity(Loc.GetString("xeno-embryo-removal-writhes"), ent, args.User, PopupType.LargeCaution);
             ent.Comp.NoGibBurst = true;

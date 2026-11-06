@@ -93,7 +93,7 @@ public sealed class XenomorphHudSystem : EntitySystem
             alert.AddChild(label);
         }
 
-        var text = ((int) MathF.Round(plasma.Plasma)).ToString();
+        var text = ((int)MathF.Round(plasma.Plasma)).ToString();
         if (label.Text != text)
             label.Text = text;
     }
@@ -129,7 +129,7 @@ public sealed class XenomorphHudSystem : EntitySystem
         {
             // finder_center мигает (delay 1 тик на кадр).
             var delay = Math.Max(state.GetDelays()[0], 0.05f);
-            frame = (int) (_timing.RealTime.TotalSeconds / delay) % state.DelayCount;
+            frame = (int)(_timing.RealTime.TotalSeconds / delay) % state.DelayCount;
         }
 
         eye.Texture = state.GetFrame(direction, frame);

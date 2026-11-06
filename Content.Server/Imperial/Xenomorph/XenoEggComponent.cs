@@ -28,4 +28,7 @@ public sealed partial class XenoEggComponent : Component
 
     /// <summary>Burst(kill): разбитое яйцо выпускает мёртвого лицехвата.</summary>
     [ViewVariables] public bool KillChild;
+
+    [DataField]
+    public TimeSpan StateDelay = TimeSpan.FromSeconds(1.5);
 }

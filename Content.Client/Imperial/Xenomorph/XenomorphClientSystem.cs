@@ -40,6 +40,6 @@ public sealed class XenomorphClientSystem : EntitySystem
             return;
 
         _sprite.SetDrawDepth((ent.Owner, args.Sprite),
-            hidden ? (int) Shared.DrawDepth.DrawDepth.FloorObjects : (int) Shared.DrawDepth.DrawDepth.Mobs);
+            hidden ? (int)Shared.DrawDepth.DrawDepth.FloorObjects : (int)Shared.DrawDepth.DrawDepth.Mobs);
     }
 }

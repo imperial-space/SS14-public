@@ -31,4 +31,7 @@ public sealed partial class XenomorphInfestationRuleComponent : Component
 
     [ViewVariables]
     public TimeSpan? AnnounceAt;
+
+    [DataField]
+    public float StartedChance = 0.5f;
 }

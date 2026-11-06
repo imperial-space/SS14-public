@@ -38,4 +38,7 @@ public sealed partial class XenoFacehuggerComponent : Component
     [ViewVariables] public EntityUid? Victim;
     [ViewVariables] public TimeSpan ImpregnateAt;
     [ViewVariables] public TimeSpan NextCheck;
+
+    [DataField]
+    public TimeSpan AttachDuration = TimeSpan.FromSeconds(1);
 }

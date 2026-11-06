@@ -33,14 +33,14 @@ public sealed class XenomorphInfestationRule : StationEventSystem<XenomorphInfes
             return;
 
         // 50 % шанс получить вторую личинку бесплатно.
-        var count = RobustRandom.Prob(0.5f) ? 2 : 1;
+        var count = RobustRandom.Prob(component.StartedChance) ? 2 : 1;
         for (var i = 0; i < count; i++)
         {
             Spawn(component.Spawner, RobustRandom.Pick(vents));
         }
 
         component.AnnounceAt = Timing.CurTime + TimeSpan.FromSeconds(
-            RobustRandom.NextFloat((float) component.MinAnnounceDelay.TotalSeconds, (float) component.MaxAnnounceDelay.TotalSeconds));
+            RobustRandom.NextFloat((float)component.MinAnnounceDelay.TotalSeconds, (float)component.MaxAnnounceDelay.TotalSeconds));
     }
 
     protected override void ActiveTick(EntityUid uid, XenomorphInfestationRuleComponent component, GameRuleComponent gameRule, float frameTime)
