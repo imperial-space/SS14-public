@@ -48,4 +48,7 @@ public sealed partial class GeneticVoidMagnetComponent : Component
 
     [ViewVariables]
     public TimeSpan NextCheck;
+
+    [DataField]
+    public TimeSpan CheckDelay = TimeSpan.FromSeconds(1);
 }

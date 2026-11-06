@@ -52,4 +52,7 @@ public sealed partial class GeneticBadBlinkComponent : Component
 
     [ViewVariables]
     public TimeSpan NextCheck;
+
+    [DataField]
+    public TimeSpan CheckDelay = TimeSpan.FromSeconds(1);
 }

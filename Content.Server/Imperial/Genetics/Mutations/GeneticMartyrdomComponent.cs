@@ -45,4 +45,13 @@ public sealed partial class GeneticMartyrdomComponent : Component
 
     [DataField]
     public TimeSpan StunTime = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public float MartyrdomStateTotalIntensity = 8f;
+
+    [DataField]
+    public float MartyrdomStateSlope = 4f;
+
+    [DataField]
+    public float MartyrdomStateMaxTileIntensity = 2f;
 }

@@ -19,6 +19,7 @@ using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Genetics;
 
@@ -65,6 +66,8 @@ public sealed class GeneticsSystem : EntitySystem
     private readonly Dictionary<ProtoId<GeneticMutationPrototype>, int> _aliases = new();
     private readonly HashSet<ProtoId<GeneticMutationPrototype>> _discovered = new();
     private TimeSpan _nextTick;
+
+    private static readonly ProtoId<DamageTypePrototype> PoisonDamageType = "Poison";
 
     /// <summary>Мутации, открытые за раунд: их можно печатать в инжекторы.</summary>
     public IReadOnlySet<ProtoId<GeneticMutationPrototype>> Discovered => _discovered;
@@ -129,7 +132,7 @@ public sealed class GeneticsSystem : EntitySystem
             return;
 
         if (genome.Comp.GeneticDamage >= GeneticDamageToxThreshold)
-            _damageable.TryChangeDamage(genome.Owner, new DamageSpecifier { DamageDict = { ["Poison"] = 1f / 3f } }, true);
+            _damageable.TryChangeDamage(genome.Owner, new DamageSpecifier { DamageDict = { [PoisonDamageType] = 1f / 3f } }, true);
 
         genome.Comp.GeneticDamage = Math.Max(0f, genome.Comp.GeneticDamage - 1f / 3f);
     }
@@ -552,7 +555,7 @@ public sealed class GeneticsSystem : EntitySystem
             stability -= proto.Instability * stabilizer;
         }
 
-        genome.Comp.Stability = (int) MathF.Round(stability);
+        genome.Comp.Stability = (int)MathF.Round(stability);
 
         if (genome.Comp.Stability <= 0)
             genome.Comp.MeltdownAt ??= _timing.CurTime + MeltdownDelay;

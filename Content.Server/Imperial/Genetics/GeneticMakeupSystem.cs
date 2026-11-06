@@ -128,7 +128,7 @@ public sealed class GeneticMakeupSystem : EntitySystem
 
     private static string Hex(Color color)
     {
-        return $"{(int) (color.R * 255):X2}{(int) (color.G * 255):X2}{(int) (color.B * 255):X2}";
+        return $"{(int)(color.R * 255):X2}{(int)(color.G * 255):X2}{(int)(color.B * 255):X2}";
     }
 
     private static Color ParseHex(string hex, int offset)
@@ -139,7 +139,7 @@ public sealed class GeneticMakeupSystem : EntitySystem
             return Color.White;
         }
 
-        return new Color((byte) (value >> 16), (byte) (value >> 8), (byte) value);
+        return new Color((byte)(value >> 16), (byte)(value >> 8), (byte)value);
     }
 
     /// <summary>Применяет строку уникальной идентичности: цвета кожи, глаз, волос и бороды.</summary>

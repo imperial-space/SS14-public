@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Numerics;
 using Content.Shared.Imperial.Genetics;
 using Content.Shared.Imperial.Genetics.Prototypes;
@@ -668,7 +668,7 @@ public sealed class DnaConsoleWindow : DefaultWindow
         buttons.AddChild(MakeButton(Loc.GetString("dna-console-storage-disk"), () => { _storageMode = StorageMode.Disk; _diskEnzymes = false; Rebuild(); }, !state.HasDisk, null, _storageMode == StorageMode.Disk));
         buttons.AddChild(MakeButton(Loc.GetString("dna-console-storage-advinj"), () => { _storageMode = StorageMode.Injector; Rebuild(); }, false, null, _storageMode == StorageMode.Injector));
 
-        Control content = _storageMode switch
+        var content = _storageMode switch
         {
             StorageMode.Console when _consoleChromosomes => StorageChromosomes(),
             StorageMode.Console => StorageMutations(state.Console, "console"),
