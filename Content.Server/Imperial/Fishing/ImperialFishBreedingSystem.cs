@@ -29,6 +29,10 @@ public sealed class ImperialFishBreedingSystem : EntitySystem
 
     private static readonly FixedPoint2 FeedAmount = FixedPoint2.New(0.1);
 
+    private static readonly EntProtoId ImperialFishGoldfish = "ImperialFishGoldfish";
+    private static readonly EntProtoId ImperialFishMoonfishDwarf = "ImperialFishMoonfishDwarf";
+    private static readonly EntProtoId ImperialFishMoonfish = "ImperialFishMoonfish";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -284,7 +288,7 @@ public sealed class ImperialFishBreedingSystem : EntitySystem
                 break;
             case "chainsawfish":
                 {
-                    var goldfish = AverageOf("ImperialFishGoldfish");
+                    var goldfish = AverageOf(ImperialFishGoldfish);
                     if (fish.Size < goldfish.Size * 2 || fish.Weight < goldfish.Weight * 2 || !_traits.Has(fish, "Territorial"))
                         return false;
                     break;
@@ -296,8 +300,8 @@ public sealed class ImperialFishBreedingSystem : EntitySystem
             case "moonfish":
                 {
                     // Как в TG: размер сравнивается и со средним размером, и со средним весом.
-                    var dwarf = AverageOf("ImperialFishMoonfishDwarf");
-                    var moon = AverageOf("ImperialFishMoonfish");
+                    var dwarf = AverageOf(ImperialFishMoonfishDwarf);
+                    var moon = AverageOf(ImperialFishMoonfish);
                     if (fish.Size < dwarf.Size * 1.5f && fish.Size < dwarf.Weight * 1.5f)
                         return false;
                     if (mate is { } mm && mm.Comp.Size < moon.Size * 1.3f && mm.Comp.Size < moon.Weight * 1.3f)
@@ -306,7 +310,7 @@ public sealed class ImperialFishBreedingSystem : EntitySystem
                 }
             case "dwarfMoonfish":
                 {
-                    var moon = AverageOf("ImperialFishMoonfish");
+                    var moon = AverageOf(ImperialFishMoonfish);
                     if (fish.Size > moon.Size * 0.66f && fish.Size > moon.Weight * 0.66f)
                         return false;
                     if (mate is { } mm && mm.Comp.Size > moon.Size * 0.7f && mm.Comp.Size > moon.Weight * 0.7f)

@@ -29,6 +29,11 @@ public sealed class ImperialFishingBaitSystem : EntitySystem
     private static readonly ProtoId<TagPrototype> DonutTag = "Donut";
     private static readonly ProtoId<TagPrototype> BreadTag = "Bread";
 
+    private static readonly EntProtoId FoodBreadBase = "FoodBreadBase";
+    private static readonly EntProtoId FoodSnackBase = "FoodSnackBase";
+    private static readonly EntProtoId FoodMeatFish = "FoodMeatFish";
+    private static readonly EntProtoId FoodMeatFishRaw = "FoodMeatFishRaw";
+
     /// <summary>Прототип и его родители.</summary>
     public bool IsOrInherits(EntityUid uid, string protoId)
     {
@@ -105,11 +110,11 @@ public sealed class ImperialFishingBaitSystem : EntitySystem
             types |= ImperialFoodTypes.Vegetables;
         if (_tag.HasTag(uid, DonutTag))
             types |= ImperialFoodTypes.Junkfood | ImperialFoodTypes.Sugar | ImperialFoodTypes.Fried | ImperialFoodTypes.Breakfast;
-        if (_tag.HasTag(uid, BreadTag) || IsOrInherits(uid, "FoodBreadBase"))
+        if (_tag.HasTag(uid, BreadTag) || IsOrInherits(uid, FoodBreadBase))
             types |= ImperialFoodTypes.Grain;
-        if (IsOrInherits(uid, "FoodSnackBase"))
+        if (IsOrInherits(uid, FoodSnackBase))
             types |= ImperialFoodTypes.Junkfood;
-        if (IsOrInherits(uid, "FoodMeatFish") || IsOrInherits(uid, "FoodMeatFishRaw"))
+        if (IsOrInherits(uid, FoodMeatFish) || IsOrInherits(uid, FoodMeatFishRaw))
             types |= ImperialFoodTypes.Seafood | ImperialFoodTypes.Meat;
         if (HasComp<ProduceComponent>(uid) && (types & (ImperialFoodTypes.Fruit | ImperialFoodTypes.Vegetables)) == 0)
             types |= ImperialFoodTypes.Vegetables;

@@ -4,6 +4,7 @@ using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Disease;
 using Robust.Shared.Prototypes;
+using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server.Imperial.Vending;
 
@@ -12,6 +13,8 @@ public sealed class ImperialDiseaseCultureSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly DiseaseSystem _disease = default!;
     [Dependency] private readonly SolutionContainerSystem _solutions = default!;
+
+    private static readonly ProtoId<ReagentPrototype> BloodReagent = "Blood";
 
     public override void Initialize()
     {
@@ -32,7 +35,7 @@ public sealed class ImperialDiseaseCultureSystem : EntitySystem
 
         foreach (var (_, solution) in _solutions.EnumerateSolutions((ent, manager)))
         {
-            _solutions.TryAddReagent(solution, "Blood", ent.Comp.Blood, out _);
+            _solutions.TryAddReagent(solution, BloodReagent, ent.Comp.Blood, out _);
             return;
         }
     }

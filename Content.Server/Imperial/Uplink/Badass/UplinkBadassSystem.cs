@@ -40,6 +40,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server.Imperial.Uplink.Badass;
 
@@ -95,6 +96,8 @@ public sealed class UplinkBadassSystem : EntitySystem
         "ImperialUplinkRoleRestricted",
         "ImperialUplinkSpeciesRestricted",
     };
+
+    private static readonly ProtoId<ReagentPrototype> ToxinReagent = "Toxin";
 
     public override void Initialize()
     {
@@ -697,7 +700,7 @@ public sealed class UplinkBadassSystem : EntitySystem
         if (!TryComp<BloodstreamComponent>(target, out var bloodstream))
             return;
 
-        _bloodstream.TryAddToBloodstream((target, bloodstream), new Solution("Toxin", amount));
+        _bloodstream.TryAddToBloodstream((target, bloodstream), new Solution(ToxinReagent, amount));
     }
 
     #endregion

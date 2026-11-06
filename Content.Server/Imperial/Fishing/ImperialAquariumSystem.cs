@@ -23,6 +23,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server.Imperial.Fishing;
 
@@ -73,6 +74,8 @@ public sealed class ImperialAquariumSystem : EntitySystem
     private static readonly ProtoId<StackPrototype> GlassStack = "Glass";
 
     private static readonly TimeSpan UpdateDelay = TimeSpan.FromSeconds(1);
+
+    private static readonly ProtoId<ReagentPrototype> WaterReagent = "Water";
 
     public override void Initialize()
     {
@@ -688,7 +691,7 @@ public sealed class ImperialAquariumSystem : EntitySystem
         }
 
         if (ent.Comp.Fluid != ImperialFishFluid.Air)
-            _puddle.TrySpillAt(ent, new Solution("Water", ent.Comp.SmashQuantity), out _);
+            _puddle.TrySpillAt(ent, new Solution(WaterReagent, ent.Comp.SmashQuantity), out _);
 
         UpdateAppearance(ent);
         Dirty(ent);
