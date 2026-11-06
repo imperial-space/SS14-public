@@ -16,6 +16,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Prototypes;
+using Content.Shared.Damage;
 
 namespace Content.Server.Imperial.Xenobiology;
 
