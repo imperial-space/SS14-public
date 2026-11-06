@@ -155,4 +155,73 @@ public sealed partial class TerrorSpiderComponent : Component
     /// <summary>Паук-ИИ ползёт по вентиляции и вылезет здесь.</summary>
     [ViewVariables]
     public (EntityUid Vent, TimeSpan At)? VentTravel;
+
+    [DataField]
+    public TimeSpan WrapDelay = TimeSpan.FromSeconds(4);
+
+    [DataField]
+    public TimeSpan VentSmashActionDelay = TimeSpan.FromSeconds(4);
+
+    [DataField]
+    public TimeSpan SpecialAttackGreenAmountDelay = TimeSpan.FromSeconds(20);
+
+    [DataField]
+    public TimeSpan SpecialAttackGreenMaxDelay = TimeSpan.FromSeconds(120);
+
+    [DataField]
+    public TimeSpan SpecialAttackWhiteTime = TimeSpan.FromSeconds(10);
+
+    [DataField]
+    public TimeSpan SpecialAttackPrinceTime = TimeSpan.FromSeconds(10);
+
+    [DataField]
+    public float WrapDoAfterRange = 1.5f;
+
+    [DataField]
+    public float WrapDoAfterRange2 = 0.4f;
+
+    [DataField]
+    public float VentSmashActionRange = 1.5f;
+
+    [DataField]
+    public float VentSmashDoAfterRange = 1.5f;
+
+    [DataField]
+    public float AutomatedMovementRange = 1.5f;
+
+    [DataField]
+    public float AutomatedMovementRange2 = 10f;
+
+    [DataField]
+    public float CocoonTargetRange = 1.5f;
+
+    [DataField]
+    public float SeekCocoonTargetRange = 10f;
+
+    [DataField]
+    public float QueenAiRange = 10f;
+
+    [DataField]
+    public float QueenAiChance = 0.2f;
+
+    [DataField]
+    public float RetaliateRange = 7f;
+
+    [DataField]
+    public float SpecialAttackBlackAmount = 30f;
+
+    [DataField]
+    public float SpecialAttackBlackDistance = 3f;
+
+    [DataField]
+    public float SpecialAttackWhiteDistance = 2f;
+
+    [DataField]
+    public float CanLayGreenEggsRange = 0.4f;
+
+    [DataField]
+    public float QueenDeathChance = 0.5f;
+
+    [DataField]
+    public float PurpleLifeRange = 10f;
 }

@@ -47,6 +47,19 @@ public sealed partial class TerrorSpiderSystem
 
     private TimeSpan _nextEffectTick;
 
+    private static readonly TimeSpan BlackVenomLifeAmountDelay = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan BlackVenomLifeMaxDelay = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan BlackVenomLifeAmountDelay2 = TimeSpan.FromSeconds(6);
+    private static readonly TimeSpan BlackVenomLifeMaxDelay2 = TimeSpan.FromSeconds(6);
+    private static readonly TimeSpan BlackVenomLifeBoozePowerDelay = TimeSpan.FromSeconds(12);
+    private static readonly TimeSpan BlackVenomLifeDuration = TimeSpan.FromSeconds(10);
+
+    private const float JumpAwayBaseThrowSpeed = 8f;
+    private const float BlackVenomLifeAmount = 2f;
+    private const float BlackVenomLifeAmount2 = 4f;
+    private const float BlackVenomLifeAmount3 = 8f;
+    private const float UpdateEffectsRange = 0.5f;
+
     private void InitializeEffects()
     {
         SubscribeLocalEvent<TerrorWebComponent, StartCollideEvent>(OnWebCollide);
@@ -86,7 +99,7 @@ public sealed partial class TerrorSpiderSystem
                     break;
                 if (HasComp<StunnedComponent>(target) || CanInject(target))
                 {
-                    AdjustEyeBlurry(target, TimeSpan.FromSeconds(20), TimeSpan.FromSeconds(120));
+                    AdjustEyeBlurry(target, ent.Comp.SpecialAttackGreenAmountDelay, ent.Comp.SpecialAttackGreenMaxDelay);
                     _popup.PopupEntity(Loc.GetString("terror-spider-bite-fangs", ("spider", ent.Owner), ("target", target)), ent, PopupType.MediumCaution);
                 }
                 else
@@ -101,7 +114,7 @@ public sealed partial class TerrorSpiderSystem
                 _stamina.TakeStaminaDamage(target, 30, source: ent);
                 if (CanInject(target) || Restrained(target))
                 {
-                    InjectBlackToxin(target, 30);
+                    InjectBlackToxin(target, ent.Comp.SpecialAttackBlackAmount);
                     _popup.PopupEntity(Loc.GetString("terror-spider-bite-long-fangs", ("spider", ent.Owner), ("target", target)), ent, PopupType.MediumCaution);
                 }
                 else
@@ -112,7 +125,7 @@ public sealed partial class TerrorSpiderSystem
                 // ИИ кусает и отпрыгивает, пока яд действует.
                 if (!HasComp<Robust.Shared.Player.ActorComponent>(ent) && (!ent.Comp.Enemies.Contains(target) || ToxinAmount(target) >= 60))
                 {
-                    JumpAway(ent, target, 3);
+                    JumpAway(ent, target, ent.Comp.SpecialAttackBlackDistance);
                     _popup.PopupEntity(Loc.GetString("terror-spider-jumps-away", ("spider", ent.Owner), ("target", target)), ent);
                 }
                 break;
@@ -120,19 +133,19 @@ public sealed partial class TerrorSpiderSystem
             case TerrorSpiderAttackType.White:
                 if (!poisonable)
                     break;
-                _stun.TryKnockdown(target, TimeSpan.FromSeconds(10), true);
+                _stun.TryKnockdown(target, ent.Comp.SpecialAttackWhiteTime, true);
                 _stamina.TakeStaminaDamage(target, 30, source: ent);
                 if ((CanInject(target) || Restrained(target)) && !HasComp<TerrorEggsInfectionComponent>(target) && HasComp<HumanoidProfileComponent>(target))
                 {
                     _popup.PopupEntity(Loc.GetString("terror-spider-bite-long-fangs", ("spider", ent.Owner), ("target", target)), ent, PopupType.MediumCaution);
                     EnsureComp<TerrorEggsInfectionComponent>(target);
                     if (!HasComp<Robust.Shared.Player.ActorComponent>(ent))
-                        JumpAway(ent, target, 2);
+                        JumpAway(ent, target, ent.Comp.SpecialAttackWhiteDistance);
                 }
                 break;
 
             case TerrorSpiderAttackType.Prince:
-                _stun.TryKnockdown(target, TimeSpan.FromSeconds(10), true);
+                _stun.TryKnockdown(target, ent.Comp.SpecialAttackPrinceTime, true);
                 _stamina.TakeStaminaDamage(target, 40, source: ent);
                 break;
         }
@@ -144,7 +157,7 @@ public sealed partial class TerrorSpiderSystem
         var dir = _transform.GetWorldPosition(spider) - _transform.GetWorldPosition(from);
         if (dir.LengthSquared() < 0.001f)
             dir = _random.NextAngle().ToVec();
-        _throwing.TryThrow(spider, dir.Normalized() * distance, 8f, spider, 0, doSpin: false, playSound: false);
+        _throwing.TryThrow(spider, dir.Normalized() * distance, JumpAwayBaseThrowSpeed, spider, 0, doSpin: false, playSound: false);
     }
 
     #endregion
@@ -159,13 +172,13 @@ public sealed partial class TerrorSpiderSystem
             return;
 
         _popup.PopupEntity(Loc.GetString("terror-web-stuck", ("web", ent.Owner)), mob, mob, PopupType.LargeCaution);
-        _stun.TryUpdateParalyzeDuration(mob, TimeSpan.FromSeconds(8));
+        _stun.TryUpdateParalyzeDuration(mob, ent.Comp.WebCollideDuration);
 
         if (!HasComp<BodyComponent>(mob))
             return;
 
         WebSpecialAbility(ent, mob);
-        _webChecks.Add((_timing.CurTime + TimeSpan.FromSeconds(7), ent, mob));
+        _webChecks.Add((_timing.CurTime + ent.Comp.WebCollideDelay, ent, mob));
     }
 
     private readonly List<(TimeSpan At, EntityUid Web, EntityUid Mob)> _webChecks = new();
@@ -176,13 +189,13 @@ public sealed partial class TerrorSpiderSystem
         switch (ent.Comp.Ability)
         {
             case TerrorWebAbility.Green:
-                AdjustEyeBlurry(victim, TimeSpan.FromSeconds(60), TimeSpan.FromSeconds(120));
+                AdjustEyeBlurry(victim, ent.Comp.WebSpecialAbilityGreenAmountDelay, ent.Comp.WebSpecialAbilityGreenMaxDelay);
                 break;
             case TerrorWebAbility.Black:
                 if (ToxinAmount(victim) < 60 && CanInject(victim))
                 {
                     _popup.PopupEntity(Loc.GetString("terror-web-slices", ("web", ent.Owner)), victim, victim, PopupType.LargeCaution);
-                    InjectBlackToxin(victim, 30);
+                    InjectBlackToxin(victim, ent.Comp.WebSpecialAbilityBlackAmount);
                 }
                 break;
             case TerrorWebAbility.White:
@@ -231,7 +244,7 @@ public sealed partial class TerrorSpiderSystem
             || !_solutions.ResolveSolution(target, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var solution))
             return 0;
 
-        return (float) solution.GetTotalPrototypeQuantity(reagent);
+        return (float)solution.GetTotalPrototypeQuantity(reagent);
     }
 
     /// <summary>terror_black_toxin/on_mob_life(): чем больше яда, тем сильнее.</summary>
@@ -250,20 +263,20 @@ public sealed partial class TerrorSpiderSystem
         }
         else if (volume < 60)
         {
-            Damage(uid, "Poison", 2);
-            AdjustEyeBlurry(uid, TimeSpan.FromSeconds(3), TimeSpan.FromSeconds(3));
+            Damage(uid, "Poison", BlackVenomLifeAmount);
+            AdjustEyeBlurry(uid, BlackVenomLifeAmountDelay, BlackVenomLifeMaxDelay);
         }
         else if (volume < 90)
         {
-            Damage(uid, "Poison", 4);
-            AdjustEyeBlurry(uid, TimeSpan.FromSeconds(6), TimeSpan.FromSeconds(6));
-            _drunk.TryApplyDrunkenness(uid, TimeSpan.FromSeconds(12));
+            Damage(uid, "Poison", BlackVenomLifeAmount2);
+            AdjustEyeBlurry(uid, BlackVenomLifeAmountDelay2, BlackVenomLifeMaxDelay2);
+            _drunk.TryApplyDrunkenness(uid, BlackVenomLifeBoozePowerDelay);
         }
         else
         {
-            Damage(uid, "Poison", 8);
-            AdjustEyeBlurry(uid, TimeSpan.FromSeconds(6), TimeSpan.FromSeconds(6));
-            _stun.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(10));
+            Damage(uid, "Poison", BlackVenomLifeAmount3);
+            AdjustEyeBlurry(uid, BlackVenomLifeAmountDelay2, BlackVenomLifeMaxDelay2);
+            _stun.TryUpdateParalyzeDuration(uid, BlackVenomLifeDuration);
         }
     }
 
@@ -283,7 +296,7 @@ public sealed partial class TerrorSpiderSystem
 
         // После первого вылупления жертве нужна помощь, чтобы дойти до медбея.
         if (eggs.EggsHatched >= 1)
-            _drunk.TryApplyDrunkenness(ent, TimeSpan.FromSeconds(4.5));
+            _drunk.TryApplyDrunkenness(ent, ent.Comp.EggsLifeBoozePowerDelay);
 
         if (eggs.EggProgress <= eggs.EggProgressPerHatch)
             return;
@@ -322,7 +335,7 @@ public sealed partial class TerrorSpiderSystem
 
         ent.Comp.EggsHatched++;
         _popup.PopupEntity(Loc.GetString("terror-eggs-hatch"), ent, ent, PopupType.LargeCaution);
-        _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(20));
+        _stun.TryUpdateParalyzeDuration(ent, ent.Comp.HatchEggDuration);
         if (completed)
             RemCompDeferred<TerrorEggsInfectionComponent>(ent);
     }
@@ -355,7 +368,7 @@ public sealed partial class TerrorSpiderSystem
             return;
 
         args.Handled = true;
-        Damage(ent, "Slash", 15, args.User);
+        Damage(ent, "Slash", ent.Comp.EggsRemovalAmount, args.User);
         _popup.PopupEntity(Loc.GetString("terror-eggs-removed", ("user", args.User), ("target", ent.Owner)), ent, PopupType.Medium);
         RemCompDeferred<TerrorEggsInfectionComponent>(ent);
     }
@@ -395,7 +408,7 @@ public sealed partial class TerrorSpiderSystem
 
             _webChecks.RemoveAt(i);
             // after_carbon_crossed(): если жертва всё ещё в паутине — паутина рвётся.
-            if (Exists(web) && Exists(mob) && InRange(web, mob, 0.5f))
+            if (Exists(web) && Exists(mob) && InRange(web, mob, UpdateEffectsRange))
                 QueueDel(web);
         }
 

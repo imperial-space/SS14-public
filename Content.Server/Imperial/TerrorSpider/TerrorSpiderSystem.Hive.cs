@@ -57,6 +57,8 @@ public sealed partial class TerrorSpiderSystem
     private static readonly EntProtoId[] StandardTypes = { Red, Gray, Green, Black };
     private static readonly EntProtoId[] UncappedTypes = { Red, Gray, Green };
 
+    private static readonly EntProtoId TerrorSpiderlingRemains = "TerrorSpiderlingRemains";
+
     private void InitializeHive()
     {
         SubscribeLocalEvent<TerrorSpiderlingComponent, Content.Shared.Mobs.MobStateChangedEvent>(OnSpiderlingDied);
@@ -240,7 +242,7 @@ public sealed partial class TerrorSpiderSystem
             return;
 
         if (!_container.IsEntityInContainer(ent))
-            Spawn("TerrorSpiderlingRemains", _transform.GetMoverCoordinates(ent));
+            Spawn(TerrorSpiderlingRemains, _transform.GetMoverCoordinates(ent));
         QueueDel(ent);
     }
 
@@ -264,7 +266,7 @@ public sealed partial class TerrorSpiderSystem
 
     private bool CanLayGreenEggs(Entity<TerrorSpiderComponent, TerrorSpiderGreenComponent> ent)
     {
-        if (_lookup.GetEntitiesInRange<TerrorEggClusterComponent>(_transform.GetMapCoordinates(ent), 0.4f).Count > 0)
+        if (_lookup.GetEntitiesInRange<TerrorEggClusterComponent>(_transform.GetMapCoordinates(ent), ent.Comp1.CanLayGreenEggsRange).Count > 0)
         {
             _popup.PopupEntity(Loc.GetString("terror-spider-eggs-already"), ent, ent);
             return false;
@@ -480,11 +482,11 @@ public sealed partial class TerrorSpiderSystem
     {
         if (ent.Comp2.Princess)
         {
-            _popup.PopupEntity(Loc.GetString("terror-spider-eggs-timer-princess", ("seconds", (int) ent.Comp2.SpawnFrequency.TotalSeconds)), ent, ent);
+            _popup.PopupEntity(Loc.GetString("terror-spider-eggs-timer-princess", ("seconds", (int)ent.Comp2.SpawnFrequency.TotalSeconds)), ent, ent);
             return;
         }
 
-        var remaining = (int) Math.Round((ent.Comp2.LastSpawn + ent.Comp2.SpawnFrequency - _timing.CurTime).TotalSeconds);
+        var remaining = (int)Math.Round((ent.Comp2.LastSpawn + ent.Comp2.SpawnFrequency - _timing.CurTime).TotalSeconds);
         _popup.PopupEntity(remaining > 0
             ? Loc.GetString("terror-spider-eggs-timer", ("seconds", remaining))
             : Loc.GetString("terror-spider-eggs-timer-soon"), ent, ent);
@@ -643,7 +645,7 @@ public sealed partial class TerrorSpiderSystem
             if (spider.Owner == ent.Owner || spider.Comp.Queen != ent.Owner)
                 continue;
 
-            if (_random.Prob(0.5f) || spider.Comp.Tier >= ent.Comp.Tier)
+            if (_random.Prob(ent.Comp.QueenDeathChance) || spider.Comp.Tier >= ent.Comp.Tier)
             {
                 SendTo(spider, Loc.GetString("terror-spider-queen-died-survive", ("queen", ent.Owner)));
                 continue;
@@ -694,7 +696,7 @@ public sealed partial class TerrorSpiderSystem
         }
 
         // vision_range = 10
-        purple.QueenVisible = InRange(ent, queen, 10);
+        purple.QueenVisible = InRange(ent, queen, ent.Comp1.PurpleLifeRange);
         purple.CyclesNoQueen = purple.QueenVisible ? 0 : purple.CyclesNoQueen + 1;
         var area = AreaName(queen);
         switch (purple.CyclesNoQueen)

@@ -50,6 +50,10 @@ public sealed partial class TerrorSpiderSystem
     private static readonly SoundSpecifier PrySound = new SoundPathSpecifier("/Audio/Machines/airlock_creaking.ogg");
     private static readonly SoundSpecifier MeteorSound = new SoundPathSpecifier("/Audio/Effects/explosion_small2.ogg");
 
+    private const float WebAtRange = 0.3f;
+    private const float MobIsWrappableRange = 1.5f;
+    private const float WrapChoicesRange = 1.5f;
+
     private void InitializeAbilities()
     {
         SubscribeLocalEvent<TerrorSpiderComponent, TerrorSpiderWebActionEvent>(OnWebAction);
@@ -136,7 +140,7 @@ public sealed partial class TerrorSpiderSystem
 
     public EntityUid? WebAt(EntityCoordinates coords)
     {
-        foreach (var web in _lookup.GetEntitiesInRange<TerrorWebComponent>(coords, 0.3f))
+        foreach (var web in _lookup.GetEntitiesInRange<TerrorWebComponent>(coords, WebAtRange))
         {
             return web;
         }
@@ -157,7 +161,7 @@ public sealed partial class TerrorSpiderSystem
     private bool MobIsWrappable(EntityUid spider, EntityUid mob)
     {
         return HasComp<MobStateComponent>(mob) && _mobState.IsDead(mob) && !Transform(mob).Anchored
-               && !HasComp<TerrorSpiderComponent>(mob) && InRange(spider, mob, 1.5f);
+               && !HasComp<TerrorSpiderComponent>(mob) && InRange(spider, mob, MobIsWrappableRange);
     }
 
     private bool InRange(EntityUid a, EntityUid b, float range)
@@ -171,7 +175,7 @@ public sealed partial class TerrorSpiderSystem
     private List<EntityUid> WrapChoices(EntityUid spider)
     {
         var choices = new List<EntityUid>();
-        foreach (var uid in _lookup.GetEntitiesInRange(spider, 1.5f, LookupFlags.Dynamic | LookupFlags.Sundries))
+        foreach (var uid in _lookup.GetEntitiesInRange(spider, WrapChoicesRange, LookupFlags.Dynamic | LookupFlags.Sundries))
         {
             if (uid == spider || _container.IsEntityInContainer(uid))
                 continue;
@@ -231,7 +235,7 @@ public sealed partial class TerrorSpiderSystem
 
         ent.Comp.Busy = true;
         _popup.PopupEntity(Loc.GetString("terror-spider-wrap-start", ("spider", ent.Owner), ("target", target)), ent);
-        if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(4), new TerrorSpiderWrapDoAfterEvent(), ent, target)
+        if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.WrapDelay, new TerrorSpiderWrapDoAfterEvent(), ent, target)
         {
             BreakOnMove = true,
             DistanceThreshold = 1.5f,
@@ -251,7 +255,7 @@ public sealed partial class TerrorSpiderSystem
             return;
 
         args.Handled = true;
-        if (_container.IsEntityInContainer(cocoonTarget) || !InRange(ent, cocoonTarget, 1.5f))
+        if (_container.IsEntityInContainer(cocoonTarget) || !InRange(ent, cocoonTarget, ent.Comp.WrapDoAfterRange))
             return;
 
         var coords = _transform.GetMoverCoordinates(cocoonTarget);
@@ -259,7 +263,7 @@ public sealed partial class TerrorSpiderSystem
         var container = _container.EnsureContainer<Container>(cocoon, CocoonContainer);
         var large = false;
 
-        foreach (var uid in _lookup.GetEntitiesInRange(coords, 0.4f, LookupFlags.Dynamic | LookupFlags.Sundries).ToList())
+        foreach (var uid in _lookup.GetEntitiesInRange(coords, ent.Comp.WrapDoAfterRange2, LookupFlags.Dynamic | LookupFlags.Sundries).ToList())
         {
             if (uid == cocoon || uid == ent.Owner || Transform(uid).Anchored || HasComp<MobStateComponent>(uid)
                 || HasComp<TerrorWebComponent>(uid) || HasComp<TerrorEggClusterComponent>(uid) || HasComp<TerrorCocoonComponent>(uid))
@@ -269,7 +273,7 @@ public sealed partial class TerrorSpiderSystem
                 large = true;
         }
 
-        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 0.4f).ToList())
+        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(coords, ent.Comp.WrapDoAfterRange2).ToList())
         {
             if (!MobIsWrappable(ent, mob))
                 continue;
@@ -337,14 +341,14 @@ public sealed partial class TerrorSpiderSystem
             return;
 
         args.Handled = true;
-        if (WeldedVents(ent, 1.5f).Count == 0)
+        if (WeldedVents(ent, ent.Comp.VentSmashActionRange).Count == 0)
         {
             _popup.PopupEntity(Loc.GetString("terror-spider-ventsmash-none"), ent, ent);
             return;
         }
 
         _audio.PlayPvs(PrySound, ent);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(4), new TerrorSpiderVentSmashDoAfterEvent(), ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.VentSmashActionDelay, new TerrorSpiderVentSmashDoAfterEvent(), ent)
         {
             BreakOnMove = true,
         });
@@ -356,7 +360,7 @@ public sealed partial class TerrorSpiderSystem
             return;
 
         args.Handled = true;
-        var vents = WeldedVents(ent, 1.5f);
+        var vents = WeldedVents(ent, ent.Comp.VentSmashDoAfterRange);
         if (vents.Count == 0)
         {
             _popup.PopupEntity(Loc.GetString("terror-spider-ventsmash-none"), ent, ent);
@@ -446,7 +450,7 @@ public sealed partial class TerrorSpiderSystem
         args.Handled = true;
         if (spider.RegenPoints < ent.Comp.JellyCost)
         {
-            _popup.PopupEntity(Loc.GetString("terror-spider-jelly-points", ("points", (int) spider.RegenPoints), ("cost", (int) ent.Comp.JellyCost)), ent, ent);
+            _popup.PopupEntity(Loc.GetString("terror-spider-jelly-points", ("points", (int)spider.RegenPoints), ("cost", (int)ent.Comp.JellyCost)), ent, ent);
             return;
         }
 
@@ -463,7 +467,7 @@ public sealed partial class TerrorSpiderSystem
         }
 
         _popup.PopupEntity(Loc.GetString("terror-spider-jelly-start", ("spider", ent.Owner)), ent);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(10), new TerrorSpiderJellyDoAfterEvent(), ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.RoyalJellyActionDelay, new TerrorSpiderJellyDoAfterEvent(), ent)
         {
             BreakOnMove = true,
         });
@@ -477,7 +481,7 @@ public sealed partial class TerrorSpiderSystem
         args.Handled = true;
         if (spider.RegenPoints < ent.Comp.JellyCost)
         {
-            _popup.PopupEntity(Loc.GetString("terror-spider-jelly-points", ("points", (int) spider.RegenPoints), ("cost", (int) ent.Comp.JellyCost)), ent, ent);
+            _popup.PopupEntity(Loc.GetString("terror-spider-jelly-points", ("points", (int)spider.RegenPoints), ("cost", (int)ent.Comp.JellyCost)), ent, ent);
             return;
         }
 
@@ -521,7 +525,7 @@ public sealed partial class TerrorSpiderSystem
         args.Handled = true;
         var container = _container.EnsureContainer<Container>(ent, CarriedContainer);
         var count = 0;
-        foreach (var ling in _lookup.GetEntitiesInRange<TerrorSpiderlingComponent>(_transform.GetMapCoordinates(ent), 2.5f).ToList())
+        foreach (var ling in _lookup.GetEntitiesInRange<TerrorSpiderlingComponent>(_transform.GetMapCoordinates(ent), ent.Comp.GatherSpiderlingsRange).ToList())
         {
             if (_container.IsEntityInContainer(ling))
                 continue;
@@ -551,11 +555,11 @@ public sealed partial class TerrorSpiderSystem
         args.Handled = true;
         if (spider.RegenPoints < 50)
         {
-            _popup.PopupEntity(Loc.GetString("terror-spider-incubate-points", ("points", (int) spider.RegenPoints)), ent, ent);
+            _popup.PopupEntity(Loc.GetString("terror-spider-incubate-points", ("points", (int)spider.RegenPoints)), ent, ent);
             return;
         }
 
-        foreach (var eggs in _lookup.GetEntitiesInRange<TerrorEggClusterComponent>(_transform.GetMapCoordinates(ent), 0.5f))
+        foreach (var eggs in _lookup.GetEntitiesInRange<TerrorEggClusterComponent>(_transform.GetMapCoordinates(ent), ent.Comp.IncubateEggsRange))
         {
             Spawn(HealEffect, _transform.GetMoverCoordinates(eggs));
             eggs.Comp.AmountGrown += 25;
@@ -591,7 +595,7 @@ public sealed partial class TerrorSpiderSystem
             direction = direction.Normalized() * 9;
 
         ent.Comp.Charging = true;
-        _throwing.TryThrow(ent, direction, 12f, ent, 0, doSpin: false, playSound: false);
+        _throwing.TryThrow(ent, direction, ent.Comp.PrinceChargeBaseThrowSpeed, ent, 0, doSpin: false, playSound: false);
     }
 
     private void OnPrinceStopThrow(Entity<TerrorSpiderPrinceComponent> ent, ref StopThrowEvent args)
@@ -610,20 +614,20 @@ public sealed partial class TerrorSpiderSystem
 
         if (HasComp<MobStateComponent>(target))
         {
-            Damage(target, "Blunt", 60, ent);
-            _stun.TryKnockdown(target, TimeSpan.FromSeconds(12), true);
-            _drunk.TryApplyDrunkenness(target, TimeSpan.FromSeconds(10));
+            Damage(target, "Blunt", ent.Comp.PrinceImpactAmount, ent);
+            _stun.TryKnockdown(target, ent.Comp.PrinceImpactTime, true);
+            _drunk.TryApplyDrunkenness(target, ent.Comp.PrinceImpactBoozePowerDelay);
             hit = true;
         }
         else if (_tag.HasTag(target, WallTag))
         {
             // dismantle_wall()
-            Damage(target, "Structural", 1000, ent);
+            Damage(target, "Structural", ent.Comp.PrinceImpactAmount2, ent);
             hit = true;
         }
         else
         {
-            Damage(target, "Structural", 150, ent);
+            Damage(target, "Structural", ent.Comp.PrinceImpactAmount3, ent);
             hit = true;
         }
 
@@ -631,7 +635,7 @@ public sealed partial class TerrorSpiderSystem
         {
             var dir = _transform.GetWorldPosition(target) - _transform.GetWorldPosition(ent);
             if (dir.LengthSquared() > 0.001f)
-                _throwing.TryThrow(target, dir.Normalized() * 5, 12f, ent);
+                _throwing.TryThrow(target, dir.Normalized() * 5, ent.Comp.PrinceImpactBaseThrowSpeed, ent);
         }
 
         if (!hit)

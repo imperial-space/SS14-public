@@ -13,4 +13,19 @@ public sealed partial class TerrorWebComponent : Component
     /// <summary>Паутина матери не пропускает паучат.</summary>
     [DataField]
     public bool BlocksSpiderlings;
+
+    [DataField]
+    public TimeSpan WebCollideDuration = TimeSpan.FromSeconds(8);
+
+    [DataField]
+    public TimeSpan WebCollideDelay = TimeSpan.FromSeconds(7);
+
+    [DataField]
+    public TimeSpan WebSpecialAbilityGreenAmountDelay = TimeSpan.FromSeconds(60);
+
+    [DataField]
+    public TimeSpan WebSpecialAbilityGreenMaxDelay = TimeSpan.FromSeconds(120);
+
+    [DataField]
+    public float WebSpecialAbilityBlackAmount = 30f;
 }

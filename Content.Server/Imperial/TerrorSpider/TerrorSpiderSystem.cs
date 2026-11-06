@@ -62,6 +62,9 @@ public sealed partial class TerrorSpiderSystem : EntitySystem
     private int _countDead;
     private TimeSpan _deathLast;
 
+    private static readonly ProtoId<DamageTypePrototype> PiercingDamageType = "Piercing";
+    private static readonly ProtoId<DamageTypePrototype> StructuralDamageType = "Structural";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -167,8 +170,8 @@ public sealed partial class TerrorSpiderSystem : EntitySystem
 
         if (_thresholds.TryGetThresholdForState(ent, MobState.Dead, out var max) && TryComp<DamageableComponent>(ent, out var damageable))
         {
-            var health = (float) (max.Value - _damageable.GetTotalDamage((ent.Owner, damageable)));
-            var maxHealth = (float) max.Value;
+            var health = (float)(max.Value - _damageable.GetTotalDamage((ent.Owner, damageable)));
+            var maxHealth = (float)max.Value;
             var key = health > maxHealth * 0.95f ? "terror-spider-examine-health-excellent"
                 : health > maxHealth * 0.75f ? "terror-spider-examine-health-few"
                 : health > maxHealth * 0.55f ? "terror-spider-examine-health-many"
@@ -304,7 +307,7 @@ public sealed partial class TerrorSpiderSystem : EntitySystem
     private void Retaliate(Entity<TerrorSpiderComponent> ent, EntityUid attacker)
     {
         ent.Comp.Enemies.Add(attacker);
-        foreach (var other in _lookup.GetEntitiesInRange<TerrorSpiderComponent>(_transform.GetMapCoordinates(ent), 7))
+        foreach (var other in _lookup.GetEntitiesInRange<TerrorSpiderComponent>(_transform.GetMapCoordinates(ent), ent.Comp.RetaliateRange))
         {
             other.Comp.Enemies.Add(attacker);
         }
@@ -403,16 +406,16 @@ public sealed partial class TerrorSpiderSystem : EntitySystem
         // Случайный урон в пределах melee_damage_lower..upper поверх базового.
         var (lower, upper) = MeleeRange(ent);
         var roll = lower + _random.NextFloat() * (upper - lower);
-        var baseDamage = (float) args.BaseDamage.DamageDict.GetValueOrDefault("Piercing");
+        var baseDamage = (float)args.BaseDamage.DamageDict.GetValueOrDefault(PiercingDamageType);
         var bonus = roll - baseDamage;
 
         if (ent.Comp.SmashWalls && _tag.HasTag(target, WallTag))
-            args.BonusDamage += new DamageSpecifier { DamageDict = { ["Structural"] = 1000 } };
+            args.BonusDamage += new DamageSpecifier { DamageDict = { [StructuralDamageType] = 1000 } };
 
         if (!HasComp<MobStateComponent>(target) || _mobState.IsDead(target))
         {
             if (bonus != 0)
-                args.BonusDamage += new DamageSpecifier { DamageDict = { ["Piercing"] = bonus } };
+                args.BonusDamage += new DamageSpecifier { DamageDict = { [PiercingDamageType] = bonus } };
             return;
         }
 
@@ -428,7 +431,7 @@ public sealed partial class TerrorSpiderSystem : EntitySystem
         }
 
         if (bonus != 0)
-            args.BonusDamage += new DamageSpecifier { DamageDict = { ["Piercing"] = bonus } };
+            args.BonusDamage += new DamageSpecifier { DamageDict = { [PiercingDamageType] = bonus } };
 
         SpecialAttack(ent, target);
     }
@@ -455,8 +458,8 @@ public sealed partial class TerrorSpiderSystem : EntitySystem
             || !_thresholds.TryGetThresholdForState(ent, MobState.Dead, out var max))
             return;
 
-        var maxHealth = (float) max.Value;
-        var health = maxHealth - (float) _damageable.GetTotalDamage((ent.Owner, damageable));
+        var maxHealth = (float)max.Value;
+        var health = maxHealth - (float)_damageable.GetTotalDamage((ent.Owner, damageable));
         var red = ent.Comp2;
         switch (red.Enrage)
         {
@@ -484,7 +487,7 @@ public sealed partial class TerrorSpiderSystem : EntitySystem
     /// <summary>MinutesAlive().</summary>
     public int MinutesAlive(TerrorSpiderComponent spider)
     {
-        return (int) ((_timing.CurTime - spider.CreatedAt).TotalMinutes);
+        return (int)((_timing.CurTime - spider.CreatedAt).TotalMinutes);
     }
 
     /// <summary>Недавно погиб паук — ИИ ползает по трубам чаще.</summary>

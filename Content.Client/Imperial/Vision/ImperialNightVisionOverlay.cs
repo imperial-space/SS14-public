@@ -37,7 +37,7 @@ public sealed class ImperialNightVisionOverlay : Overlay
             return;
 
         var handle = args.WorldHandle;
-        var lightScale = viewport.LightRenderTarget.Size / (Vector2) viewport.Size;
+        var lightScale = viewport.LightRenderTarget.Size / (Vector2)viewport.Size;
         var scale = viewport.RenderScale / (Vector2.One / lightScale);
         var matrix = viewport.LightRenderTarget.GetWorldToLocalMatrix(viewport.Eye, scale);
         var bounds = args.WorldBounds;

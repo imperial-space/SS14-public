@@ -36,6 +36,8 @@ public sealed partial class TerrorSpiderSystem
     private readonly Dictionary<EntityUid, int> _cocoonSteps = new();
     private readonly List<(TimeSpan At, EntityUid Spider, EntityUid Exit, EntityCoordinates Origin, bool Entered)> _ventTravels = new();
 
+    private const float HasTargetRange = 10f;
+
     private void UpdateAi(TimeSpan now)
     {
         UpdateVentTravel(now);
@@ -61,7 +63,7 @@ public sealed partial class TerrorSpiderSystem
     /// <summary>ListTargets(): живые не-пауки в радиусе зрения (10).</summary>
     private bool HasTarget(EntityUid spider)
     {
-        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(_transform.GetMapCoordinates(spider), 10))
+        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(_transform.GetMapCoordinates(spider), HasTargetRange))
         {
             if (mob.Owner == spider || _mobState.IsDead(mob) || HasComp<TerrorSpiderComponent>(mob) || HasComp<TerrorSpiderlingComponent>(mob))
                 continue;
@@ -86,7 +88,7 @@ public sealed partial class TerrorSpiderSystem
                 _pathToVent.Remove(ent);
                 _steering.Unregister(ent);
             }
-            else if (InRange(ent, path.Vent, 1.5f))
+            else if (InRange(ent, path.Vent, ent.Comp.AutomatedMovementRange))
             {
                 _pathToVent.Remove(ent);
                 _steering.Unregister(ent);
@@ -101,7 +103,7 @@ public sealed partial class TerrorSpiderSystem
         else if (spider.AiBreakLights && now > spider.LastBreakLight + BreakLightFrequency)
         {
             spider.LastBreakLight = now;
-            foreach (var light in _lookup.GetEntitiesInRange<PoweredLightComponent>(_transform.GetMapCoordinates(ent), 1.5f))
+            foreach (var light in _lookup.GetEntitiesInRange<PoweredLightComponent>(_transform.GetMapCoordinates(ent), ent.Comp.AutomatedMovementRange))
             {
                 if (_lights.TryDestroyBulb(light, light.Comp))
                 {
@@ -122,7 +124,7 @@ public sealed partial class TerrorSpiderSystem
         else if (spider.AiVentcrawls && now > spider.LastVentcrawl + ventFrequency && _random.Prob(spider.IdleVentcrawlChance / 100f))
         {
             spider.LastVentcrawl = now;
-            if (NearestVent(ent, 10, spider.AiVentBreaker) is { } vent)
+            if (NearestVent(ent, ent.Comp.AutomatedMovementRange2, spider.AiVentBreaker) is { } vent)
                 _pathToVent[ent] = (vent, 0);
         }
         else
@@ -284,7 +286,7 @@ public sealed partial class TerrorSpiderSystem
             return;
         }
 
-        if (InRange(ent, target, 1.5f))
+        if (InRange(ent, target, ent.Comp.CocoonTargetRange))
         {
             _cocoonSteps.Remove(ent);
             _steering.Unregister(ent);
@@ -310,7 +312,7 @@ public sealed partial class TerrorSpiderSystem
     {
         ent.Comp.LastCocoonObject = now;
         var pos = _transform.GetMapCoordinates(ent);
-        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(pos, 10))
+        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(pos, ent.Comp.SeekCocoonTargetRange))
         {
             if (_mobState.IsDead(mob) && !HasComp<TerrorSpiderComponent>(mob) && !Transform(mob).Anchored
                 && !_container.IsEntityInContainer(mob))
@@ -321,7 +323,7 @@ public sealed partial class TerrorSpiderSystem
             }
         }
 
-        foreach (var item in _lookup.GetEntitiesInRange<ItemComponent>(pos, 10))
+        foreach (var item in _lookup.GetEntitiesInRange<ItemComponent>(pos, ent.Comp.SeekCocoonTargetRange))
         {
             if (Transform(item).Anchored || _container.IsEntityInContainer(item) || HasComp<PaperComponent>(item))
                 continue;
@@ -361,40 +363,40 @@ public sealed partial class TerrorSpiderSystem
         switch (queen.NestStep)
         {
             case 0:
-            {
-                var ok = true;
-                var area = AreaName(ent).ToLowerInvariant();
-                // Гнездо в коридоре экипаж найдёт сразу.
-                if (area.Contains("hall") || area.Contains("коридор"))
-                    ok = false;
-                if (HasTarget(ent))
-                    ok = false;
-
-                var vent = NearestVent(ent, 10, false);
-                if (vent == null)
-                    ok = false;
-
-                if (ok && vent != null)
                 {
-                    queen.NestVent = vent;
-                    queen.NestStep = 1;
-                    _popup.PopupEntity(Loc.GetString("terror-spider-queen-settles", ("spider", ent.Owner)), ent, PopupType.Medium);
-                }
-                else if (vent is { } entry)
-                {
-                    if (!_pathToVent.ContainsKey(ent))
+                    var ok = true;
+                    var area = AreaName(ent).ToLowerInvariant();
+                    // Гнездо в коридоре экипаж найдёт сразу.
+                    if (area.Contains("hall") || area.Contains("коридор"))
+                        ok = false;
+                    if (HasTarget(ent))
+                        ok = false;
+
+                    var vent = NearestVent(ent, ent.Comp1.QueenAiRange, false);
+                    if (vent == null)
+                        ok = false;
+
+                    if (ok && vent != null)
                     {
-                        _popup.PopupEntity(Loc.GetString("terror-spider-queen-seeks-nest", ("spider", ent.Owner)), ent);
-                        _pathToVent[ent] = (entry, 0);
+                        queen.NestVent = vent;
+                        queen.NestStep = 1;
+                        _popup.PopupEntity(Loc.GetString("terror-spider-queen-settles", ("spider", ent.Owner)), ent, PopupType.Medium);
                     }
+                    else if (vent is { } entry)
+                    {
+                        if (!_pathToVent.ContainsKey(ent))
+                        {
+                            _popup.PopupEntity(Loc.GetString("terror-spider-queen-seeks-nest", ("spider", ent.Owner)), ent);
+                            _pathToVent[ent] = (entry, 0);
+                        }
+                    }
+                    else
+                    {
+                        queen.NestStep = -1;
+                        Log.Warning($"{ToPrettyString(ent)} spawned in an area without a vent; its AI has been deactivated.");
+                    }
+                    break;
                 }
-                else
-                {
-                    queen.NestStep = -1;
-                    Log.Warning($"{ToPrettyString(ent)} spawned in an area without a vent; its AI has been deactivated.");
-                }
-                break;
-            }
             case 1:
                 if (now > queen.LastNestSetup + queen.NestFrequency)
                 {
@@ -417,7 +419,7 @@ public sealed partial class TerrorSpiderSystem
                 }
                 break;
             case 3:
-                if (now > queen.LastSpawn + queen.SpawnFrequency && _random.Prob(0.2f))
+                if (now > queen.LastSpawn + queen.SpawnFrequency && _random.Prob(ent.Comp1.QueenAiChance))
                 {
                     if (NestIsFull(ent))
                     {
@@ -432,11 +434,11 @@ public sealed partial class TerrorSpiderSystem
                 }
                 break;
             case 4:
-                if (now > queen.LastSpawn + queen.SpawnFrequency && _random.Prob(0.2f) && !NestIsFull(ent))
+                if (now > queen.LastSpawn + queen.SpawnFrequency && _random.Prob(ent.Comp1.QueenAiChance) && !NestIsFull(ent))
                     queen.NestStep = 5;
                 break;
             case 5:
-                if (now > queen.LastSpawn + queen.SpawnFrequency && _random.Prob(0.2f))
+                if (now > queen.LastSpawn + queen.SpawnFrequency && _random.Prob(ent.Comp1.QueenAiChance))
                 {
                     if (NestIsFull(ent))
                     {

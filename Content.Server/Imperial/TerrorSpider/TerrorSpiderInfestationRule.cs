@@ -68,7 +68,7 @@ public sealed class TerrorSpiderInfestationRule : StationEventSystem<TerrorSpide
         }
 
         component.AnnounceAt = Timing.CurTime + TimeSpan.FromSeconds(
-            RobustRandom.NextFloat((float) component.MinAnnounceDelay.TotalSeconds, (float) component.MaxAnnounceDelay.TotalSeconds));
+            RobustRandom.NextFloat((float)component.MinAnnounceDelay.TotalSeconds, (float)component.MaxAnnounceDelay.TotalSeconds));
     }
 
     protected override void ActiveTick(EntityUid uid, TerrorSpiderInfestationRuleComponent component, GameRuleComponent gameRule, float frameTime)

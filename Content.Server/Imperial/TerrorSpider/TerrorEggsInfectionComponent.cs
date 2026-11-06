@@ -18,4 +18,13 @@ public sealed partial class TerrorEggsInfectionComponent : Component
 
     [ViewVariables]
     public int EggsHatched;
+
+    [DataField]
+    public TimeSpan EggsLifeBoozePowerDelay = TimeSpan.FromSeconds(4.5);
+
+    [DataField]
+    public TimeSpan HatchEggDuration = TimeSpan.FromSeconds(20);
+
+    [DataField]
+    public float EggsRemovalAmount = 15f;
 }
