@@ -120,6 +120,12 @@ public sealed class ContractorSystem : EntitySystem
     private readonly List<(TimeSpan At, Action Act)> _scheduled = new();
     private EntityUid? _holdingGrid;
 
+    private static readonly EntProtoId BoxContractorKit = "BoxContractorKit";
+
+    private static readonly TimeSpan FlashFlashDurationDelay = TimeSpan.FromSeconds(3);
+
+    private const int ExtractionRange = 3;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -528,7 +534,7 @@ public sealed class ContractorSystem : EntitySystem
         if (TargetBody(contract) is not { } target || !InArea(user, contract.Dropoff) || !InArea(target, contract.Dropoff))
             return false;
 
-        if (FindFreeTile(user, 3, contract.Dropoff) is not { } tile)
+        if (FindFreeTile(user, ExtractionRange, contract.Dropoff) is not { } tile)
             return false;
 
         LaunchExtractionPod(mindId, contract, tile);
@@ -634,7 +640,7 @@ public sealed class ContractorSystem : EntitySystem
         var belongings = StripBelongings(victim);
 
         // start_exit_sequence(): капсула закрывается и улетает.
-        Schedule(TimeSpan.FromSeconds(1), () =>
+        Schedule(ent.Comp.PodEnteredDelay, () =>
         {
             if (TerminatingOrDeleted(ent))
                 return;
@@ -645,8 +651,8 @@ public sealed class ContractorSystem : EntitySystem
                 SendToHolding(victim);
                 var comp = EnsureComp<ContractorVictimComponent>(victim);
                 comp.Level = 0;
-                comp.NextExperience = _timing.CurTime + TimeSpan.FromSeconds(3);
-                comp.ReturnAt = _timing.CurTime + TimeSpan.FromSeconds(3) + CaptureTime;
+                comp.NextExperience = _timing.CurTime + ent.Comp.ExperienceDelay;
+                comp.ReturnAt = _timing.CurTime + ent.Comp.ReturnDelay + CaptureTime;
                 comp.Belongings = belongings;
                 comp.Dropoff = dropoff;
                 comp.FallbackReturn = returnCoords;
@@ -661,7 +667,7 @@ public sealed class ContractorSystem : EntitySystem
         if (contract is { Status: ContractorContractStatus.Complete })
         {
             var ransom = contract.Ransom * _random.Next(11, 14) / 10;
-            Schedule(TimeSpan.FromSeconds(3), () => PayRansom(mindId, ransom));
+            Schedule(ent.Comp.PodEnteredDelay2, () => PayRansom(mindId, ransom));
         }
 
         RefreshUplinks(mindId);
@@ -673,7 +679,7 @@ public sealed class ContractorSystem : EntitySystem
         if (CompOrNull<MindComponent>(mindId)?.OwnedEntity is not { } contractor || TerminatingOrDeleted(contractor))
             return;
 
-        var share = (int) (ransom * 0.35f);
+        var share = (int)(ransom * 0.35f);
         var cash = Spawn(Cash, _transform.GetMoverCoordinates(contractor));
         if (TryComp<StackComponent>(cash, out var stack))
             _stack.SetCount((cash, stack), share);
@@ -774,23 +780,23 @@ public sealed class ContractorSystem : EntitySystem
                 case 0:
                     // Лечим, чтобы вывести из крита.
                     var omnizine = new Solution();
-                    omnizine.AddReagent(Omnizine, FixedPoint2.New(20));
+                    omnizine.AddReagent(Omnizine, victim.UpdateVictimsQuantity);
                     _bloodstream.TryAddToBloodstream(uid, omnizine);
                     Flash(uid);
-                    _drunk.TryApplyDrunkenness(uid, TimeSpan.FromSeconds(6));
+                    _drunk.TryApplyDrunkenness(uid, victim.UpdateVictimsBoozePowerDelay);
                     SendChat(uid, Loc.GetString("contractor-victim-1"));
-                    next = TimeSpan.FromSeconds(6);
+                    next = victim.NextDelay;
                     break;
                 case 1:
                     SendChat(uid, Loc.GetString("contractor-victim-2"));
-                    _drunk.TryApplyDrunkenness(uid, TimeSpan.FromSeconds(3.5));
-                    next = TimeSpan.FromSeconds(6.5);
+                    _drunk.TryApplyDrunkenness(uid, victim.UpdateVictimsBoozePowerDelay2);
+                    next = victim.NextDelay2;
                     break;
                 case 2:
                     SendChat(uid, Loc.GetString("contractor-victim-3"));
                     Flash(uid);
-                    _drunk.TryApplyDrunkenness(uid, TimeSpan.FromSeconds(5));
-                    next = TimeSpan.FromSeconds(3);
+                    _drunk.TryApplyDrunkenness(uid, victim.UpdateVictimsBoozePowerDelay3);
+                    next = victim.NextDelay3;
                     break;
                 case 3:
                     SendChat(uid, Loc.GetString("contractor-victim-4"));
@@ -798,7 +804,7 @@ public sealed class ContractorSystem : EntitySystem
                     break;
                 case 4:
                     Flash(uid);
-                    _status.TryAddStatusEffectDuration(uid, SleepingSystem.StatusEffectForcedSleeping, TimeSpan.FromSeconds(20));
+                    _status.TryAddStatusEffectDuration(uid, SleepingSystem.StatusEffectForcedSleeping, victim.UpdateVictimsDuration);
                     SendChat(uid, Loc.GetString("contractor-victim-5"));
                     _drunk.TryApplyDrunkenness(uid, TimeSpan.FromSeconds(12));
                     break;
@@ -815,7 +821,7 @@ public sealed class ContractorSystem : EntitySystem
     {
         EntityCoordinates? destination = null;
         if (ent.Comp.Dropoff is { } dropoff && !TerminatingOrDeleted(dropoff))
-            destination = FindFreeTile(dropoff, 6, dropoff);
+            destination = FindFreeTile(dropoff, ent.Comp.ReturnVictimRange, dropoff);
         destination ??= ent.Comp.FallbackReturn;
 
         if (destination is { } coords)
@@ -838,14 +844,14 @@ public sealed class ContractorSystem : EntitySystem
             QueueDel(belongings);
 
         Flash(ent);
-        _drunk.TryApplyDrunkenness(ent, TimeSpan.FromSeconds(5));
+        _drunk.TryApplyDrunkenness(ent, ent.Comp.ReturnVictimBoozePowerDelay);
         SendChat(ent, Loc.GetString("contractor-victim-returned"));
         RemCompDeferred<ContractorVictimComponent>(ent);
     }
 
     private void Flash(EntityUid uid)
     {
-        _flash.Flash(uid, null, null, TimeSpan.FromSeconds(3), 0.8f, displayPopup: false);
+        _flash.Flash(uid, null, null, FlashFlashDurationDelay, 0.8f, displayPopup: false);
     }
 
     private void SendChat(EntityUid uid, string text)
@@ -991,7 +997,7 @@ public sealed class ContractorSystem : EntitySystem
             return false;
         }
 
-        var kit = Spawn("BoxContractorKit", _transform.GetMoverCoordinates(body));
+        var kit = Spawn(BoxContractorKit, _transform.GetMoverCoordinates(body));
         _hands.TryPickupAnyHand(body, kit);
         return true;
     }
