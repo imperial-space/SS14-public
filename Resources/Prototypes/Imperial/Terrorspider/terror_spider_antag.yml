@@ -21,3 +21,15 @@
     sortWeight: 60
   - type: RoleBriefing
     briefing: terror-spider-role-greeting
+
+# Роль игрока, занявшего паука Ужаса через гост-роль.
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleTerrorSpider
+  name: roles-antag-terror-spider-name
+  components:
+  - type: MindRole
+    antagPrototype: TerrorSpider
+    exclusiveAntag: true
+    roleType: TeamAntagonist
+    sortWeight: 60

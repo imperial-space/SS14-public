@@ -1,0 +1,4 @@
+- type: shader
+  id: ImperialAdditive
+  kind: source
+  path: "/Textures/Shaders/Imperial/additive.swsl"
