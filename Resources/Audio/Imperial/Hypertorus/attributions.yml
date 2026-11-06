@@ -1,0 +1,4 @@
+- files: ["HFR_critical_explosion.ogg", "emitter2.ogg", "hypertorus_nominal.ogg", "engine_alert1.ogg", "engine_alert2.ogg", "terminal_alert.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation via BandaStation (sound/machines/hypertorus, sound/machines/engine_alert, sound/machines/terminal, sound/items/weapons/emitter2.ogg)"
+  source: "https://github.com/tgstation/tgstation"

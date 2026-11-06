@@ -1,0 +1,494 @@
+# Термоядерный реактор «Гиперторус» (HFR) из SS13: code/modules/atmospherics/machinery/components/fusion.
+# Сборка: коробки 3×3 (ядро в центре, стороны и углы вокруг), мультитул по коробке ядра — реактор развернётся,
+# мультитул по интерфейсу — детали свяжутся. Контур охлаждения ядра — трубы ВТОРОГО слоя под боковыми деталями.
+
+# ────────────── Детали ──────────────
+
+- type: entity
+  id: ImperialHypertorusPartBase
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 500
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Appearance
+
+- type: entity
+  id: ImperialHypertorusPortBase
+  parent: ImperialHypertorusPartBase
+  abstract: true
+  components:
+  - type: NodeContainer
+    nodes:
+      pipe:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+  - type: AtmosPipeColor
+  - type: PipeRestrictOverlap
+
+- type: entity
+  id: ImperialHypertorusFuelInput
+  parent: ImperialHypertorusPortBase
+  name: HFR fuel input port
+  description: Input port for the Hypertorus Fusion Reactor, designed to take in fuels with the optimal fuel mix being a 50/50 split.
+  components:
+  - type: Sprite
+    sprite: Imperial/Hypertorus/hypertorus.rsi
+    noRot: true
+    layers:
+    - state: pipe
+    - state: fuel_input
+      map: [ "enum.HypertorusVisualLayers.Base" ]
+    - state: fuel_input_active
+      map: [ "enum.HypertorusVisualLayers.Active" ]
+      shader: unshaded
+      visible: false
+    - state: crack
+      map: [ "enum.HypertorusVisualLayers.Crack" ]
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.HypertorusVisuals.Open:
+        enum.HypertorusVisualLayers.Base:
+          True: { state: fuel_input_open }
+          False: { state: fuel_input }
+      enum.HypertorusVisuals.Active:
+        enum.HypertorusVisualLayers.Active:
+          True: { visible: true }
+          False: { visible: false }
+      enum.HypertorusVisuals.Cracked:
+        enum.HypertorusVisualLayers.Crack:
+          True: { visible: true }
+          False: { visible: false }
+  - type: HypertorusPart
+    partType: FuelInput
+    box: ImperialHypertorusBoxFuel
+
+- type: entity
+  id: ImperialHypertorusModeratorInput
+  parent: ImperialHypertorusPortBase
+  name: HFR moderator input port
+  description: Moderator port for the Hypertorus Fusion Reactor, designed to move gases inside the machine to cool and control the flow of the reaction.
+  components:
+  - type: Sprite
+    sprite: Imperial/Hypertorus/hypertorus.rsi
+    noRot: true
+    layers:
+    - state: pipe
+    - state: moderator_input
+      map: [ "enum.HypertorusVisualLayers.Base" ]
+    - state: moderator_input_active
+      map: [ "enum.HypertorusVisualLayers.Active" ]
+      shader: unshaded
+      visible: false
+    - state: crack
+      map: [ "enum.HypertorusVisualLayers.Crack" ]
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.HypertorusVisuals.Open:
+        enum.HypertorusVisualLayers.Base:
+          True: { state: moderator_input_open }
+          False: { state: moderator_input }
+      enum.HypertorusVisuals.Active:
+        enum.HypertorusVisualLayers.Active:
+          True: { visible: true }
+          False: { visible: false }
+      enum.HypertorusVisuals.Cracked:
+        enum.HypertorusVisualLayers.Crack:
+          True: { visible: true }
+          False: { visible: false }
+  - type: HypertorusPart
+    partType: ModeratorInput
+    box: ImperialHypertorusBoxModerator
+
+- type: entity
+  id: ImperialHypertorusWasteOutput
+  parent: ImperialHypertorusPortBase
+  name: HFR waste output port
+  description: Waste port for the Hypertorus Fusion Reactor, designed to output the hot waste gases coming from the core of the machine.
+  components:
+  - type: Sprite
+    sprite: Imperial/Hypertorus/hypertorus.rsi
+    noRot: true
+    layers:
+    - state: pipe
+    - state: waste_output
+      map: [ "enum.HypertorusVisualLayers.Base" ]
+    - state: waste_output_active
+      map: [ "enum.HypertorusVisualLayers.Active" ]
+      shader: unshaded
+      visible: false
+    - state: crack
+      map: [ "enum.HypertorusVisualLayers.Crack" ]
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.HypertorusVisuals.Open:
+        enum.HypertorusVisualLayers.Base:
+          True: { state: waste_output_open }
+          False: { state: waste_output }
+      enum.HypertorusVisuals.Active:
+        enum.HypertorusVisualLayers.Active:
+          True: { visible: true }
+          False: { visible: false }
+      enum.HypertorusVisuals.Cracked:
+        enum.HypertorusVisualLayers.Crack:
+          True: { visible: true }
+          False: { visible: false }
+  - type: HypertorusPart
+    partType: WasteOutput
+    box: ImperialHypertorusBoxWaste
+
+- type: entity
+  id: ImperialHypertorusInterface
+  parent: ImperialHypertorusPartBase
+  name: HFR interface
+  description: Interface for the HFR to control the flow of the reaction.
+  components:
+  - type: Sprite
+    sprite: Imperial/Hypertorus/hypertorus.rsi
+    noRot: true
+    layers:
+    - state: interface
+      map: [ "enum.HypertorusVisualLayers.Base" ]
+    - state: interface_active
+      map: [ "enum.HypertorusVisualLayers.Active" ]
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.HypertorusVisuals.Open:
+        enum.HypertorusVisualLayers.Base:
+          True: { state: interface_open }
+          False: { state: interface }
+      enum.HypertorusVisuals.Active:
+        enum.HypertorusVisualLayers.Active:
+          True: { visible: true }
+          False: { visible: false }
+  - type: HypertorusPart
+    partType: Interface
+    box: ImperialHypertorusBoxInterface
+  - type: ActivatableUI
+    key: enum.HypertorusUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.HypertorusUiKey.Key:
+        type: HypertorusBoundUserInterface
+
+- type: entity
+  id: ImperialHypertorusCorner
+  parent: ImperialHypertorusPartBase
+  name: HFR corner
+  description: Structural piece of the machine.
+  components:
+  - type: Sprite
+    sprite: Imperial/Hypertorus/hypertorus.rsi
+    noRot: true
+    layers:
+    - state: corner
+      map: [ "enum.HypertorusVisualLayers.Base" ]
+    - state: corner_active
+      map: [ "enum.HypertorusVisualLayers.Active" ]
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.HypertorusVisuals.Open:
+        enum.HypertorusVisualLayers.Base:
+          True: { state: corner_open }
+          False: { state: corner }
+      enum.HypertorusVisuals.Active:
+        enum.HypertorusVisualLayers.Active:
+          True: { visible: true }
+          False: { visible: false }
+  - type: HypertorusPart
+    partType: Corner
+    box: ImperialHypertorusBoxCorner
+
+- type: entity
+  id: ImperialHypertorusCore
+  parent: ImperialHypertorusPartBase
+  name: HFR core
+  description: This is the Hypertorus Fusion Reactor core, an advanced piece of technology to finely tune the reaction inside of the machine. It has I/O for cooling gases.
+  components:
+  - type: Sprite
+    sprite: Imperial/Hypertorus/hypertorus.rsi
+    noRot: true
+    layers:
+    - state: core
+      map: [ "enum.HypertorusVisualLayers.Base" ]
+    - state: core_active
+      map: [ "enum.HypertorusVisualLayers.Active" ]
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.HypertorusVisuals.Open:
+        enum.HypertorusVisualLayers.Base:
+          True: { state: core_open }
+          False: { state: core }
+      enum.HypertorusVisuals.Active:
+        enum.HypertorusVisualLayers.Active:
+          True: { visible: true }
+          False: { visible: false }
+  - type: HypertorusCore
+  - type: HypertorusCorePanel
+  # Контур охлаждения: второй слой труб, подключается с любой стороны и проходит насквозь.
+  - type: NodeContainer
+    nodes:
+      pipe:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: Fourway
+        pipeLayer: Secondary
+  - type: AtmosDevice
+  - type: ApcPowerReceiver
+    powerLoad: 100
+  - type: ExtensionCableReceiver
+  - type: RadiationSource
+    intensity: 3
+    slope: 0.5
+    enabled: false
+  - type: AmbientSound
+    enabled: false
+    range: 15
+    volume: -6
+    sound:
+      path: /Audio/Imperial/Hypertorus/hypertorus_nominal.ogg
+
+# ────────────── Коробки ──────────────
+
+- type: entity
+  id: ImperialHypertorusBoxBase
+  parent: BaseItem
+  abstract: true
+  name: HFR box
+  description: If you see this, call the police.
+  components:
+  - type: Item
+    size: Huge
+  - type: Sprite
+    sprite: Imperial/Hypertorus/hypertorus.rsi
+
+- type: entity
+  id: ImperialHypertorusBoxCorner
+  parent: ImperialHypertorusBoxBase
+  name: HFR box corner
+  description: Place this as the corner of your 3x3 multiblock fusion reactor.
+  components:
+  - type: Sprite
+    state: box_corner
+  - type: HypertorusBox
+    boxType: Corner
+    part: ImperialHypertorusCorner
+
+- type: entity
+  id: ImperialHypertorusBoxFuel
+  parent: ImperialHypertorusBoxBase
+  name: HFR box fuel input
+  description: Place this on the sides of the core box of your 3x3 multiblock fusion reactor.
+  components:
+  - type: Sprite
+    state: box_fuel
+  - type: HypertorusBox
+    boxType: Body
+    part: ImperialHypertorusFuelInput
+
+- type: entity
+  id: ImperialHypertorusBoxModerator
+  parent: ImperialHypertorusBoxBase
+  name: HFR box moderator input
+  description: Place this on the sides of the core box of your 3x3 multiblock fusion reactor.
+  components:
+  - type: Sprite
+    state: box_moderator
+  - type: HypertorusBox
+    boxType: Body
+    part: ImperialHypertorusModeratorInput
+
+- type: entity
+  id: ImperialHypertorusBoxWaste
+  parent: ImperialHypertorusBoxBase
+  name: HFR box waste output
+  description: Place this on the sides of the core box of your 3x3 multiblock fusion reactor.
+  components:
+  - type: Sprite
+    state: box_waste
+  - type: HypertorusBox
+    boxType: Body
+    part: ImperialHypertorusWasteOutput
+
+- type: entity
+  id: ImperialHypertorusBoxInterface
+  parent: ImperialHypertorusBoxBase
+  name: HFR box interface
+  description: Place this on the sides of the core box of your 3x3 multiblock fusion reactor.
+  components:
+  - type: Sprite
+    state: box_body
+  - type: HypertorusBox
+    boxType: Body
+    part: ImperialHypertorusInterface
+
+- type: entity
+  id: ImperialHypertorusBoxCore
+  parent: ImperialHypertorusBoxBase
+  name: HFR box core
+  description: Activate this with a multitool to deploy the full machine after setting up the other boxes.
+  components:
+  - type: Sprite
+    state: box_core
+  - type: HypertorusBox
+    boxType: Core
+    part: ImperialHypertorusCore
+
+# Полный набор коробок для спавна.
+- type: entity
+  id: ImperialCrateHypertorus
+  parent: CrateEngineeringSecure
+  name: hypertorus fusion reactor crate
+  components:
+  - type: StorageFill
+    contents:
+    - id: ImperialHypertorusBoxCore
+    - id: ImperialHypertorusBoxFuel
+    - id: ImperialHypertorusBoxModerator
+    - id: ImperialHypertorusBoxWaste
+    - id: ImperialHypertorusBoxInterface
+    - id: ImperialHypertorusBoxCorner
+      amount: 4
+    - id: ImperialHypertorusGuide
+
+# ────────────── Прочее ──────────────
+
+- type: entity
+  id: ImperialHypertorusGuide
+  parent: Paper
+  name: paper- 'Quick guide to safe handling of the HFR'
+  components:
+  - type: Paper
+    content: hypertorus-guide-content
+
+- type: entity
+  id: ImperialHypertorusParticle
+  parent: BaseBullet
+  name: nuclear particle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Power/Generation/PA/particle.rsi
+      state: particle0
+      shader: unshaded
+  - type: Projectile
+    impactEffect: null
+    soundHit:
+      path: /Audio/Imperial/Hypertorus/emitter2.ogg
+    damage:
+      types:
+        Radiation: 10
+  - type: TimedDespawn
+    lifetime: 5
+
+- type: entity
+  id: ImperialHypertorusRadiationPulse
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RadiationSource
+    intensity: 30
+    slope: 1
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: soundCollection
+  id: HypertorusCalm
+  files:
+  - /Audio/Imperial/Hypertorus/accent/normal/1.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/2.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/3.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/4.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/5.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/6.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/7.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/8.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/9.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/10.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/11.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/12.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/13.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/14.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/15.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/16.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/17.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/18.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/19.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/20.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/21.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/22.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/23.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/24.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/25.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/26.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/27.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/28.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/29.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/30.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/31.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/32.ogg
+  - /Audio/Imperial/Hypertorus/accent/normal/33.ogg
+
+- type: soundCollection
+  id: HypertorusMelting
+  files:
+  - /Audio/Imperial/Hypertorus/accent/delam/1.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/2.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/3.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/4.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/5.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/6.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/7.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/8.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/9.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/10.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/11.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/12.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/13.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/14.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/15.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/16.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/17.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/18.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/19.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/20.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/21.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/22.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/23.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/24.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/25.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/26.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/27.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/28.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/29.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/30.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/31.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/32.ogg
+  - /Audio/Imperial/Hypertorus/accent/delam/33.ogg

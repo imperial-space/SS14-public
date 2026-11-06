@@ -1,0 +1,103 @@
+# Рецепты топлива гиперторуса (hfr_fuel_datums.dm). Газы SS13, которых нет в SS14:
+# фреон — Frezon, плюоксий — Ozonium, прото-нитрат — Phazonium, нитрий — Thermonium,
+# заукер и миазмы — Ammonia, хилиум — NitrousOxide, галон — CarbonDioxide.
+
+- type: hypertorusFuel
+  id: PlasmaOxygen
+  name: hypertorus-fuel-plasma-oxygen
+  order: 1
+  negativeTemperatureMultiplier: 2.5
+  positiveTemperatureMultiplier: 0.1
+  energyConcentrationMultiplier: 10
+  fuelConsumptionMultiplier: 3.3
+  gasProductionMultiplier: 1.4
+  temperatureChangeMultiplier: 0.6
+  requirements: [ Plasma, Oxygen ]
+  primaryProducts: [ CarbonDioxide, WaterVapor ]
+  secondaryProducts: [ CarbonDioxide, WaterVapor, Frezon, NitrousOxide, Ozonium, CarbonDioxide ]
+  meltdownFlags: BaseExplosion, MinimumSpread
+
+- type: hypertorusFuel
+  id: HydrogenOxygen
+  name: hypertorus-fuel-hydrogen-oxygen
+  order: 2
+  negativeTemperatureMultiplier: 2
+  positiveTemperatureMultiplier: 0.6
+  energyConcentrationMultiplier: 3
+  fuelConsumptionMultiplier: 1.1
+  gasProductionMultiplier: 0.9
+  temperatureChangeMultiplier: 0.75
+  requirements: [ Hydrogen, Oxygen ]
+  primaryProducts: [ Helium, Nitrogen ]
+  secondaryProducts: [ Helium, Plasma, Oxygen, Nitrogen, BZ, HyperNoblium ]
+  meltdownFlags: BaseExplosion, Emp, MediumSpread
+
+- type: hypertorusFuel
+  id: TritiumOxygen
+  name: hypertorus-fuel-tritium-oxygen
+  order: 3
+  negativeTemperatureMultiplier: 2.1
+  positiveTemperatureMultiplier: 0.5
+  energyConcentrationMultiplier: 2
+  fuelConsumptionMultiplier: 1.2
+  gasProductionMultiplier: 0.8
+  temperatureChangeMultiplier: 0.8
+  requirements: [ Tritium, Oxygen ]
+  primaryProducts: [ Helium, Ozonium ]
+  secondaryProducts: [ Helium, Plasma, Oxygen, Nitrogen, BZ, HyperNoblium ]
+  meltdownFlags: BaseExplosion, RadiationPulse, MediumSpread
+
+- type: hypertorusFuel
+  id: HydrogenTritium
+  name: hypertorus-fuel-hydrogen-tritium
+  order: 4
+  temperatureChangeMultiplier: 0.85
+  requirements: [ Hydrogen, Tritium ]
+  primaryProducts: [ Helium ]
+  secondaryProducts: [ Helium, Plasma, Oxygen, Nitrogen, BZ, HyperNoblium ]
+  meltdownFlags: MediumExplosion, RadiationPulse, Emp, MediumSpread
+
+- type: hypertorusFuel
+  id: HyperNobliumHydrogen
+  name: hypertorus-fuel-hypernoblium-hydrogen
+  order: 5
+  negativeTemperatureMultiplier: 0.2
+  positiveTemperatureMultiplier: 2.2
+  energyConcentrationMultiplier: 0.2
+  fuelConsumptionMultiplier: 0.55
+  gasProductionMultiplier: 1.4
+  temperatureChangeMultiplier: 0.9
+  requirements: [ HyperNoblium, Hydrogen ]
+  primaryProducts: [ AntiNoblium ]
+  secondaryProducts: [ AntiNoblium, Helium, Phazonium, Ammonia, NitrousOxide, Ammonia ]
+  meltdownFlags: DevastatingExplosion, RadiationPulse, Emp, BigSpread
+
+- type: hypertorusFuel
+  id: HyperNobliumTritium
+  name: hypertorus-fuel-hypernoblium-tritium
+  order: 6
+  negativeTemperatureMultiplier: 0.1
+  positiveTemperatureMultiplier: 2.5
+  energyConcentrationMultiplier: 0.1
+  fuelConsumptionMultiplier: 0.45
+  gasProductionMultiplier: 1.7
+  temperatureChangeMultiplier: 0.95
+  requirements: [ HyperNoblium, Tritium ]
+  primaryProducts: [ AntiNoblium ]
+  secondaryProducts: [ AntiNoblium, Helium, Phazonium, Ammonia, NitrousOxide, Ammonia ]
+  meltdownFlags: DevastatingExplosion, RadiationPulse, Emp, BigSpread
+
+- type: hypertorusFuel
+  id: HyperNobliumAntiNoblium
+  name: hypertorus-fuel-hypernoblium-antinoblium
+  order: 7
+  negativeTemperatureMultiplier: 0.01
+  positiveTemperatureMultiplier: 3.5
+  energyConcentrationMultiplier: 2
+  fuelConsumptionMultiplier: 0.01
+  gasProductionMultiplier: 3
+  temperatureChangeMultiplier: 1
+  requirements: [ HyperNoblium, AntiNoblium ]
+  primaryProducts: [ Helium ]
+  secondaryProducts: [ Plasma, Oxygen, Nitrogen, Phazonium, Thermonium, Ammonia ]
+  meltdownFlags: DevastatingExplosion, RadiationPulse, Emp, MassiveSpread, CriticalMeltdown
