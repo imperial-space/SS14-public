@@ -11,7 +11,7 @@ public sealed class DiseaseInstance
     /// <summary>Прототип готовой болезни; null — собранная вирусологом.</summary>
     public ProtoId<DiseasePrototype>? Proto;
 
-    public string Name = "Неизвестно";
+    public string Name = Loc.GetString("disease-name-unknown");
     public LocId Agent = "disease-agent-unknown";
     public LocId? Description;
 
