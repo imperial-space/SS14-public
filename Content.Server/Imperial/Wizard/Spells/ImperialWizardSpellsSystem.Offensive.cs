@@ -80,6 +80,8 @@ public sealed partial class ImperialWizardSpellsSystem
     private static readonly FixedPoint2 SanguineHitAmount = -50;
     private static readonly FixedPoint2 SanguineHitAmount2 = 50;
 
+    private static readonly EntProtoId Lightning2 = "Lightning";
+
     private void InitializeOffensive()
     {
         SubscribeLocalEvent<ImperialSmiteSpellComponent, ImperialTouchHitEvent>(OnSmite);
@@ -632,7 +634,7 @@ public sealed partial class ImperialWizardSpellsSystem
         var energy = ent.Comp.Energy;
         for (var bounce = ent.Comp.Bounces; ; bounce--)
         {
-            _lightning.ShootLightning(from, to, "Lightning", triggerLightningEvents: false);
+            _lightning.ShootLightning(from, to, Lightning2, triggerLightningEvents: false);
             _audio.PlayPvs(ShockSound, to);
             if (_antimagic.CanBlockMagic(to))
                 _popup.PopupEntity(Loc.GetString("imperial-spell-tesla-absorb", ("target", to)), to, PopupType.Medium);
@@ -686,7 +688,7 @@ public sealed partial class ImperialWizardSpellsSystem
             if (!next.Valid)
                 break;
 
-            _lightning.ShootLightning(current, next, "Lightning", triggerLightningEvents: false);
+            _lightning.ShootLightning(current, next, Lightning2, triggerLightningEvents: false);
             hit.Add(next);
             current = next;
         }

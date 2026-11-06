@@ -24,6 +24,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
+using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server.Imperial.Wizard.Spells;
 
@@ -84,6 +85,8 @@ public sealed partial class ImperialWizardSpellsSystem
     private const float ApplyBoltFireballSlope = 4f;
     private const float ApplyBoltFireballMaxTileIntensity = 6f;
     private static readonly FixedPoint2 ApplyBoltBoozeQuantity = 15;
+
+    private static readonly ProtoId<ReagentPrototype> EthanolReagent = "Ethanol";
 
     private void InitializeMagicGuns()
     {
@@ -343,7 +346,7 @@ public sealed partial class ImperialWizardSpellsSystem
                 break;
             case ImperialMagicBolt.Booze when isMob:
                 if (_solutions.TryGetSolution(target, "chemicals", out var chem, out _))
-                    _solutions.TryAddReagent(chem.Value, "Ethanol", ApplyBoltBoozeQuantity, out _);
+                    _solutions.TryAddReagent(chem.Value, EthanolReagent, ApplyBoltBoozeQuantity, out _);
                 break;
             case ImperialMagicBolt.Hallucination when isMob:
                 _statusNew.TryAddStatusEffectDuration(target, StatusEffectSeeingRainbow, ApplyBoltHallucinationDuration);

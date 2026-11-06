@@ -72,6 +72,9 @@ public sealed class ImperialWizardSummonEventsSystem : EntitySystem
     private static readonly TimeSpan UpperDelay2 = TimeSpan.FromMinutes(1);
     private static readonly TimeSpan InvincibilityDelay = TimeSpan.FromSeconds(40);
 
+    private static readonly EntProtoId ClothingHeadHatWizard = "ClothingHeadHatWizard";
+    private static readonly EntProtoId ClothingOuterWizard = "ClothingOuterWizard";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -357,8 +360,8 @@ public sealed class ImperialWizardSummonEventsSystem : EntitySystem
     {
         foreach (var human in Humans())
         {
-            Curse(human, "head", "ClothingHeadHatWizard");
-            Curse(human, "outerClothing", "ClothingOuterWizard");
+            Curse(human, "head", ClothingHeadHatWizard);
+            Curse(human, "outerClothing", ClothingOuterWizard);
         }
 
         Announce("imperial-wizard-event-cursed-items");

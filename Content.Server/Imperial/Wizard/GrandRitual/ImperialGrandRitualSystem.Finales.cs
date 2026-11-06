@@ -369,7 +369,7 @@ public sealed partial class ImperialGrandRitualSystem
             if (victim == invoker)
             {
                 // untie_shoes на максимум, выкрикивается.
-                if (_spellSystem.FindSpell(invoker, "ImperialSpellTieShoes") != null)
+                if (_spellSystem.FindSpell(invoker, ImperialSpellTieShoes) != null)
                     continue;
 
                 if (_spellbook.GrantSpell(invoker, ImperialSpellTieShoes) is { } spell && TryComp<ImperialSpellComponent>(spell, out var comp))
