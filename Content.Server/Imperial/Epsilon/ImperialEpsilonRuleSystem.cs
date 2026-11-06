@@ -143,7 +143,7 @@ public sealed class ImperialEpsilonRuleSystem : GameRuleSystem<ImperialEpsilonRu
             return;
         }
 
-        var elapsed = (float) (now - start).TotalSeconds;
+        var elapsed = (float)(now - start).TotalSeconds;
         switch (rule.Stage)
         {
             case EpsilonStage.Announcing when elapsed >= EpsilonTimeline.LightsOutStart:
@@ -151,81 +151,81 @@ public sealed class ImperialEpsilonRuleSystem : GameRuleSystem<ImperialEpsilonRu
                 break;
 
             case EpsilonStage.LightsOut:
-            {
-                var fraction = Math.Clamp((elapsed - EpsilonTimeline.LightsOutStart) / (EpsilonTimeline.LightsOutEnd - EpsilonTimeline.LightsOutStart), 0f, 1f);
-                var target = (int) MathF.Ceiling(rule.Lights.Count * fraction);
-                for (; rule.LightsOff < target; rule.LightsOff++)
                 {
-                    var light = rule.Lights[rule.LightsOff];
-                    if (!TerminatingOrDeleted(light))
-                        _lights.SetState(light, false);
-                }
+                    var fraction = Math.Clamp((elapsed - EpsilonTimeline.LightsOutStart) / (EpsilonTimeline.LightsOutEnd - EpsilonTimeline.LightsOutStart), 0f, 1f);
+                    var target = (int)MathF.Ceiling(rule.Lights.Count * fraction);
+                    for (; rule.LightsOff < target; rule.LightsOff++)
+                    {
+                        var light = rule.Lights[rule.LightsOff];
+                        if (!TerminatingOrDeleted(light))
+                            _lights.SetState(light, false);
+                    }
 
-                if (elapsed >= EpsilonTimeline.EmergencyLights)
-                {
-                    rule.Stage = EpsilonStage.Emergency;
-                    rule.NextEmergencyRefresh = now;
-                }
+                    if (elapsed >= EpsilonTimeline.EmergencyLights)
+                    {
+                        rule.Stage = EpsilonStage.Emergency;
+                        rule.NextEmergencyRefresh = now;
+                    }
 
-                break;
-            }
+                    break;
+                }
 
             case EpsilonStage.Emergency:
-            {
-                if (now >= rule.NextEmergencyRefresh)
                 {
-                    rule.NextEmergencyRefresh = now + EmergencyRefresh;
-                    ForceEmergencyLights();
-                }
-
-                if (rule.Console is { } console
-                    && TryComp<AssaultPodConsoleComponent>(console, out var pod)
-                    && elapsed >= EpsilonTimeline.Landing - (pod.Countdown + pod.FlightTime).TotalSeconds)
-                {
-                    rule.Stage = EpsilonStage.Launched;
-                    if (pod.State == Shared.Imperial.Uplink.AssaultPod.AssaultPodState.Ready)
+                    if (now >= rule.NextEmergencyRefresh)
                     {
-                        // Посадка точно на 1:28 трека.
-                        _pods.ForceLaunch((console, pod));
-                        pod.NextStage = start + TimeSpan.FromSeconds(EpsilonTimeline.Landing) - pod.FlightTime;
+                        rule.NextEmergencyRefresh = now + EmergencyRefresh;
+                        ForceEmergencyLights();
                     }
-                }
-                else if (rule.Console == null && elapsed >= EpsilonTimeline.Landing)
-                {
-                    rule.Stage = EpsilonStage.Launched;
-                }
 
-                break;
-            }
+                    if (rule.Console is { } console
+                        && TryComp<AssaultPodConsoleComponent>(console, out var pod)
+                        && elapsed >= EpsilonTimeline.Landing - (pod.Countdown + pod.FlightTime).TotalSeconds)
+                    {
+                        rule.Stage = EpsilonStage.Launched;
+                        if (pod.State == Shared.Imperial.Uplink.AssaultPod.AssaultPodState.Ready)
+                        {
+                            // Посадка точно на 1:28 трека.
+                            _pods.ForceLaunch((console, pod));
+                            pod.NextStage = start + TimeSpan.FromSeconds(EpsilonTimeline.Landing) - pod.FlightTime;
+                        }
+                    }
+                    else if (rule.Console == null && elapsed >= EpsilonTimeline.Landing)
+                    {
+                        rule.Stage = EpsilonStage.Launched;
+                    }
+
+                    break;
+                }
 
             case EpsilonStage.Launched:
-            {
-                if (now >= rule.NextEmergencyRefresh)
                 {
-                    rule.NextEmergencyRefresh = now + EmergencyRefresh;
-                    ForceEmergencyLights();
+                    if (now >= rule.NextEmergencyRefresh)
+                    {
+                        rule.NextEmergencyRefresh = now + EmergencyRefresh;
+                        ForceEmergencyLights();
+                    }
+
+                    if (elapsed < EpsilonTimeline.Landing)
+                        break;
+
+                    rule.Stage = EpsilonStage.Done;
+                    DeclareEpsilon(rule);
+                    break;
                 }
 
-                if (elapsed < EpsilonTimeline.Landing)
-                    break;
-
-                rule.Stage = EpsilonStage.Done;
-                DeclareEpsilon(rule);
-                break;
-            }
-
             case EpsilonStage.Done:
-            {
-                // Пока на станции «Эпсилон», аварийки держим включёнными: ванильный UpdateState при скачке питания
-                // переводит их на аккумулятор, и они гаснут, когда тот сядет.
-                if (now < rule.NextEmergencyRefresh)
-                    break;
+                {
+                    // Пока на станции «Эпсилон», аварийки держим включёнными: ванильный UpdateState при скачке питания
+                    // переводит их на аккумулятор, и они гаснут, когда тот сядет.
+                    if (now < rule.NextEmergencyRefresh)
+                        break;
 
-                rule.NextEmergencyRefresh = now + EmergencyRefresh;
-                ForceEmergencyLights(rule.AlertLevel);
-                ReleaseSteadyLights(rule.AlertLevel);
-                break;
-            }
+                    rule.NextEmergencyRefresh = now + EmergencyRefresh;
+                    ForceEmergencyLights(rule.AlertLevel);
+                    ReleaseSteadyLights(rule.AlertLevel);
+                    break;
+                }
         }
     }
 

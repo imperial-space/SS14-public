@@ -3,12 +3,16 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Projectiles;
 using Robust.Shared.Map.Components;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Epsilon;
 
 public sealed class ImperialPulseProjectileSystem : EntitySystem
 {
     [Dependency] private readonly SharedMapSystem _map = default!;
+
+    private static readonly ProtoId<DamageTypePrototype> StructuralDamageType = "Structural";
 
     public override void Initialize()
     {
@@ -28,7 +32,7 @@ public sealed class ImperialPulseProjectileSystem : EntitySystem
         }
 
         var damage = new DamageSpecifier();
-        damage.DamageDict["Structural"] = ent.Comp.StructureDamage;
+        damage.DamageDict[StructuralDamageType] = ent.Comp.StructureDamage;
         args.Damage = damage;
 
         var xform = Transform(args.Target);

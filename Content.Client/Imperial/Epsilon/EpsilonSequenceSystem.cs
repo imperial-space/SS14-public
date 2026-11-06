@@ -55,7 +55,7 @@ public sealed class EpsilonSequenceSystem : EntitySystem
         Stop();
 
         // Опоздавший к началу клиент вступает с нужного места трека.
-        var offset = (float) Math.Max(0, (_timing.CurTime - ev.Start).TotalSeconds);
+        var offset = (float)Math.Max(0, (_timing.CurTime - ev.Start).TotalSeconds);
         var audioParams = AudioParams.Default.WithVolume(BaseVolume + _slider).WithPlayOffset(offset);
         _stream = _audio.PlayGlobal(Music, Filter.Local(), false, audioParams)?.Entity;
 

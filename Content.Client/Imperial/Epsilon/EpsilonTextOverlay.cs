@@ -55,7 +55,7 @@ public sealed class EpsilonTextOverlay : Overlay
 
     protected override void Draw(in OverlayDrawArgs args)
     {
-        var elapsed = (float) (_timing.CurTime - _start).TotalSeconds;
+        var elapsed = (float)(_timing.CurTime - _start).TotalSeconds;
         if (elapsed >= Lines[^1].Until)
         {
             Finished = true;
@@ -75,7 +75,7 @@ public sealed class EpsilonTextOverlay : Overlay
         var handle = args.ScreenHandle;
         var font = shown.Big ? _bigFont : _lineFont;
         var progress = Math.Clamp((elapsed - shown.From) / (shown.Typed - shown.From), 0f, 1f);
-        var chars = (int) MathF.Ceiling(progress * shown.Text.Length);
+        var chars = (int)MathF.Ceiling(progress * shown.Text.Length);
         var alpha = shown == Lines[^1] ? Math.Clamp((shown.Until - elapsed) / FadeOut, 0f, 1f) : 1f;
 
         var color = Color.InterpolateBetween(EpsilonTimeline.CentcomYellow, EpsilonTimeline.EpsilonViolet, shown.Mix);
@@ -104,7 +104,7 @@ public sealed class EpsilonTextOverlay : Overlay
         var advance = handle.DrawString(font, pos, text, 1f, color.WithAlpha(alpha));
 
         // Мигающий курсор, пока строка печатается.
-        if (progress < 1f && (int) (elapsed * 8f) % 2 == 0)
+        if (progress < 1f && (int)(elapsed * 8f) % 2 == 0)
             handle.DrawString(font, pos + new Vector2(advance.X, 0), "_", 1f, color.WithAlpha(alpha));
     }
 }

@@ -46,7 +46,7 @@ public sealed class ImperialEpsilonObjectiveSystem : EntitySystem
     private void OnGetProgress(Entity<ImperialEpsilonKillCrewConditionComponent> ent, ref ObjectiveGetProgressEvent args)
     {
         var remaining = UpdateCondition(ent, CountCrew());
-        args.Progress = ent.Comp.MaxCrew == 0 ? 1f : 1f - (float) remaining / ent.Comp.MaxCrew;
+        args.Progress = ent.Comp.MaxCrew == 0 ? 1f : 1f - (float)remaining / ent.Comp.MaxCrew;
     }
 
     public override void Update(float frameTime)
