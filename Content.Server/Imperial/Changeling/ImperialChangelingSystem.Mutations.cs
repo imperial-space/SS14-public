@@ -334,7 +334,7 @@ public sealed partial class ImperialChangelingSystem
         if (blood)
         {
             // add_splatter_floor()
-            _puddle.TrySpillAt(user, new Content.Shared.Chemistry.Components.Solution("Blood", 5), out _, sound: false);
+            _puddle.TrySpillAt(user, new Content.Shared.Chemistry.Components.Solution(BloodReagent, 5), out _, sound: false);
             _audio.PlayPvs(Splat, user);
         }
 

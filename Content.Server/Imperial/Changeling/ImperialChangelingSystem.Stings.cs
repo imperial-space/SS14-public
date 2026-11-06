@@ -20,6 +20,7 @@ using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server.Imperial.Changeling;
 
@@ -60,6 +61,8 @@ public sealed partial class ImperialChangelingSystem
     private readonly List<(EntityUid Target, TimeSpan At)> _pendingLsd = new();
 
     private static readonly TimeSpan UpdateStingsDuration = TimeSpan.FromSeconds(180);
+
+    private static readonly ProtoId<ReagentPrototype> FrostOilReagent = "FrostOil";
 
     private void InitializeStings()
     {
@@ -426,7 +429,7 @@ public sealed partial class ImperialChangelingSystem
     /// <summary>cryo: 30 ед. морозного масла.</summary>
     private bool CryoAction(Entity<ImperialChangelingComponent> ent, EntityUid target)
     {
-        _bloodstream.TryAddToBloodstream(target, new Solution("FrostOil", ent.Comp.CryoActionQuantity));
+        _bloodstream.TryAddToBloodstream(target, new Solution(FrostOilReagent, ent.Comp.CryoActionQuantity));
         return true;
     }
 

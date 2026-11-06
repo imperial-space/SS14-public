@@ -43,6 +43,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.FixedPoint;
+using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server.Imperial.Changeling;
 
@@ -121,6 +122,9 @@ public sealed partial class ImperialChangelingSystem
     private readonly Dictionary<EntityUid, float> _oldColdThreshold = new();
 
     private static readonly FixedPoint2 UpdateMeltQuantity = 5;
+
+    private static readonly ProtoId<ReagentPrototype> ImperialChangelingAdrenalineReagent = "ImperialChangelingAdrenaline";
+    private static readonly ProtoId<ReagentPrototype> FluorosulfuricAcidReagent = "FluorosulfuricAcid";
 
     private void InitializeUtility()
     {
@@ -238,7 +242,7 @@ public sealed partial class ImperialChangelingSystem
         if (TryComp<Content.Shared.Damage.Components.StaminaComponent>(uid, out var stamina))
             _stamina.TakeStaminaDamage(uid, -_stamina.GetStaminaDamage(uid, stamina), stamina);
 
-        _bloodstream.TryAddToBloodstream(uid, new Solution("ImperialChangelingAdrenaline", ent.Comp.UseAdrenalineQuantity));
+        _bloodstream.TryAddToBloodstream(uid, new Solution(ImperialChangelingAdrenalineReagent, ent.Comp.UseAdrenalineQuantity));
         Popup(uid, "imperial-changeling-adrenaline");
         return true;
     }
@@ -523,7 +527,7 @@ public sealed partial class ImperialChangelingSystem
             if (TerminatingOrDeleted(storage))
                 continue;
 
-            _puddle.TrySpillAt(storage, new Solution("FluorosulfuricAcid", 1), out _, sound: false);
+            _puddle.TrySpillAt(storage, new Solution(FluorosulfuricAcidReagent, 1), out _, sound: false);
             _audio.PlayPvs(Welder, storage, AudioParams.Default.WithVariation(0.125f));
         }
 
@@ -540,7 +544,7 @@ public sealed partial class ImperialChangelingSystem
             // atom_destruction(ACID): содержимое высыпается.
             if (TryComp<EntityStorageComponent>(storage, out var entityStorage))
                 _storage.OpenStorage(storage, entityStorage);
-            _puddle.TrySpillAt(storage, new Solution("FluorosulfuricAcid", UpdateMeltQuantity), out _, sound: false);
+            _puddle.TrySpillAt(storage, new Solution(FluorosulfuricAcidReagent, UpdateMeltQuantity), out _, sound: false);
             QueueDel(storage);
         }
     }

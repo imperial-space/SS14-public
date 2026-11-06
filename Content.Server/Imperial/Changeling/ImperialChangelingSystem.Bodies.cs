@@ -14,6 +14,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server.Imperial.Changeling;
 
@@ -55,6 +56,8 @@ public sealed partial class ImperialChangelingSystem
     private const float BurstBodyTotalIntensity = 12f;
     private const float BurstBodySlope = 2f;
     private const float BurstBodyMaxTileIntensity = 2f;
+
+    private static readonly ProtoId<ReagentPrototype> BloodReagent = "Blood";
 
     private void InitializeBodies()
     {
@@ -492,7 +495,7 @@ public sealed partial class ImperialChangelingSystem
                 if (x * x + y * y > LastResortBlindRange * LastResortBlindRange)
                     continue;
 
-                _puddle.TrySpillAt(coords.Offset(new System.Numerics.Vector2(x, y)), new Content.Shared.Chemistry.Components.Solution("Blood", 1), out _, sound: false);
+                _puddle.TrySpillAt(coords.Offset(new System.Numerics.Vector2(x, y)), new Content.Shared.Chemistry.Components.Solution(BloodReagent, 1), out _, sound: false);
             }
         }
 
@@ -501,7 +504,7 @@ public sealed partial class ImperialChangelingSystem
             if (mob.Owner == body || !_interaction.InRangeUnobstructed(body, mob.Owner, LastResortBlindRange + 0.5f))
                 continue;
 
-            _puddle.TrySpillAt(mob.Owner, new Content.Shared.Chemistry.Components.Solution("Blood", 2), out _, sound: false);
+            _puddle.TrySpillAt(mob.Owner, new Content.Shared.Chemistry.Components.Solution(BloodReagent, 2), out _, sound: false);
             _audio.PlayPvs(Splat, mob.Owner, Robust.Shared.Audio.AudioParams.Default.WithVolume(-6));
             if (HasComp<BorgChassisComponent>(mob))
             {
@@ -525,7 +528,7 @@ public sealed partial class ImperialChangelingSystem
             _pendingSlug.Add((m, coords, _timing.CurTime + BurstBodyDelay, body));
         }
 
-        _puddle.TrySpillAt(body, new Content.Shared.Chemistry.Components.Solution("Blood", 30), out _);
+        _puddle.TrySpillAt(body, new Content.Shared.Chemistry.Components.Solution(BloodReagent, 30), out _);
         if (mindId == null)
             _gibbing.Gib(body);
     }
