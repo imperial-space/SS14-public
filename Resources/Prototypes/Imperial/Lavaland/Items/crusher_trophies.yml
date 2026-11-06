@@ -1,0 +1,525 @@
+# Трофеи протокинетического дробителя (kinetic_crusher/trophies_*.dm).
+# Ставятся в дробитель рукой, снимаются ломом или через меню «Извлечь».
+# Трофеи одной группы (denied_type) несовместимы.
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseCrusherTrophy
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/artefact.rsi
+  - type: Item
+    size: Small
+  - type: StaticPrice
+    price: 300
+
+# ── Фауна ─────────────────────────────────────────────────────────────────────
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyWatcherWing
+  name: крыло наблюдателя
+  description: Крыло, вырванное у наблюдателя. Подходит как трофей для кинетического дробителя.
+  components:
+  - type: Sprite
+    state: watcher_wing
+  - type: CrusherTrophy
+    trophy: WatcherWing
+    bonusValue: 5
+    group: watcher_wing
+    effect: crusher-trophy-effect-watcher-wing
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyIceWing
+  name: крыло ледокрылого наблюдателя
+  description: Бережно сохранённое замёрзшее крыло ледокрылого наблюдателя. Подходит как трофей для кинетического дробителя.
+  components:
+  - type: Sprite
+    state: ice_wing
+  - type: CrusherTrophy
+    trophy: WatcherWing
+    bonusValue: 8
+    group: watcher_wing
+    effect: crusher-trophy-effect-watcher-wing
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyMagmaWing
+  name: крыло магмокрылого наблюдателя
+  description: Всё ещё обжигающее крыло магмокрылого наблюдателя. Подходит как трофей для кинетического дробителя.
+  components:
+  - type: Sprite
+    state: magma_wing
+  - type: CrusherTrophy
+    trophy: MagmaWing
+    bonusValue: 5
+    group: blaster_tubes
+    effect: crusher-trophy-effect-magma-wing
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyLegionSkull
+  name: череп легиона
+  description: Мёртвый безжизненный череп легиона. Подходит как трофей для кинетического дробителя.
+  components:
+  - type: Sprite
+    state: legion_skull
+  - type: CrusherTrophy
+    trophy: LegionSkull
+    bonusValue: 3
+    group: legion_skull
+    effect: crusher-trophy-effect-legion-skull
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyGoliathTentacle
+  name: щупальце голиафа
+  description: Отрубленное щупальце голиафа. Подходит как трофей для кинетического дробителя.
+  components:
+  - type: Sprite
+    state: goliath_tentacle
+  - type: CrusherTrophy
+    trophy: GoliathTentacle
+    bonusValue: 2
+    group: goliath_tentacle
+    effect: crusher-trophy-effect-goliath-tentacle
+
+# ── Мегафауна ─────────────────────────────────────────────────────────────────
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyMinerEye
+  name: глаз обезумевшего охотника
+  description: Его зрачок схлопнулся и превратился в кашу. Подходит как трофей для кинетического дробителя.
+  components:
+  - type: Sprite
+    state: hunter_eye
+  - type: CrusherTrophy
+    trophy: MinerEye
+    group: miner_eye
+    effect: crusher-trophy-effect-miner-eye
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyTailSpike
+  name: хвостовой шип
+  description: Шип с хвоста пепельного дракона. Подходит как трофей для кинетического дробителя.
+  components:
+  - type: Sprite
+    state: tail_spike
+  - type: CrusherTrophy
+    trophy: TailSpike
+    bonusValue: 5
+    group: tail_spike
+    effect: crusher-trophy-effect-tail-spike
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyDemonClaws
+  name: когти демона
+  description: Окровавленные когти с лапы огромного демона. Подходят как трофей для кинетического дробителя.
+  components:
+  - type: Sprite
+    state: demon_claws
+  - type: CrusherTrophy
+    trophy: DemonClaws
+    bonusValue: 10
+    group: demon_claws
+    effect: crusher-trophy-effect-demon-claws
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyBlasterTubes
+  name: бластерные трубки
+  description: Бластерные трубки с руки колосса. Подходят как трофей для кинетического дробителя.
+  components:
+  - type: Sprite
+    state: blaster_tubes
+  - type: CrusherTrophy
+    trophy: BlasterTubes
+    bonusValue: 15
+    group: blaster_tubes
+    effect: crusher-trophy-effect-blaster-tubes
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyVortexTalisman
+  name: вихревой талисман
+  description: Светящаяся безделушка, когда-то бывшая маяком Иерофанта. Подходит как трофей для кинетического дробителя.
+  components:
+  - type: Sprite
+    state: vortex_talisman
+  - type: CrusherTrophy
+    trophy: VortexTalisman
+    group: vortex_talisman
+    effect: crusher-trophy-effect-vortex-talisman
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyWendigoHorn
+  name: рог вендиго
+  description: Узловатый рог, вырванный из черепа чудовища. Подходит как трофей для кинетического дробителя.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/crusher_trophies.rsi
+    state: wendigo_horn
+  - type: CrusherTrophy
+    trophy: WendigoHorn
+    bonusValue: 20
+    group: wendigo_horn
+    effect: crusher-trophy-effect-wendigo-horn
+
+# ── Фауна, которой нет на имперском Лаваленде ────────────────────────────────
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyLobsterClaw
+  name: клешня лобстрозити
+  description: Клешня лобстрозити. Подходит как трофей для кинетического дробителя.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/crusher_trophies.rsi
+    state: lobster_claw
+  - type: CrusherTrophy
+    trophy: LobsterClaw
+    bonusValue: 1
+    group: lobster_claw
+    effect: crusher-trophy-effect-lobster-claw
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyBrimdemonFang
+  name: клык бримдемона
+  description: Клык с трупа бримдемона. Подходит как трофей для кинетического дробителя.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/crusher_trophies.rsi
+    state: brimdemon_fang
+  - type: CrusherTrophy
+    trophy: BrimdemonFang
+    group: brimdemon_fang
+    effect: crusher-trophy-effect-brimdemon-fang
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyBilewormSpewlet
+  name: детёныш желчного червя
+  description: Детёныш желчного червя. Подходит как трофей для кинетического дробителя.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/crusher_trophies.rsi
+    state: bileworm_spewlet
+  - type: CrusherTrophy
+    trophy: BilewormSpewlet
+    group: bileworm_spewlet
+    effect: crusher-trophy-effect-bileworm-spewlet
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyIceDemonCube
+  name: демонический куб
+  description: Ледяной куб, оброненный ледяным демоном.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/crusher_trophies.rsi
+    state: ice_demon_cube
+  - type: CrusherTrophy
+    trophy: IceDemonCube
+    group: ice_demon_cube
+    effect: crusher-trophy-effect-ice-demon-cube
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyWolfEar
+  name: волчье ухо
+  description: Это волчье ухо.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/crusher_trophies.rsi
+    state: wolf_ear
+  - type: CrusherTrophy
+    trophy: WolfEar
+    group: wolf_ear
+    effect: crusher-trophy-effect-wolf-ear
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyBearPaw
+  name: лапа полярного медведя
+  description: Это лапа полярного медведя.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/crusher_trophies.rsi
+    state: bear_paw
+  - type: CrusherTrophy
+    trophy: BearPaw
+    group: bear_paw
+    effect: crusher-trophy-effect-bear-paw
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyRaptorFeather
+  name: перо раптора
+  description: Перо невинного раптора. За такое вы бы попали в ад, если бы уже не копали в нём.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/crusher_trophies.rsi
+    state: raptor_feather
+  - type: CrusherTrophy
+    trophy: RaptorFeather
+    group: raptor_feather
+    effect: crusher-trophy-effect-raptor-feather
+
+# ── Мегафауна и элиты, которых нет на имперском Лаваленде ────────────────────
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyIceBlockTalisman
+  name: талисман ледяной глыбы
+  description: Светящаяся безделушка демонического шахтёра; похоже, он так и не смог ею воспользоваться.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/crusher_trophies.rsi
+    state: ice_trap_talisman
+  - type: CrusherTrophy
+    trophy: IceBlockTalisman
+    group: ice_block_talisman
+    effect: crusher-trophy-effect-ice-block-talisman
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyBroodmotherTongue
+  name: язык матери-голиафа
+  description: Язык матери-голиафа. Если прикрепить определённым образом, выйдет неплохой трофей для дробителя. Он очень губчатый — интересно, что будет, если его сжать?..
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/crusher_trophies.rsi
+    state: broodmother_tongue
+  - type: CrusherTrophy
+    trophy: BroodmotherTongue
+    bonusValue: 10
+    group: broodmother_tongue
+    effect: crusher-trophy-effect-broodmother-tongue
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyLegionnaireSpine
+  name: хребет легионера
+  description: Хребет легионера. С фантазией из него выйдет трофей для дробителя. А можно попробовать его потрясти.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/crusher_trophies.rsi
+    state: legionnaire_spine
+  - type: CrusherTrophy
+    trophy: LegionnaireSpine
+    bonusValue: 20
+    group: legionnaire_spine
+    effect: crusher-trophy-effect-legionnaire-spine
+
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyFleshGlob
+  name: сгусток изменчивой плоти
+  description: Сгусток изменчивой плоти, навсегда запечатанный. Подходит как трофей для кинетического дробителя.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/crusher_trophies.rsi
+    state: glob
+  - type: CrusherTrophy
+    trophy: FleshGlob
+    bonusValue: 20
+    group: flesh_glob
+    effect: crusher-trophy-effect-flesh-glob
+
+# retool_kit/ashenskull: только внешний вид.
+- type: entity
+  parent: BaseCrusherTrophy
+  id: CrusherTrophyAshenSkull
+  name: пепельный череп
+  description: Он горит пламенем некрополя и шепчет вам на ухо. Он требует, чтобы его связали с подходящим оружием.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/crusher_trophies.rsi
+    state: retool_kit_skull
+  - type: CrusherTrophy
+    trophy: Retool
+    group: retool_kit
+    effect: crusher-trophy-effect-ashen-skull
+
+# Облик дробителя с пепельным черепом (crusher_skin/locked/ashen_skull).
+- type: entity
+  id: CrusherSkullSkinTemplate
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/mining/crusher_skull.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/lava/mining/crusher_skull.rsi
+  - type: Clothing
+    sprite: Imperial/lava/mining/crusher_skull.rsi
+
+# ── Эффекты трофеев ───────────────────────────────────────────────────────────
+
+# projectile/bileworm_acid
+- type: entity
+  id: CrusherBileProjectile
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  name: едкая желчь
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: Imperial/lava/mining/crusher_effects.rsi
+    layers:
+    - state: bile_glob
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 20
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/energy_meat1.ogg
+  - type: TimedDespawn
+    lifetime: 2 # 20 клеток при скорости 10
+
+# goliath_tentacle/broodmother
+- type: entity
+  id: CrusherBroodTentacleEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Mobs/Aliens/Asteroid/goliath.rsi
+    state: goliath_tentacle_spawn
+  - type: TimedDespawn
+    lifetime: 1.3
+
+- type: npcFaction
+  id: CrusherSummon
+  hostile:
+  - SimpleHostile
+
+# mob/living/basic/mining/demon_afterimage/crusher
+- type: entity
+  id: MobCrusherDemonAfterimage
+  parent: [SimpleSpaceMobBase, MobCombat]
+  categories: [ HideSpawnMenu ]
+  name: демонический призрак-наблюдатель
+  description: Это какая-то иллюзия?
+  components:
+  - type: NpcFactionMember
+    factions:
+    - CrusherSummon
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        10.0
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/mining/crusher_effects.rsi
+    color: "#ffffff50"
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: ice_demon
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 40
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 5
+    baseSprintSpeed: 5
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 1
+    range: 1.2
+    damage:
+      types:
+        Slash: 10
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Dead
+  - type: MegafaunaVanishOnDeath
+  - type: TimedDespawn
+    lifetime: 7
+  - type: LavalandStormImmune
+
+# mob/living/basic/mining/legion_brood с assign_creator(): череп-союзник.
+- type: entity
+  id: MobCrusherLegionSkull
+  parent: [SimpleSpaceMobBase, MobCombat]
+  categories: [ HideSpawnMenu ]
+  name: череп легиона
+  description: Призванный череп, верный своему хозяину.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - CrusherSummon
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        10.0
+      MeleeRange: !type:Single
+        1.0
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/mining/legion.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: legion_head
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: legion_head
+      Dead:
+        Base: legion_head
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 40
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 4
+  - type: MeleeWeapon
+    hidden: true
+    altDisarm: false
+    attackRate: 1.0
+    range: 1.0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Blunt: 12
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1: Dead
+  - type: MegafaunaVanishOnDeath
+  - type: TimedDespawn
+    lifetime: 10
+  - type: LavalandStormImmune

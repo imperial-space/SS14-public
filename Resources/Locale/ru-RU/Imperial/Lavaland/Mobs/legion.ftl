@@ -1,20 +1,21 @@
 ent-MobMegaLegionLavaland = Легион
-    .desc = Древний боссовый враг, призывающий полчища черепов под атакой.
+    .desc = Один из многих.
+ent-MobLegionMediumLeftLavaland = Легион
+    .desc = Один из многих.
+ent-MobLegionMediumRightLavaland = Легион
+    .desc = Один из многих.
+ent-MobLegionMediumEyeLavaland = Легион
+    .desc = Один из многих.
+ent-MobLegionSmallLavaland = Легион
+    .desc = Один из многих.
+ent-ImperialMegaLegionBrood = легион
+    .desc = Один из многих.
+ent-ImperialLegionTurret = страж Легиона
+    .desc = Этот глаз пронзает вашу душу.
+ent-ImperialLegionTracer = кровавый след
+ent-ImperialLegionBeam = кровавый импульс
 
-ent-MobLegionMediumLavaland = осколок Легиона
-    .desc = Крупный фрагмент Легиона. Всё ещё очень опасен.
-
-ent-MobLegionSmallLavaland = фрагмент Легиона
-    .desc = Более мелкий фрагмент Легиона. Быстрый и агрессивный.
-
-ent-MobLegionTinyLavaland = кроха Легиона
-    .desc = Почти разрушенный остаток Легиона.
-
-ent-MobLegionSkullLavaland = череп Легиона
-    .desc = Меньший череп, порождённый Легионом.
-
-ent-MobLegionSummonSkullLavaland = призванный череп Легиона
-    .desc = Хрупкий призванный череп. Живёт недолго.
+legion-megafauna-charges = { CAPITALIZE($boss) } бросается в атаку!
 
 Legion-summon-message = Легион порождает черепа с магией!
 legion-ability-summon = Легион призывает череп.

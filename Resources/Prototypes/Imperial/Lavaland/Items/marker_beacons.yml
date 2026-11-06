@@ -1,0 +1,81 @@
+- type: stack
+  id: MarkerBeacon
+  name: stack-marker-beacon
+  icon:
+    sprite: Imperial/lava/markers/mining_markers.rsi
+    state: marker
+  spawn: MarkerBeacon1
+  maxCount: 100
+
+- type: entity
+  id: MarkerBeacon30
+  name: ent-MarkerBeacon30
+  description: ent-MarkerBeacon30
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/markers/mining_markers.rsi
+    state: marker
+  - type: Item
+    size: Small
+  - type: Stack
+    stackType: MarkerBeacon
+    count: 30
+  - type: MarkerBeacon
+
+- type: entity
+  id: MarkerBeacon1
+  parent: MarkerBeacon30
+  name: ent-MarkerBeacon1
+  description: ent-MarkerBeacon1
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  id: MarkerBeaconStructure
+  name: ent-MarkerBeaconStructure
+  description: ent-MarkerBeaconStructure
+  components:
+  - type: MetaData
+  - type: Transform
+  - type: Sprite
+    sprite: Imperial/lava/markers/mining_markers.rsi
+    drawdepth: Items
+    noRot: true
+    layers:
+    - state: markerburgundy-on
+      map: [ "baseLayer" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.MarkerBeaconVisuals.Color:
+        baseLayer:
+          Burgundy: { state: markerburgundy-on }
+          Bronze: { state: markerbronze-on }
+          Yellow: { state: markeryellow-on }
+          Lime: { state: markerlime-on }
+          Olive: { state: markerolive-on }
+          Jade: { state: markerjade-on }
+          Teal: { state: markerteal-on }
+          Cerulean: { state: markercerulean-on }
+          Indigo: { state: markerindigo-on }
+          Purple: { state: markerpurple-on }
+          Violet: { state: markerviolet-on }
+          Fuchsia: { state: markerfuchsia-on }
+  - type: PointLight
+    enabled: true
+    radius: 2.5
+    energy: 2.5
+    color: "#ffffff"
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        hard: false
+  - type: MarkerBeaconStructure
+  - type: InteractionOutline

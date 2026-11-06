@@ -19,6 +19,10 @@ public sealed partial class LavalandPlanetRuleComponent : Component
     [DataField]
     public string? PrisonMap;
 
+    // Смещение тюрьмы (трудового лагеря) от центра карты — правее аванпоста переработки.
+    [DataField]
+    public System.Numerics.Vector2 PrisonOffset = new(60f, 0f);
+
     [DataField]
     public string? ShuttleMap;
 
@@ -53,5 +57,6 @@ public sealed partial class LavalandPlanetRuleComponent : Component
     public Color MapLight = Color.FromHex("#A34931");
 
     // Structure grids waiting for atmosphere rebuild (deferred one tick so atmos Tiles are populated).
+    [ViewVariables]
     public List<EntityUid> PendingAtmosRebuild = new();
 }

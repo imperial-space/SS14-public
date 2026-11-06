@@ -18,57 +18,103 @@
     stateDoorClosed: necrocrate
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:AllSelector
+      # Гарантированно 1–2 предмета: каждый бросок выбирает один предмет по весу (бывшие шансы).
+      entity_storage: !type:GroupSelector
+        rolls: !type:RangeNumberSelector
+          range: 1, 2
         children:
         # ── Культовая одежда ─────────────────────────────────────────────
         - !type:EntSelector
           id: CultHeavyRobe
-          prob: 0.20
+          weight: 20
         - !type:EntSelector
           id: CultSoulStone
-          prob: 0.20
+          weight: 20
         - !type:EntSelector
           id: ClothingOuterCultFlagellantRobes
-          prob: 0.15
+          weight: 15
         # ── Оружие ───────────────────────────────────────────────────────
         - !type:EntSelector
           id: MiningDrillDiamond
-          prob: 0.20
+          weight: 20
         - !type:EntSelector
           id: LavalandWeaponMeatHook
-          prob: 0.20
+          weight: 20
         - !type:EntSelector
-          id: PossessedBlade
-          prob: 0.15
+          id: WeaponSpectralBlade
+          weight: 15
         - !type:EntSelector
           id: ClusterGrenade
-          prob: 0.25
+          weight: 25
         # ── Артефакты и утилиты ──────────────────────────────────────────
         - !type:EntSelector
           id: LibraryRecallSpellbook
-          prob: 0.15
+          weight: 15
         - !type:EntSelector
           id: RodOfAsclepiusLavaland
-          prob: 0.10
+          weight: 10
         - !type:EntSelector
           id: TalismanImmortality
-          prob: 0.15
-        - !type:EntSelector
-          id: LanternThermal
-          prob: 0.20
+          weight: 15
         - !type:EntSelector
           id: ClothingOuterChampionArmor
-          prob: 0.10
-        # ── Кристалл вампиризма (модуль КА) ─────────────────────────────
+          weight: 10
+        # Трофеи дробителя от существ, которых нет на имперском Лаваленде
+        - !type:EntSelector
+          id: CrusherTrophyLobsterClaw
+          weight: 1
+        - !type:EntSelector
+          id: CrusherTrophyBrimdemonFang
+          weight: 1
+        - !type:EntSelector
+          id: CrusherTrophyBilewormSpewlet
+          weight: 1
+        - !type:EntSelector
+          id: CrusherTrophyIceDemonCube
+          weight: 1
+        - !type:EntSelector
+          id: CrusherTrophyWolfEar
+          weight: 1
+        - !type:EntSelector
+          id: CrusherTrophyBearPaw
+          weight: 1
+        - !type:EntSelector
+          id: CrusherTrophyRaptorFeather
+          weight: 1
+        - !type:EntSelector
+          id: CrusherTrophyIceBlockTalisman
+          weight: 1
+        - !type:EntSelector
+          id: CrusherTrophyBroodmotherTongue
+          weight: 1
+        - !type:EntSelector
+          id: CrusherTrophyLegionnaireSpine
+          weight: 1
+        - !type:EntSelector
+          id: CrusherTrophyFleshGlob
+          weight: 1
+        - !type:EntSelector
+          id: CrusherTrophyAshenSkull
+          weight: 1
+        # Редкие модули КА (spawner/random/mining/rare_modkit)
         - !type:EntSelector
           id: PKAMiningUpgradeLifeSteal
-          prob: 0.15
-        # ── Кубики-телепорты (спавнятся вместе — одинаковый шанс) ───────
+          weight: 3
         - !type:EntSelector
-          id: PrisonCubeTeleportBlue
-          prob: 0.20
+          id: PKAMiningUpgradeAoEAndTurfs
+          weight: 3
         - !type:EntSelector
-          id: PrisonCubeTeleportRed
-          prob: 0.20
+          id: PKAMiningUpgradeRepeater
+          weight: 3
+        - !type:EntSelector
+          id: PKAMiningUpgradeResonator
+          weight: 3
+        - !type:EntSelector
+          id: PKAMiningUpgradeBounty
+          weight: 3
+        # ── Кубики-телепорты (спавнятся парой — оба или ни одного) ─────
+        - !type:EntSelector
+          id: PrisonCubeTeleportPair
+          weight: 20
   - type: StaticPrice
     price: 0

@@ -3,16 +3,18 @@ using Robust.Shared.Serialization.Manager.Attributes;
 
 namespace Content.Server.Imperial.Lavaland.Anvil;
 
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class TemporaryUpgradeComponent : Component
 {
     /// <summary>Prototype ID to spawn when upgrade expires.</summary>
     [DataField]
     public string RevertProto = string.Empty;
 
-    /// <summary>Total upgrade duration in seconds.</summary>
+    /// <summary>Длительность улучшения.</summary>
     [DataField]
-    public float Duration = 1200f; // 20 minutes
+    public TimeSpan Duration = TimeSpan.FromMinutes(20);
 
-    public float TimeRemaining;
+    /// <summary>Когда улучшение спадёт.</summary>
+    [ViewVariables, AutoPausedField]
+    public TimeSpan ExpireAt;
 }

@@ -1,0 +1,111 @@
+using Content.Shared.Chemistry.Reagent;
+using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
+
+namespace Content.Server.Imperial.Lavaland.Vents;
+
+/// <summary>
+/// Рудная жила (structure/ore_vent из SS13): сканируется, затем оборона дрона NODE от волн мобов;
+/// после победы раз в минуту выдаёт валун с минералами.
+/// </summary>
+[RegisterComponent]
+public sealed partial class LavalandOreVentComponent : Component
+{
+    /// <summary>ore_vent_options: веса размеров (large 3, medium 5, small 7).</summary>
+    [DataField]
+    public Dictionary<OreVentSize, float> SizeWeights = new()
+    {
+        { OreVentSize.Large, 3 },
+        { OreVentSize.Medium, 5 },
+        { OreVentSize.Small, 7 },
+    };
+
+    /// <summary>Фиксированный размер (босс-жила — большая).</summary>
+    [DataField] public OreVentSize? FixedSize;
+
+    /// <summary>mineral_breakdown: руда (стопка из 1) и вес; пусто — 4 случайных из LavalandMinerals.</summary>
+    [DataField] public Dictionary<EntProtoId, float> Minerals = new();
+
+    /// <summary>ore_vent_minerals_lavaland.</summary>
+    [DataField]
+    public Dictionary<EntProtoId, float> LavalandMinerals = new()
+    {
+        { "SteelOre1", 14 },
+        { "SpaceQuartz1", 13 },
+        { "PlasmaOre1", 10 },
+        { "SilverOre1", 7 },
+        { "GoldOre1", 5 },
+        { "UraniumOre1", 4 },
+        { "Coal1", 1 },
+    };
+
+    /// <summary>defending_mobs.</summary>
+    [DataField] public List<EntProtoId> DefendingMobs = new();
+
+    /// <summary>Босс-жила: вместо волн призывает одного из этих боссов.</summary>
+    [DataField] public List<EntProtoId> Bosses = new();
+
+    [DataField] public EntProtoId NodeDrone = "ImperialNodeDrone";
+    [DataField] public EntProtoId Boulder = "ImperialBoulder";
+    [DataField] public EntProtoId ArtifactBoulder = "ImperialBoulderArtifact";
+    [DataField] public EntProtoId Platform = "ImperialBoulderPlatform";
+
+    /// <summary>ARTIFACT_ROLL_CHANCE.</summary>
+    [DataField] public float ArtifactChance = 0.07f;
+
+    [DataField] public TimeSpan BoulderInterval = TimeSpan.FromSeconds(60f);
+    [DataField] public int MaxBoulders = 10;
+
+    [DataField] public SoundSpecifier ScanSound = new SoundPathSpecifier("/Audio/Imperial/Lavaland/timer.ogg");
+    [DataField] public SoundSpecifier DroneCrashSound = new SoundPathSpecifier("/Audio/Imperial/Lavaland/explosion3.ogg");
+
+    [ViewVariables] public OreVentSize Size = OreVentSize.Small;
+    [ViewVariables] public bool Discovered;
+    [ViewVariables] public bool Tapped;
+    [ViewVariables] public bool WaveActive;
+    [ViewVariables] public TimeSpan WaveEnd;
+    [ViewVariables] public TimeSpan NextSpawn;
+    [ViewVariables] public TimeSpan ConfirmUntil;
+    [ViewVariables] public EntityUid? Node;
+    [ViewVariables] public EntityUid? Boss;
+    [ViewVariables] public EntProtoId? SummonedBoss;
+    [ViewVariables] public List<EntityUid> Spawned = new();
+    [ViewVariables] public TimeSpan NextBoulder;
+    [ViewVariables] public string BoulderStyle = "boulder";
+
+    [DataField]
+    public TimeSpan ConfirmDelay = TimeSpan.FromSeconds(10);
+
+    [DataField]
+    public TimeSpan VentInteractUsingSeconds = TimeSpan.FromSeconds(4f);
+
+    [DataField]
+    public TimeSpan PreWaveDefenseSeconds = TimeSpan.FromSeconds(3f);
+
+    [DataField]
+    public TimeSpan SpawnNodeSeconds = TimeSpan.FromSeconds(2f);
+
+    [DataField]
+    public int SpawnDefendersRange = 4;
+
+    [DataField]
+    public float SpawnDefendersTotalIntensity = 30f;
+
+    [DataField]
+    public float SpawnDefendersSlope = 5f;
+
+    [DataField]
+    public float SpawnDefendersMaxTileIntensity = 10f;
+
+    [DataField]
+    public float WaveWinRange = 7f;
+
+    [DataField]
+    public TimeSpan ResetDroneSeconds = TimeSpan.FromSeconds(1.9f);
+
+    [DataField]
+    public float ResetDroneChance = 0.01f;
+
+    [DataField]
+    public float ResetDroneSeconds2 = 2f;
+}

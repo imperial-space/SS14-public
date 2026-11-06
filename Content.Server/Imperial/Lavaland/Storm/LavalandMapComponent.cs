@@ -1,25 +1,35 @@
+using Robust.Shared.Prototypes;
+
 namespace Content.Server.Imperial.Lavaland.Storm;
 
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class LavalandMapComponent : Component
 {
     [DataField]
-    public float MinStormInterval = 480f; // 8 minutes
+    public TimeSpan MinStormInterval = TimeSpan.FromMinutes(8);
 
     [DataField]
-    public float MaxStormInterval = 720f; // 12 minutes
+    public TimeSpan MaxStormInterval = TimeSpan.FromMinutes(12);
 
     [DataField]
-    public float WarningDuration = 30f;
+    public TimeSpan WarningDuration = TimeSpan.FromSeconds(30);
 
     [DataField]
-    public float StormDuration = 120f; // 2 minutes
+    public TimeSpan StormDuration = TimeSpan.FromMinutes(2);
 
     [DataField]
-    public float DamageInterval = 2f;
+    public TimeSpan DamageInterval = TimeSpan.FromSeconds(2);
 
     [DataField]
-    public float StormEndingDuration = 5f;
+    public TimeSpan StormEndingDuration = TimeSpan.FromSeconds(5);
+
+    /// <summary>Погода предупреждения и стихания бури.</summary>
+    [DataField]
+    public EntProtoId LightWeather = "WeatherAshfallLight";
+
+    /// <summary>Погода самой бури.</summary>
+    [DataField]
+    public EntProtoId HeavyWeather = "WeatherAshfallHeavy";
 
     [DataField]
     public float NoEventChance = 0.1f;
@@ -27,18 +37,17 @@ public sealed partial class LavalandMapComponent : Component
     [DataField]
     public float PassByChance = 0.1f;
 
-    // Runtime state
-    public float StormTimer;
-    public LavalandStormState StormState = LavalandStormState.Idle;
-    public float StateTimer;
-    public float DamageTimer;
-}
+    /// <summary>Когда начнётся следующая буря (в покое).</summary>
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextStorm;
 
-public enum LavalandStormState : byte
-{
-    Idle,
-    Warning,
-    PassingBy,
-    Active,
-    Ending,
+    [ViewVariables]
+    public LavalandStormState StormState = LavalandStormState.Idle;
+
+    /// <summary>Конец текущей фазы бури.</summary>
+    [ViewVariables, AutoPausedField]
+    public TimeSpan StateEnd;
+
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextDamage;
 }

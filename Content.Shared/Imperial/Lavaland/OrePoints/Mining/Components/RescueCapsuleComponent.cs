@@ -15,16 +15,11 @@ public sealed partial class RescueCapsuleComponent : Component
     /// Delay in seconds before the capsule deploys.
     /// </summary>
     [DataField]
-    public float DeployDelay = 8f;
+    public TimeSpan DeployDelay = TimeSpan.FromSeconds(0f);
 
     /// <summary>
     /// Grid path to load directly (e.g. /Imperial/Lavaland/mining.yml).
     /// </summary>
     [DataField]
     public string GridPath = "/Imperial/Lavaland/mining.yml";
-}
-
-[Serializable, NetSerializable]
-public sealed partial class RescueCapsuleDoAfterEvent : SimpleDoAfterEvent
-{
 }

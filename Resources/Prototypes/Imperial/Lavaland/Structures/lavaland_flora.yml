@@ -1,0 +1,735 @@
+# Флора лаваленда из SS13 (code/modules/mining/lavaland/ash_flora.dm, flora/rock).
+
+# ── Растения пепла ───────────────────────────────────────────────────────────
+
+- type: entity
+  abstract: true
+  id: ImperialAshFloraBase
+  name: large mushrooms
+  description: A number of large mushrooms, covered in a faint layer of ash and what can only be spores.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/lava/decor/ash_flora.rsi
+    noRot: true
+    layers:
+    - state: l_mushroom1
+  - type: Appearance
+  - type: MegafaunaAppearance
+    baseState: l_mushroom1
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        hard: false
+        mask:
+        - ItemMask
+  - type: LavalandStormImmune
+
+# flora/ash/tall_shroom
+- type: entity
+  id: ImperialAshFloraTallShroom
+  parent: ImperialAshFloraBase
+  suffix: Lavaland
+  components:
+  - type: LavalandFlora
+    baseState: l_mushroom
+    products:
+      ImperialAshFloraShavings: 1
+    regrowthLow: 420
+    regrowthHigh: 960
+    harvestedName: lavaland-flora-tall-harvested
+    harvestedDesc: lavaland-flora-tall-harvested-desc
+
+# flora/ash/leaf_shroom
+- type: entity
+  id: ImperialAshFloraLeafShroom
+  parent: ImperialAshFloraBase
+  suffix: Lavaland
+  name: leafy mushrooms
+  description: A number of mushrooms, each of which surrounds a greenish sporangium with a number of leaf-like structures.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/decor/ash_flora.rsi
+    layers:
+    - state: s_mushroom1
+  - type: MegafaunaAppearance
+    baseState: s_mushroom1
+  - type: LavalandFlora
+    baseState: s_mushroom
+    products:
+      ImperialAshFloraMushroomLeaf: 1
+    amountHigh: 4
+    harvestTime: 2
+    regrowthLow: 240
+    regrowthHigh: 600
+    harvestedName: lavaland-flora-leaf-harvested
+    harvestedDesc: lavaland-flora-leaf-harvested-desc
+
+# flora/ash/cap_shroom
+- type: entity
+  id: ImperialAshFloraCapShroom
+  parent: ImperialAshFloraBase
+  suffix: Lavaland
+  name: tall mushrooms
+  description: Several mushrooms, the larger of which have a ring of conks at the midpoint of their stems.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/decor/ash_flora.rsi
+    layers:
+    - state: r_mushroom1
+  - type: MegafaunaAppearance
+    baseState: r_mushroom1
+  - type: LavalandFlora
+    baseState: r_mushroom
+    products:
+      ImperialAshFloraMushroomCap: 1
+    amountHigh: 4
+    harvestTime: 5
+    regrowthLow: 300
+    regrowthHigh: 540
+    harvestedName: lavaland-flora-cap-harvested
+    harvestedDesc: lavaland-flora-cap-harvested-desc
+
+# flora/ash/stem_shroom
+- type: entity
+  id: ImperialAshFloraStemShroom
+  parent: ImperialAshFloraBase
+  suffix: Lavaland
+  name: numerous mushrooms
+  description: A large number of mushrooms, some of which have long, fleshy stems. They're radiating light!
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/decor/ash_flora.rsi
+    layers:
+    - state: t_mushroom1
+  - type: MegafaunaAppearance
+    baseState: t_mushroom1
+  - type: PointLight
+    radius: 1.5
+    energy: 2.1
+  - type: LavalandFlora
+    baseState: t_mushroom
+    products:
+      ImperialAshFloraMushroomStem: 1
+    amountHigh: 4
+    harvestTime: 4
+    regrowthLow: 300
+    regrowthHigh: 600
+    harvestedName: lavaland-flora-stem-harvested
+    harvestedDesc: lavaland-flora-stem-harvested-desc
+
+# flora/ash/cacti
+- type: entity
+  id: ImperialAshFloraCacti
+  parent: ImperialAshFloraBase
+  suffix: Lavaland
+  name: fruiting cacti
+  description: Several prickly cacti, brimming with ripe fruit and covered in a thin layer of ash.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/decor/ash_flora.rsi
+    layers:
+    - state: cactus1
+  - type: MegafaunaAppearance
+    baseState: cactus1
+  - type: LavalandFlora
+    baseState: cactus
+    products:
+      ImperialAshFloraCactusFruit: 1
+    amountHigh: 2
+    harvestTime: 1
+    regrowthLow: 480
+    regrowthHigh: 720
+    harvestedName: lavaland-flora-cacti-harvested
+    harvestedDesc: lavaland-flora-cacti-harvested-desc
+  # caltrop: 3-6 урона при наступании.
+  - type: StepTrigger
+    intersectRatio: 0.2
+  - type: PreventableStepTrigger
+  - type: TriggerOnStepTrigger
+  - type: DamageOnTrigger
+    targetUser: true
+    damage:
+      types:
+        Piercing: 4.5
+
+# flora/ash/seraka
+- type: entity
+  id: ImperialAshFloraSeraka
+  parent: ImperialAshFloraBase
+  suffix: Lavaland
+  name: seraka mushrooms
+  description: A small cluster of seraka mushrooms. These must have come with the ashlizards.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/decor/ash_flora.rsi
+    layers:
+    - state: seraka_mushroom1
+  - type: MegafaunaAppearance
+    baseState: seraka_mushroom1
+  - type: LavalandFlora
+    baseState: seraka_mushroom
+    variants: 2
+    products:
+      ImperialAshFloraSerakaCap: 1
+    amountHigh: 6
+    harvestTime: 2.5
+    regrowthLow: 300
+    regrowthHigh: 540
+    harvestedName: lavaland-flora-seraka-harvested
+    harvestedDesc: lavaland-flora-seraka-harvested-desc
+
+# flora/ash/fireblossom
+- type: entity
+  id: ImperialAshFloraFireblossom
+  parent: ImperialAshFloraBase
+  suffix: Lavaland
+  name: fire blossom
+  description: An odd flower that grows commonly near bodies of lava.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/decor/ash_flora.rsi
+    layers:
+    - state: fireblossom1
+  - type: MegafaunaAppearance
+    baseState: fireblossom1
+  - type: PointLight
+    radius: 2.1
+    energy: 2.1
+    color: "#FFFF66"
+  - type: LavalandFlora
+    baseState: fireblossom
+    variants: 2
+    products:
+      ImperialAshFloraFireblossomFlower: 1
+    harvestedLightRadius: 1.5
+    regrowthLow: 240
+    regrowthHigh: 420
+    harvestedName: lavaland-flora-fireblossom-harvested
+    harvestedDesc: lavaland-flora-fireblossom-harvested-desc
+
+# flora/ash/glowgrowth
+- type: entity
+  id: ImperialAshFloraGlowgrowth
+  parent: ImperialAshFloraBase
+  suffix: Lavaland
+  name: glowgrowth colony
+  description: A colony of bioluminescent fungi growing on a hot air vent, feeding off mineral particulate blowing through it.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/decor/ash_flora.rsi
+    layers:
+    - state: glowgrowth1
+    - state: glowgrowth1e
+      shader: unshaded
+  - type: MegafaunaAppearance
+    baseState: glowgrowth1
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 1000
+        layer:
+        - HalfWallLayer
+  - type: PointLight
+    radius: 1.7
+    energy: 1.2
+    color: "#67B6A5"
+  - type: LavalandFlora
+    baseState: glowgrowth
+    variants: 3
+    emissiveSuffix: e
+    products:
+      ImperialAshFloraGlowgrowthSheet: 1
+    amountHigh: 4
+    harvestedLightRadius: 0
+    harvestedName: lavaland-flora-glowgrowth-harvested
+    harvestedDesc: lavaland-flora-glowgrowth-harvested-desc
+
+# ── Камни ────────────────────────────────────────────────────────────────────
+
+# flora/rock: большой валун, добывается киркой.
+- type: entity
+  id: ImperialLavalandRock
+  suffix: Lavaland
+  name: large rock
+  description: A volcanic rock. Pioneers used to ride these babies for miles.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/lava/decor/rocks.rsi
+    noRot: true
+    layers:
+    - state: basalt1
+  - type: Appearance
+  - type: MegafaunaAppearance
+    baseState: basalt1
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 1000
+        layer:
+        - HalfWallLayer
+  - type: LavalandFlora
+    baseState: basalt
+    toolTag: Pickaxe
+    deleteOnHarvest: true
+    amountLow: 10
+    amountHigh: 20
+    products:
+      ImperialVolcanicAsh1: 1
+    harvestMessage: lavaland-flora-rock-mined
+  - type: LavalandStormImmune
+
+# flora/rock/pile
+- type: entity
+  id: ImperialLavalandRockPile
+  parent: ImperialLavalandRock
+  suffix: Lavaland
+  name: rock pile
+  description: A pile of rocks.
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/lava/decor/rocks.rsi
+    noRot: true
+    layers:
+    - state: lavarocks1
+  - type: MegafaunaAppearance
+    baseState: lavarocks1
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        hard: false
+        mask:
+        - ItemMask
+  - type: LavalandFlora
+    baseState: lavarocks
+    variants: 3
+    variantWeights: [ 3, 3, 1 ]
+    toolTag: Pickaxe
+    deleteOnHarvest: true
+    amountLow: 5
+    amountHigh: 10
+    products:
+      ImperialVolcanicAsh1: 1
+    harvestMessage: lavaland-flora-pile-mined
+
+# flora/rock/pile/siderite
+- type: entity
+  id: ImperialLavalandRockPileSiderite
+  parent: ImperialLavalandRockPile
+  suffix: Lavaland
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/lava/decor/rocks.rsi
+    noRot: true
+    layers:
+    - state: lavarocks_siderite1
+  - type: MegafaunaAppearance
+    baseState: lavarocks_siderite1
+  - type: LavalandFlora
+    baseState: lavarocks_siderite
+    variants: 3
+    variantWeights: [ 3, 3, 1 ]
+    toolTag: Pickaxe
+    deleteOnHarvest: true
+    amountLow: 5
+    amountHigh: 10
+    products:
+      ImperialSideriteDust1: 1
+    harvestMessage: lavaland-flora-pile-mined
+
+# flora/rock/pile/shale
+- type: entity
+  id: ImperialLavalandRockPileShale
+  parent: ImperialLavalandRockPile
+  suffix: Lavaland
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/lava/decor/rocks.rsi
+    noRot: true
+    layers:
+    - state: lavarocks_shale1
+  - type: MegafaunaAppearance
+    baseState: lavarocks_shale1
+  - type: LavalandFlora
+    baseState: lavarocks_shale
+    variants: 3
+    variantWeights: [ 3, 3, 1 ]
+    toolTag: Pickaxe
+    deleteOnHarvest: true
+    amountLow: 5
+    amountHigh: 10
+    products:
+      ImperialVolcanicAsh1: 1
+    harvestMessage: lavaland-flora-pile-mined
+
+# flora/rock/siderite_growth
+- type: entity
+  id: ImperialLavalandSideriteGrowth
+  parent: ImperialLavalandRock
+  suffix: Lavaland
+  name: siderite growth
+  description: A natural stalagmite formed of siderite, with thin pointy strands of dirty metal sticking out of the top.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/decor/siderite_growth.rsi
+    noRot: true
+    offset: 0,0.5
+    layers:
+    - state: siderite_growth1
+  - type: SpriteFade
+  - type: MegafaunaAppearance
+    baseState: siderite_growth1
+  - type: LavalandFlora
+    baseState: siderite_growth
+    variants: 3
+    variantWeights: [ 3, 3, 1 ]
+    toolTag: Pickaxe
+    deleteOnHarvest: true
+    amountLow: 10
+    amountHigh: 20
+    products:
+      ImperialSideriteDust1: 1
+    harvestMessage: lavaland-flora-growth-mined
+
+# flora/rock/volcano: светится, после добычи на месте остаётся лава.
+- type: entity
+  id: ImperialLavalandVolcano
+  parent: ImperialLavalandRock
+  suffix: Lavaland
+  name: volcanic pore
+  description: A miniature volcano-like rock formed of the lava slowly pouring from it.
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/lava/decor/rocks.rsi
+    noRot: true
+    layers:
+    - state: volcano_1
+    - state: volcano_1_e
+      shader: unshaded
+  - type: MegafaunaAppearance
+    baseState: volcano_1
+  - type: PointLight
+    radius: 3
+    energy: 2.5
+    color: "#C48A18"
+  - type: LavalandFlora
+    baseState: volcano
+    variantSeparator: _
+    emissiveSuffix: _e
+    toolTag: Pickaxe
+    deleteOnHarvest: true
+    amountLow: 10
+    amountHigh: 20
+    products:
+      ImperialVolcanicAsh1: 1
+    spawnOnHarvest: ImperialLavalandLava
+    harvestMessage: lavaland-flora-volcano-mined
+
+# ── Продукты ─────────────────────────────────────────────────────────────────
+
+- type: entity
+  abstract: true
+  id: ImperialAshFloraFoodBase
+  parent: FoodBase
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/decor/ash_flora.rsi
+  - type: Item
+    size: Tiny
+  - type: FlavorProfile
+    flavors:
+    - mushroom
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+  - type: LavalandStormImmune
+
+# food/grown/ash_flora/shavings (polypore)
+- type: entity
+  id: ImperialAshFloraShavings
+  parent: ImperialAshFloraFoodBase
+  name: mushroom shavings
+  description: Some shavings from a tall mushroom. With enough, might serve as a bowl.
+  components:
+  - type: Sprite
+    state: mushroom_shavings
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Ethanol
+          Quantity: 2
+
+# mushroom_leaf (porcini)
+- type: entity
+  id: ImperialAshFloraMushroomLeaf
+  parent: ImperialAshFloraFoodBase
+  name: mushroom leaf
+  description: A leaf, from a mushroom.
+  components:
+  - type: Sprite
+    state: mushroom_leaf
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Sugar
+          Quantity: 3
+        - ReagentId: Nicotine
+          Quantity: 2
+
+# mushroom_cap (inocybe)
+- type: entity
+  id: ImperialAshFloraMushroomCap
+  parent: ImperialAshFloraFoodBase
+  name: mushroom cap
+  description: The cap of a large mushroom.
+  components:
+  - type: Sprite
+    state: mushroom_cap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: MindbreakerToxin
+          Quantity: 2
+        - ReagentId: SpaceDrugs
+          Quantity: 2
+
+# mushroom_stem (embershroom)
+- type: entity
+  id: ImperialAshFloraMushroomStem
+  parent: ImperialAshFloraFoodBase
+  name: mushroom stem
+  description: A long mushroom stem. It's slightly glowing.
+  components:
+  - type: Sprite
+    state: mushroom_stem
+  - type: PointLight
+    radius: 1
+    energy: 0.5
+    color: "#E0FF80"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: SpaceDrugs
+          Quantity: 1
+
+# cactus_fruit
+- type: entity
+  id: ImperialAshFloraCactusFruit
+  parent: ImperialAshFloraFoodBase
+  name: cactus fruit
+  description: A cactus fruit covered in a thick, reddish skin. And some ash.
+  components:
+  - type: Sprite
+    state: cactus_fruit
+  - type: FlavorProfile
+    flavors:
+    - sweet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Nutriment
+          Quantity: 2
+
+# seraka_cap
+- type: entity
+  id: ImperialAshFloraSerakaCap
+  parent: ImperialAshFloraFoodBase
+  name: seraka cap
+  description: Small, deeply flavourful mushrooms originally native to Tizira.
+  components:
+  - type: Sprite
+    state: seraka_cap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: TranexamicAcid
+          Quantity: 1
+
+# fireblossom: носится на голове.
+- type: entity
+  id: ImperialAshFloraFireblossomFlower
+  parent: ImperialAshFloraFoodBase
+  name: fire blossom
+  description: A flower from a fire blossom.
+  components:
+  - type: Sprite
+    state: fireblossom
+  - type: PointLight
+    radius: 1.5
+    energy: 1
+    color: "#FFFF66"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Carbon
+          Quantity: 3
+
+# glowgrowth sheet
+- type: entity
+  id: ImperialAshFloraGlowgrowthSheet
+  parent: ImperialAshFloraFoodBase
+  name: glowgrowth sheet
+  description: A thick sheet of glowing fungi.
+  components:
+  - type: Sprite
+    state: glowgrowth
+  - type: PointLight
+    radius: 1.2
+    energy: 1
+    color: "#67B6A5"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Silicon
+          Quantity: 3
+
+# ── Песок с камней ───────────────────────────────────────────────────────────
+
+- type: stack
+  parent: BaseMediumStack
+  id: ImperialVolcanicAsh
+  name: stack-imperial-volcanic-ash
+  icon: { sprite: /Textures/Imperial/lava/decor/ore.rsi, state: volcanic_sand }
+  spawn: ImperialVolcanicAsh1
+
+- type: stack
+  parent: BaseMediumStack
+  id: ImperialSideriteDust
+  name: stack-imperial-siderite-dust
+  icon: { sprite: /Textures/Imperial/lava/decor/ore.rsi, state: siderite_sand }
+  spawn: ImperialSideriteDust1
+
+# ore/glass/basalt: переплавляется в стекло, как песок.
+- type: entity
+  parent: OreBase
+  id: ImperialVolcanicAsh
+  name: volcanic ash
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: ImperialVolcanicAsh
+  - type: Sprite
+    sprite: Imperial/lava/decor/ore.rsi
+    state: volcanic_sand
+  - type: Item
+    sprite: Imperial/lava/decor/ore.rsi
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RawQuartz: 100
+
+- type: entity
+  parent: ImperialVolcanicAsh
+  id: ImperialVolcanicAsh1
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: ImperialVolcanicAsh
+    count: 1
+
+# ore/glass/siderite
+- type: entity
+  parent: OreBase
+  id: ImperialSideriteDust
+  name: siderite dust
+  suffix: Full
+  components:
+  - type: Stack
+    stackType: ImperialSideriteDust
+  - type: Sprite
+    sprite: Imperial/lava/decor/ore.rsi
+    state: siderite_sand
+  - type: Item
+    sprite: Imperial/lava/decor/ore.rsi
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RawQuartz: 100
+
+- type: entity
+  parent: ImperialSideriteDust
+  id: ImperialSideriteDust1
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: ImperialSideriteDust
+    count: 1
+
+# ── Лава с гулом магмы (ambient_buzz) ────────────────────────────────────────
+
+- type: entity
+  id: ImperialLavalandLava
+  parent: FloorLavaEntity
+  suffix: Lavaland
+  components:
+  - type: AmbientSound
+    enabled: true
+    volume: -6
+    range: 5
+    sound:
+      path: /Audio/Imperial/Lavaland/magma.ogg

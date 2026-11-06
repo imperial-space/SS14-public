@@ -1,123 +1,109 @@
-# ── Smoke effect for teleport ────────────────────────────────────────────────
+# ── Кровожадный шахтёр (SS13 basic/boss/blood_drunk_miner) ──────────────────
 
+# projectile/kinetic/miner: 18 урона, дальность 4 клетки.
 - type: entity
-  id: EffectDeadMinerSmoke
+  id: ImperialDeadMinerKinetic
   suffix: Lavaland
+  name: kinetic force
+  parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    drawdepth: Effects
-    sprite: Effects/chemsmoke.rsi
-    state: chemsmoke
-  - type: TimedDespawn
-    lifetime: 1.0
-
-# ── Kinetic bullet ────────────────────────────────────────────────────────────
-
-- type: entity
-  id: BulletDeadMinerKinetic
-  suffix: Lavaland
-  name: kinetic bolt
-  parent: BulletKinetic
-  categories: [ HideSpawnMenu ]
-  components:
+    noRot: false
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
+    layers:
+    - state: ka_tracer
+      shader: unshaded
   - type: Projectile
-    impactEffect: BulletImpactEffect
+    impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 20
+        Blunt: 18
+  - type: GatheringProjectile
   - type: TimedDespawn
-    lifetime: 4.0
+    lifetime: 0.2
 
-# ── Dead Miner mob ────────────────────────────────────────────────────────────
+# temp_visual/dir_setting/miner_death
+- type: entity
+  id: ImperialDeadMinerDeath
+  suffix: Lavaland
+  name: blood-drunk miner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
+    state: miner_death
+  - type: TimedDespawn
+    lifetime: 1.5
+  - type: Tag
+    tags:
+    - HideContextMenu
 
 - type: entity
   id: MobDeadMiner
   suffix: Lavaland
-  name: ent-MobDeadMiner
-  parent: [ SimpleSpaceMobBase, MobCombat, BaseMobAnimal ]
-  description: A miner consumed by the madness of Lavaland. His tools still remember their purpose.
+  name: blood-drunk miner
+  parent: ImperialMegafaunaBase
+  description: A miner destined to wander forever, engaged in an endless hunt.
   components:
-  - type: NpcFactionMember
-    factions:
-    - SimpleHostile
-  - type: HTN
-    rootTask:
-      task: SimpleHostileCompound
-    blackboard:
-      MeleeRange: !type:Single
-        1.5
-      VisionRadius: !type:Single
-        15
-      AggroVisionRadius: !type:Single
-        20
-      NavSmash: !type:Bool
-        true
   - type: Sprite
     drawdepth: Mobs
-    sprite: Imperial/lava/boss/miner.rsi
+    sprite: Imperial/lava/boss/megafauna/miner.rsi
     layers:
-    - map: [ "base" ]
-      state: miner
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.DeadMinerVisuals.Transformed:
-        base:
-          True: { state: miner_transformed }
-          False: { state: miner }
+    - state: miner
+  - type: MegafaunaAppearance
+    baseState: miner
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.45
-        density: 100
+          radius: 0.35
+        density: 150
         mask:
         - MobMask
         layer:
         - MobLayer
+  # movement_delay = 0.25 с.
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.5
-    baseSprintSpeed: 2.5
+    baseWalkSpeed: 4
+    baseSprintSpeed: 4
   - type: MeleeWeapon
     hidden: true
     altDisarm: false
-    attackRate: 3.33
-    soundHit:
-      path: /Audio/Imperial/boss/sound_misc_demon_attack1.ogg
+    attackRate: 1
+    range: 1.5
     damage:
       types:
-        Slash: 6
+        Slash: 8
   - type: MobThresholds
     thresholds:
       0: Alive
-      900: Dead
-  - type: Destructible
-    thresholds: []
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: miner
-      Dead:
-        Base: miner
-  - type: DeadMiner
-  - type: MegafaunaVanishOnDeath
-    delay: 30
+      1300: Dead
   - type: LavalandMegafaunaSleep
-  - type: LavalandMegafauna
-  - type: Tag
-    tags:
-    - LavalandMob
-  - type: LavalandStormImmune
+  - type: ImperialGps
+    tagLoc: imperial-gps-signal-resonant
+  - type: MegafaunaAi
+    openFireInterval: 0.25
+    deathSound:
+      collection: BodyFall
+    deathMessage: dead-miner-death
+  - type: DeadMiner
+  # DEL_ON_DEATH
+  - type: MegafaunaVanishOnDeath
+  - type: CrusherLoot
+    trophies:
+    - CrusherTrophyMinerEye
+    guaranteedDrop: 0.6
   - type: BossLoot
     loot:
     - prototype: MeleeWeaponCleavingSaw
       chance: 1.0
       minCount: 1
       maxCount: 1
-    - prototype: CrusherUpgradeChain
-      chance: 0.30
+    - prototype: WeaponProtoKineticAccelerator
+      chance: 1.0
       minCount: 1
       maxCount: 1
   - type: MegafaunaBossMusic

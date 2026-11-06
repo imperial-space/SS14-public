@@ -15,6 +15,8 @@ using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Lavaland.Weaver;
 
@@ -27,6 +29,9 @@ public sealed class WeaverSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _speed = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+    private static readonly ProtoId<DamageTypePrototype> PiercingDamageType = "Piercing";
 
     public override void Initialize()
     {
@@ -73,15 +78,15 @@ public sealed class WeaverSystem : EntitySystem
         }
 
         // Randomize melee damage within range
-        if (TryComp<MeleeWeaponComponent>(ent, out var melee))
+        if (HasComp<MeleeWeaponComponent>(ent))
         {
             var min = comp.IsEnraged ? comp.RageDamageMin : comp.NormalDamageMin;
             var max = comp.IsEnraged ? comp.RageDamageMax : comp.NormalDamageMax;
             var roll = _random.NextFloat(min, max);
 
             var dmg = new DamageSpecifier();
-            dmg.DamageDict["Slash"] = FixedPoint2.New(roll);
-            dmg.DamageDict["Piercing"] = FixedPoint2.New(2);
+            dmg.DamageDict[SlashDamageType] = FixedPoint2.New(roll);
+            dmg.DamageDict[PiercingDamageType] = FixedPoint2.New(2);
 
             foreach (var target in args.HitEntities)
                 _damageable.TryChangeDamage(target, dmg, ignoreResistances: false);
@@ -125,7 +130,7 @@ public sealed class WeaverSystem : EntitySystem
     {
         ent.Comp.IsEnraged = true;
         _speed.ChangeBaseSpeed(ent, 2.49f + ent.Comp.RageSpeedBonus, 3.32f + ent.Comp.RageSpeedBonus, 20f);
-        _audio.PlayPvs(new Robust.Shared.Audio.SoundPathSpecifier("/Audio/Effects/hiss.ogg"), ent);
+        _audio.PlayPvs(new Robust.Shared.Audio.SoundPathSpecifier("/Audio/Ambience/Objects/gas_hiss.ogg"), ent);
     }
 
     private void TryEatNearbyCorpse(EntityUid uid, WeaverComponent weaver, DamageableComponent damageable)

@@ -1,0 +1,19 @@
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesMesonLavaland
+  suffix: Lavaland
+  name: ent-ClothingEyesGlassesMesonLavaland
+  description: ent-ClothingEyesGlassesMesonLavaland
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/meson.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/meson.rsi
+  - type: EyeProtection
+  - type: MesonVision
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: Tag
+    tags:
+    - PetWearable
+    - Meson

@@ -1,0 +1,434 @@
+# Гейзеры и рудные жилы лаваленда из SS13
+# (game/objects/structures/lavaland/geyser.dm, ore_vent.dm, boulder_processing/boulder.dm).
+
+# ── Гейзеры ─────────────────────────────────────────────────────────────────
+
+- type: entity
+  abstract: true
+  id: ImperialGeyserBase
+  name: geyser
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/lava/decor/vent.rsi
+    noRot: true
+    offset: 0,0.5
+    layers:
+    - state: geyser
+    - state: geyser_soup
+  - type: Appearance
+  - type: MegafaunaAppearance
+    baseState: geyser
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        hard: false
+        mask:
+        - ItemMask
+  - type: SolutionContainerManager
+    solutions:
+      geyser:
+        maxVol: 500
+  - type: DrainableSolution
+    solution: geyser
+  - type: ExaminableSolution
+    solution: geyser
+  - type: LavalandStormImmune
+
+# geyser/random
+- type: entity
+  id: ImperialGeyserRandom
+  parent: ImperialGeyserBase
+  suffix: Random, Lavaland
+  components:
+  - type: LavalandGeyser
+    pointValue: 500
+    discoveryMessage: lavaland-geyser-random-discovery
+
+- type: entity
+  id: ImperialGeyserWittel
+  parent: ImperialGeyserBase
+  suffix: Wittel, Lavaland
+  components:
+  - type: LavalandGeyser
+    reagent: ImperialWittel
+    pointValue: 250
+    trueName: lavaland-geyser-wittel
+    discoveryMessage: lavaland-geyser-wittel-discovery
+
+- type: entity
+  id: ImperialGeyserPlasmaOxide
+  parent: ImperialGeyserBase
+  suffix: PlasmaOxide, Lavaland
+  components:
+  - type: LavalandGeyser
+    reagent: ImperialPlasmaOxide
+    trueName: lavaland-geyser-plasma-oxide
+
+- type: entity
+  id: ImperialGeyserProtozine
+  parent: ImperialGeyserBase
+  suffix: Protozine, Lavaland
+  components:
+  - type: LavalandGeyser
+    reagent: ImperialProtozine
+    trueName: lavaland-geyser-protozine
+
+- type: entity
+  id: ImperialGeyserHollowWater
+  parent: ImperialGeyserBase
+  suffix: HollowWater, Lavaland
+  components:
+  - type: LavalandGeyser
+    reagent: ImperialHollowWater
+    trueName: lavaland-geyser-hollow-water
+
+- type: entity
+  id: ImperialGeyserChiralBuffer
+  parent: ImperialGeyserBase
+  suffix: ChiralBuffer, Lavaland
+  components:
+  - type: LavalandGeyser
+    reagent: ImperialChiralBuffer
+    pointValue: 250
+    trueName: lavaland-geyser-chiral
+    discoveryMessage: lavaland-geyser-chiral-discovery
+
+# Случайные гейзеры по весам биомов SS13.
+- type: entityTable
+  id: ImperialGeyserBasaltTable
+  table: !type:GroupSelector
+    children:
+    - id: ImperialGeyserPlasmaOxide
+      weight: 8
+    - id: ImperialGeyserProtozine
+      weight: 8
+    - id: ImperialGeyserWittel
+      weight: 8
+    - id: ImperialGeyserRandom
+      weight: 3
+
+# ── Рудные жилы ──────────────────────────────────────────────────────────────
+
+- type: entity
+  id: ImperialOreVent
+  suffix: Lavaland
+  name: ore vent
+  description: An ore vent, brimming with underground ore. Scan with an advanced mining scanner to start extracting ore from it.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/lava/decor/vent.rsi
+    noRot: true
+    offset: 0,0.5
+    layers:
+    - state: ore_vent
+    - state: well
+      visible: false
+  - type: Appearance
+  - type: MegafaunaAppearance
+    baseState: ore_vent
+  - type: SpriteFade
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: LavalandOreVent
+    defendingMobs:
+    - MobGoliath
+    - MobLegionNormal
+    - MobWatcherLavaland
+  - type: LavalandStormImmune
+
+# ore_vent/boss: жуткая жила — вместо волн призывает босса.
+- type: entity
+  id: ImperialOreVentBoss
+  parent: ImperialOreVent
+  suffix: Boss, Lavaland
+  name: menacing ore vent
+  description: An ore vent, brimming with underground ore. This one has an evil aura about it. Better be careful.
+  components:
+  - type: LavalandOreVent
+    fixedSize: Large
+    minerals:
+      SteelOre1: 1
+      SpaceQuartz1: 1
+      PlasmaOre1: 1
+      SilverOre1: 1
+      GoldOre1: 1
+      DiamondOre1: 0.1
+      UraniumOre1: 1
+      Coal1: 1
+    bosses:
+    - MobLavalandBubblegum
+    - MobAshDrake
+    - MobColossus
+
+# mob/node_drone: дрон, которого надо защитить во время вскрытия жилы.
+- type: entity
+  id: ImperialNodeDrone
+  parent: SimpleSpaceMobBase
+  name: NODE drone
+  description: Standard in-atmosphere drone, used by Nanotrasen to operate and excavate valuable ore vents.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: HTN
+    rootTask:
+      task: IdleCompound
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/lava/decor/node_drone.rsi
+    layers:
+    - state: mining_node_active
+    - state: node_progress_1
+      visible: false
+  - type: MegafaunaAppearance
+    baseState: mining_node_active
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0
+    baseSprintSpeed: 0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 2000
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: PointLight
+    radius: 4
+    energy: 1
+  - type: LavalandNodeDrone
+  - type: LavalandStormImmune
+
+# ── Валуны ───────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: ImperialBoulder
+  parent: BaseItem
+  name: boulder
+  description: This rocks.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/decor/boulder.rsi
+    layers:
+    - state: boulder_small
+  - type: Appearance
+  - type: MegafaunaAppearance
+    baseState: boulder_small
+  - type: Item
+    size: Huge
+  - type: MultiHandedItem
+  - type: HeldSpeedModifier
+    walkModifier: 0.67
+    sprintModifier: 0.67
+  - type: LavalandBoulder
+  - type: LavalandStormImmune
+
+# boulder/artifact
+- type: entity
+  id: ImperialBoulderArtifact
+  parent: ImperialBoulder
+  name: artifact boulder
+  description: This boulder is brimming with strange energy. Cracking it open could contain something unusual for science.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/decor/boulder.rsi
+    layers:
+    - state: boulder_artifact
+  - type: MegafaunaAppearance
+    baseState: boulder_artifact
+  - type: LavalandBoulder
+    artifact: ComplexXenoArtifactItem
+
+# lattice/catwalk/boulder: временный плот на лаве.
+- type: entity
+  id: ImperialBoulderPlatform
+  name: boulder platform
+  description: A boulder floating on the lava. It won't last long.
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: Sprite
+    drawdepth: FloorObjects
+    sprite: Imperial/lava/decor/boulder.rsi
+    state: boulder_platform
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - Catwalk
+  - type: TimedDespawn
+    lifetime: 20
+
+# ── Реагенты гейзеров ────────────────────────────────────────────────────────
+
+- type: reagent
+  id: ImperialWittel
+  name: reagent-name-imperial-wittel
+  group: Elements
+  desc: reagent-desc-imperial-wittel
+  physicalDesc: reagent-physical-desc-metallic
+  flavor: metallic
+  color: "#FFFFFF"
+
+- type: reagent
+  id: ImperialPlasmaOxide
+  name: reagent-name-imperial-plasma-oxide
+  group: Elements
+  desc: reagent-desc-imperial-plasma-oxide
+  physicalDesc: reagent-physical-desc-glowing
+  flavor: bitter
+  color: "#470750"
+
+# medicine/omnizine/protozine: healing 0.2 вместо 0.5.
+- type: reagent
+  id: ImperialProtozine
+  name: reagent-name-imperial-protozine
+  group: Medicine
+  desc: reagent-desc-imperial-protozine
+  physicalDesc: reagent-physical-desc-soothing
+  flavor: medicine
+  color: "#D8C7B7"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:EvenHealthChange
+        damage:
+          Burn: -0.8
+          Toxin: -0.8
+          Airloss: -0.8
+          Brute: -0.8
+
+- type: reagent
+  id: ImperialHollowWater
+  name: reagent-name-imperial-hollow-water
+  parent: BaseDrink
+  desc: reagent-desc-imperial-hollow-water
+  physicalDesc: reagent-physical-desc-translucent
+  flavor: water
+  color: "#75B1F0"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateThirst
+        factor: 4
+
+- type: reagent
+  id: ImperialChiralBuffer
+  name: reagent-name-imperial-chiral-buffer
+  group: Elements
+  desc: reagent-desc-imperial-chiral-buffer
+  physicalDesc: reagent-physical-desc-shiny
+  flavor: bitter
+  color: "#AA0080"
+
+# ── Генерация на карте (feature_types биомов SS13) ──────────────────────────
+
+- type: entity
+  id: ImperialGeyserSpawner
+  parent: MarkerBase
+  suffix: Lavaland
+  name: geyser spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Imperial/lava/decor/vent.rsi
+      state: geyser
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      children:
+      - id: ImperialGeyserPlasmaOxide
+        weight: 20
+      - id: ImperialGeyserProtozine
+        weight: 20
+      - id: ImperialGeyserWittel
+        weight: 8
+      - id: ImperialGeyserHollowWater
+        weight: 12
+      - id: ImperialGeyserChiralBuffer
+        weight: 12
+      - id: ImperialGeyserRandom
+        weight: 9
+
+# ore_vent/boss: weight 1 среди feature_types — редкость.
+- type: entity
+  id: ImperialOreVentBossSpawner
+  parent: MarkerBase
+  suffix: Lavaland
+  name: menacing ore vent spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Imperial/lava/decor/vent.rsi
+      state: ore_vent
+  - type: RandomSpawner
+    chance: 0.5
+    prototypes:
+    - ImperialOreVentBoss
+
+- type: biomeMarkerLayer
+  id: ImperialGeysersLavaland
+  prototype: ImperialGeyserSpawner
+  maxCount: 15
+  minGroupSize: 1
+  maxGroupSize: 1
+  radius: 12
+
+- type: biomeMarkerLayer
+  id: ImperialOreVentsLavaland
+  prototype: ImperialOreVent
+  maxCount: 4
+  minGroupSize: 1
+  maxGroupSize: 1
+  radius: 24
+
+- type: biomeMarkerLayer
+  id: ImperialBossVentsLavaland
+  prototype: ImperialOreVentBossSpawner
+  maxCount: 1
+  minGroupSize: 1
+  maxGroupSize: 1
+  radius: 32

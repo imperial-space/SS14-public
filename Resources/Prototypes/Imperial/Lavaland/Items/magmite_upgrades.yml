@@ -2,7 +2,7 @@
 
 - type: entity
   id: BulletMagmiteCharge
-  parent: BulletCharge
+  parent: BulletCrusherDestabilizer
   noSpawn: true
   components:
   - type: Projectile
@@ -60,8 +60,8 @@
   id: WeaponKineticAcceleratorMega
   parent: WeaponMiningAccelerator
   suffix: Lavaland
-  name: горный кинетический акселератор Мега
-  description: Максимально улучшенная версия горного акселератора с удвоенной вместимостью зарядов.
+  name: протокинетический акселератор «Мега»
+  description: Максимально улучшенная версия протокинетического акселератора с удвоенной вместимостью модулей.
   components:
   - type: Sprite
     sprite: Imperial/lava/mining/magma/kineticgun_mega.rsi
@@ -81,14 +81,8 @@
     maxAngle: 0
   - type: Wieldable
     freeHandsRequired: 10
-  - type: MiningUpgradeableGun
-    maxCapacity: 200
-    baseRechargeCooldown: 3
-    whitelist:
-      tags:
-        - MiningPKAUpgrade
-    insertSound:
-      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: KineticAccelerator
+    maxModCapacity: 200
 
 - type: entity
   id: WeaponMagmiteCrusher
@@ -107,12 +101,6 @@
     proto: BulletMagmiteCharge
     capacity: 1
     count: 1
-  - type: KineticCrusherUpgradeable
-    maxCapacity: 100
-    baseUseDelay: 0.9
-    baseAmmoProto: BulletMagmiteCharge
-    insertSound:
-      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
 
 - type: entity
   id: WeaponPlasmaCutterMega

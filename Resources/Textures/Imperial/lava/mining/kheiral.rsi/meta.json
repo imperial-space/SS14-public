@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (hands.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "strand"
+    },
+    {
+      "name": "strand_light"
+    },
+    {
+      "name": "equipped-HAND",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HAND-emissive",
+      "directions": 4
+    }
+  ]
+}

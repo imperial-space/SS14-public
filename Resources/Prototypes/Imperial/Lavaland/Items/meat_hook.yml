@@ -50,7 +50,7 @@
   - type: GrapplingProjectile
   - type: MeatHookProjectile
     pullImpulse: 22
-    stunSeconds: 3
+    stunSeconds: 0 # только притягивает: без сбивания с ног
 
 - type: entity
   id: LavalandWeaponMeatHook

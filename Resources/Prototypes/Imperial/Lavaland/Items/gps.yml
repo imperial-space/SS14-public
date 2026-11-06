@@ -1,0 +1,83 @@
+# obj/item/gps: global positioning system из SS13.
+- type: entity
+  parent: BaseItem
+  id: ImperialGps
+  name: global positioning system
+  description: Helping lost spacemen find their way through the planets since 2016.
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/decor/gps.rsi
+    layers:
+    - state: gps-c
+    - state: working
+      shader: unshaded
+  - type: Appearance
+  - type: MegafaunaAppearance
+    baseState: gps-c
+  - type: Item
+    size: Small
+    sprite: Imperial/lava/decor/gps.rsi
+  - type: Clothing
+    quickEquip: false
+    sprite: Imperial/lava/decor/gps.rsi
+    slots:
+    - Belt
+  - type: ImperialGps
+    tag: COM0
+  - type: ImperialGpsDevice
+  - type: ActivatableUI
+    key: enum.ImperialGpsUiKey.Key
+    inHandsOnly: true
+  - type: UserInterface
+    interfaces:
+      enum.ImperialGpsUiKey.Key:
+        type: ImperialGpsBoundUserInterface
+
+- type: entity
+  parent: ImperialGps
+  id: ImperialGpsMining
+  description: A positioning system helpful for rescuing trapped or injured miners, keeping one on you at all times while mining might just save your life.
+  suffix: Mining
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/decor/gps.rsi
+    layers:
+    - state: gps-m
+    - state: working
+      shader: unshaded
+  - type: MegafaunaAppearance
+    baseState: gps-m
+  - type: ImperialGps
+    tag: MINE0
+
+- type: entity
+  parent: ImperialGps
+  id: ImperialGpsScience
+  suffix: Science
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/decor/gps.rsi
+    layers:
+    - state: gps-s
+    - state: working
+      shader: unshaded
+  - type: MegafaunaAppearance
+    baseState: gps-s
+  - type: ImperialGps
+    tag: SCI0
+
+- type: entity
+  parent: ImperialGps
+  id: ImperialGpsEngineering
+  suffix: Engineering
+  components:
+  - type: Sprite
+    sprite: Imperial/lava/decor/gps.rsi
+    layers:
+    - state: gps-e
+    - state: working
+      shader: unshaded
+  - type: MegafaunaAppearance
+    baseState: gps-e
+  - type: ImperialGps
+    tag: ENG0

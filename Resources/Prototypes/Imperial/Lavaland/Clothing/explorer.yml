@@ -1,0 +1,66 @@
+# suit/hooded/explorer (explorer_gear.dm): броня melee 30, bullet 10, laser 10, energy 20, bomb 50, fire 50.
+# Можно усилить тремя шкурами голиафа (armor_plate, +10 melee за шкуру) — отдельно костюм и капюшон.
+
+- type: entity
+  parent: [ClothingOuterBaseToggleable, AllowSuitStorageClothing]
+  id: ClothingOuterExplorerSuit
+  name: костюм исследователя
+  description: Бронированный костюм для исследования суровых сред.
+  components:
+  - type: Sprite
+    sprite: Imperial/Lavaland/Clothing/explorer_suit.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: Imperial/Lavaland/Clothing/explorer_suit.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodExplorer
+    slot: head
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.9
+        Heat: 0.9
+        Shock: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: FireProtection
+    reduction: 0.5
+  # max_heat_protection_temperature = SPACE_SUIT_MAX_TEMP_PROTECT, min_cold = FIRE_SUIT_MIN_TEMP_PROTECT
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.1
+  - type: ArmorPlate
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  parent: ClothingHeadHatHoodWinterBase
+  id: ClothingHeadHatHoodExplorer
+  categories: [ HideSpawnMenu ]
+  name: капюшон исследователя
+  description: Бронированный капюшон для исследования суровых сред.
+  components:
+  - type: Sprite
+    sprite: Imperial/Lavaland/Clothing/explorer_hood.rsi
+  - type: Clothing
+    sprite: Imperial/Lavaland/Clothing/explorer_hood.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.9
+        Heat: 0.9
+        Shock: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: FireProtection
+    reduction: 0.15
+  - type: TemperatureProtection
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.2
+  - type: ArmorPlate

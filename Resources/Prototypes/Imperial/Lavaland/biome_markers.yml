@@ -70,6 +70,14 @@
   maxGroupSize: 1
   radius: 16
 
+- type: biomeMarkerLayer
+  id: ZlatozhorLavaland
+  prototype: MobZlatozhor
+  maxCount: 5
+  minGroupSize: 1
+  maxGroupSize: 2
+  radius: 10
+
 # ── Бездны ────────────────────────────────────────────────────────────────────
 
 - type: biomeMarkerLayer

@@ -3,7 +3,7 @@ using Robust.Shared.Serialization.Manager.Attributes;
 
 namespace Content.Server.Imperial.Lavaland.Anvil;
 
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class LavalandAnvilComponent : Component
 {
     [DataField]
@@ -15,9 +15,11 @@ public sealed partial class LavalandAnvilComponent : Component
     [DataField]
     public int CurrentCharges = 2;
 
-    /// <summary>Seconds per charge recharge.</summary>
+    /// <summary>Время восстановления одного заряда.</summary>
     [DataField]
-    public float RechargeTime = 300f;
+    public TimeSpan RechargeTime = TimeSpan.FromMinutes(5);
 
-    public float RechargeTimer = 0f;
+    /// <summary>Когда восстановится следующий заряд (если зарядов меньше максимума).</summary>
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextCharge;
 }

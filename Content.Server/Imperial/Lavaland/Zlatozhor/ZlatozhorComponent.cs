@@ -3,16 +3,16 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 namespace Content.Server.Imperial.Lavaland.Zlatozhor;
 
 /// <summary>
-/// Zlatozhor — пассивный рудоед. Уходит под землю через <see cref="BurrowDelay"/> секунд.
+/// Zlatozhor — пассивный рудоед. Уходит под землю через <see cref="BurrowDelay"/>.
 /// При получении удара отталкивает атакующего.
 /// При смерти роняет ценные руды.
 /// </summary>
 [RegisterComponent]
 public sealed partial class ZlatozhorComponent : Component
 {
-    /// <summary>Задержка перед нырком (секунды).</summary>
+    /// <summary>Задержка перед нырком.</summary>
     [DataField]
-    public float BurrowDelay = 10f;
+    public TimeSpan BurrowDelay = TimeSpan.FromSeconds(10);
 
     /// <summary>Момент следующего нырка.</summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
@@ -32,5 +32,9 @@ public sealed partial class ZlatozhorComponent : Component
 
     /// <summary>Через сколько секунд нырять после обнаружения угрозы.</summary>
     [DataField]
-    public float PanicBurrowDelay = 1.0f;
+    public TimeSpan PanicBurrowDelay = TimeSpan.FromSeconds(1.0f);
+
+    /// <summary>Максимальный радиус (в тайлах) телепорта при нырке. 0 = без ограничений.</summary>
+    [DataField]
+    public float BurrowMaxRange = 20f;
 }

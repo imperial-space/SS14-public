@@ -1,0 +1,54 @@
+megafauna-devour = { CAPITALIZE($boss) } потрошит { $victim }!
+
+ent-ImperialStormStaff = посох бурь
+    .desc = Древний посох, извлечённый из останков Легиона. При взмахе поднимается ветер.
+ent-ImperialStormStaffTelegraph = прицел
+ent-ImperialStormStaffThunderbolt = молния
+ent-ImperialStormStaffElectricity = электричество
+
+storm-staff-examine = Зарядов осталось: { $charges }. Используйте в руке, чтобы рассеять бурю. Используйте на цели, чтобы вызвать молнию — в бурю она сильнее.
+storm-staff-already-ending = Буря уже стихает!
+storm-staff-hold-up = Вы поднимаете посох...
+storm-staff-dispel = { CAPITALIZE($user) } поднимает посох к небу, и оранжевый луч уходит ввысь, рассеивая бурю!
+storm-staff-needs-charge = Посоху нужно перезарядиться!
+storm-staff-cant-bolt = Сюда молнию не вызвать!
+storm-staff-already-targeted = Сюда уже целятся!
+storm-staff-aim = Вы прицеливаетесь...
+storm-staff-struck = В вас ударила молния!
+storm-staff-strikes = Молния бьёт в землю!
+
+ent-ImperialAnomalousCrystalBase = аномальный кристалл
+    .desc = Странный кусок кристалла. Рядом с ним вас наполняют в равной мере восторг и страх.
+ent-ImperialAnomalousCrystalHonk = { ent-ImperialAnomalousCrystalBase }
+    .desc = { ent-ImperialAnomalousCrystalBase.desc }
+ent-ImperialAnomalousCrystalThemeWarp = { ent-ImperialAnomalousCrystalBase }
+    .desc = { ent-ImperialAnomalousCrystalBase.desc }
+ent-ImperialAnomalousCrystalEmitter = { ent-ImperialAnomalousCrystalBase }
+    .desc = { ent-ImperialAnomalousCrystalBase.desc }
+ent-ImperialAnomalousCrystalDarkReprise = { ent-ImperialAnomalousCrystalBase }
+    .desc = { ent-ImperialAnomalousCrystalBase.desc }
+ent-ImperialAnomalousCrystalHelpers = { ent-ImperialAnomalousCrystalBase }
+    .desc = { ent-ImperialAnomalousCrystalBase.desc }
+ent-ImperialAnomalousCrystalPossessor = { ent-ImperialAnomalousCrystalBase }
+    .desc = { ent-ImperialAnomalousCrystalBase.desc }
+ent-ImperialColossusChest = сундук колосса
+ent-ImperialAnomalousCrystalConfetti = конфетти
+ent-ImperialAnomalousCrystalSparks = кровавые искры
+ent-ImperialActionExitPossession = Покинуть тело
+    .desc = Выйти из тела, в которое вы вселились. Оно при этом взорвётся.
+ent-ImperialLightgeist = лайтгейст
+    .desc = Это маленькое парящее существо — совершенно неизвестная форма жизни... Рядом с ним вас охватывает спокойствие.
+
+anomalous-crystal-charging = заряжается...
+anomalous-crystal-observer-default = Этот кристалл ничего особенного не делает.
+anomalous-crystal-observer-honk = Этот кристалл воскрешает тела вокруг себя клоунами. О, это ужасно...
+anomalous-crystal-observer-theme = Этот кристалл превращает окрестности в тему «{ $theme }».
+anomalous-crystal-observer-emitter = Этот кристалл выпускает смертельный болт при активации.
+anomalous-crystal-observer-dark-reprise = При активации кристалл воскрешает всех рядом, но после этого их можно поднять только им же.
+anomalous-crystal-observer-helpers = Этот кристалл позволяет призракам стать хрупкими существами, которые лечат людей.
+anomalous-crystal-observer-possessor = При активации кристалл позволяет вселиться в мелкое животное. Выход из него убивает животное, а если оно умрёт — умрёте и вы.
+anomalous-crystal-dark-reprise = Тьма возвращает вас к жизни. Больше вас не спасёт никто, кроме кристалла.
+anomalous-crystal-helpers-ready = Кристалл активирован! Теперь призраки могут стать лайтгейстами.
+anomalous-crystal-lightgeist-role = Лайтгейст
+anomalous-crystal-lightgeist-role-desc = Хрупкое парящее существо, которое лечит других касанием. Вы не можете говорить с людьми.
+anomalous-crystal-possession-gib = { CAPITALIZE($animal) } разрывается на части!

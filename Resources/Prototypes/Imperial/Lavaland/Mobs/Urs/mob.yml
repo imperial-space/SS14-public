@@ -1,6 +1,6 @@
 - type: entity
   id: MobUrs
-  parent: [ BaseMobAsteroid, MobBloodstream ]
+  parent: BaseMobAsteroid
   name: Urs
   description: A huge creature that can break you.
   components:
@@ -18,9 +18,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.00
     baseSprintSpeed : 2.00
-  - type: Bloodstream
-    bloodMaxVolume: 400
-    chemicalMaxVolume: 0
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -103,9 +100,10 @@
       amount: 5
     - id: IngotSilver1
       amount: 2
-    - id: CrusherUpgradeTailSpike
-      amount: 1
-      prob: 0.40
+  - type: CrusherLoot
+    trophies:
+    - CrusherTrophyWendigoHorn
+    guaranteedDrop: 0.6
   - type: LavalandMegafaunaSleep
 
 - type: Tag

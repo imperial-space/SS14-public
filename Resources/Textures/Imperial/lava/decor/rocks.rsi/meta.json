@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (rocks.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "basalt1"
+    },
+    {
+      "name": "basalt2"
+    },
+    {
+      "name": "basalt3"
+    },
+    {
+      "name": "basalt4"
+    },
+    {
+      "name": "lavarocks1"
+    },
+    {
+      "name": "lavarocks2"
+    },
+    {
+      "name": "lavarocks3"
+    },
+    {
+      "name": "lavarocks_siderite1"
+    },
+    {
+      "name": "lavarocks_siderite2"
+    },
+    {
+      "name": "lavarocks_siderite3"
+    },
+    {
+      "name": "lavarocks_shale1"
+    },
+    {
+      "name": "lavarocks_shale2"
+    },
+    {
+      "name": "lavarocks_shale3"
+    },
+    {
+      "name": "volcano_1"
+    },
+    {
+      "name": "volcano_2"
+    },
+    {
+      "name": "volcano_3"
+    },
+    {
+      "name": "volcano_4"
+    },
+    {
+      "name": "volcano_1_e"
+    },
+    {
+      "name": "volcano_2_e"
+    },
+    {
+      "name": "volcano_3_e"
+    },
+    {
+      "name": "volcano_4_e"
+    }
+  ]
+}

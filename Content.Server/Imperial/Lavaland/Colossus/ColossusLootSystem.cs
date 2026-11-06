@@ -1,3 +1,6 @@
+using Robust.Shared.Prototypes;
+using Content.Shared.Imperial.Helpers;
+using Content.Shared.Dataset;
 using Content.Server.Actions;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Systems;
@@ -19,6 +22,7 @@ using Content.Shared.Speech.Muting;
 using Content.Shared.StatusEffectNew;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Lavaland.Colossus;
 
@@ -37,7 +41,20 @@ public sealed class ColossusLootSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private readonly Dictionary<EntityUid, TimeSpan> _mutedUntil = new();
-    private readonly HashSet<EntityUid> _awaitingVoiceCommand = new();
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceStopLocalizedDataset = "ImperialColossusVoiceStop";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceWeakenLocalizedDataset = "ImperialColossusVoiceWeaken";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceSleepLocalizedDataset = "ImperialColossusVoiceSleep";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceVomitLocalizedDataset = "ImperialColossusVoiceVomit";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceSilenceLocalizedDataset = "ImperialColossusVoiceSilence";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceWakeLocalizedDataset = "ImperialColossusVoiceWake";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceHealLocalizedDataset = "ImperialColossusVoiceHeal";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoicePainLocalizedDataset = "ImperialColossusVoicePain";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceBurnLocalizedDataset = "ImperialColossusVoiceBurn";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceStandLocalizedDataset = "ImperialColossusVoiceStand";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceRestLocalizedDataset = "ImperialColossusVoiceRest";
 
     public override void Initialize()
     {
@@ -92,7 +109,7 @@ public sealed class ColossusLootSystem : EntitySystem
         _actions.RemoveProvidedActions(args.Wearer, voice.Owner);
 
         voice.Comp.PrepareActionEntity = null;
-        _awaitingVoiceCommand.Remove(args.Wearer);
+        RemComp<ColossusLootAwaitingVoiceCommandComponent>(args.Wearer);
         Dirty(voice);
     }
 
@@ -108,13 +125,13 @@ public sealed class ColossusLootSystem : EntitySystem
         if (_timing.CurTime < cords.NextUse)
         {
             var left = (cords.NextUse - _timing.CurTime).TotalSeconds;
-            _popup.PopupEntity($"Связки не слушаются. Подождите {left:0} сек.", args.Performer, args.Performer);
+            _popup.PopupEntity(Loc.GetString("imperial-lavaland-colossus-loot-system-1", ("arg0", (left).ToString("0"))), args.Performer, args.Performer);
             args.Handled = true;
             return;
         }
 
-        _awaitingVoiceCommand.Add(args.Performer);
-        _popup.PopupEntity("Произнесите команду Гласа Бога. Можно использовать :~ в начале фразы.", args.Performer, args.Performer);
+        EnsureComp<ColossusLootAwaitingVoiceCommandComponent>(args.Performer);
+        _popup.PopupEntity(Loc.GetString("imperial-lavaland-colossus-loot-system-2"), args.Performer, args.Performer);
         args.Handled = true;
     }
 
@@ -127,7 +144,7 @@ public sealed class ColossusLootSystem : EntitySystem
             return;
 
         var hasPrefix = TryStripPrefix(args.Message, out var text);
-        var wasPending = _awaitingVoiceCommand.Remove(args.Source);
+        var wasPending = RemComp<ColossusLootAwaitingVoiceCommandComponent>(args.Source);
         if (!hasPrefix && !wasPending)
             return;
 
@@ -165,8 +182,25 @@ public sealed class ColossusLootSystem : EntitySystem
         return false;
     }
 
+    /// <summary>
+    /// ImperialHolyComponent.Role >= Priest. Компонент священника ищется по имени,
+    /// чтобы лаваленд не зависел от сборки капеллана.
+    /// </summary>
+    private bool IsPriest(EntityUid uid)
+    {
+        if (!EntityManager.ComponentFactory.TryGetRegistration("ImperialHoly", out var registration)
+            || !EntityManager.TryGetComponent(uid, registration.Type, out var holy))
+            return false;
+
+        var role = registration.Type.GetField("Role")?.GetValue(holy);
+        return role != null && Convert.ToByte(role) >= 2;
+    }
+
     private void ApplyCommand(EntityUid speaker, VoiceOfGodCommand command, float radius)
     {
+        // Капеллан говорит голосом бога вдвое сильнее (voice_of_god_power = 2 в SS13).
+        var power = IsPriest(speaker) ? 2f : 1f;
+
         var nearby = new HashSet<EntityUid>();
         _lookup.GetEntitiesInRange(Transform(speaker).Coordinates, radius, nearby);
 
@@ -183,53 +217,53 @@ public sealed class ColossusLootSystem : EntitySystem
             switch (command)
             {
                 case VoiceOfGodCommand.Stop:
-                    _stun.TryUpdateStunDuration(target, TimeSpan.FromSeconds(4));
-                    _stun.TryKnockdown(target, TimeSpan.FromSeconds(4), force: true);
+                    _stun.TryUpdateStunDuration(target, TimeSpan.FromSeconds(4 * power));
+                    _stun.TryKnockdown(target, TimeSpan.FromSeconds(4 * power), force: true);
                     break;
                 case VoiceOfGodCommand.Weaken:
-                    _stamina.TakeStaminaDamage(target, 80f, source: speaker);
+                    _stamina.TakeStaminaDamage(target, 80f * power, source: speaker);
                     break;
                 case VoiceOfGodCommand.Sleep:
-                    _status.TryAddStatusEffectDuration(target, SleepingSystem.StatusEffectForcedSleeping, TimeSpan.FromSeconds(3));
+                    _status.TryAddStatusEffectDuration(target, SleepingSystem.StatusEffectForcedSleeping, TimeSpan.FromSeconds(3 * power));
                     break;
                 case VoiceOfGodCommand.Vomit:
                     _chat.TryEmoteWithChat(target, "Vomit");
                     break;
                 case VoiceOfGodCommand.Silence:
                     EnsureComp<MutedComponent>(target);
-                    _mutedUntil[target] = _timing.CurTime + TimeSpan.FromSeconds(20);
+                    _mutedUntil[target] = _timing.CurTime + TimeSpan.FromSeconds(20 * power);
                     break;
                 case VoiceOfGodCommand.Wake:
                     WakeAndStand(target);
                     break;
                 case VoiceOfGodCommand.Heal:
-                {
-                    var spec = new DamageSpecifier();
-                    spec.DamageDict["Blunt"] = FixedPoint2.New(-20);
-                    _damageable.TryChangeDamage(target, spec, origin: speaker);
-                    break;
-                }
-                case VoiceOfGodCommand.Pain:
-                {
-                    var spec = new DamageSpecifier();
-                    spec.DamageDict["Blunt"] = FixedPoint2.New(15);
-                    _damageable.TryChangeDamage(target, spec, origin: speaker);
-                    break;
-                }
-                case VoiceOfGodCommand.Burn:
-                {
-                    if (TryComp<FlammableComponent>(target, out var flammable))
                     {
-                        _flammable.AdjustFireStacks(target, flammable.FirestacksOnIgnite, flammable);
-                        _flammable.Ignite(target, speaker, flammable);
+                        var spec = new DamageSpecifier();
+                        spec.DamageDict[BluntDamageType] = FixedPoint2.New(-20 * power);
+                        _damageable.TryChangeDamage(target, spec, origin: speaker);
+                        break;
                     }
-                    break;
-                }
+                case VoiceOfGodCommand.Pain:
+                    {
+                        var spec = new DamageSpecifier();
+                        spec.DamageDict[BluntDamageType] = FixedPoint2.New(15 * power);
+                        _damageable.TryChangeDamage(target, spec, origin: speaker);
+                        break;
+                    }
+                case VoiceOfGodCommand.Burn:
+                    {
+                        if (TryComp<FlammableComponent>(target, out var flammable))
+                        {
+                            _flammable.AdjustFireStacks(target, flammable.FirestacksOnIgnite, flammable);
+                            _flammable.Ignite(target, speaker, flammable);
+                        }
+                        break;
+                    }
                 case VoiceOfGodCommand.Stand:
                     WakeAndStand(target);
                     break;
                 case VoiceOfGodCommand.Rest:
-                    _status.TryAddStatusEffectDuration(target, SleepingSystem.StatusEffectForcedSleeping, TimeSpan.FromSeconds(2));
+                    _status.TryAddStatusEffectDuration(target, SleepingSystem.StatusEffectForcedSleeping, TimeSpan.FromSeconds(2 * power));
                     break;
             }
         }
@@ -257,77 +291,77 @@ public sealed class ColossusLootSystem : EntitySystem
 
     private static bool TryResolveCommand(string text, out VoiceOfGodCommand command, out float cooldown)
     {
-        if (ContainsAny(text, "стоп", "стой", "замри", "остановись", "оглушись"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceStopLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Stop;
             cooldown = 120f;
             return true;
         }
 
-        if (ContainsAny(text, "ослабни", "упади", "споткнись", "ослабься"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceWeakenLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Weaken;
             cooldown = 120f;
             return true;
         }
 
-        if (ContainsAny(text, "усни", "засни", "дремли", "спи"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceSleepLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Sleep;
             cooldown = 120f;
             return true;
         }
 
-        if (ContainsAny(text, "блюй", "тошни", "вырви"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceVomitLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Vomit;
             cooldown = 120f;
             return true;
         }
 
-        if (ContainsAny(text, "заткнись", "молчи", "тихо", "шшш", "тише"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceSilenceLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Silence;
             cooldown = 120f;
             return true;
         }
 
-        if (ContainsAny(text, "проснись", "очнись", "пробудись"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceWakeLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Wake;
             cooldown = 60f;
             return true;
         }
 
-        if (ContainsAny(text, "исцелись", "живи", "восстановись", "выживи", "поправься"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceHealLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Heal;
             cooldown = 60f;
             return true;
         }
 
-        if (ContainsAny(text, "боль", "страдай", "умри", "кровоточь"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoicePainLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Pain;
             cooldown = 60f;
             return true;
         }
 
-        if (ContainsAny(text, "гори", "загорись", "пылай", "сожгись"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceBurnLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Burn;
             cooldown = 60f;
             return true;
         }
 
-        if (ContainsAny(text, "встань", "поднимись", "подъём"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceStandLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Stand;
             cooldown = 60f;
             return true;
         }
 
-        if (ContainsAny(text, "отдыхай", "ляг", "лежи"))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceRestLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Rest;
             cooldown = 30f;

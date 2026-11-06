@@ -4,11 +4,15 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Numerics;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Lavaland.NecropolisSpike;
 
 public sealed class NecropolisSpikeSystem : EntitySystem
 {
+    private static readonly EntProtoId NecropolisCrate = "NecropolisCrate";
+    private static readonly EntProtoId FloorChasmEntity = "FloorChasmEntity";
+
     private readonly record struct PendingAbyss(EntityUid GridUid, EntityCoordinates Center, float Radius, TimeSpan TriggerTime);
 
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -46,7 +50,7 @@ public sealed class NecropolisSpikeSystem : EntitySystem
         }
 
         // Сундук появляется сразу
-        Spawn("CratePirate", xform.Coordinates);
+        Spawn(NecropolisCrate, xform.Coordinates);
     }
 
     public override void Update(float frameTime)
@@ -99,7 +103,7 @@ public sealed class NecropolisSpikeSystem : EntitySystem
     /// <summary>Создает бездну в радиусе AbyssRadius через спавн Chasm-сущностей, не удаляя тайлы.</summary>
     private void CreateAbyss(EntityUid gridUid, EntityCoordinates center, float abyssRadius)
     {
-        if (!TryComp<MapGridComponent>(gridUid, out _))
+        if (!HasComp<MapGridComponent>(gridUid))
             return;
 
         var radius = (int)Math.Ceiling(abyssRadius);
@@ -112,7 +116,7 @@ public sealed class NecropolisSpikeSystem : EntitySystem
                     continue;
 
                 var coords = center.Offset(new Vector2(dx, dy));
-                Spawn("FloorChasmEntity", coords);
+                Spawn(FloorChasmEntity, coords);
             }
         }
     }

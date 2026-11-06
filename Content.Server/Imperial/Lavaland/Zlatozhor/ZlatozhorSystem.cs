@@ -40,7 +40,7 @@ public sealed class ZlatozhorSystem : EntitySystem
 
     private void OnMapInit(Entity<ZlatozhorComponent> ent, ref MapInitEvent args)
     {
-        ent.Comp.BurrowTime = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.BurrowDelay);
+        ent.Comp.BurrowTime = _timing.CurTime + ent.Comp.BurrowDelay;
     }
 
     // ── Нырок под землю ─────────────────────────────────────────────────────
@@ -82,6 +82,20 @@ public sealed class ZlatozhorSystem : EntitySystem
             return;
         }
 
+        if (comp.BurrowMaxRange > 0f)
+        {
+            var currentIdx = _mapSystem.GetTileRef(gridUid, grid, xform.Coordinates).GridIndices;
+            var maxRangeSq = comp.BurrowMaxRange * comp.BurrowMaxRange;
+            var nearby = tiles.Where(t =>
+            {
+                var dx = t.GridIndices.X - currentIdx.X;
+                var dy = t.GridIndices.Y - currentIdx.Y;
+                return (float)(dx * dx + dy * dy) <= maxRangeSq;
+            }).ToList();
+            if (nearby.Count > 0)
+                tiles = nearby;
+        }
+
         var tile = _random.Pick(tiles);
         var newCoords = _mapSystem.GridTileToLocal(gridUid, grid, tile.GridIndices)
             .Offset(new Vector2(0.5f, 0.5f));
@@ -91,7 +105,7 @@ public sealed class ZlatozhorSystem : EntitySystem
         _audio.PlayPvs("/Audio/Effects/teleport_arrival.ogg", uid);
 
         // Сбросить таймер
-        comp.BurrowTime = _timing.CurTime + TimeSpan.FromSeconds(comp.BurrowDelay);
+        comp.BurrowTime = _timing.CurTime + comp.BurrowDelay;
     }
 
     // ── Смерть — выдача руды ─────────────────────────────────────────────────
@@ -137,7 +151,7 @@ public sealed class ZlatozhorSystem : EntitySystem
             if (!TryComp<MobStateComponent>(hit, out var state) || state.CurrentState != MobState.Alive)
                 continue;
 
-            if (!TryComp<PhysicsComponent>(args.User, out _))
+            if (!HasComp<PhysicsComponent>(args.User))
                 continue;
 
             var zlatozhorPos = _transform.GetWorldPosition(hit);
@@ -170,7 +184,7 @@ public sealed class ZlatozhorSystem : EntitySystem
 
     private void TriggerPanicBurrow(ZlatozhorComponent comp)
     {
-        var panicTime = _timing.CurTime + TimeSpan.FromSeconds(comp.PanicBurrowDelay);
+        var panicTime = _timing.CurTime + comp.PanicBurrowDelay;
         if (panicTime < comp.BurrowTime)
             comp.BurrowTime = panicTime;
     }

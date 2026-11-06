@@ -42,6 +42,7 @@ public sealed class MeatHookProjectileSystem : EntitySystem
             }
         }
 
-        _stun.TryKnockdown(args.Target, TimeSpan.FromSeconds(ent.Comp.StunSeconds), force: true);
+        if (ent.Comp.StunSeconds > 0)
+            _stun.TryKnockdown(args.Target, TimeSpan.FromSeconds(ent.Comp.StunSeconds), force: true);
     }
 }

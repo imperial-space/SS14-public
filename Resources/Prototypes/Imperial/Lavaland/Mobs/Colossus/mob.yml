@@ -1,126 +1,118 @@
+# ── Колосс (SS13 megafauna/colossus) ────────────────────────────────────────
+
+# obj/projectile/colossus: death bolt, 25 brute, armour_penetration 100, 50 клеток.
 - type: entity
-  id: BulletColossusHoly
+  id: ImperialColossusBolt
   suffix: Lavaland
-  name: holy bolt
-  parent: BulletKinetic
+  name: death bolt
+  parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     noRot: false
-    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
     layers:
-    - state: arcane_barrage
+    - state: chronobolt
       shader: unshaded
   - type: Projectile
-    impactEffect: BulletImpactEffect
+    impactEffect: BulletImpactEffectKinetic
     damage:
       types:
-        Blunt: 15
+        Blunt: 25
+        Structural: 50
+    armorPenetration: 1.0
+  - type: GatheringProjectile
+  - type: ColossusBolt
   - type: TimedDespawn
-    lifetime: 4.0
+    lifetime: 5
+
+# temp_visual/at_shield: anti-toolbox field.
+- type: entity
+  id: ImperialColossusShield
+  suffix: Lavaland
+  name: anti-toolbox field
+  description: A shimmering forcefield protecting the colossus.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Overlays
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
+    state: at_shield2
+    shader: unshaded
+  - type: PointLight
+    radius: 2.5
+    energy: 1.2
+    color: "#FFFF66"
+  - type: TimedDespawn
+    lifetime: 0.8
+  - type: Tag
+    tags:
+    - HideContextMenu
 
 - type: entity
   id: MobColossus
   suffix: Lavaland
   name: colossus
-  parent: [ SimpleSpaceMobBase, MobCombat, MobBloodstream, BaseMobAnimal ]
-  description: A fallen angel wandering the wastes of Lavaland, punishing all it deems impure.
+  parent: ImperialMegafaunaBase
+  description: A monstrous creature protected by heavy shielding.
   components:
-  - type: NpcFactionMember
-    factions:
-    - SimpleHostile
-  - type: HTN
-    rootTask:
-      task: ColossusCompound
-    blackboard:
-      RangedRange: !type:Single
-        6
-      MeleeRange: !type:Single
-        1.5
-      VisionRadius: !type:Single
-        15
-      AggroVisionRadius: !type:Single
-        20
-      NavSmash: !type:Bool
-        true
   - type: Sprite
     drawdepth: Mobs
-    sprite: Imperial/lava/boss/96x96megafauna.rsi
+    sprite: Imperial/lava/boss/megafauna/megafauna96.rsi
+    offset: 0,1
     layers:
-    - map: [ "base" ]
-      state: eva
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.ColossusVisuals.Enraged:
-        base:
-          True: { state: eva_attack }
-          False: { state: eva }
+    - state: eva
+  - type: MegafaunaAppearance
+    baseState: eva
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.7
-        density: 120
+          radius: 0.45
+        density: 1000
         mask:
         - MobMask
         layer:
         - MobLayer
+  # move_to_delay = 10 — клетка в секунду.
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.5
-    baseSprintSpeed: 1.5
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1
   - type: MeleeWeapon
     hidden: true
     altDisarm: false
-    attackRate: 0.6
+    attackRate: 0.5
+    range: 1.5
+    soundHit:
+      path: /Audio/Imperial/boss/sound_magic_ratvar_attack.ogg
     damage:
       types:
-        Blunt: 30
+        Blunt: 40
   - type: MobThresholds
     thresholds:
       0: Alive
       2500: Dead
-  - type: Destructible
-    thresholds: []
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: eva
-      Dead:
-        Base: eva
+  - type: LavalandMegafaunaSleep
+  - type: ImperialGps
+    tagLoc: imperial-gps-signal-angelic
+  - type: MegafaunaAi
+    deathSound:
+      path: /Audio/Imperial/boss/sound_misc_demon_dies.ogg
+    deathMessage: colossus-death
   - type: Colossus
-    normalMeleeDamage: 30
-    enragedMeleeDamage: 50
-    normalSpeed: 1.5
-    enragedSpeed: 2.5
-    enrageThreshold: 1250
+  # del_on_death
+  - type: MegafaunaVanishOnDeath
+  - type: CrusherLoot
+    trophies:
+    - CrusherTrophyBlasterTubes
+    guaranteedDrop: 0.6
   - type: BossLoot
     loot:
-    - prototype: ClothingEyesEyeOfGod
+    - prototype: ImperialColossusChest
       chance: 1.0
       minCount: 1
       maxCount: 1
-    - prototype: ClothingNeckVoiceOfGod
-      chance: 1.0
-      minCount: 1
-      maxCount: 1
-    - prototype: CrusherUpgradeBlasterTubes
-      chance: 0.30
-      minCount: 1
-      maxCount: 1
-  - type: Tag
-    tags:
-    - LavalandMob
-  - type: Damageable
-    damageContainer: Biological
-    damageModifierSet: HellSpawn
-  - type: TemperatureDamage
-    heatDamageThreshold: 1000000
-  - type: LavalandStormImmune
-  - type: MegafaunaVanishOnDeath
-  - type: LavalandMegafaunaSleep
-  - type: LavalandMegafauna
   - type: MegafaunaBossMusic
     music:
       path: /Audio/Imperial/boss/blackmoor_Colossus.ogg

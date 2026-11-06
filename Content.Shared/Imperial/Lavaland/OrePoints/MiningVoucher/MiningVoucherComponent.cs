@@ -1,14 +1,12 @@
-using Content.Shared.Imperial.Lavaland.OrePoints.MiningVoucher;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Serialization.Manager.Attributes;
-
 namespace Content.Shared.Imperial.Lavaland.OrePoints.MiningVoucher;
 
 /// <summary>
-/// Marks an item as a mining voucher. When used on a mining vending machine,
-/// opens a kit selection UI, giving the player one kit of their choice.
+/// obj/item/mining_voucher: применяется на шахтёрский автомат, даёт выбрать один набор.
 /// </summary>
 [RegisterComponent]
 public sealed partial class MiningVoucherComponent : Component
 {
+    /// <summary>Автомат, на который применили ваучер; набор выпадает у него.</summary>
+    [ViewVariables]
+    public EntityUid? Redeemer;
 }

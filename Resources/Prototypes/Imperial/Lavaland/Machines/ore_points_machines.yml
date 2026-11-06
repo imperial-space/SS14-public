@@ -39,6 +39,7 @@
         ClothingEyesHudMedical: 1500
         ClothingEyesGlassesGar: 800
         ClothingEyesGlassesMeson: 800
+        ClothingEyesGlassesMesonLavaland: 800
         # ── Медицина ──
         FireExtinguisherMini: 400
         BruteMedkitImperialFilled: 800
@@ -48,24 +49,40 @@
         MineralScanner: 800
         Pickaxe: 800
         OreBag: 500
-        Fulton: 1500
+        ImperialFultonLavaland: 1500
         MiningWhetstone: 500
+        MarkerBeacon30: 350
         Soap: 400
         # ── ПКА ──
         WeaponMiningAccelerator: 1000
         PKAMiningUpgradeAoE: 2500
         PKAMiningUpgradeFireRate: 1500
         PKAMiningUpgradeRange: 1500
-        PKAMiningUpgradeFortification: 1200
+        PKAMiningUpgradeAoETurfs: 1500
+        PKAMiningUpgradeHumanPassthrough: 750
         # ── Оружие ──
         WeaponPlasmaCutterLavaland: 1500
         WeaponPlasmaCutterFanLavaland: 1500
         MiningDrillDiamond: 1500
         WeaponKineticCrusher: 1000
+        WeaponResonator: 710
+        WeaponResonatorUpgraded: 2000
         MiningWormholeGenerator: 900
         RescueCapsule: 700
         # ── Разное ──
         Cigar: 300
         SpaceCash1000: 2500
         DrinkWhiskeyBottleFull: 500
-        ItemMegafaunaTracker: 1000
+        ImperialGpsMining: 1000
+        # ── Из консоли заказов SS13 ──
+        ImperialLazarusInjector: 1000
+        ImperialKheiralCuffs: 675
+        ImperialMiningWeatherRadio: 320
+        ImperialVentPointer: 1150
+        ImperialPickaxeSilver: 1000
+        ImperialLuxuryMedipen: 750
+        ImperialMiningConscriptionKit: 1200
+        ImperialBoxMinerTracker: 600
+        BoxDeathRattleImplants: 900
+        WeaponGrapplingGun: 1500
+        DrinkAbsintheBottleFull: 100

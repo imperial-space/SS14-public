@@ -1,0 +1,93 @@
+# Общая основа мегафауны из SS13 (simple_animal/hostile/megafauna).
+
+# damage_coeff = list(BRUTE = 1, BURN = 0.5, TOX = 1, STAMINA = 0, OXY = 1)
+- type: damageModifierSet
+  id: ImperialMegafauna
+  coefficients:
+    Heat: 0.5
+    Cold: 0.5
+    Shock: 0.5
+    Caustic: 0.5
+
+- type: entity
+  abstract: true
+  id: ImperialMegafaunaBase
+  # Как SimpleSpaceMobBase, но без MobBloodstream: мегафауна SS13 не кровоточит и крови не имеет.
+  parent: [ BaseSimpleMob, MobAtmosExposed, MobCombat, MobFlammable, BaseMobAnimal ]
+  components:
+  - type: Climbing
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: MobPrice
+    price: 1000
+  - type: Perishable
+  # Мегафауна не замедляется от урона.
+  - type: SlowOnDamage
+    speedModifierThresholds: {}
+  # Не гибается от урона: смерть обрабатывает сам босс.
+  - type: Destructible
+    thresholds: []
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: ImperialMegafauna
+  - type: TemperatureDamage
+    heatDamageThreshold: 1000000
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      VisionRadius: !type:Single
+        18
+      AggroVisionRadius: !type:Single
+        18
+      NavSmash: !type:Bool
+        true
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    hidden: true
+    altDisarm: false
+    # Ближняя атака раз в тик ИИ SS13 (2 с).
+    attackRate: 0.5
+    range: 1.5
+  - type: PointLight
+    radius: 3
+    energy: 1
+  - type: NoSlip
+  - type: LavalandStormImmune
+  - type: LavalandMegafauna
+  - type: MegafaunaAi
+    deathSound:
+      path: /Audio/Imperial/boss/sound_misc_demon_dies.ogg
+  - type: Appearance
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+    - LavalandMob
+
+# hotspot: огонь на клетке.
+- type: entity
+  id: ImperialMegafaunaHotspot
+  name: fire
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Imperial/lava/boss/megafauna/effects.rsi
+    state: fire_light
+    shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#FFA500"
+  - type: TimedDespawn
+    lifetime: 1
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu

@@ -6,11 +6,8 @@ namespace Content.Server.Imperial.Lavaland.PrisonCube;
 [Access(typeof(PrisonCubeTeleportSystem))]
 public sealed partial class PrisonCubeTeleportComponent : Component
 {
-    [DataField(required: true)]
-    public string LinkChannel = default!;
-
-    [DataField(required: true)]
-    public string TargetChannel = default!;
+    [ViewVariables]
+    public EntityUid? Partner;
 
     [DataField]
     public EntProtoId SmokePrototype = "PrisonCubeTeleportSmoke";

@@ -83,7 +83,7 @@ public sealed class OrePointsSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!_idCard.TryGetIdCard(args.Used, out Entity<IdCardComponent> idCard))
+        if (!_idCard.TryGetIdCard(args.Used, out var idCard))
             return;
 
         args.Handled = true;
@@ -147,7 +147,7 @@ public sealed class OrePointsSystem : EntitySystem
 
         if (!component.ItemCosts.TryGetValue(args.ItemId, out var cost))
         {
-            _vending.Deny((uid, (VendingMachineComponent?) vending), args.Actor);
+            _vending.Deny((uid, (VendingMachineComponent?)vending), args.Actor);
             UpdateOreShopUi(uid, component, args.Actor);
             return;
         }
@@ -158,10 +158,10 @@ public sealed class OrePointsSystem : EntitySystem
             return;
         }
 
-        if (!_idCard.TryFindIdCard(args.Actor, out Entity<IdCardComponent> idCard))
+        if (!_idCard.TryFindIdCard(args.Actor, out var idCard))
         {
             _popup.PopupEntity(Loc.GetString("ore-points-id-required"), uid, args.Actor, PopupType.MediumCaution);
-            _vending.Deny((uid, (VendingMachineComponent?) vending), args.Actor);
+            _vending.Deny((uid, (VendingMachineComponent?)vending), args.Actor);
             UpdateOreShopUi(uid, component, args.Actor);
             return;
         }
@@ -175,7 +175,7 @@ public sealed class OrePointsSystem : EntitySystem
                 args.Actor,
                 PopupType.MediumCaution);
 
-            _vending.Deny((uid, (VendingMachineComponent?) vending), args.Actor);
+            _vending.Deny((uid, (VendingMachineComponent?)vending), args.Actor);
             UpdateOreShopUi(uid, component, args.Actor);
             return;
         }
@@ -183,7 +183,7 @@ public sealed class OrePointsSystem : EntitySystem
         if (!_prototypes.TryIndex<EntityPrototype>(args.ItemId, out _))
         {
             _popup.PopupEntity(Loc.GetString("ore-points-vending-invalid-item"), uid, args.Actor, PopupType.MediumCaution);
-            _vending.Deny((uid, (VendingMachineComponent?) vending), args.Actor);
+            _vending.Deny((uid, (VendingMachineComponent?)vending), args.Actor);
             UpdateOreShopUi(uid, component, args.Actor);
             return;
         }
@@ -219,12 +219,14 @@ public sealed class OrePointsSystem : EntitySystem
         }
 
         var balance = 0;
-        if (actor is { } actorUid && _idCard.TryFindIdCard(actorUid, out Entity<IdCardComponent> idCard)
+        if (actor is { } actorUid && _idCard.TryFindIdCard(actorUid, out var idCard)
             && TryComp<OrePointsAccountComponent>(idCard.Owner, out var account))
         {
             balance = account.Points;
         }
 
-        _ui.SetUiState(uid, OrePointsShopUiKey.Key, new OrePointsShopUiState(entries, balance));
+        // Баланс у каждого свой: общее состояние окна показывало всем баланс последнего игрока.
+        if (actor is { } target)
+            _ui.ServerSendUiMessage(uid, OrePointsShopUiKey.Key, new OrePointsShopDataMessage(entries, balance), target);
     }
 }
