@@ -1,24 +1,4 @@
-# ==============================================
-#  Культ Нар'Си — Реагенты
-# ==============================================
-
-- type: reagent
-  id: CultNarsiesBlessing
-  name: reagent-name-cult-narsies-blessing
-  desc: reagent-desc-cult-narsies-blessing
-  flavor: bitter
-  color: "#660022"
-  physicalDesc: reagent-physical-desc-viscous
-  metabolisms:
-    Drink:
-      effects:
-      - !type:HealthChange
-        damage:
-          groups:
-            Brute: -10
-            Burn: -10
-      - !type:SatiateThirst
-        factor: 3.0
+# datum/reagent/fuel/unholywater: 0.5u/с, лечит культистов, травит остальных.
 
 - type: reagent
   id: UnholyWater
@@ -28,9 +8,7 @@
   color: "#1a0010"
   physicalDesc: reagent-physical-desc-viscous
   metabolisms:
-    Drink:
-      metabolismRate: 10
+    Bloodstream:
+      metabolismRate: 0.5
       effects:
-      - !type:UnholyWaterBodyEffect
-      - !type:SatiateThirst
-        factor: 3.0
+      - !type:CultUnholyWater

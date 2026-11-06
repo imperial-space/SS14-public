@@ -1,50 +1,41 @@
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Imperial.Cult.Components;
 
-[Serializable, NetSerializable]
-public enum CultStructureType : byte
-{
-    Altar,
-    Forge,
-    Archives,
-    Pylon,
-    RunedAirlock,
-    RunedGirder,
-}
-
 /// <summary>
-/// Культовая структура, построенная из рунного металла.
-/// Может быть закреплена/откреплена ритуальным кинжалом.
+/// Постройка культа (obj/structure/destructible/cult). Раздатчики выдают предметы раз в 5 минут.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class CultStructureComponent : Component
 {
     [DataField]
-    public CultStructureType StructureType;
+    public CultStructureType StructureType = CultStructureType.None;
 
-    /// <summary>
-    /// Время перезарядки структуры после создания предмета.
-    /// </summary>
+    /// <summary>use_cooldown_duration.</summary>
     [DataField]
-    public TimeSpan Cooldown = TimeSpan.FromMinutes(4);
+    public TimeSpan UseCooldown = TimeSpan.FromMinutes(5);
+
+    /// <summary>cult_examine_tip.</summary>
+    [DataField]
+    public LocId? ExamineTip;
+
+    /// <summary>succcess_message.</summary>
+    [DataField]
+    public LocId? SuccessMessage;
+
+    /// <summary>break_message.</summary>
+    [DataField]
+    public LocId? BreakMessage;
+
+    /// <summary>Базовое состояние спрайта (без "_off").</summary>
+    [DataField]
+    public string BaseState = "pylon";
 
     [DataField]
-    public TimeSpan NextUse;
+    public List<CultDispenserOption> Options = new();
 
-    [DataField]
-    public TimeSpan NextPylonTick;
-
-    /// <summary>
-    /// Скрыта ли структура заклинанием Маскировки присутствия.
-    /// </summary>
-    [AutoNetworkedField]
-    public bool Concealed;
-
-    /// <summary>
-    /// Прототип шлюза до преобразования в рунный. Используется для отката при Маскировке.
-    /// </summary>
-    [DataField]
-    public string? OriginalProto;
+    [ViewVariables] public TimeSpan NextUse;
+    [ViewVariables] public bool Concealed;
 }

@@ -1,33 +1,33 @@
-# ─────────────────────────────────────────────
-#  Культ Нар'Си — Game Rule
-# ─────────────────────────────────────────────
+# Культ крови (dynamic roundstart blood_cult): min_pop 30, 1 + pop/20 культистов.
 
 - type: entity
   id: Cult
   parent: BaseGameRule
   components:
   - type: GameRule
-    minPlayers: 25
-  - type: CultRule
+    minPlayers: 30
+  - type: ImperialCultRule
   - type: AntagSelection
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Cultist ]
       min: 2
-      max: 2
-      playerRatio: 25
+      max: 6
+      playerRatio: 20
+      blacklist:
+        components:
+        - MindShield
       briefing:
-        text: cult-role-greeting
+        text: imperial-cult-role-greeting
         color: DarkRed
-        sound: "/Audio/Imperial/cult/ambience/cult_start.ogg"
-      startingGear: CultistStartingGear
-      components:
-      - type: Cultist
       mindRoles:
       - MindRoleCultist
   - type: DynamicRuleCost
     cost: 250
-  - type: AntagObjectives
-    objectives:
-    - CultSacrificeTargetsObjective
-    - CultSummonNarSieObjective
+
+# Команда культа для культистов, выданных вне раунда культа (админ, мидраунд).
+- type: entity
+  id: CultTeam
+  parent: BaseGameRule
+  components:
+  - type: ImperialCultRule

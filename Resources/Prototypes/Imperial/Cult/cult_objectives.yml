@@ -1,6 +1,4 @@
-# ─────────────────────────────────────────
-#  Культ Нар'Си — Objectives
-# ─────────────────────────────────────────
+# datum/objective/sacrifice, datum/objective/eldergod.
 
 - type: entity
   abstract: true
@@ -17,28 +15,27 @@
 - type: entity
   parent: BaseCultObjective
   id: CultSacrificeTargetsObjective
-  name: cult-objective-sacrifice-targets-fallback-name
-  description: cult-objective-sacrifice-targets-desc
+  name: Принесите жертву
+  description: Нар'Си требует жертву. Принесите цель на руне Подношения, когда вокруг неё стоят три культиста.
   components:
   - type: Objective
     issuer: objective-issuer-cult
     difficulty: 2
     icon:
-      sprite: Imperial/cult/rune.rsi
-      state: rune3
-  - type: CultSacrificeTargetsCondition
+      sprite: Imperial/BloodCult/rune.rsi
+      state: "3"
+  - type: ImperialCultSacrificeCondition
 
 - type: entity
   parent: BaseCultObjective
   id: CultSummonNarSieObjective
-  name: cult-objective-summon-narsie-name
-  description: cult-objective-summon-narsie-desc
+  name: Призовите Нар'Си
+  description: Призовите Нар'Си, начертив и призвав руну Нар'Си в одном из отсеков, где завеса тонка.
   components:
   - type: Objective
     issuer: objective-issuer-cult
     difficulty: 4
     icon:
-      sprite: Imperial/cult/rune.rsi
-      state: rune3
-  - type: CultSummonNarSieCondition
-
+      sprite: Imperial/BloodCult/rune96.rsi
+      state: rune_large
+  - type: ImperialCultSummonCondition

@@ -1,32 +1,54 @@
+using Content.Shared.Imperial.Cult;
+using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
-using Robust.Shared.ViewVariables;
 
 namespace Content.Server.Imperial.Cult.Components;
 
+/// <summary>Конструкт культа.</summary>
 [RegisterComponent]
 public sealed partial class CultConstructComponent : Component
 {
-    [DataField(required: true)]
-    public CultConstructKind Kind;
-
-    [ViewVariables]
-    public EntityUid? BuiHolder;
-}
-
-public enum CultConstructKind : byte
-{
-    Artificer,
-    Wraith,
-    Juggernaut,
-    Harvester,
-}
-
-[RegisterComponent]
-public sealed partial class CultConstructShellComponent : Component
-{
-    [DataField(required: true)]
-    public EntProtoId ConstructProto;
+    [DataField]
+    public CultConstructType ConstructType = CultConstructType.Juggernaut;
 
     [DataField]
-    public EntProtoId FormationEffectProto = "CultConstructFormationEffectArtificer";
+    public List<EntProtoId> Actions = new();
+
+    [DataField]
+    public LocId PlaystyleString = "cult-construct-playstyle-generic";
+
+    /// <summary>can_repair: лечит конструктов/тени/постройки (5 brute).</summary>
+    [DataField]
+    public bool CanRepair;
+
+    [DataField]
+    public bool CanRepairSelf;
+
+    /// <summary>Отражение энергии (juggernaut/projectile_hit).</summary>
+    [DataField]
+    public bool ReflectEnergy;
+
+    [ViewVariables] public EntityUid? Master;
+    [ViewVariables] public List<EntityUid> GrantedActions = new();
+    [ViewVariables] public List<EntityUid> RuneEffects = new();
+
+    /// <summary>seek_master / seek_prey: чувство крови указывает на SeekTarget.</summary>
+    [ViewVariables] public bool Seeking;
+    [ViewVariables] public EntityUid? SeekTarget;
+    [ViewVariables] public EntityUid? SeekAction;
+
+    [DataField]
+    public TimeSpan PhaseShiftDelay = TimeSpan.FromSeconds(5);
+
+    [DataField]
+    public float ConstructActivateAmount = 5f;
+
+    [DataField]
+    public float GauntletEchoSpeed = 3f;
+
+    [DataField]
+    public float MagicMissileRange = 7f;
+
+    [DataField]
+    public float MagicMissileSpeed = 4f;
 }

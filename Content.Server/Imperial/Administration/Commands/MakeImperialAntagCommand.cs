@@ -63,7 +63,7 @@ public sealed class MakeImperialAntagCommand : LocalizedCommands
         switch (args[1].ToLowerInvariant())
         {
             case "cult":
-                antag.ForceMakeAntag<CultRuleComponent>(player, CultRule);
+                antag.ForceMakeAntag<Content.Server.Imperial.Cult.Components.ImperialCultRuleComponent>(player, CultRule);
                 shell.WriteLine($"Made {player.Name} a cultist.");
                 break;
 

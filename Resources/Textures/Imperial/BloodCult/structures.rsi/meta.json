@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (icons/obj/antags/cult, icons/effects/cult.dmi, icons/mob/actions/actions_cult.dmi, icons/mob/nonhuman-player/cult.dmi and others)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "forge",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "forge_off"
+    },
+    {
+      "name": "talismanaltar",
+      "delays": [
+        [
+          0.3,
+          0.2,
+          0.3,
+          0.2,
+          0.4
+        ]
+      ]
+    },
+    {
+      "name": "talismanaltar_off"
+    },
+    {
+      "name": "tomealtar",
+      "delays": [
+        [
+          0.3,
+          0.2,
+          0.3,
+          0.2,
+          0.4
+        ]
+      ]
+    },
+    {
+      "name": "tomealtar_off",
+      "delays": [
+        [
+          0.3,
+          0.2,
+          0.3,
+          0.2,
+          0.4
+        ]
+      ]
+    },
+    {
+      "name": "pylon",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "pylon_off"
+    },
+    {
+      "name": "cultgirder"
+    },
+    {
+      "name": "hole",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    }
+  ]
+}

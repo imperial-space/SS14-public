@@ -1,0 +1,74 @@
+using Content.Shared.Imperial.Cult;
+using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
+
+namespace Content.Server.Imperial.Cult.Components;
+
+/// <summary>Звуки культа в одном месте (для yml-перекрытия при желании).</summary>
+public static class CultSounds
+{
+    public const string Root = "/Audio/Imperial/BloodCult/";
+    public static readonly SoundSpecifier Magic = new SoundPathSpecifier(Root + "magic.ogg");
+    public static readonly SoundSpecifier TeleportDiss = new SoundPathSpecifier(Root + "teleport_diss.ogg");
+    public static readonly SoundSpecifier Disintegrate = new SoundPathSpecifier(Root + "disintegrate.ogg");
+    public static readonly SoundSpecifier PortalEnter = new SoundPathSpecifier(Root + "portal_travel.ogg");
+    public static readonly SoundSpecifier PortalCreated = new SoundCollectionSpecifier("ImperialCultPortalOpen");
+    public static readonly SoundSpecifier BloodcultGain = new SoundPathSpecifier(Root + "bloodcult_gain.ogg");
+    public static readonly SoundSpecifier GhostWhisper = new SoundPathSpecifier(Root + "ghost_whisper.ogg");
+    public static readonly SoundSpecifier GhostyWind = new SoundPathSpecifier(Root + "ghosty_wind.ogg");
+    public static readonly SoundSpecifier EnterBlood = new SoundPathSpecifier(Root + "enter_blood.ogg");
+    public static readonly SoundSpecifier ExitBlood = new SoundPathSpecifier(Root + "exit_blood.ogg");
+    public static readonly SoundSpecifier PopeEntry = new SoundPathSpecifier(Root + "pope_entry.ogg");
+    public static readonly SoundSpecifier Ghost2 = new SoundPathSpecifier(Root + "ghost2.ogg");
+    public static readonly SoundSpecifier Ghost = new SoundPathSpecifier(Root + "ghost.ogg");
+    public static readonly SoundSpecifier Slice = new SoundPathSpecifier(Root + "slice.ogg");
+    public static readonly SoundSpecifier CableCuff = new SoundPathSpecifier(Root + "cablecuff.ogg");
+    public static readonly SoundSpecifier AlienPrying = new SoundPathSpecifier(Root + "airlock_alien_prying.ogg");
+    public static readonly SoundSpecifier AirlockForced = new SoundPathSpecifier(Root + "airlockforced.ogg");
+    public static readonly SoundSpecifier StaffHealing = new SoundPathSpecifier(Root + "staff_healing.ogg");
+    public static readonly SoundSpecifier Smoke = new SoundPathSpecifier(Root + "smoke.ogg");
+    public static readonly SoundSpecifier NarsieAttack = new SoundPathSpecifier(Root + "narsie_attack.ogg");
+    public static readonly SoundSpecifier ThudSwoosh = new SoundPathSpecifier(Root + "thudswoosh.ogg");
+    public static readonly SoundSpecifier ISeeYou = new SoundCollectionSpecifier("ImperialCultISeeYou");
+    public static readonly SoundSpecifier ImHere = new SoundCollectionSpecifier("ImperialCultImHere");
+    public static readonly SoundSpecifier OverHere = new SoundCollectionSpecifier("ImperialCultOverHere");
+    public static readonly SoundSpecifier TurnAround = new SoundCollectionSpecifier("ImperialCultTurnAround");
+    public static readonly SoundSpecifier VeryFarNoise = new SoundPathSpecifier(Root + "veryfar_noise.ogg");
+    public static readonly SoundSpecifier Sheath = new SoundPathSpecifier(Root + "sheath.ogg");
+    public static readonly SoundSpecifier ResonatorBlast = new SoundPathSpecifier(Root + "resonator_blast.ogg");
+    public static readonly SoundSpecifier Deconstruct = new SoundPathSpecifier(Root + "deconstruct.ogg");
+    public static readonly SoundSpecifier GlassBreak1 = new SoundPathSpecifier(Root + "glassbr1.ogg");
+    public static readonly SoundSpecifier GlassBreak2 = new SoundPathSpecifier(Root + "glassbr2.ogg");
+    public static readonly SoundSpecifier GlassBreak3 = new SoundPathSpecifier(Root + "glassbr3.ogg");
+    public static readonly SoundSpecifier WandTeleport = new SoundPathSpecifier(Root + "wand_teleport.ogg");
+    public static readonly SoundSpecifier Splat = new SoundPathSpecifier(Root + "splat.ogg");
+    public static readonly SoundSpecifier LightningChargeup = new SoundPathSpecifier(Root + "lightning_chargeup.ogg");
+    public static readonly SoundSpecifier Wail = new SoundPathSpecifier(Root + "wail.ogg");
+    public static readonly SoundSpecifier Parry = new SoundPathSpecifier(Root + "parry.ogg");
+    public static readonly SoundSpecifier Ric5 = new SoundPathSpecifier(Root + "ric5.ogg");
+    public static readonly SoundSpecifier ThrowTap = new SoundPathSpecifier(Root + "throwtap.ogg");
+    public static readonly SoundSpecifier PhaseIn = new SoundPathSpecifier(Root + "phasein.ogg");
+    public static readonly SoundSpecifier GhostItemAttack = new SoundPathSpecifier(Root + "ghostitemattack.ogg");
+    public static readonly SoundSpecifier ConstructForm = new SoundPathSpecifier(Root + "constructform.ogg");
+    public static readonly SoundSpecifier DemonDies = new SoundPathSpecifier(Root + "demon_dies.ogg");
+    public static readonly SoundSpecifier PrayChaplain = new SoundPathSpecifier(Root + "pray_chaplain.ogg");
+    public static readonly SoundSpecifier Notice1 = new SoundPathSpecifier(Root + "notice1.ogg");
+    public static readonly SoundSpecifier Notice3 = new SoundPathSpecifier(Root + "notice3.ogg");
+    public static readonly SoundSpecifier NukeAlarm = new SoundPathSpecifier(Root + "nuke_alarm.ogg");
+    public static readonly SoundSpecifier AnnounceSyndi = new SoundPathSpecifier(Root + "announce_syndi.ogg");
+    public static readonly SoundSpecifier TerminalOff = new SoundPathSpecifier(Root + "terminal_off.ogg");
+    public static readonly SoundSpecifier NarsieRises = new SoundPathSpecifier(Root + "narsie_rises.ogg");
+    public static readonly SoundSpecifier ExplosionDistant = new SoundPathSpecifier(Root + "explosion_distant.ogg");
+    public static readonly SoundSpecifier NarsieSummon = new SoundPathSpecifier(Root + "narsie_summon.ogg");
+    public static readonly SoundSpecifier NarsieRisen = new SoundPathSpecifier(Root + "narsie_risen.ogg");
+    public static readonly SoundSpecifier CultSummonAnnounce = new SoundPathSpecifier(Root + "cult_summon.ogg");
+    public static readonly SoundSpecifier CultRiseAnnounce = new SoundPathSpecifier(Root + "cult_rise_announcement.ogg");
+    public static readonly SoundSpecifier MagicBlockMind = new SoundPathSpecifier(Root + "magic_block_mind.ogg");
+    public static readonly SoundSpecifier Sparks = new SoundCollectionSpecifier("sparks");
+    public static readonly SoundSpecifier Forcewall = new SoundPathSpecifier(Root + "forcewall.ogg");
+    public static readonly SoundSpecifier EtherealEnter = new SoundPathSpecifier(Root + "ethereal_enter.ogg");
+    public static readonly SoundSpecifier EtherealExit = new SoundPathSpecifier(Root + "ethereal_exit.ogg");
+    public static readonly SoundSpecifier MagicMissile = new SoundPathSpecifier(Root + "magic_missile.ogg");
+    public static readonly SoundSpecifier MissileHit = new SoundPathSpecifier(Root + "mm_hit.ogg");
+    public static readonly SoundSpecifier SummonItems = new SoundPathSpecifier(Root + "summonitems_generic.ogg");
+}

@@ -1,15 +1,22 @@
-using Robust.Shared.ViewVariables;
+using Content.Shared.Imperial.Cult;
+using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Cult.Components;
 
-/// <summary>
-/// Компонент тёмного духа — хранит ссылку на исходное тело культиста.
-/// Добавляется к сущности MobCultDarkSpirit при вознесении.
-/// </summary>
+/// <summary>Вознёсшийся тёмный дух (Ascend as a Dark Spirit).</summary>
 [RegisterComponent]
 public sealed partial class CultDarkSpiritComponent : Component
 {
-    /// <summary>Тело культиста, из которого вознёсся дух.</summary>
-    [ViewVariables]
-    public EntityUid OriginalBody { get; set; }
+    [ViewVariables] public EntityUid? Body;
+    [ViewVariables] public EntityUid? Rune;
+    [ViewVariables] public List<EntityUid> Actions = new();
+    [ViewVariables] public TimeSpan NextMark;
+    [ViewVariables] public TimeSpan NextCheck;
+
+    [DataField]
+    public TimeSpan GhostMarkDuration = TimeSpan.FromSeconds(60);
+
+    [DataField]
+    public TimeSpan MarkDelay = TimeSpan.FromSeconds(60);
 }

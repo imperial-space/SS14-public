@@ -1,0 +1,69 @@
+using System.Linq;
+using Content.Server.Atmos.EntitySystems;
+using Content.Server.Ghost;
+using Content.Server.Ghost.Roles.Components;
+using Content.Server.Imperial.Cult.Components;
+using Content.Server.Imperial.Lavaland.Storm;
+using Content.Server.Mind;
+using Content.Server.Pinpointer;
+using Content.Server.Popups;
+using Content.Server.Station.Systems;
+using Content.Shared.ActionBlocker;
+using Content.Shared.Administration.Systems;
+using Content.Shared.Bed.Sleep;
+using Content.Shared.Buckle;
+using Content.Shared.Cuffs;
+using Content.Shared.Cuffs.Components;
+using Content.Shared.Damage.Components;
+using Content.Shared.DoAfter;
+using Content.Shared.Emp;
+using Content.Shared.Examine;
+using Content.Shared.Eye;
+using Content.Shared.GameTicking;
+using Content.Shared.Ghost;
+using Content.Shared.Gibbing;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Humanoid;
+using Content.Shared.Imperial.Cult;
+using Content.Shared.Imperial.Cult.Components;
+using Content.Shared.Interaction;
+using Content.Shared.Interaction.Events;
+using Content.Shared.Maps;
+using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Pulling.Systems;
+using Content.Shared.Physics;
+using Content.Shared.Popups;
+using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.Speech.Muting;
+using Content.Shared.Station;
+using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
+using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+using Robust.Shared.Spawners;
+using Robust.Shared.Timing;
+
+namespace Content.Server.Imperial.Cult;
+
+/// <summary>Вызывается, когда жертва принесена на руне подношения (совместимость со старыми целями).</summary>
+public sealed class CultSacrificeCompletedEvent : EntityEventArgs
+{
+    public EntityUid Victim { get; }
+    public EntityUid? VictimMind { get; }
+
+    public CultSacrificeCompletedEvent(EntityUid victim, EntityUid? victimMind = null)
+    {
+        Victim = victim;
+        VictimMind = victimMind;
+    }
+}

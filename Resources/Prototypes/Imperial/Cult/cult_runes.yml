@@ -1,172 +1,274 @@
-﻿# ==============================================
-#  Культ Нар'Си — Руны
-#  Спрайты: Imperial/cult/rune.rsi
-#  Состояния: rune1..rune8
-# ==============================================
+# Руны культа крови (runes.dm). Цвета — RUNE_COLOR_*.
 
 - type: entity
   abstract: true
   id: BaseCultRune
-  name: Руна культа
-  description: Начертанная кровью руна тёмной магии.
+  name: руна
+  description: Странный набор символов, начертанных чем-то похожим на кровь.
+  placement:
+    mode: SnapgridCenter
   components:
-  - type: Sprite
-    drawdepth: FloorObjects
-    sprite: Imperial/cult/rune.rsi
-    state: rune1
-    noRot: false
-    color: "#8B0000"
-  - type: CultRune
-  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+    noRot: true
   - type: Clickable
-
-# ─── Руна телепортации ───
-
-- type: entity
-  id: CultRuneTeleport
-  name: Руна телепортации
-  description: Позволяет перемещаться между рунами мгновенно.
-  parent: BaseCultRune
-  components:
+  - type: InteractionOutline
   - type: Sprite
-    state: rune1
-  - type: CultRune
-    runeType: Teleport
-    requiredInvokers: 1
-
-# ─── Руна усиления ───
-
-- type: entity
-  id: CultRuneEmpower
-  name: Руна усиления
-  description: Снижает стоимость заклинаний культиста на руне.
-  parent: BaseCultRune
-  components:
-  - type: Sprite
-    state: rune2
-  - type: CultRune
-    runeType: Empowering
-    requiredInvokers: 1
-
-# ─── Руна подношения (конвертация / жертвоприношение) ───
-
-- type: entity
-  id: CultRuneOffering
-  name: Руна жертвоприношения
-  description: Обращает жертву или приносит её в дар Нар'Си.
-  parent: BaseCultRune
-  components:
-  - type: Sprite
-    state: rune3
-  - type: CultRune
-    runeType: Offering
-    requiredInvokers: 2
-
-# ─── Руна воскрешения ───
-
-- type: entity
-  id: CultRuneRevive
-  name: Руна возрождения
-  description: Возвращает павшего культиста из мёртвых.
-  parent: BaseCultRune
-  components:
-  - type: Sprite
-    state: rune4
-  - type: CultRune
-    runeType: Revive
-    requiredInvokers: 1
-    reviveCharges: 1
-
-# ─── Руна барьера ───
-
-- type: entity
-  id: CultRuneBarrier
-  name: Руна барьера
-  description: Воздвигает силовые стены вокруг места ритуала.
-  parent: BaseCultRune
-  components:
-  - type: Sprite
-    state: rune5
-  - type: CultRune
-    runeType: Barrier
-    requiredInvokers: 1
-
-# ─── Руна суммонирования ───
-
-- type: entity
-  id: CultRuneSummoning
-  name: Руна призыва
-  description: Телепортирует другого культиста прямо к руне.
-  parent: BaseCultRune
-  components:
-  - type: Sprite
-    state: rune6
-  - type: CultRune
-    runeType: Summoning
-    requiredInvokers: 2
-
-# ─── Руна крови-кипения ───
-
-- type: entity
-  id: CultRuneBloodBoil
-  name: Руна кипящей крови
-  description: Сжигает всех не-культистов в широком радиусе.
-  parent: BaseCultRune
-  components:
-  - type: Sprite
-    state: rune7
-  - type: CultRune
-    runeType: BloodBoil
-    requiredInvokers: 2
-
-# ─── Руна царства духов ───
-
-- type: entity
-  id: CultRuneSpiritRealm
-  name: Руна царства духов
-  description: Призывает фантомов из загробного мира и скрывает призывателя в духовном облике.
-  parent: BaseCultRune
-  components:
-  - type: Sprite
-    state: rune8
-  - type: CultRune
-    runeType: SpiritRealm
-    requiredInvokers: 1
-  - type: UserInterface
-    interfaces:
-      enum.CultSpiritRealmBuiKey.Key:
-        type: CultSpiritRealmBui
-
-# ─── Руна Нар'Си (финальный ритуал) ───
-
-- type: entity
-  id: CultRuneNarSie
-  name: Руна Нар'Си
-  description: Финальный ритуал. Требует девяти культистов.
-  parent: BaseCultRune
-  components:
-  - type: Sprite
+    sprite: Imperial/cult/rune.rsi
     drawdepth: FloorObjects
-    sprite: Imperial/cult/rune_large.rsi
-    state: rune_large
-    noRot: false
-    color: "#8B0000"
-  - type: CultRune
-    runeType: NarSie
-    requiredInvokers: 9
-    destructionState: rune_large_distorted
-
-# --- Эффект уничтожения руны Нар'Си (анимация rune_large.rsi distorted) ---
+    noRot: true
+    layers:
+    - state: rune1
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: Appearance
+  - type: CultVisuals
+    rune: true
+  - type: PointLight
+    enabled: false
+    radius: 1
+    energy: 1
 
 - type: entity
-  id: CultRuneDestructionEffect
-  name: cult-rune-destruction-effect
+  parent: BaseCultRune
+  id: CultRuneMalformed
   categories: [ HideSpawnMenu ]
   components:
+  - type: CultRune
+    runeType: Malformed
+    runeColor: "#8B0000"
+    cultistName: cult-rune-malformed-name
+    cultistDesc: cult-rune-malformed-desc
+    invocation: "Ra'sha yoka!"
+    invokeDamage: 30
+    canBeScribed: false
+
+- type: entity
+  parent: BaseCultRune
+  id: CultRuneOffer
+  components:
   - type: Sprite
+    sprite: Imperial/cult/rune.rsi
     drawdepth: FloorObjects
+    noRot: true
+    layers:
+    - state: rune3
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: CultRune
+    runeType: Offer
+    cultistName: cult-rune-offer-name
+    cultistDesc: cult-rune-offer-desc
+    reqCultistsText: cult-rune-offer-req
+    invocation: "Mah'weyh pleggh at e'ntrath!"
+    runeColor: "#8B0000"
+    scribeOrder: 1
+    spawnPattern: 3
+
+- type: entity
+  parent: BaseCultRune
+  id: CultRuneEmpower
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/rune.rsi
+    drawdepth: FloorObjects
+    noRot: true
+    layers:
+    - state: rune2
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: CultRune
+    runeType: Empower
+    cultistName: cult-rune-empower-name
+    cultistDesc: cult-rune-empower-desc
+    invocation: "H'drak v'loso, mir'kanas verbot!"
+    constructInvoke: false
+    runeColor: "#8B0000"
+    scribeOrder: 2
+    spawnPattern: 3
+
+- type: entity
+  parent: BaseCultRune
+  id: CultRuneTeleport
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/rune.rsi
+    drawdepth: FloorObjects
+    noRot: true
+    layers:
+    - state: rune1
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: CultRune
+    runeType: Teleport
+    cultistName: cult-rune-teleport-name
+    cultistDesc: cult-rune-teleport-desc
+    invocation: "Sas'so c'arta forbici!"
+    reqKeyword: true
+    runeColor: "#8B0000"
+    scribeOrder: 3
+    spawnPattern: 2
+
+- type: entity
+  parent: BaseCultRune
+  id: CultRuneNarSie
+  components:
+  - type: Sprite
     sprite: Imperial/cult/rune_large.rsi
+    drawdepth: FloorObjects
+    noRot: true
+    layers:
+    - state: rune_large
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: CultRune
+    runeType: NarSie
+    cultistName: cult-rune-narsie-name
+    cultistDesc: cult-rune-narsie-desc
+    invocation: "TOK-LYR RQA-NAP G'OLT-ULOFT!!"
+    reqCultists: 9
+    scribeDelay: 50
+    scribeDamage: 40.1
+    eraseTime: 5
+    noScribeBoost: true
+    logWhenErased: true
+    runeColor: "#8B0000"
+    scribeOrder: 4
+
+- type: entity
+  parent: BaseCultRune
+  id: CultRuneRevive
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/rune.rsi
+    drawdepth: FloorObjects
+    noRot: true
+    layers:
+    - state: rune4
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: CultRune
+    runeType: Revive
+    cultistName: cult-rune-revive-name
+    cultistDesc: cult-rune-revive-desc
+    invocation: "Pasnar val'keriam usinar. Savrae ines amutan. Yam'toth remium il'tarat!"
+    runeColor: "#8B0000"
+    scribeOrder: 5
+    spawnPattern: 1
+
+- type: entity
+  parent: BaseCultRune
+  id: CultRuneBarrier
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/rune.rsi
+    drawdepth: FloorObjects
+    noRot: true
+    layers:
+    - state: rune5
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: CultRune
+    runeType: Barrier
+    cultistName: cult-rune-barrier-name
+    cultistDesc: cult-rune-barrier-desc
+    invocation: "Khari'd! Eske'te tannin!"
+    runeColor: "#8B0000"
+    scribeOrder: 6
+    spawnPattern: 4
+
+- type: entity
+  parent: BaseCultRune
+  id: CultRuneSummon
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/rune.rsi
+    drawdepth: FloorObjects
+    noRot: true
+    layers:
+    - state: rune6
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: CultRune
+    runeType: Summon
+    cultistName: cult-rune-summon-name
+    cultistDesc: cult-rune-summon-desc
+    invocation: "N'ath reth sh'yro eth d'rekkathnor!"
+    reqCultists: 2
+    invokeDamage: 10
+    runeColor: "#8B0000"
+    scribeOrder: 7
+    spawnPattern: 3
+
+- type: entity
+  parent: BaseCultRune
+  id: CultRuneBloodBoil
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/rune.rsi
+    drawdepth: FloorObjects
+    noRot: true
+    layers:
+    - state: rune7
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: CultRune
+    runeType: BloodBoil
+    cultistName: cult-rune-boil-name
+    cultistDesc: cult-rune-boil-desc
+    invocation: "Dedo ol'btoh!"
+    reqCultists: 3
+    invokeDamage: 10
+    constructInvoke: false
+    runeColor: "#8B0000"
+    scribeOrder: 8
+    spawnPattern: 4
+
+- type: entity
+  parent: BaseCultRune
+  id: CultRuneSpiritRealm
+  components:
+  - type: Sprite
+    sprite: Imperial/cult/rune.rsi
+    drawdepth: FloorObjects
+    noRot: true
+    layers:
+    - state: rune8
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: CultRune
+    runeType: SpiritRealm
+    cultistName: cult-rune-manifest-name
+    cultistDesc: cult-rune-manifest-desc
+    invocation: "Gal'h'rfikk harfrandid mud'gib!"
+    invokeDamage: 10
+    constructInvoke: false
+    runeColor: "#8B0000"
+    scribeOrder: 9
+    spawnPattern: 7
+
+- type: entity
+  parent: BaseCultRune
+  id: CultRuneApocalypse
+  components:
+  - type: Sprite
+    sprite: Imperial/BloodCult/rune96.rsi
+    drawdepth: FloorObjects
+    noRot: true
+    layers:
+    - state: apoc
+      map: [ "enum.CultVisualLayers.Base" ]
+  - type: CultRune
+    runeType: Apocalypse
+    cultistName: cult-rune-apoc-name
+    cultistDesc: cult-rune-apoc-desc
+    invocation: "Ta'gh fara'qha fel d'amar det!"
+    reqCultists: 3
+    scribeDelay: 10
+    runeColor: "#8B0000"
+    scribeOrder: 10
+
+# Совместимость с нуль-жезлом.
+- type: entity
+  id: CultRuneDestructionEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/cult/rune_large.rsi
+    drawdepth: FloorObjects
     state: rune_large_distorted
-    noRot: false
+    color: "#8B0000"
   - type: TimedDespawn
-    lifetime: 0.4
+    lifetime: 0.5

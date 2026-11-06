@@ -1,92 +1,98 @@
-﻿using Content.Shared.StatusIcon;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Cult.Components;
 
 /// <summary>
-/// Помечает игрока последователем Нар'Си.
-/// Добавляется при конвертации или спавне начального последователя.
+/// Культист Нар'Си (datum/antagonist/cult).
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class CultistComponent : Component
 {
-    public override bool SessionSpecific => true;
-    /// <summary>
-    /// Иконка фракции, отображаемая над головой культиста.
-    /// </summary>
-    [DataField]
-    public ProtoId<FactionIconPrototype> StatusIcon = "CultistFaction";
+    /// <summary>Мастер культа (cult_leader_datum).</summary>
+    [ViewVariables, AutoNetworkedField]
+    public bool Leader;
 
-    /// <summary>
-    /// Находится ли культист на руне усиления (снижает стоимость заклинаний).
-    /// </summary>
-    [AutoNetworkedField]
-    public bool OnEmpowerRune;
-
-    /// <summary>
-    /// Отображать ли красные глаза (вуаль ослаблена).
-    /// </summary>
-    [AutoNetworkedField]
+    /// <summary>cult_eyes: культ «восстал».</summary>
+    [ViewVariables, AutoNetworkedField]
     public bool RedEyes;
 
-    /// <summary>
-    /// Отображать ли кровавый нимб (культ раскрыт).
-    /// </summary>
-    [AutoNetworkedField]
-    public bool BloodHalo;
+    /// <summary>cult_halo: культ «вознёсся».</summary>
+    [ViewVariables, AutoNetworkedField]
+    public bool Halo;
 
-    /// <summary>
-    /// Оригинальный цвет глаз до включения красных глаз.
-    /// </summary>
+    /// <summary>Номер нимба halo1..halo6.</summary>
+    [ViewVariables, AutoNetworkedField]
+    public int HaloState = 1;
+
+    /// <summary>Обращён руной (datum/antagonist/cult/converted).</summary>
+    [ViewVariables]
+    public bool Converted;
+
+    /// <summary>Призрак-культист из «Царства духов».</summary>
+    [ViewVariables]
+    public bool CultGhost;
+
+    /// <summary>Тихо выдать/снять роль (без приветствия).</summary>
+    [ViewVariables]
+    public bool Silent;
+
+    [ViewVariables] public EntityUid? CommunionAction;
+    [ViewVariables] public EntityUid? BloodMagicAction;
+    [ViewVariables] public List<EntityUid> MasterActions = new();
+
+    /// <summary>Подготовленные заклинания крови (действия).</summary>
+    [ViewVariables] public List<EntityUid> Spells = new();
+
+    /// <summary>Сейчас вырезает руны на коже.</summary>
+    [ViewVariables] public bool ChannelingMagic;
+
+    /// <summary>magic_enhanced (багровый медальон): 5 слотов и вдвое быстрее.</summary>
+    [ViewVariables] public bool MagicEnhanced;
+
+    /// <summary>Секунды метаболизма святой воды (deciseconds_metabolized).</summary>
+    [ViewVariables] public TimeSpan HolyWaterSeconds;
+
+    [ViewVariables] public TimeSpan NextHolyWaterMessage;
+
     [DataField]
-    public Color? OriginalEyeColor;
+    public TimeSpan SpellActionEmpDuration = TimeSpan.FromSeconds(30);
 
-    /// <summary>
-    /// Entity actions, выданные этому культисту при вступлении (для удаления при деконверсии).
-    /// </summary>
-    public List<EntityUid> GrantedActions = new();
+    [DataField]
+    public TimeSpan HorrorDuration = TimeSpan.FromSeconds(240);
 
-    /// <summary>
-    /// Number of spells currently prepared via Blood Magic.
-    /// </summary>
-    public int ActiveSpellCount;
+    [DataField]
+    public TimeSpan HorrorDelay = TimeSpan.FromMinutes(4);
 
-    /// <summary>
-    /// IDs of spells granted via Blood Magic (for tracking).
-    /// </summary>
-    public List<string> PreparedSpells = new();
+    [DataField]
+    public TimeSpan ConstructionDoAfterDuration = TimeSpan.FromSeconds(20);
 
-    /// <summary>
-    /// Remaining uses for each prepared blood spell action.
-    /// Key is the prepared action prototype ID.
-    /// </summary>
-    public Dictionary<string, int> PreparedSpellUses = new();
+    [DataField]
+    public TimeSpan BeamDoAfterDelay = TimeSpan.FromSeconds(9);
 
-    /// <summary>
-    /// Заряды Кровавого обряда (отдельная валюта, накапливается сбором крови).
-    /// </summary>
-    [AutoNetworkedField]
-    public int BloodRitesCharges;
+    [DataField]
+    public TimeSpan ReckoningDoAfterDelay = TimeSpan.FromSeconds(1);
 
-    /// <summary>
-    /// Entity-держатель BUI для Blood Magic и Commune (не требует кинжала).
-    /// Создаётся при AddCultist, удаляется при RemoveCultist.
-    /// </summary>
-    public EntityUid? BuiHolder;
+    [DataField]
+    public float SpellActionEmpRange = 5f;
 
-    /// <summary>
-    /// Следующая серверная проверка holy/unholy water в bloodstream.
-    /// </summary>
-    public TimeSpan NextReagentCheck;
+    [DataField]
+    public float SpellActionEmpEnergyConsumption = 50000f;
 
-    /// <summary>
-    /// Когда на культисте впервые накопилось достаточно святой воды для деконверта.
-    /// </summary>
-    public TimeSpan? HolyWaterThresholdReachedAt;
+    [DataField]
+    public TimeSpan ShackleDoAfterSeconds = TimeSpan.FromSeconds(10f);
 
-    /// <summary>
-    /// Зацикленная музыка ритуала Нар'Си, пока идёт начертание.
-    /// </summary>
-    public EntityUid? ActiveNarSieRitualAudio;
+    [DataField]
+    public float ConstructionDoAfterRange = 0.5f;
+
+    [DataField]
+    public float ConstructionDoAfterEnergyConsumption = 100000f;
+
+    [DataField]
+    public float BloodBondBaseThrowSpeed = 10f;
+
+    [DataField]
+    public TimeSpan BeamDoAfterSeconds = TimeSpan.FromSeconds(4f);
+
+    [DataField]
+    public TimeSpan EldritchPulseSeconds = TimeSpan.FromSeconds(0.4f);
 }

@@ -1,0 +1,110 @@
+- files:
+  - airlock_alien_prying.ogg
+  - airlockforced.ogg
+  - bladeslice.ogg
+  - bloodcult_gain.ogg
+  - cablecuff.ogg
+  - constructform.ogg
+  - deconstruct.ogg
+  - demon_dies.ogg
+  - disintegrate.ogg
+  - enter_blood.ogg
+  - exit_blood.ogg
+  - ghost.ogg
+  - ghost2.ogg
+  - ghost_whisper.ogg
+  - ghostitemattack.ogg
+  - ghosty_wind.ogg
+  - glassbr1.ogg
+  - glassbr2.ogg
+  - glassbr3.ogg
+  - glassknock.ogg
+  - i_see_you1.ogg
+  - i_see_you2.ogg
+  - im_here1.ogg
+  - im_here2.ogg
+  - lightning_chargeup.ogg
+  - magic.ogg
+  - magic_block_mind.ogg
+  - magic_missile.ogg
+  - narsie_attack.ogg
+  - notice1.ogg
+  - notice3.ogg
+  - nuke_alarm.ogg
+  - over_here2.ogg
+  - over_here3.ogg
+  - parry.ogg
+  - phasein.ogg
+  - pope_entry.ogg
+  - portal_open_1.ogg
+  - portal_open_2.ogg
+  - portal_open_3.ogg
+  - portal_travel.ogg
+  - pray_chaplain.ogg
+  - punch2.ogg
+  - punch3.ogg
+  - resonator_blast.ogg
+  - ric5.ogg
+  - sheath.ogg
+  - slice.ogg
+  - smash.ogg
+  - smoke.ogg
+  - splat.ogg
+  - staff_healing.ogg
+  - teleport_diss.ogg
+  - throwtap.ogg
+  - thudswoosh.ogg
+  - veryfar_noise.ogg
+  - wail.ogg
+  - wand_teleport.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/effects, sound/items, sound/machines, sound/music/antag/bloodcult, sound/announcer)"
+  source: "https://github.com/ss220club/BandaStation"
+- files:
+  - narsie_summon.ogg
+  - narsie_risen.ogg
+  - cult_rise_announcement.ogg
+  license: "CC-BY-NC-4.0"
+  copyright: "dj-34 (https://github.com/dj-34) for BandaStation cult overhaul"
+  source: "https://github.com/ss220club/BandaStation"
+- files:
+  - cult_summon.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from BandaStation cult overhaul (modular_bandastation/cult_overhaul)"
+  source: "https://github.com/ss220club/BandaStation"
+- files:
+  - turn_around1.ogg
+  - turn_around2.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/effects/hallucinations)"
+  source: "https://github.com/ss220club/BandaStation"
+- files:
+  - ethereal_enter.ogg
+  - ethereal_exit.ogg
+  - forcewall.ogg
+  - mm_hit.ogg
+  - summonitems_generic.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/effects/magic)"
+  source: "https://github.com/ss220club/BandaStation"
+- files:
+  - terminal_off.ogg
+  - narsie_rises.ogg
+  - explosion_distant.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/machines, sound/music/antag/bloodcult, sound/effects/explosion)"
+  source: "https://github.com/ss220club/BandaStation"
+- files:
+  - announce_syndi.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/announcer/announcement)"
+  source: "https://github.com/ss220club/BandaStation"
+- files:
+  - lightningbolt.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/effects/magic)"
+  source: "https://github.com/ss220club/BandaStation"
+- files: ["unsheath.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/items/unsheath.ogg)"
+  source: "https://github.com/ss220club/BandaStation"
