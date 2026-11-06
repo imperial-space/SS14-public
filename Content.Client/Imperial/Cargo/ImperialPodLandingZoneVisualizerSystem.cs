@@ -19,8 +19,8 @@ public sealed class ImperialPodLandingZoneVisualizerSystem : EntitySystem
         var query = EntityQueryEnumerator<ImperialPodLandingZoneComponent, SpriteComponent>();
         while (query.MoveNext(out var uid, out var zone, out var sprite))
         {
-            var total = (float) (zone.Arrival - zone.Start).TotalSeconds;
-            var progress = total <= 0 ? 1f : Math.Clamp((float) (now - zone.Start).TotalSeconds / total, 0f, 1f);
+            var total = (float)(zone.Arrival - zone.Start).TotalSeconds;
+            var progress = total <= 0 ? 1f : Math.Clamp((float)(now - zone.Start).TotalSeconds / total, 0f, 1f);
             var ent = (uid, sprite);
 
             if (_sprite.LayerMapTryGet(ent, "lz", out var lz, false))

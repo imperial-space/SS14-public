@@ -20,4 +20,13 @@ public sealed partial class UplinkPizzaBombComponent : Component
 
     [ViewVariables]
     public TimeSpan? DetonateAt;
+
+    [DataField]
+    public float UpdateTotalIntensity = 80f;
+
+    [DataField]
+    public float UpdateSlope = 4f;
+
+    [DataField]
+    public float UpdateMaxTileIntensity = 12f;
 }

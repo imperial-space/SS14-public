@@ -80,7 +80,7 @@ public sealed class BitrunningVendorWindow : DefaultWindow
             sent.HorizontalAlignment = HAlignment.Center;
             sent.VerticalAlignment = VAlignment.Center;
             sent.VerticalExpand = true;
-            ((Label) sent.GetChild(0)).HorizontalAlignment = HAlignment.Center;
+            ((Label)sent.GetChild(0)).HorizontalAlignment = HAlignment.Center;
             _root.AddChild(sent);
             return;
         }
@@ -221,7 +221,7 @@ public sealed class BitrunningVendorWindow : DefaultWindow
             Value = Amount(id),
             VerticalAlignment = VAlignment.Center,
         };
-        input.OnChange += value => SetAmount(id, (int) value);
+        input.OnChange += value => SetAmount(id, (int)value);
         return input;
     }
 
@@ -236,7 +236,7 @@ public sealed class BitrunningVendorWindow : DefaultWindow
 
     private Control CheckoutTab(BitrunningVendorState state)
     {
-        var totalCargo = (int) MathF.Floor(state.TotalCost * state.CargoCostMultiplier);
+        var totalCargo = (int)MathF.Floor(state.TotalCost * state.CargoCostMultiplier);
         var list = Tgui.VBox(2);
         list.AddChild(Tgui.Text(Loc.GetString("bitrunning-vendor-list"), Tgui.Label, bold: true, align: HAlignment.Center));
 
@@ -283,7 +283,7 @@ public sealed class BitrunningVendorWindow : DefaultWindow
                 : Loc.GetString("bitrunning-vendor-purchase-tooltip"),
             fluid: true);
 
-        var expressCost = (int) MathF.Floor(state.TotalCost * state.ExpressCostMultiplier);
+        var expressCost = (int)MathF.Floor(state.TotalCost * state.ExpressCostMultiplier);
         var express = BitrunningTgui.Button(Loc.GetString("bitrunning-vendor-express", ("cost", $"{expressCost} {Credit}")), "parachute-box",
             Tgui.Yellow,
             () => Send(new BitrunningVendorPurchaseMessage(true)),

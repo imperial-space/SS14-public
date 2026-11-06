@@ -20,4 +20,10 @@ public sealed partial class UplinkEmpFlashlightComponent : Component
 
     [ViewVariables]
     public TimeSpan NextCharge;
+
+    [DataField]
+    public TimeSpan EmpFlashlightInteractDuration = TimeSpan.FromSeconds(20);
+
+    [DataField]
+    public float EmpFlashlightInteractEnergyConsumption = 100000f;
 }

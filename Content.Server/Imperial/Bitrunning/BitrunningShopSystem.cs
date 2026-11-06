@@ -26,6 +26,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Bitrunning;
 
@@ -65,6 +66,14 @@ public sealed class BitrunningShopSystem : EntitySystem
     private readonly Dictionary<int, int> _points = new();
 
     private const int PointsPerReward = 100;
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+    private static readonly ProtoId<DamageTypePrototype> PiercingDamageType = "Piercing";
+    private static readonly ProtoId<DamageTypePrototype> HeatDamageType = "Heat";
+
+    private static readonly EntProtoId EffectSparks = "EffectSparks";
+    private static readonly EntProtoId FoodCheese = "FoodCheese";
 
     public override void Initialize()
     {
@@ -176,7 +185,7 @@ public sealed class BitrunningShopSystem : EntitySystem
                     proto.Name,
                     o.Description is { } desc ? Loc.GetString(desc) : proto.Description,
                     o.Category,
-                    (int) MathF.Round(o.Cost * ent.Comp.CargoMultiplier));
+                    (int)MathF.Round(o.Cost * ent.Comp.CargoMultiplier));
             })
             .ToList();
 
@@ -222,7 +231,7 @@ public sealed class BitrunningShopSystem : EntitySystem
             return;
 
         var total = TotalCost(ent.Comp);
-        var cost = (int) MathF.Floor(total * (args.Express ? ent.Comp.ExpressMultiplier : ent.Comp.CargoMultiplier));
+        var cost = (int)MathF.Floor(total * (args.Express ? ent.Comp.ExpressMultiplier : ent.Comp.CargoMultiplier));
 
         // «Чтобы шахтёры не скупали ящики за бесценок».
         if (!args.Express && cost < ent.Comp.CargoValue)
@@ -269,7 +278,7 @@ public sealed class BitrunningShopSystem : EntitySystem
                 Spawn(item, coords);
             }
 
-            Spawn("EffectSparks", coords);
+            Spawn(EffectSparks, coords);
             _audio.PlayPvs(BlinkSound, user);
             Say(ent, Loc.GetString("bitrunning-vendor-express-done"));
             ent.Comp.NextOrder = _timing.CurTime + ent.Comp.CooldownTime * ent.Comp.ExpressMultiplier;
@@ -484,10 +493,10 @@ public sealed class BitrunningShopSystem : EntitySystem
         args.Handled = true;
         var coords = Transform(args.Performer).Coordinates;
         for (var x = -1; x <= 1; x++)
-        for (var y = -1; y <= 1; y++)
-        {
-            Spawn("FoodCheese", coords.Offset(new System.Numerics.Vector2(x, y)));
-        }
+            for (var y = -1; y <= 1; y++)
+            {
+                Spawn(FoodCheese, coords.Offset(new System.Numerics.Vector2(x, y)));
+            }
 
         _audio.PlayPvs(CheeseSound, args.Performer);
     }
@@ -500,10 +509,10 @@ public sealed class BitrunningShopSystem : EntitySystem
 
         args.Handled = true;
         var heal = new DamageSpecifier();
-        heal.DamageDict["Blunt"] = -10f / 3f;
-        heal.DamageDict["Slash"] = -10f / 3f;
-        heal.DamageDict["Piercing"] = -10f / 3f;
-        heal.DamageDict["Heat"] = -10f;
+        heal.DamageDict[BluntDamageType] = -10f / 3f;
+        heal.DamageDict[SlashDamageType] = -10f / 3f;
+        heal.DamageDict[PiercingDamageType] = -10f / 3f;
+        heal.DamageDict[HeatDamageType] = -10f;
         _damage.TryChangeDamage(args.Performer, heal, ignoreResistances: true);
         _audio.PlayPvs(HealSound, args.Performer);
         _popup.PopupEntity(Loc.GetString("bitrunning-spell-heal"), args.Performer, args.Performer);

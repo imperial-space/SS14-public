@@ -14,4 +14,7 @@ public sealed partial class UplinkEarthcrackerComponent : Component
 
     [ViewVariables]
     public TimeSpan? ActivateAt;
+
+    [DataField]
+    public TimeSpan ActivateDelay = TimeSpan.FromSeconds(1.2);
 }

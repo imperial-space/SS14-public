@@ -59,4 +59,13 @@ public sealed partial class UplinkProjectileComponent : Component
     /// <summary>ex_act() по не-мобам: пуля взрывает постройки в точке попадания (снайперские HE).</summary>
     [DataField]
     public bool StructureExplosion;
+
+    [DataField]
+    public float ProjectileHitTotalIntensity = 20f;
+
+    [DataField]
+    public float ProjectileHitSlope = 10f;
+
+    [DataField]
+    public float ProjectileHitMaxTileIntensity = 10f;
 }

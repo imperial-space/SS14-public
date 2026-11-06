@@ -19,6 +19,7 @@ using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Security;
 
@@ -50,6 +51,8 @@ public sealed class WantedPosterSystem : EntitySystem
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly SharedToolSystem _tool = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+
+    private static readonly EntProtoId Paper2 = "Paper";
 
     public override void Initialize()
     {
@@ -150,7 +153,7 @@ public sealed class WantedPosterSystem : EntitySystem
 
         _popup.PopupEntity(Loc.GetString("wanted-printer-printing"), ent, user);
         _audio.PlayPvs(PrintSound, ent);
-        ent.Comp.PrintAt = _timing.CurTime + TimeSpan.FromSeconds(2);
+        ent.Comp.PrintAt = _timing.CurTime + ent.Comp.PrintDelay;
         ent.Comp.Pending = args;
         UpdateUi(ent);
     }
@@ -181,7 +184,7 @@ public sealed class WantedPosterSystem : EntitySystem
 
         if (msg.Type == WantedPrintType.Rapsheet)
         {
-            var paper = Spawn("Paper", coords);
+            var paper = Spawn(Paper2, coords);
             _meta.SetEntityName(paper, Loc.GetString("wanted-rapsheet-name", ("name", alias)));
             var text = new StringBuilder();
             text.AppendLine(Loc.GetString("wanted-rapsheet-header", ("header", string.IsNullOrWhiteSpace(header) ? Loc.GetString("wanted-rapsheet-default-header") : header)));
@@ -264,7 +267,7 @@ public sealed class WantedPosterSystem : EntitySystem
 
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString("wanted-poster-placing"), args.User, args.User);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(2), new WantedPosterPlaceDoAfterEvent(),
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.AfterInteractDelay, new WantedPosterPlaceDoAfterEvent(),
             ent, wall, ent)
         {
             BreakOnMove = true,

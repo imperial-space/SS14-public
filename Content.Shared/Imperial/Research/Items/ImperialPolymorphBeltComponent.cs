@@ -14,5 +14,5 @@ public sealed partial class ImperialPolymorphBeltComponent : Component
     public EntProtoId? Stored;
 
     [DataField]
-    public float Duration = 60f;
+    public TimeSpan Duration = TimeSpan.FromSeconds(60f);
 }

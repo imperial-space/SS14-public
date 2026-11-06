@@ -61,6 +61,11 @@ public sealed class ImperialTgMedicalItemsSystem : EntitySystem
     [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
     [Dependency] private readonly MetabolizerSystem _metabolizer = default!;
 
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+
+    private static readonly EntProtoId Paper2 = "Paper";
+    private static readonly EntProtoId Smoke = "Smoke";
+
     public override void Initialize()
     {
         SubscribeLocalEvent<ImperialMedScannerComponent, AfterInteractEvent>(OnScannerInteract);
@@ -100,7 +105,7 @@ public sealed class ImperialTgMedicalItemsSystem : EntitySystem
             if (iv.Patient is not { } patient || now < iv.NextDrip)
                 continue;
 
-            iv.NextDrip = now + TimeSpan.FromSeconds(1);
+            iv.NextDrip = now + iv.DripDelay;
             Drip(uid, iv, patient);
         }
 
@@ -110,7 +115,7 @@ public sealed class ImperialTgMedicalItemsSystem : EntitySystem
             if (!smoke.Enabled || now < smoke.NextPuff)
                 continue;
 
-            smoke.NextPuff = now + TimeSpan.FromSeconds(smoke.Interval);
+            smoke.NextPuff = now + smoke.Interval;
             Puff(uid, smoke);
         }
     }
@@ -127,7 +132,7 @@ public sealed class ImperialTgMedicalItemsSystem : EntitySystem
 
         if (TryComp<MobStateComponent>(target, out var state))
         {
-            MobState current = state.CurrentState;
+            var current = state.CurrentState;
             sb.AppendLine(Loc.GetString("imperial-med-report-state", ("state", Loc.GetString($"imperial-med-state-{current.ToString().ToLowerInvariant()}"))));
         }
 
@@ -203,71 +208,71 @@ public sealed class ImperialTgMedicalItemsSystem : EntitySystem
         switch (ent.Comp.Mode)
         {
             case ImperialMedScanMode.Autopsy:
-            {
-                if (!TryComp<MobStateComponent>(target, out var state) || state.CurrentState != MobState.Dead)
                 {
-                    _popup.PopupEntity(Loc.GetString("imperial-autopsy-alive"), user, user);
-                    return;
-                }
-
-                var text = Loc.GetString("imperial-autopsy-header") + "\n" + HealthReport(target, true);
-                if (TryComp<BloodstreamComponent>(target, out var blood))
-                {
-                    var chems = ForeignBloodReagents(target, blood).ToList();
-                    if (chems.Count > 0)
-                        text += "\n" + Loc.GetString("imperial-med-report-chems") + "\n" + string.Join("\n", chems.Select(c => $"  {c.Name}: {c.Amount}u"));
-                }
-
-                var paper = Spawn("Paper", _transform.GetMapCoordinates(user));
-                if (TryComp<PaperComponent>(paper, out var paperComp))
-                    _paper.SetContent((paper, paperComp), text);
-                _hands.TryPickupAnyHand(user, paper);
-                _popup.PopupEntity(Loc.GetString("imperial-autopsy-done"), user, user);
-                break;
-            }
-            case ImperialMedScanMode.Chemical:
-            {
-                var lines = new List<string>();
-                foreach (var (name, _) in _solution.EnumerateSolutions(target))
-                {
-                    if (!_solution.TryGetSolution(target, name, out _, out var sol))
-                        continue;
-
-                    lines.Add(Loc.GetString("imperial-ph-solution", ("volume", sol.Volume), ("max", sol.MaxVolume), ("temp", $"{sol.Temperature - 273.15f:0}")));
-                    foreach (var reagent in sol.Contents)
+                    if (!TryComp<MobStateComponent>(target, out var state) || state.CurrentState != MobState.Dead)
                     {
-                        var rname = _proto.TryIndex<ReagentPrototype>(reagent.Reagent.Prototype, out var proto) ? proto.LocalizedName : reagent.Reagent.Prototype;
-                        lines.Add($"  {rname}: {reagent.Quantity}u");
+                        _popup.PopupEntity(Loc.GetString("imperial-autopsy-alive"), user, user);
+                        return;
                     }
-                }
 
-                _popup.PopupEntity(lines.Count == 0 ? Loc.GetString("imperial-ph-empty") : string.Join("\n", lines), user, user);
-                break;
-            }
-            case ImperialMedScanMode.Blood:
-            {
-                if (!TryComp<BloodstreamComponent>(target, out var blood))
+                    var text = Loc.GetString("imperial-autopsy-header") + "\n" + HealthReport(target, true);
+                    if (TryComp<BloodstreamComponent>(target, out var blood))
+                    {
+                        var chems = ForeignBloodReagents(target, blood).ToList();
+                        if (chems.Count > 0)
+                            text += "\n" + Loc.GetString("imperial-med-report-chems") + "\n" + string.Join("\n", chems.Select(c => $"  {c.Name}: {c.Amount}u"));
+                    }
+
+                    var paper = Spawn(Paper2, _transform.GetMapCoordinates(user));
+                    if (TryComp<PaperComponent>(paper, out var paperComp))
+                        _paper.SetContent((paper, paperComp), text);
+                    _hands.TryPickupAnyHand(user, paper);
+                    _popup.PopupEntity(Loc.GetString("imperial-autopsy-done"), user, user);
+                    break;
+                }
+            case ImperialMedScanMode.Chemical:
                 {
-                    _popup.PopupEntity(Loc.GetString("imperial-blood-none"), user, user);
-                    return;
-                }
+                    var lines = new List<string>();
+                    foreach (var (name, _) in _solution.EnumerateSolutions(target))
+                    {
+                        if (!_solution.TryGetSolution(target, name, out _, out var sol))
+                            continue;
 
-                var text = Loc.GetString("imperial-med-report-blood", ("level", $"{_bloodstream.GetBloodLevel((target, blood)) * 100:0}"));
-                var chems = ForeignBloodReagents(target, blood).ToList();
-                text += "\n" + (chems.Count == 0
-                    ? Loc.GetString("imperial-blood-clean")
-                    : Loc.GetString("imperial-med-report-chems") + "\n" + string.Join("\n", chems.Select(c => $"  {c.Name}: {c.Amount}u")));
-                _popup.PopupEntity(text, user, user);
-                break;
-            }
+                        lines.Add(Loc.GetString("imperial-ph-solution", ("volume", sol.Volume), ("max", sol.MaxVolume), ("temp", $"{sol.Temperature - 273.15f:0}")));
+                        foreach (var reagent in sol.Contents)
+                        {
+                            var rname = _proto.TryIndex<ReagentPrototype>(reagent.Reagent.Prototype, out var proto) ? proto.LocalizedName : reagent.Reagent.Prototype;
+                            lines.Add($"  {rname}: {reagent.Quantity}u");
+                        }
+                    }
+
+                    _popup.PopupEntity(lines.Count == 0 ? Loc.GetString("imperial-ph-empty") : string.Join("\n", lines), user, user);
+                    break;
+                }
+            case ImperialMedScanMode.Blood:
+                {
+                    if (!TryComp<BloodstreamComponent>(target, out var blood))
+                    {
+                        _popup.PopupEntity(Loc.GetString("imperial-blood-none"), user, user);
+                        return;
+                    }
+
+                    var text = Loc.GetString("imperial-med-report-blood", ("level", $"{_bloodstream.GetBloodLevel((target, blood)) * 100:0}"));
+                    var chems = ForeignBloodReagents(target, blood).ToList();
+                    text += "\n" + (chems.Count == 0
+                        ? Loc.GetString("imperial-blood-clean")
+                        : Loc.GetString("imperial-med-report-chems") + "\n" + string.Join("\n", chems.Select(c => $"  {c.Name}: {c.Amount}u")));
+                    _popup.PopupEntity(text, user, user);
+                    break;
+                }
             case ImperialMedScanMode.Pupils:
             case ImperialMedScanMode.Reflex:
-            {
-                var state = CompOrNull<MobStateComponent>(target)?.CurrentState ?? MobState.Alive;
-                var key = ent.Comp.Mode == ImperialMedScanMode.Pupils ? "imperial-penlight" : "imperial-reflex";
-                _popup.PopupEntity(Loc.GetString($"{key}-{state.ToString().ToLowerInvariant()}", ("target", target)), user, user);
-                break;
-            }
+                {
+                    var state = CompOrNull<MobStateComponent>(target)?.CurrentState ?? MobState.Alive;
+                    var key = ent.Comp.Mode == ImperialMedScanMode.Pupils ? "imperial-penlight" : "imperial-reflex";
+                    _popup.PopupEntity(Loc.GetString($"{key}-{state.ToString().ToLowerInvariant()}", ("target", target)), user, user);
+                    break;
+                }
         }
     }
 
@@ -317,12 +322,12 @@ public sealed class ImperialTgMedicalItemsSystem : EntitySystem
         if (ent.Comp.HealBlunt > 0)
         {
             var heal = new DamageSpecifier();
-            heal.DamageDict["Blunt"] = -ent.Comp.HealBlunt;
+            heal.DamageDict[BluntDamageType] = -ent.Comp.HealBlunt;
             _damageable.TryChangeDamage(target, heal, true, false);
             _popup.PopupEntity(Loc.GetString("imperial-bonesetter-done", ("target", target)), target, args.User);
         }
 
-        args.Repeat = ent.Comp.HealBlunt > 0 && _damageable.GetAllDamage(target).DamageDict.TryGetValue("Blunt", out var blunt) && blunt > 0;
+        args.Repeat = ent.Comp.HealBlunt > 0 && _damageable.GetAllDamage(target).DamageDict.TryGetValue(BluntDamageType, out var blunt) && blunt > 0;
     }
 
     #endregion
@@ -588,8 +593,8 @@ public sealed class ImperialTgMedicalItemsSystem : EntitySystem
             return;
 
         var portion = _solution.SplitSolution(soln.Value, smoke.PerPuff);
-        var cloud = Spawn("Smoke", _transform.GetMapCoordinates(uid));
-        _smoke.StartSmoke(cloud, portion, smoke.Interval * 2, smoke.Spread);
+        var cloud = Spawn(Smoke, _transform.GetMapCoordinates(uid));
+        _smoke.StartSmoke(cloud, portion, (float)smoke.Interval.TotalSeconds * 2, smoke.Spread);
     }
 
     #endregion

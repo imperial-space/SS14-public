@@ -73,7 +73,7 @@ public sealed class ImperialCargoCatalogSystem : EntitySystem
     /// <summary>Поле закрыто [Access] ванильной системы карго.</summary>
     private static List<ProtoId<CargoMarketPrototype>> Groups(CargoOrderConsoleComponent console)
     {
-        return (List<ProtoId<CargoMarketPrototype>>) AllowedGroupsField.GetValue(console)!;
+        return (List<ProtoId<CargoMarketPrototype>>)AllowedGroupsField.GetValue(console)!;
     }
 
     private static void AddHacked(List<ProtoId<CargoMarketPrototype>> groups)

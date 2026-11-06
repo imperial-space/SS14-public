@@ -21,4 +21,16 @@ public sealed partial class UplinkSurplusCrateComponent : Component
 
     [ViewVariables, AutoNetworkedField]
     public bool Unlocked;
+
+    [DataField]
+    public float SurplusDamagedChance = 0.25f;
+
+    [DataField]
+    public float SurplusDamagedTotalIntensity = 30f;
+
+    [DataField]
+    public float SurplusDamagedSlope = 5f;
+
+    [DataField]
+    public float SurplusDamagedMaxTileIntensity = 10f;
 }

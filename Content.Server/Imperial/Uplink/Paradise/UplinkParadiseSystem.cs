@@ -31,6 +31,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Uplink.Paradise;
 
@@ -67,6 +68,15 @@ public sealed class UplinkParadiseSystem : EntitySystem
     private static readonly EntProtoId Delusion = "StatusEffectSeeingRainbow";
 
     private static readonly TimeSpan PacifyTime = TimeSpan.FromSeconds(10);
+
+    private static readonly ProtoId<DamageTypePrototype> AsphyxiationDamageType = "Asphyxiation";
+
+    private static readonly TimeSpan BatterMindDuration = TimeSpan.FromSeconds(6);
+    private static readonly TimeSpan BatterMindBoozePowerDelay = TimeSpan.FromSeconds(45);
+    private static readonly TimeSpan BatterMindDuration2 = TimeSpan.FromSeconds(7);
+    private static readonly TimeSpan BatterMindDuration3 = TimeSpan.FromSeconds(30);
+
+    private const float BatterMindChance = 0.8f;
 
     public override void Initialize()
     {
@@ -143,7 +153,7 @@ public sealed class UplinkParadiseSystem : EntitySystem
             return;
         }
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(2), new UplinkBattererDoAfterEvent(), ent, used: ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.BattererUseDelay, new UplinkBattererDoAfterEvent(), ent, used: ent)
         {
             Hidden = true,
             BreakOnMove = false,
@@ -173,7 +183,7 @@ public sealed class UplinkParadiseSystem : EntitySystem
         if (ent.Comp.TimesUsed >= ent.Comp.MaxUses || now < ent.Comp.ThrowCooldownUntil)
             return;
 
-        ent.Comp.ThrowCooldownUntil = now + TimeSpan.FromSeconds(3);
+        ent.Comp.ThrowCooldownUntil = now + ent.Comp.ThrowCooldown;
         _popup.PopupEntity(Loc.GetString("uplink-batterer-thrown"), ent);
         ActivateBatterer(ent, null);
     }
@@ -217,15 +227,15 @@ public sealed class UplinkParadiseSystem : EntitySystem
     {
         // Киборгов вспышка отправляет в перезагрузку, остальных — в замешательство.
         if (HasComp<BorgChassisComponent>(victim))
-            _stun.TryAddStunDuration(victim, TimeSpan.FromSeconds(6));
+            _stun.TryAddStunDuration(victim, BatterMindDuration);
         else
-            _drunk.TryApplyDrunkenness(victim, TimeSpan.FromSeconds(45));
+            _drunk.TryApplyDrunkenness(victim, BatterMindBoozePowerDelay);
 
         string message;
         switch (_random.Next(1, 11))
         {
             case 1:
-                _movementMod.TryAddMovementSpeedModDuration(victim, MovementModStatusSystem.FlashSlowdown, TimeSpan.FromSeconds(7), 0f);
+                _movementMod.TryAddMovementSpeedModDuration(victim, MovementModStatusSystem.FlashSlowdown, BatterMindDuration2, 0f);
                 message = "uplink-batterer-effect-legs";
                 break;
             case 2:
@@ -242,11 +252,11 @@ public sealed class UplinkParadiseSystem : EntitySystem
                 message = "uplink-batterer-effect-love";
                 break;
             case 3:
-                _status.TryAddStatusEffectDuration(victim, Delusion, TimeSpan.FromSeconds(30));
+                _status.TryAddStatusEffectDuration(victim, Delusion, BatterMindDuration3);
                 message = "uplink-batterer-effect-delusion";
                 break;
             case 4:
-                if (_random.Prob(0.8f))
+                if (_random.Prob(BatterMindChance))
                 {
                     _status.TryAddStatusEffectDuration(victim, BlurryVision, TimeSpan.FromSeconds(25));
                     message = "uplink-batterer-effect-blurry";
@@ -354,10 +364,10 @@ public sealed class UplinkParadiseSystem : EntitySystem
         }
 
         ent.Comp.Strangling = target;
-        ent.Comp.CooldownUntil = now + TimeSpan.FromSeconds(1);
+        ent.Comp.CooldownUntil = now + ent.Comp.Cooldown;
         ent.Comp.NextTick = now + ent.Comp.TickTime;
         EnsureComp<UplinkGarrotedComponent>(target).Garrote = ent;
-        _oldStatus.TryAddStatusEffect<MutedComponent>(target, "Muted", TimeSpan.FromSeconds(2), true);
+        _oldStatus.TryAddStatusEffect<MutedComponent>(target, "Muted", ent.Comp.GarroteAfterInteractTime, true);
         _appearance.SetData(ent, UplinkGarroteVisuals.Strangling, true);
         _audio.PlayPvs(GarroteSound, ent, AudioParams.Default.WithVolume(-6f));
 
@@ -376,7 +386,7 @@ public sealed class UplinkParadiseSystem : EntitySystem
 
         if (TerminatingOrDeleted(target)
             || !holding
-            || !_transform.InRange(Transform(holder).Coordinates, Transform(target).Coordinates, 1.5f))
+            || !_transform.InRange(Transform(holder).Coordinates, Transform(target).Coordinates, ent.Comp.ProcessGarroteRange))
         {
             if (holding && !TerminatingOrDeleted(target))
                 _popup.PopupEntity(Loc.GetString("uplink-garrote-lost-grip", ("user", holder), ("target", target)), holder, PopupType.Medium);
@@ -389,10 +399,10 @@ public sealed class UplinkParadiseSystem : EntitySystem
             return;
 
         ent.Comp.NextTick = now + ent.Comp.TickTime;
-        _oldStatus.TryAddStatusEffect<MutedComponent>(target, "Muted", TimeSpan.FromSeconds(6), true);
+        _oldStatus.TryAddStatusEffect<MutedComponent>(target, "Muted", ent.Comp.ProcessGarroteTime, true);
 
         var damage = new DamageSpecifier();
-        damage.DamageDict["Asphyxiation"] = ent.Comp.OxyDamage;
+        damage.DamageDict[AsphyxiationDamageType] = ent.Comp.OxyDamage;
         _damageable.TryChangeDamage(target, damage, ignoreResistances: true, origin: holder);
     }
 

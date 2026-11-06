@@ -171,7 +171,7 @@ public sealed partial class QuantumServerSystem
             BitrunningObjectiveKind.Deliver => server.Complete ? 1f : 0f,
             BitrunningObjectiveKind.Curiosity => server.CuriositiesTotal == 0
                 ? 1f
-                : Math.Clamp((float) server.CuriositiesDelivered / server.CuriositiesTotal, 0f, 1f),
+                : Math.Clamp((float)server.CuriositiesDelivered / server.CuriositiesTotal, 0f, 1f),
             _ => server.Complete ? 1f : GetCacheMode((ent.Comp.Server!.Value, server)) switch
             {
                 CacheMode.Points => server.CacheSpawned ? 1f : Math.Clamp(server.MainCratePoints / domain.CratePointGoal, 0f, 1f),

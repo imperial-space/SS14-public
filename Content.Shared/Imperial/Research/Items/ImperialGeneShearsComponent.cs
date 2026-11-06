@@ -11,5 +11,5 @@ namespace Content.Shared.Imperial.Research.Items;
 public sealed partial class ImperialGeneShearsComponent : Component
 {
     [DataField]
-    public float Delay = 5f;
+    public TimeSpan Delay = TimeSpan.FromSeconds(5f);
 }

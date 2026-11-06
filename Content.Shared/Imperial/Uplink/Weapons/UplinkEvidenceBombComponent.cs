@@ -14,4 +14,13 @@ public sealed partial class UplinkEvidenceBombComponent : Component
 
     [ViewVariables]
     public TimeSpan? DetonateAt;
+
+    [DataField]
+    public float UpdateEvidenceBombsTotalIntensity = 40f;
+
+    [DataField]
+    public float UpdateEvidenceBombsSlope = 6f;
+
+    [DataField]
+    public float UpdateEvidenceBombsMaxTileIntensity = 6f;
 }

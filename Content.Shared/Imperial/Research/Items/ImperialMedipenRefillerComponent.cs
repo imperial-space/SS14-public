@@ -15,5 +15,5 @@ public sealed partial class ImperialMedipenRefillerComponent : Component
 
     /// <summary>Сколько энергии стоит одна заправка — время в секундах.</summary>
     [DataField]
-    public float RefillTime = 2f;
+    public TimeSpan RefillTime = TimeSpan.FromSeconds(2f);
 }

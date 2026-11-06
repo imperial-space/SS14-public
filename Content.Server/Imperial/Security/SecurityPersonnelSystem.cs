@@ -42,6 +42,8 @@ public sealed class SecurityPersonnelSystem : EntityEffectSystem<HumanoidProfile
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
 
+    private const float EffectChance = 0.05f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -59,7 +61,7 @@ public sealed class SecurityPersonnelSystem : EntityEffectSystem<HumanoidProfile
         if (IsPepperProof(entity))
             return;
 
-        if (_random.Prob(0.05f))
+        if (_random.Prob(EffectChance))
             _chat.TryEmoteWithChat(entity, "Scream", ignoreActionBlocker: true);
         _chat.TryEmoteWithChat(entity, "Crying", ignoreActionBlocker: true);
 
@@ -110,7 +112,7 @@ public sealed class SecurityPersonnelSystem : EntityEffectSystem<HumanoidProfile
             if (HasComp(args.Implanted, type))
                 continue;
 
-            var comp = (Component) Factory.GetComponent(type);
+            var comp = (Component)Factory.GetComponent(type);
             AddComp(args.Implanted, comp);
             ent.Comp.Added.Add(Factory.GetComponentName(type));
         }

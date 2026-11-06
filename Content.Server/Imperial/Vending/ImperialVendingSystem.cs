@@ -212,7 +212,7 @@ public sealed class ImperialVendingSystem : EntitySystem
         var account = _bank.AccountOf(user);
 
         if (!discountless && account != null && ent.Comp.Department != null && account.Department == ent.Comp.Department)
-            price = Math.Max((int) Math.Round(price * DepartmentDiscount), 1);
+            price = Math.Max((int)Math.Round(price * DepartmentDiscount), 1);
 
         if (account != null && _bank.Adjust(account, -price, Loc.GetString("imperial-vending-reason", ("vendor", Name(ent)))))
         {

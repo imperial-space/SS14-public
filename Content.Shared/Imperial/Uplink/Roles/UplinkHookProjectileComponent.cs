@@ -7,4 +7,8 @@ namespace Content.Shared.Imperial.Uplink.Roles;
 
 /// <summary>Мясной крюк: снаряд притягивает цель к стрелку.</summary>
 [RegisterComponent]
-public sealed partial class UplinkHookProjectileComponent : Component;
+public sealed partial class UplinkHookProjectileComponent : Component
+{
+    [DataField]
+    public float HookHitBaseThrowSpeed = 10f;
+}

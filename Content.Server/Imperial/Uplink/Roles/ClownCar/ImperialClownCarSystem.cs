@@ -60,6 +60,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.Imperial.Achievements;
 
 namespace Content.Server.Imperial.Uplink.Roles.ClownCar;
 
@@ -158,6 +160,13 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
     ];
 
     private static readonly AudioParams Loud = AudioParams.Default.WithVolume(2f);
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+
+    private static readonly ProtoId<ImperialAchievementPrototype> ImperialAchievementRoundAndFull = "ImperialAchievementRoundAndFull";
+    private static readonly ProtoId<ImperialAchievementPrototype> ImperialAchievementBestDriver = "ImperialAchievementBestDriver";
+
+    private const float SpawnFluidDuration = 10f;
 
     public override void Initialize()
     {
@@ -449,7 +458,7 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
             return;
 
         var dir = _random.Pick(new[] { Vector2.UnitX, -Vector2.UnitX, Vector2.UnitY, -Vector2.UnitY });
-        _throwing.TryThrow(mob, Transform(ent).Coordinates.Offset(dir), 10f, playSound: false);
+        _throwing.TryThrow(mob, Transform(ent).Coordinates.Offset(dir), ent.Comp.ExitBaseThrowSpeed, playSound: false);
     }
 
     /// <summary>dump_mobs / dump_specific_mobs: всех наружу и парализовать на 4 секунды.</summary>
@@ -463,7 +472,7 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
         {
             Exit(ent, mob, randomStep);
             if (HasComp<HumanoidProfileComponent>(mob))
-                _stun.TryUpdateParalyzeDuration(mob, TimeSpan.FromSeconds(4));
+                _stun.TryUpdateParalyzeDuration(mob, ent.Comp.DumpMobsDuration);
         }
     }
 
@@ -485,7 +494,7 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
         if (now < ent.Comp.NextHorn)
             return;
 
-        ent.Comp.NextHorn = now + TimeSpan.FromSeconds(2);
+        ent.Comp.NextHorn = now + ent.Comp.HornDelay;
         _popup.PopupEntity(Loc.GetString("imperial-clowncar-honks", ("car", ent)), ent, PopupType.Medium);
 
         // Гудок-ключ в замке гудит сам вместо клаксона.
@@ -629,11 +638,11 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
 
     private void OnDamaged(Entity<ImperialClownCarComponent> ent, ref DamageChangedEvent args)
     {
-        if (!args.DamageIncreased || !_random.Prob(0.33f))
+        if (!args.DamageIncreased || !_random.Prob(ent.Comp.DamagedChance))
             return;
 
         _popup.PopupEntity(Loc.GetString("imperial-clowncar-lube", ("car", ent)), ent, PopupType.MediumCaution);
-        SpawnFluid(ent, FoamProto, LubeReagent, 25, 4);
+        SpawnFluid(ent, FoamProto, LubeReagent, 25, ent.Comp.DamagedRange);
     }
 
     /// <summary>do_foam/do_chem_smoke(range): облако расходится на range клеток ромбом.</summary>
@@ -644,7 +653,7 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
         var solution = new Solution();
         solution.AddReagent(reagent, volume);
         var spread = Math.Min(300, 2 * range * range + 2 * range + 1);
-        _smoke.StartSmoke(cloud, solution, 10f, spread);
+        _smoke.StartSmoke(cloud, solution, SpawnFluidDuration, spread);
     }
 
     private void OnExamined(Entity<ImperialClownCarComponent> ent, ref ExaminedEvent args)
@@ -694,7 +703,7 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
             return;
 
         _popup.PopupEntity(Loc.GetString("imperial-clowncar-rattling"), ent, PopupType.LargeCaution);
-        ent.Comp.CarBombAt = _timing.CurTime + TimeSpan.FromSeconds(5);
+        ent.Comp.CarBombAt = _timing.CurTime + ent.Comp.CarBombDelay;
     }
 
     private IEnumerable<Entity<SolutionComponent>> MobSolutions(EntityUid mob)
@@ -760,7 +769,7 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
     private void CheckMobs(Entity<ImperialClownCarComponent> ent, EntityUid driver)
     {
         var xform = Transform(ent);
-        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(xform.Coordinates, 0.5f))
+        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(xform.Coordinates, ent.Comp.CheckMobsRange))
         {
             var uid = mob.Owner;
             if (uid == driver || uid == ent.Owner || _container.IsEntityInContainer(uid))
@@ -778,7 +787,7 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
             if (MetaData(uid).EntityPrototype?.ID != DeerProto.Id)
             {
                 if (HasComp<HumanoidProfileComponent>(uid))
-                    _stun.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(4));
+                    _stun.TryUpdateParalyzeDuration(uid, ent.Comp.CheckMobsDuration);
 
                 _popup.PopupEntity(Loc.GetString("imperial-clowncar-ram", ("car", ent), ("target", uid)), uid, PopupType.LargeCaution);
                 ForcedEnter(ent, uid);
@@ -813,12 +822,12 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
 
         foreach (var occupant in occupants)
         {
-            if (!HasComp<HumanoidProfileComponent>(occupant) || _random.Prob(0.35f))
+            if (!HasComp<HumanoidProfileComponent>(occupant) || _random.Prob(ent.Comp.HitDeerChance))
                 continue;
 
             // Тупая травма головы средней или тяжёлой степени.
             var blunt = new DamageSpecifier();
-            blunt.DamageDict["Blunt"] = _random.Prob(0.5f) ? 15 : 25;
+            blunt.DamageDict[BluntDamageType] = _random.Prob(ent.Comp.HitDeerChance2) ? 15 : 25;
             _damageable.TryChangeDamage(occupant, blunt, true);
             _audio.PlayEntity(FlashRing, occupant, occupant);
             var blur = EnsureComp<ImperialClownCarBlurComponent>(occupant);
@@ -829,11 +838,10 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
         }
 
         var blood = new Solution();
-        blood.AddReagent(BloodReagent, 15);
+        blood.AddReagent(BloodReagent, ent.Comp.HitDeerQuantity);
         _puddle.TrySpillAt(Transform(deer).Coordinates, blood, out _, false);
 
-        var damage = new DamageSpecifier();
-        damage.DamageDict["Blunt"] = 200;
+        var damage = new DamageSpecifier(ent.Comp.HitDeerDamage);
         _damageable.TryChangeDamage(deer, damage, true);
 
         DumpMobs(ent, true);
@@ -853,11 +861,11 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
 
         // /datum/element/squish: лежащего растягивает вширь и сплющивает на 5 секунд.
         var squished = AddComp<ImperialClownCarSquishedComponent>(target);
-        squished.EndAt = _timing.CurTime + TimeSpan.FromSeconds(5);
+        squished.EndAt = _timing.CurTime + ent.Comp.EndDelay;
         squished.OldScale = _scale.GetSpriteScale(target);
         _scale.SetSpriteScale(target, squished.OldScale * new Vector2(7f / 5f, 5f / 7f));
 
-        _stun.TryUpdateParalyzeDuration(target, TimeSpan.FromSeconds(2));
+        _stun.TryUpdateParalyzeDuration(target, ent.Comp.RunOverDuration);
         _audio.PlayPvs(Splat, target, Loud);
     }
 
@@ -907,22 +915,22 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
                 Spawn(SpecialPeelProto, Transform(ent).Coordinates);
                 break;
             case 2:
-                SpawnFluid(ent, FoamProto, RandomReagent(), 100, 200);
+                SpawnFluid(ent, FoamProto, RandomReagent(), 100, ent.Comp.DiceRange);
                 break;
             case 3:
-                ent.Comp.SingularityEndAt = now + TimeSpan.FromSeconds(10);
+                ent.Comp.SingularityEndAt = now + ent.Comp.SingularityEndDelay;
                 _appearance.SetData(ent, ImperialClownCarVisuals.Singularity, true);
                 break;
             case 4:
-                SpawnFluid(ent, SmokeProto, LaughterReagent, 50, 4);
+                SpawnFluid(ent, SmokeProto, LaughterReagent, 50, ent.Comp.DiceRange2);
                 break;
             case 5:
-                ent.Comp.OilEndAt = now + TimeSpan.FromSeconds(3);
+                ent.Comp.OilEndAt = now + ent.Comp.OilEndDelay;
                 ent.Comp.LastOilTile = null;
                 break;
             case 6:
                 _audio.PlayPvs(Fart, ent, Loud);
-                var laughers = _lookup.GetEntitiesInRange<MobStateComponent>(Transform(ent).Coordinates, 6f)
+                var laughers = _lookup.GetEntitiesInRange<MobStateComponent>(Transform(ent).Coordinates, ent.Comp.DiceRange3)
                     .Select(m => m.Owner)
                     .Concat(Victims(ent).ContainedEntities)
                     .Append(user)
@@ -963,7 +971,7 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
         if (ent.Comp.Cannon == ImperialClownCannonMode.Ready)
         {
             SetState(ent, ImperialClownCarState.FromFire);
-            ent.Comp.CannonVisualAt = now + TimeSpan.FromSeconds(1.8);
+            ent.Comp.CannonVisualAt = now + ent.Comp.CannonVisualDelay;
             _audio.PlayPvs(CannonOff, ent, Loud);
             _popup.PopupEntity(Loc.GetString("imperial-clowncar-cannon-off", ("car", ent)), ent, PopupType.Medium);
             RemoveAttached(args.Performer, ent.Comp.FireAction);
@@ -972,14 +980,14 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
         else
         {
             SetState(ent, ImperialClownCarState.ToFire);
-            ent.Comp.CannonVisualAt = now + TimeSpan.FromSeconds(1.8);
+            ent.Comp.CannonVisualAt = now + ent.Comp.CannonVisualDelay;
             _popup.PopupEntity(Loc.GetString("imperial-clowncar-cannon-on", ("car", ent)), ent, PopupType.MediumCaution);
             _audio.PlayPvs(CannonOn, ent, Loud);
             ent.Comp.CannonActivating = true;
         }
 
         ent.Comp.Cannon = ImperialClownCannonMode.Busy;
-        ent.Comp.CannonSwitchAt = now + TimeSpan.FromSeconds(2);
+        ent.Comp.CannonSwitchAt = now + ent.Comp.CannonSwitchDelay;
         _speed.RefreshMovementSpeedModifiers(ent);
     }
 
@@ -1000,7 +1008,7 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
         var sod = _random.Pick(victims);
         _container.Remove(sod, Victims(ent));
         SetState(ent, ImperialClownCarState.Recoil);
-        ent.Comp.RecoilEndAt = _timing.CurTime + TimeSpan.FromSeconds(0.3);
+        ent.Comp.RecoilEndAt = _timing.CurTime + ent.Comp.RecoilEndDelay;
         _audio.PlayPvs(new SoundPathSpecifier(Sounds + _random.Pick(CannonSounds)), ent, Loud);
 
         var from = _transform.GetMapCoordinates(ent);
@@ -1009,7 +1017,7 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
         if (dir.LengthSquared() < 0.01f)
             dir = Vector2.UnitX;
 
-        _throwing.TryThrow(sod, Vector2.Normalize(dir) * Math.Min(10f, dir.Length()), 10f, args.Performer);
+        _throwing.TryThrow(sod, Vector2.Normalize(dir) * Math.Min(10f, dir.Length()), ent.Comp.FireBaseThrowSpeed, args.Performer);
     }
 
     private void SetState(EntityUid car, ImperialClownCarState state)
@@ -1031,13 +1039,13 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
             {
                 car.CarBombAt = null;
                 DumpMobs(ent, true);
-                _explosion.QueueExplosion(uid, "Default", 10f, 5f, 3f, canCreateVacuum: false);
+                _explosion.QueueExplosion(uid, "Default", car.UpdateTotalIntensity, car.UpdateSlope, car.UpdateMaxTileIntensity, canCreateVacuum: false);
                 continue;
             }
 
             if (car.Headlights && car.Emagged && now >= car.NextPartyColor)
             {
-                car.NextPartyColor = now + TimeSpan.FromSeconds(1);
+                car.NextPartyColor = now + car.PartyColorDelay;
                 _light.SetColor(uid, _random.Pick(HeadlightColors));
             }
 
@@ -1079,7 +1087,7 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
 
             if (now >= car.NextEngineSound)
             {
-                car.NextEngineSound = now + TimeSpan.FromSeconds(2);
+                car.NextEngineSound = now + car.EngineSoundDelay;
                 _audio.PlayPvs(Engine, uid);
             }
 
@@ -1096,7 +1104,7 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
                     {
                         car.LastOilTile = tile;
                         var oil = new Solution();
-                        oil.AddReagent(OilReagent, 5);
+                        oil.AddReagent(OilReagent, car.UpdateQuantity);
                         _puddle.TrySpillAt(tile, oil, out _, false);
                     }
                 }

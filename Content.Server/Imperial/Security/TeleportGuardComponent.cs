@@ -34,4 +34,7 @@ public sealed partial class TeleportGuardComponent : Component
 
     [ViewVariables]
     public bool Reverting;
+
+    [DataField]
+    public TimeSpan UpdateDuration = TimeSpan.FromSeconds(5);
 }

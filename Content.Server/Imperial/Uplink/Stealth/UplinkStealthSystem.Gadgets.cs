@@ -34,6 +34,9 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.FixedPoint;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Uplink.Stealth;
 
@@ -50,6 +53,25 @@ public sealed partial class UplinkStealthSystem
     private static readonly SoundSpecifier PhaseInSound = new SoundPathSpecifier("/Audio/Imperial/Uplink/phasein.ogg");
     private static readonly SoundSpecifier TeleportSound = new SoundCollectionSpecifier("sparks");
     private static readonly SoundSpecifier BeepSound = new SoundPathSpecifier("/Audio/Machines/twobeep.ogg");
+
+    private static readonly DamageSpecifier TelefragDamage = new() { DamageDict = { ["Blunt"] = 20 } };
+    private static readonly DamageSpecifier GetFraggedDamage = new() { DamageDict = { ["Blunt"] = 300 } };
+    private static readonly ProtoId<DamageTypePrototype> RadiationDamageType = "Radiation";
+
+    private static readonly EntProtoId StatusEffectDrowsiness = "StatusEffectDrowsiness";
+    private static readonly EntProtoId StatusEffectDrunk = "StatusEffectDrunk";
+    private static readonly EntProtoId StatusEffectSeeingRainbow = "StatusEffectSeeingRainbow";
+    private static readonly EntProtoId StatusEffectWoozy = "StatusEffectWoozy";
+    private static readonly EntProtoId StatusEffectPacifism = "StatusEffectPacifism";
+
+    private static readonly TimeSpan TelefragTime = TimeSpan.FromSeconds(4);
+    private static readonly TimeSpan EndDelay = TimeSpan.FromSeconds(60);
+    private static readonly TimeSpan StartTranceDuration = TimeSpan.FromSeconds(60);
+
+    private const float TelefragRange = 0.4f;
+    private const float GetFraggedTotalIntensity = 20f;
+    private const float GetFraggedSlope = 5f;
+    private const float GetFraggedMaxTileIntensity = 5f;
 
     private void InitializeGadgets()
     {
@@ -99,7 +121,7 @@ public sealed partial class UplinkStealthSystem
             if (now < detector.NextCheck)
                 continue;
 
-            detector.NextCheck = now + TimeSpan.FromSeconds(1);
+            detector.NextCheck = now + detector.CheckDelay;
             var state = GetAiProximity(uid, detector);
             if (state == detector.State)
                 continue;
@@ -136,7 +158,7 @@ public sealed partial class UplinkStealthSystem
                 _status.TryAddStatusEffectDuration(uid, SleepingSystem.StatusEffectForcedSleeping, Content.Shared.Imperial.Balance.ImperialControlNorms.Sleep(TimeSpan.FromSeconds(victim.Intensity / 0.75f)));
 
             var rad = new DamageSpecifier();
-            rad.DamageDict["Radiation"] = victim.Intensity * 2;
+            rad.DamageDict[RadiationDamageType] = victim.Intensity * 2;
             _damageable.TryChangeDamage(uid, rad, true);
             RemCompDeferred<UplinkRadLaserVictimComponent>(uid);
         }
@@ -147,9 +169,9 @@ public sealed partial class UplinkStealthSystem
             if (now < tele.NextRechargeRoll)
                 continue;
 
-            tele.NextRechargeRoll = now + TimeSpan.FromSeconds(1);
+            tele.NextRechargeRoll = now + tele.RechargeRollDelay;
             // SPT_PROB(10, seconds_per_tick): 5% в секунду.
-            if (tele.Charges >= tele.MaxCharges || !_random.Prob(0.05f))
+            if (tele.Charges >= tele.MaxCharges || !_random.Prob(tele.UpdateGadgetsChance))
                 continue;
 
             tele.Charges++;
@@ -243,7 +265,7 @@ public sealed partial class UplinkStealthSystem
         _popup.PopupEntity(Loc.GetString("uplink-emp-flashlight-blink", ("user", args.User), ("target", target)), target, PopupType.MediumCaution);
         _popup.PopupEntity(Loc.GetString("uplink-emp-flashlight-charges", ("charges", ent.Comp.Charges)), ent, args.User);
         // emp_act(EMP_HEAVY)
-        _emp.DoEmpEffects(target, 100000f, TimeSpan.FromSeconds(20), args.User);
+        _emp.DoEmpEffects(target, ent.Comp.EmpFlashlightInteractEnergyConsumption, ent.Comp.EmpFlashlightInteractDuration, args.User);
     }
 
     #endregion
@@ -444,7 +466,7 @@ public sealed partial class UplinkStealthSystem
 
     private void OnTeleporterEmp(Entity<UplinkSyndicateTeleporterComponent> ent, ref EmpPulseEvent args)
     {
-        if (!_random.Prob(0.5f))
+        if (!_random.Prob(ent.Comp.TeleporterEmpChance))
             return;
 
         var holder = Transform(ent).ParentUid;
@@ -488,8 +510,7 @@ public sealed partial class UplinkStealthSystem
         ent.Comp.Charges = Math.Max(ent.Comp.Charges - 1, 0);
 
         // Кровь при телепорте: bleed_amount = 20 из 560.
-        var blood = new DamageSpecifier();
-        blood.DamageDict["Bloodloss"] = 3;
+        var blood = new DamageSpecifier(ent.Comp.AttemptTeleportDamage);
         _damageable.TryChangeDamage(user, blood, true);
 
         _audio.PlayPvs(TeleportSound, user);
@@ -528,15 +549,14 @@ public sealed partial class UplinkStealthSystem
     /// <summary>telefrag: всех на тайле назначения ранит и опрокидывает.</summary>
     private void Telefrag(MapCoordinates destination, EntityUid user)
     {
-        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(destination, 0.4f))
+        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(destination, TelefragRange))
         {
             if (mob.Owner == user)
                 continue;
 
-            var damage = new DamageSpecifier();
-            damage.DamageDict["Blunt"] = 20;
+            var damage = new DamageSpecifier(TelefragDamage);
             _damageable.TryChangeDamage(mob.Owner, damage, true);
-            _stun.TryKnockdown(mob.Owner, TimeSpan.FromSeconds(4));
+            _stun.TryKnockdown(mob.Owner, TelefragTime);
         }
     }
 
@@ -545,10 +565,9 @@ public sealed partial class UplinkStealthSystem
     {
         _transform.SetMapCoordinates(user, destination);
         _popup.PopupEntity(Loc.GetString("uplink-teleporter-fragged"), user, PopupType.LargeCaution);
-        var damage = new DamageSpecifier();
-        damage.DamageDict["Blunt"] = 300;
+        var damage = new DamageSpecifier(GetFraggedDamage);
         _damageable.TryChangeDamage(user, damage, true);
-        _explosion.QueueExplosion(destination, "Default", 20f, 5f, 5f, user, canCreateVacuum: false);
+        _explosion.QueueExplosion(destination, "Default", GetFraggedTotalIntensity, GetFraggedSlope, GetFraggedMaxTileIntensity, user, canCreateVacuum: false);
     }
 
     #endregion
@@ -652,10 +671,10 @@ public sealed partial class UplinkStealthSystem
     private bool IsHypnosisVulnerable(EntityUid uid)
     {
         return _status.HasStatusEffect(uid, SleepingSystem.StatusEffectForcedSleeping)
-               || _status.HasStatusEffect(uid, "StatusEffectDrowsiness")
-               || _status.HasStatusEffect(uid, "StatusEffectDrunk")
-               || _status.HasStatusEffect(uid, "StatusEffectSeeingRainbow")
-               || _status.HasStatusEffect(uid, "StatusEffectWoozy");
+               || _status.HasStatusEffect(uid, StatusEffectDrowsiness)
+               || _status.HasStatusEffect(uid, StatusEffectDrunk)
+               || _status.HasStatusEffect(uid, StatusEffectSeeingRainbow)
+               || _status.HasStatusEffect(uid, StatusEffectWoozy);
     }
 
     private void OnHypnoticFlashed(Entity<UplinkHypnoticFlashComponent> ent, ref AfterFlashedEvent args)
@@ -668,8 +687,8 @@ public sealed partial class UplinkStealthSystem
         {
             // Цель не уязвима: только растерянность и дрёма.
             _popup.PopupEntity(Loc.GetString("uplink-hypno-relaxed"), target, target, PopupType.Medium);
-            _status.TryAddStatusEffectDuration(target, "StatusEffectDrowsiness", TimeSpan.FromSeconds(20));
-            _status.TryAddStatusEffectDuration(target, "StatusEffectPacifism", TimeSpan.FromSeconds(4));
+            _status.TryAddStatusEffectDuration(target, StatusEffectDrowsiness, ent.Comp.HypnoticFlashedDuration);
+            _status.TryAddStatusEffectDuration(target, StatusEffectPacifism, ent.Comp.HypnoticFlashedDuration2);
             return;
         }
 
@@ -695,9 +714,9 @@ public sealed partial class UplinkStealthSystem
     public void StartTrance(EntityUid target)
     {
         var trance = EnsureComp<UplinkHypnoticTranceComponent>(target);
-        trance.EndTime = _timing.CurTime + TimeSpan.FromSeconds(60);
+        trance.EndTime = _timing.CurTime + EndDelay;
         EnsureComp<ActiveListenerComponent>(target).Range = 7f;
-        _status.TryAddStatusEffectDuration(target, "StatusEffectWoozy", TimeSpan.FromSeconds(60));
+        _status.TryAddStatusEffectDuration(target, StatusEffectWoozy, StartTranceDuration);
         _popup.PopupEntity(Loc.GetString("uplink-hypno-trance"), target, target, PopupType.LargeCaution);
     }
 
@@ -714,7 +733,7 @@ public sealed partial class UplinkStealthSystem
 
         var hypno = EnsureComp<UplinkHypnotizedComponent>(ent);
         hypno.Phrase = args.Message;
-        hypno.NextReminder = _timing.CurTime + TimeSpan.FromSeconds(60);
+        hypno.NextReminder = _timing.CurTime + ent.Comp.ReminderDelay;
 
         RemCompDeferred<UplinkHypnoticTranceComponent>(ent);
         RemCompDeferred<ActiveListenerComponent>(ent);

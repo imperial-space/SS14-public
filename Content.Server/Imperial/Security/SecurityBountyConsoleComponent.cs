@@ -19,4 +19,16 @@ public sealed partial class SecurityBountyConsoleComponent : Component
     /// <summary>warmup_time: 3 секунды до отправки.</summary>
     [ViewVariables]
     public TimeSpan? SendAt;
+
+    [DataField]
+    public TimeSpan RequestDelay = TimeSpan.FromMinutes(5);
+
+    [DataField]
+    public TimeSpan SendDelay = TimeSpan.FromSeconds(3);
+
+    [DataField]
+    public float FindPadRange = 4f;
+
+    [DataField]
+    public float GetPadItemsRange = 0.45f;
 }

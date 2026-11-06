@@ -31,6 +31,8 @@ public sealed class ImperialMysteryBoxSystem : EntitySystem
     private const string OpenSound = "/Audio/Imperial/Fishing/mbox_full.ogg";
     private const string GrantSound = "/Audio/Imperial/Fishing/mbox_end.ogg";
 
+    private static readonly EntProtoId MaterialWoodPlank = "MaterialWoodPlank";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -126,7 +128,7 @@ public sealed class ImperialMysteryBoxSystem : EntitySystem
         if (ent.Comp.UsesLeft <= 0)
         {
             _popup.PopupEntity(Loc.GetString("imperial-mystery-box-breaks"), ent);
-            Spawn("MaterialWoodPlank", Transform(ent).Coordinates);
+            Spawn(MaterialWoodPlank, Transform(ent).Coordinates);
             QueueDel(ent);
         }
     }

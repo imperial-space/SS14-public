@@ -15,6 +15,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Uplink.Roles;
 
@@ -33,6 +35,8 @@ public sealed partial class UplinkRoleSystem
 
     private static readonly SoundSpecifier GraceAwakenSound = new SoundPathSpecifier("/Audio/Imperial/Uplink/pope_entry.ogg");
     private static readonly SoundSpecifier GraceEatSound = new SoundPathSpecifier("/Audio/Imperial/Uplink/eatfood.ogg");
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
 
     private void InitializeHisGrace()
     {
@@ -71,7 +75,7 @@ public sealed partial class UplinkRoleSystem
         ent.Comp.Awakened = true;
         ent.Comp.Bloodthirst = 1;
         ent.Comp.ForceBonus = GraceForceBonus * GetMeals(ent).Count;
-        ent.Comp.NextTick = _timing.CurTime + TimeSpan.FromSeconds(1);
+        ent.Comp.NextTick = _timing.CurTime + ent.Comp.TickDelay;
         _metaData.SetEntityName(ent, Loc.GetString("uplink-grace-name-awake"));
         _audio.PlayPvs(GraceAwakenSound, ent);
         _popup.PopupEntity(Loc.GetString("uplink-grace-awaken"), ent, PopupType.LargeCaution);
@@ -109,8 +113,7 @@ public sealed partial class UplinkRoleSystem
     /// <summary>consume: съесть жертву, подкрепиться, вырасти в силе.</summary>
     private void Consume(Entity<UplinkHisGraceComponent> ent, EntityUid meal)
     {
-        var damage = new DamageSpecifier();
-        damage.DamageDict["Blunt"] = 200;
+        var damage = new DamageSpecifier(ent.Comp.ConsumeDamage);
         _damageable.TryChangeDamage(meal, damage, true);
         _audio.PlayPvs(GraceEatSound, ent);
         _popup.PopupEntity(Loc.GetString("uplink-grace-devour", ("target", meal)), meal, PopupType.LargeCaution);
@@ -142,7 +145,7 @@ public sealed partial class UplinkRoleSystem
             if (!grace.Awakened || now < grace.NextTick)
                 continue;
 
-            grace.NextTick = now + TimeSpan.FromSeconds(1);
+            grace.NextTick = now + grace.TickDelay;
             var ent = new Entity<UplinkHisGraceComponent>(uid, grace);
             if (grace.Bloodthirst <= GraceSatiated)
             {
@@ -164,9 +167,8 @@ public sealed partial class UplinkRoleSystem
                     // Он набрасывается на хозяина.
                     _popup.PopupEntity(Loc.GetString("uplink-grace-turns", ("target", holder)), holder, PopupType.LargeCaution);
                     RemComp<UnremoveableComponent>(uid);
-                    _stun.TryAddParalyzeDuration(holder, TimeSpan.FromSeconds(6));
-                    var damage = new DamageSpecifier();
-                    damage.DamageDict["Blunt"] = 100;
+                    _stun.TryAddParalyzeDuration(holder, grace.UpdateHisGraceDuration);
+                    var damage = new DamageSpecifier(grace.UpdateHisGraceDamage);
                     _damageable.TryChangeDamage(holder, damage, true);
                     continue;
                 }
@@ -186,7 +188,7 @@ public sealed partial class UplinkRoleSystem
 
             // Без хозяина в бешенстве Он сам охотится в радиусе двух клеток.
             var coords = _transform.GetMapCoordinates(uid);
-            var targets = _lookup.GetEntitiesInRange<MobStateComponent>(coords, 2f).ToList();
+            var targets = _lookup.GetEntitiesInRange<MobStateComponent>(coords, grace.UpdateHisGraceRange).ToList();
             if (targets.Count == 0)
                 continue;
 
@@ -195,10 +197,10 @@ public sealed partial class UplinkRoleSystem
             if (target.Comp.CurrentState == MobState.Alive)
             {
                 var damage = new DamageSpecifier();
-                damage.DamageDict["Blunt"] = grace.BaseForce + grace.ForceBonus;
+                damage.DamageDict[BluntDamageType] = grace.BaseForce + grace.ForceBonus;
                 _damageable.TryChangeDamage(target.Owner, damage, true);
                 _popup.PopupEntity(Loc.GetString("uplink-grace-lunge", ("target", target.Owner)), target, PopupType.MediumCaution);
-                AdjustBloodthirst(ent, -5);
+                AdjustBloodthirst(ent, grace.UpdateHisGraceAmount);
             }
             else
             {

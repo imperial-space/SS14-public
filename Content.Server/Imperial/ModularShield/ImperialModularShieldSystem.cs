@@ -58,6 +58,10 @@ public sealed partial class ImperialModularShieldSystem : EntitySystem
 
     private TimeSpan _nextSlowUpdate;
 
+    private static readonly TimeSpan SlowUpdateDelay = TimeSpan.FromSeconds(1);
+
+    private const float _lookupShieldsRange = 0.3f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -240,7 +244,7 @@ public sealed partial class ImperialModularShieldSystem : EntitySystem
             var step = xform.LocalRotation.GetCardinalDir().ToIntVec();
             var tile = center;
             comp.Radius = 0;
-            for (var i = 0; i < (int) MathF.Round(comp.MaxRadius); i++)
+            for (var i = 0; i < (int)MathF.Round(comp.MaxRadius); i++)
             {
                 if (!IsOpen(grid, gridComp, tile) || HasShield(grid, gridComp, tile))
                     break;
@@ -276,7 +280,7 @@ public sealed partial class ImperialModularShieldSystem : EntitySystem
             }
         }
 
-        comp.FinishFieldAt = _timing.CurTime + TimeSpan.FromSeconds(2);
+        comp.FinishFieldAt = _timing.CurTime + ent.Comp.FinishFieldDelay;
         CalculateRegeneration(ent);
         UpdateVisuals(ent);
     }
@@ -285,7 +289,7 @@ public sealed partial class ImperialModularShieldSystem : EntitySystem
     private static IEnumerable<Vector2i> CircleRangeTiles(Vector2i center, float radius)
     {
         var rsq = radius * (radius + 0.5f);
-        var range = (int) MathF.Floor(radius);
+        var range = (int)MathF.Floor(radius);
         for (var dx = -range; dx <= range; dx++)
         {
             for (var dy = -range; dy <= range; dy++)
@@ -299,7 +303,7 @@ public sealed partial class ImperialModularShieldSystem : EntitySystem
     /// <summary>get_perimeter(): окружность средней точки для больших щитов.</summary>
     private static IEnumerable<Vector2i> Perimeter(Vector2i center, float radius)
     {
-        var r = (int) MathF.Floor(radius);
+        var r = (int)MathF.Floor(radius);
         if (r < 1)
             yield break;
 
@@ -352,7 +356,7 @@ public sealed partial class ImperialModularShieldSystem : EntitySystem
 
     private IEnumerable<EntityUid> _lookupShields(EntityCoordinates coords)
     {
-        var query = EntityManager.System<EntityLookupSystem>().GetEntitiesInRange<ImperialModularShieldComponent>(coords, 0.3f);
+        var query = EntityManager.System<EntityLookupSystem>().GetEntitiesInRange<ImperialModularShieldComponent>(coords, _lookupShieldsRange);
         foreach (var shield in query)
             yield return shield.Owner;
     }
@@ -509,7 +513,7 @@ public sealed partial class ImperialModularShieldSystem : EntitySystem
         }
 
         args.Affected = true;
-        ShieldDrain((generator, gen), 15);
+        ShieldDrain((generator, gen), ent.Comp.ShieldEmpAmount);
     }
 
     #endregion
@@ -521,7 +525,7 @@ public sealed partial class ImperialModularShieldSystem : EntitySystem
         var now = _timing.CurTime;
         var slow = _timing.CurTime >= _nextSlowUpdate;
         if (slow)
-            _nextSlowUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
+            _nextSlowUpdate = _timing.CurTime + SlowUpdateDelay;
 
         var query = EntityQueryEnumerator<ImperialModularShieldGeneratorComponent>();
         while (query.MoveNext(out var uid, out var comp))

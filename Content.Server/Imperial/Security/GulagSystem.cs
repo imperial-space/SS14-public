@@ -29,6 +29,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Security;
 
@@ -67,6 +68,12 @@ public sealed class GulagSystem : EntitySystem
 
     private TimeSpan _nextUiUpdate;
 
+    private static readonly EntProtoId EffectSparks = "EffectSparks";
+
+    private static readonly TimeSpan UiUpdateDelay = TimeSpan.FromSeconds(1);
+
+    private const float FindTeleporterRange = 1.2f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -95,7 +102,7 @@ public sealed class GulagSystem : EntitySystem
         if (_timing.CurTime < _nextUiUpdate)
             return;
 
-        _nextUiUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
+        _nextUiUpdate = _timing.CurTime + UiUpdateDelay;
         var query = EntityQueryEnumerator<GulagConsoleComponent>();
         while (query.MoveNext(out var uid, out var console))
         {
@@ -208,9 +215,9 @@ public sealed class GulagSystem : EntitySystem
         if (_timing.CurTime < ent.Comp.NextMessage)
             return;
 
-        ent.Comp.NextMessage = _timing.CurTime + TimeSpan.FromSeconds(5);
+        ent.Comp.NextMessage = _timing.CurTime + ent.Comp.MessageDelay;
         var time = ent.Comp.Locked ? ent.Comp.BreakoutTime : ent.Comp.BreakoutTime / 2;
-        _popup.PopupEntity(Loc.GetString("gulag-teleporter-breakout-start", ("time", (int) time.TotalSeconds)), user, user);
+        _popup.PopupEntity(Loc.GetString("gulag-teleporter-breakout-start", ("time", (int)time.TotalSeconds)), user, user);
         _popup.PopupEntity(Loc.GetString("gulag-teleporter-breakout-others", ("user", user), ("machine", ent.Owner)), ent, Robust.Shared.Player.Filter.PvsExcept(user), true);
 
         var doAfter = new DoAfterArgs(EntityManager, user, time, new GulagBreakoutDoAfterEvent(), ent, ent)
@@ -230,6 +237,7 @@ public sealed class GulagSystem : EntitySystem
 
         args.Handled = true;
         ent.Comp.Locked = false;
+        Dirty(ent);
         _popup.PopupEntity(Loc.GetString("gulag-teleporter-breakout-done", ("user", args.User), ("machine", ent.Owner)), ent, PopupType.MediumCaution);
         SetOpen(ent, true);
     }
@@ -282,7 +290,7 @@ public sealed class GulagSystem : EntitySystem
     {
         var xform = Transform(console);
         var origin = _xform.GetWorldPosition(xform);
-        foreach (var tele in _lookup.GetEntitiesInRange<GulagTeleporterComponent>(xform.Coordinates, 1.2f))
+        foreach (var tele in _lookup.GetEntitiesInRange<GulagTeleporterComponent>(xform.Coordinates, FindTeleporterRange))
         {
             var delta = _xform.GetWorldPosition(tele) - origin;
             if (MathF.Abs(MathF.Abs(delta.X) + MathF.Abs(delta.Y) - 1f) > 0.3f)
@@ -439,7 +447,7 @@ public sealed class GulagSystem : EntitySystem
     {
         var pos = _xform.GetMapCoordinates(uid);
         var map = _xform.GetMap(uid) is { } mapUid ? Name(mapUid) : "?";
-        return $"({(int) pos.Position.X}, {(int) pos.Position.Y}, {map})";
+        return $"({(int)pos.Position.X}, {(int)pos.Position.Y}, {map})";
     }
 
     /// <summary>teleport(): раздеть, переодеть и отправить к маяку.</summary>
@@ -475,12 +483,13 @@ public sealed class GulagSystem : EntitySystem
         _audio.PlayPvs(DepartSound, ent);
         _securityImplant.AllowNextMove(prisoner);
         _container.Remove(prisoner, tele.Comp.Occupant, destination: Transform(beacon).Coordinates);
-        _stun.TryUpdateParalyzeDuration(prisoner, TimeSpan.FromSeconds(4));
+        _stun.TryUpdateParalyzeDuration(prisoner, ent.Comp.TeleportDuration);
         _popup.PopupEntity(Loc.GetString("gulag-teleport-dizzy"), prisoner, prisoner, PopupType.MediumCaution);
-        Spawn("EffectSparks", Transform(prisoner).Coordinates);
+        Spawn(EffectSparks, Transform(prisoner).Coordinates);
         _audio.PlayPvs(ArriveSound, prisoner);
 
         tele.Comp.Locked = false;
+        Dirty(tele);
         SetOpen(tele, true);
     }
 

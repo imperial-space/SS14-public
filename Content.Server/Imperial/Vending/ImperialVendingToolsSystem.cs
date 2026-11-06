@@ -288,7 +288,7 @@ public sealed class ImperialVendingToolsSystem : EntitySystem
             return;
         }
 
-        var result = (int) Math.Round(weighted / total);
+        var result = (int)Math.Round(weighted / total);
         ent.Comp.Used = true;
         _appearance.SetData(ent, ImperialPhBookletVisuals.State, PhColor(result).ToHex());
         _metaData.SetEntityName(ent, Loc.GetString("imperial-ph-paper-used-name"));

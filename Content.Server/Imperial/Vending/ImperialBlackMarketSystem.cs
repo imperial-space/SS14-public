@@ -48,6 +48,10 @@ public sealed class ImperialBlackMarketSystem : EntitySystem
     private static readonly TimeSpan TeleportDelay = TimeSpan.FromSeconds(60);
     private static readonly TimeSpan RestockInterval = TimeSpan.FromMinutes(20);
 
+    private static readonly EntProtoId EffectSparks = "EffectSparks";
+
+    private const float LaunchBaseThrowSpeed = 6f;
+
     private sealed class Stock
     {
         public int Price;
@@ -167,7 +171,7 @@ public sealed class ImperialBlackMarketSystem : EntitySystem
         if (TryComp<Content.Shared.Storage.Components.EntityStorageComponent>(crate, out _))
             EntityManager.System<Content.Shared.Storage.EntitySystems.SharedEntityStorageSystem>().Insert(goods, crate);
 
-        _throwing.TryThrow(crate, -dir * 40f, 6f, playSound: false);
+        _throwing.TryThrow(crate, -dir * 40f, LaunchBaseThrowSpeed, playSound: false);
         _popup.PopupEntity(Loc.GetString("imperial-market-launched", ("dir", Loc.GetString(DirName(-dir)))), user, user, PopupType.Medium);
     }
 
@@ -186,12 +190,12 @@ public sealed class ImperialBlackMarketSystem : EntitySystem
             coords = Transform(user).Coordinates;
 
         var pos = _transform.ToMapCoordinates(coords).Position;
-        _popup.PopupEntity(Loc.GetString("imperial-market-teleporting", ("x", (int) pos.X), ("y", (int) pos.Y)), user, user, PopupType.Medium);
+        _popup.PopupEntity(Loc.GetString("imperial-market-teleporting", ("x", (int)pos.X), ("y", (int)pos.Y)), user, user, PopupType.Medium);
 
         _schedule.Schedule(TeleportDelay, () =>
         {
             Spawn(item.Item, coords);
-            Spawn("EffectSparks", coords);
+            Spawn(EffectSparks, coords);
             _audio.PlayPvs(TeleportSound, coords);
         });
     }

@@ -14,4 +14,10 @@ public sealed partial class ImperialModMagHarnessComponent : Component
 {
     [ViewVariables]
     public List<(EntityUid Gun, TimeSpan At)> Pending = new();
+
+    [DataField]
+    public TimeSpan HarnessUnequipDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public float UpdateHarnessRange = 3f;
 }

@@ -33,4 +33,7 @@ public sealed partial class ImperialModCaptureComponent : Component
 
     [ViewVariables]
     public TimeSpan NextDrain;
+
+    [DataField]
+    public TimeSpan DrainDelay = TimeSpan.FromSeconds(1);
 }

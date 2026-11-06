@@ -11,5 +11,5 @@ namespace Content.Shared.Imperial.Research.Items;
 public sealed partial class ImperialRazorComponent : Component
 {
     [DataField]
-    public float Delay = 3f;
+    public TimeSpan Delay = TimeSpan.FromSeconds(3f);
 }

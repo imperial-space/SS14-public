@@ -80,7 +80,7 @@ public sealed class ImperialModModulesSystem : EntitySystem
     private void OnGpsUsed(Entity<ImperialModGpsModuleComponent> ent, ref ImperialModModuleUsedEvent args)
     {
         var pos = _transform.GetMapCoordinates(args.Wearer);
-        _popup.PopupEntity(Loc.GetString("imperial-mod-gps-coords", ("x", (int) pos.X), ("y", (int) pos.Y)), args.Wearer, args.Wearer);
+        _popup.PopupEntity(Loc.GetString("imperial-mod-gps-coords", ("x", (int)pos.X), ("y", (int)pos.Y)), args.Wearer, args.Wearer);
         args.Handled = true;
     }
 
@@ -127,7 +127,7 @@ public sealed class ImperialModModulesSystem : EntitySystem
         if (!_solution.TryGetSolution(device, ent.Comp.Solution, out var soln, out var solution))
             return;
 
-        var add = MathF.Min((float) solution.AvailableVolume, ent.Comp.Rate * args.FrameTime);
+        var add = MathF.Min((float)solution.AvailableVolume, ent.Comp.Rate * args.FrameTime);
         if (add > 0)
             _solution.TryAddReagent(soln.Value, ent.Comp.Reagent, add);
     }
@@ -231,7 +231,7 @@ public sealed class ImperialModModulesSystem : EntitySystem
             if (_timing.CurTime < bag.NextPickup)
                 continue;
 
-            bag.NextPickup = _timing.CurTime + TimeSpan.FromSeconds(0.25);
+            bag.NextPickup = _timing.CurTime + bag.PickupDelay;
             if (!HasComp<ImperialModSuitComponent>(xform.ParentUid) || _suit.GetWearer(xform.ParentUid) is not { } wearer)
                 continue;
 
@@ -246,7 +246,7 @@ public sealed class ImperialModModulesSystem : EntitySystem
 
             var container = _container.EnsureContainer<Container>(uid, ImperialModOreBagComponent.ContainerId);
             var picked = false;
-            foreach (var ore in _lookup.GetEntitiesInRange(wearer, 0.6f, LookupFlags.Dynamic | LookupFlags.Sundries))
+            foreach (var ore in _lookup.GetEntitiesInRange(wearer, bag.UpdateRange, LookupFlags.Dynamic | LookupFlags.Sundries))
             {
                 if (_container.IsEntityInContainer(ore) || !_tag.HasTag(ore, OreTag))
                     continue;

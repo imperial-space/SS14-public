@@ -2,6 +2,8 @@ using Content.Shared.Roles;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Content.Shared.Damage;
+using Content.Shared.FixedPoint;
 
 namespace Content.Shared.Imperial.Uplink.Stealth;
 
@@ -26,4 +28,16 @@ public sealed partial class UplinkSyndicateTeleporterComponent : Component
 
     [ViewVariables]
     public TimeSpan NextRechargeRoll;
+
+    [DataField]
+    public DamageSpecifier AttemptTeleportDamage = new() { DamageDict = { ["Bloodloss"] = 3 } };
+
+    [DataField]
+    public TimeSpan RechargeRollDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public float TeleporterEmpChance = 0.5f;
+
+    [DataField]
+    public float UpdateGadgetsChance = 0.05f;
 }

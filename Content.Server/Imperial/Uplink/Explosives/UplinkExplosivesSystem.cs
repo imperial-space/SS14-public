@@ -37,6 +37,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Uplink.Explosives;
 
@@ -76,6 +77,13 @@ public sealed class UplinkExplosivesSystem : EntitySystem
     private static readonly SoundSpecifier BoxSound = new SoundPathSpecifier("/Audio/Imperial/Uplink/box_deploy.ogg");
     private static readonly SoundSpecifier DefibSound = new SoundPathSpecifier("/Audio/Items/Defib/defib_zap.ogg");
     private static readonly SoundSpecifier CrackSound = new SoundPathSpecifier("/Audio/Effects/explosion1.ogg");
+
+    private static readonly ProtoId<DamageTypePrototype> AsphyxiationDamageType = "Asphyxiation";
+    private static readonly ProtoId<DamageTypePrototype> PoisonDamageType = "Poison";
+
+    private static readonly EntProtoId StatusEffectStutter = "StatusEffectStutter";
+    private static readonly EntProtoId ImperialUplinkWeakpoint = "ImperialUplinkWeakpoint";
+    private static readonly EntProtoId StealthBox = "StealthBox";
 
     public override void Initialize()
     {
@@ -118,7 +126,7 @@ public sealed class UplinkExplosivesSystem : EntitySystem
 
             pizza.DetonateAt = null;
             // bombcore/miniature: heavy 1, medium 2, light 4, flame 2.
-            _explosion.QueueExplosion(_transform.GetMapCoordinates(uid), "Default", 80f, 4f, 12f, uid);
+            _explosion.QueueExplosion(_transform.GetMapCoordinates(uid), "Default", pizza.UpdateTotalIntensity, pizza.UpdateSlope, pizza.UpdateMaxTileIntensity, uid);
             QueueDel(uid);
         }
 
@@ -190,7 +198,7 @@ public sealed class UplinkExplosivesSystem : EntitySystem
         if (_timing.CurTime < ent.Comp.ReadyAt)
             return;
 
-        ent.Comp.ReadyAt = _timing.CurTime + TimeSpan.FromSeconds(1);
+        ent.Comp.ReadyAt = _timing.CurTime + ent.Comp.ReadyDelay;
         _audio.PlayPvs(ClickSound, ent);
 
         int found = 0, triggered = 0;
@@ -203,7 +211,7 @@ public sealed class UplinkExplosivesSystem : EntitySystem
 
             triggered++;
             _trigger.StopTimerTrigger((uid, timer));
-            _trigger.SetDelay((uid, timer), TimeSpan.FromSeconds(5));
+            _trigger.SetDelay((uid, timer), ent.Comp.DetonatorUseDelay);
             _trigger.ActivateTimerTrigger((uid, timer), args.User);
         }
 
@@ -244,11 +252,11 @@ public sealed class UplinkExplosivesSystem : EntitySystem
 
                 ent.Comp.Charges--;
                 var holder = Transform(pda).ParentUid;
-                _explosion.QueueExplosion(_transform.GetMapCoordinates(pda), "Default", 4f, 2f, 2f, user, canCreateVacuum: false);
+                _explosion.QueueExplosion(_transform.GetMapCoordinates(pda), "Default", ent.Comp.DetomatixUseTotalIntensity, ent.Comp.DetomatixUseSlope, ent.Comp.DetomatixUseMaxTileIntensity, user, canCreateVacuum: false);
                 if (HasComp<MobStateComponent>(holder))
                 {
-                    _stun.TryKnockdown(holder, TimeSpan.FromSeconds(4));
-                    _status.TryAddStatusEffectDuration(holder, "StatusEffectStutter", TimeSpan.FromSeconds(30));
+                    _stun.TryKnockdown(holder, ent.Comp.DetomatixUseTime);
+                    _status.TryAddStatusEffectDuration(holder, StatusEffectStutter, ent.Comp.DetomatixUseDuration);
                 }
 
                 QueueDel(pda);
@@ -289,7 +297,7 @@ public sealed class UplinkExplosivesSystem : EntitySystem
             return;
 
         args.Handled = true;
-        ent.Comp.ActivateAt = _timing.CurTime + TimeSpan.FromSeconds(1.2);
+        ent.Comp.ActivateAt = _timing.CurTime + ent.Comp.ActivateDelay;
         _popup.PopupEntity(Loc.GetString("uplink-earthcracker-activate"), ent, args.User);
     }
 
@@ -297,7 +305,7 @@ public sealed class UplinkExplosivesSystem : EntitySystem
     private void StrikeTheEarth(Entity<UplinkEarthcrackerComponent> ent)
     {
         _audio.PlayPvs(CrackSound, ent);
-        Spawn("ImperialUplinkWeakpoint", Transform(ent).Coordinates);
+        Spawn(ImperialUplinkWeakpoint, Transform(ent).Coordinates);
         ent.Comp.Status = UplinkEarthcrackerStatus.Spent;
         _transform.Unanchor(ent);
     }
@@ -318,7 +326,7 @@ public sealed class UplinkExplosivesSystem : EntitySystem
         var dir = _random.Pick(new[] { Vector2i.Up, Vector2i.Down, Vector2i.Left, Vector2i.Right });
         for (var i = 0; i < ent.Comp.CrackLength; i++)
         {
-            if (_random.Prob(0.5f))
+            if (_random.Prob(ent.Comp.WeakpointDamagedChance))
                 dir = _random.Pick(new[] { Vector2i.Up, Vector2i.Down, Vector2i.Left, Vector2i.Right });
 
             pos += dir;
@@ -348,7 +356,7 @@ public sealed class UplinkExplosivesSystem : EntitySystem
             for (var i = 0; i < ent.Comp.NewWeakpoints; i++)
             {
                 var spot = _random.Pick(chain);
-                var child = Spawn("ImperialUplinkWeakpoint", _map.GridTileToLocal(gridUid, grid, spot));
+                var child = Spawn(ImperialUplinkWeakpoint, _map.GridTileToLocal(gridUid, grid, spot));
                 Comp<UplinkWeakpointComponent>(child).SpawnsChildren = false;
             }
         }
@@ -394,7 +402,7 @@ public sealed class UplinkExplosivesSystem : EntitySystem
         if (!TryComp<UplinkStealthImplantComponent>(args.Action.Comp.Container, out var implant))
             implant = null;
 
-        var box = Spawn(implant?.Box ?? "StealthBox", Transform(user).Coordinates);
+        var box = Spawn(implant?.Box ?? StealthBox, Transform(user).Coordinates);
         _storage.Insert(user, box);
         _storage.CloseStorage(box);
         _audio.PlayPvs(BoxSound, user);
@@ -441,7 +449,7 @@ public sealed class UplinkExplosivesSystem : EntitySystem
                 if (now >= at)
                 {
                     implant.DetonateAt = null;
-                    _explosion.QueueExplosion(_transform.GetMapCoordinates(owner), "Default", 120f, 5f, 15f, owner);
+                    _explosion.QueueExplosion(_transform.GetMapCoordinates(owner), "Default", implant.UpdateImplantsTotalIntensity, implant.UpdateImplantsSlope, implant.UpdateImplantsMaxTileIntensity, owner);
                     _gibbing.Gib(owner);
                 }
 
@@ -450,7 +458,7 @@ public sealed class UplinkExplosivesSystem : EntitySystem
 
             if (TryComp<DamageableComponent>(owner, out var damageable) && _damageable.GetTotalDamage((owner, damageable)) >= crit)
             {
-                implant.DetonateAt = now + TimeSpan.FromSeconds(10);
+                implant.DetonateAt = now + implant.DetonateDelay;
                 _popup.PopupEntity(Loc.GetString("uplink-deniability-armed"), owner, PopupType.LargeCaution);
                 _audio.PlayPvs(BeepSound, owner);
             }
@@ -462,7 +470,7 @@ public sealed class UplinkExplosivesSystem : EntitySystem
             if (subdermal.ImplantedEntity is not { } owner || now < reviver.NextHeal)
                 continue;
 
-            reviver.NextHeal = now + TimeSpan.FromSeconds(3);
+            reviver.NextHeal = now + reviver.HealDelay;
             TryHeal(owner, reviver, now);
         }
 
@@ -486,14 +494,14 @@ public sealed class UplinkExplosivesSystem : EntitySystem
 
                 rebooter.ClearAt = null;
                 ClearStuns(owner);
-                rebooter.ImmuneUntil = now + TimeSpan.FromSeconds(6);
-                rebooter.ReadyAt = now + TimeSpan.FromSeconds(60);
+                rebooter.ImmuneUntil = now + rebooter.ImmuneDelay;
+                rebooter.ReadyAt = now + rebooter.ReadyDelay;
                 _popup.PopupEntity(Loc.GetString("uplink-cns-reboot"), owner, owner, PopupType.Medium);
                 continue;
             }
 
             if (stunned && now >= rebooter.ReadyAt)
-                rebooter.ClearAt = now + TimeSpan.FromSeconds(1);
+                rebooter.ClearAt = now + rebooter.ClearDelay;
         }
     }
 
@@ -517,7 +525,7 @@ public sealed class UplinkExplosivesSystem : EntitySystem
             {
                 reviver.Reviving = false;
                 reviver.ReadyAt = now + TimeSpan.FromSeconds(reviver.ReviveCost / 10f);
-                _popup.PopupEntity(Loc.GetString("uplink-reviver-shutdown", ("time", (int) (reviver.ReviveCost / 10f))), owner, owner);
+                _popup.PopupEntity(Loc.GetString("uplink-reviver-shutdown", ("time", (int)(reviver.ReviveCost / 10f))), owner, owner);
                 return;
             }
 
@@ -532,7 +540,7 @@ public sealed class UplinkExplosivesSystem : EntitySystem
 
         reviver.ReviveCost = 0;
         reviver.Reviving = true;
-        reviver.DefibAt = now + TimeSpan.FromSeconds(8);
+        reviver.DefibAt = now + reviver.DefibDelay;
         _popup.PopupEntity(Loc.GetString("uplink-reviver-start"), owner, owner);
     }
 
@@ -543,9 +551,9 @@ public sealed class UplinkExplosivesSystem : EntitySystem
 
         var heal = new DamageSpecifier();
         var dict = _damageable.GetAllDamage((owner, damageable)).DamageDict;
-        if (dict.GetValueOrDefault("Asphyxiation") > 0)
+        if (dict.GetValueOrDefault(AsphyxiationDamageType) > 0)
         {
-            heal.DamageDict["Asphyxiation"] = -5;
+            heal.DamageDict[AsphyxiationDamageType] = -5;
             reviver.ReviveCost += 5;
         }
 
@@ -567,9 +575,9 @@ public sealed class UplinkExplosivesSystem : EntitySystem
             }
         }
 
-        if (dict.GetValueOrDefault("Poison") > 0)
+        if (dict.GetValueOrDefault(PoisonDamageType) > 0)
         {
-            heal.DamageDict["Poison"] = -1;
+            heal.DamageDict[PoisonDamageType] = -1;
             reviver.ReviveCost += 40;
         }
 
@@ -585,7 +593,7 @@ public sealed class UplinkExplosivesSystem : EntitySystem
             return;
 
         reviver.ReviveCost += 6000; // revive_cost += 10 MINUTES
-        reviver.DefibAt = _timing.CurTime + TimeSpan.FromSeconds(16);
+        reviver.DefibAt = _timing.CurTime + reviver.DefibDelay2;
         _audio.PlayPvs(DefibSound, owner);
         _popup.PopupEntity(Loc.GetString("uplink-reviver-revive", ("target", owner)), owner, PopupType.MediumCaution);
         _mobState.ChangeMobState(owner, MobState.Critical);

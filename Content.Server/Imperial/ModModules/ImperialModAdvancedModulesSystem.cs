@@ -417,7 +417,7 @@ public sealed class ImperialModAdvancedModulesSystem : EntitySystem
         RemComp<ItemComponent>(bag);
         EnsureComp<ImperialModHardlightBagComponent>(bag).Module = ent;
         ent.Comp.LinkedBag = bag;
-        ent.Comp.NextDrain = _timing.CurTime + TimeSpan.FromSeconds(1);
+        ent.Comp.NextDrain = _timing.CurTime + ent.Comp.DrainDelay;
         _entityStorage.CloseStorage(bag);
     }
 
@@ -511,7 +511,7 @@ public sealed class ImperialModAdvancedModulesSystem : EntitySystem
 
     private void OnRecyclerProcess(Entity<ImperialModRecyclerComponent> ent, ref ImperialModModuleProcessEvent args)
     {
-        foreach (var item in _lookup.GetEntitiesInRange(args.Wearer, 0.6f, LookupFlags.Dynamic | LookupFlags.Sundries))
+        foreach (var item in _lookup.GetEntitiesInRange(args.Wearer, ent.Comp.RecyclerProcessRange, LookupFlags.Dynamic | LookupFlags.Sundries))
         {
             if (_container.IsEntityInContainer(item) || !ent.Comp.Tags.Any(t => _tag.HasTag(item, t)))
                 continue;
@@ -549,7 +549,7 @@ public sealed class ImperialModAdvancedModulesSystem : EntitySystem
     private void OnHarnessUnequip(Entity<ImperialModMagHarnessComponent> ent, ref DidUnequipHandEvent args)
     {
         if (HasComp<GunComponent>(args.Unequipped))
-            ent.Comp.Pending.Add((args.Unequipped, _timing.CurTime + TimeSpan.FromSeconds(1)));
+            ent.Comp.Pending.Add((args.Unequipped, _timing.CurTime + ent.Comp.HarnessUnequipDelay));
     }
 
     private void UpdateHarness()
@@ -565,7 +565,7 @@ public sealed class ImperialModAdvancedModulesSystem : EntitySystem
 
                 harness.Pending.RemoveAt(i);
                 if (TerminatingOrDeleted(gun) || _container.IsEntityInContainer(gun)
-                    || !_transform.InRange(Transform(gun).Coordinates, Transform(uid).Coordinates, 3f))
+                    || !_transform.InRange(Transform(gun).Coordinates, Transform(uid).Coordinates, harness.UpdateHarnessRange))
                     continue;
 
                 if (_inventory.TryGetSlotEntity(uid, "suitstorage", out _)
@@ -719,7 +719,7 @@ public sealed class ImperialModAdvancedModulesSystem : EntitySystem
             {
                 var dir = _transform.GetWorldPosition(mob) - origin;
                 var angle = (Angle.FromWorldVec(dir).Degrees + 360) % 360;
-                if ((int) (angle / (360f / sonar.Slices)) != slice)
+                if ((int)(angle / (360f / sonar.Slices)) != slice)
                     continue;
             }
 
@@ -772,7 +772,7 @@ public sealed class ImperialModAdvancedModulesSystem : EntitySystem
         var travel = TryComp<ImperialModSuitComponent>(suit, out var suitComp)
             ? suitComp.Modules.ContainedEntities.Select(m => CompOrNull<ImperialModPathfinderComponent>(m)?.TravelTime).FirstOrDefault(t => t != null)
             : null;
-        ent.Comp.ArriveAt = _timing.CurTime + (travel ?? TimeSpan.FromSeconds(5));
+        ent.Comp.ArriveAt = _timing.CurTime + (travel ?? ent.Comp.ArriveDelay);
         _popup.PopupEntity(Loc.GetString("imperial-mod-pathfinder-summoned"), args.Performer, args.Performer);
     }
 
@@ -831,7 +831,7 @@ public sealed class ImperialModAdvancedModulesSystem : EntitySystem
             if (_timing.CurTime < capture.NextDrain)
                 continue;
 
-            capture.NextDrain = _timing.CurTime + TimeSpan.FromSeconds(1);
+            capture.NextDrain = _timing.CurTime + capture.DrainDelay;
             if (!TryGetWorn(uid, out var suit, out var wearer)
                 || !_transform.InRange(Transform(bag).Coordinates, Transform(wearer).Coordinates, capture.MaxRange)
                 || !_suit.DrainPower(suit, capture.LinkedPower))

@@ -361,7 +361,7 @@ public sealed partial class ImperialManufacturingSystem
             if (amount < 1)
                 continue;
 
-            var whole = (int) MathF.Floor(amount);
+            var whole = (int)MathF.Floor(amount);
             ent.Comp.HeldMats[material] -= whole;
             if (ent.Comp.HeldMats[material] <= 0)
                 ent.Comp.HeldMats.Remove(material);
@@ -404,7 +404,7 @@ public sealed partial class ImperialManufacturingSystem
             var sheets = quantity / SheetAmount;
             var rest = quantity % SheetAmount;
             if (rest > 0)
-                ent.Comp.HeldMats[material] = ent.Comp.HeldMats.GetValueOrDefault(material) + rest / (float) SheetAmount;
+                ent.Comp.HeldMats[material] = ent.Comp.HeldMats.GetValueOrDefault(material) + rest / (float)SheetAmount;
 
             if (sheets <= 0)
                 continue;
@@ -779,35 +779,35 @@ public sealed partial class ImperialManufacturingSystem
             switch (step)
             {
                 case MaterialConstructionGraphStep material:
-                {
-                    var need = material.Amount;
-                    foreach (var item in items)
                     {
-                        if (need <= 0)
-                            break;
-                        if (used.Contains(item) || !TryComp<StackComponent>(item, out var stack) || stack.StackTypeId != material.MaterialPrototypeId)
-                            continue;
+                        var need = material.Amount;
+                        foreach (var item in items)
+                        {
+                            if (need <= 0)
+                                break;
+                            if (used.Contains(item) || !TryComp<StackComponent>(item, out var stack) || stack.StackTypeId != material.MaterialPrototypeId)
+                                continue;
 
-                        var left = stack.Count - stacks.GetValueOrDefault(item);
-                        var take = Math.Min(left, need);
-                        if (take <= 0)
-                            continue;
-                        stacks[item] = stacks.GetValueOrDefault(item) + take;
-                        need -= take;
+                            var left = stack.Count - stacks.GetValueOrDefault(item);
+                            var take = Math.Min(left, need);
+                            if (take <= 0)
+                                continue;
+                            stacks[item] = stacks.GetValueOrDefault(item) + take;
+                            need -= take;
+                        }
+
+                        if (need > 0)
+                            return false;
+                        break;
                     }
-
-                    if (need > 0)
-                        return false;
-                    break;
-                }
                 case ArbitraryInsertConstructionGraphStep insert:
-                {
-                    var found = items.FirstOrDefault(i => !used.Contains(i) && !stacks.ContainsKey(i) && insert.EntityValid(i, EntityManager, _factory));
-                    if (found == default)
-                        return false;
-                    used.Add(found);
-                    break;
-                }
+                    {
+                        var found = items.FirstOrDefault(i => !used.Contains(i) && !stacks.ContainsKey(i) && insert.EntityValid(i, EntityManager, _factory));
+                        if (found == default)
+                            return false;
+                        used.Add(found);
+                        break;
+                    }
                 default:
                     return false;
             }
@@ -933,7 +933,7 @@ public sealed partial class ImperialManufacturingSystem
     /// <summary>send_nomobs(): мобов просто сталкивает на соседнюю клетку.</summary>
     private void SendNoMobs(Entity<ImperialManufacturingComponent> ent, EntityUid mover, Direction dir)
     {
-        Flick(ent, "router_operate", TimeSpan.FromSeconds(1), dir);
+        Flick(ent, "router_operate", ent.Comp.SendNoMobsDuration, dir);
         if (!HasComp<MobStateComponent>(mover))
         {
             Send(ent, mover, dir);
@@ -960,11 +960,11 @@ public sealed partial class ImperialManufacturingSystem
             case ImperialSorterFilterType.SpecificItem:
                 return filter.Value != string.Empty && MetaData(checking).EntityPrototype?.ID == filter.Value;
             case ImperialSorterFilterType.SpecificKind:
-            {
-                if (filter.Value == string.Empty || MetaData(checking).EntityPrototype is not { } proto)
-                    return false;
-                return proto.ID == filter.Value || _proto.EnumerateParents<EntityPrototype>(proto.ID).Any(p => p.ID == filter.Value);
-            }
+                {
+                    if (filter.Value == string.Empty || MetaData(checking).EntityPrototype is not { } proto)
+                        return false;
+                    return proto.ID == filter.Value || _proto.EnumerateParents<EntityPrototype>(proto.ID).Any(p => p.ID == filter.Value);
+                }
             default:
                 return false;
         }
@@ -996,7 +996,7 @@ public sealed partial class ImperialManufacturingSystem
         if (ent.Comp.Kind == ImperialManufacturingKind.StorageBox && _tool.HasQuality(args.Used, ScrewingQuality))
         {
             _popup.PopupEntity(Loc.GetString("imperial-manufacturing-box-disassembling"), ent, args.User);
-            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(5), new ImperialStorageBoxDisassembleDoAfterEvent(), ent, ent, args.Used)
+            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.InteractUsingDelay, new ImperialStorageBoxDisassembleDoAfterEvent(), ent, ent, args.Used)
             {
                 BreakOnMove = true,
                 NeedHand = true,
@@ -1079,7 +1079,7 @@ public sealed partial class ImperialManufacturingSystem
 
         // storagebox/attack_hand()
         _popup.PopupEntity(Loc.GetString("imperial-manufacturing-box-dumping"), ent, args.User);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(1.25), new ImperialStorageBoxDumpDoAfterEvent(), ent, ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.InteractHandDelay, new ImperialStorageBoxDumpDoAfterEvent(), ent, ent)
         {
             BreakOnMove = true,
         });
@@ -1102,7 +1102,7 @@ public sealed partial class ImperialManufacturingSystem
 
         // storagebox/atom_destruction()
         args.Handled = true;
-        _stack.SpawnMultipleAtPosition(Steel, 10, Transform(ent).Coordinates);
+        _stack.SpawnMultipleAtPosition(Steel, ent.Comp.BoxDisassembleAmount, Transform(ent).Coordinates);
         QueueDel(ent);
     }
 
@@ -1128,81 +1128,81 @@ public sealed partial class ImperialManufacturingSystem
         switch (ent.Comp.Kind)
         {
             case ImperialManufacturingKind.Lathe:
-            {
-                LatheRecipePrototype? design = null;
-                if (ent.Comp.DesignId is { } id)
-                    _proto.TryIndex(id, out design);
+                {
+                    LatheRecipePrototype? design = null;
+                    if (ent.Comp.DesignId is { } id)
+                        _proto.TryIndex(id, out design);
 
-                args.PushMarkup(design == null
-                    ? Loc.GetString("imperial-manufacturing-lathe-examine-none")
-                    : Loc.GetString("imperial-manufacturing-lathe-examine", ("design", FormattedMessage.EscapeText(DesignName(design)))));
-                if (design == null)
+                    args.PushMarkup(design == null
+                        ? Loc.GetString("imperial-manufacturing-lathe-examine-none")
+                        : Loc.GetString("imperial-manufacturing-lathe-examine", ("design", FormattedMessage.EscapeText(DesignName(design)))));
+                    if (design == null)
+                        break;
+
+                    args.PushMarkup(Loc.GetString("imperial-manufacturing-examine-needs"));
+                    foreach (var (material, amount) in design.Materials)
+                    {
+                        var name = _proto.TryIndex(material, out var mat) ? Loc.GetString(mat.Name) : material.Id;
+                        args.PushMarkup(Loc.GetString("imperial-manufacturing-lathe-examine-material", ("amount", amount / (float)SheetAmount), ("material", name)));
+                    }
+
+                    foreach (var (material, amount) in ent.Comp.Materials)
+                    {
+                        var name = _proto.TryIndex<MaterialPrototype>(material, out var mat) ? Loc.GetString(mat.Name) : material;
+                        args.PushMarkup(Loc.GetString("imperial-manufacturing-lathe-examine-stored", ("amount", amount / (float)SheetAmount), ("material", name)));
+                    }
+
                     break;
-
-                args.PushMarkup(Loc.GetString("imperial-manufacturing-examine-needs"));
-                foreach (var (material, amount) in design.Materials)
-                {
-                    var name = _proto.TryIndex(material, out var mat) ? Loc.GetString(mat.Name) : material.Id;
-                    args.PushMarkup(Loc.GetString("imperial-manufacturing-lathe-examine-material", ("amount", amount / (float) SheetAmount), ("material", name)));
                 }
-
-                foreach (var (material, amount) in ent.Comp.Materials)
-                {
-                    var name = _proto.TryIndex<MaterialPrototype>(material, out var mat) ? Loc.GetString(mat.Name) : material;
-                    args.PushMarkup(Loc.GetString("imperial-manufacturing-lathe-examine-stored", ("amount", amount / (float) SheetAmount), ("material", name)));
-                }
-
-                break;
-            }
             case ImperialManufacturingKind.Crafter:
-            {
-                string? name = null;
-                var needs = new List<string>();
-                if (ent.Comp.Recipe is { } id)
                 {
-                    if (ent.Comp.Cooking && _proto.TryIndex<FoodRecipePrototype>(id, out var food))
+                    string? name = null;
+                    var needs = new List<string>();
+                    if (ent.Comp.Recipe is { } id)
                     {
-                        name = food.Name;
-                        foreach (var (solid, amount) in food.IngredientsSolids)
+                        if (ent.Comp.Cooking && _proto.TryIndex<FoodRecipePrototype>(id, out var food))
                         {
-                            needs.Add(Loc.GetString("imperial-manufacturing-crafter-examine-item", ("amount", amount.Int()),
-                                ("item", _proto.TryIndex<EntityPrototype>(solid, out var p) ? p.Name : solid)));
-                        }
+                            name = food.Name;
+                            foreach (var (solid, amount) in food.IngredientsSolids)
+                            {
+                                needs.Add(Loc.GetString("imperial-manufacturing-crafter-examine-item", ("amount", amount.Int()),
+                                    ("item", _proto.TryIndex<EntityPrototype>(solid, out var p) ? p.Name : solid)));
+                            }
 
-                        foreach (var (reagent, amount) in food.IngredientsReagents)
+                            foreach (var (reagent, amount) in food.IngredientsReagents)
+                            {
+                                needs.Add(Loc.GetString("imperial-manufacturing-crafter-examine-reagent", ("amount", amount),
+                                    ("reagent", _proto.TryIndex<Content.Shared.Chemistry.Reagent.ReagentPrototype>(reagent, out var r) ? r.LocalizedName : reagent)));
+                            }
+                        }
+                        else if (CraftRecipes().FirstOrDefault(r => r.Id == id) is { } recipe)
                         {
-                            needs.Add(Loc.GetString("imperial-manufacturing-crafter-examine-reagent", ("amount", amount),
-                                ("reagent", _proto.TryIndex<Content.Shared.Chemistry.Reagent.ReagentPrototype>(reagent, out var r) ? r.LocalizedName : reagent)));
+                            name = recipe.Name;
+                            foreach (var step in recipe.Steps)
+                            {
+                                needs.Add(step is MaterialConstructionGraphStep material
+                                    ? Loc.GetString("imperial-manufacturing-crafter-examine-item", ("amount", material.Amount),
+                                        ("item", _proto.TryIndex(material.MaterialPrototypeId, out var stack) ? Loc.GetString(stack.Name) : material.MaterialPrototypeId.Id))
+                                    : Loc.GetString("imperial-manufacturing-crafter-examine-item", ("amount", 1),
+                                        ("item", step is ArbitraryInsertConstructionGraphStep insert && !string.IsNullOrEmpty(insert.Name) ? Loc.GetString(insert.Name) : "?")));
+                            }
                         }
                     }
-                    else if (CraftRecipes().FirstOrDefault(r => r.Id == id) is { } recipe)
-                    {
-                        name = recipe.Name;
-                        foreach (var step in recipe.Steps)
-                        {
-                            needs.Add(step is MaterialConstructionGraphStep material
-                                ? Loc.GetString("imperial-manufacturing-crafter-examine-item", ("amount", material.Amount),
-                                    ("item", _proto.TryIndex(material.MaterialPrototypeId, out var stack) ? Loc.GetString(stack.Name) : material.MaterialPrototypeId.Id))
-                                : Loc.GetString("imperial-manufacturing-crafter-examine-item", ("amount", 1),
-                                    ("item", step is ArbitraryInsertConstructionGraphStep insert && !string.IsNullOrEmpty(insert.Name) ? Loc.GetString(insert.Name) : "?")));
-                        }
-                    }
-                }
 
-                args.PushMarkup(name == null
-                    ? Loc.GetString("imperial-manufacturing-crafter-examine-none")
-                    : Loc.GetString("imperial-manufacturing-crafter-examine", ("recipe", FormattedMessage.EscapeText(name))));
-                if (name == null)
+                    args.PushMarkup(name == null
+                        ? Loc.GetString("imperial-manufacturing-crafter-examine-none")
+                        : Loc.GetString("imperial-manufacturing-crafter-examine", ("recipe", FormattedMessage.EscapeText(name))));
+                    if (name == null)
+                        break;
+
+                    args.PushMarkup(Loc.GetString("imperial-manufacturing-examine-needs"));
+                    foreach (var need in needs)
+                    {
+                        args.PushMarkup(FormattedMessage.EscapeText(need));
+                    }
+
                     break;
-
-                args.PushMarkup(Loc.GetString("imperial-manufacturing-examine-needs"));
-                foreach (var need in needs)
-                {
-                    args.PushMarkup(FormattedMessage.EscapeText(need));
                 }
-
-                break;
-            }
         }
     }
 

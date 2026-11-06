@@ -45,6 +45,9 @@ public sealed partial class ImperialFishSourceSystem
 
     private List<string>? _seeds;
 
+    private static readonly TimeSpan UpdateChasmStorageDelay = TimeSpan.FromSeconds(0.15);
+    private static readonly TimeSpan VendingCompletedDuration = TimeSpan.FromSeconds(4);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -104,7 +107,7 @@ public sealed partial class ImperialFishSourceSystem
         var query = EntityQueryEnumerator<ChasmFallingComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var falling, out var xform))
         {
-            if (_timing.CurTime < falling.NextDeletionTime - TimeSpan.FromSeconds(0.15))
+            if (_timing.CurTime < falling.NextDeletionTime - UpdateChasmStorageDelay)
                 continue;
 
             if (!HasComp<ItemComponent>(uid) || HasComp<MobStateComponent>(uid))
@@ -180,7 +183,7 @@ public sealed partial class ImperialFishSourceSystem
 
             var high = Math.Max(highest, baitValue);
             var low = Math.Min(highest, baitValue);
-            table[$"vending:{entry.ID}"] = (float) (low / high * 1000);
+            table[$"vending:{entry.ID}"] = (float)(low / high * 1000);
         }
 
         // add_risks()
@@ -194,8 +197,8 @@ public sealed partial class ImperialFishSourceSystem
             var malus = Math.Min(PaycheckLower - baitValue, highest);
             if (malus > 0)
             {
-                table[ImperialFishing.Dud] = table.GetValueOrDefault(ImperialFishing.Dud) + (float) malus * available * 0.5f;
-                table["vendingChuck"] = table.GetValueOrDefault("vendingChuck") + (float) malus * available * 0.5f;
+                table[ImperialFishing.Dud] = table.GetValueOrDefault(ImperialFishing.Dud) + (float)malus * available * 0.5f;
+                table["vendingChuck"] = table.GetValueOrDefault("vendingChuck") + (float)malus * available * 0.5f;
             }
         }
 
@@ -208,7 +211,7 @@ public sealed partial class ImperialFishSourceSystem
         var baitValue = rod.Bait is { } bait ? _bait.GetCreditValue(bait) : 0;
         float diff = PaycheckLower - baitValue;
         if (reward != null && reward.StartsWith("vending:") && _proto.TryIndex<EntityPrototype>(reward.Substring(8), out var proto))
-            diff = MathF.Min(diff, (float) _pricing.GetEstimatedPrice(proto));
+            diff = MathF.Min(diff, (float)_pricing.GetEstimatedPrice(proto));
 
         return diff * ProductDifficultyMult;
     }
@@ -227,7 +230,7 @@ public sealed partial class ImperialFishSourceSystem
             // tilt(): автомат падает на рыбака.
             var damage = new DamageSpecifier(_proto.Index<Content.Shared.Damage.Prototypes.DamageTypePrototype>(new Robust.Shared.Prototypes.ProtoId<Content.Shared.Damage.Prototypes.DamageTypePrototype>("Blunt")), FixedPoint2.New(40));
             _damageable.TryChangeDamage(user, damage, origin: ent);
-            _stun.TryUpdateParalyzeDuration(user, TimeSpan.FromSeconds(4));
+            _stun.TryUpdateParalyzeDuration(user, VendingCompletedDuration);
             _popup.PopupEntity(Loc.GetString("imperial-fishing-vending-chuck", ("machine", ent.Owner)), user, Content.Shared.Popups.PopupType.LargeCaution);
             return;
         }

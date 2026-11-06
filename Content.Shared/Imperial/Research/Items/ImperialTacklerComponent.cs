@@ -31,7 +31,7 @@ public sealed partial class ImperialTacklerComponent : Component
 
     /// <summary>Длительность сбивания цели (base_knockdown), секунды.</summary>
     [DataField]
-    public float Knockdown = 1f;
+    public TimeSpan Knockdown = TimeSpan.FromSeconds(1f);
 
     /// <summary>Бонус к броску (skill_mod): больше — чаще цель падает, а сам прыгун остаётся на ногах.</summary>
     [DataField]

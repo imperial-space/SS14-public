@@ -44,7 +44,7 @@ public sealed partial class QuantumServerSystem
         if (console.Comp.Server is { } cached && TryComp<QuantumServerComponent>(cached, out var cachedComp))
             return (cached, cachedComp);
 
-        foreach (var near in _lookup.GetEntitiesInRange<QuantumServerComponent>(Transform(console).Coordinates, 1.5f))
+        foreach (var near in _lookup.GetEntitiesInRange<QuantumServerComponent>(Transform(console).Coordinates, console.Comp.ConsoleServerRange))
         {
             console.Comp.Server = near;
             return near;
@@ -153,8 +153,8 @@ public sealed partial class QuantumServerSystem
                 continue;
 
             // can_view_name / can_view_reward.
-            var canView = (int) domain.Difficulty < comp.ScannerTier && domain.Cost <= comp.Points + 5;
-            var canViewReward = (int) domain.Difficulty < comp.ScannerTier + 1 && domain.Cost <= comp.Points + 3;
+            var canView = (int)domain.Difficulty < comp.ScannerTier && domain.Cost <= comp.Points + 5;
+            var canViewReward = (int)domain.Difficulty < comp.ScannerTier + 1 && domain.Cost <= comp.Points + 3;
             domains.Add(new QuantumConsoleDomainEntry(
                 domain.ID,
                 canView ? Loc.GetString(domain.Name) : Loc.GetString("bitrunning-console-redacted"),

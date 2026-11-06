@@ -1,6 +1,8 @@
 using Content.Shared.Actions;
 using Content.Shared.DoAfter;
 using Robust.Shared.Serialization;
+using Content.Shared.Damage;
+using Content.Shared.FixedPoint;
 
 namespace Content.Shared.Imperial.Uplink.Roles.ClownCar;
 
@@ -90,4 +92,91 @@ public sealed partial class ImperialClownCarComponent : Component
     public EntityUid? CannonAction;
     [ViewVariables]
     public EntityUid? FireAction;
+
+    [DataField]
+    public DamageSpecifier HitDeerDamage = new() { DamageDict = { ["Blunt"] = 200 } };
+
+    [DataField]
+    public TimeSpan PartyColorDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public TimeSpan EngineSoundDelay = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan DumpMobsDuration = TimeSpan.FromSeconds(4);
+
+    [DataField]
+    public TimeSpan HornDelay = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan CarBombDelay = TimeSpan.FromSeconds(5);
+
+    [DataField]
+    public TimeSpan CheckMobsDuration = TimeSpan.FromSeconds(4);
+
+    [DataField]
+    public TimeSpan EndDelay = TimeSpan.FromSeconds(5);
+
+    [DataField]
+    public TimeSpan RunOverDuration = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan SingularityEndDelay = TimeSpan.FromSeconds(10);
+
+    [DataField]
+    public TimeSpan OilEndDelay = TimeSpan.FromSeconds(3);
+
+    [DataField]
+    public TimeSpan CannonVisualDelay = TimeSpan.FromSeconds(1.8);
+
+    [DataField]
+    public TimeSpan CannonSwitchDelay = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan RecoilEndDelay = TimeSpan.FromSeconds(0.3);
+
+    [DataField]
+    public float UpdateTotalIntensity = 10f;
+
+    [DataField]
+    public float UpdateSlope = 5f;
+
+    [DataField]
+    public float UpdateMaxTileIntensity = 3f;
+
+    [DataField]
+    public FixedPoint2 UpdateQuantity = 5;
+
+    [DataField]
+    public float ExitBaseThrowSpeed = 10f;
+
+    [DataField]
+    public float DamagedChance = 0.33f;
+
+    [DataField]
+    public int DamagedRange = 4;
+
+    [DataField]
+    public float CheckMobsRange = 0.5f;
+
+    [DataField]
+    public float HitDeerChance = 0.35f;
+
+    [DataField]
+    public float HitDeerChance2 = 0.5f;
+
+    [DataField]
+    public FixedPoint2 HitDeerQuantity = 15;
+
+    [DataField]
+    public int DiceRange = 200;
+
+    [DataField]
+    public int DiceRange2 = 4;
+
+    [DataField]
+    public float DiceRange3 = 6f;
+
+    [DataField]
+    public float FireBaseThrowSpeed = 10f;
 }

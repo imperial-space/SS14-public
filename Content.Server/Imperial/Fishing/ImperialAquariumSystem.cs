@@ -70,6 +70,10 @@ public sealed class ImperialAquariumSystem : EntitySystem
     private TimeSpan _nextUpdate;
     private TimeSpan _lastUpdate;
 
+    private static readonly ProtoId<StackPrototype> GlassStack = "Glass";
+
+    private static readonly TimeSpan UpdateDelay = TimeSpan.FromSeconds(1);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -117,7 +121,7 @@ public sealed class ImperialAquariumSystem : EntitySystem
         ent.Comp.Temperature = Math.Clamp(ent.Comp.Temperature, ent.Comp.MinTemperature, ent.Comp.MaxTemperature);
         ent.Comp.LastFeeding = _timing.CurTime;
         var mode = ent.Comp.Mode;
-        ent.Comp.Mode = (ImperialAquariumMode) 255;
+        ent.Comp.Mode = (ImperialAquariumMode)255;
         SetMode(ent, mode);
         UpdateAppearance(ent);
         StartFill(ent);
@@ -433,7 +437,7 @@ public sealed class ImperialAquariumSystem : EntitySystem
         }
 
         // Ремонт стекла двумя листами.
-        if (TryComp<StackComponent>(used, out var stack) && stack.StackTypeId == "Glass" && ent.Comp.Broken)
+        if (TryComp<StackComponent>(used, out var stack) && stack.StackTypeId == GlassStack && ent.Comp.Broken)
         {
             args.Handled = true;
             if (_stack.GetCount((used, stack)) < 2)
@@ -442,7 +446,7 @@ public sealed class ImperialAquariumSystem : EntitySystem
                 return;
             }
 
-            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(2), new ImperialAquariumRepairDoAfterEvent(), ent, ent, used)
+            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, ent.Comp.InteractUsingDelay, new ImperialAquariumRepairDoAfterEvent(), ent, ent, used)
             {
                 BreakOnMove = true,
                 NeedHand = true,
@@ -618,7 +622,7 @@ public sealed class ImperialAquariumSystem : EntitySystem
     private void StartAdmire(Entity<ImperialAquariumComponent> ent, EntityUid user)
     {
         _popup.PopupEntity(Loc.GetString("imperial-aquarium-admiring"), ent, user);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(5), new ImperialAquariumAdmireDoAfterEvent(), ent, ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, ent.Comp.StartAdmireDelay, new ImperialAquariumAdmireDoAfterEvent(), ent, ent)
         {
             BreakOnMove = true,
         });
@@ -684,7 +688,7 @@ public sealed class ImperialAquariumSystem : EntitySystem
         }
 
         if (ent.Comp.Fluid != ImperialFishFluid.Air)
-            _puddle.TrySpillAt(ent, new Solution("Water", 30), out _);
+            _puddle.TrySpillAt(ent, new Solution("Water", ent.Comp.SmashQuantity), out _);
 
         UpdateAppearance(ent);
         Dirty(ent);
@@ -695,7 +699,7 @@ public sealed class ImperialAquariumSystem : EntitySystem
         if (args.Cancelled || args.Handled || args.Used is not { } used || !ent.Comp.Broken)
             return;
 
-        if (!_stack.TryUse(used, 2))
+        if (!_stack.TryUse(used, ent.Comp.RepairDoAfterAmount))
             return;
 
         args.Handled = true;
@@ -722,7 +726,7 @@ public sealed class ImperialAquariumSystem : EntitySystem
         }
 
         _popup.PopupEntity(Loc.GetString("imperial-aquarium-upgrading"), target, args.User);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(5), new ImperialAquariumUpgradeDoAfterEvent(), ent, target, ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.UpgradeInteractDelay, new ImperialAquariumUpgradeDoAfterEvent(), ent, target, ent)
         {
             BreakOnMove = true,
             NeedHand = true,
@@ -791,8 +795,8 @@ public sealed class ImperialAquariumSystem : EntitySystem
             return;
 
         args.Handled = true;
-        var bolts = Math.Clamp((int) MathF.Ceiling(args.Power / 5_000_000f), 1, 3);
-        _lightning.ShootRandomLightnings(ent, 5f, bolts);
+        var bolts = Math.Clamp((int)MathF.Ceiling(args.Power / 5_000_000f), 1, 3);
+        _lightning.ShootRandomLightnings(ent, ent.Comp.ElectrogenesisRange, bolts);
     }
 
     #endregion
@@ -903,7 +907,7 @@ public sealed class ImperialAquariumSystem : EntitySystem
             MinTemperature = ent.Comp.MinTemperature,
             MaxTemperature = ent.Comp.MaxTemperature,
             Mode = ent.Comp.Mode,
-            FeedingIntervalMinutes = (float) ent.Comp.FeedingInterval.TotalMinutes,
+            FeedingIntervalMinutes = (float)ent.Comp.FeedingInterval.TotalMinutes,
         };
 
         if (_container.TryGetContainer(ent, ImperialAquariumComponent.ContainerId, out var container))
@@ -963,8 +967,8 @@ public sealed class ImperialAquariumSystem : EntitySystem
         if (_timing.CurTime < _nextUpdate)
             return;
 
-        _nextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
-        var dt = _lastUpdate == TimeSpan.Zero ? 1f : (float) (_timing.CurTime - _lastUpdate).TotalSeconds;
+        _nextUpdate = _timing.CurTime + UpdateDelay;
+        var dt = _lastUpdate == TimeSpan.Zero ? 1f : (float)(_timing.CurTime - _lastUpdate).TotalSeconds;
         _lastUpdate = _timing.CurTime;
         var now = _timing.CurTime;
 

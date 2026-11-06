@@ -281,6 +281,6 @@ public sealed partial class ImperialModularShieldSystem
     /// <summary>Поворот направления на steps × 45° (положительное — против часовой).</summary>
     private static Direction Rotate(Direction dir, int steps)
     {
-        return (Direction) (((int) dir + steps % 8 + 8) % 8);
+        return (Direction)(((int)dir + steps % 8 + 8) % 8);
     }
 }

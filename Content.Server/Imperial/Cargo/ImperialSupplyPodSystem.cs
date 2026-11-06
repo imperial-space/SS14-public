@@ -82,7 +82,7 @@ public sealed class ImperialSupplyPodSystem : EntitySystem
         comp.Pod = bluespace ? BluespacePod : StandardPod;
         comp.Cargo = cargo;
         comp.Start = _timing.CurTime;
-        comp.Arrival = comp.Start + TimeSpan.FromSeconds(comp.Transit + FallingOf(comp.Pod));
+        comp.Arrival = comp.Start + TimeSpan.FromSeconds((float)comp.Transit.TotalSeconds + FallingOf(comp.Pod));
         Dirty(zone, comp);
         return zone;
     }
@@ -173,13 +173,13 @@ public sealed class ImperialSupplyPodSystem : EntitySystem
     private void UpdateZone(Entity<ImperialPodLandingZoneComponent> zone, TimeSpan now)
     {
         var comp = zone.Comp;
-        var arrival = (float) (comp.Arrival - comp.Start).TotalSeconds;
-        var falling = arrival - comp.Transit;
+        var arrival = (float)(comp.Arrival - comp.Start).TotalSeconds;
+        var falling = arrival - (float)comp.Transit.TotalSeconds;
 
         if (!comp.SoundPlayed)
         {
             var longWhistle = arrival >= LongWhistleLength;
-            var soundAt = comp.Transit - (longWhistle ? LongWhistleLength : 0.3f) + falling;
+            var soundAt = (float)comp.Transit.TotalSeconds - (longWhistle ? LongWhistleLength : 0.3f) + falling;
             if (now >= comp.Start + TimeSpan.FromSeconds(Math.Max(soundAt, 0.1f)))
             {
                 comp.SoundPlayed = true;
@@ -188,7 +188,7 @@ public sealed class ImperialSupplyPodSystem : EntitySystem
         }
 
         // begin_launch(): капсула появляется и падает.
-        if (comp.PodEntity == null && now >= comp.Start + TimeSpan.FromSeconds(comp.Transit))
+        if (comp.PodEntity == null && now >= comp.Start + comp.Transit)
         {
             var pod = Spawn(comp.Pod, Transform(zone).Coordinates);
             comp.PodEntity = pod;
@@ -233,14 +233,14 @@ public sealed class ImperialSupplyPodSystem : EntitySystem
             // explosion(turf, 0, 0, light, flash): только лёгкий урон, без пробоин.
             var light = comp.LightRange;
             _explosion.QueueExplosion(_transform.ToMapCoordinates(coords), "Default",
-                totalIntensity: light * light * 3f, slope: 2f, maxTileIntensity: 2f, cause: pod, tileBreakScale: 0f, canCreateVacuum: false);
+                totalIntensity: light * light * 3f, slope: pod.Comp.LandSlope, maxTileIntensity: pod.Comp.LandMaxTileIntensity, cause: pod, tileBreakScale: 0f, canCreateVacuum: false);
         }
         else
         {
             _audio.PlayPvs(ExplosionSound, pod);
         }
 
-        comp.OpenAt = _timing.CurTime + TimeSpan.FromSeconds(comp.Opening);
+        comp.OpenAt = _timing.CurTime + comp.Opening;
     }
 
     /// <summary>open_pod(): содержимое выходит наружу.</summary>

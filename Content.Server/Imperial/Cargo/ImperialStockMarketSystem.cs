@@ -142,7 +142,7 @@ public sealed class ImperialStockMarketSystem : EntitySystem
 
     private float Gaussian(float mean, float stddev)
     {
-        return (float) _random.NextGaussian(mean, stddev);
+        return (float)_random.NextGaussian(mean, stddev);
     }
 
     /// <summary>handle_trends_and_price().</summary>
@@ -194,7 +194,7 @@ public sealed class ImperialStockMarketSystem : EntitySystem
         }
 
         state.Price = MathF.Round(Math.Clamp(state.Price + priceChange, min, max));
-        state.Quantity = (int) Math.Clamp(state.Quantity + quantityChange, 0, quantityBaseline * 2);
+        state.Quantity = (int)Math.Clamp(state.Quantity + quantityChange, 0, quantityBaseline * 2);
     }
 
     #region События

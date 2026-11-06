@@ -23,4 +23,10 @@ public sealed partial class UplinkLaunchpadRemoteComponent : Component
 
     [ViewVariables]
     public TimeSpan ReadyAt;
+
+    [DataField]
+    public TimeSpan ReadyDelay = TimeSpan.FromSeconds(3);
+
+    [DataField]
+    public float FireLaunchpadRange = 0.45f;
 }

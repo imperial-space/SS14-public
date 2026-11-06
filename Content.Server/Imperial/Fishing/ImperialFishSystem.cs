@@ -60,6 +60,13 @@ public sealed partial class ImperialFishSystem : EntitySystem
     private TimeSpan _nextUpdate;
     private TimeSpan _lastUpdate;
 
+    private static readonly EntProtoId EffectHearts = "EffectHearts";
+
+    private static readonly TimeSpan UpdateDelay = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan PettedDelay = TimeSpan.FromSeconds(30);
+
+    private const float PetChance = 0.5f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -125,7 +132,7 @@ public sealed partial class ImperialFishSystem : EntitySystem
         var u1 = 1.0 - _random.NextDouble();
         var u2 = 1.0 - _random.NextDouble();
         var normal = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Sin(2.0 * Math.PI * u2);
-        return (float) (mean + deviation * normal);
+        return (float)(mean + deviation * normal);
     }
 
     private static void SetMaxSizeAndWeight(ImperialFishComponent comp, float baseSize, float baseWeight)
@@ -310,7 +317,7 @@ public sealed partial class ImperialFishSystem : EntitySystem
     /// <summary>get_hunger(): 0..cap.</summary>
     public float GetHunger(ImperialFishComponent comp, float cap = ImperialFishing.StarvingThreshold)
     {
-        var hunger = Math.Clamp((float) ((_timing.CurTime - comp.LastFeeding).TotalSeconds / comp.FeedingFrequency.TotalSeconds), 0, cap);
+        var hunger = Math.Clamp((float)((_timing.CurTime - comp.LastFeeding).TotalSeconds / comp.FeedingFrequency.TotalSeconds), 0, cap);
         if (_traits.Has(comp, "Mixotroph"))
             return MathF.Min(hunger, ImperialFishing.StarvingThreshold * 0.2f);
 
@@ -374,8 +381,8 @@ public sealed partial class ImperialFishSystem : EntitySystem
         if (_timing.CurTime < _nextUpdate)
             return;
 
-        _nextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
-        var dt = _lastUpdate == TimeSpan.Zero ? 1f : (float) (_timing.CurTime - _lastUpdate).TotalSeconds;
+        _nextUpdate = _timing.CurTime + UpdateDelay;
+        var dt = _lastUpdate == TimeSpan.Zero ? 1f : (float)(_timing.CurTime - _lastUpdate).TotalSeconds;
         _lastUpdate = _timing.CurTime;
 
         // Размножение и рост создают и удаляют рыб: сначала собираем список.
@@ -644,10 +651,10 @@ public sealed partial class ImperialFishSystem : EntitySystem
             return false;
         }
 
-        ent.Comp.PettedUntil = _timing.CurTime + TimeSpan.FromSeconds(30);
-        Spawn("EffectHearts", Transform(ent).Coordinates);
+        ent.Comp.PettedUntil = _timing.CurTime + PettedDelay;
+        Spawn(EffectHearts, Transform(ent).Coordinates);
 
-        if (_traits.Has(ent.Comp, "Predator") && _random.Prob(0.5f))
+        if (_traits.Has(ent.Comp, "Predator") && _random.Prob(PetChance))
         {
             _popup.PopupEntity(Loc.GetString(inAquarium ? "imperial-fish-pet-bite-aquarium" : "imperial-fish-pet-bite", ("fish", ent.Owner)), user, user, PopupType.SmallCaution);
             var damage = new DamageSpecifier(_proto.Index<Content.Shared.Damage.Prototypes.DamageTypePrototype>(new Robust.Shared.Prototypes.ProtoId<Content.Shared.Damage.Prototypes.DamageTypePrototype>("Piercing")),
@@ -674,7 +681,7 @@ public sealed partial class ImperialFishSystem : EntitySystem
 
     public static int GetFilletAmount(ImperialFishComponent comp)
     {
-        return Math.Max((int) MathF.Round(comp.NumFillets * comp.Size / ImperialFishing.FilletNumberSizeDivisor), 1);
+        return Math.Max((int)MathF.Round(comp.NumFillets * comp.Size / ImperialFishing.FilletNumberSizeDivisor), 1);
     }
 
     private void OnFilletDoAfter(Entity<ImperialFishComponent> ent, ref ImperialFishFilletDoAfterEvent args)

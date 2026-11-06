@@ -24,7 +24,7 @@ public sealed partial class ImperialTgGrenadeCasingComponent : Component
     public float ReleaseUnits;
 
     [DataField]
-    public float ReleaseDelay = 5f;
+    public TimeSpan ReleaseDelay = TimeSpan.FromSeconds(5f);
 
     [ViewVariables]
     public Dictionary<EntityUid, Content.Shared.Chemistry.Components.Solution> Stash = new();

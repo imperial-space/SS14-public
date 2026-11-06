@@ -11,4 +11,7 @@ public sealed partial class UplinkTraitorPosterComponent : Component
 {
     [DataField(required: true)]
     public List<EntProtoId> Posters = new();
+
+    [DataField]
+    public TimeSpan PosterAfterInteractDelay = TimeSpan.FromSeconds(2);
 }

@@ -21,4 +21,7 @@ public sealed partial class ImperialModRecyclerComponent : Component
 
     [ViewVariables]
     public TimeSpan NextPickup;
+
+    [DataField]
+    public float RecyclerProcessRange = 0.6f;
 }

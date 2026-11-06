@@ -17,6 +17,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Security;
 
@@ -43,6 +44,8 @@ public sealed class SecwaySystem : EntitySystem
     [Dependency] private readonly TagSystem _tag = default!;
 
     private const float MaxIntegrity = 60f;
+
+    private static readonly EntProtoId Smoke = "Smoke";
 
     public override void Initialize()
     {
@@ -80,7 +83,7 @@ public sealed class SecwaySystem : EntitySystem
             if (vehicle.Rider != null && HasBanana(uid) && now >= secway.NextStallMessage &&
                 TryComp<InputMoverComponent>(uid, out var mover) && mover.HeldMoveButtons != MoveButtons.None)
             {
-                secway.NextStallMessage = now + TimeSpan.FromSeconds(0.75);
+                secway.NextStallMessage = now + secway.StallMessageDelay;
                 _popup.PopupEntity(Loc.GetString("secway-stall", ("secway", uid)), uid, PopupType.SmallCaution);
                 _audio.PlayPvs(StallSound, uid, AudioParams.Default.WithVolume(-2f));
             }
@@ -89,14 +92,14 @@ public sealed class SecwaySystem : EntitySystem
             if (now < secway.NextSmoke)
                 continue;
 
-            secway.NextSmoke = now + TimeSpan.FromSeconds(1);
+            secway.NextSmoke = now + secway.SmokeDelay;
             if (!TryComp<DamageableComponent>(uid, out var damageable) ||
-                _damageable.GetTotalDamage((uid, damageable)) < MaxIntegrity * 0.5f || _random.Prob(0.1f))
+                _damageable.GetTotalDamage((uid, damageable)) < MaxIntegrity * 0.5f || _random.Prob(secway.UpdateChance))
             {
                 continue;
             }
 
-            var smoke = Spawn("Smoke", Transform(uid).Coordinates);
+            var smoke = Spawn(Smoke, Transform(uid).Coordinates);
             _smoke.StartSmoke(smoke, new Solution(), 1f, 0);
         }
     }
@@ -144,7 +147,7 @@ public sealed class SecwaySystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("secway-banana-start", ("user", args.User), ("item", args.Used), ("secway", ent.Owner)),
             ent, PopupType.SmallCaution);
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(3), new SecwayBananaDoAfterEvent(),
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.InteractUsingDelay, new SecwayBananaDoAfterEvent(),
             ent, ent, args.Used)
         {
             BreakOnMove = true,
@@ -176,7 +179,7 @@ public sealed class SecwaySystem : EntitySystem
             Act = () =>
             {
                 _popup.PopupEntity(Loc.GetString("secway-clean-start", ("user", user), ("secway", ent.Owner)), ent);
-                _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(6), new SecwayCleanDoAfterEvent(), ent, ent)
+                _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, ent.Comp.VerbsDelay, new SecwayCleanDoAfterEvent(), ent, ent)
                 {
                     BreakOnMove = true,
                     NeedHand = true,

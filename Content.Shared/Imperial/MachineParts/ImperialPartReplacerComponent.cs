@@ -9,4 +9,7 @@ public sealed partial class ImperialPartReplacerComponent : Component
     /// <summary>Блюспейс-версия: работает на расстоянии и с закрытой панелью.</summary>
     [DataField]
     public bool Bluespace;
+
+    [DataField]
+    public float PlayEffectChance = 0.01f;
 }

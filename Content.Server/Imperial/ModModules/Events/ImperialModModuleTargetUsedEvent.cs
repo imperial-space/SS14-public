@@ -6,7 +6,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Imperial.ModModules;
+namespace Content.Server.Imperial.ModModules;
 
 /// <summary>Модуль применён по цели. Поднимается на модуле.</summary>
 [ByRefEvent]

@@ -10,4 +10,7 @@ public sealed partial class QuantumConsoleComponent : Component
 {
     [ViewVariables]
     public EntityUid? Server;
+
+    [DataField]
+    public float ConsoleServerRange = 1.5f;
 }

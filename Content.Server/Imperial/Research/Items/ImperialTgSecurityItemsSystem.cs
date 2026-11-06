@@ -31,6 +31,9 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.FixedPoint;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Research.Items;
 
@@ -65,6 +68,17 @@ public sealed class ImperialTgSecurityItemsSystem : EntitySystem
 
     private static readonly SoundSpecifier TrapSound = new SoundPathSpecifier("/Audio/Effects/snap.ogg");
     private static readonly SoundSpecifier TackleSound = new SoundPathSpecifier("/Audio/Effects/thudswoosh.ogg");
+
+    private static readonly DamageSpecifier CrashDamage = new() { DamageDict = { ["Blunt"] = 15 } };
+    private static readonly ProtoId<DamageTypePrototype> PiercingDamageType = "Piercing";
+
+    private static readonly ProtoId<ContrabandSeverityPrototype> MinorContrabandSeverity = "Minor";
+
+    private static readonly TimeSpan ProjectileHitTime = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan CrashDuration = TimeSpan.FromSeconds(3);
+
+    private const float ProjectileHitRadius = 2.5f;
+    private const float ProjectileHitBaseThrowSpeed = 10f;
 
     public override void Initialize()
     {
@@ -163,7 +177,7 @@ public sealed class ImperialTgSecurityItemsSystem : EntitySystem
         _audio.PlayPvs(TrapSound, ent);
 
         var damage = new DamageSpecifier();
-        damage.DamageDict["Piercing"] = ent.Comp.Damage;
+        damage.DamageDict[PiercingDamageType] = ent.Comp.Damage;
         _damageable.TryChangeDamage(args.Tripper, damage, origin: ent);
 
         if (TryComp<EnsnaringComponent>(ent, out var ensnaring))
@@ -230,17 +244,17 @@ public sealed class ImperialTgSecurityItemsSystem : EntitySystem
             _implants.AddImplant(target, implant);
 
         if (comp.Shock > 0)
-            _electrocution.TryDoElectrocution(target, ent, comp.Shock, TimeSpan.FromSeconds(1), true, ignoreInsulation: true);
+            _electrocution.TryDoElectrocution(target, ent, comp.Shock, ProjectileHitTime, true, ignoreInsulation: true);
 
-        if (comp.GlowTime > 0)
+        if ((float)comp.GlowTime.TotalSeconds > 0)
         {
             var glow = EnsureComp<ImperialTgGlowComponent>(target);
-            glow.EndTime = _timing.CurTime + TimeSpan.FromSeconds(comp.GlowTime);
+            glow.EndTime = _timing.CurTime + comp.GlowTime;
             if (!HasComp<PointLightComponent>(target))
             {
                 var light = _light.EnsureLight(target);
                 _light.SetColor(target, comp.GlowColor, light);
-                _light.SetRadius(target, 2.5f, light);
+                _light.SetRadius(target, ProjectileHitRadius, light);
                 _light.SetEnergy(target, 2f, light);
                 glow.AddedLight = true;
             }
@@ -250,7 +264,7 @@ public sealed class ImperialTgSecurityItemsSystem : EntitySystem
         {
             var dir = _transform.GetMapCoordinates(target).Position - _transform.GetMapCoordinates(shooter).Position;
             if (dir.LengthSquared() > 0.01f)
-                _throwing.TryThrow(target, Vector2.Normalize(dir) * comp.Knockback, 10f, shooter, recoil: false);
+                _throwing.TryThrow(target, Vector2.Normalize(dir) * comp.Knockback, ProjectileHitBaseThrowSpeed, shooter, recoil: false);
         }
     }
 
@@ -324,7 +338,7 @@ public sealed class ImperialTgSecurityItemsSystem : EntitySystem
 
         // Упрощённая таблица roll из tackle.dm: чем выше skill_mod, тем удачнее.
         var roll = _random.Next(-3, 4) + gloves.SkillMod;
-        var knock = TimeSpan.FromSeconds(gloves.Knockdown);
+        var knock = gloves.Knockdown;
         switch (roll)
         {
             case <= -2:
@@ -358,10 +372,9 @@ public sealed class ImperialTgSecurityItemsSystem : EntitySystem
         if (gloves.CrashChance <= 0 || !_random.Prob(gloves.CrashChance))
             return;
 
-        var damage = new DamageSpecifier();
-        damage.DamageDict["Blunt"] = 15;
+        var damage = new DamageSpecifier(CrashDamage);
         _damageable.TryChangeDamage(user, damage);
-        _stun.TryUpdateParalyzeDuration(user, TimeSpan.FromSeconds(3));
+        _stun.TryUpdateParalyzeDuration(user, CrashDuration);
         _popup.PopupEntity(Loc.GetString("imperial-tackle-crash", ("user", user)), user, Robust.Shared.Player.Filter.Pvs(user), true, Content.Shared.Popups.PopupType.MediumCaution);
     }
 
@@ -393,7 +406,7 @@ public sealed class ImperialTgSecurityItemsSystem : EntitySystem
         var found = new List<string>();
         foreach (var item in EnumerateContents(target))
         {
-            if (TryComp<ContrabandComponent>(item, out var contraband) && contraband.Severity != "Minor")
+            if (TryComp<ContrabandComponent>(item, out var contraband) && contraband.Severity != MinorContrabandSeverity)
                 found.Add(Loc.GetString("imperial-inspector-entry", ("item", item)));
         }
 

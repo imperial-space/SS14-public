@@ -50,6 +50,14 @@ public sealed class ImperialSpecialFishSystem : EntitySystem
 
     private const float DolphishMaxPatience = 20;
 
+    private static readonly TimeSpan VanishDelay = TimeSpan.FromSeconds(12);
+    private static readonly TimeSpan PsyWailTime = TimeSpan.FromSeconds(1.5);
+
+    private const float FishMapInitMoonfishSeconds = 165f;
+    private const float FishMapInitDwarfMoonfishSeconds = 255f;
+    private const float GrowthChecksRange = 0.4f;
+    private const float PsyWailRange = 7f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -75,10 +83,10 @@ public sealed class ImperialSpecialFishSystem : EntitySystem
                 AddGrowth(ent, "MobFrog", _random.NextFloat(120, 180));
                 break;
             case "moonfish":
-                AddGrowth(ent, MoonfishEggs, 165, useDropLoc: false, delOnGrow: false, inheritName: false);
+                AddGrowth(ent, MoonfishEggs, FishMapInitMoonfishSeconds, useDropLoc: false, delOnGrow: false, inheritName: false);
                 break;
             case "dwarf_moonfish":
-                AddGrowth(ent, MoonfishEggs, 255, useDropLoc: false, delOnGrow: false, inheritName: false);
+                AddGrowth(ent, MoonfishEggs, FishMapInitDwarfMoonfishSeconds, useDropLoc: false, delOnGrow: false, inheritName: false);
                 break;
         }
     }
@@ -92,35 +100,35 @@ public sealed class ImperialSpecialFishSystem : EntitySystem
         switch (fish.FishId)
         {
             case "baby_carp":
-            {
-                var time = 4.5f * 60;
-                time *= Math.Clamp(fish.Size / fish.AverageSize, 0.5f, 2);
-                time *= Math.Clamp(fish.Weight / fish.AverageWeight, 0.5f, 2);
-                AddGrowth(ent, "MobCarp", time);
-                break;
-            }
+                {
+                    var time = 4.5f * 60;
+                    time *= Math.Clamp(fish.Size / fish.AverageSize, 0.5f, 2);
+                    time *= Math.Clamp(fish.Weight / fish.AverageWeight, 0.5f, 2);
+                    AddGrowth(ent, "MobCarp", time);
+                    break;
+                }
             case "chasm_crab":
             case "chasm_crab_ice":
-            {
-                var multiplier = 1f;
-                if (fish.Size <= ImperialFishing.SizeTinyMax)
-                    multiplier -= 0.2f;
-                else if (fish.Size >= ImperialFishing.SizeBulkyMax)
-                    multiplier += 0.8f;
-                else if (fish.Size >= ImperialFishing.SizeNormalMax)
-                    multiplier += 0.5f;
-                else if (fish.Size >= ImperialFishing.SizeSmallMax)
-                    multiplier += 0.2f;
+                {
+                    var multiplier = 1f;
+                    if (fish.Size <= ImperialFishing.SizeTinyMax)
+                        multiplier -= 0.2f;
+                    else if (fish.Size >= ImperialFishing.SizeBulkyMax)
+                        multiplier += 0.8f;
+                    else if (fish.Size >= ImperialFishing.SizeNormalMax)
+                        multiplier += 0.5f;
+                    else if (fish.Size >= ImperialFishing.SizeSmallMax)
+                        multiplier += 0.2f;
 
-                if (fish.Weight <= fish.AverageWeight - 200)
-                    multiplier -= 0.1f * MathF.Round((fish.AverageWeight - fish.Weight) / 200);
-                else if (fish.Weight >= fish.AverageWeight + 500)
-                    multiplier += MathF.Min(0.1f * MathF.Round((fish.Weight - fish.AverageWeight) / 500), 2);
+                    if (fish.Weight <= fish.AverageWeight - 200)
+                        multiplier -= 0.1f * MathF.Round((fish.AverageWeight - fish.Weight) / 200);
+                    else if (fish.Weight >= fish.AverageWeight + 500)
+                        multiplier += MathF.Min(0.1f * MathF.Round((fish.Weight - fish.AverageWeight) / 500), 2);
 
-                // Лобстросити в сборке нет: пропастной краб дорастает до краба.
-                AddGrowth(ent, "MobCrab", 600 * multiplier);
-                break;
-            }
+                    // Лобстросити в сборке нет: пропастной краб дорастает до краба.
+                    AddGrowth(ent, "MobCrab", 600 * multiplier);
+                    break;
+                }
             case "fryish":
                 AddGrowth(ent, EvolutionPrefix + "Fritterish", 210 * (fish.Size / fish.AverageSize) * (fish.Weight / fish.AverageWeight), useDropLoc: false);
                 break;
@@ -128,11 +136,11 @@ public sealed class ImperialSpecialFishSystem : EntitySystem
                 AddGrowth(ent, EvolutionPrefix + "Nessie", 480 * (fish.Size / fish.AverageSize) * (fish.Weight / fish.AverageWeight), useDropLoc: false);
                 break;
             case "dwarf_moonfish":
-            {
-                var multiplier = fish.Size / (fish.AverageSize * 1.5f) * (fish.Weight / (fish.AverageWeight * 1.5f));
-                AddGrowth(ent, EvolutionPrefix + "Moonfish", 150 * multiplier, useDropLoc: false);
-                break;
-            }
+                {
+                    var multiplier = fish.Size / (fish.AverageSize * 1.5f) * (fish.Weight / (fish.AverageWeight * 1.5f));
+                    AddGrowth(ent, EvolutionPrefix + "Moonfish", 150 * multiplier, useDropLoc: false);
+                    break;
+                }
         }
     }
 
@@ -206,7 +214,7 @@ public sealed class ImperialSpecialFishSystem : EntitySystem
 
             var nearby = container != null
                 ? container.ContainedEntities.ToList()
-                : _lookup.GetEntitiesInRange(Transform(ent).Coordinates, 0.4f).ToList();
+                : _lookup.GetEntitiesInRange(Transform(ent).Coordinates, GrowthChecksRange).ToList();
             return nearby.Count(e => Prototype(e)?.ID == MoonfishEggs) <= 10;
         }
 
@@ -223,14 +231,14 @@ public sealed class ImperialSpecialFishSystem : EntitySystem
         switch (fish.FishId)
         {
             case "baby_carp":
-            {
-                var hunger = Math.Clamp((float) ((_timing.CurTime - fish.LastFeeding) / fish.FeedingFrequency), 0, 1);
-                if (health <= 0.6f || hunger >= 0.6f)
-                    return false;
-                if (aquarium == null)
-                    return true;
-                return !stopped && _breeding.GetAquariumFishes(aquarium.Value).Count <= ImperialFishing.AquariumMaxBreedingPopulation * 0.5f;
-            }
+                {
+                    var hunger = Math.Clamp((float)((_timing.CurTime - fish.LastFeeding) / fish.FeedingFrequency), 0, 1);
+                    if (health <= 0.6f || hunger >= 0.6f)
+                        return false;
+                    if (aquarium == null)
+                        return true;
+                    return !stopped && _breeding.GetAquariumFishes(aquarium.Value).Count <= ImperialFishing.AquariumMaxBreedingPopulation * 0.5f;
+                }
             case "tadpole":
                 return _fish.GetHunger(fish) < 0.7f && !stopped;
             case "chasm_crab":
@@ -402,7 +410,7 @@ public sealed class ImperialSpecialFishSystem : EntitySystem
         switch (ent.Comp.FishId)
         {
             case "tadpole":
-                _vanish[ent] = _timing.CurTime + TimeSpan.FromSeconds(12);
+                _vanish[ent] = _timing.CurTime + VanishDelay;
                 break;
             case "chrystarfish":
                 if (ent.Comp.FilletType is { } fillet)
@@ -422,13 +430,13 @@ public sealed class ImperialSpecialFishSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("imperial-fish-babbelfish-wail", ("fish", ent.Owner)), ent, PopupType.LargeCaution);
         _audio.PlayPvs("/Audio/Imperial/Fishing/fish_psyblast.ogg", ent);
         var coords = Transform(ent).Coordinates;
-        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 7))
+        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(coords, PsyWailRange))
         {
-            _stun.TryKnockdown(mob.Owner, TimeSpan.FromSeconds(1.5), true);
+            _stun.TryKnockdown(mob.Owner, PsyWailTime, true);
         }
 
         var affected = 0;
-        foreach (var other in _lookup.GetEntitiesInRange<ImperialFishComponent>(coords, 7))
+        foreach (var other in _lookup.GetEntitiesInRange<ImperialFishComponent>(coords, PsyWailRange))
         {
             // range(7) в TG не видит рыб в аквариумах и рюкзаках.
             if (other.Owner == ent.Owner || other.Comp.Dead || _traits.Has(other.Comp, "PsychicAura") || _container.IsEntityInContainer(other))

@@ -34,8 +34,8 @@ public sealed class ImperialMarketBoundUserInterface(EntityUid owner, Enum uiKey
         top.AddChild(_header);
         top.AddChild(new Label { Text = Loc.GetString("imperial-market-ui-shipping"), VerticalAlignment = Control.VAlignment.Center, Margin = new Thickness(0, 0, 4, 0) });
         _shipping = new OptionButton();
-        _shipping.AddItem(Loc.GetString("imperial-market-ui-launch"), (int) ImperialMarketShipping.Launch);
-        _shipping.AddItem(Loc.GetString("imperial-market-ui-teleport"), (int) ImperialMarketShipping.Teleport);
+        _shipping.AddItem(Loc.GetString("imperial-market-ui-launch"), (int)ImperialMarketShipping.Launch);
+        _shipping.AddItem(Loc.GetString("imperial-market-ui-teleport"), (int)ImperialMarketShipping.Teleport);
         _shipping.OnItemSelected += args =>
         {
             _shipping.SelectId(args.Id);
@@ -91,7 +91,7 @@ public sealed class ImperialMarketBoundUserInterface(EntityUid owner, Enum uiKey
             _categories.AddChild(button);
         }
 
-        var shipping = (ImperialMarketShipping) _shipping.SelectedId;
+        var shipping = (ImperialMarketShipping)_shipping.SelectedId;
         var fee = shipping == ImperialMarketShipping.Teleport ? s.TeleportFee : s.LaunchFee;
         _list.RemoveAllChildren();
         if (s.Items.Count == 0)
@@ -109,7 +109,7 @@ public sealed class ImperialMarketBoundUserInterface(EntityUid owner, Enum uiKey
             var price = item.Price + fee;
             var buy = new Button { Text = Loc.GetString("imperial-vending-ui-price", ("price", price)), MinWidth = 90, Disabled = price > s.Balance || s.Holder == string.Empty };
             var id = item.Id;
-            buy.OnPressed += _ => SendMessage(new ImperialMarketBuyMessage(id, (ImperialMarketShipping) _shipping.SelectedId));
+            buy.OnPressed += _ => SendMessage(new ImperialMarketBuyMessage(id, (ImperialMarketShipping)_shipping.SelectedId));
             row.AddChild(buy);
             box.AddChild(row);
             box.AddChild(new RichTextLabel { Text = item.Description, Margin = new Thickness(36, 0, 0, 0) });

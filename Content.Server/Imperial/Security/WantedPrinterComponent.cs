@@ -13,4 +13,7 @@ public sealed partial class WantedPrinterComponent : Component
 
     [ViewVariables]
     public WantedPrintMessage? Pending;
+
+    [DataField]
+    public TimeSpan PrintDelay = TimeSpan.FromSeconds(2);
 }

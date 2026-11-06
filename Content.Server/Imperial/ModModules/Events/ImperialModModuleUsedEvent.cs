@@ -5,7 +5,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Imperial.ModModules;
+namespace Content.Server.Imperial.ModModules;
 
 /// <summary>Модуль применён (MODULE_USABLE, on_use). Поднимается на модуле.</summary>
 [ByRefEvent]

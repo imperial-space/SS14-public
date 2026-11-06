@@ -31,6 +31,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Uplink.AssaultPod;
 
@@ -66,6 +67,9 @@ public sealed class AssaultPodSystem : EntitySystem
     private const int MaxLandingSearch = 4;
 
     private VerbCategory? _landingCategory;
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> StructuralDamageType = "Structural";
 
     public override void Initialize()
     {
@@ -273,7 +277,7 @@ public sealed class AssaultPodSystem : EntitySystem
         Dirty(ent);
 
         _audio.PlayPvs(AlarmSound, ent);
-        _popup.PopupEntity(Loc.GetString("assault-pod-countdown", ("seconds", (int) ent.Comp.Countdown.TotalSeconds)), ent, PopupType.LargeCaution);
+        _popup.PopupEntity(Loc.GetString("assault-pod-countdown", ("seconds", (int)ent.Comp.Countdown.TotalSeconds)), ent, PopupType.LargeCaution);
     }
 
     private void TakeOff(Entity<AssaultPodComponent> ent, TimeSpan now)
@@ -338,7 +342,7 @@ public sealed class AssaultPodSystem : EntitySystem
                 ent.Comp.Target = null;
             ent.Comp.LandingSpot = null;
             _effects.ResetArrival(ent);
-            ent.Comp.NextStage = _timing.CurTime + TimeSpan.FromSeconds(5);
+            ent.Comp.NextStage = _timing.CurTime + ent.Comp.StageDelay;
             return;
         }
 
@@ -399,10 +403,10 @@ public sealed class AssaultPodSystem : EntitySystem
             if (HasComp<MobStateComponent>(other))
             {
                 _stun.TryKnockdown(other, ent.Comp.Knockdown);
-                if (_transform.InRange(Transform(other).Coordinates, coords, 0.75f))
+                if (_transform.InRange(Transform(other).Coordinates, coords, ent.Comp.CrushLandingSiteRange))
                 {
                     var crush = new DamageSpecifier();
-                    crush.DamageDict["Blunt"] = ent.Comp.CrushDamage;
+                    crush.DamageDict[BluntDamageType] = ent.Comp.CrushDamage;
                     _damageable.TryChangeDamage(other, crush, origin: ent);
                 }
 
@@ -412,11 +416,11 @@ public sealed class AssaultPodSystem : EntitySystem
             // Мебель и машины на самой клетке посадки сминаются.
             if (Transform(other).Anchored
                 && !_tag.HasTag(other, WallTag)
-                && _transform.InRange(Transform(other).Coordinates, coords, 0.5f))
+                && _transform.InRange(Transform(other).Coordinates, coords, ent.Comp.CrushLandingSiteRange2))
             {
                 var damage = new DamageSpecifier();
-                damage.DamageDict["Structural"] = ent.Comp.StructureDamage;
-                damage.DamageDict["Blunt"] = ent.Comp.StructureDamage;
+                damage.DamageDict[StructuralDamageType] = ent.Comp.StructureDamage;
+                damage.DamageDict[BluntDamageType] = ent.Comp.StructureDamage;
                 _damageable.TryChangeDamage(other, damage, origin: ent);
             }
         }

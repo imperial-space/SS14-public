@@ -43,6 +43,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Bitrunning;
 
@@ -105,6 +106,19 @@ public sealed class BitrunningAvatarSystem : EntitySystem
     private static readonly ProtoId<Content.Shared.Tools.ToolQualityPrototype> PryingQuality = "Prying";
     private const float BaseHeal = 4f;
 
+    private static readonly ProtoId<DamageTypePrototype> CellularDamageType = "Cellular";
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+    private static readonly ProtoId<DamageTypePrototype> PiercingDamageType = "Piercing";
+    private static readonly ProtoId<DamageTypePrototype> HeatDamageType = "Heat";
+    private static readonly ProtoId<DamageTypePrototype> ColdDamageType = "Cold";
+    private static readonly ProtoId<DamageTypePrototype> PoisonDamageType = "Poison";
+
+    private static readonly TimeSpan HealDelay = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan ConnectDuration = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan DisconnectOccupantDuration = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan AlertDelay = TimeSpan.FromSeconds(10);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -153,7 +167,7 @@ public sealed class BitrunningAvatarSystem : EntitySystem
 
             if (!pod.Open && now >= pod.NextHeal && Occupant((uid, pod)) is { } occupant)
             {
-                pod.NextHeal = now + TimeSpan.FromSeconds(1);
+                pod.NextHeal = now + HealDelay;
                 HealOccupant(occupant);
             }
         }
@@ -327,7 +341,7 @@ public sealed class BitrunningAvatarSystem : EntitySystem
         _servers.AssignObjectives(c.Mind, c.Server);
         _servers.StartAmbience(c.Avatar);
         _audio.PlayEntity(BlinkSound, c.Avatar, c.Avatar);
-        _stun.TryUpdateParalyzeDuration(c.Avatar, TimeSpan.FromSeconds(1));
+        _stun.TryUpdateParalyzeDuration(c.Avatar, ConnectDuration);
         UpdateNetpodAppearance(c.Pod);
         Log.Info($"{ToPrettyString(c.Body)} подключился к аватару {ToPrettyString(c.Avatar)}");
     }
@@ -397,7 +411,7 @@ public sealed class BitrunningAvatarSystem : EntitySystem
         _audio.PlayEntity(BlinkSound, body, body);
         // Удаляемая капсула: оглушение выронит предметы в умирающий контейнер.
         if (!TerminatingOrDeleted(ent))
-            _stun.TryUpdateParalyzeDuration(body, TimeSpan.FromSeconds(2));
+            _stun.TryUpdateParalyzeDuration(body, DisconnectOccupantDuration);
 
         if (!_power.IsPowered(ent.Owner))
         {
@@ -407,7 +421,7 @@ public sealed class BitrunningAvatarSystem : EntitySystem
 
         var healTime = 1;
         if (TryComp<DamageableComponent>(body, out var damageable) && _damage.GetTotalDamage((body, damageable)) > 0)
-            healTime = ((int) (_mobs.IsCritical(body) ? 2 : 0) + 2) * 5;
+            healTime = ((int)(_mobs.IsCritical(body) ? 2 : 0) + 2) * 5;
         ent.Comp.AutoOpenAt = _timing.CurTime + TimeSpan.FromSeconds(healTime);
 
         if (!causeDamage)
@@ -417,7 +431,7 @@ public sealed class BitrunningAvatarSystem : EntitySystem
         var server = ent.Comp.Server is { } s && TryComp<QuantumServerComponent>(s, out var serverComp) ? serverComp.ServoBonus : 0f;
         var amount = ent.Comp.DisconnectDamage * (1f - server) / 4f;
         var spec = new DamageSpecifier();
-        spec.DamageDict["Cellular"] = amount;
+        spec.DamageDict[CellularDamageType] = amount;
         _damage.TryChangeDamage(body, spec, ignoreResistances: true);
         Scream(body);
         _popup.PopupEntity(Loc.GetString("bitrunning-netpod-forced-disconnect"), body, body, PopupType.LargeCaution);
@@ -464,12 +478,12 @@ public sealed class BitrunningAvatarSystem : EntitySystem
     private void HealOccupant(EntityUid body)
     {
         var heal = new DamageSpecifier();
-        heal.DamageDict["Blunt"] = -BaseHeal / 3f;
-        heal.DamageDict["Slash"] = -BaseHeal / 3f;
-        heal.DamageDict["Piercing"] = -BaseHeal / 3f;
-        heal.DamageDict["Heat"] = -BaseHeal / 2f;
-        heal.DamageDict["Cold"] = -BaseHeal / 2f;
-        heal.DamageDict["Poison"] = -BaseHeal;
+        heal.DamageDict[BluntDamageType] = -BaseHeal / 3f;
+        heal.DamageDict[SlashDamageType] = -BaseHeal / 3f;
+        heal.DamageDict[PiercingDamageType] = -BaseHeal / 3f;
+        heal.DamageDict[HeatDamageType] = -BaseHeal / 2f;
+        heal.DamageDict[ColdDamageType] = -BaseHeal / 2f;
+        heal.DamageDict[PoisonDamageType] = -BaseHeal;
         _damage.TryChangeDamage(body, heal, ignoreResistances: true, interruptsDoAfters: false);
         _blood.TryModifyBloodLevel(body, BaseHeal);
     }
@@ -722,7 +736,7 @@ public sealed class BitrunningAvatarSystem : EntitySystem
         var total = linked.GetTotal().Float();
         _damage.TryChangeDamage(ent.Comp.Body, linked, ignoreResistances: true, interruptsDoAfters: false);
 
-        if (total > 30 && _random.Prob(0.3f))
+        if (total > 30 && _random.Prob(ent.Comp.AvatarDamagedChance))
             Scream(ent.Comp.Body);
 
         if (!_mobs.IsAlive(ent.Comp.Body))
@@ -783,7 +797,7 @@ public sealed class BitrunningAvatarSystem : EntitySystem
             return;
 
         _audio.PlayEntity(AlertSound, avatar, avatar);
-        _alerts.ShowAlert(avatar, alert, autoRemove: true, cooldown: (_timing.CurTime, _timing.CurTime + TimeSpan.FromSeconds(10)));
+        _alerts.ShowAlert(avatar, alert, autoRemove: true, cooldown: (_timing.CurTime, _timing.CurTime + AlertDelay));
     }
 
     /// <summary>get_avatar_data().</summary>
@@ -827,7 +841,7 @@ public sealed class BitrunningAvatarSystem : EntitySystem
         var health = TryComp<DamageableComponent>(avatar.Body, out var damage)
             ? Math.Max(0f, 100f - _damage.GetTotalDamage((avatar.Body, damage)).Float())
             : 0f;
-        _popup.PopupEntity(Loc.GetString("bitrunning-host-monitor-health", ("health", (int) health)), args.User, args.User);
+        _popup.PopupEntity(Loc.GetString("bitrunning-host-monitor-health", ("health", (int)health)), args.User, args.User);
     }
 
     private void Scream(EntityUid body)

@@ -140,7 +140,7 @@ public sealed class ImperialManufacturingVisualizerSystem : VisualizerSystem<Imp
     private SpriteComponent.DirectionOffset DirOffset(EntityUid uid, Direction target)
     {
         var own = Transform(uid).LocalRotation.GetCardinalDir();
-        var ccwSteps = ((((int) target - (int) own) / 2) % 4 + 4) % 4;
+        var ccwSteps = ((((int)target - (int)own) / 2) % 4 + 4) % 4;
         return ccwSteps switch
         {
             1 => SpriteComponent.DirectionOffset.CounterClockwise,

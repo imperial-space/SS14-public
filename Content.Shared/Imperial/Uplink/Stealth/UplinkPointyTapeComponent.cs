@@ -15,5 +15,5 @@ public sealed partial class UplinkPointyTapeComponent : Component
 
     /// <summary>Время, за которое вонзившийся предмет можно вытащить.</summary>
     [DataField]
-    public float RemovalTime = 3f;
+    public TimeSpan RemovalTime = TimeSpan.FromSeconds(3f);
 }

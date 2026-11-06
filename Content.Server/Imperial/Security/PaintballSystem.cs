@@ -11,6 +11,8 @@ using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Random;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Security;
 
@@ -37,6 +39,8 @@ public sealed class PaintballSystem : EntitySystem
     [Dependency] private readonly SharedItemSystem _item = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedToolSystem _tool = default!;
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
 
     public override void Initialize()
     {
@@ -114,7 +118,7 @@ public sealed class PaintballSystem : EntitySystem
                 EnsureComp<PaintballColorComponent>(projectile).Color = color;
 
             if (ent.Comp.Emagged && TryComp<ProjectileComponent>(projectile, out var proj))
-                proj.Damage = new DamageSpecifier { DamageDict = { ["Blunt"] = 8 } };
+                proj.Damage = new DamageSpecifier { DamageDict = { [BluntDamageType] = 8 } };
         }
 
         UpdateVisuals(ent);

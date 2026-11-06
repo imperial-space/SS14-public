@@ -11,4 +11,19 @@ public sealed partial class UplinkDetomatixComponent : Component
 {
     [DataField]
     public int Charges = 4;
+
+    [DataField]
+    public TimeSpan DetomatixUseTime = TimeSpan.FromSeconds(4);
+
+    [DataField]
+    public TimeSpan DetomatixUseDuration = TimeSpan.FromSeconds(30);
+
+    [DataField]
+    public float DetomatixUseTotalIntensity = 4f;
+
+    [DataField]
+    public float DetomatixUseSlope = 2f;
+
+    [DataField]
+    public float DetomatixUseMaxTileIntensity = 2f;
 }

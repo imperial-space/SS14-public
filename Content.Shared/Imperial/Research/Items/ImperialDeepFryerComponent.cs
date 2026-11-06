@@ -14,5 +14,5 @@ public sealed partial class ImperialDeepFryerComponent : Component
     public string Slot = "fryer";
 
     [DataField]
-    public float FryTime = 10f;
+    public TimeSpan FryTime = TimeSpan.FromSeconds(10f);
 }

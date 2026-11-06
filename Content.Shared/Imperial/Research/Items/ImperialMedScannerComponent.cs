@@ -14,5 +14,5 @@ public sealed partial class ImperialMedScannerComponent : Component
     public ImperialMedScanMode Mode;
 
     [DataField]
-    public float Delay = 1f;
+    public TimeSpan Delay = TimeSpan.FromSeconds(1f);
 }

@@ -196,7 +196,7 @@ public sealed class ImperialBankSystem : EntitySystem
 
         var debt = 0;
         if (account.Debt > 0 && amount > 0)
-            debt = Math.Min((int) Math.Ceiling(amount * DebtCollection), account.Debt);
+            debt = Math.Min((int)Math.Ceiling(amount * DebtCollection), account.Debt);
 
         account.Balance += amount - debt;
         account.Debt -= debt;
@@ -311,7 +311,7 @@ public sealed class ImperialBankSystem : EntitySystem
             return false;
 
         // round() в BYOND с одним аргументом округляет вниз.
-        var money = (int) Math.Floor(account.Paycheck * account.Modifier * paychecks);
+        var money = (int)Math.Floor(account.Paycheck * account.Modifier * paychecks);
         if (paychecks == 1)
             money = Math.Clamp(money, 0, PaycheckCrew);
 

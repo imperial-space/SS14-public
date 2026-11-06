@@ -17,4 +17,7 @@ public sealed partial class UplinkWeakpointComponent : Component
 
     [DataField]
     public bool SpawnsChildren = true;
+
+    [DataField]
+    public float WeakpointDamagedChance = 0.5f;
 }

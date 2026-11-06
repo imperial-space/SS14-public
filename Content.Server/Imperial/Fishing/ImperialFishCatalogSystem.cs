@@ -15,6 +15,8 @@ public sealed class ImperialFishCatalogSystem : EntitySystem
 
     private List<ImperialFishCatalogEntry>? _entries;
 
+    private static readonly ProtoId<ReagentPrototype> NutrimentReagent = "Nutriment";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -61,7 +63,7 @@ public sealed class ImperialFishCatalogSystem : EntitySystem
         entry.Fluid = Loc.GetString($"imperial-aquarium-fluid-{fish.RequiredFluid.ToString().ToLowerInvariant()}");
         entry.TempMin = fish.TemperatureMin;
         entry.TempMax = fish.TemperatureMax;
-        entry.Feed = fish.Food == "Nutriment"
+        entry.Feed = fish.Food == NutrimentReagent
             ? Loc.GetString("imperial-fish-catalog-company-feed")
             : _proto.TryIndex<ReagentPrototype>(fish.Food, out var reagent) ? reagent.LocalizedName : fish.Food.Id;
         entry.Source = Loc.GetString(fish.RandomCaseRarity > 0 ? "imperial-fish-catalog-source-packs" : "imperial-fish-catalog-source-unknown");

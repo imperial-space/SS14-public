@@ -96,12 +96,12 @@ public sealed partial class QuantumServerSystem
 
         foreach (var (body, points, rune) in bodies)
         {
-            Spawn("EffectSparks", Transform(body).Coordinates);
+            Spawn(EffectSparks, Transform(body).Coordinates);
             QueueDel(body);
             AddCratePoints(ent, points);
             _audio.PlayPvs(SacrificeSound, rune);
 
-            var crateNear = _lookup.GetEntitiesInRange<BitrunningEncryptedCacheComponent>(Transform(rune).Coordinates, 1.5f).Any();
+            var crateNear = _lookup.GetEntitiesInRange<BitrunningEncryptedCacheComponent>(Transform(rune).Coordinates, ent.Comp.ScanSacrificesRange).Any();
             _popup.PopupEntity(Loc.GetString(crateNear ? "bitrunning-ritual-complete" : "bitrunning-sacrifice-accepted"), rune);
         }
     }

@@ -11,8 +11,8 @@ namespace Content.Shared.Imperial.Research.Items;
 public sealed partial class ImperialPneumaticSealComponent : Component
 {
     [DataField]
-    public float SealTime = 2f;
+    public TimeSpan SealTime = TimeSpan.FromSeconds(2f);
 
     [DataField]
-    public float UnsealTime = 4f;
+    public TimeSpan UnsealTime = TimeSpan.FromSeconds(4f);
 }

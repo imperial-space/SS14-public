@@ -122,7 +122,7 @@ public sealed class ImperialFishingMinigameControl : Control
         DrawLayer(Tex(_state.Icon.ToString().ToLowerInvariant() is var icon && icon == "fish" ? "fish" : icon), fishOffset, Color.White.WithAlpha(_fishAlpha));
 
         // Полоса прогресса заполняется снизу (alpha_mask_filter со сдвигом).
-        var cut = (int) MathF.Round(ImperialFishing.CompletionBarHeight * (1 - _shownCompletion / 100f));
+        var cut = (int)MathF.Round(ImperialFishing.CompletionBarHeight * (1 - _shownCompletion / 100f));
         var top = CompletionTop + cut;
         if (top <= CompletionBottom)
             DrawLayer(Tex("completion_overlay"), 0, region: new UIBox2(0, top, 32, CompletionBottom + 1));
@@ -134,7 +134,7 @@ public sealed class ImperialFishingMinigameControl : Control
         if (args.Function == EngineKeyFunctions.UIClick)
             SetReel(1);
         else if (args.Function == EngineKeyFunctions.UIRightClick)
-            SetReel(_state?.Bidirectional == true ? (byte) 2 : (byte) 1);
+            SetReel(_state?.Bidirectional == true ? (byte)2 : (byte)1);
         else
             return;
 

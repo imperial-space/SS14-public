@@ -87,10 +87,10 @@ public sealed class UplinkFalseBottomSystem : EntitySystem
             ent.Comp.Busy = true;
             _popup.PopupEntity(Loc.GetString("uplink-false-bottom-hunting"), args.User, args.User);
             if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.PryTime, new UplinkFalseBottomDoAfterEvent(), ent, ent, args.Used)
-                {
-                    BreakOnMove = true,
-                    NeedHand = true,
-                }))
+            {
+                BreakOnMove = true,
+                NeedHand = true,
+            }))
                 ent.Comp.Busy = false;
 
             return;

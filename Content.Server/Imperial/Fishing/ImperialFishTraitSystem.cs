@@ -18,6 +18,8 @@ public sealed partial class ImperialFishTraitSystem : EntitySystem
     /// <summary>PAYCHECK_CREW: сколько денег должно быть на крючке для любителей блестящего.</summary>
     private const int PaycheckCrew = 50;
 
+    private const float IsLitRange = 10f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -73,32 +75,32 @@ public sealed partial class ImperialFishTraitSystem : EntitySystem
                 break;
 
             case "PickyEater":
-            {
-                if (fish == null)
-                    break;
-
-                if (bait == null)
                 {
-                    mult = 0;
+                    if (fish == null)
+                        break;
+
+                    if (bait == null)
+                    {
+                        mult = 0;
+                        break;
+                    }
+
+                    if (_bait.IsOmni(bait.Value))
+                        break;
+
+                    if (fish.FavoriteBait.Any(id => _bait.Matches(bait.Value, id)))
+                        break;
+
+                    if (fish.DislikedBait.Any(id => _bait.Matches(bait.Value, id)))
+                    {
+                        mult = 0;
+                        break;
+                    }
+
+                    if (_bait.GetQuality(bait.Value) is not (ImperialBaitQuality.Good or ImperialBaitQuality.Great))
+                        mult = 0;
                     break;
                 }
-
-                if (_bait.IsOmni(bait.Value))
-                    break;
-
-                if (fish.FavoriteBait.Any(id => _bait.Matches(bait.Value, id)))
-                    break;
-
-                if (fish.DislikedBait.Any(id => _bait.Matches(bait.Value, id)))
-                {
-                    mult = 0;
-                    break;
-                }
-
-                if (_bait.GetQuality(bait.Value) is not (ImperialBaitQuality.Good or ImperialBaitQuality.Great))
-                    mult = 0;
-                break;
-            }
 
             case "Nocturnal":
                 if (!IgnoresEnvironment(rod) && IsLit(Transform(location).Coordinates))
@@ -120,23 +122,23 @@ public sealed partial class ImperialFishTraitSystem : EntitySystem
                 break;
 
             case "Vegan":
-            {
-                if (bait == null)
                 {
-                    mult = 0;
+                    if (bait == null)
+                    {
+                        mult = 0;
+                        break;
+                    }
+
+                    if (_bait.IsOmni(bait.Value))
+                        break;
+
+                    var types = _bait.GetFoodTypes(bait.Value);
+                    var liked = (types & (ImperialFoodTypes.Vegetables | ImperialFoodTypes.Fruit)) != 0;
+                    var hated = (types & (ImperialFoodTypes.Meat | ImperialFoodTypes.Seafood | ImperialFoodTypes.Gore | ImperialFoodTypes.Bugs | ImperialFoodTypes.Dairy)) != 0;
+                    if (!liked || hated)
+                        mult = 0;
                     break;
                 }
-
-                if (_bait.IsOmni(bait.Value))
-                    break;
-
-                var types = _bait.GetFoodTypes(bait.Value);
-                var liked = (types & (ImperialFoodTypes.Vegetables | ImperialFoodTypes.Fruit)) != 0;
-                var hated = (types & (ImperialFoodTypes.Meat | ImperialFoodTypes.Seafood | ImperialFoodTypes.Gore | ImperialFoodTypes.Bugs | ImperialFoodTypes.Dairy)) != 0;
-                if (!liked || hated)
-                    mult = 0;
-                break;
-            }
 
             case "Predator":
                 if (bait != null && HasComp<ImperialFishComponent>(bait))
@@ -176,7 +178,7 @@ public sealed partial class ImperialFishTraitSystem : EntitySystem
     public bool IsLit(EntityCoordinates coords)
     {
         var mapCoords = _transform.ToMapCoordinates(coords);
-        foreach (var light in _lookup.GetEntitiesInRange<PointLightComponent>(mapCoords, 10f))
+        foreach (var light in _lookup.GetEntitiesInRange<PointLightComponent>(mapCoords, IsLitRange))
         {
             if (!light.Comp.Enabled || light.Comp.Energy <= 0.1f)
                 continue;

@@ -85,7 +85,7 @@ public sealed partial class UplinkStealthSystem
             foreach (var account in bank.Accounts.Keys.ToList())
             {
                 var balance = bank.Accounts[account];
-                var take = (int) (balance * machine.Fraction);
+                var take = (int)(balance * machine.Fraction);
                 if (take <= 0)
                     continue;
 
@@ -142,7 +142,7 @@ public sealed partial class UplinkStealthSystem
                 continue;
 
             _popup.PopupEntity(Loc.GetString("uplink-failsafe-boom"), ent, PopupType.LargeCaution);
-            _explosion.QueueExplosion(_transform.GetMapCoordinates(ent), "Default", 30f, 6f, 6f, ent, canCreateVacuum: false);
+            _explosion.QueueExplosion(_transform.GetMapCoordinates(ent), "Default", failsafe.SetRingtoneTotalIntensity, failsafe.SetRingtoneSlope, failsafe.SetRingtoneMaxTileIntensity, ent, canCreateVacuum: false);
             QueueDel(store);
             QueueDel(ent);
             return;
@@ -232,7 +232,7 @@ public sealed partial class UplinkStealthSystem
             return;
         }
 
-        _serverStack.SpawnMultipleAtPosition((EntProtoId) "SpaceCash", ent.Comp.Stolen, Transform(args.User).Coordinates);
+        _serverStack.SpawnMultipleAtPosition((EntProtoId)"SpaceCash", ent.Comp.Stolen, Transform(args.User).Coordinates);
         _popup.PopupEntity(Loc.GetString("uplink-crab-withdraw", ("amount", ent.Comp.Stolen)), ent, args.User);
         ent.Comp.Stolen = 0;
 
@@ -333,7 +333,7 @@ public sealed partial class UplinkStealthSystem
 
     private void UpdateLaunchpadUi(Entity<UplinkLaunchpadRemoteComponent> ent)
     {
-        var pad = ent.Comp.Pad is { } p && !TerminatingOrDeleted(p) ? p : (EntityUid?) null;
+        var pad = ent.Comp.Pad is { } p && !TerminatingOrDeleted(p) ? p : (EntityUid?)null;
         var range = pad != null && TryComp<UplinkLaunchpadComponent>(pad, out var padComp) ? padComp.Range : 8;
         _launchpadUi.SetUiState(ent.Owner, UplinkLaunchpadUiKey.Key,
             new UplinkLaunchpadState(pad != null || ent.Comp.Briefcase != null, pad != null, ent.Comp.X, ent.Comp.Y, range));
@@ -437,14 +437,14 @@ public sealed partial class UplinkStealthSystem
             return;
         }
 
-        ent.Comp.ReadyAt = _timing.CurTime + TimeSpan.FromSeconds(3);
+        ent.Comp.ReadyAt = _timing.CurTime + ent.Comp.ReadyDelay;
         // Смещение — в осях станции (сетки телепада), как x/y offset у TG.
         var padCoords = Transform(pad).Coordinates;
         var targetCoords = padCoords.Offset(new System.Numerics.Vector2(ent.Comp.X, ent.Comp.Y));
         var from = sending ? padCoords : targetCoords;
         var to = sending ? targetCoords : padCoords;
 
-        foreach (var thing in _lookup.GetEntitiesInRange(from, 0.45f, LookupFlags.Dynamic | LookupFlags.Sundries))
+        foreach (var thing in _lookup.GetEntitiesInRange(from, ent.Comp.FireLaunchpadRange, LookupFlags.Dynamic | LookupFlags.Sundries))
         {
             if (thing == pad || Transform(thing).Anchored || _container.IsEntityInContainer(thing))
                 continue;

@@ -23,4 +23,13 @@ public sealed partial class UplinkReviverImplantComponent : Component
 
     [ViewVariables]
     public TimeSpan DefibAt;
+
+    [DataField]
+    public TimeSpan DefibDelay = TimeSpan.FromSeconds(8);
+
+    [DataField]
+    public TimeSpan DefibDelay2 = TimeSpan.FromSeconds(16);
+
+    [DataField]
+    public TimeSpan HealDelay = TimeSpan.FromSeconds(3);
 }

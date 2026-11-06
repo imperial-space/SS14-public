@@ -15,5 +15,5 @@ public sealed partial class ImperialInducerComponent : Component
     public float Transfer = 200f;
 
     [DataField]
-    public float Delay = 1f;
+    public TimeSpan Delay = TimeSpan.FromSeconds(1f);
 }

@@ -15,6 +15,7 @@ using Robust.Server.Audio;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Fishing;
 
@@ -45,6 +46,9 @@ public sealed class ImperialFishingMiscSystem : EntitySystem
         "ImperialFishSourceOcean", "ImperialFishSourceOceanBeach", "ImperialFishSourceRiver", "ImperialFishSourcePortalBeach",
         "ImperialFishSourcePortalOcean",
     };
+
+    private static readonly EntProtoId Paper2 = "Paper";
+    private static readonly EntProtoId ShardGlass = "ShardGlass";
 
     private sealed class SavedBottle
     {
@@ -88,7 +92,7 @@ public sealed class ImperialFishingMiscSystem : EntitySystem
         EntityUid? message = null;
         if (saved.Paper != null)
         {
-            message = Spawn("Paper", Transform(ent).Coordinates);
+            message = Spawn(Paper2, Transform(ent).Coordinates);
             _paper.SetContent(message.Value, saved.Paper);
         }
         else if (saved.CashProto != null)
@@ -157,7 +161,7 @@ public sealed class ImperialFishingMiscSystem : EntitySystem
         var coords = Transform(args.User).Coordinates;
         _slots.TryEject(ent, ImperialMessageInABottleComponent.SlotId, args.User, out _, excludeUserAudio: true);
         _hands.PickupOrDrop(args.User, message);
-        Spawn("ShardGlass", coords);
+        Spawn(ShardGlass, coords);
         _audio.PlayPvs("/Audio/Effects/glass_break1.ogg", coords);
         _popup.PopupEntity(Loc.GetString("imperial-fishing-bottle-broken"), args.User, args.User);
         QueueDel(ent);

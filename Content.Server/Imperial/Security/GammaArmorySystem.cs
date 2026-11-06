@@ -50,6 +50,41 @@ public sealed class GammaArmorySystem : EntitySystem
     private bool _deployed;
     private EntityUid? _pendingAtmos;
 
+    private static readonly EntProtoId AirlockGlassShuttle = "AirlockGlassShuttle";
+    private static readonly EntProtoId GunSafeGammaNuclear = "GunSafeGammaNuclear";
+    private static readonly EntProtoId GunSafeGammaImmolator = "GunSafeGammaImmolator";
+    private static readonly EntProtoId GunSafeGammaSaber = "GunSafeGammaSaber";
+    private static readonly EntProtoId GunSafeGammaShotgun = "GunSafeGammaShotgun";
+    private static readonly EntProtoId GunSafeGammaSupport = "GunSafeGammaSupport";
+    private static readonly EntProtoId ModSuitStorageGamma = "ModSuitStorageGamma";
+    private static readonly EntProtoId GammaAutolathe = "GammaAutolathe";
+    private static readonly EntProtoId TableReinforced = "TableReinforced";
+    private static readonly EntProtoId ClusterBangFull = "ClusterBangFull";
+    private static readonly EntProtoId GrenadeIncendiary = "GrenadeIncendiary";
+    private static readonly EntProtoId SheetSteel = "SheetSteel";
+    private static readonly EntProtoId SheetGlass = "SheetGlass";
+    private static readonly EntProtoId GammaWeaponRecharger = "GammaWeaponRecharger";
+    private static readonly EntProtoId AlwaysPoweredWallLight = "AlwaysPoweredWallLight";
+    private static readonly EntProtoId AtmosDeviceFanTiny = "AtmosDeviceFanTiny";
+    private static readonly EntProtoId SignSpace = "SignSpace";
+    private static readonly EntProtoId SignSecurearea = "SignSecurearea";
+    private static readonly EntProtoId Screen = "Screen";
+    private static readonly EntProtoId SignArmory = "SignArmory";
+    private static readonly EntProtoId Thruster = "Thruster";
+    private static readonly EntProtoId ExtinguisherCabinetFilled = "ExtinguisherCabinetFilled";
+    private static readonly EntProtoId IntercomSecurity = "IntercomSecurity";
+    private static readonly EntProtoId PosterLegitNanotrasenLogo = "PosterLegitNanotrasenLogo";
+    private static readonly EntProtoId PosterLegitReportCrimes = "PosterLegitReportCrimes";
+    private static readonly EntProtoId PosterLegitObey = "PosterLegitObey";
+    private static readonly EntProtoId PosterLegitHereForYourSafety = "PosterLegitHereForYourSafety";
+    private static readonly EntProtoId PottedPlantRandom = "PottedPlantRandom";
+    private static readonly EntProtoId Rack = "Rack";
+    private static readonly EntProtoId FlashlightSeclite = "FlashlightSeclite";
+    private static readonly EntProtoId GammaPowerCageRecharger = "GammaPowerCageRecharger";
+    private static readonly EntProtoId PowerCageHigh = "PowerCageHigh";
+
+    private const int SpawnStackAmount = 50;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -180,7 +215,7 @@ public sealed class GammaArmorySystem : EntitySystem
 
                 if (x == 0 && y == Height / 2)
                 {
-                    SpawnAt(grid, "AirlockGlassShuttle", x, y, Angle.FromDegrees(90));
+                    SpawnAt(grid, AirlockGlassShuttle, x, y, Angle.FromDegrees(90));
                     continue;
                 }
 
@@ -193,72 +228,72 @@ public sealed class GammaArmorySystem : EntitySystem
         DecorateFloor(gridEnt);
 
         // Пять оружейных шкафов вдоль северной стены.
-        SpawnAt(grid, "GunSafeGammaNuclear", 2, 7);
-        SpawnAt(grid, "GunSafeGammaImmolator", 3, 7);
-        SpawnAt(grid, "GunSafeGammaSaber", 4, 7);
-        SpawnAt(grid, "GunSafeGammaShotgun", 5, 7);
-        SpawnAt(grid, "GunSafeGammaSupport", 6, 7);
+        SpawnAt(grid, GunSafeGammaNuclear, 2, 7);
+        SpawnAt(grid, GunSafeGammaImmolator, 3, 7);
+        SpawnAt(grid, GunSafeGammaSaber, 4, 7);
+        SpawnAt(grid, GunSafeGammaShotgun, 5, 7);
+        SpawnAt(grid, GunSafeGammaSupport, 6, 7);
 
         // Хранилище гамма-РИГа и гамма-автолат.
-        SpawnAt(grid, "ModSuitStorageGamma", 8, 7);
-        SpawnAt(grid, "GammaAutolathe", 10, 7);
+        SpawnAt(grid, ModSuitStorageGamma, 8, 7);
+        SpawnAt(grid, GammaAutolathe, 10, 7);
 
         // Столы с гранатами, материалами и двумя зарядниками.
         for (var x = 2; x <= 9; x++)
         {
-            SpawnAt(grid, "TableReinforced", x, 1);
+            SpawnAt(grid, TableReinforced, x, 1);
         }
 
-        SpawnAt(grid, "ClusterBangFull", 2, 1);
-        SpawnAt(grid, "GrenadeIncendiary", 3, 1);
-        SpawnStack(grid, "SheetSteel", 4, 1);
-        SpawnStack(grid, "SheetGlass", 5, 1);
-        SpawnAt(grid, "GammaWeaponRecharger", 7, 1);
-        SpawnAt(grid, "GammaWeaponRecharger", 8, 1);
+        SpawnAt(grid, ClusterBangFull, 2, 1);
+        SpawnAt(grid, GrenadeIncendiary, 3, 1);
+        SpawnStack(grid, SheetSteel, 4, 1);
+        SpawnStack(grid, SheetGlass, 5, 1);
+        SpawnAt(grid, GammaWeaponRecharger, 7, 1);
+        SpawnAt(grid, GammaWeaponRecharger, 8, 1);
 
         if (_proto.HasIndex<EntityPrototype>(MechProto))
             SpawnAt(grid, MechProto, 9, 4);
 
         // Свет.
-        SpawnAt(grid, "AlwaysPoweredWallLight", 4, 6);
-        SpawnAt(grid, "AlwaysPoweredWallLight", 8, 6);
-        SpawnAt(grid, "AlwaysPoweredWallLight", 6, 2, Angle.FromDegrees(180));
+        SpawnAt(grid, AlwaysPoweredWallLight, 4, 6);
+        SpawnAt(grid, AlwaysPoweredWallLight, 8, 6);
+        SpawnAt(grid, AlwaysPoweredWallLight, 6, 2, Angle.FromDegrees(180));
 
         // Отделка: воздушная завеса в шлюзе, таблички, дисплеи статуса и двигатели на корме.
-        SpawnAt(grid, "AtmosDeviceFanTiny", 0, Height / 2);
-        SpawnAt(grid, "SignSpace", 0, Height / 2 + 1);
-        SpawnAt(grid, "SignSecurearea", 0, Height / 2 - 1);
-        SpawnAt(grid, "Screen", 5, Height - 1);
-        SpawnAt(grid, "Screen", 9, Height - 1);
-        SpawnAt(grid, "SignArmory", 7, Height - 1);
+        SpawnAt(grid, AtmosDeviceFanTiny, 0, Height / 2);
+        SpawnAt(grid, SignSpace, 0, Height / 2 + 1);
+        SpawnAt(grid, SignSecurearea, 0, Height / 2 - 1);
+        SpawnAt(grid, Screen, 5, Height - 1);
+        SpawnAt(grid, Screen, 9, Height - 1);
+        SpawnAt(grid, SignArmory, 7, Height - 1);
 
         _map.SetTiles(gridEnt, new List<(Vector2i, Tile)>
         {
             (new Vector2i(Width, 3), floor),
             (new Vector2i(Width, 5), floor),
         });
-        SpawnAt(grid, "Thruster", Width, 3, Angle.FromDegrees(90));
-        SpawnAt(grid, "Thruster", Width, 5, Angle.FromDegrees(90));
+        SpawnAt(grid, Thruster, Width, 3, Angle.FromDegrees(90));
+        SpawnAt(grid, Thruster, Width, 5, Angle.FromDegrees(90));
 
         // Настенное: огнетушитель, интерком, плакаты СБ.
-        SpawnAt(grid, "ExtinguisherCabinetFilled", Width - 1, Height / 2, Angle.FromDegrees(90));
-        SpawnAt(grid, "IntercomSecurity", 0, Height / 2 + 2, Angle.FromDegrees(-90));
-        SpawnAt(grid, "PosterLegitNanotrasenLogo", 3, Height - 1);
-        SpawnAt(grid, "PosterLegitReportCrimes", 11, Height - 1);
-        SpawnAt(grid, "PosterLegitObey", 2, 0, Angle.FromDegrees(180));
-        SpawnAt(grid, "PosterLegitHereForYourSafety", 10, 0, Angle.FromDegrees(180));
+        SpawnAt(grid, ExtinguisherCabinetFilled, Width - 1, Height / 2, Angle.FromDegrees(90));
+        SpawnAt(grid, IntercomSecurity, 0, Height / 2 + 2, Angle.FromDegrees(-90));
+        SpawnAt(grid, PosterLegitNanotrasenLogo, 3, Height - 1);
+        SpawnAt(grid, PosterLegitReportCrimes, 11, Height - 1);
+        SpawnAt(grid, PosterLegitObey, 2, 0, Angle.FromDegrees(180));
+        SpawnAt(grid, PosterLegitHereForYourSafety, 10, 0, Angle.FromDegrees(180));
 
         // Растения по углам и стеллаж с фонарями СБ.
-        SpawnAt(grid, "PottedPlantRandom", 1, 1);
-        SpawnAt(grid, "PottedPlantRandom", Width - 2, Height - 2);
-        SpawnAt(grid, "Rack", 1, Height - 2);
-        SpawnAt(grid, "FlashlightSeclite", 1, Height - 2);
-        SpawnAt(grid, "FlashlightSeclite", 1, Height - 2);
+        SpawnAt(grid, PottedPlantRandom, 1, 1);
+        SpawnAt(grid, PottedPlantRandom, Width - 2, Height - 2);
+        SpawnAt(grid, Rack, 1, Height - 2);
+        SpawnAt(grid, FlashlightSeclite, 1, Height - 2);
+        SpawnAt(grid, FlashlightSeclite, 1, Height - 2);
 
         // Зарядка мехов (mech_bay_recharge_port): зарядник силовых ячеек и две запасные ячейки.
-        SpawnAt(grid, "GammaPowerCageRecharger", Width - 2, 1);
-        SpawnAt(grid, "PowerCageHigh", 6, 1);
-        SpawnAt(grid, "PowerCageHigh", 6, 1);
+        SpawnAt(grid, GammaPowerCageRecharger, Width - 2, 1);
+        SpawnAt(grid, PowerCageHigh, 6, 1);
+        SpawnAt(grid, PowerCageHigh, 6, 1);
 
         EnsureComp<ShuttleComponent>(grid);
         var gravity = EnsureComp<GravityComponent>(grid);
@@ -325,7 +360,7 @@ public sealed class GammaArmorySystem : EntitySystem
     {
         var ent = SpawnAt(grid, proto, x, y);
         if (TryComp<Content.Shared.Stacks.StackComponent>(ent, out var stack))
-            EntityManager.System<Content.Server.Stack.StackSystem>().SetCount(ent, 50, stack);
+            EntityManager.System<Content.Server.Stack.StackSystem>().SetCount(ent, SpawnStackAmount, stack);
     }
 
     #endregion

@@ -29,7 +29,7 @@ public sealed partial class ImperialPodLandingZoneComponent : Component
 
     /// <summary>delays[POD_TRANSIT].</summary>
     [DataField]
-    public float Transit = 3f;
+    public TimeSpan Transit = TimeSpan.FromSeconds(3f);
 
     [ViewVariables]
     public bool SoundPlayed;

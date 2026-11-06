@@ -18,7 +18,7 @@ public sealed partial class ImperialSupplyPodComponent : Component
 
     /// <summary>delays[POD_OPENING].</summary>
     [DataField]
-    public float Opening = 3f;
+    public TimeSpan Opening = TimeSpan.FromSeconds(3f);
 
     /// <summary>delays[POD_LEAVING].</summary>
     [DataField]
@@ -47,4 +47,10 @@ public sealed partial class ImperialSupplyPodComponent : Component
 
     [ViewVariables]
     public bool Landed;
+
+    [DataField]
+    public float LandSlope = 2f;
+
+    [DataField]
+    public float LandMaxTileIntensity = 2f;
 }

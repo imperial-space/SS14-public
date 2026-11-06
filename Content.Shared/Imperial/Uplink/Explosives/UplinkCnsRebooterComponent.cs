@@ -17,4 +17,13 @@ public sealed partial class UplinkCnsRebooterComponent : Component
 
     [ViewVariables]
     public TimeSpan ImmuneUntil;
+
+    [DataField]
+    public TimeSpan ImmuneDelay = TimeSpan.FromSeconds(6);
+
+    [DataField]
+    public TimeSpan ReadyDelay = TimeSpan.FromSeconds(60);
+
+    [DataField]
+    public TimeSpan ClearDelay = TimeSpan.FromSeconds(1);
 }

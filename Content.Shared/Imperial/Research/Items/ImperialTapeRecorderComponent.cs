@@ -25,4 +25,7 @@ public sealed partial class ImperialTapeRecorderComponent : Component
 
     [ViewVariables]
     public TimeSpan NextLine;
+
+    [DataField]
+    public TimeSpan LineDelay = TimeSpan.FromSeconds(2);
 }

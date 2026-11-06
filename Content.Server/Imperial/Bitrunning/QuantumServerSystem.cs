@@ -83,6 +83,10 @@ public sealed partial class QuantumServerSystem : EntitySystem
         ("XenoBluespaceCrystal", 0.2f, 4),
     };
 
+    private static readonly EntProtoId EffectSparks = "EffectSparks";
+
+    private const float ReplaceCrateRange = 12f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -446,7 +450,7 @@ public sealed partial class QuantumServerSystem : EntitySystem
     {
         EntityUid? encrypted = null;
         var others = new List<EntityUid>();
-        foreach (var near in _lookup.GetEntitiesInRange(spot, 12f))
+        foreach (var near in _lookup.GetEntitiesInRange(spot, ReplaceCrateRange))
         {
             if (!HasComp<Content.Shared.Storage.Components.EntityStorageComponent>(near))
                 continue;
@@ -594,7 +598,7 @@ public sealed partial class QuantumServerSystem : EntitySystem
         foreach (var spot in ent.Comp.ExitSpots)
         {
             var occupied = false;
-            foreach (var near in _lookup.GetEntitiesInRange(spot, 0.3f))
+            foreach (var near in _lookup.GetEntitiesInRange(spot, ent.Comp.GetAvatarDestinationRange))
             {
                 if (HasComp<BitrunningHololadderComponent>(near))
                 {
@@ -771,7 +775,7 @@ public sealed partial class QuantumServerSystem : EntitySystem
             if (reward <= min)
                 continue;
 
-            var count = Math.Max((int) MathF.Ceiling((_random.NextFloat() + 0.5f) * (multiplier + reward) * mult), 1);
+            var count = Math.Max((int)MathF.Ceiling((_random.NextFloat() + 0.5f) * (multiplier + reward) * mult), 1);
             var stack = Spawn(proto, MapCoordinates.Nullspace);
             _stack.SetCount((stack, null), count);
             _storage.Insert(stack, crate);
@@ -817,7 +821,7 @@ public sealed partial class QuantumServerSystem : EntitySystem
             _ => 1,
         };
 
-        score += timeScore * ((int) domain.Difficulty + 1);
+        score += timeScore * ((int)domain.Difficulty + 1);
         ent.Comp.Threat += score;
 
         return score switch
@@ -862,7 +866,7 @@ public sealed partial class QuantumServerSystem : EntitySystem
         }
 
         lines.Add("");
-        lines.Add(Loc.GetString("bitrunning-certificate-time", ("time", $"{(int) elapsed.TotalMinutes}:{elapsed.Seconds:00}")));
+        lines.Add(Loc.GetString("bitrunning-certificate-time", ("time", $"{(int)elapsed.TotalMinutes}:{elapsed.Seconds:00}")));
         lines.Add(Loc.GetString("bitrunning-certificate-grade", ("grade", grade)));
         return string.Join("\n", lines);
     }
@@ -895,7 +899,7 @@ public sealed partial class QuantumServerSystem : EntitySystem
     private void SparkAt(EntityCoordinates coords)
     {
         _audio.PlayPvs(BlinkSound, coords);
-        Spawn("EffectSparks", coords);
+        Spawn(EffectSparks, coords);
     }
 
     #endregion

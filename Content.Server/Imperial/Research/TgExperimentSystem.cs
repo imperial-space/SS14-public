@@ -31,6 +31,7 @@ using Robust.Server.Audio;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Content.Shared.Humanoid.Prototypes;
 
 namespace Content.Server.Imperial.Research;
 
@@ -68,6 +69,10 @@ public sealed class TgExperimentSystem : EntitySystem
     private readonly List<EntityUid> _pendingExplosions = new();
     private TimeSpan _nextConsoleSync;
 
+    private static readonly ProtoId<SpeciesPrototype> HumanSpecies = "Human";
+
+    private static readonly TimeSpan ConsoleSyncDelay = TimeSpan.FromSeconds(1);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -83,7 +88,7 @@ public sealed class TgExperimentSystem : EntitySystem
         var now = _timing.CurTime;
         if (now >= _nextConsoleSync)
         {
-            _nextConsoleSync = now + TimeSpan.FromSeconds(1);
+            _nextConsoleSync = now + ConsoleSyncDelay;
             SyncAllConsoles();
         }
 
@@ -269,7 +274,7 @@ public sealed class TgExperimentSystem : EntitySystem
 
             foreach (var exp in Experiments<TgExplosionRequirement>())
             {
-                if (radius >= ((TgExplosionRequirement) exp.Requirement).MinRadius)
+                if (radius >= ((TgExplosionRequirement)exp.Requirement).MinRadius)
                     AddProgress(state, exp, exp.Requirement.Count, null);
             }
         }
@@ -363,16 +368,16 @@ public sealed class TgExperimentSystem : EntitySystem
         switch (requirement)
         {
             case TgScanRequirement scan:
-            {
-                var proto = MetaData(target).EntityPrototype?.ID;
-                foreach (var t in scan.Targets)
                 {
-                    if (proto != null && t.Prototypes.Any(p => p.Id == proto) || t.Whitelist != null && _whitelist.IsValid(t.Whitelist, target))
-                        return t.Points;
-                }
+                    var proto = MetaData(target).EntityPrototype?.ID;
+                    foreach (var t in scan.Targets)
+                    {
+                        if (proto != null && t.Prototypes.Any(p => p.Id == proto) || t.Whitelist != null && _whitelist.IsValid(t.Whitelist, target))
+                            return t.Points;
+                    }
 
-                return 0;
-            }
+                    return 0;
+                }
             case TgReagentRequirement reagent:
                 return ContainsReagent(target, reagent.Reagent, reagent.MinAmount) ? 1 : 0;
             case TgPuddleRequirement puddle:
@@ -430,13 +435,13 @@ public sealed class TgExperimentSystem : EntitySystem
             case TgScanCondition.AugmentedOrgans:
                 return HasComp<HumanoidProfileComponent>(target) && Organs(target).Any(o => _tag.HasTag(o, CyberOrganTag));
             case TgScanCondition.Android:
-            {
-                if (!HasComp<HumanoidProfileComponent>(target))
-                    return false;
+                {
+                    if (!HasComp<HumanoidProfileComponent>(target))
+                        return false;
 
-                var organs = Organs(target).ToList();
-                return organs.Count >= 4 && organs.All(o => _tag.HasTag(o, CyberOrganTag));
-            }
+                    var organs = Organs(target).ToList();
+                    return organs.Count >= 4 && organs.All(o => _tag.HasTag(o, CyberOrganTag));
+                }
             case TgScanCondition.Skillchip:
                 return HasComp<HumanoidProfileComponent>(target) && Organs(target).Any(o => _tag.HasTag(o, SkillchipTag));
             case TgScanCondition.MechEquipped:
@@ -449,9 +454,9 @@ public sealed class TgExperimentSystem : EntitySystem
                 return TryComp<PlantHolderComponent>(target, out var traits) && traits.Seed is { } seed
                        && (seed.Ligneous || seed.Seedless || seed.CanScream || seed.TurnIntoKudzu || seed.Mutations.Count > 0);
             case TgScanCondition.AutopsyHuman:
-                return _mobState.IsDead(target) && TryComp<HumanoidProfileComponent>(target, out var human) && human.Species == "Human";
+                return _mobState.IsDead(target) && TryComp<HumanoidProfileComponent>(target, out var human) && human.Species == HumanSpecies;
             case TgScanCondition.AutopsyNonHuman:
-                return _mobState.IsDead(target) && TryComp<HumanoidProfileComponent>(target, out var nonhuman) && nonhuman.Species != "Human";
+                return _mobState.IsDead(target) && TryComp<HumanoidProfileComponent>(target, out var nonhuman) && nonhuman.Species != HumanSpecies;
             case TgScanCondition.AutopsyXeno:
                 return _mobState.IsDead(target) && HasComp<XenomorphComponent>(target);
             case TgScanCondition.Machine:

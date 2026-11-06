@@ -48,7 +48,7 @@ public sealed class TelescopicBatonSystem : EntitySystem
         var user = args.User;
 
         // clumsy_check(): неуклюжий в половине случаев бьёт себя.
-        if (HasComp<ClumsyComponent>(user) && _random.Prob(0.5f))
+        if (HasComp<ClumsyComponent>(user) && _random.Prob(ent.Comp.MeleeHitChance))
         {
             ent.Comp.NextStun = _timing.CurTime + ent.Comp.Cooldown;
             _popup.PopupEntity(Loc.GetString("telebaton-clumsy", ("user", user), ("item", ent.Owner)), user, PopupType.MediumCaution);

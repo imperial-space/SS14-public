@@ -16,6 +16,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Security;
 
@@ -34,6 +35,8 @@ public sealed class GammaGearSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
+
+    private static readonly EntProtoId EffectSparks = "EffectSparks";
 
     public override void Initialize()
     {
@@ -147,7 +150,7 @@ public sealed class GammaGearSystem : EntitySystem
             var (other, point) = crossing;
             var mapCoords = new MapCoordinates(point, _xform.GetMapId(user));
             _popup.PopupCoordinates(Loc.GetString("medbeam-crossed"), _xform.ToCoordinates(mapCoords), PopupType.LargeCaution);
-            _explosion.QueueExplosion(mapCoords, "Default", 40f, 4f, 10f, user);
+            _explosion.QueueExplosion(mapCoords, "Default", ent.Comp.TickBeamTotalIntensity, ent.Comp.TickBeamSlope, ent.Comp.TickBeamMaxTileIntensity, user);
             LoseTarget(ent);
             LoseTarget(other);
             return;
@@ -237,7 +240,7 @@ public sealed class GammaGearSystem : EntitySystem
 
         _popup.PopupEntity(Loc.GetString("gamma-shield-block"), wearer, PopupType.Medium);
         _audio.PlayPvs(ShieldSound, wearer);
-        Spawn("EffectSparks", Transform(wearer).Coordinates);
+        Spawn(EffectSparks, Transform(wearer).Coordinates);
         UpdateShieldVisuals(ent);
     }
 

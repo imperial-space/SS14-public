@@ -28,4 +28,7 @@ public sealed partial class ElectricChairComponent : Component
 
     [ViewVariables]
     public TimeSpan? ShockVisualUntil;
+
+    [DataField]
+    public TimeSpan ShockVisualDelay = TimeSpan.FromSeconds(1);
 }

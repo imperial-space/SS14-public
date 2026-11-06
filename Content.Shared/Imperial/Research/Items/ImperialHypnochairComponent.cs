@@ -11,5 +11,5 @@ namespace Content.Shared.Imperial.Research.Items;
 public sealed partial class ImperialHypnochairComponent : Component
 {
     [DataField]
-    public float Duration = 30f;
+    public TimeSpan Duration = TimeSpan.FromSeconds(30f);
 }

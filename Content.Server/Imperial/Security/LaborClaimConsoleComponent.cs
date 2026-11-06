@@ -18,4 +18,10 @@ public sealed partial class LaborClaimConsoleComponent : Component
     /// <summary>say_cooldown.</summary>
     [ViewVariables]
     public TimeSpan NextSay;
+
+    [DataField]
+    public TimeSpan SayDelay = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public float LocateStackerRange = 2.5f;
 }

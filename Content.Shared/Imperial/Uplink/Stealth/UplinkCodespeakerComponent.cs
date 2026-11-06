@@ -7,4 +7,8 @@ namespace Content.Shared.Imperial.Uplink.Stealth;
 
 /// <summary>Знает кодовую речь Синдиката.</summary>
 [RegisterComponent]
-public sealed partial class UplinkCodespeakerComponent : Component;
+public sealed partial class UplinkCodespeakerComponent : Component
+{
+    [DataField]
+    public float CodespeakSpeechRange = 10f;
+}

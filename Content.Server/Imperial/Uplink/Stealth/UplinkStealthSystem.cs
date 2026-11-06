@@ -38,6 +38,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Uplink.Stealth;
 
@@ -74,6 +75,11 @@ public sealed partial class UplinkStealthSystem : EntitySystem
     private static readonly SoundSpecifier SnapSound = new SoundPathSpecifier("/Audio/Effects/snap.ogg");
     private static readonly SoundSpecifier ScrewSound = new SoundPathSpecifier("/Audio/Items/screwdriver.ogg");
     private static readonly SoundSpecifier SuppressedSound = new SoundPathSpecifier("/Audio/Imperial/Uplink/shot_suppressed.ogg", AudioParams.Default.WithVolume(-6f).WithMaxDistance(3f));
+
+    private static readonly ProtoId<DamageTypePrototype> PiercingDamageType = "Piercing";
+
+    private static readonly EntProtoId ImperialPaperPlaneSyndicate = "ImperialPaperPlaneSyndicate";
+    private static readonly EntProtoId StatusEffectBlurryVision = "StatusEffectBlurryVision";
 
     public override void Initialize()
     {
@@ -264,7 +270,7 @@ public sealed partial class UplinkStealthSystem : EntitySystem
             {
                 var coords = Transform(ent).Coordinates;
                 QueueDel(ent);
-                var plane = Spawn("ImperialPaperPlaneSyndicate", coords);
+                var plane = Spawn(ImperialPaperPlaneSyndicate, coords);
                 _hands.PickupOrDrop(user, plane);
                 _popup.PopupEntity(Loc.GetString("uplink-origami-folded"), user, user);
             },
@@ -283,8 +289,8 @@ public sealed partial class UplinkStealthSystem : EntitySystem
             return;
 
         _popup.PopupEntity(Loc.GetString("uplink-paperplane-eye", ("target", target)), target, PopupType.MediumCaution);
-        _status.TryAddStatusEffectDuration(target, "StatusEffectBlurryVision", TimeSpan.FromSeconds(12));
-        _stun.TryAddParalyzeDuration(target, TimeSpan.FromSeconds(4));
+        _status.TryAddStatusEffectDuration(target, StatusEffectBlurryVision, ent.Comp.PaperPlaneHitDuration);
+        _stun.TryAddParalyzeDuration(target, ent.Comp.PaperPlaneHitDuration2);
         _chat.TryEmoteWithChat(target, "Scream");
     }
 
@@ -306,7 +312,7 @@ public sealed partial class UplinkStealthSystem : EntitySystem
 
         EnsureComp<UplinkPointyTapedComponent>(target).Damage = ent.Comp.Damage;
         var embed = EnsureComp<EmbeddableProjectileComponent>(target);
-        embed.RemovalTime = ent.Comp.RemovalTime;
+        embed.RemovalTime = (float)ent.Comp.RemovalTime.TotalSeconds;
         Dirty(target, embed);
 
         _popup.PopupEntity(Loc.GetString("uplink-pointy-tape-apply", ("target", target)), args.User, args.User);
@@ -319,7 +325,7 @@ public sealed partial class UplinkStealthSystem : EntitySystem
             return;
 
         var damage = new DamageSpecifier();
-        damage.DamageDict["Piercing"] = ent.Comp.Damage;
+        damage.DamageDict[PiercingDamageType] = ent.Comp.Damage;
         _damageable.TryChangeDamage(args.Target, damage, origin: args.Component.Thrower);
     }
 
@@ -334,7 +340,7 @@ public sealed partial class UplinkStealthSystem : EntitySystem
 
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString("uplink-contacts-start"), args.User, args.User);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(3), new UplinkContactsDoAfterEvent(), ent, used: ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.ContactsUseDelay, new UplinkContactsDoAfterEvent(), ent, used: ent)
         {
             BreakOnMove = true,
             NeedHand = true,
@@ -383,8 +389,7 @@ public sealed partial class UplinkStealthSystem : EntitySystem
         EnsureComp<Content.Server.Bible.Components.BibleUserComponent>(args.User);
 
         _audio.PlayPvs(SnapSound, ent);
-        var bite = new DamageSpecifier();
-        bite.DamageDict["Piercing"] = 5;
+        var bite = new DamageSpecifier(ent.Comp.TomeUseDamage);
         _damageable.TryChangeDamage(args.User, bite, true);
         _popup.PopupEntity(Loc.GetString("uplink-tome-bite"), args.User, args.User, PopupType.LargeCaution);
 
@@ -454,7 +459,7 @@ public sealed partial class UplinkStealthSystem : EntitySystem
         var name = Name(ent);
         var wrapped = Loc.GetString("uplink-codespeak-wrap", ("name", name), ("message", FormattedMessageEscape(original)));
         var coords = _transform.GetMapCoordinates(ent);
-        foreach (var listener in _lookup.GetEntitiesInRange<UplinkCodespeakerComponent>(coords, 10f))
+        foreach (var listener in _lookup.GetEntitiesInRange<UplinkCodespeakerComponent>(coords, ent.Comp.CodespeakSpeechRange))
         {
             if (!_player.TryGetSessionByEntity(listener, out var session))
                 continue;

@@ -163,7 +163,7 @@ public sealed class ImperialCargoExportSystem : EntitySystem
         if (_tag.HasTag(uid, OreTag))
             amount *= 0.8f;
 
-        return (int) MathF.Round(amount / SheetAmount);
+        return (int)MathF.Round(amount / SheetAmount);
     }
 
     #endregion
@@ -196,30 +196,30 @@ public sealed class ImperialCargoExportSystem : EntitySystem
             case ImperialCargoExportKind.Seed:
                 return SeedCost(uid, export);
             case ImperialCargoExportKind.GasCanister:
-            {
-                if (!TryComp<GasCanisterComponent>(uid, out var canister) || canister.Air.TotalMoles <= 0)
-                    return 0;
-
-                var worth = export.Cost;
-                foreach (var (gas, value) in GasValues)
                 {
-                    var moles = canister.Air.GetMoles(gas);
-                    if (moles <= 0)
-                        continue;
-                    worth += MathF.Ceiling(value * moles);
-                    if (worth > MaxGasCredits)
-                        return MaxGasCredits;
-                }
+                    if (!TryComp<GasCanisterComponent>(uid, out var canister) || canister.Air.TotalMoles <= 0)
+                        return 0;
 
-                return worth;
-            }
+                    var worth = export.Cost;
+                    foreach (var (gas, value) in GasValues)
+                    {
+                        var moles = canister.Air.GetMoles(gas);
+                        if (moles <= 0)
+                            continue;
+                        worth += MathF.Ceiling(value * moles);
+                        if (worth > MaxGasCredits)
+                            return MaxGasCredits;
+                    }
+
+                    return worth;
+                }
             case ImperialCargoExportKind.ReagentTank:
-            {
-                var fraction = 0f;
-                if (_solution.TryGetSolution(uid, "tank", out _, out var tank) && tank.MaxVolume > 0)
-                    fraction = (float) (tank.Volume / tank.MaxVolume);
-                return export.Cost + MathF.Round(export.ExtraCost * fraction);
-            }
+                {
+                    var fraction = 0f;
+                    if (_solution.TryGetSolution(uid, "tank", out _, out var tank) && tank.MaxVolume > 0)
+                        fraction = (float)(tank.Volume / tank.MaxVolume);
+                    return export.Cost + MathF.Round(export.ExtraCost * fraction);
+                }
             default:
                 return export.Cost;
         }
@@ -255,7 +255,7 @@ public sealed class ImperialCargoExportSystem : EntitySystem
         if (args.Handled || FindExport(uid) is not { } export)
             return;
 
-        var price = (double) GetCost(uid, export);
+        var price = (double)GetCost(uid, export);
 
         // Содержимое продаётся отдельно (export_item_and_contents), поэтому считаем его здесь же.
         if (TryComp<ContainerManagerComponent>(uid, out var containers))
@@ -315,7 +315,7 @@ public sealed class ImperialCargoExportSystem : EntitySystem
         if (export.Market is { } market && _market.Get(market) is { } state)
         {
             _market.AdjustPrice(market, -state.Price * (amount / (amount + state.Quantity)));
-            _market.AdjustQuantity(market, (int) amount);
+            _market.AdjustQuantity(market, (int)amount);
         }
     }
 

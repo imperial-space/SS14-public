@@ -48,7 +48,7 @@ public sealed class ImperialSupplyPodVisualizerSystem : VisualizerSystem<Imperia
         var query = EntityQueryEnumerator<ImperialSupplyPodComponent, SpriteComponent>();
         while (query.MoveNext(out var uid, out var pod, out var sprite))
         {
-            var sinceLanding = (float) (now - pod.LandTime).TotalSeconds;
+            var sinceLanding = (float)(now - pod.LandTime).TotalSeconds;
             // После посадки дым и свечение гаснут за ~3.5 с, дальше анимировать нечего.
             if (sinceLanding > 4f)
                 continue;
@@ -84,7 +84,7 @@ public sealed class ImperialSupplyPodVisualizerSystem : VisualizerSystem<Imperia
         // end_glow(): свечение гаснет за min(delays[POD_OPENING], 2.5 с).
         if (SpriteSystem.LayerMapTryGet(ent, "glow", out var glow, false))
         {
-            var fade = Math.Min(pod.Opening, 2.5f);
+            var fade = Math.Min((float)pod.Opening.TotalSeconds, 2.5f);
             var alpha = landed ? Math.Clamp(1f - sinceLanding / fade, 0f, 1f) : 1f;
             SpriteSystem.LayerSetColor(ent, glow, Color.White.WithAlpha(alpha));
             SpriteSystem.LayerSetVisible(ent, glow, alpha > 0);

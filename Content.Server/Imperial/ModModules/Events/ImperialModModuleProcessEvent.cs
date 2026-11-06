@@ -5,7 +5,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Imperial.ModModules;
+namespace Content.Server.Imperial.ModModules;
 
 /// <summary>Модуль активен, тик раз в секунду (on_active_process). Поднимается на модуле.</summary>
 [ByRefEvent]

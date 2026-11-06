@@ -106,7 +106,7 @@ public sealed class ImperialTgResearchSystem : EntitySystem
 
         var node = new MappingDataNode
         {
-            ["supportedDisciplines"] = new SequenceDataNode(disciplines.Select(d => (DataNode) new ValueDataNode(d)).ToList()),
+            ["supportedDisciplines"] = new SequenceDataNode(disciplines.Select(d => (DataNode)new ValueDataNode(d)).ToList()),
         };
         var database = _serialization.Read<TechnologyDatabaseComponent>(node, notNullableOverride: true);
         AddComp(template, database, overwrite: true);

@@ -23,7 +23,7 @@ public sealed partial class ImperialSmokeMachineComponent : Component
     public int Spread = 8;
 
     [DataField]
-    public float Interval = 5f;
+    public TimeSpan Interval = TimeSpan.FromSeconds(5f);
 
     [ViewVariables]
     public TimeSpan NextPuff;

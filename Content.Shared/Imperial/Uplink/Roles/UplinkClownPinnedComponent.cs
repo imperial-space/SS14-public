@@ -11,4 +11,13 @@ public sealed partial class UplinkClownPinnedComponent : Component
 {
     [DataField]
     public bool SelfDestruct;
+
+    [DataField]
+    public float ClownPinnedShotTotalIntensity = 30f;
+
+    [DataField]
+    public float ClownPinnedShotSlope = 6f;
+
+    [DataField]
+    public float ClownPinnedShotMaxTileIntensity = 6f;
 }

@@ -410,7 +410,7 @@ public sealed class ImperialModSuitSystem : SharedImperialModSuitSystem
             if (now < suit.NextProcess)
                 continue;
 
-            var elapsed = suit.LastProcess == TimeSpan.Zero ? (float) ProcessInterval.TotalSeconds : (float) (now - suit.LastProcess).TotalSeconds;
+            var elapsed = suit.LastProcess == TimeSpan.Zero ? (float)ProcessInterval.TotalSeconds : (float)(now - suit.LastProcess).TotalSeconds;
             suit.NextProcess = now + ProcessInterval;
             suit.LastProcess = now;
             Process((uid, suit), elapsed);

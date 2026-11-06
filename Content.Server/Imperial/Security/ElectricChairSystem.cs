@@ -77,7 +77,7 @@ public sealed class ElectricChairSystem : EntitySystem
 
         _popup.PopupEntity(Loc.GetString("electric-chair-shock", ("chair", ent.Owner)), ent, PopupType.LargeCaution);
         _appearance.SetData(ent, ElectricChairVisuals.Shocking, true);
-        ent.Comp.ShockVisualUntil = _timing.CurTime + TimeSpan.FromSeconds(1);
+        ent.Comp.ShockVisualUntil = _timing.CurTime + ent.Comp.ShockVisualDelay;
     }
 
     /// <summary>on_buckle(): отсчёт до первого разряда начинается при посадке.</summary>

@@ -16,6 +16,7 @@ using Robust.Server.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Security;
 
@@ -46,6 +47,10 @@ public sealed class PrisonerManagementSystem : EntitySystem
 
     private TimeSpan _nextUpdate;
 
+    private static readonly EntProtoId EffectSparks = "EffectSparks";
+
+    private static readonly TimeSpan UpdateDelay = TimeSpan.FromSeconds(1);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -65,7 +70,7 @@ public sealed class PrisonerManagementSystem : EntitySystem
         if (_timing.CurTime < _nextUpdate)
             return;
 
-        _nextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
+        _nextUpdate = _timing.CurTime + UpdateDelay;
 
         // on_death(): химимплант выпускает всё содержимое при смерти носителя.
         var implants = EntityQueryEnumerator<ChemImplantComponent, SubdermalImplantComponent>();
@@ -150,7 +155,7 @@ public sealed class PrisonerManagementSystem : EntitySystem
             // Self Destruct: имплант безвредно разрушается изнутри.
             case PrisonerImplantAction.SelfDestruct:
                 Message(mob, Loc.GetString("prisoner-implant-self-destruct"));
-                Spawn("EffectSparks", Transform(mob).Coordinates);
+                Spawn(EffectSparks, Transform(mob).Coordinates);
                 QueueDel(implant);
                 break;
 

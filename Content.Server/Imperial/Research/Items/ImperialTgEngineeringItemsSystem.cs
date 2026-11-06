@@ -100,7 +100,7 @@ public sealed class ImperialTgEngineeringItemsSystem : EntitySystem
             if (now < gen.NextCheck)
                 continue;
 
-            gen.NextCheck = now + TimeSpan.FromSeconds(1);
+            gen.NextCheck = now + gen.CheckDelay;
             UpdateShield(uid, gen, xform);
         }
     }
@@ -163,7 +163,7 @@ public sealed class ImperialTgEngineeringItemsSystem : EntitySystem
             Text = Loc.GetString("imperial-seal-remove-verb"),
             Act = () =>
             {
-                _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, 4f,
+                _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, ent.Comp.SealedDoorVerbsSeconds,
                     new ImperialUnsealDoAfterEvent(), ent, target: ent)
                 {
                     BreakOnMove = true,

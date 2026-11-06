@@ -21,6 +21,8 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Uplink.AssaultPod;
 
@@ -74,6 +76,14 @@ public sealed class AssaultPodShipSystem : EntitySystem
         new[] { "W", "W", "CE", "F", "CW", "W", "W" },
         new[] { "T", "W", "W", "A", "W", "W", "T" },
     };
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+
+    private static readonly EntProtoId ImperialAssaultPodTurret = "ImperialAssaultPodTurret";
+    private static readonly EntProtoId ChairPilotSeat = "ChairPilotSeat";
+    private static readonly EntProtoId AlwaysPoweredWallLight = "AlwaysPoweredWallLight";
+    private static readonly EntProtoId GeneratorWallmountAPULV = "GeneratorWallmountAPULV";
+    private static readonly EntProtoId CableApcExtension = "CableApcExtension";
 
     public override void Initialize()
     {
@@ -208,7 +218,7 @@ public sealed class AssaultPodShipSystem : EntitySystem
                     case "T":
                         // porta_turret/syndicate/pod: по турели в каждом внешнем углу — только у Синдиката.
                         if (style == AssaultPodShipStyle.Syndicate)
-                            SpawnAt(grid, "ImperialAssaultPodTurret", x, y);
+                            SpawnAt(grid, ImperialAssaultPodTurret, x, y);
                         break;
                     case "A":
                         SpawnAt(grid, airlock, x, y, x == 0 || x == Size - 1 ? Angle.FromDegrees(90) : null);
@@ -217,29 +227,29 @@ public sealed class AssaultPodShipSystem : EntitySystem
                         SpawnAt(grid, console, x, y);
                         break;
                     case "CE":
-                        SpawnAt(grid, "ChairPilotSeat", x, y, Direction.East.ToAngle());
+                        SpawnAt(grid, ChairPilotSeat, x, y, Direction.East.ToAngle());
                         break;
                     case "CW":
-                        SpawnAt(grid, "ChairPilotSeat", x, y, Direction.West.ToAngle());
+                        SpawnAt(grid, ChairPilotSeat, x, y, Direction.West.ToAngle());
                         break;
                     case "CN":
-                        SpawnAt(grid, "ChairPilotSeat", x, y, Direction.North.ToAngle());
+                        SpawnAt(grid, ChairPilotSeat, x, y, Direction.North.ToAngle());
                         break;
                     case "CS":
-                        SpawnAt(grid, "ChairPilotSeat", x, y, Direction.South.ToAngle());
+                        SpawnAt(grid, ChairPilotSeat, x, y, Direction.South.ToAngle());
                         break;
                 }
             }
         }
 
-        SpawnAt(grid, "AlwaysPoweredWallLight", 3, 5);
-        SpawnAt(grid, "AlwaysPoweredWallLight", 3, 1, Angle.FromDegrees(180));
+        SpawnAt(grid, AlwaysPoweredWallLight, 3, 5);
+        SpawnAt(grid, AlwaysPoweredWallLight, 3, 1, Angle.FromDegrees(180));
 
         // Своя сеть, как у шаттлов: вспомогательный генератор LV в западной стене и кабель на каждой клетке.
-        SpawnAt(grid, "GeneratorWallmountAPULV", 0, 4, Direction.East.ToAngle());
+        SpawnAt(grid, GeneratorWallmountAPULV, 0, 4, Direction.East.ToAngle());
         foreach (var (indices, _) in tiles)
         {
-            SpawnAt(grid, "CableApcExtension", indices.X, indices.Y);
+            SpawnAt(grid, CableApcExtension, indices.X, indices.Y);
         }
 
         var gravity = EnsureComp<GravityComponent>(grid);
@@ -354,7 +364,7 @@ public sealed class AssaultPodShipSystem : EntitySystem
             console.State = AssaultPodState.Launching;
             console.NextStage = _timing.CurTime + console.Countdown;
             _audio.PlayPvs(AlarmSound, uid);
-            _popup.PopupEntity(Loc.GetString("assault-pod-ship-countdown", ("seconds", (int) console.Countdown.TotalSeconds)), uid, PopupType.LargeCaution);
+            _popup.PopupEntity(Loc.GetString("assault-pod-ship-countdown", ("seconds", (int)console.Countdown.TotalSeconds)), uid, PopupType.LargeCaution);
             launched++;
             if (grid != null)
                 return Loc.GetString("assault-pod-command-dropped", ("zone", console.TargetName ?? "?"));
@@ -383,7 +393,7 @@ public sealed class AssaultPodShipSystem : EntitySystem
         ent.Comp.State = AssaultPodState.Launching;
         ent.Comp.NextStage = _timing.CurTime + ent.Comp.Countdown;
         _audio.PlayPvs(AlarmSound, ent);
-        _popup.PopupEntity(Loc.GetString("assault-pod-ship-countdown", ("seconds", (int) ent.Comp.Countdown.TotalSeconds)), ent, PopupType.LargeCaution);
+        _popup.PopupEntity(Loc.GetString("assault-pod-ship-countdown", ("seconds", (int)ent.Comp.Countdown.TotalSeconds)), ent, PopupType.LargeCaution);
         return true;
     }
 
@@ -401,7 +411,7 @@ public sealed class AssaultPodShipSystem : EntitySystem
         ent.Comp.State = AssaultPodState.Launching;
         ent.Comp.NextStage = _timing.CurTime + ent.Comp.Countdown;
         _audio.PlayPvs(AlarmSound, ent);
-        _popup.PopupEntity(Loc.GetString("assault-pod-ship-countdown", ("seconds", (int) ent.Comp.Countdown.TotalSeconds)), ent, PopupType.LargeCaution);
+        _popup.PopupEntity(Loc.GetString("assault-pod-ship-countdown", ("seconds", (int)ent.Comp.Countdown.TotalSeconds)), ent, PopupType.LargeCaution);
     }
 
     #endregion
@@ -465,7 +475,7 @@ public sealed class AssaultPodShipSystem : EntitySystem
             || !TryComp<MapGridComponent>(station, out var stationGrid))
         {
             _effects.ResetArrival(ent);
-            ent.Comp.NextStage = _timing.CurTime + TimeSpan.FromSeconds(5);
+            ent.Comp.NextStage = _timing.CurTime + ent.Comp.StageDelay;
             return;
         }
 
@@ -498,7 +508,7 @@ public sealed class AssaultPodShipSystem : EntitySystem
                     continue;
 
                 var crush = new DamageSpecifier();
-                crush.DamageDict["Blunt"] = CrushDamage;
+                crush.DamageDict[BluntDamageType] = CrushDamage;
                 _damageable.TryChangeDamage(other, crush, origin: ent);
             }
         }
@@ -514,8 +524,8 @@ public sealed class AssaultPodShipSystem : EntitySystem
         }
 
         var moved = new HashSet<EntityUid>();
-        var podCenter = (Vector2) Center + new Vector2(0.5f, 0.5f);
-        var landingCenter = (Vector2) landing + new Vector2(0.5f, 0.5f);
+        var podCenter = (Vector2)Center + new Vector2(0.5f, 0.5f);
+        var landingCenter = (Vector2)landing + new Vector2(0.5f, 0.5f);
         foreach (var child in children)
         {
             if (TerminatingOrDeleted(child) || HasComp<MapGridComponent>(child))
@@ -551,7 +561,7 @@ public sealed class AssaultPodShipSystem : EntitySystem
             if (moved.Contains(other) || !HasComp<MobStateComponent>(other))
                 continue;
 
-            _stun.TryKnockdown(other, TimeSpan.FromSeconds(3));
+            _stun.TryKnockdown(other, ent.Comp.LandTime);
         }
     }
 

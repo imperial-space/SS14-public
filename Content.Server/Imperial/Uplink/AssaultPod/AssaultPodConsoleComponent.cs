@@ -49,4 +49,10 @@ public sealed partial class AssaultPodConsoleComponent : Component
 
     [ViewVariables]
     public TimeSpan NextStage;
+
+    [DataField]
+    public TimeSpan StageDelay = TimeSpan.FromSeconds(5);
+
+    [DataField]
+    public TimeSpan LandTime = TimeSpan.FromSeconds(3);
 }

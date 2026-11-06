@@ -19,6 +19,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.Radio;
 
 namespace Content.Server.Imperial.Security;
 
@@ -49,6 +50,11 @@ public sealed class LaborCampSystem : EntitySystem
 
     private TimeSpan _nextUiUpdate;
 
+    private static readonly ProtoId<RadioChannelPrototype> SecurityRadioChannel = "Security";
+    private static readonly EntProtoId EffectSparks = "EffectSparks";
+
+    private static readonly TimeSpan UiUpdateDelay = TimeSpan.FromSeconds(1);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -77,7 +83,7 @@ public sealed class LaborCampSystem : EntitySystem
         if (_timing.CurTime < _nextUiUpdate)
             return;
 
-        _nextUiUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
+        _nextUiUpdate = _timing.CurTime + UiUpdateDelay;
 
         var claims = EntityQueryEnumerator<LaborClaimConsoleComponent>();
         while (claims.MoveNext(out var uid, out var claim))
@@ -130,7 +136,7 @@ public sealed class LaborCampSystem : EntitySystem
         if (ent.Comp.Stacker is { } known && !TerminatingOrDeleted(known) && TryComp<LaborStackerComponent>(known, out var knownComp))
             return (known, knownComp);
 
-        foreach (var stacker in _lookup.GetEntitiesInRange<LaborStackerComponent>(Transform(ent).Coordinates, 2.5f))
+        foreach (var stacker in _lookup.GetEntitiesInRange<LaborStackerComponent>(Transform(ent).Coordinates, ent.Comp.LocateStackerRange))
         {
             ent.Comp.Stacker = stacker;
             return stacker;
@@ -238,11 +244,11 @@ public sealed class LaborCampSystem : EntitySystem
         if (!ent.Comp.Emagged)
         {
             _gulag.SetStatus(user, SecurityStatus.Paroled);
-            _radio.SendRadioMessage(ent, Loc.GetString("labor-claim-announce", ("person", Name(user))), "Security", ent);
+            _radio.SendRadioMessage(ent, Loc.GetString("labor-claim-announce", ("person", Name(user))), SecurityRadioChannel, ent);
         }
 
         Say(ent, Loc.GetString("labor-claim-finished"), force: true);
-        Spawn("EffectSparks", Transform(user).Coordinates);
+        Spawn(EffectSparks, Transform(user).Coordinates);
         _securityImplant.AllowNextMove(user);
         _xform.SetCoordinates(user, dest);
         _xform.AttachToGridOrMap(user);
@@ -296,7 +302,7 @@ public sealed class LaborCampSystem : EntitySystem
         ent.Comp.Emagged = true;
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString("labor-claim-emagged", ("machine", ent.Owner)), ent, PopupType.MediumCaution);
-        Spawn("EffectSparks", Transform(ent).Coordinates);
+        Spawn(EffectSparks, Transform(ent).Coordinates);
     }
 
     /// <summary>say() с кулдауном 2 секунды на повторы.</summary>
@@ -305,7 +311,7 @@ public sealed class LaborCampSystem : EntitySystem
         if (!force && _timing.CurTime < ent.Comp.NextSay)
             return;
 
-        ent.Comp.NextSay = _timing.CurTime + TimeSpan.FromSeconds(2);
+        ent.Comp.NextSay = _timing.CurTime + ent.Comp.SayDelay;
         _chat.TrySendInGameICMessage(ent, message, InGameICChatType.Speak, ChatTransmitRange.Normal, ignoreActionBlocker: true);
     }
 

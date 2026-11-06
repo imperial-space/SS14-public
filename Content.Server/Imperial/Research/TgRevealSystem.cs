@@ -21,6 +21,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Radio;
 
 namespace Content.Server.Imperial.Research;
 
@@ -45,6 +46,8 @@ public sealed class TgRevealSystem : EntitySystem
 
     private static readonly SoundSpecifier UploadSound = new SoundPathSpecifier("/Audio/Machines/terminal_insert_disc.ogg");
     private static readonly SoundSpecifier GrindSound = new SoundPathSpecifier("/Audio/Machines/blender.ogg");
+
+    private static readonly ProtoId<RadioChannelPrototype> ScienceRadioChannel = "Science";
 
     public override void Initialize()
     {
@@ -128,7 +131,7 @@ public sealed class TgRevealSystem : EntitySystem
         _research.AddTechnology(server.Value, tech);
         _audio.PlayPvs(UploadSound, target);
         _popup.PopupEntity(Loc.GetString("tg-bepis-disk-uploaded", ("node", NodeName(node))), args.User, args.User);
-        _radio.SendRadioMessage(server.Value, Loc.GetString("tg-bepis-disk-radio", ("node", NodeName(node))), "Science", server.Value);
+        _radio.SendRadioMessage(server.Value, Loc.GetString("tg-bepis-disk-radio", ("node", NodeName(node))), ScienceRadioChannel, server.Value);
         QueueDel(ent);
     }
 
@@ -226,7 +229,7 @@ public sealed class TgRevealSystem : EntitySystem
         _popup.PopupEntity(message, ent);
 
         if ((revealed.Count > 0 || points > 0) && server != null)
-            _radio.SendRadioMessage(server.Value, message, "Science", server.Value);
+            _radio.SendRadioMessage(server.Value, message, ScienceRadioChannel, server.Value);
     }
 
     private bool Matches(TgRevealRulePrototype rule, EntityUid item)

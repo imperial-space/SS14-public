@@ -1,5 +1,6 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
+using Content.Shared.FixedPoint;
 
 namespace Content.Shared.Imperial.Fishing;
 
@@ -87,4 +88,19 @@ public sealed partial class ImperialAquariumComponent : Component
 
     [ViewVariables]
     public float SummedSize;
+
+    [DataField]
+    public TimeSpan InteractUsingDelay = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan StartAdmireDelay = TimeSpan.FromSeconds(5);
+
+    [DataField]
+    public FixedPoint2 SmashQuantity = 30;
+
+    [DataField]
+    public int RepairDoAfterAmount = 2;
+
+    [DataField]
+    public float ElectrogenesisRange = 5f;
 }

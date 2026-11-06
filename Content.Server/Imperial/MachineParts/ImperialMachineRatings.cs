@@ -25,7 +25,7 @@ public sealed class ImperialMachineRatings
     /// <summary>Средний уровень деталей этого типа; без таких деталей — 1.</summary>
     public float Avg(ImperialStockPartType type)
     {
-        return Tiers.TryGetValue(type, out var list) && list.Count > 0 ? (float) list.Average() : 1f;
+        return Tiers.TryGetValue(type, out var list) && list.Count > 0 ? (float)list.Average() : 1f;
     }
 
     /// <summary>Сумма уровней деталей этого типа (как цикл по component_parts в TG); без таких деталей — fallback.</summary>

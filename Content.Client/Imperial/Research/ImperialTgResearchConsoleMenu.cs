@@ -544,7 +544,7 @@ public sealed class ImperialTgResearchConsoleMenu : FancyWindow
         {
             var progress = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, Margin = new Thickness(0, 0, 0, 8) };
             var req = reqPts;
-            var (pointsBar, setPoints) = BarWithSetter(req == 0 ? 1f : Math.Min(1f, (float) _points / req),
+            var (pointsBar, setPoints) = BarWithSetter(req == 0 ? 1f : Math.Min(1f, (float)_points / req),
                 Loc.GetString("imperial-techweb-progress-points", ("have", Math.Min(req, _points)), ("need", req)));
             progress.AddChild(pointsBar);
             var builtCanUnlock = canUnlock;
@@ -553,17 +553,17 @@ public sealed class ImperialTgResearchConsoleMenu : FancyWindow
                 if ((node.Tier == 1 && node.ExperimentsDone && _points >= req) != builtCanUnlock)
                     return true;
 
-                setPoints(req == 0 ? 1f : Math.Min(1f, (float) _points / req),
+                setPoints(req == 0 ? 1f : Math.Min(1f, (float)_points / req),
                     Loc.GetString("imperial-techweb-progress-points", ("have", Math.Min(req, _points)), ("need", req)));
                 return false;
             });
             if (node.Prereqs.Count > 0)
-                progress.AddChild(Bar((float) techcompl / node.Prereqs.Count,
+                progress.AddChild(Bar((float)techcompl / node.Prereqs.Count,
                     Loc.GetString("imperial-techweb-progress-tech", ("done", techcompl), ("count", node.Prereqs.Count))));
             if (node.Required.Count > 0)
             {
                 var done = node.Required.Count(IsExperimentDone);
-                progress.AddChild(Bar((float) done / node.Required.Count,
+                progress.AddChild(Bar((float)done / node.Required.Count,
                     Loc.GetString("imperial-techweb-progress-exp", ("done", done), ("count", node.Required.Count))));
             }
             body.AddChild(progress);
@@ -883,7 +883,8 @@ public sealed class ImperialTgResearchConsoleMenu : FancyWindow
             bar.BackgroundStyleBoxOverride = new StyleBoxFlat { BackgroundColor = color.WithAlpha(0.2f), BorderColor = color, BorderThickness = new Thickness(1) };
             bar.ForegroundStyleBoxOverride = new StyleBoxFlat { BackgroundColor = color.WithAlpha(0.7f) };
             label.Text = t;
-        });
+        }
+        );
     }
 
     private static Control Bar(float value, string text, float minWidth = 0)

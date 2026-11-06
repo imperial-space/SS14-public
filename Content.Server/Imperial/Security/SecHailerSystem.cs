@@ -182,7 +182,7 @@ public sealed class SecHailerSystem : EntitySystem
                 _ => "first",
             };
             _popup.PopupEntity(Loc.GetString($"sec-hailer-restrictor-{position}"), args.User, args.User);
-            ent.Comp.Aggression = (HailerAggression) ((int) ent.Comp.Aggression % 3 + 1);
+            ent.Comp.Aggression = (HailerAggression)((int)ent.Comp.Aggression % 3 + 1);
             return;
         }
 

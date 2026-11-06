@@ -23,7 +23,7 @@ public sealed partial class ImperialTgProjectileEffectsComponent : Component
 
     /// <summary>Подсветка цели (Flare), секунды.</summary>
     [DataField]
-    public float GlowTime;
+    public TimeSpan GlowTime;
 
     [DataField]
     public Color GlowColor = Color.FromHex("#ff9933");

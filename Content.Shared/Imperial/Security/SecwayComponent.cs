@@ -30,4 +30,19 @@ public sealed partial class SecwayComponent : Component
     /// <summary>Мотор заведён: седок на месте, ключ в замке, труба чистая.</summary>
     [ViewVariables]
     public bool EngineRunning;
+
+    [DataField]
+    public TimeSpan InteractUsingDelay = TimeSpan.FromSeconds(3);
+
+    [DataField]
+    public TimeSpan VerbsDelay = TimeSpan.FromSeconds(6);
+
+    [DataField]
+    public TimeSpan StallMessageDelay = TimeSpan.FromSeconds(0.75);
+
+    [DataField]
+    public TimeSpan SmokeDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public float UpdateChance = 0.1f;
 }

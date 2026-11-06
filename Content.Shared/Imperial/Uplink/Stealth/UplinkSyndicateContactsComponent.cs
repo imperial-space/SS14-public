@@ -7,4 +7,8 @@ namespace Content.Shared.Imperial.Uplink.Stealth;
 
 /// <summary>Контактные линзы Синдиката: защита от вспышек.</summary>
 [RegisterComponent]
-public sealed partial class UplinkSyndicateContactsComponent : Component;
+public sealed partial class UplinkSyndicateContactsComponent : Component
+{
+    [DataField]
+    public TimeSpan ContactsUseDelay = TimeSpan.FromSeconds(3);
+}

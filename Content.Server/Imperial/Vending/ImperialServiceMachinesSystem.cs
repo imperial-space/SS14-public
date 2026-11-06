@@ -301,10 +301,10 @@ public sealed class ImperialServiceMachinesSystem : EntitySystem
                     continue;
 
                 // Рядом — затягивается внутрь, дальше — подтягивается на шаг.
-                if (_transform.InRange(Transform(dish).Coordinates, coords, 1.5f))
+                if (_transform.InRange(Transform(dish).Coordinates, coords, drive.UpdateRange))
                     Store(ent, dish);
                 else
-                    _throwing.TryThrow(dish, coords, 3f, playSound: false);
+                    _throwing.TryThrow(dish, coords, drive.UpdateBaseThrowSpeed, playSound: false);
             }
         }
     }

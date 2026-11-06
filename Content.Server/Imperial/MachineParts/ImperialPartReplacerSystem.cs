@@ -137,7 +137,7 @@ public sealed class ImperialPartReplacerSystem : EntitySystem
             if (count == 0)
                 continue;
 
-            EntityUid toStore = installed;
+            var toStore = installed;
             if (count < stack.Count)
             {
                 if (_stack.Split((installed, stack), count, Transform(machine).Coordinates) is not { } split)
@@ -286,6 +286,6 @@ public sealed class ImperialPartReplacerSystem : EntitySystem
             return;
         }
 
-        _audio.PlayPvs(_random.Prob(0.01f) ? PshoomRareSound : PshoomSound, rped);
+        _audio.PlayPvs(_random.Prob(rped.Comp.PlayEffectChance) ? PshoomRareSound : PshoomSound, rped);
     }
 }

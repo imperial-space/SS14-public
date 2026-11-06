@@ -92,7 +92,7 @@ public static class ImperialFishing
     /// <summary>GET_FISH_WEIGHT_RANK.</summary>
     public static int GetWeightRank(float weight)
     {
-        return Math.Max((int) MathF.Round(1 + MathF.Log2(MathF.Max(weight / WeightForceDivisor, 1))), 1);
+        return Math.Max((int)MathF.Round(1 + MathF.Log2(MathF.Max(weight / WeightForceDivisor, 1))), 1);
     }
 
     /// <summary>GET_FISH_SLOWDOWN.</summary>

@@ -11,7 +11,7 @@ namespace Content.Shared.Imperial.Research.Items;
 public sealed partial class ImperialGibberComponent : Component
 {
     [DataField]
-    public float GibTime = 10f;
+    public TimeSpan GibTime = TimeSpan.FromSeconds(10f);
 
     [DataField]
     public EntProtoId DefaultMeat = "FoodMeat";

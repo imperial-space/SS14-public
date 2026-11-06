@@ -14,4 +14,16 @@ public sealed partial class UplinkDeniabilityImplantComponent : Component
 
     [ViewVariables]
     public TimeSpan? DetonateAt;
+
+    [DataField]
+    public TimeSpan DetonateDelay = TimeSpan.FromSeconds(10);
+
+    [DataField]
+    public float UpdateImplantsTotalIntensity = 120f;
+
+    [DataField]
+    public float UpdateImplantsSlope = 5f;
+
+    [DataField]
+    public float UpdateImplantsMaxTileIntensity = 15f;
 }

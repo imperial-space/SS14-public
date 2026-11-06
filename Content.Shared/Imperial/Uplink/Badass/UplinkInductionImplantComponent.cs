@@ -7,4 +7,11 @@ namespace Content.Shared.Imperial.Uplink.Badass;
 
 /// <summary>Имплант вступления (implant/nuclear_operative): делает антагониста ядерным оперативником.</summary>
 [RegisterComponent]
-public sealed partial class UplinkInductionImplantComponent : Component;
+public sealed partial class UplinkInductionImplantComponent : Component
+{
+    [DataField]
+    public float InductionImplantedAmount = 2f;
+
+    [DataField]
+    public float InductionImplantedAmount2 = 15f;
+}

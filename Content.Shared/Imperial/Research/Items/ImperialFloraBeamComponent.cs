@@ -12,4 +12,7 @@ public sealed partial class ImperialFloraBeamComponent : Component
 {
     [DataField]
     public ImperialFloraMode Mode;
+
+    [DataField]
+    public float FloraHitYieldChance = 0.3f;
 }

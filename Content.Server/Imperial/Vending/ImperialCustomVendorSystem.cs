@@ -263,7 +263,7 @@ public sealed class ImperialCustomVendorSystem : EntitySystem
         {
             foreach (var item in Storage(ent).ContainedEntities.ToList())
                 QueueDel(item);
-            _explosion.QueueExplosion(_transform.GetMapCoordinates(ent), "Default", 30, 3, 10, ent, 0);
+            _explosion.QueueExplosion(_transform.GetMapCoordinates(ent), "Default", ent.Comp.DeconstructedTotalIntensity, ent.Comp.DeconstructedSlope, ent.Comp.DeconstructedMaxTileIntensity, ent, 0);
             return;
         }
 

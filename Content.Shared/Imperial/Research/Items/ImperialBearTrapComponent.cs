@@ -20,5 +20,5 @@ public sealed partial class ImperialBearTrapComponent : Component
     public float Damage = 20f;
 
     [DataField]
-    public float ArmTime = 2f;
+    public TimeSpan ArmTime = TimeSpan.FromSeconds(2f);
 }

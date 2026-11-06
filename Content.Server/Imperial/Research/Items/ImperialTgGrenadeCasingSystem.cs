@@ -63,7 +63,7 @@ public sealed class ImperialTgGrenadeCasingSystem : EntitySystem
             }
 
             if (TryComp<TimerTriggerComponent>(ent, out _))
-                _schedule.Schedule(TimeSpan.FromSeconds(comp.ReleaseDelay), () =>
+                _schedule.Schedule(comp.ReleaseDelay, () =>
                 {
                     if (!TerminatingOrDeleted(ent) && ent.Comp.Stash.Count > 0)
                         _trigger.ActivateTimerTrigger(ent.Owner);

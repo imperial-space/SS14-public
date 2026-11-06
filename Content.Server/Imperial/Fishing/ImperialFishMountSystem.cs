@@ -47,6 +47,8 @@ public sealed class ImperialFishMountSystem : EntitySystem
 
     private static readonly ProtoId<LocalizedDatasetPrototype> FluffCatchersDataset = "ImperialImperialFishMountSystemFluffCatchers";
 
+    private static readonly EntProtoId Ash = "Ash";
+
     private static string[] FluffCatchers => ImperialLocalizedLists.Get(FluffCatchersDataset);
 
     private sealed class SavedTrophy
@@ -112,7 +114,7 @@ public sealed class ImperialFishMountSystem : EntitySystem
         }
 
         _popup.PopupEntity(Loc.GetString("imperial-fish-mount-mounting"), ent, args.User);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(3), new ImperialFishMountAddDoAfterEvent(), ent, ent, args.Used)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.InteractUsingDelay, new ImperialFishMountAddDoAfterEvent(), ent, ent, args.Used)
         {
             BreakOnMove = true,
             NeedHand = true,
@@ -202,7 +204,7 @@ public sealed class ImperialFishMountSystem : EntitySystem
         {
             var name = Name(fish);
             QueueDel(fish);
-            Spawn("Ash", Transform(ent).Coordinates);
+            Spawn(Ash, Transform(ent).Coordinates);
             _popup.PopupEntity(Loc.GetString("imperial-fish-mount-dust", ("fish", name)), ent, PopupType.SmallCaution);
             ent.Comp.PersistenceLoaded = false;
             UpdateVisuals(ent);

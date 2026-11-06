@@ -45,6 +45,10 @@ public sealed partial class QuantumServerSystem
     private static readonly TimeSpan BorderCheck = TimeSpan.FromSeconds(0.1);
     private TimeSpan _nextBorderCheck;
 
+    private static readonly EntProtoId BulletRocket = "BulletRocket";
+
+    private const float NetguardianRocketsSpeed = 20f;
+
     private void InitializeThreats()
     {
         SubscribeLocalEvent<QuantumServerComponent, GotEmaggedEvent>(OnServerEmagged);
@@ -104,7 +108,7 @@ public sealed partial class QuantumServerSystem
         if (!TerminatingOrDeleted(spawner.Target))
         {
             _transform.SetCoordinates(ent, Transform(spawner.Target).Coordinates);
-            Spawn("EffectSparks", Transform(spawner.Target).Coordinates);
+            Spawn(EffectSparks, Transform(spawner.Target).Coordinates);
             QueueDel(spawner.Target);
         }
 
@@ -154,7 +158,7 @@ public sealed partial class QuantumServerSystem
         if (args.NewMobState != MobState.Dead || !ent.Comp.OnStation)
             return;
 
-        Spawn("EffectSparks", Transform(ent).Coordinates);
+        Spawn(EffectSparks, Transform(ent).Coordinates);
         QueueDel(ent);
     }
 
@@ -333,8 +337,8 @@ public sealed partial class QuantumServerSystem
         for (var i = -1; i <= 1; i++)
         {
             var angle = new Angle(direction).Degrees + i * 15;
-            var rocket = Spawn("BulletRocket", from);
-            _gun.ShootProjectile(rocket, Angle.FromDegrees(angle).ToVec(), System.Numerics.Vector2.Zero, user, user, 20f);
+            var rocket = Spawn(BulletRocket, from);
+            _gun.ShootProjectile(rocket, Angle.FromDegrees(angle).ToVec(), System.Numerics.Vector2.Zero, user, user, NetguardianRocketsSpeed);
         }
     }
 

@@ -24,4 +24,7 @@ public sealed partial class ImperialIvBagComponent : Component
 
     [ViewVariables]
     public TimeSpan NextDrip;
+
+    [DataField]
+    public TimeSpan DripDelay = TimeSpan.FromSeconds(1);
 }

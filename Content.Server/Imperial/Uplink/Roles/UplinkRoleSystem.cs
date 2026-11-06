@@ -46,6 +46,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Uplink.Roles;
 
@@ -90,6 +91,11 @@ public sealed partial class UplinkRoleSystem : EntitySystem
     private static readonly SoundSpecifier BeepSound = new SoundPathSpecifier("/Audio/Machines/Nuke/general_beep.ogg");
 
     private const string BureaucraticErrorListing = "ImperialUplinkBureaucraticError";
+
+    private static readonly ProtoId<DamageTypePrototype> PiercingDamageType = "Piercing";
+
+    private static readonly EntProtoId WallInvisible = "WallInvisible";
+    private static readonly EntProtoId ImperialMimeFingerGun = "ImperialMimeFingerGun";
 
     public override void Initialize()
     {
@@ -233,7 +239,7 @@ public sealed partial class UplinkRoleSystem : EntitySystem
         }
 
         _popup.PopupEntity(Loc.GetString("uplink-clownpin-explode", ("gun", ent.Owner)), args.User, PopupType.LargeCaution);
-        _explosion.QueueExplosion(_transform.GetMapCoordinates(ent), "Default", 30f, 6f, 6f, ent, canCreateVacuum: false);
+        _explosion.QueueExplosion(_transform.GetMapCoordinates(ent), "Default", ent.Comp.ClownPinnedShotTotalIntensity, ent.Comp.ClownPinnedShotSlope, ent.Comp.ClownPinnedShotMaxTileIntensity, ent, canCreateVacuum: false);
         QueueDel(ent);
     }
 
@@ -245,7 +251,7 @@ public sealed partial class UplinkRoleSystem : EntitySystem
 
         args.Cancel();
         var damage = new DamageSpecifier();
-        damage.DamageDict["Piercing"] = ent.Comp.Damage;
+        damage.DamageDict[PiercingDamageType] = ent.Comp.Damage;
         _damageable.TryChangeDamage(args.User, damage, origin: args.User);
         _audio.PlayPvs(RevolverSound, ent);
         _popup.PopupEntity(Loc.GetString("uplink-reverse-revolver", ("user", args.User)), args.User, PopupType.LargeCaution);
@@ -268,7 +274,7 @@ public sealed partial class UplinkRoleSystem : EntitySystem
         }
 
         _popup.PopupEntity(Loc.GetString("uplink-beartrap-forcing", ("user", args.User), ("target", target)), target, PopupType.MediumCaution);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(3), new UplinkBearTrapForceDoAfterEvent(), ent, target: target, used: ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.BearTrapInteractDelay, new UplinkBearTrapForceDoAfterEvent(), ent, target: target, used: ent)
         {
             BreakOnMove = true,
             NeedHand = true,
@@ -303,7 +309,7 @@ public sealed partial class UplinkRoleSystem : EntitySystem
             Act = () =>
             {
                 _popup.PopupEntity(Loc.GetString("uplink-beartrap-struggle"), user, user, PopupType.Medium);
-                _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(2), new UplinkBearTrapStruggleDoAfterEvent(), ent, used: ent)
+                _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, ent.Comp.BearTrapVerbsDelay, new UplinkBearTrapStruggleDoAfterEvent(), ent, used: ent)
                 {
                     BreakOnMove = true,
                 });
@@ -341,8 +347,7 @@ public sealed partial class UplinkRoleSystem : EntitySystem
         }
 
         _popup.PopupEntity(Loc.GetString("uplink-beartrap-snap", ("target", victim)), victim, PopupType.LargeCaution);
-        var damage = new DamageSpecifier();
-        damage.DamageDict["Slash"] = 400;
+        var damage = new DamageSpecifier(ent.Comp.SnapTrapDamage);
         _damageable.TryChangeDamage(victim, damage, true);
     }
 
@@ -361,7 +366,7 @@ public sealed partial class UplinkRoleSystem : EntitySystem
         if (length < 1f)
             return;
 
-        _throwing.TryThrow(args.Target, dir * ((length - 1f) / length), 10f, shooter, recoil: false);
+        _throwing.TryThrow(args.Target, dir * ((length - 1f) / length), ent.Comp.HookHitBaseThrowSpeed, shooter, recoil: false);
         _popup.PopupEntity(Loc.GetString("uplink-hook-snag", ("target", args.Target)), args.Target, PopupType.MediumCaution);
     }
 
@@ -416,7 +421,7 @@ public sealed partial class UplinkRoleSystem : EntitySystem
             return;
         }
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(10), new UplinkBrainwashDoAfterEvent(), ent, target: target, used: ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.BrainwashInteractDelay, new UplinkBrainwashDoAfterEvent(), ent, target: target, used: ent)
         {
             BreakOnMove = true,
             NeedHand = true,
@@ -462,7 +467,7 @@ public sealed partial class UplinkRoleSystem : EntitySystem
             return;
         }
 
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(10), new UplinkPlasticSurgeryDoAfterEvent(), ent, target: target, used: ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.SurgeryInteractDelay, new UplinkPlasticSurgeryDoAfterEvent(), ent, target: target, used: ent)
         {
             BreakOnMove = true,
             NeedHand = true,
@@ -545,7 +550,7 @@ public sealed partial class UplinkRoleSystem : EntitySystem
         var center = xform.Coordinates.Offset(dir);
         for (var i = -1; i <= 1; i++)
         {
-            Spawn("WallInvisible", center.Offset(side * i).SnapToGrid(EntityManager, _mapManager));
+            Spawn(WallInvisible, center.Offset(side * i).SnapToGrid(EntityManager, _mapManager));
         }
 
         _popup.PopupEntity(Loc.GetString("uplink-mimery-wall", ("user", user)), user, PopupType.Small);
@@ -558,7 +563,7 @@ public sealed partial class UplinkRoleSystem : EntitySystem
         if (args.Handled)
             return;
 
-        var gun = Spawn("ImperialMimeFingerGun", Transform(args.Performer).Coordinates);
+        var gun = Spawn(ImperialMimeFingerGun, Transform(args.Performer).Coordinates);
         if (!_hands.TryPickupAnyHand(args.Performer, gun))
         {
             QueueDel(gun);
@@ -643,7 +648,7 @@ public sealed partial class UplinkRoleSystem : EntitySystem
 
         args.Handled = true;
         ent.Comp.Asker = args.User;
-        ent.Comp.AnswerAt = _timing.CurTime + TimeSpan.FromSeconds(5);
+        ent.Comp.AnswerAt = _timing.CurTime + ent.Comp.AnswerDelay;
         _popup.PopupEntity(Loc.GetString("uplink-eightball-shake"), ent, PopupType.Small);
     }
 

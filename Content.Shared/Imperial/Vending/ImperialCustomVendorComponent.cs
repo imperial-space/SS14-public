@@ -28,4 +28,13 @@ public sealed partial class ImperialCustomVendorComponent : Component
     /// <summary>Цены вложенных предметов.</summary>
     [DataField, AutoNetworkedField]
     public Dictionary<NetEntity, int> Prices = new();
+
+    [DataField]
+    public float DeconstructedTotalIntensity = 30f;
+
+    [DataField]
+    public float DeconstructedSlope = 3f;
+
+    [DataField]
+    public float DeconstructedMaxTileIntensity = 10f;
 }

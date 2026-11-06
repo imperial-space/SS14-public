@@ -26,4 +26,10 @@ public sealed partial class ImperialExpressConsoleComponent : Component
 
     [ViewVariables]
     public TimeSpan NextLaunch;
+
+    [DataField]
+    public TimeSpan LaunchDelay = TimeSpan.FromSeconds(10);
+
+    [DataField]
+    public TimeSpan LaunchDelay2 = TimeSpan.FromSeconds(5);
 }

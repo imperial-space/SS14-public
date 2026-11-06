@@ -211,25 +211,25 @@ public sealed class ImperialFishingBaitSystem : EntitySystem
         switch (lure)
         {
             case ImperialLureKind.Minnow:
-            {
-                var intermediate = ImperialFishing.SizeSmallMax + (ImperialFishing.SizeNormalMax - ImperialFishing.SizeSmallMax);
-                return size >= ImperialFishing.SizeTinyMax * 0.5f && size <= intermediate && !HasAny("Vegan", "PickyEater", "Nocturnal", "Heavy");
-            }
+                {
+                    var intermediate = ImperialFishing.SizeSmallMax + (ImperialFishing.SizeNormalMax - ImperialFishing.SizeSmallMax);
+                    return size >= ImperialFishing.SizeTinyMax * 0.5f && size <= intermediate && !HasAny("Vegan", "PickyEater", "Nocturnal", "Heavy");
+                }
             case ImperialLureKind.Plug:
                 return size > ImperialFishing.SizeSmallMax && !HasAny("Vegan", "PickyEater", "Nocturnal", "Heavy");
             case ImperialLureKind.Dropping:
-            {
-                foreach (var sourceId in new[] { "ImperialFishSourceToilet", "ImperialFishSourceMoistureTrap" })
                 {
-                    if (_proto.TryIndex<ImperialFishSourcePrototype>(sourceId, out var source) && source.Table.ContainsKey(fishProto))
+                    foreach (var sourceId in new[] { "ImperialFishSourceToilet", "ImperialFishSourceMoistureTrap" })
+                    {
+                        if (_proto.TryIndex<ImperialFishSourcePrototype>(sourceId, out var source) && source.Table.ContainsKey(fishProto))
+                            return true;
+                    }
+
+                    if (fish.FavoriteBait.Any(id => (id.FoodTypes & (ImperialFoodTypes.Junkfood | ImperialFoodTypes.Gross | ImperialFoodTypes.Toxic)) != 0))
                         return true;
+
+                    return fish.Beauty <= -500;
                 }
-
-                if (fish.FavoriteBait.Any(id => (id.FoodTypes & (ImperialFoodTypes.Junkfood | ImperialFoodTypes.Gross | ImperialFoodTypes.Toxic)) != 0))
-                    return true;
-
-                return fish.Beauty <= -500;
-            }
             case ImperialLureKind.Spoon:
                 return size >= ImperialFishing.SizeTinyMax + 1 && size <= ImperialFishing.SizeNormalMax
                        && !HasAny("Vegan", "PickyEater", "Nocturnal", "Heavy") && (freshish || amphibiousAir);

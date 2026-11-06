@@ -71,4 +71,13 @@ public sealed partial class ImperialFishingRodComponent : Component
 
     [ViewVariables]
     public TimeSpan NextCast;
+
+    [DataField]
+    public TimeSpan CastDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public TimeSpan RodUseInHandDelay = TimeSpan.FromSeconds(3);
+
+    [DataField]
+    public float ReelDoAfterRange = 1.5f;
 }

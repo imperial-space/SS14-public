@@ -39,4 +39,10 @@ public sealed partial class StrobeShieldComponent : Component
 
     [ViewVariables]
     public TimeSpan? FlashingUntil;
+
+    [DataField]
+    public TimeSpan FlashingDelay = TimeSpan.FromSeconds(0.5);
+
+    [DataField]
+    public TimeSpan ShieldInteractUsingDelay = TimeSpan.FromSeconds(2);
 }

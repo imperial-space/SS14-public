@@ -45,4 +45,13 @@ public sealed partial class AssaultPodComponent : Component
     /// <summary>Место посадки, отмеченное меткой за 5 с до касания.</summary>
     [ViewVariables]
     public Robust.Shared.Map.EntityCoordinates? LandingSpot;
+
+    [DataField]
+    public TimeSpan StageDelay = TimeSpan.FromSeconds(5);
+
+    [DataField]
+    public float CrushLandingSiteRange = 0.75f;
+
+    [DataField]
+    public float CrushLandingSiteRange2 = 0.5f;
 }

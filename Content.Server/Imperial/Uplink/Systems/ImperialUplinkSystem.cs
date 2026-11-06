@@ -274,7 +274,7 @@ public sealed class ImperialUplinkSystem : EntitySystem
             if (cost >= 20)
                 discount *= 0.5f;
 
-            var newCost = Math.Max((int) MathF.Floor(cost * (1f - discount) + 0.5f), 1);
+            var newCost = Math.Max((int)MathF.Floor(cost * (1f - discount) + 0.5f), 1);
             if (newCost >= cost)
                 continue;
 
@@ -283,7 +283,7 @@ public sealed class ImperialUplinkSystem : EntitySystem
                 ListingId = listing.ID,
                 Category = saleCategory,
                 Reduction = cost - newCost,
-                Percent = (int) MathF.Floor((cost - newCost) * 100f / cost + 0.5f),
+                Percent = (int)MathF.Floor((cost - newCost) * 100f / cost + 0.5f),
                 Limited = limited,
             });
         }

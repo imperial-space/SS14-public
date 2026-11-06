@@ -11,4 +11,10 @@ public sealed partial class UplinkSyndicateDetonatorComponent : Component
 {
     [ViewVariables]
     public TimeSpan ReadyAt;
+
+    [DataField]
+    public TimeSpan ReadyDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public TimeSpan DetonatorUseDelay = TimeSpan.FromSeconds(5);
 }

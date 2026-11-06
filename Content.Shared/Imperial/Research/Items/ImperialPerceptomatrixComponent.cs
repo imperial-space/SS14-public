@@ -17,5 +17,5 @@ public sealed partial class ImperialPerceptomatrixComponent : Component
     public EntityUid? ActionEntity;
 
     [DataField]
-    public float Duration = 30f;
+    public TimeSpan Duration = TimeSpan.FromSeconds(30f);
 }

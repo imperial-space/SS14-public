@@ -305,7 +305,7 @@ public sealed class UplinkBadassSystem : EntitySystem
 
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString("uplink-poster-placing"), args.User, args.User);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(2), new UplinkPosterPlaceDoAfterEvent(), ent, wall, ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.PosterAfterInteractDelay, new UplinkPosterPlaceDoAfterEvent(), ent, wall, ent)
         {
             BreakOnMove = true,
             NeedHand = true,
@@ -496,7 +496,7 @@ public sealed class UplinkBadassSystem : EntitySystem
 
         if (stage == UplinkRuneStage.Complete)
         {
-            ent.Comp.RemovableAt = _timing.CurTime + TimeSpan.FromMinutes(5);
+            ent.Comp.RemovableAt = _timing.CurTime + ent.Comp.RemovableDelay;
             _stepTrigger.SetActive(ent, true);
         }
     }
@@ -637,11 +637,11 @@ public sealed class UplinkBadassSystem : EntitySystem
     private void OnSurplusDamaged(Entity<UplinkSurplusCrateComponent> ent, ref DamageChangedEvent args)
     {
         if (!ent.Comp.United || ent.Comp.Unlocked || !args.DamageIncreased || args.DamageDelta == null
-            || args.DamageDelta.GetTotal() < 1 || !_random.Prob(0.25f))
+            || args.DamageDelta.GetTotal() < 1 || !_random.Prob(ent.Comp.SurplusDamagedChance))
             return;
 
         _popup.PopupEntity(Loc.GetString("uplink-syndicrate-tamper"), ent, PopupType.LargeCaution);
-        _explosion.QueueExplosion(_transform.GetMapCoordinates(ent), "Default", 30f, 5f, 10f, ent);
+        _explosion.QueueExplosion(_transform.GetMapCoordinates(ent), "Default", ent.Comp.SurplusDamagedTotalIntensity, ent.Comp.SurplusDamagedSlope, ent.Comp.SurplusDamagedMaxTileIntensity, ent);
         QueueDel(ent);
     }
 
@@ -659,14 +659,14 @@ public sealed class UplinkBadassSystem : EntitySystem
         if (HasComp<NukeOperativeComponent>(target))
         {
             _popup.PopupEntity(Loc.GetString("uplink-induction-already"), target, target, PopupType.MediumCaution);
-            AddToxin(target, 2);
+            AddToxin(target, ent.Comp.InductionImplantedAmount);
             return;
         }
 
         if (!_roles.MindIsAntagonist(mindId))
         {
             _popup.PopupEntity(Loc.GetString("uplink-induction-nothing"), target, target, PopupType.MediumCaution);
-            AddToxin(target, 15);
+            AddToxin(target, ent.Comp.InductionImplantedAmount2);
             return;
         }
 

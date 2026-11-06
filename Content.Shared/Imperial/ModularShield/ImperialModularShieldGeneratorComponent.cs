@@ -47,4 +47,7 @@ public sealed partial class ImperialModularShieldGeneratorComponent : Component
     [ViewVariables] public List<EntityUid> DeployedShields = new();
     [ViewVariables] public HashSet<EntityUid> ConnectedModules = new();
     [ViewVariables] public TimeSpan? FinishFieldAt;
+
+    [DataField]
+    public TimeSpan FinishFieldDelay = TimeSpan.FromSeconds(2);
 }

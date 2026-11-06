@@ -69,6 +69,10 @@ public sealed partial class ImperialFishingSystem : EntitySystem
     /// <summary>GLOB.fishing_challenges_by_user.</summary>
     private readonly Dictionary<EntityUid, ImperialFishingChallenge> _challenges = new();
 
+    private static readonly TimeSpan StartBaitingPhaseDelay = TimeSpan.FromSeconds(15);
+    private static readonly TimeSpan AutoStartDelay = TimeSpan.FromSeconds(0.2);
+    private static readonly TimeSpan ClickWaitDelay = TimeSpan.FromSeconds(0.25);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -111,7 +115,7 @@ public sealed partial class ImperialFishingSystem : EntitySystem
     {
         var range = Math.Max(rod.Comp.CastRange + (rod.LineComp?.CastRange ?? 0), 1);
         if (user != null && _hands.IsHolding(user.Value, rod.Rod))
-            range += (int) MathF.Round(_skill.GetLevel(user.Value) * 0.3f);
+            range += (int)MathF.Round(_skill.GetLevel(user.Value) * 0.3f);
 
         return Math.Max(range, 1);
     }
@@ -413,7 +417,7 @@ public sealed partial class ImperialFishingSystem : EntitySystem
             return;
         }
 
-        ent.Comp.NextCast = _timing.CurTime + TimeSpan.FromSeconds(1);
+        ent.Comp.NextCast = _timing.CurTime + ent.Comp.CastDelay;
 
         // Леска не проходит сквозь стены, кроме блюспейс-лески.
         if (!rod.LineHas(ImperialFishingLineTraits.Phase)
@@ -527,7 +531,7 @@ public sealed partial class ImperialFishingSystem : EntitySystem
         var step = delta.Length() <= 1 ? delta : Vector2.Normalize(delta);
         var newPos = hookedPos + step;
         if (!rod.LineHas(ImperialFishingLineTraits.Phase)
-            && !_interaction.InRangeUnobstructed(hooked, new MapCoordinates(newPos, Transform(hooked).MapID), 1.5f, CollisionGroup.Impassable))
+            && !_interaction.InRangeUnobstructed(hooked, new MapCoordinates(newPos, Transform(hooked).MapID), ent.Comp.ReelDoAfterRange, CollisionGroup.Impassable))
         {
             _popup.PopupEntity(Loc.GetString("imperial-fishing-wont-budge", ("target", hooked)), user, user);
             return;
@@ -673,7 +677,7 @@ public sealed partial class ImperialFishingSystem : EntitySystem
         else
         {
             wait = TimeSpan.FromSeconds(_random.NextFloat(challenge.WaitTimeRange.X, challenge.WaitTimeRange.Y));
-            if ((challenge.SpecialEffects & ImperialFishingRules.Autoreel) != 0 && wait >= TimeSpan.FromSeconds(15))
+            if ((challenge.SpecialEffects & ImperialFishingRules.Autoreel) != 0 && wait >= StartBaitingPhaseDelay)
                 wait = TimeSpan.FromSeconds(Math.Max(wait.TotalSeconds - 7.5, 15));
         }
 
@@ -731,7 +735,7 @@ public sealed partial class ImperialFishingSystem : EntitySystem
         }
 
         if ((challenge.SpecialEffects & ImperialFishingRules.Autoreel) != 0)
-            challenge.AutoStartAt = _timing.CurTime + TimeSpan.FromSeconds(0.2);
+            challenge.AutoStartAt = _timing.CurTime + AutoStartDelay;
 
         challenge.NextPhaseAt = _timing.CurTime + ImperialFishingChallenge.BitingTimeWindow;
         SetFloat(challenge, true, true);
@@ -770,7 +774,7 @@ public sealed partial class ImperialFishingSystem : EntitySystem
         switch (challenge.Phase)
         {
             case ImperialFishingPhase.Wait:
-                if (_timing.CurTime < challenge.LastBaitingClick + TimeSpan.FromSeconds(0.25))
+                if (_timing.CurTime < challenge.LastBaitingClick + ClickWaitDelay)
                     return;
 
                 if (challenge.SpinFrequency != null)
@@ -828,7 +832,7 @@ public sealed partial class ImperialFishingSystem : EntitySystem
             return;
         }
 
-        var doAfter = new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(3), new ImperialFishingStopDoAfterEvent(), ent, used: ent)
+        var doAfter = new DoAfterArgs(EntityManager, args.User, ent.Comp.RodUseInHandDelay, new ImperialFishingStopDoAfterEvent(), ent, used: ent)
         {
             BreakOnMove = false,
         };

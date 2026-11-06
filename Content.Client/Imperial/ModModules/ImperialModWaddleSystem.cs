@@ -29,7 +29,7 @@ public sealed class ImperialModWaddleSystem : EntitySystem
     {
         base.FrameUpdate(frameTime);
 
-        var time = (float) _timing.RealTime.TotalSeconds;
+        var time = (float)_timing.RealTime.TotalSeconds;
         var query = EntityQueryEnumerator<ImperialModWaddleComponent, SpriteComponent, PhysicsComponent>();
         while (query.MoveNext(out var uid, out var waddle, out var sprite, out var physics))
         {

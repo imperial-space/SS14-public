@@ -20,4 +20,7 @@ public sealed partial class GulagConsoleComponent : Component
 
     [ViewVariables]
     public EntityUid? Beacon;
+
+    [DataField]
+    public TimeSpan TeleportDuration = TimeSpan.FromSeconds(4);
 }

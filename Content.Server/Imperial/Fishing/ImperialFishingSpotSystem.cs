@@ -25,6 +25,9 @@ public sealed class ImperialFishingSpotSystem : EntitySystem
     /// <summary>Кэш: прототип сущности → источник (или null).</summary>
     private readonly Dictionary<string, string?> _byProto = new();
 
+    private const float FindSpotRange = 0.45f;
+    private const float GetSafeSpotRange = 0.3f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -95,7 +98,7 @@ public sealed class ImperialFishingSpotSystem : EntitySystem
         }
 
         var mapCoords = _transform.ToMapCoordinates(coords);
-        foreach (var uid in _lookup.GetEntitiesInRange(mapCoords, 0.45f, LookupFlags.Static | LookupFlags.Dynamic | LookupFlags.Sundries))
+        foreach (var uid in _lookup.GetEntitiesInRange(mapCoords, FindSpotRange, LookupFlags.Static | LookupFlags.Dynamic | LookupFlags.Sundries))
         {
             if (GetSource(uid) is { } found)
             {
@@ -115,7 +118,7 @@ public sealed class ImperialFishingSpotSystem : EntitySystem
         if (MetaData(fish).EntityPrototype is not { } fishProto)
             return null;
 
-        foreach (var uid in _lookup.GetEntitiesInRange(Transform(fish).Coordinates, 0.3f, LookupFlags.Static | LookupFlags.Sundries))
+        foreach (var uid in _lookup.GetEntitiesInRange(Transform(fish).Coordinates, GetSafeSpotRange, LookupFlags.Static | LookupFlags.Sundries))
         {
             if (uid == fish.Owner || GetSource(uid) is not { } source)
                 continue;

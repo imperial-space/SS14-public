@@ -79,6 +79,8 @@ public sealed class ImperialExpressConsoleSystem : EntitySystem
 
     private TimeSpan _nextUiUpdate;
 
+    private static readonly TimeSpan UiUpdateDelay = TimeSpan.FromSeconds(1);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -217,7 +219,7 @@ public sealed class ImperialExpressConsoleSystem : EntitySystem
 
         var printMessage = printReady
             ? Loc.GetString("imperial-express-print", ("cost", BeaconCost))
-            : Loc.GetString("imperial-express-print-cooldown", ("cost", BeaconCost), ("time", (int) Math.Ceiling((comp.NextBeaconPrint - now).TotalSeconds)));
+            : Loc.GetString("imperial-express-print-cooldown", ("cost", BeaconCost), ("time", (int)Math.Ceiling((comp.NextBeaconPrint - now).TotalSeconds)));
 
         var discount = Discount(ent);
         var packs = Packs(ent).Select(p => new ImperialExpressPack
@@ -226,7 +228,7 @@ public sealed class ImperialExpressConsoleSystem : EntitySystem
             Name = p.Name,
             Description = p.Description,
             Category = Loc.GetString(p.Category),
-            Cost = (int) (p.Cost * discount),
+            Cost = (int)(p.Cost * discount),
         }).OrderBy(p => p.Category).ThenBy(p => p.Name).ToList();
 
         _ui.SetUiState(ent.Owner, ImperialExpressConsoleUiKey.Key, new ImperialExpressConsoleState(
@@ -311,9 +313,9 @@ public sealed class ImperialExpressConsoleSystem : EntitySystem
             return;
 
         var emagged = Emagged(ent);
-        var cost = (int) (pack.Cost * Discount(ent));
+        var cost = (int)(pack.Cost * Discount(ent));
         var bluespace = ent.Comp.BluespacePods || pack.ID == EmptyPodPack;
-        EntProtoId? cargo = pack.ID == EmptyPodPack ? (EntProtoId?) null : pack.Product;
+        var cargo = pack.ID == EmptyPodPack ? (EntProtoId?)null : pack.Product;
 
         List<EntityCoordinates> tiles;
         if (emagged || ent.Comp.Beacon == null || !ent.Comp.UsingBeacon)
@@ -330,7 +332,7 @@ public sealed class ImperialExpressConsoleSystem : EntitySystem
         if (emagged)
         {
             // Взлом: до MAX_EMAG_ROCKETS капсул в случайные места станции, пока хватает денег.
-            ent.Comp.NextLaunch = now + TimeSpan.FromSeconds(10);
+            ent.Comp.NextLaunch = now + ent.Comp.LaunchDelay;
             for (var i = 0; i < MaxEmagRockets && tiles.Count > 0; i++)
             {
                 if (!TryPay(ent, cost))
@@ -362,7 +364,7 @@ public sealed class ImperialExpressConsoleSystem : EntitySystem
         if (ent.Comp.Beacon is { } launched && ent.Comp.UsingBeacon && TryComp<ImperialSupplyPodBeaconComponent>(launched, out var launchedComp))
             Launched((launched, launchedComp));
 
-        ent.Comp.NextLaunch = now + TimeSpan.FromSeconds(5);
+        ent.Comp.NextLaunch = now + ent.Comp.LaunchDelay2;
         _pods.Launch(target, cargo, bluespace);
         UpdateUi(ent);
     }
@@ -445,7 +447,7 @@ public sealed class ImperialExpressConsoleSystem : EntitySystem
 
         if (_timing.CurTime >= _nextUiUpdate)
         {
-            _nextUiUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
+            _nextUiUpdate = _timing.CurTime + UiUpdateDelay;
             var consoles = EntityQueryEnumerator<ImperialExpressConsoleComponent>();
             while (consoles.MoveNext(out var uid, out var comp))
             {
@@ -515,7 +517,7 @@ public sealed class ImperialExpressConsoleSystem : EntitySystem
     /// <summary>update_status(SP_LAUNCH): зелёный огонёк, пока капсула летит (3.3 с).</summary>
     private void Launched(Entity<ImperialSupplyPodBeaconComponent> beacon)
     {
-        beacon.Comp.LaunchedUntil = _timing.CurTime + TimeSpan.FromSeconds(3.3);
+        beacon.Comp.LaunchedUntil = _timing.CurTime + beacon.Comp.LaunchedDelay;
         _audio.PlayPvs(LaunchSound, beacon);
         _audio.PlayPvs(WarningSound, beacon);
         UpdateBeaconVisuals(beacon);

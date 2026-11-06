@@ -283,36 +283,36 @@ public sealed class ImperialFishBreedingSystem : EntitySystem
                     return false;
                 break;
             case "chainsawfish":
-            {
-                var goldfish = AverageOf("ImperialFishGoldfish");
-                if (fish.Size < goldfish.Size * 2 || fish.Weight < goldfish.Weight * 2 || !_traits.Has(fish, "Territorial"))
-                    return false;
-                break;
-            }
+                {
+                    var goldfish = AverageOf("ImperialFishGoldfish");
+                    if (fish.Size < goldfish.Size * 2 || fish.Weight < goldfish.Weight * 2 || !_traits.Has(fish, "Territorial"))
+                        return false;
+                    break;
+                }
             case "armoredPike":
                 if (!_traits.Has(fish, "Stinger"))
                     return false;
                 break;
             case "moonfish":
-            {
-                // Как в TG: размер сравнивается и со средним размером, и со средним весом.
-                var dwarf = AverageOf("ImperialFishMoonfishDwarf");
-                var moon = AverageOf("ImperialFishMoonfish");
-                if (fish.Size < dwarf.Size * 1.5f && fish.Size < dwarf.Weight * 1.5f)
-                    return false;
-                if (mate is { } mm && mm.Comp.Size < moon.Size * 1.3f && mm.Comp.Size < moon.Weight * 1.3f)
-                    return false;
-                break;
-            }
+                {
+                    // Как в TG: размер сравнивается и со средним размером, и со средним весом.
+                    var dwarf = AverageOf("ImperialFishMoonfishDwarf");
+                    var moon = AverageOf("ImperialFishMoonfish");
+                    if (fish.Size < dwarf.Size * 1.5f && fish.Size < dwarf.Weight * 1.5f)
+                        return false;
+                    if (mate is { } mm && mm.Comp.Size < moon.Size * 1.3f && mm.Comp.Size < moon.Weight * 1.3f)
+                        return false;
+                    break;
+                }
             case "dwarfMoonfish":
-            {
-                var moon = AverageOf("ImperialFishMoonfish");
-                if (fish.Size > moon.Size * 0.66f && fish.Size > moon.Weight * 0.66f)
-                    return false;
-                if (mate is { } mm && mm.Comp.Size > moon.Size * 0.7f && mm.Comp.Size > moon.Weight * 0.7f)
-                    return false;
-                break;
-            }
+                {
+                    var moon = AverageOf("ImperialFishMoonfish");
+                    if (fish.Size > moon.Size * 0.66f && fish.Size > moon.Weight * 0.66f)
+                        return false;
+                    if (mate is { } mm && mm.Comp.Size > moon.Size * 0.7f && mm.Comp.Size > moon.Weight * 0.7f)
+                        return false;
+                    break;
+                }
         }
 
         if (aquarium == null || !TryComp<ImperialAquariumComponent>(aquarium, out var aquariumComp))
@@ -429,6 +429,7 @@ public sealed class ImperialFishBreedingSystem : EntitySystem
         }
 
         ent.Comp.Traits = traits.Select(t => new ProtoId<ImperialFishTraitPrototype>(t)).ToList();
+        Dirty(ent);
         _traits.ApplyAll(ent);
     }
 

@@ -164,7 +164,7 @@ public sealed class ImperialVendingBoundUserInterface(EntityUid owner, Enum uiKe
         {
             price = prices!.PriceOf(entry.Type, entry.ID);
             if (!premium && price > 0 && prices.Department is { } department && _state?.Department == department.Id)
-                price = Math.Max((int) Math.Round(price * 0.2f), 1);
+                price = Math.Max((int)Math.Round(price * 0.2f), 1);
         }
 
         return new Product(entry, name, category, price);

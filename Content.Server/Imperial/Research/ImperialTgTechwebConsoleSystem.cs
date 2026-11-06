@@ -17,6 +17,7 @@ using Content.Shared.Research.Prototypes;
 using Content.Shared.Verbs;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.Cargo.Prototypes;
 
 namespace Content.Server.Imperial.Research;
 
@@ -47,6 +48,10 @@ public sealed class ImperialTgTechwebConsoleSystem : EntitySystem
     private static readonly TimeSpan EmpDuration = TimeSpan.FromSeconds(60);
 
     private TimeSpan _nextUpdate;
+
+    private static readonly ProtoId<CargoAccountPrototype> ScienceCargoAccount = "Science";
+
+    private static readonly TimeSpan UpdateDelay = TimeSpan.FromSeconds(1);
 
     public override void Initialize()
     {
@@ -113,7 +118,7 @@ public sealed class ImperialTgTechwebConsoleSystem : EntitySystem
 
         // get_that_dosh: премия на счёт отдела науки.
         if (_station.GetOwningStation(console) is { } station && tech.Cost > 0)
-            _cargo.UpdateBankAccount(station, TechwebBounty, "Science");
+            _cargo.UpdateBankAccount(station, TechwebBounty, ScienceCargoAccount);
 
         Say(console, Loc.GetString("imperial-techweb-say-researched", ("node", Loc.GetString(tech.Name))));
         Announce(console, tech);
@@ -252,7 +257,7 @@ public sealed class ImperialTgTechwebConsoleSystem : EntitySystem
 
         if (_timing.CurTime < _nextUpdate)
             return;
-        _nextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
+        _nextUpdate = _timing.CurTime + UpdateDelay;
 
         // SSresearch.fire: сеть получает доход, пока работает её сервер.
         var servers = EntityQueryEnumerator<ResearchServerComponent>();

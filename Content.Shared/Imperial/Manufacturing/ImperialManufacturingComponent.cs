@@ -71,5 +71,17 @@ public sealed partial class ImperialManufacturingComponent : Component
 
     #region Ящик
     [DataField] public int MaxStuff = 16;
+
+    [DataField]
+    public TimeSpan SendNoMobsDuration = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public TimeSpan InteractUsingDelay = TimeSpan.FromSeconds(5);
+
+    [DataField]
+    public TimeSpan InteractHandDelay = TimeSpan.FromSeconds(1.25);
+
+    [DataField]
+    public int BoxDisassembleAmount = 10;
     #endregion
 }

@@ -11,4 +11,10 @@ public sealed partial class UplinkPaperPlaneComponent : Component
 {
     [DataField]
     public float HitProbability = 1f;
+
+    [DataField]
+    public TimeSpan PaperPlaneHitDuration = TimeSpan.FromSeconds(12);
+
+    [DataField]
+    public TimeSpan PaperPlaneHitDuration2 = TimeSpan.FromSeconds(4);
 }

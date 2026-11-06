@@ -37,7 +37,7 @@ public sealed class ImperialFishingVisualsSystem : EntitySystem
     public override void FrameUpdate(float frameTime)
     {
         base.FrameUpdate(frameTime);
-        var time = (float) _timing.RealTime.TotalSeconds;
+        var time = (float)_timing.RealTime.TotalSeconds;
 
         var floats = EntityQueryEnumerator<ImperialFishingFloatComponent, SpriteComponent>();
         while (floats.MoveNext(out var uid, out var comp, out var sprite))
@@ -115,7 +115,7 @@ public sealed class ImperialFishingVisualsSystem : EntitySystem
         }
 
         // Через 5 секунд неподвижности рыба тает до почти полной прозрачности.
-        var still = time - (float) last.Time - 5f;
+        var still = time - (float)last.Time - 5f;
         if (still <= 0)
             return;
 

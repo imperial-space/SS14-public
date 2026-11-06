@@ -17,4 +17,7 @@ public sealed partial class ImperialModPathfinderImplantComponent : Component
 
     [ViewVariables]
     public TimeSpan? ArriveAt;
+
+    [DataField]
+    public TimeSpan ArriveDelay = TimeSpan.FromSeconds(5);
 }

@@ -11,7 +11,7 @@ namespace Content.Shared.Imperial.Research.Items;
 public sealed partial class ImperialMedToolComponent : Component
 {
     [DataField]
-    public float Delay = 5f;
+    public TimeSpan Delay = TimeSpan.FromSeconds(5f);
 
     /// <summary>blood_filter: сколько единиц чужих реагентов убрать из крови.</summary>
     [DataField]

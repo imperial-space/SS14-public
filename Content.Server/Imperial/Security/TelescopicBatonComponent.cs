@@ -36,4 +36,7 @@ public sealed partial class TelescopicBatonComponent : Component
 
     [ViewVariables]
     public TimeSpan NextStun;
+
+    [DataField]
+    public float MeleeHitChance = 0.5f;
 }

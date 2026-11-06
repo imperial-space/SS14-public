@@ -6,6 +6,8 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
+using Content.Shared.Imperial.Achievements;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Fishing;
 
@@ -18,6 +20,13 @@ public sealed partial class ImperialFishingSystem
 
     /// <summary>EXPERIENCE_MALUS_MULT.</summary>
     private const float ExperienceMalusMult = 0.08f;
+
+    private static readonly ProtoId<ImperialAchievementPrototype> ImperialAchievementLegendaryFisher = "ImperialAchievementLegendaryFisher";
+    private static readonly ProtoId<ImperialAchievementPrototype> ImperialAchievementFishScore = "ImperialAchievementFishScore";
+
+    private static readonly TimeSpan AutoSpinDelay = TimeSpan.FromSeconds(0.2);
+
+    private const float StartMinigameChance = 0.3f;
 
     /// <summary>get_difficulty(): false — сложность обнулилась, рыба поймана сразу.</summary>
     private bool GetDifficulty(ImperialFishingChallenge challenge)
@@ -98,7 +107,7 @@ public sealed partial class ImperialFishingSystem
             challenge.Mover.LongJumpVelocityLimit += _random.Next(-100, 101) + _random.Next(-100, 101);
             foreach (var effect in new[] { ImperialFishingRules.Antigrav, ImperialFishingRules.Flip, ImperialFishingRules.Camo })
             {
-                if (_random.Prob(0.3f))
+                if (_random.Prob(StartMinigameChance))
                     challenge.SpecialEffects |= effect;
             }
         }
@@ -112,8 +121,8 @@ public sealed partial class ImperialFishingSystem
 
         var rod = Comp<ImperialFishingRodComponent>(challenge.Rod);
         challenge.BaitHeight = challenge.InitialBaitHeight * rod.BaitHeightMult;
-        challenge.FishPosition = _random.Next(0, (int) ((ImperialFishing.MinigameArea - challenge.FishHeight) * 0.8f) + 1);
-        var diffDist = 100 + (int) challenge.Difficulty;
+        challenge.FishPosition = _random.Next(0, (int)((ImperialFishing.MinigameArea - challenge.FishHeight) * 0.8f) + 1);
+        var diffDist = 100 + (int)challenge.Difficulty;
         challenge.BaitPosition = Math.Clamp(MathF.Round(challenge.FishPosition + _random.Next(-diffDist, diffDist + 1) - challenge.BaitHeight * 0.5f),
             0, ImperialFishing.MinigameArea - challenge.BaitHeight);
 
@@ -306,7 +315,7 @@ public sealed partial class ImperialFishingSystem
                 SetFloat(challenge, false, true);
                 _audio.PlayPvs(PingSound, challenge.Float, AudioParams.Default.WithVolume(-6));
                 if ((challenge.SpecialEffects & ImperialFishingRules.Autoreel) != 0)
-                    challenge.AutoSpinAt = _timing.CurTime + TimeSpan.FromSeconds(0.2);
+                    challenge.AutoSpinAt = _timing.CurTime + AutoSpinDelay;
             }
 
             if (challenge.AutoSpinAt is { } autoSpin && _timing.CurTime >= autoSpin)
@@ -389,7 +398,7 @@ public sealed partial class ImperialFishingSystem
         if (!TerminatingOrDeleted(challenge.User) && challenge.Phase == ImperialFishingPhase.Minigame
             && (challenge.SpecialEffects & ImperialFishingRules.NoExp) == 0)
         {
-            var seconds = (float) (_timing.CurTime - challenge.StartTime).TotalSeconds;
+            var seconds = (float)(_timing.CurTime - challenge.StartTime).TotalSeconds;
             var malus = _skill.GetLevel(challenge.User) - challenge.Difficulty * 0.1f;
             if (malus > 0)
                 challenge.ExperienceMultiplier /= 1 + malus * ExperienceMalusMult;
@@ -428,7 +437,7 @@ public sealed partial class ImperialFishingSystem
         {
             if ((challenge.SpecialEffects & ImperialFishingRules.Kill) != 0)
             {
-                var damage = MathF.Ceiling((float) (_timing.CurTime - challenge.StartTime).TotalSeconds * KillHookDamagePerSecond);
+                var damage = MathF.Ceiling((float)(_timing.CurTime - challenge.StartTime).TotalSeconds * KillHookDamagePerSecond);
                 _fish.DamageFish((caught, fish), damage);
             }
 

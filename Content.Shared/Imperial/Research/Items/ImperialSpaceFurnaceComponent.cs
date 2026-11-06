@@ -18,4 +18,7 @@ public sealed partial class ImperialSpaceFurnaceComponent : Component
 
     [ViewVariables]
     public TimeSpan NextUpdate;
+
+    [DataField]
+    public TimeSpan UpdateDelay = TimeSpan.FromSeconds(2);
 }

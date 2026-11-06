@@ -63,6 +63,9 @@ public sealed class ImperialFishingPortalSystem : EntitySystem
 
     private TimeSpan _nextUpdate;
 
+    private static readonly TimeSpan UpdateDelay = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan FishAfterInteractDelay = TimeSpan.FromSeconds(3);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -254,7 +257,7 @@ public sealed class ImperialFishingPortalSystem : EntitySystem
     private void OnRefreshParts(Entity<ImperialFishingPortalComponent> ent, ref Content.Server.Imperial.MachineParts.ImperialMachinePartsRefreshEvent args)
     {
         var bins = args.Ratings.Sum(Content.Shared.Imperial.MachineParts.ImperialStockPartType.MatterBin, 2);
-        ent.Comp.MaxSpots = Math.Max(1, (int) MathF.Ceiling(bins * 0.5f));
+        ent.Comp.MaxSpots = Math.Max(1, (int)MathF.Ceiling(bins * 0.5f));
         ent.Comp.LongRange = args.Ratings.Max(Content.Shared.Imperial.MachineParts.ImperialStockPartType.Capacitor) >= 3;
 
         if (ent.Comp.Linked.Count <= ent.Comp.MaxSpots)
@@ -306,7 +309,7 @@ public sealed class ImperialFishingPortalSystem : EntitySystem
         if (_timing.CurTime < _nextUpdate)
             return;
 
-        _nextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
+        _nextUpdate = _timing.CurTime + UpdateDelay;
         var query = EntityQueryEnumerator<ImperialFishingPortalComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
@@ -436,7 +439,7 @@ public sealed class ImperialFishingPortalSystem : EntitySystem
 
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString("imperial-fish-releasing"), target, args.User);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(3), new ImperialFishReleaseDoAfterEvent(), ent, target, ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, FishAfterInteractDelay, new ImperialFishReleaseDoAfterEvent(), ent, target, ent)
         {
             BreakOnMove = true,
             NeedHand = true,

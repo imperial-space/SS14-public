@@ -24,4 +24,7 @@ public sealed partial class ImperialFishMountComponent : Component
 
     [ViewVariables]
     public bool Loaded;
+
+    [DataField]
+    public TimeSpan InteractUsingDelay = TimeSpan.FromSeconds(3);
 }

@@ -75,6 +75,11 @@ public sealed class SecurityBountySystem : EntitySystem
     private TimeSpan _nextTrack;
     private TimeSpan _nextUi;
 
+    private static readonly TimeSpan TrackDelay = TimeSpan.FromSeconds(0.2);
+    private static readonly TimeSpan UiDelay = TimeSpan.FromSeconds(1);
+
+    private const float GenerateBountiesChance = 0.75f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -106,13 +111,13 @@ public sealed class SecurityBountySystem : EntitySystem
 
         if (now >= _nextTrack)
         {
-            _nextTrack = now + TimeSpan.FromSeconds(0.2);
+            _nextTrack = now + TrackDelay;
             TrackPatrols();
         }
 
         if (now >= _nextUi)
         {
-            _nextUi = now + TimeSpan.FromSeconds(1);
+            _nextUi = now + UiDelay;
             var query = EntityQueryEnumerator<SecurityBountyConsoleComponent>();
             while (query.MoveNext(out var uid, out var console))
             {
@@ -135,7 +140,7 @@ public sealed class SecurityBountySystem : EntitySystem
         if (ent.Comp.Pad is { } pad && !TerminatingOrDeleted(pad))
             return pad;
 
-        foreach (var found in _lookup.GetEntitiesInRange<SecurityBountyPadComponent>(Transform(ent).Coordinates, 4f))
+        foreach (var found in _lookup.GetEntitiesInRange<SecurityBountyPadComponent>(Transform(ent).Coordinates, ent.Comp.FindPadRange))
         {
             ent.Comp.Pad = found;
             return found;
@@ -213,12 +218,12 @@ public sealed class SecurityBountySystem : EntitySystem
         var now = _timing.CurTime;
         if ((card.Comp.Current != null || card.Comp.Options != null) && now < card.Comp.NextRequest)
         {
-            var left = (int) Math.Ceiling((card.Comp.NextRequest - now).TotalSeconds);
+            var left = (int)Math.Ceiling((card.Comp.NextRequest - now).TotalSeconds);
             _popup.PopupEntity(Loc.GetString("security-bounty-cooldown", ("seconds", left)), ent, user);
             return;
         }
 
-        card.Comp.NextRequest = now + TimeSpan.FromMinutes(5);
+        card.Comp.NextRequest = now + ent.Comp.RequestDelay;
         card.Comp.Options = GenerateBounties(ent, 3);
         card.Comp.Current = null;
     }
@@ -230,7 +235,7 @@ public sealed class SecurityBountySystem : EntitySystem
         var attempts = 20;
         while (list.Count < count && attempts-- > 0)
         {
-            SecurityBounty? bounty = _random.Prob(0.75f) ? CreatePatrol(console) : CreateContraband();
+            var bounty = _random.Prob(GenerateBountiesChance) ? CreatePatrol(console) : CreateContraband();
             if (bounty == null)
                 continue;
 
@@ -285,7 +290,7 @@ public sealed class SecurityBountySystem : EntitySystem
         var (beaconUid, area) = _random.Pick(beacons);
         var center = Transform(beaconUid).Coordinates;
         var total = CountFloor(grid, mapGrid, center);
-        var needed = (int) Math.Round(total * _random.Next(4, 9) * 0.1);
+        var needed = (int)Math.Round(total * _random.Next(4, 9) * 0.1);
 
         // can_get(): только задания, ради которых стоит идти.
         if (needed < 20)
@@ -370,7 +375,7 @@ public sealed class SecurityBountySystem : EntitySystem
         if (FindPad(ent) is not { } pad)
             return Enumerable.Empty<EntityUid>();
 
-        return _lookup.GetEntitiesInRange(Transform(pad).Coordinates, 0.45f, LookupFlags.Dynamic | LookupFlags.Sundries)
+        return _lookup.GetEntitiesInRange(Transform(pad).Coordinates, ent.Comp.GetPadItemsRange, LookupFlags.Dynamic | LookupFlags.Sundries)
             .Where(e => e != pad && HasComp<ItemComponent>(e));
     }
 
@@ -394,7 +399,7 @@ public sealed class SecurityBountySystem : EntitySystem
         }
 
         ent.Comp.StatusReport = Loc.GetString("security-bounty-status-sending");
-        ent.Comp.SendAt = _timing.CurTime + TimeSpan.FromSeconds(3);
+        ent.Comp.SendAt = _timing.CurTime + ent.Comp.SendDelay;
     }
 
     /// <summary>send(): забрать цели с пада и засчитать выполненное задание.</summary>
@@ -426,7 +431,7 @@ public sealed class SecurityBountySystem : EntitySystem
 
         // Выполнено: доля СБ сразу на счёт отдела, куб — карго.
         if (_station.GetOwningStation(ent) is { } station && TryComp<StationBankAccountComponent>(station, out var bank))
-            _cargo.UpdateBankAccount((station, bank), (int) (bounty.Reward * CivSplit), SecurityAccount);
+            _cargo.UpdateBankAccount((station, bank), (int)(bounty.Reward * CivSplit), SecurityAccount);
 
         var padCoords = FindPad(ent) is { } pad ? Transform(pad).Coordinates : Transform(ent).Coordinates;
         var cube = Spawn(CubeProto, padCoords);
@@ -434,7 +439,7 @@ public sealed class SecurityBountySystem : EntitySystem
         EnsureComp<StaticPriceComponent>(cube).Price = bounty.Reward;
 
         card.Comp.Current = null;
-        ent.Comp.StatusReport = status + Loc.GetString("security-bounty-status-complete", ("share", (int) (bounty.Reward * CivSplit)));
+        ent.Comp.StatusReport = status + Loc.GetString("security-bounty-status-complete", ("share", (int)(bounty.Reward * CivSplit)));
         _audio.PlayPvs(YesSound, ent);
     }
 
@@ -473,7 +478,7 @@ public sealed class SecurityBountySystem : EntitySystem
         {
             Name = bounty.Name,
             Description = bounty.Description,
-            Reward = (int) (bounty.Reward * CivSplit),
+            Reward = (int)(bounty.Reward * CivSplit),
         };
     }
 
@@ -530,7 +535,7 @@ public sealed class SecurityBountySystem : EntitySystem
 
     private void AlertProgress(EntityUid holder, SecurityBounty bounty)
     {
-        var percent = (float) bounty.Progress / bounty.NeededCoverage;
+        var percent = (float)bounty.Progress / bounty.NeededCoverage;
         string? message = null;
 
         if (bounty.Alerted == 0)

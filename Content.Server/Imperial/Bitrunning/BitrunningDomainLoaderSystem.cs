@@ -79,28 +79,28 @@ public sealed class BitrunningDomainLoaderSystem : EntitySystem
         using var reader = new StreamReader(stream);
         var yaml = new YamlStream();
         yaml.Load(reader);
-        var root = (YamlMappingNode) yaml.Documents[0].RootNode;
+        var root = (YamlMappingNode)yaml.Documents[0].RootNode;
 
         var layout = new DomainLayout
         {
-            Width = int.Parse(((YamlScalarNode) root["width"]).Value!, CultureInfo.InvariantCulture),
-            Height = int.Parse(((YamlScalarNode) root["height"]).Value!, CultureInfo.InvariantCulture),
-            KeyLength = int.Parse(((YamlScalarNode) root["keyLength"]).Value!, CultureInfo.InvariantCulture),
+            Width = int.Parse(((YamlScalarNode)root["width"]).Value!, CultureInfo.InvariantCulture),
+            Height = int.Parse(((YamlScalarNode)root["height"]).Value!, CultureInfo.InvariantCulture),
+            KeyLength = int.Parse(((YamlScalarNode)root["keyLength"]).Value!, CultureInfo.InvariantCulture),
         };
 
-        foreach (var (keyNode, valueNode) in (YamlMappingNode) root["legend"])
+        foreach (var (keyNode, valueNode) in (YamlMappingNode)root["legend"])
         {
             var cell = new LayoutCell();
-            var map = (YamlMappingNode) valueNode;
+            var map = (YamlMappingNode)valueNode;
             if (map.Children.TryGetValue(new YamlScalarNode("t"), out var t))
-                cell.Tile = ((YamlScalarNode) t).Value!;
+                cell.Tile = ((YamlScalarNode)t).Value!;
             if (map.Children.TryGetValue(new YamlScalarNode("a"), out var a))
-                cell.Area = ((YamlScalarNode) a).Value!;
+                cell.Area = ((YamlScalarNode)a).Value!;
             if (map.Children.TryGetValue(new YamlScalarNode("e"), out var e))
             {
-                foreach (var entNode in (YamlSequenceNode) e)
+                foreach (var entNode in (YamlSequenceNode)e)
                 {
-                    var raw = ((YamlScalarNode) entNode).Value!;
+                    var raw = ((YamlScalarNode)entNode).Value!;
                     var at = raw.IndexOf('@');
                     cell.Entities.Add(at < 0
                         ? (raw, 0f)
@@ -108,12 +108,12 @@ public sealed class BitrunningDomainLoaderSystem : EntitySystem
                 }
             }
 
-            layout.Legend[((YamlScalarNode) keyNode).Value!] = cell;
+            layout.Legend[((YamlScalarNode)keyNode).Value!] = cell;
         }
 
-        foreach (var row in (YamlSequenceNode) root["rows"])
+        foreach (var row in (YamlSequenceNode)root["rows"])
         {
-            layout.Rows.Add(((YamlScalarNode) row).Value!);
+            layout.Rows.Add(((YamlScalarNode)row).Value!);
         }
 
         _cache[path] = layout;

@@ -40,6 +40,15 @@ public sealed partial class ImperialFishTraitSystem
     /// <summary>Хищники, отравившиеся токсичной рыбой.</summary>
     private readonly HashSet<EntityUid> _poisoned = new();
 
+    private static readonly ProtoId<ImperialFishTraitPrototype> HallucinogenicImperialFishTrait = "Hallucinogenic";
+    private static readonly ProtoId<ImperialFishTraitPrototype> ElectrogenesisImperialFishTrait = "Electrogenesis";
+    private static readonly EntProtoId ImperialFoodInkSac = "ImperialFoodInkSac";
+
+    private static readonly TimeSpan ElectrogenesisTime = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan InkCooldown = TimeSpan.FromSeconds(9);
+
+    private const float ElectrogenesisRange = 1.5f;
+
     private void InitializeLife()
     {
         SubscribeLocalEvent<ImperialFishComponent, MeleeHitEvent>(OnFishMeleeHit);
@@ -128,13 +137,13 @@ public sealed partial class ImperialFishTraitSystem
                 continue;
 
             // Галлюциноген готовкой разрушается.
-            if (trait == "Hallucinogenic" && ent.Comp.Cooked)
+            if (trait == HallucinogenicImperialFishTrait && ent.Comp.Cooked)
                 continue;
 
             foreach (var (reagent, amount) in proto.Reagents)
                 reagents[reagent] = reagents.GetValueOrDefault(reagent) + amount;
 
-            if (trait == "Electrogenesis")
+            if (trait == ElectrogenesisImperialFishTrait)
             {
                 reagents.Remove("Blood");
             }
@@ -197,26 +206,26 @@ public sealed partial class ImperialFishTraitSystem
 
                 case "Emulsijack":
                 case "PsychicAura":
-                {
-                    var resist = trait == "Emulsijack" ? new[] { "Emulsijack", "ToxinImmunity" } : new[] { "PsychicAura" };
-                    var emulsified = false;
-                    foreach (var victim in GetNeighbours(ent))
                     {
-                        if (resist.Any(r => Has(victim.Comp, r)))
-                            continue;
+                        var resist = trait == "Emulsijack" ? new[] { "Emulsijack", "ToxinImmunity" } : new[] { "PsychicAura" };
+                        var emulsified = false;
+                        foreach (var victim in GetNeighbours(ent))
+                        {
+                            if (resist.Any(r => Has(victim.Comp, r)))
+                                continue;
 
-                        fishSys.DamageFish(victim, 3 * dt);
-                        emulsified = true;
+                            fishSys.DamageFish(victim, 3 * dt);
+                            emulsified = true;
+                        }
+
+                        if (emulsified)
+                        {
+                            fishSys.RepairFish(ent, 3 * dt);
+                            fishSys.SateHunger(ent);
+                        }
+
+                        break;
                     }
-
-                    if (emulsified)
-                    {
-                        fishSys.RepairFish(ent, 3 * dt);
-                        fishSys.SateHunger(ent);
-                    }
-
-                    break;
-                }
 
                 case "Necrophage":
                     if (fishSys.GetHunger(fish) < 0.75f)
@@ -249,26 +258,26 @@ public sealed partial class ImperialFishTraitSystem
                     break;
 
                 case "Territorial":
-                {
-                    if (!_random.Prob(1 - MathF.Pow(0.99f, dt)))
-                        break;
-
-                    var others = GetNeighbours(ent);
-                    if (others.Count < 5)
-                        break;
-
-                    foreach (var victim in others.OrderBy(_ => _random.Next()))
                     {
-                        if (victim.Comp.Dead)
-                            continue;
+                        if (!_random.Prob(1 - MathF.Pow(0.99f, dt)))
+                            break;
 
-                        _popup.PopupEntity(Loc.GetString("imperial-fish-territorial-attack", ("fish", ent.Owner), ("victim", victim.Owner)), ent, PopupType.SmallCaution);
-                        fishSys.DamageFish(victim, MathF.Round(_random.Next(4, 21) * (fish.Size / MathF.Max(victim.Comp.Size, 1))));
+                        var others = GetNeighbours(ent);
+                        if (others.Count < 5)
+                            break;
+
+                        foreach (var victim in others.OrderBy(_ => _random.Next()))
+                        {
+                            if (victim.Comp.Dead)
+                                continue;
+
+                            _popup.PopupEntity(Loc.GetString("imperial-fish-territorial-attack", ("fish", ent.Owner), ("victim", victim.Owner)), ent, PopupType.SmallCaution);
+                            fishSys.DamageFish(victim, MathF.Round(_random.Next(4, 21) * (fish.Size / MathF.Max(victim.Comp.Size, 1))));
+                            break;
+                        }
+
                         break;
                     }
-
-                    break;
-                }
 
                 case "Anxiety":
                     if (GetNeighbours(ent, aquariumOnly: false).Count >= 3)
@@ -341,8 +350,8 @@ public sealed partial class ImperialFishTraitSystem
             return;
 
         // 1 кДж, около 5 урона: «ай!» всем рядом.
-        foreach (var mob in _lookup.GetEntitiesInRange<Content.Shared.Mobs.Components.MobStateComponent>(Transform(ent).Coordinates, 1.5f))
-            _electrocution.TryDoElectrocution(mob, ent, 5, TimeSpan.FromSeconds(1), true);
+        foreach (var mob in _lookup.GetEntitiesInRange<Content.Shared.Mobs.Components.MobStateComponent>(Transform(ent).Coordinates, ElectrogenesisRange))
+            _electrocution.TryDoElectrocution(mob, ent, 5, ElectrogenesisTime, true);
     }
 
     /// <summary>Яд жала и чернила при ударе рыбой.</summary>
@@ -364,7 +373,7 @@ public sealed partial class ImperialFishTraitSystem
             _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(target, "TemporaryBlindness", TimeSpan.FromSeconds(_random.Next(4, 9)), true);
             _popup.PopupEntity(Loc.GetString("imperial-fish-inked", ("target", target), ("fish", ent.Owner)), target, PopupType.MediumCaution);
             _audio.PlayPvs("/Audio/Effects/splat.ogg", target);
-            _inkCooldown[ent] = _timing.CurTime + TimeSpan.FromSeconds(9);
+            _inkCooldown[ent] = _timing.CurTime + InkCooldown;
         }
     }
 
@@ -397,6 +406,6 @@ public sealed partial class ImperialFishTraitSystem
     private void OnProcessed(Entity<ImperialFishComponent> ent, ref ImperialFishProcessedEvent args)
     {
         if (Has(ent.Comp, "Ink") && _proto.HasIndex<EntityPrototype>(new Robust.Shared.Prototypes.ProtoId<EntityPrototype>("ImperialFoodInkSac")))
-            Spawn("ImperialFoodInkSac", Transform(ent).Coordinates);
+            Spawn(ImperialFoodInkSac, Transform(ent).Coordinates);
     }
 }

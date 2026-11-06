@@ -63,6 +63,8 @@ public sealed partial class ImperialManufacturingSystem : EntitySystem
 
     private TimeSpan _nextBumpUpdate;
 
+    private static readonly TimeSpan BumpUpdateDelay = TimeSpan.FromSeconds(0.1);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -359,19 +361,19 @@ public sealed partial class ImperialManufacturingSystem : EntitySystem
                 Io(Turn(dir, ent.Comp.FlipSide ? 90 : -90), Orange);
                 break;
             case ImperialManufacturingKind.Router:
-            {
-                var router = new StringBuilder();
-                // Поворот самой машины меняет смещение направленных наложений на клиенте.
-                router.Append($"rot{ByondDir(dir)};");
-                foreach (var d in new[] { Direction.North, Direction.South, Direction.East, Direction.West })
                 {
-                    var variant = ent.Comp.DisabledDirs.Contains(d) ? "bl" : d == ent.Comp.InDir ? "in" : "out";
-                    router.Append($"{ByondDir(d)}:{variant};");
-                }
+                    var router = new StringBuilder();
+                    // Поворот самой машины меняет смещение направленных наложений на клиенте.
+                    router.Append($"rot{ByondDir(dir)};");
+                    foreach (var d in new[] { Direction.North, Direction.South, Direction.East, Direction.West })
+                    {
+                        var variant = ent.Comp.DisabledDirs.Contains(d) ? "bl" : d == ent.Comp.InDir ? "in" : "out";
+                        router.Append($"{ByondDir(d)}:{variant};");
+                    }
 
-                _appearance.SetData(ent, ImperialManufacturingVisuals.Router, router.ToString());
-                break;
-            }
+                    _appearance.SetData(ent, ImperialManufacturingVisuals.Router, router.ToString());
+                    break;
+                }
         }
 
         _appearance.SetData(ent, ImperialManufacturingVisuals.Io, Transform(ent).Anchored ? io.ToString() : string.Empty);
@@ -381,7 +383,7 @@ public sealed partial class ImperialManufacturingSystem : EntitySystem
     public static Direction Turn(Direction dir, int degrees)
     {
         var steps = degrees / 45;
-        return (Direction) ((((int) dir + steps) % 8 + 8) % 8);
+        return (Direction)((((int)dir + steps) % 8 + 8) % 8);
     }
 
     /// <summary>flick_overlay_view(): «состояние|секунды|направление BYOND|метка».</summary>
@@ -417,7 +419,7 @@ public sealed partial class ImperialManufacturingSystem : EntitySystem
 
         if (_timing.CurTime >= _nextBumpUpdate)
         {
-            _nextBumpUpdate = _timing.CurTime + TimeSpan.FromSeconds(0.1);
+            _nextBumpUpdate = _timing.CurTime + BumpUpdateDelay;
             ScanBumps();
         }
 

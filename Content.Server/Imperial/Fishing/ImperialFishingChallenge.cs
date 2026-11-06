@@ -152,7 +152,7 @@ public sealed class ImperialFishingChallenge
     {
         Mover?.AdjustToDifficulty();
         BaitHeight -= MathF.Round(Difficulty * BaitHeightDifficultyMalus);
-        BaitPixelHeight = (int) MathF.Round(ImperialFishing.BaitPixelHeight * (BaitHeight / 360f));
+        BaitPixelHeight = (int)MathF.Round(ImperialFishing.BaitPixelHeight * (BaitHeight / 360f));
         ExperienceMultiplier += Difficulty * ImperialFishing.SkillDifficultyExpMult;
     }
 

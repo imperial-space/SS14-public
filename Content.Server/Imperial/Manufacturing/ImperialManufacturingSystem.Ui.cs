@@ -61,25 +61,25 @@ public sealed partial class ImperialManufacturingSystem
                 ent.Comp.BusyUntil = null;
                 break;
             case SelectRecipe when ent.Comp.Kind == ImperialManufacturingKind.Crafter:
-            {
-                var valid = ent.Comp.Cooking
-                    ? _proto.HasIndex<FoodRecipePrototype>(args.Id)
-                    : CraftRecipes().Any(r => r.Id == id);
-                if (!valid || ent.Comp.Recipe == args.Id)
-                    return;
-                ent.Comp.Recipe = args.Id;
-                ent.Comp.CraftUntil = null;
-                break;
-            }
+                {
+                    var valid = ent.Comp.Cooking
+                        ? _proto.HasIndex<FoodRecipePrototype>(args.Id)
+                        : CraftRecipes().Any(r => r.Id == id);
+                    if (!valid || ent.Comp.Recipe == args.Id)
+                        return;
+                    ent.Comp.Recipe = args.Id;
+                    ent.Comp.CraftUntil = null;
+                    break;
+                }
             case SelectFilter when ent.Comp.Kind == ImperialManufacturingKind.Sorter:
-            {
-                if (ent.Comp.Filters.Count >= ent.Comp.MaxFilters || !Enum.TryParse<ImperialSorterFilterType>(args.Id, out var type))
+                {
+                    if (ent.Comp.Filters.Count >= ent.Comp.MaxFilters || !Enum.TryParse<ImperialSorterFilterType>(args.Id, out var type))
+                        return;
+                    ent.Comp.Filters.Add(new ImperialSorterFilter { Type = type, Id = ent.Comp.NextFilterId++ });
+                    UpdateSorterUi(ent);
+                    OpenSorter(ent, user);
                     return;
-                ent.Comp.Filters.Add(new ImperialSorterFilter { Type = type, Id = ent.Comp.NextFilterId++ });
-                UpdateSorterUi(ent);
-                OpenSorter(ent, user);
-                return;
-            }
+                }
             default:
                 return;
         }
@@ -192,16 +192,16 @@ public sealed partial class ImperialManufacturingSystem
                 break;
             case ImperialSorterAction.ShiftUp:
             case ImperialSorterAction.ShiftDown:
-            {
-                if (filter == null)
-                    return;
-                var count = ent.Comp.Filters.Count;
-                var index = ent.Comp.Filters.IndexOf(filter);
-                var next = ((index + (args.Action == ImperialSorterAction.ShiftUp ? -1 : 1)) % count + count) % count;
-                ent.Comp.Filters.RemoveAt(index);
-                ent.Comp.Filters.Insert(next, filter);
-                break;
-            }
+                {
+                    if (filter == null)
+                        return;
+                    var count = ent.Comp.Filters.Count;
+                    var index = ent.Comp.Filters.IndexOf(filter);
+                    var next = ((index + (args.Action == ImperialSorterAction.ShiftUp ? -1 : 1)) % count + count) % count;
+                    ent.Comp.Filters.RemoveAt(index);
+                    ent.Comp.Filters.Insert(next, filter);
+                    break;
+                }
         }
 
         UpdateSorterUi(ent);

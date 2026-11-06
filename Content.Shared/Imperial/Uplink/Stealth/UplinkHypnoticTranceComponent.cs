@@ -11,4 +11,7 @@ public sealed partial class UplinkHypnoticTranceComponent : Component
 {
     [ViewVariables]
     public TimeSpan EndTime;
+
+    [DataField]
+    public TimeSpan ReminderDelay = TimeSpan.FromSeconds(60);
 }

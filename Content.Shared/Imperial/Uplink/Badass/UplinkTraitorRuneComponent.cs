@@ -15,4 +15,7 @@ public sealed partial class UplinkTraitorRuneComponent : Component
     /// <summary>Пять минут после завершения граффити нельзя отмыть.</summary>
     [ViewVariables]
     public TimeSpan? RemovableAt;
+
+    [DataField]
+    public TimeSpan RemovableDelay = TimeSpan.FromMinutes(5);
 }

@@ -12,4 +12,7 @@ public sealed partial class ImperialSealedDoorComponent : Component
 {
     [DataField, AutoNetworkedField]
     public EntProtoId Seal = "ImperialPneumaticSeal";
+
+    [DataField]
+    public TimeSpan SealedDoorVerbsSeconds = TimeSpan.FromSeconds(4f);
 }

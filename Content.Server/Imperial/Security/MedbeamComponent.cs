@@ -58,4 +58,13 @@ public sealed partial class MedbeamComponent : Component
     /// <summary>Гул, пока луч держится.</summary>
     [ViewVariables]
     public EntityUid? LoopStream;
+
+    [DataField]
+    public float TickBeamTotalIntensity = 40f;
+
+    [DataField]
+    public float TickBeamSlope = 4f;
+
+    [DataField]
+    public float TickBeamMaxTileIntensity = 10f;
 }

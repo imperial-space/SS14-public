@@ -37,7 +37,7 @@ public sealed partial class ImperialVendingComponent : Component
     [DataField, AutoNetworkedField]
     public float Inflation = 1f;
 
-    public static string Key(InventoryType type, string id) => $"{(byte) type}:{id}";
+    public static string Key(InventoryType type, string id) => $"{(byte)type}:{id}";
 
     public int PriceOf(InventoryType type, string id)
     {
@@ -46,6 +46,6 @@ public sealed partial class ImperialVendingComponent : Component
         var basePrice = Prices.TryGetValue(Key(type, id), out var price)
             ? price
             : type == InventoryType.Regular ? DefaultPrice : ExtraPrice;
-        return Inflation == 1f ? basePrice : (int) Math.Ceiling(basePrice * Inflation);
+        return Inflation == 1f ? basePrice : (int)Math.Ceiling(basePrice * Inflation);
     }
 }

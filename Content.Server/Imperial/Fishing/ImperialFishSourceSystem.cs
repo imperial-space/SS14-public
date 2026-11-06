@@ -46,6 +46,8 @@ public sealed partial class ImperialFishSourceSystem : EntitySystem
     /// <summary>Сколько единиц каждого улова ждёт восстановления и когда.</summary>
     private readonly List<(string Source, string Reward, TimeSpan At)> _regen = new();
 
+    private static readonly TimeSpan SpawnRewardDelay = TimeSpan.FromMinutes(30);
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -80,7 +82,7 @@ public sealed partial class ImperialFishSourceSystem : EntitySystem
     {
         var counts = GetCounts(source.ID);
         var table = new Dictionary<string, float>();
-        var baseTable = source.Special == "portalRandom" ? GetRandomPortalTable() : source.Table.ToDictionary(p => p.Key, p => (float) p.Value);
+        var baseTable = source.Special == "portalRandom" ? GetRandomPortalTable() : source.Table.ToDictionary(p => p.Key, p => (float)p.Value);
         foreach (var (reward, weight) in baseTable)
         {
             if (counts.TryGetValue(reward, out var left) && left <= 0)
@@ -305,7 +307,7 @@ public sealed partial class ImperialFishSourceSystem : EntitySystem
                 return null;
 
             counts[reward] = left - 1;
-            var regen = source.CountRegen.TryGetValue(reward, out var time) ? time : TimeSpan.FromMinutes(30);
+            var regen = source.CountRegen.TryGetValue(reward, out var time) ? time : SpawnRewardDelay;
             _regen.Add((source.ID, reward, _timing.CurTime + regen));
         }
 

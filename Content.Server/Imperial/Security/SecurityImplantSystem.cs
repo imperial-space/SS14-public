@@ -12,6 +12,7 @@ using Content.Shared.UserInterface;
 using Content.Shared.Warps;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Security;
 
@@ -37,6 +38,10 @@ public sealed class SecurityImplantSystem : EntitySystem
     private readonly HashSet<EntityUid> _allowed = new();
 
     private TimeSpan _nextBeaconCheck;
+
+    private static readonly EntProtoId EffectSparks = "EffectSparks";
+
+    private static readonly TimeSpan BeaconCheckDelay = TimeSpan.FromSeconds(1);
 
     public override void Initialize()
     {
@@ -77,10 +82,10 @@ public sealed class SecurityImplantSystem : EntitySystem
             _xform.SetMapCoordinates(uid, coords);
             guard.Reverting = false;
 
-            Spawn("EffectSparks", Transform(uid).Coordinates);
+            Spawn(EffectSparks, Transform(uid).Coordinates);
             if (guard.RevertStun)
             {
-                _stun.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(5));
+                _stun.TryUpdateParalyzeDuration(uid, guard.UpdateDuration);
                 _popup.PopupEntity(Loc.GetString("security-implant-teleport-blocked"), uid, uid, PopupType.LargeCaution);
             }
             else
@@ -94,7 +99,7 @@ public sealed class SecurityImplantSystem : EntitySystem
         if (_timing.CurTime < _nextBeaconCheck)
             return;
 
-        _nextBeaconCheck = _timing.CurTime + TimeSpan.FromSeconds(1);
+        _nextBeaconCheck = _timing.CurTime + BeaconCheckDelay;
         var beacons = EntityQueryEnumerator<BeaconImplantComponent, SubdermalImplantComponent>();
         while (beacons.MoveNext(out _, out var beacon, out var implant))
         {

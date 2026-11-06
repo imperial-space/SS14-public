@@ -37,4 +37,7 @@ public sealed partial class BitrunningAvatarComponent : Component
 
     [ViewVariables]
     public bool Disconnecting;
+
+    [DataField]
+    public float AvatarDamagedChance = 0.3f;
 }

@@ -12,4 +12,7 @@ public sealed partial class ImperialAquariumUpgradeComponent : Component
 
     [DataField(required: true)]
     public string To = default!;
+
+    [DataField]
+    public TimeSpan UpgradeInteractDelay = TimeSpan.FromSeconds(5);
 }

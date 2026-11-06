@@ -28,6 +28,8 @@ public sealed class ImperialFishAnalyzerSystem : EntitySystem
 
     private TimeSpan _nextUpdate;
 
+    private static readonly TimeSpan UpdateDelay = TimeSpan.FromSeconds(1);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -65,7 +67,7 @@ public sealed class ImperialFishAnalyzerSystem : EntitySystem
         if (_timing.CurTime < _nextUpdate)
             return;
 
-        _nextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
+        _nextUpdate = _timing.CurTime + UpdateDelay;
         var query = EntityQueryEnumerator<ImperialFishAnalyzerComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
@@ -112,7 +114,7 @@ public sealed class ImperialFishAnalyzerSystem : EntitySystem
             FluidCompatible = fish.SafeFluid,
             Fluid = Loc.GetString($"imperial-aquarium-fluid-{fish.RequiredFluid.ToString().ToLowerInvariant()}"),
             SuitableTemp = fish.SafeTemperature,
-            BreedTimer = Math.Max(0, (int) (fish.BreedingWait - _timing.CurTime).TotalSeconds),
+            BreedTimer = Math.Max(0, (int)(fish.BreedingWait - _timing.CurTime).TotalSeconds),
         };
 
         if (_proto.TryIndex<ReagentPrototype>(fish.Food, out var reagent))

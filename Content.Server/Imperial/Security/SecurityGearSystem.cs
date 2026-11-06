@@ -25,6 +25,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Content.Shared.Access;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Security;
 
@@ -54,6 +56,9 @@ public sealed class SecurityGearSystem : EntitySystem
     [Dependency] private readonly SharedItemSystem _item = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+
+    private static readonly ProtoId<ItemSizePrototype> TinyItemSize = "Tiny";
+    private static readonly ProtoId<AccessLevelPrototype> SecurityAccessLevel = "Security";
 
     public override void Initialize()
     {
@@ -131,7 +136,7 @@ public sealed class SecurityGearSystem : EntitySystem
             _flash.FlashArea(ent, owner, flash.Range, flash.AoeFlashDuration, flash.SlowTo, true, flash.Probability);
 
         // flick("flashshield_flash"): полсекунды вспышки на спрайте и в руке.
-        ent.Comp.FlashingUntil = _timing.CurTime + TimeSpan.FromSeconds(0.5);
+        ent.Comp.FlashingUntil = _timing.CurTime + ent.Comp.FlashingDelay;
         _appearance.SetData(ent, StrobeShieldVisuals.Flashing, true);
         _item.SetHeldPrefix(ent, "flash");
         return true;
@@ -169,7 +174,7 @@ public sealed class SecurityGearSystem : EntitySystem
         }
 
         _popup.PopupEntity(Loc.GetString("strobe-shield-bulb-start"), args.User, args.User);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(2), new StrobeShieldBulbDoAfterEvent(),
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.ShieldInteractUsingDelay, new StrobeShieldBulbDoAfterEvent(),
             ent, ent, args.Used)
         {
             BreakOnMove = true,
@@ -250,7 +255,7 @@ public sealed class SecurityGearSystem : EntitySystem
         if (args.Container.ID != EvidenceBagComponent.ContainerId || args.Container.ContainedEntities.Count > 0)
             return;
 
-        _item.SetSize(ent, "Tiny");
+        _item.SetSize(ent, TinyItemSize);
         _meta.SetEntityDescription(ent, Loc.GetString("evidence-bag-desc-empty"));
         _appearance.SetData(ent, EvidenceBagVisuals.Filled, false);
     }
@@ -310,7 +315,7 @@ public sealed class SecurityGearSystem : EntitySystem
             return;
 
         args.Handled = true;
-        var hasAccess = TryComp<AccessComponent>(card, out var access) && access.Tags.Contains("Security");
+        var hasAccess = TryComp<AccessComponent>(card, out var access) && access.Tags.Contains(SecurityAccessLevel);
         if (!hasAccess && !ent.Comp.Emagged)
         {
             _popup.PopupEntity(Loc.GetString("holobadge-rejected", ("badge", ent.Owner)), args.User, args.User, PopupType.SmallCaution);

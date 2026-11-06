@@ -138,9 +138,9 @@ public class ImperialFishMovement
             var distanceFromBottom = Master.FishPosition;
             float? jumpLength = null;
             if (distanceFromTop >= ShortJumpMinDistance)
-                jumpLength = Random.Next((int) ShortJumpMinDistance, (int) ShortJumpMaxDistance + 1);
+                jumpLength = Random.Next((int)ShortJumpMinDistance, (int)ShortJumpMaxDistance + 1);
             if (distanceFromBottom >= ShortJumpMinDistance && (jumpLength == null || Random.Prob(0.5f)))
-                jumpLength = -Random.Next((int) ShortJumpMinDistance, (int) ShortJumpMaxDistance + 1);
+                jumpLength = -Random.Next((int)ShortJumpMinDistance, (int)ShortJumpMaxDistance + 1);
 
             TargetPosition = Math.Clamp(Master.FishPosition + (jumpLength ?? 0), 0, ImperialFishing.MinigameArea - Master.FishHeight);
             CurrentVelocityLimit = ShortJumpVelocityLimit;

@@ -16,4 +16,7 @@ public sealed partial class ImperialSupplyPodBeaconComponent : Component
 
     [ViewVariables]
     public TimeSpan? LaunchedUntil;
+
+    [DataField]
+    public TimeSpan LaunchedDelay = TimeSpan.FromSeconds(3.3);
 }

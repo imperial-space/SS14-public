@@ -160,4 +160,10 @@ public sealed partial class QuantumServerComponent : Component
     /// <summary>broadcast_toggle_cd.</summary>
     [ViewVariables]
     public TimeSpan BroadcastCooldownEnd;
+
+    [DataField]
+    public float GetAvatarDestinationRange = 0.3f;
+
+    [DataField]
+    public float ScanSacrificesRange = 1.5f;
 }

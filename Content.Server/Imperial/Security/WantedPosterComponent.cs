@@ -25,4 +25,7 @@ public sealed partial class WantedPosterComponent : Component
     /// <summary>Свёрнутый плакат (obj/item/poster/wanted) или висящий (structure/sign/poster/wanted).</summary>
     [DataField]
     public bool Rolled = true;
+
+    [DataField]
+    public TimeSpan AfterInteractDelay = TimeSpan.FromSeconds(2);
 }

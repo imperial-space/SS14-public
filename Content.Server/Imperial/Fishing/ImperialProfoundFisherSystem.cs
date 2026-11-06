@@ -13,6 +13,7 @@ using Content.Shared.Item;
 using Content.Shared.Popups;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Content.Server.Imperial.ModModules;
 
 namespace Content.Server.Imperial.Fishing;
 
@@ -26,6 +27,10 @@ public sealed class ImperialProfoundFisherSystem : EntitySystem
     [Dependency] private readonly SharedItemSystem _item = default!;
     [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly ImperialFishingSystem _fishing = default!;
+
+    private static readonly ProtoId<ItemSizePrototype> GinormousItemSize = "Ginormous";
+    private static readonly ProtoId<ItemSizePrototype> HugeItemSize = "Huge";
+    private static readonly ProtoId<ItemSizePrototype> LargeItemSize = "Large";
 
     public override void Initialize()
     {
@@ -84,11 +89,11 @@ public sealed class ImperialProfoundFisherSystem : EntitySystem
 
         var size = _item.GetSizePrototype(item.Size);
         var damage = 0;
-        if (size >= _item.GetSizePrototype("Ginormous"))
+        if (size >= _item.GetSizePrototype(GinormousItemSize))
             damage = 18;
-        else if (size >= _item.GetSizePrototype("Huge"))
+        else if (size >= _item.GetSizePrototype(HugeItemSize))
             damage = 14;
-        else if (size >= _item.GetSizePrototype("Large"))
+        else if (size >= _item.GetSizePrototype(LargeItemSize))
             damage = 10;
 
         if (damage == 0)

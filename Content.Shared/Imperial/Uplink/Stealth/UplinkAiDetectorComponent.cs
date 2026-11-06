@@ -20,4 +20,7 @@ public sealed partial class UplinkAiDetectorComponent : Component
 
     [ViewVariables]
     public TimeSpan NextCheck;
+
+    [DataField]
+    public TimeSpan CheckDelay = TimeSpan.FromSeconds(1);
 }

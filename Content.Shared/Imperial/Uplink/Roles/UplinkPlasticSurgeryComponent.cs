@@ -14,4 +14,7 @@ public sealed partial class UplinkPlasticSurgeryComponent : Component
 
     [ViewVariables]
     public string? TemplateName;
+
+    [DataField]
+    public TimeSpan SurgeryInteractDelay = TimeSpan.FromSeconds(10);
 }

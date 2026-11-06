@@ -9,4 +9,7 @@ public sealed partial class ImperialModularShieldComponent : Component
 {
     [ViewVariables]
     public EntityUid? Generator;
+
+    [DataField]
+    public float ShieldEmpAmount = 15f;
 }

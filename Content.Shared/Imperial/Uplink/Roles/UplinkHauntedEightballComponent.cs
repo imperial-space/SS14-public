@@ -14,4 +14,7 @@ public sealed partial class UplinkHauntedEightballComponent : Component
 
     [ViewVariables]
     public EntityUid? Asker;
+
+    [DataField]
+    public TimeSpan AnswerDelay = TimeSpan.FromSeconds(5);
 }

@@ -90,6 +90,9 @@ public sealed class ImperialTgServiceItemsSystem : EntitySystem
     [Dependency] private readonly ResearchSystem _research = default!;
     [Dependency] private readonly SharedEmpSystem _emp = default!;
 
+    private static readonly EntProtoId StatusEffectSeeingRainbow = "StatusEffectSeeingRainbow";
+    private static readonly EntProtoId Smoke = "Smoke";
+
     public override void Initialize()
     {
         SubscribeLocalEvent<ImperialPortaseederComponent, GetVerbsEvent<AlternativeVerb>>(OnPortaseederVerbs);
@@ -154,7 +157,7 @@ public sealed class ImperialTgServiceItemsSystem : EntitySystem
         {
             if (!furnace.Enabled || now < furnace.NextUpdate)
                 continue;
-            furnace.NextUpdate = now + TimeSpan.FromSeconds(2);
+            furnace.NextUpdate = now + furnace.UpdateDelay;
             UpdateFurnace(uid, furnace, xform);
         }
 
@@ -168,7 +171,7 @@ public sealed class ImperialTgServiceItemsSystem : EntitySystem
                 rec.PlaybackIndex = -1;
                 continue;
             }
-            rec.NextLine = now + TimeSpan.FromSeconds(2);
+            rec.NextLine = now + rec.LineDelay;
             _chat.TrySendInGameICMessage(uid, rec.Lines[rec.PlaybackIndex++], InGameICChatType.Speak, ChatTransmitRange.Normal, ignoreActionBlocker: true);
         }
 
@@ -230,7 +233,7 @@ public sealed class ImperialTgServiceItemsSystem : EntitySystem
         switch (ent.Comp.Mode)
         {
             case ImperialFloraMode.Yield:
-                if (_random.Prob(0.3f))
+                if (_random.Prob(ent.Comp.FloraHitYieldChance))
                     holder.YieldMod = Math.Min(holder.YieldMod + 1, 5);
                 break;
             case ImperialFloraMode.Mutate:
@@ -459,20 +462,20 @@ public sealed class ImperialTgServiceItemsSystem : EntitySystem
 
         var center = _map.TileIndicesFor(gridUid, grid, xform.Coordinates);
         for (var x = -furnace.Radius; x <= furnace.Radius; x++)
-        for (var y = -furnace.Radius; y <= furnace.Radius; y++)
-        {
-            var tile = center + new Vector2i(x, y);
-            var mix = _atmos.GetTileMixture(gridUid, null, tile, true);
-            if (mix == null || mix.Pressure >= Atmospherics.OneAtmosphere * 0.9f)
-                continue;
+            for (var y = -furnace.Radius; y <= furnace.Radius; y++)
+            {
+                var tile = center + new Vector2i(x, y);
+                var mix = _atmos.GetTileMixture(gridUid, null, tile, true);
+                if (mix == null || mix.Pressure >= Atmospherics.OneAtmosphere * 0.9f)
+                    continue;
 
-            // Добавляем стандартный воздух до 1 атм при 20 °C.
-            var air = new GasMixture(mix.Volume) { Temperature = Atmospherics.T20C };
-            var moles = (Atmospherics.OneAtmosphere - mix.Pressure) * mix.Volume / (Atmospherics.R * Atmospherics.T20C);
-            air.AdjustMoles(Gas.Oxygen, moles * Atmospherics.OxygenStandard);
-            air.AdjustMoles(Gas.Nitrogen, moles * Atmospherics.NitrogenStandard);
-            _atmos.Merge(mix, air);
-        }
+                // Добавляем стандартный воздух до 1 атм при 20 °C.
+                var air = new GasMixture(mix.Volume) { Temperature = Atmospherics.T20C };
+                var moles = (Atmospherics.OneAtmosphere - mix.Pressure) * mix.Volume / (Atmospherics.R * Atmospherics.T20C);
+                air.AdjustMoles(Gas.Oxygen, moles * Atmospherics.OxygenStandard);
+                air.AdjustMoles(Gas.Nitrogen, moles * Atmospherics.NitrogenStandard);
+                _atmos.Merge(mix, air);
+            }
     }
 
     #endregion
@@ -520,7 +523,7 @@ public sealed class ImperialTgServiceItemsSystem : EntitySystem
                 _polymorph.PolymorphEntity(user, new PolymorphConfiguration
                 {
                     Entity = stored,
-                    Duration = (int) ent.Comp.Duration,
+                    Duration = (int)ent.Comp.Duration.TotalSeconds,
                     Forced = false,
                     Inventory = PolymorphInventoryChange.Drop,
                     RevertOnDeath = true,
@@ -546,7 +549,7 @@ public sealed class ImperialTgServiceItemsSystem : EntitySystem
             return;
 
         args.Handled = true;
-        _status.TryAddStatusEffectDuration(args.Target, "StatusEffectSeeingRainbow", TimeSpan.FromSeconds(ent.Comp.Duration));
+        _status.TryAddStatusEffectDuration(args.Target, StatusEffectSeeingRainbow, ent.Comp.Duration);
         _popup.PopupEntity(Loc.GetString("imperial-perceptomatrix-hit"), args.Target, args.Target, Content.Shared.Popups.PopupType.MediumCaution);
     }
 
@@ -724,24 +727,23 @@ public sealed class ImperialTgServiceItemsSystem : EntitySystem
                 break;
             case ImperialExperimentType.Irradiate:
                 if (roll < 0.15f)
-                    _emp.EmpPulse(coords, 2f, 5000f, TimeSpan.FromSeconds(5));
+                    _emp.EmpPulse(coords, ent.Comp.ExperimentIrradiateRange, ent.Comp.ExperimentIrradiateEnergyConsumption, ent.Comp.ExperimentIrradiateDuration);
                 break;
             case ImperialExperimentType.Gas:
                 if (roll < 0.2f)
-                    Spawn("Smoke", coords);
+                    Spawn(Smoke, coords);
                 break;
             case ImperialExperimentType.Heat:
-            {
-                var damage = new DamageSpecifier();
-                damage.DamageDict["Heat"] = 15;
-                foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 1.5f))
-                    if (roll < 0.15f)
-                        _damageable.TryChangeDamage(mob.Owner, damage);
-                break;
-            }
+                {
+                    var damage = new DamageSpecifier(ent.Comp.ExperimentDamage);
+                    foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(coords, ent.Comp.ExperimentHeatRange))
+                        if (roll < 0.15f)
+                            _damageable.TryChangeDamage(mob.Owner, damage);
+                    break;
+                }
             case ImperialExperimentType.Cold:
                 if (roll < 0.2f)
-                    Spawn("Smoke", coords);
+                    Spawn(Smoke, coords);
                 break;
             case ImperialExperimentType.Obliterate:
                 QueueDel(item);
@@ -807,7 +809,7 @@ public sealed class ImperialTgServiceItemsSystem : EntitySystem
         var gases = string.Join(", ", recipe.Gases.Select(g => $"{Loc.GetString(_atmos.GetGas(g.Key).Name)} {g.Value}"));
         args.PushMarkup(Loc.GetString("imperial-crystallizer-examine",
             ("recipe", Loc.GetString(recipe.Name)), ("gases", gases),
-            ("progress", (int) (ent.Comp.Progress / recipe.Time * 100))));
+            ("progress", (int)(ent.Comp.Progress / recipe.Time * 100))));
     }
 
     private void UpdateCrystallizer(EntityUid uid, ImperialCrystallizerComponent comp, float frameTime)

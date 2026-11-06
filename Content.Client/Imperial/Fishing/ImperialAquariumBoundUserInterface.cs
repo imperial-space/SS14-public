@@ -99,13 +99,13 @@ public sealed class ImperialAquariumBoundUserInterface(EntityUid owner, Enum uiK
         var modeBox = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, Margin = new Thickness(0, 8, 0, 0) };
         _mode = new OptionButton { HorizontalExpand = true };
         foreach (var mode in Modes)
-            _mode.AddItem(Loc.GetString($"imperial-aquarium-mode-{mode.ToString().ToLowerInvariant()}"), (int) mode);
+            _mode.AddItem(Loc.GetString($"imperial-aquarium-mode-{mode.ToString().ToLowerInvariant()}"), (int)mode);
         _mode.OnItemSelected += args =>
         {
             if (_updating)
                 return;
             _mode.SelectId(args.Id);
-            SendMessage(new ImperialAquariumSetModeMessage((ImperialAquariumMode) args.Id));
+            SendMessage(new ImperialAquariumSetModeMessage((ImperialAquariumMode)args.Id));
         };
         var modeRow = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, HorizontalExpand = true };
         modeRow.AddChild(_mode);
@@ -195,7 +195,7 @@ public sealed class ImperialAquariumBoundUserInterface(EntityUid owner, Enum uiK
         foreach (var (fluid, button) in _fluidButtons)
             button.Pressed = fluid == state.Fluid;
 
-        _mode.SelectId((int) state.Mode);
+        _mode.SelectId((int)state.Mode);
         _modeHelp.ToolTip = Loc.GetString($"imperial-aquarium-mode-{state.Mode.ToString().ToLowerInvariant()}-desc");
         _interval.Text = Loc.GetString("imperial-aquarium-ui-feeding-value", ("value", MathF.Round(state.FeedingIntervalMinutes)));
         _updating = false;

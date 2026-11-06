@@ -26,4 +26,10 @@ public sealed partial class UplinkMindBattererComponent : Component
 
     [ViewVariables]
     public TimeSpan ThrowCooldownUntil;
+
+    [DataField]
+    public TimeSpan BattererUseDelay = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan ThrowCooldown = TimeSpan.FromSeconds(3);
 }

@@ -46,4 +46,7 @@ public sealed partial class GulagTeleporterComponent : Component
     /// <summary>shoes_type.</summary>
     [DataField]
     public string ShoesProto = "ClothingShoesColorOrange";
+
+    [DataField]
+    public TimeSpan MessageDelay = TimeSpan.FromSeconds(5);
 }

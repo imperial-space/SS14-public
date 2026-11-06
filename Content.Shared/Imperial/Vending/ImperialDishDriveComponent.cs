@@ -45,4 +45,10 @@ public sealed partial class ImperialDishDriveComponent : Component
 
     [ViewVariables]
     public TimeSpan NextTransmit;
+
+    [DataField]
+    public float UpdateRange = 1.5f;
+
+    [DataField]
+    public float UpdateBaseThrowSpeed = 3f;
 }

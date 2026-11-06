@@ -235,7 +235,7 @@ public sealed class ImperialMachinePartsSystem : EntitySystem
         }
 
         if (Get(uid, "MaterialStorage") is { } storage && Base(uid, storage, "StorageLimit") is int limit)
-            Set(uid, storage, "StorageLimit", (int?) (int) MathF.Round(limit * bin));
+            Set(uid, storage, "StorageLimit", (int?)(int)MathF.Round(limit * bin));
 
         // Микроволновка: efficiency = сумма уровней микролазеров.
         if (Get(uid, "Microwave") is { } microwave)
@@ -255,7 +255,7 @@ public sealed class ImperialMachinePartsSystem : EntitySystem
             ScaleTime(uid, emitter, "FireBurstDelayMin", delay);
             ScaleTime(uid, emitter, "FireBurstDelayMax", delay);
             if (Base(uid, emitter, "PowerUseActive") is int power)
-                Set(uid, emitter, "PowerUseActive", (int) MathF.Round(power * (350f - 50f * servo) / 300f));
+                Set(uid, emitter, "PowerUseActive", (int)MathF.Round(power * (350f - 50f * servo) / 300f));
         }
 
         // Зарядники: recharge_coeff = уровень конденсатора.
@@ -273,9 +273,9 @@ public sealed class ImperialMachinePartsSystem : EntitySystem
         if (Get(uid, "FatExtractor") is { } fat)
         {
             if (Base(uid, fat, "NutritionPerSecond") is int bite)
-                Set(uid, fat, "NutritionPerSecond", bite + (int) MathF.Round(2.5f * (laser - 1)));
+                Set(uid, fat, "NutritionPerSecond", bite + (int)MathF.Round(2.5f * (laser - 1)));
             if (Base(uid, fat, "NutrientPerMeat") is int perMeat)
-                Set(uid, fat, "NutrientPerMeat", Math.Max(5, perMeat - (int) MathF.Round(5 * (laser - 1))));
+                Set(uid, fat, "NutrientPerMeat", Math.Max(5, perMeat - (int)MathF.Round(5 * (laser - 1))));
         }
 
         // Переработчик биомассы (гиббер): выход от контейнеров, скорость от сервоприводов.
@@ -321,7 +321,7 @@ public sealed class ImperialMachinePartsSystem : EntitySystem
     {
         const BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
         var type = comp.GetType();
-        return (MemberInfo?) type.GetField(name, flags) ?? type.GetProperty(name, flags);
+        return (MemberInfo?)type.GetField(name, flags) ?? type.GetProperty(name, flags);
     }
 
     private static object? Read(object comp, string name)
@@ -372,7 +372,7 @@ public sealed class ImperialMachinePartsSystem : EntitySystem
     private void ScaleInt(EntityUid uid, IComponent comp, string name, float factor)
     {
         if (Base(uid, comp, name) is int value)
-            Set(uid, comp, name, Math.Max(1, (int) MathF.Round(value * factor)));
+            Set(uid, comp, name, Math.Max(1, (int)MathF.Round(value * factor)));
     }
 
     private void ScaleTime(EntityUid uid, IComponent comp, string name, float factor)

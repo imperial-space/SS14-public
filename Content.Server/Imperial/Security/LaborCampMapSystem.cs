@@ -89,8 +89,8 @@ public sealed class LaborCampMapSystem : EntitySystem
 
         // datum/atmosphere/lavaland: мало кислорода, много углекислого газа.
         var moles = new float[Atmospherics.AdjustedNumberOfGases];
-        moles[(int) Gas.Oxygen] = 5f;
-        moles[(int) Gas.CarbonDioxide] = 77.10312f;
+        moles[(int)Gas.Oxygen] = 5f;
+        moles[(int)Gas.CarbonDioxide] = 77.10312f;
         _atmos.SetMapAtmosphere(mapUid, false, new GasMixture(moles, Atmospherics.T20C));
 
         var opts = DeserializationOptions.Default with { InitializeMaps = true };

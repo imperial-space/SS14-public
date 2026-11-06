@@ -214,27 +214,27 @@ public sealed class ImperialPhotoCameraSystem : EntitySystem
 
             var thumb = new byte[ThumbnailBytes];
             for (var ty = 0; ty < 8; ty++)
-            for (var tx = 0; tx < 8; tx++)
-            {
-                int x0 = tx * width / 8, x1 = Math.Max(x0 + 1, (tx + 1) * width / 8);
-                int y0 = ty * height / 8, y1 = Math.Max(y0 + 1, (ty + 1) * height / 8);
-                long r = 0, g = 0, b = 0, n = 0;
-                for (var y = y0; y < y1; y++)
-                for (var x = x0; x < x1; x++)
+                for (var tx = 0; tx < 8; tx++)
                 {
-                    var o = (y * width + x) * 4;
-                    r += rgba[o]; g += rgba[o + 1]; b += rgba[o + 2]; n++;
-                }
+                    int x0 = tx * width / 8, x1 = Math.Max(x0 + 1, (tx + 1) * width / 8);
+                    int y0 = ty * height / 8, y1 = Math.Max(y0 + 1, (ty + 1) * height / 8);
+                    long r = 0, g = 0, b = 0, n = 0;
+                    for (var y = y0; y < y1; y++)
+                        for (var x = x0; x < x1; x++)
+                        {
+                            var o = (y * width + x) * 4;
+                            r += rgba[o]; g += rgba[o + 1]; b += rgba[o + 2]; n++;
+                        }
 
-                var i = (ty * 8 + tx) * 4;
-                byte cr = (byte) (r / n), cg = (byte) (g / n), cb = (byte) (b / n);
-                if (monochrome)
-                    cr = cg = cb = (byte) Math.Clamp(0.299f * cr + 0.587f * cg + 0.114f * cb, 0, 255);
-                thumb[i] = cr;
-                thumb[i + 1] = cg;
-                thumb[i + 2] = cb;
-                thumb[i + 3] = 255;
-            }
+                    var i = (ty * 8 + tx) * 4;
+                    byte cr = (byte)(r / n), cg = (byte)(g / n), cb = (byte)(b / n);
+                    if (monochrome)
+                        cr = cg = cb = (byte)Math.Clamp(0.299f * cr + 0.587f * cg + 0.114f * cb, 0, 255);
+                    thumb[i] = cr;
+                    thumb[i + 1] = cg;
+                    thumb[i + 2] = cb;
+                    thumb[i + 3] = 255;
+                }
 
             return (png, thumb);
         }

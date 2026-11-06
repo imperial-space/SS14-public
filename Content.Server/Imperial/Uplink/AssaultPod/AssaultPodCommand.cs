@@ -101,7 +101,7 @@ public sealed class AssaultPodCommand : IConsoleCommand
             return;
         }
 
-        EntityUid? target = shell.Player?.AttachedEntity;
+        var target = shell.Player?.AttachedEntity;
         if (args.Length > 1)
         {
             if (!_players.TryGetSessionByUsername(args[1], out var session) || session.AttachedEntity == null)

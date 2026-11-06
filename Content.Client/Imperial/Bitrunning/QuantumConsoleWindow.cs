@@ -101,7 +101,7 @@ public sealed class QuantumConsoleWindow : DefaultWindow
 
         foreach (var a in state.Avatars)
         {
-            sb.Append(';').Append(a.Name).Append(',').Append(a.Pilot).Append(',').Append((int) a.Health)
+            sb.Append(';').Append(a.Name).Append(',').Append(a.Pilot).Append(',').Append((int)a.Health)
                 .Append(',').Append(a.Brute > 50).Append(a.Burn > 50).Append(a.Toxin > 50).Append(a.Airloss > 50)
                 .Append(a.Brute + a.Burn + a.Toxin + a.Airloss == 0);
         }

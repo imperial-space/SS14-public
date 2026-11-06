@@ -19,4 +19,10 @@ public sealed partial class ImperialModOreBagComponent : Component
     /// <summary>Не подбирать руду, пока носитель стоит на только что высыпанной куче.</summary>
     [ViewVariables]
     public System.Numerics.Vector2? DropPosition;
+
+    [DataField]
+    public TimeSpan PickupDelay = TimeSpan.FromSeconds(0.25);
+
+    [DataField]
+    public float UpdateRange = 0.6f;
 }

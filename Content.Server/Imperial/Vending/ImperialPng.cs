@@ -97,15 +97,15 @@ public static class ImperialPng
             Array.Copy(raw, y * (stride + 1) + 1, line, 0, stride);
             for (var i = 0; i < stride; i++)
             {
-                int a = i >= channels ? line[i - channels] : 0;
+                var a = i >= channels ? line[i - channels] : 0;
                 int b = prev[i];
-                int c = i >= channels ? prev[i - channels] : 0;
+                var c = i >= channels ? prev[i - channels] : 0;
                 line[i] = filter switch
                 {
-                    1 => (byte) (line[i] + a),
-                    2 => (byte) (line[i] + b),
-                    3 => (byte) (line[i] + (a + b) / 2),
-                    4 => (byte) (line[i] + Paeth(a, b, c)),
+                    1 => (byte)(line[i] + a),
+                    2 => (byte)(line[i] + b),
+                    3 => (byte)(line[i] + (a + b) / 2),
+                    4 => (byte)(line[i] + Paeth(a, b, c)),
                     _ => line[i],
                 };
             }
@@ -132,7 +132,7 @@ public static class ImperialPng
                         rgba[o] = palette[idx * 3];
                         rgba[o + 1] = palette[idx * 3 + 1];
                         rgba[o + 2] = palette[idx * 3 + 2];
-                        rgba[o + 3] = alpha != null && idx < alpha.Length ? alpha[idx] : (byte) 255;
+                        rgba[o + 3] = alpha != null && idx < alpha.Length ? alpha[idx] : (byte)255;
                         break;
                     case 4:
                         rgba[o] = rgba[o + 1] = rgba[o + 2] = line[x * 2];
@@ -169,7 +169,7 @@ public static class ImperialPng
             {
                 var o = (y * width + x) * 4;
                 if (grey)
-                    raw[row + 1 + x] = (byte) Math.Clamp(0.299f * rgba[o] + 0.587f * rgba[o + 1] + 0.114f * rgba[o + 2], 0, 255);
+                    raw[row + 1 + x] = (byte)Math.Clamp(0.299f * rgba[o] + 0.587f * rgba[o + 1] + 0.114f * rgba[o + 2], 0, 255);
                 else
                     Array.Copy(rgba, o, raw, row + 1 + x * 4, 4);
             }
@@ -181,7 +181,7 @@ public static class ImperialPng
         WriteInt(ihdr, 0, width);
         WriteInt(ihdr, 4, height);
         ihdr[8] = 8;
-        ihdr[9] = (byte) (grey ? 0 : 6);
+        ihdr[9] = (byte)(grey ? 0 : 6);
         Chunk(ms, "IHDR", ihdr);
 
         using (var data = new MemoryStream())
@@ -197,10 +197,10 @@ public static class ImperialPng
 
     private static void WriteInt(byte[] buf, int at, int value)
     {
-        buf[at] = (byte) (value >> 24);
-        buf[at + 1] = (byte) (value >> 16);
-        buf[at + 2] = (byte) (value >> 8);
-        buf[at + 3] = (byte) value;
+        buf[at] = (byte)(value >> 24);
+        buf[at + 1] = (byte)(value >> 16);
+        buf[at + 2] = (byte)(value >> 8);
+        buf[at + 3] = (byte)value;
     }
 
     private static void Chunk(Stream s, string type, byte[] data)
@@ -219,7 +219,7 @@ public static class ImperialPng
             crc = Crc(crc, b);
         crc ^= 0xFFFFFFFFu;
         var tail = new byte[4];
-        WriteInt(tail, 0, (int) crc);
+        WriteInt(tail, 0, (int)crc);
         s.Write(tail);
     }
 

@@ -66,6 +66,8 @@ public sealed class UplinkWeaponSystem : EntitySystem
     private static readonly SoundSpecifier FistWeakSound = new SoundPathSpecifier("/Audio/Weapons/punch4.ogg");
     private static readonly SoundSpecifier EvidenceBombArmSound = new SoundPathSpecifier("/Audio/Imperial/Uplink/armbomb.ogg");
 
+    private const float ResolveHomingTargetRange = 1.5f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -118,7 +120,7 @@ public sealed class UplinkWeaponSystem : EntitySystem
         }
 
         if (ent.Comp.StructureExplosion && !isMob)
-            _explosion.QueueExplosion(_transform.GetMapCoordinates(target), "Default", 20f, 10f, 10f, ent, canCreateVacuum: false);
+            _explosion.QueueExplosion(_transform.GetMapCoordinates(target), "Default", ent.Comp.ProjectileHitTotalIntensity, ent.Comp.ProjectileHitSlope, ent.Comp.ProjectileHitMaxTileIntensity, ent, canCreateVacuum: false);
 
         if (ent.Comp.EmpRange > 0f)
             _emp.EmpPulse(Transform(target).Coordinates, ent.Comp.EmpRange, ent.Comp.EmpEnergy, ent.Comp.EmpDuration);
@@ -273,7 +275,7 @@ public sealed class UplinkWeaponSystem : EntitySystem
         EntityUid? best = null;
         var bestDist = float.MaxValue;
         var mapCoords = _transform.ToMapCoordinates(coords);
-        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(mapCoords, 1.5f))
+        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(mapCoords, ResolveHomingTargetRange))
         {
             if (mob.Owner == projectile.Shooter)
                 continue;
@@ -337,7 +339,7 @@ public sealed class UplinkWeaponSystem : EntitySystem
 
             bomb.DetonateAt = null;
             // explosion(light_impact_range = 2)
-            _explosion.QueueExplosion(_transform.GetMapCoordinates(uid), "Default", 40f, 6f, 6f, uid, canCreateVacuum: false);
+            _explosion.QueueExplosion(_transform.GetMapCoordinates(uid), "Default", bomb.UpdateEvidenceBombsTotalIntensity, bomb.UpdateEvidenceBombsSlope, bomb.UpdateEvidenceBombsMaxTileIntensity, uid, canCreateVacuum: false);
             QueueDel(uid);
         }
     }

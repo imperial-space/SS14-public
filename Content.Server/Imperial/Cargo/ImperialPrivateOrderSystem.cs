@@ -135,7 +135,7 @@ public sealed class ImperialPrivateOrderSystem : EntitySystem
             || !TryComp<StationDataComponent>(station, out var stationData))
             return;
 
-        ent.Comp.NextOrder = _timing.CurTime + TimeSpan.FromSeconds(1);
+        ent.Comp.NextOrder = _timing.CurTime + ent.Comp.OrderDelay;
         _bank.Adjust(account, -pack.Cost, Loc.GetString("imperial-bank-reason-cargo", ("pack", pack.Name)));
 
         // Владелец ждёт в очереди, пока ящик не появится (сразу на торговой станции или позже с телепада).

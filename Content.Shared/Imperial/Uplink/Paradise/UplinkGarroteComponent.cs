@@ -23,4 +23,16 @@ public sealed partial class UplinkGarroteComponent : Component
 
     [ViewVariables]
     public TimeSpan CooldownUntil;
+
+    [DataField]
+    public TimeSpan Cooldown = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public TimeSpan GarroteAfterInteractTime = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan ProcessGarroteTime = TimeSpan.FromSeconds(6);
+
+    [DataField]
+    public float ProcessGarroteRange = 1.5f;
 }

@@ -19,8 +19,8 @@ public sealed class AssaultPodLandingMarkerSystem : EntitySystem
         var query = EntityQueryEnumerator<AssaultPodLandingMarkerComponent, SpriteComponent>();
         while (query.MoveNext(out var uid, out var marker, out var sprite))
         {
-            var total = (float) (marker.Arrival - marker.Start).TotalSeconds;
-            var progress = total <= 0 ? 1f : Math.Clamp((float) (now - marker.Start).TotalSeconds / total, 0f, 1f);
+            var total = (float)(marker.Arrival - marker.Start).TotalSeconds;
+            var progress = total <= 0 ? 1f : Math.Clamp((float)(now - marker.Start).TotalSeconds / total, 0f, 1f);
             var ent = (uid, sprite);
 
             if (_sprite.LayerMapTryGet(ent, "lz", out var lz, false))
