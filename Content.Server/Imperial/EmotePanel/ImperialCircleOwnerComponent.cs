@@ -49,4 +49,10 @@ public sealed partial class ImperialCircleOwnerComponent : Component
 {
     [ViewVariables]
     public EntityUid Item;
+
+    [DataField]
+    public TimeSpan CircleExaminedSeconds = TimeSpan.FromSeconds(0.4f);
+
+    [DataField]
+    public float CircleExaminedSeconds2 = 0.6f;
 }

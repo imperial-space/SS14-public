@@ -40,6 +40,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Humanoid.Prototypes;
+using Content.Server.Imperial.Mood;
 
 namespace Content.Server.Imperial.EmotePanel;
 
@@ -95,6 +97,13 @@ public sealed class ImperialEmoteHandSystem : EntitySystem
     private readonly List<(TimeSpan Time, Action Action)> _scheduled = new();
     private TimeSpan _nextOfferCheck;
 
+    private static readonly ProtoId<SpeciesPrototype> MothSpecies = "Moth";
+
+    private static readonly TimeSpan OfferCheckDelay = TimeSpan.FromSeconds(0.25);
+    private static readonly TimeSpan SlapDuration = TimeSpan.FromSeconds(2.5);
+    private static readonly TimeSpan SelfGottemTime = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan NoogieDelay = TimeSpan.FromSeconds(1.5);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -127,7 +136,7 @@ public sealed class ImperialEmoteHandSystem : EntitySystem
         if (now < _nextOfferCheck)
             return;
 
-        _nextOfferCheck = now + TimeSpan.FromSeconds(0.25);
+        _nextOfferCheck = now + OfferCheckDelay;
         var query = EntityQueryEnumerator<ImperialEmoteOfferComponent>();
         while (query.MoveNext(out var uid, out var offer))
             CheckOffer(uid, offer);
@@ -275,7 +284,7 @@ public sealed class ImperialEmoteHandSystem : EntitySystem
             Show(user, L("slap-kiss-others", ("user", user), ("target", target)), L("slap-kiss-self", ("target", target)),
                 target, L("slap-kiss-target", ("user", user)), PopupType.MediumCaution);
             volume = 6f;
-            _stun.TryUpdateParalyzeDuration(target, TimeSpan.FromSeconds(2.5));
+            _stun.TryUpdateParalyzeDuration(target, SlapDuration);
             _stamina.TakeStaminaDamage(target, 40, source: user);
             EndOffer(target, offer);
         }
@@ -517,7 +526,7 @@ public sealed class ImperialEmoteHandSystem : EntitySystem
         Show(offerer, L("tooslow-start-others", ("user", rube), ("target", offerer)), L("tooslow-start-self", ("target", rube)),
             rube, L("tooslow-start-target", ("target", offerer)));
 
-        Schedule(0.5f, () =>
+        Schedule((float)offer.TooSlowSeconds.TotalSeconds, () =>
         {
             if (!Exists(offerer) || !Exists(rube))
                 return;
@@ -525,7 +534,7 @@ public sealed class ImperialEmoteHandSystem : EntitySystem
             Show(offerer, L("tooslow-end-others", ("user", offerer), ("target", rube)), L("tooslow-end-self", ("target", rube)),
                 rube, L("tooslow-end-target", ("target", offerer)), PopupType.LargeCaution);
             _audio.PlayPvs(WhooshSound, offerer);
-            _stun.TryKnockdown(rube, TimeSpan.FromSeconds(1));
+            _stun.TryKnockdown(rube, offer.TooSlowTime);
             if (TryComp<ImperialEmoteOfferComponent>(offerer, out var current))
                 EndOffer(offerer, current);
         });
@@ -585,7 +594,7 @@ public sealed class ImperialEmoteHandSystem : EntitySystem
             _popup.PopupEntity(L("kiss-hit", ("kiss", ent.Owner), ("target", target)), target);
 
         if (!Factory.TryGetRegistration("ImperialQuirkSocialAnxiety", out var anxiety) || !HasComp(target, anxiety.Type) ||
-            _mobState.IsIncapacitated(target) || _random.Prob(0.5f))
+            _mobState.IsIncapacitated(target) || _random.Prob(ent.Comp.KissHitChance))
             return;
 
         var firer = args.Shooter;
@@ -625,7 +634,7 @@ public sealed class ImperialEmoteHandSystem : EntitySystem
         if (!_interaction.InRangeUnobstructed(owner, sucker, OfferRange))
             return;
 
-        Schedule(0.4f, () =>
+        Schedule((float)ent.Comp.CircleExaminedSeconds.TotalSeconds, () =>
         {
             if (!Exists(item) || !Exists(owner) || !Exists(sucker))
                 return;
@@ -638,7 +647,7 @@ public sealed class ImperialEmoteHandSystem : EntitySystem
             }
 
             _popup.PopupEntity(L("circle-notice"), sucker, sucker, PopupType.MediumCaution);
-            Schedule(0.6f, () => Gottem(owner, sucker, item));
+            Schedule(ent.Comp.CircleExaminedSeconds2, () => Gottem(owner, sucker, item));
         });
     }
 
@@ -650,7 +659,7 @@ public sealed class ImperialEmoteHandSystem : EntitySystem
         _audio.PlayPvs(PunchSound, owner);
         Show(owner, L("circle-self-others", ("user", owner)), L("circle-self-self"));
         _stamina.TakeStaminaDamage(owner, 100);
-        _stun.TryKnockdown(owner, TimeSpan.FromSeconds(1));
+        _stun.TryKnockdown(owner, SelfGottemTime);
         QueueDel(item);
     }
 
@@ -707,7 +716,7 @@ public sealed class ImperialEmoteHandSystem : EntitySystem
         if (Tired(user))
             return;
 
-        var brutal = TryComp<HumanoidProfileComponent>(target, out var profile) && profile.Species == "Moth";
+        var brutal = TryComp<HumanoidProfileComponent>(target, out var profile) && profile.Species == MothSpecies;
         var noogie = EnsureComp<ImperialNoogieComponent>(user);
         noogie.Iteration = 0;
         noogie.Brutal = brutal;
@@ -715,7 +724,7 @@ public sealed class ImperialEmoteHandSystem : EntitySystem
         var kind = brutal ? "brutal" : "rough";
         Show(user, L($"noogie-start-{kind}-others", ("user", user), ("target", target)), L($"noogie-start-{kind}-self", ("target", target)),
             target, L($"noogie-start-{kind}-target", ("user", user)), PopupType.MediumCaution);
-        StartNoogie(user, target, TimeSpan.FromSeconds(1.5));
+        StartNoogie(user, target, NoogieDelay);
     }
 
     private bool Tired(EntityUid user)
@@ -775,7 +784,7 @@ public sealed class ImperialEmoteHandSystem : EntitySystem
         _stamina.TakeStaminaDamage(user, ent.Comp.Iteration + 5);
         _audio.PlayPvs(RustleSound, user);
 
-        if (_random.Prob(0.33f))
+        if (_random.Prob(ent.Comp.NoogieDoAfterChance))
         {
             Show(user, L("noogie-continue-others", ("user", user), ("target", target)), L("noogie-continue-self", ("target", target)),
                 target, L("noogie-continue-target", ("user", user)));

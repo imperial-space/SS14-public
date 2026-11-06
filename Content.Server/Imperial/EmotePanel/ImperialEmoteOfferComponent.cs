@@ -64,4 +64,10 @@ public sealed partial class ImperialEmoteOfferComponent : Component
     /// <summary>too_slowing_this_guy: кто уже попался на «слишком медленно».</summary>
     [ViewVariables]
     public HashSet<EntityUid> TooSlowing = new();
+
+    [DataField]
+    public TimeSpan TooSlowTime = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public TimeSpan TooSlowSeconds = TimeSpan.FromSeconds(0.5f);
 }

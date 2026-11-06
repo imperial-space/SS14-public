@@ -51,4 +51,7 @@ public sealed partial class ImperialNoogieComponent : Component
     public int Iteration;
     [ViewVariables]
     public bool Brutal;
+
+    [DataField]
+    public float NoogieDoAfterChance = 0.33f;
 }
