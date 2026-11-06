@@ -96,9 +96,6 @@ public sealed class BlobStrainSystem : EntitySystem
     /// <summary>BLOBMOB_CLOUD_REAGENT_VOLUME.</summary>
     public const float CloudVolume = 40f;
 
-    /// <summary>reactive_spines: retaliate_cooldown на оверманда.</summary>
-    private readonly Dictionary<EntityUid, TimeSpan> _retaliateCooldown = new();
-
     private static readonly TimeSpan ExposeMobElectromagneticWebDuration = TimeSpan.FromSeconds(5);
 
     private const float ExposeMobElectromagneticWebRange = 0.5f;
@@ -408,9 +405,9 @@ public sealed class BlobStrainSystem : EntitySystem
 
             case BlobStrainKind.ReactiveSpines:
                 if (damage > 0 && survives && blob.Comp.Overmind is { } overmind &&
-                    _timing.CurTime >= _retaliateCooldown.GetValueOrDefault(overmind))
+                    _timing.CurTime >= (CompOrNull<BlobStrainRetaliateCooldownComponent>(overmind)?.Value ?? default))
                 {
-                    _retaliateCooldown[overmind] = _timing.CurTime + blob.Comp.RetaliateCooldown;
+                    EnsureComp<BlobStrainRetaliateCooldownComponent>(overmind).Value = _timing.CurTime + blob.Comp.RetaliateCooldown;
                     _popup.PopupEntity(Loc.GetString("blob-retaliates"), blob, PopupType.MediumCaution);
                     Retaliate(blob, overmind);
                 }

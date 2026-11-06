@@ -839,7 +839,7 @@ public sealed partial class BlobStructureSystem : EntitySystem
 
     private bool MobBlobAct(EntityUid target)
     {
-        if (TryComp<BorgChassisComponent>(target, out _))
+        if (HasComp<BorgChassisComponent>(target))
         {
             if (_mobState.IsDead(target))
                 _gibbing.Gib(target);

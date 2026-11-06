@@ -189,7 +189,7 @@ public sealed class BlobMobSystem : EntitySystem
             }
         }
 
-        if (GetStrain(comp) is { } strain && TryComp<ActorComponent>(mob, out _))
+        if (GetStrain(comp) is { } strain && HasComp<ActorComponent>(mob))
         {
             var desc = strain.ShortDesc is { } shortDesc ? Loc.GetString(shortDesc) : Loc.GetString(strain.Description);
             _overmind.SendMessage(mob, Loc.GetString("blob-minion-strain-now", ("color", strain.Color.ToHex()), ("name", Loc.GetString(strain.Name))));
