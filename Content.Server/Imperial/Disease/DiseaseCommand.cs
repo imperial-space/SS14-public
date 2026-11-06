@@ -5,6 +5,7 @@ using Content.Shared.Imperial.Disease;
 using Robust.Server.Player;
 using Robust.Shared.Console;
 using Robust.Shared.Prototypes;
+using Content.Shared.Body;
 
 namespace Content.Server.Imperial.Disease;
 
@@ -17,6 +18,8 @@ public sealed class DiseaseCommand : LocalizedCommands
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPlayerManager _players = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+
+    private static readonly ProtoId<OrganCategoryPrototype> LungsOrganCategory = "Lungs";
 
     public override string Command => "disease";
 
@@ -76,105 +79,105 @@ public sealed class DiseaseCommand : LocalizedCommands
         switch (args[0])
         {
             case "infect":
-            {
-                if (args.Length < 3 || !_proto.TryIndex<DiseasePrototype>(args[2], out var proto))
                 {
-                    shell.WriteError("Unknown disease prototype.");
-                    return;
-                }
-
-                var disease = system.CreateFromPrototype(proto);
-                if (!system.TryInfect(target, disease))
-                {
-                    shell.WriteError("Target cannot be infected.");
-                    return;
-                }
-
-                shell.WriteLine($"Infected {targetName} with {proto.ID}.");
-                break;
-            }
-
-            case "random":
-            {
-                var count = args.Length > 2 && int.TryParse(args[2], out var parsed) ? parsed : 0;
-                var disease = system.CreateRandomDisease(count);
-                if (!system.TryInfect(target, disease))
-                {
-                    shell.WriteError("Target cannot be infected.");
-                    return;
-                }
-
-                shell.WriteLine($"Infected {targetName} with {disease.Name}.");
-                break;
-            }
-
-            case "make":
-            {
-                var symptoms = new List<ProtoId<DiseaseSymptomPrototype>>();
-                foreach (var id in args.Skip(2))
-                {
-                    if (!_proto.HasIndex<DiseaseSymptomPrototype>(id))
+                    if (args.Length < 3 || !_proto.TryIndex<DiseasePrototype>(args[2], out var proto))
                     {
-                        shell.WriteError($"Unknown symptom: {id}");
+                        shell.WriteError("Unknown disease prototype.");
                         return;
                     }
 
-                    symptoms.Add(id);
+                    var disease = system.CreateFromPrototype(proto);
+                    if (!system.TryInfect(target, disease))
+                    {
+                        shell.WriteError("Target cannot be infected.");
+                        return;
+                    }
+
+                    shell.WriteLine($"Infected {targetName} with {proto.ID}.");
+                    break;
                 }
 
-                if (symptoms.Count == 0)
+            case "random":
                 {
-                    shell.WriteError("No symptoms given.");
-                    return;
+                    var count = args.Length > 2 && int.TryParse(args[2], out var parsed) ? parsed : 0;
+                    var disease = system.CreateRandomDisease(count);
+                    if (!system.TryInfect(target, disease))
+                    {
+                        shell.WriteError("Target cannot be infected.");
+                        return;
+                    }
+
+                    shell.WriteLine($"Infected {targetName} with {disease.Name}.");
+                    break;
                 }
 
-                var disease = system.CreateAdvanceDisease(symptoms);
-                if (!system.TryInfect(target, disease))
+            case "make":
                 {
-                    shell.WriteError("Target cannot be infected.");
-                    return;
-                }
+                    var symptoms = new List<ProtoId<DiseaseSymptomPrototype>>();
+                    foreach (var id in args.Skip(2))
+                    {
+                        if (!_proto.HasIndex<DiseaseSymptomPrototype>(id))
+                        {
+                            shell.WriteError($"Unknown symptom: {id}");
+                            return;
+                        }
 
-                shell.WriteLine($"Infected {targetName} with a custom disease ({disease.GetId()}).");
-                break;
-            }
+                        symptoms.Add(id);
+                    }
+
+                    if (symptoms.Count == 0)
+                    {
+                        shell.WriteError("No symptoms given.");
+                        return;
+                    }
+
+                    var disease = system.CreateAdvanceDisease(symptoms);
+                    if (!system.TryInfect(target, disease))
+                    {
+                        shell.WriteError("Target cannot be infected.");
+                        return;
+                    }
+
+                    shell.WriteLine($"Infected {targetName} with a custom disease ({disease.GetId()}).");
+                    break;
+                }
 
             case "status":
-            {
-                shell.WriteLine($"Lungs: {system.HasOrgan(target, "Lungs")}");
-                if (!_entityManager.TryGetComponent<DiseasedComponent>(target, out var sick))
                 {
-                    shell.WriteLine("Not sick.");
-                    return;
-                }
+                    shell.WriteLine($"Lungs: {system.HasOrgan(target, LungsOrganCategory)}");
+                    if (!_entityManager.TryGetComponent<DiseasedComponent>(target, out var sick))
+                    {
+                        shell.WriteLine("Not sick.");
+                        return;
+                    }
 
-                foreach (var disease in sick.Diseases)
-                {
-                    shell.WriteLine($"{disease.Name} [{disease.GetId()}] stage {disease.Stage}/{disease.MaxStages} " +
-                                    $"spread={disease.Spread} res={disease.Resistance} stealth={disease.Stealth} " +
-                                    $"speed={disease.StageRate} trans={disease.Transmittable} sev={disease.SeverityValue} " +
-                                    $"infectivity={disease.Infectivity} mod={disease.SpreadingModifier}");
-                }
+                    foreach (var disease in sick.Diseases)
+                    {
+                        shell.WriteLine($"{disease.Name} [{disease.GetId()}] stage {disease.Stage}/{disease.MaxStages} " +
+                                        $"spread={disease.Spread} res={disease.Resistance} stealth={disease.Stealth} " +
+                                        $"speed={disease.StageRate} trans={disease.Transmittable} sev={disease.SeverityValue} " +
+                                        $"infectivity={disease.Infectivity} mod={disease.SpreadingModifier}");
+                    }
 
-                break;
-            }
+                    break;
+                }
 
             case "cure":
-            {
-                if (!_entityManager.TryGetComponent<DiseasedComponent>(target, out var diseased))
                 {
-                    shell.WriteLine("Target is not sick.");
-                    return;
-                }
+                    if (!_entityManager.TryGetComponent<DiseasedComponent>(target, out var diseased))
+                    {
+                        shell.WriteLine("Target is not sick.");
+                        return;
+                    }
 
-                foreach (var disease in diseased.Diseases.ToArray())
-                {
-                    system.Cure(target, disease, false);
-                }
+                    foreach (var disease in diseased.Diseases.ToArray())
+                    {
+                        system.Cure(target, disease, false);
+                    }
 
-                shell.WriteLine($"Cured {targetName}.");
-                break;
-            }
+                    shell.WriteLine($"Cured {targetName}.");
+                    break;
+                }
 
             default:
                 shell.WriteError(Help);

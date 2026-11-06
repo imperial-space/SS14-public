@@ -14,6 +14,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server.Imperial.Disease;
 
@@ -31,6 +32,11 @@ public sealed partial class DiseaseSystem
 
     /// <summary>Шприц, которым недавно брали кровь: ждём, когда в него нальётся кровь.</summary>
     private readonly Dictionary<EntityUid, (EntityUid Source, TimeSpan At)> _pendingDraws = new();
+
+    private static readonly ProtoId<ReagentPrototype> BloodReagent = "Blood";
+
+    private static readonly TimeSpan RememberDrawDelay = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan BodyInteractUsingDelay = TimeSpan.FromSeconds(10);
 
     private void InitializeMachines()
     {
@@ -67,7 +73,7 @@ public sealed partial class DiseaseSystem
         if (!HasComp<Content.Shared.Chemistry.Components.InjectorComponent>(used))
             return;
 
-        _pendingDraws[used] = (source, _timing.CurTime + TimeSpan.FromSeconds(10));
+        _pendingDraws[used] = (source, _timing.CurTime + RememberDrawDelay);
     }
 
     /// <summary>Перенос болезней из носителя в ёмкость вместе с кровью.</summary>
@@ -95,7 +101,7 @@ public sealed partial class DiseaseSystem
     /// <summary>Образец без крови теряет смысл.</summary>
     private void OnSampleSolutionChanged(Entity<DiseaseSampleComponent> ent, ref SolutionContainerChangedEvent args)
     {
-        if (args.Solution.GetTotalPrototypeQuantity("Blood") <= 0)
+        if (args.Solution.GetTotalPrototypeQuantity(BloodReagent) <= 0)
             RemCompDeferred<DiseaseSampleComponent>(ent);
     }
 
@@ -108,7 +114,7 @@ public sealed partial class DiseaseSystem
         if (!HasComp<DiseaseVaccineComponent>(args.Used) && !HasComp<DiseaseSampleComponent>(args.Used))
             return;
 
-        _pendingInjections[args.Used] = (ent.Owner, _timing.CurTime + TimeSpan.FromSeconds(10));
+        _pendingInjections[args.Used] = (ent.Owner, _timing.CurTime + BodyInteractUsingDelay);
     }
 
     /// <summary>Когда шприц опустел, его содержимое считается введённым.</summary>
@@ -183,7 +189,7 @@ public sealed partial class DiseaseSystem
 
     private bool HasBlood(EntityUid uid)
     {
-        return GetBloodSolution(uid) is { } solution && solution.GetTotalPrototypeQuantity("Blood") > 0;
+        return GetBloodSolution(uid) is { } solution && solution.GetTotalPrototypeQuantity(BloodReagent) > 0;
     }
 
     private Solution? GetBloodSolution(EntityUid uid)
@@ -195,7 +201,7 @@ public sealed partial class DiseaseSystem
         {
             _ = solution;
             if (_solutions.TryGetSolution((uid, manager), name, out _, out var contents)
-                && contents.GetTotalPrototypeQuantity("Blood") > 0)
+                && contents.GetTotalPrototypeQuantity(BloodReagent) > 0)
                 return contents;
         }
 
@@ -243,8 +249,8 @@ public sealed partial class DiseaseSystem
                 if (!_solutions.TryGetSolution((beaker.Value, manager), name, out _, out var sol))
                     continue;
 
-                volume += (float) sol.Volume;
-                capacity += (float) sol.MaxVolume;
+                volume += (float)sol.Volume;
+                capacity += (float)sol.MaxVolume;
             }
         }
 
@@ -389,7 +395,7 @@ public sealed partial class DiseaseSystem
 
         _metaData.SetEntityName(bottle, Loc.GetString("pandemic-culture-name", ("disease", GetDiseaseName(copy.GetId()))));
         _metaData.SetEntityDescription(bottle, Loc.GetString("pandemic-culture-desc", ("agent", Loc.GetString(copy.Agent))));
-        FillBottle(bottle, "Blood", 20);
+        FillBottle(bottle, "Blood", ent.Comp.CreateCultureAmount);
 
         ent.Comp.ReadyAt = _timing.CurTime + ent.Comp.CultureDelay;
         UpdatePandemicUi(ent);
@@ -406,7 +412,7 @@ public sealed partial class DiseaseSystem
         vaccine.Diseases.Add(args.Id);
 
         _metaData.SetEntityName(bottle, Loc.GetString("pandemic-vaccine-name", ("disease", GetDiseaseNameById(args.Id))));
-        FillBottle(bottle, "Vaccine", 15);
+        FillBottle(bottle, "Vaccine", ent.Comp.CreateVaccineAmount);
 
         ent.Comp.ReadyAt = _timing.CurTime + ent.Comp.VaccineDelay;
         UpdatePandemicUi(ent);

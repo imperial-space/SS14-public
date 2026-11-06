@@ -13,6 +13,8 @@ public sealed partial class DiseaseSystem
     /// <summary>SSdisease.archive_diseases: справочник всех встреченных болезней по их набору симптомов.</summary>
     private readonly Dictionary<string, DiseaseInstance> _archive = new();
 
+    private const float GenerateSymptomsChance = 0.2f;
+
     private void InitializeAdvance()
     {
         SubscribeLocalEvent<Content.Shared.GameTicking.RoundRestartCleanupEvent>(_ => _archive.Clear());
@@ -81,13 +83,13 @@ public sealed partial class DiseaseSystem
 
         if (severity > 0)
         {
-            severity += (int) MathF.Round(disease.Resistance / 12f);
-            severity += (int) MathF.Round(disease.StageRate / 11f);
-            severity += (int) MathF.Round(disease.Transmittable / 8f);
+            severity += (int)MathF.Round(disease.Resistance / 12f);
+            severity += (int)MathF.Round(disease.StageRate / 11f);
+            severity += (int)MathF.Round(disease.Transmittable / 8f);
             var value = MathF.Round(severity / 2f);
             // Чем меньше симптомов, тем мягче болезнь.
-            value *= (float) disease.Symptoms.Count / SymptomLimit;
-            severity = (int) MathF.Round(Math.Clamp(value, 1, 7));
+            value *= (float)disease.Symptoms.Count / SymptomLimit;
+            severity = (int)MathF.Round(Math.Clamp(value, 1, 7));
         }
 
         disease.SeverityValue = severity;
@@ -196,7 +198,7 @@ public sealed partial class DiseaseSystem
         if (number == 0)
         {
             number = 1;
-            while (_random.Prob(0.2f))
+            while (_random.Prob(GenerateSymptomsChance))
             {
                 number++;
             }
@@ -355,7 +357,7 @@ public sealed partial class DiseaseSystem
 
         var possible = _proto.EnumeratePrototypes<DiseaseSymptomPrototype>()
             .Where(p => p.Level > 0 && p.Level <= maxLevel && p.NaturallyOccurring)
-            .Select(p => (ProtoId<DiseaseSymptomPrototype>) p.ID)
+            .Select(p => (ProtoId<DiseaseSymptomPrototype>)p.ID)
             .ToList();
 
         var disease = new DiseaseInstance

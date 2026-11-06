@@ -34,6 +34,11 @@ public sealed partial class DiseaseSystem
     private const string GlovesSlot = "gloves";
     private const string ShoesSlot = "shoes";
 
+    private const float AirborneSpreadChance = 0.25f;
+    private const float CanBeSpreadAirborneChance = 0.75f;
+    private const float ContactContractDiseaseChance = 0.25f;
+    private const float ContactContractDiseaseChance2 = 0.75f;
+
     private void InitializeSpread()
     {
         SubscribeLocalEvent<DiseasedComponent, InteractHandEvent>(OnInteractHand);
@@ -64,7 +69,7 @@ public sealed partial class DiseaseSystem
             return false;
 
         // Спейсациллин и сытость мешают разносить заразу.
-        if (HasReagent(uid, Spaceacillin) || IsWellFed(uid) && _random.Prob(0.25f))
+        if (HasReagent(uid, Spaceacillin) || IsWellFed(uid) && _random.Prob(AirborneSpreadChance))
             return false;
 
         var source = Transform(uid);
@@ -123,10 +128,10 @@ public sealed partial class DiseaseSystem
             return false;
 
         // Дыхание из баллона тоже защищает.
-        if (HasInternals(uid) && _random.Prob(0.75f))
+        if (HasInternals(uid) && _random.Prob(CanBeSpreadAirborneChance))
             return false;
 
-        if (HasReagent(uid, Spaceacillin) && _random.Prob(0.75f))
+        if (HasReagent(uid, Spaceacillin) && _random.Prob(CanBeSpreadAirborneChance))
             return false;
 
         var protection = GetSlotProtection(uid, HeadSlot) + GetSlotProtection(uid, MaskSlot);
@@ -142,10 +147,10 @@ public sealed partial class DiseaseSystem
         if (_random.Prob(Math.Clamp(15 / disease.SpreadingModifier / 100f, 0f, 1f)))
             return false;
 
-        if (IsWellFed(uid) && _random.Prob(0.25f))
+        if (IsWellFed(uid) && _random.Prob(ContactContractDiseaseChance))
             return false;
 
-        if (HasReagent(uid, Spaceacillin) && _random.Prob(0.75f))
+        if (HasReagent(uid, Spaceacillin) && _random.Prob(ContactContractDiseaseChance2))
             return false;
 
         // Зона попадания: туловище чаще всего, ноги реже всего.
@@ -157,7 +162,7 @@ public sealed partial class DiseaseSystem
             (Zone: "arm2", Weight: 17.5f),
             (Zone: "leg", Weight: 7.5f),
             (Zone: "leg2", Weight: 7.5f),
-        }.SelectMany(x => Enumerable.Repeat(x.Zone, (int) (x.Weight * 2))).ToList());
+        }.SelectMany(x => Enumerable.Repeat(x.Zone, (int)(x.Weight * 2))).ToList());
 
         var passed = true;
         switch (zone)

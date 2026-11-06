@@ -24,4 +24,10 @@ public sealed partial class PandemicComponent : Component
 
     [DataField]
     public EntProtoId BottleProto = "ImperialDiseaseBottle";
+
+    [DataField]
+    public float CreateCultureAmount = 20f;
+
+    [DataField]
+    public float CreateVaccineAmount = 15f;
 }

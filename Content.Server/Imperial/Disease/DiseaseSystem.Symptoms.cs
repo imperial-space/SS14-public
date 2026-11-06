@@ -62,6 +62,17 @@ public sealed partial class DiseaseSystem
     private static readonly ProtoId<OrganCategoryPrototype> EarsCategory = "Ears";
     private static readonly ProtoId<OrganCategoryPrototype> EyesCategory = "Eyes";
 
+    private static readonly ProtoId<ReagentPrototype> PancuroniumReagent = "Pancuronium";
+    private static readonly ProtoId<ReagentPrototype> EthanolReagent = "Ethanol";
+    private static readonly EntProtoId StatusEffectTemporaryBlindness = "StatusEffectTemporaryBlindness";
+    private static readonly EntProtoId StatusEffectScrambled = "StatusEffectScrambled";
+    private static readonly ProtoId<ReagentPrototype> HeparinReagent = "Heparin";
+    private static readonly ProtoId<ReagentPrototype> LipolicideReagent = "Lipolicide";
+    private static readonly ProtoId<ReagentPrototype> ChlorineTrifluorideReagent = "ChlorineTrifluoride";
+    private static readonly ProtoId<ReagentPrototype> WaterReagent = "Water";
+    private static readonly ProtoId<ReagentPrototype> PlasmaReagent = "Plasma";
+    private static readonly EntProtoId StatusEffectDrowsiness = "StatusEffectDrowsiness";
+
 
     private void InitializeSymptoms()
     {
@@ -436,10 +447,10 @@ public sealed partial class DiseaseSystem
                 AirborneSpread(uid, disease, symptom.Unlocked.Contains("range") ? 2 : 1);
                 if (power >= 1.5f)
                     DropHeldItem(uid);
-                if (power >= 2 && _random.Prob(0.3f))
+                if (power >= 2 && _random.Prob(ent.Comp.ActivateSymptomCoughChance))
                 {
                     Danger(uid, "disease-symptom-cough-fit");
-                    _stun.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(2));
+                    _stun.TryUpdateParalyzeDuration(uid, ent.Comp.ActivateSymptomCoughDuration);
                 }
                 break;
 
@@ -456,47 +467,47 @@ public sealed partial class DiseaseSystem
                 {
                     // Чихание такой силы отбрасывает носителя назад.
                     var dir = -Transform(uid).LocalRotation.ToWorldVec();
-                    _throwing.TryThrow(uid, dir * 6, 10f, uid);
+                    _throwing.TryThrow(uid, dir * 6, ent.Comp.ActivateSymptomSneezeBaseThrowSpeed, uid);
                 }
                 break;
 
             case "SymptomItching":
                 if (symptom.Unlocked.Contains("scratch"))
                 {
-                    Warn(uid, "disease-symptom-itching-scratch", 100, symptom);
+                    Warn(uid, "disease-symptom-itching-scratch", ent.Comp.ActivateSymptomItchingChance, symptom);
                     Damage(uid, SlashType, 1);
                 }
                 else
                 {
-                    Warn(uid, "disease-symptom-itching", 100, symptom);
+                    Warn(uid, "disease-symptom-itching", ent.Comp.ActivateSymptomItchingChance, symptom);
                 }
                 break;
 
             case "SymptomHeadache":
                 if (power < 2 && (_random.Prob(chance / 100f) || stage >= 4))
-                    Warn(uid, "disease-symptom-headache", 100, symptom);
+                    Warn(uid, "disease-symptom-headache", ent.Comp.ActivateSymptomHeadacheChance, symptom);
                 if (power >= 2 && stage >= 4)
                 {
-                    Warn(uid, "disease-symptom-headache-bad", 100, symptom);
+                    Warn(uid, "disease-symptom-headache-bad", ent.Comp.ActivateSymptomHeadacheChance, symptom);
                     _stamina.TakeStaminaDamage(uid, 25);
                 }
                 if (power >= 3 && stage >= 5)
                 {
                     Danger(uid, "disease-symptom-headache-cluster");
-                    _stun.TryAddStunDuration(uid, TimeSpan.FromSeconds(3.5));
+                    _stun.TryAddStunDuration(uid, ent.Comp.ActivateSymptomHeadacheDuration);
                 }
                 break;
 
             // ─── Температура ─────────────────────────────────────────────
             case "SymptomFever":
                 Warn(uid, symptom.Unlocked.Contains("unsafe") && stage >= 4 ? "disease-symptom-fever-bad" : "disease-symptom-fever",
-                    100, symptom);
+                    ent.Comp.ActivateSymptomFeverChance, symptom);
                 SetTemperatureChange(ent, disease, symptom, 6);
                 break;
 
             case "SymptomChills":
                 Warn(uid, symptom.Unlocked.Contains("unsafe") && stage >= 4 ? "disease-symptom-chills-bad" : "disease-symptom-chills",
-                    100, symptom);
+                    ent.Comp.ActivateSymptomChillsChance, symptom);
                 SetTemperatureChange(ent, disease, symptom, -6);
                 break;
 
@@ -520,7 +531,7 @@ public sealed partial class DiseaseSystem
 
                 if (stage <= 4)
                 {
-                    Warn(uid, symptom.SuppressWarning ? "disease-symptom-choking-fake" : "disease-symptom-choking", 100, symptom);
+                    Warn(uid, symptom.SuppressWarning ? "disease-symptom-choking-fake" : "disease-symptom-choking", ent.Comp.ActivateSymptomChokingChance, symptom);
                     Damage(uid, AsphyxiationType, _random.Next(6, 14));
                 }
                 else
@@ -535,7 +546,7 @@ public sealed partial class DiseaseSystem
             case "SymptomAsphyxiation":
                 if (stage == 3 || stage == 4)
                 {
-                    Warn(uid, "disease-symptom-asphyxiation", 100, symptom);
+                    Warn(uid, "disease-symptom-asphyxiation", ent.Comp.ActivateSymptomAsphyxiationChance, symptom);
                     Damage(uid, AsphyxiationType, _random.Next(10, 16) * power);
                     TryEmote(uid, "Gasp");
                 }
@@ -544,7 +555,7 @@ public sealed partial class DiseaseSystem
                     Danger(uid, "disease-symptom-asphyxiation-severe");
                     Damage(uid, AsphyxiationType, _random.Next(15, 22) * power);
                     if (symptom.Unlocked.Contains("paralysis"))
-                        InjectReagent(uid, "Pancuronium", 3);
+                        InjectReagent(uid, PancuroniumReagent, ent.Comp.ActivateSymptomAsphyxiationAmount);
                     TryEmote(uid, "Gasp");
                 }
                 break;
@@ -554,9 +565,9 @@ public sealed partial class DiseaseSystem
                 if (stage >= 4)
                 {
                     EnsureComp<DiseaseNoBreathComponent>(uid);
-                    Damage(uid, AsphyxiationType, -5);
+                    Damage(uid, AsphyxiationType, ent.Comp.ActivateSymptomOxygenAmount);
                     if (symptom.Unlocked.Contains("blood"))
-                        Damage(uid, BloodlossType, -3);
+                        Damage(uid, BloodlossType, ent.Comp.ActivateSymptomOxygenAmount2);
                 }
                 break;
 
@@ -582,9 +593,9 @@ public sealed partial class DiseaseSystem
                 }
 
                 Danger(uid, "disease-symptom-dizzy");
-                _jitter.DoJitter(uid, TimeSpan.FromSeconds(60), true);
+                _jitter.DoJitter(uid, ent.Comp.ActivateSymptomDizzinessTime, true);
                 if (power >= 2)
-                    _drunk.TryApplyDrunkenness(uid, TimeSpan.FromSeconds(80));
+                    _drunk.TryApplyDrunkenness(uid, ent.Comp.ActivateSymptomDizzinessBoozePowerDelay);
                 break;
 
             case "SymptomHallucigen":
@@ -603,31 +614,31 @@ public sealed partial class DiseaseSystem
                 switch (stage)
                 {
                     case 1:
-                        Warn(uid, "disease-symptom-narcolepsy-1", 50, symptom);
+                        Warn(uid, "disease-symptom-narcolepsy-1", ent.Comp.ActivateSymptomChance, symptom);
                         break;
                     case 2:
-                        Warn(uid, "disease-symptom-narcolepsy-2", 50, symptom);
+                        Warn(uid, "disease-symptom-narcolepsy-2", ent.Comp.ActivateSymptomChance, symptom);
                         break;
                     case 3:
-                        Warn(uid, "disease-symptom-narcolepsy-3", 50, symptom);
-                        AddDrowsiness(uid, 10);
+                        Warn(uid, "disease-symptom-narcolepsy-3", ent.Comp.ActivateSymptomChance, symptom);
+                        AddDrowsiness(uid, (float)ent.Comp.ActivateSymptomSeconds.TotalSeconds);
                         break;
                     case 4:
-                        Warn(uid, "disease-symptom-narcolepsy-4", 50, symptom);
-                        AddDrowsiness(uid, 20);
+                        Warn(uid, "disease-symptom-narcolepsy-4", ent.Comp.ActivateSymptomChance, symptom);
+                        AddDrowsiness(uid, ent.Comp.ActivateSymptomSeconds2);
                         if (symptom.Unlocked.Contains("yawn"))
                         {
                             TryEmote(uid, "Yawn");
-                            AirborneSpread(uid, disease, 6);
+                            AirborneSpread(uid, disease, ent.Comp.ActivateSymptomRange);
                         }
                         break;
                     default:
-                        Warn(uid, "disease-symptom-narcolepsy-5", 50, symptom);
-                        AddDrowsiness(uid, 80);
+                        Warn(uid, "disease-symptom-narcolepsy-5", ent.Comp.ActivateSymptomNarcolepsyChance, symptom);
+                        AddDrowsiness(uid, (float)ent.Comp.ActivateSymptomNarcolepsySeconds.TotalSeconds);
                         if (symptom.Unlocked.Contains("yawn"))
                         {
                             TryEmote(uid, "Yawn");
-                            AirborneSpread(uid, disease, 6);
+                            AirborneSpread(uid, disease, ent.Comp.ActivateSymptomNarcolepsyRange);
                         }
                         break;
                 }
@@ -635,9 +646,9 @@ public sealed partial class DiseaseSystem
 
             case "SymptomMindRestoration":
                 // Чинит мозг и выводит алкоголь.
-                DamageOrgan(uid, BrainCategory, -3);
+                DamageOrgan(uid, BrainCategory, ent.Comp.ActivateSymptomMindRestorationAmount);
                 if (symptom.Unlocked.Contains("alcohol"))
-                    PurgeReagent(uid, "Ethanol", 5);
+                    PurgeReagent(uid, EthanolReagent, ent.Comp.ActivateSymptomMindRestorationAmount2);
                 break;
 
             // ─── Органы чувств ───────────────────────────────────────────
@@ -663,7 +674,7 @@ public sealed partial class DiseaseSystem
                     {
                         Danger(uid, "disease-symptom-deafness");
                         EnsureComp<DiseaseDeafComponent>(uid);
-                        _deafTimers[uid] = _timing.CurTime + TimeSpan.FromSeconds(30);
+                        _deafTimers[uid] = _timing.CurTime + ent.Comp.DeafTimersDelay;
                     }
                 }
                 break;
@@ -676,30 +687,30 @@ public sealed partial class DiseaseSystem
                 }
 
                 Danger(uid, "disease-symptom-vision");
-                _blindable.AdjustEyeDamage(uid, 2);
+                _blindable.AdjustEyeDamage(uid, ent.Comp.ActivateSymptomVisionLossAmount);
                 if (symptom.Unlocked.Contains("detach") && stage >= 5)
                 {
-                    DamageOrgan(uid, EyesCategory, 10);
-                    _statusEffects.TryAddStatusEffectDuration(uid, "StatusEffectTemporaryBlindness", TimeSpan.FromSeconds(20));
+                    DamageOrgan(uid, EyesCategory, ent.Comp.ActivateSymptomVisionLossAmount2);
+                    _statusEffects.TryAddStatusEffectDuration(uid, StatusEffectTemporaryBlindness, ent.Comp.ActivateSymptomVisionLossDuration);
                 }
                 break;
 
             case "SymptomSensoryRestoration":
                 // Чинит глаза и уши.
-                _blindable.AdjustEyeDamage(uid, -2);
-                DamageOrgan(uid, EyesCategory, -2);
-                DamageOrgan(uid, EarsCategory, -2);
+                _blindable.AdjustEyeDamage(uid, ent.Comp.ActivateSymptomSensoryRestorationAmount);
+                DamageOrgan(uid, EyesCategory, ent.Comp.ActivateSymptomSensoryRestorationAmount2);
+                DamageOrgan(uid, EarsCategory, ent.Comp.ActivateSymptomSensoryRestorationAmount2);
                 break;
 
             case "SymptomVoiceChange":
                 if (symptom.Unlocked.Contains("aphasia") && stage >= 4)
                 {
                     Danger(uid, "disease-symptom-voice-aphasia");
-                    _statusEffects.TryAddStatusEffectDuration(uid, "StatusEffectScrambled", TimeSpan.FromSeconds(60));
+                    _statusEffects.TryAddStatusEffectDuration(uid, StatusEffectScrambled, ent.Comp.ActivateSymptomVoiceChangeDuration);
                 }
                 else if (!symptom.SuppressWarning)
                 {
-                    Warn(uid, "disease-symptom-voice", 100, symptom);
+                    Warn(uid, "disease-symptom-voice", ent.Comp.ActivateSymptomVoiceChangeChance, symptom);
                 }
                 break;
 
@@ -714,45 +725,45 @@ public sealed partial class DiseaseSystem
                 Danger(uid, "disease-symptom-vomit");
                 _vomit.Vomit(uid);
                 if (symptom.Unlocked.Contains("blood"))
-                    Damage(uid, BloodlossType, 5);
+                    Damage(uid, BloodlossType, ent.Comp.ActivateSymptomVomitingAmount);
                 break;
 
             case "SymptomWeightLoss":
                 Warn(uid, "disease-symptom-weight-loss", symptom.SuppressWarning ? 10 : 50, symptom);
-                _hunger.ModifyHunger(uid, -15);
+                _hunger.ModifyHunger(uid, ent.Comp.ActivateSymptomWeightLossAmount);
                 break;
 
             case "SymptomBeard":
-                Warn(uid, "disease-symptom-beard", 100, symptom);
+                Warn(uid, "disease-symptom-beard", ent.Comp.ActivateSymptomBeardChance, symptom);
                 break;
 
             case "SymptomShedding":
-                Warn(uid, "disease-symptom-shedding", 100, symptom);
+                Warn(uid, "disease-symptom-shedding", ent.Comp.ActivateSymptomSheddingChance, symptom);
                 break;
 
             case "SymptomPolyvitiligo":
-                Warn(uid, "disease-symptom-polyvitiligo", 100, symptom);
+                Warn(uid, "disease-symptom-polyvitiligo", ent.Comp.ActivateSymptomPolyvitiligoChance, symptom);
                 break;
 
             case "SymptomDisfiguration":
-                Warn(uid, stage >= 5 ? "disease-symptom-disfiguration-severe" : "disease-symptom-disfiguration", 100, symptom);
+                Warn(uid, stage >= 5 ? "disease-symptom-disfiguration-severe" : "disease-symptom-disfiguration", ent.Comp.ActivateSymptomDisfigurationChance, symptom);
                 break;
 
             case "SymptomYouth":
-                Warn(uid, "disease-symptom-youth", 10, symptom);
+                Warn(uid, "disease-symptom-youth", ent.Comp.ActivateSymptomYouthChance, symptom);
                 break;
 
             case "SymptomBleeding":
                 if (!symptom.SuppressWarning)
                 {
                     if (stage is >= 2 and < 4)
-                        Warn(uid, "disease-symptom-bleeding-mild", 100, symptom);
+                        Warn(uid, "disease-symptom-bleeding-mild", ent.Comp.ActivateSymptomBleedingChance, symptom);
                     else if (stage >= 4)
-                        Warn(uid, "disease-symptom-bleeding", 100, symptom);
+                        Warn(uid, "disease-symptom-bleeding", ent.Comp.ActivateSymptomBleedingChance, symptom);
                 }
 
                 if (stage >= 4)
-                    Damage(uid, BloodlossType, 2);
+                    Damage(uid, BloodlossType, ent.Comp.ActivateSymptomBleedingAmount);
                 break;
 
             case "SymptomFleshEating":
@@ -787,8 +798,8 @@ public sealed partial class DiseaseSystem
                     Damage(uid, BluntType, _random.Next(6, 11));
                     if (symptom.Unlocked.Contains("chems"))
                     {
-                        InjectReagent(uid, "Heparin", 2);
-                        InjectReagent(uid, "Lipolicide", 2);
+                        InjectReagent(uid, HeparinReagent, ent.Comp.ActivateSymptomFleshDeathAmount);
+                        InjectReagent(uid, LipolicideReagent, ent.Comp.ActivateSymptomFleshDeathAmount);
                     }
                 }
                 break;
@@ -830,7 +841,7 @@ public sealed partial class DiseaseSystem
                     Danger(uid, stage >= 5 ? "disease-symptom-alkali-severe" : "disease-symptom-alkali");
                     TryEmote(uid, "Scream");
                     if (symptom.Unlocked.Contains("chems"))
-                        InjectReagent(uid, "ChlorineTrifluoride", 2 * power);
+                        InjectReagent(uid, ChlorineTrifluorideReagent, 2 * power);
                 }
                 break;
 
@@ -838,7 +849,7 @@ public sealed partial class DiseaseSystem
             case "SymptomGeneticMutation":
                 if (stage >= 4)
                 {
-                    Warn(uid, "disease-symptom-genetic", 100, symptom);
+                    Warn(uid, "disease-symptom-genetic", ent.Comp.ActivateSymptomGeneticMutationChance, symptom);
                     RaiseLocalEvent(uid, new DiseaseActivateMutationEvent(symptom.Unlocked.Contains("negative")));
                 }
                 break;
@@ -905,16 +916,16 @@ public sealed partial class DiseaseSystem
                 break;
 
             case "SymptomHealWater":
-                if (GetReagentAmount(uid, "Water") <= 0)
+                if (GetReagentAmount(uid, WaterReagent) <= 0)
                     return;
-                PurgeReagent(uid, "Water", symptom.Unlocked.Contains("slow") ? 0.5f : 2f);
+                PurgeReagent(uid, WaterReagent, symptom.Unlocked.Contains("slow") ? 0.5f : 2f);
                 HealBrute(uid, power);
                 break;
 
             case "SymptomHealPlasma":
-                if (GetReagentAmount(uid, "Plasma") <= 0)
+                if (GetReagentAmount(uid, PlasmaReagent) <= 0)
                     return;
-                PurgeReagent(uid, "Plasma", 2);
+                PurgeReagent(uid, PlasmaReagent, ent.Comp.ActivateHealSymptomHealPlasmaAmount);
                 HealBrute(uid, power);
                 if (symptom.Unlocked.Contains("temperature")
                     && TryComp<Content.Shared.Temperature.Components.TemperatureComponent>(uid, out var temp))
@@ -1011,7 +1022,7 @@ public sealed partial class DiseaseSystem
             return 0;
 
         var removed = blood.RemoveReagent(reagent, FixedPoint2.New(amount));
-        return (float) removed;
+        return (float)removed;
     }
 
     private float PurgeAllReagents(EntityUid uid, float amount)
@@ -1026,7 +1037,7 @@ public sealed partial class DiseaseSystem
             if (reagent.Reagent.Prototype == "Blood")
                 continue;
 
-            total += (float) blood.RemoveReagent(reagent.Reagent, FixedPoint2.New(amount));
+            total += (float)blood.RemoveReagent(reagent.Reagent, FixedPoint2.New(amount));
         }
 
         return total;
@@ -1034,7 +1045,7 @@ public sealed partial class DiseaseSystem
 
     private void AddDrowsiness(EntityUid uid, float seconds)
     {
-        _statusEffects.TryAddStatusEffectDuration(uid, "StatusEffectDrowsiness", TimeSpan.FromSeconds(seconds));
+        _statusEffects.TryAddStatusEffectDuration(uid, StatusEffectDrowsiness, TimeSpan.FromSeconds(seconds));
     }
 
     private void TryEmote(EntityUid uid, string emote)

@@ -79,6 +79,9 @@ public sealed partial class DiseaseSystem : EntitySystem
     /// <summary>Снимок болеющих на тик, чтобы заражение не ломало обход.</summary>
     private readonly List<Entity<DiseasedComponent>> _tickBuffer = new();
 
+    private const float IsInDarknessRange = 5f;
+    private const float IsOnBedRange = 0.4f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -355,7 +358,7 @@ public sealed partial class DiseaseSystem : EntitySystem
             }
 
             // Каждый прожитый цикл приближает выздоровление, на высоких стадиях — сильнее.
-            disease.PeakedCycles += (float) disease.Stage / disease.MaxStages;
+            disease.PeakedCycles += (float)disease.Stage / disease.MaxStages;
             recoveryProb += RecoveryConstant + disease.PeakedCycles / (cyclesToBeat / RecoveryScaling);
 
             if (disease.StagePeaked)
@@ -365,7 +368,7 @@ public sealed partial class DiseaseSystem : EntitySystem
             {
                 recoveryProb += Math.Clamp((1 - slowdown) * (SlowdownRecoveryBonus * 2)
                     * ((SlowdownRecoveryBonusDuration - disease.ChemicalOffsets) / SlowdownRecoveryBonusDuration), 0, SlowdownRecoveryBonus);
-                disease.ChemicalOffsets = Math.Min(disease.ChemicalOffsets + 1, (int) SlowdownRecoveryBonusDuration);
+                disease.ChemicalOffsets = Math.Min(disease.ChemicalOffsets + 1, (int)SlowdownRecoveryBonusDuration);
             }
 
             if (malnourished)
@@ -406,7 +409,7 @@ public sealed partial class DiseaseSystem : EntitySystem
                                 return false;
                             }
 
-                            Cure(ent, disease, _random.Prob(0.5f));
+                            Cure(ent, disease, _random.Prob(ent.Comp.StageActChance));
                             return false;
                         }
 
@@ -472,7 +475,7 @@ public sealed partial class DiseaseSystem : EntitySystem
             if (remedied + active == 0)
                 return 0;
 
-            return (float) remedied / (remedied + active);
+            return (float)remedied / (remedied + active);
         }
 
         var found = 0;
@@ -546,9 +549,9 @@ public sealed partial class DiseaseSystem : EntitySystem
 
         var total = 0f;
         if (_solutions.ResolveSolution(uid, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var blood))
-            total += (float) blood.GetTotalPrototypeQuantity(reagent);
+            total += (float)blood.GetTotalPrototypeQuantity(reagent);
         if (_solutions.ResolveSolution(uid, bloodstream.MetabolitesSolutionName, ref bloodstream.MetabolitesSolution, out var metabolites))
-            total += (float) metabolites.GetTotalPrototypeQuantity(reagent);
+            total += (float)metabolites.GetTotalPrototypeQuantity(reagent);
 
         return total;
     }
@@ -573,7 +576,7 @@ public sealed partial class DiseaseSystem : EntitySystem
 
         var tile = _map.TileIndicesFor(grid, gridComp, xform.Coordinates);
         foreach (var light in _lookup.GetEntitiesInRange<Content.Shared.Light.Components.PoweredLightComponent>(
-                     _transform.GetMapCoordinates(uid), 5))
+                     _transform.GetMapCoordinates(uid), IsInDarknessRange))
         {
             if (light.Comp.On)
                 return false;
@@ -587,7 +590,7 @@ public sealed partial class DiseaseSystem : EntitySystem
     private bool IsOnBed(EntityUid uid)
     {
         foreach (var bed in _lookup.GetEntitiesInRange<Content.Shared.Bed.Components.HealOnBuckleComponent>(
-                     _transform.GetMapCoordinates(uid), 0.4f))
+                     _transform.GetMapCoordinates(uid), IsOnBedRange))
         {
             _ = bed;
             return true;
