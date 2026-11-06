@@ -1,0 +1,219 @@
+# PanD.E.M.I.C 2200 и расходники вирусологии (pandemic.dm).
+
+- type: entity
+  id: ImperialPandemic
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: PanD.E.M.I.C 2200
+  description: Used to work with viruses.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/mixer.rsi
+    snapCardinals: true
+    layers:
+    - state: mixer_empty
+    - state: mixer_screens
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      color: "#66ff99"
+  - type: Icon
+    sprite: Structures/Machines/mixer.rsi
+    state: mixer_empty
+  - type: ItemMapper
+    containerWhitelist: [beakerSlot]
+    mapLayers:
+      mixer_loaded:
+        whitelist:
+          components:
+          - FitsInDispenser
+  - type: Pandemic
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.4,0.25,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ActivatableUI
+    key: enum.PandemicUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.PandemicUiKey.Key:
+        type: PandemicBoundUserInterface
+  - type: ApcPowerReceiver
+    powerLoad: 250
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+  - type: WiresPanel
+  - type: Machine
+    board: ImperialPandemicMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      beakerSlot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        whitelist:
+          components:
+          - FitsInDispenser
+
+- type: entity
+  id: ImperialPandemicMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: PanD.E.M.I.C 2200 machine board
+  components:
+  - type: MachineBoard
+    prototype: ImperialPandemic
+    stackRequirements:
+      Manipulator: 2
+
+# Пробирка под культуру и вакцину.
+- type: entity
+  id: ImperialDiseaseBottle
+  parent: BaseItem
+  name: sample tube
+  description: A small test tube.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Chemistry/bottle.rsi
+    state: bottle-1
+  - type: Item
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+  - type: FitsInDispenser
+    solution: drink
+  - type: DrawableSolution
+    solution: drink
+  - type: RefillableSolution
+    solution: drink
+  - type: DrainableSolution
+    solution: drink
+  - type: ExaminableSolution
+    solution: drink
+  - type: Spillable
+    solution: drink
+  - type: Tag
+    tags:
+    - Bottle
+
+# Реагенты вирусологии.
+- type: reagent
+  id: Vaccine
+  name: reagent-name-vaccine
+  group: Medicine
+  desc: reagent-desc-vaccine
+  physicalDesc: reagent-physical-desc-cloudy
+  flavor: medicine
+  color: "#C81040"
+
+- type: reagent
+  id: VirusFood
+  name: reagent-name-virus-food
+  group: Biological
+  desc: reagent-desc-virus-food
+  physicalDesc: reagent-physical-desc-cloudy
+  flavor: bitter
+  color: "#899613"
+
+- type: reagent
+  id: MutagenicAgar
+  name: reagent-name-mutagenic-agar
+  group: Biological
+  desc: reagent-desc-mutagenic-agar
+  physicalDesc: reagent-physical-desc-cloudy
+  flavor: sour
+  color: "#A3C00F"
+
+- type: reagent
+  id: SucroseAgar
+  name: reagent-name-sucrose-agar
+  group: Biological
+  desc: reagent-desc-sucrose-agar
+  physicalDesc: reagent-physical-desc-cloudy
+  flavor: sweet
+  color: "#41B0C0"
+
+- type: reagent
+  id: VirusRations
+  name: reagent-name-virus-rations
+  group: Biological
+  desc: reagent-desc-virus-rations
+  physicalDesc: reagent-physical-desc-cloudy
+  flavor: bitter
+  color: "#D18AA5"
+
+- type: reagent
+  id: VirusPlasma
+  name: reagent-name-virus-plasma
+  group: Biological
+  desc: reagent-desc-virus-plasma
+  physicalDesc: reagent-physical-desc-cloudy
+  flavor: bitter
+  color: "#A270A8"
+
+- type: reagent
+  id: WeakVirusPlasma
+  name: reagent-name-weak-virus-plasma
+  group: Biological
+  desc: reagent-desc-weak-virus-plasma
+  physicalDesc: reagent-physical-desc-cloudy
+  flavor: bitter
+  color: "#A28CA5"
+
+- type: reagent
+  id: DecayingUraniumGel
+  name: reagent-name-decaying-uranium-gel
+  group: Biological
+  desc: reagent-desc-uranium-gel
+  physicalDesc: reagent-physical-desc-cloudy
+  flavor: metallic
+  color: "#67ADBA"
+
+- type: reagent
+  id: UnstableUraniumGel
+  name: reagent-name-unstable-uranium-gel
+  group: Biological
+  desc: reagent-desc-uranium-gel
+  physicalDesc: reagent-physical-desc-cloudy
+  flavor: metallic
+  color: "#2FF2CB"
+
+- type: reagent
+  id: StableUraniumGel
+  name: reagent-name-stable-uranium-gel
+  group: Biological
+  desc: reagent-desc-uranium-gel
+  physicalDesc: reagent-physical-desc-cloudy
+  flavor: metallic
+  color: "#04506C"
