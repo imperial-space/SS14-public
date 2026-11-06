@@ -38,7 +38,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.FixedPoint;
-using Content.Server.Imperial.Mood;
 
 namespace Content.Server.Imperial.Quirks;
 
@@ -87,7 +86,6 @@ public sealed partial class ImperialQuirkSystem
 
     private static readonly TimeSpan Second = TimeSpan.FromSeconds(1);
 
-    private static readonly ProtoId<ReagentPrototype> NicotineReagent = "Nicotine";
     private static readonly EntProtoId Ash = "Ash";
 
     private static readonly TimeSpan CheckDelay = TimeSpan.FromSeconds(5);
