@@ -79,9 +79,6 @@ public sealed partial class CultSystem : EntitySystem
     private static readonly ProtoId<AlertPrototype> BloodSenseAlert = "CultBloodSense";
     public static readonly Color CultRed = Color.FromHex("#960000");
 
-    /// <summary>Исходные цвета глаз до cult_eyes.</summary>
-    private readonly Dictionary<EntityUid, Dictionary<ProtoId<OrganCategoryPrototype>, OrganProfileData>> _originalEyes = new();
-
     private TimeSpan _nextSenseUpdate;
 
     private static readonly TimeSpan SenseUpdateDelay = TimeSpan.FromSeconds(1);
@@ -265,11 +262,11 @@ public sealed partial class CultSystem : EntitySystem
 
         if (enabled)
         {
-            _originalEyes[uid] = profiles.ToDictionary(p => p.Key, p => p.Value);
+            EnsureComp<CultOriginalEyesComponent>(uid).Value = profiles.ToDictionary(p => p.Key, p => p.Value);
             var red = profiles.ToDictionary(p => p.Key, p => p.Value with { EyeColor = Color.Red });
             _visualBody.ApplyProfiles(uid, red);
         }
-        else if (_originalEyes.Remove(uid, out var original))
+        else if (TryRemoveOriginalEyes(uid, out var original))
         {
             var restored = profiles.ToDictionary(p => p.Key,
                 p => original.TryGetValue(p.Key, out var o) ? p.Value with { EyeColor = o.EyeColor } : p.Value);
@@ -488,5 +485,18 @@ public sealed partial class CultSystem : EntitySystem
         if (args.NewMobState != MobState.Dead || !ent.Comp.Leader)
             return;
         Deathrattle(ent);
+    }
+
+    private bool TryRemoveOriginalEyes(EntityUid uid, out Dictionary<ProtoId<Content.Shared.Body.OrganCategoryPrototype>, Content.Shared.Body.OrganProfileData> value)
+    {
+        if (TryComp<CultOriginalEyesComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            RemComp(uid, comp);
+            return true;
+        }
+
+        value = default!;
+        return false;
     }
 }

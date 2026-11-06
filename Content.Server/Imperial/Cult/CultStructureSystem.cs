@@ -85,8 +85,6 @@ public sealed partial class CultStructureSystem : EntitySystem
         ("girder", "CultRunedGirder", 1, 5f, "cultgirder"),
     };
 
-    private readonly Dictionary<EntityUid, TimeSpan> _doorCooldown = new();
-
     private static readonly EntProtoId CultRunedMetal = "CultRunedMetal";
     private static readonly EntProtoId WallCult = "WallCult";
     private static readonly EntProtoId CultRunedAirlockBrittle = "CultRunedAirlockBrittle";
@@ -101,10 +99,10 @@ public sealed partial class CultStructureSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<CultStructureComponent, MapInitEvent>(OnStructureInit);
+        SubscribeLocalEvent<CultStructureComponent, MapInitEvent>(OnUpdateAnchoredVisuals);
         SubscribeLocalEvent<CultStructureComponent, ExaminedEvent>(OnStructureExamined);
         SubscribeLocalEvent<CultStructureComponent, ActivateInWorldEvent>(OnStructureActivate);
-        SubscribeLocalEvent<CultStructureComponent, AnchorStateChangedEvent>(OnAnchorChanged);
+        SubscribeLocalEvent<CultStructureComponent, AnchorStateChangedEvent>(OnUpdateAnchoredVisuals);
         SubscribeLocalEvent<CultStructureComponent, DestructionEventArgs>(OnStructureDestroyed);
 
         SubscribeLocalEvent<CultRunedMetalComponent, UseInHandEvent>(OnRunedMetalUse);
@@ -117,12 +115,7 @@ public sealed partial class CultStructureSystem : EntitySystem
 
     #region Постройки
 
-    private void OnStructureInit(Entity<CultStructureComponent> ent, ref MapInitEvent args)
-    {
-        UpdateAnchoredVisuals(ent);
-    }
-
-    private void OnAnchorChanged(Entity<CultStructureComponent> ent, ref AnchorStateChangedEvent args)
+    private void OnUpdateAnchoredVisuals<T>(Entity<CultStructureComponent> ent, ref T args)
     {
         UpdateAnchoredVisuals(ent);
     }
@@ -149,7 +142,7 @@ public sealed partial class CultStructureSystem : EntitySystem
         if (!_cult.IsCultAligned(args.Examiner) && !HasComp<Content.Shared.Ghost.GhostComponent>(args.Examiner))
             return;
 
-        if (TryComp<DamageableComponent>(ent, out var damageable))
+        if (HasComp<DamageableComponent>(ent))
         {
             var max = _destructible.DestroyedAt(ent).Float();
             if (max > 0)
@@ -572,9 +565,9 @@ public sealed partial class CultStructureSystem : EntitySystem
             return;
 
         var now = _timing.CurTime;
-        if (_doorCooldown.TryGetValue(user, out var next) && now < next)
+        if (TryGetDoorCooldown(user, out var next) && now < next)
             return;
-        _doorCooldown[user] = now + ent.Comp.DoorCooldown;
+        EnsureComp<CultStructureDoorCooldownComponent>(user).Value = now + ent.Comp.DoorCooldown;
 
         _cult.Effect(CultEffectSacrifice, Transform(ent).Coordinates);
         _cult.SoundTo(user, CultSounds.TurnAround, CultSystem.Db(50));
@@ -663,7 +656,6 @@ public sealed partial class CultStructureSystem : EntitySystem
         return count;
     }
 
-
     private void SetRuneConcealed(Entity<CultRuneComponent> rune, bool concealed)
     {
         rune.Comp.Concealed = concealed;
@@ -714,5 +706,17 @@ public sealed partial class CultStructureSystem : EntitySystem
         }
         Spawn(Ash, coords);
         QueueDel(uid);
+    }
+
+    private bool TryGetDoorCooldown(EntityUid uid, out TimeSpan value)
+    {
+        if (TryComp<CultStructureDoorCooldownComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            return true;
+        }
+
+        value = default!;
+        return false;
     }
 }

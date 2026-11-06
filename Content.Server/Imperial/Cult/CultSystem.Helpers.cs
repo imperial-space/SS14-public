@@ -27,7 +27,7 @@ public sealed partial class CultSystem
     /// <summary>tgui_input_list / show_radial_menu: выбор из вариантов.</summary>
     public void OpenChoice(EntityUid user, string title, List<CultMenuOption> options, Action<string> callback, bool radial = true)
     {
-        if (!TryComp<ActorComponent>(user, out _))
+        if (!HasComp<ActorComponent>(user))
             return;
 
         _ui.SetUi(user, CultMenuUiKey.Choice, new InterfaceData("CultChoiceBoundUserInterface", -1f, false));
@@ -54,7 +54,7 @@ public sealed partial class CultSystem
     /// <summary>tgui_input_text.</summary>
     public void OpenText(EntityUid user, string title, string prompt, int maxLength, Action<string> callback)
     {
-        if (!TryComp<ActorComponent>(user, out _))
+        if (!HasComp<ActorComponent>(user))
             return;
 
         _ui.SetUi(user, CultMenuUiKey.Text, new InterfaceData("CultTextBoundUserInterface", -1f, false));

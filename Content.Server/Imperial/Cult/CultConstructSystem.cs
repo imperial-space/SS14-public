@@ -230,7 +230,7 @@ public sealed partial class CultConstructSystem : EntitySystem
             return;
 
         var repairable = HasComp<CultConstructComponent>(target) || HasComp<CultShadeComponent>(target) || HasComp<CultStructureComponent>(target);
-        if (!repairable || !TryComp<DamageableComponent>(target, out var damageable))
+        if (!repairable || !HasComp<DamageableComponent>(target))
             return;
         args.Handled = true;
 

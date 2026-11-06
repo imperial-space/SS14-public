@@ -1018,7 +1018,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
 
     private bool HealConstruct(Entity<CultAuraComponent> ent, EntityUid target, EntityUid user)
     {
-        if (!_cult.IsCultAligned(target) || !TryComp<DamageableComponent>(target, out var damageable))
+        if (!_cult.IsCultAligned(target) || !HasComp<DamageableComponent>(target))
             return false;
         var missing = _cult.TotalDamage(target);
         if (missing <= 0)
