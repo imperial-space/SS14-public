@@ -51,6 +51,8 @@ public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComp
     [Dependency] private readonly TargetObjectiveSystem _targetObjective = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
 
+    private static readonly EntProtoId MindRoleBloodBrother = "MindRoleBloodBrother";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -119,7 +121,7 @@ public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComp
 
         // Роль нужна раньше целей: у целей стоит требование роли.
         if (!_roles.MindHasRole<BloodBrotherRoleComponent>(mindId))
-            _roles.MindAddRole(mindId, "MindRoleBloodBrother", silent: true);
+            _roles.MindAddRole(mindId, MindRoleBloodBrother, silent: true);
 
         // Цели куются один раз на команду, от имени первого брата.
         if (!team.Comp.ObjectivesForged)
@@ -317,7 +319,7 @@ public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComp
     /// <summary>forge_single_objective().</summary>
     private void ForgeSingleObjective(Entity<BloodBrotherTeamComponent> team, EntityUid owner)
     {
-        if (_random.Prob(0.5f))
+        if (_random.Prob(team.Comp.ForgeSingleObjectiveChance))
         {
             // Чем меньше народу на станции, тем вероятнее заказ на ИИ.
             var players = Math.Max(1, _players.PlayerCount);
@@ -327,7 +329,7 @@ public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComp
                 return;
             }
 
-            AddTeamObjective(team, owner, _random.Prob(0.3f) ? team.Comp.MaroonObjective : team.Comp.AssassinateObjective);
+            AddTeamObjective(team, owner, _random.Prob(team.Comp.ForgeSingleObjectiveChance2) ? team.Comp.MaroonObjective : team.Comp.AssassinateObjective);
             return;
         }
 

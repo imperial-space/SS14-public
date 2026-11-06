@@ -72,4 +72,10 @@ public sealed partial class BloodBrotherTeamComponent : Component
     /// <summary>Вспышка, которую получает брат, пока может вербовать.</summary>
     [DataField]
     public EntProtoId FlashProto = "Flash";
+
+    [DataField]
+    public float ForgeSingleObjectiveChance = 0.5f;
+
+    [DataField]
+    public float ForgeSingleObjectiveChance2 = 0.3f;
 }
