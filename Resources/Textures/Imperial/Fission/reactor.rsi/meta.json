@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from BeeStation (BeeStation/BeeStation-Hornet icons/obj/machines/rbmk.dmi), originally from NSV13. reactor_hot, reactor_overheat, reactor_meltdown, reactor_broken recolored from reactor_active/reactor_open for Imperial Space",
+    "size": {"x": 96, "y": 96},
+    "states": [
+        {"name": "reactor"},
+        {"name": "reactor_active", "delays": [[0.2, 0.2, 0.2]]},
+        {"name": "reactor_hot", "delays": [[0.2, 0.2, 0.2]]},
+        {"name": "reactor_overheat", "delays": [[0.2, 0.2, 0.2]]},
+        {"name": "reactor_meltdown", "delays": [[0.1, 0.1, 0.1]]},
+        {"name": "reactor_startup", "delays": [[0.1, 0.1, 0.1, 0.1, 0.1]]},
+        {"name": "reactor_open"},
+        {"name": "reactor_broken"},
+        {"name": "top_0"},
+        {"name": "top_1"},
+        {"name": "top_2"},
+        {"name": "top_3"},
+        {"name": "top_4"},
+        {"name": "top_5"}
+    ]
+}
