@@ -98,4 +98,37 @@ public sealed partial class ImperialMalfAiComponent : Component
 
     [ViewVariables]
     public EntityUid? ReturnAction;
+
+    [DataField]
+    public TimeSpan DetonateCountdownTimeDelay = TimeSpan.FromSeconds(15);
+
+    [DataField]
+    public TimeSpan HonkDuration = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan HonkTime = TimeSpan.FromSeconds(120);
+
+    [DataField]
+    public TimeSpan VendorTiltDelay = TimeSpan.FromSeconds(0.5);
+
+    [DataField]
+    public float DoomsdayApcHackedRange = 5f;
+
+    [DataField]
+    public float DestroyRcdsTotalIntensity = 10f;
+
+    [DataField]
+    public float DestroyRcdsSlope = 3f;
+
+    [DataField]
+    public float DestroyRcdsMaxTileIntensity = 5f;
+
+    [DataField]
+    public float BlackoutChance = 0.7f;
+
+    [DataField]
+    public float HonkRange = 6f;
+
+    [DataField]
+    public float VendorTiltRange = 1.5f;
 }

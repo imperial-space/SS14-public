@@ -31,6 +31,8 @@ public sealed class ImperialMalfAiRuleSystem : GameRuleSystem<ImperialMalfAiRule
     private const string KillObjective = "KillRandomPersonObjective";
     private const string SurviveObjective = "ImperialMalfSurviveObjective";
 
+    private const float ForgeObjectivesChance = 0.5f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -59,7 +61,7 @@ public sealed class ImperialMalfAiRuleSystem : GameRuleSystem<ImperialMalfAiRule
     /// <summary>forge_ai_objectives(): особая цель (блокада или армия роботов), убийство, выживание.</summary>
     private void ForgeObjectives(EntityUid mindId, MindComponent mind)
     {
-        _mind.TryAddObjective(mindId, mind, _random.Prob(0.5f) ? BlockObjective : RobotArmyObjective);
+        _mind.TryAddObjective(mindId, mind, _random.Prob(ForgeObjectivesChance) ? BlockObjective : RobotArmyObjective);
         _mind.TryAddObjective(mindId, mind, KillObjective);
         _mind.TryAddObjective(mindId, mind, SurviveObjective);
     }
@@ -102,6 +104,6 @@ public sealed class ImperialMalfAiRuleSystem : GameRuleSystem<ImperialMalfAiRule
                 count++;
         }
 
-        args.Progress = Math.Clamp((float) count / ent.Comp.Required, 0f, 1f);
+        args.Progress = Math.Clamp((float)count / ent.Comp.Required, 0f, 1f);
     }
 }

@@ -231,11 +231,11 @@ public sealed partial class ImperialStationAiSystem
             var health = 100;
             if (TryComp<DamageableComponent>(borg, out var damageable)
                 && _thresholds.TryGetThresholdForState(borg, Content.Shared.Mobs.MobState.Dead, out var deadAt) && deadAt > 0)
-                health = Math.Clamp((int) (100 * (1 - _damageable.GetTotalDamage((borg, damageable)).Float() / deadAt.Value.Float())), 0, 100);
+                health = Math.Clamp((int)(100 * (1 - _damageable.GetTotalDamage((borg, damageable)).Float() / deadAt.Value.Float())), 0, 100);
 
             var charge = 0;
             if (_powerCell.TryGetBatteryFromSlot(borg, out var battery))
-                charge = (int) MathF.Round(_battery.GetChargeLevel(battery.Value.AsNullable()) * 100);
+                charge = (int)MathF.Round(_battery.GetChargeLevel(battery.Value.AsNullable()) * 100);
 
             list.Add(new ImperialAiBorgEntry(GetNetEntity(borg), Name(borg),
                 _navMap.GetNearestBeaconString((borg, xform), true), health, charge,

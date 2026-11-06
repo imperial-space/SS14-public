@@ -42,6 +42,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared.FixedPoint;
 
 namespace Content.Server.Imperial.StationAi.Malf;
 
@@ -91,6 +92,15 @@ public sealed partial class ImperialMalfAiSystem
 
     /// <summary>overload: счётчик перегрузок ЛКП для «Отключения света».</summary>
     private readonly Dictionary<EntityUid, int> _apcOverload = new();
+
+    private static readonly DamageSpecifier CrushDamage = new() { DamageDict = { ["Blunt"] = 75 } };
+
+    private static readonly TimeSpan CrushDuration = TimeSpan.FromSeconds(6);
+
+    private const float FinishMachineTotalIntensity = 40f;
+    private const float FinishMachineSlope = 5f;
+    private const float FinishMachineMaxTileIntensity = 10f;
+    private const float CrushRange = 0.5f;
 
     private void InitializeModules()
     {
@@ -272,7 +282,7 @@ public sealed partial class ImperialMalfAiSystem
         if (explode)
         {
             Log.Info($"{ToPrettyString(ai)} перегрузил {ToPrettyString(target)}");
-            _explosion.QueueExplosion(coords, ExplosionSystem.DefaultExplosionPrototypeId, 40, 5, 10, target);
+            _explosion.QueueExplosion(coords, ExplosionSystem.DefaultExplosionPrototypeId, FinishMachineTotalIntensity, FinishMachineSlope, FinishMachineMaxTileIntensity, target);
             QueueDel(target);
             return;
         }
@@ -309,7 +319,7 @@ public sealed partial class ImperialMalfAiSystem
 
         foreach (var rcd in targets)
         {
-            _explosion.QueueExplosion(_transform.GetMapCoordinates(rcd), ExplosionSystem.DefaultExplosionPrototypeId, 10, 3, 5, rcd);
+            _explosion.QueueExplosion(_transform.GetMapCoordinates(rcd), ExplosionSystem.DefaultExplosionPrototypeId, ent.Comp.DestroyRcdsTotalIntensity, ent.Comp.DestroyRcdsSlope, ent.Comp.DestroyRcdsMaxTileIntensity, rcd);
             QueueDel(rcd);
         }
 
@@ -336,7 +346,7 @@ public sealed partial class ImperialMalfAiSystem
                 foreach (var receiver in provider.LinkedReceivers.ToList())
                 {
                     var light = receiver.Owner;
-                    if (HasComp<PoweredLightComponent>(light) && _random.Prob(0.7f))
+                    if (HasComp<PoweredLightComponent>(light) && _random.Prob(ent.Comp.BlackoutChance))
                         _lights.TryDestroyBulb(light);
                 }
             }
@@ -365,7 +375,7 @@ public sealed partial class ImperialMalfAiSystem
                 continue;
 
             _audio.PlayPvs(AirhornSound, intercom, AudioParams.Default.WithVolume(6));
-            foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(xform.Coordinates, 6f))
+            foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(xform.Coordinates, ent.Comp.HonkRange))
             {
                 if (HasComp<BorgChassisComponent>(mob) || HasComp<StationAiHeldComponent>(mob) || !_mobs.IsAlive(mob))
                     continue;
@@ -376,8 +386,8 @@ public sealed partial class ImperialMalfAiSystem
 
         foreach (var victim in victims)
         {
-            _stun.TryUpdateParalyzeDuration(victim, TimeSpan.FromSeconds(2));
-            _jitter.DoJitter(victim, TimeSpan.FromSeconds(120), true);
+            _stun.TryUpdateParalyzeDuration(victim, ent.Comp.HonkDuration);
+            _jitter.DoJitter(victim, ent.Comp.HonkTime, true);
             _popup.PopupEntity(Loc.GetString("imperial-malf-honk-victim"), victim, victim, PopupType.LargeCaution);
         }
     }
@@ -605,7 +615,7 @@ public sealed partial class ImperialMalfAiSystem
         if (delta.LengthSquared() < 0.25f)
             return;
 
-        var direction = (Vector2) Angle.FromWorldVec(delta).GetDir().ToIntVec();
+        var direction = (Vector2)Angle.FromWorldVec(delta).GetDir().ToIntVec();
         if (!TryUseModule(ent, "ImperialMalfCoreTilt"))
             return;
 
@@ -635,15 +645,14 @@ public sealed partial class ImperialMalfAiSystem
     /// <summary>fall_and_crush(): 75 грубого урона и паралич всем на клетке.</summary>
     private void Crush(EntityCoordinates target, EntityUid source)
     {
-        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(target, 0.5f))
+        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(target, CrushRange))
         {
             if (mob.Owner == source)
                 continue;
 
-            var damage = new DamageSpecifier();
-            damage.DamageDict["Blunt"] = 75;
+            var damage = new DamageSpecifier(CrushDamage);
             _damage.TryChangeDamage(mob.Owner, damage, origin: source);
-            _stun.TryUpdateParalyzeDuration(mob, TimeSpan.FromSeconds(6));
+            _stun.TryUpdateParalyzeDuration(mob, CrushDuration);
         }
     }
 
@@ -654,7 +663,7 @@ public sealed partial class ImperialMalfAiSystem
             return;
 
         EntityUid? vendor = null;
-        foreach (var candidate in _lookup.GetEntitiesInRange<VendingMachineComponent>(args.Target, 1.5f))
+        foreach (var candidate in _lookup.GetEntitiesInRange<VendingMachineComponent>(args.Target, ent.Comp.VendorTiltRange))
         {
             if (!HasComp<ImperialMalfTiltedComponent>(candidate))
                 vendor = candidate;
@@ -671,7 +680,7 @@ public sealed partial class ImperialMalfAiSystem
 
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString("imperial-malf-vendor-falling", ("vendor", Name(found))), found, PopupType.LargeCaution);
-        _pendingTilts.Add((_timing.CurTime + TimeSpan.FromSeconds(0.5), found, args.Target));
+        _pendingTilts.Add((_timing.CurTime + ent.Comp.VendorTiltDelay, found, args.Target));
     }
 
     private void FinishTilt(EntityUid vendor, EntityCoordinates target)

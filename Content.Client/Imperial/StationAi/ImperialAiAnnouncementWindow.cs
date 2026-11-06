@@ -41,7 +41,7 @@ public sealed class ImperialAiAnnouncementWindow : DefaultWindow
             Tgui.Paragraph(Loc.GetString("imperial-ai-vox-warning"), Tgui.Bad),
             Tgui.HBox(6, _message, send));
         if (cooldown > 0)
-            top.AddChild(Tgui.Text(Loc.GetString("imperial-ai-vox-wait", ("seconds", (int) Math.Ceiling(cooldown))), Tgui.Average));
+            top.AddChild(Tgui.Text(Loc.GetString("imperial-ai-vox-wait", ("seconds", (int)Math.Ceiling(cooldown))), Tgui.Average));
 
         _search.PlaceHolder = Loc.GetString("imperial-ai-list-search");
         _search.OnTextChanged += _ => RebuildWords();

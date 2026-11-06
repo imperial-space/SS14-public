@@ -86,4 +86,7 @@ public sealed partial class ImperialStationAiComponent : Component
 
     [ViewVariables]
     public TimeSpan NextLaw;
+
+    [DataField]
+    public float UpdateTrackingRange = 0.75f;
 }

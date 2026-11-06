@@ -36,6 +36,8 @@ public sealed partial class ImperialMalfAiSystem
     private static readonly HashSet<string> CommandAccess = new() { "Command", "Captain", "HeadOfPersonnel" };
     private const string HeldSlot = "station_ai_mind_slot";
 
+    private static readonly EntProtoId Ash = "Ash";
+
     private void InitializeDoomsday()
     {
         SubscribeLocalEvent<ImperialMalfAiComponent, ImperialMalfDoomsdayActionEvent>(OnDoomsday);
@@ -59,7 +61,7 @@ public sealed partial class ImperialMalfAiSystem
         if (ent.Comp.Shunt == null && ent.Comp.CanShunt)
             _actions.AddAction(ent, ref ent.Comp.ShuntAction, ShuntAction);
 
-        foreach (var reader in _lookup.GetEntitiesInRange<AccessReaderComponent>(Transform(apc).Coordinates, 5f))
+        foreach (var reader in _lookup.GetEntitiesInRange<AccessReaderComponent>(Transform(apc).Coordinates, ent.Comp.DoomsdayApcHackedRange))
         {
             foreach (var list in reader.Comp.AccessLists)
             {
@@ -147,7 +149,7 @@ public sealed partial class ImperialMalfAiSystem
                 continue;
 
             malf.NextDoomsdayAnnounce = now + DoomsdayAnnounceInterval;
-            var left = (int) Math.Ceiling((end - now).TotalSeconds);
+            var left = (int)Math.Ceiling((end - now).TotalSeconds);
             _chat.DispatchGlobalAnnouncement(Loc.GetString("imperial-malf-doomsday-countdown", ("seconds", left)),
                 Loc.GetString("imperial-malf-doomsday-sender"), colorOverride: Color.Red);
         }
@@ -177,14 +179,14 @@ public sealed partial class ImperialMalfAiSystem
 
         foreach (var victim in victims)
         {
-            Spawn("Ash", _transform.GetMapCoordinates(victim));
+            Spawn(Ash, _transform.GetMapCoordinates(victim));
             QueueDel(victim);
         }
 
         Log.Info($"Устройство Судного дня {ToPrettyString(ent)} сработало: {victims.Count} жертв");
         _chat.DispatchGlobalAnnouncement(Loc.GetString("imperial-malf-doomsday-detonated"),
             Loc.GetString("imperial-malf-doomsday-sender"), colorOverride: Color.Red);
-        _roundEnd.EndRound(TimeSpan.FromSeconds(15));
+        _roundEnd.EndRound(ent.Comp.DetonateCountdownTimeDelay);
     }
 
     #region Перенос в ЛКП

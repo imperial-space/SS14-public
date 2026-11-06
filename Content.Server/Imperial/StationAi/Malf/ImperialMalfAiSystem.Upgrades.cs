@@ -38,6 +38,8 @@ public sealed partial class ImperialMalfAiSystem
 
     private TimeSpan _nextUpgradeCheck;
 
+    private const float UpdateFactoriesRange = 1.4f;
+
     private void InitializeUpgrades()
     {
         SubscribeLocalEvent<ImperialMalfAiComponent, ImperialMalfVoiceChangerActionEvent>(OnVoiceChanger);
@@ -208,7 +210,7 @@ public sealed partial class ImperialMalfAiSystem
             if (now < factory.NextUse)
                 continue;
 
-            foreach (var victim in _lookup.GetEntitiesInRange<HumanoidProfileComponent>(xform.Coordinates, 1.4f))
+            foreach (var victim in _lookup.GetEntitiesInRange<HumanoidProfileComponent>(xform.Coordinates, UpdateFactoriesRange))
             {
                 if (!HasComp<MobStateComponent>(victim) || _mobs.IsDead(victim))
                     continue;

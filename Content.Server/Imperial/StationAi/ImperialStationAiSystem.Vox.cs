@@ -60,7 +60,7 @@ public sealed partial class ImperialStationAiSystem
             return;
 
         args.Handled = true;
-        var wait = (float) Math.Max(0, (_nextVox - _timing.CurTime).TotalSeconds);
+        var wait = (float)Math.Max(0, (_nextVox - _timing.CurTime).TotalSeconds);
         RaiseNetworkEvent(new ImperialAiAnnouncementOpenEvent(ent.Comp.LastAnnouncement, wait), actor.PlayerSession);
     }
 
@@ -83,7 +83,7 @@ public sealed partial class ImperialStationAiSystem
         if (_timing.CurTime < _nextVox)
         {
             _popup.PopupEntity(Loc.GetString("imperial-ai-vox-wait",
-                ("seconds", (int) Math.Ceiling((_nextVox - _timing.CurTime).TotalSeconds))), ai, ai);
+                ("seconds", (int)Math.Ceiling((_nextVox - _timing.CurTime).TotalSeconds))), ai, ai);
             return false;
         }
 

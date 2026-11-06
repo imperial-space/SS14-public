@@ -294,7 +294,7 @@ public sealed partial class ImperialStationAiSystem : EntitySystem
 
         // Ручное движение «глазом» снимает слежение (reset_tracking в relaymove).
         if (ent.Comp.TrackPlaced is { } placed
-            && !_transform.InRange(Transform(eye).Coordinates, placed, 0.75f))
+            && !_transform.InRange(Transform(eye).Coordinates, placed, ent.Comp.UpdateTrackingRange))
         {
             ResetTracking(ent);
             return;
