@@ -27,6 +27,10 @@ public sealed class CadiaProclamationSystem : EntitySystem
     private static readonly Color ChaosColor = Color.FromHex("#ff4a3a");
     private static readonly Color ImperiumColor = Color.FromHex("#e8c66a");
 
+    private static readonly TimeSpan NextDelay = TimeSpan.FromMinutes(1);
+
+    private const float UpdateChance = 0.2f;
+
     /// <summary>Голос: ключ отправителя, начало ключей реплик, сколько реплик на фазу, кто слышит, звук и цвет.</summary>
     private readonly record struct Voice(string Sender, string Lines, int Count, CadiaFaction Hears, SoundSpecifier Sound, Color Color);
 
@@ -74,7 +78,7 @@ public sealed class CadiaProclamationSystem : EntitySystem
             if (_phase != null && war.Phase == CadiaWarPhase.Assault)
                 React("assault", force: true);
             _phase = war.Phase;
-            _next = now + TimeSpan.FromMinutes(1);
+            _next = now + NextDelay;
             return;
         }
         if (now >= _nextCheck)
@@ -87,7 +91,7 @@ public sealed class CadiaProclamationSystem : EntitySystem
         _next = now + _random.Next(MinGap, MaxGap);
 
         // Крид и Абаддон говорят всегда, перехват — реже.
-        var voice = _random.Prob(0.2f) ? Voices[3] : _random.Pick(new[] { Voices[0], Voices[1], Voices[2], Voices[2] });
+        var voice = _random.Prob(UpdateChance) ? Voices[3] : _random.Pick(new[] { Voices[0], Voices[1], Voices[2], Voices[2] });
         Speak(voice, war.Phase);
     }
 

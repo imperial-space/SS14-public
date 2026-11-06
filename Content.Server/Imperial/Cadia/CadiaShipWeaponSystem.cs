@@ -84,6 +84,19 @@ public sealed class CadiaShipWeaponSystem : EntitySystem
     private readonly HashSet<Entity<DamageableComponent>> _hit = new();
     private TimeSpan _nextDirty;
 
+    private static readonly EntProtoId CadiaFlakMuzzle = "CadiaFlakMuzzle";
+    private static readonly EntProtoId CadiaFlakBurst = "CadiaFlakBurst";
+    private static readonly EntProtoId CadiaFallingBomb = "CadiaFallingBomb";
+    private static readonly EntProtoId CadiaOrbitalStrikeMarker = "CadiaOrbitalStrikeMarker";
+    private static readonly EntProtoId CadiaParachuteCanopyOpening = "CadiaParachuteCanopyOpening";
+    private static readonly EntProtoId CadiaParachuteCanopy = "CadiaParachuteCanopy";
+    private static readonly EntProtoId CadiaJumpImpactEffect = "CadiaJumpImpactEffect";
+
+    private static readonly TimeSpan ShotDelay = TimeSpan.FromSeconds(0.6);
+
+    private const float UpdateStrafesSlope = 5f;
+    private const float UpdateStrafesMaxTileIntensity = 10f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -303,7 +316,7 @@ public sealed class CadiaShipWeaponSystem : EntitySystem
         gun.Comp.NextShot = now + gun.Comp.Cooldown;
         if (gun.Comp.Ammo <= 0)
         {
-            gun.Comp.NextShot = now + TimeSpan.FromSeconds(0.6);
+            gun.Comp.NextShot = now + ShotDelay;
             _audio.PlayEntity(DryFireSound, Filter.Entities(user), gun, false);
             return;
         }
@@ -317,7 +330,7 @@ public sealed class CadiaShipWeaponSystem : EntitySystem
         var projectile = Spawn(gun.Comp.Projectile, muzzle);
         var velocity = TryComp<PhysicsComponent>(gunner.Grid, out var body) ? body.LinearVelocity : Vector2.Zero;
         _gun.ShootProjectile(projectile, dir, velocity, gun, user, gun.Comp.Speed);
-        Spawn("CadiaFlakMuzzle", origin.Offset(dir * 0.9f));
+        Spawn(CadiaFlakMuzzle, origin.Offset(dir * 0.9f));
         _audio.PlayPvs(gun.Comp.Sound, gun, AudioParams.Default.WithVariation(0.08f));
 
         // Из неба очередь в пустоту под прицелом ложится на землю.
@@ -359,9 +372,9 @@ public sealed class CadiaShipWeaponSystem : EntitySystem
             if (now < strafe.At)
                 continue;
             _strafes.RemoveAt(i);
-            Spawn("CadiaFlakBurst", strafe.Where);
+            Spawn(CadiaFlakBurst, strafe.Where);
             if (strafe.Explosion > 0f)
-                _explosion.QueueExplosion(strafe.Where, "Default", strafe.Explosion, 5f, 10f, strafe.Source, canCreateVacuum: false);
+                _explosion.QueueExplosion(strafe.Where, "Default", strafe.Explosion, UpdateStrafesSlope, UpdateStrafesMaxTileIntensity, strafe.Source, canCreateVacuum: false);
             var damage = new DamageSpecifier(_proto.Index(PiercingDamage), strafe.Damage);
             damage += new DamageSpecifier(_proto.Index(StructuralDamage), strafe.Damage);
             _hit.Clear();
@@ -424,13 +437,13 @@ public sealed class CadiaShipWeaponSystem : EntitySystem
             dropped++;
 
             var from = _xform.GetMapCoordinates(uid, xform);
-            Spawn("CadiaFallingBomb", from);
+            Spawn(CadiaFallingBomb, from);
             _audio.PlayPvs(BombReleaseSound, uid);
 
             // Бомба сохраняет скорость борта: точка удара впереди по курсу.
-            var fall = (float) bay.FallTime.TotalSeconds;
+            var fall = (float)bay.FallTime.TotalSeconds;
             var point = new MapCoordinates(from.Position + velocity * fall + _random.NextVector2(0.8f), ground);
-            var strike = Spawn("CadiaOrbitalStrikeMarker", point);
+            var strike = Spawn(CadiaOrbitalStrikeMarker, point);
             var comp = EnsureComp<CadiaOrbitalStrikeComponent>(strike);
             comp.Kind = CadiaBatteryKind.Macro;
             comp.Start = now;
@@ -515,7 +528,7 @@ public sealed class CadiaShipWeaponSystem : EntitySystem
         var falling = EnsureComp<CadiaParachutingComponent>(user);
         falling.DriftSpeed = chute.Comp.DriftSpeed;
         falling.LandAt = _timing.CurTime + chute.Comp.Descent;
-        falling.Canopy = Spawn("CadiaParachuteCanopyOpening", new EntityCoordinates(user, Vector2.Zero));
+        falling.Canopy = Spawn(CadiaParachuteCanopyOpening, new EntityCoordinates(user, Vector2.Zero));
         falling.OpenAt = _timing.CurTime + CanopyOpenTime;
         Dirty(user, falling);
         EnsureComp<ZFlyerComponent>(user);
@@ -566,7 +579,7 @@ public sealed class CadiaShipWeaponSystem : EntitySystem
                 falling.OpenAt = null;
                 if (falling.Canopy is { } opening)
                     QueueDel(opening);
-                falling.Canopy = Spawn("CadiaParachuteCanopy", new EntityCoordinates(uid, Vector2.Zero));
+                falling.Canopy = Spawn(CadiaParachuteCanopy, new EntityCoordinates(uid, Vector2.Zero));
             }
         }
         foreach (var uid in landed)
@@ -580,7 +593,7 @@ public sealed class CadiaShipWeaponSystem : EntitySystem
         RemComp<CadiaParachutingComponent>(user);
         RemComp<ZFlyerComponent>(user);
         _speed.RefreshMovementSpeedModifiers(user);
-        Spawn("CadiaJumpImpactEffect", _xform.GetMapCoordinates(user));
+        Spawn(CadiaJumpImpactEffect, _xform.GetMapCoordinates(user));
         _audio.PlayPvs(LandSound, user);
         _popup.PopupEntity(Loc.GetString("cadia-chute-landed"), user, user);
     }

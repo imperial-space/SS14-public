@@ -79,6 +79,10 @@ public sealed class CadiaAntiAirSystem : EntitySystem
     private readonly Dictionary<EntityUid, List<(CadiaAirBurst Burst, TimeSpan Time)>> _bursts = new();
     private readonly Dictionary<EntityUid, TimeSpan> _underFireWarned = new();
 
+    private const float ResolveShotsSlope = 3f;
+    private const float ResolveShotsMaxTileIntensity = 6f;
+    private const float ResolveShotsStrength = 1.2f;
+
     private record struct PendingShot(EntityUid Gun, MapCoordinates Point, int Level, TimeSpan Impact);
 
     public override void Initialize()
@@ -263,7 +267,7 @@ public sealed class CadiaAntiAirSystem : EntitySystem
         var minY = tiles.Min(t => t.Y);
         var w = tiles.Max(t => t.X) - minX + 1;
         var h = tiles.Max(t => t.Y) - minY + 1;
-        var step = Math.Max(1, (int) Math.Ceiling(Math.Max(w, h) / 32f));
+        var step = Math.Max(1, (int)Math.Ceiling(Math.Max(w, h) / 32f));
         var sw = (w + step - 1) / step;
         var sh = (h + step - 1) / step;
         var data = new byte[sw * sh];
@@ -353,8 +357,8 @@ public sealed class CadiaAntiAirSystem : EntitySystem
         Dirty(map, light);
 
         var moles = new float[Atmospherics.AdjustedNumberOfGases];
-        moles[(int) Gas.Oxygen] = 21.824779f;
-        moles[(int) Gas.Nitrogen] = 82.10312f;
+        moles[(int)Gas.Oxygen] = 21.824779f;
+        moles[(int)Gas.Nitrogen] = 82.10312f;
         _atmos.SetMapAtmosphere(map, false, new GasMixture(moles, Atmospherics.T20C));
 
         var floor = new Tile(_tiles["FloorConcrete"].TileId);
@@ -640,7 +644,7 @@ public sealed class CadiaAntiAirSystem : EntitySystem
                     Dirty(uid, aa);
                 if (now >= aa.NextTurnSound)
                 {
-                    aa.NextTurnSound = now + TimeSpan.FromSeconds(1.2);
+                    aa.NextTurnSound = now + aa.TurnSoundDelay;
                     _audio.PlayPvs(aa.TurnSound, uid, AudioParams.Default.WithVolume(-6).WithPitchScale(0.7f));
                 }
             }
@@ -746,8 +750,8 @@ public sealed class CadiaAntiAirSystem : EntitySystem
                 continue;
 
             var vacuum = TryComp<CadiaFlightLevelComponent>(Transform(grid).MapUid, out var levelComp) && levelComp.Level == CadiaFlightLevel.Orbit;
-            _explosion.QueueExplosion(shot.Point, "Default", gun.Damage, 3f, 6f, shot.Gun, canCreateVacuum: vacuum);
-            _artillery.ShakeGrid(grid, 1.2f);
+            _explosion.QueueExplosion(shot.Point, "Default", gun.Damage, ResolveShotsSlope, ResolveShotsMaxTileIntensity, shot.Gun, canCreateVacuum: vacuum);
+            _artillery.ShakeGrid(grid, ResolveShotsStrength);
         }
     }
 
@@ -809,7 +813,7 @@ public sealed class CadiaAntiAirSystem : EntitySystem
         var delta = _xform.GetWorldPosition(grid) - _xform.GetWorldPosition(from);
         var dir = delta.LengthSquared() < 1f ? Direction.Invalid : new Angle(delta).GetDir();
         var name = dir == Direction.Invalid ? Loc.GetString("cadia-bearing-overhead") : Loc.GetString($"cadia-bearing-{dir.ToString().ToLowerInvariant()}");
-        return Loc.GetString("cadia-auspex-bearing", ("dir", name), ("distance", (int) delta.Length()));
+        return Loc.GetString("cadia-auspex-bearing", ("dir", name), ("distance", (int)delta.Length()));
     }
 
     private void OnAuspexExamined(Entity<CadiaAuspexComponent> ent, ref ExaminedEvent args)

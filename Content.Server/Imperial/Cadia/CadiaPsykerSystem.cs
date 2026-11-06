@@ -60,6 +60,37 @@ public sealed class CadiaPsykerSystem : EntitySystem
     private readonly HashSet<Entity<CadiaNullZoneComponent>> _nulls = new();
     private TimeSpan _nextTick;
 
+    private static readonly EntProtoId CadiaPsySmiteEffect = "CadiaPsySmiteEffect";
+    private static readonly EntProtoId CadiaPsyBloodEffect = "CadiaPsyBloodEffect";
+    private static readonly EntProtoId CadiaWarpRiftSmall = "CadiaWarpRiftSmall";
+    private static readonly EntProtoId CadiaPsyPerilsEffect = "CadiaPsyPerilsEffect";
+    private static readonly EntProtoId CadiaPsyDomePlate = "CadiaPsyDomePlate";
+    private static readonly EntProtoId CadiaPsyRingBlue = "CadiaPsyRingBlue";
+    private static readonly EntProtoId CadiaPsyFuryEffect = "CadiaPsyFuryEffect";
+    private static readonly EntProtoId CadiaPsyWarpfireEffect = "CadiaPsyWarpfireEffect";
+    private static readonly EntProtoId CadiaPsyPlagueEffect = "CadiaPsyPlagueEffect";
+    private static readonly EntProtoId CadiaPsyRingPink = "CadiaPsyRingPink";
+
+    private static readonly TimeSpan TickDelay = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan ScreamDuration = TimeSpan.FromSeconds(2.5);
+    private static readonly TimeSpan SilencedDelay = TimeSpan.FromSeconds(30);
+    private static readonly TimeSpan VeilDelay = TimeSpan.FromSeconds(15);
+    private static readonly TimeSpan CharmDuration = TimeSpan.FromSeconds(3.5);
+
+    private const float NullAroundRange = 14f;
+    private const float ScreamRadius = 5f;
+    private const float ScreamAmount = 8f;
+    private const float ForesightRadius = 30f;
+    private const float FuryRange = 1.2f;
+    private const float FuryAmount = 30f;
+    private const float WarpfireRange = 2f;
+    private const float WarpfireAmount = 22f;
+    private const float WarpfireAmount2 = 6f;
+    private const float PlagueRadius = 4f;
+    private const float PlagueAmount = 16f;
+    private const float PlagueAmount2 = 6f;
+    private const float CharmRadius = 4.5f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -99,7 +130,7 @@ public sealed class CadiaPsykerSystem : EntitySystem
         var now = _timing.CurTime;
         if (now < _nextTick)
             return;
-        _nextTick = now + TimeSpan.FromSeconds(1);
+        _nextTick = now + TickDelay;
 
         var query = EntityQueryEnumerator<CadiaPsykerComponent>();
         while (query.MoveNext(out var uid, out var psyker))
@@ -169,18 +200,18 @@ public sealed class CadiaPsykerSystem : EntitySystem
         switch (power.Power)
         {
             case CadiaPsyPower.Smite:
-                Hurt(args.Target, ent, "Shock", 28f);
-                Spawn("CadiaPsySmiteEffect", _xform.GetMapCoordinates(args.Target));
+                Hurt(args.Target, ent, "Shock", ent.Comp.EntitySmiteAmount);
+                Spawn(CadiaPsySmiteEffect, _xform.GetMapCoordinates(args.Target));
                 _audio.PlayPvs(SmiteSound, args.Target);
                 break;
             case CadiaPsyPower.Suppression:
                 Suppress(ent, args.Target);
                 break;
             case CadiaPsyPower.Bloodboil:
-                Hurt(args.Target, ent, "Heat", 18f);
-                Hurt(args.Target, ent, "Slash", 12f);
-                _damage.HealEvenly(ent.Owner, -10, origin: ent);
-                Spawn("CadiaPsyBloodEffect", _xform.GetMapCoordinates(args.Target));
+                Hurt(args.Target, ent, "Heat", ent.Comp.EntityBloodboilAmount);
+                Hurt(args.Target, ent, "Slash", ent.Comp.EntityBloodboilAmount2);
+                _damage.HealEvenly(ent.Owner, ent.Comp.EntityBloodboilAmount3, origin: ent);
+                Spawn(CadiaPsyBloodEffect, _xform.GetMapCoordinates(args.Target));
                 _audio.PlayPvs(BloodSound, args.Target);
                 break;
         }
@@ -202,7 +233,7 @@ public sealed class CadiaPsykerSystem : EntitySystem
                 Warpfire(ent, target);
                 break;
             case CadiaPsyPower.Portal:
-                Spawn("CadiaWarpRiftSmall", target);
+                Spawn(CadiaWarpRiftSmall, target);
                 _audio.PlayPvs(PortalSound, ent);
                 break;
         }
@@ -246,7 +277,7 @@ public sealed class CadiaPsykerSystem : EntitySystem
         var total = false;
         var pylon = false;
         _nulls.Clear();
-        _lookup.GetEntitiesInRange(_xform.GetMapCoordinates(user), 14f, _nulls);
+        _lookup.GetEntitiesInRange(_xform.GetMapCoordinates(user), NullAroundRange, _nulls);
         var here = _xform.GetWorldPosition(user);
         foreach (var zone in _nulls)
         {
@@ -288,26 +319,26 @@ public sealed class CadiaPsykerSystem : EntitySystem
     {
         _audio.PlayPvs(PerilsSound, ent);
         var coords = _xform.GetMapCoordinates(ent);
-        Spawn("CadiaPsyPerilsEffect", coords);
+        Spawn(CadiaPsyPerilsEffect, coords);
         _popup.PopupEntity(Loc.GetString("cadia-psy-perils"), ent, PopupType.LargeCaution);
 
         var roll = _random.NextFloat() * ent.Comp.Strain;
         if (roll < 40f)
         {
-            Hurt(ent, null, "Cellular", 20f);
-            _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(2));
+            Hurt(ent, null, "Cellular", ent.Comp.PerilsAmount);
+            _stun.TryUpdateParalyzeDuration(ent, ent.Comp.PerilsDuration);
         }
         else if (roll < 75f)
         {
-            _explosion.QueueExplosion(coords, "Default", 12f, 4f, 3f, ent, canCreateVacuum: false);
+            _explosion.QueueExplosion(coords, "Default", ent.Comp.PerilsTotalIntensity, ent.Comp.PerilsSlope, ent.Comp.PerilsMaxTileIntensity, ent, canCreateVacuum: false);
             ent.Comp.Strain = 40f;
             Dirty(ent);
         }
         else
         {
             Spawn(EscapedDaemon, coords.Offset(_random.NextVector2(1.2f)));
-            Hurt(ent, null, "Cellular", 35f);
-            _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(4));
+            Hurt(ent, null, "Cellular", ent.Comp.PerilsAmount2);
+            _stun.TryUpdateParalyzeDuration(ent, ent.Comp.PerilsDuration2);
             ent.Comp.Strain = 20f;
             Dirty(ent);
         }
@@ -346,19 +377,19 @@ public sealed class CadiaPsykerSystem : EntitySystem
         for (var i = 0; i < Plates; i++)
         {
             var dir = Angle.FromDegrees(i * 360f / Plates).ToVec();
-            Spawn("CadiaPsyDomePlate", center.Offset(dir * 2.5f));
+            Spawn(CadiaPsyDomePlate, center.Offset(dir * 2.5f));
         }
         _audio.PlayPvs(DomeSound, user);
     }
 
     private void Scream(EntityUid user)
     {
-        foreach (var enemy in Enemies(user, 5f))
+        foreach (var enemy in Enemies(user, ScreamRadius))
         {
-            Hurt(enemy, user, "Cellular", 8f);
-            _stun.TryUpdateParalyzeDuration(enemy, TimeSpan.FromSeconds(2.5));
+            Hurt(enemy, user, "Cellular", ScreamAmount);
+            _stun.TryUpdateParalyzeDuration(enemy, ScreamDuration);
         }
-        Spawn("CadiaPsyRingBlue", _xform.GetMapCoordinates(user));
+        Spawn(CadiaPsyRingBlue, _xform.GetMapCoordinates(user));
         _audio.PlayPvs(ScreamSound, user);
     }
 
@@ -369,14 +400,14 @@ public sealed class CadiaPsykerSystem : EntitySystem
             return;
         var count = 0;
         var pos = _xform.GetMapCoordinates(user);
-        foreach (var enemy in Enemies(user, 30f))
+        foreach (var enemy in Enemies(user, ForesightRadius))
         {
             var point = _xform.GetMapCoordinates(enemy);
             _holo.MarkEnemy(member.Faction, pos.MapId, point.Position, Name(user));
             if (++count >= 40)
                 break;
         }
-        Spawn("CadiaPsyRingBlue", pos);
+        Spawn(CadiaPsyRingBlue, pos);
         _audio.PlayPvs(SmiteSound, user);
         _popup.PopupEntity(Loc.GetString("cadia-psy-foresight", ("count", count)), user, user, PopupType.Medium);
     }
@@ -389,7 +420,7 @@ public sealed class CadiaPsykerSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("cadia-psy-not-psyker"), user, user);
             return;
         }
-        other.SilencedUntil = _timing.CurTime + TimeSpan.FromSeconds(30);
+        other.SilencedUntil = _timing.CurTime + SilencedDelay;
         other.Strain = 0f;
         Dirty(target, other);
         _popup.PopupEntity(Loc.GetString("cadia-psy-suppressed"), target, target, PopupType.LargeCaution);
@@ -412,16 +443,16 @@ public sealed class CadiaPsykerSystem : EntitySystem
         for (var d = 1f; d <= length; d += 1f)
         {
             var point = from.Offset(dir * d);
-            Spawn("CadiaPsyFuryEffect", point);
+            Spawn(CadiaPsyFuryEffect, point);
             _mobs.Clear();
-            _lookup.GetEntitiesInRange(point, 1.2f, _mobs);
+            _lookup.GetEntitiesInRange(point, FuryRange, _mobs);
             foreach (var mob in _mobs)
             {
                 if (mob.Owner == user || !hit.Add(mob))
                     continue;
                 if (faction != null && TryComp<CadiaFactionMemberComponent>(mob, out var other) && other.Faction == faction)
                     continue;
-                Hurt(mob, user, "Heat", 30f);
+                Hurt(mob, user, "Heat", FuryAmount);
             }
         }
         _audio.PlayPvs(FireSound, user);
@@ -430,9 +461,9 @@ public sealed class CadiaPsykerSystem : EntitySystem
     /// <summary>Огонь варпа Тзинча: разноцветное пламя в точке, бьёт и поджигает всё вокруг.</summary>
     private void Warpfire(EntityUid user, MapCoordinates target)
     {
-        Spawn("CadiaPsyWarpfireEffect", target);
+        Spawn(CadiaPsyWarpfireEffect, target);
         _mobs.Clear();
-        _lookup.GetEntitiesInRange(target, 2f, _mobs);
+        _lookup.GetEntitiesInRange(target, WarpfireRange, _mobs);
         var faction = CompOrNull<CadiaFactionMemberComponent>(user)?.Faction;
         foreach (var mob in _mobs)
         {
@@ -440,8 +471,8 @@ public sealed class CadiaPsykerSystem : EntitySystem
                 continue;
             if (faction != null && TryComp<CadiaFactionMemberComponent>(mob, out var other) && other.Faction == faction)
                 continue;
-            Hurt(mob, user, "Heat", 22f);
-            Hurt(mob, user, "Cellular", 6f);
+            Hurt(mob, user, "Heat", WarpfireAmount);
+            Hurt(mob, user, "Cellular", WarpfireAmount2);
         }
         _audio.PlayPvs(FireSound, user);
     }
@@ -451,28 +482,28 @@ public sealed class CadiaPsykerSystem : EntitySystem
     {
         var stealth = EnsureComp<StealthComponent>(user);
         _stealth.SetVisibility(user, -0.7f, stealth);
-        EnsureComp<CadiaVeilComponent>(user).Until = _timing.CurTime + TimeSpan.FromSeconds(15);
+        EnsureComp<CadiaVeilComponent>(user).Until = _timing.CurTime + VeilDelay;
         _audio.PlayPvs(VeilSound, user);
     }
 
     /// <summary>Мор Нургла: облако язв вокруг псайкера.</summary>
     private void Plague(EntityUid user)
     {
-        foreach (var enemy in Enemies(user, 4f))
+        foreach (var enemy in Enemies(user, PlagueRadius))
         {
-            Hurt(enemy, user, "Poison", 16f);
-            Hurt(enemy, user, "Cellular", 6f);
+            Hurt(enemy, user, "Poison", PlagueAmount);
+            Hurt(enemy, user, "Cellular", PlagueAmount2);
         }
-        Spawn("CadiaPsyPlagueEffect", _xform.GetMapCoordinates(user));
+        Spawn(CadiaPsyPlagueEffect, _xform.GetMapCoordinates(user));
         _audio.PlayPvs(PlagueSound, user);
     }
 
     /// <summary>Очарование Слаанеш: враги рядом оглушены и теряют волю к бою.</summary>
     private void Charm(EntityUid user)
     {
-        foreach (var enemy in Enemies(user, 4.5f))
-            _stun.TryUpdateParalyzeDuration(enemy, TimeSpan.FromSeconds(3.5));
-        Spawn("CadiaPsyRingPink", _xform.GetMapCoordinates(user));
+        foreach (var enemy in Enemies(user, CharmRadius))
+            _stun.TryUpdateParalyzeDuration(enemy, CharmDuration);
+        Spawn(CadiaPsyRingPink, _xform.GetMapCoordinates(user));
         _audio.PlayPvs(ScreamSound, user);
     }
 }

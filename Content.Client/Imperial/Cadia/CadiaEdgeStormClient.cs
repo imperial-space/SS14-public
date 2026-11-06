@@ -47,7 +47,7 @@ public sealed class CadiaEdgeStormClient : EntitySystem
             var step = half / strips;
             for (var i = 0; i < strips; i++)
             {
-                var t = 1f - (float) i / strips;
+                var t = 1f - (float)i / strips;
                 var color = Snow.WithAlpha(0.95f * t * t);
                 var d0 = i * step;
                 var d1 = d0 + step;
@@ -91,7 +91,7 @@ public sealed class CadiaEdgeStormClient : EntitySystem
             var step = Depth / Bands;
             for (var i = 0; i < Bands; i++)
             {
-                var t = 1f - (float) i / Bands;
+                var t = 1f - (float)i / Bands;
                 var color = Snow.WithAlpha(0.85f * t * t);
                 var d0 = i * step;
                 var d1 = d0 + step;

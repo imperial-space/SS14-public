@@ -58,7 +58,7 @@ public sealed class CadiaFeedOverlay : Overlay
         var y = args.ViewportBounds.Top + args.ViewportBounds.Height * 0.32f;
         foreach (var (text, color, at) in _lines)
         {
-            var left = LifeSeconds - (float) (now - at).TotalSeconds;
+            var left = LifeSeconds - (float)(now - at).TotalSeconds;
             var alpha = Math.Clamp(left / FadeSeconds, 0f, 1f);
             var width = Math.Min(handle.GetDimensions(_font, text, 1f).X + 14f, MaxWidth);
             handle.DrawRect(UIBox2.FromDimensions(new Vector2(x, y), new Vector2(width, RowHeight - 2f)), Color.FromHex("#0b0d0a").WithAlpha(0.75f * alpha));

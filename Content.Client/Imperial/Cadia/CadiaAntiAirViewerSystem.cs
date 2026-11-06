@@ -149,8 +149,8 @@ public sealed class CadiaAntiAirViewerSystem : EntitySystem
         for (var a = 0; a < 360; a += 3)
         {
             var r = a * MathF.PI / 180f;
-            var x = (int) MathF.Round(15.5f + MathF.Cos(r) * 9);
-            var y = (int) MathF.Round(15.5f + MathF.Sin(r) * 9);
+            var x = (int)MathF.Round(15.5f + MathF.Cos(r) * 9);
+            var y = (int)MathF.Round(15.5f + MathF.Sin(r) * 9);
             Put(x + 1, y + 1, dark);
             Put(x, y, green);
         }

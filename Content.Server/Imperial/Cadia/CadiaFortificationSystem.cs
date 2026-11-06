@@ -68,6 +68,9 @@ public sealed class CadiaFortificationSystem : EntitySystem
     private const float DropSpotMax = 3f;
     private static readonly SoundSpecifier GrenadeInSound = new SoundPathSpecifier("/Audio/Effects/thudswoosh.ogg");
 
+    private static readonly EntProtoId CadiaPsyWarpfireEffect = "CadiaPsyWarpfireEffect";
+    private static readonly EntProtoId CadiaJumpImpactEffect = "CadiaJumpImpactEffect";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -144,7 +147,7 @@ public sealed class CadiaFortificationSystem : EntitySystem
     {
         if (!IsTank(args.OtherEntity) || TerminatingOrDeleted(ent))
             return;
-        _explosion.QueueExplosion(_xform.GetMapCoordinates(ent), "Default", ent.Comp.Intensity, 10f, 30f, ent, canCreateVacuum: false);
+        _explosion.QueueExplosion(_xform.GetMapCoordinates(ent), "Default", ent.Comp.Intensity, ent.Comp.MineSlope, ent.Comp.MineMaxTileIntensity, ent, canCreateVacuum: false);
         QueueDel(ent);
     }
 
@@ -225,9 +228,9 @@ public sealed class CadiaFortificationSystem : EntitySystem
             return;
         var heat = new DamageSpecifier(_proto.Index(HeatDamage), 30);
         _damage.TryChangeDamage(args.OtherEntity, heat, origin: ent);
-        _stun.TryUpdateParalyzeDuration(args.OtherEntity, TimeSpan.FromSeconds(2.5));
+        _stun.TryUpdateParalyzeDuration(args.OtherEntity, ent.Comp.WarpTrapDuration);
         _morale.Change(args.OtherEntity, -25f);
-        Spawn("CadiaPsyWarpfireEffect", _xform.GetMapCoordinates(ent));
+        Spawn(CadiaPsyWarpfireEffect, _xform.GetMapCoordinates(ent));
         _audio.PlayPvs(WarpTrapSound, _xform.GetMoverCoordinates(ent));
         QueueDel(ent);
     }
@@ -248,7 +251,7 @@ public sealed class CadiaFortificationSystem : EntitySystem
             source.Accumulated += source.PerMinute * frameTime / 60f;
             if (source.Accumulated < 1f)
                 continue;
-            var whole = (int) source.Accumulated;
+            var whole = (int)source.Accumulated;
             source.Accumulated -= whole;
             _rule.AddWarp(whole);
         }
@@ -324,14 +327,14 @@ public sealed class CadiaFortificationSystem : EntitySystem
         {
             var crate = Spawn(item, at);
             _audio.PlayPvs(LandSound, crate);
-            Spawn("CadiaJumpImpactEffect", _xform.ToMapCoordinates(at));
+            Spawn(CadiaJumpImpactEffect, _xform.ToMapCoordinates(at));
             QueueDel(uid);
         }
     }
 
     private void OnDepotExamined(Entity<CadiaDepotComponent> ent, ref ExaminedEvent args)
     {
-        args.PushMarkup(Loc.GetString("cadia-depot-examine", ("points", (int) ent.Comp.Points), ("max", (int) ent.Comp.MaxPoints)));
+        args.PushMarkup(Loc.GetString("cadia-depot-examine", ("points", (int)ent.Comp.Points), ("max", (int)ent.Comp.MaxPoints)));
     }
 
     // ═══════════════════════ Склады ═══════════════════════

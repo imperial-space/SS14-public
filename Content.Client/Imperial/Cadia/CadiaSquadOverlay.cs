@@ -54,7 +54,7 @@ public sealed class CadiaSquadOverlay : Overlay
                 continue;
             var world = xforms.GetWorldPosition(xform) + new Vector2(0.45f, 0.75f);
             var screen = _eye.WorldToScreen(world);
-            if (!args.ViewportBounds.Contains(new Vector2i((int) screen.X, (int) screen.Y)))
+            if (!args.ViewportBounds.Contains(new Vector2i((int)screen.X, (int)screen.Y)))
                 continue;
 
             var text = squad.Leader ? $"★{squad.Number}" : squad.Number.ToString();

@@ -19,6 +19,8 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.ZLevels;
 
@@ -49,6 +51,10 @@ public sealed class ZFallSystem : EntitySystem
     private TimeSpan _nextVoidCheck;
     private static readonly SoundSpecifier ImpactSound = new SoundPathSpecifier("/Audio/Effects/thudswoosh.ogg");
 
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+
+    private static readonly TimeSpan VoidCheckDelay = TimeSpan.FromSeconds(0.15);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -72,7 +78,7 @@ public sealed class ZFallSystem : EntitySystem
         var now = _timing.CurTime;
         if (now < _nextVoidCheck)
             return;
-        _nextVoidCheck = now + TimeSpan.FromSeconds(0.15);
+        _nextVoidCheck = now + VoidCheckDelay;
         CheckVoid();
     }
 
@@ -269,7 +275,7 @@ public sealed class ZFallSystem : EntitySystem
 
         var incoming = MathF.Pow(levels * 5f, 1.5f);
         var total = _standing.IsDown(ent) ? incoming : MathF.Round(incoming / 2f) * 2f;
-        var damage = new DamageSpecifier { DamageDict = { ["Blunt"] = total } };
+        var damage = new DamageSpecifier { DamageDict = { [BluntDamageType] = total } };
         _damage.TryChangeDamage(ent, damage);
         _stun.TryKnockdown(ent, TimeSpan.FromSeconds(levels * 5));
     }

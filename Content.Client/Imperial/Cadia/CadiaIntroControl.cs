@@ -79,7 +79,7 @@ public sealed class CadiaIntroControl : Control
     protected override void FrameUpdate(FrameEventArgs args)
     {
         base.FrameUpdate(args);
-        if ((float) (_timing.RealTime - _start).TotalSeconds >= CardSeconds * Cards)
+        if ((float)(_timing.RealTime - _start).TotalSeconds >= CardSeconds * Cards)
             Finish();
     }
 
@@ -89,14 +89,14 @@ public sealed class CadiaIntroControl : Control
         var size = PixelSize;
         handle.DrawRect(new UIBox2(0, 0, size.X, size.Y), Color.Black);
 
-        var elapsed = (float) (_timing.RealTime - _start).TotalSeconds;
-        var card = Math.Clamp((int) (elapsed / CardSeconds), 0, Cards - 1);
+        var elapsed = (float)(_timing.RealTime - _start).TotalSeconds;
+        var card = Math.Clamp((int)(elapsed / CardSeconds), 0, Cards - 1);
         var local = elapsed - card * CardSeconds;
         var alpha = Math.Clamp(Math.Min(local, CardSeconds - local) / FadeSeconds, 0f, 1f);
 
         // Картина вписана целиком по большей стороне и медленно приближается.
         var image = _images[card];
-        var scale = Math.Max((float) size.X / image.Width, (float) size.Y / image.Height) * (1f + Zoom * local / CardSeconds);
+        var scale = Math.Max((float)size.X / image.Width, (float)size.Y / image.Height) * (1f + Zoom * local / CardSeconds);
         var drawn = new Vector2(image.Width, image.Height) * scale;
         var at = (new Vector2(size.X, size.Y) - drawn) / 2f;
         handle.DrawTextureRect(image, UIBox2.FromDimensions(at, drawn), Color.White.WithAlpha(alpha));

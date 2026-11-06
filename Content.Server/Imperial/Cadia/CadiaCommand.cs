@@ -17,6 +17,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Utility;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Cadia;
 
@@ -61,6 +62,9 @@ public sealed class CadiaCommand : LocalizedEntityCommands
     private static readonly Color BattlefieldDusk = Color.FromHex("#7e7686");
     private static readonly Robust.Shared.Prototypes.EntProtoId SnowFar = "CadiaWeatherSnowFar";
     private static readonly Robust.Shared.Prototypes.EntProtoId SnowNear = "CadiaWeatherSnowNear";
+
+    private static readonly EntProtoId CadiaPylon = "CadiaPylon";
+    private static readonly EntProtoId MobHuman = "MobHuman";
 
     /// <summary>Снег в два слоя: дальний ставится вместо любой погоды карты, ближний добавляется поверх.</summary>
     private void LetItSnow(MapId map)
@@ -189,12 +193,12 @@ public sealed class CadiaCommand : LocalizedEntityCommands
                 var now = IoCManager.Resolve<Robust.Shared.Timing.IGameTiming>().CurTime;
                 shell.WriteLine(Loc.GetString("cmd-cadia-status",
                     ("phase", war.Phase.ToString()),
-                    ("left", (int) Math.Max(0, (war.PhaseEnd - now).TotalSeconds)),
+                    ("left", (int)Math.Max(0, (war.PhaseEnd - now).TotalSeconds)),
                     ("alive", war.PylonsAlive), ("total", war.PylonsTotal),
-                    ("citadel", (int) (war.CitadelProgress * 100)),
+                    ("citadel", (int)(war.CitadelProgress * 100)),
                     ("warp", war.WarpPower),
-                    ("imperium", (int) Math.Max(0, (war.NextImperiumWave - now).TotalSeconds)),
-                    ("chaos", (int) Math.Max(0, (war.NextChaosWave - now).TotalSeconds))));
+                    ("imperium", (int)Math.Max(0, (war.NextImperiumWave - now).TotalSeconds)),
+                    ("chaos", (int)Math.Max(0, (war.NextChaosWave - now).TotalSeconds))));
                 break;
             case "phase" when args.Length >= 2:
                 CadiaWarPhase phase;
@@ -278,12 +282,12 @@ public sealed class CadiaCommand : LocalizedEntityCommands
         EntityManager.Dirty(mapUid, light);
 
         var moles = new float[Atmospherics.AdjustedNumberOfGases];
-        moles[(int) Gas.Oxygen] = 21.824779f;
-        moles[(int) Gas.Nitrogen] = 82.10312f;
+        moles[(int)Gas.Oxygen] = 21.824779f;
+        moles[(int)Gas.Nitrogen] = 82.10312f;
         _atmos.SetMapAtmosphere(mapUid, false, new GasMixture(moles, Atmospherics.T20C));
 
         var random = new System.Random(mapId.GetHashCode());
-        Tile Ground(string id) => _tileSystem.GetVariantTile((ContentTileDefinition) _tiles[id], random);
+        Tile Ground(string id) => _tileSystem.GetVariantTile((ContentTileDefinition)_tiles[id], random);
         void Place(string proto, float x, float y) =>
             EntityManager.SpawnEntity(proto, new EntityCoordinates(mapUid, new Vector2(x + 0.5f, y + 0.5f)));
         var arrival = battlefield
@@ -387,7 +391,7 @@ public sealed class CadiaCommand : LocalizedEntityCommands
         {
             for (var y = -40; y < 40; y++)
             {
-                var edge = x + (int) (Math.Sin(y * 0.35) * 3);
+                var edge = x + (int)(Math.Sin(y * 0.35) * 3);
                 var id = Math.Abs(y) <= 1 && x > -36 && x < 40 ? "CadiaFloorRoad"
                     : x >= -46 && x <= -34 && Math.Abs(y) <= 6 ? "CadiaFloorFlagstone"
                     : edge < -14 ? "CadiaFloorTundra"
@@ -404,7 +408,7 @@ public sealed class CadiaCommand : LocalizedEntityCommands
         var burnt = new List<(Vector2i, Tile)>();
         for (var i = 0; i < pylons.Length; i++)
         {
-            var pylon = EntityManager.SpawnEntity("CadiaPylon", new EntityCoordinates(mapUid, pylons[i] + new Vector2(0.5f)));
+            var pylon = EntityManager.SpawnEntity(CadiaPylon, new EntityCoordinates(mapUid, pylons[i] + new Vector2(0.5f)));
             EntityManager.GetComponent<CadiaPylonComponent>(pylon).Number = i + 1;
             // Вокруг пилонов земля выжжена обстрелами.
             for (var dx = -4; dx <= 4; dx++)
@@ -412,7 +416,7 @@ public sealed class CadiaCommand : LocalizedEntityCommands
                 for (var dy = -4; dy <= 4; dy++)
                 {
                     if (dx * dx + dy * dy <= 14 + random.Next(4))
-                        burnt.Add((new Vector2i((int) pylons[i].X + dx, (int) pylons[i].Y + dy), ground("CadiaFloorScorched")));
+                        burnt.Add((new Vector2i((int)pylons[i].X + dx, (int)pylons[i].Y + dy), ground("CadiaFloorScorched")));
                 }
             }
         }
@@ -647,7 +651,7 @@ public sealed class CadiaCommand : LocalizedEntityCommands
         if (sample is not { } probe)
             return;
         var start = _xform.GetMapCoordinates(probe);
-        var mob = EntityManager.SpawnEntity("MobHuman", start);
+        var mob = EntityManager.SpawnEntity(MobHuman, start);
         var moved = stairsSystem.StairAscend(probe, mob);
         shell.WriteLine($"zcheck: ascend from {start} -> {moved} now at {_xform.GetMapCoordinates(mob)}");
         EntityManager.QueueDeleteEntity(mob);
@@ -752,7 +756,7 @@ public sealed class CadiaCommand : LocalizedEntityCommands
                     entry = Legend['.'];
                 }
                 var at = World(col, row);
-                tiles.Add((new Vector2i((int) at.X, (int) at.Y), ground(entry.Tile)));
+                tiles.Add((new Vector2i((int)at.X, (int)at.Y), ground(entry.Tile)));
                 if (c == 'P')
                     pylons.Add(at);
                 else if (c == '@')
@@ -780,7 +784,7 @@ public sealed class CadiaCommand : LocalizedEntityCommands
         pylons.Sort((a, b) => a.X != b.X ? a.X.CompareTo(b.X) : b.Y.CompareTo(a.Y));
         for (var i = 0; i < pylons.Count; i++)
         {
-            var pylon = EntityManager.SpawnEntity("CadiaPylon", new EntityCoordinates(mapUid, pylons[i] + new Vector2(0.5f)));
+            var pylon = EntityManager.SpawnEntity(CadiaPylon, new EntityCoordinates(mapUid, pylons[i] + new Vector2(0.5f)));
             EntityManager.GetComponent<CadiaPylonComponent>(pylon).Number = i + 1;
         }
 
@@ -809,7 +813,7 @@ public sealed class CadiaCommand : LocalizedEntityCommands
                     for (var c = col; c <= col1; c++)
                     {
                         var cell = World(c, r);
-                        _roof.SetRoof((mapUid, grid, roof), new Vector2i((int) cell.X, (int) cell.Y), true);
+                        _roof.SetRoof((mapUid, grid, roof), new Vector2i((int)cell.X, (int)cell.Y), true);
                     }
                 }
                 roofs++;

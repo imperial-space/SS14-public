@@ -128,7 +128,7 @@ public sealed class CadiaAntiAirWindow : DefaultWindow
         _levelOrbit.Disabled = state.Levels < 2;
 
         _ammo.Text = Loc.GetString("cadia-aa-ui-ammo", ("ammo", state.Ammo), ("max", state.MaxAmmo));
-        _ammoBar.Value = state.MaxAmmo == 0 ? 0 : (float) state.Ammo / state.MaxAmmo;
+        _ammoBar.Value = state.MaxAmmo == 0 ? 0 : (float)state.Ammo / state.MaxAmmo;
         _auspex.Text = Loc.GetString(state.AuspexLinked ? "cadia-aa-ui-auspex-on" : "cadia-aa-ui-auspex-off");
         _auspex.FontColorOverride = state.AuspexLinked ? Color.FromHex("#6dff8a") : Color.FromHex("#9a9a8a");
 
@@ -167,7 +167,7 @@ public sealed class CadiaAntiAirWindow : DefaultWindow
         text.AddChild(new Label { Text = contact.Name, FontColorOverride = color, ClipText = true });
         var level = Loc.GetString(contact.Level == 1 ? "cadia-aa-ui-tag-air" : "cadia-aa-ui-tag-orbit");
         var locked = state.AimGrid == contact.Grid ? " • " + Loc.GetString("cadia-aa-ui-locked") : string.Empty;
-        text.AddChild(new Label { Text = Loc.GetString("imperial-cadia-cadia-anti-air-window-1", ("arg0", level), ("arg1", ((int) contact.Offset.Length())), ("arg2", locked)), FontColorOverride = Color.FromHex("#b8c8b8") });
+        text.AddChild(new Label { Text = Loc.GetString("imperial-cadia-cadia-anti-air-window-1", ("arg0", level), ("arg1", ((int)contact.Offset.Length())), ("arg2", locked)), FontColorOverride = Color.FromHex("#b8c8b8") });
         row.AddChild(text);
         button.AddChild(row);
         button.OnPressed += _ => OnView?.Invoke(contact.Grid);

@@ -2,6 +2,7 @@ using Content.Shared.Actions;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Content.Shared.FixedPoint;
 
 namespace Content.Shared.Imperial.Cadia;
 
@@ -39,4 +40,37 @@ public sealed partial class CadiaPsykerComponent : Component
 
     [ViewVariables]
     public List<EntityUid> Actions = new();
+
+    [DataField]
+    public TimeSpan PerilsDuration = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan PerilsDuration2 = TimeSpan.FromSeconds(4);
+
+    [DataField]
+    public float EntitySmiteAmount = 28f;
+
+    [DataField]
+    public float EntityBloodboilAmount = 18f;
+
+    [DataField]
+    public float EntityBloodboilAmount2 = 12f;
+
+    [DataField]
+    public FixedPoint2 EntityBloodboilAmount3 = -10;
+
+    [DataField]
+    public float PerilsAmount = 20f;
+
+    [DataField]
+    public float PerilsTotalIntensity = 12f;
+
+    [DataField]
+    public float PerilsSlope = 4f;
+
+    [DataField]
+    public float PerilsMaxTileIntensity = 3f;
+
+    [DataField]
+    public float PerilsAmount2 = 35f;
 }

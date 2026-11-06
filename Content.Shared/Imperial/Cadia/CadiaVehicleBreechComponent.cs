@@ -15,4 +15,7 @@ public sealed partial class CadiaVehicleBreechComponent : Component
 {
     [ViewVariables]
     public EntityUid? Vehicle;
+
+    [DataField]
+    public TimeSpan BreechInteractUsingDelay = TimeSpan.FromSeconds(1.5);
 }

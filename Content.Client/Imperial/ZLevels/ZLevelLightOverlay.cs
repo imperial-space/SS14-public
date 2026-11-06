@@ -39,7 +39,7 @@ public sealed class ZLevelLightOverlay : Overlay
         var bounds = lightOverlay.EnlargedBounds;
         var target = lightOverlay.GetCachedForViewport(args.Viewport).EnlargedLightTarget;
         var viewport = args.Viewport;
-        var lightScale = viewport.LightRenderTarget.Size / (Vector2) viewport.Size;
+        var lightScale = viewport.LightRenderTarget.Size / (Vector2)viewport.Size;
         var scale = viewport.RenderScale / (Vector2.One / lightScale);
         var gap = ZLevelOverlay.Gap(_ents, args.MapId);
         var lowerEye = ZLevelOverlay.DepthEye(eye, belowMap, gap);
@@ -70,7 +70,7 @@ public sealed class ZLevelLightOverlay : Overlay
                     var apparent = eyePos + (center - eyePos) * MathF.Pow(ZLevelOverlay.DepthScale, gap);
                     if (IsCovered(new MapCoordinates(apparent, upperMap)))
                         continue;
-                    var origin = (Vector2) tile.GridIndices * tileSize;
+                    var origin = (Vector2)tile.GridIndices * tileSize;
                     handle.DrawRect(new Box2(origin, origin + new Vector2(tileSize, tileSize)), Color.White);
                 }
             }

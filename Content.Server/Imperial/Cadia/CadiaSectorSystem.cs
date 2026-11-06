@@ -57,7 +57,7 @@ public sealed class CadiaSectorSystem : EntitySystem
         if (!_rule.TryGetActiveWar(out var war) || war.Phase == CadiaWarPhase.Ended)
             return;
 
-        var dt = (float) Tick.TotalSeconds;
+        var dt = (float)Tick.TotalSeconds;
         var infos = new List<CadiaSectorInfo>();
         var imperium = 0;
         var chaos = 0;
@@ -78,7 +78,7 @@ public sealed class CadiaSectorSystem : EntitySystem
                 Progress = sector.Progress,
                 Contested = sector.Contested,
                 Position = _xform.GetWorldPosition(xform),
-                Map = (int) xform.MapID,
+                Map = (int)xform.MapID,
             });
         }
         infos.Sort((a, b) => string.CompareOrdinal(a.Letter, b.Letter));
@@ -99,7 +99,7 @@ public sealed class CadiaSectorSystem : EntitySystem
         _warpFraction += chaos * WarpPerMinute * dt / 60f;
         if (_warpFraction >= 1f)
         {
-            var whole = (int) _warpFraction;
+            var whole = (int)_warpFraction;
             _warpFraction -= whole;
             _rule.AddWarp(whole);
         }
@@ -113,7 +113,7 @@ public sealed class CadiaSectorSystem : EntitySystem
         {
             if (TerminatingOrDeleted(uid))
                 return;
-            points.Add(new CadiaLandmark { Kind = kind, Number = number, Position = _xform.GetWorldPosition(uid), Map = (int) Transform(uid).MapID });
+            points.Add(new CadiaLandmark { Kind = kind, Number = number, Position = _xform.GetWorldPosition(uid), Map = (int)Transform(uid).MapID });
         }
 
         var pylons = EntityQueryEnumerator<CadiaPylonComponent>();
@@ -167,14 +167,14 @@ public sealed class CadiaSectorSystem : EntitySystem
                 sector.Comp.Progress = 0f;
             }
             var crowd = Math.Min(side == CadiaFaction.Imperium ? imperium - 1 : chaos - 1, CrowdBonusLimit);
-            sector.Comp.Progress += dt / (float) sector.Comp.CaptureTime.TotalSeconds * (1f + crowd * CrowdBonus);
+            sector.Comp.Progress += dt / (float)sector.Comp.CaptureTime.TotalSeconds * (1f + crowd * CrowdBonus);
             if (sector.Comp.Progress >= 1f)
                 Capture(sector, side);
         }
         else if (!contested && sector.Comp.Progress > 0f)
         {
             // Без бойцов или при возвращении хозяина захват откатывается.
-            sector.Comp.Progress = Math.Max(0f, sector.Comp.Progress - dt / (float) sector.Comp.CaptureTime.TotalSeconds);
+            sector.Comp.Progress = Math.Max(0f, sector.Comp.Progress - dt / (float)sector.Comp.CaptureTime.TotalSeconds);
             if (sector.Comp.Progress <= 0f)
                 sector.Comp.Capturer = null;
         }

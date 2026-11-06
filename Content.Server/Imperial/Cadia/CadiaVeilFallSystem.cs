@@ -7,6 +7,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Cadia;
 
@@ -42,6 +43,12 @@ public sealed class CadiaVeilFallSystem : EntitySystem
     private TimeSpan _next;
     private readonly List<(TimeSpan At, MapCoordinates Where)> _shells = new();
 
+    private static readonly EntProtoId CadiaVeilBurst = "CadiaVeilBurst";
+
+    private const float UpdateTotalIntensity = 45f;
+    private const float UpdateSlope = 4f;
+    private const float UpdateMaxTileIntensity = 9f;
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -51,7 +58,7 @@ public sealed class CadiaVeilFallSystem : EntitySystem
         {
             if (now < _shells[i].At)
                 continue;
-            _explosion.QueueExplosion(_shells[i].Where, "Default", 45f, 4f, 9f, null, canCreateVacuum: false);
+            _explosion.QueueExplosion(_shells[i].Where, "Default", UpdateTotalIntensity, UpdateSlope, UpdateMaxTileIntensity, null, canCreateVacuum: false);
             _shells.RemoveAt(i);
         }
 
@@ -92,7 +99,7 @@ public sealed class CadiaVeilFallSystem : EntitySystem
             if (xform.MapUid == null)
                 continue;
             field ??= xform.MapID;
-            Spawn("CadiaVeilBurst", _xform.GetMapCoordinates(uid, xform));
+            Spawn(CadiaVeilBurst, _xform.GetMapCoordinates(uid, xform));
             _audio.PlayPvs(PylonSound, uid);
         }
 

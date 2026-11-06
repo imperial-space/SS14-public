@@ -42,6 +42,9 @@ public sealed class CadiaMoraleSystem : EntitySystem
     private readonly Dictionary<EntityUid, float> _pending = new();
     private TimeSpan _nextTick;
 
+    private static readonly TimeSpan ChangeDuration = TimeSpan.FromSeconds(2.5);
+    private static readonly TimeSpan TickDelay = TimeSpan.FromSeconds(1);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -69,7 +72,7 @@ public sealed class CadiaMoraleSystem : EntitySystem
             if (now >= morale.NextPanic)
             {
                 morale.NextPanic = now + PanicCooldown;
-                _stun.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(2.5));
+                _stun.TryUpdateParalyzeDuration(uid, ChangeDuration);
                 _popup.PopupEntity(Loc.GetString("cadia-morale-panic"), uid, uid, PopupType.LargeCaution);
                 _popup.PopupEntity(Loc.GetString("cadia-morale-panic-others", ("name", Name(uid))), uid, Robust.Shared.Player.Filter.PvsExcept(uid), true, PopupType.Medium);
             }
@@ -114,7 +117,7 @@ public sealed class CadiaMoraleSystem : EntitySystem
             // Крест на экране виден только вблизи, поэтому дальнему медику говорим, куда бежать.
             var delta = from.Position - _xform.GetWorldPosition(xform);
             var side8 = delta.ToWorldAngle().GetDir().ToString().ToLowerInvariant();
-            _popup.PopupEntity(Loc.GetString("cadia-medic-call", ("name", Name(wounded)), ("dir", Loc.GetString($"cadia-dir-{side8}")), ("meters", (int) delta.Length())), uid, uid, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("cadia-medic-call", ("name", Name(wounded)), ("dir", Loc.GetString($"cadia-dir-{side8}")), ("meters", (int)delta.Length())), uid, uid, PopupType.Medium);
             _audio.PlayEntity(MedicCallSound, Robust.Shared.Player.Filter.Entities(uid), uid, false);
         }
     }
@@ -156,7 +159,7 @@ public sealed class CadiaMoraleSystem : EntitySystem
         var now = _timing.CurTime;
         if (now < _nextTick)
             return;
-        _nextTick = now + TimeSpan.FromSeconds(1);
+        _nextTick = now + TickDelay;
         _pending.Clear();
 
         var auras = EntityQueryEnumerator<CadiaMoraleAuraComponent, TransformComponent>();

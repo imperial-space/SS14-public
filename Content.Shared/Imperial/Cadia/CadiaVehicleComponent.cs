@@ -6,6 +6,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Content.Shared.FixedPoint;
 
 namespace Content.Shared.Imperial.Cadia;
 
@@ -182,4 +183,22 @@ public sealed partial class CadiaVehicleComponent : Component
 
     [DataField]
     public EntProtoId SmokeAction = "ActionCadiaVehicleSmoke";
+
+    [DataField]
+    public TimeSpan StartEnterDelay = TimeSpan.FromSeconds(1.5);
+
+    [DataField]
+    public TimeSpan ShotDelay = TimeSpan.FromSeconds(0.6);
+
+    [DataField]
+    public TimeSpan ImpactDelay = TimeSpan.FromSeconds(4);
+
+    [DataField]
+    public TimeSpan RunOverDuration = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan InteractUsingDelay = TimeSpan.FromSeconds(8);
+
+    [DataField]
+    public FixedPoint2 RitualAmount = -200;
 }

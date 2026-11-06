@@ -38,7 +38,7 @@ public sealed class CadiaMoraleEffectsSystem : EntitySystem
     {
         if (ent.Comp.Morale >= CadiaMoraleComponent.BrokenBelow || HasComp<CadiaAstartesComponent>(ent))
             return;
-        var roll = unchecked(_timing.CurTick.Value * 2654435761u + (uint) ent.Owner.Id) % 100u;
+        var roll = unchecked(_timing.CurTick.Value * 2654435761u + (uint)ent.Owner.Id) % 100u;
         if (roll >= BrokenMissPercent)
             return;
         args.Cancel();

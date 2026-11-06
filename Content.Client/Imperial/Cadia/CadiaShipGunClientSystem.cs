@@ -34,6 +34,8 @@ public sealed class CadiaShipGunClientSystem : EntitySystem
     private bool _firing;
     private CadiaShipGunHudOverlay? _hud;
 
+    private static readonly TimeSpan AimDelay = TimeSpan.FromSeconds(0.1);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -110,7 +112,7 @@ public sealed class CadiaShipGunClientSystem : EntitySystem
             }
             if (_timing.RealTime >= _nextAim)
             {
-                _nextAim = _timing.RealTime + TimeSpan.FromSeconds(0.1);
+                _nextAim = _timing.RealTime + AimDelay;
                 SendAim();
             }
         }

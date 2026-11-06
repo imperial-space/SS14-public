@@ -25,6 +25,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Cadia;
 
@@ -70,6 +71,13 @@ public sealed class CadiaFlightSystem : EntitySystem
     private readonly Dictionary<EntityUid, TimeSpan> _nextDenyPopup = new();
     private static readonly TimeSpan DenyPopupDelay = TimeSpan.FromSeconds(2);
 
+    private static readonly EntProtoId FTLPoint = "FTLPoint";
+
+    private static readonly TimeSpan ImpactDelay = TimeSpan.FromSeconds(0.6);
+
+    private const float CrashSlope = 2.5f;
+    private const float CrashMaxTileIntensity = 14f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -96,17 +104,17 @@ public sealed class CadiaFlightSystem : EntitySystem
     {
         if (TryComp<CadiaFlightLevelComponent>(map, out var from) && !string.IsNullOrEmpty(from.Field))
         {
-            var wanted = (int) from.Level + delta;
+            var wanted = (int)from.Level + delta;
             var query = EntityQueryEnumerator<CadiaFlightLevelComponent>();
             while (query.MoveNext(out var uid, out var level))
             {
-                if (level.Field == from.Field && (int) level.Level == wanted && !TerminatingOrDeleted(uid))
+                if (level.Field == from.Field && (int)level.Level == wanted && !TerminatingOrDeleted(uid))
                     return uid;
             }
             return null;
         }
 
-        var current = (EntityUid?) map;
+        var current = (EntityUid?)map;
         for (var i = 0; i < Math.Abs(delta) && current != null; i++)
             current = _z.GetAdjacentMap(current.Value, delta > 0);
         return current;
@@ -135,7 +143,7 @@ public sealed class CadiaFlightSystem : EntitySystem
                 return;
         }
 
-        var beacon = Spawn("FTLPoint", new EntityCoordinates(ent, Vector2.Zero));
+        var beacon = Spawn(FTLPoint, new EntityCoordinates(ent, Vector2.Zero));
         // Маяк называется по карте — в списке консоли сразу видно, какое это поле и какой этаж.
         _meta.SetEntityName(beacon, Loc.GetString("cadia-flight-beacon", ("level", Name(ent))));
     }
@@ -342,7 +350,7 @@ public sealed class CadiaFlightSystem : EntitySystem
                 continue;
             foreach (var fixture in fixtures.Fixtures.Values)
             {
-                if (fixture.Hard && (fixture.CollisionLayer & (int) (CollisionGroup.Impassable | CollisionGroup.HighImpassable)) != 0)
+                if (fixture.Hard && (fixture.CollisionLayer & (int)(CollisionGroup.Impassable | CollisionGroup.HighImpassable)) != 0)
                     return false;
             }
         }
@@ -489,7 +497,7 @@ public sealed class CadiaFlightSystem : EntitySystem
 
             if (now < state.NextImpact || impact < 0.5f)
                 continue;
-            state.NextImpact = now + TimeSpan.FromSeconds(0.6);
+            state.NextImpact = now + ImpactDelay;
 
             var sound = _audio.PlayPvs(CrashSound, uid, AudioParams.Default.WithVolume(Math.Clamp(impact / 3f - 4f, -6f, 6f)));
             _audio.SetGridAudio(sound);
@@ -525,7 +533,7 @@ public sealed class CadiaFlightSystem : EntitySystem
             var solid = false;
             foreach (var fixture in fixtures.Fixtures.Values)
             {
-                if (fixture.Hard && (fixture.CollisionLayer & (int) (CollisionGroup.Impassable | CollisionGroup.HighImpassable)) != 0)
+                if (fixture.Hard && (fixture.CollisionLayer & (int)(CollisionGroup.Impassable | CollisionGroup.HighImpassable)) != 0)
                 {
                     solid = true;
                     break;
@@ -540,7 +548,7 @@ public sealed class CadiaFlightSystem : EntitySystem
                          new Vector2(box.Left + 0.15f, box.Top - 0.15f), new Vector2(box.Right - 0.15f, box.Bottom + 0.15f) })
             {
                 var local = Vector2.Transform(point, inverse);
-                var index = new Vector2i((int) Math.Floor(local.X / grid.Comp1.TileSize), (int) Math.Floor(local.Y / grid.Comp1.TileSize));
+                var index = new Vector2i((int)Math.Floor(local.X / grid.Comp1.TileSize), (int)Math.Floor(local.Y / grid.Comp1.TileSize));
                 if (_map.TryGetTileRef(grid, grid.Comp1, index, out var tile) && !tile.Tile.IsEmpty)
                     return true;
             }
@@ -597,7 +605,7 @@ public sealed class CadiaFlightSystem : EntitySystem
         var center = _xform.GetWorldMatrix(grid);
         var epicenter = new MapCoordinates(Vector2.Transform(gridComp.LocalAABB.Center, center), belowId);
         var area = gridComp.LocalAABB.Width * gridComp.LocalAABB.Height;
-        _explosion.QueueExplosion(epicenter, "Default", Math.Clamp(area * 1.5f, 60f, 600f), 2.5f, 14f, null, canCreateVacuum: false);
+        _explosion.QueueExplosion(epicenter, "Default", Math.Clamp(area * 1.5f, 60f, 600f), CrashSlope, CrashMaxTileIntensity, null, canCreateVacuum: false);
         _audio.PlayPvs(CrashSound, grid);
         PopupOnGrid(grid, Loc.GetString("cadia-flight-crashed"), PopupType.LargeCaution);
     }

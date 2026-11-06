@@ -22,6 +22,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Cadia;
 
@@ -67,6 +68,9 @@ public sealed class CadiaArtillerySystem : EntitySystem
     private readonly HashSet<EntityUid> _whistled = new();
     private readonly HashSet<EntityUid> _static = new();
 
+    private static readonly EntProtoId CadiaLanceBeam = "CadiaLanceBeam";
+    private static readonly EntProtoId CadiaVoidShieldFlash = "CadiaVoidShieldFlash";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -98,7 +102,7 @@ public sealed class CadiaArtillerySystem : EntitySystem
         if (Transform(battery).MapUid is not { } map)
             return false;
         // Сама поверхность или этаж над и под ней: идём вверх по стопке, пока не найдём поверхность поля.
-        var current = (EntityUid?) map;
+        var current = (EntityUid?)map;
         for (var i = 0; i < 3 && current is { } level; i++)
         {
             if (TryComp<CadiaFlightLevelComponent>(level, out var flight))
@@ -168,8 +172,8 @@ public sealed class CadiaArtillerySystem : EntitySystem
     /// <summary>Окно поверхности вокруг точки под кораблём: земля, постройки и отметки (свои, пилоны, цитадель, удары).</summary>
     private void BuildHolomap(Entity<CadiaOrbitalBatteryComponent> ent, EntityUid surface, Vector2 center, CadiaBatteryBuiState state)
     {
-        var size = Math.Min(MaxWindow, (int) (ent.Comp.Range * 2) + 1);
-        var origin = new Vector2i((int) Math.Floor(center.X) - size / 2, (int) Math.Floor(center.Y) - size / 2);
+        var size = Math.Min(MaxWindow, (int)(ent.Comp.Range * 2) + 1);
+        var origin = new Vector2i((int)Math.Floor(center.X) - size / 2, (int)Math.Floor(center.Y) - size / 2);
         var tiles = new byte[size * size];
         state.Origin = origin;
         state.Size = size;
@@ -206,8 +210,8 @@ public sealed class CadiaArtillerySystem : EntitySystem
             if (!IsSolid(uid))
                 continue;
             var pos = _xform.GetWorldPosition(uid) - origin;
-            var tx = (int) Math.Floor(pos.X);
-            var ty = (int) Math.Floor(pos.Y);
+            var tx = (int)Math.Floor(pos.X);
+            var ty = (int)Math.Floor(pos.Y);
             if (tx >= 0 && ty >= 0 && tx < size && ty < size)
                 tiles[ty * size + tx] = 2;
         }
@@ -254,7 +258,7 @@ public sealed class CadiaArtillerySystem : EntitySystem
             return false;
         foreach (var fixture in fixtures.Fixtures.Values)
         {
-            if (fixture.Hard && (fixture.CollisionLayer & (int) (CollisionGroup.Impassable | CollisionGroup.HighImpassable)) != 0)
+            if (fixture.Hard && (fixture.CollisionLayer & (int)(CollisionGroup.Impassable | CollisionGroup.HighImpassable)) != 0)
                 return true;
         }
         return false;
@@ -279,7 +283,7 @@ public sealed class CadiaArtillerySystem : EntitySystem
     {
         var user = args.Actor;
         var surface = GetSurfaceBelow(ent, out var denial);
-        string? reason = denial;
+        var reason = denial;
         var now = _timing.CurTime;
         if (reason == null && _veil.Active())
             reason = Loc.GetString("cadia-veil-orbit");
@@ -287,7 +291,7 @@ public sealed class CadiaArtillerySystem : EntitySystem
         if (reason == null && ent.Comp.Target == null)
             reason = Loc.GetString("cadia-battery-no-target");
         if (reason == null && now < ent.Comp.NextShot)
-            reason = Loc.GetString("cadia-battery-reloading", ("seconds", (int) Math.Ceiling((ent.Comp.NextShot - now).TotalSeconds)));
+            reason = Loc.GetString("cadia-battery-reloading", ("seconds", (int)Math.Ceiling((ent.Comp.NextShot - now).TotalSeconds)));
         if (reason == null && ent.Comp.Kind == CadiaBatteryKind.Macro && ent.Comp.Ammo <= 0)
             reason = Loc.GetString("cadia-battery-no-ammo");
 
@@ -383,7 +387,7 @@ public sealed class CadiaArtillerySystem : EntitySystem
             args.PushMarkup(Loc.GetString("cadia-battery-examine-ammo", ("ammo", ent.Comp.Ammo), ("max", ent.Comp.MaxAmmo)));
         var left = ent.Comp.NextShot - _timing.CurTime;
         args.PushMarkup(left > TimeSpan.Zero
-            ? Loc.GetString("cadia-battery-examine-reload", ("seconds", (int) Math.Ceiling(left.TotalSeconds)))
+            ? Loc.GetString("cadia-battery-examine-reload", ("seconds", (int)Math.Ceiling(left.TotalSeconds)))
             : Loc.GetString("cadia-battery-examine-ready"));
     }
 
@@ -405,11 +409,11 @@ public sealed class CadiaArtillerySystem : EntitySystem
             if (TryAbsorb(coords, strike.Intensity / 4f))
                 continue;
 
-            _morale.Shock(coords, 10f, -15f);
+            _morale.Shock(coords, strike.UpdateStrikesRadius, -15f);
 
             if (strike.Kind == CadiaBatteryKind.Lance)
             {
-                Spawn("CadiaLanceBeam", coords);
+                Spawn(CadiaLanceBeam, coords);
                 _audio.PlayPvs(LanceSound, Spawn(null, coords));
                 _explosion.QueueExplosion(coords, "Default", strike.Intensity, strike.Slope * 2f, strike.MaxTileIntensity * 1.6f, strike.Source, canCreateVacuum: false);
             }
@@ -456,7 +460,7 @@ public sealed class CadiaArtillerySystem : EntitySystem
                 continue;
 
             shield.Strength -= damage;
-            Spawn("CadiaVoidShieldFlash", coords);
+            Spawn(CadiaVoidShieldFlash, coords);
             _audio.PlayPvs(shield.AbsorbSound, uid);
 
             if (shield.Strength <= 0)
@@ -497,7 +501,7 @@ public sealed class CadiaArtillerySystem : EntitySystem
             {
                 shield.Strength = Math.Min(shield.MaxStrength, shield.Strength + shield.Regen * frameTime);
                 // Синхронизируем раз в секунду, а не каждый кадр.
-                if ((int) (now.TotalSeconds) != (int) ((now.TotalSeconds) - frameTime))
+                if ((int)(now.TotalSeconds) != (int)((now.TotalSeconds) - frameTime))
                     Dirty(uid, shield);
             }
         }
@@ -507,10 +511,10 @@ public sealed class CadiaArtillerySystem : EntitySystem
     {
         if (ent.Comp.RebootAt is { } reboot)
         {
-            args.PushMarkup(Loc.GetString("cadia-void-shield-examine-down", ("seconds", (int) Math.Max(0, (reboot - _timing.CurTime).TotalSeconds))));
+            args.PushMarkup(Loc.GetString("cadia-void-shield-examine-down", ("seconds", (int)Math.Max(0, (reboot - _timing.CurTime).TotalSeconds))));
             return;
         }
-        args.PushMarkup(Loc.GetString("cadia-void-shield-examine", ("percent", (int) (ent.Comp.Strength / ent.Comp.MaxStrength * 100))));
+        args.PushMarkup(Loc.GetString("cadia-void-shield-examine", ("percent", (int)(ent.Comp.Strength / ent.Comp.MaxStrength * 100))));
     }
 
     /// <summary>Чей шаттл: сторона большинства живых бойцов на борту; пустой шаттл ничей.</summary>
@@ -563,7 +567,7 @@ public sealed class CadiaArtillerySystem : EntitySystem
         UpdateStrikes(now);
         UpdateShields(frameTime, now);
 
-if (now >= _nextUi)
+        if (now >= _nextUi)
         {
             _nextUi = now + UiRate;
             var batteries = EntityQueryEnumerator<CadiaOrbitalBatteryComponent>();

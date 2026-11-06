@@ -20,7 +20,7 @@ public sealed partial class CadiaDropPodComponent : Component
 
     /// <summary>Сколько секунд длится спуск или подъём.</summary>
     [DataField]
-    public float Duration = 2.2f;
+    public TimeSpan Duration = TimeSpan.FromSeconds(2.2f);
 
     /// <summary>С какой высоты (в клетках смещения спрайта) падает капсула.</summary>
     [DataField]

@@ -67,7 +67,7 @@ public sealed class CadiaVehicleHudOverlay : Overlay
         var integrity = 1f;
         if (_entMan.TryGetComponent<DamageableComponent>(crew.Vehicle, out _))
         {
-            var damage = (float) _entMan.System<DamageableSystem>().GetTotalDamage(crew.Vehicle);
+            var damage = (float)_entMan.System<DamageableSystem>().GetTotalDamage(crew.Vehicle);
             var max = vehicle.MaxIntegrity;
             if (max > 0)
                 integrity = Math.Clamp(1f - damage / max, 0f, 1f);
@@ -76,7 +76,7 @@ public sealed class CadiaVehicleHudOverlay : Overlay
         handle.DrawRect(bar, Color.FromHex("#2a2a24"));
         handle.DrawRect(UIBox2.FromDimensions(bar.TopLeft, new Vector2(200 * integrity, 10)), integrity > 0.5f ? Green : integrity > 0.25f ? Amber : Red);
         handle.DrawRect(bar, Amber.WithAlpha(0.6f), false);
-        handle.DrawString(_small, bar.TopRight + new Vector2(8, -3), Loc.GetString("cadia-vehicle-hud-hull", ("percent", (int) (integrity * 100))), Color.White);
+        handle.DrawString(_small, bar.TopRight + new Vector2(8, -3), Loc.GetString("cadia-vehicle-hud-hull", ("percent", (int)(integrity * 100))), Color.White);
 
         // Экипаж и дым — только у машин.
         if (!vehicle.GunPost)

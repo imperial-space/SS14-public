@@ -81,6 +81,14 @@ public sealed class CadiaDefenseRuleSystem : GameRuleSystem<CadiaDefenseRuleComp
 
     private readonly HashSet<Entity<CadiaFactionMemberComponent>> _inRange = new();
 
+    private static readonly EntProtoId CadiaRoleSpawner = "CadiaRoleSpawner";
+
+    private static readonly TimeSpan ExterminatusDelay = TimeSpan.FromMinutes(1);
+
+    private const float FinishExterminatusTotalIntensity = 400f;
+    private const float FinishExterminatusSlope = 6f;
+    private const float FinishExterminatusMaxTileIntensity = 30f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -170,7 +178,7 @@ public sealed class CadiaDefenseRuleSystem : GameRuleSystem<CadiaDefenseRuleComp
 
         if (now < component.NextTick || !TryGetWar(component, out var war))
             return;
-        var dt = (float) (now - component.NextTick + TickRate).TotalSeconds;
+        var dt = (float)(now - component.NextTick + TickRate).TotalSeconds;
         component.NextTick = now + TickRate;
         var rule = new Entity<CadiaDefenseRuleComponent>(uid, component);
 
@@ -295,7 +303,7 @@ public sealed class CadiaDefenseRuleSystem : GameRuleSystem<CadiaDefenseRuleComp
     private int RoundedOnline(CadiaDefenseRuleComponent rule)
     {
         var step = Math.Max(1, rule.SlotOnlineStep);
-        return Math.Max(step, (int) Math.Round(_players.PlayerCount / (float) step) * step);
+        return Math.Max(step, (int)Math.Round(_players.PlayerCount / (float)step) * step);
     }
 
     /// <summary>
@@ -306,8 +314,8 @@ public sealed class CadiaDefenseRuleSystem : GameRuleSystem<CadiaDefenseRuleComp
     {
         if (role.Slots <= 1)
             return role.Slots;
-        var scale = Math.Clamp(rule.SlotOnline / (float) Math.Max(1, rule.SlotReferencePlayers), 0f, rule.MaxSlotScale);
-        return Math.Max(1, (int) Math.Round(role.Slots * scale));
+        var scale = Math.Clamp(rule.SlotOnline / (float)Math.Max(1, rule.SlotReferencePlayers), 0f, rule.MaxSlotScale);
+        return Math.Max(1, (int)Math.Round(role.Slots * scale));
     }
 
     /// <summary>
@@ -422,7 +430,7 @@ public sealed class CadiaDefenseRuleSystem : GameRuleSystem<CadiaDefenseRuleComp
             return null;
         }
 
-        var spawner = Spawn("CadiaRoleSpawner", coords);
+        var spawner = Spawn(CadiaRoleSpawner, coords);
         EnsureComp<CadiaRoleSpawnerComponent>(spawner).Role = role.ID;
         _meta.SetEntityName(spawner, Loc.GetString(role.Name));
 
@@ -602,6 +610,7 @@ public sealed class CadiaDefenseRuleSystem : GameRuleSystem<CadiaDefenseRuleComp
         var faction = member.Faction;
         // Роль считается занятой, пока боец жив, поэтому сначала её снимаем.
         member.Role = null;
+        Dirty(mob, member);
         SendToGhosts(mob);
         if (TryGetActiveRule(out var rule, out var war))
             RefreshSpawners(rule, war, faction);
@@ -785,7 +794,7 @@ public sealed class CadiaDefenseRuleSystem : GameRuleSystem<CadiaDefenseRuleComp
                     imperium++;
             }
 
-            var rate = dt / (float) citadel.CaptureTime.TotalSeconds;
+            var rate = dt / (float)citadel.CaptureTime.TotalSeconds;
             var old = citadel.Progress;
             // Цитадель можно брать только когда поле пилонов пало, то есть со штурма.
             if (war.Phase >= CadiaWarPhase.Assault && chaos > 0 && imperium == 0)
@@ -1011,7 +1020,7 @@ public sealed class CadiaDefenseRuleSystem : GameRuleSystem<CadiaDefenseRuleComp
     /// <summary>Небо багровеет с каждым павшим пилоном: Око Ужаса всё ближе. К развязке — ещё темнее.</summary>
     private void UpdateSky(CadiaWarStateComponent war)
     {
-        var fallen = war.PylonsTotal > 0 ? 1f - (float) war.PylonsAlive / war.PylonsTotal : 0f;
+        var fallen = war.PylonsTotal > 0 ? 1f - (float)war.PylonsAlive / war.PylonsTotal : 0f;
         _skyTarget = Math.Clamp(fallen * 0.7f + (war.Phase >= CadiaWarPhase.Finale ? 0.25f : 0f), 0f, 0.9f);
     }
 
@@ -1067,7 +1076,7 @@ public sealed class CadiaDefenseRuleSystem : GameRuleSystem<CadiaDefenseRuleComp
         {
             if (rule.ExterminatusAt != null || rule.Winner != null)
                 continue;
-            rule.ExterminatusAt = _timing.CurTime + TimeSpan.FromMinutes(1);
+            rule.ExterminatusAt = _timing.CurTime + ExterminatusDelay;
             _chat.DispatchGlobalAnnouncement(Loc.GetString("cadia-exterminatus-announce"), Loc.GetString("cadia-sender-war"), true,
                 rule.CitadelAlarmSound, ImperiumColor);
         }
@@ -1079,10 +1088,10 @@ public sealed class CadiaDefenseRuleSystem : GameRuleSystem<CadiaDefenseRuleComp
         // Огненный шторм вокруг каждого пилона и цитадели — там, где идёт бой.
         var pylons = EntityQueryEnumerator<CadiaPylonComponent, TransformComponent>();
         while (pylons.MoveNext(out var uid, out _, out _))
-            _explosion.QueueExplosion(_xform.GetMapCoordinates(uid), "Default", 400f, 6f, 30f, null, canCreateVacuum: false);
+            _explosion.QueueExplosion(_xform.GetMapCoordinates(uid), "Default", FinishExterminatusTotalIntensity, FinishExterminatusSlope, FinishExterminatusMaxTileIntensity, null, canCreateVacuum: false);
         var citadels = EntityQueryEnumerator<CadiaCitadelComponent, TransformComponent>();
         while (citadels.MoveNext(out var uid, out _, out _))
-            _explosion.QueueExplosion(_xform.GetMapCoordinates(uid), "Default", 400f, 6f, 30f, null, canCreateVacuum: false);
+            _explosion.QueueExplosion(_xform.GetMapCoordinates(uid), "Default", FinishExterminatusTotalIntensity, FinishExterminatusSlope, FinishExterminatusMaxTileIntensity, null, canCreateVacuum: false);
         Victory(rule, CadiaFaction.Imperium, Loc.GetString("cadia-win-exterminatus"), CadiaEnding.Exterminatus);
     }
 

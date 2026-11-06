@@ -32,4 +32,7 @@ public sealed partial class CadiaOrbitalStrikeComponent : Component
 
     [DataField]
     public EntityUid? Source;
+
+    [DataField]
+    public float UpdateStrikesRadius = 10f;
 }

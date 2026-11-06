@@ -15,4 +15,10 @@ public sealed partial class CadiaTankMineComponent : Component
 {
     [DataField]
     public float Intensity = 260f;
+
+    [DataField]
+    public float MineSlope = 10f;
+
+    [DataField]
+    public float MineMaxTileIntensity = 30f;
 }

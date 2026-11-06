@@ -42,6 +42,8 @@ public sealed class CadiaEvacuationSystem : EntitySystem
     private readonly HashSet<Entity<CadiaFactionMemberComponent>> _inRange = new();
     private TimeSpan _next;
 
+    private static readonly TimeSpan NextDelay = TimeSpan.FromSeconds(1);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -79,7 +81,7 @@ public sealed class CadiaEvacuationSystem : EntitySystem
 
         if (now < _next)
             return;
-        _next = now + TimeSpan.FromSeconds(1);
+        _next = now + NextDelay;
         if (!_rule.TryGetActiveRule(out var rule, out var war) || war.Phase != CadiaWarPhase.Evacuation)
             return;
 
@@ -142,7 +144,7 @@ public sealed class CadiaEvacuationSystem : EntitySystem
         Dirty(shipEnt, ship);
         _audio.PlayPvs(ShipSound, shipEnt);
 
-        _rule.Announce(CadiaFaction.Imperium, Loc.GetString("cadia-evac-ship-coming", ("seconds", (int) (landAt - now).TotalSeconds)), ShipComingSound);
+        _rule.Announce(CadiaFaction.Imperium, Loc.GetString("cadia-evac-ship-coming", ("seconds", (int)(landAt - now).TotalSeconds)), ShipComingSound);
 
         // Каждому защитнику: куда бежать. Маяк может быть далеко за краем экрана.
         var from = _xform.GetMapCoordinates(beacon);
@@ -153,7 +155,7 @@ public sealed class CadiaEvacuationSystem : EntitySystem
                 continue;
             var delta = from.Position - _xform.GetWorldPosition(xform);
             var dir = delta.ToWorldAngle().GetDir().ToString().ToLowerInvariant();
-            _popup.PopupEntity(Loc.GetString("cadia-evac-direction", ("dir", Loc.GetString($"cadia-dir-{dir}")), ("meters", (int) delta.Length())), uid, uid, PopupType.Medium);
+            _popup.PopupEntity(Loc.GetString("cadia-evac-direction", ("dir", Loc.GetString($"cadia-dir-{dir}")), ("meters", (int)delta.Length())), uid, uid, PopupType.Medium);
         }
     }
 

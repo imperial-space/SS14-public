@@ -67,11 +67,11 @@ public sealed class ZSpeechSystem : EntitySystem
     private bool HasOpenNear(MapCoordinates coords)
     {
         for (var dx = -OpenRange; dx <= OpenRange; dx++)
-        for (var dy = -OpenRange; dy <= OpenRange; dy++)
-        {
-            if (_z.IsTransparent(new MapCoordinates(coords.Position + new Vector2(dx, dy), coords.MapId)))
-                return true;
-        }
+            for (var dy = -OpenRange; dy <= OpenRange; dy++)
+            {
+                if (_z.IsTransparent(new MapCoordinates(coords.Position + new Vector2(dx, dy), coords.MapId)))
+                    return true;
+            }
         return false;
     }
 }

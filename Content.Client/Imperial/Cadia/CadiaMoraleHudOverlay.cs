@@ -78,7 +78,7 @@ public sealed class CadiaMoraleHudOverlay : Overlay
         handle.DrawRect(box, Color.FromHex("#0b0d0ad8"));
         handle.DrawRect(UIBox2.FromDimensions(at, new Vector2(BarWidth * Math.Clamp(value / 100f, 0f, 1f), 17)), color.WithAlpha(0.45f));
         handle.DrawRect(box, color.WithAlpha(0.7f), false);
-        var text = Loc.GetString(key, ("value", (int) value));
+        var text = Loc.GetString(key, ("value", (int)value));
         handle.DrawString(_font, at + new Vector2(6, 2), text, Color.Black);
         handle.DrawString(_font, at + new Vector2(5, 1), text, Color.White);
     }
@@ -106,7 +106,7 @@ public sealed class CadiaMoraleHudOverlay : Overlay
                     left = TimeSpan.Zero;
                 if (left <= VeilWarning)
                     color = VeilEnding;
-                text = Loc.GetString("cadia-veil-hud-timer", ("time", $"{(int) left.TotalMinutes}:{left.Seconds:00}"));
+                text = Loc.GetString("cadia-veil-hud-timer", ("time", $"{(int)left.TotalMinutes}:{left.Seconds:00}"));
             }
             else
             {

@@ -27,6 +27,8 @@ public sealed class CadiaFrontClientSystem : EntitySystem
     private float _kickPower;
     private TimeSpan _nextKick;
 
+    private static readonly TimeSpan KickDelay = TimeSpan.FromSeconds(0.12);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -65,7 +67,7 @@ public sealed class CadiaFrontClientSystem : EntitySystem
         base.FrameUpdate(frameTime);
         if (_kicksLeft <= 0 || _timing.RealTime < _nextKick || _player.LocalEntity is not { } local)
             return;
-        _nextKick = _timing.RealTime + TimeSpan.FromSeconds(0.12);
+        _nextKick = _timing.RealTime + KickDelay;
         _kicksLeft--;
         _recoil.KickCamera(local, _random.NextVector2(_kickPower));
     }

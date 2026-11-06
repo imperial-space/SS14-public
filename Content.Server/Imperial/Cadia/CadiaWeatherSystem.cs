@@ -22,13 +22,15 @@ public sealed class CadiaWeatherSystem : EntitySystem
     private TimeSpan _next;
     private TimeSpan _nextChange;
 
+    private static readonly TimeSpan NextDelay = TimeSpan.FromSeconds(1);
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
         var now = _timing.CurTime;
         if (now < _next)
             return;
-        _next = now + TimeSpan.FromSeconds(1);
+        _next = now + NextDelay;
 
         if (!_rule.TryGetActiveWar(out var war) || war.Phase == CadiaWarPhase.Ended)
         {
@@ -49,9 +51,9 @@ public sealed class CadiaWeatherSystem : EntitySystem
     /// <summary>Чем больше павших пилонов, тем чаще пепел вместо тумана.</summary>
     private CadiaWeather Pick(CadiaWarStateComponent war)
     {
-        if (war.Phase >= CadiaWarPhase.Assault && _random.Prob(0.3f))
+        if (war.Phase >= CadiaWarPhase.Assault && _random.Prob(war.PickChance))
             return CadiaWeather.Smog;
-        var fallen = war.PylonsTotal > 0 ? 1f - (float) war.PylonsAlive / war.PylonsTotal : 0f;
+        var fallen = war.PylonsTotal > 0 ? 1f - (float)war.PylonsAlive / war.PylonsTotal : 0f;
         return _random.Prob(0.3f + 0.6f * fallen) ? CadiaWeather.Ash : CadiaWeather.Fog;
     }
 
@@ -74,6 +76,6 @@ public sealed class CadiaWeatherSystem : EntitySystem
     public void Cycle()
     {
         if (_rule.TryGetActiveWar(out var war))
-            Set((CadiaWeather) (((int) war.Weather + 1) % Enum.GetValues<CadiaWeather>().Length));
+            Set((CadiaWeather)(((int)war.Weather + 1) % Enum.GetValues<CadiaWeather>().Length));
     }
 }

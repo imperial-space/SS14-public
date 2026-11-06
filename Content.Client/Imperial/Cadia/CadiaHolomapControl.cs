@@ -92,7 +92,7 @@ public sealed class CadiaHolomapControl : Control
     private Vector2 ToScreen(Vector2 world)
     {
         var (scale, offset) = Layout();
-        var local = world - (Vector2) _state!.Origin;
+        var local = world - (Vector2)_state!.Origin;
         return new Vector2(offset.X + local.X * scale, offset.Y + (_state.Size - local.Y) * scale);
     }
 
@@ -136,13 +136,13 @@ public sealed class CadiaHolomapControl : Control
         }
 
         // Бегущая строка развёртки.
-        var sweep = (float) (_timing.RealTime.TotalSeconds % 3.0 / 3.0);
+        var sweep = (float)(_timing.RealTime.TotalSeconds % 3.0 / 3.0);
         var sy = mapBox.Top + mapBox.Height * sweep;
         handle.DrawRect(new UIBox2(mapBox.Left, sy - 2, mapBox.Right, sy + 2), Color.FromHex("#5aff7826"));
 
         handle.DrawCircle(ToScreen(_state.ShipPosition), _state.Range * scale, RangeColor, false);
 
-        var pulse = 0.6f + 0.4f * MathF.Sin((float) _timing.RealTime.TotalSeconds * 6f);
+        var pulse = 0.6f + 0.4f * MathF.Sin((float)_timing.RealTime.TotalSeconds * 6f);
         foreach (var marker in _state.Markers)
         {
             var p = ToScreen(marker.Position);
@@ -199,7 +199,7 @@ public sealed class CadiaHolomapControl : Control
             if (mapBox.Contains(mouse))
             {
                 var world = ToWorld(mouse);
-                handle.DrawString(_font, new Vector2(mapBox.Left + 6, mapBox.Top + 4), $"{(int) world.X}, {(int) world.Y}", FriendlyColor);
+                handle.DrawString(_font, new Vector2(mapBox.Left + 6, mapBox.Top + 4), $"{(int)world.X}, {(int)world.Y}", FriendlyColor);
             }
         }
     }

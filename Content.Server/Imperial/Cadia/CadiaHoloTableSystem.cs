@@ -89,6 +89,9 @@ public sealed class CadiaHoloTableSystem : EntitySystem
     private const string ProjectionProto = "CadiaHoloProjection";
     private readonly Dictionary<EntityUid, EntityUid> _projections = new();
 
+    private static readonly EntProtoId CadiaBlueprintGhost = "CadiaBlueprintGhost";
+    private static readonly ProtoId<StackPrototype> SteelStack = "Steel";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -149,7 +152,7 @@ public sealed class CadiaHoloTableSystem : EntitySystem
     public IEnumerable<Vector2> GetTargets(CadiaFaction faction)
     {
         return _elements[faction]
-            .Where(e => e.Shape == CadiaHoloShape.Marker && e.Kind == (byte) CadiaHoloMarkerType.Target && e.Level == CadiaFlightLevel.Surface)
+            .Where(e => e.Shape == CadiaHoloShape.Marker && e.Kind == (byte)CadiaHoloMarkerType.Target && e.Level == CadiaFlightLevel.Surface)
             .Select(e => e.A);
     }
 
@@ -173,7 +176,7 @@ public sealed class CadiaHoloTableSystem : EntitySystem
             return null;
         if (!TryComp<CadiaFlightLevelComponent>(map, out var own))
             return level == CadiaFlightLevel.Surface ? map : null;
-        return _flight.GetLevelMap(map, (int) level - (int) own.Level);
+        return _flight.GetLevelMap(map, (int)level - (int)own.Level);
     }
 
     private List<CadiaFlightLevel> FieldLevels(EntityUid table)
@@ -237,12 +240,12 @@ public sealed class CadiaHoloTableSystem : EntitySystem
         if (TryComp<MapGridComponent>(map, out var planet) && planet.LocalAABB.Width <= MaxWindow && planet.LocalAABB.Height <= MaxWindow && planet.LocalAABB.Width > 0)
         {
             var aabb = planet.LocalAABB.Enlarged(4);
-            window = new Box2i((int) Math.Floor(aabb.Left), (int) Math.Floor(aabb.Bottom), (int) Math.Ceiling(aabb.Right), (int) Math.Ceiling(aabb.Top));
+            window = new Box2i((int)Math.Floor(aabb.Left), (int)Math.Floor(aabb.Bottom), (int)Math.Ceiling(aabb.Right), (int)Math.Ceiling(aabb.Top));
         }
         else
         {
             var half = MaxWindow / 2;
-            var c = new Vector2i((int) center.X, (int) center.Y);
+            var c = new Vector2i((int)center.X, (int)center.Y);
             window = new Box2i(c.X - half, c.Y - half, c.X + half, c.Y + half);
         }
 
@@ -258,9 +261,9 @@ public sealed class CadiaHoloTableSystem : EntitySystem
             var matrix = _xform.GetWorldMatrix(grid);
             foreach (var tile in _map.GetTilesIntersecting(grid, grid.Comp, box))
             {
-                var world = Vector2.Transform((Vector2) tile.GridIndices + new Vector2(0.5f), matrix);
-                var x = (int) Math.Floor(world.X) - window.Left;
-                var y = (int) Math.Floor(world.Y) - window.Bottom;
+                var world = Vector2.Transform((Vector2)tile.GridIndices + new Vector2(0.5f), matrix);
+                var x = (int)Math.Floor(world.X) - window.Left;
+                var y = (int)Math.Floor(world.Y) - window.Bottom;
                 if (x >= 0 && y >= 0 && x < width && y < height)
                     tiles[y * width + x] = 1;
             }
@@ -270,12 +273,12 @@ public sealed class CadiaHoloTableSystem : EntitySystem
         _lookup.GetEntitiesIntersecting(mapId, box, _static, LookupFlags.Static);
         foreach (var uid in _static)
         {
-            var kind = HasComp<DoorComponent>(uid) ? (byte) 3 : IsSolid(uid) ? (byte) 2 : (byte) 0;
+            var kind = HasComp<DoorComponent>(uid) ? (byte)3 : IsSolid(uid) ? (byte)2 : (byte)0;
             if (kind == 0)
                 continue;
             var pos = _xform.GetWorldPosition(uid);
-            var x = (int) Math.Floor(pos.X) - window.Left;
-            var y = (int) Math.Floor(pos.Y) - window.Bottom;
+            var x = (int)Math.Floor(pos.X) - window.Left;
+            var y = (int)Math.Floor(pos.Y) - window.Bottom;
             if (x >= 0 && y >= 0 && x < width && y < height)
                 tiles[y * width + x] = kind;
         }
@@ -296,7 +299,7 @@ public sealed class CadiaHoloTableSystem : EntitySystem
             return false;
         foreach (var fixture in fixtures.Fixtures.Values)
         {
-            if (fixture.Hard && (fixture.CollisionLayer & (int) (CollisionGroup.Impassable | CollisionGroup.HighImpassable)) != 0)
+            if (fixture.Hard && (fixture.CollisionLayer & (int)(CollisionGroup.Impassable | CollisionGroup.HighImpassable)) != 0)
                 return true;
         }
         return false;
@@ -452,12 +455,12 @@ public sealed class CadiaHoloTableSystem : EntitySystem
     {
         if (!Enum.IsDefined(typeof(CadiaBlueprintKind), element.Kind) || LevelMap(table, element.Level) is not { } map)
             return false;
-        var kind = (CadiaBlueprintKind) element.Kind;
+        var kind = (CadiaBlueprintKind)element.Kind;
         if (!CadiaBlueprintRules.Allowed(kind, table.Comp.Faction))
             return false;
         var (proto, cost, _) = Blueprints[kind];
 
-        var tile = new Vector2((float) Math.Floor(element.A.X), (float) Math.Floor(element.A.Y));
+        var tile = new Vector2((float)Math.Floor(element.A.X), (float)Math.Floor(element.A.Y));
         element.A = tile + new Vector2(0.5f);
         element.Layer = CadiaHoloLayer.Defense;
 
@@ -479,7 +482,7 @@ public sealed class CadiaHoloTableSystem : EntitySystem
             }
         }
 
-        var ghost = Spawn("CadiaBlueprintGhost", new MapCoordinates(element.A, mapId));
+        var ghost = Spawn(CadiaBlueprintGhost, new MapCoordinates(element.A, mapId));
         _xform.AttachToGridOrMap(ghost);
         var comp = EnsureComp<CadiaBlueprintComponent>(ghost);
         comp.Kind = kind;
@@ -576,7 +579,7 @@ public sealed class CadiaHoloTableSystem : EntitySystem
 
     private void OnBlueprintInteract(Entity<CadiaBlueprintComponent> ent, ref InteractUsingEvent args)
     {
-        if (args.Handled || !TryComp<StackComponent>(args.Used, out var stack) || stack.StackTypeId != "Steel")
+        if (args.Handled || !TryComp<StackComponent>(args.Used, out var stack) || stack.StackTypeId != SteelStack)
             return;
         args.Handled = true;
 

@@ -5,6 +5,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Cadia;
 
@@ -20,6 +21,8 @@ public sealed class CadiaWarpGateSystem : EntitySystem
 
     private static readonly SoundSpecifier StepSound = new SoundPathSpecifier("/Audio/Imperial/Wizard/exit_blood.ogg");
     private static readonly TimeSpan Cooldown = TimeSpan.FromSeconds(3);
+
+    private static readonly EntProtoId CadiaPsyRingRed = "CadiaPsyRingRed";
 
     public override void Initialize()
     {
@@ -60,11 +63,11 @@ public sealed class CadiaWarpGateSystem : EntitySystem
             return;
         from.Comp.NextUse = now + Cooldown;
 
-        Spawn("CadiaPsyRingRed", _xform.GetMapCoordinates(user));
+        Spawn(CadiaPsyRingRed, _xform.GetMapCoordinates(user));
         _audio.PlayPvs(StepSound, from);
         _xform.SetCoordinates(user, Transform(to).Coordinates);
         _xform.AttachToGridOrMap(user);
-        Spawn("CadiaPsyRingRed", _xform.GetMapCoordinates(to));
+        Spawn(CadiaPsyRingRed, _xform.GetMapCoordinates(to));
         _audio.PlayPvs(StepSound, to);
     }
 }

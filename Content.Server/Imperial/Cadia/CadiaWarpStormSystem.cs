@@ -45,13 +45,16 @@ public sealed class CadiaWarpStormSystem : EntitySystem
     private TimeSpan _nextStorm;
     private TimeSpan _nextWhisper;
 
+    private static readonly TimeSpan NextDelay = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan WhisperDelay = TimeSpan.FromSeconds(6);
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
         var now = _timing.CurTime;
         if (now < _next)
             return;
-        _next = now + TimeSpan.FromSeconds(1);
+        _next = now + NextDelay;
 
         if (!_rule.TryGetActiveWar(out var war) || war.Phase < CadiaWarPhase.Assault || war.Phase == CadiaWarPhase.Ended)
         {
@@ -125,7 +128,7 @@ public sealed class CadiaWarpStormSystem : EntitySystem
             return;
         var whisperNow = storm == CadiaWarpStorm.Whispers && now >= _nextWhisper;
         if (whisperNow)
-            _nextWhisper = now + TimeSpan.FromSeconds(6);
+            _nextWhisper = now + WhisperDelay;
 
         var query = EntityQueryEnumerator<CadiaMoraleComponent, CadiaFactionMemberComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out _, out var member, out var xform))

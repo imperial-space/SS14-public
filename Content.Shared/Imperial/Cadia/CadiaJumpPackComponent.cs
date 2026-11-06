@@ -28,4 +28,7 @@ public sealed partial class CadiaJumpPackComponent : Component
     /// <summary>Кому ранец дал полёт (как у Хелдрейка: не падает в проёмы, сам ходит между этажами).</summary>
     [ViewVariables]
     public EntityUid? Flyer;
+
+    [DataField]
+    public TimeSpan LandDuration = TimeSpan.FromSeconds(1.5);
 }

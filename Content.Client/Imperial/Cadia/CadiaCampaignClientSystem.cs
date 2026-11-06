@@ -137,7 +137,7 @@ public sealed class CadiaCampaignClientSystem : EntitySystem
         var now = _timing.CurTime;
 
         // Неуязвимый новичок мерцает, чтобы враг не тратил на него патроны.
-        var shimmer = 0.55f + 0.35f * MathF.Sin((float) now.TotalSeconds * 8f);
+        var shimmer = 0.55f + 0.35f * MathF.Sin((float)now.TotalSeconds * 8f);
         var shielded = EntityQueryEnumerator<CadiaSpawnProtectionComponent, SpriteComponent>();
         while (shielded.MoveNext(out var protectedUid, out _, out var protectedSprite))
             _sprite.SetColor((protectedUid, protectedSprite), Color.White.WithAlpha(shimmer));
@@ -148,8 +148,8 @@ public sealed class CadiaCampaignClientSystem : EntitySystem
             float air;
             if (now < ship.LandAt)
             {
-                var total = (float) (ship.LandAt - ship.Start).TotalSeconds;
-                air = total > 0f ? 1f - Math.Clamp((float) (now - ship.Start).TotalSeconds / total, 0f, 1f) : 0f;
+                var total = (float)(ship.LandAt - ship.Start).TotalSeconds;
+                air = total > 0f ? 1f - Math.Clamp((float)(now - ship.Start).TotalSeconds / total, 0f, 1f) : 0f;
                 air *= air;
             }
             else if (now < ship.LeaveAt)
@@ -158,12 +158,12 @@ public sealed class CadiaCampaignClientSystem : EntitySystem
             }
             else
             {
-                var total = (float) (ship.GoneAt - ship.LeaveAt).TotalSeconds;
-                air = total > 0f ? Math.Clamp((float) (now - ship.LeaveAt).TotalSeconds / total, 0f, 1f) : 1f;
+                var total = (float)(ship.GoneAt - ship.LeaveAt).TotalSeconds;
+                air = total > 0f ? Math.Clamp((float)(now - ship.LeaveAt).TotalSeconds / total, 0f, 1f) : 1f;
                 air *= air;
             }
 
-            var hover = MathF.Sin((float) now.TotalSeconds * 3f) * 0.06f;
+            var hover = MathF.Sin((float)now.TotalSeconds * 3f) * 0.06f;
             var ent = new Entity<SpriteComponent?>(uid, sprite);
             _sprite.LayerSetOffset(ent, ShipLayer, new Vector2(0f, air * ShipHeight + 0.35f + hover));
             _sprite.LayerSetScale(ent, ShadowLayer, new Vector2(6f - air * 4f));

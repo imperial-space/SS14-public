@@ -86,7 +86,7 @@ public sealed class CadiaSquadWindow : DefaultWindow
             return;
         var left = _state.VoxCooldownUntil - _timing.CurTime;
         _vox.Text = left > TimeSpan.Zero
-            ? Loc.GetString("cadia-squad-ui-vox-cooldown", ("seconds", (int) Math.Ceiling(left.TotalSeconds)))
+            ? Loc.GetString("cadia-squad-ui-vox-cooldown", ("seconds", (int)Math.Ceiling(left.TotalSeconds)))
             : Loc.GetString("cadia-squad-ui-vox-ready");
         _vox.FontColorOverride = left > TimeSpan.Zero ? Color.FromHex("#ff9a3c") : Color.FromHex("#6dff8a");
     }
@@ -164,7 +164,7 @@ public sealed class CadiaSquadWindow : DefaultWindow
             var row = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, SeparationOverride = 4 };
             var squad = state.Squads.FirstOrDefault(s => s.Number == fighter.Squad);
             var color = !fighter.Alive ? Color.FromHex("#6a6a6a") : squad?.Color ?? Color.FromHex("#d8e0c8");
-            var distance = fighter.Distance >= 0 ? Loc.GetString("imperial-cadia-squad-distance", ("meters", (int) fighter.Distance)) : string.Empty;
+            var distance = fighter.Distance >= 0 ? Loc.GetString("imperial-cadia-squad-distance", ("meters", (int)fighter.Distance)) : string.Empty;
             row.AddChild(new Label
             {
                 Text = $"{fighter.Name} ({fighter.Role}){distance}{(fighter.Alive ? string.Empty : " ✝")}",

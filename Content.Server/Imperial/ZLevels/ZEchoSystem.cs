@@ -91,11 +91,11 @@ public sealed class ZEchoSystem : EntitySystem
     private bool HasOpenNear(MapCoordinates coords)
     {
         for (var dx = -OpenRange; dx <= OpenRange; dx++)
-        for (var dy = -OpenRange; dy <= OpenRange; dy++)
-        {
-            if (_z.IsTransparent(new MapCoordinates(coords.Position + new Vector2(dx, dy), coords.MapId)))
-                return true;
-        }
+            for (var dy = -OpenRange; dy <= OpenRange; dy++)
+            {
+                if (_z.IsTransparent(new MapCoordinates(coords.Position + new Vector2(dx, dy), coords.MapId)))
+                    return true;
+            }
         return false;
     }
 
@@ -131,7 +131,7 @@ public sealed class ZEchoSystem : EntitySystem
             if (!_map.TryGetMap(epicenter.MapId, out var map) || !HasComp<ZLevelMapComponent>(map) || visuals.Intensity.Count == 0)
                 continue;
 
-            var key = (epicenter.MapId, (Vector2i) epicenter.Position.Floored());
+            var key = (epicenter.MapId, (Vector2i)epicenter.Position.Floored());
             var directions = new List<(bool Up, int Depth)>();
             if (_propagated.Remove(key, out var from))
             {
@@ -158,7 +158,7 @@ public sealed class ZEchoSystem : EntitySystem
                 var upper = up ? target.MapId : epicenter.MapId;
                 if (_map.TryGetMap(upper, out var upperMap) && TryComp<ZLevelMapComponent>(upperMap, out var upperZ) && upperZ.BelowGap > 1)
                     continue;
-                _propagated[(target.MapId, (Vector2i) target.Position.Floored())] = (up, depth);
+                _propagated[(target.MapId, (Vector2i)target.Position.Floored())] = (up, depth);
                 _explosion.QueueExplosion(target, visuals.ExplosionType, total, slope, max * ExplosionFalloff, null);
             }
         }

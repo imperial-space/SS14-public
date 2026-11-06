@@ -53,7 +53,7 @@ public sealed class CadiaAntiAirViewOverlay : Overlay
 
         var handle = args.ScreenHandle;
         var box = args.ViewportBounds;
-        var pulse = 0.6f + 0.4f * MathF.Sin((float) _timing.RealTime.TotalSeconds * 5f);
+        var pulse = 0.6f + 0.4f * MathF.Sin((float)_timing.RealTime.TotalSeconds * 5f);
 
         // Рамка оптики: уголки, лёгкий зелёный тон и сканирующая полоса.
         handle.DrawRect(box, Green.WithAlpha(0.04f));
@@ -64,7 +64,7 @@ public sealed class CadiaAntiAirViewOverlay : Overlay
             handle.DrawLine(o, o + new Vector2(dx * corner, 0), Green);
             handle.DrawLine(o, o + new Vector2(0, dy * corner), Green);
         }
-        var scan = box.Top + box.Height * (float) (_timing.RealTime.TotalSeconds % 4.0 / 4.0);
+        var scan = box.Top + box.Height * (float)(_timing.RealTime.TotalSeconds % 4.0 / 4.0);
         handle.DrawRect(new UIBox2(box.Left, scan - 1, box.Right, scan + 1), Green.WithAlpha(0.08f));
 
         // Захваченная точка на борту: ромб и пульсирующее кольцо.

@@ -28,4 +28,8 @@ namespace Content.Server.Imperial.Cadia;
 
 /// <summary>Фуражка комиссара: даёт действия «Воодушевить» и «Казнь».</summary>
 [RegisterComponent]
-public sealed partial class CadiaCommissarComponent : Component;
+public sealed partial class CadiaCommissarComponent : Component
+{
+    [DataField]
+    public TimeSpan ExecuteDelay = TimeSpan.FromSeconds(2.5);
+}

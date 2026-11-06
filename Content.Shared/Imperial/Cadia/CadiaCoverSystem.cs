@@ -35,7 +35,7 @@ public sealed class CadiaCoverSystem : EntitySystem
             if (here.MapId == from.MapId && (here.Position - from.Position).LengthSquared() <= TrenchPointBlank * TrenchPointBlank)
                 return;
         }
-        var roll = unchecked((uint) (args.OtherEntity.Id * 2654435761u + ent.Owner.Id * 40503u)) % 100u;
+        var roll = unchecked((uint)(args.OtherEntity.Id * 2654435761u + ent.Owner.Id * 40503u)) % 100u;
         if (roll < TrenchMissPercent)
             args.Cancelled = true;
     }
@@ -68,7 +68,7 @@ public sealed class CadiaCoverSystem : EntitySystem
         }
 
         // Столкновение проверяется много раз за полёт: решение должно быть одним для этой пары пуля — укрытие.
-        var roll = unchecked((uint) (args.OtherEntity.Id * 2654435761u + ent.Owner.Id * 40503u)) % 100u;
+        var roll = unchecked((uint)(args.OtherEntity.Id * 2654435761u + ent.Owner.Id * 40503u)) % 100u;
         if (roll >= ent.Comp.Block * 100f)
             args.Cancelled = true;
     }

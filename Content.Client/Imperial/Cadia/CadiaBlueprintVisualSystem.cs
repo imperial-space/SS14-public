@@ -51,7 +51,7 @@ public sealed class CadiaBlueprintVisualSystem : EntitySystem
     public override void FrameUpdate(float frameTime)
     {
         base.FrameUpdate(frameTime);
-        var t = (float) _timing.RealTime.TotalSeconds;
+        var t = (float)_timing.RealTime.TotalSeconds;
         var query = EntityQueryEnumerator<CadiaBlueprintComponent, SpriteComponent>();
         while (query.MoveNext(out var uid, out _, out var sprite))
         {

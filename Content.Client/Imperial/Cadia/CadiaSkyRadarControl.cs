@@ -97,7 +97,7 @@ public sealed class CadiaSkyRadarControl : Control
         }
 
         // Луч развёртки с затухающим хвостом.
-        var t = (float) (_timing.RealTime.TotalSeconds % 2.5 / 2.5) * MathF.Tau;
+        var t = (float)(_timing.RealTime.TotalSeconds % 2.5 / 2.5) * MathF.Tau;
         for (var k = 0; k < 14; k++)
         {
             var a = t - k * 0.035f;

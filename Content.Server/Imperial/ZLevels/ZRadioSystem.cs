@@ -26,6 +26,8 @@ public sealed class ZRadioSystem : EntitySystem
     private readonly Dictionary<EntityUid, EntityUid> _relays = new();
     private TimeSpan _next;
 
+    private static readonly TimeSpan NextDelay = TimeSpan.FromSeconds(1);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -38,7 +40,7 @@ public sealed class ZRadioSystem : EntitySystem
         var now = _timing.CurTime;
         if (now < _next)
             return;
-        _next = now + TimeSpan.FromSeconds(1);
+        _next = now + NextDelay;
         UpdateRelays();
     }
 

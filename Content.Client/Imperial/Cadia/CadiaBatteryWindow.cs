@@ -115,7 +115,7 @@ public sealed class CadiaBatteryWindow : DefaultWindow
         _ammo.Visible = state.Kind == CadiaBatteryKind.Macro;
         _ammo.Text = Loc.GetString("cadia-battery-ui-ammo", ("ammo", state.Ammo), ("max", state.MaxAmmo));
         _target.Text = state.Target is { } t
-            ? Loc.GetString("cadia-battery-ui-target", ("x", (int) t.X), ("y", (int) t.Y))
+            ? Loc.GetString("cadia-battery-ui-target", ("x", (int)t.X), ("y", (int)t.Y))
             : Loc.GetString("cadia-battery-ui-no-target");
     }
 
@@ -129,9 +129,9 @@ public sealed class CadiaBatteryWindow : DefaultWindow
         var ready = left <= TimeSpan.Zero;
         _reload.Text = ready
             ? Loc.GetString("cadia-battery-ui-ready")
-            : Loc.GetString("cadia-battery-ui-reloading", ("seconds", (int) Math.Ceiling(left.TotalSeconds)));
+            : Loc.GetString("cadia-battery-ui-reloading", ("seconds", (int)Math.Ceiling(left.TotalSeconds)));
         _reload.FontColorOverride = ready ? Color.FromHex("#6dff8a") : Color.FromHex("#ff9a3c");
-        _reloadBar.Value = ready ? 1f : 1f - (float) (left.TotalSeconds / Math.Max(1, _reloadTotal.TotalSeconds));
+        _reloadBar.Value = ready ? 1f : 1f - (float)(left.TotalSeconds / Math.Max(1, _reloadTotal.TotalSeconds));
         _fire.Disabled = !_state.InOrbit || !ready || _state.Target == null ||
                          (_state.Kind == CadiaBatteryKind.Macro && _state.Ammo <= 0);
     }

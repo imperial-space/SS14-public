@@ -104,8 +104,8 @@ public sealed class CadiaWarHudOverlay : Overlay
         var left = war.PhaseEnd - now;
         if (left < TimeSpan.Zero)
             left = TimeSpan.Zero;
-        var timer = $"{(int) left.TotalMinutes:00}:{left.Seconds:00}";
-        var urgent = left.TotalSeconds < 60 && (int) (now.TotalSeconds * 2) % 2 == 0;
+        var timer = $"{(int)left.TotalMinutes:00}:{left.Seconds:00}";
+        var urgent = left.TotalSeconds < 60 && (int)(now.TotalSeconds * 2) % 2 == 0;
         var timerSize = handle.GetDimensions(_title, timer, 1f);
         handle.DrawString(_title, new Vector2(box.Right - timerSize.X - 12, origin.Y + 6), timer, urgent ? Blood : Color.White);
 
@@ -129,7 +129,7 @@ public sealed class CadiaWarHudOverlay : Overlay
             if (transport < TimeSpan.Zero)
                 transport = TimeSpan.Zero;
             handle.DrawString(_small, new Vector2(x, y + 20),
-                Loc.GetString("cadia-hud-evac", ("saved", war.EvacSaved), ("time", $"{(int) transport.TotalMinutes}:{transport.Seconds:00}")), Gold);
+                Loc.GetString("cadia-hud-evac", ("saved", war.EvacSaved), ("time", $"{(int)transport.TotalMinutes}:{transport.Seconds:00}")), Gold);
         }
         else
         {
@@ -143,11 +143,11 @@ public sealed class CadiaWarHudOverlay : Overlay
         handle.DrawString(_font, new Vector2(barX, y - 2), Loc.GetString("cadia-hud-citadel"), Color.White);
         var bar = UIBox2.FromDimensions(new Vector2(barX, y + 14), new Vector2(barW, 9));
         handle.DrawRect(bar, Color.FromHex("#2a2a24"));
-        var fill = war.CitadelContested && (int) (now.TotalSeconds * 3) % 2 == 0 ? Color.FromHex("#ff9a3c") : Blood;
+        var fill = war.CitadelContested && (int)(now.TotalSeconds * 3) % 2 == 0 ? Color.FromHex("#ff9a3c") : Blood;
         if (war.CitadelProgress > 0)
             handle.DrawRect(UIBox2.FromDimensions(bar.TopLeft, new Vector2(barW * war.CitadelProgress, 9)), fill);
         handle.DrawRect(bar, Gold.WithAlpha(0.6f), false);
-        var pct = $"{(int) (war.CitadelProgress * 100)}%";
+        var pct = $"{(int)(war.CitadelProgress * 100)}%";
         handle.DrawString(_small, new Vector2(bar.Right - handle.GetDimensions(_small, pct, 1f).X, y - 1), pct, war.CitadelProgress > 0 ? Blood : Dim);
 
         // Строка 3: подкрепления своей стороны и сила варпа.
@@ -159,7 +159,7 @@ public sealed class CadiaWarHudOverlay : Overlay
         var warp = Loc.GetString("cadia-hud-warp", ("power", war.WarpPower));
         var warpX = box.Right - handle.GetDimensions(_small, warp, 1f).X - 12;
         // Подпись волны не должна наезжать на варп: если места мало — короткая форма.
-        var time = $"{(int) waveLeft.TotalMinutes}:{waveLeft.Seconds:00}";
+        var time = $"{(int)waveLeft.TotalMinutes}:{waveLeft.Seconds:00}";
         // Полная подпись не помещается перед варпом на любом масштабе — всегда короткая.
         var waveText = Loc.GetString("cadia-hud-wave-short", ("time", time));
         handle.DrawString(_small, new Vector2(barX, y3), waveText, Dim);
@@ -184,7 +184,7 @@ public sealed class CadiaWarHudOverlay : Overlay
             handle.DrawRect(rect, SideColor(sector.Owner).WithAlpha(0.45f));
             if (sector.Capturer is { } capturer && sector.Progress > 0f)
                 handle.DrawRect(UIBox2.FromDimensions(rect.TopLeft, new Vector2(chip * Math.Clamp(sector.Progress, 0f, 1f), 16f)), SideColor(capturer).WithAlpha(0.8f));
-            var flash = sector.Contested && (int) (now.TotalSeconds * 3) % 2 == 0;
+            var flash = sector.Contested && (int)(now.TotalSeconds * 3) % 2 == 0;
             handle.DrawRect(rect, flash ? Color.FromHex("#ff9a3c") : SideColor(sector.Owner), false);
             var size = handle.GetDimensions(_font, sector.Letter, 1f);
             handle.DrawString(_font, new Vector2(rect.Center.X - size.X / 2f, top), sector.Letter, Color.White);

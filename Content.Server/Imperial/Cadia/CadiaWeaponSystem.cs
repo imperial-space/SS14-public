@@ -36,6 +36,8 @@ public sealed class CadiaWeaponSystem : EntitySystem
     private readonly HashSet<Entity<DamageableComponent>> _hit = new();
     private TimeSpan _nextCharge;
 
+    private static readonly TimeSpan ChargeDelay = TimeSpan.FromSeconds(1);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -96,7 +98,7 @@ public sealed class CadiaWeaponSystem : EntitySystem
         var now = _timing.CurTime;
         if (now < _nextCharge)
             return;
-        _nextCharge = now + TimeSpan.FromSeconds(1);
+        _nextCharge = now + ChargeDelay;
 
         var query = EntityQueryEnumerator<CadiaPackChargerComponent>();
         while (query.MoveNext(out var uid, out var charger))

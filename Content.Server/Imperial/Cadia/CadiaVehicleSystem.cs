@@ -76,6 +76,9 @@ public sealed partial class CadiaVehicleSystem : EntitySystem
     private static readonly TimeSpan DirtyRate = TimeSpan.FromSeconds(0.1);
     private TimeSpan _nextDirty;
 
+    private static readonly EntProtoId CadiaFlakMuzzle = "CadiaFlakMuzzle";
+    private static readonly EntProtoId CadiaOrbitalStrikeMarker = "CadiaOrbitalStrikeMarker";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -172,7 +175,7 @@ public sealed partial class CadiaVehicleSystem : EntitySystem
             args.Verbs.Add(new AlternativeVerb
             {
                 Text = Loc.GetString(ent.Comp.GunPost ? "cadia-vehicle-verb-gunpost" : $"cadia-vehicle-verb-{seat.ToString().ToLowerInvariant()}"),
-                Priority = 5 - (int) seat,
+                Priority = 5 - (int)seat,
                 Act = () => StartEnter(ent, user, s),
             });
         }
@@ -212,7 +215,7 @@ public sealed partial class CadiaVehicleSystem : EntitySystem
             DenyLocked(ent, user);
             return;
         }
-        var doAfter = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(1.5), new CadiaVehicleEnterDoAfterEvent(seat), ent, ent)
+        var doAfter = new DoAfterArgs(EntityManager, user, ent.Comp.StartEnterDelay, new CadiaVehicleEnterDoAfterEvent(seat), ent, ent)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -426,14 +429,14 @@ public sealed partial class CadiaVehicleSystem : EntitySystem
             return;
         if (weapon.Breech && !ent.Comp.Loaded)
         {
-            ent.Comp.NextShot[index] = now + TimeSpan.FromSeconds(0.6);
+            ent.Comp.NextShot[index] = now + ent.Comp.ShotDelay;
             _audio.PlayEntity(EmptySound, Filter.Entities(gunner), ent, false);
             _popup.PopupEntity(Loc.GetString("cadia-vehicle-breech-empty"), gunner, gunner, PopupType.SmallCaution);
             return;
         }
         if (!weapon.Breech && ent.Comp.Ammo[index] <= 0)
         {
-            ent.Comp.NextShot[index] = now + TimeSpan.FromSeconds(0.6);
+            ent.Comp.NextShot[index] = now + ent.Comp.ShotDelay;
             _audio.PlayEntity(EmptySound, Filter.Entities(gunner), ent, false);
             return;
         }
@@ -468,7 +471,7 @@ public sealed partial class CadiaVehicleSystem : EntitySystem
         var velocity = TryComp<PhysicsComponent>(ent, out var body) ? body.LinearVelocity : Vector2.Zero;
         _gun.ShootProjectile(projectile, dir, velocity, ent, gunner, weapon.Speed);
 
-        Spawn("CadiaFlakMuzzle", muzzle);
+        Spawn(CadiaFlakMuzzle, muzzle);
         if (weapon.Sound != null)
             _audio.PlayPvs(weapon.Sound, ent, AudioParams.Default.WithVariation(0.05f));
 
@@ -490,18 +493,18 @@ public sealed partial class CadiaVehicleSystem : EntitySystem
         var point = origin.Offset(offset + _random.NextVector2(weapon.Spread));
 
         var now = _timing.CurTime;
-        var strike = Spawn("CadiaOrbitalStrikeMarker", point);
+        var strike = Spawn(CadiaOrbitalStrikeMarker, point);
         var comp = EnsureComp<CadiaOrbitalStrikeComponent>(strike);
         comp.Kind = CadiaBatteryKind.Macro;
         comp.Start = now;
-        comp.Impact = now + TimeSpan.FromSeconds(4);
+        comp.Impact = now + ent.Comp.ImpactDelay;
         comp.Intensity = weapon.IndirectIntensity;
         comp.Slope = 6f;
         comp.MaxTileIntensity = 20f;
         comp.Source = ent;
         Dirty(strike, comp);
 
-        Spawn("CadiaFlakMuzzle", origin.Offset(ent.Comp.TurretAngle.RotateVec(new Vector2(0, ent.Comp.MuzzleOffset))));
+        Spawn(CadiaFlakMuzzle, origin.Offset(ent.Comp.TurretAngle.RotateVec(new Vector2(0, ent.Comp.MuzzleOffset))));
         if (weapon.Sound != null)
             _audio.PlayPvs(weapon.Sound, ent, AudioParams.Default.WithVariation(0.05f));
         if (weapon.Kick > 0)
@@ -584,7 +587,7 @@ public sealed partial class CadiaVehicleSystem : EntitySystem
 
         var blunt = new DamageSpecifier(_proto.Index(BluntDamage), speed * (ent.Comp.TankControls ? RunOverTankDamage : RunOverWalkerDamage));
         _damage.TryChangeDamage(args.OtherEntity, blunt, origin: ent.Comp.Driver ?? ent.Owner);
-        _stun.TryUpdateParalyzeDuration(args.OtherEntity, TimeSpan.FromSeconds(2));
+        _stun.TryUpdateParalyzeDuration(args.OtherEntity, ent.Comp.RunOverDuration);
         _audio.PlayPvs(RunOverSound, args.OtherEntity);
         _popup.PopupEntity(Loc.GetString("cadia-vehicle-run-over", ("vehicle", Name(ent))), args.OtherEntity, args.OtherEntity, PopupType.LargeCaution);
     }
@@ -647,7 +650,7 @@ public sealed partial class CadiaVehicleSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("cadia-vehicle-ritual-unneeded"), ent, args.User);
             return;
         }
-        var doAfter = new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(8), new CadiaVehicleRitualDoAfterEvent(), ent, ent, args.Used)
+        var doAfter = new DoAfterArgs(EntityManager, args.User, ent.Comp.InteractUsingDelay, new CadiaVehicleRitualDoAfterEvent(), ent, ent, args.Used)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -664,7 +667,7 @@ public sealed partial class CadiaVehicleSystem : EntitySystem
         if (args.Cancelled || args.Handled)
             return;
         args.Handled = true;
-        _damage.HealEvenly(ent.Owner, -200, origin: args.User);
+        _damage.HealEvenly(ent.Owner, ent.Comp.RitualAmount, origin: args.User);
         _audio.PlayPvs(RitualDoneSound, ent);
         _popup.PopupEntity(Loc.GetString("cadia-vehicle-ritual-done"), ent, PopupType.Medium);
     }

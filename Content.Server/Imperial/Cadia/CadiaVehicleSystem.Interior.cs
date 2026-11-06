@@ -16,6 +16,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Cadia;
 
@@ -41,6 +42,8 @@ public sealed partial class CadiaVehicleSystem
     private static readonly SoundSpecifier UnlockSound = new SoundPathSpecifier("/Audio/Machines/door_lock_off.ogg");
     private static readonly SoundSpecifier LoadSound = new SoundPathSpecifier("/Audio/Weapons/Guns/MagIn/batrifle_magin.ogg");
     private static readonly SoundSpecifier ShellOutSound = new SoundPathSpecifier("/Audio/Weapons/Guns/MagOut/batrifle_magout.ogg");
+
+    private static readonly EntProtoId CadiaTankShell = "CadiaTankShell";
 
     private void InitializeInterior()
     {
@@ -118,8 +121,8 @@ public sealed partial class CadiaVehicleSystem
         light.AmbientLightColor = Color.FromHex("#3a4236");
         Dirty(map, light);
         var moles = new float[Atmospherics.AdjustedNumberOfGases];
-        moles[(int) Gas.Oxygen] = 21.824779f;
-        moles[(int) Gas.Nitrogen] = 82.10312f;
+        moles[(int)Gas.Oxygen] = 21.824779f;
+        moles[(int)Gas.Nitrogen] = 82.10312f;
         _atmos.SetMapAtmosphere(map, false, new GasMixture(moles, Atmospherics.T20C));
 
         var hx = ent.Comp.InteriorSize.X / 2;
@@ -378,7 +381,7 @@ public sealed partial class CadiaVehicleSystem
             _popup.PopupEntity(Loc.GetString("cadia-vehicle-rack-empty"), ent, args.User);
             return;
         }
-        var shell = Spawn("CadiaTankShell", Transform(args.User).Coordinates);
+        var shell = Spawn(CadiaTankShell, Transform(args.User).Coordinates);
         if (!_hands.TryPickupAnyHand(args.User, shell))
         {
             QueueDel(shell);
@@ -428,7 +431,7 @@ public sealed partial class CadiaVehicleSystem
             _popup.PopupEntity(Loc.GetString("cadia-vehicle-breech-full"), ent, args.User);
             return;
         }
-        var doAfter = new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(1.5), new CadiaBreechLoadDoAfterEvent(), ent, ent, args.Used)
+        var doAfter = new DoAfterArgs(EntityManager, args.User, ent.Comp.BreechInteractUsingDelay, new CadiaBreechLoadDoAfterEvent(), ent, ent, args.Used)
         {
             BreakOnMove = true,
             NeedHand = true,

@@ -68,7 +68,7 @@ public sealed class CadiaObjectiveOverlay : Overlay
         var xforms = _entMan.System<SharedTransformSystem>();
         var xform = _entMan.GetComponent<TransformComponent>(local);
         var here = xforms.GetWorldPosition(xform);
-        var (text, target) = Pick(local, member.Faction, war, here, (int) xform.MapID, xform.MapUid);
+        var (text, target) = Pick(local, member.Faction, war, here, (int)xform.MapID, xform.MapUid);
 
         var handle = args.ScreenHandle;
         var color = member.Faction == CadiaFaction.Imperium ? Gold : Blood;
@@ -82,7 +82,7 @@ public sealed class CadiaObjectiveOverlay : Overlay
         if (target is { } point)
         {
             var delta = point - here;
-            line = Loc.GetString("cadia-objective-line-distance", ("text", text), ("meters", (int) delta.Length()));
+            line = Loc.GetString("cadia-objective-line-distance", ("text", text), ("meters", (int)delta.Length()));
 
             var screen = _eye.WorldToScreen(point) - _eye.WorldToScreen(here);
             if (delta.Length() > NearEnough && screen.LengthSquared() > 1f)

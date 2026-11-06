@@ -30,6 +30,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.FixedPoint;
 
 namespace Content.Server.Imperial.Cadia;
 
@@ -71,6 +72,22 @@ public sealed class CadiaAstartesSystem : EntitySystem
     private static readonly TimeSpan WardCooldown = TimeSpan.FromSeconds(30);
     private readonly HashSet<Entity<MobStateComponent>> _mobs = new();
     private TimeSpan _nextTick;
+
+    private static readonly ProtoId<DamageTypePrototype> PoisonDamageType = "Poison";
+    private static readonly EntProtoId CadiaGeneSeed = "CadiaGeneSeed";
+    private static readonly EntProtoId CadiaPsyRingBlue = "CadiaPsyRingBlue";
+    private static readonly EntProtoId CadiaJumpImpactEffect = "CadiaJumpImpactEffect";
+    private static readonly EntProtoId CadiaFaithRingEffect = "CadiaFaithRingEffect";
+    private static readonly EntProtoId CadiaPsyRingRed = "CadiaPsyRingRed";
+
+    private static readonly TimeSpan TickDelay = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan ActOfFaithDelay = TimeSpan.FromSeconds(8);
+    private static readonly TimeSpan ExterminatusDelay = TimeSpan.FromSeconds(30);
+
+    private const float PrayerRange = 6f;
+    private static readonly FixedPoint2 PrayerAmount = -8;
+    private const float PrayerAmount2 = 30f;
+    private static readonly FixedPoint2 ActOfFaithAmount = -25;
 
     public override void Initialize()
     {
@@ -141,7 +158,7 @@ public sealed class CadiaAstartesSystem : EntitySystem
 
         if (now < _nextTick)
             return;
-        _nextTick = now + TimeSpan.FromSeconds(1);
+        _nextTick = now + TickDelay;
 
         var query = EntityQueryEnumerator<CadiaAstartesComponent, MobStateComponent>();
         while (query.MoveNext(out var uid, out var astartes, out var state))
@@ -169,10 +186,10 @@ public sealed class CadiaAstartesSystem : EntitySystem
         // Урон часто общий с прототипом оружия: правим только копию.
         args.Damage = new DamageSpecifier(args.Damage);
         var dict = args.Damage.DamageDict;
-        if (dict.TryGetValue("Poison", out var poison))
-            dict["Poison"] = poison * 0.1f;
-        if (dict.TryGetValue("Blunt", out var blunt))
-            dict["Blunt"] = blunt * 0.8f;
+        if (dict.TryGetValue(PoisonDamageType, out var poison))
+            dict[PoisonDamageType] = poison * 0.1f;
+        if (dict.TryGetValue(BluntDamage, out var blunt))
+            dict[BluntDamage] = blunt * 0.8f;
     }
 
     private void OnArmorEquip(Entity<CadiaPowerArmorComponent> ent, ref BeingEquippedAttemptEvent args)
@@ -197,7 +214,7 @@ public sealed class CadiaAstartesSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString(astartes.HasProgenoid ? "cadia-reductor-alive" : "cadia-reductor-empty"), target, args.User);
             return;
         }
-        var doAfter = new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(6), new CadiaReductorDoAfterEvent(), target, target, ent)
+        var doAfter = new DoAfterArgs(EntityManager, args.User, ent.Comp.ReductorDelay, new CadiaReductorDoAfterEvent(), target, target, ent)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -213,7 +230,7 @@ public sealed class CadiaAstartesSystem : EntitySystem
             return;
         args.Handled = true;
         ent.Comp.HasProgenoid = false;
-        var seed = Spawn("CadiaGeneSeed", Transform(ent).Coordinates);
+        var seed = Spawn(CadiaGeneSeed, Transform(ent).Coordinates);
         _hands.TryPickupAnyHand(args.User, seed);
         _popup.PopupEntity(Loc.GetString("cadia-reductor-done"), ent, args.User, PopupType.Medium);
     }
@@ -258,7 +275,7 @@ public sealed class CadiaAstartesSystem : EntitySystem
         _throwing.TryThrow(user, delta, JumpSpeed, user, recoil: false, animated: false, doSpin: false);
         pack.LandAt = _timing.CurTime + TimeSpan.FromSeconds(delta.Length() / JumpSpeed);
         pack.Jumper = user;
-        Spawn("CadiaPsyRingBlue", from);
+        Spawn(CadiaPsyRingBlue, from);
         _audio.PlayPvs(JumpSound, user);
     }
 
@@ -288,7 +305,7 @@ public sealed class CadiaAstartesSystem : EntitySystem
         if (pack.Jumper is not { } user || TerminatingOrDeleted(user))
             return;
         var coords = _xform.GetMapCoordinates(user);
-        Spawn("CadiaJumpImpactEffect", coords);
+        Spawn(CadiaJumpImpactEffect, coords);
         _audio.PlayPvs(LandSound, user);
         var faction = CompOrNull<CadiaFactionMemberComponent>(user)?.Faction;
         _mobs.Clear();
@@ -301,7 +318,7 @@ public sealed class CadiaAstartesSystem : EntitySystem
             if (faction != null && TryComp<CadiaFactionMemberComponent>(mob, out var other) && other.Faction == faction)
                 continue;
             _damage.TryChangeDamage(mob.Owner, new DamageSpecifier(blunt, pack.ImpactDamage), origin: user);
-            _stun.TryUpdateParalyzeDuration(mob, TimeSpan.FromSeconds(1.5));
+            _stun.TryUpdateParalyzeDuration(mob, pack.LandDuration);
         }
     }
 
@@ -316,17 +333,17 @@ public sealed class CadiaAstartesSystem : EntitySystem
         var faction = CompOrNull<CadiaFactionMemberComponent>(user)?.Faction;
         var coords = _xform.GetMapCoordinates(user);
         _mobs.Clear();
-        _lookup.GetEntitiesInRange(coords, 6f, _mobs);
+        _lookup.GetEntitiesInRange(coords, PrayerRange, _mobs);
         foreach (var mob in _mobs)
         {
             if (!TryComp<CadiaFactionMemberComponent>(mob, out var other) || other.Faction != faction)
                 continue;
-            _damage.HealEvenly(mob.Owner, -8);
+            _damage.HealEvenly(mob.Owner, PrayerAmount);
             _morale.Change(mob, 25f);
             if (TryComp<CadiaPsykerComponent>(mob, out var psyker))
-                _psyker.Soothe((mob, psyker), 30f);
+                _psyker.Soothe((mob, psyker), PrayerAmount2);
         }
-        Spawn("CadiaFaithRingEffect", coords);
+        Spawn(CadiaFaithRingEffect, coords);
         _audio.PlayPvs(PrayerSound, user);
     }
 
@@ -336,9 +353,9 @@ public sealed class CadiaAstartesSystem : EntitySystem
             return;
         args.Handled = true;
         var user = args.Performer;
-        EnsureComp<CadiaFaithShieldComponent>(user).Until = _timing.CurTime + TimeSpan.FromSeconds(8);
-        _damage.HealEvenly(user, -25);
-        Spawn("CadiaFaithRingEffect", _xform.GetMapCoordinates(user));
+        EnsureComp<CadiaFaithShieldComponent>(user).Until = _timing.CurTime + ActOfFaithDelay;
+        _damage.HealEvenly(user, ActOfFaithAmount);
+        Spawn(CadiaFaithRingEffect, _xform.GetMapCoordinates(user));
         _audio.PlayPvs(FaithSound, user);
     }
 
@@ -354,7 +371,7 @@ public sealed class CadiaAstartesSystem : EntitySystem
         args.Handled = true;
         var user = args.Performer;
         _popup.PopupEntity(Loc.GetString("cadia-exterminatus-begin"), user, PopupType.LargeCaution);
-        var doAfter = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(30), new CadiaExterminatusDoAfterEvent(), user)
+        var doAfter = new DoAfterArgs(EntityManager, user, ExterminatusDelay, new CadiaExterminatusDoAfterEvent(), user)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -385,7 +402,7 @@ public sealed class CadiaAstartesSystem : EntitySystem
             _actions.RemoveAction(ent.Owner, action);
         RemCompDeferred<CadiaMarkCandidateComponent>(ent);
         _speed.RefreshMovementSpeedModifiers(ent);
-        Spawn("CadiaPsyRingRed", _xform.GetMapCoordinates(ent));
+        Spawn(CadiaPsyRingRed, _xform.GetMapCoordinates(ent));
         _audio.PlayPvs(FaithSound, ent);
         _popup.PopupEntity(Loc.GetString($"cadia-mark-{args.God.ToString().ToLowerInvariant()}"), ent, ent, PopupType.Large);
     }

@@ -38,7 +38,7 @@ public sealed class CadiaScreenFxOverlay : Overlay
     {
         if (_seconds <= 0f)
             return;
-        var t = (float) (_timing.RealTime - _start).TotalSeconds / _seconds;
+        var t = (float)(_timing.RealTime - _start).TotalSeconds / _seconds;
         if (t >= 1f)
         {
             _seconds = 0f;

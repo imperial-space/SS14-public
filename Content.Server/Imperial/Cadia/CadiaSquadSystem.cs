@@ -444,7 +444,7 @@ public sealed class CadiaSquadSystem : EntitySystem
             var centroid = squad.Members.Count > 0
                 ? squad.Members.Select(m => _xform.GetWorldPosition(m)).Aggregate(Vector2.Zero, (a, b) => a + b) / squad.Members.Count
                 : point;
-            CadiaHoloElement shape = order == CadiaSquadOrder.Hold
+            var shape = order == CadiaSquadOrder.Hold
                 ? new CadiaHoloElement { Shape = CadiaHoloShape.Circle, A = point, B = point + new Vector2(3, 0) }
                 : new CadiaHoloElement { Shape = CadiaHoloShape.Arrow, A = (centroid - point).Length() > 1f ? centroid : point - new Vector2(0, 4), B = point };
             shape.Layer = CadiaHoloLayer.Assault;
@@ -488,7 +488,7 @@ public sealed class CadiaSquadSystem : EntitySystem
         var now = _timing.CurTime;
         if (_voxCooldown.TryGetValue(user, out var until) && now < until)
         {
-            _popup.PopupEntity(Loc.GetString("cadia-squad-vox-cooldown", ("seconds", (int) (until - now).TotalSeconds)), user, user);
+            _popup.PopupEntity(Loc.GetString("cadia-squad-vox-cooldown", ("seconds", (int)(until - now).TotalSeconds)), user, user);
             return;
         }
 
@@ -584,7 +584,7 @@ public sealed class CadiaSquadSystem : EntitySystem
             return;
         args.Handled = true;
 
-        var doAfter = new DoAfterArgs(EntityManager, args.Performer, TimeSpan.FromSeconds(2.5), new CadiaExecuteDoAfterEvent(), args.Target, args.Target)
+        var doAfter = new DoAfterArgs(EntityManager, args.Performer, ent.Comp.ExecuteDelay, new CadiaExecuteDoAfterEvent(), args.Target, args.Target)
         {
             BreakOnMove = true,
             BreakOnDamage = true,

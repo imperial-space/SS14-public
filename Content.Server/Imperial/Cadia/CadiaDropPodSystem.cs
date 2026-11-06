@@ -74,6 +74,10 @@ public sealed class CadiaDropPodSystem : EntitySystem
 
     private readonly HashSet<Entity<MobStateComponent>> _mobs = new();
 
+    private static readonly EntProtoId CadiaWreckFire = "CadiaWreckFire";
+    private static readonly EntProtoId CadiaFlakBurst = "CadiaFlakBurst";
+    private static readonly EntProtoId CadiaJumpImpactEffect = "CadiaJumpImpactEffect";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -92,7 +96,7 @@ public sealed class CadiaDropPodSystem : EntitySystem
         if (ent.Comp.Broken || total < ent.Comp.BreakAt)
             return;
         ent.Comp.Broken = true;
-        ent.Comp.Fire = Spawn("CadiaWreckFire", Transform(ent).Coordinates);
+        ent.Comp.Fire = Spawn(CadiaWreckFire, Transform(ent).Coordinates);
         _audio.PlayPvs(CrashSound, ent);
         _rule.Announce(CadiaFaction.Chaos, Loc.GetString("cadia-berth-broken-chaos"), CrashSound);
         _rule.Feed(Loc.GetString("cadia-berth-broken-feed"), CadiaFaction.Imperium);
@@ -172,7 +176,7 @@ public sealed class CadiaDropPodSystem : EntitySystem
         var now = _timing.CurTime;
         if (now < berth.Comp.NextLaunch)
         {
-            _popup.PopupEntity(Loc.GetString("cadia-drop-returning", ("seconds", (int) Math.Ceiling((berth.Comp.NextLaunch - now).TotalSeconds))),
+            _popup.PopupEntity(Loc.GetString("cadia-drop-returning", ("seconds", (int)Math.Ceiling((berth.Comp.NextLaunch - now).TotalSeconds))),
                 user, user, PopupType.MediumCaution);
             return;
         }
@@ -209,13 +213,13 @@ public sealed class CadiaDropPodSystem : EntitySystem
         var flight = EnsureComp<CadiaDropPodFlightComponent>(pod);
         flight.Passengers = passengers;
         flight.Hit = hit;
-        flight.Impact = now + TimeSpan.FromSeconds(visual.Duration);
+        flight.Impact = now + visual.Duration;
         flight.LiftOff = flight.Impact + Grounded;
-        flight.Gone = flight.LiftOff + TimeSpan.FromSeconds(visual.Duration);
+        flight.Gone = flight.LiftOff + visual.Duration;
         if (FlakChance(target) > 0f)
         {
             for (var i = 0; i < (hit ? 5 : 3); i++)
-                flight.Flak.Add(now + TimeSpan.FromSeconds(_random.NextFloat(0.2f, visual.Duration - 0.3f)));
+                flight.Flak.Add(now + TimeSpan.FromSeconds(_random.NextFloat(0.2f, (float)visual.Duration.TotalSeconds - 0.3f)));
         }
         _audio.PlayPvs(FallSound, pod);
         return pod;
@@ -270,7 +274,7 @@ public sealed class CadiaDropPodSystem : EntitySystem
                 if (now < flight.Flak[i])
                     continue;
                 flight.Flak.RemoveAt(i);
-                Spawn("CadiaFlakBurst", _xform.GetMapCoordinates(uid).Offset(_random.NextVector2(0.5f, 2.5f)));
+                Spawn(CadiaFlakBurst, _xform.GetMapCoordinates(uid).Offset(_random.NextVector2(0.5f, 2.5f)));
             }
 
             if (!flight.Landed && now >= flight.Impact)
@@ -303,7 +307,7 @@ public sealed class CadiaDropPodSystem : EntitySystem
         var coords = Transform(pod).Coordinates;
         var map = _xform.GetMapCoordinates(pod);
         _audio.PlayPvs(flight.Hit ? CrashSound : ImpactSound, pod);
-        Spawn("CadiaJumpImpactEffect", map);
+        Spawn(CadiaJumpImpactEffect, map);
 
         _mobs.Clear();
         _lookup.GetEntitiesInRange(coords, ShockRadius, _mobs);
@@ -315,11 +319,11 @@ public sealed class CadiaDropPodSystem : EntitySystem
             if ((_xform.GetMapCoordinates(mob).Position - map.Position).Length() <= CrushRadius)
             {
                 _damage.TryChangeDamage(mob.Owner, new DamageSpecifier(blunt, CrushDamage), origin: pod);
-                _stun.TryUpdateParalyzeDuration(mob, TimeSpan.FromSeconds(3));
+                _stun.TryUpdateParalyzeDuration(mob, flight.LandDuration);
             }
             else
             {
-                _stun.TryUpdateParalyzeDuration(mob, TimeSpan.FromSeconds(1.5));
+                _stun.TryUpdateParalyzeDuration(mob, flight.LandDuration2);
             }
         }
 
@@ -335,7 +339,7 @@ public sealed class CadiaDropPodSystem : EntitySystem
             if (!flight.Hit)
                 continue;
             _damage.TryChangeDamage(passenger, wound, origin: pod);
-            _stun.TryUpdateParalyzeDuration(passenger, TimeSpan.FromSeconds(2.5));
+            _stun.TryUpdateParalyzeDuration(passenger, flight.LandDuration3);
             _popup.PopupEntity(Loc.GetString("cadia-drop-hit"), passenger, passenger, PopupType.LargeCaution);
         }
         if (flight.Hit)

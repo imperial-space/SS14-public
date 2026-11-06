@@ -8,6 +8,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Cadia;
 
@@ -41,6 +42,9 @@ public sealed class CadiaVeilRitualSystem : EntitySystem
     private static readonly TimeSpan AuraTick = TimeSpan.FromSeconds(2);
     private TimeSpan _nextAura;
     private readonly HashSet<Entity<CadiaFactionMemberComponent>> _near = new();
+
+    private static readonly EntProtoId CadiaHallowedGround = "CadiaHallowedGround";
+    private static readonly EntProtoId CadiaVeilCrack = "CadiaVeilCrack";
 
     public override void Update(float frameTime)
     {
@@ -93,7 +97,7 @@ public sealed class CadiaVeilRitualSystem : EntitySystem
         var now = _timing.CurTime;
         if (_next.TryGetValue(ent.Comp.Faction, out var next) && now < next)
         {
-            _popup.PopupEntity(Loc.GetString("cadia-ritual-cooldown", ("seconds", (int) Math.Ceiling((next - now).TotalSeconds))),
+            _popup.PopupEntity(Loc.GetString("cadia-ritual-cooldown", ("seconds", (int)Math.Ceiling((next - now).TotalSeconds))),
                 user, user, PopupType.MediumCaution);
             return;
         }
@@ -133,7 +137,7 @@ public sealed class CadiaVeilRitualSystem : EntitySystem
         }
         _rule.DirtyWar();
 
-        var seconds = (int) Math.Abs((war.PhaseEnd - before).TotalSeconds);
+        var seconds = (int)Math.Abs((war.PhaseEnd - before).TotalSeconds);
         var key = ent.Comp.Faction == CadiaFaction.Chaos ? "chaos" : "imperium";
         _rule.Announce(CadiaFaction.Imperium, Loc.GetString($"cadia-ritual-done-{key}-imperium", ("seconds", seconds)),
             ent.Comp.Faction == CadiaFaction.Chaos ? ChaosSound : ImperiumSound);
@@ -149,7 +153,7 @@ public sealed class CadiaVeilRitualSystem : EntitySystem
     {
         if (ent.Comp.Faction == CadiaFaction.Imperium)
         {
-            Spawn("CadiaHallowedGround", _xform.GetMapCoordinates(ent).Offset(_random.NextVector2(1.5f, 2.5f)));
+            Spawn(CadiaHallowedGround, _xform.GetMapCoordinates(ent).Offset(_random.NextVector2(1.5f, 2.5f)));
             return;
         }
         var pylons = new List<EntityUid>();
@@ -160,6 +164,6 @@ public sealed class CadiaVeilRitualSystem : EntitySystem
                 pylons.Add(uid);
         }
         if (pylons.Count > 0)
-            Spawn("CadiaVeilCrack", _xform.GetMapCoordinates(_random.Pick(pylons)).Offset(_random.NextVector2(2f, 4f)));
+            Spawn(CadiaVeilCrack, _xform.GetMapCoordinates(_random.Pick(pylons)).Offset(_random.NextVector2(2f, 4f)));
     }
 }

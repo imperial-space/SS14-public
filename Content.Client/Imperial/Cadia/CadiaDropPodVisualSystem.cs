@@ -21,7 +21,7 @@ public sealed class CadiaDropPodVisualSystem : EntitySystem
         var query = EntityQueryEnumerator<CadiaDropPodComponent, SpriteComponent>();
         while (query.MoveNext(out var uid, out var pod, out var sprite))
         {
-            var t = Math.Clamp((float) ((now - pod.Start).TotalSeconds / pod.Duration), 0f, 1f);
+            var t = Math.Clamp((float)((now - pod.Start).TotalSeconds / (float)pod.Duration.TotalSeconds), 0f, 1f);
             // Падение — с ускорением к земле, подъём — с ускорением от неё.
             var height = pod.Leaving ? pod.Height * t * t : pod.Height * (1f - t) * (1f - t);
             var near = 1f - height / pod.Height;

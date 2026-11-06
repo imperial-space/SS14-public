@@ -99,7 +99,7 @@ public sealed class CadiaHoloTableMapControl : Control
         {
             _fitted = true;
             _center = msg.Origin + new Vector2(msg.Width, msg.Height) / 2f;
-            _scale = MathF.Max(2f, MathF.Min(PixelSize.X / (float) msg.Width, PixelSize.Y / (float) msg.Height) * 0.95f);
+            _scale = MathF.Max(2f, MathF.Min(PixelSize.X / (float)msg.Width, PixelSize.Y / (float)msg.Height) * 0.95f);
         }
     }
 
@@ -134,13 +134,13 @@ public sealed class CadiaHoloTableMapControl : Control
                 _dragStart = world;
                 break;
             case CadiaHoloTool.Marker:
-                Add(CadiaHoloShape.Marker, world, world, (byte) MarkerType);
+                Add(CadiaHoloShape.Marker, world, world, (byte)MarkerType);
                 break;
             case CadiaHoloTool.Text:
                 Add(CadiaHoloShape.Text, world, world, 0);
                 break;
             case CadiaHoloTool.Blueprint:
-                Add(CadiaHoloShape.Blueprint, world, world, (byte) BlueprintKind);
+                Add(CadiaHoloShape.Blueprint, world, world, (byte)BlueprintKind);
                 break;
             case CadiaHoloTool.Eraser:
                 if (Nearest(args.RelativePixelPosition) is { } id)
@@ -254,7 +254,7 @@ public sealed class CadiaHoloTableMapControl : Control
         if (_state == null)
             return;
 
-        var t = (float) _timing.RealTime.TotalSeconds;
+        var t = (float)_timing.RealTime.TotalSeconds;
         var pulse = 0.6f + 0.4f * MathF.Sin(t * 4f);
 
         if (_tiles.TryGetValue(Level, out var tiles))
@@ -316,7 +316,7 @@ public sealed class CadiaHoloTableMapControl : Control
 
         // Координаты под курсором.
         var mouseWorld = ToWorld(_mouse);
-        handle.DrawString(_small, new Vector2(8, 6), $"{(int) MathF.Floor(mouseWorld.X)}, {(int) MathF.Floor(mouseWorld.Y)}", Holo);
+        handle.DrawString(_small, new Vector2(8, 6), $"{(int)MathF.Floor(mouseWorld.X)}, {(int)MathF.Floor(mouseWorld.Y)}", Holo);
     }
 
     private void Thick(DrawingHandleScreen handle, Vector2 a, Vector2 b, Color color)
@@ -356,7 +356,7 @@ public sealed class CadiaHoloTableMapControl : Control
                 handle.DrawCircle(a, r + 1, e.Color, false);
                 break;
             case CadiaHoloShape.Marker:
-                DrawMarker(handle, a, (CadiaHoloMarkerType) e.Kind, e.Color, pulse);
+                DrawMarker(handle, a, (CadiaHoloMarkerType)e.Kind, e.Color, pulse);
                 break;
             case CadiaHoloShape.Text:
                 var dims = handle.GetDimensions(_font, e.Text, 1f);
@@ -364,7 +364,7 @@ public sealed class CadiaHoloTableMapControl : Control
                 handle.DrawString(_font, a, e.Text, e.Color);
                 break;
             case CadiaHoloShape.Blueprint:
-                var tiles = e.Kind == (byte) CadiaBlueprintKind.Hydra ? 4 : e.Kind == (byte) CadiaBlueprintKind.Pillbox ? 3 : 1;
+                var tiles = e.Kind == (byte)CadiaBlueprintKind.Hydra ? 4 : e.Kind == (byte)CadiaBlueprintKind.Pillbox ? 3 : 1;
                 var size = tiles * _scale;
                 var origin = tiles > 1 ? ToScreen(e.A + new Vector2(-1.5f, tiles - 1.5f))
                     : ToScreen(e.A + new Vector2(-0.5f, 0.5f));
@@ -374,7 +374,7 @@ public sealed class CadiaHoloTableMapControl : Control
                 handle.DrawRect(box, color, false);
                 if (_scale >= 6)
                 {
-                    var label = Loc.GetString($"cadia-blueprint-{((CadiaBlueprintKind) e.Kind).ToString().ToLowerInvariant()}");
+                    var label = Loc.GetString($"cadia-blueprint-{((CadiaBlueprintKind)e.Kind).ToString().ToLowerInvariant()}");
                     handle.DrawString(_small, box.TopLeft + new Vector2(0, -13), e.Done ? "✔ " + label : label, color);
                 }
                 break;

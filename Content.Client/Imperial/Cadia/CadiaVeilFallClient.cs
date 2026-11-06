@@ -50,7 +50,7 @@ public sealed class CadiaVeilFallClient : EntitySystem
 
         protected override void Draw(in OverlayDrawArgs args)
         {
-            var t = (float) (timing.RealTime - Start).TotalSeconds;
+            var t = (float)(timing.RealTime - Start).TotalSeconds;
             if (t < 0f || t > Rise + Fade)
                 return;
             var alpha = t < Rise ? t / Rise : 1f - (t - Rise) / Fade;

@@ -116,4 +116,7 @@ public sealed partial class CadiaAntiAirComponent : Component
 
     [ViewVariables]
     public TimeSpan NextTurnSound;
+
+    [DataField]
+    public TimeSpan TurnSoundDelay = TimeSpan.FromSeconds(1.2);
 }

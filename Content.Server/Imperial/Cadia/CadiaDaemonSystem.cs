@@ -16,6 +16,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Cadia;
 
@@ -46,6 +47,11 @@ public sealed class CadiaDaemonSystem : EntitySystem
     private const float MaxWeakenOut = 0.4f;
     private const float MaxWeakenIn = 0.5f;
     private TimeSpan _nextRift;
+
+    private static readonly EntProtoId CadiaPsyPerilsEffect = "CadiaPsyPerilsEffect";
+    private static readonly EntProtoId CadiaPsyRingRed = "CadiaPsyRingRed";
+
+    private static readonly TimeSpan RiftDelay = TimeSpan.FromSeconds(1);
 
     public override void Initialize()
     {
@@ -79,7 +85,7 @@ public sealed class CadiaDaemonSystem : EntitySystem
     private float PylonShare()
     {
         return _rule.TryGetActiveWar(out var war) && war.PylonsTotal > 0
-            ? (float) war.PylonsAlive / war.PylonsTotal
+            ? (float)war.PylonsAlive / war.PylonsTotal
             : 0f;
     }
 
@@ -103,7 +109,7 @@ public sealed class CadiaDaemonSystem : EntitySystem
             return;
 
         var coords = _xform.GetMapCoordinates(ent);
-        Spawn("CadiaPsyPerilsEffect", coords);
+        Spawn(CadiaPsyPerilsEffect, coords);
         _audio.PlayPvs(DeathSound, Spawn(null, coords));
         if (ent.Comp.SplitInto is { } split)
         {
@@ -129,7 +135,7 @@ public sealed class CadiaDaemonSystem : EntitySystem
         var now = _timing.CurTime;
         if (now < _nextRift)
             return;
-        _nextRift = now + TimeSpan.FromSeconds(1);
+        _nextRift = now + RiftDelay;
         var query = EntityQueryEnumerator<CadiaWarpRiftComponent>();
         while (query.MoveNext(out var uid, out var rift))
         {
@@ -141,7 +147,7 @@ public sealed class CadiaDaemonSystem : EntitySystem
     /// <summary>Цена с учётом пилонов: пока все стоят — вдвое дороже.</summary>
     private int CostOf(CadiaSummonEntry entry)
     {
-        return (int) Math.Ceiling(entry.Cost * (1f + PylonShare()));
+        return (int)Math.Ceiling(entry.Cost * (1f + PylonShare()));
     }
 
     private void OnRiftVerbs(Entity<CadiaWarpRiftComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
@@ -198,7 +204,7 @@ public sealed class CadiaDaemonSystem : EntitySystem
         }
         var coords = _xform.GetMapCoordinates(ent);
         Spawn(entry.Proto, coords.Offset(_random.NextVector2(1.2f)));
-        Spawn("CadiaPsyRingRed", coords);
+        Spawn(CadiaPsyRingRed, coords);
         _audio.PlayPvs(SummonDoneSound, ent);
     }
 

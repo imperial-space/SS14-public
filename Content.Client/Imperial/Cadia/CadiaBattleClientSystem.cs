@@ -98,6 +98,12 @@ public sealed class CadiaBattleClientSystem : EntitySystem
     private TimeSpan _nextShot;
     private CadiaMoraleHudOverlay? _hud;
 
+    private static readonly TimeSpan CheckDelay = TimeSpan.FromSeconds(1);
+
+    private const float PlayOneShotChance = 0.08f;
+    private const float PlayOneShotChance2 = 0.5f;
+    private const float PlayOneShotChance3 = 0.4f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -222,7 +228,7 @@ public sealed class CadiaBattleClientSystem : EntitySystem
                     instant += 0.6f;
                 _lastDamage = total;
             }
-            _heat = MathF.Max(_heat - HeatDecayPerSecond * (float) HeatTick.TotalSeconds, MathF.Min(instant, 1f));
+            _heat = MathF.Max(_heat - HeatDecayPerSecond * (float)HeatTick.TotalSeconds, MathF.Min(instant, 1f));
 
             if (!_inCombat && _heat >= HeatEnter && _music != null)
             {
@@ -259,7 +265,7 @@ public sealed class CadiaBattleClientSystem : EntitySystem
         UpdateCombat(frameTime, liveWar is { Phase: not CadiaWarPhase.Ended } ? liveWar : null, _player.LocalEntity);
         if (now < _nextCheck)
             return;
-        _nextCheck = now + TimeSpan.FromSeconds(1);
+        _nextCheck = now + CheckDelay;
 
         // Состояние войны есть только во время ивента, его видят все клиенты.
         CadiaWarStateComponent? war = null;
@@ -348,12 +354,12 @@ public sealed class CadiaBattleClientSystem : EntitySystem
     {
         string file;
         var volume = _random.NextFloat(-16f, -8f);
-        if (_random.Prob(0.08f))
+        if (_random.Prob(PlayOneShotChance))
         {
             file = VoxStatic;
             volume = -18f;
         }
-        else if (phase == CadiaWarPhase.Bombardment || _random.Prob(0.5f))
+        else if (phase == CadiaWarPhase.Bombardment || _random.Prob(PlayOneShotChance2))
         {
             file = _random.Pick(FarBlasts);
         }
@@ -372,7 +378,7 @@ public sealed class CadiaBattleClientSystem : EntitySystem
         var here = _xform.GetWorldPosition(local);
         float distance;
         float angle;
-        if (phase == CadiaWarPhase.Bombardment && FarBlasts.Contains(file) && _random.Prob(0.4f))
+        if (phase == CadiaWarPhase.Bombardment && FarBlasts.Contains(file) && _random.Prob(PlayOneShotChance3))
         {
             // Обстрел: снаряды рвутся вокруг, с любой стороны.
             distance = _random.NextFloat(NearMin, NearMax);

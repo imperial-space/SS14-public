@@ -20,6 +20,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.ZLevels;
 
@@ -55,6 +57,8 @@ public sealed class ZStairsSystem : EntitySystem
 
     private TimeSpan _nextPushCheck;
     private readonly Dictionary<EntityUid, TimeSpan> _pushCooldown = new();
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
 
     public override void Initialize()
     {
@@ -123,7 +127,7 @@ public sealed class ZStairsSystem : EntitySystem
         var xform = Transform(near);
         if (xform.GridUid is not { } gridUid || !TryComp<MapGridComponent>(gridUid, out var grid))
             yield break;
-        var idx = _map.TileIndicesFor(gridUid, grid, xform.Coordinates) + new Vector2i((int) MathF.Round(offset.X), (int) MathF.Round(offset.Y));
+        var idx = _map.TileIndicesFor(gridUid, grid, xform.Coordinates) + new Vector2i((int)MathF.Round(offset.X), (int)MathF.Round(offset.Y));
         foreach (var other in _map.GetAnchoredEntities(gridUid, grid, idx))
         {
             if (TryComp<ZStairsComponent>(other, out var stairs))
@@ -399,9 +403,9 @@ public sealed class ZStairsSystem : EntitySystem
 
     private void OnFall(Entity<ZStairsComponent> ent, EntityUid guy)
     {
-        _stun.TryAddParalyzeDuration(guy, TimeSpan.FromSeconds(2));
-        _stun.TryKnockdown(guy, TimeSpan.FromSeconds(5));
-        _damage.TryChangeDamage(guy, new DamageSpecifier { DamageDict = { ["Blunt"] = _random.Next(4, 9) } });
-        _throwing.TryThrow(guy, -GetWorldDir(ent) * 2f, 2f, doSpin: true);
+        _stun.TryAddParalyzeDuration(guy, ent.Comp.FallDuration);
+        _stun.TryKnockdown(guy, ent.Comp.FallTime);
+        _damage.TryChangeDamage(guy, new DamageSpecifier { DamageDict = { [BluntDamageType] = _random.Next(4, 9) } });
+        _throwing.TryThrow(guy, -GetWorldDir(ent) * 2f, ent.Comp.FallBaseThrowSpeed, doSpin: true);
     }
 }

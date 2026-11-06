@@ -90,6 +90,6 @@ public sealed class CadiaWaitingOverlay : Overlay
         var left = (side == CadiaFaction.Imperium ? war.NextImperiumWave : war.NextChaosWave) - _timing.CurTime;
         if (left < TimeSpan.Zero)
             left = TimeSpan.Zero;
-        return Loc.GetString("cadia-wait-seats", ("side", name), ("seats", seats), ("time", $"{(int) left.TotalMinutes}:{left.Seconds:00}"));
+        return Loc.GetString("cadia-wait-seats", ("side", name), ("seats", seats), ("time", $"{(int)left.TotalMinutes}:{left.Seconds:00}"));
     }
 }

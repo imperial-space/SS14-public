@@ -40,6 +40,10 @@ public sealed class CadiaEventPanelSystem : EntitySystem
     private readonly HashSet<ICommonSession> _watchers = new();
     private TimeSpan _nextPush;
 
+    private static readonly TimeSpan PhaseDelay = TimeSpan.FromMinutes(1);
+    private static readonly TimeSpan ActionVeilCutMinuteDelay = TimeSpan.FromMinutes(1);
+    private static readonly TimeSpan ActionVeilCutMinuteDelay2 = TimeSpan.FromSeconds(10);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -151,11 +155,11 @@ public sealed class CadiaEventPanelSystem : EntitySystem
                 _rule.DirtyWar();
                 break;
             case CadiaPanelAction.VeilAddMinute when war.Phase == CadiaWarPhase.Preparation:
-                war.PhaseEnd += TimeSpan.FromMinutes(1);
+                war.PhaseEnd += PhaseDelay;
                 _rule.DirtyWar();
                 break;
             case CadiaPanelAction.VeilCutMinute when war.Phase == CadiaWarPhase.Preparation:
-                war.PhaseEnd = TimeSpan.FromTicks(Math.Max((war.PhaseEnd - TimeSpan.FromMinutes(1)).Ticks, (_timing.CurTime + TimeSpan.FromSeconds(10)).Ticks));
+                war.PhaseEnd = TimeSpan.FromTicks(Math.Max((war.PhaseEnd - ActionVeilCutMinuteDelay).Ticks, (_timing.CurTime + ActionVeilCutMinuteDelay2).Ticks));
                 _rule.DirtyWar();
                 break;
             case CadiaPanelAction.DropRecharge:
@@ -195,7 +199,7 @@ public sealed class CadiaEventPanelSystem : EntitySystem
 
         state.Active = true;
         state.Phase = war.Phase;
-        state.SecondsLeft = (int) Math.Max(0, (war.PhaseEnd - _timing.CurTime).TotalSeconds);
+        state.SecondsLeft = (int)Math.Max(0, (war.PhaseEnd - _timing.CurTime).TotalSeconds);
         state.PylonsAlive = war.PylonsAlive;
         state.PylonsTotal = war.PylonsTotal;
         state.Warp = war.WarpPower;

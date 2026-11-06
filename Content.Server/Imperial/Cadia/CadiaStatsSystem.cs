@@ -119,12 +119,12 @@ public sealed class CadiaStatsSystem : EntitySystem
         if (args.DamageIncreased)
         {
             _lastHit[ent] = (origin, _timing.CurTime);
-            RecordFriendlyFire(ent, origin, (float) delta.GetTotal());
+            RecordFriendlyFire(ent, origin, (float)delta.GetTotal());
             return;
         }
 
         // Лечение: считаем только то, что наложил другой боец.
-        var healed = -(float) delta.GetTotal();
+        var healed = -(float)delta.GetTotal();
         if (healed > 0f && TryPlayer(origin, out var healer))
             Stat(healer).Healed += healed;
     }
@@ -137,7 +137,7 @@ public sealed class CadiaStatsSystem : EntitySystem
             return;
         var stat = Stat(user);
         stat.TeamDamage += damage;
-        var steps = (int) (stat.TeamDamage / TeamDamageWarnStep);
+        var steps = (int)(stat.TeamDamage / TeamDamageWarnStep);
         if (steps <= stat.WarnedDamageSteps)
             return;
         stat.WarnedDamageSteps = steps;
@@ -146,7 +146,7 @@ public sealed class CadiaStatsSystem : EntitySystem
 
     public (int Kills, int Damage) TeamRecord(NetUserId user)
     {
-        return _players.TryGetValue(user, out var stat) ? (stat.TeamKills, (int) stat.TeamDamage) : (0, 0);
+        return _players.TryGetValue(user, out var stat) ? (stat.TeamKills, (int)stat.TeamDamage) : (0, 0);
     }
 
     private void OnPylonDamaged(Entity<CadiaPylonComponent> ent, ref DamageChangedEvent args)
@@ -155,7 +155,7 @@ public sealed class CadiaStatsSystem : EntitySystem
             return;
         if (!_pylonDamage.TryGetValue(ent, out var damage))
             _pylonDamage[ent] = damage = new Dictionary<NetUserId, float>();
-        damage[user] = damage.GetValueOrDefault(user) + (float) delta.GetTotal();
+        damage[user] = damage.GetValueOrDefault(user) + (float)delta.GetTotal();
     }
 
     /// <summary>Пилон пал: честь тому, кто нанёс больше всего урона.</summary>
@@ -289,8 +289,8 @@ public sealed class CadiaStatsSystem : EntitySystem
 
         Add("cadia-stats-kills", s => s.Kills, v => v > 0, v => v);
         Add("cadia-stats-pylons", s => s.Pylons, v => v > 0, v => v);
-        Add("cadia-stats-healed", s => s.Healed, v => v > 0f, v => (int) v);
-        Add("cadia-stats-life", s => s.BestLife, v => v > TimeSpan.Zero, v => (int) v.TotalMinutes);
+        Add("cadia-stats-healed", s => s.Healed, v => v > 0f, v => (int)v);
+        Add("cadia-stats-life", s => s.BestLife, v => v > TimeSpan.Zero, v => (int)v.TotalMinutes);
         Add("cadia-stats-deaths", s => s.Deaths, v => v > 1, v => v);
 
         if (_vehicles.Count > 0)

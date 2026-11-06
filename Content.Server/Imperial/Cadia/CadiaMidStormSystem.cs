@@ -45,7 +45,7 @@ public sealed class CadiaMidStormSystem : EntitySystem
         var fields = EntityQueryEnumerator<CadiaFieldBoundsComponent, MapGridComponent>();
         while (fields.MoveNext(out var map, out var bounds, out var grid))
         {
-            for (var y = (int) MathF.Floor(bounds.Bounds.Bottom); y < (int) MathF.Ceiling(bounds.Bounds.Top); y++)
+            for (var y = (int)MathF.Floor(bounds.Bounds.Bottom); y < (int)MathF.Ceiling(bounds.Bounds.Top); y++)
             {
                 // Только на полу: на стенах верхнего этажа и в толще под катакомбами пустота и так непроходима.
                 if (_map.GetTileRef(map, grid, new Vector2i(CadiaMidStorm.Column, y)).Tile.IsEmpty)

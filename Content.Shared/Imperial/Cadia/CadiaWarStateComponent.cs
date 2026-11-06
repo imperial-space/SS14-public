@@ -102,4 +102,7 @@ public sealed partial class CadiaWarStateComponent : Component
 
     [DataField, AutoNetworkedField]
     public TimeSpan WeatherEnd;
+
+    [DataField]
+    public float PickChance = 0.3f;
 }

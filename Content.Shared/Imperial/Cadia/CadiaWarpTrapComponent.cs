@@ -11,4 +11,8 @@ namespace Content.Shared.Imperial.Cadia;
 
 /// <summary>Варп-ловушка Хаоса: срабатывает под врагом.</summary>
 [RegisterComponent]
-public sealed partial class CadiaWarpTrapComponent : Component;
+public sealed partial class CadiaWarpTrapComponent : Component
+{
+    [DataField]
+    public TimeSpan WarpTrapDuration = TimeSpan.FromSeconds(2.5);
+}

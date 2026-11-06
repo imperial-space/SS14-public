@@ -40,12 +40,12 @@ public sealed class CadiaPsykerHudOverlay : Overlay
 
         var share = psyker.MaxCharge > 0 ? Math.Clamp(psyker.Charge / psyker.MaxCharge, 0f, 1f) : 0f;
         DrawBar(handle, origin + new Vector2(6, 6), share, Charge,
-            Loc.GetString("cadia-psy-hud-charge", ("charge", (int) psyker.Charge), ("max", (int) psyker.MaxCharge)));
+            Loc.GetString("cadia-psy-hud-charge", ("charge", (int)psyker.Charge), ("max", (int)psyker.MaxCharge)));
 
         var strain = Math.Clamp(psyker.Strain / 100f, 0f, 1f);
         var silenced = _timing.CurTime < psyker.SilencedUntil;
         DrawBar(handle, origin + new Vector2(6, 29), strain, Color.InterpolateBetween(StrainLow, StrainHigh, strain),
-            silenced ? Loc.GetString("cadia-psy-hud-silenced") : Loc.GetString("cadia-psy-hud-strain", ("strain", (int) psyker.Strain)));
+            silenced ? Loc.GetString("cadia-psy-hud-silenced") : Loc.GetString("cadia-psy-hud-strain", ("strain", (int)psyker.Strain)));
     }
 
     private void DrawBar(DrawingHandleScreen handle, Vector2 at, float share, Color color, string text)

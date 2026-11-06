@@ -47,4 +47,13 @@ public sealed partial class CadiaDropPodFlightComponent : Component
     /// <summary>Разрывы зениток вокруг капсулы на спуске.</summary>
     [ViewVariables]
     public List<TimeSpan> Flak = new();
+
+    [DataField]
+    public TimeSpan LandDuration = TimeSpan.FromSeconds(3);
+
+    [DataField]
+    public TimeSpan LandDuration2 = TimeSpan.FromSeconds(1.5);
+
+    [DataField]
+    public TimeSpan LandDuration3 = TimeSpan.FromSeconds(2.5);
 }

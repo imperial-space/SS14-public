@@ -58,7 +58,7 @@ public sealed class CadiaWeatherOverlay : Overlay
             return;
 
         var now = _timing.CurTime;
-        var ramp = Math.Clamp(Math.Min((float) (now - war.WeatherStart).TotalSeconds, (float) (war.WeatherEnd - now).TotalSeconds) / RampSeconds, 0f, 1f);
+        var ramp = Math.Clamp(Math.Min((float)(now - war.WeatherStart).TotalSeconds, (float)(war.WeatherEnd - now).TotalSeconds) / RampSeconds, 0f, 1f);
         if (ramp <= 0f)
             return;
 
@@ -79,7 +79,7 @@ public sealed class CadiaWeatherOverlay : Overlay
         if (war.Weather != CadiaWeather.Ash)
             return;
         var eye = _eye.CurrentEye.Position.Position * PixelsPerTile;
-        var time = (float) now.TotalSeconds;
+        var time = (float)now.TotalSeconds;
         for (var i = 0; i < Flakes; i++)
         {
             var seedX = (i * 7919 % 1000) / 1000f;

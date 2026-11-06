@@ -54,11 +54,11 @@ public sealed class CadiaStormOverlay : Overlay
             return;
 
         var now = _timing.CurTime;
-        var left = (float) (war.StormEnd - now).TotalSeconds;
+        var left = (float)(war.StormEnd - now).TotalSeconds;
         if (left <= 0f)
             return;
         var ramp = Math.Clamp(left / RampSeconds, 0f, 1f);
-        var time = (float) now.TotalSeconds;
+        var time = (float)now.TotalSeconds;
         var handle = args.ScreenHandle;
         var bounds = args.ViewportBounds;
 
@@ -84,7 +84,7 @@ public sealed class CadiaStormOverlay : Overlay
                 {
                     var inset = VignetteDepth * i / VignetteSteps;
                     var band = VignetteDepth / VignetteSteps;
-                    var alpha = pulse * ramp * (1f - (float) i / VignetteSteps) * 0.5f;
+                    var alpha = pulse * ramp * (1f - (float)i / VignetteSteps) * 0.5f;
                     var color = Color.FromHex("#14051e").WithAlpha(alpha);
                     handle.DrawRect(new UIBox2(bounds.Left, bounds.Top + inset, bounds.Right, bounds.Top + inset + band), color);
                     handle.DrawRect(new UIBox2(bounds.Left, bounds.Bottom - inset - band, bounds.Right, bounds.Bottom - inset), color);

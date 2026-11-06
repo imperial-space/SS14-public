@@ -88,7 +88,7 @@ public sealed class CadiaEndingControl : Control
     protected override void FrameUpdate(FrameEventArgs args)
     {
         base.FrameUpdate(args);
-        if ((float) (_timing.RealTime - _start).TotalSeconds >= TotalSeconds)
+        if ((float)(_timing.RealTime - _start).TotalSeconds >= TotalSeconds)
             Finish();
     }
 
@@ -98,9 +98,9 @@ public sealed class CadiaEndingControl : Control
         var size = PixelSize;
         handle.DrawRect(new UIBox2(0, 0, size.X, size.Y), Color.Black);
 
-        var elapsed = (float) (_timing.RealTime - _start).TotalSeconds;
+        var elapsed = (float)(_timing.RealTime - _start).TotalSeconds;
         var scene = Math.Clamp(Math.Min(elapsed, TotalSeconds - elapsed) / FadeSeconds, 0f, 1f);
-        var scale = Math.Max((float) size.X / _image.Width, (float) size.Y / _image.Height) * (1f + Zoom * elapsed / TotalSeconds);
+        var scale = Math.Max((float)size.X / _image.Width, (float)size.Y / _image.Height) * (1f + Zoom * elapsed / TotalSeconds);
         var drawn = new Vector2(_image.Width, _image.Height) * scale;
         handle.DrawTextureRect(_image, UIBox2.FromDimensions((new Vector2(size.X, size.Y) - drawn) / 2f, drawn), Color.White.WithAlpha(scene));
 

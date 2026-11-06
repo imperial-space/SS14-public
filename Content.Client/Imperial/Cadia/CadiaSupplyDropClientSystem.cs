@@ -45,10 +45,10 @@ public sealed class CadiaSupplyDropClientSystem : EntitySystem
         var query = EntityQueryEnumerator<CadiaSupplyDropComponent, SpriteComponent>();
         while (query.MoveNext(out var uid, out var drop, out var sprite))
         {
-            var total = (float) (drop.LandAt - drop.Start).TotalSeconds;
-            var t = total > 0f ? Math.Clamp((float) (now - drop.Start).TotalSeconds / total, 0f, 1f) : 1f;
+            var total = (float)(drop.LandAt - drop.Start).TotalSeconds;
+            var t = total > 0f ? Math.Clamp((float)(now - drop.Start).TotalSeconds / total, 0f, 1f) : 1f;
             var height = (1f - t) * StartHeight;
-            var sway = MathF.Sin((float) now.TotalSeconds * 2.4f) * SwayWidth * (1f - t);
+            var sway = MathF.Sin((float)now.TotalSeconds * 2.4f) * SwayWidth * (1f - t);
 
             var ent = new Entity<SpriteComponent?>(uid, sprite);
             _sprite.LayerSetOffset(ent, CrateLayer, new Vector2(sway, height));

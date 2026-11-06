@@ -10,6 +10,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Cadia;
 
@@ -38,6 +39,8 @@ public sealed class CadiaBoardingSystem : EntitySystem
     {
         Vector2.Zero, new(1, 0), new(-1, 0), new(0, 1), new(0, -1), new(1, 1), new(-1, -1), new(1, -1),
     };
+
+    private static readonly EntProtoId CadiaJumpImpactEffect = "CadiaJumpImpactEffect";
 
     public override void Initialize()
     {
@@ -91,7 +94,7 @@ public sealed class CadiaBoardingSystem : EntitySystem
         }
         if (now < ramp.Comp.NextUse)
         {
-            _popup.PopupEntity(Loc.GetString("cadia-boarding-cooldown", ("seconds", (int) Math.Ceiling((ramp.Comp.NextUse - now).TotalSeconds))),
+            _popup.PopupEntity(Loc.GetString("cadia-boarding-cooldown", ("seconds", (int)Math.Ceiling((ramp.Comp.NextUse - now).TotalSeconds))),
                 user, user, PopupType.MediumCaution);
             return;
         }
@@ -115,7 +118,7 @@ public sealed class CadiaBoardingSystem : EntitySystem
         var coords = Transform(point).Coordinates;
         _audio.PlayPvs(BreachSound, ramp);
         _audio.PlayPvs(BreachSound, point);
-        Spawn("CadiaJumpImpactEffect", _xform.GetMapCoordinates(point));
+        Spawn(CadiaJumpImpactEffect, _xform.GetMapCoordinates(point));
         for (var i = 0; i < party.Count; i++)
         {
             _xform.SetCoordinates(party[i], coords.Offset(Spread[i % Spread.Length] + _random.NextVector2(0.2f)));
