@@ -31,8 +31,6 @@ public sealed partial class MartialArtsSystem
     private const float TackleRange = 5f;
     private const float TackleSpeed = 6f;
 
-    private readonly HashSet<EntityUid> _tackling = new();
-
     private static readonly TimeSpan KazaLowSweepTime = TimeSpan.FromSeconds(6);
     private static readonly TimeSpan KazaNeckChopTime = TimeSpan.FromSeconds(20);
     private static readonly TimeSpan JudoArmbarMoveTime = TimeSpan.FromSeconds(5);
@@ -390,14 +388,14 @@ public sealed partial class MartialArtsSystem
         if (dir.Length() > TackleRange)
             dir = System.Numerics.Vector2.Normalize(dir) * TackleRange;
 
-        _tackling.Add(ent);
+        EnsureComp<MartialArtsTacklingComponent>(ent);
         _throwing.TryThrow(ent, dir, TackleSpeed, ent, recoil: false, doSpin: false);
         PopupPair(ent, ent, "martial-spider-tackle-others", "martial-spider-tackle-self");
     }
 
     private void OnTackleHit(Entity<MartialArtsComponent> ent, ref ThrowDoHitEvent args)
     {
-        if (!_tackling.Remove(ent) || !HasComp<Content.Shared.Mobs.Components.MobStateComponent>(args.Target))
+        if (!RemComp<MartialArtsTacklingComponent>(ent) || !HasComp<Content.Shared.Mobs.Components.MobStateComponent>(args.Target))
             return;
 
         // skill_mod = 6: почти всегда сильный захват.
@@ -408,7 +406,7 @@ public sealed partial class MartialArtsSystem
 
     private void OnTackleLand(Entity<MartialArtsComponent> ent, ref LandEvent args)
     {
-        if (_tackling.Remove(ent))
+        if (RemComp<MartialArtsTacklingComponent>(ent))
             Knockdown(ent, ent.Comp.TackleLandTime); // base_knockdown
     }
 

@@ -369,22 +369,19 @@ public sealed partial class MartialArtsSystem : EntitySystem
             args.Handled = true;
     }
 
-    /// <summary>Толчок, который сейчас обрабатывает ванильная система: цель и тик запроса.</summary>
-    private readonly Dictionary<EntityUid, (EntityUid Target, GameTick Tick)> _pendingDisarm = new();
-
     private void OnDisarmRequest(DisarmAttackEvent ev, EntitySessionEventArgs args)
     {
         if (args.SenderSession.AttachedEntity is not { } user || GetEntity(ev.Target) is not { } target)
             return;
 
-        _pendingDisarm[user] = (target, _timing.CurTick);
+        EnsureComp<MartialArtsPendingDisarmComponent>(user).Value = (target, _timing.CurTick);
     }
 
     /// <summary>Забрать толчок, если он пришёл в этом же тике.</summary>
     private bool TryTakePendingDisarm(EntityUid user, out EntityUid target)
     {
         target = default;
-        if (!_pendingDisarm.Remove(user, out var pending) || pending.Tick != _timing.CurTick)
+        if (!TryRemovePendingDisarm(user, out var pending) || pending.Tick != _timing.CurTick)
             return false;
 
         target = pending.Target;
@@ -455,10 +452,8 @@ public sealed partial class MartialArtsSystem : EntitySystem
     {
         ent.Comp.LastMeleeAttacker = args.User;
         ent.Comp.LastMeleeAttackAt = _timing.CurTime;
-        _lastAttackUnarmed[ent.Owner] = args.Used == args.User || IsWornGloves(args.User, args.Used);
+        EnsureComp<MartialArtsLastAttackUnarmedComponent>(ent.Owner).Value = args.Used == args.User || IsWornGloves(args.User, args.Used);
     }
-
-    private readonly Dictionary<EntityUid, bool> _lastAttackUnarmed = new();
 
     private void OnDamageModify(Entity<MartialArtsComponent> ent, ref DamageModifyEvent args)
     {
@@ -469,7 +464,7 @@ public sealed partial class MartialArtsSystem : EntitySystem
             return;
 
         ent.Comp.LastMeleeAttacker = null;
-        var unarmed = _lastAttackUnarmed.Remove(ent.Owner, out var wasUnarmed) && wasUnarmed;
+        var unarmed = TryRemoveLastAttackUnarmed(ent.Owner, out var wasUnarmed) && wasUnarmed;
         var damage = args.Damage.GetTotal().Float();
 
         if (!CheckBlock(ent, attacker, damage, unarmed ? MartialAttackType.Unarmed : MartialAttackType.Melee))
@@ -526,5 +521,31 @@ public sealed partial class MartialArtsSystem : EntitySystem
             return;
 
         _chat.ChatMessageToOne(Shared.Chat.ChatChannel.Server, message, message, default, false, session.Channel);
+    }
+
+    private bool TryRemoveLastAttackUnarmed(EntityUid uid, out bool value)
+    {
+        if (TryComp<MartialArtsLastAttackUnarmedComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            RemComp(uid, comp);
+            return true;
+        }
+
+        value = default!;
+        return false;
+    }
+
+    private bool TryRemovePendingDisarm(EntityUid uid, out (EntityUid Target, GameTick Tick) value)
+    {
+        if (TryComp<MartialArtsPendingDisarmComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            RemComp(uid, comp);
+            return true;
+        }
+
+        value = default!;
+        return false;
     }
 }

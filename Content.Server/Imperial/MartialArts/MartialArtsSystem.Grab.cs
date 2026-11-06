@@ -44,9 +44,6 @@ public sealed partial class MartialArtsSystem
 
     private static readonly SoundPathSpecifier GrabSound = new("/Audio/Effects/thudswoosh.ogg");
 
-    /// <summary>Какую стадию поставить, когда тяга начнётся (приём уже решил за нас).</summary>
-    private readonly Dictionary<EntityUid, MartialGrabState> _pendingGrabState = new();
-
     private void InitializeGrab()
     {
         SubscribeLocalEvent<MartialArtsComponent, PullAttemptEvent>(OnPullAttempt);
@@ -59,7 +56,7 @@ public sealed partial class MartialArtsSystem
     /// <summary>attempt_grab() → grab_act(): первая тяга — это «G».</summary>
     private void OnPullAttempt(Entity<MartialArtsComponent> ent, ref PullAttemptEvent args)
     {
-        if (args.Cancelled || args.PullerUid != ent.Owner || _skipGrabAct.Contains(ent.Owner))
+        if (args.Cancelled || args.PullerUid != ent.Owner || HasComp<MartialArtsSkipGrabActComponent>(ent.Owner))
             return;
 
         var target = args.PulledUid;
@@ -81,7 +78,7 @@ public sealed partial class MartialArtsSystem
             return;
 
         ent.Comp.GrabTarget = args.PulledUid;
-        ent.Comp.GrabState = _pendingGrabState.Remove(ent.Owner, out var state) ? state : MartialGrabState.Passive;
+        ent.Comp.GrabState = TryRemovePendingGrabState(ent.Owner, out var state) ? state : MartialGrabState.Passive;
         EnsureComp<MartialGrabbedComponent>(args.PulledUid).Grabber = ent.Owner;
         ent.Comp.NextStrangleTick = _timing.CurTime + StrangleInterval;
     }
@@ -286,19 +283,16 @@ public sealed partial class MartialArtsSystem
             return true;
         }
 
-        _pendingGrabState[user] = state;
-        _skipGrabAct.Add(user);
+        EnsureComp<MartialArtsPendingGrabStateComponent>(user).Value = state;
+        EnsureComp<MartialArtsSkipGrabActComponent>(user);
         var started = _pulling.TryStartPull(user, target, puller, pullable);
-        _skipGrabAct.Remove(user);
+        RemComp<MartialArtsSkipGrabActComponent>(user);
 
         if (!started)
-            _pendingGrabState.Remove(user);
+            RemComp<MartialArtsPendingGrabStateComponent>(user);
 
         return started;
     }
-
-    /// <summary>Тяга, которую начал сам приём, не должна снова считаться «G».</summary>
-    private readonly HashSet<EntityUid> _skipGrabAct = new();
 
     /// <summary>Пары сообщений visible_message: окружающим, себе и цели.</summary>
     public void PopupPair(EntityUid user, EntityUid target, string othersKey, string selfKey, string? targetKey = null, PopupType type = PopupType.MediumCaution)
@@ -312,4 +306,17 @@ public sealed partial class MartialArtsSystem
     }
 
     private EntityUid Identity(EntityUid uid) => Content.Shared.IdentityManagement.Identity.Entity(uid, EntityManager);
+
+    private bool TryRemovePendingGrabState(EntityUid uid, out Content.Shared.Imperial.MartialArts.MartialGrabState value)
+    {
+        if (TryComp<MartialArtsPendingGrabStateComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            RemComp(uid, comp);
+            return true;
+        }
+
+        value = default!;
+        return false;
+    }
 }

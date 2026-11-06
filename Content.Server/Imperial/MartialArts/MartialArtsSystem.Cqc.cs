@@ -168,7 +168,7 @@ public sealed partial class MartialArtsSystem
             if (upgrade)
                 SetGrabState(ent, target, MartialGrabState.Aggressive);
             else
-                _pendingGrabState[ent.Owner] = MartialGrabState.Aggressive;
+                EnsureComp<MartialArtsPendingGrabStateComponent>(ent.Owner).Value = MartialGrabState.Aggressive;
 
             PopupPair(ent, target, "martial-cqc-grab-others", "martial-cqc-grab-self", "martial-cqc-grab-target");
             return upgrade ? MartialResult.Success : MartialResult.SuccessKeepGrab;
