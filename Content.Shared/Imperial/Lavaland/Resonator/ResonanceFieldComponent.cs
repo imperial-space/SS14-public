@@ -33,4 +33,13 @@ public sealed partial class ResonanceFieldComponent : Component
     /// <summary>Когда поле взорвётся.</summary>
     [ViewVariables, AutoPausedField]
     public TimeSpan BurstAt;
+
+    [DataField]
+    public float BurstFieldRange = 0.6f;
+
+    [DataField]
+    public float BurstFieldRange2 = 1.6f;
+
+    [DataField]
+    public float UpdateRange = 0.4f;
 }

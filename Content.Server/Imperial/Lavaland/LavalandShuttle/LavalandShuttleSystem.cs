@@ -55,7 +55,7 @@ public sealed class LavalandShuttleSystem : EntitySystem
         {
             if (now < comp.NextUiUpdate)
                 continue;
-            comp.NextUiUpdate = now + TimeSpan.FromSeconds(1);
+            comp.NextUiUpdate = now + comp.UiUpdateDelay;
             if (_uiSystem.IsUiOpen(uid, LavalandShuttleConsoleUiKey.Key))
                 SendState(uid, comp);
         }
@@ -146,8 +146,8 @@ public sealed class LavalandShuttleSystem : EntitySystem
             return;
         }
 
-        var ignition = express ? comp.ExpressIgnitionTime : comp.IgnitionTime;
-        var travel = express ? comp.ExpressTravelTime : comp.TravelTime;
+        var ignition = express ? (float)comp.ExpressIgnitionTime.TotalSeconds : (float)comp.IgnitionTime.TotalSeconds;
+        var travel = express ? (float)comp.ExpressTravelTime.TotalSeconds : (float)comp.TravelTime.TotalSeconds;
         var sent = comp.SelectedDestination == LavalandShuttleDestination.Station
             ? DepartToStation(grid, shuttle, ignition, travel)
             : DepartToLavaland(grid, shuttle, comp, ignition, travel);
@@ -221,7 +221,7 @@ public sealed class LavalandShuttleSystem : EntitySystem
     {
         if (time < TimeSpan.Zero)
             time = TimeSpan.Zero;
-        return $"{(int) time.TotalMinutes:00}:{time.Seconds:00}";
+        return $"{(int)time.TotalMinutes:00}:{time.Seconds:00}";
     }
 
     /// <summary>ui_data.</summary>
@@ -232,7 +232,7 @@ public sealed class LavalandShuttleSystem : EntitySystem
 
         var state = new LavalandShuttleConsoleBoundUserInterfaceState
         {
-            ExpressCooldown = (int) Math.Ceiling(Math.Max(0, (comp.NextExpress - _timing.CurTime).TotalSeconds)),
+            ExpressCooldown = (int)Math.Ceiling(Math.Max(0, (comp.NextExpress - _timing.CurTime).TotalSeconds)),
         };
 
         if (!TryGetShuttle(uid, out var grid, out _))

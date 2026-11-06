@@ -187,10 +187,10 @@ public sealed class KineticEquipmentSystem : EntitySystem
     /// <summary>cooldown/get_recharge_time(): recharge_time минус модификаторы всех установленных модулей.</summary>
     public float GetRechargeTime(Entity<KineticAcceleratorComponent> ent)
     {
-        var time = ent.Comp.RechargeTime;
+        var time = (float)ent.Comp.RechargeTime.TotalSeconds;
         foreach (var modkit in GetModkits(ent))
         {
-            time -= modkit.Comp.Cooldown;
+            time -= (float)modkit.Comp.Cooldown.TotalSeconds;
         }
 
         return Math.Max(0.1f, time);
@@ -350,7 +350,7 @@ public sealed class KineticEquipmentSystem : EntitySystem
     /// <summary>charge_time с учётом legion_skull (bonus_value в десятых секунды).</summary>
     public float GetChargeTime(Entity<KineticCrusherComponent> ent)
     {
-        return Math.Max(0.1f, ent.Comp.ChargeTime - GetTrophyBonus(ent, CrusherTrophyKind.LegionSkull) * 0.1f);
+        return Math.Max(0.1f, (float)ent.Comp.ChargeTime.TotalSeconds - GetTrophyBonus(ent, CrusherTrophyKind.LegionSkull) * 0.1f);
     }
 
     /// <summary>Прибавка к force_wielded от demon_claws и wendigo_horn.</summary>

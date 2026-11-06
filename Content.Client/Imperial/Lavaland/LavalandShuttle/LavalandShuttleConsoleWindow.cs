@@ -74,12 +74,12 @@ public sealed class LavalandShuttleConsoleWindow : DefaultWindow
             var dropdown = new OptionButton { MinWidth = 200, Disabled = state.Locked };
             dropdown.AddItem(Loc.GetString("lavaland-shuttle-ui-select-destination"), 0);
             foreach (var location in state.Locations)
-                dropdown.AddItem(DestinationName(location), (int) location);
-            dropdown.SelectId((int) state.Destination);
+                dropdown.AddItem(DestinationName(location), (int)location);
+            dropdown.SelectId((int)state.Destination);
             dropdown.OnItemSelected += args =>
             {
                 if (args.Id != 0)
-                    OnMessage?.Invoke(new LavalandShuttleSetDestinationMessage((LavalandShuttleDestination) args.Id));
+                    OnMessage?.Invoke(new LavalandShuttleSetDestinationMessage((LavalandShuttleDestination)args.Id));
             };
             destination = dropdown;
         }

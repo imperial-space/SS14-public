@@ -15,6 +15,8 @@ using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Lavaland.Weaver;
 
@@ -27,6 +29,9 @@ public sealed class WeaverSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _speed = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+    private static readonly ProtoId<DamageTypePrototype> PiercingDamageType = "Piercing";
 
     public override void Initialize()
     {
@@ -80,8 +85,8 @@ public sealed class WeaverSystem : EntitySystem
             var roll = _random.NextFloat(min, max);
 
             var dmg = new DamageSpecifier();
-            dmg.DamageDict["Slash"] = FixedPoint2.New(roll);
-            dmg.DamageDict["Piercing"] = FixedPoint2.New(2);
+            dmg.DamageDict[SlashDamageType] = FixedPoint2.New(roll);
+            dmg.DamageDict[PiercingDamageType] = FixedPoint2.New(2);
 
             foreach (var target in args.HitEntities)
                 _damageable.TryChangeDamage(target, dmg, ignoreResistances: false);

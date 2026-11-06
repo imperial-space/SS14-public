@@ -11,7 +11,7 @@ namespace Content.Server.Imperial.Lavaland.Bubblegum;
 public sealed partial class BubblegumComponent : Component
 {
     /// <summary>enrage_time.</summary>
-    [DataField] public float EnrageTime = 7f;
+    [DataField] public TimeSpan EnrageTime = TimeSpan.FromSeconds(7f);
 
     /// <summary>move_to_delay 5 -> 3.75 в ярости.</summary>
     [DataField] public float EnrageSpeedMultiplier = 5f / 3.75f;
@@ -20,9 +20,9 @@ public sealed partial class BubblegumComponent : Component
     [DataField] public float ChargeDamage = 30f;
     [DataField] public float HallucinationDamage = 15f;
     [DataField] public int ChargePast = 2;
-    [DataField] public float ChargeStepDelay = 0.05f;
-    [DataField] public float ChargeCooldown = 1.5f;
-    [DataField] public float HallucinationCooldown = 2f;
+    [DataField] public TimeSpan ChargeStepDelay = TimeSpan.FromSeconds(0.05f);
+    [DataField] public TimeSpan ChargeCooldown = TimeSpan.FromSeconds(1.5f);
+    [DataField] public TimeSpan HallucinationCooldown = TimeSpan.FromSeconds(2f);
     [DataField] public int BloodWarpRange = 5;
 
     [DataField] public SoundSpecifier AttackSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_misc_demon_attack1.ogg");
@@ -47,4 +47,82 @@ public sealed partial class BubblegumComponent : Component
 
     [ViewVariables] public TimeSpan EnrageTill;
     [ViewVariables] public Vector2i? LastTile;
+
+    [DataField]
+    public float DamageChangedChance = 0.25f;
+
+    [DataField]
+    public float DamageChangedChance2 = 0.4f;
+
+    [DataField]
+    public float BloodAttackChance = 0.5f;
+
+    [DataField]
+    public float BloodAttackChance2 = 0.1f;
+
+    [DataField]
+    public TimeSpan BloodSmackSeconds = TimeSpan.FromSeconds(0.4f);
+
+    [DataField]
+    public float BloodSmackSeconds2 = 0.3f;
+
+    [DataField]
+    public TimeSpan BloodGrabSeconds = TimeSpan.FromSeconds(0.6f);
+
+    [DataField]
+    public float BloodGrabSeconds2 = 0.2f;
+
+    [DataField]
+    public float BloodGrabSeconds3 = 0.1f;
+
+    [DataField]
+    public TimeSpan BloodWarpSeconds = TimeSpan.FromSeconds(0.3f);
+
+    [DataField]
+    public TimeSpan TripleChargeDelay = TimeSpan.FromSeconds(0.6f);
+
+    [DataField]
+    public float TripleChargeDelay2 = 0.4f;
+
+    [DataField]
+    public float TripleChargeDelay3 = 0.2f;
+
+    [DataField]
+    public int HallucinationChargeAmount = 6;
+
+    [DataField]
+    public TimeSpan HallucinationChargeDelay = TimeSpan.FromSeconds(0.8f);
+
+    [DataField]
+    public int HallucinationChargeRadius = 6;
+
+    [DataField]
+    public int HallucinationChargeAmount2 = 4;
+
+    [DataField]
+    public float HallucinationChargeDelay2 = 0.9f;
+
+    [DataField]
+    public int HallucinationChargeRadius2 = 4;
+
+    [DataField]
+    public float HallucinationChargeDelay3 = 0.7f;
+
+    [DataField]
+    public int SurroundStepAmount = 2;
+
+    [DataField]
+    public TimeSpan SurroundStepDelay = TimeSpan.FromSeconds(0.8f);
+
+    [DataField]
+    public int SurroundStepRadius = 2;
+
+    [DataField]
+    public float SurroundStepDelay2 = 0.6f;
+
+    [DataField]
+    public float ChargeStepRange = 0.5f;
+
+    [DataField]
+    public float ChargeStepStrength = 4f;
 }

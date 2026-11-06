@@ -12,10 +12,10 @@ public sealed partial class HierophantComponent : Component
 {
     [DataField] public int BaseBurstRange = 3;
     [DataField] public int BaseBeamRange = 5;
-    [DataField] public float RangedCooldownTime = 4f;
-    [DataField] public float MajorAttackCooldown = 6f;
-    [DataField] public float ChaserCooldownTime = 10.1f;
-    [DataField] public float ArenaCooldownTime = 20f;
+    [DataField] public TimeSpan RangedCooldownTime = TimeSpan.FromSeconds(4f);
+    [DataField] public TimeSpan MajorAttackCooldown = TimeSpan.FromSeconds(6f);
+    [DataField] public TimeSpan ChaserCooldownTime = TimeSpan.FromSeconds(10.1f);
+    [DataField] public TimeSpan ArenaCooldownTime = TimeSpan.FromSeconds(20f);
     [DataField] public float BlastDamage = 10f;
     [DataField] public float BlinkBlastDamage = 30f;
 
@@ -47,4 +47,49 @@ public sealed partial class HierophantComponent : Component
     [ViewVariables] public TimeSpan? GoHomeAt;
     [ViewVariables] public EntityUid? SpawnedBeacon;
     [ViewVariables] public Vector2i? LastTile;
+
+    [DataField]
+    public TimeSpan GoHomeDelay = TimeSpan.FromSeconds(30);
+
+    [DataField]
+    public TimeSpan SpawnChaserDelay = TimeSpan.FromSeconds(9.8);
+
+    [DataField]
+    public int MobStateChangedRange = 10;
+
+    [DataField]
+    public TimeSpan EndMajorSeconds = TimeSpan.FromSeconds(0.8f);
+
+    [DataField]
+    public TimeSpan BlinkSpamSeconds = TimeSpan.FromSeconds(0.6f);
+
+    [DataField]
+    public TimeSpan CrossBlastSpamSeconds = TimeSpan.FromSeconds(0.6f);
+
+    [DataField]
+    public TimeSpan ChaserSwarmSeconds = TimeSpan.FromSeconds(0.6f);
+
+    [DataField]
+    public TimeSpan BlastsSeconds = TimeSpan.FromSeconds(0.2f);
+
+    [DataField]
+    public TimeSpan BlinkToSeconds = TimeSpan.FromSeconds(0.2f);
+
+    [DataField]
+    public float BlinkToSeconds2 = 0.1f;
+
+    [DataField]
+    public int ArenaTrapRange = 11;
+
+    [DataField]
+    public TimeSpan ArenaSquaresSeconds = TimeSpan.FromSeconds(0.05f);
+
+    [DataField]
+    public TimeSpan SpawnChaserSeconds = TimeSpan.FromSeconds(0.1f);
+
+    [DataField]
+    public TimeSpan SpawnBlastSeconds = TimeSpan.FromSeconds(0.6f);
+
+    [DataField]
+    public float SpawnBlastSeconds2 = 0.13f;
 }

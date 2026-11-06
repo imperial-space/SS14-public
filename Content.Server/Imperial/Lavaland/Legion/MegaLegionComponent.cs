@@ -13,12 +13,12 @@ public sealed partial class MegaLegionComponent : Component
     /// <summary>LEGION_LARGE = 3, LEGION_MEDIUM = 2, LEGION_SMALL = 1.</summary>
     [DataField] public int Size = 3;
 
-    [DataField] public float SkullCooldown = 2f;
-    [DataField] public float ChaseCooldown = 6f;
-    [DataField] public float TurretCooldown = 2f;
+    [DataField] public TimeSpan SkullCooldown = TimeSpan.FromSeconds(2f);
+    [DataField] public TimeSpan ChaseCooldown = TimeSpan.FromSeconds(6f);
+    [DataField] public TimeSpan TurretCooldown = TimeSpan.FromSeconds(2f);
     [DataField] public int MinTurrets = 2;
-    [DataField] public float TurretInitialDelay = 1.8f;
-    [DataField] public float TurretShotDelay = 0.8f;
+    [DataField] public TimeSpan TurretInitialDelay = TimeSpan.FromSeconds(1.8f);
+    [DataField] public TimeSpan TurretShotDelay = TimeSpan.FromSeconds(0.8f);
     [DataField] public float TurretDamage = 19f;
     [DataField] public int TurretBeamRange = 6;
 
@@ -44,4 +44,28 @@ public sealed partial class MegaLegionComponent : Component
 
     [ViewVariables] public bool Charging;
     [ViewVariables] public EntityUid? ThrowTarget;
+
+    [DataField]
+    public TimeSpan ChaseSeconds = TimeSpan.FromSeconds(2f);
+
+    [DataField]
+    public float ChaseSeconds2 = 6f;
+
+    [DataField]
+    public TimeSpan SpinSeconds = TimeSpan.FromSeconds(0.1f);
+
+    [DataField]
+    public TimeSpan ThrowStepSeconds = TimeSpan.FromSeconds(0.05f);
+
+    [DataField]
+    public int TurretsRange = 4;
+
+    [DataField]
+    public int TurretSetUpShotRange = 9;
+
+    [DataField]
+    public TimeSpan TurretFireSeconds = TimeSpan.FromSeconds(0.5f);
+
+    [DataField]
+    public float MobStateChangedChance = 0.2f;
 }

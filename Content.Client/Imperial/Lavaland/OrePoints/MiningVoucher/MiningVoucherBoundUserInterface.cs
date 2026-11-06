@@ -22,7 +22,7 @@ public sealed class MiningVoucherBoundUserInterface : BoundUserInterface
 
         _menu = this.CreateWindow<SimpleRadialMenu>();
         _menu.Track(Owner);
-        var buttons = MiningVoucherKits.All.Select((kit, i) => (RadialMenuOptionBase) new RadialMenuActionOption<int>(Pick, i)
+        var buttons = MiningVoucherKits.All.Select((kit, i) => (RadialMenuOptionBase)new RadialMenuActionOption<int>(Pick, i)
         {
             IconSpecifier = RadialMenuIconSpecifier.With(kit.Icon),
             ToolTip = $"{Loc.GetString(kit.Name)}\n{Loc.GetString(kit.Description)}",

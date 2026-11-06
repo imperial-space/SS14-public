@@ -12,6 +12,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.FixedPoint;
 
 namespace Content.Server.Imperial.Lavaland.Storm;
 
@@ -24,6 +25,8 @@ public sealed class LavalandStormSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedWeatherSystem _weather = default!;
+
+    private static readonly DamageSpecifier StormDamage = new() { DamageDict = { ["Blunt"] = 2, ["Heat"] = 1 } };
 
     public override void Initialize()
     {
@@ -171,9 +174,7 @@ public sealed class LavalandStormSystem : EntitySystem
 
     private void ApplyStormDamage(EntityUid mapUid)
     {
-        var damage = new DamageSpecifier();
-        damage.DamageDict["Blunt"] = 2;
-        damage.DamageDict["Burn"] = 1;
+        var damage = new DamageSpecifier(StormDamage);
 
         var query = EntityQueryEnumerator<MobStateComponent, DamageableComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var mobState, out _, out var xform))

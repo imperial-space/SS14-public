@@ -10,8 +10,8 @@ public sealed partial class ImperialGpsDeviceComponent : Component
     /// <summary>global_mode: показывать сигналы со всех карт.</summary>
     [ViewVariables] public bool GlobalMode = true;
 
-    [DataField] public float UpdateInterval = 1f;
-    [DataField] public float EmpDuration = 30f;
+    [DataField] public TimeSpan UpdateInterval = TimeSpan.FromSeconds(1f);
+    [DataField] public TimeSpan EmpDuration = TimeSpan.FromSeconds(30f);
 
     [ViewVariables] public TimeSpan NextUpdate;
     [ViewVariables] public TimeSpan EmpEnd;

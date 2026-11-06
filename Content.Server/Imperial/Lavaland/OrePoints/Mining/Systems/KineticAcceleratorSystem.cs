@@ -54,6 +54,8 @@ public sealed class KineticAcceleratorSystem : EntitySystem
     /// <summary>status_effect/syphon_mark duration.</summary>
     private static readonly TimeSpan SyphonDuration = TimeSpan.FromSeconds(5);
 
+    private const float AoeStrikeRange = 1.5f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -202,7 +204,7 @@ public sealed class KineticAcceleratorSystem : EntitySystem
 
         if (modkit.Comp.AoeTurfs)
         {
-            foreach (var (rock, gatherable) in _lookup.GetEntitiesInRange<GatherableComponent>(coords, 1.5f).ToList())
+            foreach (var (rock, gatherable) in _lookup.GetEntitiesInRange<GatherableComponent>(coords, AoeStrikeRange).ToList())
             {
                 if (rock != target && !TerminatingOrDeleted(rock))
                     _gather.Gather(rock, ent.Comp.Firer, gatherable);
@@ -213,7 +215,7 @@ public sealed class KineticAcceleratorSystem : EntitySystem
             return;
 
         var amount = damage * modkit.Comp.AoeMobDamage;
-        foreach (var (mob, _) in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 1.5f).ToList())
+        foreach (var (mob, _) in _lookup.GetEntitiesInRange<MobStateComponent>(coords, AoeStrikeRange).ToList())
         {
             if (mob == target || mob == ent.Comp.Firer || !IsMiningMob(mob))
                 continue;

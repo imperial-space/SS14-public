@@ -56,6 +56,8 @@ public sealed class LavalandOreVentSystem : EntitySystem
     private const int MinerPointMultiplier = 100;
     private static readonly Robust.Shared.Audio.SoundSpecifier _platformSinkSound = new Robust.Shared.Audio.SoundPathSpecifier("/Audio/Imperial/Lavaland/gas_hissing.ogg");
 
+    private const float CountBouldersRange = 0.5f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -201,7 +203,7 @@ public sealed class LavalandOreVentSystem : EntitySystem
         {
             _popup.PopupEntity(Loc.GetString("lavaland-ore-vent-scanning"), ent, args.User);
             _ai.PlaySound(comp.ScanSound, Transform(ent).Coordinates, -5f);
-            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, 4f, new OreVentScanDoAfterEvent(), ent, ent, args.Used)
+            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.VentInteractUsingSeconds, new OreVentScanDoAfterEvent(), ent, ent, args.Used)
             {
                 BreakOnMove = true,
                 NeedHand = true,
@@ -212,7 +214,7 @@ public sealed class LavalandOreVentSystem : EntitySystem
         // tgui_alert «Begin defending ore vent?» — подтверждение повторным сканированием.
         if (_timing.CurTime > comp.ConfirmUntil)
         {
-            comp.ConfirmUntil = _timing.CurTime + TimeSpan.FromSeconds(10);
+            comp.ConfirmUntil = _timing.CurTime + ent.Comp.ConfirmDelay;
             _popup.PopupEntity(Loc.GetString(comp.Bosses.Count > 0
                 ? "lavaland-ore-vent-confirm-boss"
                 : "lavaland-ore-vent-confirm"), ent, args.User, PopupType.LargeCaution);
@@ -274,7 +276,7 @@ public sealed class LavalandOreVentSystem : EntitySystem
             });
         }
 
-        _ai.Schedule(null, 3f, () =>
+        _ai.Schedule(null, (float)ent.Comp.PreWaveDefenseSeconds.TotalSeconds, () =>
         {
             if (!TerminatingOrDeleted(ent))
                 StartWaveDefense(ent);
@@ -289,10 +291,10 @@ public sealed class LavalandOreVentSystem : EntitySystem
         ent.Comp.Node = node;
 
         // arrive: maxHealth = 300 + (boulder_size / 5) * 100
-        var health = 300 + (int) ent.Comp.Size / 5 * 100;
+        var health = 300 + (int)ent.Comp.Size / 5 * 100;
         _thresholds.SetMobStateThreshold(node, health, MobState.Dead);
         _appearance.SetData(node, MegafaunaVisuals.State, "mining_node_flying");
-        _ai.Schedule(null, 2f, () =>
+        _ai.Schedule(null, (float)ent.Comp.SpawnNodeSeconds.TotalSeconds, () =>
         {
             if (!TerminatingOrDeleted(node))
                 _appearance.SetData(node, MegafaunaVisuals.State, string.Empty);
@@ -316,7 +318,7 @@ public sealed class LavalandOreVentSystem : EntitySystem
     }
 
     /// <summary>spawn_time = 10 с + 5 с * (boulder_size / 5).</summary>
-    private static float SpawnTime(LavalandOreVentComponent comp) => 10f + 5f * ((int) comp.Size / 5f);
+    private static float SpawnTime(LavalandOreVentComponent comp) => 10f + 5f * ((int)comp.Size / 5f);
 
     public override void Update(float frameTime)
     {
@@ -332,7 +334,7 @@ public sealed class LavalandOreVentSystem : EntitySystem
             {
                 if (now >= comp.NextBoulder)
                 {
-                    comp.NextBoulder = now + TimeSpan.FromSeconds(comp.BoulderInterval);
+                    comp.NextBoulder = now + comp.BoulderInterval;
                     if (CountBoulders(uid) < comp.MaxBoulders)
                         ProduceBoulder(ent);
                 }
@@ -391,7 +393,7 @@ public sealed class LavalandOreVentSystem : EntitySystem
     private void UpdateNodeProgress(Entity<LavalandOreVentComponent> ent, EntityUid node)
     {
         var total = WaveDuration(ent.Comp.Size);
-        var fraction = (float) (ent.Comp.WaveEnd - _timing.CurTime).TotalSeconds / total;
+        var fraction = (float)(ent.Comp.WaveEnd - _timing.CurTime).TotalSeconds / total;
         var state = fraction <= 0.3f ? "node_progress_4"
             : fraction <= 0.55f ? "node_progress_3"
             : fraction <= 0.8f ? "node_progress_2"
@@ -404,18 +406,18 @@ public sealed class LavalandOreVentSystem : EntitySystem
     {
         var comp = ent.Comp;
         comp.Spawned.RemoveAll(m => TerminatingOrDeleted(m) || _mobState.IsDead(m));
-        var budget = Math.Min(1 + (int) comp.Size / 5, 10 - comp.Spawned.Count);
+        var budget = Math.Min(1 + (int)comp.Size / 5, 10 - comp.Spawned.Count);
         if (budget <= 0 || comp.DefendingMobs.Count == 0 || !_ai.TryGetTile(ent, out var grid, out var center))
             return;
 
-        var free = MegafaunaAiSystem.RangeTiles(center, 4)
+        var free = MegafaunaAiSystem.RangeTiles(center, ent.Comp.SpawnDefendersRange)
             .Where(t => MegafaunaAiSystem.Chebyshev(t, center) == 4 && !_ai.IsBlocked(grid, t) && !HasLava(grid, t))
             .ToList();
 
         if (free.Count == 0)
         {
             // anti_cheese: жилу замуровали — взрыв расчищает округу.
-            _explosion.QueueExplosion(_transform.GetMapCoordinates(ent), "Default", 30f, 5f, 10f, ent);
+            _explosion.QueueExplosion(_transform.GetMapCoordinates(ent), "Default", ent.Comp.SpawnDefendersTotalIntensity, ent.Comp.SpawnDefendersSlope, ent.Comp.SpawnDefendersMaxTileIntensity, ent);
             return;
         }
 
@@ -444,13 +446,13 @@ public sealed class LavalandOreVentSystem : EntitySystem
         comp.Tapped = true;
         RemComp<Gps.ImperialGpsComponent>(ent);
         RemComp<MiningShop.LavalandUndiscoveredVentComponent>(ent);
-        comp.NextBoulder = _timing.CurTime + TimeSpan.FromSeconds(comp.BoulderInterval);
+        comp.NextBoulder = _timing.CurTime + comp.BoulderInterval;
         UpdateVentVisuals(ent);
         _popup.PopupEntity(Loc.GetString("lavaland-ore-vent-tapped"), ent, PopupType.Large);
         ResetDrone(ent, true, comp.DroneCrashSound);
 
-        var reward = MinerPointMultiplier * ((int) comp.Size + 2) - MinerPointMultiplier;
-        foreach (var miner in _lookup.GetEntitiesInRange<ActorComponent>(Transform(ent).Coordinates, 7f))
+        var reward = MinerPointMultiplier * ((int)comp.Size + 2) - MinerPointMultiplier;
+        foreach (var miner in _lookup.GetEntitiesInRange<ActorComponent>(Transform(ent).Coordinates, ent.Comp.WaveWinRange))
         {
             if (_mobState.IsAlive(miner))
                 _geyser.AwardPoints(miner, reward);
@@ -471,17 +473,17 @@ public sealed class LavalandOreVentSystem : EntitySystem
         drone.Vent = null;
         _appearance.SetData(node, MegafaunaVisuals.Overlay, string.Empty);
         _appearance.SetData(node, MegafaunaVisuals.State, "mining_node_escape");
-        _ai.Schedule(null, 1.9f, () =>
+        _ai.Schedule(null, (float)ent.Comp.ResetDroneSeconds.TotalSeconds, () =>
         {
             if (TerminatingOrDeleted(node))
                 return;
             _appearance.SetData(node, MegafaunaVisuals.State, "mining_node_flying");
             // prob(1): дрон не долетел до родной планеты.
-            var funny = _random.Prob(0.01f);
+            var funny = _random.Prob(ent.Comp.ResetDroneChance);
             if (funny)
                 _chat.TrySendInGameICMessage(node, Loc.GetString("lavaland-node-funny"), InGameICChatType.Speak, ChatTransmitRange.Normal, hideLog: true, ignoreActionBlocker: true);
             _popup.PopupEntity(Loc.GetString(success ? "lavaland-node-escape-success" : "lavaland-node-escape-fail"), node, PopupType.Medium);
-            _ai.Schedule(null, 2f, () =>
+            _ai.Schedule(null, ent.Comp.ResetDroneSeconds2, () =>
             {
                 if (funny && !TerminatingOrDeleted(node))
                 {
@@ -499,7 +501,7 @@ public sealed class LavalandOreVentSystem : EntitySystem
     {
         if (args.NewMobState != MobState.Dead)
             return;
-        _explosion.QueueExplosion(_transform.GetMapCoordinates(ent), "Default", 10f, 5f, 4f, ent, canCreateVacuum: false);
+        _explosion.QueueExplosion(_transform.GetMapCoordinates(ent), "Default", ent.Comp.DroneStateChangedTotalIntensity, ent.Comp.DroneStateChangedSlope, ent.Comp.DroneStateChangedMaxTileIntensity, ent, canCreateVacuum: false);
         QueueDel(ent);
     }
 
@@ -509,7 +511,7 @@ public sealed class LavalandOreVentSystem : EntitySystem
 
     private int CountBoulders(EntityUid vent)
     {
-        return _lookup.GetEntitiesInRange<LavalandBoulderComponent>(Transform(vent).Coordinates, 0.5f).Count;
+        return _lookup.GetEntitiesInRange<LavalandBoulderComponent>(Transform(vent).Coordinates, CountBouldersRange).Count;
     }
 
     /// <summary>produce_boulder: 3 броска по минералам, количество убывает логарифмически.</summary>
@@ -522,12 +524,12 @@ public sealed class LavalandOreVentSystem : EntitySystem
         var artifact = _random.Prob(comp.ArtifactChance);
         var rock = Spawn(artifact ? comp.ArtifactBoulder : comp.Boulder, Transform(ent).Coordinates);
         var boulder = EnsureComp<LavalandBoulderComponent>(rock);
-        var size = (int) comp.Size;
+        var size = (int)comp.Size;
         for (var i = 1; i <= MineralsPerBoulder; i++)
         {
             var mineral = PickWeighted(comp.Minerals);
             // ore_quantity_function: HALF_SHEET * max(round(size / ln(rand(1+i, 4+i))), 1)
-            var units = 50 * Math.Max((int) MathF.Round(size / MathF.Log(_random.Next(1 + i, 5 + i))), 1);
+            var units = 50 * Math.Max((int)MathF.Round(size / MathF.Log(_random.Next(1 + i, 5 + i))), 1);
             boulder.Materials[mineral] = boulder.Materials.GetValueOrDefault(mineral) + units;
         }
 
@@ -556,7 +558,7 @@ public sealed class LavalandOreVentSystem : EntitySystem
     private void StartBreak(Entity<LavalandBoulderComponent> ent, EntityUid user, EntityUid tool)
     {
         _ai.PlaySound(ent.Comp.HitSound, Transform(ent).Coordinates, -5f);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, 2f, new BoulderBreakDoAfterEvent(), ent, ent, tool)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, ent.Comp.StartBreakSeconds, new BoulderBreakDoAfterEvent(), ent, ent, tool)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -591,7 +593,7 @@ public sealed class LavalandOreVentSystem : EntitySystem
         var coords = Transform(ent).Coordinates;
         foreach (var (ore, units) in ent.Comp.Materials)
         {
-            var quantity = Math.Clamp((int) MathF.Round((units - 100) / 100f), 1, 10);
+            var quantity = Math.Clamp((int)MathF.Round((units - 100) / 100f), 1, 10);
             var stack = Spawn(ore, coords);
             if (TryComp<StackComponent>(stack, out var stackComp))
                 _stack.SetCount((stack, stackComp), quantity);

@@ -184,7 +184,7 @@ public sealed class ZlatozhorSystem : EntitySystem
 
     private void TriggerPanicBurrow(ZlatozhorComponent comp)
     {
-        var panicTime = _timing.CurTime + TimeSpan.FromSeconds(comp.PanicBurrowDelay);
+        var panicTime = _timing.CurTime + comp.PanicBurrowDelay;
         if (panicTime < comp.BurrowTime)
             comp.BurrowTime = panicTime;
     }

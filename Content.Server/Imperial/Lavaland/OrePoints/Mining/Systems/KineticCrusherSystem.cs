@@ -68,6 +68,18 @@ public sealed partial class KineticCrusherSystem : EntitySystem
     /// <summary>projectile/destabilizer range.</summary>
     private const int DestabilizerRange = 6;
 
+    private static readonly ProtoId<DamageTypePrototype> StructuralDamageType = "Structural";
+
+    private static readonly TimeSpan StepDelay = TimeSpan.FromSeconds(0.1);
+    private static readonly TimeSpan StartChaserDelay = TimeSpan.FromSeconds(9.8);
+    private static readonly TimeSpan StepChaserDelay = TimeSpan.FromSeconds(0.6);
+    private static readonly TimeSpan StepChaserDelay2 = TimeSpan.FromSeconds(0.73);
+    private static readonly TimeSpan StepDelay2 = TimeSpan.FromSeconds(0.3);
+
+    private const float TailSpikeRange = 2.5f;
+    private const float TailSpikeBaseThrowSpeed = 5f;
+    private const float BlastDamageRange = 0.45f;
+
     private sealed class Chaser
     {
         public EntityUid User;
@@ -155,7 +167,7 @@ public sealed partial class KineticCrusherSystem : EntitySystem
         }
 
         // Структурный урон магмитового заряда по существам не проходит.
-        var shotDamage = args.Damage.DamageDict.Where(d => d.Key != "Structural").Sum(d => d.Value.Float());
+        var shotDamage = args.Damage.DamageDict.Where(d => d.Key != StructuralDamageType).Sum(d => d.Value.Float());
         AddCrusherDamage(target, shotDamage);
 
         // status_effect/crusher_mark/on_apply(): только mob_size >= MOB_SIZE_LARGE.
@@ -245,7 +257,7 @@ public sealed partial class KineticCrusherSystem : EntitySystem
             case CrusherTrophyKind.MagmaWing:
             case CrusherTrophyKind.BlasterTubes:
                 trophy.Comp.DeadlyShot = true;
-                trophy.Comp.DeadlyShotReset = _timing.CurTime + TimeSpan.FromSeconds(30);
+                trophy.Comp.DeadlyShotReset = _timing.CurTime + crusher.Comp.DeadlyShotResetDelay;
                 break;
 
             case CrusherTrophyKind.GoliathTentacle:
@@ -260,7 +272,7 @@ public sealed partial class KineticCrusherSystem : EntitySystem
 
             case CrusherTrophyKind.MinerEye:
                 var drunk = EnsureComp<CrusherBloodDrunkComponent>(user);
-                drunk.ExpiresAt = _timing.CurTime + TimeSpan.FromSeconds(1);
+                drunk.ExpiresAt = _timing.CurTime + crusher.Comp.ExpiresDelay;
                 break;
 
             case CrusherTrophyKind.TailSpike:
@@ -287,7 +299,7 @@ public sealed partial class KineticCrusherSystem : EntitySystem
     private void TailSpike(EntityUid user, float damage)
     {
         var userPos = _transform.GetWorldPosition(user);
-        foreach (var (mob, _) in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(user).Coordinates, 2.5f).ToList())
+        foreach (var (mob, _) in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(user).Coordinates, TailSpikeRange).ToList())
         {
             if (mob == user || _mobState.IsDead(mob) || IsCrusherAlly(user, mob))
                 continue;
@@ -298,7 +310,7 @@ public sealed partial class KineticCrusherSystem : EntitySystem
 
             var dir = _transform.GetWorldPosition(mob) - userPos;
             if (dir.LengthSquared() > 0.0001f && (!Transform(mob).Anchored || IsMegafauna(mob)))
-                _throwing.TryThrow(mob, Vector2.Normalize(dir), 5f, user, recoil: false, doSpin: false);
+                _throwing.TryThrow(mob, Vector2.Normalize(dir), TailSpikeBaseThrowSpeed, user, recoil: false, doSpin: false);
         }
     }
 
@@ -329,8 +341,8 @@ public sealed partial class KineticCrusherSystem : EntitySystem
             Target = target,
             Grid = (gridUid, grid),
             Pos = _map.TileIndicesFor(gridUid, grid, xform.Coordinates),
-            NextStep = _timing.CurTime + TimeSpan.FromSeconds(0.1),
-            End = _timing.CurTime + TimeSpan.FromSeconds(9.8),
+            NextStep = _timing.CurTime + StepDelay,
+            End = _timing.CurTime + StartChaserDelay,
         });
     }
 
@@ -372,17 +384,17 @@ public sealed partial class KineticCrusherSystem : EntitySystem
         _audio.PlayPvs(ChaserBlastSound, coords, AudioParams.Default.WithVolume(-5f));
         // blast/damaging: удар через 0.6 с и ещё раз через 0.13 с по вошедшим.
         var hit = new HashSet<EntityUid> { c.User };
-        _blasts.Add((now + TimeSpan.FromSeconds(0.6), c.Grid, c.Pos, c.User, hit, false));
-        _blasts.Add((now + TimeSpan.FromSeconds(0.73), c.Grid, c.Pos, c.User, hit, true));
+        _blasts.Add((now + StepChaserDelay, c.Grid, c.Pos, c.User, hit, false));
+        _blasts.Add((now + StepChaserDelay2, c.Grid, c.Pos, c.User, hit, true));
 
-        c.NextStep = now + TimeSpan.FromSeconds(0.3);
+        c.NextStep = now + StepDelay2;
         return true;
     }
 
     private void BlastDamage(Entity<MapGridComponent> grid, Vector2i tile, EntityUid user, HashSet<EntityUid> hit)
     {
         var center = _map.GridTileToLocal(grid.Owner, grid.Comp, tile);
-        foreach (var (mob, _) in _lookup.GetEntitiesInRange<MobStateComponent>(center, 0.45f).ToList())
+        foreach (var (mob, _) in _lookup.GetEntitiesInRange<MobStateComponent>(center, BlastDamageRange).ToList())
         {
             if (!hit.Add(mob) || _mobState.IsDead(mob) || IsCrusherAlly(user, mob))
                 continue;

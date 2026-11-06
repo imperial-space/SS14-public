@@ -18,7 +18,7 @@ public sealed partial class KineticAcceleratorComponent : Component
 
     /// <summary>recharge_time без модулей, секунды.</summary>
     [DataField]
-    public float RechargeTime = 1.6f;
+    public TimeSpan RechargeTime = TimeSpan.FromSeconds(1.6f);
 
     /// <summary>projectile/kinetic range, клетки.</summary>
     [DataField]

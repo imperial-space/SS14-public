@@ -54,4 +54,7 @@ public sealed partial class CrusherDestabilizerComponent : Component
     /// <summary>raptor_feather: ignore_allies.</summary>
     [ViewVariables]
     public bool IgnoreAllies;
+
+    [DataField]
+    public float DestabilizerHitMineralRange = 1.5f;
 }

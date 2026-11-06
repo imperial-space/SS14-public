@@ -56,7 +56,7 @@ public sealed class LavalandGeyserSystem : EntitySystem
         }
 
         _appearance.SetData(ent, MegafaunaVisuals.OverlayColor, reagent.SubstanceColor);
-        ent.Comp.NextRefill = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.Interval);
+        ent.Comp.NextRefill = _timing.CurTime + ent.Comp.Interval;
     }
 
     public override void Update(float frameTime)
@@ -68,7 +68,7 @@ public sealed class LavalandGeyserSystem : EntitySystem
         {
             if (now < comp.NextRefill || comp.Reagent == null)
                 continue;
-            comp.NextRefill = now + TimeSpan.FromSeconds(comp.Interval);
+            comp.NextRefill = now + comp.Interval;
 
             if (!_solutions.TryGetSolution(uid, comp.Solution, out var soln, out var solution) ||
                 solution.Volume >= solution.MaxVolume)

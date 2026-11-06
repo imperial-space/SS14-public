@@ -25,4 +25,7 @@ public sealed partial class LavalandBoulderComponent : Component
 
     [DataField] public SoundSpecifier HitSound = new SoundCollectionSpecifier("ImperialPickaxe");
     [DataField] public SoundSpecifier BreakSound = new SoundPathSpecifier("/Audio/Imperial/Lavaland/rock_break.ogg");
+
+    [DataField]
+    public TimeSpan StartBreakSeconds = TimeSpan.FromSeconds(2f);
 }

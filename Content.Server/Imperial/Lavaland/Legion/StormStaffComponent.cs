@@ -11,9 +11,9 @@ namespace Content.Server.Imperial.Lavaland.Legion;
 public sealed partial class StormStaffComponent : Component
 {
     [DataField] public int MaxCharges = 3;
-    [DataField] public float ChargeTime = 15f;
-    [DataField] public float DispelTime = 3f;
-    [DataField] public float BoltDelay = 1.5f;
+    [DataField] public TimeSpan ChargeTime = TimeSpan.FromSeconds(15f);
+    [DataField] public TimeSpan DispelTime = TimeSpan.FromSeconds(3f);
+    [DataField] public TimeSpan BoltDelay = TimeSpan.FromSeconds(1.5f);
     [DataField] public float BoltDamage = 15f;
 
     [DataField] public SoundSpecifier AimSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_magic_lightningshock.ogg");

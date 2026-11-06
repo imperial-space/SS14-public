@@ -10,6 +10,7 @@ using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Lavaland.Colossus;
 
@@ -28,6 +29,8 @@ public sealed class ColossusSystem : EntitySystem
     private static readonly float[] Cardinals = { 0f, 90f, 180f, 270f };
     private static readonly float[] Diagonals = { 45f, 135f, 225f, 315f };
     private static readonly float[] AllDirs = { 0f, 45f, 90f, 135f, 180f, 225f, 270f, 315f };
+
+    private static readonly EntProtoId Ash = "Ash";
 
     public override void Initialize()
     {
@@ -67,7 +70,7 @@ public sealed class ColossusSystem : EntitySystem
     private void Telegraph(Entity<ColossusComponent> ent)
     {
         var coords = Transform(ent).Coordinates;
-        _ai.ShakeCamera(coords, 10f, 4f);
+        _ai.ShakeCamera(coords, ent.Comp.TelegraphRange, ent.Comp.TelegraphStrength);
         _ai.PlaySound(ent.Comp.TelegraphSound, coords, 5f);
     }
 
@@ -108,8 +111,8 @@ public sealed class ColossusSystem : EntitySystem
                 return;
             }
 
-            Spiral(ent, _random.Prob(0.5f), 80, 8, Finish);
-        }, ent.Comp.SpiralCooldown);
+            Spiral(ent, _random.Prob(ent.Comp.SpiralChance), 80, 8, Finish);
+        }, (float)ent.Comp.SpiralCooldown.TotalSeconds);
     }
 
     /// <summary>create_spiral_attack: 80 болтов по кругу шагом 22.5°, раз в 0.1 с.</summary>
@@ -129,7 +132,7 @@ public sealed class ColossusSystem : EntitySystem
 
         Shoot(ent, counter * 22.5f);
         _ai.PlaySound(ent.Comp.ShotSound, Transform(ent).Coordinates, -10f);
-        _ai.Schedule(ent, 0.1f, () => Spiral(ent, negative, remaining - 1, counter, done));
+        _ai.Schedule(ent, (float)ent.Comp.SpiralSeconds.TotalSeconds, () => Spiral(ent, negative, remaining - 1, counter, done));
     }
 
     private bool TryRandom(Entity<ColossusComponent> ent, EntityUid target)
@@ -138,7 +141,7 @@ public sealed class ColossusSystem : EntitySystem
         {
             RandomShots(ent);
             done();
-        }, ent.Comp.RandomCooldown);
+        }, (float)ent.Comp.RandomCooldown.TotalSeconds);
     }
 
     /// <summary>random_aoe: 32 болта в случайные стороны.</summary>
@@ -155,7 +158,7 @@ public sealed class ColossusSystem : EntitySystem
         {
             Shotgun(ent, target);
             done();
-        }, ent.Comp.ShotgunCooldown);
+        }, (float)ent.Comp.ShotgunCooldown.TotalSeconds);
     }
 
     /// <summary>shotgun_blast: 6 болтов веером ±12.5° в цель.</summary>
@@ -172,7 +175,7 @@ public sealed class ColossusSystem : EntitySystem
 
     private bool TryDirShots(Entity<ColossusComponent> ent, EntityUid target)
     {
-        return TryAbility(ent, "Lament.", ent.Comp.WindUp, done => Alternating(ent, done), ent.Comp.DirShotsCooldown);
+        return TryAbility(ent, "Lament.", ent.Comp.WindUp, done => Alternating(ent, done), (float)ent.Comp.DirShotsCooldown.TotalSeconds);
     }
 
     /// <summary>dir_shots/alternating: диагонали, кресты, диагонали, кресты с паузой 1 с.</summary>
@@ -208,7 +211,7 @@ public sealed class ColossusSystem : EntitySystem
             return false;
 
         Say(ent, "Perish.");
-        _ai.Schedule(ent, 1.5f, () => FinalWave(ent, target, 20, 10));
+        _ai.Schedule(ent, (float)ent.Comp.FinalSeconds.TotalSeconds, () => FinalWave(ent, target, 20, 10));
         return true;
     }
 
@@ -232,7 +235,7 @@ public sealed class ColossusSystem : EntitySystem
         if (_ai.TryGetTile(ent, out var grid, out var origin))
         {
             var from = Transform(ent).Coordinates;
-            foreach (var tile in MegafaunaAiSystem.RangeTiles(origin, 12))
+            foreach (var tile in MegafaunaAiSystem.RangeTiles(origin, ent.Comp.FinalWaveRange))
             {
                 if (tile == origin || !_ai.Prob(Math.Min(counter, 2)))
                     continue;
@@ -305,7 +308,7 @@ public sealed class ColossusSystem : EntitySystem
         {
             if (_mobState.IsDead(target) && !HasComp<MegafaunaAiComponent>(target))
             {
-                Spawn("Ash", Transform(target).Coordinates);
+                Spawn(Ash, Transform(target).Coordinates);
                 QueueDel(target);
             }
 

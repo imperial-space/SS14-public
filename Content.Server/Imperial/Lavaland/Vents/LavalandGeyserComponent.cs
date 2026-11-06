@@ -16,7 +16,7 @@ public sealed partial class LavalandGeyserComponent : Component
 
     [DataField] public float Potency = 2f;
     [DataField] public float MaxVolume = 500f;
-    [DataField] public float Interval = 2f;
+    [DataField] public TimeSpan Interval = TimeSpan.FromSeconds(2f);
     [DataField] public int PointValue = 100;
     [DataField] public LocId? TrueName;
     [DataField] public LocId? DiscoveryMessage;

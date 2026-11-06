@@ -62,14 +62,14 @@ public sealed class ImmortalityTalismanSystem : EntitySystem
         }
 
         // Свой щит вместо режима бога: тот при включении полностью исцелял (Rejuvenate).
-        EnsureComp<ImmortalityTalismanShieldComponent>(args.User).EndTime = now + TimeSpan.FromSeconds(ent.Comp.GodmodeDurationSeconds);
+        EnsureComp<ImmortalityTalismanShieldComponent>(args.User).EndTime = now + ent.Comp.GodmodeDurationSeconds;
         _audio.PlayPvs(ActivateSound, args.User);
-        _popup.PopupEntity(Loc.GetString("imperial-lavaland-immortality-talisman-system-2", ("arg0", (ent.Comp.GodmodeDurationSeconds).ToString("F0"))), args.User, args.User, PopupType.Large);
+        _popup.PopupEntity(Loc.GetString("imperial-lavaland-immortality-talisman-system-2", ("arg0", ((float)ent.Comp.GodmodeDurationSeconds.TotalSeconds).ToString("F0"))), args.User, args.User, PopupType.Large);
 
         ent.Comp.IsActive = true;
         ent.Comp.Holder = args.User;
-        ent.Comp.GodmodeEndTime = now + TimeSpan.FromSeconds(ent.Comp.GodmodeDurationSeconds);
-        ent.Comp.CooldownEndTime = now + TimeSpan.FromSeconds(ent.Comp.CooldownSeconds);
+        ent.Comp.GodmodeEndTime = now + ent.Comp.GodmodeDurationSeconds;
+        ent.Comp.CooldownEndTime = now + ent.Comp.CooldownSeconds;
 
         args.Handled = true;
     }

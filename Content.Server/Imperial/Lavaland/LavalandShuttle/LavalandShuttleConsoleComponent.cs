@@ -17,19 +17,19 @@ public sealed partial class LavalandShuttleConsoleComponent : Component
 
     /// <summary>ignitionTime мобильного порта SS13.</summary>
     [DataField]
-    public float IgnitionTime = 5.5f;
+    public TimeSpan IgnitionTime = TimeSpan.FromSeconds(5.5f);
 
     /// <summary>callTime мобильного порта SS13.</summary>
     [DataField]
-    public float TravelTime = 10f;
+    public TimeSpan TravelTime = TimeSpan.FromSeconds(10f);
 
     /// <summary>Срочная отправка: прогрев.</summary>
     [DataField]
-    public float ExpressIgnitionTime = 1f;
+    public TimeSpan ExpressIgnitionTime = TimeSpan.FromSeconds(1f);
 
     /// <summary>Срочная отправка: перелёт.</summary>
     [DataField]
-    public float ExpressTravelTime = 3f;
+    public TimeSpan ExpressTravelTime = TimeSpan.FromSeconds(3f);
 
     /// <summary>Откат срочной отправки.</summary>
     [DataField]
@@ -50,4 +50,7 @@ public sealed partial class LavalandShuttleConsoleComponent : Component
 
     [ViewVariables]
     public TimeSpan NextUiUpdate;
+
+    [DataField]
+    public TimeSpan UiUpdateDelay = TimeSpan.FromSeconds(1);
 }

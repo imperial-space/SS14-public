@@ -8,6 +8,7 @@ using Content.Shared.Stacks;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Maths;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Lavaland.MarkerBeacon;
 
@@ -37,6 +38,9 @@ public sealed class MarkerBeaconSystem : EntitySystem
         { MarkerBeaconColor.Fuchsia,   Color.FromHex("#FF00FF") },
     };
 
+    private static readonly EntProtoId MarkerBeaconStructure = "MarkerBeaconStructure";
+    private static readonly EntProtoId MarkerBeacon1 = "MarkerBeacon1";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -56,7 +60,7 @@ public sealed class MarkerBeaconSystem : EntitySystem
 
         _stack.SetCount(uid, stack.Count - 1, stack);
 
-        var structure = Spawn("MarkerBeaconStructure", Transform(args.User).Coordinates);
+        var structure = Spawn(MarkerBeaconStructure, Transform(args.User).Coordinates);
         if (TryComp<MarkerBeaconStructureComponent>(structure, out var structComp))
         {
             structComp.Color = comp.Color;
@@ -95,7 +99,7 @@ public sealed class MarkerBeaconSystem : EntitySystem
             return;
 
         _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User,
-            TimeSpan.FromSeconds(1.5), new MarkerBeaconPickupDoAfterEvent(), uid, uid)
+            comp.InteractHandDelay, new MarkerBeaconPickupDoAfterEvent(), uid, uid)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -109,7 +113,7 @@ public sealed class MarkerBeaconSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        var beacon = Spawn("MarkerBeacon1", Transform(uid).Coordinates);
+        var beacon = Spawn(MarkerBeacon1, Transform(uid).Coordinates);
         if (TryComp<MarkerBeaconComponent>(beacon, out var beaconComp))
             beaconComp.Color = comp.Color;
 

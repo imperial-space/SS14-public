@@ -34,6 +34,9 @@ public sealed class AshDrakeSystem : EntitySystem
 
     private static readonly Color EnrageColor = Color.FromHex("#FFFF00");
 
+    private const float FallStepSeconds = 0.1f;
+    private const float AnimateFlightSeconds = 0.1f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -137,7 +140,7 @@ public sealed class AshDrakeSystem : EntitySystem
         for (var i = 1; i <= ent.Comp.MassFireSpins; i++)
         {
             var spin = i;
-            _ai.Schedule(ent, (spin - 1) * ent.Comp.MassFireBreathDelay, () =>
+            _ai.Schedule(ent, (spin - 1) * (float)ent.Comp.MassFireBreathDelay.TotalSeconds, () =>
             {
                 _ai.PlaySound(ent.Comp.FireSound, Transform(ent).Coordinates, 5f);
                 var increment = 360f / ent.Comp.MassFireSectors;
@@ -244,7 +247,7 @@ public sealed class AshDrakeSystem : EntitySystem
         if (steps <= 0 || TerminatingOrDeleted(fireball))
             return;
         _transform.SetCoordinates(fireball, Transform(fireball).Coordinates.Offset(new Vector2(0f, -stepSize)));
-        _ai.Schedule(null, 0.1f, () => FallStep(fireball, steps - 1, stepSize));
+        _ai.Schedule(null, FallStepSeconds, () => FallStep(fireball, steps - 1, stepSize));
     }
 
     #endregion
@@ -290,10 +293,10 @@ public sealed class AshDrakeSystem : EntitySystem
                        _transform.GetWorldPosition(targetXform).X < _transform.GetWorldPosition(uid).X;
         AnimateFlight(flight, negative ? -1 : 1, 10);
 
-        _ai.Schedule(uid, 0.3f, () =>
+        _ai.Schedule(uid, (float)ent.Comp.SwoopAttackSeconds.TotalSeconds, () =>
         {
             _appearance.SetData(uid, MegafaunaVisuals.Color, Color.White.WithAlpha(100 / 255f));
-            _ai.Schedule(uid, 0.7f, () => SwoopChase(ent, target, lavaArena, onFinished));
+            _ai.Schedule(uid, ent.Comp.SwoopAttackSeconds2, () => SwoopChase(ent, target, lavaArena, onFinished));
         });
     }
 
@@ -303,7 +306,7 @@ public sealed class AshDrakeSystem : EntitySystem
             return;
         var coords = Transform(flight).Coordinates.Offset(new Vector2(dirX, 1f));
         _transform.SetCoordinates(flight, coords);
-        _ai.Schedule(null, 0.1f, () => AnimateFlight(flight, dirX, steps - 1));
+        _ai.Schedule(null, AnimateFlightSeconds, () => AnimateFlight(flight, dirX, steps - 1));
     }
 
     /// <summary>Летит к клетке цели со скоростью клетка за 0.05 с, следуя за ней.</summary>
@@ -357,18 +360,18 @@ public sealed class AshDrakeSystem : EntitySystem
                             : new Vector2(tile.X - center.X, tile.Y - center.Y);
                         if (dir == Vector2.Zero)
                             dir = Vector2.UnitY;
-                        _throwing.TryThrow(victim, Vector2.Normalize(dir) * 3f, 10f, uid);
+                        _throwing.TryThrow(victim, Vector2.Normalize(dir) * 3f, ent.Comp.SwoopLandBaseThrowSpeed, uid);
                         _popup.PopupEntity(Loc.GetString("ash-drake-thrown", ("victim", victim), ("drake", uid)), victim, PopupType.MediumCaution);
                     }
                 }
             }
 
-            _ai.ShakeCamera(Transform(uid).Coordinates, 7f, 15f);
+            _ai.ShakeCamera(Transform(uid).Coordinates, ent.Comp.SwoopLandRange, ent.Comp.SwoopLandStrength);
             if (TryComp<MegafaunaAiComponent>(uid, out var ai))
                 ai.Invulnerable = false;
             _physics.SetCanCollide(uid, true);
 
-            _ai.Schedule(uid, 0.1f, () =>
+            _ai.Schedule(uid, (float)ent.Comp.SwoopLandSeconds.TotalSeconds, () =>
             {
                 ent.Comp.Swooping = false;
                 _ai.SetImmobile(uid, false);
@@ -452,18 +455,18 @@ public sealed class AshDrakeSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("ash-drake-arena", ("drake", uid)), target, target, PopupType.LargeCaution);
 
         var walls = new List<EntityUid>();
-        foreach (var tile in MegafaunaAiSystem.RangeTiles(center, 3))
+        foreach (var tile in MegafaunaAiSystem.RangeTiles(center, ent.Comp.LavaArenaRange))
         {
             if (MegafaunaAiSystem.Chebyshev(tile, center) == 3)
                 walls.Add(_ai.SpawnAt(ent.Comp.ArenaWall, grid, tile));
         }
 
-        var arena = MegafaunaAiSystem.RangeTiles(center, 2).ToList();
+        var arena = MegafaunaAiSystem.RangeTiles(center, ent.Comp.LavaArenaRange2).ToList();
         foreach (var tile in arena)
             _ai.Drill(grid, tile, uid);
 
         var withClients = new HashSet<EntityUid>();
-        _ai.Schedule(uid, 1f, () => ArenaRound(ent, grid, arena, walls, withClients, 3, onDone));
+        _ai.Schedule(uid, 1f, () => ArenaRound(ent, grid, arena, walls, withClients, ent.Comp.LavaArenaAmount, onDone));
     }
 
     private void ArenaRound(Entity<AshDrakeComponent> ent, Entity<MapGridComponent> grid, List<Vector2i> arena,
@@ -508,7 +511,7 @@ public sealed class AshDrakeSystem : EntitySystem
                 _ai.SpawnAt(ent.Comp.LavaSafe, grid, tile);
         }
 
-        _ai.Schedule(ent, 2.4f, () => ArenaRound(ent, grid, arena, walls, withClients, amount - 1, onDone));
+        _ai.Schedule(ent, (float)ent.Comp.ArenaRoundSeconds.TotalSeconds, () => ArenaRound(ent, grid, arena, walls, withClients, amount - 1, onDone));
     }
 
     /// <summary>arena_escape_enrage: лечение 250, ускорение вдвое, через 5 с круговое пламя.</summary>
@@ -520,17 +523,17 @@ public sealed class AshDrakeSystem : EntitySystem
         _appearance.SetData(uid, MegafaunaVisuals.Color, EnrageColor);
         _ai.SetSpeedMultiplier(uid, 2f);
         if (_light.TryGetLight(uid, out var light))
-            _light.SetRadius(uid, 10f, light);
+            _light.SetRadius(uid, ent.Comp.ArenaEscapeEnrageRadius, light);
 
-        _ai.Schedule(uid, 5f, () =>
+        _ai.Schedule(uid, (float)ent.Comp.ArenaEscapeEnrageSeconds.TotalSeconds, () =>
         {
             if (_ai.GetTarget(uid) is { } target)
                 MassFire(ent, target);
-            _ai.EndAbility(uid, 8f);
+            _ai.EndAbility(uid, (float)ent.Comp.ArenaEscapeEnrageCooldown.TotalSeconds);
             _ai.SetSpeedMultiplier(uid, 1f);
             _appearance.SetData(uid, MegafaunaVisuals.Color, Color.White);
             if (_light.TryGetLight(uid, out var l))
-                _light.SetRadius(uid, 3f, l);
+                _light.SetRadius(uid, ent.Comp.ArenaEscapeEnrageRadius2, l);
         });
     }
 

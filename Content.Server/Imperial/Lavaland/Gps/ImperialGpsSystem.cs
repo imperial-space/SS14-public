@@ -126,7 +126,7 @@ public sealed class ImperialGpsSystem : EntitySystem
 
         args.Affected = true;
         gps.Emped = true;
-        ent.Comp.EmpEnd = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.EmpDuration);
+        ent.Comp.EmpEnd = _timing.CurTime + ent.Comp.EmpDuration;
         UpdateOverlay(ent, gps);
         _ui.CloseUi(ent.Owner, ImperialGpsUiKey.Key);
     }
@@ -159,7 +159,7 @@ public sealed class ImperialGpsSystem : EntitySystem
 
             if (!device.Updating || now < device.NextUpdate)
                 continue;
-            device.NextUpdate = now + TimeSpan.FromSeconds(device.UpdateInterval);
+            device.NextUpdate = now + device.UpdateInterval;
 
             if (_ui.IsUiOpen(uid, ImperialGpsUiKey.Key))
                 UpdateUi((uid, device));
@@ -176,7 +176,7 @@ public sealed class ImperialGpsSystem : EntitySystem
     private (int X, int Y, int Z) Coords(EntityUid uid)
     {
         var map = _transform.GetMapCoordinates(uid);
-        return ((int) MathF.Floor(map.Position.X), (int) MathF.Floor(map.Position.Y), (int) map.MapId);
+        return ((int)MathF.Floor(map.Position.X), (int)MathF.Floor(map.Position.Y), (int)map.MapId);
     }
 
     /// <summary>ui_data.</summary>
@@ -224,10 +224,10 @@ public sealed class ImperialGpsSystem : EntitySystem
                 {
                     var dx = pos.X - cur.X;
                     var dy = pos.Y - cur.Y;
-                    signal.Distance = (int) MathF.Round(MathF.Sqrt(dx * dx + dy * dy));
+                    signal.Distance = (int)MathF.Round(MathF.Sqrt(dx * dx + dy * dy));
                     // get_angle: по часовой от севера
                     var deg = MathF.Atan2(dx, dy) * 180f / MathF.PI;
-                    signal.Degrees = (int) MathF.Round(deg < 0 ? deg + 360 : deg);
+                    signal.Degrees = (int)MathF.Round(deg < 0 ? deg + 360 : deg);
                 }
 
                 state.Signals.Add(signal);

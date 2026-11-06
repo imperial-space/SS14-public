@@ -141,12 +141,12 @@ public sealed class BubblegumSystem : EntitySystem
             return;
 
         var anger = _ai.Anger(ent, 60f, 20f);
-        ent.Comp.EnrageTime = 7f * Math.Clamp(anger / 20f, 0.5f, 1f);
+        ent.Comp.EnrageTime = TimeSpan.FromSeconds(7f * Math.Clamp(anger / 20f, 0.5f, 1f));
 
-        if (!_random.Prob(0.25f) || !_ai.TryGetTile(ent, out var grid, out var tile))
+        if (!_random.Prob(ent.Comp.DamageChangedChance) || !_ai.TryGetTile(ent, out var grid, out var tile))
             return;
 
-        if (_random.Prob(0.4f))
+        if (_random.Prob(ent.Comp.DamageChangedChance2))
             tile += _random.Pick(new[] { Vector2i.Up, Vector2i.Down, Vector2i.Left, Vector2i.Right });
         _ai.SpawnAt(ent.Comp.BloodGibs, grid, tile);
     }
@@ -248,7 +248,7 @@ public sealed class BubblegumSystem : EntitySystem
         if (targets.Count == 0)
             return false;
 
-        BloodAttack(ent, targets, _random.Prob(0.5f));
+        BloodAttack(ent, targets, _random.Prob(ent.Comp.BloodAttackChance));
         return true;
     }
 
@@ -267,7 +267,7 @@ public sealed class BubblegumSystem : EntitySystem
                 return;
             }
 
-            if (!_mobState.IsAlive(targetOne) || _random.Prob(0.1f))
+            if (!_mobState.IsAlive(targetOne) || _random.Prob(ent.Comp.BloodAttackChance2))
                 BloodGrab(ent, grid, tile, hand, next);
             else
                 BloodSmack(ent, grid, tile, hand, next);
@@ -281,7 +281,7 @@ public sealed class BubblegumSystem : EntitySystem
 
         if (targetTwo is { } two && _ai.TryGetTile(two, out var g2, out var t2))
         {
-            if (!_mobState.IsAlive(two) || _random.Prob(0.1f))
+            if (!_mobState.IsAlive(two) || _random.Prob(ent.Comp.BloodAttackChance2))
                 BloodGrab(ent, g2, t2, handedness, () => HitOne(!handedness, afterOne));
             else
                 BloodSmack(ent, g2, t2, handedness, () => HitOne(!handedness, afterOne));
@@ -295,7 +295,7 @@ public sealed class BubblegumSystem : EntitySystem
     private void BloodSmack(Entity<BubblegumComponent> ent, Entity<MapGridComponent> grid, Vector2i tile, bool right, Action next)
     {
         _ai.SpawnAt(right ? ent.Comp.RightSmack : ent.Comp.LeftSmack, grid, tile);
-        _ai.Schedule(ent, 0.4f, () =>
+        _ai.Schedule(ent, (float)ent.Comp.BloodSmackSeconds.TotalSeconds, () =>
         {
             foreach (var mob in _ai.MobsOnTile(grid, tile))
             {
@@ -306,7 +306,7 @@ public sealed class BubblegumSystem : EntitySystem
                 _ai.Damage(mob, "Slash", ent.Comp.SmackDamage, ent);
             }
 
-            _ai.Schedule(ent, 0.3f, next);
+            _ai.Schedule(ent, ent.Comp.BloodSmackSeconds2, next);
         });
     }
 
@@ -314,7 +314,7 @@ public sealed class BubblegumSystem : EntitySystem
     private void BloodGrab(Entity<BubblegumComponent> ent, Entity<MapGridComponent> grid, Vector2i tile, bool right, Action next)
     {
         _ai.SpawnAt(right ? ent.Comp.RightGrab : ent.Comp.LeftGrab, grid, tile);
-        _ai.Schedule(ent, 0.6f, () =>
+        _ai.Schedule(ent, (float)ent.Comp.BloodGrabSeconds.TotalSeconds, () =>
         {
             foreach (var mob in _ai.MobsOnTile(grid, tile))
             {
@@ -331,10 +331,10 @@ public sealed class BubblegumSystem : EntitySystem
                 }
 
                 var victim = mob;
-                _ai.Schedule(ent, 0.2f, () => _ai.Devour(ent, victim));
+                _ai.Schedule(ent, ent.Comp.BloodGrabSeconds2, () => _ai.Devour(ent, victim));
             }
 
-            _ai.Schedule(ent, 0.1f, next);
+            _ai.Schedule(ent, ent.Comp.BloodGrabSeconds3, next);
         });
     }
 
@@ -365,7 +365,7 @@ public sealed class BubblegumSystem : EntitySystem
         }
 
         Spawn(ent.Comp.Decoy, Transform(ent).Coordinates);
-        _ai.Schedule(ent, 0.3f, () =>
+        _ai.Schedule(ent, (float)ent.Comp.BloodWarpSeconds.TotalSeconds, () =>
         {
             var pools = WarpPools(ent, grid, targetTile);
             if (pools.Count > 0)
@@ -394,7 +394,7 @@ public sealed class BubblegumSystem : EntitySystem
     private void BloodEnrage(Entity<BubblegumComponent> ent)
     {
         var now = _timing.CurTime;
-        var enrageTime = TimeSpan.FromSeconds(ent.Comp.EnrageTime);
+        var enrageTime = ent.Comp.EnrageTime;
         if (ent.Comp.EnrageTill + enrageTime * 2 > now)
             return;
 
@@ -419,9 +419,9 @@ public sealed class BubblegumSystem : EntitySystem
 
         _ai.SetImmobile(ent, true);
         // triple_charge: задержки 0.6, 0.4, 0.2 с.
-        DoCharge(ent, ent, target, 0.6f, ent.Comp.ChargePast, () =>
-            DoCharge(ent, ent, target, 0.4f, ent.Comp.ChargePast, () =>
-                DoCharge(ent, ent, target, 0.2f, ent.Comp.ChargePast, () => EndCharges(ent, ent.Comp.ChargeCooldown))));
+        DoCharge(ent, ent, target, (float)ent.Comp.TripleChargeDelay.TotalSeconds, ent.Comp.ChargePast, () =>
+            DoCharge(ent, ent, target, ent.Comp.TripleChargeDelay2, ent.Comp.ChargePast, () =>
+                DoCharge(ent, ent, target, ent.Comp.TripleChargeDelay3, ent.Comp.ChargePast, () => EndCharges(ent, (float)ent.Comp.ChargeCooldown.TotalSeconds))));
         return true;
     }
 
@@ -431,16 +431,16 @@ public sealed class BubblegumSystem : EntitySystem
             return false;
 
         _ai.SetImmobile(ent, true);
-        var cooldown = ent.Comp.HallucinationCooldown;
+        var cooldown = (float)ent.Comp.HallucinationCooldown.TotalSeconds;
         if (!Smash(ent) || _ai.Prob(33))
         {
-            HallucinationCharge(ent, target, 6, 0.8f, 0, 6, true, () => EndCharges(ent, cooldown));
+            HallucinationCharge(ent, target, ent.Comp.HallucinationChargeAmount, (float)ent.Comp.HallucinationChargeDelay.TotalSeconds, 0, ent.Comp.HallucinationChargeRadius, true, () => EndCharges(ent, cooldown));
             return true;
         }
 
-        HallucinationCharge(ent, target, 4, 0.9f, 0, 4, true, () =>
-            HallucinationCharge(ent, target, 4, 0.7f, 0, 4, true, () =>
-                HallucinationCharge(ent, target, 4, 0.5f, 0, 4, true, () =>
+        HallucinationCharge(ent, target, ent.Comp.HallucinationChargeAmount2, ent.Comp.HallucinationChargeDelay2, 0, ent.Comp.HallucinationChargeRadius2, true, () =>
+            HallucinationCharge(ent, target, ent.Comp.HallucinationChargeAmount2, ent.Comp.HallucinationChargeDelay3, 0, ent.Comp.HallucinationChargeRadius2, true, () =>
+                HallucinationCharge(ent, target, ent.Comp.HallucinationChargeAmount2, 0.5f, 0, ent.Comp.HallucinationChargeRadius2, true, () =>
                     DoCharge(ent, ent, target, 0.6f, ent.Comp.ChargePast, () =>
                         DoCharge(ent, ent, target, 0.4f, ent.Comp.ChargePast, () =>
                             DoCharge(ent, ent, target, 0.2f, ent.Comp.ChargePast, () => EndCharges(ent, cooldown)))))));
@@ -462,12 +462,12 @@ public sealed class BubblegumSystem : EntitySystem
     {
         if (remaining <= 0)
         {
-            EndCharges(ent, ent.Comp.HallucinationCooldown);
+            EndCharges(ent, (float)ent.Comp.HallucinationCooldown.TotalSeconds);
             return;
         }
 
-        HallucinationCharge(ent, target, 2, 0.8f, 2, 2, false, () => { });
-        DoCharge(ent, ent, target, 0.6f, ent.Comp.ChargePast, () => SurroundStep(ent, target, remaining - 1));
+        HallucinationCharge(ent, target, ent.Comp.SurroundStepAmount, (float)ent.Comp.SurroundStepDelay.TotalSeconds, 2, ent.Comp.SurroundStepRadius, false, () => { });
+        DoCharge(ent, ent, target, ent.Comp.SurroundStepDelay2, ent.Comp.ChargePast, () => SurroundStep(ent, target, remaining - 1));
     }
 
     private void EndCharges(Entity<BubblegumComponent> ent, float cooldown)
@@ -494,7 +494,7 @@ public sealed class BubblegumSystem : EntitySystem
         for (var i = 1; i <= amount; i++)
         {
             var rad = (startAngle + step * i) * MathF.PI / 180f;
-            var place = center + new Vector2i((int) MathF.Round(MathF.Cos(rad) * radius), (int) MathF.Round(MathF.Sin(rad) * radius));
+            var place = center + new Vector2i((int)MathF.Round(MathF.Cos(rad) * radius), (int)MathF.Round(MathF.Sin(rad) * radius));
             if (useSelf && !selfPlaced)
             {
                 _transform.SetCoordinates(ent, _ai.TileCenter(grid, place));
@@ -572,7 +572,7 @@ public sealed class BubblegumSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("bubblegum-tramples", ("boss", owner.Owner)), mob, mob, PopupType.LargeCaution);
             _ai.Damage(mob, "Blunt", damage, owner);
             _ai.PlaySound(owner.Comp.StepSound, Transform(mob).Coordinates);
-            _ai.ShakeCamera(Transform(mob).Coordinates, 0.5f, 4f);
+            _ai.ShakeCamera(Transform(mob).Coordinates, owner.Comp.ChargeStepRange, owner.Comp.ChargeStepStrength);
         }
 
         if (!_ai.IsBlocked(grid, next))

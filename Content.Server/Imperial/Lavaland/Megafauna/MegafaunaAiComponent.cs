@@ -16,7 +16,7 @@ public sealed partial class MegafaunaAiComponent : Component
 
     /// <summary>Период вызова OpenFire (SSnpcpool wait).</summary>
     [DataField]
-    public float OpenFireInterval = 2f;
+    public TimeSpan OpenFireInterval = TimeSpan.FromSeconds(2f);
 
     /// <summary>Пожирать мёртвую цель вплотную: лечит на половину её здоровья.</summary>
     [DataField]

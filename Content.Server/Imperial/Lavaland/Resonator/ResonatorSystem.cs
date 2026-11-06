@@ -17,6 +17,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Lavaland.Resonator;
 
@@ -47,6 +49,10 @@ public sealed class ResonatorSystem : EntitySystem
     private const float SlowWalk = 0.5f;
     private const float SlowSprint = 0.5f;
     private static readonly TimeSpan SlowDuration = TimeSpan.FromSeconds(10);
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+
+    private const float KineticResonanceRange = 0.4f;
 
     public override void Initialize()
     {
@@ -96,7 +102,7 @@ public sealed class ResonatorSystem : EntitySystem
             return;
 
         // Check if there's already a field at target location → burst it
-        var fields = _lookup.GetEntitiesInRange<ResonanceFieldComponent>(mapCoords, 0.6f);
+        var fields = _lookup.GetEntitiesInRange<ResonanceFieldComponent>(mapCoords, comp.AfterInteractRange);
         foreach (var (fieldUid, fieldComp) in fields)
         {
             fieldComp.DamageMultiplier = comp.QuickBurstMod;
@@ -148,8 +154,8 @@ public sealed class ResonatorSystem : EntitySystem
             {
                 // Matrix mode: trigger on entity entry — handled via trigger check here
                 var mapCoords = _xform.ToMapCoordinates(Transform(uid).Coordinates);
-                var mobs = _lookup.GetEntitiesInRange<MobStateComponent>(mapCoords, 0.4f);
-                bool hasMob = false;
+                var mobs = _lookup.GetEntitiesInRange<MobStateComponent>(mapCoords, comp.UpdateRange);
+                var hasMob = false;
                 foreach (var (mobUid, _) in mobs)
                 {
                     if (mobUid != comp.Creator)
@@ -176,7 +182,7 @@ public sealed class ResonatorSystem : EntitySystem
     public void KineticResonance(EntityCoordinates coords, EntityUid? creator, float multiplier)
     {
         var mapCoords = _xform.ToMapCoordinates(coords);
-        foreach (var (fieldUid, field) in _lookup.GetEntitiesInRange<ResonanceFieldComponent>(mapCoords, 0.4f))
+        foreach (var (fieldUid, field) in _lookup.GetEntitiesInRange<ResonanceFieldComponent>(mapCoords, KineticResonanceRange))
         {
             if (field.Rupturing)
                 continue;
@@ -207,7 +213,7 @@ public sealed class ResonatorSystem : EntitySystem
         Spawn(CrushPrototype, coords);
 
         // Destroy any ore vein entity on this tile
-        var oreVeins = _lookup.GetEntitiesInRange<OreVeinComponent>(mapCoords, 0.6f);
+        var oreVeins = _lookup.GetEntitiesInRange<OreVeinComponent>(mapCoords, comp.BurstFieldRange);
         foreach (var (oreUid, _) in oreVeins)
             _destructible.DestroyEntity(oreUid);
 
@@ -218,9 +224,9 @@ public sealed class ResonatorSystem : EntitySystem
 
         // Damage mobs on the tile
         var dmgSpec = new DamageSpecifier();
-        dmgSpec.DamageDict["Blunt"] = FixedPoint2.New(damage);
+        dmgSpec.DamageDict[BluntDamageType] = FixedPoint2.New(damage);
 
-        var mobs = _lookup.GetEntitiesInRange<DamageableComponent>(mapCoords, 0.6f);
+        var mobs = _lookup.GetEntitiesInRange<DamageableComponent>(mapCoords, comp.BurstFieldRange);
         foreach (var (mobUid, _) in mobs)
         {
             if (!HasComp<MobStateComponent>(mobUid))
@@ -233,7 +239,7 @@ public sealed class ResonatorSystem : EntitySystem
         _audio.PlayPvs(BlastSound, uid);
 
         // Chain-burst adjacent fields
-        var adjacentFields = _lookup.GetEntitiesInRange<ResonanceFieldComponent>(mapCoords, 1.6f);
+        var adjacentFields = _lookup.GetEntitiesInRange<ResonanceFieldComponent>(mapCoords, comp.BurstFieldRange2);
         foreach (var (adjUid, adjComp) in adjacentFields)
         {
             if (adjUid == uid || adjComp.Rupturing)
@@ -246,15 +252,15 @@ public sealed class ResonatorSystem : EntitySystem
         {
             if (!_random.Prob(comp.FailureProb / 100f))
             {
-                var nearbyOres = _lookup.GetEntitiesInRange<OreVeinComponent>(mapCoords, 1.6f);
+                var nearbyOres = _lookup.GetEntitiesInRange<OreVeinComponent>(mapCoords, comp.BurstFieldRange2);
                 foreach (var (nearOreUid, _) in nearbyOres)
                 {
                     var nearCoords = Transform(nearOreUid).Coordinates;
                     var nearMap = _xform.ToMapCoordinates(nearCoords);
 
                     // Skip if already has a field there
-                    bool hasField = false;
-                    var check = _lookup.GetEntitiesInRange<ResonanceFieldComponent>(nearMap, 0.6f);
+                    var hasField = false;
+                    var check = _lookup.GetEntitiesInRange<ResonanceFieldComponent>(nearMap, comp.BurstFieldRange);
                     foreach (var _ in check) { hasField = true; break; }
                     if (hasField)
                         continue;

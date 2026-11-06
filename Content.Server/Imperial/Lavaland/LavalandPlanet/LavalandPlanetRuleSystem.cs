@@ -39,6 +39,8 @@ public sealed class LavalandPlanetRuleSystem : GameRuleSystem<LavalandPlanetRule
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly StationSystem _station = default!;
 
+    private static readonly EntProtoId WallRockBasalt = "WallRockBasalt";
+
     protected override void Started(EntityUid uid, LavalandPlanetRuleComponent comp, GameRuleComponent rule, GameRuleStartedEvent args)
     {
         var mapUid = _maps.CreateMap(out var mapId, runMapInit: false);
@@ -320,7 +322,7 @@ public sealed class LavalandPlanetRuleSystem : GameRuleSystem<LavalandPlanetRule
         _maps.SetTiles(mapUid, planetGrid, tiles);
 
         foreach (var pos in positions)
-            Spawn("WallRockBasalt", new EntityCoordinates(mapUid, new Vector2(pos.X + 0.5f, pos.Y + 0.5f)));
+            Spawn(WallRockBasalt, new EntityCoordinates(mapUid, new Vector2(pos.X + 0.5f, pos.Y + 0.5f)));
     }
 
     private Vector2 FindSafeMobPosition(List<Box2> placedBounds, LavalandPlanetRuleComponent comp)

@@ -93,7 +93,7 @@ public sealed class LavalandAnvilSystem : EntitySystem
         if (ent.Comp.CurrentCharges < ent.Comp.MaxCharges)
         {
             var remaining = RemainingRecharge(ent.Comp);
-            var minutes = (int) remaining.TotalMinutes;
+            var minutes = (int)remaining.TotalMinutes;
             var seconds = remaining.Seconds;
             args.PushMarkup(Loc.GetString("imperial-lavaland-lavaland-anvil-system-3", ("arg0", minutes), ("arg1", (seconds).ToString("D2"))));
         }
@@ -173,7 +173,7 @@ public sealed class LavalandAnvilSystem : EntitySystem
         if (comp.CurrentCharges <= 0)
         {
             var remaining = RemainingRecharge(comp);
-            var minutes = (int) remaining.TotalMinutes;
+            var minutes = (int)remaining.TotalMinutes;
             var seconds = remaining.Seconds;
             _popup.PopupEntity(Loc.GetString("imperial-lavaland-lavaland-anvil-system-10", ("arg0", minutes), ("arg1", (seconds).ToString("D2"))), ent, args.User);
             return;

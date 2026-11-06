@@ -42,4 +42,13 @@ public sealed partial class CrusherTrophyComponent : Component
     /// <summary>Перезарядка использования в руке (broodmother_tongue, legionnaire_spine).</summary>
     [ViewVariables]
     public TimeSpan UseCooldownEnd;
+
+    [DataField]
+    public TimeSpan TrophyUseInHandBroodmotherTongueDelay = TimeSpan.FromSeconds(10);
+
+    [DataField]
+    public TimeSpan UseCooldown = TimeSpan.FromSeconds(60);
+
+    [DataField]
+    public TimeSpan UseCooldown2 = TimeSpan.FromSeconds(4);
 }

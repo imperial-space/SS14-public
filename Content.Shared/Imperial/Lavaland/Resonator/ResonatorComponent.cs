@@ -30,4 +30,7 @@ public sealed partial class ResonatorComponent : Component
     /// <summary>Жизнь поля в ручном режиме и в режиме матрицы.</summary>
     [DataField]
     public TimeSpan ManualFieldDuration = TimeSpan.FromSeconds(60);
+
+    [DataField]
+    public float AfterInteractRange = 0.6f;
 }

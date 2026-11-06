@@ -12,7 +12,8 @@ namespace Content.Server.Imperial.Lavaland.Vents;
 public sealed partial class LavalandOreVentComponent : Component
 {
     /// <summary>ore_vent_options: веса размеров (large 3, medium 5, small 7).</summary>
-    [DataField] public Dictionary<OreVentSize, float> SizeWeights = new()
+    [DataField]
+    public Dictionary<OreVentSize, float> SizeWeights = new()
     {
         { OreVentSize.Large, 3 },
         { OreVentSize.Medium, 5 },
@@ -26,7 +27,8 @@ public sealed partial class LavalandOreVentComponent : Component
     [DataField] public Dictionary<EntProtoId, float> Minerals = new();
 
     /// <summary>ore_vent_minerals_lavaland.</summary>
-    [DataField] public Dictionary<EntProtoId, float> LavalandMinerals = new()
+    [DataField]
+    public Dictionary<EntProtoId, float> LavalandMinerals = new()
     {
         { "SteelOre1", 14 },
         { "SpaceQuartz1", 13 },
@@ -51,7 +53,7 @@ public sealed partial class LavalandOreVentComponent : Component
     /// <summary>ARTIFACT_ROLL_CHANCE.</summary>
     [DataField] public float ArtifactChance = 0.07f;
 
-    [DataField] public float BoulderInterval = 60f;
+    [DataField] public TimeSpan BoulderInterval = TimeSpan.FromSeconds(60f);
     [DataField] public int MaxBoulders = 10;
 
     [DataField] public SoundSpecifier ScanSound = new SoundPathSpecifier("/Audio/Imperial/Lavaland/timer.ogg");
@@ -70,4 +72,40 @@ public sealed partial class LavalandOreVentComponent : Component
     [ViewVariables] public List<EntityUid> Spawned = new();
     [ViewVariables] public TimeSpan NextBoulder;
     [ViewVariables] public string BoulderStyle = "boulder";
+
+    [DataField]
+    public TimeSpan ConfirmDelay = TimeSpan.FromSeconds(10);
+
+    [DataField]
+    public TimeSpan VentInteractUsingSeconds = TimeSpan.FromSeconds(4f);
+
+    [DataField]
+    public TimeSpan PreWaveDefenseSeconds = TimeSpan.FromSeconds(3f);
+
+    [DataField]
+    public TimeSpan SpawnNodeSeconds = TimeSpan.FromSeconds(2f);
+
+    [DataField]
+    public int SpawnDefendersRange = 4;
+
+    [DataField]
+    public float SpawnDefendersTotalIntensity = 30f;
+
+    [DataField]
+    public float SpawnDefendersSlope = 5f;
+
+    [DataField]
+    public float SpawnDefendersMaxTileIntensity = 10f;
+
+    [DataField]
+    public float WaveWinRange = 7f;
+
+    [DataField]
+    public TimeSpan ResetDroneSeconds = TimeSpan.FromSeconds(1.9f);
+
+    [DataField]
+    public float ResetDroneChance = 0.01f;
+
+    [DataField]
+    public float ResetDroneSeconds2 = 2f;
 }

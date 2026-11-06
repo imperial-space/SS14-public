@@ -10,4 +10,13 @@ public sealed partial class LavalandNodeDroneComponent : Component
 {
     [ViewVariables] public EntityUid? Vent;
     [ViewVariables] public bool Escaping;
+
+    [DataField]
+    public float DroneStateChangedTotalIntensity = 10f;
+
+    [DataField]
+    public float DroneStateChangedSlope = 5f;
+
+    [DataField]
+    public float DroneStateChangedMaxTileIntensity = 4f;
 }

@@ -7,10 +7,10 @@ namespace Content.Server.Imperial.Lavaland.Artifact;
 public sealed partial class ImmortalityTalismanComponent : Component
 {
     [DataField]
-    public float GodmodeDurationSeconds = 8f;
+    public TimeSpan GodmodeDurationSeconds = TimeSpan.FromSeconds(8f);
 
     [DataField]
-    public float CooldownSeconds = 180f;
+    public TimeSpan CooldownSeconds = TimeSpan.FromSeconds(180f);
 
     [DataField]
     public bool IsActive;

@@ -7,6 +7,8 @@ using Content.Shared.Mobs.Components;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Lavaland.AshDrake;
 
@@ -17,6 +19,10 @@ public sealed class AshDrakeFireTileSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
 
+    private static readonly ProtoId<DamageTypePrototype> HeatDamageType = "Heat";
+
+    private static readonly TimeSpan DamageDelay = TimeSpan.FromSeconds(0.15);
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -26,13 +32,13 @@ public sealed class AshDrakeFireTileSystem : EntitySystem
         {
             if (_timing.CurTime < fireTile.NextDamageTime)
                 continue;
-            fireTile.NextDamageTime = _timing.CurTime + TimeSpan.FromSeconds(0.15);
+            fireTile.NextDamageTime = _timing.CurTime + DamageDelay;
 
             if (!Exists(fireTile.DrakeUid))
                 continue;
 
             var spec = new DamageSpecifier();
-            spec.DamageDict.Add("Heat", FixedPoint2.New(fireTile.Damage));
+            spec.DamageDict.Add(HeatDamageType, FixedPoint2.New(fireTile.Damage));
 
             foreach (var session in _playerManager.Sessions)
             {

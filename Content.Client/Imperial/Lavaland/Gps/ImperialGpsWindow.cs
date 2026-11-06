@@ -122,7 +122,7 @@ public sealed class ImperialGpsWindow : DefaultWindow
 
             var direction = string.Empty;
             if (signal.Degrees is { } deg)
-                direction += Arrows[(int) MathF.Round(deg / 45f) % 8] + " ";
+                direction += Arrows[(int)MathF.Round(deg / 45f) % 8] + " ";
             if (signal.Distance is { } dist)
                 direction += $"{dist}m";
             // opacity по расстоянию, как в tgui: дальние сигналы бледнее.

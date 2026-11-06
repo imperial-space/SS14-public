@@ -13,4 +13,7 @@ public sealed partial class KheiralCuffsComponent : Component
     [ViewVariables] public EntityUid? Wearer;
     [ViewVariables] public bool GpsEnabled;
     [ViewVariables] public TimeSpan NextCheck;
+
+    [DataField]
+    public TimeSpan CheckDelay = TimeSpan.FromSeconds(1);
 }

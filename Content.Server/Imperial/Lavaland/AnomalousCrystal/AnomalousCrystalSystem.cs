@@ -112,7 +112,7 @@ public sealed class AnomalousCrystalSystem : EntitySystem
             return;
 
         var user = args.User;
-        if (ent.Comp.UseTime > 0)
+        if (ent.Comp.UseTime > TimeSpan.Zero)
         {
             // charge_animation
             ent.Comp.Active = true;
@@ -137,7 +137,7 @@ public sealed class AnomalousCrystalSystem : EntitySystem
 
     private void Activate(Entity<AnomalousCrystalComponent> ent, EntityUid user)
     {
-        ent.Comp.NextUse = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.Cooldown);
+        ent.Comp.NextUse = _timing.CurTime + ent.Comp.Cooldown;
         _ai.PlaySound(ent.Comp.ActivationSound, Transform(user).Coordinates, 5f);
 
         switch (ent.Comp.Kind)
@@ -149,8 +149,8 @@ public sealed class AnomalousCrystalSystem : EntitySystem
                 ThemeWarp(ent);
                 break;
             case AnomalousCrystalKind.Emitter:
-                var angle = 180f - (float) Transform(ent).LocalRotation.Degrees;
-                _ai.ShootProjectile(ent, ent.Comp.Projectile, angle, 10f);
+                var angle = 180f - (float)Transform(ent).LocalRotation.Degrees;
+                _ai.ShootProjectile(ent, ent.Comp.Projectile, angle, ent.Comp.ActivateEmitterSpeed);
                 break;
             case AnomalousCrystalKind.DarkReprise:
                 DarkReprise(ent);

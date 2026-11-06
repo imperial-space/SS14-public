@@ -55,6 +55,8 @@ public sealed class MegafaunaAiSystem : EntitySystem
     private readonly List<(TimeSpan Time, EntityUid? Owner, Action Action)> _scheduled = new();
     private readonly HashSet<EntityUid> _tileEnts = new();
 
+    private const float DevourAmount = 500f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -114,7 +116,7 @@ public sealed class MegafaunaAiSystem : EntitySystem
 
             if (now < comp.NextOpenFire)
                 continue;
-            comp.NextOpenFire = now + TimeSpan.FromSeconds(comp.OpenFireInterval);
+            comp.NextOpenFire = now + comp.OpenFireInterval;
 
             var oldTarget = comp.Target;
             comp.Target = FindTarget(uid, comp);
@@ -201,7 +203,7 @@ public sealed class MegafaunaAiSystem : EntitySystem
         if (_thresholds.TryGetThresholdForState(victim, MobState.Dead, out var victimMax))
             Heal(uid, victimMax.Value.Float() * 0.5f);
 
-        Damage(victim, "Blunt", 500f, uid);
+        Damage(victim, "Blunt", DevourAmount, uid);
         EnsureComp<MegafaunaGuttedComponent>(victim);
         comp.Target = null;
     }
@@ -223,13 +225,19 @@ public sealed class MegafaunaAiSystem : EntitySystem
     /// <summary>SLEEP_CHECK_DEATH: действие выполнится через задержку, только если владелец ещё жив.</summary>
     public void Schedule(EntityUid? owner, float seconds, Action action)
     {
-        if (seconds <= 0f && (owner == null || IsAliveBoss(owner.Value)))
+        Schedule(owner, TimeSpan.FromSeconds(seconds), action);
+    }
+
+    /// <summary>SLEEP_CHECK_DEATH: действие выполнится через задержку, только если владелец ещё жив.</summary>
+    public void Schedule(EntityUid? owner, TimeSpan delay, Action action)
+    {
+        if (delay <= TimeSpan.Zero && (owner == null || IsAliveBoss(owner.Value)))
         {
             action();
             return;
         }
 
-        _scheduled.Add((_timing.CurTime + TimeSpan.FromSeconds(seconds), owner, action));
+        _scheduled.Add((_timing.CurTime + delay, owner, action));
     }
 
     /// <summary>Trigger: способность доступна, если не идёт другая атака и общий откат прошёл.</summary>
@@ -252,10 +260,16 @@ public sealed class MegafaunaAiSystem : EntitySystem
     /// <summary>StartCooldown + enable_cooldown_actions: откат общий для всех способностей.</summary>
     public void EndAbility(EntityUid uid, float cooldown, MegafaunaAiComponent? comp = null)
     {
+        EndAbility(uid, TimeSpan.FromSeconds(cooldown), comp);
+    }
+
+    /// <summary>StartCooldown + enable_cooldown_actions: откат общий для всех способностей.</summary>
+    public void EndAbility(EntityUid uid, TimeSpan cooldown, MegafaunaAiComponent? comp = null)
+    {
         if (!Resolve(uid, ref comp, false))
             return;
         comp.Busy = false;
-        comp.NextAbility = _timing.CurTime + TimeSpan.FromSeconds(cooldown);
+        comp.NextAbility = _timing.CurTime + cooldown;
     }
 
     /// <summary>StartCooldown(0): сбросить общий откат.</summary>
@@ -406,7 +420,7 @@ public sealed class MegafaunaAiSystem : EntitySystem
         {
             var pa = _transform.GetWorldPosition(a);
             var pb = _transform.GetWorldPosition(b);
-            return (int) MathF.Round(MathF.Max(MathF.Abs(pa.X - pb.X), MathF.Abs(pa.Y - pb.Y)));
+            return (int)MathF.Round(MathF.Max(MathF.Abs(pa.X - pb.X), MathF.Abs(pa.Y - pb.Y)));
         }
 
         return Chebyshev(tileA, tileB);
@@ -421,8 +435,8 @@ public sealed class MegafaunaAiSystem : EntitySystem
     public static IEnumerable<Vector2i> RangeTiles(Vector2i center, int range)
     {
         for (var x = -range; x <= range; x++)
-        for (var y = -range; y <= range; y++)
-            yield return center + new Vector2i(x, y);
+            for (var y = -range; y <= range; y++)
+                yield return center + new Vector2i(x, y);
     }
 
     /// <summary>get_line: клетки отрезка (Брезенхем), включая концы.</summary>
@@ -450,7 +464,7 @@ public sealed class MegafaunaAiSystem : EntitySystem
     public static Vector2i TileAtAngle(Vector2i origin, float angleDeg, float distance)
     {
         var rad = angleDeg * MathF.PI / 180f;
-        return origin + new Vector2i((int) MathF.Round(MathF.Cos(rad) * distance), (int) MathF.Round(MathF.Sin(rad) * distance));
+        return origin + new Vector2i((int)MathF.Round(MathF.Cos(rad) * distance), (int)MathF.Round(MathF.Sin(rad) * distance));
     }
 
     /// <summary>Угол от a к b в градусах (0 = восток, против часовой).</summary>
@@ -479,7 +493,7 @@ public sealed class MegafaunaAiSystem : EntitySystem
                 continue;
             if (!TryComp<Robust.Shared.Physics.Components.PhysicsComponent>(ent, out var physics) || !physics.Hard || !physics.CanCollide)
                 continue;
-            if ((physics.CollisionLayer & (int) CollisionGroup.Impassable) != 0)
+            if ((physics.CollisionLayer & (int)CollisionGroup.Impassable) != 0)
                 return true;
         }
 

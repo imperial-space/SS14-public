@@ -18,11 +18,11 @@ public sealed partial class ColossusComponent : Component
     /// <summary>SLEEP_CHECK_DEATH перед любым залпом.</summary>
     [DataField] public float WindUp = 1.5f;
 
-    [DataField] public float SpiralCooldown = 1.5f;
-    [DataField] public float RandomCooldown = 1.5f;
-    [DataField] public float ShotgunCooldown = 0.5f;
-    [DataField] public float DirShotsCooldown = 2.5f;
-    [DataField] public float FinalCooldown = 2.5f;
+    [DataField] public TimeSpan SpiralCooldown = TimeSpan.FromSeconds(1.5f);
+    [DataField] public TimeSpan RandomCooldown = TimeSpan.FromSeconds(1.5f);
+    [DataField] public TimeSpan ShotgunCooldown = TimeSpan.FromSeconds(0.5f);
+    [DataField] public TimeSpan DirShotsCooldown = TimeSpan.FromSeconds(2.5f);
+    [DataField] public TimeSpan FinalCooldown = TimeSpan.FromSeconds(2.5f);
     [DataField] public float[] ShotgunAngles = { 12.5f, 7.5f, 2.5f, -2.5f, -7.5f, -12.5f };
 
     [DataField] public SoundSpecifier ShotSound = new SoundPathSpecifier("/Audio/Imperial/boss/sound_magic_clockwork_invoke_general.ogg");
@@ -30,4 +30,22 @@ public sealed partial class ColossusComponent : Component
     [DataField] public EntProtoId Shield = "ImperialColossusShield";
 
     [ViewVariables] public bool FinalAvailable = true;
+
+    [DataField]
+    public float TelegraphRange = 10f;
+
+    [DataField]
+    public float TelegraphStrength = 4f;
+
+    [DataField]
+    public float SpiralChance = 0.5f;
+
+    [DataField]
+    public TimeSpan SpiralSeconds = TimeSpan.FromSeconds(0.1f);
+
+    [DataField]
+    public TimeSpan FinalSeconds = TimeSpan.FromSeconds(1.5f);
+
+    [DataField]
+    public int FinalWaveRange = 12;
 }

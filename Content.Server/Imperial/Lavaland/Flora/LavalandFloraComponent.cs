@@ -30,7 +30,7 @@ public sealed partial class LavalandFloraComponent : Component
 
     [DataField] public int AmountLow = 1;
     [DataField] public int AmountHigh = 3;
-    [DataField] public float HarvestTime = 6f;
+    [DataField] public TimeSpan HarvestTime = TimeSpan.FromSeconds(6f);
 
     /// <summary>Нужен инструмент с этим тегом (кирка для камней); null — руками.</summary>
     [DataField] public ProtoId<TagPrototype>? ToolTag;

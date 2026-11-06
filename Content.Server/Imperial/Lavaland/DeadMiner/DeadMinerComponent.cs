@@ -14,35 +14,35 @@ public sealed partial class DeadMinerComponent : Component
     [DataField] public int PkaRange = 3;
 
     /// <summary>BB_BDM_RANGED_ATTACK_COOLDOWN.</summary>
-    [DataField] public float RangedAttackCooldown = 1.6f;
+    [DataField] public TimeSpan RangedAttackCooldown = TimeSpan.FromSeconds(1.6f);
 
     // miner_saw: force 8 / open_force 12
     [DataField] public float ClosedDamage = 8f;
     [DataField] public float OpenDamage = 12f;
     [DataField] public int ClosedHits = 5;
     [DataField] public int OpenHits = 3;
-    [DataField] public float ClosedHitDelay = 0.3f;
-    [DataField] public float OpenHitDelay = 0.5f;
+    [DataField] public TimeSpan ClosedHitDelay = TimeSpan.FromSeconds(0.3f);
+    [DataField] public TimeSpan OpenHitDelay = TimeSpan.FromSeconds(0.5f);
     /// <summary>CLICK_CD_MELEE.</summary>
-    [DataField] public float MeleeCooldown = 0.8f;
+    [DataField] public TimeSpan MeleeCooldown = TimeSpan.FromSeconds(0.8f);
 
     // kinetic_accelerator
     [DataField] public EntProtoId KineticProjectile = "ImperialDeadMinerKinetic";
-    [DataField] public float PkaCooldown = 1.5f;
+    [DataField] public TimeSpan PkaCooldown = TimeSpan.FromSeconds(1.5f);
     [DataField] public int PkaShots = 3;
-    [DataField] public float PkaShotDelay = 0.15f;
+    [DataField] public TimeSpan PkaShotDelay = TimeSpan.FromSeconds(0.15f);
     [DataField] public float PkaSpread = 10f;
-    [DataField] public float PkaAlertDelay = 0.5f;
-    [DataField] public float PkaPrefireDelay = 0.2f;
-    [DataField] public float PkaReloadDelay = 0.1f;
+    [DataField] public TimeSpan PkaAlertDelay = TimeSpan.FromSeconds(0.5f);
+    [DataField] public TimeSpan PkaPrefireDelay = TimeSpan.FromSeconds(0.2f);
+    [DataField] public TimeSpan PkaReloadDelay = TimeSpan.FromSeconds(0.1f);
     [DataField] public float PkaSpeed = 20f;
 
     // dash_attack: charge/basic_charge/blood_drunk_miner + rapid_fire
-    [DataField] public float DashAttackCooldown = 3f;
-    [DataField] public float DashDelay = 0.1f;
+    [DataField] public TimeSpan DashAttackCooldown = TimeSpan.FromSeconds(3f);
+    [DataField] public TimeSpan DashDelay = TimeSpan.FromSeconds(0.1f);
     [DataField] public int DashDistance = 6;
-    [DataField] public float DashStepDelay = 0.03f;
-    [DataField] public float DashFireDelay = 0.22f;
+    [DataField] public TimeSpan DashStepDelay = TimeSpan.FromSeconds(0.03f);
+    [DataField] public TimeSpan DashFireDelay = TimeSpan.FromSeconds(0.22f);
 
     // transform_weapon: откат 5-10 с
     [DataField] public float TransformCooldownMin = 5f;

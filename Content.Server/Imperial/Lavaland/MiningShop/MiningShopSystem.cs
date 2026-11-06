@@ -64,7 +64,7 @@ public sealed class MiningShopSystem : EntitySystem
         {
             if (now < comp.NextCheck)
                 continue;
-            comp.NextCheck = now + TimeSpan.FromSeconds(1);
+            comp.NextCheck = now + comp.CheckDelay;
             UpdateCuffs((uid, comp));
         }
 
@@ -73,7 +73,7 @@ public sealed class MiningShopSystem : EntitySystem
         {
             if (now < comp.NextCheck)
                 continue;
-            comp.NextCheck = now + TimeSpan.FromSeconds(1);
+            comp.NextCheck = now + comp.CheckDelay;
             UpdateRadio(uid, comp);
         }
     }
@@ -206,7 +206,7 @@ public sealed class MiningShopSystem : EntitySystem
         {
             return map.StormState switch
             {
-                LavalandStormState.Idle => ((map.NextStorm - _timing.CurTime).TotalSeconds <= comp.ClearDelay ? WeatherAlertLevel.Incoming : WeatherAlertLevel.Clear, true),
+                LavalandStormState.Idle => ((map.NextStorm - _timing.CurTime).TotalSeconds <= (float)comp.ClearDelay.TotalSeconds ? WeatherAlertLevel.Incoming : WeatherAlertLevel.Clear, true),
                 LavalandStormState.Warning or LavalandStormState.Active => (WeatherAlertLevel.ImminentOrActive, true),
                 LavalandStormState.PassingBy => (WeatherAlertLevel.ImminentOrActive, false),
                 _ => (WeatherAlertLevel.Clear, true),

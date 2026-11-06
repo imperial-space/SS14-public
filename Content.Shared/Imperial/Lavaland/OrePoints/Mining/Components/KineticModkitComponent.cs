@@ -31,7 +31,7 @@ public sealed partial class KineticModkitComponent : Component
 
     /// <summary>cooldown modifier в секундах: вычитается из recharge_time (отрицательный — замедляет).</summary>
     [DataField]
-    public float Cooldown;
+    public TimeSpan Cooldown;
 
     /// <summary>cooldown/aoe: взрыв на месте попадания.</summary>
     [DataField]

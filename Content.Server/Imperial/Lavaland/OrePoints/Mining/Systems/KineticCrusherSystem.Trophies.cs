@@ -59,6 +59,13 @@ public sealed partial class KineticCrusherSystem
     /// <summary>broodmother/patch: щупальца хватают через секунду после появления.</summary>
     private readonly List<(TimeSpan At, MapCoordinates Coords, EntityUid User)> _tentacles = new();
 
+    private static readonly TimeSpan TentaclePatchDelay = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan TentacleGrabDuration = TimeSpan.FromSeconds(1);
+
+    private const float DropOffNearRange = 0.3f;
+    private const float FireBileSpeed = 10f;
+    private const float TentacleGrabRange = 0.45f;
+
     private void InitializeTrophies()
     {
         SubscribeLocalEvent<CrusherDestabilizerComponent, PreventCollideEvent>(OnDestabilizerPreventCollide);
@@ -95,7 +102,7 @@ public sealed partial class KineticCrusherSystem
             case CrusherTrophyKind.BilewormSpewlet:
                 if (now < trophy.Comp.CooldownEnd)
                     break;
-                trophy.Comp.CooldownEnd = now + TimeSpan.FromSeconds(10);
+                trophy.Comp.CooldownEnd = now + crusher.Comp.Cooldown;
                 FireBile(user);
                 break;
 
@@ -103,7 +110,7 @@ public sealed partial class KineticCrusherSystem
             case CrusherTrophyKind.IceDemonCube:
                 if (now < trophy.Comp.CooldownEnd)
                     break;
-                trophy.Comp.CooldownEnd = now + TimeSpan.FromSeconds(30);
+                trophy.Comp.CooldownEnd = now + crusher.Comp.Cooldown2;
                 for (var i = 0; i < 2; i++)
                 {
                     Spawn(DemonAfterimage, DropOffNear(target, user));
@@ -112,7 +119,7 @@ public sealed partial class KineticCrusherSystem
 
             // wolf_ear: speed_boost на 1 секунду.
             case CrusherTrophyKind.WolfEar:
-                _status.SpeedBoost(user, TimeSpan.FromSeconds(1));
+                _status.SpeedBoost(user, crusher.Comp.MarkDetonationExtraWolfEarDuration);
                 _audio.PlayPvs(ChimeSound, user, AudioParams.Default.WithVolume(-5f));
                 break;
 
@@ -121,13 +128,13 @@ public sealed partial class KineticCrusherSystem
                 if (HealthFraction(user) <= 0.5f)
                 {
                     var crusherUid = crusher.Owner;
-                    _schedule.Schedule(TimeSpan.FromSeconds(0.1), () => SecondStrike(crusherUid, user, target));
+                    _schedule.Schedule(crusher.Comp.MarkDetonationExtraBearPawDelay, () => SecondStrike(crusherUid, user, target));
                 }
                 break;
 
             // ice_block_talisman: ледяная глыба на 4 секунды.
             case CrusherTrophyKind.IceBlockTalisman:
-                _status.Freeze(target, TimeSpan.FromSeconds(4));
+                _status.Freeze(target, crusher.Comp.MarkDetonationExtraIceBlockTalismanDuration);
                 _popup.PopupEntity(Loc.GetString("crusher-trophy-frozen"), target, target, PopupType.LargeCaution);
                 break;
 
@@ -190,7 +197,7 @@ public sealed partial class KineticCrusherSystem
         foreach (var dir in CardinalVectors.OrderBy(_ => _random.Next()))
         {
             var coords = xform.Coordinates.Offset(dir);
-            if (!_lookup.GetEntitiesInRange<MobStateComponent>(coords, 0.3f).Any())
+            if (!_lookup.GetEntitiesInRange<MobStateComponent>(coords, DropOffNearRange).Any())
                 return coords;
         }
 
@@ -210,7 +217,7 @@ public sealed partial class KineticCrusherSystem
         {
             var bile = Spawn(BileProjectile, coords);
             EnsureComp<CrusherBileComponent>(bile).Firer = user;
-            _gun.ShootProjectile(bile, dir, Vector2.Zero, null, user, 10f);
+            _gun.ShootProjectile(bile, dir, Vector2.Zero, null, user, FireBileSpeed);
         }
     }
 
@@ -231,7 +238,7 @@ public sealed partial class KineticCrusherSystem
             !_equipment.HasTrophy((crusherUid, crusher), CrusherTrophyKind.BilewormSpewlet))
             return;
 
-        foreach (var (rock, gatherable) in _lookup.GetEntitiesInRange<GatherableComponent>(Transform(target).Coordinates, 1.5f).ToList())
+        foreach (var (rock, gatherable) in _lookup.GetEntitiesInRange<GatherableComponent>(Transform(target).Coordinates, ent.Comp.DestabilizerHitMineralRange).ToList())
         {
             if (rock != target && !TerminatingOrDeleted(rock))
                 _gather.Gather(rock, ent.Comp.Firer, gatherable);
@@ -299,20 +306,20 @@ public sealed partial class KineticCrusherSystem
         {
             var coords = center.Offset(offset);
             Spawn(TentacleEffect, coords);
-            _tentacles.Add((now + TimeSpan.FromSeconds(1), _transform.ToMapCoordinates(coords), user));
+            _tentacles.Add((now + TentaclePatchDelay, _transform.ToMapCoordinates(coords), user));
         }
     }
 
     /// <summary>goliath_tentacle/grab(): 30–35 урона и захват на grapple_time.</summary>
     private void TentacleGrab(MapCoordinates coords, EntityUid user)
     {
-        foreach (var (mob, _) in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 0.45f).ToList())
+        foreach (var (mob, _) in _lookup.GetEntitiesInRange<MobStateComponent>(coords, TentacleGrabRange).ToList())
         {
             if (mob == user || _mobState.IsDead(mob) || IsCrusherAlly(user, mob))
                 continue;
 
             _damageable.TryChangeDamage(mob, new DamageSpecifier { DamageDict = { [Blunt] = _random.Next(30, 36) } }, origin: user);
-            _stun.TryUpdateParalyzeDuration(mob, TimeSpan.FromSeconds(1));
+            _stun.TryUpdateParalyzeDuration(mob, TentacleGrabDuration);
         }
     }
 
@@ -344,8 +351,8 @@ public sealed partial class KineticCrusherSystem
                     return;
                 }
 
-                EnsureComp<CrusherLavaImmuneComponent>(user).Until = now + TimeSpan.FromSeconds(10);
-                ent.Comp.UseCooldownEnd = now + TimeSpan.FromSeconds(60);
+                EnsureComp<CrusherLavaImmuneComponent>(user).Until = now + ent.Comp.TrophyUseInHandBroodmotherTongueDelay;
+                ent.Comp.UseCooldownEnd = now + ent.Comp.UseCooldown;
                 _popup.PopupEntity(Loc.GetString("crusher-trophy-tongue-squeeze"), user, user);
                 break;
 
@@ -358,7 +365,7 @@ public sealed partial class KineticCrusherSystem
                     return;
                 }
 
-                ent.Comp.UseCooldownEnd = now + TimeSpan.FromSeconds(4);
+                ent.Comp.UseCooldownEnd = now + ent.Comp.UseCooldown2;
                 Spawn(LegionSkull, Transform(user).Coordinates);
                 _popup.PopupEntity(Loc.GetString("crusher-trophy-spine-shake", ("user", user)), user, PopupType.MediumCaution);
                 break;

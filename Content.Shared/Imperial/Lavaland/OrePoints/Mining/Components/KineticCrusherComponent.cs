@@ -15,7 +15,7 @@ public sealed partial class KineticCrusherComponent : Component
 {
     /// <summary>charge_time без трофеев, секунды.</summary>
     [DataField]
-    public float ChargeTime = 1.5f;
+    public TimeSpan ChargeTime = TimeSpan.FromSeconds(1.5f);
 
     /// <summary>detonation_damage.</summary>
     [DataField]
@@ -41,4 +41,25 @@ public sealed partial class KineticCrusherComponent : Component
     /// <summary>temp_visual/kinetic_blast.</summary>
     [DataField]
     public EntProtoId DetonationEffect = "BulletImpactEffectKinetic";
+
+    [DataField]
+    public TimeSpan DeadlyShotResetDelay = TimeSpan.FromSeconds(30);
+
+    [DataField]
+    public TimeSpan ExpiresDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public TimeSpan Cooldown = TimeSpan.FromSeconds(10);
+
+    [DataField]
+    public TimeSpan Cooldown2 = TimeSpan.FromSeconds(30);
+
+    [DataField]
+    public TimeSpan MarkDetonationExtraWolfEarDuration = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public TimeSpan MarkDetonationExtraBearPawDelay = TimeSpan.FromSeconds(0.1);
+
+    [DataField]
+    public TimeSpan MarkDetonationExtraIceBlockTalismanDuration = TimeSpan.FromSeconds(4);
 }

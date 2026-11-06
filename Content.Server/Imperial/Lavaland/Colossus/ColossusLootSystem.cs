@@ -22,6 +22,7 @@ using Content.Shared.Speech.Muting;
 using Content.Shared.StatusEffectNew;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Lavaland.Colossus;
 
@@ -41,6 +42,20 @@ public sealed class ColossusLootSystem : EntitySystem
 
     private readonly Dictionary<EntityUid, TimeSpan> _mutedUntil = new();
     private readonly HashSet<EntityUid> _awaitingVoiceCommand = new();
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceStopLocalizedDataset = "ImperialColossusVoiceStop";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceWeakenLocalizedDataset = "ImperialColossusVoiceWeaken";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceSleepLocalizedDataset = "ImperialColossusVoiceSleep";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceVomitLocalizedDataset = "ImperialColossusVoiceVomit";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceSilenceLocalizedDataset = "ImperialColossusVoiceSilence";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceWakeLocalizedDataset = "ImperialColossusVoiceWake";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceHealLocalizedDataset = "ImperialColossusVoiceHeal";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoicePainLocalizedDataset = "ImperialColossusVoicePain";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceBurnLocalizedDataset = "ImperialColossusVoiceBurn";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceStandLocalizedDataset = "ImperialColossusVoiceStand";
+    private static readonly ProtoId<LocalizedDatasetPrototype> ImperialColossusVoiceRestLocalizedDataset = "ImperialColossusVoiceRest";
 
     public override void Initialize()
     {
@@ -223,28 +238,28 @@ public sealed class ColossusLootSystem : EntitySystem
                     WakeAndStand(target);
                     break;
                 case VoiceOfGodCommand.Heal:
-                {
-                    var spec = new DamageSpecifier();
-                    spec.DamageDict["Blunt"] = FixedPoint2.New(-20 * power);
-                    _damageable.TryChangeDamage(target, spec, origin: speaker);
-                    break;
-                }
-                case VoiceOfGodCommand.Pain:
-                {
-                    var spec = new DamageSpecifier();
-                    spec.DamageDict["Blunt"] = FixedPoint2.New(15 * power);
-                    _damageable.TryChangeDamage(target, spec, origin: speaker);
-                    break;
-                }
-                case VoiceOfGodCommand.Burn:
-                {
-                    if (TryComp<FlammableComponent>(target, out var flammable))
                     {
-                        _flammable.AdjustFireStacks(target, flammable.FirestacksOnIgnite, flammable);
-                        _flammable.Ignite(target, speaker, flammable);
+                        var spec = new DamageSpecifier();
+                        spec.DamageDict[BluntDamageType] = FixedPoint2.New(-20 * power);
+                        _damageable.TryChangeDamage(target, spec, origin: speaker);
+                        break;
                     }
-                    break;
-                }
+                case VoiceOfGodCommand.Pain:
+                    {
+                        var spec = new DamageSpecifier();
+                        spec.DamageDict[BluntDamageType] = FixedPoint2.New(15 * power);
+                        _damageable.TryChangeDamage(target, spec, origin: speaker);
+                        break;
+                    }
+                case VoiceOfGodCommand.Burn:
+                    {
+                        if (TryComp<FlammableComponent>(target, out var flammable))
+                        {
+                            _flammable.AdjustFireStacks(target, flammable.FirestacksOnIgnite, flammable);
+                            _flammable.Ignite(target, speaker, flammable);
+                        }
+                        break;
+                    }
                 case VoiceOfGodCommand.Stand:
                     WakeAndStand(target);
                     break;
@@ -277,77 +292,77 @@ public sealed class ColossusLootSystem : EntitySystem
 
     private static bool TryResolveCommand(string text, out VoiceOfGodCommand command, out float cooldown)
     {
-        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceStop")))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceStopLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Stop;
             cooldown = 120f;
             return true;
         }
 
-        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceWeaken")))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceWeakenLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Weaken;
             cooldown = 120f;
             return true;
         }
 
-        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceSleep")))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceSleepLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Sleep;
             cooldown = 120f;
             return true;
         }
 
-        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceVomit")))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceVomitLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Vomit;
             cooldown = 120f;
             return true;
         }
 
-        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceSilence")))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceSilenceLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Silence;
             cooldown = 120f;
             return true;
         }
 
-        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceWake")))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceWakeLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Wake;
             cooldown = 60f;
             return true;
         }
 
-        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceHeal")))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceHealLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Heal;
             cooldown = 60f;
             return true;
         }
 
-        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoicePain")))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoicePainLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Pain;
             cooldown = 60f;
             return true;
         }
 
-        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceBurn")))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceBurnLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Burn;
             cooldown = 60f;
             return true;
         }
 
-        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceStand")))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceStandLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Stand;
             cooldown = 60f;
             return true;
         }
 
-        if (ContainsAny(text, ImperialLocalizedLists.Get("ImperialColossusVoiceRest")))
+        if (ContainsAny(text, ImperialLocalizedLists.Get(ImperialColossusVoiceRestLocalizedDataset)))
         {
             command = VoiceOfGodCommand.Rest;
             cooldown = 30f;

@@ -74,7 +74,7 @@ public sealed class DeadMinerSystem : EntitySystem
                 // shoot_pka: ближе pka_range — очередь из ПКА.
                 if (dist < comp.PkaRange && now >= comp.NextPka)
                 {
-                    comp.RangedReady = now + TimeSpan.FromSeconds(comp.RangedAttackCooldown);
+                    comp.RangedReady = now + comp.RangedAttackCooldown;
                     TryTransform(ent);
                     FirePka(ent, target, () => { });
                     continue;
@@ -83,7 +83,7 @@ public sealed class DeadMinerSystem : EntitySystem
                 // dash_attack: дальше — рывок и очередь.
                 if (dist >= comp.PkaRange && now >= comp.NextDash && now >= comp.NextPka)
                 {
-                    comp.RangedReady = now + TimeSpan.FromSeconds(comp.RangedAttackCooldown);
+                    comp.RangedReady = now + comp.RangedAttackCooldown;
                     TryTransform(ent);
                     DashAttack(ent, target);
                     continue;
@@ -119,11 +119,11 @@ public sealed class DeadMinerSystem : EntitySystem
         var hits = ent.Comp.SawOpen ? ent.Comp.OpenHits : ent.Comp.ClosedHits;
         if (_ai.TileDistance(ent, victim) > 1 || TerminatingOrDeleted(victim))
         {
-            ent.Comp.NextMelee = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.MeleeCooldown);
+            ent.Comp.NextMelee = _timing.CurTime + ent.Comp.MeleeCooldown;
             return;
         }
 
-        ent.Comp.NextMelee = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.MeleeCooldown);
+        ent.Comp.NextMelee = _timing.CurTime + ent.Comp.MeleeCooldown;
         _popup.PopupEntity(Loc.GetString("dead-miner-slashes", ("boss", ent.Owner)), victim, victim, PopupType.MediumCaution);
         _ai.PlaySound(ent.Comp.SlashSound, Transform(victim).Coordinates);
 
@@ -147,7 +147,7 @@ public sealed class DeadMinerSystem : EntitySystem
         if (sequenceHit >= hits)
             return;
 
-        var delay = ent.Comp.SawOpen ? ent.Comp.OpenHitDelay : ent.Comp.ClosedHitDelay;
+        var delay = ent.Comp.SawOpen ? (float)ent.Comp.OpenHitDelay.TotalSeconds : (float)ent.Comp.ClosedHitDelay.TotalSeconds;
         _ai.SetSpeedMultiplier(ent, 0.5f);
         _ai.Schedule(ent, delay, () =>
         {
@@ -163,10 +163,10 @@ public sealed class DeadMinerSystem : EntitySystem
         _ai.SetImmobile(ent, true);
         _popup.PopupEntity(Loc.GetString("dead-miner-fires"), ent, PopupType.MediumCaution);
 
-        var wait = MathF.Max(0f, ent.Comp.PkaAlertDelay - ent.Comp.PkaPrefireDelay) + ent.Comp.PkaPrefireDelay;
+        var wait = MathF.Max(0f, (float)ent.Comp.PkaAlertDelay.TotalSeconds - (float)ent.Comp.PkaPrefireDelay.TotalSeconds) + (float)ent.Comp.PkaPrefireDelay.TotalSeconds;
         _ai.Schedule(ent, wait, () => PkaShot(ent, target, ent.Comp.PkaShots, () =>
         {
-            ent.Comp.NextPka = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.PkaCooldown);
+            ent.Comp.NextPka = _timing.CurTime + ent.Comp.PkaCooldown;
             _ai.Schedule(ent, ent.Comp.PkaReloadDelay, () =>
             {
                 ent.Comp.Busy = false;
@@ -197,7 +197,7 @@ public sealed class DeadMinerSystem : EntitySystem
     /// </summary>
     private void DashAttack(Entity<DeadMinerComponent> ent, EntityUid target)
     {
-        ent.Comp.NextDash = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.DashAttackCooldown);
+        ent.Comp.NextDash = _timing.CurTime + ent.Comp.DashAttackCooldown;
         if (!_ai.TryGetTile(ent, out var grid, out var from) || !_ai.TryGetTile(target, out var targetGrid, out var targetTile) ||
             grid.Owner != targetGrid.Owner)
             return;

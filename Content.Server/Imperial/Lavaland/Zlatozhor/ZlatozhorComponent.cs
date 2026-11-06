@@ -32,7 +32,7 @@ public sealed partial class ZlatozhorComponent : Component
 
     /// <summary>Через сколько секунд нырять после обнаружения угрозы.</summary>
     [DataField]
-    public float PanicBurrowDelay = 1.0f;
+    public TimeSpan PanicBurrowDelay = TimeSpan.FromSeconds(1.0f);
 
     /// <summary>Максимальный радиус (в тайлах) телепорта при нырке. 0 = без ограничений.</summary>
     [DataField]

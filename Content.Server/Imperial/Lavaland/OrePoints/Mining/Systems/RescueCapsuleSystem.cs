@@ -23,8 +23,6 @@ public sealed class RescueCapsuleSystem : EntitySystem
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
-    private static readonly Vector2 SpawnAreaSize = new(7f, 7f);
-    private const float SpawnAreaRadius = 4f;
     private const float CenterOffset = 3.5f;
 
     public override void Initialize()
@@ -42,7 +40,7 @@ public sealed class RescueCapsuleSystem : EntitySystem
         var doAfterArgs = new DoAfterArgs(
             EntityManager,
             args.User,
-            TimeSpan.FromSeconds(comp.DeployDelay),
+            comp.DeployDelay,
             new RescueCapsuleDoAfterEvent(),
             uid,
             used: uid)

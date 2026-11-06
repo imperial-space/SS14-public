@@ -122,7 +122,7 @@ public sealed class HierophantSystem : EntitySystem
         }
 
         if (ent.Comp.SpawnedBeacon != null && ent.Comp.GoHomeAt == null)
-            ent.Comp.GoHomeAt = _timing.CurTime + TimeSpan.FromSeconds(30);
+            ent.Comp.GoHomeAt = _timing.CurTime + ent.Comp.GoHomeDelay;
     }
 
     private void OnDevour(Entity<HierophantComponent> ent, ref MegafaunaDevourEvent args)
@@ -167,7 +167,7 @@ public sealed class HierophantSystem : EntitySystem
         if (_timing.CurTime >= ent.Comp.RangedCooldown)
         {
             CalculateRage(ent);
-            SetRangedCooldown(ent, ent.Comp.RangedCooldownTime);
+            SetRangedCooldown(ent, (float)ent.Comp.RangedCooldownTime.TotalSeconds);
             Burst(ent, origin, ent.Comp.BurstRange, 0.5f);
         }
         else
@@ -188,7 +188,7 @@ public sealed class HierophantSystem : EntitySystem
         ent.Comp.Blinking = true;
         Say(ent, "Mrmxmexmrk wipj-hiwxvygx wiuyirgi...");
         _popup.PopupEntity(Loc.GetString("hierophant-shrinks", ("boss", ent.Owner)), ent, PopupType.LargeCaution);
-        Burst(null, Transform(ent).Coordinates, 10, 0.5f, ent.Comp);
+        Burst(null, Transform(ent).Coordinates, ent.Comp.MobStateChangedRange, 0.5f, ent.Comp);
     }
 
     private void OnWallCollide(Entity<HierophantWallComponent> ent, ref PreventCollideEvent args)
@@ -208,8 +208,8 @@ public sealed class HierophantSystem : EntitySystem
     {
         ent.Comp.SittingAtCenter = false;
         ent.Comp.Anger = _ai.Anger(ent, 42f, 50f);
-        ent.Comp.BurstRange = ent.Comp.BaseBurstRange + (int) MathF.Round(ent.Comp.Anger * 0.08f);
-        ent.Comp.BeamRange = ent.Comp.BaseBeamRange + (int) MathF.Round(ent.Comp.Anger * 0.12f);
+        ent.Comp.BurstRange = ent.Comp.BaseBurstRange + (int)MathF.Round(ent.Comp.Anger * 0.08f);
+        ent.Comp.BeamRange = ent.Comp.BaseBeamRange + (int)MathF.Round(ent.Comp.Anger * 0.12f);
     }
 
     /// <summary>update_cooldowns(SET_RANGED = max(0.5 с, base - anger * 0.75 дс)).</summary>
@@ -242,11 +242,11 @@ public sealed class HierophantSystem : EntitySystem
 
         CalculateRage(ent);
         var anger = ent.Comp.Anger;
-        var blinkCounter = 1 + (int) MathF.Round(anger * 0.08f);
-        var crossCounter = 1 + (int) MathF.Round(anger * 0.12f);
+        var blinkCounter = 1 + (int)MathF.Round(anger * 0.08f);
+        var crossCounter = 1 + (int)MathF.Round(anger * 0.12f);
 
         ArenaTrap(ent, target);
-        SetRangedCooldown(ent, ent.Comp.RangedCooldownTime);
+        SetRangedCooldown(ent, (float)ent.Comp.RangedCooldownTime.TotalSeconds);
 
         var slowness = TargetSlowness(target);
         ent.Comp.ChaserSpeed = MathF.Max(1f, 3f - anger * 0.04f + (slowness - 1f) * 0.5f);
@@ -296,7 +296,7 @@ public sealed class HierophantSystem : EntitySystem
         if (chaserReady)
         {
             var first = SpawnChaser(ent, target, ent.Comp.ChaserSpeed, 0, null);
-            ent.Comp.ChaserCooldown = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.ChaserCooldownTime);
+            ent.Comp.ChaserCooldown = _timing.CurTime + ent.Comp.ChaserCooldownTime;
             if (_ai.Prob(anger) || dist <= 1)
             {
                 var dirs = Cardinals.Where(d => d != first).ToList();
@@ -324,7 +324,7 @@ public sealed class HierophantSystem : EntitySystem
 
     private void StartMajor(Entity<HierophantComponent> ent, string phrase)
     {
-        SetRangedCooldown(ent, ent.Comp.MajorAttackCooldown);
+        SetRangedCooldown(ent, (float)ent.Comp.MajorAttackCooldown.TotalSeconds);
         Say(ent, phrase);
         ent.Comp.Blinking = true;
         _ai.SetImmobile(ent, true);
@@ -334,7 +334,7 @@ public sealed class HierophantSystem : EntitySystem
     private void EndMajor(Entity<HierophantComponent> ent)
     {
         _appearance.SetData(ent, MegafaunaVisuals.Color, Color.White);
-        _ai.Schedule(ent, 0.8f, () =>
+        _ai.Schedule(ent, (float)ent.Comp.EndMajorSeconds.TotalSeconds, () =>
         {
             ent.Comp.Blinking = false;
             _ai.SetImmobile(ent, ent.Comp.SittingAtCenter);
@@ -346,13 +346,13 @@ public sealed class HierophantSystem : EntitySystem
     {
         if (!(_ai.GetHealth(ent) < _ai.GetMaxHealth(ent) * 0.5f && blinkCounter > 1))
         {
-            SetRangedCooldown(ent, ent.Comp.MajorAttackCooldown);
+            SetRangedCooldown(ent, (float)ent.Comp.MajorAttackCooldown.TotalSeconds);
             Blink(ent, target, null);
             return;
         }
 
         StartMajor(ent, "Mx ampp rsx iwgeti.");
-        _ai.Schedule(ent, 0.6f, () => BlinkSpamStep(ent, target, blinkCounter, slowness));
+        _ai.Schedule(ent, (float)ent.Comp.BlinkSpamSeconds.TotalSeconds, () => BlinkSpamStep(ent, target, blinkCounter, slowness));
     }
 
     private void BlinkSpamStep(Entity<HierophantComponent> ent, EntityUid target, int counter, float slowness)
@@ -376,7 +376,7 @@ public sealed class HierophantSystem : EntitySystem
     private void CrossBlastSpam(Entity<HierophantComponent> ent, EntityUid target, int crossCounter, float slowness)
     {
         StartMajor(ent, "Piezi mx rsalivi xs vyr.");
-        _ai.Schedule(ent, 0.6f, () => CrossStep(ent, target, crossCounter, slowness));
+        _ai.Schedule(ent, (float)ent.Comp.CrossBlastSpamSeconds.TotalSeconds, () => CrossStep(ent, target, crossCounter, slowness));
     }
 
     private void CrossStep(Entity<HierophantComponent> ent, EntityUid target, int counter, float slowness)
@@ -395,7 +395,7 @@ public sealed class HierophantSystem : EntitySystem
     private void ChaserSwarm(Entity<HierophantComponent> ent, EntityUid target, float slowness)
     {
         StartMajor(ent, "Mx gerrsx lmhi.");
-        _ai.Schedule(ent, 0.6f, () =>
+        _ai.Schedule(ent, (float)ent.Comp.ChaserSwarmSeconds.TotalSeconds, () =>
         {
             var targets = new List<EntityUid>();
             if (TryComp<MegafaunaAiComponent>(ent, out var ai))
@@ -415,7 +415,7 @@ public sealed class HierophantSystem : EntitySystem
     {
         if (targets.Count == 0 || dirs.Count == 0)
         {
-            ent.Comp.ChaserCooldown = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.ChaserCooldownTime);
+            ent.Comp.ChaserCooldown = _timing.CurTime + ent.Comp.ChaserCooldownTime;
             EndMajor(ent);
             return;
         }
@@ -426,7 +426,7 @@ public sealed class HierophantSystem : EntitySystem
             picked = mainTarget;
             if (TerminatingOrDeleted(picked) || !_mobState.IsAlive(picked))
             {
-                ent.Comp.ChaserCooldown = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.ChaserCooldownTime);
+                ent.Comp.ChaserCooldown = _timing.CurTime + ent.Comp.ChaserCooldownTime;
                 EndMajor(ent);
                 return;
             }
@@ -452,7 +452,7 @@ public sealed class HierophantSystem : EntitySystem
         _ai.SpawnAt(telegraph, grid, tile);
         _ai.PlaySound(ent.Comp.TelegraphSound, _ai.TileCenter(grid, tile));
 
-        _ai.Schedule(ent, 0.2f, () =>
+        _ai.Schedule(ent, (float)ent.Comp.BlastsSeconds.TotalSeconds, () =>
         {
             SpawnBlast(ent, ent.Comp, grid, tile, ent.Comp.BlastDamage);
             foreach (var dir in dirs)
@@ -488,7 +488,7 @@ public sealed class HierophantSystem : EntitySystem
         ent.Comp.Blinking = true;
         _ai.SetImmobile(uid, true);
 
-        _ai.Schedule(uid, 0.2f, () =>
+        _ai.Schedule(uid, (float)ent.Comp.BlinkToSeconds.TotalSeconds, () =>
         {
             _ai.SpawnAt(ent.Comp.TelegraphTeleport, grid, target);
             _ai.SpawnAt(ent.Comp.TelegraphTeleport, grid, source);
@@ -497,22 +497,22 @@ public sealed class HierophantSystem : EntitySystem
             foreach (var t in MegafaunaAiSystem.RangeTiles(source, 1))
                 SpawnBlast(uid, ent.Comp, grid, t, ent.Comp.BlinkBlastDamage);
 
-            _ai.Schedule(uid, 0.1f, () =>
+            _ai.Schedule(uid, ent.Comp.BlinkToSeconds2, () =>
             {
                 _popup.PopupEntity(Loc.GetString("hierophant-fades-out", ("boss", uid)), uid, PopupType.MediumCaution);
                 _appearance.SetData(uid, MegafaunaVisuals.Color, Color.White.WithAlpha(0f));
                 _physics.SetCanCollide(uid, false);
-                _ai.Schedule(uid, 0.2f, () =>
+                _ai.Schedule(uid, (float)ent.Comp.BlinkToSeconds.TotalSeconds, () =>
                 {
                     _transform.SetCoordinates(uid, _ai.TileCenter(grid, target));
-                    _ai.Schedule(uid, 0.1f, () =>
+                    _ai.Schedule(uid, ent.Comp.BlinkToSeconds2, () =>
                     {
                         _appearance.SetData(uid, MegafaunaVisuals.Color, Color.White);
-                        _ai.Schedule(uid, 0.1f, () =>
+                        _ai.Schedule(uid, ent.Comp.BlinkToSeconds2, () =>
                         {
                             _physics.SetCanCollide(uid, true);
                             _popup.PopupEntity(Loc.GetString("hierophant-fades-in", ("boss", uid)), uid, PopupType.MediumCaution);
-                            _ai.Schedule(uid, 0.1f, () =>
+                            _ai.Schedule(uid, ent.Comp.BlinkToSeconds2, () =>
                             {
                                 ent.Comp.Blinking = false;
                                 _ai.SetImmobile(uid, ent.Comp.SittingAtCenter);
@@ -562,11 +562,11 @@ public sealed class HierophantSystem : EntitySystem
         if (victim != ent.Owner && (InArena(ent, victim) || InArena(ent, ent)))
             return;
 
-        ent.Comp.ArenaCooldown = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.ArenaCooldownTime);
+        ent.Comp.ArenaCooldown = _timing.CurTime + ent.Comp.ArenaCooldownTime;
         foreach (var dir in Cardinals)
             ArenaSquares(ent, grid, center, dir, 1);
 
-        foreach (var tile in MegafaunaAiSystem.RangeTiles(center, 11))
+        foreach (var tile in MegafaunaAiSystem.RangeTiles(center, ent.Comp.ArenaTrapRange))
         {
             if (MegafaunaAiSystem.Chebyshev(tile, center) != 11)
                 continue;
@@ -596,7 +596,7 @@ public sealed class HierophantSystem : EntitySystem
         if (step > 10)
             return;
         SpawnSquares(ent, grid, from + dir * step, dir);
-        _ai.Schedule(ent, 0.05f, () => ArenaSquares(ent, grid, from, dir, step + 1));
+        _ai.Schedule(ent, (float)ent.Comp.ArenaSquaresSeconds.TotalSeconds, () => ArenaSquares(ent, grid, from, dir, step + 1));
     }
 
     private void SpawnSquares(Entity<HierophantComponent> ent, Entity<MapGridComponent> grid, Vector2i tile, Vector2i dir)
@@ -642,9 +642,9 @@ public sealed class HierophantSystem : EntitySystem
             Moving = moving,
             MovingDir = movingDir ?? Vector2i.Zero,
             Speed = speed,
-            End = _timing.CurTime + TimeSpan.FromSeconds(9.8),
+            End = _timing.CurTime + ent.Comp.SpawnChaserDelay,
         };
-        _ai.Schedule(null, 0.1f, () => ChaserStep(chaser));
+        _ai.Schedule(null, (float)ent.Comp.SpawnChaserSeconds.TotalSeconds, () => ChaserStep(chaser));
         return chaser.MovingDir;
     }
 
@@ -703,11 +703,11 @@ public sealed class HierophantSystem : EntitySystem
         if (caster != null)
             hit.Add(caster.Value);
 
-        _ai.Schedule(null, 0.6f, () =>
+        _ai.Schedule(null, (float)comp.SpawnBlastSeconds.TotalSeconds, () =>
         {
             BlastDamage(caster, comp, grid, tile, damage, hit);
             // bursting: ещё 0.13 с бьёт вошедших на клетку.
-            _ai.Schedule(null, 0.13f, () => BlastDamage(caster, comp, grid, tile, damage, hit));
+            _ai.Schedule(null, comp.SpawnBlastSeconds2, () => BlastDamage(caster, comp, grid, tile, damage, hit));
         });
     }
 

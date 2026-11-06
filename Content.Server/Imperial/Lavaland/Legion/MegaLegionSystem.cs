@@ -73,8 +73,8 @@ public sealed class MegaLegionSystem : EntitySystem
         ent.Comp.Charging = true;
         Spin(ent, 60);
 
-        _ai.Schedule(ent, 2f, () => ThrowSelf(ent, target));
-        _ai.Schedule(ent, 6f, () =>
+        _ai.Schedule(ent, (float)ent.Comp.ChaseSeconds.TotalSeconds, () => ThrowSelf(ent, target));
+        _ai.Schedule(ent, ent.Comp.ChaseSeconds2, () =>
         {
             ent.Comp.Charging = false;
             SetAggressive(ent, false);
@@ -87,7 +87,7 @@ public sealed class MegaLegionSystem : EntitySystem
         if (steps <= 0 || !ent.Comp.Charging)
             return;
         _transform.SetLocalRotation(ent, Transform(ent).LocalRotation + Angle.FromDegrees(36));
-        _ai.Schedule(ent, 0.1f, () => Spin(ent, steps - 1));
+        _ai.Schedule(ent, (float)ent.Comp.SpinSeconds.TotalSeconds, () => Spin(ent, steps - 1));
     }
 
     private void SetAggressive(EntityUid uid, bool aggressive)
@@ -142,7 +142,7 @@ public sealed class MegaLegionSystem : EntitySystem
         }
 
         _transform.SetCoordinates(ent, _ai.TileCenter(grid, next));
-        _ai.Schedule(ent, 0.05f, () => ThrowStep(ent, grid, end, remaining - 1));
+        _ai.Schedule(ent, (float)ent.Comp.ThrowStepSeconds.TotalSeconds, () => ThrowStep(ent, grid, end, remaining - 1));
     }
 
     /// <summary>create_legion_turrets: 2..size*2 стражей на свободных клетках в 4 от легиона.</summary>
@@ -154,7 +154,7 @@ public sealed class MegaLegionSystem : EntitySystem
         _ai.PlaySound(ent.Comp.TurretSummonSound, Transform(ent).Coordinates, 3f);
         if (_ai.TryGetTile(ent, out var grid, out var center))
         {
-            var possible = MegafaunaAiSystem.RangeTiles(center, 4)
+            var possible = MegafaunaAiSystem.RangeTiles(center, ent.Comp.TurretsRange)
                 .Where(t => t != center && !_ai.IsBlocked(grid, t))
                 .ToList();
             var count = Math.Min(_random.Next(ent.Comp.MinTurrets, ent.Comp.Size * 2 + 1), possible.Count);
@@ -177,7 +177,7 @@ public sealed class MegaLegionSystem : EntitySystem
             return;
 
         Vector2i? aim = null;
-        foreach (var tile in MegafaunaAiSystem.RangeTiles(origin, 9).OrderBy(t => MegafaunaAiSystem.Chebyshev(t, origin)))
+        foreach (var tile in MegafaunaAiSystem.RangeTiles(origin, comp.TurretSetUpShotRange).OrderBy(t => MegafaunaAiSystem.Chebyshev(t, origin)))
         {
             foreach (var mob in _ai.MobsOnTile(grid, tile))
             {
@@ -193,10 +193,10 @@ public sealed class MegaLegionSystem : EntitySystem
 
         var dir = aim is { } a && a != origin
             ? new System.Numerics.Vector2(a.X - origin.X, a.Y - origin.Y)
-            : (System.Numerics.Vector2) _random.Pick(Cardinals);
+            : (System.Numerics.Vector2)_random.Pick(Cardinals);
         dir = System.Numerics.Vector2.Normalize(dir);
 
-        var line = MegafaunaAiSystem.Line(origin, origin + new Vector2i((int) MathF.Round(dir.X * 9), (int) MathF.Round(dir.Y * 9)))
+        var line = MegafaunaAiSystem.Line(origin, origin + new Vector2i((int)MathF.Round(dir.X * 9), (int)MathF.Round(dir.Y * 9)))
             .Skip(1).ToList();
         foreach (var tile in line)
             _ai.SpawnAt(comp.TracerEffect, grid, tile);
@@ -211,7 +211,7 @@ public sealed class MegaLegionSystem : EntitySystem
         if (TerminatingOrDeleted(turret))
             return;
 
-        var end = origin + new Vector2i((int) MathF.Round(dir.X * comp.TurretBeamRange), (int) MathF.Round(dir.Y * comp.TurretBeamRange));
+        var end = origin + new Vector2i((int)MathF.Round(dir.X * comp.TurretBeamRange), (int)MathF.Round(dir.Y * comp.TurretBeamRange));
         foreach (var tile in MegafaunaAiSystem.Line(origin, end).Skip(1))
         {
             if (_ai.IsBlocked(grid, tile))
@@ -222,7 +222,7 @@ public sealed class MegaLegionSystem : EntitySystem
         }
 
         _ai.PlaySound(comp.BeamSound, Transform(turret).Coordinates, 3f);
-        _ai.Schedule(null, 0.5f, () => QueueDel(turret));
+        _ai.Schedule(null, (float)comp.TurretFireSeconds.TotalSeconds, () => QueueDel(turret));
     }
 
     /// <summary>death + Split: делится на трёх меньших; последний легион оставляет посох бурь.</summary>
@@ -247,7 +247,7 @@ public sealed class MegaLegionSystem : EntitySystem
 
         if (lastLegion)
             Spawn(ent.Comp.LastLoot, coords);
-        else if (_random.Prob(0.2f))
+        else if (_random.Prob(ent.Comp.MobStateChangedChance))
             Spawn(ent.Comp.ExtraLoot, coords);
         else
         {
