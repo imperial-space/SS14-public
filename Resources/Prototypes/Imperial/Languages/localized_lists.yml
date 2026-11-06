@@ -1,0 +1,7 @@
+# ImperialLanguageSystem.Scramble.cs: CodeWords
+- type: localizedDataset
+  id: ImperialImperialLanguageSystemScrambleCodeWords
+  values:
+    prefix: imperial-languages-imperial-language-system-scramble-code-words-
+    count: 52
+

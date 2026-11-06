@@ -1,0 +1,78 @@
+# /datum/language_holder: какие языки знают виды. Виды без своего набора берут Default.
+
+- type: imperialLanguageSet
+  id: Default
+  spoken: [ Common ]
+  understood: [ Common ]
+
+- type: imperialLanguageSet
+  id: Reptilian
+  spoken: [ Common, Draconic ]
+  understood: [ Common, Draconic ]
+
+- type: imperialLanguageSet
+  id: Moth
+  spoken: [ Common, Moffic ]
+  understood: [ Common, Moffic ]
+
+- type: imperialLanguageSet
+  id: Diona
+  spoken: [ Common, Sylvan ]
+  understood: [ Common, Sylvan ]
+
+- type: imperialLanguageSet
+  id: SlimePerson
+  spoken: [ Common, Slime ]
+  understood: [ Common, Slime ]
+
+- type: imperialLanguageSet
+  id: Skeleton
+  spoken: [ Common, Calcic ]
+  understood: [ Common, Calcic ]
+
+- type: imperialLanguageSet
+  id: Vulpkanin
+  spoken: [ Common, Canilunzt ]
+  understood: [ Common, Canilunzt ]
+
+- type: imperialLanguageSet
+  id: Android
+  spoken: [ Common, Uncommon, Machine ]
+  understood: [ Common, Uncommon, Machine ]
+
+# /datum/language_holder/synthetic/silicon: остальные языки экипажа понимают на 66 %.
+- type: imperialLanguageSet
+  id: Borg
+  spoken: [ Common, Uncommon, Machine ]
+  understood: [ Common, Uncommon, Machine ]
+  partial:
+    Draconic: 66
+    Moffic: 66
+    Sylvan: 66
+    Slime: 66
+    Calcic: 66
+    Canilunzt: 66
+
+- type: imperialLanguageSet
+  id: StationAi
+  spoken: [ Common, Uncommon, Machine ]
+  understood: [ Common, Uncommon, Machine ]
+  partial:
+    Draconic: 66
+    Moffic: 66
+    Sylvan: 66
+    Slime: 66
+    Calcic: 66
+    Canilunzt: 66
+
+- type: entity
+  parent: BaseAction
+  id: ImperialActionLanguageMenu
+  name: Языки
+  description: Открыть меню языков и выбрать, на каком говорить.
+  components:
+  - type: Action
+    priority: -20
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: state-laws }
+  - type: InstantAction
+    event: !type:ImperialLanguageMenuActionEvent
