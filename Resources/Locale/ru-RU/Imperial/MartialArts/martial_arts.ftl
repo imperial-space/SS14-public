@@ -514,3 +514,8 @@ martial-bostaff-fall-self = Вы падаете от удара посохом!
 martial-bostaff-knockout-others = { CAPITALIZE($user) } вырубает { $target } ударом посоха!
 martial-bostaff-knockout-self = Вы вырубаете { $target } ударом посоха!
 martial-bostaff-knockout-target = { CAPITALIZE($user) } вырубает вас ударом посоха!
+
+martial-arts-combo-harm = У
+martial-arts-combo-disarm = Т
+martial-arts-combo-grab = З
+martial-arts-combo-help = П

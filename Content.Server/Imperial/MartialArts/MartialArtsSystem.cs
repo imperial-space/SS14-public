@@ -324,14 +324,14 @@ public sealed partial class MartialArtsSystem : EntitySystem
     }
 
     /// <summary>Комбо-HUD TG: буквы приёмов, по-русски.</summary>
-    private static string FormatStreak(string streak)
+    private string FormatStreak(string streak)
     {
         return string.Join("-", streak.Select(c => c switch
         {
-            'H' => "У",
-            'D' => "Т",
-            'G' => "З",
-            'E' => "П",
+            'H' => Loc.GetString("martial-arts-combo-harm"),
+            'D' => Loc.GetString("martial-arts-combo-disarm"),
+            'G' => Loc.GetString("martial-arts-combo-grab"),
+            'E' => Loc.GetString("martial-arts-combo-help"),
             _ => c.ToString(),
         }));
     }
