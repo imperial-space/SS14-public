@@ -1,61 +1,41 @@
-using Content.Server.Chat.Systems;
-using Content.Server.Imperial.Cult;
 using Content.Shared.Body;
 using Content.Shared.Body.Components;
-using Content.Shared.Chat;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Drunk;
 using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Antimagic;
-using Content.Shared.Imperial.Cult.Components;
 using Content.Shared.Jittering;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Popups;
 using Content.Shared.Speech.EntitySystems;
-using Content.Shared.Stunnable;
-using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Server.Imperial.Antimagic;
 
 namespace Content.Server.Imperial.Chaplain;
 
 /// <summary>
 /// Святая вода в теле (reagent/water/holywater из SS13). Пока она действует, существо считается святым
 /// (защищено от нечестивой магии), дрожит, а дольше 25 секунд — заикается и пошатывается.
-/// Культисту она стирает подготовленные заклинания крови, вызывает выкрики и припадки, а через минуту
-/// очищает от власти Нар'Си. Еретику не даёт колдовать (см. <see cref="ImperialMagicCastAttemptEvent"/>).
+/// Что она делает с последователями тёмных сил, решают их системы по событиям
+/// <see cref="ImperialHolyWaterStartedEvent"/>, <see cref="ImperialHolyWaterTickEvent"/> и <see cref="ImperialHolyWaterPurgedEvent"/>.
 /// </summary>
 public sealed class ImperialHolyWaterSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly BodySystem _body = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly CultSystem _cult = default!;
     [Dependency] private readonly SharedDrunkSystem _drunk = default!;
     [Dependency] private readonly SharedJitteringSystem _jitter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly SharedStutteringSystem _stutter = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
 
     private const string HolyWater = "Holywater";
     private static readonly TimeSpan TickInterval = TimeSpan.FromSeconds(1);
-    private static readonly TimeSpan SpellClearCooldown = TimeSpan.FromSeconds(3);
 
     /// <summary>~10 единиц в SS13.</summary>
     private const float StutterThreshold = 25f;
 
     /// <summary>~24 единицы в SS13.</summary>
     private const float PurgeThreshold = 60f;
-
-    private static readonly string[] CultPhrases =
-    {
-        "Av'te Nar'Sie", "Pa'lid Mors", "INO INO ORA ANA", "SAT ANA!",
-        "Daim'niodeis Arc'iai Le'eones", "R'ge Na'sie", "Diabo us Vo'iscum", "Eld' Mon Nobis",
-    };
 
     private TimeSpan _nextTick;
 
@@ -81,8 +61,11 @@ public sealed class ImperialHolyWaterSystem : EntitySystem
 
             var isNew = !HasComp<ImperialHolyWaterComponent>(uid);
             var holy = EnsureComp<ImperialHolyWaterComponent>(uid);
-            if (isNew && HasComp<CultistComponent>(uid))
-                _popup.PopupEntity(Loc.GetString("imperial-holy-water-cult-start"), uid, uid, PopupType.LargeCaution);
+            if (isNew)
+            {
+                var started = new ImperialHolyWaterStartedEvent();
+                RaiseLocalEvent(uid, ref started);
+            }
 
             holy.Seconds += TimeSpan.FromSeconds(seconds);
             Tick(uid, holy, now);
@@ -91,44 +74,24 @@ public sealed class ImperialHolyWaterSystem : EntitySystem
 
     private void Tick(EntityUid uid, ImperialHolyWaterComponent holy, TimeSpan now)
     {
-        var cultist = HasComp<CultistComponent>(uid);
         _jitter.DoJitter(uid, holy.TickTime, true, 10f, 4f);
 
-        if (now >= holy.NextSpellClear)
-        {
-            if (cultist && _cult.ClearPreparedSpells(uid))
-            {
-                _popup.PopupEntity(Loc.GetString("imperial-holy-water-cult-spells"), uid, uid, PopupType.LargeCaution);
-                holy.NextSpellClear = now + SpellClearCooldown;
-            }
-        }
-
-        if ((float)holy.Seconds.TotalSeconds >= StutterThreshold)
+        var stuttering = holy.Seconds.TotalSeconds >= StutterThreshold;
+        if (stuttering)
         {
             _stutter.DoStutter(uid, holy.TickTime, true);
             _drunk.TryApplyDrunkenness(uid, holy.TickBoozePowerDelay);
-
-            if (cultist && _random.Prob(holy.TickChance))
-            {
-                _chat.TrySendInGameICMessage(uid, _random.Pick(CultPhrases), InGameICChatType.Speak, false, ignoreActionBlocker: true);
-                if (_random.Prob(holy.TickChance))
-                {
-                    _popup.PopupEntity(Loc.GetString("imperial-holy-water-cult-seizure", ("target", uid)), uid, PopupType.LargeCaution);
-                    _stun.TryUpdateParalyzeDuration(uid, holy.TickDuration);
-                }
-            }
         }
 
-        if ((float)holy.Seconds.TotalSeconds < PurgeThreshold)
+        var tick = new ImperialHolyWaterTickEvent((uid, holy), now, stuttering);
+        RaiseLocalEvent(uid, ref tick);
+
+        if (holy.Seconds.TotalSeconds < PurgeThreshold)
             return;
 
-        // Минута святой воды: культист очищен, остаток воды выходит из тела.
-        if (cultist)
-        {
-            _cult.RemoveCultist(uid);
-            _stun.TryUpdateParalyzeDuration(uid, holy.TickDuration2);
-            _popup.PopupEntity(Loc.GetString("imperial-holy-water-cult-purged"), uid, uid, PopupType.LargeCaution);
-        }
+        // Минута святой воды: тёмные силы изгнаны, остаток воды выходит из тела.
+        var purged = new ImperialHolyWaterPurgedEvent((uid, holy));
+        RaiseLocalEvent(uid, ref purged);
 
         RemoveHolyWater(uid);
         RemCompDeferred<ImperialHolyWaterComponent>(uid);

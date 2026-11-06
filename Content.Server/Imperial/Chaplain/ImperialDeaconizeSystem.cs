@@ -1,6 +1,5 @@
 using Content.Server.Bible;
 using Content.Server.Chat.Systems;
-using Content.Server.Imperial.Cult;
 using Content.Shared.Chat;
 using Content.Shared.Climbing.Components;
 using Content.Shared.Database;
@@ -8,7 +7,6 @@ using Content.Shared.DoAfter;
 using Content.Shared.Gibbing;
 using Content.Shared.Imperial.Chaplain;
 using Content.Shared.Imperial.Chaplain.Components;
-using Content.Shared.Imperial.Cult.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -35,7 +33,6 @@ public sealed class ImperialDeaconizeSystem : EntitySystem
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly CultSystem _cult = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly GibbingSystem _gibbing = default!;
     [Dependency] private readonly ImperialReligionSystem _religion = default!;
@@ -106,7 +103,9 @@ public sealed class ImperialDeaconizeSystem : EntitySystem
             return;
 
         args.Handled = true;
-        var revealed = _cult.RevealConcealed(_xform.GetMapCoordinates(user), RevealRange);
+        var reveal = new ImperialHolyRevealEvent(_xform.GetMapCoordinates(user), RevealRange);
+        RaiseLocalEvent(ref reveal);
+        var revealed = reveal.Revealed;
         _popup.PopupCoordinates(Loc.GetString(revealed > 0 ? "imperial-bible-floor-revealed" : "imperial-bible-floor-smacked"),
             args.ClickLocation,
             user);
@@ -297,8 +296,10 @@ public sealed class ImperialDeaconizeSystem : EntitySystem
         _audio.PlayPvs(RiteSound, altar);
         _potentialDeacon = null;
 
-        // Бог видит зло в сердце культиста.
-        if (HasComp<CultistComponent>(candidate))
+        // Бог видит зло в сердце слуги тёмных сил.
+        var unholy = new ImperialUnholyCheckEvent();
+        RaiseLocalEvent(candidate, ref unholy);
+        if (unholy.Unholy)
         {
             _popup.PopupEntity(Loc.GetString("imperial-deaconize-cultist", ("deity", _religion.Deity), ("target", candidate)),
                 altar,

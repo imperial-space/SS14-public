@@ -1,14 +1,12 @@
 using Content.Server.Chat.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Imperial.Cult.Components;
 using Content.Shared.Imperial.Antimagic;
 using Content.Shared.Imperial.NullRod.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Whitelist;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.NullRod;
 
@@ -22,7 +20,6 @@ public sealed class NullRodCoreSystem : EntitySystem
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
-    private static readonly EntProtoId CultRuneDestructionEffect = "CultRuneDestructionEffect";
 
     public override void Initialize()
     {
@@ -37,18 +34,17 @@ public sealed class NullRodCoreSystem : EntitySystem
         if (args.Handled || !args.CanReach || args.Target is not { } target)
             return;
 
-        if (TryComp<CultRuneComponent>(target, out var cultRune))
+        if (!HasComp<ImperialNullRodErasableComponent>(target))
         {
-            // Как CultRuneSystem.DestroyRune: эффект разрушения, затем удаление.
-            if (cultRune.DestructionState != null)
-                Spawn(CultRuneDestructionEffect, Transform(target).Coordinates);
-        }
-        else if (!HasComp<ImperialNullRodErasableComponent>(target))
-        {
-            return;
+            var attempt = new ImperialNullRodEraseAttemptEvent();
+            RaiseLocalEvent(target, ref attempt);
+            if (!attempt.Erasable)
+                return;
         }
 
         args.Handled = true;
+        var erased = new ImperialNullRodErasedEvent();
+        RaiseLocalEvent(target, ref erased);
         _popup.PopupEntity(Loc.GetString("null-rod-rune-removed", ("rune", target), ("weapon", rod.Owner)), args.User, args.User);
         _chat.TrySendInGameICMessage(args.User, Loc.GetString(rod.Comp.RuneRemoveLine), InGameICChatType.Speak, false);
         QueueDel(target);

@@ -1,10 +1,11 @@
 using Content.Shared.Examine;
 using Content.Shared.Imperial.Chaplain.Components;
-using Content.Shared.Imperial.Cult.Components;
 using Content.Shared.Imperial.NullRod.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Weapons.Melee.Events;
+
+using Content.Server.Imperial.Chaplain;
 
 namespace Content.Server.Imperial.NullRod;
 
@@ -54,7 +55,7 @@ public sealed class NullRodCultKillTrackerSystem : EntitySystem
 
         foreach (var target in args.HitEntities)
         {
-            if (!HasComp<CultistComponent>(target) || !TryComp<MobStateComponent>(target, out var mobState))
+            if (!IsUnholy(target) || !TryComp<MobStateComponent>(target, out var mobState))
                 continue;
 
             if (mobState.CurrentState != MobState.Dead)
@@ -65,9 +66,16 @@ public sealed class NullRodCultKillTrackerSystem : EntitySystem
     /// <summary>Кровь павших культистов видят только сами культисты.</summary>
     private void OnExamined(Entity<NullRodCultKillTrackerComponent> weapon, ref ExaminedEvent args)
     {
-        if (!HasComp<CultistComponent>(args.Examiner) || weapon.Comp.Slain.Count == 0)
+        if (!IsUnholy(args.Examiner) || weapon.Comp.Slain.Count == 0)
             return;
 
         args.PushMarkup(Loc.GetString("null-rod-cult-kills", ("count", weapon.Comp.Slain.Count)));
+    }
+
+    private bool IsUnholy(EntityUid uid)
+    {
+        var ev = new ImperialUnholyCheckEvent();
+        RaiseLocalEvent(uid, ref ev);
+        return ev.Unholy;
     }
 }
