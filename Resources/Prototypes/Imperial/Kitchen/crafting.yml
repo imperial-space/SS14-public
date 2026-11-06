@@ -1,0 +1,15 @@
+# Меню крафта еды TG (/datum/component/personal_crafting, вкладка «Еда»).
+
+- type: entity
+  parent: BaseMentalAction
+  id: ImperialActionCraftMenu
+  name: Кулинария
+  description: Открыть список блюд, которые можно собрать из продуктов в руках и рядом.
+  components:
+  - type: Action
+    clientExclusive: true
+    icon:
+      sprite: Imperial/Kitchen/utensils.rsi
+      state: pot
+  - type: InstantAction
+    event: !type:ImperialCraftMenuActionEvent

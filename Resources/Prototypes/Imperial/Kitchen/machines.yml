@@ -1,0 +1,375 @@
+# Кухонные приборы TG (code/modules/food_and_drinks/machinery).
+
+- type: entity
+  abstract: true
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialKitchenMachineBase
+  components:
+  - type: Appearance
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: ApcPowerReceiver
+    powerLoad: 200
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+# /obj/machinery/oven
+- type: entity
+  parent: ImperialKitchenMachineBase
+  id: ImperialOven
+  name: духовка
+  description: Иногда туда залезает повар, если инженеры не починили шлюз морозильной камеры...
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/oven.rsi
+    snapCardinals: true
+    layers:
+    - state: off
+      map: [ "base" ]
+    - state: lid_closed
+      map: [ "lid" ]
+    - state: light
+      map: [ "light" ]
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.ImperialKitchenVisuals.Active:
+        base:
+          True: { state: on }
+          False: { state: off }
+        light:
+          True: { visible: true }
+          False: { visible: false }
+      enum.ImperialKitchenVisuals.Open:
+        lid:
+          True: { state: lid_open }
+          False: { state: lid_closed }
+  - type: ImperialOven
+  - type: ItemSlots
+    slots:
+      oven_tray:
+        name: imperial-oven-tray-slot
+        locked: true
+        whitelist:
+          components:
+          - ImperialOvenTray
+  - type: ContainerContainer
+    containers:
+      oven_tray: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Machine
+    board: ImperialOvenMachineCircuitboard
+
+# /obj/machinery/oven/range: духовка с плитой сверху.
+- type: entity
+  parent: ImperialOven
+  id: ImperialRange
+  name: плита
+  description: Плита с духовкой?! Здесь должен был быть каламбур, но вы приготовьте его сами!
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/range.rsi
+    snapCardinals: true
+    layers:
+    - state: off
+      map: [ "base" ]
+    - state: lid_closed
+      map: [ "lid" ]
+    - state: light
+      map: [ "light" ]
+      shader: unshaded
+      visible: false
+    - state: flame
+      map: [ "flame" ]
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.ImperialKitchenVisuals.Active:
+        base:
+          True: { state: on }
+          False: { state: off }
+        light:
+          True: { visible: true }
+          False: { visible: false }
+      enum.ImperialKitchenVisuals.Open:
+        lid:
+          True: { state: lid_open }
+          False: { state: lid_closed }
+      enum.ImperialKitchenVisuals.StoveOn:
+        flame:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ImperialStove
+    startingPot: ImperialSoupPot
+  - type: ItemSlots
+    slots:
+      oven_tray:
+        name: imperial-oven-tray-slot
+        locked: true
+        whitelist:
+          components:
+          - ImperialOvenTray
+      stove_pot:
+        name: imperial-stove-pot-slot
+        whitelist:
+          components:
+          - ImperialSoupPot
+  - type: ContainerContainer
+    containers:
+      oven_tray: !type:ContainerSlot
+      stove_pot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Machine
+    board: ImperialRangeMachineCircuitboard
+
+# /obj/machinery/griddle
+- type: entity
+  parent: ImperialKitchenMachineBase
+  id: ImperialGriddle
+  name: сковорода-гриль
+  description: Сковородки для слабаков.
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/griddle.rsi
+    snapCardinals: true
+    layers:
+    - state: off
+      map: [ "base" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.ImperialKitchenVisuals.Active:
+        base:
+          True: { state: on }
+          False: { state: off }
+  - type: ImperialGriddle
+  - type: PlaceableSurface
+  - type: ItemPlacer
+    maxEntities: 8
+    whitelist:
+      components:
+      - Edible
+  - type: Machine
+    board: ImperialGriddleMachineCircuitboard
+
+# /obj/machinery/processor
+- type: entity
+  parent: ImperialKitchenMachineBase
+  id: ImperialFoodProcessor
+  name: кухонный процессор
+  description: Промышленный измельчитель, используемый для переработки мяса и других продуктов. Держите руки подальше от лезвий.
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/processor.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: [ "base" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.ImperialKitchenVisuals.Active:
+        base:
+          True: { state: open }
+          False: { state: icon }
+  - type: ImperialFoodProcessor
+  - type: ContainerContainer
+    containers:
+      processor: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Machine
+    board: ImperialFoodProcessorMachineCircuitboard
+
+# /obj/item/plate/oven_tray
+- type: entity
+  parent: BaseItem
+  id: ImperialOvenTray
+  name: противень
+  description: Пора печь печенье!
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/utensils.rsi
+    state: oven_tray
+  - type: Item
+    size: Large
+  - type: ImperialOvenTray
+  - type: Storage
+    grid:
+    - 0,0,5,3
+    maxItemSize: Normal
+    whitelist:
+      components:
+      - Edible
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+
+# /obj/item/reagent_containers/cup/soup_pot
+- type: entity
+  parent: BaseItem
+  id: ImperialSoupPot
+  name: кастрюля
+  description: Кастрюля для приготовления супа. Бросьте ингредиенты, налейте воды и поставьте на плиту.
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/utensils.rsi
+    state: pot
+  - type: Item
+    size: Large
+  - type: ImperialSoupPot
+  - type: SolutionContainerManager
+    solutions:
+      pot:
+        maxVol: 200
+  - type: RefillableSolution
+    solution: pot
+  - type: DrainableSolution
+    solution: pot
+  - type: ExaminableSolution
+    solution: pot
+  - type: MixableSolution
+    solution: pot
+  - type: SolutionTransfer
+    canChangeTransferAmount: true
+  - type: Spillable
+    solution: pot
+  - type: ContainerContainer
+    containers:
+      soup_ingredients: !type:Container
+
+# /obj/item/plate
+- type: entity
+  parent: ImperialOvenTray
+  id: ImperialPlate
+  name: тарелка
+  description: Удерживает вашу еду в чистоте и порядке.
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/utensils.rsi
+    state: plate
+  - type: Item
+    size: Normal
+  - type: Storage
+    grid:
+    - 0,0,2,1
+    maxItemSize: Normal
+    whitelist:
+      components:
+      - Edible
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:EmptyAllContainersBehaviour
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: ImperialPlate
+  id: ImperialPlateSmall
+  name: блюдце
+  description: Маленькая тарелка для маленьких порций.
+  components:
+  - type: Sprite
+    state: plate_small
+  - type: Storage
+    grid:
+    - 0,0,1,0
+
+- type: entity
+  parent: ImperialPlate
+  id: ImperialPlateLarge
+  name: большая тарелка
+  description: Большая тарелка для больших порций.
+  components:
+  - type: Sprite
+    state: plate_large
+  - type: Storage
+    grid:
+    - 0,0,3,2
+
+# Платы
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialOvenMachineCircuitboard
+  name: плата духовки
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: ImperialOven
+    stackRequirements:
+      Manipulator: 1
+      Glass: 1
+      Cable: 2
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialRangeMachineCircuitboard
+  name: плата плиты
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: ImperialRange
+    stackRequirements:
+      Manipulator: 1
+      Glass: 1
+      Cable: 2
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialGriddleMachineCircuitboard
+  name: плата сковороды-гриля
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: ImperialGriddle
+    stackRequirements:
+      Manipulator: 1
+      Steel: 2
+      Cable: 2
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialFoodProcessorMachineCircuitboard
+  name: плата кухонного процессора
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: ImperialFoodProcessor
+    stackRequirements:
+      Manipulator: 2

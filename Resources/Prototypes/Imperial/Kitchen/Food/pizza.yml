@@ -1,0 +1,797 @@
+# Блюда TG /obj/item/food/pizza (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaFlatbreadRustic
+  name: "деревенская лепёшка"
+  description: "Простое деревенское блюдо Тизиры, популярный гарнир к мясу и рыбе. С травами и маслом."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: rustic_flatbread
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 37
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Vitamin
+          Quantity: 15
+        - ReagentId: Allicin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - garlic
+    - oily
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaFlatbreadItalic
+  name: "италийская лепёшка"
+  description: "Знакомство с человеческой едой продвинуло кухню ящеров — италийская лепёшка теперь обычна в меню забегаловок планеты."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: italic_flatbread
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Protein
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 15
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - garlic
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaFlatbreadImperial
+  name: "имперская лепёшка"
+  description: "Лепёшка с паштетом, маринованными овощами и кубиками зельца. Мало кому по вкусу, кроме ящеров."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: imperial_flatbread
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Protein
+          Quantity: 15
+        - ReagentId: Vitamin
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - garlic
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaFlatbreadRawmeat
+  name: "мясная лепёшка"
+  description: "Как ни странно, это тизирское блюдо любят некоторые люди, следящие за здоровьем."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: rawmeat_flatbread
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Protein
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaFlatbreadStinging
+  name: "жгучая лепёшка"
+  description: "Электрическая смесь медузы и пчелиных личинок дарит вкус, от которого хочется ещё!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: stinging_flatbread
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 42
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Protein
+          Quantity: 20
+        - ReagentId: ImperialHoney
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - sweet
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaFlatbreadZmorgast
+  name: "лепёшка змёргаст"
+  description: "Тизирский вариант шведского бутербродного торта; змёргаст — частое блюдо на семейных застольях."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: zmorgast_flatbread
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 33
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 16
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 6
+  - type: FlavorProfile
+    flavors:
+    - bread
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaFlatbreadFish
+  name: "лепёшка с рыбой барбекю"
+  description: "Расслоение суперматерии, клоуны-оперативники, холодно снаружи — я просто хочу жарить, ради Тизиры!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: fish_flatbread
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 42
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Protein
+          Quantity: 15
+        - ReagentId: BbqSauce
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - fishy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaFlatbreadMushroom
+  name: "лепёшка с грибами и томатами"
+  description: "Простая альтернатива италийской лепёшке, когда мяса вы уже наелись."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: mushroom_flatbread
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 28
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 18
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - mushroom
+    - tomato
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaFlatbreadNutty
+  name: "лепёшка с ореховой пастой"
+  description: "Современная кухня позволяет насладиться двойной порцией орехов корты — и в основе, и сверху лепёшки."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: nutty_flatbread
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+  - type: FlavorProfile
+    flavors:
+    - nutty
+    - bread
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaMothicMargherita
+  name: "нианская пицца «Маргарита»"
+  description: "Нианскую пиццу продают на вес: кусок — за личные кредиты, а по талону на питание — целую пиццу."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/moth.rsi
+    state: margherita_pizza
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 49
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: JuiceTomato
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+    - tomato
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaMothicFirecracker
+  name: "нианская пицца «Петарда»"
+  description: "Её не зря зовут огненной пиццей."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/moth.rsi
+    state: firecracker_pizza
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 59
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: BbqSauce
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: CapsaicinOil
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+    - corn
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaMothicFiveCheese
+  name: "нианская пицца «Пять сыров»"
+  description: "Любимица мышей, крыс и английских изобретателей."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/moth.rsi
+    state: five_cheese_pizza
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 49
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: JuiceTomato
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - cheesy
+    - bread
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaMothicWhitePie
+  name: "нианская белая пицца"
+  description: "Вы говорите «томат», я — «помидор», и ни того ни другого на этой пицце нет."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/moth.rsi
+    state: white_pie_pizza
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 49
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: JuiceTomato
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+    - garlic
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaMothicPesto
+  name: "нианская пицца с песто"
+  description: "Зелёная, как трава в саду. Не то чтобы на нианских кораблях было много садов."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/moth.rsi
+    state: pesto_pizza
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 49
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: JuiceTomato
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaMothicGarlic
+  name: "нианский чесночный пицца-хлеб"
+  description: "Лучшая еда в галактике, без сомнений."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/moth.rsi
+    state: garlic_pizza
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 49
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: JuiceTomato
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - butter
+    - garlic
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaCustom
+  name: "пицца"
+  description: "Изысканная пицца на заказ."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/pizza.rsi
+    state: pizzamargherita
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 47
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 28
+        - ReagentId: Protein
+          Quantity: 3
+        - ReagentId: JuiceTomato
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - tomato
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaMargheritaRaw
+  name: "сырая пицца «Маргарита»"
+  description: "Самая сырная пицца в галактике."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/pizza.rsi
+    state: pizzamargherita_raw
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 49
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: JuiceTomato
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+    - tomato
+  - type: ImperialBakeable
+    result: FoodPizzaMargherita
+    time: 75
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaMeatRaw
+  name: "сырая мясная пицца"
+  description: "Жирная пицца со вкусным мясом."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/pizza.rsi
+    state: meatpizza_raw
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 52
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: JuiceTomato
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 8
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - tomato
+  - type: ImperialBakeable
+    result: FoodPizzaMeat
+    time: 75
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaMushroomRaw
+  name: "сырая грибная пицца"
+  description: "Очень особенная пицца."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/pizza.rsi
+    state: mushroompizza_raw
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 41
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 28
+        - ReagentId: Protein
+          Quantity: 3
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+    - mushroom
+  - type: ImperialBakeable
+    result: FoodPizzaMushroom
+    time: 75
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaVegetableRaw
+  name: "сырая овощная пицца"
+  description: "При приготовлении этой пиццы не пострадал ни один Томат Разумный."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/pizza.rsi
+    state: vegetablepizza_raw
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 41
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: JuiceTomato
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - tomato
+    - bread
+    - carrot
+  - type: ImperialBakeable
+    result: FoodPizzaVegetable
+    time: 75
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaDonkpocketRaw
+  name: "сырая пицца с донк-покетами"
+  description: "Кому пришло в голову, что это хорошая идея?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/pizza.rsi
+    state: donkpocketpizza_raw
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 61
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Protein
+          Quantity: 15
+        - ReagentId: JuiceTomato
+          Quantity: 6
+        - ReagentId: Omnizine
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+    - tomato
+  - type: ImperialBakeable
+    result: FoodPizzaDonkpocket
+    time: 75
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaDankRaw
+  name: "сырая убойная пицца"
+  description: "Любимая пицца хиппи."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/pizza.rsi
+    state: dankpizza_raw
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 46
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: DoctorsDelight
+          Quantity: 5
+        - ReagentId: JuiceTomato
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+    - tomato
+  - type: ImperialBakeable
+    result: FoodPizzaDank
+    time: 75
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaSassysageRaw
+  name: "сырая дерзкобасная пицца"
+  description: "Дерзость почти чувствуется на вкус."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/pizza.rsi
+    state: sassysagepizza_raw
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 52
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Protein
+          Quantity: 15
+        - ReagentId: JuiceTomato
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 6
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+    - meaty
+  - type: ImperialBakeable
+    result: FoodPizzaSassysage
+    time: 75
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaPineappleRaw
+  name: "сырая гавайская пицца"
+  description: "Пиццевый аналог загадки Эйнштейна."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/pizza.rsi
+    state: pineapplepizza_raw
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 50
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: JuiceTomato
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: JuicePineapple
+          Quantity: 8
+  - type: FlavorProfile
+    flavors:
+    - pineapple
+    - bread
+    - cheesy
+  - type: ImperialBakeable
+    result: FoodPizzaPineapple
+    time: 75
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaArnoldRaw
+  name: "сырая пицца «Арнольд»"
+  description: "Здравствуйте, вы позвонили в пиццерию Арнольда. Меня сейчас нет, я убиваю пепперони."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/pizza.rsi
+    state: arnoldpizza_raw
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 85
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: Protein
+          Quantity: 9
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Iron
+          Quantity: 10
+        - ReagentId: Omnizine
+          Quantity: 30
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+    - tomato
+  - type: ImperialBakeable
+    result: FoodPizzaArnold
+    time: 75
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaEnergy
+  name: "энергетическая пицца"
+  description: "Ею, наверное, можно запитать РИПЛИ. Не ешьте, если вы не эфириал."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/pizza.rsi
+    state: energypizza
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 41
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 18
+        - ReagentId: ImperialEnriched
+          Quantity: 18
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzaEnergyRaw
+  name: "сырая энергетическая пицца"
+  description: "Ею, наверное, можно запитать РИПЛИ. Не ешьте, если вы не эфириал."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/pizza.rsi
+    state: energypizza_raw
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 41
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 18
+        - ReagentId: ImperialEnriched
+          Quantity: 18
+  - type: FlavorProfile
+    flavors:
+    - food
+  - type: ImperialBakeable
+    result: ImperialFoodPizzaEnergy
+    time: 75

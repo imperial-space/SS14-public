@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (piecake.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "meatpie_slice"
+    },
+    {
+      "name": "meatpie"
+    },
+    {
+      "name": "xenopie_slice"
+    },
+    {
+      "name": "pie"
+    },
+    {
+      "name": "plaincake"
+    },
+    {
+      "name": "plaincake_slice"
+    },
+    {
+      "name": "energycake",
+      "delays": [
+        [
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "energycakeslice",
+      "delays": [
+        [
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "bearypie"
+    },
+    {
+      "name": "slimecake_slice"
+    },
+    {
+      "name": "briochecake"
+    },
+    {
+      "name": "briochecake_slice"
+    },
+    {
+      "name": "dulcedebatata"
+    },
+    {
+      "name": "dulcedebatataslice"
+    },
+    {
+      "name": "pumpkinspicecakeslice"
+    },
+    {
+      "name": "frostypie_slice"
+    },
+    {
+      "name": "blumpkinpieslice"
+    },
+    {
+      "name": "blumpkinpie"
+    },
+    {
+      "name": "clowncake_slice"
+    },
+    {
+      "name": "berrytart"
+    },
+    {
+      "name": "vanillacake_slice"
+    },
+    {
+      "name": "blackbarry_strawberries_cake_vanilla_slice"
+    },
+    {
+      "name": "blackbarry_strawberries_cake_vanilla_cake"
+    },
+    {
+      "name": "liars_slice"
+    },
+    {
+      "name": "liars_cake"
+    },
+    {
+      "name": "holy_cake_slice"
+    },
+    {
+      "name": "holy_cake"
+    },
+    {
+      "name": "pound_cake_slice"
+    },
+    {
+      "name": "pound_cake"
+    },
+    {
+      "name": "hardware_cake_slice"
+    },
+    {
+      "name": "hardware_cake"
+    },
+    {
+      "name": "trumpetcakeslice"
+    },
+    {
+      "name": "pavlova"
+    },
+    {
+      "name": "pavlova_slice"
+    },
+    {
+      "name": "fruitcake"
+    },
+    {
+      "name": "fruitcake_slice1"
+    },
+    {
+      "name": "frenchsilkpie"
+    },
+    {
+      "name": "frenchsilkpieslice"
+    },
+    {
+      "name": "plumcake"
+    },
+    {
+      "name": "plumcakeslice"
+    },
+    {
+      "name": "shepherds_pie"
+    },
+    {
+      "name": "shepherds_pie_slice"
+    },
+    {
+      "name": "asdfpie"
+    },
+    {
+      "name": "weddingcake"
+    },
+    {
+      "name": "weddingcake_slice"
+    },
+    {
+      "name": "pineapple_cream_cake"
+    },
+    {
+      "name": "pineapple_cream_cake_slice"
+    },
+    {
+      "name": "bacid_pie"
+    },
+    {
+      "name": "bacid_pie_slice"
+    },
+    {
+      "name": "cake_custom"
+    },
+    {
+      "name": "cake_custom_slice"
+    },
+    {
+      "name": "pie_custom"
+    },
+    {
+      "name": "pie_custom_slice"
+    }
+  ]
+}

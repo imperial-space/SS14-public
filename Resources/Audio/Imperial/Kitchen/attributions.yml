@@ -1,0 +1,4 @@
+- files: ["oven_open.ogg", "oven_close.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation"
+  source: "https://github.com/tgstation/tgstation/tree/master/sound/machines/oven"

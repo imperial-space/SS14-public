@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (pizza.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "pizzamargherita"
+    },
+    {
+      "name": "pizzamargheritaslice"
+    },
+    {
+      "name": "energypizzaslice"
+    },
+    {
+      "name": "meatpizzaslice"
+    },
+    {
+      "name": "moldy_slice"
+    },
+    {
+      "name": "antpizzaslice",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "pineapplepizza_raw"
+    },
+    {
+      "name": "arnoldpizza_raw"
+    },
+    {
+      "name": "donkpocketpizza_raw"
+    },
+    {
+      "name": "dankpizza_raw"
+    },
+    {
+      "name": "sassysagepizza_raw"
+    },
+    {
+      "name": "pizzamargherita_raw"
+    },
+    {
+      "name": "mushroompizza_raw"
+    },
+    {
+      "name": "vegetablepizza_raw"
+    },
+    {
+      "name": "meatpizza_raw"
+    },
+    {
+      "name": "energypizza"
+    },
+    {
+      "name": "energypizza_raw"
+    }
+  ]
+}

@@ -1,0 +1,716 @@
+# Блюда TG /obj/item/food/meat (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSlabHumanMutantGolem
+  name: "мясо"
+  description: "Съедобные камни — добро пожаловать в будущее."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: golemmeat
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 11
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Iron
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - food
+  - type: ImperialGrillable
+    result: FoodMeatCooked
+    time: 60
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: FoodMeatCutlet
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSlabHumanMutantGolemAdamantine
+  name: "мясо"
+  description: "Из загона слаймов через руну на кухню — наука."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: agolemmeat
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 11
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Iron
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - food
+  - type: ImperialGrillable
+    result: FoodMeatCooked
+    time: 60
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: FoodMeatCutlet
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSlabHumanMutantShadow
+  name: "мясо"
+  description: "Ох, какая мрачность."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: shadowmeat
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialGrillable
+    result: FoodMeatCooked
+    time: 60
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: FoodMeatCutlet
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSlabHumanMutantFly
+  name: "мясо"
+  description: "Ничто не говорит «вкусно» так, как радиоактивная плоть мутанта с личинками."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: flymeat
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Protein
+          Quantity: 4
+        - ReagentId: Uranium
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - food
+  - type: ImperialGrillable
+    result: FoodMeatCooked
+    time: 60
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: FoodMeatCutlet
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSlabHumanMutantMoth
+  name: "мясо"
+  description: "Неприятно порошистое и сухое. Хотя красивое."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: mothmeat
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialGrillable
+    result: FoodMeatCooked
+    time: 60
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: FoodMeatCutlet
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSlabHumanMutantSkeleton
+  name: "кость"
+  description: "Где-то это должно прекратиться, и мы явно эту точку прошли."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: skeletonmeat
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSlabHumanMutantEthereal
+  name: "мясо"
+  description: "Такое блестящее, что кажется — съешь, и сам засияешь."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: etherealmeat
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: ImperialEnriched
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialGrillable
+    result: FoodMeatCooked
+    time: 60
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: FoodMeatCutlet
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSlabSynthmeat
+  name: "синтемясо"
+  description: "Синтетический кусок мяса."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: meat_old
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialGrillable
+    result: ImperialFoodMeatSteakPlainSynth
+    time: 60
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: FoodMeatCutlet
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSlabMeatproduct
+  name: "мясной продукт"
+  description: "Кусок мясного продукта, переработанного на станции и обработанного химией."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: meatproduct
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - acid
+  - type: ImperialGrillable
+    result: ImperialFoodMeatSteakMeatproduct
+    time: 60
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: FoodMeatCutlet
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSlabGorilla
+  name: "мясо гориллы"
+  description: "Гораздо мясистее обезьяньего."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: meat
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 18
+        reagents:
+        - ReagentId: Protein
+          Quantity: 7
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialGrillable
+    result: FoodMeatCooked
+    time: 60
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: FoodMeatCutlet
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSlabGondola
+  name: "мясо гондолы"
+  description: "По древним легендам, сырая плоть гондолы дарует внутренний покой."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: meat
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Protein
+          Quantity: 4
+        - ReagentId: Nutriment
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialGrillable
+    result: ImperialFoodMeatSteakGondola
+    time: 60
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodMeatRawcutletGondola
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSlabPig
+  name: "сырая свинина"
+  description: "Кусок сырой свинины. Этот поросёнок пошёл к мяснику."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: pig_meat
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - food
+  - type: ImperialGrillable
+    result: ImperialFoodMeatSteakPlainPig
+    time: 60
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: FoodMeatCutlet
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSlabGrassfed
+  name: "эко-мясо"
+  description: "Кусок фермерского мяса на 100% травяном откорме, призёр выставок."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: meat
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Protein
+          Quantity: 3
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialGrillable
+    result: FoodMeatCooked
+    time: 60
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: FoodMeatCutlet
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSlabBloodWorm
+  name: "мясо кровавого червя"
+  description: "Кому пришло в голову это есть? Хотя бы сочное..."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: meat
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Blood
+          Quantity: 30
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialGrillable
+    result: ImperialFoodMeatSteakBloodWorm
+    time: 60
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: FoodMeatCutlet
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSteakXeno
+  name: "ксеностейк"
+  description: "Кусок горячего пряного мяса."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: meatsteak
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - acid
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSteakSpider
+  name: "паучий стейк"
+  description: "Кусок горячего пряного мяса."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: meatsteak
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - cobwebs
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSteakGondola
+  name: "стейк из гондолы"
+  description: "Кусок горячего пряного мяса."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: meatsteak
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSteakMeatproduct
+  name: "термообработанный мясной продукт"
+  description: "Кусок горячего пряного мяса."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: meatproductsteak
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSteakPlainSynth
+  name: "синтестейк"
+  description: "Стейк из синтетического мяса. Выглядит как-то не так, правда?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: meatsteak_old
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSteakPlainPig
+  name: "свиная отбивная"
+  description: "Свиная отбивная. Хватит меня отбивать!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: pigsteak
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatSteakBloodWorm
+  name: "стейк из кровавого червя"
+  description: "Вот это кровавый стейк!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: meatsteak
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatRawcutletGondola
+  name: "сырая котлетка из гондолы"
+  description: "Сырая мясная котлетка."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: rawcutlet
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialGrillable
+    result: ImperialFoodMeatCutletGondola
+    time: 42.5
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatCutletGondola
+  name: "котлетка из гондолы"
+  description: "Приготовленная мясная котлетка."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: cutlet
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty

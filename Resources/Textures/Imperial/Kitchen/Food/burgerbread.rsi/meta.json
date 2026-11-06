@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (burgerbread.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "custburg"
+    },
+    {
+      "name": "fishburger"
+    },
+    {
+      "name": "cburger"
+    },
+    {
+      "name": "moldybreadslice"
+    },
+    {
+      "name": "griddle_toast"
+    },
+    {
+      "name": "toast_sandwich"
+    },
+    {
+      "name": "jellytoast"
+    },
+    {
+      "name": "jellysandwich"
+    },
+    {
+      "name": "sandwich"
+    },
+    {
+      "name": "notasandwich"
+    },
+    {
+      "name": "blt"
+    },
+    {
+      "name": "raw_frenchtoast"
+    },
+    {
+      "name": "peanut_butter_jelly_sandwich"
+    },
+    {
+      "name": "raw_breadstick"
+    },
+    {
+      "name": "breadstick"
+    },
+    {
+      "name": "peanut_butter_banana_sandwich"
+    },
+    {
+      "name": "philly_cheesesteak"
+    },
+    {
+      "name": "death_sandwich"
+    },
+    {
+      "name": "sloppy_moe"
+    }
+  ]
+}

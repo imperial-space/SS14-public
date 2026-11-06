@@ -1,0 +1,625 @@
+# quality новых напитков TG.
+
+- type: imperialDrinkQuality
+  id: ImperialThirteenloko
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialAged
+  quality: 5
+
+- type: imperialDrinkQuality
+  id: ImperialLizardwine
+  quality: 5
+
+- type: imperialDrinkQuality
+  id: ImperialGoldschlager
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialRumCoke
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialBooger
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialIrishcarbomb
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialHiveminderaser
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialDrunkenblumpkin
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialFetchingFizz
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialHeartyPunch
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialDreadnog
+  quality: 1
+
+- type: imperialDrinkQuality
+  id: ImperialNarsour
+  quality: 5
+
+- type: imperialDrinkQuality
+  id: ImperialQuadrupleSec
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialQuintupleSec
+  quality: 5
+
+- type: imperialDrinkQuality
+  id: ImperialGrasshopper
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialStinger
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialBastionBourbon
+  quality: 5
+
+- type: imperialDrinkQuality
+  id: ImperialFringeWeaver
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialPeppermintPatty
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialAlexander
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialAmarettoAlexander
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialSidecar
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialBetweenTheSheets
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialKamikaze
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialFernetCola
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialFanciulli
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialBrancaMenta
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialBlankPaper
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialFruitWine
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialWizzFizz
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialBugSpray
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialTurbo
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialOldTimer
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialDuplex
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialBlazaam
+  quality: 5
+
+- type: imperialDrinkQuality
+  id: ImperialPlanetCracker
+  quality: 5
+
+- type: imperialDrinkQuality
+  id: ImperialMaunaLoa
+  quality: 5
+
+- type: imperialDrinkQuality
+  id: ImperialPinaOlivada
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialGingerAmaretto
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialGodfather
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialGodmother
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialKortara
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialSeaBreeze
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialWhiteTiziran
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialDrunkenEspatier
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialProteinBlend
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialTriumphalArch
+  quality: 5
+
+- type: imperialDrinkQuality
+  id: ImperialTheJuice
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialCuracao
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialNavyRum
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialAdmiralty
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialLongHaul
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialLongJohnSilver
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialTropicalStorm
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialSaltAndSwell
+  quality: 5
+
+- type: imperialDrinkQuality
+  id: ImperialTiltaellen
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialTichToch
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialHelianthus
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialTheHat
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialGinGarden
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialTelepole
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialPodTesla
+  quality: 5
+
+- type: imperialDrinkQuality
+  id: ImperialRiceBeer
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialYuyakita
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialSaibasan
+  quality: 5
+
+- type: imperialDrinkQuality
+  id: ImperialBanzaiTi
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialSanraizusoda
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialKumicho
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialRedPlanet
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialAmaterasu
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialNekomimosa
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialSentaiQuencha
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialBosozoku
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialErsatzche
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialRedCityAm
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialKingsRansom
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialFourBit
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialWhiteHawaiian
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialMauiSunrise
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialImperialMaiTai
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialKonococoRumtini
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialBostonSour
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialStar
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialOldFashioned
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialSazerac
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialAmarettoSour
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialRamosGinFizz
+  quality: 5
+
+- type: imperialDrinkQuality
+  id: ImperialFrench75
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialSangria
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialSufferingBastard
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialBlueBlazer
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialHotToddy
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialTizirianSour
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialFlipCocktail
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialBartendersHandshake
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialBrandyCrusta
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialCasino
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialGaribaldi
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialImprovedWhiskey
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialLastWord
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialMaryPickford
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialNegroni
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialNuclearDaiquiri
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialNuclearDaiquiriThermo
+  quality: 5
+
+- type: imperialDrinkQuality
+  id: ImperialPoetsDream
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialPousseCafe
+  quality: 5
+
+- type: imperialDrinkQuality
+  id: ImperialSpritz
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialVieuxCarre
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialNukaCola
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialCinderella
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialCherryshake
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialBluecherryshake
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialVanillashake
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialCaramelshake
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialChoccyshake
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialStrawberryshake
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialBananashake
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialPumpkinLatte
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialGibbfloats
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialTripleCitrus
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialChocolateMilk
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialItalianCoco
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialCreamSoda
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialRedQueen
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialAguaFresca
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialCucumberlemonade
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialFruitPunch
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialBittersSoda
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialLean
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialInnocentErp
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialSoundhand
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialBlackBlood
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialPeguClub
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialAmnesia
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialSilverhand
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialTelegol
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialHorseNeck
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialInabox
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialGreenFairy
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialTransSiberianExpress
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialRainbowSky
+  quality: 5
+
+- type: imperialDrinkQuality
+  id: ImperialCommunismBeach
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialRedJanuary
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialFiveYearPlan
+  quality: 4
+
+- type: imperialDrinkQuality
+  id: ImperialGalactional
+  quality: 5
+
+- type: imperialDrinkQuality
+  id: ImperialSlimetea
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialGlace
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialRobbusto
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialVortex
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialMokko
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialFrappuchino
+  quality: 3
+
+- type: imperialDrinkQuality
+  id: ImperialMacchiato
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialPumpkinRaf
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialTehTahlua
+  quality: 2
+
+- type: imperialDrinkQuality
+  id: ImperialChifir
+  quality: 2

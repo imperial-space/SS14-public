@@ -1,0 +1,161 @@
+# Блюда TG /obj/item/food/raw_meatball (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodRawMeatballHuman
+  name: "странная сырая фрикаделька"
+  description: "Отличная еда. Не вязанка дров. Сыровата."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: raw_meatball
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialGrillable
+    result: ImperialFoodMeatballHuman
+    time: 35
+  - type: ImperialProcessable
+    entries:
+    - tool: RollingPin
+      result: ImperialFoodRawPattyHuman
+      amount: 1
+      time: 2
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodRawMeatballCorgi
+  name: "сырая фрикаделька из корги"
+  description: "Отличная еда. Не вязанка дров. Сыровата."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: raw_meatball
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialGrillable
+    result: ImperialFoodMeatballCorgi
+    time: 35
+  - type: ImperialProcessable
+    entries:
+    - tool: RollingPin
+      result: ImperialFoodRawPattyCorgi
+      amount: 1
+      time: 2
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodRawMeatballXeno
+  name: "сырая ксенофрикаделька"
+  description: "Отличная еда. Не вязанка дров. Сыровата."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: raw_meatball
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialGrillable
+    result: ImperialFoodMeatballXeno
+    time: 35
+  - type: ImperialProcessable
+    entries:
+    - tool: RollingPin
+      result: ImperialFoodRawPattyXeno
+      amount: 1
+      time: 2
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodRawMeatballBear
+  name: "сырая медвежья фрикаделька"
+  description: "Отличная еда. Не вязанка дров. Сыровата."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: raw_meatball
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialGrillable
+    result: ImperialFoodMeatballBear
+    time: 35
+  - type: ImperialProcessable
+    entries:
+    - tool: RollingPin
+      result: ImperialFoodRawPattyBear
+      amount: 1
+      time: 2
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodRawMeatballChicken
+  name: "сырая куриная фрикаделька"
+  description: "Отличная еда. Не вязанка дров. Сыровата."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: raw_meatball
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialGrillable
+    result: ImperialFoodMeatballChicken
+    time: 35
+  - type: ImperialProcessable
+    entries:
+    - tool: RollingPin
+      result: ImperialFoodRawPattyChicken
+      amount: 1
+      time: 2
+      tableRequired: true

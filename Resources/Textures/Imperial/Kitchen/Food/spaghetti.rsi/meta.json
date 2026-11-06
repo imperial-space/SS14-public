@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (spaghetti.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "pastatomato"
+    },
+    {
+      "name": "beefnoodle"
+    },
+    {
+      "name": "mac_n_cheese"
+    },
+    {
+      "name": "shoyu_tonkotsu_ramen"
+    },
+    {
+      "name": "kitakata_ramen"
+    },
+    {
+      "name": "kitsune_udon"
+    },
+    {
+      "name": "nikujaga"
+    },
+    {
+      "name": "pho"
+    },
+    {
+      "name": "pad_thai"
+    },
+    {
+      "name": "carbonara"
+    }
+  ]
+}

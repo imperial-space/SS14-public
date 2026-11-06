@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (frozen_treats.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "pineapple_sc"
+    },
+    {
+      "name": "grape_sc"
+    },
+    {
+      "name": "lime_sc"
+    },
+    {
+      "name": "blue_sc"
+    },
+    {
+      "name": "red_sc"
+    },
+    {
+      "name": "lemon_sc"
+    },
+    {
+      "name": "mountainwind_sc"
+    },
+    {
+      "name": "clown_sc"
+    },
+    {
+      "name": "soda_sc"
+    },
+    {
+      "name": "pwrgame_sc"
+    },
+    {
+      "name": "amber_sc"
+    },
+    {
+      "name": "orange_sc"
+    },
+    {
+      "name": "honkdae"
+    },
+    {
+      "name": "popsicle_stick_s"
+    }
+  ]
+}

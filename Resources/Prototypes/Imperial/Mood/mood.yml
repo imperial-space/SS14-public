@@ -1,0 +1,165 @@
+# /atom/movable/screen/mood: рожица по уровню настроения, цвет по рассудку. Тяжесть = (рассудок - 1) * 12 + значок.
+- type: alert
+  id: ImperialMood
+  clickEvent: !type:ImperialMoodAlertEvent
+  name: imperial-mood-alert-name
+  description: imperial-mood-alert-desc
+  minSeverity: 1
+  maxSeverity: 72
+  icons:
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood1_1
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood2_1
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood3_1
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood4_1
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood5_1
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood6_1
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood7_1
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood8_1
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood9_1
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood_happiness_good_1
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood_happiness_bad_1
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood_despair_1
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood1_2
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood2_2
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood3_2
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood4_2
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood5_2
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood6_2
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood7_2
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood8_2
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood9_2
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood_happiness_good_2
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood_happiness_bad_2
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood_despair_2
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood1_3
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood2_3
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood3_3
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood4_3
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood5_3
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood6_3
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood7_3
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood8_3
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood9_3
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood_happiness_good_3
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood_happiness_bad_3
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood_despair_3
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood1_4
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood2_4
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood3_4
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood4_4
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood5_4
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood6_4
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood7_4
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood8_4
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood9_4
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood_happiness_good_4
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood_happiness_bad_4
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood_despair_4
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood1_5
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood2_5
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood3_5
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood4_5
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood5_5
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood6_5
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood7_5
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood8_5
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood9_5
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood_happiness_good_5
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood_happiness_bad_5
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood_despair_5
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood1_6
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood2_6
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood3_6
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood4_6
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood5_6
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood6_6
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood7_6
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood8_6
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood9_6
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood_happiness_good_6
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood_happiness_bad_6
+  - sprite: /Textures/Imperial/Mood/mood.rsi
+    state: mood_despair_6
+
+# Галлюцинации рассудка (hallucination/sanity): слуховые, как у черты «Паракузия».
+- type: entity
+  id: ImperialMoodHallucinations
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Paracusia
+    minTimeBetweenIncidents: 30
+    maxTimeBetweenIncidents: 120
+    maxSoundDistance: 7
+    sounds:
+      collection: Paracusia

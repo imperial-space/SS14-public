@@ -1,0 +1,154 @@
+# Блюда TG /obj/item/food/cheese (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCheeseRoyal
+  name: "королевский сыр"
+  description: "Взойди на трон. Поглоти головку. Почувствуй МОЩЬ."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: royalcheese
+  - type: Item
+    size: Large
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 50
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: Gold
+          Quantity: 20
+        - ReagentId: UnstableMutagen
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - cheesy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCheeseCurdCheese
+  name: "творожный сыр"
+  description: "Известный под многими именами в кухнях людей, творожный сыр подходит для множества блюд."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: curd_cheese
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 9
+        reagents:
+        - ReagentId: Protein
+          Quantity: 3
+        - ReagentId: Cream
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - cheesy
+    - creamy
+  - type: ImperialBakeable
+    result: ImperialFoodCheeseCheeseCurds
+    time: 17.5
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCheeseCheeseCurds
+  name: "сырные зёрна"
+  description: "Не путать с творожным сыром. Вкусны во фритюре."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: cheese_curds
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - cheesy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCheeseFirmCheese
+  name: "твёрдый сыр"
+  description: "Выдержанный твёрдый сыр, по текстуре похож на плотный тофу. Почти не содержит влаги и плохо плавится, поэтому удобен в готовке."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: firm_cheese
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - cheesy
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCheeseFirmCheeseSlice
+      amount: 3
+      time: 3
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCheeseFirmCheeseSlice
+  name: "ломтик твёрдого сыра"
+  description: "Ломтик твёрдого сыра. Идеален для гриля или вкусного песто."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: firm_cheese_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - cheesy
+  - type: ImperialGrillable
+    result: FoodBakedGrilledCheeseSandwich
+    time: 30
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCheeseMozzarella
+  name: "моцарелла"
+  description: "Вкусная, сливочная и сырная — всё в одной простой упаковке."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: mozzarella
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - food

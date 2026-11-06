@@ -1,0 +1,112 @@
+# Блюда TG /obj/item/food/patty (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPattyHuman
+  name: "странная котлета"
+  description: "Котлета от Nanotrasen — котлета для нас с тобой!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: patty
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPattyCorgi
+  name: "котлета из корги"
+  description: "Котлета от Nanotrasen — котлета для нас с тобой!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: patty
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPattyBear
+  name: "медвежья котлета"
+  description: "Котлета от Nanotrasen — котлета для нас с тобой!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: patty
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPattyXeno
+  name: "ксенокотлета"
+  description: "Котлета от Nanotrasen — котлета для нас с тобой!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: patty
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - acid
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPattyChicken
+  name: "куриная котлета"
+  description: "Котлета от Nanotrasen — котлета для нас с тобой!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: chicken_patty
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - chicken

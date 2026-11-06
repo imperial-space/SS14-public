@@ -1,0 +1,277 @@
+# quality реагентов TG (DRINK_REVOLTING 1 … DRINK_FANTASTIC 5, FOOD_AMAZING 6) по названию (scratchpad/kitchen/drinks.pl).
+
+- type: imperialDrinkQuality
+  id: AcidSpit
+  quality: 4 # acidspit
+
+- type: imperialDrinkQuality
+  id: AlliesCocktail
+  quality: 2 # allies cocktail
+
+- type: imperialDrinkQuality
+  id: Aloe
+  quality: 4 # aloe
+
+- type: imperialDrinkQuality
+  id: Amasec
+  quality: 3 # amasec
+
+- type: imperialDrinkQuality
+  id: Andalusia
+  quality: 3 # Andalusia
+
+- type: imperialDrinkQuality
+  id: Antifreeze
+  quality: 2 # antifreeze
+
+- type: imperialDrinkQuality
+  id: AtomicBomb
+  quality: 5 # Atomic Bomb
+
+- type: imperialDrinkQuality
+  id: B52
+  quality: 3 # B-52
+
+- type: imperialDrinkQuality
+  id: BahamaMama
+  quality: 3 # Bahama Mama
+
+- type: imperialDrinkQuality
+  id: BananaHonk
+  quality: 3 # Banana Honk
+
+- type: imperialDrinkQuality
+  id: Barefoot
+  quality: 4 # barefoot
+
+- type: imperialDrinkQuality
+  id: BeepskySmash
+  quality: 3 # Beepsky smash
+
+- type: imperialDrinkQuality
+  id: BlackRussian
+  quality: 2 # Black Russian
+
+- type: imperialDrinkQuality
+  id: BloodyMary
+  quality: 3 # Bloody Mary
+
+- type: imperialDrinkQuality
+  id: BraveBull
+  quality: 2 # Brave Bull
+
+- type: imperialDrinkQuality
+  id: CoconutRum
+  quality: 2 # coconut rum
+
+- type: imperialDrinkQuality
+  id: CubaLibre
+  quality: 3 # Cuba libre
+
+- type: imperialDrinkQuality
+  id: DemonsBlood
+  quality: 4 # Demon's Blood
+
+- type: imperialDrinkQuality
+  id: DevilsKiss
+  quality: 4 # Devil's Kiss
+
+- type: imperialDrinkQuality
+  id: DoctorsDelight
+  quality: 4 # The Doctor's Delight
+
+- type: imperialDrinkQuality
+  id: DriestMartini
+  quality: 3 # driest martini
+
+- type: imperialDrinkQuality
+  id: Eggnog
+  quality: 4 # eggnog
+
+- type: imperialDrinkQuality
+  id: ErikaSurprise
+  quality: 4 # Erika surprise
+
+- type: imperialDrinkQuality
+  id: GargleBlaster
+  quality: 3 # Pan-Galactic Gargle Blaster
+
+- type: imperialDrinkQuality
+  id: GinFizz
+  quality: 3 # gin fizz
+
+- type: imperialDrinkQuality
+  id: GinTonic
+  quality: 2 # gin and tonic
+
+- type: imperialDrinkQuality
+  id: HippiesDelight
+  quality: 5 # Hippie's Delight
+
+- type: imperialDrinkQuality
+  id: IrishCream
+  quality: 2 # Irish cream
+
+- type: imperialDrinkQuality
+  id: IrishCoffee
+  quality: 2 # Irish coffee
+
+- type: imperialDrinkQuality
+  id: JackRose
+  quality: 2 # Jack rose
+
+- type: imperialDrinkQuality
+  id: JungleBird
+  quality: 4 # jungle bird
+
+- type: imperialDrinkQuality
+  id: LongIslandIcedTea
+  quality: 4 # Long Island iced tea
+
+- type: imperialDrinkQuality
+  id: Manhattan
+  quality: 2 # Manhattan
+
+- type: imperialDrinkQuality
+  id: ManhattanProject
+  quality: 4 # Manhattan Project
+
+- type: imperialDrinkQuality
+  id: Margarita
+  quality: 2 # margarita
+
+- type: imperialDrinkQuality
+  id: Martini
+  quality: 2 # classic martini
+
+- type: imperialDrinkQuality
+  id: Mead
+  quality: 2 # mead
+
+- type: imperialDrinkQuality
+  id: Mojito
+  quality: 3 # Mojito
+
+- type: imperialDrinkQuality
+  id: Neurotoxin
+  quality: 4 # neurotoxin
+
+- type: imperialDrinkQuality
+  id: Painkiller
+  quality: 2 # painkiller
+
+- type: imperialDrinkQuality
+  id: RedMead
+  quality: 3 # red mead
+
+- type: imperialDrinkQuality
+  id: Sbiten
+  quality: 3 # sbiten
+
+- type: imperialDrinkQuality
+  id: ScrewdriverCocktail
+  quality: 2 # screwdriver
+
+- type: imperialDrinkQuality
+  id: Silencer
+  quality: 3 # silencer
+
+- type: imperialDrinkQuality
+  id: Singulo
+  quality: 4 # singulo
+
+- type: imperialDrinkQuality
+  id: SnowWhite
+  quality: 2 # Snow White
+
+- type: imperialDrinkQuality
+  id: SyndicateBomb
+  quality: 3 # syndicate bomb
+
+- type: imperialDrinkQuality
+  id: TequilaSunrise
+  quality: 3 # tequila sunrise
+
+- type: imperialDrinkQuality
+  id: ThreeMileIsland
+  quality: 5 # Three Mile Island iced tea
+
+- type: imperialDrinkQuality
+  id: ToxinsSpecial
+  quality: 4 # toxins special
+
+- type: imperialDrinkQuality
+  id: Vampiro
+  quality: 3 # vampiro
+
+- type: imperialDrinkQuality
+  id: VodkaMartini
+  quality: 2 # vodka martini
+
+- type: imperialDrinkQuality
+  id: WhiskeyCola
+  quality: 2 # whiskey cola
+
+- type: imperialDrinkQuality
+  id: WhiskeySoda
+  quality: 2 # whiskey soda
+
+- type: imperialDrinkQuality
+  id: WhiteRussian
+  quality: 3 # White Russian
+
+- type: imperialDrinkQuality
+  id: Rubberneck
+  quality: 3 # rubberneck
+
+- type: imperialDrinkQuality
+  id: BlueHawaiian
+  quality: 4 # Blue Hawaiian
+
+- type: imperialDrinkQuality
+  id: MoscowMule
+  quality: 3 # moscow mule
+
+- type: imperialDrinkQuality
+  id: Daiquiri
+  quality: 2 # daiquiri
+
+- type: imperialDrinkQuality
+  id: WhiskeySour
+  quality: 3 # whiskey sour
+
+- type: imperialDrinkQuality
+  id: CafeLatte
+  quality: 2 # cafe latte
+
+- type: imperialDrinkQuality
+  id: Lemonade
+  quality: 2 # lemonade
+
+- type: imperialDrinkQuality
+  id: SoyLatte
+  quality: 2 # soy latte
+
+- type: imperialDrinkQuality
+  id: ArnoldPalmer
+  quality: 2 # Arnold Palmer
+
+- type: imperialDrinkQuality
+  id: RoyRogers
+  quality: 3 # Roy Rogers
+
+- type: imperialDrinkQuality
+  id: ChangelingSting
+  quality: 3 # Changeling Sting
+
+- type: imperialDrinkQuality
+  id: RootBeer
+  quality: 4 # root beer
+
+- type: imperialDrinkQuality
+  id: SolDry
+  quality: 2 # Sol Dry
+
+- type: imperialDrinkQuality
+  id: ShirleyTemple
+  quality: 3 # Shirley Temple

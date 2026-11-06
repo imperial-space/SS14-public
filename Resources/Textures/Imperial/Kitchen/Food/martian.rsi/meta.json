@@ -1,0 +1,283 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (martian.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "inferno_kimchi"
+    },
+    {
+      "name": "garlic_kimchi"
+    },
+    {
+      "name": "surimi"
+    },
+    {
+      "name": "kamaboko_sunrise"
+    },
+    {
+      "name": "sambal"
+    },
+    {
+      "name": "katsu_fillet"
+    },
+    {
+      "name": "rice_dough"
+    },
+    {
+      "name": "raw_noodles"
+    },
+    {
+      "name": "cooked_ramen"
+    },
+    {
+      "name": "raw_ramen"
+    },
+    {
+      "name": "cooked_noodles"
+    },
+    {
+      "name": "reispan"
+    },
+    {
+      "name": "reispan_slice"
+    },
+    {
+      "name": "hurricane_rice"
+    },
+    {
+      "name": "ikareis"
+    },
+    {
+      "name": "hawaiian_fried_rice"
+    },
+    {
+      "name": "ketchup_fried_rice"
+    },
+    {
+      "name": "mediterranean_fried_rice"
+    },
+    {
+      "name": "bibimbap"
+    },
+    {
+      "name": "bulgogi_noodles"
+    },
+    {
+      "name": "yakisoba_katsu"
+    },
+    {
+      "name": "martian_fried_noodles"
+    },
+    {
+      "name": "simple_fried_noodles"
+    },
+    {
+      "name": "setagaya_curry"
+    },
+    {
+      "name": "big_blue_burger"
+    },
+    {
+      "name": "chappy_patty"
+    },
+    {
+      "name": "king_katsu_sandwich"
+    },
+    {
+      "name": "marte_cubano_sandwich"
+    },
+    {
+      "name": "croque_martienne"
+    },
+    {
+      "name": "prospect_sunrise"
+    },
+    {
+      "name": "takoyaki"
+    },
+    {
+      "name": "russian_takoyaki"
+    },
+    {
+      "name": "tacoyaki"
+    },
+    {
+      "name": "okonomiyaki"
+    },
+    {
+      "name": "brat_kimchi"
+    },
+    {
+      "name": "tonkatsuwurst"
+    },
+    {
+      "name": "ti_hoeh_koe"
+    },
+    {
+      "name": "kitzushi"
+    },
+    {
+      "name": "epok_epok"
+    },
+    {
+      "name": "roti_john"
+    },
+    {
+      "name": "izakaya_fries"
+    },
+    {
+      "name": "kurry_ok_subsando"
+    },
+    {
+      "name": "loco_moco"
+    },
+    {
+      "name": "wild_duck_fries"
+    },
+    {
+      "name": "little_hawaii_hotdog"
+    },
+    {
+      "name": "salt_chilli_fries"
+    },
+    {
+      "name": "octopus_fillet"
+    },
+    {
+      "name": "grilled_octopus"
+    },
+    {
+      "name": "steak_croquette"
+    },
+    {
+      "name": "chapsilog"
+    },
+    {
+      "name": "chap_hash"
+    },
+    {
+      "name": "agedashi_tofu"
+    },
+    {
+      "name": "po_kok_gai"
+    },
+    {
+      "name": "huoxing_tofu"
+    },
+    {
+      "name": "hua_mulan_congee"
+    },
+    {
+      "name": "feizhou_ji"
+    },
+    {
+      "name": "galinha_de_cabidela"
+    },
+    {
+      "name": "katsu_curry"
+    },
+    {
+      "name": "beef_bowl"
+    },
+    {
+      "name": "salt_chilli_bowl"
+    },
+    {
+      "name": "kansai_bowl"
+    },
+    {
+      "name": "eigamudo_curry"
+    },
+    {
+      "name": "cilbir"
+    },
+    {
+      "name": "peking_duck_crepes"
+    },
+    {
+      "name": "spekkoek"
+    },
+    {
+      "name": "spekkoek_slice"
+    },
+    {
+      "name": "pineapple_foster"
+    },
+    {
+      "name": "pastel_de_nata"
+    },
+    {
+      "name": "boh_loh_yah"
+    },
+    {
+      "name": "banana_fritter"
+    },
+    {
+      "name": "pineapple_fritter"
+    },
+    {
+      "name": "kasei_dango"
+    },
+    {
+      "name": "pb_ice_cream_mochi"
+    },
+    {
+      "name": "plasma_dog_supreme"
+    },
+    {
+      "name": "frickles"
+    },
+    {
+      "name": "raw_ballpark_pretzel"
+    },
+    {
+      "name": "ballpark_pretzel"
+    },
+    {
+      "name": "raw_ballpark_tsukune"
+    },
+    {
+      "name": "ballpark_tsukune"
+    },
+    {
+      "name": "pickled_voltvine"
+    },
+    {
+      "name": "volt_fish",
+      "delays": [
+        [
+          1,
+          0.2,
+          0.1,
+          1.5,
+          0.15,
+          0.1,
+          0.2,
+          0.1,
+          0.15,
+          1.3,
+          0.1,
+          0.2,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "sprout_bowl"
+    },
+    {
+      "name": "chapslice"
+    },
+    {
+      "name": "chapslice_grilled"
+    },
+    {
+      "name": "kamaboko_slice"
+    }
+  ]
+}

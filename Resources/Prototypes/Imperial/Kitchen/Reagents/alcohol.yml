@@ -1,0 +1,1834 @@
+# Реагенты TG: alcohol (scratchpad/kitchen/kgen.pl).
+
+- type: reagent
+  id: ImperialLight
+  name: reagent-name-imperial-light
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-light
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperiallight
+  color: "#D7BC31"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.04
+
+- type: reagent
+  id: ImperialGreen
+  name: reagent-name-imperial-green
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-green
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialgreen
+  color: "#9E6B4A"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.19
+
+- type: reagent
+  id: ImperialKong
+  name: reagent-name-imperial-kong
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-kong
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialkong
+  color: "#332100"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.56
+
+- type: reagent
+  id: ImperialCandycorn
+  name: reagent-name-imperial-candycorn
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-candycorn
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialcandycorn
+  color: "#ccb800"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.56
+
+- type: reagent
+  id: ImperialThirteenloko
+  name: reagent-name-imperial-thirteenloko
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-thirteenloko
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialthirteenloko
+  color: "#102000"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.60
+
+- type: reagent
+  id: ImperialBilk
+  name: reagent-name-imperial-bilk
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-bilk
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialbilk
+  color: "#895C4C"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.11
+
+- type: reagent
+  id: ImperialAged
+  name: reagent-name-imperial-aged
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-aged
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialaged
+  color: "#c0b675"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.53
+
+- type: reagent
+  id: ImperialLizardwine
+  name: reagent-name-imperial-lizardwine
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-lizardwine
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperiallizardwine
+  color: "#7E4043"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.34
+
+- type: reagent
+  id: ImperialGoldschlager
+  name: reagent-name-imperial-goldschlager
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-goldschlager
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialgoldschlager
+  color: "#FFFF91"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.19
+
+- type: reagent
+  id: ImperialRumCoke
+  name: reagent-name-imperial-rum-coke
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-rum-coke
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialrumcoke
+  color: "#3E1B00"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.22
+
+- type: reagent
+  id: ImperialBooger
+  name: reagent-name-imperial-booger
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-booger
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialbooger
+  color: "#8CFF8C"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.34
+
+- type: reagent
+  id: ImperialIrishcarbomb
+  name: reagent-name-imperial-irishcarbomb
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-irishcarbomb
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialirishcarbomb
+  color: "#2E6671"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.19
+
+- type: reagent
+  id: ImperialHiveminderaser
+  name: reagent-name-imperial-hiveminderaser
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-hiveminderaser
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialhiveminderaser
+  color: "#FF80FC"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.30
+
+- type: reagent
+  id: ImperialDrunkenblumpkin
+  name: reagent-name-imperial-drunkenblumpkin
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-drunkenblumpkin
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialdrunkenblumpkin
+  color: "#1EA0FF"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.22
+
+- type: reagent
+  id: ImperialFetchingFizz
+  name: reagent-name-imperial-fetching-fizz
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-fetching-fizz
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialfetchingfizz
+  color: "#FF5B0F"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.07
+
+- type: reagent
+  id: ImperialHeartyPunch
+  name: reagent-name-imperial-hearty-punch
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-hearty-punch
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialheartypunch
+  color: "#8C0000"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.67
+
+- type: reagent
+  id: ImperialDreadnog
+  name: reagent-name-imperial-dreadnog
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-dreadnog
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialdreadnog
+  color: "#f7ffad"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.02
+
+- type: reagent
+  id: ImperialNarsour
+  name: reagent-name-imperial-narsour
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-narsour
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialnarsour
+  color: "#9E6B4A"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.07
+
+- type: reagent
+  id: ImperialTripleSec
+  name: reagent-name-imperial-triple-sec
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-triple-sec
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialtriplesec
+  color: "#9E6B4A"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.22
+
+- type: reagent
+  id: ImperialCremeDeMenthe
+  name: reagent-name-imperial-creme-de-menthe
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-creme-de-menthe
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialcremedementhe
+  color: "#467446"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.15
+
+- type: reagent
+  id: ImperialCremeDeCacao
+  name: reagent-name-imperial-creme-de-cacao
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-creme-de-cacao
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialcremedecacao
+  color: "#350900"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.15
+
+- type: reagent
+  id: ImperialCremeDeCoconut
+  name: reagent-name-imperial-creme-de-coconut
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-creme-de-coconut
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialcremedecoconut
+  color: "#F7F0D0"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.15
+
+- type: reagent
+  id: ImperialQuadrupleSec
+  name: reagent-name-imperial-quadruple-sec
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-quadruple-sec
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialquadruplesec
+  color: "#cc0000"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.26
+
+- type: reagent
+  id: ImperialQuintupleSec
+  name: reagent-name-imperial-quintuple-sec
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-quintuple-sec
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialquintuplesec
+  color: "#ff3300"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.41
+
+- type: reagent
+  id: ImperialGrasshopper
+  name: reagent-name-imperial-grasshopper
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-grasshopper
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialgrasshopper
+  color: "#00ff00"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.11
+
+- type: reagent
+  id: ImperialStinger
+  name: reagent-name-imperial-stinger
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-stinger
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialstinger
+  color: "#ccff99"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.41
+
+- type: reagent
+  id: ImperialBastionBourbon
+  name: reagent-name-imperial-bastion-bourbon
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-bastion-bourbon
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialbastionbourbon
+  color: "#9E6B4A"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.22
+
+- type: reagent
+  id: ImperialSquirtCider
+  name: reagent-name-imperial-squirt-cider
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-squirt-cider
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialsquirtcider
+  color: "#9E6B4A"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.30
+
+- type: reagent
+  id: ImperialFringeWeaver
+  name: reagent-name-imperial-fringe-weaver
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-fringe-weaver
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialfringeweaver
+  color: "#FFEAC4"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.67
+
+- type: reagent
+  id: ImperialPeppermintPatty
+  name: reagent-name-imperial-peppermint-patty
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-peppermint-patty
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialpeppermintpatty
+  color: "#45ca7a"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.19
+
+- type: reagent
+  id: ImperialAlexander
+  name: reagent-name-imperial-alexander
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-alexander
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialalexander
+  color: "#F5E9D3"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialAmarettoAlexander
+  name: reagent-name-imperial-amaretto-alexander
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-amaretto-alexander
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialamarettoalexander
+  color: "#DBD5AE"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.26
+
+- type: reagent
+  id: ImperialSidecar
+  name: reagent-name-imperial-sidecar
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-sidecar
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialsidecar
+  color: "#FFC55B"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.34
+
+- type: reagent
+  id: ImperialBetweenTheSheets
+  name: reagent-name-imperial-between-the-sheets
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-between-the-sheets
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialbetweenthesheets
+  color: "#F4C35A"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.41
+
+- type: reagent
+  id: ImperialKamikaze
+  name: reagent-name-imperial-kamikaze
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-kamikaze
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialkamikaze
+  color: "#EEF191"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.26
+
+- type: reagent
+  id: ImperialFernetCola
+  name: reagent-name-imperial-fernet-cola
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-fernet-cola
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialfernetcola
+  color: "#390600"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.19
+
+- type: reagent
+  id: ImperialFanciulli
+  name: reagent-name-imperial-fanciulli
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-fanciulli
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialfanciulli
+  color: "#CA933F"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.07
+
+- type: reagent
+  id: ImperialBrancaMenta
+  name: reagent-name-imperial-branca-menta
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-branca-menta
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialbrancamenta
+  color: "#4B5746"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.26
+
+- type: reagent
+  id: ImperialBlankPaper
+  name: reagent-name-imperial-blank-paper
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-blank-paper
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialblankpaper
+  color: "#DCDCDC"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.15
+
+- type: reagent
+  id: ImperialFruitWine
+  name: reagent-name-imperial-fruit-wine
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-fruit-wine
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialfruitwine
+  color: "#9E6B4A"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.26
+
+- type: reagent
+  id: ImperialWizzFizz
+  name: reagent-name-imperial-wizz-fizz
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-wizz-fizz
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialwizzfizz
+  color: "#4235d0"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialBugSpray
+  name: reagent-name-imperial-bug-spray
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-bug-spray
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialbugspray
+  color: "#33ff33"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.34
+
+- type: reagent
+  id: ImperialTurbo
+  name: reagent-name-imperial-turbo
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-turbo
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialturbo
+  color: "#e94c3a"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.64
+
+- type: reagent
+  id: ImperialOldTimer
+  name: reagent-name-imperial-old-timer
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-old-timer
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialoldtimer
+  color: "#996835"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.26
+
+- type: reagent
+  id: ImperialDuplex
+  name: reagent-name-imperial-duplex
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-duplex
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialduplex
+  color: "#50e5cf"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.19
+
+- type: reagent
+  id: ImperialBlazaam
+  name: reagent-name-imperial-blazaam
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-blazaam
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialblazaam
+  color: "#404030"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.53
+
+- type: reagent
+  id: ImperialPlanetCracker
+  name: reagent-name-imperial-planet-cracker
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-planet-cracker
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialplanetcracker
+  color: "#404030"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialMaunaLoa
+  name: reagent-name-imperial-mauna-loa
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-mauna-loa
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialmaunaloa
+  color: "#fe8308"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.30
+
+- type: reagent
+  id: ImperialPinaOlivada
+  name: reagent-name-imperial-pina-olivada
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-pina-olivada
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialpinaolivada
+  color: "#493c00"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.15
+
+- type: reagent
+  id: ImperialPruno
+  name: reagent-name-imperial-pruno
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-pruno
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialpruno
+  color: "#E78108"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.64
+
+- type: reagent
+  id: ImperialGingerAmaretto
+  name: reagent-name-imperial-ginger-amaretto
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-ginger-amaretto
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialgingeramaretto
+  color: "#EFB42A"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.22
+
+- type: reagent
+  id: ImperialGodfather
+  name: reagent-name-imperial-godfather
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-godfather
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialgodfather
+  color: "#E68F00"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialGodmother
+  name: reagent-name-imperial-godmother
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-godmother
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialgodmother
+  color: "#E68F00"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialKortara
+  name: reagent-name-imperial-kortara
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-kortara
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialkortara
+  color: "#EEC39A"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.19
+
+- type: reagent
+  id: ImperialSeaBreeze
+  name: reagent-name-imperial-sea-breeze
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-sea-breeze
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialseabreeze
+  color: "#CFFFE5"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.11
+
+- type: reagent
+  id: ImperialWhiteTiziran
+  name: reagent-name-imperial-white-tiziran
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-white-tiziran
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialwhitetiziran
+  color: "#A68340"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialDrunkenEspatier
+  name: reagent-name-imperial-drunken-espatier
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-drunken-espatier
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialdrunkenespatier
+  color: "#A68340"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.49
+
+- type: reagent
+  id: ImperialProteinBlend
+  name: reagent-name-imperial-protein-blend
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-protein-blend
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialproteinblend
+  color: "#FF5B69"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.49
+
+- type: reagent
+  id: ImperialTriumphalArch
+  name: reagent-name-imperial-triumphal-arch
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-triumphal-arch
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialtriumphalarch
+  color: "#9E6B4A"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.45
+
+- type: reagent
+  id: ImperialTheJuice
+  name: reagent-name-imperial-the-juice
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-the-juice
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialthejuice
+  color: "#4c14be"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialRitualWine
+  name: reagent-name-imperial-ritual-wine
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-ritual-wine
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialritualwine
+  color: "#23E719"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.67
+
+- type: reagent
+  id: ImperialCuracao
+  name: reagent-name-imperial-curacao
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-curacao
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialcuracao
+  color: "#1a5fa1"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.22
+
+- type: reagent
+  id: ImperialNavyRum
+  name: reagent-name-imperial-navy-rum
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-navy-rum
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialnavyrum
+  color: "#d8e8f0"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.67
+
+- type: reagent
+  id: ImperialAdmiralty
+  name: reagent-name-imperial-admiralty
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-admiralty
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialadmiralty
+  color: "#1F0001"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.60
+
+- type: reagent
+  id: ImperialLongHaul
+  name: reagent-name-imperial-long-haul
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-long-haul
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperiallonghaul
+  color: "#003153"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.15
+
+- type: reagent
+  id: ImperialLongJohnSilver
+  name: reagent-name-imperial-long-john-silver
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-long-john-silver
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperiallongjohnsilver
+  color: "#c4b35c"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.34
+
+- type: reagent
+  id: ImperialTropicalStorm
+  name: reagent-name-imperial-tropical-storm
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-tropical-storm
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialtropicalstorm
+  color: "#00bfa3"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.19
+
+- type: reagent
+  id: ImperialSaltAndSwell
+  name: reagent-name-imperial-salt-and-swell
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-salt-and-swell
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialsaltandswell
+  color: "#b4abd0"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.45
+
+- type: reagent
+  id: ImperialTiltaellen
+  name: reagent-name-imperial-tiltaellen
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-tiltaellen
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialtiltaellen
+  color: "#F4EFE2"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.07
+
+- type: reagent
+  id: ImperialTichToch
+  name: reagent-name-imperial-tich-toch
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-tich-toch
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialtichtoch
+  color: "#b4abd0"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.56
+
+- type: reagent
+  id: ImperialHelianthus
+  name: reagent-name-imperial-helianthus
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-helianthus
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialhelianthus
+  color: "#fba914"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.56
+
+- type: reagent
+  id: ImperialPlumwine
+  name: reagent-name-imperial-plumwine
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-plumwine
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialplumwine
+  color: "#8a0421"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.15
+
+- type: reagent
+  id: ImperialTheHat
+  name: reagent-name-imperial-the-hat
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-the-hat
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialthehat
+  color: "#b90a5c"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.60
+
+- type: reagent
+  id: ImperialGinGarden
+  name: reagent-name-imperial-gin-garden
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-gin-garden
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialgingarden
+  color: "#6cd87a"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.15
+
+- type: reagent
+  id: ImperialWineVoltaic
+  name: reagent-name-imperial-wine-voltaic
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-wine-voltaic
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialwinevoltaic
+  color: "#FFAA00"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.22
+
+- type: reagent
+  id: ImperialTelepole
+  name: reagent-name-imperial-telepole
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-telepole
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialtelepole
+  color: "#b300ff"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialPodTesla
+  name: reagent-name-imperial-pod-tesla
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-pod-tesla
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialpodtesla
+  color: "#00fbff"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.60
+
+- type: reagent
+  id: ImperialRiceBeer
+  name: reagent-name-imperial-rice-beer
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-rice-beer
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialricebeer
+  color: "#664300"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.04
+
+- type: reagent
+  id: ImperialYuyakita
+  name: reagent-name-imperial-yuyakita
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-yuyakita
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialyuyakita
+  color: "#e43414"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.30
+
+- type: reagent
+  id: ImperialSaibasan
+  name: reagent-name-imperial-saibasan
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-saibasan
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialsaibasan
+  color: "#f25100"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.15
+
+- type: reagent
+  id: ImperialBanzaiTi
+  name: reagent-name-imperial-banzai-ti
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-banzai-ti
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialbanzaiti
+  color: "#fd3b00"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.30
+
+- type: reagent
+  id: ImperialSanraizusoda
+  name: reagent-name-imperial-sanraizusoda
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-sanraizusoda
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialsanraizusoda
+  color: "#f37d7b"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.04
+
+- type: reagent
+  id: ImperialKumicho
+  name: reagent-name-imperial-kumicho
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-kumicho
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialkumicho
+  color: "#b87456"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.46
+
+- type: reagent
+  id: ImperialRedPlanet
+  name: reagent-name-imperial-red-planet
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-red-planet
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialredplanet
+  color: "#ac4948"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.34
+
+- type: reagent
+  id: ImperialAmaterasu
+  name: reagent-name-imperial-amaterasu
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-amaterasu
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialamaterasu
+  color: "#e43414"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.40
+
+- type: reagent
+  id: ImperialNekomimosa
+  name: reagent-name-imperial-nekomimosa
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-nekomimosa
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialnekomimosa
+  color: "#FF0C8D"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.13
+
+- type: reagent
+  id: ImperialSentaiQuencha
+  name: reagent-name-imperial-sentai-quencha
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-sentai-quencha
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialsentaiquencha
+  color: "#00ffa6"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.21
+
+- type: reagent
+  id: ImperialBosozoku
+  name: reagent-name-imperial-bosozoku
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-bosozoku
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialbosozoku
+  color: "#d7d84f"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.04
+
+- type: reagent
+  id: ImperialErsatzche
+  name: reagent-name-imperial-ersatzche
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-ersatzche
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialersatzche
+  color: "#bc6a2b"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.04
+
+- type: reagent
+  id: ImperialRedCityAm
+  name: reagent-name-imperial-red-city-am
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-red-city-am
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialredcityam
+  color: "#ef0903"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.04
+
+- type: reagent
+  id: ImperialKingsRansom
+  name: reagent-name-imperial-kings-ransom
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-kings-ransom
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialkingsransom
+  color: "#bd2e20"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.20
+
+- type: reagent
+  id: ImperialFourBit
+  name: reagent-name-imperial-four-bit
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-four-bit
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialfourbit
+  color: "#c4b000"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.20
+
+- type: reagent
+  id: ImperialWhiteHawaiian
+  name: reagent-name-imperial-white-hawaiian
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-white-hawaiian
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialwhitehawaiian
+  color: "#ffffeb"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.12
+
+- type: reagent
+  id: ImperialMauiSunrise
+  name: reagent-name-imperial-maui-sunrise
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-maui-sunrise
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialmauisunrise
+  color: "#f1922b"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.11
+
+- type: reagent
+  id: ImperialImperialMaiTai
+  name: reagent-name-imperial-imperial-mai-tai
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-imperial-mai-tai
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialimperialmaitai
+  color: "#cf7d61"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.39
+
+- type: reagent
+  id: ImperialKonococoRumtini
+  name: reagent-name-imperial-konococo-rumtini
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-konococo-rumtini
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialkonococorumtini
+  color: "#421711"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.15
+
+- type: reagent
+  id: ImperialBostonSour
+  name: reagent-name-imperial-boston-sour
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-boston-sour
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialbostonsour
+  color: "#ddc28b"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.26
+
+- type: reagent
+  id: ImperialStar
+  name: reagent-name-imperial-star
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-star
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialstar
+  color: "#e5a654"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.30
+
+- type: reagent
+  id: ImperialOldFashioned
+  name: reagent-name-imperial-old-fashioned
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-old-fashioned
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialoldfashioned
+  color: "#b4a287"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.45
+
+- type: reagent
+  id: ImperialSazerac
+  name: reagent-name-imperial-sazerac
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-sazerac
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialsazerac
+  color: "#f43f69"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.49
+
+- type: reagent
+  id: ImperialAmarettoSour
+  name: reagent-name-imperial-amaretto-sour
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-amaretto-sour
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialamarettosour
+  color: "#ddc28b"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.11
+
+- type: reagent
+  id: ImperialRamosGinFizz
+  name: reagent-name-imperial-ramos-gin-fizz
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-ramos-gin-fizz
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialramosginfizz
+  color: "#f9e7c2"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.26
+
+- type: reagent
+  id: ImperialFrench75
+  name: reagent-name-imperial-french75
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-french75
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialfrench75
+  color: "#ffffc1"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.26
+
+- type: reagent
+  id: ImperialSangria
+  name: reagent-name-imperial-sangria
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-sangria
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialsangria
+  color: "#c4383b"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.15
+
+- type: reagent
+  id: ImperialSufferingBastard
+  name: reagent-name-imperial-suffering-bastard
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-suffering-bastard
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialsufferingbastard
+  color: "#e8ca78"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.15
+
+- type: reagent
+  id: ImperialBlueBlazer
+  name: reagent-name-imperial-blue-blazer
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-blue-blazer
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialblueblazer
+  color: "#b5949b"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.19
+
+- type: reagent
+  id: ImperialHotToddy
+  name: reagent-name-imperial-hot-toddy
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-hot-toddy
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialhottoddy
+  color: "#f2d2b4"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.19
+
+- type: reagent
+  id: ImperialTizirianSour
+  name: reagent-name-imperial-tizirian-sour
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-tizirian-sour
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialtiziriansour
+  color: "#9b4b3a"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.26
+
+- type: reagent
+  id: ImperialFlipCocktail
+  name: reagent-name-imperial-flip-cocktail
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-flip-cocktail
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialflipcocktail
+  color: "#dddfca"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.22
+
+- type: reagent
+  id: ImperialBartendersHandshake
+  name: reagent-name-imperial-bartenders-handshake
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-bartenders-handshake
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialbartendershandshake
+  color: "#270101"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialBrandyCrusta
+  name: reagent-name-imperial-brandy-crusta
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-brandy-crusta
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialbrandycrusta
+  color: "#f8c51c"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.22
+
+- type: reagent
+  id: ImperialCasino
+  name: reagent-name-imperial-casino
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-casino
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialcasino
+  color: "#fdee65"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.34
+
+- type: reagent
+  id: ImperialGaribaldi
+  name: reagent-name-imperial-garibaldi
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-garibaldi
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialgaribaldi
+  color: "#f77e2e"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.11
+
+- type: reagent
+  id: ImperialImprovedWhiskey
+  name: reagent-name-imperial-improved-whiskey
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-improved-whiskey
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialimprovedwhiskey
+  color: "#b8a385"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.49
+
+- type: reagent
+  id: ImperialLastWord
+  name: reagent-name-imperial-last-word
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-last-word
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperiallastword
+  color: "#9E6B4A"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialMaryPickford
+  name: reagent-name-imperial-mary-pickford
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-mary-pickford
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialmarypickford
+  color: "#9E6B4A"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.26
+
+- type: reagent
+  id: ImperialNegroni
+  name: reagent-name-imperial-negroni
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-negroni
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialnegroni
+  color: "#9E6B4A"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialNuclearDaiquiri
+  name: reagent-name-imperial-nuclear-daiquiri
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-nuclear-daiquiri
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialnucleardaiquiri
+  color: "#22cc22"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.49
+
+- type: reagent
+  id: ImperialNuclearDaiquiriThermo
+  name: reagent-name-imperial-nuclear-daiquiri-thermo
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-nuclear-daiquiri-thermo
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialnucleardaiquirithermo
+  color: "#00dd00"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.60
+
+- type: reagent
+  id: ImperialPoetsDream
+  name: reagent-name-imperial-poets-dream
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-poets-dream
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialpoetsdream
+  color: "#d4b14f"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialPousseCafe
+  name: reagent-name-imperial-pousse-cafe
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-pousse-cafe
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialpoussecafe
+  color: "#93cf33"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialSpritz
+  name: reagent-name-imperial-spritz
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-spritz
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialspritz
+  color: "#ee714b"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.15
+
+- type: reagent
+  id: ImperialVieuxCarre
+  name: reagent-name-imperial-vieux-carre
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-vieux-carre
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialvieuxcarre
+  color: "#b43110"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.45
+
+- type: reagent
+  id: ImperialBittersSoda
+  name: reagent-name-imperial-bitters-soda
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-bitters-soda
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialbitterssoda
+  color: "#f1c1b3"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.07
+
+- type: reagent
+  id: ImperialSambuka
+  name: reagent-name-imperial-sambuka
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-sambuka
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialsambuka
+  color: "#e0e0e0"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.34
+
+- type: reagent
+  id: ImperialInnocentErp
+  name: reagent-name-imperial-innocent-erp
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-innocent-erp
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialinnocenterp
+  color: "#746463"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialSoundhand
+  name: reagent-name-imperial-soundhand
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-soundhand
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialsoundhand
+  color: "#C18A7B"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialJagermeister
+  name: reagent-name-imperial-jagermeister
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-jagermeister
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialjagermeister
+  color: "#200b0b"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.30
+
+- type: reagent
+  id: ImperialBlackBlood
+  name: reagent-name-imperial-black-blood
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-black-blood
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialblackblood
+  color: "#252521"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.34
+
+- type: reagent
+  id: ImperialPeguClub
+  name: reagent-name-imperial-pegu-club
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-pegu-club
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialpeguclub
+  color: "#a5702b"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialAmnesia
+  name: reagent-name-imperial-amnesia
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-amnesia
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialamnesia
+  color: "#6b0059"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.56
+
+- type: reagent
+  id: ImperialSilverhand
+  name: reagent-name-imperial-silverhand
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-silverhand
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialsilverhand
+  color: "#c41414"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.45
+
+- type: reagent
+  id: ImperialTelegol
+  name: reagent-name-imperial-telegol
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-telegol
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialtelegol
+  color: "#4218a3"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialHorseNeck
+  name: reagent-name-imperial-horse-neck
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-horse-neck
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialhorseneck
+  color: "#c45d09"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialInabox
+  name: reagent-name-imperial-inabox
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-inabox
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialinabox
+  color: "#5a3e0b"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.30
+
+- type: reagent
+  id: ImperialGreenFairy
+  name: reagent-name-imperial-green-fairy
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-green-fairy
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialgreenfairy
+  color: "#54dd1e"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.45
+
+- type: reagent
+  id: ImperialTransSiberianExpress
+  name: reagent-name-imperial-trans-siberian-express
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-trans-siberian-express
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialtranssiberianexpress
+  color: "#e2a600"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38
+
+- type: reagent
+  id: ImperialRainbowSky
+  name: reagent-name-imperial-rainbow-sky
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-rainbow-sky
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialrainbowsky
+  color: "#ffffff"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.60
+
+- type: reagent
+  id: ImperialCommunismBeach
+  name: reagent-name-imperial-communism-beach
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-communism-beach
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialcommunismbeach
+  color: "#bb2020"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.30
+
+- type: reagent
+  id: ImperialRedJanuary
+  name: reagent-name-imperial-red-january
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-red-january
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialredjanuary
+  color: "#bb2020"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.22
+
+- type: reagent
+  id: ImperialGalactional
+  name: reagent-name-imperial-galactional
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-galactional
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: imperialgalactional
+  color: "#e65333"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.38

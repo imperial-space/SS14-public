@@ -1,0 +1,588 @@
+# Блюда TG /obj/item/food/cake (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakePlainVegan
+  name: "простой веганский торт"
+  description: "Простой веганский торт, и это не ложь."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: plaincake
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 42
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+        - ReagentId: Vitamin
+          Quantity: 7
+  - type: FlavorProfile
+    flavors:
+    - food
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCakeslicePlainVegan
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeEmptyVegan
+  name: "веганский торт"
+  description: "Веганский торт на заказ от совсем безумного шефа."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: cake_custom
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - food
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCakesliceEmptyVegan
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeBirthdayEnergy
+  name: "энергетический торт"
+  description: "Калорий ровно на целый отряд ядерных оперативников."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: energycake
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 50
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: ImperialSprinkles
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: PwrGame
+          Quantity: 10
+        - ReagentId: ImperialEnriched
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - food
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCakesliceBirthdayEnergy
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeBerryVanillaCake
+  name: "ванильный торт с ежевикой и клубникой"
+  description: "Простой торт с ассорти из ежевики и клубники!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: blackbarry_strawberries_cake_vanilla_cake
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - sweet
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCakesliceBerryVanillaCake
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeBerryChocolateCake
+  name: "шоколадный торт с клубникой"
+  description: "Шоколадный торт с пятью клубничками сверху. Почему-то такая композиция особенно радует эстетическое чувство ИИ из ОСИИ."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: liars_cake
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: CocoaPowder
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - chocolate
+    - sweet
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCakesliceBerryChocolateCake
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeHolyCake
+  name: "ангельский бисквит"
+  description: "Торт для ангелов и священников! Содержит святую воду."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: holy_cake
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 19
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: Holywater
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - sweet
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCakesliceHolyCakeSlice
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakePoundCake
+  name: "фунтовый кекс"
+  description: "Плотный кекс, чтобы быстро наесться."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: pound_cake
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 85
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 60
+        - ReagentId: Vitamin
+          Quantity: 20
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - batter
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCakeslicePoundCakeSlice
+      amount: 7
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeHardwareCake
+  name: "железный торт"
+  description: "«Торт» из электронных плат, сочащийся кислотой..."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: hardware_cake
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 60
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Vitamin
+          Quantity: 5
+        - ReagentId: SulfuricAcid
+          Quantity: 15
+        - ReagentId: Oil
+          Quantity: 15
+  - type: FlavorProfile
+    flavors:
+    - acid
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCakesliceHardwareCakeSlice
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeBrioche
+  name: "торт-бриошь"
+  description: "Кольцо сладких глазированных булочек."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: briochecake
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - butter
+    - creamy
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCakesliceBrioche
+      amount: 6
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakePavlova
+  name: "павлова"
+  description: "Сладкая ягодная павлова. Придумана в Новой Зеландии, но названа в честь русской балерины... И научно доказано, что лучше всего подходит для званых ужинов!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: pavlova
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - berry
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCakeslicePavlova
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakePavlovaNuts
+  name: "павлова с орехами"
+  description: "Сладкая ягодная павлова. Придумана в Новой Зеландии, но названа в честь русской балерины... И научно доказано, что лучше всего подходит для званых ужинов!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: pavlova
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Vitamin
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - berry
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCakeslicePavlovaNuts
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeFruit
+  name: "английский фруктовый кекс"
+  description: "Добротный кекс, не так ли?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: fruitcake
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Sugar
+          Quantity: 10
+        - ReagentId: ImperialCherryjelly
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - fruity
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCakesliceFruit
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakePlum
+  name: "сливовый торт"
+  description: "Торт со сливами в середине."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: plumcake
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Vitamin
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - sweet
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCakeslicePlum
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeWedding
+  name: "свадебный торт"
+  description: "Дорогой многоярусный торт."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: weddingcake
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 85
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 40
+        - ReagentId: Sugar
+          Quantity: 30
+        - ReagentId: Vitamin
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - food
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCakesliceWedding
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakePineappleCreamCake
+  name: "ананасово-сливочный торт"
+  description: "Яркий торт со слоем густых сливок и ананасом сверху."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: pineapple_cream_cake
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 65
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+        - ReagentId: Sugar
+          Quantity: 15
+        - ReagentId: Vitamin
+          Quantity: 15
+  - type: FlavorProfile
+    flavors:
+    - pineapple
+    - creamy
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCakeslicePineappleCreamCake
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeKortaBrittle
+  name: "пласт грильяжа из корты"
+  description: "Большой пласт грильяжа из орехов корты. Столько сахара — это должно быть преступлением!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: korta_brittle
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 55
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 20
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: ImperialKortaNectar
+          Quantity: 15
+  - type: FlavorProfile
+    flavors:
+    - spicy
+    - sweet
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCakesliceKortaBrittle
+      amount: 3
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeSpekkoek
+  name: "спеккук с вульгарисом"
+  description: "Принесён на Марс голландскими и индонезийскими поселенцами; праздничный торт красной планеты. Амброзия вульгарис заменяет редкий в глубоком космосе пандан."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: spekkoek
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 50
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+        - ReagentId: Vitamin
+          Quantity: 15
+  - type: FlavorProfile
+    flavors:
+    - ambrosia
+    - spicy
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCakesliceSpekkoek
+      amount: 5
+      time: 3
+      tableRequired: true
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeMothmallow
+  name: "противень ниан-маллоу"
+  description: "Лёгкий воздушный веганский маршмеллоу с ванилью и ромом под мягким шоколадом. Нианы зовут их «хёлльфлёфстаркен» — облачные квадратики."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/moth.rsi
+    state: mothmallow_tray
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 45
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Sugar
+          Quantity: 20
+  - type: FlavorProfile
+    flavors:
+    - chocolate
+    - sweet
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodCakesliceMothmallow
+      amount: 6
+      time: 3
+      tableRequired: true

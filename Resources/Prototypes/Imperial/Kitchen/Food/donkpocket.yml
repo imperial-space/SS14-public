@@ -1,0 +1,231 @@
+# Блюда TG /obj/item/food/donkpocket (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodDonkpocketGondola
+  name: "гондола-покет"
+  description: "Решение использовать в рецепте настоящее мясо гондолы, мягко говоря, спорное."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: donkpocketgondola
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - dough
+    - meaty
+  - type: ImperialBakeable
+    result: ImperialFoodDonkpocketWarmGondola
+    time: 30
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodDonkpocketWarmGondola
+  name: "тёплый гондола-покет"
+  description: "Решение использовать в рецепте настоящее мясо гондолы, мягко говоря, спорное."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: donkpocketgondola
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: Omnizine
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - dough
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodDonkpocketDeluxe
+  name: "донк-покет делюкс"
+  description: "Новейший продукт Donk Co. Рецепт хранится в строжайшей тайне."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: donkpocketdeluxe
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 14
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Omnizine
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - dough
+    - meaty
+  - type: ImperialBakeable
+    result: ImperialFoodDonkpocketWarmDeluxe
+    time: 30
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodDonkpocketWarmDeluxe
+  name: "тёплый донк-покет делюкс"
+  description: "Новейший продукт Donk Co. Хрустящий, тёплый и идеально поджаренный. Чёрт, отлично выглядит."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: donkpocketdeluxe
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Omnizine
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - dough
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodDonkpocketDeluxeNocarb
+  name: "мясо-покет"
+  description: "Любимая еда плотоядного предателя."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: donkpocketdeluxenocarb
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 14
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Protein
+          Quantity: 3
+        - ReagentId: Omnizine
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialBakeable
+    result: ImperialFoodDonkpocketWarmDeluxeNocarb
+    time: 30
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodDonkpocketWarmDeluxeNocarb
+  name: "тёплый мясо-покет"
+  description: "Любимая тёплая еда плотоядного предателя."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: donkpocketdeluxenocarb
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Protein
+          Quantity: 3
+        - ReagentId: Omnizine
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodDonkpocketDeluxeVegan
+  name: "донк-ролл"
+  description: "Классическая станционная закуска, теперь с рисом! Сертифицирован Фронтом освобождения животных как веганский."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: donkpocketdeluxevegan
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 14
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: Omnizine
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - dough
+    - rice
+    - peppery
+  - type: ImperialBakeable
+    result: ImperialFoodDonkpocketWarmDeluxeVegan
+    time: 30
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodDonkpocketWarmDeluxeVegan
+  name: "тёплый донк-ролл"
+  description: "Классическая станционная закуска, теперь с рисом! Обжарен до совершенства."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: donkpocketdeluxevegan
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: Omnizine
+          Quantity: 10
+  - type: FlavorProfile
+    flavors:
+    - dough
+    - rice
+    - peppery

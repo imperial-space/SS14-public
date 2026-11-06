@@ -1,0 +1,961 @@
+# Реагенты TG: soups (scratchpad/kitchen/kgen.pl).
+
+- type: reagent
+  id: ImperialSoupMeatballSoup
+  name: reagent-name-imperial-soup-meatball-soup
+  group: Foods
+  desc: reagent-desc-imperial-soup-meatball-soup
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupmeatballsoup
+  color: "#FFFDCF"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupVegetableSoup
+  name: reagent-name-imperial-soup-vegetable-soup
+  group: Foods
+  desc: reagent-desc-imperial-soup-vegetable-soup
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupvegetablesoup
+  color: "#FAA810"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupNettle
+  name: reagent-name-imperial-soup-nettle
+  group: Foods
+  desc: reagent-desc-imperial-soup-nettle
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupnettle
+  color: "#C1E212"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupWingfangchu
+  name: reagent-name-imperial-soup-wingfangchu
+  group: Foods
+  desc: reagent-desc-imperial-soup-wingfangchu
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupwingfangchu
+  color: "#C1E212"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupHotchili
+  name: reagent-name-imperial-soup-hotchili
+  group: Foods
+  desc: reagent-desc-imperial-soup-hotchili
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsouphotchili
+  color: "#E23D12"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupColdchili
+  name: reagent-name-imperial-soup-coldchili
+  group: Foods
+  desc: reagent-desc-imperial-soup-coldchili
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupcoldchili
+  color: "#3861C2"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupClownchili
+  name: reagent-name-imperial-soup-clownchili
+  group: Foods
+  desc: reagent-desc-imperial-soup-clownchili
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupclownchili
+  color: "#9E6B4A"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupChiliSinCarne
+  name: reagent-name-imperial-soup-chili-sin-carne
+  group: Foods
+  desc: reagent-desc-imperial-soup-chili-sin-carne
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupchilisincarne
+  color: "#E23D12"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupTomato
+  name: reagent-name-imperial-soup-tomato
+  group: Foods
+  desc: reagent-desc-imperial-soup-tomato
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsouptomato
+  color: "#9E6B4A"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupEyeball
+  name: reagent-name-imperial-soup-eyeball
+  group: Foods
+  desc: reagent-desc-imperial-soup-eyeball
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupeyeball
+  color: "#FF1C1C"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupMiso
+  name: reagent-name-imperial-soup-miso
+  group: Foods
+  desc: reagent-desc-imperial-soup-miso
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupmiso
+  color: "#E2BD12"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupSlime
+  name: reagent-name-imperial-soup-slime
+  group: Foods
+  desc: reagent-desc-imperial-soup-slime
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupslime
+  color: "#41C0C0"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupClownTears
+  name: reagent-name-imperial-soup-clown-tears
+  group: Foods
+  desc: reagent-desc-imperial-soup-clown-tears
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupclowntears
+  color: "#EEF442"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupMystery
+  name: reagent-name-imperial-soup-mystery
+  group: Foods
+  desc: reagent-desc-imperial-soup-mystery
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupmystery
+  color: "#4C2A18"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupMonkey
+  name: reagent-name-imperial-soup-monkey
+  group: Foods
+  desc: reagent-desc-imperial-soup-monkey
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupmonkey
+  color: "#4C2A18"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupMushroom
+  name: reagent-name-imperial-soup-mushroom
+  group: Foods
+  desc: reagent-desc-imperial-soup-mushroom
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupmushroom
+  color: "#CEB1B0"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupWhiteBeet
+  name: reagent-name-imperial-soup-white-beet
+  group: Foods
+  desc: reagent-desc-imperial-soup-white-beet
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupwhitebeet
+  color: "#E00000"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupStew
+  name: reagent-name-imperial-soup-stew
+  group: Foods
+  desc: reagent-desc-imperial-soup-stew
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupstew
+  color: "#EB7C82"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupSweetpotato
+  name: reagent-name-imperial-soup-sweetpotato
+  group: Foods
+  desc: reagent-desc-imperial-soup-sweetpotato
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupsweetpotato
+  color: "#903E22"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupRedBeet
+  name: reagent-name-imperial-soup-red-beet
+  group: Foods
+  desc: reagent-desc-imperial-soup-red-beet
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupredbeet
+  color: "#851127"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupFrenchOnion
+  name: reagent-name-imperial-soup-french-onion
+  group: Foods
+  desc: reagent-desc-imperial-soup-french-onion
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupfrenchonion
+  color: "#E1C47F"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupBisque
+  name: reagent-name-imperial-soup-bisque
+  group: Foods
+  desc: reagent-desc-imperial-soup-bisque
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupbisque
+  color: "#C8682F"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupBungo
+  name: reagent-name-imperial-soup-bungo
+  group: Foods
+  desc: reagent-desc-imperial-soup-bungo
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupbungo
+  color: "#E6BC32"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupElectrons
+  name: reagent-name-imperial-soup-electrons
+  group: Foods
+  desc: reagent-desc-imperial-soup-electrons
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupelectrons
+  color: "#E60040"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupPea
+  name: reagent-name-imperial-soup-pea
+  group: Foods
+  desc: reagent-desc-imperial-soup-pea
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsouppea
+  color: "#9D7B20"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupIndianCurry
+  name: reagent-name-imperial-soup-indian-curry
+  group: Foods
+  desc: reagent-desc-imperial-soup-indian-curry
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupindiancurry
+  color: "#BB2D1A"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupOatmeal
+  name: reagent-name-imperial-soup-oatmeal
+  group: Foods
+  desc: reagent-desc-imperial-soup-oatmeal
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupoatmeal
+  color: "#FFD7B4"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupZurek
+  name: reagent-name-imperial-soup-zurek
+  group: Foods
+  desc: reagent-desc-imperial-soup-zurek
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupzurek
+  color: "#F1CB6D"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupCullenSkink
+  name: reagent-name-imperial-soup-cullen-skink
+  group: Foods
+  desc: reagent-desc-imperial-soup-cullen-skink
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupcullenskink
+  color: "#F6F664"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupChickenNoodleSoup
+  name: reagent-name-imperial-soup-chicken-noodle-soup
+  group: Foods
+  desc: reagent-desc-imperial-soup-chicken-noodle-soup
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupchickennoodlesoup
+  color: "#DDB23E"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupCornChowder
+  name: reagent-name-imperial-soup-corn-chowder
+  group: Foods
+  desc: reagent-desc-imperial-soup-corn-chowder
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupcornchowder
+  color: "#9E6B4A"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupAtrakorDumplings
+  name: reagent-name-imperial-soup-atrakor-dumplings
+  group: Foods
+  desc: reagent-desc-imperial-soup-atrakor-dumplings
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupatrakordumplings
+  color: "#7B453B"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupMeatballNoodles
+  name: reagent-name-imperial-soup-meatball-noodles
+  group: Foods
+  desc: reagent-desc-imperial-soup-meatball-noodles
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupmeatballnoodles
+  color: "#915145"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupBlackBroth
+  name: reagent-name-imperial-soup-black-broth
+  group: Foods
+  desc: reagent-desc-imperial-soup-black-broth
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupblackbroth
+  color: "#340010"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupJellyfish
+  name: reagent-name-imperial-soup-jellyfish
+  group: Foods
+  desc: reagent-desc-imperial-soup-jellyfish
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupjellyfish
+  color: "#3FAA7E"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupRootbread
+  name: reagent-name-imperial-soup-rootbread
+  group: Foods
+  desc: reagent-desc-imperial-soup-rootbread
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsouprootbread
+  color: "#AC3232"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupCottonball
+  name: reagent-name-imperial-soup-cottonball
+  group: Foods
+  desc: reagent-desc-imperial-soup-cottonball
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupcottonball
+  color: "#E6A625"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupCheese
+  name: reagent-name-imperial-soup-cheese
+  group: Foods
+  desc: reagent-desc-imperial-soup-cheese
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupcheese
+  color: "#F3CE3A"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupSeed
+  name: reagent-name-imperial-soup-seed
+  group: Foods
+  desc: reagent-desc-imperial-soup-seed
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupseed
+  color: "#4F6F31"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupBeans
+  name: reagent-name-imperial-soup-beans
+  group: Foods
+  desc: reagent-desc-imperial-soup-beans
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupbeans
+  color: "#DF7126"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupMothOats
+  name: reagent-name-imperial-soup-moth-oats
+  group: Foods
+  desc: reagent-desc-imperial-soup-moth-oats
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupmothoats
+  color: "#CAA94E"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupFireSoup
+  name: reagent-name-imperial-soup-fire-soup
+  group: Foods
+  desc: reagent-desc-imperial-soup-fire-soup
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupfiresoup
+  color: "#FBA8F3"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupRicePorridge
+  name: reagent-name-imperial-soup-rice-porridge
+  group: Foods
+  desc: reagent-desc-imperial-soup-rice-porridge
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupriceporridge
+  color: "#EDE3E3"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupCornmealPorridge
+  name: reagent-name-imperial-soup-cornmeal-porridge
+  group: Foods
+  desc: reagent-desc-imperial-soup-cornmeal-porridge
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupcornmealporridge
+  color: "#ECDA7B"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupCheesePorridge
+  name: reagent-name-imperial-soup-cheese-porridge
+  group: Foods
+  desc: reagent-desc-imperial-soup-cheese-porridge
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupcheeseporridge
+  color: "#F0DD5A"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupToechtaueseRicePorridge
+  name: reagent-name-imperial-soup-toechtauese-rice-porridge
+  group: Foods
+  desc: reagent-desc-imperial-soup-toechtauese-rice-porridge
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsouptoechtauesericeporridge
+  color: "#D8CFCC"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupRedPorridge
+  name: reagent-name-imperial-soup-red-porridge
+  group: Foods
+  desc: reagent-desc-imperial-soup-red-porridge
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupredporridge
+  color: "#FF858B"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupDashi
+  name: reagent-name-imperial-soup-dashi
+  group: Foods
+  desc: reagent-desc-imperial-soup-dashi
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupdashi
+  color: "#D49D26"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupTeriyaki
+  name: reagent-name-imperial-soup-teriyaki
+  group: Foods
+  desc: reagent-desc-imperial-soup-teriyaki
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupteriyaki
+  color: "#3F0D02"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupCurrySauce
+  name: reagent-name-imperial-soup-curry-sauce
+  group: Foods
+  desc: reagent-desc-imperial-soup-curry-sauce
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupcurrysauce
+  color: "#F6C800"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupShoyuRamen
+  name: reagent-name-imperial-soup-shoyu-ramen
+  group: Foods
+  desc: reagent-desc-imperial-soup-shoyu-ramen
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupshoyuramen
+  color: "#442621"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupGyuramen
+  name: reagent-name-imperial-soup-gyuramen
+  group: Foods
+  desc: reagent-desc-imperial-soup-gyuramen
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupgyuramen
+  color: "#442621"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupNewOsakaSunrise
+  name: reagent-name-imperial-soup-new-osaka-sunrise
+  group: Foods
+  desc: reagent-desc-imperial-soup-new-osaka-sunrise
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupnewosakasunrise
+  color: "#EAB26E"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupSatsumaBlack
+  name: reagent-name-imperial-soup-satsuma-black
+  group: Foods
+  desc: reagent-desc-imperial-soup-satsuma-black
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupsatsumablack
+  color: "#171221"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupDragonRamen
+  name: reagent-name-imperial-soup-dragon-ramen
+  group: Foods
+  desc: reagent-desc-imperial-soup-dragon-ramen
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupdragonramen
+  color: "#980F00"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupHongKongBorscht
+  name: reagent-name-imperial-soup-hong-kong-borscht
+  group: Foods
+  desc: reagent-desc-imperial-soup-hong-kong-borscht
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsouphongkongborscht
+  color: "#CA4810"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupHongKongMacaroni
+  name: reagent-name-imperial-soup-hong-kong-macaroni
+  group: Foods
+  desc: reagent-desc-imperial-soup-hong-kong-macaroni
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsouphongkongmacaroni
+  color: "#FFFAB5"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupFoxsPrizeSoup
+  name: reagent-name-imperial-soup-foxs-prize-soup
+  group: Foods
+  desc: reagent-desc-imperial-soup-foxs-prize-soup
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupfoxsprizesoup
+  color: "#E9B200"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupSecretNoodleSoup
+  name: reagent-name-imperial-soup-secret-noodle-soup
+  group: Foods
+  desc: reagent-desc-imperial-soup-secret-noodle-soup
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupsecretnoodlesoup
+  color: "#D9BB79"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1
+
+- type: reagent
+  id: ImperialSoupBudaeJjigae
+  name: reagent-name-imperial-soup-budae-jjigae
+  group: Foods
+  desc: reagent-desc-imperial-soup-budae-jjigae
+  physicalDesc: reagent-physical-desc-saucey
+  flavor: imperialsoupbudaejjigae
+  color: "#C8400E"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:SatiateHunger
+        factor: 4
+      - !type:SatiateThirst
+        factor: 1

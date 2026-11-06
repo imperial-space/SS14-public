@@ -1,0 +1,219 @@
+# Блюда TG /obj/item/food/popsicle (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPopsicleLicoriceCreamsicle
+  name: "батончик «Пустота»™"
+  description: "Солёное лакричное мороженое. Солёное замороженное лакомство."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: popsicle_stick_s
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 17
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: TableSalt
+          Quantity: 1
+        - ReagentId: Cream
+          Quantity: 2
+        - ReagentId: ImperialVanilla
+          Quantity: 1
+        - ReagentId: Sugar
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - food
+  - type: Edible
+    trash:
+    - FoodFrozenPopsicleTrash
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPopsicleMeatsicle
+  name: "мясное эскимо"
+  description: "Жуткая мерзость из сырого мяса в сахарной глазури на палочке, замороженная."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: popsicle_stick_s
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 17
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: Sugar
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - food
+  - type: Edible
+    trash:
+    - FoodFrozenPopsicleTrash
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPopsiclePineapplePop
+  name: "замороженный ананас на палочке"
+  description: "Мало кто любит ананасы так, как марсиане: замороженный ананас на палочке, слегка окунутый в тёмный шоколад."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: popsicle_stick_s
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 17
+        reagents:
+        - ReagentId: JuicePineapple
+          Quantity: 4
+        - ReagentId: Sugar
+          Quantity: 4
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - chocolate
+    - pineapple
+  - type: Edible
+    trash:
+    - FoodFrozenPopsicleTrash
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPopsicleSeaSalt
+  name: "мороженое с морской солью"
+  description: "Небесно-голубое мороженое с лучшей импортной морской солью. Солёное... нет, сладкое!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: popsicle_stick_s
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: TableSalt
+          Quantity: 1
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Cream
+          Quantity: 2
+        - ReagentId: ImperialVanilla
+          Quantity: 2
+        - ReagentId: Sugar
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - salty
+    - sweet
+  - type: Edible
+    trash:
+    - FoodFrozenPopsicleTrash
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPopsicleTopsicle
+  name: "ягодный топсикл"
+  description: "Замороженное лакомство из тофу и ягодного сока. Якобы любимое у медведей, но это бессмыслица..."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: popsicle_stick_s
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 19
+        reagents:
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Sugar
+          Quantity: 6
+        - ReagentId: JuiceBerry
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - berry
+    - tofu
+  - type: Edible
+    trash:
+    - FoodFrozenPopsicleTrash
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPopsicleTopsicleBanana
+  name: "банановый топсикл"
+  description: "Замороженное лакомство из тофу и бананового сока. Популярно летом в японской глубинке."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: popsicle_stick_s
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 19
+        reagents:
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Sugar
+          Quantity: 6
+        - ReagentId: JuiceBanana
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - banana
+    - tofu
+  - type: Edible
+    trash:
+    - FoodFrozenPopsicleTrash
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPopsicleTopsiclePineapple
+  name: "ананасовый топсикл"
+  description: "Замороженное лакомство из тофу и ананасового сока. Как по телевизору."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: popsicle_stick_s
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 19
+        reagents:
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Sugar
+          Quantity: 6
+        - ReagentId: JuicePineapple
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - pineapple
+    - tofu
+  - type: Edible
+    trash:
+    - FoodFrozenPopsicleTrash

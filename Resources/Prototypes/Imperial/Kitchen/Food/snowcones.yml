@@ -1,0 +1,430 @@
+# Блюда TG /obj/item/food/snowcones (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSnowconesLime
+  name: "лаймовый снежок"
+  description: "Лаймовый сироп на снежке в бумажном стаканчике."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: lime_sc
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: JuiceLime
+          Quantity: 5
+        - ReagentId: Water
+          Quantity: 11
+  - type: FlavorProfile
+    flavors:
+    - cold
+    - water
+  - type: Edible
+    trash:
+    - DrinkWaterCup
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSnowconesLemon
+  name: "лимонный снежок"
+  description: "Лимонный сироп на снежке в бумажном стаканчике."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: lemon_sc
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: JuiceLemon
+          Quantity: 5
+        - ReagentId: Water
+          Quantity: 11
+  - type: FlavorProfile
+    flavors:
+    - cold
+    - water
+  - type: Edible
+    trash:
+    - DrinkWaterCup
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSnowconesApple
+  name: "яблочный снежок"
+  description: "Яблочный сироп на снежке в бумажном стаканчике."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: amber_sc
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: JuiceApple
+          Quantity: 5
+        - ReagentId: Water
+          Quantity: 11
+  - type: FlavorProfile
+    flavors:
+    - apple
+    - cold
+    - water
+  - type: Edible
+    trash:
+    - DrinkWaterCup
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSnowconesGrape
+  name: "виноградный снежок"
+  description: "Виноградный сироп на снежке в бумажном стаканчике."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: grape_sc
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: JuiceGrape
+          Quantity: 5
+        - ReagentId: Water
+          Quantity: 11
+  - type: FlavorProfile
+    flavors:
+    - grape
+    - cold
+    - water
+  - type: Edible
+    trash:
+    - DrinkWaterCup
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSnowconesOrange
+  name: "апельсиновый снежок"
+  description: "Апельсиновый сироп на снежке в бумажном стаканчике."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: orange_sc
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: JuiceOrange
+          Quantity: 5
+        - ReagentId: Water
+          Quantity: 11
+  - type: FlavorProfile
+    flavors:
+    - orange
+    - cold
+    - water
+  - type: Edible
+    trash:
+    - DrinkWaterCup
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSnowconesBlue
+  name: "синевишнёвый снежок"
+  description: "Синевишнёвый сироп на снежке в бумажном стаканчике — какая редкость!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: blue_sc
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: ImperialBluecherryjelly
+          Quantity: 5
+        - ReagentId: Water
+          Quantity: 11
+  - type: FlavorProfile
+    flavors:
+    - cherry
+    - cold
+    - water
+  - type: Edible
+    trash:
+    - DrinkWaterCup
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSnowconesRed
+  name: "вишнёвый снежок"
+  description: "Вишнёвый сироп на снежке в бумажном стаканчике."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: red_sc
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: ImperialCherryjelly
+          Quantity: 5
+        - ReagentId: Water
+          Quantity: 11
+  - type: FlavorProfile
+    flavors:
+    - cherry
+    - cold
+    - water
+  - type: Edible
+    trash:
+    - DrinkWaterCup
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSnowconesPineapple
+  name: "ананасовый снежок"
+  description: "Ананасовый сироп на снежке в бумажном стаканчике."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: pineapple_sc
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: JuicePineapple
+          Quantity: 5
+        - ReagentId: Water
+          Quantity: 11
+  - type: FlavorProfile
+    flavors:
+    - pineapple
+    - cold
+    - water
+  - type: Edible
+    trash:
+    - DrinkWaterCup
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSnowconesClown
+  name: "клоунский снежок"
+  description: "Смех на снежке в бумажном стаканчике."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: clown_sc
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Laughter
+          Quantity: 5
+        - ReagentId: Water
+          Quantity: 11
+  - type: FlavorProfile
+    flavors:
+    - cold
+    - water
+  - type: Edible
+    trash:
+    - DrinkWaterCup
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSnowconesSoda
+  name: "снежок с космоколой"
+  description: "Космокола на снежке в бумажном стаканчике."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: soda_sc
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: Cola
+          Quantity: 5
+        - ReagentId: Water
+          Quantity: 11
+  - type: FlavorProfile
+    flavors:
+    - cola
+    - cold
+    - water
+  - type: Edible
+    trash:
+    - DrinkWaterCup
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSnowconesSpacemountainwind
+  name: "снежок «Космический горный ветер»"
+  description: "«Космический горный ветер» на снежке в бумажном стаканчике."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: mountainwind_sc
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: SpaceMountainWind
+          Quantity: 5
+        - ReagentId: Water
+          Quantity: 11
+  - type: FlavorProfile
+    flavors:
+    - cold
+    - water
+  - type: Edible
+    trash:
+    - DrinkWaterCup
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSnowconesPwrgame
+  name: "снежок с Pwrgame"
+  description: "Газировка Pwrgame на снежке в бумажном стаканчике."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: pwrgame_sc
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: PwrGame
+          Quantity: 5
+        - ReagentId: Water
+          Quantity: 11
+  - type: FlavorProfile
+    flavors:
+    - salty
+    - cold
+    - water
+  - type: Edible
+    trash:
+    - DrinkWaterCup
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSnowconesHoney
+  name: "медовый снежок"
+  description: "Мёд на снежке в бумажном стаканчике."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/frozen_treats.rsi
+    state: amber_sc
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1
+        - ReagentId: ImperialHoney
+          Quantity: 5
+        - ReagentId: Water
+          Quantity: 11
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - cold
+    - water
+  - type: Edible
+    trash:
+    - DrinkWaterCup
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodSnowconesKortaIce
+  name: "лёд корты"
+  description: "Стружка льда, нектар корты и ягоды. Сладкое спасение от летней жары!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: korta_ice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 23
+        reagents:
+        - ReagentId: Vitamin
+          Quantity: 8
+        - ReagentId: Ice
+          Quantity: 4
+        - ReagentId: JuiceBerry
+          Quantity: 6
+  - type: FlavorProfile
+    flavors:
+    - berry
+    - sweet
+  - type: Edible
+    trash:
+    - DrinkWaterCup

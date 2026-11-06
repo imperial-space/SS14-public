@@ -1,0 +1,394 @@
+# Блюда TG /obj/item/food/kebab (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodKebabPicossSkewers
+  name: "шашлычок пикосс"
+  description: "Популярная тизирская уличная еда: маринованная в уксусе бронерыба на шпажке с луком и перцем чили."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: picoss_skewer
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 19
+        reagents:
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Vinegar
+          Quantity: 1
+        - ReagentId: CapsaicinOil
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - acid
+    - fishy
+    - onion
+  - type: Edible
+    trash:
+    - PartRodMetal1
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodKebabCandiedMushrooms
+  name: "засахаренные грибы"
+  description: "Несколько странное тизирское блюдо: грибы серака в карамели на шпажке. Ярко выраженный сладко-солёный вкус."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: candied_mushrooms
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 23
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Sugar
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - sweet
+  - type: Edible
+    trash:
+    - PartRodMetal1
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodKebabTiHoehKoe
+  name: "шашлычок ти-хо-кое"
+  description: "Свиная кровь с рисом, обжаренная и посыпанная арахисом и кинзой. Вкус на любителя, но популярен на ночных рынках Проспекта благодаря тайваньским поселенцам."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: ti_hoeh_koe
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Protein
+          Quantity: 5
+        - ReagentId: ImperialPeanutButter
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - metallic
+    - nutty
+  - type: Edible
+    trash:
+    - PartRodMetal1
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodKebabKaseiDango
+  name: "касэй данго"
+  description: "Японские шарики данго со вкусом гренадина и апельсина — выглядят как Марс, на вкус как десерт, по три на палочке."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: kasei_dango
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 19
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 6
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: JuiceOrange
+          Quantity: 3
+        - ReagentId: Grenadine
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - orange
+  - type: Edible
+    trash:
+    - PartRodMetal1
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodKebabRawBallparkTsukune
+  name: "сырые цукунэ"
+  description: "Сырые куриные фрикадельки на шпажке — на сковороду, и будет вкусно."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: raw_ballpark_tsukune
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Protein
+          Quantity: 3
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - chicken
+  - type: Edible
+    trash:
+    - PartRodMetal1
+  - type: ImperialGrillable
+    result: ImperialFoodKebabBallparkTsukune
+    time: 20
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodKebabBallparkTsukune
+  name: "стадионные цукунэ"
+  description: "Куриные фрикадельки на шпажке в сладко-солёном соусе якитори. Частый гость марсианских стадионов."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: ballpark_tsukune
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Nutriment
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - chicken
+  - type: Edible
+    trash:
+    - PartRodMetal1
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodKebabHuman
+  name: "человечий шашлык"
+  description: "Человеческое мясо на палочке."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: kebab
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 27
+        reagents:
+        - ReagentId: Protein
+          Quantity: 16
+        - ReagentId: Vitamin
+          Quantity: 6
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: Edible
+    trash:
+    - PartRodMetal1
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodKebabMonkey
+  name: "мясной шашлык"
+  description: "Вкусное мясо на палочке."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: kebab
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 23
+        reagents:
+        - ReagentId: Protein
+          Quantity: 16
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: Edible
+    trash:
+    - PartRodMetal1
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodKebabTofu
+  name: "тофу-шашлык"
+  description: "Веганское мясо на палочке."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: kebab
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Protein
+          Quantity: 15
+  - type: FlavorProfile
+    flavors:
+    - tofu
+  - type: Edible
+    trash:
+    - PartRodMetal1
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodKebabTail
+  name: "шашлык из хвоста ящера"
+  description: "Отрубленный хвост ящера на палочке."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: kebab
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 39
+        reagents:
+        - ReagentId: Protein
+          Quantity: 30
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: Edible
+    trash:
+    - PartRodMetal1
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodKebabRat
+  name: "крысиный шашлык"
+  description: "Не очень вкусное крысиное мясо на палочке."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: ratkebab
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 17
+        reagents:
+        - ReagentId: Protein
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodKebabRatDouble
+  name: "двойной крысиный шашлык"
+  description: "Не очень вкусное крысиное мясо на палочке."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: doubleratkebab
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 31
+        reagents:
+        - ReagentId: Protein
+          Quantity: 20
+        - ReagentId: Vitamin
+          Quantity: 4
+        - ReagentId: Iron
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodKebabFiesta
+  name: "шашлык «Фиеста»"
+  description: "Разное мясо и овощи на палочке."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: fiestaskewer
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 26
+        reagents:
+        - ReagentId: Protein
+          Quantity: 12
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: CapsaicinOil
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - food
+  - type: Edible
+    trash:
+    - PartRodMetal1
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodKebabPineappleSkewer
+  name: "шашлычок с ананасом"
+  description: "Кусочки глазированного мяса на шпажке с ломтиками ананаса. На удивление неплохо!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: pineapple_skewer
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 23
+        reagents:
+        - ReagentId: Protein
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 8
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - pineapple
+  - type: Edible
+    trash:
+    - PartRodMetal1

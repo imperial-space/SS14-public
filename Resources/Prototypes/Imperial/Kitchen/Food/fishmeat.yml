@@ -1,0 +1,245 @@
+# Блюда TG /obj/item/food/fishmeat (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodFishmeatQuality
+  name: "качественное рыбное филе"
+  description: "Филе ценной рыбы."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: fishfillet
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Protein
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - fishy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodFishmeatSalmon
+  name: "филе лосося"
+  description: "Крупное жирное филе лосося."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: salmon
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 14
+        reagents:
+        - ReagentId: Protein
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 3
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - fishy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodFishmeatCarpImitation
+  name: "имитация филе карпа"
+  description: "Почти как настоящее. Ну, почти."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: fishfillet
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Protein
+          Quantity: 4
+        - ReagentId: CarpoToxin
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - fishy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodFishmeatMoonfish
+  name: "филе лунной рыбы"
+  description: "Филе лунной рыбы."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: moonfish_fillet
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 11
+        reagents:
+        - ReagentId: Protein
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - fishy
+  - type: ImperialGrillable
+    result: ImperialFoodGrilledMoonfish
+    time: 45
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodFishmeatGunnerJellyfish
+  name: "филе медузы-стрелка"
+  description: "Медуза-стрелок без жал. В сыром виде слегка галлюциногенна."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: jellyfish_fillet
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 9
+        reagents:
+        - ReagentId: Protein
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - fishy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodFishmeatGunnerJellyfishSupply
+  name: "филе медузы-стрелка"
+  description: "Медуза-стрелок без жал. В сыром виде слегка галлюциногенна."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: jellyfish_fillet
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 9
+        reagents:
+        - ReagentId: Protein
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - fishy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodFishmeatArmorfish
+  name: "чищеная бронерыба"
+  description: "Бронерыба без потрохов и панциря, готовая к готовке."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: armorfish_fillet
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8
+        reagents:
+        - ReagentId: Protein
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - fishy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodFishmeatDonkfish
+  name: "донк-филе"
+  description: "Жуткое филе донк-рыбы. Ни один здравомыслящий космонавт это не съест, и готовка не помогает."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: donkfillet
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 11
+        reagents:
+        - ReagentId: Protein
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - fishy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodFishmeatOctopus
+  name: "щупальце осьминога"
+  description: "Большое щупальце осьминога."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: octopus_fillet
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8
+        reagents:
+        - ReagentId: Protein
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - fishy
+  - type: ImperialGrillable
+    result: ImperialFoodGrilledOctopus
+    time: 20
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodFishmeatFishTail
+  name: "филе рыбьего хвоста"
+  description: "Ценное жирное филе прямо из хвоста очень большой... рыбы? Из-за редкости кое-где считается деликатесом."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: fishfillet
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - fishy

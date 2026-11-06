@@ -1,0 +1,610 @@
+# Блюда TG /obj/item/food/cakeslice (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeslicePlainVegan
+  name: "кусок простого веганского торта"
+  description: "Просто кусок веганского торта — хватит всем."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: plaincake_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakesliceEmpty
+  name: "кусок торта"
+  description: "Кусок торта на заказ от безумного шефа."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: cake_custom_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakesliceEmptyVegan
+  name: "кусок веганского торта"
+  description: "Кусок веганского торта на заказ от совсем безумного шефа."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: cake_custom_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakesliceBirthdayEnergy
+  name: "кусок энергетического торта"
+  description: "Для предателя на бегу."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: energycakeslice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: ImperialSprinkles
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: PwrGame
+          Quantity: 2
+        - ReagentId: ImperialEnriched
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakesliceSlimecake
+  name: "кусок слаймового торта"
+  description: "Кусок слаймового торта."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: slimecake_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - sweet
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeslicePumpkinspice
+  name: "кусок пряного тыквенного торта"
+  description: "Пряный кусок тыквенного наслаждения."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: pumpkinspicecakeslice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - pumpkin
+    - sweet
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakesliceBerryVanillaCake
+  name: "кусок ванильного торта с ежевикой и клубникой"
+  description: "Кусок торта с ассорти из ежевики и клубники!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: blackbarry_strawberries_cake_vanilla_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - sweet
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakesliceBerryChocolateCake
+  name: "кусок шоколадного торта с клубникой"
+  description: "Кусок торта с пятью клубничками сверху. Почему-то такая композиция особенно радует эстетическое чувство ИИ из ОСИИ."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: liars_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - chocolate
+    - sweet
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakesliceHolyCakeSlice
+  name: "кусок ангельского бисквита"
+  description: "Кусок божественного торта."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: holy_cake_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - sweet
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeslicePoundCakeSlice
+  name: "кусок фунтового кекса"
+  description: "Кусок плотного кекса, чтобы быстро наесться."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: pound_cake_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 18
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 9
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - batter
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakesliceHardwareCakeSlice
+  name: "кусок железного торта"
+  description: "Кусок электронных плат и немного кислоты."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: hardware_cake_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: SulfuricAcid
+          Quantity: 3
+        - ReagentId: Oil
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - acid
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakesliceVanillaSlice
+  name: "кусок ванильного торта"
+  description: "Кусок торта с ванильной глазурью."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: vanillacake_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Sugar
+          Quantity: 3
+        - ReagentId: ImperialVanilla
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - sweet
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakesliceClownSlice
+  name: "кусок клоунского торта"
+  description: "Кусок плохих шуток и глупого реквизита."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: clowncake_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: JuiceBanana
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - sweet
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakesliceTrumpet
+  name: "кусок торта космонавта"
+  description: "Торт космонавта с глазурью из трубы."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: trumpetcakeslice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Cream
+          Quantity: 1
+        - ReagentId: JuiceBerry
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - jelly
+    - violets
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakesliceBrioche
+  name: "кусок торта-бриоши"
+  description: "Вкусный сдобный хлеб. Что ещё нужно?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: briochecake_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - butter
+    - creamy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeslicePavlova
+  name: "кусок павловы"
+  description: "Треснувший кусок павловы, усыпанный ягодами. Вы даже отрезали так, что вам досталось больше ягод — как восхитительно коварно."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: pavlova_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - berry
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeslicePavlovaNuts
+  name: "кусок павловы с орехами"
+  description: "Треснувший кусок павловы, усыпанный ягодами. Вы даже отрезали так, что вам досталось больше ягод — как восхитительно коварно."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: pavlova_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - berry
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakesliceFruit
+  name: "кусок английского фруктового кекса"
+  description: "Добротный кусочек, не так ли?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: fruitcake_slice1
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - fruity
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeslicePlum
+  name: "кусок сливового торта"
+  description: "Кусок сливового торта."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: plumcakeslice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - sweet
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakesliceWedding
+  name: "кусок свадебного торта"
+  description: "По традиции молодожёны кормят друг друга тортом."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: weddingcake_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakeslicePineappleCreamCake
+  name: "кусок ананасово-сливочного торта"
+  description: "Яркий торт со слоем густых сливок и ананасом сверху."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/piecake.rsi
+    state: pineapple_cream_cake_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 17
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 6
+        - ReagentId: Sugar
+          Quantity: 3
+        - ReagentId: Vitamin
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - pineapple
+    - creamy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakesliceKortaBrittle
+  name: "кусочек грильяжа из корты"
+  description: "Кусочек грильяжа из орехов корты. Злейший враг диабетика."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/lizard.rsi
+    state: korta_brittle_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 4
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: ImperialKortaNectar
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - spicy
+    - sweet
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakesliceSpekkoek
+  name: "кусок спеккука с вульгарисом"
+  description: "Кусок спеккука. Марсианину может напомнить о доме."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/martian.rsi
+    state: spekkoek_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - ambrosia
+    - spicy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCakesliceMothmallow
+  name: "ниан-маллоу"
+  description: "Пушистые облачка радости странного нианского цвета."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/moth.rsi
+    state: mothmallow_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Sugar
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - chocolate
+    - sweet

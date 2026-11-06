@@ -1,0 +1,936 @@
+# Сгенерировано из /datum/emote TG и BandaStation (scratchpad/emote/gen.pl).
+
+- type: imperialEmote
+  id: flip
+  mobs: [ Living ]
+  hands: true
+  effect: Flip
+
+- type: imperialEmote
+  id: backflip
+  mobs: [ Living ]
+  hands: true
+  effect: Backflip
+
+- type: imperialEmote
+  id: spin
+  mobs: [ Living ]
+  hands: true
+  effect: Spin
+
+- type: imperialEmote
+  id: jump
+  mobs: [ Living ]
+  effect: Jump
+  sound:
+    path: /Audio/Effects/thudswoosh.ogg
+
+- type: imperialEmote
+  id: taunt
+  mobs: [ Living ]
+  cooldown: 1.6
+  effect: Taunt
+
+- type: imperialEmote
+  id: tongue
+  mobs: [ Human ]
+  effect: Tongue
+
+- type: imperialEmote
+  id: blush
+  mobs: [ Living ]
+  effect: Blush
+
+- type: imperialEmote
+  id: tunesing
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: bow
+  mobs: [ Living ]
+  hands: true
+
+- type: imperialEmote
+  id: burp
+  mobs: [ Living ]
+  audible: true
+
+- type: imperialEmote
+  id: choke
+  mobs: [ Living ]
+  audible: true
+  soundMale:
+    collection: ImperialEmoteChokeMale
+  soundFemale:
+    collection: ImperialEmoteChokeFemale
+
+- type: imperialEmote
+  id: cross
+  mobs: [ Living ]
+  hands: true
+
+- type: imperialEmote
+  id: chuckle
+  mobs: [ Living ]
+  audible: true
+
+- type: imperialEmote
+  id: collapse
+  mobs: [ Living ]
+  audible: true
+  effect: Collapse
+
+- type: imperialEmote
+  id: dance
+  mobs: [ Living ]
+  hands: true
+  cooldown: 5
+  effect: Dance
+
+- type: imperialEmote
+  id: deathgasp
+  mobs: [ Living ]
+  audible: true
+  important: true
+  stat: HardCrit
+  cooldown: 15
+  vanillaSound: DefaultDeathgasp
+
+- type: imperialEmote
+  id: drool
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: faint
+  mobs: [ Living ]
+  effect: Faint
+
+- type: imperialEmote
+  id: flap
+  mobs: [ Living ]
+  requires: [ Wings ]
+  hands: true
+  vanillaSound: Flap
+
+- type: imperialEmote
+  id: aflap
+  mobs: [ Living ]
+  requires: [ Wings ]
+  hands: true
+  vanillaSound: Flap
+
+- type: imperialEmote
+  id: frown
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: gag
+  mobs: [ Living ]
+  audible: true
+
+- type: imperialEmote
+  id: gasp
+  mobs: [ Living ]
+  audible: true
+  stat: HardCrit
+  vanillaSound: Gasp
+
+- type: imperialEmote
+  id: giggle
+  mobs: [ Living ]
+  audible: true
+  soundMale:
+    collection: ImperialEmoteGiggleMale
+  soundFemale:
+    collection: ImperialEmoteGiggleFemale
+
+- type: imperialEmote
+  id: glare
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: grin
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: groan
+  mobs: [ Living ]
+  audible: true
+
+- type: imperialEmote
+  id: grimace
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: kiss
+  mobs: [ Living ]
+  handItem: ImperialHandKisser
+
+- type: imperialEmote
+  id: laugh
+  mobs: [ Living ]
+  requires: [ CanSpeak ]
+  audible: true
+  vanillaSound: Laugh
+  vary: true
+
+- type: imperialEmote
+  id: look
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: nod
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: point
+  mobs: [ Living ]
+  cooldown: 1
+  effect: Point
+
+- type: imperialEmote
+  id: sneeze
+  mobs: [ Living ]
+  audible: true
+  vanillaSound: Sneeze
+  vary: true
+
+- type: imperialEmote
+  id: cough
+  mobs: [ Living ]
+  audible: true
+  vanillaSound: Cough
+  vary: true
+
+- type: imperialEmote
+  id: wheeze
+  mobs: [ Living ]
+  audible: true
+  visible: false
+
+- type: imperialEmote
+  id: pout
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: scream
+  mobs: [ Living ]
+  audible: true
+  vanillaSound: Scream
+  vary: true
+  soundCooldown: 10
+
+- type: imperialEmote
+  id: scowl
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: shake
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: shiver
+  mobs: [ Living ]
+  effect: Shiver
+
+- type: imperialEmote
+  id: sigh
+  mobs: [ Living ]
+  audible: true
+  effect: Sigh
+  vanillaSound: Sigh
+  vary: true
+
+- type: imperialEmote
+  id: sit
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: smile
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: smug
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: sniff
+  mobs: [ Living ]
+  audible: true
+  soundMale:
+    path: /Audio/Imperial/EmotePanel/male_sniff.ogg
+  soundFemale:
+    path: /Audio/Imperial/EmotePanel/female_sniff.ogg
+  vary: true
+
+- type: imperialEmote
+  id: snore
+  mobs: [ Living ]
+  audible: true
+  stat: Unconscious
+  vanillaSound: Snore
+
+- type: imperialEmote
+  id: stare
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: stretch
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: sulk
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: surrender
+  mobs: [ Living ]
+  audible: true
+  effect: Surrender
+
+- type: imperialEmote
+  id: sway
+  mobs: [ Living ]
+  effect: Sway
+
+- type: imperialEmote
+  id: tilt
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: tremble
+  mobs: [ Living ]
+  effect: Tremble
+
+- type: imperialEmote
+  id: twitch
+  mobs: [ Living ]
+  effect: Twitch
+
+- type: imperialEmote
+  id: twitch_s
+  mobs: [ Living ]
+  effect: TwitchSlight
+
+- type: imperialEmote
+  id: wave
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: whimper
+  mobs: [ Living ]
+  audible: true
+
+- type: imperialEmote
+  id: wsmile
+  mobs: [ Living ]
+
+- type: imperialEmote
+  id: yawn
+  mobs: [ Living ]
+  audible: true
+  cooldown: 5
+  effect: Yawn
+  vanillaSound: Yawn
+
+- type: imperialEmote
+  id: gurgle
+  mobs: [ Living ]
+  audible: true
+
+- type: imperialEmote
+  id: inhale
+  mobs: [ Living ]
+  audible: true
+
+- type: imperialEmote
+  id: exhale
+  mobs: [ Living ]
+  audible: true
+
+- type: imperialEmote
+  id: swear
+  mobs: [ Living ]
+  audible: true
+  visible: false
+
+- type: imperialEmote
+  id: whistle
+  mobs: [ Carbon ]
+  audible: true
+  vary: true
+
+- type: imperialEmote
+  id: airguitar
+  mobs: [ Carbon ]
+  hands: true
+
+- type: imperialEmote
+  id: clap
+  mobs: [ Carbon ]
+  audible: true
+  hands: true
+  vanillaSound: Clap
+  vary: true
+
+- type: imperialEmote
+  id: crack
+  mobs: [ Carbon ]
+  requires: [ TwoHands ]
+  hands: true
+  cooldown: 6
+  sound:
+    path: /Audio/Imperial/EmotePanel/knuckles.ogg
+
+- type: imperialEmote
+  id: cry
+  mobs: [ Carbon ]
+  audible: true
+  stat: SoftCrit
+  effect: Cry
+  vanillaSound: Crying
+  vary: true
+
+- type: imperialEmote
+  id: circle
+  mobs: [ Carbon ]
+  hands: true
+  handItem: ImperialHandCircle
+
+- type: imperialEmote
+  id: chitter
+  mobs: [ Carbon ]
+  species: [ Moth ]
+  audible: true
+  vanillaSound: Chitter
+
+- type: imperialEmote
+  id: moan
+  mobs: [ Carbon ]
+  audible: true
+  soundMale:
+    collection: ImperialEmoteMoanMale
+  soundFemale:
+    collection: ImperialEmoteMoanFemale
+
+- type: imperialEmote
+  id: squeak
+  mobs: [ Carbon ]
+  species: [ Moth ]
+  audible: true
+  vanillaSound: Squeak
+
+- type: imperialEmote
+  id: noogie
+  mobs: [ Carbon ]
+  hands: true
+  handItem: ImperialHandNoogie
+
+- type: imperialEmote
+  id: roll_alien
+  mobs: [ Alien ]
+  hands: true
+
+- type: imperialEmote
+  id: scratch_alien
+  mobs: [ Alien ]
+  hands: true
+
+- type: imperialEmote
+  id: sign_alien
+  mobs: [ Alien ]
+  hands: true
+
+- type: imperialEmote
+  id: signal
+  mobs: [ Human ]
+  hands: true
+
+- type: imperialEmote
+  id: slap
+  mobs: [ Carbon ]
+  hands: true
+  handItem: ImperialHandSlapper
+
+- type: imperialEmote
+  id: hand
+  mobs: [ Carbon ]
+  hands: true
+  handItem: ImperialHandOffer
+
+- type: imperialEmote
+  id: snap
+  mobs: [ Carbon ]
+  audible: true
+  hands: true
+  vanillaSound: Snap
+
+- type: imperialEmote
+  id: shoesteal
+  mobs: [ Carbon ]
+  hands: true
+  handItem: ImperialHandStealer
+
+- type: imperialEmote
+  id: tail_alien
+  mobs: [ Alien ]
+
+- type: imperialEmote
+  id: wink
+  mobs: [ Carbon ]
+
+- type: imperialEmote
+  id: hiss
+  mobs: [ Carbon ]
+  audible: true
+  sound:
+    path: /Audio/Imperial/EmotePanel/human_hiss.ogg
+  speciesSounds:
+    Reptilian:
+      path: /Audio/Imperial/EmotePanel/lizard_hiss.ogg
+  vary: true
+
+- type: imperialEmote
+  id: dap
+  mobs: [ Human ]
+  hands: true
+
+- type: imperialEmote
+  id: eyebrow
+  mobs: [ Human ]
+
+- type: imperialEmote
+  id: glasses
+  mobs: [ Human ]
+  requires: [ Glasses ]
+  effect: Glasses
+
+- type: imperialEmote
+  id: grumble
+  mobs: [ Human ]
+  audible: true
+
+- type: imperialEmote
+  id: handshake
+  mobs: [ Human ]
+  audible: true
+  hands: true
+
+- type: imperialEmote
+  id: hug
+  mobs: [ Human ]
+  hands: true
+
+- type: imperialEmote
+  id: mumble
+  mobs: [ Human ]
+  audible: true
+
+- type: imperialEmote
+  id: screech
+  mobs: [ Human ]
+  audible: true
+  vanillaSound: Scream
+  soundCooldown: 10
+
+- type: imperialEmote
+  id: pale
+  mobs: [ Human ]
+
+- type: imperialEmote
+  id: raise
+  mobs: [ Human ]
+  hands: true
+
+- type: imperialEmote
+  id: salute
+  mobs: [ Human ]
+  hands: true
+  vanillaSound: Salute
+
+- type: imperialEmote
+  id: slit
+  mobs: [ Human ]
+  hands: true
+
+- type: imperialEmote
+  id: scratch_h
+  mobs: [ Human ]
+  hands: true
+
+- type: imperialEmote
+  id: thumb_u
+  mobs: [ Human ]
+  hands: true
+
+- type: imperialEmote
+  id: thumb_d
+  mobs: [ Human ]
+  hands: true
+
+- type: imperialEmote
+  id: time
+  mobs: [ Human ]
+  hands: true
+
+- type: imperialEmote
+  id: tap
+  mobs: [ Human ]
+
+- type: imperialEmote
+  id: halt
+  mobs: [ Human ]
+  hands: true
+
+- type: imperialEmote
+  id: shush
+  mobs: [ Human ]
+  hands: true
+
+- type: imperialEmote
+  id: listen
+  mobs: [ Human ]
+  hands: true
+
+- type: imperialEmote
+  id: think
+  mobs: [ Human ]
+  hands: true
+
+- type: imperialEmote
+  id: beckon
+  mobs: [ Human ]
+  hands: true
+
+- type: imperialEmote
+  id: airquote
+  mobs: [ Human ]
+  hands: true
+
+- type: imperialEmote
+  id: crazy
+  mobs: [ Human ]
+  hands: true
+
+- type: imperialEmote
+  id: squint
+  mobs: [ Human ]
+
+- type: imperialEmote
+  id: rub
+  mobs: [ Human ]
+  hands: true
+
+- type: imperialEmote
+  id: shrug
+  mobs: [ Human ]
+
+- type: imperialEmote
+  id: wag
+  mobs: [ Human ]
+  requires: [ Tail ]
+  effect: Wag
+
+- type: imperialEmote
+  id: clear
+  mobs: [ Human ]
+
+- type: imperialEmote
+  id: blink
+  mobs: [ Human ]
+
+- type: imperialEmote
+  id: blink_r
+  mobs: [ Human ]
+
+- type: imperialEmote
+  id: gnarl
+  mobs: [ Monkey ]
+
+- type: imperialEmote
+  id: roll
+  mobs: [ Monkey ]
+  hands: true
+
+- type: imperialEmote
+  id: scratch
+  mobs: [ Monkey ]
+  hands: true
+
+- type: imperialEmote
+  id: roar
+  mobs: [ Monkey ]
+  audible: true
+
+- type: imperialEmote
+  id: tail
+  mobs: [ Monkey ]
+
+- type: imperialEmote
+  id: sign
+  mobs: [ Monkey ]
+  hands: true
+
+- type: imperialEmote
+  id: gnarl_alien
+  mobs: [ Alien ]
+
+- type: imperialEmote
+  id: roar_alien
+  mobs: [ Alien ]
+  audible: true
+  sound:
+    path: /Audio/Imperial/EmotePanel/alien_roar.ogg
+  vary: true
+
+- type: imperialEmote
+  id: boop
+  mobs: [ Silicon ]
+  audible: true
+  visible: false
+
+- type: imperialEmote
+  id: beep
+  mobs: [ Silicon ]
+  audible: true
+  visible: false
+  vanillaSound: Beep
+  sound:
+    path: /Audio/Machines/twobeep.ogg
+
+- type: imperialEmote
+  id: buzz
+  mobs: [ Silicon ]
+  audible: true
+  visible: false
+  vanillaSound: Buzz
+  sound:
+    path: /Audio/Machines/buzz-sigh.ogg
+
+- type: imperialEmote
+  id: buzz2
+  mobs: [ Silicon ]
+  audible: true
+  visible: false
+  vanillaSound: Buzz-Two
+  sound:
+    path: /Audio/Machines/buzz-two.ogg
+
+- type: imperialEmote
+  id: chime
+  mobs: [ Silicon ]
+  audible: true
+  visible: false
+  vanillaSound: Chime
+  sound:
+    path: /Audio/Machines/chime.ogg
+
+- type: imperialEmote
+  id: honk
+  mobs: [ Silicon ]
+  audible: true
+  visible: false
+  vanillaSound: Honk
+  sound:
+    path: /Audio/Items/bikehorn.ogg
+  vary: true
+
+- type: imperialEmote
+  id: ping
+  mobs: [ Silicon ]
+  audible: true
+  visible: false
+  vanillaSound: Ping
+  sound:
+    path: /Audio/Imperial/EmotePanel/ping.ogg
+
+- type: imperialEmote
+  id: sad
+  mobs: [ Silicon ]
+  audible: true
+  visible: false
+  sound:
+    path: /Audio/Effects/sadtrombone.ogg
+
+- type: imperialEmote
+  id: warn
+  mobs: [ Silicon ]
+  audible: true
+  visible: false
+  sound:
+    path: /Audio/Machines/warning_buzzer.ogg
+
+- type: imperialEmote
+  id: slowclap
+  mobs: [ Silicon ]
+  audible: true
+  visible: false
+  sound:
+    path: /Audio/Imperial/EmotePanel/slowclap.ogg
+
+- type: imperialEmote
+  id: blank
+  mobs: [ Ai ]
+  effect: AiDisplay
+  aiDisplay: ai_off
+
+- type: imperialEmote
+  id: veryhappy
+  mobs: [ Ai ]
+  effect: AiDisplay
+  aiDisplay: ai_veryhappy
+
+- type: imperialEmote
+  id: happy
+  mobs: [ Ai ]
+  effect: AiDisplay
+  aiDisplay: ai_happy
+
+- type: imperialEmote
+  id: neutral
+  mobs: [ Ai ]
+  effect: AiDisplay
+  aiDisplay: ai_neutral
+
+- type: imperialEmote
+  id: unsure
+  mobs: [ Ai ]
+  effect: AiDisplay
+  aiDisplay: ai_unsure
+
+- type: imperialEmote
+  id: confused
+  mobs: [ Ai ]
+  effect: AiDisplay
+  aiDisplay: ai_confused
+
+- type: imperialEmote
+  id: ai_sad
+  mobs: [ Ai ]
+  effect: AiDisplay
+  aiDisplay: ai_sad
+
+- type: imperialEmote
+  id: dead
+  mobs: [ Ai ]
+  effect: AiDisplay
+  aiDisplay: ai_off
+
+- type: imperialEmote
+  id: download
+  mobs: [ Ai ]
+  effect: AiDisplay
+  aiDisplay: ai_download
+
+- type: imperialEmote
+  id: trollface
+  mobs: [ Ai ]
+  effect: AiDisplay
+  aiDisplay: ai_trollface
+
+- type: imperialEmote
+  id: awesome
+  mobs: [ Ai ]
+  effect: AiDisplay
+  aiDisplay: ai_awesome
+
+- type: imperialEmote
+  id: dorfy
+  mobs: [ Ai ]
+  effect: AiDisplay
+  aiDisplay: ai_urist
+
+- type: imperialEmote
+  id: thinking
+  mobs: [ Ai ]
+  effect: AiDisplay
+  aiDisplay: ai_thinking
+
+- type: imperialEmote
+  id: facepalm
+  mobs: [ Ai ]
+  effect: AiDisplay
+  aiDisplay: ai_facepalm
+
+- type: imperialEmote
+  id: friendcomputer
+  mobs: [ Ai ]
+  effect: AiDisplay
+  aiDisplay: ai_friend
+
+- type: imperialEmote
+  id: blueglow
+  mobs: [ Ai ]
+  effect: AiDisplay
+  aiDisplay: ai_sal
+
+- type: imperialEmote
+  id: redglow
+  mobs: [ Ai ]
+  effect: AiDisplay
+  aiDisplay: ai_hal
+
+- type: imperialEmote
+  id: sniffle
+  mobs: [ Living ]
+  soundMale:
+    path: /Audio/Imperial/EmotePanel/sniff_male.ogg
+  soundFemale:
+    path: /Audio/Imperial/EmotePanel/sniff_female.ogg
+
+- type: imperialEmote
+  id: laughevil
+  mobs: [ Living ]
+  requires: [ CanSpeak ]
+  audible: true
+  soundMale:
+    collection: ImperialEmoteEvilLaughMale
+  soundFemale:
+    collection: ImperialEmoteEvilLaughFemale
+  vary: true
+
+- type: imperialEmote
+  id: howl
+  mobs: [ Human ]
+  species: [ Vulpkanin ]
+  audible: true
+  cooldown: 6
+  vanillaSound: Howl
+
+- type: imperialEmote
+  id: growl
+  mobs: [ Human ]
+  species: [ Vulpkanin ]
+  audible: true
+  cooldown: 2
+  vanillaSound: Growl
+
+- type: imperialEmote
+  id: purr
+  mobs: [ Human ]
+  species: [ Vulpkanin ]
+  audible: true
+  visible: false
+  cooldown: 2
+  sound:
+    path: /Audio/Imperial/EmotePanel/vulpkanin_purr.ogg
+  vary: true
+
+- type: imperialEmote
+  id: bark
+  mobs: [ Human ]
+  species: [ Vulpkanin ]
+  audible: true
+  cooldown: 2
+  vanillaSound: Bark
+  vary: true
+
+- type: imperialEmote
+  id: wbark
+  mobs: [ Human ]
+  species: [ Vulpkanin ]
+  audible: true
+  cooldown: 2
+  sound:
+    path: /Audio/Imperial/EmotePanel/vulpkanin_wbark.ogg
+  vary: true

@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (moth.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "herby_cheese"
+    },
+    {
+      "name": "mothic_salad"
+    },
+    {
+      "name": "toasted_seeds"
+    },
+    {
+      "name": "mothic_pizza_dough"
+    },
+    {
+      "name": "squeaking_stir_fry"
+    },
+    {
+      "name": "sweet_chili_cabbage_wrap"
+    },
+    {
+      "name": "loaded_curds"
+    },
+    {
+      "name": "baked_cheese"
+    },
+    {
+      "name": "baked_cheese_platter"
+    },
+    {
+      "name": "raw_green_lasagne"
+    },
+    {
+      "name": "green_lasagne"
+    },
+    {
+      "name": "green_lasagne_slice"
+    },
+    {
+      "name": "raw_baked_rice"
+    },
+    {
+      "name": "big_baked_rice"
+    },
+    {
+      "name": "lil_baked_rice"
+    },
+    {
+      "name": "oven_baked_corn"
+    },
+    {
+      "name": "buttered_baked_corn"
+    },
+    {
+      "name": "fiesta_corn_skillet"
+    },
+    {
+      "name": "raw_ratatouille"
+    },
+    {
+      "name": "ratatouille"
+    },
+    {
+      "name": "mozzarella_sticks"
+    },
+    {
+      "name": "raw_stuffed_pepper"
+    },
+    {
+      "name": "stuffed_pepper"
+    },
+    {
+      "name": "fried_eggplant_polenta"
+    },
+    {
+      "name": "caprese_salad"
+    },
+    {
+      "name": "fleet_salad"
+    },
+    {
+      "name": "cotton_salad"
+    },
+    {
+      "name": "moth_kachumbari"
+    },
+    {
+      "name": "raw_margherita_pizza"
+    },
+    {
+      "name": "margherita_pizza"
+    },
+    {
+      "name": "margherita_slice"
+    },
+    {
+      "name": "raw_firecracker_pizza"
+    },
+    {
+      "name": "firecracker_pizza"
+    },
+    {
+      "name": "firecracker_slice"
+    },
+    {
+      "name": "raw_five_cheese_pizza"
+    },
+    {
+      "name": "five_cheese_pizza"
+    },
+    {
+      "name": "five_cheese_slice"
+    },
+    {
+      "name": "raw_white_pie_pizza"
+    },
+    {
+      "name": "white_pie_pizza"
+    },
+    {
+      "name": "white_pie_slice"
+    },
+    {
+      "name": "raw_pesto_pizza"
+    },
+    {
+      "name": "pesto_pizza"
+    },
+    {
+      "name": "pesto_slice"
+    },
+    {
+      "name": "raw_garlic_pizza"
+    },
+    {
+      "name": "garlic_pizza"
+    },
+    {
+      "name": "garlic_slice"
+    },
+    {
+      "name": "moth_cheese_cakes"
+    },
+    {
+      "name": "mothmallow_tray"
+    },
+    {
+      "name": "mothmallow_slice"
+    },
+    {
+      "name": "engine_fodder"
+    },
+    {
+      "name": "sustenance_bar"
+    },
+    {
+      "name": "fueljacks_lunch"
+    },
+    {
+      "name": "mac_balls"
+    }
+  ]
+}

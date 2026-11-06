@@ -1,0 +1,149 @@
+# Блюда TG /obj/item/food/cornchips (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCornchipsBlue
+  name: "«Боритос» «Крутейшее ранчо»"
+  description: "Что было первым — ранчо или крутое ранчо?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: boritos
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: OilOlive
+          Quantity: 2
+        - ReagentId: TableSalt
+          Quantity: 3
+        - ReagentId: ImperialYoghurt
+          Quantity: 1
+        - ReagentId: Allicin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - corn
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCornchipsGreen
+  name: "«Боритос» «Космосальса»"
+  description: "Сальса уже запечена внутри, соус не нужен."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: boritosgreen
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: OilOlive
+          Quantity: 2
+        - ReagentId: TableSalt
+          Quantity: 3
+        - ReagentId: Astrotame
+          Quantity: 1
+        - ReagentId: Blackpepper
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - corn
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCornchipsRed
+  name: "«Боритос» «Сырные начос»"
+  description: "Печально известны тем, что всё вокруг покрывается оранжевой сырной пылью."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: boritosred
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: OilOlive
+          Quantity: 2
+        - ReagentId: TableSalt
+          Quantity: 3
+        - ReagentId: Astrotame
+          Quantity: 1
+        - ReagentId: Cornmeal
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - cheesy
+    - corn
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCornchipsPurple
+  name: "«Боритос» «Острый сладкий чили»"
+  description: "Единственный вкус, который действительно острый, как настоящие начос."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: boritospurple
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: OilOlive
+          Quantity: 2
+        - ReagentId: TableSalt
+          Quantity: 3
+        - ReagentId: CapsaicinOil
+          Quantity: 1
+        - ReagentId: Sugar
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - spicy
+    - corn
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCornchipsRandom
+  name: "кукурузные чипсы «Боритос»"
+  description: "С одним из четырёх вкусных вкусов!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/food.rsi
+    state: boritos
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+        - ReagentId: OilOlive
+          Quantity: 2
+        - ReagentId: TableSalt
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - corn

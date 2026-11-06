@@ -1,0 +1,112 @@
+# Блюда TG /obj/item/food/meatball (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatballHuman
+  name: "странная фрикаделька"
+  description: "Отличная еда. Не вязанка дров."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: meatball
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatballCorgi
+  name: "фрикаделька из корги"
+  description: "Отличная еда. Не вязанка дров."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: meatball
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatballBear
+  name: "медвежья фрикаделька"
+  description: "Отличная еда. Не вязанка дров."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: meatball
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatballXeno
+  name: "ксенофрикаделька"
+  description: "Отличная еда. Не вязанка дров."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: meatball
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - acid
+    - meaty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodMeatballChicken
+  name: "куриная фрикаделька"
+  description: "Отличная еда. Не вязанка дров."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/meat.rsi
+    state: chicken_meatball
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - chicken

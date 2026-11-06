@@ -1,0 +1,264 @@
+# Блюда TG /obj/item/food/pizzaslice (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzasliceMothicMargherita
+  name: "кусок нианской «Маргариты»"
+  description: "Кусок нианской «Маргариты», скромнейшей из пицц."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/moth.rsi
+    state: margherita_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+    - tomato
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzasliceMothicFirecracker
+  name: "кусок нианской «Петарды»"
+  description: "Острый кусочек чего-то приятного."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/moth.rsi
+    state: firecracker_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+    - corn
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzasliceMothicFiveCheese
+  name: "кусок нианских «Пяти сыров»"
+  description: "Самый сырный кусок в галактике!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/moth.rsi
+    state: five_cheese_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - cheesy
+    - bread
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzasliceMothicWhitePie
+  name: "кусок нианской белой пиццы"
+  description: "Сырно, чесночно, травяно, вкусно!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/moth.rsi
+    state: white_pie_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - cheesy
+    - bread
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzasliceMothicPesto
+  name: "кусок нианской пиццы с песто"
+  description: "Кусок пиццы с песто — престо!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/moth.rsi
+    state: pesto_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzasliceMothicGarlic
+  name: "кусок нианского чесночного пицца-хлеба"
+  description: "Лучшее сочетание маслянистого, чесночного и хрустящего, известное нианам."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/moth.rsi
+    state: garlic_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - butter
+    - dough
+    - garlic
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzasliceCustom
+  name: "кусок пиццы"
+  description: "Кусок изысканной пиццы на заказ."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/pizza.rsi
+    state: pizzamargheritaslice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzasliceMeatPizzeria
+  name: "кусок мясной пиццы из пиццерии"
+  description: "Якобы питательный кусок мясной пиццы из давно закрытой пиццерии."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/pizza.rsi
+    state: meatpizzaslice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+    - glue
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzasliceMoldyBacteria
+  name: "заплесневелый кусок пиццы с бактериями"
+  description: "Эта когда-то вкусная пицца не только покрыта плюющимся спорами грибком, но и ползает без присмотра, кишит новой жизнью."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/pizza.rsi
+    state: moldy_slice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Protein
+          Quantity: 3
+        - ReagentId: JuiceTomato
+          Quantity: 1
+        - ReagentId: Amatoxin
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - cheesy
+    - bread
+    - mushroom
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzasliceAnts
+  name: "кусок пиццы «Муравьиная вечеринка»"
+  description: "Секрет идеального куска пиццы — не переборщить с муравьями."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/pizza.rsi
+    state: antpizzaslice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 7
+        reagents:
+        - ReagentId: Protein
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - cheesy
+    - tomato
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodPizzasliceEnergy
+  name: "кусок энергетической пиццы"
+  description: "Вы думаете, не запитать ли им свой МОД. Не ешьте, если вы не эфириал."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/pizza.rsi
+    state: energypizzaslice
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - food

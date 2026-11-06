@@ -1,0 +1,221 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (meat.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "fishfillet"
+    },
+    {
+      "name": "donkfillet"
+    },
+    {
+      "name": "meat"
+    },
+    {
+      "name": "meat_old"
+    },
+    {
+      "name": "hugemushroomslice"
+    },
+    {
+      "name": "kebab"
+    },
+    {
+      "name": "sausage"
+    },
+    {
+      "name": "fishandchips"
+    },
+    {
+      "name": "fishfingers"
+    },
+    {
+      "name": "spidereggs",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "spidereggsham",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "meatsteak"
+    },
+    {
+      "name": "meatsteak_old"
+    },
+    {
+      "name": "agolemmeat"
+    },
+    {
+      "name": "golemmeat"
+    },
+    {
+      "name": "shadowmeat"
+    },
+    {
+      "name": "skeletonmeat"
+    },
+    {
+      "name": "flymeat",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "mothmeat"
+    },
+    {
+      "name": "etherealmeat"
+    },
+    {
+      "name": "rawcutlet"
+    },
+    {
+      "name": "cutlet"
+    },
+    {
+      "name": "khinkali"
+    },
+    {
+      "name": "hotdog"
+    },
+    {
+      "name": "nugget_lump"
+    },
+    {
+      "name": "ratkebab"
+    },
+    {
+      "name": "doubleratkebab"
+    },
+    {
+      "name": "fiestaskewer"
+    },
+    {
+      "name": "crabrangoon"
+    },
+    {
+      "name": "pig_meat"
+    },
+    {
+      "name": "pigsteak"
+    },
+    {
+      "name": "meatproduct"
+    },
+    {
+      "name": "meatproductsteak"
+    },
+    {
+      "name": "fishfry"
+    },
+    {
+      "name": "raw_sausage"
+    },
+    {
+      "name": "american_sausage"
+    },
+    {
+      "name": "raw_patty"
+    },
+    {
+      "name": "patty"
+    },
+    {
+      "name": "raw_meatball"
+    },
+    {
+      "name": "meatball"
+    },
+    {
+      "name": "chicken_meatball"
+    },
+    {
+      "name": "chicken_patty"
+    },
+    {
+      "name": "beefstroganoff"
+    },
+    {
+      "name": "beef_wellington"
+    },
+    {
+      "name": "beef_wellington_slice"
+    },
+    {
+      "name": "danish_hotdog"
+    },
+    {
+      "name": "raw_meatloaf"
+    },
+    {
+      "name": "meatloaf"
+    },
+    {
+      "name": "meatloaf_slice"
+    },
+    {
+      "name": "sweet_and_sour_meatballs"
+    },
+    {
+      "name": "pineapple_skewer"
+    },
+    {
+      "name": "full_roast"
+    },
+    {
+      "name": "roast_slice"
+    },
+    {
+      "name": "full_roast_lizzy"
+    },
+    {
+      "name": "roast_slice_lizzy"
+    },
+    {
+      "name": "full_roast_tofu"
+    },
+    {
+      "name": "roast_slice_tofu"
+    },
+    {
+      "name": "korta_wellington"
+    },
+    {
+      "name": "korta_wellington_slice"
+    },
+    {
+      "name": "salmon"
+    }
+  ]
+}

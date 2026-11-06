@@ -1,0 +1,10 @@
+using Content.Shared.Alert;
+using Robust.Shared.Prototypes;
+
+using Content.Shared.Imperial.Mood;
+
+namespace Content.Server.Imperial.Mood;
+
+/// <summary>clear_mood_event.</summary>
+[ByRefEvent]
+public record struct ImperialMoodClearEvent(string Category);

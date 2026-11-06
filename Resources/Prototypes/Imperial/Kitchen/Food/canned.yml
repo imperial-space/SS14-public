@@ -1,0 +1,226 @@
+# Блюда TG /obj/item/food/canned (scratchpad/kitchen/kgen.pl).
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCannedJellyfish
+  name: "консервированная медуза-стрелок"
+  description: "Банка медуз-стрелков в рассоле. Содержит лёгкий галлюциноген, разрушающийся при готовке."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/canned.rsi
+    state: jellyfish
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 16
+        reagents:
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: MindbreakerToxin
+          Quantity: 2
+        - ReagentId: TableSalt
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - salty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCannedDesertSnails
+  name: "консервированные пустынные улитки"
+  description: "Гигантские улитки тизирской пустыни в рассоле. С раковинами. Лучше не есть сырыми, если вы не ящер."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/canned.rsi
+    state: snails
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: TableSalt
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCannedLarvae
+  name: "консервированные пчелиные личинки"
+  description: "Банка пчелиных личинок в мёде. Кому-то, наверное, аппетитно."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/canned.rsi
+    state: larvae
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Protein
+          Quantity: 8
+        - ReagentId: ImperialHoney
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - squirming
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCannedPeaches
+  name: "консервированные персики"
+  description: "Банка спелых персиков в собственном соку."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/canned.rsi
+    state: peachcan
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 35
+        reagents:
+        - ReagentId: ImperialPeachjuice
+          Quantity: 20
+        - ReagentId: Sugar
+          Quantity: 8
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCannedTomatoes
+  name: "консервированные томаты Сан-Марцано"
+  description: "Банка отборных томатов Сан-Марцано с холмов Южной Италии."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/canned.rsi
+    state: tomatoescan
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 27
+        reagents:
+        - ReagentId: JuiceTomato
+          Quantity: 20
+        - ReagentId: TableSalt
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - tomato
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCannedPineNuts
+  name: "консервированные кедровые орехи"
+  description: "Баночка кедровых орехов. Можно есть и так, если нравится."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/canned.rsi
+    state: pinenutscan
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8
+        reagents:
+        - ReagentId: Vitamin
+          Quantity: 3
+  - type: FlavorProfile
+    flavors:
+    - nutty
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCannedEnvirochow
+  name: "корм «Собака ест собаку»"
+  description: "Первый корм для питомцев, полностью устойчивый благодаря древним британским методам животноводства."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/canned.rsi
+    state: envirochow
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 18
+        reagents:
+        - ReagentId: Protein
+          Quantity: 9
+        - ReagentId: Vitamin
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - food
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCannedSquidInk
+  name: "консервированные чернила кальмара"
+  description: "Необычный ингредиент: чернила кальмара придают любому блюду вкус моря и окрашивают его в угольно-чёрный."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/canned.rsi
+    state: squidinkcan
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: TableSalt
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - fishy
+
+- type: entity
+  parent: FoodInjectableBase
+  id: ImperialFoodCannedChap
+  name: "банка ЧАПа"
+  description: "ЧАП: Чопленая Ассорти-ветчина Поросёнка. Классические американские мясные консервы, выигравшие мировую войну и отправившие миллионы солдат домой с больным сердцем."
+  components:
+  - type: Sprite
+    sprite: Imperial/Kitchen/Food/canned.rsi
+    state: chapcan
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: TableSalt
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialProcessable
+    entries:
+    - tool: Knife
+      result: ImperialFoodChapslice
+      amount: 5
+      time: 3
+      tableRequired: true

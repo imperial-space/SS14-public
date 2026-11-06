@@ -1,0 +1,316 @@
+# /datum/personality TG: черты категории ImperialPersonalities (не больше max_personalities = 5),
+# группы несовместимы между собой — сервер отбрасывает лишние при появлении.
+
+- type: traitCategory
+  id: ImperialPersonalities
+  name: trait-category-imperial-personalities
+  maxTraitPoints: 5
+
+- type: trait
+  id: ImperialPersonalityApathetic
+  name: imperial-personality-apathetic-name
+  description: imperial-personality-apathetic-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityApathetic
+  key: apathetic
+  groups: [ general_reaction ]
+
+- type: trait
+  id: ImperialPersonalitySensitive
+  name: imperial-personality-sensitive-name
+  description: imperial-personality-sensitive-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalitySensitive
+  key: sensitive
+  groups: [ general_reaction ]
+
+- type: trait
+  id: ImperialPersonalityResilient
+  name: imperial-personality-resilient-name
+  description: imperial-personality-resilient-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityResilient
+  key: resilient
+  groups: [ reaction_to_thought ]
+
+- type: trait
+  id: ImperialPersonalityBrooding
+  name: imperial-personality-brooding-name
+  description: imperial-personality-brooding-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityBrooding
+  key: brooding
+  groups: [ reaction_to_thought ]
+
+- type: trait
+  id: ImperialPersonalityHopeful
+  name: imperial-personality-hopeful-name
+  description: imperial-personality-hopeful-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityHopeful
+  key: hopeful
+  groups: [ reaction_to_hope ]
+
+- type: trait
+  id: ImperialPersonalityPessimistic
+  name: imperial-personality-pessimistic-name
+  description: imperial-personality-pessimistic-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityPessimistic
+  key: pessimistic
+  groups: [ reaction_to_hope ]
+
+- type: trait
+  id: ImperialPersonalityWhimsical
+  name: imperial-personality-whimsical-name
+  description: imperial-personality-whimsical-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityWhimsical
+  key: whimsical
+
+- type: trait
+  id: ImperialPersonalityAnimalFriend
+  name: imperial-personality-animal_friend-name
+  description: imperial-personality-animal_friend-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityAnimalFriend
+  key: animal_friend
+  groups: [ reaction_to_animals ]
+
+- type: trait
+  id: ImperialPersonalityCatFan
+  name: imperial-personality-cat_fan-name
+  description: imperial-personality-cat_fan-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityCatFan
+  key: cat_fan
+  groups: [ reaction_to_animals ]
+
+- type: trait
+  id: ImperialPersonalityDogFan
+  name: imperial-personality-dog_fan-name
+  description: imperial-personality-dog_fan-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityDogFan
+  key: dog_fan
+  groups: [ reaction_to_animals ]
+
+- type: trait
+  id: ImperialPersonalityAnimalDisliker
+  name: imperial-personality-animal_disliker-name
+  description: imperial-personality-animal_disliker-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityAnimalDisliker
+  key: animal_disliker
+  groups: [ reaction_to_animals ]
+
+- type: trait
+  id: ImperialPersonalityBrave
+  name: imperial-personality-brave-name
+  description: imperial-personality-brave-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityBrave
+  key: brave
+  groups: [ reaction_to_fear, reaction_to_fear_others ]
+
+- type: trait
+  id: ImperialPersonalityCowardly
+  name: imperial-personality-cowardly-name
+  description: imperial-personality-cowardly-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityCowardly
+  key: cowardly
+  groups: [ reaction_to_fear ]
+
+- type: trait
+  id: ImperialPersonalityAscetic
+  name: imperial-personality-ascetic-name
+  description: imperial-personality-ascetic-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityAscetic
+  key: ascetic
+  groups: [ reaction_to_food ]
+
+- type: trait
+  id: ImperialPersonalityGourmand
+  name: imperial-personality-gourmand-name
+  description: imperial-personality-gourmand-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityGourmand
+  key: gourmand
+  groups: [ reaction_to_food ]
+
+- type: trait
+  id: ImperialPersonalityTeetotal
+  name: imperial-personality-teetotal-name
+  description: imperial-personality-teetotal-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityTeetotal
+  key: teetotal
+  groups: [ reaction_to_alcohol ]
+
+- type: trait
+  id: ImperialPersonalityBibulous
+  name: imperial-personality-bibulous-name
+  description: imperial-personality-bibulous-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityBibulous
+  key: bibulous
+  groups: [ reaction_to_alcohol ]
+
+- type: trait
+  id: ImperialPersonalityParanoid
+  name: imperial-personality-paranoid-name
+  description: imperial-personality-paranoid-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityParanoid
+  key: paranoid
+  groups: [ reaction_to_fear_others ]
+
+- type: trait
+  id: ImperialPersonalityLoyalist
+  name: imperial-personality-loyalist-name
+  description: imperial-personality-loyalist-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityLoyalist
+  key: loyalist
+  groups: [ reaction_to_nt ]
+
+- type: trait
+  id: ImperialPersonalityDisillusioned
+  name: imperial-personality-disillusioned-name
+  description: imperial-personality-disillusioned-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityDisillusioned
+  key: disillusioned
+  groups: [ reaction_to_nt ]
+
+- type: trait
+  id: ImperialPersonalityCallous
+  name: imperial-personality-callous-name
+  description: imperial-personality-callous-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityCallous
+  key: callous
+  groups: [ reaction_to_death ]
+
+- type: trait
+  id: ImperialPersonalityCompassionate
+  name: imperial-personality-compassionate-name
+  description: imperial-personality-compassionate-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityCompassionate
+  key: compassionate
+  groups: [ reaction_to_death, reaction_to_misanthropy ]
+
+- type: trait
+  id: ImperialPersonalityEmpathetic
+  name: imperial-personality-empathetic-name
+  description: imperial-personality-empathetic-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityEmpathetic
+  key: empathetic
+  groups: [ reaction_to_others ]
+
+- type: trait
+  id: ImperialPersonalityMisanthropic
+  name: imperial-personality-misanthropic-name
+  description: imperial-personality-misanthropic-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityMisanthropic
+  key: misanthropic
+  groups: [ reaction_to_others, reaction_to_misanthropy ]
+
+- type: trait
+  id: ImperialPersonalityAloof
+  name: imperial-personality-aloof-name
+  description: imperial-personality-aloof-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalityAloof
+  key: aloof
+
+- type: trait
+  id: ImperialPersonalitySpiritual
+  name: imperial-personality-spiritual-name
+  description: imperial-personality-spiritual-desc
+  category: ImperialPersonalities
+  cost: 1
+
+- type: imperialPersonality
+  id: ImperialPersonalitySpiritual
+  key: spiritual
