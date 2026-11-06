@@ -474,7 +474,7 @@ public sealed partial class ImperialWizardSpellsSystem
         }
 
         // Заклинатель на минуту свой для призванных (simian: faction monkey).
-        if (ent.Comp.Faction is { } ally && TryComp<NpcFactionMemberComponent>(args.Caster, out _) && !_faction.IsMember(args.Caster, ally))
+        if (ent.Comp.Faction is { } ally && HasComp<NpcFactionMemberComponent>(args.Caster) && !_faction.IsMember(args.Caster, ally))
         {
             _faction.AddFaction(args.Caster, ally);
             _temporaryAllies.Add((args.Caster, ally, _timing.CurTime + ent.Comp.AllyTime));

@@ -167,7 +167,7 @@ public sealed partial class ImperialWizardSpellsSystem
         var center = _transform.GetWorldPosition(caster);
         foreach (var victim in _lookup.GetEntitiesInRange(Transform(caster).Coordinates, ent.Comp.Radius, LookupFlags.Dynamic | LookupFlags.Sundries))
         {
-            if (victim == caster || Transform(victim).Anchored || !TryComp<PhysicsComponent>(victim, out _))
+            if (victim == caster || Transform(victim).Anchored || !HasComp<PhysicsComponent>(victim))
                 continue;
 
             if (HasComp<MobStateComponent>(victim) && _antimagic.CanBlockMagic(victim))
