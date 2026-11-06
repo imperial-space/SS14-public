@@ -155,7 +155,7 @@ public sealed class ImperialChangelingHudSystem : EntitySystem
             handle.DrawTextureRect(_texture, PixelSizeBox);
 
             // <div align='center' valign='middle' style='left:6px'>
-            var text = ((int) MathF.Round(_hovering ? MaxChemicals : Chemicals)).ToString();
+            var text = ((int)MathF.Round(_hovering ? MaxChemicals : Chemicals)).ToString();
             var size = handle.GetDimensions(_font, text, UIScale);
             var position = (PixelSize - size) / 2f + new Vector2(6 * Scale * UIScale, 0);
             handle.DrawString(_font, position, text, UIScale, _hovering ? MaxColor : ChargesColor);

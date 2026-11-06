@@ -62,6 +62,8 @@ public sealed partial class ImperialChangelingSystem
     /// <summary>tentacle_grab(): кого подтащили щупальцем в боевой стойке.</summary>
     private readonly List<(EntityUid Ling, EntityUid Victim, TimeSpan At)> _pendingTentacleGrab = new();
 
+    private const float TentacleGrabRange = 1.5f;
+
     private void InitializeMutations()
     {
         _weapons[ArmBladePower] = (ArmBlade, "blade", false);
@@ -258,7 +260,7 @@ public sealed partial class ImperialChangelingSystem
                 return;
 
             Popup(ling, "imperial-changeling-tentacle-item", ("item", target));
-            _throwing.TryThrow(target, lingCoords, 6f, ling, doSpin: false);
+            _throwing.TryThrow(target, lingCoords, ent.Comp.TentacleHitBaseThrowSpeed, ling, doSpin: false);
             return;
         }
 
@@ -275,21 +277,21 @@ public sealed partial class ImperialChangelingSystem
             _popup.PopupEntity(Loc.GetString("imperial-changeling-tentacle-pull-others", ("target", Identity.Entity(target, EntityManager)), ("user", Identity.Entity(ling, EntityManager))),
                 target, Filter.PvsExcept(target), true, PopupType.MediumCaution);
             _popup.PopupEntity(Loc.GetString("imperial-changeling-tentacle-pull-target", ("user", Identity.Entity(ling, EntityManager))), target, target, PopupType.LargeCaution);
-            _throwing.TryThrow(target, land, 6f, ling, doSpin: false);
+            _throwing.TryThrow(target, land, ent.Comp.TentacleHitBaseThrowSpeed, ling, doSpin: false);
             return;
         }
 
         _popup.PopupEntity(Loc.GetString("imperial-changeling-tentacle-throw-others", ("target", Identity.Entity(target, EntityManager)), ("user", Identity.Entity(ling, EntityManager))),
             target, Filter.PvsExcept(target), true, PopupType.MediumCaution);
         _popup.PopupEntity(Loc.GetString("imperial-changeling-tentacle-throw-target", ("user", Identity.Entity(ling, EntityManager))), target, target, PopupType.LargeCaution);
-        _throwing.TryThrow(target, land, 6f, ling, doSpin: false);
-        _pendingTentacleGrab.Add((ling, target, _timing.CurTime + TimeSpan.FromSeconds(0.6)));
+        _throwing.TryThrow(target, land, ent.Comp.TentacleHitBaseThrowSpeed, ling, doSpin: false);
+        _pendingTentacleGrab.Add((ling, target, _timing.CurTime + ent.Comp.TentacleHitDelay));
     }
 
     /// <summary>tentacle_grab(): захват и удар острым оружием из рук.</summary>
     private void TentacleGrab(EntityUid ling, EntityUid victim)
     {
-        if (TerminatingOrDeleted(ling) || TerminatingOrDeleted(victim) || !_interaction.InRangeUnobstructed(ling, victim, 1.5f))
+        if (TerminatingOrDeleted(ling) || TerminatingOrDeleted(victim) || !_interaction.InRangeUnobstructed(ling, victim, TentacleGrabRange))
             return;
 
         _pulling.TryStartPull(ling, victim);
@@ -402,7 +404,7 @@ public sealed partial class ImperialChangelingSystem
             var exception = EnsureComp<FactionExceptionComponent>(bee);
             _faction.IgnoreEntity((bee, exception), owner);
             AssignBeeReagent(bee, ent.Owner);
-            EnsureComp<TimedDespawnComponent>(bee).Lifetime = (float) ent.Comp.Lifespan.TotalSeconds;
+            EnsureComp<TimedDespawnComponent>(bee).Lifetime = (float)ent.Comp.Lifespan.TotalSeconds;
         }
     }
 

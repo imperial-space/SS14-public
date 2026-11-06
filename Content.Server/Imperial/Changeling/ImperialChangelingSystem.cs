@@ -51,6 +51,8 @@ public sealed partial class ImperialChangelingSystem : EntitySystem
     /// <summary>strings/names/hive_names.txt.</summary>
     private static readonly ProtoId<LocalizedDatasetPrototype> HiveNamesDataset = "ImperialImperialChangelingSystemHiveNames";
 
+    private static readonly TimeSpan TickDelay = TimeSpan.FromSeconds(1);
+
     private static string[] HiveNames => ImperialLocalizedLists.Get(HiveNamesDataset);
 
     /// <summary>possible_changeling_IDs: общий на раунд пул букв.</summary>
@@ -196,7 +198,7 @@ public sealed partial class ImperialChangelingSystem : EntitySystem
             return;
 
         // on_life(): раз в секунду вместо тика SSmobs.
-        _nextTick = now + TimeSpan.FromSeconds(1);
+        _nextTick = now + TickDelay;
         var query = EntityQueryEnumerator<ImperialChangelingComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {

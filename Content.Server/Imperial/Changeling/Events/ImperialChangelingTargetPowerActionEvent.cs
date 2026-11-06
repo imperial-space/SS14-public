@@ -5,7 +5,9 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Imperial.Changeling;
+using Content.Shared.Imperial.Changeling;
+
+namespace Content.Server.Imperial.Changeling;
 
 /// <summary>Способность с целью-существом.</summary>
 public sealed partial class ImperialChangelingTargetPowerActionEvent : EntityTargetActionEvent

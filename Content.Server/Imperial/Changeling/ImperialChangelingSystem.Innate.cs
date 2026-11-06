@@ -347,7 +347,7 @@ public sealed partial class ImperialChangelingSystem
         if (_mind.TryGetMind(target, out var mindId, out var mind))
             AbsorbMemories(ent, target, mindId, mind);
 
-        AdjustChemicals(ent, 10);
+        AdjustChemicals(ent, ent.Comp.FinishAbsorbAmount);
         if (trueAbsorb)
             ent.Comp.CanRespec++;
 
@@ -359,7 +359,7 @@ public sealed partial class ImperialChangelingSystem
                 _damage.TryChangeDamage(target, new DamageSpecifier(_proto.Index(DrainDamage), missing + 1), true, origin: user);
         }
 
-        _bloodstream.TryModifyBloodLevel(target, -1000);
+        _bloodstream.TryModifyBloodLevel(target, ent.Comp.FinishAbsorbAmount2);
         EnsureComp<ImperialChangelingAbsorbedComponent>(target);
         Dirty(ent);
         SyncMind(ent);
@@ -409,6 +409,7 @@ public sealed partial class ImperialChangelingSystem
         AdjustChemicals(ent, chems);
         ent.Comp.MaxChemicals += chems;
         ent.Comp.AbsorbedCount += other.AbsorbedCount;
+        Dirty(ent);
 
         // remove_antag_datum + fallen_changeling: цели остаются на разуме для итогов раунда.
         RemComp<ImperialChangelingComponent>(target);
@@ -498,8 +499,8 @@ public sealed partial class ImperialChangelingSystem
     private bool UseRegenerate(Entity<ImperialChangelingComponent> ent, EntityUid? _)
     {
         Popup(ent, "imperial-changeling-regenerate");
-        _bloodstream.TryModifyBleedAmount(ent.Owner, -1000);
-        _bloodstream.TryModifyBloodLevel(ent.Owner, 1000);
+        _bloodstream.TryModifyBleedAmount(ent.Owner, ent.Comp.UseRegenerateAmount);
+        _bloodstream.TryModifyBloodLevel(ent.Owner, ent.Comp.UseRegenerateAmount2);
 
         // got_limbs_back: звук и крик уже после лечения, чтобы глухой генокрад их услышал.
         if (RegenerateLimbs(ent, LimbCategories))

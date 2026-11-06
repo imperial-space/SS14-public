@@ -35,7 +35,7 @@ public sealed class ImperialChangelingSwellSystem : EntitySystem
         var query = EntityQueryEnumerator<ImperialChangelingSwellComponent, SpriteComponent>();
         while (query.MoveNext(out var uid, out var swell, out var sprite))
         {
-            var progress = (float) Math.Clamp((_timing.CurTime - swell.StartTime) / swell.Duration, 0, 1);
+            var progress = (float)Math.Clamp((_timing.CurTime - swell.StartTime) / swell.Duration, 0, 1);
             var scale = 1 + (swell.Scale - 1) * progress;
             _sprite.SetScale((uid, sprite), new Vector2(scale, scale));
             _sprite.SetColor((uid, sprite), Color.InterpolateBetween(Color.White, Color.Red, progress));

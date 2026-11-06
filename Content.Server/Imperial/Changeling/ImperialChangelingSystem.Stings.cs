@@ -59,6 +59,8 @@ public sealed partial class ImperialChangelingSystem
     /// <summary>lsd/hallucination_time: когда начнутся галлюцинации.</summary>
     private readonly List<(EntityUid Target, TimeSpan At)> _pendingLsd = new();
 
+    private static readonly TimeSpan UpdateStingsDuration = TimeSpan.FromSeconds(180);
+
     private void InitializeStings()
     {
         _stings[TransformationSting] = (CanTransformationSting, TransformationStingAction);
@@ -98,7 +100,7 @@ public sealed partial class ImperialChangelingSystem
 
             _pendingLsd.RemoveAt(i);
             if (!TerminatingOrDeleted(target))
-                _statusEffectsNew.TryAddStatusEffectDuration(target, RainbowEffect, TimeSpan.FromSeconds(180));
+                _statusEffectsNew.TryAddStatusEffectDuration(target, RainbowEffect, UpdateStingsDuration);
         }
 
         var stung = EntityQueryEnumerator<ImperialChangelingStungTransformComponent>();
@@ -108,7 +110,7 @@ public sealed partial class ImperialChangelingSystem
             if (comp.Remaining is not { } remaining || _mobState.IsDead(uid))
                 continue;
 
-            remaining -= TimeSpan.FromSeconds(1);
+            remaining -= comp.RemainingDelay;
             comp.Remaining = remaining;
             if (remaining <= TimeSpan.Zero)
                 RevertStungTransform((uid, comp));
@@ -185,6 +187,7 @@ public sealed partial class ImperialChangelingSystem
 
         ent.Comp.SelectingStingDna = false;
         ent.Comp.StingDna = profile;
+        Dirty(ent);
         SetSting(ent, TransformationSting);
         return true;
     }
@@ -393,7 +396,7 @@ public sealed partial class ImperialChangelingSystem
     /// <summary>mute: adjust_silence(1 MINUTES).</summary>
     private bool MuteAction(Entity<ImperialChangelingComponent> ent, EntityUid target)
     {
-        _statusEffects.TryAddStatusEffect<MutedComponent>(target, "Muted", TimeSpan.FromMinutes(1), false);
+        _statusEffects.TryAddStatusEffect<MutedComponent>(target, "Muted", ent.Comp.MuteActionTime, false);
         return true;
     }
 
@@ -407,9 +410,9 @@ public sealed partial class ImperialChangelingSystem
         }
 
         _popup.PopupEntity(Loc.GetString("imperial-changeling-sting-blind-target"), target, target, PopupType.LargeCaution);
-        _blindable.AdjustEyeDamage((target, blindable), (int) MathF.Round(blindable.MaxDamage * 0.8f));
+        _blindable.AdjustEyeDamage((target, blindable), (int)MathF.Round(blindable.MaxDamage * 0.8f));
         _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(target, TemporaryBlindnessSystem.BlindingStatusEffect,
-            TimeSpan.FromSeconds(40), true);
+            ent.Comp.BlindActionTime, true);
         return true;
     }
 
@@ -423,7 +426,7 @@ public sealed partial class ImperialChangelingSystem
     /// <summary>cryo: 30 ед. морозного масла.</summary>
     private bool CryoAction(Entity<ImperialChangelingComponent> ent, EntityUid target)
     {
-        _bloodstream.TryAddToBloodstream(target, new Solution("FrostOil", 30));
+        _bloodstream.TryAddToBloodstream(target, new Solution("FrostOil", ent.Comp.CryoActionQuantity));
         return true;
     }
 

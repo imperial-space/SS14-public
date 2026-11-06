@@ -18,4 +18,7 @@ public sealed partial class ImperialChangelingHeadslugComponent : Component
     /// <summary>addtimer(death, 10 SECONDS) после кладки.</summary>
     [ViewVariables]
     public TimeSpan? DieAt;
+
+    [DataField]
+    public TimeSpan DieDelay = TimeSpan.FromSeconds(10);
 }

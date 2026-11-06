@@ -42,6 +42,7 @@ using Content.Shared.Zombies;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared.FixedPoint;
 
 namespace Content.Server.Imperial.Changeling;
 
@@ -119,6 +120,8 @@ public sealed partial class ImperialChangelingSystem
 
     private readonly Dictionary<EntityUid, float> _oldColdThreshold = new();
 
+    private static readonly FixedPoint2 UpdateMeltQuantity = 5;
+
     private void InitializeUtility()
     {
         _powers[AdrenalinePower] = UseAdrenaline;
@@ -185,12 +188,12 @@ public sealed partial class ImperialChangelingSystem
         {
             if (ent.Comp.Toggled.Contains(MusclesPower))
             {
-                ent.Comp.NextMuscleTick = now + TimeSpan.FromSeconds(4);
+                ent.Comp.NextMuscleTick = now + ent.Comp.MuscleTickDelay;
                 var stamina = TryComp<Content.Shared.Damage.Components.StaminaComponent>(uid, out var stam) ? _stamina.GetStaminaDamage(uid, stam) : 0;
                 if (!_mobState.IsAlive(uid) || stamina >= 90)
                 {
                     Popup(uid, "imperial-changeling-muscles-exhausted");
-                    _stun.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(4));
+                    _stun.TryUpdateParalyzeDuration(uid, ent.Comp.UpdateUtilityDuration);
                     SetMuscles(ent, false, quiet: true);
                 }
                 else
@@ -203,7 +206,7 @@ public sealed partial class ImperialChangelingSystem
             }
             else if (ent.Comp.MuscleStacks > 0)
             {
-                ent.Comp.NextMuscleTick = now + TimeSpan.FromSeconds(2);
+                ent.Comp.NextMuscleTick = now + ent.Comp.MuscleTickDelay2;
                 ent.Comp.MuscleStacks--;
             }
         }
@@ -211,7 +214,7 @@ public sealed partial class ImperialChangelingSystem
         // agent_pinpointer/changeling: раз в 2 секунды.
         if (ent.Comp.Toggled.Contains(PheromonePower) && now >= ent.Comp.NextPheromoneTick)
         {
-            ent.Comp.NextPheromoneTick = now + TimeSpan.FromSeconds(2);
+            ent.Comp.NextPheromoneTick = now + ent.Comp.PheromoneTickDelay;
             UpdatePheromone(ent);
         }
 
@@ -235,7 +238,7 @@ public sealed partial class ImperialChangelingSystem
         if (TryComp<Content.Shared.Damage.Components.StaminaComponent>(uid, out var stamina))
             _stamina.TakeStaminaDamage(uid, -_stamina.GetStaminaDamage(uid, stamina), stamina);
 
-        _bloodstream.TryAddToBloodstream(uid, new Solution("ImperialChangelingAdrenaline", 4));
+        _bloodstream.TryAddToBloodstream(uid, new Solution("ImperialChangelingAdrenaline", ent.Comp.UseAdrenalineQuantity));
         Popup(uid, "imperial-changeling-adrenaline");
         return true;
     }
@@ -260,10 +263,10 @@ public sealed partial class ImperialChangelingSystem
             _vomit.Vomit(uid, 0, 0, force: true);
 
         var chems = new Solution();
-        chems.AddReagent(new Robust.Shared.Prototypes.ProtoId<Content.Shared.Chemistry.Reagent.ReagentPrototype>("Mutadone"), 10);
-        chems.AddReagent(new Robust.Shared.Prototypes.ProtoId<Content.Shared.Chemistry.Reagent.ReagentPrototype>("Arithrazine"), 20);
-        chems.AddReagent(new Robust.Shared.Prototypes.ProtoId<Content.Shared.Chemistry.Reagent.ReagentPrototype>("Antihol"), 10);
-        chems.AddReagent(new Robust.Shared.Prototypes.ProtoId<Content.Shared.Chemistry.Reagent.ReagentPrototype>("Mannitol"), 25);
+        chems.AddReagent(new Robust.Shared.Prototypes.ProtoId<Content.Shared.Chemistry.Reagent.ReagentPrototype>("Mutadone"), ent.Comp.UsePanaceaQuantity);
+        chems.AddReagent(new Robust.Shared.Prototypes.ProtoId<Content.Shared.Chemistry.Reagent.ReagentPrototype>("Arithrazine"), ent.Comp.UsePanaceaQuantity2);
+        chems.AddReagent(new Robust.Shared.Prototypes.ProtoId<Content.Shared.Chemistry.Reagent.ReagentPrototype>("Antihol"), ent.Comp.UsePanaceaQuantity);
+        chems.AddReagent(new Robust.Shared.Prototypes.ProtoId<Content.Shared.Chemistry.Reagent.ReagentPrototype>("Mannitol"), ent.Comp.UsePanaceaQuantity3);
         _bloodstream.TryAddToBloodstream(uid, chems);
 
         if (TryComp<DiseasedComponent>(uid, out var diseased))
@@ -285,7 +288,7 @@ public sealed partial class ImperialChangelingSystem
             return;
 
         var burning = TryComp<Content.Shared.Atmos.Components.FlammableComponent>(ent, out var flammable) && flammable.OnFire;
-        _alerts.ShowAlert(ent.Owner, FleshmendAlert, (short) (burning ? 2 : 1), (until - TimeSpan.FromSeconds(10), until));
+        _alerts.ShowAlert(ent.Owner, FleshmendAlert, (short)(burning ? 2 : 1), (until - ent.Comp.ShowFleshmendAlertDelay, until));
     }
 
     /// <summary>fleshmend: лечение раз в секунду 10 секунд.</summary>
@@ -298,7 +301,7 @@ public sealed partial class ImperialChangelingSystem
         }
 
         Popup(ent, "imperial-changeling-fleshmend");
-        ent.Comp.FleshmendUntil = _timing.CurTime + TimeSpan.FromSeconds(10);
+        ent.Comp.FleshmendUntil = _timing.CurTime + ent.Comp.FleshmendDelay;
         ShowFleshmendAlert(ent);
         return true;
     }
@@ -457,7 +460,7 @@ public sealed partial class ImperialChangelingSystem
         var snared = TryComp<EnsnareableComponent>(uid, out var ensnareable) && ensnareable.IsEnsnared;
         var locker = _container.TryGetContainingContainer((uid, null, null), out var container) && HasComp<EntityStorageComponent>(container.Owner)
             ? container.Owner
-            : (EntityUid?) null;
+            : (EntityUid?)null;
         var puller = TryComp<PullableComponent>(uid, out var pullable) ? pullable.Puller : null;
 
         if (!cuffed && !snared && locker == null && puller == null)
@@ -472,7 +475,7 @@ public sealed partial class ImperialChangelingSystem
             // Три такта: лужа greenglow и шипение сварки каждую секунду, на четвёртой шкаф плавится.
             for (var beat = 1; beat <= 3; beat++)
                 _pendingBeats.Add((storage, _timing.CurTime + TimeSpan.FromSeconds(beat)));
-            _pendingMelt.Add((storage, _timing.CurTime + TimeSpan.FromSeconds(4)));
+            _pendingMelt.Add((storage, _timing.CurTime + ent.Comp.UseBiodegradeDelay));
             return true;
         }
 
@@ -537,7 +540,7 @@ public sealed partial class ImperialChangelingSystem
             // atom_destruction(ACID): содержимое высыпается.
             if (TryComp<EntityStorageComponent>(storage, out var entityStorage))
                 _storage.OpenStorage(storage, entityStorage);
-            _puddle.TrySpillAt(storage, new Solution("FluorosulfuricAcid", 5), out _, sound: false);
+            _puddle.TrySpillAt(storage, new Solution("FluorosulfuricAcid", UpdateMeltQuantity), out _, sound: false);
             QueueDel(storage);
         }
     }
@@ -557,7 +560,7 @@ public sealed partial class ImperialChangelingSystem
             uid, PopupType.LargeCaution);
         _damage.TryChangeDamage(manhandler, new DamageSpecifier(_proto.Index<DamageTypePrototype>(new Robust.Shared.Prototypes.ProtoId<DamageTypePrototype>("Caustic")), 18), origin: uid);
         _audio.PlayPvs(AcidSpit, uid);
-        _stun.TryUpdateStunDuration(manhandler, TimeSpan.FromSeconds(2));
+        _stun.TryUpdateStunDuration(manhandler, ent.Comp.PunishWithAcidDuration);
         _chatSystem.TryEmoteWithChat(manhandler, "Scream", ignoreActionBlocker: true, forceEmote: true);
         _pulling.TryStopPull(uid, Comp<PullableComponent>(uid), manhandler);
     }
@@ -654,9 +657,9 @@ public sealed partial class ImperialChangelingSystem
     {
         var uid = ent.Owner;
         _audio.PlayPvs(Screech, uid, AudioParams.Default.WithVolume(6));
-        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, 4))
+        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, ent.Comp.UseResonantShriekRange))
         {
-            if (mob.Owner == uid || HasComp<ImperialChangelingComponent>(mob) || !_interaction.InRangeUnobstructed(uid, mob.Owner, 4.5f))
+            if (mob.Owner == uid || HasComp<ImperialChangelingComponent>(mob) || !_interaction.InRangeUnobstructed(uid, mob.Owner, ent.Comp.UseResonantShriekRange2))
                 continue;
 
             if (HasComp<BorgChassisComponent>(mob))
@@ -666,20 +669,20 @@ public sealed partial class ImperialChangelingSystem
             }
 
             // soundbang_act(deafen_pwr = 1 MINUTES)
-            ApplyDeafness(mob, TimeSpan.FromMinutes(1));
-            _drunk.TryApplyDrunkenness(mob, TimeSpan.FromSeconds(25));
-            _jitter.DoJitter(mob, TimeSpan.FromSeconds(100), false);
+            ApplyDeafness(mob, ent.Comp.UseResonantShriekDuration);
+            _drunk.TryApplyDrunkenness(mob, ent.Comp.UseResonantShriekBoozePowerDelay);
+            _jitter.DoJitter(mob, ent.Comp.UseResonantShriekTime, false);
         }
 
-        BreakLights(uid, 4);
+        BreakLights(uid, ent.Comp.UseResonantShriekRange);
         return true;
     }
 
     /// <summary>dissonant_shriek: ЭМИ (2/5) и лампы в 5 клетках.</summary>
     private bool UseTechnoShriek(Entity<ImperialChangelingComponent> ent, EntityUid? _)
     {
-        _emp.EmpPulse(Transform(ent).Coordinates, 5, 50000, TimeSpan.FromSeconds(60), ent.Owner);
-        BreakLights(ent.Owner, 5);
+        _emp.EmpPulse(Transform(ent).Coordinates, ent.Comp.UseTechnoShriekRange, ent.Comp.UseTechnoShriekEnergyConsumption, ent.Comp.UseTechnoShriekDuration, ent.Owner);
+        BreakLights(ent.Owner, ent.Comp.UseTechnoShriekRange);
         return true;
     }
 
@@ -723,20 +726,20 @@ public sealed partial class ImperialChangelingSystem
         if (active)
         {
             ent.Comp.Toggled.Add(MusclesPower);
-            ent.Comp.NextMuscleTick = _timing.CurTime + TimeSpan.FromSeconds(4);
+            ent.Comp.NextMuscleTick = _timing.CurTime + ent.Comp.MuscleTickDelay;
             Popup(uid, "imperial-changeling-muscles-on");
         }
         else
         {
             ent.Comp.Toggled.Remove(MusclesPower);
-            ent.Comp.NextMuscleTick = _timing.CurTime + TimeSpan.FromSeconds(2);
+            ent.Comp.NextMuscleTick = _timing.CurTime + ent.Comp.MuscleTickDelay2;
             if (!quiet)
             {
                 Popup(uid, "imperial-changeling-muscles-off");
                 if (ent.Comp.MuscleStacks >= 10)
                 {
                     Popup(uid, "imperial-changeling-muscles-collapse");
-                    _stun.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(6));
+                    _stun.TryUpdateParalyzeDuration(uid, ent.Comp.SetMusclesDuration);
                     _chatSystem.TryEmoteWithChat(uid, "Gasp", ignoreActionBlocker: true, forceEmote: true);
                 }
             }
@@ -807,19 +810,19 @@ public sealed partial class ImperialChangelingSystem
 
         if (HasComp<BorgChassisComponent>(user))
         {
-            _stun.TryUpdateParalyzeDuration(user, TimeSpan.FromSeconds(2));
+            _stun.TryUpdateParalyzeDuration(user, ent.Comp.DefibZapDuration);
             _popup.PopupEntity(Loc.GetString("imperial-changeling-defib-borg", ("user", Identity.Entity(ent, EntityManager))), user, user, PopupType.LargeCaution);
         }
         else
         {
-            _stun.TryUpdateStunDuration(user, TimeSpan.FromSeconds(4));
+            _stun.TryUpdateStunDuration(user, ent.Comp.DefibZapDuration2);
             var removedArms = TearOffArms(user);
             if (removedArms > 0)
             {
                 // OH GOOD HEAVENS
-                _jitter.DoJitter(user, TimeSpan.FromMinutes(3), true);
-                _drunk.TryApplyDrunkenness(user, TimeSpan.FromMinutes(1));
-                _stutter.DoStutter(user, TimeSpan.FromMinutes(1), true);
+                _jitter.DoJitter(user, ent.Comp.DefibZapTime, true);
+                _drunk.TryApplyDrunkenness(user, ent.Comp.DefibZapBoozePowerDelay);
+                _stutter.DoStutter(user, ent.Comp.DefibZapTime2, true);
                 _chatSystem.TryEmoteWithChat(user, "Scream", ignoreActionBlocker: true, forceEmote: true);
 
                 var filter = Filter.Pvs(ent).RemoveWhereAttachedEntity(e => e == ent.Owner || e == user);
@@ -851,7 +854,7 @@ public sealed partial class ImperialChangelingSystem
 
         _rejuvenate.PerformRejuvenate(ent.Owner);
         _mobState.UpdateMobState(ent.Owner);
-        _jitter.DoJitter(ent, TimeSpan.FromSeconds(20), true);
+        _jitter.DoJitter(ent, ent.Comp.FinishDefibGraspTime, true);
         _chatSystem.TryEmoteWithChat(ent, "Scream", ignoreActionBlocker: true, forceEmote: true);
         _audio.PlayPvs(DemonConsume, ent);
         _audio.PlayPvs(BodyFall, defib);

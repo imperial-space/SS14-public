@@ -47,6 +47,15 @@ public sealed partial class ImperialChangelingSystem
 
     private readonly List<(EntityUid Mind, EntityCoordinates Coords, TimeSpan At, EntityUid OldBody)> _pendingSlug = new();
 
+    private static readonly TimeSpan BurstBodyDuration = TimeSpan.FromSeconds(6);
+    private static readonly TimeSpan BurstBodyDuration2 = TimeSpan.FromSeconds(4);
+    private static readonly TimeSpan BurstBodyBoozePowerDelay = TimeSpan.FromSeconds(12);
+    private static readonly TimeSpan BurstBodyDelay = TimeSpan.FromSeconds(0.5);
+
+    private const float BurstBodyTotalIntensity = 12f;
+    private const float BurstBodySlope = 2f;
+    private const float BurstBodyMaxTileIntensity = 2f;
+
     private void InitializeBodies()
     {
         _powers[LesserFormPower] = UseLesserForm;
@@ -362,6 +371,7 @@ public sealed partial class ImperialChangelingSystem
             return false;
 
         ent.Comp.SelectingHumanForm = false;
+        Dirty(ent);
         if (ent.Comp.Chemicals < GetLesserCost())
         {
             Popup(ent, "imperial-changeling-req-chems", ("amount", GetLesserCost()));
@@ -462,7 +472,7 @@ public sealed partial class ImperialChangelingSystem
         _audio.PlayPvs(Crack, uid);
         if (IsWalled(uid))
             EscapePrison(uid);
-        _pendingBurst.Add((uid, now + TimeSpan.FromSeconds(1.1)));
+        _pendingBurst.Add((uid, now + ent.Comp.UseLastResortDelay));
         return true;
     }
 
@@ -472,7 +482,7 @@ public sealed partial class ImperialChangelingSystem
         var coords = Transform(body).Coordinates;
         _popup.PopupEntity(Loc.GetString("imperial-changeling-last-resort-burst", ("user", Identity.Entity(body, EntityManager))), body, PopupType.LargeCaution);
         _audio.PlayPvs(GoreSplat, body);
-        _explosion.QueueExplosion(_transform.ToMapCoordinates(coords), "Default", 12, 2, 2, body, canCreateVacuum: false);
+        _explosion.QueueExplosion(_transform.ToMapCoordinates(coords), "Default", BurstBodyTotalIntensity, BurstBodySlope, BurstBodyMaxTileIntensity, body, canCreateVacuum: false);
 
         // for(var/turf/bloody_turf in view(LAST_RESORT_BLIND_RANGE, user)): кровь на каждой клетке.
         for (var x = -LastResortBlindRange; x <= LastResortBlindRange; x++)
@@ -496,7 +506,7 @@ public sealed partial class ImperialChangelingSystem
             if (HasComp<BorgChassisComponent>(mob))
             {
                 _popup.PopupEntity(Loc.GetString("imperial-changeling-last-resort-borg"), mob, mob, PopupType.LargeCaution);
-                _stun.TryUpdateParalyzeDuration(mob, TimeSpan.FromSeconds(6));
+                _stun.TryUpdateParalyzeDuration(mob, BurstBodyDuration);
                 continue;
             }
 
@@ -504,15 +514,15 @@ public sealed partial class ImperialChangelingSystem
                 continue;
 
             _popup.PopupEntity(Loc.GetString("imperial-changeling-last-resort-blind"), mob, mob, PopupType.LargeCaution);
-            _stun.TryUpdateStunDuration(mob, TimeSpan.FromSeconds(4));
-            _drunk.TryApplyDrunkenness(mob, TimeSpan.FromSeconds(12));
+            _stun.TryUpdateStunDuration(mob, BurstBodyDuration2);
+            _drunk.TryApplyDrunkenness(mob, BurstBodyBoozePowerDelay);
         }
 
-        var mindId = _mind.TryGetMind(body, out var mind, out _) ? mind : (EntityUid?) null;
+        var mindId = _mind.TryGetMind(body, out var mind, out _) ? mind : (EntityUid?)null;
         if (mindId is { } m)
         {
             // Генокрад переедет на червя: тело пока не удаляем.
-            _pendingSlug.Add((m, coords, _timing.CurTime + TimeSpan.FromSeconds(0.5), body));
+            _pendingSlug.Add((m, coords, _timing.CurTime + BurstBodyDelay, body));
         }
 
         _puddle.TrySpillAt(body, new Content.Shared.Chemistry.Components.Solution("Blood", 30), out _);
@@ -571,7 +581,7 @@ public sealed partial class ImperialChangelingSystem
             egg.Origin = _mind.TryGetMind(ent.Owner, out var mindId, out _) ? mindId : null;
             egg.HatchAt = _timing.CurTime + EggIncubation;
             ent.Comp.EggLain = true;
-            ent.Comp.DieAt = _timing.CurTime + TimeSpan.FromSeconds(10);
+            ent.Comp.DieAt = _timing.CurTime + ent.Comp.DieDelay;
 
             _popup.PopupEntity(Loc.GetString("imperial-changeling-headslug-implant-others", ("slug", Identity.Entity(ent.Owner, EntityManager)), ("target", Identity.Entity(target, EntityManager))),
                 ent.Owner, Filter.PvsExcept(ent.Owner), true, PopupType.MediumCaution);

@@ -4,6 +4,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Content.Shared.FixedPoint;
 
 namespace Content.Shared.Imperial.Changeling;
 
@@ -171,4 +172,109 @@ public sealed partial class ImperialChangelingComponent : Component
     public bool Headslug;
 
     public override bool SendOnlyToOwner => true;
+
+    [DataField]
+    public TimeSpan UseLastResortDelay = TimeSpan.FromSeconds(1.1);
+
+    [DataField]
+    public TimeSpan MuteActionTime = TimeSpan.FromMinutes(1);
+
+    [DataField]
+    public TimeSpan BlindActionTime = TimeSpan.FromSeconds(40);
+
+    [DataField]
+    public TimeSpan MuscleTickDelay = TimeSpan.FromSeconds(4);
+
+    [DataField]
+    public TimeSpan UpdateUtilityDuration = TimeSpan.FromSeconds(4);
+
+    [DataField]
+    public TimeSpan MuscleTickDelay2 = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan PheromoneTickDelay = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan ShowFleshmendAlertDelay = TimeSpan.FromSeconds(10);
+
+    [DataField]
+    public TimeSpan FleshmendDelay = TimeSpan.FromSeconds(10);
+
+    [DataField]
+    public TimeSpan UseBiodegradeDelay = TimeSpan.FromSeconds(4);
+
+    [DataField]
+    public TimeSpan PunishWithAcidDuration = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan UseResonantShriekDuration = TimeSpan.FromMinutes(1);
+
+    [DataField]
+    public TimeSpan UseResonantShriekBoozePowerDelay = TimeSpan.FromSeconds(25);
+
+    [DataField]
+    public TimeSpan UseResonantShriekTime = TimeSpan.FromSeconds(100);
+
+    [DataField]
+    public TimeSpan UseTechnoShriekDuration = TimeSpan.FromSeconds(60);
+
+    [DataField]
+    public TimeSpan SetMusclesDuration = TimeSpan.FromSeconds(6);
+
+    [DataField]
+    public TimeSpan DefibZapDuration = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan DefibZapDuration2 = TimeSpan.FromSeconds(4);
+
+    [DataField]
+    public TimeSpan DefibZapTime = TimeSpan.FromMinutes(3);
+
+    [DataField]
+    public TimeSpan DefibZapBoozePowerDelay = TimeSpan.FromMinutes(1);
+
+    [DataField]
+    public TimeSpan DefibZapTime2 = TimeSpan.FromMinutes(1);
+
+    [DataField]
+    public TimeSpan FinishDefibGraspTime = TimeSpan.FromSeconds(20);
+
+    [DataField]
+    public float FinishAbsorbAmount = 10f;
+
+    [DataField]
+    public FixedPoint2 FinishAbsorbAmount2 = -1000;
+
+    [DataField]
+    public float UseRegenerateAmount = -1000f;
+
+    [DataField]
+    public FixedPoint2 UseRegenerateAmount2 = 1000;
+
+    [DataField]
+    public FixedPoint2 CryoActionQuantity = 30;
+
+    [DataField]
+    public FixedPoint2 UseAdrenalineQuantity = 4;
+
+    [DataField]
+    public FixedPoint2 UsePanaceaQuantity = 10;
+
+    [DataField]
+    public FixedPoint2 UsePanaceaQuantity2 = 20;
+
+    [DataField]
+    public FixedPoint2 UsePanaceaQuantity3 = 25;
+
+    [DataField]
+    public float UseResonantShriekRange = 4f;
+
+    [DataField]
+    public float UseResonantShriekRange2 = 4.5f;
+
+    [DataField]
+    public float UseTechnoShriekRange = 5f;
+
+    [DataField]
+    public float UseTechnoShriekEnergyConsumption = 50000f;
 }

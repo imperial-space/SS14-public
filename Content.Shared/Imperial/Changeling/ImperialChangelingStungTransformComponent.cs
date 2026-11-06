@@ -18,4 +18,7 @@ public sealed partial class ImperialChangelingStungTransformComponent : Componen
     /// <summary>Осталось; INFINITY для низших форм.</summary>
     [ViewVariables]
     public TimeSpan? Remaining;
+
+    [DataField]
+    public TimeSpan RemainingDelay = TimeSpan.FromSeconds(1);
 }

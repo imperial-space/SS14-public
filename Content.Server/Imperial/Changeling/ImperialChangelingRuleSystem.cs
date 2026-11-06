@@ -49,6 +49,10 @@ public sealed class ImperialChangelingRuleSystem : GameRuleSystem<ImperialChange
     private const string StealGroup = "TraitorObjectiveGroupSteal";
     private const string MindRole = "MindRoleImperialChangeling";
 
+    private const float ForgeObjectivesChance = 0.6f;
+    private const float ForgeObjectivesChance2 = 0.7f;
+    private const float ForgeObjectivesChance3 = 0.5f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -109,11 +113,11 @@ public sealed class ImperialChangelingRuleSystem : GameRuleSystem<ImperialChange
                 break;
         }
 
-        if (_random.Prob(0.6f) && _objectives.GetRandomObjective(mindId, mind, StealGroup, float.MaxValue) is { } steal)
+        if (_random.Prob(ForgeObjectivesChance) && _objectives.GetRandomObjective(mindId, mind, StealGroup, float.MaxValue) is { } steal)
             _mind.AddObjective(mindId, mind, steal);
 
         // destroy AI в SS14 нет: остаются убийство или «не дать сбежать».
-        if (_random.Prob(0.7f))
+        if (_random.Prob(ForgeObjectivesChance2))
         {
             _mind.TryAddObjective(mindId, mind, KillObjective);
         }
@@ -134,7 +138,7 @@ public sealed class ImperialChangelingRuleSystem : GameRuleSystem<ImperialChange
         if (!escapePossible)
             return;
 
-        if (_random.Prob(0.5f) || !TryAddIdentityObjective(mindId, mind))
+        if (_random.Prob(ForgeObjectivesChance3) || !TryAddIdentityObjective(mindId, mind))
             _mind.TryAddObjective(mindId, mind, EscapeObjective);
     }
 
@@ -169,7 +173,7 @@ public sealed class ImperialChangelingRuleSystem : GameRuleSystem<ImperialChange
     private void OnAbsorbProgress(Entity<ImperialChangelingAbsorbConditionComponent> ent, ref ObjectiveGetProgressEvent args)
     {
         var absorbed = AbsorbedCount(args.MindId);
-        args.Progress = ent.Comp.Target <= 0 ? 1f : Math.Clamp(absorbed / (float) ent.Comp.Target, 0f, 1f);
+        args.Progress = ent.Comp.Target <= 0 ? 1f : Math.Clamp(absorbed / (float)ent.Comp.Target, 0f, 1f);
     }
 
     private void OnAbsorbMostProgress(Entity<ImperialChangelingAbsorbMostConditionComponent> ent, ref ObjectiveGetProgressEvent args)

@@ -61,6 +61,12 @@ public sealed partial class ImperialChangelingSystem
     /// <summary>headcrab/escaping_prison(): стены рушатся через секунду, если генокрад не сдвинулся.</summary>
     private readonly List<(EntityUid Ling, EntityCoordinates Where, List<EntityUid> Walls, TimeSpan At)> _pendingWallBreak = new();
 
+    private static readonly TimeSpan EscapePrisonDuration = TimeSpan.FromSeconds(1.5);
+    private static readonly TimeSpan EscapePrisonDelay = TimeSpan.FromSeconds(1);
+
+    private const float GetLumcountRange = 12f;
+    private const float EscapePrisonRange = 1.5f;
+
     private void InitializeDetails()
     {
         SubscribeLocalEvent<EntitySpokeEvent>(OnAnySpoke, before: new[] { typeof(Content.Server.Radio.EntitySystems.RadioSystem) });
@@ -214,7 +220,7 @@ public sealed partial class ImperialChangelingSystem
     {
         var here = _transform.GetMapCoordinates(uid);
         var lum = 0f;
-        foreach (var light in _lookup.GetEntitiesInRange<PointLightComponent>(here, 12f))
+        foreach (var light in _lookup.GetEntitiesInRange<PointLightComponent>(here, GetLumcountRange))
         {
             if (!light.Comp.Enabled || light.Comp.Energy <= 0 || light.Comp.Radius <= 0)
                 continue;
@@ -400,10 +406,10 @@ public sealed partial class ImperialChangelingSystem
     private void EscapePrison(EntityUid uid)
     {
         _popup.PopupEntity(Loc.GetString("imperial-changeling-last-resort-crush", ("user", IdentityOf(uid))), uid, PopupType.LargeCaution);
-        _stun.TryUpdateStunDuration(uid, TimeSpan.FromSeconds(1.5));
+        _stun.TryUpdateStunDuration(uid, EscapePrisonDuration);
 
         var walls = new List<EntityUid>();
-        foreach (var obstacle in _lookup.GetEntitiesInRange<PhysicsComponent>(GetTileCenter(uid), 1.5f, LookupFlags.Static))
+        foreach (var obstacle in _lookup.GetEntitiesInRange<PhysicsComponent>(GetTileCenter(uid), EscapePrisonRange, LookupFlags.Static))
         {
             if (obstacle.Owner == uid || !obstacle.Comp.Hard || !obstacle.Comp.CanCollide || !Transform(obstacle).Anchored)
                 continue;
@@ -417,7 +423,7 @@ public sealed partial class ImperialChangelingSystem
             _damage.TryChangeDamage(obstacle.Owner, new DamageSpecifier(_proto.Index<DamageTypePrototype>(new Robust.Shared.Prototypes.ProtoId<DamageTypePrototype>("Structural")), 300), true, origin: uid);
         }
 
-        _pendingWallBreak.Add((uid, Transform(uid).Coordinates, walls, _timing.CurTime + TimeSpan.FromSeconds(1)));
+        _pendingWallBreak.Add((uid, Transform(uid).Coordinates, walls, _timing.CurTime + EscapePrisonDelay));
     }
 
     #endregion

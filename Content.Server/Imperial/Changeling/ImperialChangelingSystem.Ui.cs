@@ -115,9 +115,9 @@ public sealed partial class ImperialChangelingSystem
         {
             "pinonnull" => 0,
             "pinondirect" => 1,
-            "pinonclose" => (short) (2 + index),
-            "pinonmedium" => (short) (10 + index),
-            _ => (short) (18 + index),
+            "pinonclose" => (short)(2 + index),
+            "pinonmedium" => (short)(10 + index),
+            _ => (short)(18 + index),
         };
 
         _alerts.ShowAlert(uid, PheromoneAlert, severity);
