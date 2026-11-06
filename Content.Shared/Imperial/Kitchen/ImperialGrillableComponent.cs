@@ -16,7 +16,7 @@ public sealed partial class ImperialGrillableComponent : Component
     public EntProtoId Result;
 
     [DataField]
-    public float Time = 120f;
+    public TimeSpan Time = TimeSpan.FromSeconds(120f);
 
     [DataField]
     public bool Positive = true;

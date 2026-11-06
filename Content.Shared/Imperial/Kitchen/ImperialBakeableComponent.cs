@@ -17,7 +17,7 @@ public sealed partial class ImperialBakeableComponent : Component
 
     /// <summary>required_bake_time в секундах.</summary>
     [DataField]
-    public float Time = 120f;
+    public TimeSpan Time = TimeSpan.FromSeconds(120f);
 
     /// <summary>positive_result: хорошая выпечка или горелое.</summary>
     [DataField]

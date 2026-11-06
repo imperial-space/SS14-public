@@ -17,6 +17,7 @@ using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Imperial.Mood;
 
 namespace Content.Server.Imperial.Kitchen;
 
@@ -61,6 +62,19 @@ public sealed class ImperialFoodQualitySystem : EntitySystem
         ["ImperialQuirkDeviantTastes"] = (ImperialFoodTypes.None, ImperialFoodTypes.None, true),
     };
 
+    private static readonly ProtoId<ImperialMoodEventPrototype> BreakfastImperialMoodEvent = "breakfast";
+    private static readonly ProtoId<ImperialMoodEventPrototype> DisgustingFoodImperialMoodEvent = "disgusting_food";
+    private static readonly ProtoId<ImperialMoodEventPrototype> GrossFoodImperialMoodEvent = "gross_food";
+    private static readonly ProtoId<ImperialMoodEventPrototype> FoodImperialMoodEvent = "food";
+    private static readonly ProtoId<ImperialMoodEventPrototype> QualityRevoltingImperialMoodEvent = "quality_revolting";
+    private static readonly ProtoId<ImperialMoodEventPrototype> QualityNiceImperialMoodEvent = "quality_nice";
+    private static readonly ProtoId<ImperialMoodEventPrototype> QualityGoodImperialMoodEvent = "quality_good";
+    private static readonly ProtoId<ImperialMoodEventPrototype> QualityVerygoodImperialMoodEvent = "quality_verygood";
+    private static readonly ProtoId<ImperialMoodEventPrototype> QualityFantasticImperialMoodEvent = "quality_fantastic";
+    private static readonly ProtoId<ImperialMoodEventPrototype> AmazingtasteImperialMoodEvent = "amazingtaste";
+
+    private const float TrackMicrowavesRange = 0.5f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -102,7 +116,7 @@ public sealed class ImperialFoodQualitySystem : EntitySystem
                 continue;
 
             var tick = _timing.CurTick.Value;
-            foreach (var food in _lookup.GetEntitiesInRange<EdibleComponent>(Transform(microwave).Coordinates, 0.5f))
+            foreach (var food in _lookup.GetEntitiesInRange<EdibleComponent>(Transform(microwave).Coordinates, TrackMicrowavesRange))
             {
                 if (tick - MetaData(food).CreationTick.Value <= 2)
                     MarkHandmade(food);
@@ -243,7 +257,7 @@ public sealed class ImperialFoodQualitySystem : EntitySystem
 
         var taster = EnsureComp<ImperialFoodTasterComponent>(ent);
         var now = _timing.CurTime;
-        if (taster.LastChecks.TryGetValue(food, out var last) && now - last < TimeSpan.FromSeconds(5))
+        if (taster.LastChecks.TryGetValue(food, out var last) && now - last < ent.Comp.IngestingDelay)
             return;
 
         taster.LastChecks[food] = now;
@@ -255,7 +269,7 @@ public sealed class ImperialFoodQualitySystem : EntitySystem
     {
         var types = GetFoodTypes(food, split);
         if (types.HasFlag(ImperialFoodTypes.Breakfast) && _ticker.RoundDuration() < BreakfastTime)
-            _mood.AddMood(eater.AsNullable(), "breakfast", "breakfast");
+            _mood.AddMood(eater.AsNullable(), "breakfast", BreakfastImperialMoodEvent);
 
         var quality = GetPerceivedQuality(eater, food, types);
         var strong = HasComp<ImperialQuirkStrongStomachComponent>(eater);
@@ -264,8 +278,8 @@ public sealed class ImperialFoodQualitySystem : EntitySystem
         {
             // adjust_disgust(25 + 30 * fraction): отвращения в SS14 нет — тошнит.
             _popup.PopupEntity(Loc.GetString("imperial-food-toxic"), eater, eater, PopupType.MediumCaution);
-            _mood.AddMood(eater.AsNullable(), "toxic_food", "disgusting_food");
-            if (!strong && _random.Prob(0.5f))
+            _mood.AddMood(eater.AsNullable(), "toxic_food", DisgustingFoodImperialMoodEvent);
+            if (!strong && _random.Prob(eater.Comp.CheckLikedChance))
                 _vomit.Vomit(eater);
             return;
         }
@@ -273,8 +287,8 @@ public sealed class ImperialFoodQualitySystem : EntitySystem
         if (quality < 0)
         {
             _popup.PopupEntity(Loc.GetString("imperial-food-gross"), eater, eater, PopupType.SmallCaution);
-            _mood.AddMood(eater.AsNullable(), "gross_food", "gross_food");
-            if (!strong && _random.Prob(0.2f))
+            _mood.AddMood(eater.AsNullable(), "gross_food", GrossFoodImperialMoodEvent);
+            if (!strong && _random.Prob(eater.Comp.CheckLikedChance2))
                 _vomit.Vomit(eater);
             return;
         }
@@ -284,7 +298,7 @@ public sealed class ImperialFoodQualitySystem : EntitySystem
 
         // /datum/mood_event/food: 1 + 1.5 × качество, аскету вдвое меньше, гурману обычная еда — как первый уровень.
         var personality = eater.Comp.Personalities;
-        float change = 1 + 1.5f * quality;
+        var change = 1 + 1.5f * quality;
         if (personality.Contains("ascetic"))
             change *= 0.5f;
         if (personality.Contains("gourmand") && change <= 3)
@@ -292,11 +306,11 @@ public sealed class ImperialFoodQualitySystem : EntitySystem
 
         var label = Loc.GetString($"imperial-food-quality-{Math.Clamp(quality, 1, ImperialKitchen.QualityTop)}");
         var existing = _mood.GetMood(eater.AsNullable(), "quality_food");
-        var value = (int) Math.Ceiling(change);
+        var value = (int)Math.Ceiling(change);
         if (existing == null || existing.Change <= value)
         {
             _mood.ClearMood(eater.AsNullable(), "quality_food");
-            _mood.AddMood(eater.AsNullable(), "quality_food", "food", change: value,
+            _mood.AddMood(eater.AsNullable(), "quality_food", FoodImperialMoodEvent, change: value,
                 description: Loc.GetString("imperial-food-quality-mood", ("quality", label)), timeout: 300 * TimeoutMod);
         }
 
@@ -318,12 +332,12 @@ public sealed class ImperialFoodQualitySystem : EntitySystem
 
         switch (best)
         {
-            case 1: _mood.AddMood(ent.AsNullable(), "quality_drink", "quality_revolting"); break;
-            case 2: _mood.AddMood(ent.AsNullable(), "quality_drink", "quality_nice"); break;
-            case 3: _mood.AddMood(ent.AsNullable(), "quality_drink", "quality_good"); break;
-            case 4: _mood.AddMood(ent.AsNullable(), "quality_drink", "quality_verygood"); break;
-            case 5: _mood.AddMood(ent.AsNullable(), "quality_drink", "quality_fantastic"); break;
-            case 6: _mood.AddMood(ent.AsNullable(), "quality_food", "amazingtaste"); break;
+            case 1: _mood.AddMood(ent.AsNullable(), "quality_drink", QualityRevoltingImperialMoodEvent); break;
+            case 2: _mood.AddMood(ent.AsNullable(), "quality_drink", QualityNiceImperialMoodEvent); break;
+            case 3: _mood.AddMood(ent.AsNullable(), "quality_drink", QualityGoodImperialMoodEvent); break;
+            case 4: _mood.AddMood(ent.AsNullable(), "quality_drink", QualityVerygoodImperialMoodEvent); break;
+            case 5: _mood.AddMood(ent.AsNullable(), "quality_drink", QualityFantasticImperialMoodEvent); break;
+            case 6: _mood.AddMood(ent.AsNullable(), "quality_food", AmazingtasteImperialMoodEvent); break;
         }
     }
 
@@ -340,7 +354,7 @@ public sealed class ImperialFoodQualitySystem : EntitySystem
         var buff = EnsureComp<ImperialFoodBuffComponent>(eater);
         buff.Strength = Math.Min(complexity, 5);
         buff.End = _timing.CurTime + BuffDuration * TimeoutMod;
-        _alerts.ShowAlert(eater, BuffAlert, (short) buff.Strength);
+        _alerts.ShowAlert(eater, BuffAlert, (short)buff.Strength);
         _speed.RefreshMovementSpeedModifiers(eater);
     }
 

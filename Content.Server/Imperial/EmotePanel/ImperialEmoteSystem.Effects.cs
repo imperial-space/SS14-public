@@ -52,6 +52,16 @@ public sealed partial class ImperialEmoteSystem
     private readonly List<(TimeSpan Time, EntityUid Uid)> _pendingYawns = new();
     private readonly List<(TimeSpan Time, EntityUid Uid)> _pendingWakes = new();
 
+    private static readonly TimeSpan ModifyMessagePointDuration = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan ApplyEffectCollapseDuration = TimeSpan.FromSeconds(4);
+    private static readonly TimeSpan ApplyEffectFaintDelay = TimeSpan.FromSeconds(20);
+    private static readonly TimeSpan ApplyEffectSurrenderDuration = TimeSpan.FromSeconds(20);
+    private static readonly TimeSpan CooldownFailedFlipTime = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan CooldownFailedSpinBoozePowerDelay = TimeSpan.FromSeconds(20);
+    private static readonly TimeSpan YawnImmuneDelay = TimeSpan.FromSeconds(15);
+
+    private const float ModifyMessagePointChance = 0.65f;
+
     private void InitializeEffects()
     {
         SubscribeLocalEvent<ImperialEmotePanelComponent, ExaminedEvent>(OnExamined);
@@ -110,10 +120,10 @@ public sealed partial class ImperialEmoteSystem
                     return Loc.GetString("imperial-emote-point-glance", ("target", param));
 
                 var shoes = _inventory.TryGetSlotEntity(uid, "shoes", out _);
-                if (_random.Prob(0.65f))
+                if (_random.Prob(ModifyMessagePointChance))
                     return Loc.GetString("imperial-emote-point-leg", ("target", param), ("shoes", shoes));
 
-                _stun.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(2));
+                _stun.TryUpdateParalyzeDuration(uid, ModifyMessagePointDuration);
                 return Loc.GetString("imperial-emote-point-leg-fail", ("target", param), ("shoes", shoes));
         }
 
@@ -130,17 +140,17 @@ public sealed partial class ImperialEmoteSystem
 
             case ImperialEmoteEffect.Collapse:
                 // Unconscious(4 SECONDS).
-                _status.TryAddStatusEffectDuration(uid, SleepingSystem.StatusEffectForcedSleeping, TimeSpan.FromSeconds(4));
+                _status.TryAddStatusEffectDuration(uid, SleepingSystem.StatusEffectForcedSleeping, ApplyEffectCollapseDuration);
                 return;
 
             case ImperialEmoteEffect.Faint:
                 // SetSleeping(20 SECONDS): обычный сон, от которого можно разбудить.
                 if (_sleeping.TrySleeping(uid))
-                    _pendingWakes.Add((_timing.CurTime + TimeSpan.FromSeconds(20), uid));
+                    _pendingWakes.Add((_timing.CurTime + ApplyEffectFaintDelay, uid));
                 return;
 
             case ImperialEmoteEffect.Surrender:
-                _stun.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(20));
+                _stun.TryUpdateParalyzeDuration(uid, ApplyEffectSurrenderDuration);
                 return;
 
             case ImperialEmoteEffect.Yawn:
@@ -174,7 +184,7 @@ public sealed partial class ImperialEmoteSystem
                 var fallChance = proto.Effect == ImperialEmoteEffect.Flip ? 0.6f : 0.2f;
                 if (_random.Prob(fallChance))
                 {
-                    _stun.TryKnockdown(uid, TimeSpan.FromSeconds(1));
+                    _stun.TryKnockdown(uid, CooldownFailedFlipTime);
                     _popup.PopupEntity(Loc.GetString("imperial-emote-flip-fall-others", ("entity", uid)), uid, Filter.PvsExcept(uid), true);
                     _popup.PopupEntity(Loc.GetString("imperial-emote-flip-fall-self"), uid, uid);
                     if (_random.Prob(fallChance / 2))
@@ -190,7 +200,7 @@ public sealed partial class ImperialEmoteSystem
             // BEYBLADE: от кручения на месте кружится голова.
             case ImperialEmoteEffect.Spin when IsKind(uid, ImperialEmoteMob.Carbon) && _random.Prob(0.2f):
                 _popup.PopupEntity(Loc.GetString("imperial-emote-spin-dizzy"), uid, uid);
-                _drunk.TryApplyDrunkenness(uid, TimeSpan.FromSeconds(20));
+                _drunk.TryApplyDrunkenness(uid, CooldownFailedSpinBoozePowerDelay);
                 return;
         }
     }
@@ -201,7 +211,7 @@ public sealed partial class ImperialEmoteSystem
         var now = _timing.CurTime;
         var comp = EnsureComp<ImperialEmotePanelComponent>(uid);
         if (now >= comp.YawnImmuneUntil)
-            comp.YawnImmuneUntil = now + TimeSpan.FromSeconds(15);
+            comp.YawnImmuneUntil = now + YawnImmuneDelay;
 
         // obscured_slots & HIDEFACE: под маской зевок не видно.
         if (_inventory.TryGetSlotEntity(uid, "mask", out var mask) && TryComp<IdentityBlockerComponent>(mask, out var blocker) && blocker.Enabled)
@@ -221,7 +231,7 @@ public sealed partial class ImperialEmoteSystem
             if (!_examine.InRangeUnOccluded(uid, other, range))
                 continue;
 
-            var distance = (int) MathF.Round((_transform.GetMapCoordinates(other).Position - origin.Position).Length());
+            var distance = (int)MathF.Round((_transform.GetMapCoordinates(other).Position - origin.Position).Length());
             var examined = otherPanel != null && otherPanel.RecentExamines.TryGetValue(uid, out var time) && now - time < YawnExamineWindow;
             if (!examined && !_random.Prob(Math.Clamp(YawnChanceBase - YawnChanceDecay * distance, 0, 100) / 100f))
                 continue;

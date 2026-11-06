@@ -22,6 +22,8 @@ public sealed partial class ImperialCookingSystem
     private static readonly ProtoId<ToolQualityPrototype> SawingQuality = "Sawing";
     private static readonly ProtoId<ToolQualityPrototype> RollingQuality = "Rolling";
 
+    private const float TableRange = 0.4f;
+
     #region Плита
 
     private void OnStoveMapInit(Entity<ImperialStoveComponent> ent, ref MapInitEvent args)
@@ -335,7 +337,7 @@ public sealed partial class ImperialCookingSystem
         if (_containers.TryGetContainingContainer(item, out var container))
             return HasComp<ImperialOvenTrayComponent>(container.Owner);
 
-        foreach (var near in _lookup.GetEntitiesInRange<PlaceableSurfaceComponent>(Transform(item).Coordinates, 0.4f))
+        foreach (var near in _lookup.GetEntitiesInRange<PlaceableSurfaceComponent>(Transform(item).Coordinates, TableRange))
         {
             if (near.Owner != item)
                 return true;

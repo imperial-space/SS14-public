@@ -196,18 +196,18 @@ public sealed partial class ImperialCookingSystem : EntitySystem
                     if (_quality.GetData(item) is { Bake: { } result } data)
                     {
                         bake.Result = result;
-                        bake.Time = data.BakeTime;
+                        bake.Time = TimeSpan.FromSeconds(data.BakeTime);
                     }
                     else
                     {
                         bake.Result = BadRecipe;
-                        bake.Time = _random.NextFloat(25f, 40f);
+                        bake.Time = TimeSpan.FromSeconds(_random.NextFloat(25f, 40f));
                         bake.Positive = false;
                     }
                 }
 
                 bake.Progress += TickSeconds;
-                if (bake.Progress < bake.Time)
+                if (bake.Progress < (float)bake.Time.TotalSeconds)
                     continue;
 
                 Cook(item, bake.Result, bake.Positive, storage.Container);
@@ -269,18 +269,18 @@ public sealed partial class ImperialCookingSystem : EntitySystem
                     if (_quality.GetData(item) is { Grill: { } result } data)
                     {
                         grill.Result = result;
-                        grill.Time = data.GrillTime;
+                        grill.Time = TimeSpan.FromSeconds(data.GrillTime);
                     }
                     else
                     {
                         grill.Result = BadRecipe;
-                        grill.Time = _random.NextFloat(20f, 30f);
+                        grill.Time = TimeSpan.FromSeconds(_random.NextFloat(20f, 30f));
                         grill.Positive = false;
                     }
                 }
 
                 grill.Progress += TickSeconds;
-                if (grill.Progress < grill.Time)
+                if (grill.Progress < (float)grill.Time.TotalSeconds)
                     continue;
 
                 var made = Cook(item, grill.Result, grill.Positive, null);

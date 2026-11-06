@@ -22,7 +22,7 @@ public static class ImperialKitchen
     /// <summary>count_matching_foodtypes.</summary>
     public static int Count(ImperialFoodTypes a, ImperialFoodTypes b)
     {
-        var bits = (int) (a & b);
+        var bits = (int)(a & b);
         var count = 0;
         while (bits != 0)
         {

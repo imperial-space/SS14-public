@@ -13,6 +13,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared.Traits;
 
 namespace Content.Server.Imperial.Mood;
 
@@ -50,6 +51,16 @@ public sealed partial class ImperialMoodSystem
         ("RevolutionaryRole", "revolution"),
     };
 
+    private static readonly ProtoId<ImperialMoodEventPrototype> DepressionImperialMoodEvent = "depression";
+    private static readonly ProtoId<ImperialMoodEventPrototype> JollyImperialMoodEvent = "jolly";
+    private static readonly ProtoId<ImperialMoodEventPrototype> BackPainImperialMoodEvent = "back_pain";
+    private static readonly ProtoId<TraitPrototype> ImperialQuirkBaldTrait = "ImperialQuirkBald";
+    private static readonly ProtoId<ImperialMoodEventPrototype> BaldImperialMoodEvent = "bald";
+    private static readonly ProtoId<ImperialMoodEventPrototype> ConfidentManeImperialMoodEvent = "confident_mane";
+    private static readonly ProtoId<ImperialMoodEventPrototype> FamilyHeirloomImperialMoodEvent = "family_heirloom";
+    private static readonly ProtoId<ImperialMoodEventPrototype> FamilyHeirloomMissingImperialMoodEvent = "family_heirloom_missing";
+    private static readonly ProtoId<ImperialMoodEventPrototype> AllNighterImperialMoodEvent = "all_nighter";
+
     private void InitializeQuirks()
     {
         SubscribeLocalEvent<ImperialHeirloomComponent, ExaminedEvent>(OnHeirloomExamined);
@@ -62,9 +73,9 @@ public sealed partial class ImperialMoodSystem
 
         // depression / jolly: случайные приступы.
         if (HasComp<ImperialQuirkDepressionComponent>(uid) && _random.Prob(MoodQuirkChance))
-            AddMood(mood, "depression", "depression");
+            AddMood(mood, "depression", DepressionImperialMoodEvent);
         if (HasComp<ImperialQuirkJollyComponent>(uid) && _random.Prob(MoodQuirkChance))
-            AddMood(mood, "jolly", "jolly");
+            AddMood(mood, "jolly", JollyImperialMoodEvent);
 
         if (TryComp<ImperialQuirkFamilyHeirloomComponent>(uid, out var heirloom))
             UpdateHeirloom(ent, heirloom);
@@ -74,18 +85,18 @@ public sealed partial class ImperialMoodSystem
 
         // badback: рюкзак или любая сумка на спине.
         if (HasComp<ImperialQuirkBadBackComponent>(uid))
-            Toggle(ent, "back_pain", "back_pain", _inventory.TryGetSlotEntity(uid, "back", out var back) && HasComp<StorageComponent>(back));
+            Toggle(ent, "back_pain", BackPainImperialMoodEvent, _inventory.TryGetSlotEntity(uid, "back", out var back) && HasComp<StorageComponent>(back));
 
         if (TryComp<ImperialQuirkErraticComponent>(uid, out var erratic))
             UpdateErratic(ent, erratic);
 
         // bald: без шапки стыдно, в парике уверенно.
-        if (TryComp<ImperialQuirksComponent>(uid, out var quirks) && quirks.Quirks.Contains("ImperialQuirkBald"))
+        if (TryComp<ImperialQuirksComponent>(uid, out var quirks) && quirks.Quirks.Contains(ImperialQuirkBaldTrait))
         {
             if (!_inventory.TryGetSlotEntity(uid, "head", out var head))
-                AddMood(mood, "bad_hair_day", "bald");
+                AddMood(mood, "bad_hair_day", BaldImperialMoodEvent);
             else if (MetaData(head.Value).EntityPrototype?.ID.Contains("Wig") == true)
-                AddMood(mood, "bad_hair_day", "confident_mane");
+                AddMood(mood, "bad_hair_day", ConfidentManeImperialMoodEvent);
             else
                 ClearMood(mood, "bad_hair_day");
         }
@@ -122,12 +133,12 @@ public sealed partial class ImperialMoodSystem
         if (safe)
         {
             ClearMood(ent.AsNullable(), "family_heirloom_missing");
-            AddMood(ent.AsNullable(), "family_heirloom", "family_heirloom");
+            AddMood(ent.AsNullable(), "family_heirloom", FamilyHeirloomImperialMoodEvent);
         }
         else
         {
             ClearMood(ent.AsNullable(), "family_heirloom");
-            AddMood(ent.AsNullable(), "family_heirloom_missing", "family_heirloom_missing");
+            AddMood(ent.AsNullable(), "family_heirloom_missing", FamilyHeirloomMissingImperialMoodEvent);
         }
     }
 
@@ -206,7 +217,7 @@ public sealed partial class ImperialMoodSystem
             ClearMood(ent.AsNullable(), "all_nighter");
         else if (!has && tired)
         {
-            AddMood(ent.AsNullable(), "all_nighter", "all_nighter");
+            AddMood(ent.AsNullable(), "all_nighter", AllNighterImperialMoodEvent);
             if (TryComp<ActorComponent>(ent, out var actor))
                 Notify(actor.PlayerSession, Loc.GetString("imperial-mood-all-nighter-tired"));
         }
@@ -251,7 +262,7 @@ public sealed partial class ImperialMoodSystem
         }
         else
         {
-            SetPersonalities(ent, _random.Prob(0.01f) ? new List<string>() : RandomPersonalities(MaxPersonalities - 2, MaxPersonalities + 1));
+            SetPersonalities(ent, _random.Prob(ent.Comp.UpdateErraticChance) ? new List<string>() : RandomPersonalities(MaxPersonalities - 2, MaxPersonalities + 1));
             key = "imperial-mood-erratic-different";
         }
 

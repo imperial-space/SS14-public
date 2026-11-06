@@ -16,4 +16,7 @@ public sealed partial class ImperialKissProjectileComponent : Component
     /// <summary>Поцелуй вручён лично (suppressed): без сообщения о попадании.</summary>
     [ViewVariables]
     public bool Direct;
+
+    [DataField]
+    public float KissHitChance = 0.5f;
 }

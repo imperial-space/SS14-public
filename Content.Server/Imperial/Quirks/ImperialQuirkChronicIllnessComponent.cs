@@ -49,4 +49,13 @@ public sealed partial class ImperialQuirkChronicIllnessComponent : Component
     public int Stage = 1;
     [ViewVariables]
     public TimeSpan NextCheck;
+
+    [DataField]
+    public float UpdateChronicIllnessChance = 0.45f;
+
+    [DataField]
+    public float UpdateChronicIllnessChance2 = 0.01f;
+
+    [DataField]
+    public float UpdateChronicIllnessChance3 = 0.75f;
 }
