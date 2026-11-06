@@ -20,6 +20,8 @@ public sealed partial class ImperialLanguageSystem
     /// <summary>generate_code_phrase: напитки, имена и места вперемешку.</summary>
     private static readonly ProtoId<LocalizedDatasetPrototype> CodeWordsDataset = "ImperialImperialLanguageSystemScrambleCodeWords";
 
+    private const float ScrambleWordChance = 0.01f;
+
     private static string[] CodeWords => ImperialLocalizedLists.Get(CodeWordsDataset);
 
     private sealed class ScrambleCache
@@ -151,7 +153,7 @@ public sealed partial class ImperialLanguageSystem
                         sb.Append(". ");
                     else if (addSpace)
                         sb.Append(' ');
-                    else if (sb.Length > 0 && language.SpecialCharacters.Count > 0 && _random.Prob(0.01f))
+                    else if (sb.Length > 0 && language.SpecialCharacters.Count > 0 && _random.Prob(ScrambleWordChance))
                         sb.Append(_random.Pick(language.SpecialCharacters));
 
                     var group = _random.Pick(language.Syllables.Where(g => g.Count > 0).ToList());

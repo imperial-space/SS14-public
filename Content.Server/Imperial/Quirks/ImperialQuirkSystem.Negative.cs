@@ -37,6 +37,8 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.FixedPoint;
+using Content.Server.Imperial.Mood;
 
 namespace Content.Server.Imperial.Quirks;
 
@@ -84,6 +86,56 @@ public sealed partial class ImperialQuirkSystem
         ["Epinephrine", "Saline", "Salbutamol", "Inaprovaline", "AdminOrdrazine", "Omnizine", "ImperialSansufentanyl"];
 
     private static readonly TimeSpan Second = TimeSpan.FromSeconds(1);
+
+    private static readonly ProtoId<ReagentPrototype> NicotineReagent = "Nicotine";
+    private static readonly EntProtoId Ash = "Ash";
+
+    private static readonly TimeSpan CheckDelay = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan UpdateAddictionTime = TimeSpan.FromSeconds(4);
+    private static readonly TimeSpan UpdateAddictionTime2 = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan AttackAllowedDelay = TimeSpan.FromMinutes(10);
+    private static readonly TimeSpan UpdateChronicIllnessTime = TimeSpan.FromSeconds(6);
+    private static readonly TimeSpan UpdateChronicIllnessTime2 = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan UpdateChronicIllnessTime3 = TimeSpan.FromSeconds(4);
+    private static readonly TimeSpan MisfortuneDelay = TimeSpan.FromSeconds(30);
+    private static readonly TimeSpan CursedMoveTime = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan CursedMoveDuration = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan DryDelay = TimeSpan.FromMinutes(3);
+    private static readonly TimeSpan UpdateFluorideDelay = TimeSpan.FromSeconds(30);
+    private static readonly TimeSpan DamageDelay = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan PhotophobiaFlashedDuration = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan GlassJawDamageDuration = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan TinManEmpDuration = TimeSpan.FromSeconds(4);
+    private static readonly TimeSpan CheckDelay2 = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan SilencedDelay = TimeSpan.FromSeconds(6);
+    private static readonly TimeSpan SilencedDelay2 = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan AnxietyEyeContactTime = TimeSpan.FromSeconds(20);
+    private static readonly TimeSpan AnxietyEyeContactTime2 = TimeSpan.FromSeconds(6);
+    private static readonly TimeSpan AnxietyEyeContactDuration = TimeSpan.FromSeconds(2);
+
+    private const float UpdateAddictionChance = 0.15f;
+    private const float UpdateAddictionChance2 = 0.04f;
+    private const float UpdateAddictionAmount = 0.5f;
+    private const float UpdateAddictionChance3 = 0.03f;
+    private const float UpdateAllergyAmount = 3f;
+    private const float UpdateAllergyChance = 0.1f;
+    private const float UpdateAsthmaChance = 0.0005f;
+    private const float UpdateAsthmaChance2 = 0.05f;
+    private const float UpdateAsthmaChance3 = 0.01f;
+    private static readonly FixedPoint2 UpdateBloodDeficiencyAmount = -0.6f;
+    private const float UpdateBrainTumorAmount = 0.2f;
+    private const float UpdateChronicIllnessChance = 0.05f;
+    private const float UpdateChronicIllnessChance2 = 0.0025f;
+    private const float UpdateChronicIllnessChance3 = 0.005f;
+    private const float UpdateChronicIllnessAmount = 10f;
+    private const float CursedMoveChance = 0.02f;
+    private const float CursedMoveAmount = 2f;
+    private const float CursedMoveAmount2 = 5f;
+    private const float TinManEmpAmount = 25f;
+    private const float TinManEmpAmount2 = 15f;
+    private const float GunShotChance = 0.5f;
+    private const float AnxietyModRange = 3f;
+    private const float AnxietyEyeContactChance = 0.25f;
 
     private void InitializeNegative()
     {
@@ -218,7 +270,7 @@ public sealed partial class ImperialQuirkSystem
         if (now < ent.Comp.NextCheck || !Alive(ent))
             return;
 
-        ent.Comp.NextCheck = now + TimeSpan.FromSeconds(5);
+        ent.Comp.NextCheck = now + CheckDelay;
         if (Satisfied(ent))
         {
             ent.Comp.LastFix = now;
@@ -229,22 +281,22 @@ public sealed partial class ImperialQuirkSystem
         if (minutes < 5)
             return;
 
-        if (_random.Prob(0.15f))
+        if (_random.Prob(UpdateAddictionChance))
             _popup.PopupEntity(Loc.GetString($"imperial-quirk-withdrawal-{_random.Next(1, 5)}"), ent, ent, PopupType.MediumCaution);
 
         if (minutes >= 5)
-            _jitter.DoJitter(ent, TimeSpan.FromSeconds(4), true, 4f, 4f);
+            _jitter.DoJitter(ent, UpdateAddictionTime, true, 4f, 4f);
 
-        if (minutes >= 10 && _random.Prob(0.04f))
+        if (minutes >= 10 && _random.Prob(UpdateAddictionChance2))
             _vomit.Vomit(ent);
 
         if (minutes >= 15)
         {
-            Damage(ent, "Poison", 0.5f);
-            if (_random.Prob(0.03f))
+            Damage(ent, "Poison", UpdateAddictionAmount);
+            if (_random.Prob(UpdateAddictionChance3))
             {
                 _popup.PopupEntity(Loc.GetString("imperial-quirk-withdrawal-collapse"), ent, ent, PopupType.LargeCaution);
-                _stun.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(3), true);
+                _stun.TryKnockdown(ent.Owner, UpdateAddictionTime2, true);
             }
         }
     }
@@ -265,7 +317,7 @@ public sealed partial class ImperialQuirkSystem
         Message(args.Player, Loc.GetString("imperial-quirk-allergy-list", ("list", names)));
 
         // Жетон аллергика: запись для медиков.
-        var tag = Spawn("Paper", Transform(ent).Coordinates);
+        var tag = Spawn(Paper2, Transform(ent).Coordinates);
         _metaData.SetEntityName(tag, Loc.GetString("imperial-quirk-allergy-tag-name"));
         if (TryComp<PaperComponent>(tag, out var paper))
             _paper.SetContent((tag, paper), Loc.GetString("imperial-quirk-allergy-tag", ("name", Name(ent)), ("list", names)));
@@ -281,9 +333,9 @@ public sealed partial class ImperialQuirkSystem
         if (!ent.Comp.Allergies.Any(a => HasReagent(ent, a)) || HasReagent(ent, Epinephrine))
             return;
 
-        Damage(ent, "Poison", 3f);
-        AddReagent(ent, Histamine, 3f);
-        if (_random.Prob(0.1f))
+        Damage(ent, "Poison", UpdateAllergyAmount);
+        AddReagent(ent, Histamine, UpdateAllergyAmount);
+        if (_random.Prob(UpdateAllergyChance))
             _vomit.Vomit(ent);
     }
 
@@ -293,7 +345,7 @@ public sealed partial class ImperialQuirkSystem
 
     private void OnAsthmaAdded(Entity<ImperialQuirkAsthmaComponent> ent, ref ImperialQuirkAddedEvent args)
     {
-        ent.Comp.NextAttackAllowed = _timing.CurTime + TimeSpan.FromMinutes(10);
+        ent.Comp.NextAttackAllowed = _timing.CurTime + AttackAllowedDelay;
     }
 
     /// <summary>
@@ -337,16 +389,16 @@ public sealed partial class ImperialQuirkSystem
                 change += comp.AttackRate;
             }
         }
-        else if (!albuterol && now >= comp.NextAttackAllowed && _random.Prob(0.0005f))
+        else if (!albuterol && now >= comp.NextAttackAllowed && _random.Prob(UpdateAsthmaChance))
         {
             StartAsthmaAttack(ent);
         }
 
         var old = comp.Inflammation;
         comp.Inflammation = Math.Clamp(comp.Inflammation + change, 0f, 500f);
-        if (comp.Inflammation > old && _random.Prob(0.05f))
+        if (comp.Inflammation > old && _random.Prob(UpdateAsthmaChance2))
             _popup.PopupEntity(Loc.GetString("imperial-quirk-asthma-tight"), ent, ent, PopupType.SmallCaution);
-        if (comp.Inflammation > old && _random.Prob(0.01f))
+        if (comp.Inflammation > old && _random.Prob(UpdateAsthmaChance3))
             _chat.TryEmoteWithChat(ent, "Cough");
 
         var breathing = 1f - Math.Min(comp.Inflammation / 450f, 1f);
@@ -384,7 +436,7 @@ public sealed partial class ImperialQuirkSystem
 
         ent.Comp.NextCheck = now + Second;
         if (_bloodstream.GetBloodLevel(ent.Owner) > 0.8f)
-            _bloodstream.TryModifyBloodLevel(ent.Owner, -0.6f);
+            _bloodstream.TryModifyBloodLevel(ent.Owner, UpdateBloodDeficiencyAmount);
     }
 
     /// <summary>adjust_organ_loss(brain, 0.2/с): без лечения смерть мозга примерно через 16 минут.</summary>
@@ -394,7 +446,7 @@ public sealed partial class ImperialQuirkSystem
             return;
 
         ent.Comp.NextCheck = now + Second;
-        Damage(ent, "Cellular", 0.2f);
+        Damage(ent, "Cellular", UpdateBrainTumorAmount);
     }
 
     /// <summary>chronic_illness stage_act; стадия растёт с шансом 0.25 %/с, сансуфентанил откатывает.</summary>
@@ -407,7 +459,7 @@ public sealed partial class ImperialQuirkSystem
         var comp = ent.Comp;
         if (HasReagent(ent, Sansufentanyl))
         {
-            if (comp.Stage > 1 && _random.Prob(0.05f))
+            if (comp.Stage > 1 && _random.Prob(UpdateChronicIllnessChance))
             {
                 comp.Stage--;
                 _popup.PopupEntity(Loc.GetString("imperial-quirk-chronic-better"), ent, ent);
@@ -416,51 +468,51 @@ public sealed partial class ImperialQuirkSystem
             return;
         }
 
-        if (comp.Stage < 5 && _random.Prob(0.0025f))
+        if (comp.Stage < 5 && _random.Prob(UpdateChronicIllnessChance2))
             comp.Stage++;
 
         switch (comp.Stage)
         {
             case 2:
-                if (_random.Prob(0.005f))
+                if (_random.Prob(UpdateChronicIllnessChance3))
                 {
                     _popup.PopupEntity(Loc.GetString("imperial-quirk-chronic-dizzy"), ent, ent, PopupType.SmallCaution);
-                    _jitter.DoJitter(ent, TimeSpan.FromSeconds(6), true);
+                    _jitter.DoJitter(ent, UpdateChronicIllnessTime, true);
                 }
 
                 break;
             case 3:
-                if (_random.Prob(0.005f))
+                if (_random.Prob(UpdateChronicIllnessChance3))
                 {
                     _popup.PopupEntity(Loc.GetString("imperial-quirk-chronic-chest"), ent, ent, PopupType.MediumCaution);
-                    if (_random.Prob(0.45f))
+                    if (_random.Prob(ent.Comp.UpdateChronicIllnessChance))
                         _vomit.Vomit(ent);
                 }
 
-                if (_random.Prob(0.005f))
-                    _stun.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(2), true);
-                if (_random.Prob(0.005f))
+                if (_random.Prob(UpdateChronicIllnessChance3))
+                    _stun.TryKnockdown(ent.Owner, UpdateChronicIllnessTime2, true);
+                if (_random.Prob(UpdateChronicIllnessChance3))
                     Damage(ent, "Blunt", 1f);
                 break;
             case 4:
-                if (_random.Prob(0.01f))
+                if (_random.Prob(ent.Comp.UpdateChronicIllnessChance2))
                 {
                     _popup.PopupEntity(Loc.GetString("imperial-quirk-chronic-gruesome"), ent, ent, PopupType.LargeCaution);
-                    if (_random.Prob(0.75f))
+                    if (_random.Prob(ent.Comp.UpdateChronicIllnessChance3))
                         _vomit.Vomit(ent);
                 }
 
-                if (_random.Prob(0.01f))
+                if (_random.Prob(ent.Comp.UpdateChronicIllnessChance2))
                 {
                     _popup.PopupEntity(Loc.GetString("imperial-quirk-chronic-collapse", ("user", ent.Owner)), ent, PopupType.MediumCaution);
-                    _stun.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(4), true);
+                    _stun.TryKnockdown(ent.Owner, UpdateChronicIllnessTime3, true);
                 }
 
-                if (_random.Prob(0.005f))
+                if (_random.Prob(UpdateChronicIllnessChance3))
                 {
                     _popup.PopupEntity(Loc.GetString("imperial-quirk-chronic-torn"), ent, ent, PopupType.LargeCaution);
                     _chat.TryEmoteWithChat(ent, "Scream");
-                    Damage(ent, "Blunt", 10f);
+                    Damage(ent, "Blunt", UpdateChronicIllnessAmount);
                 }
 
                 break;
@@ -475,7 +527,7 @@ public sealed partial class ImperialQuirkSystem
                 // «Для вас нет места в этой временной линии».
                 _popup.PopupEntity(Loc.GetString("imperial-quirk-chronic-erased", ("user", ent.Owner)), ent, PopupType.LargeCaution);
                 _chat.TryEmoteWithChat(ent, "Scream");
-                Spawn("Ash", Transform(ent).Coordinates);
+                Spawn(Ash, Transform(ent).Coordinates);
                 QueueDel(ent);
                 break;
         }
@@ -497,15 +549,15 @@ public sealed partial class ImperialQuirkSystem
 
         ent.Comp.LastTile = tile;
         var now = _timing.CurTime;
-        if (now < ent.Comp.NextMisfortune || !Alive(ent) || !_random.Prob(0.02f))
+        if (now < ent.Comp.NextMisfortune || !Alive(ent) || !_random.Prob(CursedMoveChance))
             return;
 
-        ent.Comp.NextMisfortune = now + TimeSpan.FromSeconds(30);
+        ent.Comp.NextMisfortune = now + MisfortuneDelay;
         switch (_random.Next(4))
         {
             case 0:
                 _popup.PopupEntity(Loc.GetString("imperial-quirk-cursed-trip", ("user", ent.Owner)), ent, PopupType.MediumCaution);
-                _stun.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(2), true);
+                _stun.TryKnockdown(ent.Owner, CursedMoveTime, true);
                 break;
             case 1:
                 _popup.PopupEntity(Loc.GetString("imperial-quirk-cursed-head", ("user", ent.Owner)), ent, PopupType.MediumCaution);
@@ -513,13 +565,13 @@ public sealed partial class ImperialQuirkSystem
                 break;
             case 2:
                 _popup.PopupEntity(Loc.GetString("imperial-quirk-cursed-toe"), ent, ent, PopupType.SmallCaution);
-                Damage(ent, "Blunt", 2f);
+                Damage(ent, "Blunt", CursedMoveAmount);
                 _chat.TryEmoteWithChat(ent, "Scream");
                 break;
             default:
                 _popup.PopupEntity(Loc.GetString("imperial-quirk-cursed-shock", ("user", ent.Owner)), ent, PopupType.MediumCaution);
-                Damage(ent, "Shock", 5f);
-                _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(1));
+                Damage(ent, "Shock", CursedMoveAmount2);
+                _stun.TryUpdateParalyzeDuration(ent, CursedMoveDuration);
                 break;
         }
     }
@@ -552,7 +604,7 @@ public sealed partial class ImperialQuirkSystem
     private void OnFluorideAdded(Entity<ImperialQuirkFluorideStareComponent> ent, ref ImperialQuirkAddedEvent args)
     {
         _actions.AddAction(ent, ref ent.Comp.Action, BlinkAction);
-        ent.Comp.DryAt = _timing.CurTime + TimeSpan.FromMinutes(3);
+        ent.Comp.DryAt = _timing.CurTime + DryDelay;
     }
 
     private void OnBlink(Entity<ImperialQuirkFluorideStareComponent> ent, ref ImperialQuirkBlinkActionEvent args)
@@ -561,7 +613,7 @@ public sealed partial class ImperialQuirkSystem
             return;
 
         args.Handled = true;
-        ent.Comp.DryAt = _timing.CurTime + TimeSpan.FromMinutes(3);
+        ent.Comp.DryAt = _timing.CurTime + DryDelay;
         ent.Comp.Warned = false;
         _popup.PopupEntity(Loc.GetString("imperial-quirk-blink"), ent, ent);
     }
@@ -572,7 +624,7 @@ public sealed partial class ImperialQuirkSystem
         if (!Alive(ent))
             return;
 
-        if (!ent.Comp.Warned && now >= ent.Comp.DryAt - TimeSpan.FromSeconds(30))
+        if (!ent.Comp.Warned && now >= ent.Comp.DryAt - UpdateFluorideDelay)
         {
             ent.Comp.Warned = true;
             _popup.PopupEntity(Loc.GetString("imperial-quirk-eyes-dry"), ent, ent, PopupType.MediumCaution);
@@ -581,7 +633,7 @@ public sealed partial class ImperialQuirkSystem
         if (now < ent.Comp.DryAt || now < ent.Comp.NextDamage)
             return;
 
-        ent.Comp.NextDamage = now + TimeSpan.FromSeconds(10);
+        ent.Comp.NextDamage = now + DamageDelay;
         _blindable.AdjustEyeDamage(ent.Owner, 1);
         _popup.PopupEntity(Loc.GetString("imperial-quirk-eyes-burn"), ent, ent, PopupType.LargeCaution);
     }
@@ -590,7 +642,7 @@ public sealed partial class ImperialQuirkSystem
     {
         // FLASH_PROTECTION_HYPER_SENSITIVE: вспышка бьёт по глазам и держит дольше.
         _blindable.AdjustEyeDamage(ent.Owner, 1);
-        _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(1));
+        _stun.TryUpdateParalyzeDuration(ent, PhotophobiaFlashedDuration);
         _popup.PopupEntity(Loc.GetString("imperial-quirk-photophobia-flash"), ent, ent, PopupType.MediumCaution);
     }
 
@@ -624,16 +676,16 @@ public sealed partial class ImperialQuirkSystem
             return;
 
         _popup.PopupEntity(Loc.GetString("imperial-quirk-glass-jaw", ("user", ent.Owner)), ent, PopupType.MediumCaution);
-        _status.TryUpdateStatusEffectDuration(ent, SleepingSystem.StatusEffectForcedSleeping, TimeSpan.FromSeconds(3));
+        _status.TryUpdateStatusEffectDuration(ent, SleepingSystem.StatusEffectForcedSleeping, GlassJawDamageDuration);
     }
 
     private void OnTinManEmp(Entity<ImperialQuirkTinManComponent> ent, ref EmpPulseEvent args)
     {
         args.Affected = true;
         _popup.PopupEntity(Loc.GetString("imperial-quirk-tin-man-emp"), ent, ent, PopupType.LargeCaution);
-        Damage(ent, "Asphyxiation", 25f);
-        Damage(ent, "Poison", 15f);
-        _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(4));
+        Damage(ent, "Asphyxiation", TinManEmpAmount);
+        Damage(ent, "Poison", TinManEmpAmount2);
+        _stun.TryUpdateParalyzeDuration(ent, TinManEmpDuration);
     }
 
     #endregion
@@ -692,7 +744,7 @@ public sealed partial class ImperialQuirkSystem
         if (now < ent.Comp.NextCheck)
             return;
 
-        ent.Comp.NextCheck = now + TimeSpan.FromSeconds(2);
+        ent.Comp.NextCheck = now + CheckDelay2;
         var suppressed = HasReagent(ent, Mindbreaker);
         if (suppressed == ent.Comp.Suppressed)
             return;
@@ -731,7 +783,7 @@ public sealed partial class ImperialQuirkSystem
             if (uid is not { } projectile || !TryComp<PhysicsComponent>(projectile, out var physics))
                 continue;
 
-            var spread = Angle.FromDegrees(_random.NextFloat(10f, 35f) / 2f * (_random.Prob(0.5f) ? 1 : -1));
+            var spread = Angle.FromDegrees(_random.NextFloat(10f, 35f) / 2f * (_random.Prob(GunShotChance) ? 1 : -1));
             var velocity = spread.RotateVec(physics.LinearVelocity);
             _physics.SetLinearVelocity(projectile, velocity, body: physics);
             _transform.SetWorldRotation(projectile, velocity.ToWorldAngle() + Angle.FromDegrees(90));
@@ -761,7 +813,7 @@ public sealed partial class ImperialQuirkSystem
                 result.Add(_random.Pick(new[] { Loc.GetString("imperial-quirks-imperial-quirk-system-negative-1"), Loc.GetString("imperial-quirks-imperial-quirk-system-negative-2"), Loc.GetString("imperial-quirks-imperial-quirk-system-negative-3") }));
                 if (_random.Prob(Math.Min(5f, mod) / 100f))
                 {
-                    ent.Comp.SilencedUntil = _timing.CurTime + TimeSpan.FromSeconds(6);
+                    ent.Comp.SilencedUntil = _timing.CurTime + SilencedDelay;
                     _popup.PopupEntity(Loc.GetString("imperial-quirk-anxiety-stop"), ent, ent, PopupType.MediumCaution);
                     break;
                 }
@@ -786,7 +838,7 @@ public sealed partial class ImperialQuirkSystem
             if (_random.Prob(Math.Min(25f, 0.25f * mod) / 100f))
             {
                 _popup.PopupEntity(Loc.GetString("imperial-quirk-anxiety-withdraw"), ent, ent, PopupType.MediumCaution);
-                ent.Comp.SilencedUntil = _timing.CurTime + TimeSpan.FromSeconds(10);
+                ent.Comp.SilencedUntil = _timing.CurTime + SilencedDelay2;
             }
         }
 
@@ -797,7 +849,7 @@ public sealed partial class ImperialQuirkSystem
     private float AnxietyMod(EntityUid mob)
     {
         var people = 0;
-        foreach (var other in _lookup.GetEntitiesInRange<Content.Shared.Mind.Components.MindContainerComponent>(Transform(mob).Coordinates, 3f))
+        foreach (var other in _lookup.GetEntitiesInRange<Content.Shared.Mind.Components.MindContainerComponent>(Transform(mob).Coordinates, AnxietyModRange))
         {
             if (other.Owner != mob && other.Comp.HasMind && HasComp<Content.Shared.Humanoid.HumanoidProfileComponent>(other))
                 people++;
@@ -815,20 +867,20 @@ public sealed partial class ImperialQuirkSystem
     /// <summary>eye_contact: взгляд в глаза при осмотре пугает.</summary>
     private void AnxietyEyeContact(EntityUid anxious, EntityUid other, bool examiner)
     {
-        if (!_random.Prob(0.25f))
+        if (!_random.Prob(AnxietyEyeContactChance))
             return;
 
         var key = _random.Next(1, 4);
         switch (key)
         {
             case 1:
-                _jitter.DoJitter(anxious, TimeSpan.FromSeconds(20), true);
+                _jitter.DoJitter(anxious, AnxietyEyeContactTime, true);
                 break;
             case 2:
-                _stutter.DoStutter(anxious, TimeSpan.FromSeconds(6), true);
+                _stutter.DoStutter(anxious, AnxietyEyeContactTime2, true);
                 break;
             default:
-                _stun.TryUpdateStunDuration(anxious, TimeSpan.FromSeconds(2));
+                _stun.TryUpdateStunDuration(anxious, AnxietyEyeContactDuration);
                 break;
         }
 

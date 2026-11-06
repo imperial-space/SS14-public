@@ -27,6 +27,8 @@ using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Body.Components;
 using Robust.Shared.Physics.Events;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Quirks;
 
@@ -41,6 +43,23 @@ public sealed partial class ImperialQuirkSystem
     [Dependency] private readonly SharedScaleVisualsSystem _scale = default!;
     [Dependency] private readonly SharedEntityStorageSystem _entityStorage = default!;
     [Dependency] private readonly VisualBodySystem _visualBody = default!;
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+    private static readonly ProtoId<DamageTypePrototype> PiercingDamageType = "Piercing";
+    private static readonly ProtoId<DamageTypePrototype> HeatDamageType = "Heat";
+    private static readonly ProtoId<DamageTypePrototype> ColdDamageType = "Cold";
+
+    private static readonly ProtoId<DamageTypePrototype> AsphyxiationDamageType = "Asphyxiation";
+    private static readonly ProtoId<DamageTypePrototype> PoisonDamageType = "Poison";
+
+    private static readonly TimeSpan EmpathExamineTime = TimeSpan.FromSeconds(15);
+    private static readonly TimeSpan DiveDelay = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan UpdateSpacerDelay = TimeSpan.FromMinutes(3);
+    private static readonly TimeSpan UpdateSpacerDelay2 = TimeSpan.FromMinutes(1);
+
+    private const float UpdateSpacerChance = 0.02f;
+    private const float UpdateSpacerChance2 = 0.3f;
 
     private void InitializeNeutral()
     {
@@ -165,9 +184,9 @@ public sealed partial class ImperialQuirkSystem
             if (TryComp<DamageableComponent>(target, out var damageable))
             {
                 var damage = _damageable.GetAllDamage((target, damageable));
-                if (damage.DamageDict.GetValueOrDefault("Asphyxiation").Float() >= 10)
+                if (damage.DamageDict.GetValueOrDefault(AsphyxiationDamageType).Float() >= 10)
                     args.PushMarkup(Loc.GetString("imperial-quirk-empath-winded", ("target", target)));
-                if (damage.DamageDict.GetValueOrDefault("Poison").Float() >= 10)
+                if (damage.DamageDict.GetValueOrDefault(PoisonDamageType).Float() >= 10)
                     args.PushMarkup(Loc.GetString("imperial-quirk-empath-sickly", ("target", target)));
             }
 
@@ -192,7 +211,7 @@ public sealed partial class ImperialQuirkSystem
             if (TryComp<ImperialQuirkEmpathComponent>(empath, out var comp) && !comp.SeenEvil)
             {
                 comp.SeenEvil = true;
-                _jitter.DoJitter(empath, TimeSpan.FromSeconds(15), true);
+                _jitter.DoJitter(empath, EmpathExamineTime, true);
             }
         }
     }
@@ -292,10 +311,10 @@ public sealed partial class ImperialQuirkSystem
             return;
 
         var heal = new DamageSpecifier();
-        heal.DamageDict["Blunt"] = -brute;
-        heal.DamageDict["Slash"] = -brute;
-        heal.DamageDict["Piercing"] = -brute;
-        heal.DamageDict["Heat"] = -burn;
+        heal.DamageDict[BluntDamageType] = -brute;
+        heal.DamageDict[SlashDamageType] = -brute;
+        heal.DamageDict[PiercingDamageType] = -brute;
+        heal.DamageDict[HeatDamageType] = -burn;
         _damageable.TryChangeDamage(ent.Owner, heal, true, false);
     }
 
@@ -317,7 +336,7 @@ public sealed partial class ImperialQuirkSystem
             return;
         }
 
-        ent.Comp.NextDive = _timing.CurTime + TimeSpan.FromSeconds(2);
+        ent.Comp.NextDive = _timing.CurTime + DiveDelay;
         if (!_entityStorage.TryOpenStorage(ent, closet, true))
             return;
 
@@ -329,8 +348,8 @@ public sealed partial class ImperialQuirkSystem
     private void OnSpacerDamage(EntityUid uid, ImperialQuirkSpacerComponent comp, DamageModifyEvent args)
     {
         // physiology.cold_mod *= 0.66
-        if (args.Damage.DamageDict.TryGetValue("Cold", out var cold) && cold > 0)
-            args.Damage.DamageDict["Cold"] = cold * 0.66f;
+        if (args.Damage.DamageDict.TryGetValue(ColdDamageType, out var cold) && cold > 0)
+            args.Damage.DamageDict[ColdDamageType] = cold * 0.66f;
     }
 
     /// <summary>
@@ -342,7 +361,7 @@ public sealed partial class ImperialQuirkSystem
         if (now < ent.Comp.NextCheck)
             return;
 
-        ent.Comp.NextCheck = now + TimeSpan.FromSeconds(2);
+        ent.Comp.NextCheck = now + CheckDelay2;
         var comp = ent.Comp;
         var onPlanet = Transform(ent).MapUid is { } map && HasComp<MapAtmosphereComponent>(map);
         var weightless = _gravity.IsWeightless(ent.Owner);
@@ -356,7 +375,7 @@ public sealed partial class ImperialQuirkSystem
         {
             if (comp.State is not (ImperialSpacerState.Planet or ImperialSpacerState.PlanetTooLong))
                 wanted = ImperialSpacerState.Planet;
-            else if (comp.State == ImperialSpacerState.Planet && now - comp.StateSince >= TimeSpan.FromMinutes(3))
+            else if (comp.State == ImperialSpacerState.Planet && now - comp.StateSince >= UpdateSpacerDelay)
                 wanted = ImperialSpacerState.PlanetTooLong;
         }
         else
@@ -365,7 +384,7 @@ public sealed partial class ImperialQuirkSystem
                 wanted = ImperialSpacerState.SpaceComfortable;
             else if (comp.State is not (ImperialSpacerState.Space or ImperialSpacerState.SpaceComfortable))
                 wanted = ImperialSpacerState.Space;
-            else if (comp.State == ImperialSpacerState.Space && now - comp.StateSince >= TimeSpan.FromMinutes(1))
+            else if (comp.State == ImperialSpacerState.Space && now - comp.StateSince >= UpdateSpacerDelay2)
                 wanted = ImperialSpacerState.SpaceComfortable;
         }
 
@@ -381,10 +400,10 @@ public sealed partial class ImperialQuirkSystem
         }
 
         // gravity_sickness: тошнота и слабость.
-        if (comp.State == ImperialSpacerState.PlanetTooLong && Alive(ent) && _random.Prob(0.02f))
+        if (comp.State == ImperialSpacerState.PlanetTooLong && Alive(ent) && _random.Prob(UpdateSpacerChance))
         {
             _popup.PopupEntity(Loc.GetString("imperial-quirk-spacer-sick"), ent, ent, PopupType.SmallCaution);
-            if (_random.Prob(0.3f) && !HasComp<ImperialQuirkStrongStomachComponent>(ent))
+            if (_random.Prob(UpdateSpacerChance2) && !HasComp<ImperialQuirkStrongStomachComponent>(ent))
                 _vomit.Vomit(ent);
         }
     }

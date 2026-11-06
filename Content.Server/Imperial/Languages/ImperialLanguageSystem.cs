@@ -43,6 +43,8 @@ public sealed partial class ImperialLanguageSystem : EntitySystem
     private static readonly ProtoId<ImperialLanguageSetPrototype> BorgSet = "Borg";
     private static readonly ProtoId<ImperialLanguageSetPrototype> AiSet = "StationAi";
 
+    private const float SpokeChance = 0.2f;
+
     /// <summary>Речь в процессе: язык фразы и слушатели, которых забрали из ванильной рассылки.</summary>
     private sealed class Utterance
     {
@@ -330,7 +332,7 @@ public sealed partial class ImperialLanguageSystem : EntitySystem
                 continue;
             }
 
-            var muffled = Obfuscate(text, 0.2f);
+            var muffled = Obfuscate(text, SpokeChance);
             var muffledShown = FormattedMessage.EscapeText(muffled);
             var visible = _examine.InRangeUnOccluded(source, listener, SharedChatSystem.WhisperMuffledRange);
             var muffledWrapped = visible

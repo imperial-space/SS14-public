@@ -16,6 +16,7 @@ using Content.Shared.Storage.Components;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server.Imperial.Quirks;
 
@@ -59,6 +60,28 @@ public sealed partial class ImperialQuirkSystem
         ["greytide"] = "ImperialPhobiaWordsGreytide",
         ["space"] = "ImperialPhobiaWordsSpace",
     };
+
+    private static readonly ProtoId<ReagentPrototype> BloodReagent = "Blood";
+
+    private static readonly TimeSpan PhobiaCheckDelay = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan ScareCooldown = TimeSpan.FromSeconds(12);
+    private static readonly TimeSpan PhobiaSpeechTime = TimeSpan.FromSeconds(4);
+    private static readonly TimeSpan StartleDuration = TimeSpan.FromSeconds(0.5);
+    private static readonly TimeSpan StartleTime = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan MessageDelay = TimeSpan.FromSeconds(15);
+    private static readonly TimeSpan FearEffectsTime = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan FearEffectsDuration = TimeSpan.FromSeconds(20);
+    private static readonly TimeSpan FearEffectsTime2 = TimeSpan.FromSeconds(0.5);
+
+    private const float InDarknessRange = 10f;
+    private const float AloneRange = 7f;
+    private const float CheckPhobiaRange = 7f;
+    private const float PhobiaSpeechChance = 0.5f;
+    private const float StartleChance = 0.15f;
+    private const float FearEffectsChance = 0.15f;
+    private const float FearEffectsAmount = 8f;
+    private const float FearEffectsAmount2 = 40f;
+    private const float FearEffectsAmount3 = 25f;
 
     private void InitializeFear()
     {
@@ -152,7 +175,7 @@ public sealed partial class ImperialQuirkSystem
     private bool InDarkness(EntityUid mob)
     {
         var coords = Transform(mob).Coordinates;
-        foreach (var light in _lookup.GetEntitiesInRange<Robust.Server.GameObjects.PointLightComponent>(coords, 10f, LookupFlags.Uncontained | LookupFlags.Contained))
+        foreach (var light in _lookup.GetEntitiesInRange<Robust.Server.GameObjects.PointLightComponent>(coords, InDarknessRange, LookupFlags.Uncontained | LookupFlags.Contained))
         {
             if (!light.Comp.Enabled || light.Comp.Energy <= 0.1f)
                 continue;
@@ -171,9 +194,9 @@ public sealed partial class ImperialQuirkSystem
 
     private bool Alone(EntityUid mob)
     {
-        foreach (var other in _lookup.GetEntitiesInRange<MindContainerComponent>(Transform(mob).Coordinates, 7f))
+        foreach (var other in _lookup.GetEntitiesInRange<MindContainerComponent>(Transform(mob).Coordinates, AloneRange))
         {
-            if (other.Owner != mob && other.Comp.HasMind && Alive(other) && _examine.InRangeUnOccluded(mob, other.Owner, 7f))
+            if (other.Owner != mob && other.Comp.HasMind && Alive(other) && _examine.InRangeUnOccluded(mob, other.Owner, AloneRange))
                 return false;
         }
 
@@ -186,13 +209,13 @@ public sealed partial class ImperialQuirkSystem
         if (ent.Comp.PhobiaType is not { } phobia || now < ent.Comp.ScareCooldown || now < ent.Comp.NextPhobiaCheck)
             return 0f;
 
-        ent.Comp.NextPhobiaCheck = now + TimeSpan.FromSeconds(5);
+        ent.Comp.NextPhobiaCheck = now + PhobiaCheckDelay;
         if (phobia == "space" && Transform(ent).GridUid == null)
             return FreakOut(ent, Loc.GetString("imperial-quirk-phobia-reason-space"));
 
-        foreach (var other in _lookup.GetEntitiesInRange(Transform(ent).Coordinates, 7f))
+        foreach (var other in _lookup.GetEntitiesInRange(Transform(ent).Coordinates, CheckPhobiaRange))
         {
-            if (other == ent.Owner || !IsScary(phobia, other) || !_examine.InRangeUnOccluded(ent.Owner, other, 7f))
+            if (other == ent.Owner || !IsScary(phobia, other) || !_examine.InRangeUnOccluded(ent.Owner, other, CheckPhobiaRange))
                 continue;
 
             return FreakOut(ent, Name(other));
@@ -230,7 +253,7 @@ public sealed partial class ImperialQuirkSystem
     private bool PuddleHasBlood(EntityUid puddle)
     {
         return _solutions.TryGetSolution(puddle, "puddle", out _, out var solution)
-               && solution.GetTotalPrototypeQuantity("Blood").Float() > 0;
+               && solution.GetTotalPrototypeQuantity(BloodReagent).Float() > 0;
     }
 
     private bool HasJob(EntityUid uid, string job)
@@ -248,7 +271,7 @@ public sealed partial class ImperialQuirkSystem
 
     private float FreakOut(Entity<ImperialQuirkFearComponent> ent, string reason)
     {
-        ent.Comp.ScareCooldown = _timing.CurTime + TimeSpan.FromSeconds(12);
+        ent.Comp.ScareCooldown = _timing.CurTime + ScareCooldown;
         _popup.PopupEntity(Loc.GetString("imperial-quirk-phobia-see", ("thing", reason), ("message", Loc.GetString($"imperial-quirk-phobia-scare-{_random.Next(1, 6)}"))),
             ent, ent, PopupType.LargeCaution);
         Startle(ent);
@@ -267,9 +290,9 @@ public sealed partial class ImperialQuirkSystem
 
             if (uid == args.Source)
             {
-                if (_random.Prob(0.5f))
+                if (_random.Prob(PhobiaSpeechChance))
                 {
-                    _stutter.DoStutter(uid, TimeSpan.FromSeconds(4), true);
+                    _stutter.DoStutter(uid, PhobiaSpeechTime, true);
                     _popup.PopupEntity(Loc.GetString("imperial-quirk-phobia-say"), uid, uid, PopupType.SmallCaution);
                 }
 
@@ -282,7 +305,7 @@ public sealed partial class ImperialQuirkSystem
                 continue;
             }
 
-            comp.ScareCooldown = _timing.CurTime + TimeSpan.FromSeconds(12);
+            comp.ScareCooldown = _timing.CurTime + ScareCooldown;
             _popup.PopupEntity(Loc.GetString("imperial-quirk-phobia-hear", ("message", Loc.GetString($"imperial-quirk-phobia-scare-{_random.Next(1, 6)}"))),
                 uid, uid, PopupType.MediumCaution);
             if (comp.Buildup < TerrorPassiveMax)
@@ -297,15 +320,15 @@ public sealed partial class ImperialQuirkSystem
         {
             case 1:
                 _popup.PopupEntity(Loc.GetString("imperial-quirk-fear-startled"), ent, ent, PopupType.MediumCaution);
-                _stun.TryUpdateStunDuration(ent, TimeSpan.FromSeconds(0.5));
+                _stun.TryUpdateStunDuration(ent, StartleDuration);
                 break;
             case 2:
                 _chat.TryEmoteWithChat(ent, "Scream");
-                if (_random.Prob(0.15f) && _hands.GetActiveItem(ent.Owner) is { } held)
+                if (_random.Prob(StartleChance) && _hands.GetActiveItem(ent.Owner) is { } held)
                     _hands.TryDrop(ent.Owner, held);
                 break;
             default:
-                _jitter.DoJitter(ent, TimeSpan.FromSeconds(10), true);
+                _jitter.DoJitter(ent, StartleTime, true);
                 break;
         }
     }
@@ -316,7 +339,7 @@ public sealed partial class ImperialQuirkSystem
         if (now < ent.Comp.NextMessage)
             return;
 
-        ent.Comp.NextMessage = now + TimeSpan.FromSeconds(15);
+        ent.Comp.NextMessage = now + MessageDelay;
         _popup.PopupEntity(Loc.GetString(key), ent, ent, PopupType.MediumCaution);
     }
 
@@ -332,28 +355,28 @@ public sealed partial class ImperialQuirkSystem
         // jittering
         if (terror > TerrorTerror || _random.Prob((1f + 4f * scale) / 100f))
         {
-            _jitter.DoJitter(ent, TimeSpan.FromSeconds(10), true);
+            _jitter.DoJitter(ent, FearEffectsTime, true);
             FearMessage(ent, "imperial-quirk-fear-shaking");
         }
 
         // stuttering
         if (terror > TerrorTerror || _random.Prob((1f + 4f * scale) / 100f))
-            _stutter.DoStutter(ent, TimeSpan.FromSeconds(10), true);
+            _stutter.DoStutter(ent, FearEffectsTime, true);
 
         // heart_problems
         var heartScale = Math.Clamp((terror - TerrorFear) / (TerrorPanic - TerrorFear), 0f, 1f);
         if (_random.Prob((1f + 4f * heartScale) / 100f))
         {
-            if (terror < TerrorHeartAttack || !_random.Prob(0.15f))
+            if (terror < TerrorHeartAttack || !_random.Prob(FearEffectsChance))
             {
-                Damage(ent, "Asphyxiation", 8f);
+                Damage(ent, "Asphyxiation", FearEffectsAmount);
                 FearMessage(ent, "imperial-quirk-fear-heart");
             }
             else
             {
                 _popup.PopupEntity(Loc.GetString("imperial-quirk-fear-heart-attack", ("user", ent.Owner)), ent, PopupType.LargeCaution);
-                Damage(ent, "Asphyxiation", 40f);
-                _status.TryUpdateStatusEffectDuration(ent, SleepingSystem.StatusEffectForcedSleeping, TimeSpan.FromSeconds(20));
+                Damage(ent, "Asphyxiation", FearEffectsAmount2);
+                _status.TryUpdateStatusEffectDuration(ent, SleepingSystem.StatusEffectForcedSleeping, FearEffectsDuration);
             }
         }
 
@@ -367,8 +390,8 @@ public sealed partial class ImperialQuirkSystem
 
         ent.Comp.PanicEnd = now + TimeSpan.FromSeconds(_random.Next(3, 6));
         _chat.TryEmoteWithChat(ent, "Gasp");
-        _stun.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(0.5), true);
+        _stun.TryKnockdown(ent.Owner, FearEffectsTime2, true);
         _popup.PopupEntity(Loc.GetString("imperial-quirk-fear-panic", ("user", ent.Owner)), ent, PopupType.MediumCaution);
-        AddTerror(ent, 25f);
+        AddTerror(ent, FearEffectsAmount3);
     }
 }
