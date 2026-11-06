@@ -47,6 +47,20 @@ public sealed partial class MartialArtsSystem
         "ClothingMaskGasChameleon", "ClothingMaskGasVoiceChameleon", "ClothingShoesChameleon",
     ];
 
+    private static readonly TimeSpan CarpDropKickMoveTime = TimeSpan.FromSeconds(4);
+    private static readonly TimeSpan CarpDropKickMoveTime2 = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan CarpDropKickMoveTime3 = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan CarpKneeStomachMoveTime = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan CarpKneeStomachMoveTime2 = TimeSpan.FromSeconds(5);
+
+    private const float CarpWristWrenchMoveAmount = 20f;
+    private const float CarpLaunchKickMoveRange = 7f;
+    private const float CarpLaunchKickMoveSpeed = 4f;
+    private const float CarpLaunchKickMoveAmount = 15f;
+    private const float CarpDropKickMoveAmount = 40f;
+    private const float CarpKneeStomachMoveAmount = 20f;
+    private const int CarpKneeStomachMoveAmount2 = 5;
+
     private void InitializeCarp()
     {
         SubscribeLocalEvent<MartialArtsComponent, ProjectileReflectAttemptEvent>(OnProjectileReflect);
@@ -90,7 +104,7 @@ public sealed partial class MartialArtsSystem
 
         PopupPair(user, target, "martial-carp-wrist-others", "martial-carp-wrist-self", "martial-carp-wrist-target");
         Sound(target, "/Audio/Weapons/punch1.ogg", -6f);
-        Brute(target, 20, user);
+        Brute(target, CarpWristWrenchMoveAmount, user);
         DropAll(target);
         return true;
     }
@@ -100,8 +114,8 @@ public sealed partial class MartialArtsSystem
     {
         PopupPair(user, target, "martial-carp-launch-others", "martial-carp-launch-self", "martial-carp-launch-target");
         Sound(user, "/Audio/Effects/hit_kick.ogg");
-        ThrowAway(target, user, 7, 4);
-        Brute(target, 15, user);
+        ThrowAway(target, user, CarpLaunchKickMoveRange, CarpLaunchKickMoveSpeed);
+        Brute(target, CarpLaunchKickMoveAmount, user);
         return true;
     }
 
@@ -111,7 +125,7 @@ public sealed partial class MartialArtsSystem
         Sound(user, "/Audio/Effects/hit_kick.ogg");
         if (!IsLying(target))
         {
-            Knockdown(target, TimeSpan.FromSeconds(4));
+            Knockdown(target, CarpDropKickMoveTime);
             PopupPair(user, target, "martial-carp-keelhaul-others", "martial-carp-keelhaul-self", "martial-carp-keelhaul-target");
         }
         else
@@ -120,9 +134,9 @@ public sealed partial class MartialArtsSystem
             PopupPair(user, target, "martial-carp-keelhaul-down-others", "martial-carp-keelhaul-down-self", "martial-carp-keelhaul-down-target");
         }
 
-        Stamina(target, 40, user);
-        Confuse(target, TimeSpan.FromSeconds(10));
-        Blind(target, TimeSpan.FromSeconds(2));
+        Stamina(target, CarpDropKickMoveAmount, user);
+        Confuse(target, CarpDropKickMoveTime2);
+        Blind(target, CarpDropKickMoveTime3);
         return true;
     }
 
@@ -131,10 +145,10 @@ public sealed partial class MartialArtsSystem
     {
         Sound(user, "/Audio/Effects/hit_kick.ogg");
         PopupPair(user, target, "martial-carp-kraken-others", "martial-carp-kraken-self", "martial-carp-kraken-target");
-        Stamina(target, 20, user);
-        Paralyze(target, TimeSpan.FromSeconds(1));
-        Silence(target, TimeSpan.FromSeconds(5));
-        LoseBreath(target, 5);
+        Stamina(target, CarpKneeStomachMoveAmount, user);
+        Paralyze(target, CarpKneeStomachMoveTime);
+        Silence(target, CarpKneeStomachMoveTime2);
+        LoseBreath(target, CarpKneeStomachMoveAmount2);
         return true;
     }
 
@@ -156,10 +170,10 @@ public sealed partial class MartialArtsSystem
         if (!_mobs.IsDead(target) && IsConscious(target) && StaminaLoss(target) >= 80)
         {
             PopupPair(ent, target, "martial-carp-pinch-others", "martial-carp-pinch-self", "martial-carp-pinch-target");
-            Sleep(target, TimeSpan.FromSeconds(10));
+            Sleep(target, ent.Comp.CarpGrabTime);
         }
 
-        Stamina(target, 20, ent);
+        Stamina(target, ent.Comp.CarpGrabAmount, ent);
         return MartialResult.Invalid; // обычный захват
     }
 
@@ -168,7 +182,7 @@ public sealed partial class MartialArtsSystem
         if (TrySnapNeck(ent, target))
             return MartialResult.Success;
 
-        if (CheckBlock(target, ent, 10, MartialAttackType.Unarmed))
+        if (CheckBlock(target, ent, ent.Comp.CarpHarmDamage, MartialAttackType.Unarmed))
             return MartialResult.Fail;
 
         AddToStreak(ent, ent.Comp, art, "H", target);
@@ -188,7 +202,7 @@ public sealed partial class MartialArtsSystem
             return MartialResult.Success;
 
         Sound(target, "/Audio/Weapons/punch1.ogg", -6f);
-        Stamina(target, 20, ent);
+        Stamina(target, ent.Comp.CarpDisarmAmount, ent);
         return MartialResult.Invalid; // обычный толчок
     }
 
@@ -296,7 +310,7 @@ public sealed partial class MartialArtsSystem
         if (IsLying(user))
             points -= 30;
 
-        return points - (int) malus;
+        return points - (int)malus;
     }
 
     private bool IsCarpStyle(EntityUid item)

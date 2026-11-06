@@ -23,6 +23,19 @@ public sealed partial class MartialArtsSystem
     /// <summary>kitchen_areas: в SS14 нет зон, кухней считается окрестность кухонной техники.</summary>
     private const float KitchenRange = 6f;
 
+    private static readonly TimeSpan CqcSlamMoveTime = TimeSpan.FromSeconds(12);
+    private static readonly TimeSpan CqcKickMoveTime = TimeSpan.FromSeconds(20);
+    private static readonly TimeSpan CqcKickMoveTime2 = TimeSpan.FromSeconds(10);
+
+    private const float CqcSlamMoveAmount = 10f;
+    private const float CqcKickMoveAmount = 15f;
+    private const float CqcKickMoveSpeed = 14f;
+    private const float CqcKickMoveAmount2 = 10f;
+    private const float CqcKickMoveAmount3 = 45f;
+    private const float CqcPressureMoveAmount = 60f;
+    private const float CqcConsecutiveMoveAmount = 50f;
+    private const float CqcConsecutiveMoveAmount2 = 25f;
+
     private bool CqcCheckStreak(Entity<MartialArtsComponent> ent, EntityUid target)
     {
         var streak = ent.Comp.Streak;
@@ -67,8 +80,8 @@ public sealed partial class MartialArtsSystem
 
         PopupPair(user, target, "martial-cqc-slam-others", "martial-cqc-slam-self", "martial-cqc-slam-target");
         Sound(user, "/Audio/Imperial/MartialArts/slam.ogg");
-        Brute(target, 10, user);
-        Paralyze(target, TimeSpan.FromSeconds(12));
+        Brute(target, CqcSlamMoveAmount, user);
+        Paralyze(target, CqcSlamMoveTime);
         return true;
     }
 
@@ -82,18 +95,18 @@ public sealed partial class MartialArtsSystem
         {
             PopupPair(user, target, "martial-cqc-headkick-others", "martial-cqc-headkick-self", "martial-cqc-headkick-target");
             Sound(user, "/Audio/Weapons/genhit1.ogg");
-            Knockdown(target, TimeSpan.FromSeconds(20));
-            Sleep(target, TimeSpan.FromSeconds(10));
-            BrainDamage(target, 15);
+            Knockdown(target, CqcKickMoveTime);
+            Sleep(target, CqcKickMoveTime2);
+            BrainDamage(target, CqcKickMoveAmount);
         }
         else
         {
             PopupPair(user, target, "martial-cqc-kick-others", "martial-cqc-kick-self", "martial-cqc-kick-target");
             Sound(user, "/Audio/Imperial/MartialArts/cqchit1.ogg");
-            ThrowAway(target, user, 1, 14);
-            Brute(target, 10, user);
+            ThrowAway(target, user, 1, CqcKickMoveSpeed);
+            Brute(target, CqcKickMoveAmount2, user);
             if (IsLying(target))
-                Stamina(target, 45, user);
+                Stamina(target, CqcKickMoveAmount3, user);
         }
 
         return true;
@@ -103,7 +116,7 @@ public sealed partial class MartialArtsSystem
     private bool CqcPressureMove(EntityUid user, EntityUid target)
     {
         PopupPair(user, target, "martial-cqc-pressure-others", "martial-cqc-pressure-self", "martial-cqc-pressure-target");
-        Stamina(target, 60, user);
+        Stamina(target, CqcPressureMoveAmount, user);
         Sound(user, "/Audio/Imperial/MartialArts/cqchit1.ogg");
         return true;
     }
@@ -115,8 +128,8 @@ public sealed partial class MartialArtsSystem
             return false;
 
         PopupPair(ent, target, "martial-cqc-restrain-others", "martial-cqc-restrain-self", "martial-cqc-restrain-target");
-        Stamina(target, 20, ent);
-        Stun(target, TimeSpan.FromSeconds(10));
+        Stamina(target, ent.Comp.CqcRestrainMoveAmount, ent);
+        Stun(target, ent.Comp.CqcRestrainMoveTime);
         ent.Comp.Restraining = target;
         ent.Comp.RestrainingUntil = _timing.CurTime + CqcRestrainTime;
         return true;
@@ -131,8 +144,8 @@ public sealed partial class MartialArtsSystem
         PopupPair(user, target, "martial-cqc-consecutive-others", "martial-cqc-consecutive-self", "martial-cqc-consecutive-target");
         Sound(target, "/Audio/Imperial/MartialArts/cqchit2.ogg");
         Disarm(target, user);
-        Stamina(target, 50, user);
-        Brute(target, 25, user);
+        Stamina(target, CqcConsecutiveMoveAmount, user);
+        Brute(target, CqcConsecutiveMoveAmount2, user);
         return true;
     }
 
@@ -170,7 +183,7 @@ public sealed partial class MartialArtsSystem
         if (TrySnapNeck(ent, target))
             return MartialResult.Success;
 
-        if (CheckBlock(target, ent, 10, MartialAttackType.Unarmed))
+        if (CheckBlock(target, ent, ent.Comp.CqcHarmDamage, MartialAttackType.Unarmed))
             return MartialResult.Fail;
 
         // Подсечка из положения лёжа.
@@ -178,8 +191,8 @@ public sealed partial class MartialArtsSystem
         {
             PopupPair(ent, target, "martial-cqc-sweep-others", "martial-cqc-sweep-self", "martial-cqc-sweep-target");
             Sound(ent, "/Audio/Effects/hit_kick.ogg");
-            Brute(target, 10, ent);
-            Knockdown(target, TimeSpan.FromSeconds(5));
+            Brute(target, ent.Comp.CqcHarmAmount, ent);
+            Knockdown(target, ent.Comp.CqcHarmTime);
             ResetStreak(ent.Comp);
             return MartialResult.Success;
         }
@@ -212,14 +225,14 @@ public sealed partial class MartialArtsSystem
         if (ent.Comp.GrabTarget == target && ent.Comp.Restraining == target)
         {
             PopupPair(ent, target, "martial-cqc-choke-others", "martial-cqc-choke-self", "martial-cqc-choke-target");
-            Sleep(target, TimeSpan.FromSeconds(40));
+            Sleep(target, ent.Comp.CqcDisarmTime);
             ent.Comp.Restraining = null;
             if (ent.Comp.GrabState < MartialGrabState.Neck)
                 SetGrabState(ent, target, MartialGrabState.Neck);
             return MartialResult.Success;
         }
 
-        if (_random.Prob(0.65f))
+        if (_random.Prob(ent.Comp.CqcDisarmChance))
         {
             var item = Disarm(target, ent);
             PopupPair(ent, target,
@@ -227,8 +240,8 @@ public sealed partial class MartialArtsSystem
                 item != null ? "martial-cqc-jaw-disarm-self" : "martial-cqc-jaw-self",
                 item != null ? "martial-cqc-jaw-disarm-target" : "martial-cqc-jaw-target");
             Sound(target, "/Audio/Imperial/MartialArts/cqchit1.ogg");
-            Jitter(target, TimeSpan.FromSeconds(4));
-            Brute(target, 5, ent);
+            Jitter(target, ent.Comp.CqcDisarmTime2);
+            Brute(target, ent.Comp.CqcDisarmAmount, ent);
             return MartialResult.Success;
         }
 
@@ -249,7 +262,7 @@ public sealed partial class MartialArtsSystem
         if (_xform.InRange(ent.Owner, attacker, MeleeRange))
         {
             PopupPair(ent, attacker, "martial-cqc-block-counter-others", "martial-cqc-block-self", "martial-cqc-block-counter-target");
-            Stun(attacker, TimeSpan.FromSeconds(4));
+            Stun(attacker, ent.Comp.CqcBlockTime);
         }
         else
         {
@@ -267,7 +280,7 @@ public sealed partial class MartialArtsSystem
 
         Sound(target, "/Audio/Imperial/MartialArts/crack1.ogg", 5f);
         PopupPair(ent, target, "martial-neck-snap-others", "martial-neck-snap-self", "martial-neck-snap-target", PopupType.LargeCaution);
-        Brute(target, 100, ent);
+        Brute(target, ent.Comp.SnapNeckAmount, ent);
         _mobs.ChangeMobState(target, Content.Shared.Mobs.MobState.Dead, origin: ent);
         return true;
     }

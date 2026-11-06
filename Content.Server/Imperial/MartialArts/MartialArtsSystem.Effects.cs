@@ -220,7 +220,7 @@ public sealed partial class MartialArtsSystem
 
             comp.Ticks--;
             comp.NextTick = now + StrangleInterval;
-            Oxy(uid, 3f);
+            Oxy(uid, comp.UpdateEffectsAmount);
         }
 
         var armbar = EntityQueryEnumerator<JudoArmbarComponent>();

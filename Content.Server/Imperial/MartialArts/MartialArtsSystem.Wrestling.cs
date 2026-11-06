@@ -10,6 +10,14 @@ namespace Content.Server.Imperial.MartialArts;
 /// <summary>datum/martial_art/wrestling (wrestling.dm, Goonstation).</summary>
 public sealed partial class MartialArtsSystem
 {
+    private static readonly TimeSpan WrestlingThrowReleaseDelay = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan WrestlingThrowReleaseTime = TimeSpan.FromSeconds(2);
+
+    private const float WrestlingThrowReleaseRange = 10f;
+    private const float WrestlingThrowReleaseSpeed = 4f;
+    private const float HasClimbableNearbyRange = 1.5f;
+    private const float ExplodeLightAmount = 30f;
+
     /// <summary>check_streak(): приём заряжен кнопкой и срабатывает следующей атакой.</summary>
     private bool WrestlingCheckStreak(Entity<MartialArtsComponent> ent, EntityUid target)
     {
@@ -17,7 +25,7 @@ public sealed partial class MartialArtsSystem
         if (move is not ("drop" or "strike" or "kick" or "throw" or "slam"))
             return false;
 
-        if (CheckBlock(target, ent, 10, MartialAttackType.Unarmed))
+        if (CheckBlock(target, ent, ent.Comp.WrestlingCheckStreakDamage, MartialAttackType.Unarmed))
             return false;
 
         ent.Comp.Streak = string.Empty;
@@ -69,7 +77,7 @@ public sealed partial class MartialArtsSystem
             return;
         }
 
-        Stun(target, TimeSpan.FromSeconds(8));
+        Stun(target, ent.Comp.WrestlingThrowTime);
         PopupPair(ent, target, "martial-wrestling-spin-others", "martial-wrestling-spin-self", "martial-wrestling-spin-target");
         Emote(ent, "Scream");
 
@@ -125,11 +133,11 @@ public sealed partial class MartialArtsSystem
         if (IsConscious(target))
             Emote(target, "Scream");
 
-        ThrowAway(target, user, 10, 4);
-        _schedule.Schedule(TimeSpan.FromSeconds(1), () =>
+        ThrowAway(target, user, WrestlingThrowReleaseRange, WrestlingThrowReleaseSpeed);
+        _schedule.Schedule(WrestlingThrowReleaseDelay, () =>
         {
             if (Exists(target))
-                Paralyze(target, TimeSpan.FromSeconds(2));
+                Paralyze(target, WrestlingThrowReleaseTime);
         });
     }
 
@@ -145,19 +153,19 @@ public sealed partial class MartialArtsSystem
         _xform.SetCoordinates(target, Transform(ent).Coordinates);
         PopupPair(ent, target, "martial-wrestling-lift-others", "martial-wrestling-lift-self", "martial-wrestling-lift-target");
 
-        _schedule.Schedule(TimeSpan.FromSeconds(0.3), () =>
+        _schedule.Schedule(ent.Comp.WrestlingSlamDelay, () =>
         {
             if (!Exists(ent) || !Exists(target) || !_xform.InRange(ent.Owner, target, MeleeRange))
                 return;
 
-            var fluff = _random.Prob(0.5f) ? "turbo" : "atomic";
+            var fluff = _random.Prob(ent.Comp.WrestlingSlamChance) ? "turbo" : "atomic";
             PopupPair(ent, target, $"martial-wrestling-slam-{fluff}-others", $"martial-wrestling-slam-{fluff}-self", $"martial-wrestling-slam-{fluff}-target");
             Sound(ent, "/Audio/Weapons/genhit1.ogg");
 
             if (IsConscious(target))
             {
                 Emote(target, "Scream");
-                Paralyze(target, TimeSpan.FromSeconds(4));
+                Paralyze(target, ent.Comp.WrestlingSlamTime);
                 switch (_random.Next(1, 4))
                 {
                     case 2:
@@ -183,7 +191,7 @@ public sealed partial class MartialArtsSystem
     {
         var origin = Transform(ent).Coordinates;
         _xform.SetCoordinates(ent, Transform(target).Coordinates);
-        _schedule.Schedule(TimeSpan.FromSeconds(0.4), () =>
+        _schedule.Schedule(ent.Comp.WrestlingStrikeDelay, () =>
         {
             if (Exists(ent))
                 _xform.SetCoordinates(ent, origin);
@@ -192,7 +200,7 @@ public sealed partial class MartialArtsSystem
         PopupPair(ent, target, "martial-wrestling-headbutt-others", "martial-wrestling-headbutt-self", "martial-wrestling-headbutt-target");
         Brute(target, _random.Next(10, 21), ent);
         Sound(ent, "/Audio/Weapons/genhit1.ogg");
-        Sleep(target, TimeSpan.FromSeconds(2));
+        Sleep(target, ent.Comp.WrestlingStrikeTime);
     }
 
     /// <summary>kick(): удар с разворота отбрасывает на три клетки.</summary>
@@ -202,8 +210,8 @@ public sealed partial class MartialArtsSystem
         PopupPair(ent, target, "martial-wrestling-roundhouse-others", "martial-wrestling-roundhouse-self", "martial-wrestling-roundhouse-target");
         Sound(ent, "/Audio/Weapons/genhit1.ogg");
         Brute(target, _random.Next(10, 21), ent);
-        Paralyze(target, TimeSpan.FromSeconds(2));
-        ThrowAway(target, ent, 3, 2);
+        Paralyze(target, ent.Comp.WrestlingKickTime);
+        ThrowAway(target, ent, ent.Comp.WrestlingKickRange, ent.Comp.WrestlingKickSpeed);
     }
 
     /// <summary>drop(): прыжок с ближайшего возвышения ногами на противника.</summary>
@@ -224,7 +232,7 @@ public sealed partial class MartialArtsSystem
                 {
                     PopupPair(ent, ent, "martial-wrestling-dive-fail-others", "martial-wrestling-dive-fail-self");
                     Brute(ent, _random.Next(10, 21), null);
-                    Paralyze(ent, TimeSpan.FromSeconds(6));
+                    Paralyze(ent, ent.Comp.WrestlingDropTime);
                 }
 
                 _popup.PopupEntity(Loc.GetString("martial-wrestling-too-far", ("target", Identity(target))), ent, ent, PopupType.SmallCaution);
@@ -236,19 +244,19 @@ public sealed partial class MartialArtsSystem
             Sound(ent, "/Audio/Weapons/genhit1.ogg");
             Emote(ent, "Scream");
 
-            if (falling && (_random.Prob(0.33f) || !IsConscious(target)))
+            if (falling && (_random.Prob(ent.Comp.WrestlingDropChance) || !IsConscious(target)))
                 ExplodeLight(target, ent);
             else
                 Brute(target, _random.Next(20, 31), ent);
 
-            Paralyze(target, TimeSpan.FromSeconds(4));
+            Paralyze(target, ent.Comp.WrestlingDropTime2);
         });
     }
 
     /// <summary>oview(1): есть ли рядом плотный, но прозрачный объект, на который можно залезть.</summary>
     private bool HasClimbableNearby(EntityUid user)
     {
-        foreach (var ent in _lookup.GetEntitiesInRange(Transform(user).Coordinates, 1.5f))
+        foreach (var ent in _lookup.GetEntitiesInRange(Transform(user).Coordinates, HasClimbableNearbyRange))
         {
             if (ent == user || HasComp<Content.Shared.Mobs.Components.MobStateComponent>(ent))
                 continue;
@@ -263,7 +271,7 @@ public sealed partial class MartialArtsSystem
     /// <summary>EX_ACT(defender, EXPLODE_LIGHT): лёгкий взрыв только по одной цели.</summary>
     private void ExplodeLight(EntityUid target, EntityUid origin)
     {
-        Brute(target, 30, origin);
+        Brute(target, ExplodeLightAmount, origin);
         Sound(target, "/Audio/Effects/explosion1.ogg", -4f);
     }
 }

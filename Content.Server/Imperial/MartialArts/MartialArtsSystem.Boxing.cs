@@ -35,6 +35,13 @@ public sealed partial class MartialArtsSystem
     /// <summary>CLICK_CD_MELEE.</summary>
     private static readonly TimeSpan ClickCooldown = TimeSpan.FromSeconds(0.8);
 
+    private static readonly TimeSpan BoxingCritTime = TimeSpan.FromSeconds(20);
+    private static readonly TimeSpan BoxingCritTime2 = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan BoxingCritTime3 = TimeSpan.FromSeconds(3);
+
+    private const float BoxingCritRange = 2f;
+    private const float BoxingCritSpeed = 2f;
+
     private enum BoxingCombo : byte
     {
         None,
@@ -124,7 +131,7 @@ public sealed partial class MartialArtsSystem
         }
 
         var effectiveness = ArmEffectiveness;
-        var damage = (float) _random.Next(ArmDamageLow, ArmDamageHigh + 1);
+        var damage = (float)_random.Next(ArmDamageLow, ArmDamageHigh + 1);
         var damageType = kind switch
         {
             MartialArtKind.HunterBoxing => "Blunt",
@@ -171,7 +178,7 @@ public sealed partial class MartialArtsSystem
                     break;
                 case BoxingCombo.Discombobulate:
                     verb = "discombobulate";
-                    Confuse(target, TimeSpan.FromSeconds(20));
+                    Confuse(target, ent.Comp.TussleDiscombobulateTime);
                     multiplier = 1;
                     break;
                 case BoxingCombo.BlindJab:
@@ -182,7 +189,7 @@ public sealed partial class MartialArtsSystem
                 case BoxingCombo.CravenBlow:
                     verb = "sucker";
                     multiplier = 2;
-                    Stagger(target, TimeSpan.FromSeconds(3));
+                    Stagger(target, ent.Comp.TussleCravenBlowTime);
                     break;
             }
 
@@ -292,18 +299,18 @@ public sealed partial class MartialArtsSystem
         if (IsStaggered(target))
         {
             PopupPair(attacker, target, "martial-boxing-knockout-others", "martial-boxing-knockout-self", "martial-boxing-knockout-target", PopupType.LargeCaution);
-            Knockdown(target, TimeSpan.FromSeconds(20));
-            Sleep(target, TimeSpan.FromSeconds(10));
+            Knockdown(target, BoxingCritTime);
+            Sleep(target, BoxingCritTime2);
         }
         else
         {
             PopupPair(attacker, target, "martial-boxing-stagger-others", "martial-boxing-stagger-self", "martial-boxing-stagger-target");
-            Stagger(target, TimeSpan.FromSeconds(3));
+            Stagger(target, BoxingCritTime3);
         }
 
         // Если держим агрессивно — ещё и отбрасываем.
         if (TryComp<MartialArtsComponent>(attacker, out var comp) && comp.GrabTarget == target && comp.GrabState >= MartialGrabState.Aggressive)
-            ThrowAway(target, attacker, 2, 2);
+            ThrowAway(target, attacker, BoxingCritRange, BoxingCritSpeed);
     }
 
     /// <summary>perform_extra_effect(): охотник добивает зверьё ещё сильнее.</summary>
@@ -338,12 +345,12 @@ public sealed partial class MartialArtsSystem
 
         if (_xform.InRange(ent.Owner, attacker, MeleeRange))
         {
-            ApplyBoxingDamage(attacker, 10, art.Kind == MartialArtKind.HunterBoxing ? "Blunt" : "Stamina", ent);
-            Stamina(ent, 5);
+            ApplyBoxingDamage(attacker, ent.Comp.BoxingBlockDamage, art.Kind == MartialArtKind.HunterBoxing ? "Blunt" : "Stamina", ent);
+            Stamina(ent, ent.Comp.BoxingBlockAmount);
             BoxingExtraEffect(art.Kind, ent, attacker);
         }
 
-        var dodge = _random.Prob(0.5f);
+        var dodge = _random.Prob(ent.Comp.BoxingBlockChance);
         PopupPair(ent, attacker, dodge ? "martial-boxing-avoid-others" : "martial-boxing-block-others", dodge ? "martial-boxing-avoid-self" : "martial-boxing-block-self");
         if (dodge)
             Sound(ent, "/Audio/Weapons/punchmiss.ogg", -6f);

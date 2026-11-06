@@ -33,6 +33,25 @@ public sealed partial class MartialArtsSystem
 
     private readonly HashSet<EntityUid> _tackling = new();
 
+    private static readonly TimeSpan KazaLowSweepTime = TimeSpan.FromSeconds(6);
+    private static readonly TimeSpan KazaNeckChopTime = TimeSpan.FromSeconds(20);
+    private static readonly TimeSpan JudoArmbarMoveTime = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan JudoEyepokeMoveTime = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan JudoGoldenBlastMoveTime = TimeSpan.FromSeconds(30);
+    private static readonly TimeSpan JudoThrowMoveTime = TimeSpan.FromSeconds(7);
+    private static readonly TimeSpan JudoWheelThrowMoveTime = TimeSpan.FromSeconds(15);
+    private static readonly TimeSpan JudoWheelThrowMoveTime2 = TimeSpan.FromSeconds(10);
+
+    private const float KazaLowSweepAmount = 5f;
+    private const int KazaLungPunchAmount = 5;
+    private const float KazaLungPunchAmount2 = 10f;
+    private const float KazaNeckChopAmount = 10f;
+    private const float JudoArmbarMoveAmount = 45f;
+    private const float JudoEyepokeMoveAmount = 10f;
+    private const float JudoGoldenBlastMoveAmount = 120f;
+    private const float JudoThrowMoveAmount = 25f;
+    private const float JudoWheelThrowMoveAmount = 120f;
+
     private void InitializeKazaJudo()
     {
         SubscribeLocalEvent<MartialArtsComponent, DidEquipHandEvent>(OnJudoEquipHand);
@@ -74,8 +93,8 @@ public sealed partial class MartialArtsSystem
         PopupPair(user, target, tail ? "martial-kaza-tailsweep-others" : "martial-kaza-sweep-others",
             tail ? "martial-kaza-tailsweep-self" : "martial-kaza-sweep-self", "martial-kaza-sweep-target");
         Sound(user, "/Audio/Effects/hit_kick.ogg");
-        Brute(target, 5, user);
-        Knockdown(target, TimeSpan.FromSeconds(6));
+        Brute(target, KazaLowSweepAmount, user);
+        Knockdown(target, KazaLowSweepTime);
     }
 
     /// <summary>quick_choke(): удар в грудь сбивает дыхание.</summary>
@@ -83,8 +102,8 @@ public sealed partial class MartialArtsSystem
     {
         PopupPair(user, target, "martial-kaza-lung-others", "martial-kaza-lung-self", "martial-kaza-lung-target");
         Sound(user, "/Audio/Weapons/punch2.ogg");
-        LoseBreath(target, 5);
-        Oxy(target, 10, user);
+        LoseBreath(target, KazaLungPunchAmount);
+        Oxy(target, KazaLungPunchAmount2, user);
     }
 
     /// <summary>neck_chop(): удар по горлу — 20 секунд немоты.</summary>
@@ -92,22 +111,22 @@ public sealed partial class MartialArtsSystem
     {
         PopupPair(user, target, "martial-kaza-chop-others", "martial-kaza-chop-self", "martial-kaza-chop-target");
         Sound(user, "/Audio/Weapons/punch2.ogg");
-        Brute(target, 10, user);
-        Silence(target, TimeSpan.FromSeconds(20));
+        Brute(target, KazaNeckChopAmount, user);
+        Silence(target, KazaNeckChopTime);
     }
 
     private MartialResult KazaHarm(Entity<MartialArtsComponent> ent, EntityUid target)
     {
-        if (CheckBlock(target, ent, 10, MartialAttackType.Unarmed))
+        if (CheckBlock(target, ent, ent.Comp.KazaHarmDamage, MartialAttackType.Unarmed))
             return MartialResult.Fail;
 
         if (KazaCheckStreak(ent, target))
             return MartialResult.Success;
 
         // blow_followup(): в половине обычных ударов — добивающий удар локтем через 0.25 секунды.
-        if (_random.Prob(0.5f))
+        if (_random.Prob(ent.Comp.KazaHarmChance))
         {
-            _schedule.Schedule(TimeSpan.FromSeconds(0.25), () =>
+            _schedule.Schedule(ent.Comp.KazaHarmDelay, () =>
             {
                 if (!Exists(ent) || !Exists(target) || !_xform.InRange(ent.Owner, target, MeleeRange))
                     return;
@@ -131,7 +150,7 @@ public sealed partial class MartialArtsSystem
         if (KazaCheckStreak(ent, target))
             return MartialResult.Success;
 
-        if (_random.Prob(0.6f) && Disarm(target, ent) != null)
+        if (_random.Prob(ent.Comp.KazaDisarmChance) && Disarm(target, ent) != null)
         {
             PopupPair(ent, target, "martial-kaza-disarm-others", "martial-kaza-disarm-self", "martial-kaza-disarm-target");
             Sound(target, "/Audio/Effects/thudswoosh.ogg");
@@ -152,8 +171,8 @@ public sealed partial class MartialArtsSystem
         ResetStreak(ent.Comp);
         PopupPair(ent, target, "martial-judo-discombobulate-others", "martial-judo-discombobulate-self", "martial-judo-discombobulate-target");
         Sound(ent, "/Audio/Imperial/MartialArts/slap.ogg");
-        Stamina(target, 10, ent);
-        Confuse(target, TimeSpan.FromSeconds(5));
+        Stamina(target, ent.Comp.JudoCheckOneClickAmount, ent);
+        Confuse(target, ent.Comp.JudoCheckOneClickTime);
         return true;
     }
 
@@ -197,9 +216,9 @@ public sealed partial class MartialArtsSystem
         if (!IsLying(user))
             DropAll(target);
 
-        Stamina(target, 45, user);
+        Stamina(target, JudoArmbarMoveAmount, user);
         EnsureComp<JudoArmbarComponent>(target).ExpiresAt = _timing.CurTime + ArmbarDuration;
-        Knockdown(target, TimeSpan.FromSeconds(5));
+        Knockdown(target, JudoArmbarMoveTime);
         return true;
     }
 
@@ -214,8 +233,8 @@ public sealed partial class MartialArtsSystem
 
         PopupPair(user, target, "martial-judo-eyepoke-others", "martial-judo-eyepoke-self", "martial-judo-eyepoke-target");
         Sound(user, "/Audio/Imperial/MartialArts/whip.ogg", -4f);
-        Brute(target, 10, user);
-        Blind(target, TimeSpan.FromSeconds(2));
+        Brute(target, JudoEyepokeMoveAmount, user);
+        Blind(target, JudoEyepokeMoveTime);
         return true;
     }
 
@@ -226,9 +245,9 @@ public sealed partial class MartialArtsSystem
         Sound(target, "/Audio/Weapons/Guns/Gunshots/taser.ogg");
         Say(user, Loc.GetString("martial-judo-golden-shout"));
         Sound(user, "/Audio/Imperial/MartialArts/goldenblast.ogg");
-        Stamina(target, 120, user);
-        Knockdown(target, TimeSpan.FromSeconds(30));
-        Confuse(target, TimeSpan.FromSeconds(30));
+        Stamina(target, JudoGoldenBlastMoveAmount, user);
+        Knockdown(target, JudoGoldenBlastMoveTime);
+        Confuse(target, JudoGoldenBlastMoveTime);
         return true;
     }
 
@@ -240,8 +259,8 @@ public sealed partial class MartialArtsSystem
 
         PopupPair(user, target, "martial-judo-throw-others", "martial-judo-throw-self", "martial-judo-throw-target");
         Sound(user, "/Audio/Imperial/MartialArts/slam.ogg", -4f);
-        Stamina(target, 25, user);
-        Knockdown(target, TimeSpan.FromSeconds(7));
+        Stamina(target, JudoThrowMoveAmount, user);
+        Knockdown(target, JudoThrowMoveTime);
         return true;
     }
 
@@ -262,9 +281,9 @@ public sealed partial class MartialArtsSystem
             Sound(user, "/Audio/Imperial/MartialArts/slam.ogg", -4f);
         }
 
-        Stamina(target, 120, user);
-        Knockdown(target, TimeSpan.FromSeconds(15));
-        Confuse(target, TimeSpan.FromSeconds(10));
+        Stamina(target, JudoWheelThrowMoveAmount, user);
+        Knockdown(target, JudoWheelThrowMoveTime);
+        Confuse(target, JudoWheelThrowMoveTime2);
         return true;
     }
 
@@ -277,7 +296,7 @@ public sealed partial class MartialArtsSystem
         if (JudoCheckStreak(ent, target))
             return MartialResult.Success;
 
-        Brute(target, 6, ent);
+        Brute(target, ent.Comp.JudoHarmAmount, ent);
         Sound(target, "/Audio/Weapons/punch2.ogg");
         PopupPair(ent, target, "martial-judo-chop-others", "martial-judo-chop-self", "martial-judo-chop-target", PopupType.Small);
         return MartialResult.Success;
@@ -383,14 +402,14 @@ public sealed partial class MartialArtsSystem
 
         // skill_mod = 6: почти всегда сильный захват.
         PopupPair(ent, args.Target, "martial-spider-tackle-hit-others", "martial-spider-tackle-hit-self", "martial-spider-tackle-hit-target");
-        Knockdown(args.Target, TimeSpan.FromSeconds(3));
+        Knockdown(args.Target, ent.Comp.TackleHitTime);
         Sound(ent, "/Audio/Effects/thudswoosh.ogg");
     }
 
     private void OnTackleLand(Entity<MartialArtsComponent> ent, ref LandEvent args)
     {
         if (_tackling.Remove(ent))
-            Knockdown(ent, TimeSpan.FromSeconds(0.2)); // base_knockdown
+            Knockdown(ent, ent.Comp.TackleLandTime); // base_knockdown
     }
 
     #endregion

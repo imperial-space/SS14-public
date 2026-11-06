@@ -33,6 +33,10 @@ public sealed partial class MartialArtsSystem
     /// <summary>aoe_radius заклинания repulse, которое кастует «Торнадо».</summary>
     private const float RepulseRange = 5f;
 
+    private static readonly TimeSpan PlasmaTornadoMoveTime = TimeSpan.FromSeconds(5);
+
+    private const float PlasmaTornadoMoveSpeed = 4f;
+
     private void InitializeMush()
     {
         SubscribeLocalEvent<MartialArtsComponent, MushroomPunchDoAfterEvent>(OnMushPunchDoAfter);
@@ -64,7 +68,7 @@ public sealed partial class MartialArtsSystem
             ResetStreak(ent.Comp);
             PopupPair(ent, target, "martial-plasma-punch-others", "martial-plasma-punch-self", "martial-plasma-punch-target");
             Sound(target, "/Audio/Weapons/punch1.ogg");
-            ThrowAway(target, ent, 200, 4);
+            ThrowAway(target, ent, ent.Comp.PlasmaCheckStreakRange, ent.Comp.PlasmaCheckStreakSpeed);
             Say(ent, Loc.GetString("martial-plasma-hyah"));
             return true;
         }
@@ -91,9 +95,9 @@ public sealed partial class MartialArtsSystem
                 continue;
 
             var distance = (_xform.GetWorldPosition(ent) - _xform.GetWorldPosition(user)).Length();
-            ThrowAway(ent, user, Math.Max(1f, RepulseRange - distance + 1f), 4);
+            ThrowAway(ent, user, Math.Max(1f, RepulseRange - distance + 1f), PlasmaTornadoMoveSpeed);
             if (HasComp<Content.Shared.Mobs.Components.MobStateComponent>(ent) && distance < 1.5f)
-                Paralyze(ent, TimeSpan.FromSeconds(5));
+                Paralyze(ent, PlasmaTornadoMoveTime);
         }
     }
 
@@ -144,13 +148,13 @@ public sealed partial class MartialArtsSystem
 
         // Девастация power, тяжёлый урон power*2, лёгкий power*4 — по площади это примерно 4*power тайлов.
         var intensity = 30f * power * power;
-        _explosion.QueueExplosion(coords, ExplosionSystem.DefaultExplosionPrototypeId, intensity, 4f, 10f * power, ent.Owner, canCreateVacuum: true);
+        _explosion.QueueExplosion(coords, ExplosionSystem.DefaultExplosionPrototypeId, intensity, ent.Comp.PlasmaApotheosisSlope, 10f * power, ent.Owner, canCreateVacuum: true);
 
         // ghostize(FALSE): душа вылетает из тела, а через 6 секунд тело умирает.
         if (_sharedMind.TryGetMind(ent, out var mindId, out var mind))
             _sharedMind.WipeMind(mindId, mind);
 
-        _schedule.Schedule(TimeSpan.FromSeconds(6), () =>
+        _schedule.Schedule(ent.Comp.PlasmaApotheosisDelay, () =>
         {
             if (Exists(ent) && !_mobs.IsDead(ent))
                 _mobs.ChangeMobState(ent, Content.Shared.Mobs.MobState.Dead);
@@ -172,7 +176,7 @@ public sealed partial class MartialArtsSystem
                 return MartialResult.Success;
             case 2:
                 Emote(ent, "Crying");
-                Stun(ent, TimeSpan.FromSeconds(2));
+                Stun(ent, ent.Comp.PsychoAttackTime);
                 PopupPair(ent, target, "martial-psycho-cry-others", "martial-psycho-cry-self", null, PopupType.Small);
                 return MartialResult.Success;
             case 3:
@@ -196,19 +200,19 @@ public sealed partial class MartialArtsSystem
 
                 return MartialResult.Fail;
             case 4:
-            {
-                var damage = _random.Next(5, 11);
-                if (CheckBlock(target, ent, damage, MartialAttackType.Unarmed))
-                    return MartialResult.Fail;
+                {
+                    var damage = _random.Next(5, 11);
+                    if (CheckBlock(target, ent, damage, MartialAttackType.Unarmed))
+                        return MartialResult.Fail;
 
-                PopupPair(ent, target, "martial-psycho-headbutt-others", "martial-psycho-headbutt-self", "martial-psycho-headbutt-target");
-                Sound(target, "/Audio/Weapons/punch1.ogg", -4f);
-                Brute(target, damage, ent);
-                Brute(ent, _random.Next(5, 11), null);
-                Stun(ent, TimeSpan.FromSeconds(_random.NextFloat(1f, 4.5f)));
-                Stun(target, TimeSpan.FromSeconds(_random.NextFloat(0.5f, 3f)));
-                return MartialResult.Success;
-            }
+                    PopupPair(ent, target, "martial-psycho-headbutt-others", "martial-psycho-headbutt-self", "martial-psycho-headbutt-target");
+                    Sound(target, "/Audio/Weapons/punch1.ogg", -4f);
+                    Brute(target, damage, ent);
+                    Brute(ent, _random.Next(5, 11), null);
+                    Stun(ent, TimeSpan.FromSeconds(_random.NextFloat(1f, 4.5f)));
+                    Stun(target, TimeSpan.FromSeconds(_random.NextFloat(0.5f, 3f)));
+                    return MartialResult.Success;
+                }
             case 5:
             case 6:
                 if (CheckBlock(target, ent, 0, MartialAttackType.Unarmed))
@@ -217,8 +221,8 @@ public sealed partial class MartialArtsSystem
                 PopupPair(ent, target, "martial-psycho-fling-others", "martial-psycho-fling-self", "martial-psycho-fling-target");
                 Brute(target, _random.Next(15, 31), ent);
                 Sound(target, "/Audio/Imperial/MartialArts/meteorimpact.ogg", -6f);
-                ThrowAway(target, ent, 4, 2);
-                Paralyze(target, TimeSpan.FromSeconds(6));
+                ThrowAway(target, ent, ent.Comp.PsychoAttackRange, ent.Comp.PsychoAttackSpeed);
+                Paralyze(target, ent.Comp.PsychoAttackTime2);
                 return MartialResult.Success;
             default:
                 return MartialResult.Invalid;
@@ -233,7 +237,7 @@ public sealed partial class MartialArtsSystem
     private MartialResult MushHarm(Entity<MartialArtsComponent> ent, EntityUid target)
     {
         _popup.PopupEntity(Loc.GetString("martial-mush-windup"), ent, ent, PopupType.Medium);
-        var doAfter = new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(2.5), new MushroomPunchDoAfterEvent(), ent, target: target)
+        var doAfter = new DoAfterArgs(EntityManager, ent, ent.Comp.MushHarmDelay, new MushroomPunchDoAfterEvent(), ent, target: target)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -261,8 +265,8 @@ public sealed partial class MartialArtsSystem
         PopupPair(ent, target, "martial-mush-hit-others", "martial-mush-hit-self", "martial-mush-hit-target");
         Brute(target, damage, ent);
         Sound(target, "/Audio/Imperial/MartialArts/meteorimpact.ogg", -6f);
-        ThrowAway(target, ent, 4, 2);
-        Paralyze(target, TimeSpan.FromSeconds(2));
+        ThrowAway(target, ent, ent.Comp.MushPunchDoAfterRange, ent.Comp.MushPunchDoAfterSpeed);
+        Paralyze(target, ent.Comp.MushPunchDoAfterTime);
     }
 
     #endregion
@@ -283,7 +287,7 @@ public sealed partial class MartialArtsSystem
             PopupPair(ent, target, "martial-jungle-drag-others", "martial-jungle-drag-self", "martial-jungle-drag-target");
             Brute(target, _random.Next(5, 11), ent);
             Sound(ent, "/Audio/Imperial/MartialArts/whip.ogg");
-            Knockdown(target, TimeSpan.FromSeconds(2));
+            Knockdown(target, ent.Comp.JungleAttackTime);
             return MartialResult.Success;
         }
 

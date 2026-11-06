@@ -219,7 +219,7 @@ public sealed partial class MartialArtsSystem
         if (now < grabber.NextResist)
             return false;
 
-        var effective = (int) grabber.GrabState;
+        var effective = (int)grabber.GrabState;
         var escape = BaseGrabResistChance;
         var failDamage = _random.Next(7, 14);
 
@@ -233,12 +233,12 @@ public sealed partial class MartialArtsSystem
         if (GetActive(grabber) is { } art && CanUse(grabbed.Grabber, art))
         {
             effective += art.GrabStateModifier;
-            failDamage += (int) art.GrabDamageModifier;
+            failDamage += (int)art.GrabDamageModifier;
             escape += art.GrabEscapeChanceModifier;
         }
 
         // На пассивном захвате вырваться можно всегда.
-        if (effective < (int) MartialGrabState.Aggressive)
+        if (effective < (int)MartialGrabState.Aggressive)
             return true;
 
         var chance = Math.Clamp(escape / effective, 0f, 100f);
@@ -269,8 +269,7 @@ public sealed partial class MartialArtsSystem
         ent.Comp.NextStrangleTick = now + StrangleInterval;
         _statusEffects.TryAddStatusEffect<MutedComponent>(target, "Muted", StrangleInterval * 2, true);
 
-        var oxy = new DamageSpecifier();
-        oxy.DamageDict["Asphyxiation"] = FixedPoint2.New(3);
+        var oxy = new DamageSpecifier(ent.Comp.UpdateGrabDamage);
         _damage.TryChangeDamage(target, oxy, ignoreResistances: true, origin: ent.Owner);
     }
 

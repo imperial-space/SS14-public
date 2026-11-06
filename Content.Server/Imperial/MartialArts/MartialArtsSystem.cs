@@ -465,7 +465,7 @@ public sealed partial class MartialArtsSystem : EntitySystem
         if (ent.Comp.LastMeleeAttacker is not { } attacker || args.Origin != attacker)
             return;
 
-        if (_timing.CurTime - ent.Comp.LastMeleeAttackAt > TimeSpan.FromSeconds(0.1))
+        if (_timing.CurTime - ent.Comp.LastMeleeAttackAt > ent.Comp.DamageModifyDelay)
             return;
 
         ent.Comp.LastMeleeAttacker = null;

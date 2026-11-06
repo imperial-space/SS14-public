@@ -13,4 +13,7 @@ public sealed partial class MartialLoseBreathComponent : Component
 
     [ViewVariables]
     public TimeSpan NextTick;
+
+    [DataField]
+    public float UpdateEffectsAmount = 3f;
 }

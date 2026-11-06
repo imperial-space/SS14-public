@@ -44,6 +44,11 @@ public sealed partial class MartialArtsSystem
 
     private static readonly SoundPathSpecifier PageSound = new("/Audio/Effects/rustle1.ogg");
 
+    private static readonly TimeSpan BoStaffPokeTime = TimeSpan.FromSeconds(8);
+    private static readonly TimeSpan BoStaffPokeTime2 = TimeSpan.FromSeconds(60);
+
+    private const float BoStaffPokeChance = 0.1f;
+
     private void InitializeItems()
     {
         InitializeKazaJudo();
@@ -237,9 +242,9 @@ public sealed partial class MartialArtsSystem
 
         _popup.PopupEntity(Loc.GetString("martial-manual-explodes", ("manual", ent.Owner)), user, user, PopupType.LargeCaution);
         Sound(user, "/Audio/Effects/explosion1.ogg", -6f);
-        Blind(user, TimeSpan.FromSeconds(1));
-        Brute(user, 6, null);
-        Brute(user, 6, null, "Heat");
+        Blind(user, ent.Comp.ManualRecoilTime);
+        Brute(user, ent.Comp.ManualRecoilAmount, null);
+        Brute(user, ent.Comp.ManualRecoilAmount, null, "Heat");
         QueueDel(ent);
     }
 
@@ -274,11 +279,11 @@ public sealed partial class MartialArtsSystem
             return;
 
         var user = args.User;
-        if (HasComp<Content.Shared.Clumsy.ClumsyComponent>(user) && _random.Prob(0.5f))
+        if (HasComp<Content.Shared.Clumsy.ClumsyComponent>(user) && _random.Prob(ent.Comp.BoStaffHitChance))
         {
             args.Handled = true;
             _popup.PopupEntity(Loc.GetString("martial-bostaff-clumsy"), user, user, PopupType.MediumCaution);
-            Paralyze(user, TimeSpan.FromSeconds(6));
+            Paralyze(user, ent.Comp.BoStaffHitTime);
             Brute(user, args.BaseDamage.GetTotal().Float() * 2, null);
             return;
         }
@@ -317,16 +322,16 @@ public sealed partial class MartialArtsSystem
         Sound(user, "/Audio/Imperial/MartialArts/woodhit.ogg");
         Stamina(target, _random.Next(13, 21), user);
 
-        if (_random.Prob(0.1f))
+        if (_random.Prob(BoStaffPokeChance))
         {
             PopupPair(target, target, "martial-bostaff-fall-others", "martial-bostaff-fall-self");
-            Paralyze(target, TimeSpan.FromSeconds(8));
+            Paralyze(target, BoStaffPokeTime);
         }
 
         if (StaminaLoss(target) > 0 && !HasComp<Content.Shared.Bed.Sleep.SleepingComponent>(target) && IsStaminaCrit(target))
         {
             PopupPair(user, target, "martial-bostaff-knockout-others", "martial-bostaff-knockout-self", "martial-bostaff-knockout-target", PopupType.LargeCaution);
-            Sleep(target, TimeSpan.FromSeconds(60));
+            Sleep(target, BoStaffPokeTime2);
         }
     }
 

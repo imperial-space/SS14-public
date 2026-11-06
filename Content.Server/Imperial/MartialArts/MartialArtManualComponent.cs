@@ -44,4 +44,10 @@ public sealed partial class MartialArtManualComponent : Component
     /// <summary>Во что превращается свиток после прочтения (blankscroll).</summary>
     [DataField]
     public EntProtoId? SpentProto;
+
+    [DataField]
+    public TimeSpan ManualRecoilTime = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public float ManualRecoilAmount = 6f;
 }
