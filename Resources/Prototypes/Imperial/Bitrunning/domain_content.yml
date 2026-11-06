@@ -1,0 +1,462 @@
+# Содержимое доменов (virtual_domain/domains/*.dm, spawners.dm, outfits.dm, modular_mob_segment.dm).
+
+# ─── Снаряжение аватаров (forced_outfit) ───
+
+# /datum/outfit/beachbum_combat: случайное оружие выдаётся вторым слотом руки (упрощено до пистолета).
+- type: startingGear
+  id: BitrunningBeachbumCombatGear
+  equipment:
+    jumpsuit: ImperialClothingUniformPantsJeans
+    shoes: ClothingShoesMartialSandals
+    back: ClothingBackpack
+  inhand:
+  - WeaponPistolMk58
+
+# /datum/outfit/echolocator
+- type: startingGear
+  id: BitrunningEcholocatorGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    gloves: ClothingHandsGlovesFingerless
+    shoes: ClothingShoesBootsJack
+    outerClothing: ClothingOuterCoatJensen
+    back: ClothingBackpack
+
+# /datum/outfit/bitductor
+- type: startingGear
+  id: BitrunningAbductorGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    gloves: ClothingHandsGlovesFingerless
+    shoes: ClothingShoesBootsJack
+    back: ClothingBackpack
+
+# /datum/outfit/job/virtual_domain_iceclimber
+- type: startingGear
+  id: BitrunningIceClimberGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesBootsWinter
+    back: ClothingBackpackDuffel
+
+# /datum/outfit/virtual_domain_heretic (фокус и маска безумия — амулет Луны еретика)
+- type: startingGear
+  id: BitrunningHereticGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    shoes: ClothingShoesBootsJack
+    back: ClothingBackpack
+
+# ─── Ложный экипаж еретической охоты (/mob/living/basic/fake_crewman) ───
+- type: entity
+  abstract: true
+  parent: MobHuman
+  id: BitrunningFakeCrewBase
+  components:
+  - type: RandomHumanoidAppearance
+  - type: InputMover
+  - type: MobMover
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: NPCRetaliation
+    attackMemoryLength: 30
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: BitrunningSacrifice
+    points: 1
+
+- type: startingGear
+  id: BitrunningFakeAssistantGear
+  parent: PassengerGear
+  inhand:
+  - ToolboxMechanicalFilled
+
+- type: entity
+  parent: BitrunningFakeCrewBase
+  id: BitrunningFakeCrewAssistant
+  name: член экипажа
+  description: Как делишки, космонавтик?
+  components:
+  - type: Loadout
+    prototypes: [ BitrunningFakeAssistantGear ]
+    roleLoadout: [ JobPassenger ]
+
+- type: startingGear
+  id: BitrunningFakeDoctorGear
+  parent: DoctorGear
+  inhand:
+  - Saw
+
+- type: entity
+  parent: BitrunningFakeCrewBase
+  id: BitrunningFakeCrewMd
+  name: врач
+  components:
+  - type: Loadout
+    prototypes: [ BitrunningFakeDoctorGear ]
+    roleLoadout: [ JobMedicalDoctor ]
+
+- type: startingGear
+  id: BitrunningFakeSecGear
+  parent: SecurityOfficerGear
+  inhand:
+  - CombatKnife
+
+# fake_crewman/sec: сразу враждебен.
+- type: entity
+  parent: BitrunningFakeCrewBase
+  id: BitrunningFakeCrewSec
+  name: офицер службы безопасности
+  components:
+  - type: Loadout
+    prototypes: [ BitrunningFakeSecGear ]
+    roleLoadout: [ JobSecurityOfficer ]
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: BitrunningSacrifice
+    points: 2
+
+- type: startingGear
+  id: BitrunningFakeEngiGear
+  parent: StationEngineerGear
+  inhand:
+  - Welder
+
+- type: entity
+  parent: BitrunningFakeCrewBase
+  id: BitrunningFakeCrewEngi
+  name: инженер
+  components:
+  - type: Loadout
+    prototypes: [ BitrunningFakeEngiGear ]
+    roleLoadout: [ JobStationEngineer ]
+
+- type: startingGear
+  id: BitrunningFakeCeGear
+  parent: ChiefEngineerGear
+  inhand:
+  - WelderIndustrial
+
+- type: entity
+  parent: BitrunningFakeCrewBase
+  id: BitrunningFakeCrewCe
+  name: старший инженер
+  components:
+  - type: Loadout
+    prototypes: [ BitrunningFakeCeGear ]
+    roleLoadout: [ JobChiefEngineer ]
+  - type: BitrunningSacrifice
+    points: 3
+
+- type: startingGear
+  id: BitrunningFakeHosGear
+  parent: HoSGear
+  inhand:
+  - Stunbaton
+
+- type: entity
+  parent: BitrunningFakeCrewBase
+  id: BitrunningFakeCrewHos
+  name: глава службы безопасности
+  components:
+  - type: Loadout
+    prototypes: [ BitrunningFakeHosGear ]
+    roleLoadout: [ JobHeadOfSecurity ]
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: BitrunningSacrifice
+    points: 3
+
+- type: startingGear
+  id: BitrunningFakeCmoGear
+  parent: CMOGear
+  inhand:
+  - SawAdvanced
+
+- type: entity
+  parent: BitrunningFakeCrewBase
+  id: BitrunningFakeCrewCmo
+  name: главный врач
+  components:
+  - type: Loadout
+    prototypes: [ BitrunningFakeCmoGear ]
+    roleLoadout: [ JobChiefMedicalOfficer ]
+  - type: BitrunningSacrifice
+    points: 3
+
+# /obj/effect/heretic_rune/big
+- type: entity
+  id: BitrunningHereticRune
+  name: руна трансмутации
+  description: Сюда приносят тела. Ритуал требует жертв.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Imperial/heretic/effects_96.rsi
+    state: transmutation_rune
+    drawdepth: FloorTiles
+  - type: Clickable
+  - type: BitrunningSacrificeRune
+
+# ─── Гост-роли актёров доменов (spawners.dm) ───
+- type: entity
+  abstract: true
+  parent: MarkerBase
+  id: BitrunningGhostRoleBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Imperial/Bitrunning/effects.rsi
+      state: glitch
+
+# Пляжный бомж (дружелюбный), обычный человек-скелет.
+- type: entity
+  parent: MobSkeletonPerson
+  id: BitrunningBeachBum
+  name: виртуальный пляжный бомж
+  suffix: Битраннинг
+  components:
+  - type: Loadout
+    prototypes: [ BitrunningBeachBumGear ]
+
+- type: startingGear
+  id: BitrunningBeachBumGear
+  equipment:
+    jumpsuit: ImperialClothingUniformPantsJeans
+    eyes: ClothingEyesGlassesSunglasses
+    shoes: ClothingShoesMartialSandals
+    pocket1: FoodPizzaMargheritaSlice
+
+- type: entity
+  parent: BitrunningGhostRoleBase
+  id: BitrunningGhostRoleBeach
+  name: спящий виртуальный пляжный бомж
+  components:
+  - type: GhostRole
+    name: bitrunning-ghost-beach-name
+    description: bitrunning-ghost-beach-desc
+    rules: bitrunning-ghost-actor-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: BitrunningBeachBum
+
+- type: entity
+  parent: MobSkeletonPerson
+  id: BitrunningLifeguard
+  name: виртуальный спасатель
+  suffix: Битраннинг
+  components:
+  - type: Loadout
+    prototypes: [ BitrunningLifeguardGear ]
+
+- type: startingGear
+  id: BitrunningLifeguardGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHawaiRed
+    eyes: ClothingEyesGlassesSunglasses
+    shoes: ClothingShoesFlippers
+
+- type: entity
+  parent: BitrunningGhostRoleBase
+  id: BitrunningGhostRoleLifeguard
+  name: спящий виртуальный спасатель
+  components:
+  - type: GhostRole
+    name: bitrunning-ghost-lifeguard-name
+    description: bitrunning-ghost-lifeguard-desc
+    rules: bitrunning-ghost-actor-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: BitrunningLifeguard
+
+- type: entity
+  parent: MobSkeletonPerson
+  id: BitrunningBartender
+  name: виртуальный бармен
+  suffix: Битраннинг
+  components:
+  - type: Loadout
+    prototypes: [ BartenderGear ]
+    roleLoadout: [ JobBartender ]
+
+- type: entity
+  parent: BitrunningGhostRoleBase
+  id: BitrunningGhostRoleBartender
+  name: спящий виртуальный бармен
+  components:
+  - type: GhostRole
+    name: bitrunning-ghost-bartender-name
+    description: bitrunning-ghost-bartender-desc
+    rules: bitrunning-ghost-actor-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: BitrunningBartender
+
+# Островитянин: и гост-роль, и точка появления аватаров (custom_spawns).
+- type: entity
+  parent: MobHuman
+  id: BitrunningIslander
+  name: островитянин
+  suffix: Битраннинг
+  components:
+  - type: RandomHumanoidAppearance
+  - type: Loadout
+    prototypes: [ BitrunningBeachbumCombatGear ]
+
+- type: entity
+  parent: BitrunningGhostRoleBase
+  id: BitrunningGhostRoleIslander
+  name: островитянин
+  components:
+  - type: GhostRole
+    name: bitrunning-ghost-islander-name
+    description: bitrunning-ghost-islander-desc
+    rules: bitrunning-ghost-actor-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: BitrunningIslander
+
+# Скелет-пират.
+- type: entity
+  parent: MobSkeletonPerson
+  id: BitrunningVirtualPirate
+  name: виртуальный пират
+  suffix: Битраннинг
+  components:
+  - type: Loadout
+    prototypes: [ PirateGear ]
+
+- type: entity
+  parent: BitrunningGhostRoleBase
+  id: BitrunningGhostRolePirate
+  name: останки виртуального пирата
+  components:
+  - type: GhostRole
+    name: bitrunning-ghost-pirate-name
+    description: bitrunning-ghost-pirate-desc
+    rules: bitrunning-ghost-actor-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: BitrunningVirtualPirate
+
+- type: entity
+  parent: MobHuman
+  id: BitrunningVirtualSyndie
+  name: виртуальный оперативник Синдиката
+  suffix: Битраннинг
+  components:
+  - type: RandomHumanoidAppearance
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes: [ SyndicateFootsoldierGearRuin ]
+
+- type: entity
+  parent: BitrunningGhostRoleBase
+  id: BitrunningGhostRoleSyndie
+  name: спящий виртуальный оперативник
+  components:
+  - type: GhostRole
+    name: bitrunning-ghost-syndie-name
+    description: bitrunning-ghost-syndie-desc
+    rules: bitrunning-ghost-actor-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: BitrunningVirtualSyndie
+
+# ─── Модульные группы мобов ───
+- type: entity
+  parent: MobHuman
+  id: BitrunningRevolutionary
+  name: революционер
+  description: Требует прав от Нанотрейзен. Невыгодно.
+  suffix: Битраннинг
+  components:
+  - type: RandomHumanoidAppearance
+  - type: InputMover
+  - type: MobMover
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: Loadout
+    prototypes: [ BitrunningFakeAssistantGear ]
+    roleLoadout: [ JobPassenger ]
+
+- type: entity
+  parent: MobHuman
+  id: BitrunningAbductorAgent
+  name: агент абдукторов
+  suffix: Битраннинг
+  components:
+  - type: RandomHumanoidAppearance
+  - type: InputMover
+  - type: MobMover
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound
+  - type: Loadout
+    prototypes: [ BitrunningAbductorAgentGear ]
+
+- type: startingGear
+  id: BitrunningAbductorAgentGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    shoes: ClothingShoesBootsJack
+    outerClothing: ClothingOuterArmorBasic
+  inhand:
+  - Stunbaton
+
+- type: bitrunningMobSegment
+  id: BitrunningSegmentSyndicateTeam
+  mobs: [ MobSyndicateFootsoldier, MobSyndicateFootsoldierPilot ]
+  probability: 0.85
+
+- type: bitrunningMobSegment
+  id: BitrunningSegmentAbductorAgents
+  mobs: [ BitrunningAbductorAgent ]
+  probability: 0.85
+
+- type: bitrunningMobSegment
+  id: BitrunningSegmentRevolutionary
+  mobs: [ BitrunningRevolutionary ]
+  probability: 0.85
+
+- type: bitrunningMobSegment
+  id: BitrunningSegmentHivebots
+  mobs: [ MobHivebot, MobHivebotRanged ]
+  probability: 0.85
+
+- type: bitrunningMobSegment
+  id: BitrunningSegmentHivebotsStrong
+  mobs: [ MobHivebotStrong, MobHivebotRanged ]
+  probability: 0.85
+
+# /datum/modular_mob_segment/deer — оленя в SS14 нет, вместо него козёл.
+- type: bitrunningMobSegment
+  id: BitrunningSegmentDeer
+  mobs: [ MobGoat ]
+  max: 1
+  probability: 0.85

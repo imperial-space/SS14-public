@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (scanner.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "fish_analyzer",
+      "delays": [
+        [
+          1,
+          0.02
+        ]
+      ]
+    },
+    {
+      "name": "fish_analyzer_case"
+    },
+    {
+      "name": "fish_analyzer_emissive",
+      "delays": [
+        [
+          1,
+          0.02
+        ]
+      ]
+    }
+  ]
+}

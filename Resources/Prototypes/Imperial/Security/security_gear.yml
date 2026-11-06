@@ -1,0 +1,264 @@
+# Импланты СБ, щит со вспышкой, пакеты для улик (tgstation/BandaStation) и голобейдж (ParadiseSS13).
+
+# ─── Импланты (implants/security) ───
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ExileImplant
+  name: имплант изгнания
+  description: Не даёт вернуться на станцию с другой карты и пользоваться шаттлом Лаваленда.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ExileImplant
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: TeleportBlockerImplant
+  name: имплант блюспейс-заземления
+  description: Заземляет блюспейс-сигнатуру носителя — любая попытка телепортации отбрасывает его назад.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TeleportBlockerImplant
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: BeaconImplant
+  name: имплант-маяк
+  description: Превращает носителя в блюспейс-маяк, к которому можно телепортироваться. Гаснет через 10 минут после смерти.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BeaconImplant
+
+- type: entity
+  parent: BaseImplantOnlyImplanter
+  id: ExileImplanter
+  name: имплантер (изгнание)
+  components:
+  - type: Implanter
+    implant: ExileImplant
+
+- type: entity
+  parent: BaseImplantOnlyImplanter
+  id: TeleportBlockerImplanter
+  name: имплантер (блюспейс-заземление)
+  components:
+  - type: Implanter
+    implant: TeleportBlockerImplant
+
+- type: entity
+  parent: BaseImplantOnlyImplanter
+  id: BeaconImplanter
+  name: имплантер (маяк)
+  components:
+  - type: Implanter
+    implant: BeaconImplant
+
+- type: entity
+  parent: CrateSecgear
+  id: CrateSecurityPrisonerImplants
+  name: ящик имплантов для заключённых
+  description: По два импланта изгнания, блюспейс-заземления и маяка. Требуется доступ СБ.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ExileImplanter
+          amount: 2
+        - id: TeleportBlockerImplanter
+          amount: 2
+        - id: BeaconImplanter
+          amount: 2
+
+- type: cargoProduct
+  id: SecurityPrisonerImplants
+  icon:
+    sprite: Objects/Specific/Medical/implanter.rsi
+    state: implanter0
+  product: CrateSecurityPrisonerImplants
+  cost: 1500
+  category: cargoproduct-category-name-security
+  group: ImperialCargo
+# ─── Щит со вспышкой (shield/riot/flash) ───
+
+- type: entity
+  parent: RiotShield
+  id: StrobeShield
+  name: стробоскопический щит
+  description: Щит со встроенной мощной лампой, способной ослепить и дезориентировать подозреваемых. В качестве лампочки подходит обычная вспышка.
+  components:
+  - type: StrobeShield
+  - type: Sprite
+    sprite: Imperial/Security/strobe_shield.rsi
+    layers:
+    - state: icon
+      map: [ "base" ]
+  - type: Item
+    sprite: Imperial/Security/strobe_shield.rsi
+    heldPrefix: riot
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.StrobeShieldVisuals.Flashing:
+        base:
+          True: { state: flash }
+          False: { state: icon }
+  - type: ContainerContainer
+    containers:
+      strobe-flash: !type:ContainerSlot
+
+- type: constructionGraph
+  id: ImperialStrobeShield
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: shield
+      steps:
+      - component: Blocking
+        name: construction-graph-component-riot-shield
+        icon:
+          sprite: Objects/Weapons/Melee/shields.rsi
+          state: riot-icon
+      - component: Flash
+        name: construction-graph-component-flash
+        icon:
+          sprite: Objects/Weapons/Melee/flash.rsi
+          state: flash
+        doAfter: 2
+  - node: shield
+    entity: StrobeShield
+
+- type: construction
+  id: ImperialStrobeShield
+  graph: ImperialStrobeShield
+  startNode: start
+  targetNode: shield
+  category: construction-category-weapons
+  objectType: Item
+
+# ─── Пакеты для улик (evidencebag) ───
+
+- type: entity
+  parent: BaseItem
+  id: EvidenceBag
+  name: пакет для улик
+  description: Пустой пакет для улик.
+  components:
+  - type: EvidenceBag
+  - type: Sprite
+    sprite: Imperial/Security/evidence_bag.rsi
+    layers:
+    - state: icon
+      map: [ "bag" ]
+    - state: icon
+      visible: false
+      scale: 0.8,0.8
+      map: [ "item" ]
+    - state: glass
+      visible: false
+      map: [ "glass" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.EvidenceBagVisuals.Filled:
+        glass:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Item
+    size: Tiny
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,1,1
+    storageInsertSound:
+      path: /Audio/Imperial/Security/EvidenceBag/evidence_bag_zip.ogg
+    storageRemoveSound:
+      path: /Audio/Imperial/Security/EvidenceBag/evidence_bag_unzip.ogg
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/Imperial/Security/EvidenceBag/evidence_bag_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Imperial/Security/EvidenceBag/evidence_bag_drop.ogg
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxEvidenceBags
+  name: коробка пакетов для улик
+  description: Коробка, полная пакетов для улик.
+  components:
+  # Пакет сам вмещает предметы до среднего размера, поэтому лимит коробки выше, а пускает она только пакеты.
+  - type: Storage
+    maxItemSize: Large
+    grid:
+    - 0,0,5,1
+    whitelist:
+      components:
+      - EvidenceBag
+  - type: Sprite
+    layers:
+    - state: box_security
+    - state: forensic
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EvidenceBag
+          amount: 6
+
+# ─── Голобейдж (clothing/accessory/holobadge, Paradise) ───
+
+- type: entity
+  parent: BaseItem
+  id: ClothingBeltHolobadge
+  name: голобейдж
+  description: Этот светящийся синий значок отмечает носителя как ЗАКОН. Проведите ID с доступом СБ, чтобы отпечатать на нём своё имя.
+  components:
+  - type: Holobadge
+  - type: Sprite
+    sprite: Imperial/Security/holobadge.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: Clothing
+    sprite: Imperial/Security/holobadge.rsi
+    quickEquip: false
+    slots:
+    - belt
+
+- type: entity
+  parent: ClothingBeltHolobadge
+  id: ClothingNeckHolobadgeCord
+  name: голобейдж на шнурке
+  components:
+  - type: Sprite
+    sprite: Imperial/Security/holobadge_cord.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Security/holobadge_cord.rsi
+    quickEquip: false
+    slots:
+    - neck
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxHolobadge
+  name: коробка голобейджей
+  description: Коробка, в которой якобы лежат голобейджи.
+  components:
+  - type: Sprite
+    layers:
+    - state: box_security
+    - state: holo
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingBeltHolobadge
+          amount: 4
+        - id: ClothingNeckHolobadgeCord
+          amount: 2

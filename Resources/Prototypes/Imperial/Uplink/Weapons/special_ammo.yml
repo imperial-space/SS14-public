@@ -1,0 +1,690 @@
+# Особые боеприпасы ядерщиков TG (ammo_nuclear) поверх калибров сборки:
+# C-20r → .35 auto, L6 → .30 rifle, M-90gl → .20 rifle, AMSR → .60 anti-materiel.
+
+# ─── C-20r: бронебойные и экспансивные ───
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletPistolAP
+  name: бронебойная пуля (.35 auto)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: piercing
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 16
+  - type: UplinkProjectile
+    armorPenetration: 0.5
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletPistolHP
+  name: экспансивная пуля (.35 auto)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 27
+  - type: UplinkProjectile
+    weakAgainstArmor: true
+
+- type: entity
+  parent: BaseCartridgePistol
+  id: ImperialCartridgePistolAP
+  name: бронебойный патрон (.35 auto)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBulletPistolAP
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#d9d9d9"
+
+- type: entity
+  parent: BaseCartridgePistol
+  id: ImperialCartridgePistolHP
+  name: экспансивный патрон (.35 auto)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBulletPistolHP
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#ff9900"
+
+- type: entity
+  parent: MagazinePistolSubMachineGun
+  id: ImperialMagazineSmgAP
+  name: магазин ПП (.35 auto, бронебойные)
+  description: Дополнительный магазин для C-20r. Бронебойные патроны слабее против небронированных целей, но пробивают защитное снаряжение.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridgePistolAP
+
+- type: entity
+  parent: MagazinePistolSubMachineGun
+  id: ImperialMagazineSmgHP
+  name: магазин ПП (.35 auto, экспансивные)
+  description: Дополнительный магазин для C-20r. Экспансивные патроны наносят больше урона, но бесполезны против брони.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridgePistolHP
+
+# ─── Дробовик «Бульдог»: флешетты, Donk Spike, метеоритные пули ───
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialPelletFlechette
+  name: флешетта
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/projectiles.rsi
+    layers:
+    - state: flechette
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 4
+  - type: UplinkProjectile
+    armorPenetration: 0.3
+
+- type: entity
+  parent: ImperialPelletFlechette
+  id: ImperialPelletFlechetteSpread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: ImperialPelletFlechette
+    count: 8
+    spread: 10
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialPelletDonkSpike
+  name: флешетта Donk Spike
+  description: Ваше внутреннее потрошение! При поддержке корпорации Donk!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/projectiles.rsi
+    layers:
+    - state: flechette_plastic
+  - type: Projectile
+    damage:
+      types:
+        Slash: 2
+  - type: EmbeddableProjectile
+    removalTime: 2
+
+- type: entity
+  parent: ImperialPelletDonkSpike
+  id: ImperialPelletDonkSpikeSpread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: ImperialPelletDonkSpike
+    count: 5
+    spread: 15
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialPelletMeteor
+  name: метеоритная пуля
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/projectiles.rsi
+    layers:
+    - state: meteorslug
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 40
+        Structural: 40
+  - type: UplinkProjectile
+    stun: 1
+    knockdown: 8
+  - type: TimedDespawn
+    lifetime: 0.4
+
+- type: entity
+  parent: [ BaseShellShotgun, BaseSyndicateContraband ]
+  id: ImperialShellShotgunFlechette
+  name: патрон с флешеттами (.50)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialPelletFlechetteSpread
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/ammo.rsi
+    layers:
+    - state: flechette-live
+      map: [ "enum.AmmoVisualLayers.Base" ]
+
+- type: entity
+  parent: [ BaseShellShotgun, BaseSyndicateContraband ]
+  id: ImperialShellShotgunDonkSpike
+  name: патрон Donk Spike (.50)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialPelletDonkSpikeSpread
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/ammo.rsi
+    layers:
+    - state: flechette_donk-live
+      map: [ "enum.AmmoVisualLayers.Base" ]
+
+- type: entity
+  parent: [ BaseShellShotgun, BaseSyndicateContraband ]
+  id: ImperialShellShotgunMeteor
+  name: метеоритный патрон (.50)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialPelletMeteor
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/ammo.rsi
+    layers:
+    - state: mshell-live
+      map: [ "enum.AmmoVisualLayers.Base" ]
+
+- type: entity
+  parent: MagazineShotgun
+  id: ImperialMagazineShotgunFlechette
+  name: барабан флешетт («Бульдог»)
+  description: Альтернативный барабан флешетт для дробовика «Бульдог». Мешает броня? Почему бы не флешетты? Превратите мясо и кевлар в лохмотья!
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialShellShotgunFlechette
+
+- type: entity
+  parent: MagazineShotgun
+  id: ImperialMagazineShotgunDonkSpike
+  name: барабан Donk Spike («Бульдог»)
+  description: "Барабан флешетт Donk Co. «Donk Spike» для дробовика «Бульдог». ВНИМАНИЕ: НЕ НЮХАЙТЕ МАГАЗИНЫ!"
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialShellShotgunDonkSpike
+
+- type: entity
+  parent: MagazineShotgun
+  id: ImperialMagazineShotgunMeteor
+  name: барабан метеоритных пуль («Бульдог»)
+  description: Альтернативный барабан метеоритных пуль для дробовика «Бульдог». Отлично пробивает дыры в обшивке и сбивает врагов с ног.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialShellShotgunMeteor
+
+- type: entity
+  parent: [ BoxCardboard, BaseSyndicateContraband ]
+  id: ImperialUplinkDonkSpikeBox
+  name: коробка барабанов Donk Spike
+  description: Целая коробка барабанов Donk Spike по цене одной покупки!
+  components:
+  - type: Storage
+    grid:
+    - 0,0,5,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: ImperialMagazineShotgunDonkSpike
+        amount: 4
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+
+# ─── L6 SAW: 7 мм → .30 rifle ───
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletLightRifleAP
+  name: бронебойная пуля (.30 rifle)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: piercing
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 16
+  - type: UplinkProjectile
+    armorPenetration: 0.75
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletLightRifleHP
+  name: экспансивная пуля (.30 rifle)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Slash: 32
+  - type: UplinkProjectile
+    weakAgainstArmor: true
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletLightRifleMatch
+  name: матчевая пуля (.30 rifle)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 19
+  - type: UplinkProjectile
+    armorPenetration: 0.05
+
+- type: entity
+  parent: CartridgeLightRifle
+  id: ImperialCartridgeLightRifleAP
+  name: бронебойный патрон (.30 rifle)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBulletLightRifleAP
+
+- type: entity
+  parent: CartridgeLightRifle
+  id: ImperialCartridgeLightRifleHP
+  name: экспансивный патрон (.30 rifle)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBulletLightRifleHP
+
+- type: entity
+  parent: CartridgeLightRifle
+  id: ImperialCartridgeLightRifleMatch
+  name: матчевый патрон (.30 rifle)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBulletLightRifleMatch
+
+- type: entity
+  parent: MagazineLightRifleBox
+  id: ImperialMagazineLightRifleBoxAP
+  name: короб L6 SAW (бронебойные)
+  description: Короб для L6 SAW со специальными патронами, пробивающими даже самую прочную броню.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridgeLightRifleAP
+
+- type: entity
+  parent: MagazineLightRifleBox
+  id: ImperialMagazineLightRifleBoxHP
+  name: короб L6 SAW (экспансивные)
+  description: Короб для L6 SAW с экспансивными пулями — против небронированной массы экипажа.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridgeLightRifleHP
+
+- type: entity
+  parent: MagazineLightRifleBox
+  id: ImperialMagazineLightRifleBoxIncendiary
+  name: короб L6 SAW (зажигательные)
+  description: Короб для L6 SAW с горючей смесью, поджигающей всех, в кого попадёт пуля. Некоторые просто хотят смотреть, как горит мир.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifleIncendiary
+
+- type: entity
+  parent: MagazineLightRifleBox
+  id: ImperialMagazineLightRifleBoxMatch
+  name: короб L6 SAW (матчевые)
+  description: Короб для L6 SAW с тонко настроенными матчевыми патронами.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridgeLightRifleMatch
+
+# ─── M-90gl: фазовые .223 → .20 rifle ───
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletRiflePhasic
+  name: фазовая пуля (.20 rifle)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/projectiles.rsi
+    layers:
+    - state: gaussphase
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 15
+    ignoreResistances: true
+  - type: UplinkProjectile
+    phasing: true
+
+- type: entity
+  parent: CartridgeRifle
+  id: ImperialCartridgeRiflePhasic
+  name: фазовый патрон (.20 rifle)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBulletRiflePhasic
+
+- type: entity
+  parent: MagazineRifle
+  id: ImperialMagazineRiflePhasic
+  name: магазин (.20 rifle, фазовые)
+  description: Магазин для карабина M-90gl. Пули из «призрачного свинца» проходят почти сквозь любой неорганический материал.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridgeRiflePhasic
+
+# ─── Антиматериальная винтовка: спецпатроны .50 BMG → .60 ───
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletAntiMaterielSurplus
+  name: излишковая пуля (.60 anti-materiel)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 70
+        Structural: 80
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletAntiMaterielPenetrator
+  name: пуля-пенетратор (.60 anti-materiel)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/projectiles.rsi
+    layers:
+    - state: gauss
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 60
+    penetrationThreshold: 1000
+  - type: UplinkProjectile
+    armorPenetration: 0.5
+    phasing: true
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletAntiMaterielIncendiary
+  name: зажигательная пуля (.60 anti-materiel)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 70
+        Structural: 30
+  - type: UplinkProjectile
+    armorPenetration: 0.5
+    fireStacks: 20
+    hotspotRadius: 2
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletAntiMaterielDisruptor
+  name: дизрапторная пуля (.60 anti-materiel)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 0
+  - type: StaminaDamageOnCollide
+    damage: 70
+  - type: UplinkProjectile
+    sleep: 40
+    empRange: 2
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletAntiMaterielMarksman
+  name: снайперская пуля (.60 anti-materiel)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 50
+        Structural: 80
+  - type: UplinkProjectile
+    armorPenetration: 0.5
+
+- type: entity
+  parent: CartridgeAntiMateriel
+  id: ImperialCartridgeAntiMaterielSurplus
+  name: излишковый патрон (.60 anti-materiel)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBulletAntiMaterielSurplus
+
+- type: entity
+  parent: CartridgeAntiMateriel
+  id: ImperialCartridgeAntiMaterielPenetrator
+  name: патрон-пенетратор (.60 anti-materiel)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBulletAntiMaterielPenetrator
+
+- type: entity
+  parent: CartridgeAntiMateriel
+  id: ImperialCartridgeAntiMaterielIncendiary
+  name: зажигательный патрон (.60 anti-materiel)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBulletAntiMaterielIncendiary
+
+- type: entity
+  parent: CartridgeAntiMateriel
+  id: ImperialCartridgeAntiMaterielDisruptor
+  name: дизрапторный патрон (.60 anti-materiel)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBulletAntiMaterielDisruptor
+
+- type: entity
+  parent: CartridgeAntiMateriel
+  id: ImperialCartridgeAntiMaterielMarksman
+  name: снайперский патрон (.60 anti-materiel)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBulletAntiMaterielMarksman
+
+- type: entity
+  abstract: true
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialBaseAntiMaterielBox
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+      - CartridgeAntiMateriel
+    capacity: 6
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+
+- type: entity
+  parent: ImperialBaseAntiMaterielBox
+  id: ImperialAntiMaterielBoxSurplus
+  name: излишковые патроны (.60 anti-materiel)
+  description: Шесть излишковых патронов. Хуже качественных — без бронепробития и оглушения, — но держат винтовку в работе.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridgeAntiMaterielSurplus
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/ammo.rsi
+    state: surplus
+
+- type: entity
+  parent: ImperialBaseAntiMaterielBox
+  id: ImperialAntiMaterielBoxPenetrator
+  name: патроны-пенетраторы (.60 anti-materiel)
+  description: Шесть патронов-пенетраторов. Пробивают стены и нескольких врагов.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridgeAntiMaterielPenetrator
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/ammo.rsi
+    state: penetrator
+
+- type: entity
+  parent: ImperialBaseAntiMaterielBox
+  id: ImperialAntiMaterielBoxIncendiary
+  name: зажигательные патроны (.60 anti-materiel)
+  description: Шесть зажигательных патронов. Поджигают врагов — и всех рядом с ними!
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridgeAntiMaterielIncendiary
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/ammo.rsi
+    state: incendiary
+
+- type: entity
+  parent: ImperialBaseAntiMaterielBox
+  id: ImperialAntiMaterielBoxDisruptor
+  name: дизрапторные патроны (.60 anti-materiel)
+  description: Шесть дизрапторных патронов. Усыпите врагов и их будильник уже сегодня!
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridgeAntiMaterielDisruptor
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/ammo.rsi
+    state: disruptor
+
+- type: entity
+  parent: ImperialBaseAntiMaterielBox
+  id: ImperialAntiMaterielBoxMarksman
+  name: снайперские патроны (.60 anti-materiel)
+  description: Шесть снайперских патронов. Только берегитесь рикошета...
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridgeAntiMaterielMarksman
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/ammo.rsi
+    state: marksman
+
+- type: entity
+  parent: [ BoxCardboard, BaseSyndicateContraband ]
+  id: ImperialUplinkAntiMaterielSurplusBox
+  name: коробка излишковых патронов .60
+  description: Коробка, полная излишковых патронов. Пригодится, чтобы вооружить отряд.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,6,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: ImperialAntiMaterielBoxSurplus
+        amount: 7
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+
+# ─── Ракета HEAP и 40-мм зажигательные ───
+
+- type: entity
+  parent: BulletRocket
+  id: ImperialBulletRocketHEAP
+  name: ракета HEAP
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/projectiles.rsi
+    layers:
+    - state: 84mm-heap
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 80
+    ignoreResistances: true
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 60
+    intensitySlope: 6
+    totalIntensity: 350
+    maxTileBreak: 2
+
+- type: entity
+  parent: CartridgeRocket
+  id: ImperialCartridgeRocketHEAP
+  name: ракета HEAP 84 мм
+  description: Мощная ракета HEAP — чрезвычайно эффективна против буквально всего. Вселите страх в сердца врагов.
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBulletRocketHEAP
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/ammo.rsi
+    state: 84mm-heap
+
+- type: entity
+  parent: BulletGrenadeBlast
+  id: ImperialBulletGrenadeIncendiary
+  name: зажигательная граната 40 мм
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 10
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 40
+    intensitySlope: 5
+    maxIntensity: 6
+    canCreateVacuum: false
+  - type: UplinkProjectile
+    fireStacks: 20
+    hotspotRadius: 4
+
+- type: entity
+  parent: GrenadeBlast
+  id: ImperialGrenadeIncendiary40mm
+  name: зажигательная граната 40 мм
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBulletGrenadeIncendiary
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/ammo.rsi
+    layers:
+    - state: 40mm-shell-live
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: SpentAmmoVisuals
+    state: 40mm-shell-live
+    suffix: false
+
+- type: entity
+  parent: [ BoxCardboard, BaseSyndicateContraband ]
+  id: ImperialUplinkBox40mmIncendiary
+  name: коробка зажигательных выстрелов 40 мм
+  description: Зажигательный заряд разрывается при контакте и окутывает всё вокруг ревущим пламенем.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: ImperialGrenadeIncendiary40mm
+        amount: 4
+  - type: Sprite
+    layers:
+    - state: box_of_doom

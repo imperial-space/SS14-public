@@ -1,0 +1,9 @@
+- files: ["megaphone.ogg", "stall.ogg", "pepper_spray_drop.ogg", "pepper_spray_pick_up.ogg", "batonextend.ogg", "telescopic_baton_folded_drop.ogg", "telescopic_baton_folded_pickup.ogg", "telescopic_baton_unfolded_drop.ogg", "telescopic_baton_unfolded_pickup.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation"
+  source: "https://github.com/ss220club/BandaStation"
+
+- files: ["gamma_deploy.ogg", "gamma_recall.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from ParadiseSS13"
+  source: "https://github.com/ParadiseSS13/Paradise"

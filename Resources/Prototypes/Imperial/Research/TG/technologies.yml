@@ -1,0 +1,2002 @@
+# Узлы techweb TG/BandaStation. Сгенерировано scratchpad/gen_research.pl — не править вручную.
+# Цена = очки TG × 75; ярус — по уровню цены TG (40..200 → 1..5). Стартовые узлы открываются сами.
+
+- type: technology
+  id: ImperialTgAtmos
+  name: imperial-tg-tech-atmos
+  icon:
+    entity: AtmosMonitoringComputerCircuitboard
+  discipline: ImperialTgEngineering
+  tier: 1
+  cost: 0
+  recipeUnlocks:
+  - ImperialTgRecipeAtmosControl
+  - ImperialTgRecipeAtmosalerts
+  - ThermomachineFreezerMachineCircuitBoard
+  - ImperialTgRecipeThermomachine
+  - SpaceHeaterMachineCircuitBoard
+  - PortableScrubberMachineCircuitBoard
+  - ImperialTgRecipeGenericTank
+  - ImperialTgRecipeOxygenTank
+  - ImperialTgRecipePlasmaTank
+  - FireExtinguisher
+  - ImperialTgRecipePocketfireextinguisher
+  - GasAnalyzer
+  - SprayPainter
+  - GasRecyclerMachineCircuitboard
+  - PPGCenterMachineCircuitboard
+  - PPGCirculatorMachineCircuitboard
+
+- type: technology
+  id: ImperialTgGasCompression
+  name: imperial-tg-tech-gas-compression
+  icon:
+    entity: ImperialPortablePumpMachineCircuitboard
+  discipline: ImperialTgEngineering
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipePump
+  - ImperialTgRecipeEmergencyOxygen
+  - ImperialTgRecipeEmergencyOxygenEngi
+  - ImperialTgRecipeAtmosThermal
+  - ImperialTgRecipePneumaticSeal
+  - ImperialTgRecipeLargeWeldingTool
+  - HellfireFreezerMachineCircuitBoard
+  technologyPrerequisites:
+  - ImperialTgAtmos
+
+- type: technology
+  id: ImperialTgPlasmaControl
+  name: imperial-tg-tech-plasma-control
+  icon:
+    entity: ElectrolysisUnitMachineCircuitboard
+  discipline: ImperialTgEngineering
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - ElectrolysisUnitMachineCircuitboard
+  - PortableGeneratorPacmanMachineCircuitboard
+  - EmptyWeaponPlasmaCutter
+  - ImperialTgRecipeDiodeDiskIncendiary
+  technologyPrerequisites:
+  - ImperialTgGasCompression
+  - ImperialTgEnergyManipulation
+
+- type: technology
+  id: ImperialTgFusion
+  name: imperial-tg-tech-fusion
+  icon:
+    entity: ImperialHypertorusBoxCore
+  discipline: ImperialTgEngineering
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - ImperialTgRecipeHFRCore
+  - ImperialTgRecipeHFRCorner
+  - ImperialTgRecipeHFRFuelInput
+  - ImperialTgRecipeHFRInterface
+  - ImperialTgRecipeHFRModeratorInput
+  - ImperialTgRecipeHFRWasteOutput
+  - ImperialTgRecipeAdvFireExtinguisher
+  - ImperialTgRecipeBolterWrench
+  - ImperialTgRecipeEngineGoggles
+  - ImperialTgRecipeCrystallizer
+  technologyPrerequisites:
+  - ImperialTgPlasmaControl
+
+- type: technology
+  id: ImperialTgExpTools
+  name: imperial-tg-tech-exp-tools
+  icon:
+    entity: FlatpackerMachineCircuitboard
+  discipline: ImperialTgEngineering
+  tier: 4
+  cost: 12000
+  recipeUnlocks:
+  - FlatpackerMachineCircuitboard
+  - PowerDrill
+  - WelderExperimental
+  - JawsOfLife
+  - ImperialTgRecipeRangedanalyzer
+  - ImperialTgRecipeRtdLoaded
+  - RCD
+  - RCDAmmo
+  - ClothingMaskWeldingGas
+  - ImperialTgRecipeMagboots
+  - Fulton
+  - FultonBeacon
+  technologyPrerequisites:
+  - ImperialTgFusion
+
+- type: technology
+  id: ImperialTgLightApps
+  name: imperial-tg-tech-light-apps
+  icon:
+    entity: ClothingHeadHatHardhatRed
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipeBrightHelmet
+  - ImperialTgRecipeRldMini
+  - ImperialTgRecipePhotonCannon
+  technologyPrerequisites:
+  - ImperialTgUnlockLightApps
+
+- type: technology
+  id: ImperialTgUnlockLightApps
+  name: imperial-tg-unlock-light-apps
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: experimental
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 0
+  hidden: true
+
+- type: technology
+  id: ImperialTgExtremeOffice
+  name: imperial-tg-tech-extreme-office
+  icon:
+    entity: ImperialMaunaMug
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipeMaunaMug
+  - ImperialTgRecipeRollingTable
+  - ImperialTgRecipePlasticducky
+  technologyPrerequisites:
+  - ImperialTgUnlockExtremeOffice
+
+- type: technology
+  id: ImperialTgUnlockExtremeOffice
+  name: imperial-tg-unlock-extreme-office
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: experimental
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 0
+  hidden: true
+
+- type: technology
+  id: ImperialTgSpecEng
+  name: imperial-tg-tech-spec-eng
+  icon:
+    entity: ImperialTinkerGloves
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipeEngGloves
+  - ImperialTgRecipeLavaRods
+  technologyPrerequisites:
+  - ImperialTgUnlockSpecEng
+
+- type: technology
+  id: ImperialTgUnlockSpecEng
+  name: imperial-tg-unlock-spec-eng
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: experimental
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 0
+  hidden: true
+
+- type: technology
+  id: ImperialTgAusSecurity
+  name: imperial-tg-tech-aus-security
+  icon:
+    entity: ImperialExplorerPin
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipePinExplorer
+  - ImperialTgRecipeStunBoomerang
+  technologyPrerequisites:
+  - ImperialTgUnlockAusSecurity
+
+- type: technology
+  id: ImperialTgUnlockAusSecurity
+  name: imperial-tg-unlock-aus-security
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: experimental
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 0
+  hidden: true
+
+- type: technology
+  id: ImperialTgInterrogation
+  name: imperial-tg-tech-interrogation
+  icon:
+    entity: ImperialHypnochairBoard
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipeHypnochair
+  technologyPrerequisites:
+  - ImperialTgUnlockInterrogation
+
+- type: technology
+  id: ImperialTgUnlockInterrogation
+  name: imperial-tg-unlock-interrogation
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: experimental
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 0
+  hidden: true
+
+- type: technology
+  id: ImperialTgStickyAdvanced
+  name: imperial-tg-tech-sticky-advanced
+  icon:
+    entity: ImperialSuperPointyTape
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipePointyTape
+  - ImperialTgRecipeSuperStickyTape
+  technologyPrerequisites:
+  - ImperialTgUnlockStickyAdvanced
+
+- type: technology
+  id: ImperialTgUnlockStickyAdvanced
+  name: imperial-tg-unlock-sticky-advanced
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: experimental
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 0
+  hidden: true
+
+- type: technology
+  id: ImperialTgTackleAdvanced
+  name: imperial-tg-tech-tackle-advanced
+  icon:
+    entity: ImperialTacklerDolphin
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipeTackleDolphin
+  - ImperialTgRecipeTackleRocket
+  technologyPrerequisites:
+  - ImperialTgUnlockTackleAdvanced
+
+- type: technology
+  id: ImperialTgUnlockTackleAdvanced
+  name: imperial-tg-unlock-tackle-advanced
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: experimental
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 0
+  hidden: true
+
+- type: technology
+  id: ImperialTgModExperimental
+  name: imperial-tg-tech-mod-experimental
+  icon:
+    entity: ImperialModModuleJointTorsion
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipeModJointTorsion
+  - ImperialTgRecipeModRecycler
+  - ImperialTgRecipeModShooting
+  technologyPrerequisites:
+  - ImperialTgUnlockModExperimental
+
+- type: technology
+  id: ImperialTgUnlockModExperimental
+  name: imperial-tg-unlock-mod-experimental
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: experimental
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 0
+  hidden: true
+
+- type: technology
+  id: ImperialTgPositronicSphere
+  name: imperial-tg-tech-positronic-sphere
+  icon:
+    entity: ImperialPositronicSphere
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipePosisphere
+  technologyPrerequisites:
+  - ImperialTgUnlockPositronicSphere
+
+- type: technology
+  id: ImperialTgUnlockPositronicSphere
+  name: imperial-tg-unlock-positronic-sphere
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: experimental
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 0
+  hidden: true
+
+- type: technology
+  id: ImperialTgDonkProducts
+  name: imperial-tg-tech-donk-products
+  icon:
+    entity: ImperialShellShotgunDonkSpike
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipeDonkshell
+  technologyPrerequisites:
+  - ImperialTgUnlockDonkProducts
+
+- type: technology
+  id: ImperialTgUnlockDonkProducts
+  name: imperial-tg-unlock-donk-products
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: experimental
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 0
+  hidden: true
+
+- type: technology
+  id: ImperialTgBioScan
+  name: imperial-tg-tech-bio-scan
+  icon:
+    entity: HandheldHealthAnalyzer
+  discipline: ImperialTgMedical
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - HandheldHealthAnalyzer
+  - ImperialTgRecipeAutopsyscanner
+  - ImperialSequenceScanner
+  - ChemMasterMachineCircuitboard
+  - ImperialTgRecipePhMeter
+  - ImperialTgRecipeScigoggles
+  - ImperialTgRecipeModReagentScanner
+  technologyPrerequisites:
+  - ImperialTgMedbayEquip
+
+- type: technology
+  id: ImperialTgCytology
+  name: imperial-tg-tech-cytology
+  icon:
+    entity: ImperialPandemicMachineCircuitboard
+  discipline: ImperialTgMedical
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - ImperialTgRecipePandemic
+  - VatGrowerMachineCircuitboard
+  - BioGenDiseaseSwab
+  technologyPrerequisites:
+  - ImperialTgBioScan
+
+- type: technology
+  id: ImperialTgXenobiology
+  name: imperial-tg-tech-xenobiology
+  icon:
+    entity: XenobioConsoleComputerCircuitboard
+  discipline: ImperialTgMedical
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - XenobioConsoleComputerCircuitboard
+  - ImperialTgRecipeSlimeScanner
+  - GeneSplicerRecipe
+  - MeatwheatBushelRecipe
+  - MeatSlimeCubeRecipe
+  - CarpCubeSafeRecipe
+  - SpaceBearCubeSafeRecipe
+  technologyPrerequisites:
+  - ImperialTgCytology
+
+- type: technology
+  id: ImperialTgGeneEngineering
+  name: imperial-tg-tech-gene-engineering
+  icon:
+    entity: ImperialDnaScannerMachineCircuitboard
+  discipline: ImperialTgMedical
+  tier: 4
+  cost: 12000
+  recipeUnlocks:
+  - ImperialDnaScannerMachineCircuitboard
+  - ImperialDnaConsoleComputerCircuitboard
+  - ImperialGeneticDataDisk
+  - ImperialDnaInfuserMachineCircuitboard
+  - ImperialTgRecipeModDnaLock
+  - CarpSharkCubeRecipe
+  - SafeXenoDroneCubeRecipe
+  - SafeXenoSpitCubeRecipe
+  - RNDSentryRecipe
+  - RNDSentryComputerRecipe
+  - GeneCombinerRecipe
+  technologyPrerequisites:
+  - ImperialTgSelection
+  - ImperialTgXenobiology
+
+- type: technology
+  id: ImperialTgBotanyEquip
+  name: imperial-tg-tech-botany-equip
+  icon:
+    entity: SeedExtractorMachineCircuitboard
+  discipline: ImperialTgMedical
+  tier: 1
+  cost: 0
+  recipeUnlocks:
+  - SeedExtractorMachineCircuitboard
+  - ImperialTgRecipePlantAnalyzer
+  - ImperialTgRecipeWateringCan
+  - HydroponicsToolSpade
+  - HydroponicsToolMiniHoe
+  - HydroponicsToolClippers
+  - HydroponicsToolHatchet
+
+- type: technology
+  id: ImperialTgHydroponics
+  name: imperial-tg-tech-hydroponics
+  icon:
+    entity: BiogeneratorMachineCircuitboard
+  discipline: ImperialTgMedical
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - BiogeneratorMachineCircuitboard
+  - HydroponicsTrayMachineCircuitboard
+  - ImperialTgRecipePortaseeder
+  - ReagentGrinderIndustrialMachineCircuitboard
+  technologyPrerequisites:
+  - ImperialTgBotanyEquip
+  - ImperialTgChemSynthesis
+
+- type: technology
+  id: ImperialTgSelection
+  name: imperial-tg-tech-selection
+  icon:
+    entity: ImperialFloraGun
+  discipline: ImperialTgMedical
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - ImperialTgRecipeFloraGun
+  - ImperialTgRecipeGeneShears
+  technologyPrerequisites:
+  - ImperialTgHydroponics
+  - ImperialTgUnlockExpSelection
+
+- type: technology
+  id: ImperialTgUnlockExpSelection
+  name: imperial-tg-unlock-selection
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: experimental
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 0
+  hidden: true
+
+- type: technology
+  id: ImperialTgAugmentation
+  name: imperial-tg-tech-augmentation
+  icon:
+    entity: TorsoBorg
+  discipline: ImperialTgRobotics
+  tier: 1
+  cost: 0
+  recipeUnlocks:
+  - TorsoBorg
+  - LightHeadBorg
+  - LeftArmBorg
+  - LeftLegBorg
+  - RightArmBorg
+  - RightLegBorg
+  - CyborgEndoskeleton
+  technologyPrerequisites:
+  - ImperialTgRobotics
+
+- type: technology
+  id: ImperialTgCybernetics
+  name: imperial-tg-tech-cybernetics
+  icon:
+    entity: RoboticsConsoleCircuitboard
+  discipline: ImperialTgRobotics
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipeRobocontrol
+  - ImperialTgRecipeBorgupload
+  - BorgChargerCircuitboard
+  - PositronicBrain
+  - MMI
+  technologyPrerequisites:
+  - ImperialTgAugmentation
+
+- type: technology
+  id: ImperialTgBorgServices
+  name: imperial-tg-tech-borg-services
+  icon:
+    entity: BorgModuleService
+  discipline: ImperialTgRobotics
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - ImperialTgRecipeBorgUpgradeServiceApparatus
+  - ImperialTgRecipeBorgUpgradeBotany
+  - PushHorn
+  - BorgModuleAdvancedClowning
+  technologyPrerequisites:
+  - ImperialTgCybernetics
+
+- type: technology
+  id: ImperialTgBorgMining
+  name: imperial-tg-tech-borg-mining
+  icon:
+    entity: BorgModuleAdvancedMining
+  discipline: ImperialTgRobotics
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - BorgModuleAdvancedMining
+  technologyPrerequisites:
+  - ImperialTgCybernetics
+
+- type: technology
+  id: ImperialTgBorgMedical
+  name: imperial-tg-tech-borg-medical
+  icon:
+    entity: BorgModuleChemical
+  discipline: ImperialTgRobotics
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - ImperialTgRecipeBorgUpgradeBeakerapp
+  - ImperialTgRecipeBorgUpgradeDefibrillator
+  - ImperialTgRecipeBorgUpgradeExpandedsynthesiser
+  - BorgModuleSurgeryTools
+  - BorgModuleAdvancedTopical
+  - AdvancedJetInjector
+  technologyPrerequisites:
+  - ImperialTgBorgServices
+  - ImperialTgMedbayEquip
+
+- type: technology
+  id: ImperialTgBorgUtility
+  name: imperial-tg-tech-borg-utility
+  icon:
+    entity: BorgModuleAdvancedCleaning
+  discipline: ImperialTgRobotics
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - BorgModuleAdvancedCleaning
+  - ImperialTgRecipeBorgUpgradeBroomer
+  - ImperialTgRecipeBorgUpgradePlunger
+  - ImperialTgRecipeBorgUpgradeThrusters
+  technologyPrerequisites:
+  - ImperialTgBorgServices
+  - ImperialTgSanitation
+
+- type: technology
+  id: ImperialTgBorgEngi
+  name: imperial-tg-tech-borg-engi
+  icon:
+    entity: BorgModuleAdvancedTool
+  discipline: ImperialTgRobotics
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - BorgModuleAdvancedTool
+  - BorgModuleCable
+  technologyPrerequisites:
+  - ImperialTgBorgMining
+  - ImperialTgPartsUpg
+
+- type: technology
+  id: ImperialTgPassiveImplants
+  name: imperial-tg-tech-passive-implants
+  icon:
+    entity: SadTromboneImplanter
+  discipline: ImperialTgRobotics
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipeImplantTrombone
+  - ImperialTgRecipeImplantChem
+  - ImperialTgRecipeImplantTracking
+  - ImperialTgRecipeImplantExile
+  - ImperialTgRecipeImplantBeacon
+  - ImperialTgRecipeImplantBluespace
+  - Implanter
+  technologyPrerequisites:
+  - ImperialTgAugmentation
+
+- type: technology
+  id: ImperialTgCyberImplants
+  name: imperial-tg-tech-cyber-implants
+  icon:
+    entity: ImperialNutrimentPumpImplanter
+  discipline: ImperialTgRobotics
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - ImperialTgRecipeCiNutriment
+  technologyPrerequisites:
+  - ImperialTgPassiveImplants
+  - ImperialTgCybernetics
+
+- type: technology
+  id: ImperialTgParts
+  name: imperial-tg-tech-parts
+  icon:
+    entity: ImperialStockPartServo1
+  discipline: ImperialTgEngineering
+  tier: 1
+  cost: 0
+  recipeUnlocks:
+  - ImperialTgRecipeMicroServo
+  - ImperialTgRecipeBasicCapacitor
+  - PowerCellSmall
+  - ImperialTgRecipeBasicMatterBin
+  - ImperialTgRecipeBasicMicroLaser
+  - ImperialTgRecipeBasicScanning
+  - PowerCellHigh
+  - CondenserMachineCircuitBoard
+  - Igniter
+  - ImperialTgRecipeInfraredEmitter
+  - ProximitySensor
+  - ImperialTgRecipeSignaler
+  - TimerTrigger
+  - VoiceTrigger
+  - ImperialTgRecipeHealthSensor
+  - Flash
+
+- type: technology
+  id: ImperialTgPartsUpg
+  name: imperial-tg-tech-parts-upg
+  icon:
+    entity: ImperialRPED
+  discipline: ImperialTgEngineering
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - ImperialTgRecipeRped
+  - ImperialTgRecipeHighMicroLaser
+  - ImperialTgRecipeAdvCapacitor
+  - ImperialTgRecipeNanoServo
+  - ImperialTgRecipeAdvMatterBin
+  - ImperialTgRecipeAdvScanning
+  - PowerCellMedium
+  - TurboItemRechargerCircuitboard
+  - SMESAdvancedMachineCircuitboard
+  technologyPrerequisites:
+  - ImperialTgParts
+  - ImperialTgEnergyManipulation
+
+- type: technology
+  id: ImperialTgPartsAdv
+  name: imperial-tg-tech-parts-adv
+  icon:
+    entity: ImperialStockPartMicroLaser3
+  discipline: ImperialTgEngineering
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - ImperialTgRecipeUltraMicroLaser
+  - ImperialTgRecipeSuperCapacitor
+  - ImperialTgRecipePicoServo
+  - ImperialTgRecipeSuperMatterBin
+  - ImperialTgRecipePhasicScanning
+  - PowerCellHyper
+  - AutolatheHyperConvectionMachineCircuitboard
+  - ProtolatheHyperConvectionMachineCircuitboard
+  - CircuitImprinterHyperConvectionMachineCircuitboard
+  technologyPrerequisites:
+  - ImperialTgPartsUpg
+
+- type: technology
+  id: ImperialTgPartsBluespace
+  name: imperial-tg-tech-parts-bluespace
+  icon:
+    entity: ImperialBluespaceRPED
+  discipline: ImperialTgEngineering
+  tier: 4
+  cost: 12000
+  recipeUnlocks:
+  - ImperialTgRecipeBsRped
+  - ImperialTgRecipeQuadultraMicroLaser
+  - ImperialTgRecipeQuadraticCapacitor
+  - ImperialTgRecipeFemtoServo
+  - ImperialTgRecipeBluespaceMatterBin
+  - ImperialTgRecipeTriphasicScanning
+  - PowerCellMicroreactor
+  technologyPrerequisites:
+  - ImperialTgPartsAdv
+  - ImperialTgBluespaceTravel
+
+- type: technology
+  id: ImperialTgTelecoms
+  name: imperial-tg-tech-telecoms
+  icon:
+    entity: TelecomServerCircuitboard
+  discipline: ImperialTgEngineering
+  tier: 5
+  cost: 15000
+  recipeUnlocks:
+  - TelecomServerCircuitboard
+  technologyPrerequisites:
+  - ImperialTgPartsBluespace
+
+- type: technology
+  id: ImperialTgConstruction
+  name: imperial-tg-tech-construction
+  icon:
+    entity: CircuitImprinterMachineCircuitboard
+  discipline: ImperialTgEngineering
+  tier: 1
+  cost: 0
+  recipeUnlocks:
+  - CircuitImprinterMachineCircuitboard
+  - SolarControlComputerCircuitboard
+  - ImperialTgRecipeSolarPanel
+  - SolarTrackerElectronics
+  - APCElectronics
+  - AirAlarmElectronics
+  - DoorElectronics
+  - FireAlarmElectronics
+  - FirelockElectronics
+  - ImperialTgRecipeBlast
+  - ImperialTgRecipeIgnition
+  - SprayPainter
+  - ImperialTgRecipeDecalPainter
+  - ImperialTgRecipeRwd
+  - CableStack
+  - ClothingHeadHatWelding
+  - Welder
+  - ImperialTgRecipeMiniWeldingTool
+  - TRayScanner
+  - Multitool
+  - Wrench
+  - ImperialTgRecipeCrowbar
+  - Screwdriver
+  - Wirecutter
+  - LightBulb
+  - LightTube
+  - ImperialTgRecipeManuunloader
+  - ImperialTgRecipeManusmelter
+  - ImperialTgRecipeManucrusher
+  - ImperialTgRecipeManucrafter
+  - ImperialTgRecipeManulathe
+  - ImperialTgRecipeManusorter
+  - ImperialTgRecipeManurouter
+
+- type: technology
+  id: ImperialTgEnergyManipulation
+  name: imperial-tg-tech-energy-manipulation
+  icon:
+    entity: PowerComputerCircuitboard
+  discipline: ImperialTgEngineering
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipeApcControl
+  - ImperialTgRecipePowermonitor
+  - SMESMachineCircuitboard
+  - EmitterCircuitboard
+  - ImperialTgRecipeGroundingRod
+  - ImperialTgRecipeTeslaCoil
+  - CellRechargerCircuitboard
+  - WeaponCapacitorRechargerCircuitboard
+  - ImperialTgRecipeInducer
+  - ImperialTgRecipeInducerengi
+  - ImperialTgRecipeWeldingGoggles
+  - ImperialTgRecipeTrayGoggles
+  - ImperialTgRecipeGeigercounter
+  - ImperialTgRecipeDiodeDiskStamina
+  - ClothingShoesBootsMagSci
+  - ClothingShoesBootsMoon
+  - PortableGeneratorSuperPacmanMachineCircuitboard
+  - PortableGeneratorJrPacmanMachineCircuitboard
+  technologyPrerequisites:
+  - ImperialTgConstruction
+
+- type: technology
+  id: ImperialTgShuttleEng
+  name: imperial-tg-tech-shuttle-eng
+  icon:
+    entity: ShuttleConsoleCircuitboard
+  discipline: ImperialTgEngineering
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ShuttleConsoleCircuitboard
+  - PowerCageRechargerCircuitboard
+  - PowerCageSmall
+  - PowerCageMedium
+  - MagazineGrenadeEmpty
+  - GrenadeFlash
+  - GrenadeBlast
+  - ShuttleGunSvalinnMachineGunCircuitboard
+  - ShuttleGunPerforatorCircuitboard
+  - ShuttleGunFriendshipCircuitboard
+  - ThrusterMachineCircuitboard
+  - GyroscopeMachineCircuitboard
+  - MiniGravityGeneratorCircuitboard
+  - RadarConsoleCircuitboard
+  - HandHeldMassScanner
+  technologyPrerequisites:
+  - ImperialTgEnergyManipulation
+  - ImperialTgAppliedBluespace
+
+- type: technology
+  id: ImperialTgHolographics
+  name: imperial-tg-tech-holographics
+  icon:
+    entity: ImperialAtmosShieldGeneratorBoard
+  discipline: ImperialTgEngineering
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - ImperialTgRecipeAtmosshieldgen
+  - HoloprojectorField
+  - Holoprojector
+  - HoloprojectorSecurity
+  - HolofanProjector
+  - ImperialTgRecipeHolosignrestaurant
+  - ImperialTgRecipeHolosignbar
+  - ImperialTgRecipeHolobarrierJani
+  - ImperialTgRecipeHolobarrierMed
+  - HolopadMachineCircuitboard
+  - ImperialTgRecipeModularShieldGate
+  - ImperialTgRecipeModularShieldGenerator
+  - ImperialTgRecipeModularShieldNode
+  - ImperialTgRecipeModularShieldCable
+  - ImperialTgRecipeModularShieldRelay
+  - ImperialTgRecipeModularShieldCharger
+  - ImperialTgRecipeModularShieldWell
+  - ImperialTgRecipeModularShieldConsole
+  - ImperialTgRecipeDiodeDiskMagnetic
+  technologyPrerequisites:
+  - ImperialTgEnergyManipulation
+
+- type: technology
+  id: ImperialTgHud
+  name: imperial-tg-tech-hud
+  icon:
+    entity: ClothingEyesHudMedical
+  discipline: ImperialTgEngineering
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - ImperialTgRecipeHealthHud
+  - ImperialTgRecipeDiagnosticHud
+  - ClothingEyesHudSecurity
+  - ImperialTgRecipeModVisorMedhud
+  - ImperialTgRecipeModVisorDiaghud
+  - ImperialTgRecipeModVisorSechud
+  technologyPrerequisites:
+  - ImperialTgHolographics
+  - ImperialTgCyberImplants
+
+- type: technology
+  id: ImperialTgNightVision
+  name: imperial-tg-tech-night-vision
+  icon:
+    entity: ImperialHudDiagnosticNight
+  discipline: ImperialTgEngineering
+  tier: 4
+  cost: 12000
+  recipeUnlocks:
+  - ImperialTgRecipeDiagnosticHudNight
+  - ImperialTgRecipeHealthHudNight
+  - ImperialTgRecipeNightVisisionGoggles
+  - ImperialTgRecipeNvgmesons
+  - ImperialTgRecipeNvScigoggles
+  - ImperialTgRecipeSecurityHudNight
+  technologyPrerequisites:
+  - ImperialTgHud
+
+- type: technology
+  id: ImperialTgMechAssembly
+  name: imperial-tg-tech-mech-assembly
+  icon:
+    entity: RipleyHarness
+  discipline: ImperialTgRobotics
+  tier: 1
+  cost: 0
+  recipeUnlocks:
+  - RipleyHarness
+  - RipleyLArm
+  - RipleyRArm
+  - RipleyLLeg
+  - RipleyRLeg
+  - RipleyCentralElectronics
+  - RipleyPeripheralsElectronics
+  - MechEquipmentGrabber
+  technologyPrerequisites:
+  - ImperialTgRobotics
+
+- type: technology
+  id: ImperialTgMechEquipment
+  name: imperial-tg-tech-mech-equipment
+  icon:
+    entity: HamtrHarness
+  discipline: ImperialTgRobotics
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - HamtrHarness
+  - HamtrLArm
+  - HamtrRArm
+  - HamtrLLeg
+  - HamtrRLeg
+  - HamtrCentralElectronics
+  - HamtrPeripheralsElectronics
+  - MechEquipmentGrabberSmall
+  - VimHarness
+  technologyPrerequisites:
+  - ImperialTgMechAssembly
+
+- type: technology
+  id: ImperialTgMechClown
+  name: imperial-tg-tech-mech-clown
+  icon:
+    entity: HonkerHarness
+  discipline: ImperialTgRobotics
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - HonkerHarness
+  - HonkerLArm
+  - HonkerRArm
+  - HonkerLLeg
+  - HonkerRLeg
+  - HonkerCentralElectronics
+  - HonkerPeripheralsElectronics
+  - HonkerTargetingElectronics
+  - MechEquipmentHorn
+  - ImperialTgRecipeBorgTransformClown
+  technologyPrerequisites:
+  - ImperialTgMechAssembly
+
+- type: technology
+  id: ImperialTgMedbayEquip
+  name: imperial-tg-tech-medbay-equip
+  icon:
+    entity: Beaker
+  discipline: ImperialTgMedical
+  tier: 1
+  cost: 0
+  recipeUnlocks:
+  - Beaker
+  - ImperialTgRecipeBloodFilter
+  - ImperialTgRecipeBloodPack
+  - ImperialTgRecipeBloodScanner
+  - ImperialTgRecipeBonesetter
+  - Cautery
+  - ImperialTgRecipeChemPack
+  - ImperialTgRecipeCircularSaw
+  - ImperialTgRecipeDefibmountdefault
+  - Dropper
+  - Hemostat
+  - Jug
+  - LargeBeaker
+  - ImperialTgRecipeMedicalbed
+  - ImperialTgRecipeOperating
+  - ImperialTgRecipeOrganJar
+  - ImperialTgRecipePenlight
+  - ImperialTgRecipePenlightParamedic
+  - PillCanister
+  - ImperialTgRecipeReflexHammer
+  - Retractor
+  - Scalpel
+  - ImperialTgRecipeStethoscope
+  - ImperialTgRecipeSurgicalTape
+  - Drill
+  - Syringe
+  - ImperialTgRecipeVitalsMonitor
+
+- type: technology
+  id: ImperialTgChemSynthesis
+  name: imperial-tg-tech-chem-synthesis
+  icon:
+    entity: SprayBottle
+  discipline: ImperialTgMedical
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - SprayBottle
+  - ImperialTgRecipeInhaler
+  - ImperialTgRecipeInhalerCanister
+  - ImperialTgRecipeMedigel
+  - ImperialTgRecipeMedipenRefiller
+  - SodaDispenserMachineCircuitboard
+  - BoozeDispenserMachineCircuitboard
+  - ChemDispenserMachineCircuitboard
+  - ImperialTgRecipePortableChemMixer
+  - ImperialTgRecipeChemHeater
+  - ImperialTgRecipeMetaBeaker
+  - Plunger
+  technologyPrerequisites:
+  - ImperialTgMedbayEquip
+
+- type: technology
+  id: ImperialTgMedbayEquipAdv
+  name: imperial-tg-tech-medbay-equip-adv
+  icon:
+    entity: ImperialChemMassSpecBoard
+  discipline: ImperialTgMedical
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - ImperialTgRecipeChemMassSpec
+  - ImperialTgRecipeCrewpinpointer
+  - ImperialTgRecipeDefibmount
+  - ImperialTgRecipeDiodeDiskSanity
+  - ImperialTgRecipeHealthanalyzerAdvanced
+  - ImperialTgRecipeMedicalbedEmergency
+  - ImperialTgRecipeModHealthAnalyzer
+  - ImperialTgRecipePiercesyringe
+  - ImperialTgRecipeSmokeMachine
+  - ImperialTgRecipeVitalsMonitorAdvanced
+  - CompactDefibrillator
+  - LauncherSyringe
+  - MiniSyringe
+  technologyPrerequisites:
+  - ImperialTgChemSynthesis
+  - ImperialTgUnlockExpMedbayEquipAdv
+
+- type: technology
+  id: ImperialTgUnlockExpMedbayEquipAdv
+  name: imperial-tg-unlock-medbay-equip-adv
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: experimental
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 0
+  hidden: true
+
+- type: technology
+  id: ImperialTgCryostasis
+  name: imperial-tg-tech-cryostasis
+  icon:
+    entity: ImperialCryoGrenadeCasing
+  discipline: ImperialTgMedical
+  tier: 4
+  cost: 12000
+  recipeUnlocks:
+  - ImperialTgRecipeCryoGrenade
+  - CryoPodMachineCircuitboard
+  - CryostasisBeaker
+  - StasisBedMachineCircuitboard
+  - ImperialTgRecipeStasisBodybag
+  - SyringeCryostasis
+  technologyPrerequisites:
+  - ImperialTgMedbayEquipAdv
+  - ImperialTgFusion
+
+- type: technology
+  id: ImperialTgMaterialProc
+  name: imperial-tg-tech-material-proc
+  icon:
+    entity: Pickaxe
+  discipline: ImperialTgSupply
+  tier: 1
+  cost: 0
+  recipeUnlocks:
+  - Pickaxe
+  - Shovel
+  - ConveyorBeltAssembly
+  - ImperialTgRecipeRecycler
+  - AutolatheMachineCircuitboard
+  - SheetRGlass30
+  - SheetPGlass30
+  - SheetRPGlass30
+  - SheetPlasteel30
+
+- type: technology
+  id: ImperialTgMining
+  name: imperial-tg-tech-mining
+  icon:
+    entity: OreProcessorMachineCircuitboard
+  discipline: ImperialTgSupply
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipeCargoexpress
+  - OreProcessorMachineCircuitboard
+  - MineralScannerEmpty
+  - ImperialTgRecipeSuperresonator
+  - ImperialTgRecipeModDrill
+  - MiningDrill
+  - ImperialTgRecipeModOrebag
+  - HandheldGPSBasic
+  - ImperialTgRecipeModGps
+  - ImperialTgRecipeModVisorMeson
+  - ImperialTgRecipeMesons
+  - OreProcessorIndustrialMachineCircuitboard
+  - ClothingShoesBootsJump
+  - WeaponProtoKineticAccelerator
+  - ShuttleGunKineticCircuitboard
+  technologyPrerequisites:
+  - ImperialTgMaterialProc
+
+- type: technology
+  id: ImperialTgLowPressureExcavation
+  name: imperial-tg-tech-low-pressure-excavation
+  icon:
+    entity: PKAUpgradeDamage
+  discipline: ImperialTgSupply
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - PKAUpgradeDamage
+  - PKAUpgradeRange
+  - PKAUpgradeFireRate
+  - ImperialTgRecipeHypermod
+  technologyPrerequisites:
+  - ImperialTgMining
+  - ImperialTgGasCompression
+
+- type: technology
+  id: ImperialTgPlasmaMining
+  name: imperial-tg-tech-plasma-mining
+  icon:
+    entity: Advanced-EmptyWeaponPlasmaCutter
+  discipline: ImperialTgSupply
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - Advanced-EmptyWeaponPlasmaCutter
+  technologyPrerequisites:
+  - ImperialTgLowPressureExcavation
+  - ImperialTgPlasmaControl
+
+- type: technology
+  id: ImperialTgMiningAdv
+  name: imperial-tg-tech-mining-adv
+  icon:
+    entity: ImperialSonicJackhammer
+  discipline: ImperialTgSupply
+  tier: 4
+  cost: 12000
+  recipeUnlocks:
+  - ImperialTgRecipeJackhammer
+  - MiningDrillDiamond
+  - AdvancedMineralScannerEmpty
+  technologyPrerequisites:
+  - ImperialTgPlasmaMining
+
+- type: technology
+  id: ImperialTgModSuit
+  name: imperial-tg-tech-mod-suit
+  icon:
+    entity: ChestplateModsuitConstructing
+  discipline: ImperialTgRobotics
+  tier: 1
+  cost: 0
+  recipeUnlocks:
+  - ChestplateModsuitConstructing
+  - HelmetModsuitConstructing
+  - GauntletsModsuitConstructing
+  - BootsModsuitConstructing
+  - PlatingEngineeringModsuitConstructing
+  - PlatingCivillianModsuitConstructing
+  - ImperialTgRecipeModPaintKit
+  - ImperialTgRecipeModStorage
+  - ImperialTgRecipeModFlashlight
+  technologyPrerequisites:
+  - ImperialTgRobotics
+
+- type: technology
+  id: ImperialTgModEquip
+  name: imperial-tg-tech-mod-equip
+  icon:
+    entity: ImperialModModuleTether
+  discipline: ImperialTgRobotics
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipeModTether
+  - ImperialTgRecipeModWelding
+  - ImperialTgRecipeModThermalRegulator
+  - ImperialTgRecipeModStorageExpanded
+  technologyPrerequisites:
+  - ImperialTgModSuit
+
+- type: technology
+  id: ImperialTgModService
+  name: imperial-tg-tech-mod-service
+  icon:
+    entity: ImperialModModuleClamp
+  discipline: ImperialTgRobotics
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipeModClamp
+  - ImperialTgRecipeModMouthhole
+  - ImperialTgRecipeModMisterJanitor
+  technologyPrerequisites:
+  - ImperialTgModSuit
+
+- type: technology
+  id: ImperialTgModEntertainment
+  name: imperial-tg-tech-mod-entertainment
+  icon:
+    entity: ImperialModModuleBikeHorn
+  discipline: ImperialTgRobotics
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipeModBikehorn
+  - ImperialTgRecipeModMicrowaveBeam
+  - ImperialTgRecipeModWaddle
+  technologyPrerequisites:
+  - ImperialTgModSuit
+
+- type: technology
+  id: ImperialTgModMedical
+  name: imperial-tg-tech-mod-medical
+  icon:
+    entity: PlatingMedicalModsuitConstructing
+  discipline: ImperialTgRobotics
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - PlatingMedicalModsuitConstructing
+  - ImperialTgRecipeModInjector
+  - ImperialTgRecipeModPatienttransport
+  technologyPrerequisites:
+  - ImperialTgModSuit
+  - ImperialTgChemSynthesis
+
+- type: technology
+  id: ImperialTgModEngi
+  name: imperial-tg-tech-mod-engi
+  icon:
+    entity: PlatingEngineeringModsuitConstructing
+  discipline: ImperialTgRobotics
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - PlatingEngineeringModsuitConstructing
+  - ImperialTgRecipeModTRay
+  - ImperialTgRecipeModMagboot
+  - ImperialTgRecipeModMisterAtmos
+  - PlatingCMOModsuitConstructing
+  technologyPrerequisites:
+  - ImperialTgModEquip
+
+- type: technology
+  id: ImperialTgModSecurity
+  name: imperial-tg-tech-mod-security
+  icon:
+    entity: ImperialModModuleMirageGrenade
+  discipline: ImperialTgRobotics
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - ImperialTgRecipeModMirageGrenade
+  - ImperialTgRecipeModStealth
+  - ImperialTgRecipeModMagHarness
+  - ImperialTgRecipeModPathfinder
+  - ImperialTgRecipeModHolster
+  - ImperialTgRecipeModSonar
+  - ImperialTgRecipeModProjectileDampener
+  - ImperialTgRecipeModCriminalcapture
+  - PlatingSecurityModsuitConstructing
+  - PlatingAsteroidModsuitConstructing
+  - PlatingRNDModsuitConstructing
+  technologyPrerequisites:
+  - ImperialTgModEquip
+
+- type: technology
+  id: ImperialTgModMedicalAdv
+  name: imperial-tg-tech-mod-medical-adv
+  icon:
+    entity: ImperialModModuleDefibrillator
+  discipline: ImperialTgRobotics
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - ImperialTgRecipeModDefib
+  - ImperialTgRecipeModStatusreadout
+  technologyPrerequisites:
+  - ImperialTgModMedical
+  - ImperialTgMedbayEquip
+
+- type: technology
+  id: ImperialTgModEngiAdv
+  name: imperial-tg-tech-mod-engi-adv
+  icon:
+    entity: PlatingAtmosphericModsuitConstructing
+  discipline: ImperialTgRobotics
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - PlatingAtmosphericModsuitConstructing
+  - ImperialTgRecipeModJetpack
+  - ImperialTgRecipeModRadProtection
+  - ImperialTgRecipeModEmpShield
+  - PlatingCEModsuitConstructing
+  - PlatingMagnateModsuitConstructing
+  - PlatingHOSModsuitConstructing
+  technologyPrerequisites:
+  - ImperialTgModEngi
+
+- type: technology
+  id: ImperialTgModAnomaly
+  name: imperial-tg-tech-mod-anomaly
+  icon:
+    entity: ImperialModModuleAntigrav
+  discipline: ImperialTgRobotics
+  tier: 4
+  cost: 12000
+  recipeUnlocks:
+  - ImperialTgRecipeModAntigrav
+  - ImperialTgRecipeModTeleporter
+  - ImperialTgRecipeModKinesis
+  technologyPrerequisites:
+  - ImperialTgModEngiAdv
+  - ImperialTgAnomalyResearch
+
+- type: technology
+  id: ImperialTgFundimentalSci
+  name: imperial-tg-tech-fundimental-sci
+  icon:
+    entity: ResearchAndDevelopmentServerMachineCircuitboard
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 0
+  recipeUnlocks:
+  - ImperialTgRecipeRdserver
+  - ImperialTgRecipeRdconsole
+  - ImperialTgRecipeTechDisk
+  - ImperialTgRecipeExperimentor
+  - ImperialDestructiveAnalyzerMachineCircuitboard
+  - ImperialExperiScannerRecipe
+  - TechDiskComputerCircuitboard
+
+- type: technology
+  id: ImperialTgBluespaceTheory
+  name: imperial-tg-tech-bluespace-theory
+  icon:
+    entity: XenoBluespaceCrystal
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipeBluespaceCrystal
+  - NodeScanner
+  - AnalysisComputerCircuitboard
+  - ArtifactAnalyzerMachineCircuitboard
+  technologyPrerequisites:
+  - ImperialTgFundimentalSci
+
+- type: technology
+  id: ImperialTgAppliedBluespace
+  name: imperial-tg-tech-applied-bluespace
+  icon:
+    entity: OreBagOfHolding
+  discipline: ImperialTgScience
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - OreBagOfHolding
+  - BluespaceBeaker
+  - ImperialTgRecipeAdvWateringCan
+  - ImperialTgRecipeBluespaceCoffeepot
+  - SyringeBluespace
+  - ImperialTgRecipeBlutrash
+  - ImperialTgRecipeLightReplacerBlue
+  - ImperialTgRecipeBluespacebodybag
+  technologyPrerequisites:
+  - ImperialTgBluespaceTheory
+
+- type: technology
+  id: ImperialTgBluespaceTravel
+  name: imperial-tg-tech-bluespace-travel
+  icon:
+    entity: ImperialUplinkLaunchpadRemote
+  discipline: ImperialTgScience
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - ImperialTgRecipeLaunchpadConsole
+  - ImperialTgRecipeLaunchpad
+  - ImperialTgRecipeBluespacePod
+  - DeviceQuantumSpinInverter
+  - CargoTelepadMachineCircuitboard
+  - WeaponTetherGun
+  - ClothingShoesBootsSpeed
+  technologyPrerequisites:
+  - ImperialTgAppliedBluespace
+
+- type: technology
+  id: ImperialTgAnomalyResearch
+  name: imperial-tg-tech-anomaly-research
+  icon:
+    entity: ImperialAnomalyNeutralizer
+  discipline: ImperialTgScience
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - ImperialTgRecipeAnomalyNeutralizer
+  - ImperialTgRecipeReactiveArmour
+  - ImperialTgRecipeSpaceFurnace
+  - ArtifactCrusherMachineCircuitboard
+  - WeaponPistolCHIMP
+  - AnomalySynchronizerCircuitboard
+  - AnomalyVesselExperimentalCircuitboard
+  - AnomalyScanner
+  - AnomalyLocator
+  - AnomalyLocatorWide
+  - APECircuitboard
+  - AnomalyVesselCircuitboard
+  - ClothingBackpackSatchelHolding
+  - ClothingBackpackDuffelHolding
+  technologyPrerequisites:
+  - ImperialTgAppliedBluespace
+
+- type: technology
+  id: ImperialTgAnomalyShells
+  name: imperial-tg-tech-anomaly-shells
+  icon:
+    entity: ClothingBackpackHolding
+  discipline: ImperialTgScience
+  tier: 5
+  cost: 15000
+  recipeUnlocks:
+  - ClothingBackpackHolding
+  - ImperialTgRecipeModStorageHolding
+  - ImperialTgRecipeWormholeprojector
+  - WeaponForceGun
+  - ImperialTgRecipePolymorphBelt
+  - ImperialTgRecipePerceptomatrix
+  - WeaponGauntletGorilla
+  technologyPrerequisites:
+  - ImperialTgAnomalyResearch
+
+- type: technology
+  id: ImperialTgRobotics
+  name: imperial-tg-tech-robotics
+  icon:
+    entity: ExosuitFabricatorMachineCircuitboard
+  discipline: ImperialTgRobotics
+  tier: 1
+  cost: 0
+  recipeUnlocks:
+  - ExosuitFabricatorMachineCircuitboard
+  - ImperialTgRecipePaicard
+
+- type: technology
+  id: ImperialTgAi
+  name: imperial-tg-tech-ai
+  icon:
+    entity: StationAiCoreElectronics
+  discipline: ImperialTgRobotics
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipeAicore
+  - ImperialTgRecipeAifixer
+  - ImperialTgRecipeAiupload
+  - ImperialTgRecipeAsimovModule
+  - ImperialTgRecipeCorporateModule
+  - ImperialTgRecipeDefaultModule
+  - ImperialTgRecipeDroneModule
+  - ImperialTgRecipeIntellicard
+  - ImperialTgRecipeNutimovModule
+  - ImperialTgRecipePaladinModule
+  - ImperialTgRecipeRobocopModule
+  technologyPrerequisites:
+  - ImperialTgRobotics
+
+- type: technology
+  id: ImperialTgAiLaws
+  name: imperial-tg-tech-ai-laws
+  icon:
+    entity: AntimovCircuitBoard
+  discipline: ImperialTgRobotics
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - ImperialTgRecipeAntimovModule
+  - ImperialTgRecipeAsimovppModule
+  - ImperialTgRecipeBalanceModule
+  - ImperialTgRecipeDamagedModule
+  - ImperialTgRecipeDungeonMasterModule
+  - ImperialTgRecipeHippocraticModule
+  - ImperialTgRecipeHulkamaniaModule
+  - ImperialTgRecipeLiveandletliveModule
+  - ImperialTgRecipeMaintainModule
+  - ImperialTgRecipeOverlordModule
+  - ImperialTgRecipePainterModule
+  - ImperialTgRecipePaladinDevotionModule
+  - ImperialTgRecipePeacekeeperModule
+  - ImperialTgRecipeReporterModule
+  - ImperialTgRecipeTenCommandmentsModule
+  - ImperialTgRecipeThermurderdynamicModule
+  - ImperialTgRecipeThinkermovModule
+  - ImperialTgRecipeTyrantModule
+  - ImperialTgRecipeYesmanModule
+  technologyPrerequisites:
+  - ImperialTgAi
+
+- type: technology
+  id: ImperialTgBasicArms
+  name: imperial-tg-tech-basic-arms
+  icon:
+    entity: ImperialToyArmblade
+  discipline: ImperialTgSecurity
+  tier: 1
+  cost: 0
+  recipeUnlocks:
+  - ImperialTgRecipeToyArmblade
+  - ImperialTgRecipeToygun
+  - ImperialTgRecipeC38Rubber
+  - ImperialTgRecipeC38Sec
+  - ImperialTgRecipeCapbox
+  - ImperialTgRecipeFoamDart
+  - BoxBeanbag
+  - BoxShellTranquilizer
+  - BoxShotgunIncendiary
+  - ImperialTgRecipeSecRshot
+
+- type: technology
+  id: ImperialTgSecEquip
+  name: imperial-tg-tech-sec-equip
+  icon:
+    entity: CriminalRecordsComputerCircuitboard
+  discipline: ImperialTgSecurity
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipeSecdata
+  - ImperialTgRecipePrisonmanage
+  - SurveillanceCameraMonitorCircuitboard
+  - ImperialTgRecipeScannerGate
+  - ImperialTgRecipePepperspray
+  - ImperialTgRecipeInspector
+  - ImperialTgRecipeEvidencebag
+  - Zipties
+  - ImperialTgRecipeSeclite
+  - ClothingBackpackElectropack
+  - ClothingBackpackHarmpack
+  - MetalDetectorCircuitboard
+  - MagazineShotgunBeanbag
+  - WeaponDisabler
+  - MagazinePistolHighCapacityRubberImperial
+  - MagazinePistolHighCapacityRubberImperialEmpty
+  - EmergencyButton
+  technologyPrerequisites:
+  - ImperialTgBasicArms
+
+- type: technology
+  id: ImperialTgRiotSupression
+  name: imperial-tg-tech-riot-supression
+  icon:
+    entity: ImperialClownPin
+  discipline: ImperialTgSecurity
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - ImperialTgRecipeClownFiringPin
+  - ImperialTgRecipePinTesting
+  - ImperialTgRecipePinLoyalty
+  - TelescopicShield
+  - ImperialTgRecipeBallisticShield
+  - Handcuffs
+  - EnergyBola
+  - Truncheon
+  - WeaponDisablerSMG
+  technologyPrerequisites:
+  - ImperialTgSecEquip
+
+- type: technology
+  id: ImperialTgExplosives
+  name: imperial-tg-tech-explosives
+  icon:
+    entity: ImperialLargeGrenadeCasing
+  discipline: ImperialTgSecurity
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - ImperialTgRecipeLargeGrenade
+  - ImperialTgRecipeAdvGrenade
+  - ImperialTgRecipePyroGrenade
+  - GrenadeEMP
+  - PowerCageHigh
+  - ShuttleGunDusterCircuitboard
+  - SignallerAdvanced
+  - SignalTrigger
+  - FlashPayload
+  - ExplosivePayload
+  - ChemicalPayload
+  - CableDetStack1
+  - EmptyDetonator
+  technologyPrerequisites:
+  - ImperialTgRiotSupression
+  - ImperialTgUnlockExpExplosives
+
+- type: technology
+  id: ImperialTgUnlockExpExplosives
+  name: imperial-tg-unlock-explosives
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: experimental
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 0
+  hidden: true
+
+- type: technology
+  id: ImperialTgExoticAmmo
+  name: imperial-tg-tech-exotic-ammo
+  icon:
+    entity: SpeedLoaderMagnumIncendiary
+  discipline: ImperialTgSecurity
+  tier: 4
+  cost: 12000
+  recipeUnlocks:
+  - SpeedLoaderMagnumIncendiary
+  - ImperialTgRecipeC38Iceblox
+  - ImperialTgRecipeC38Trac
+  - ImperialTgRecipeC38TrueStrike
+  - ImperialTgRecipeTechshotshell
+  - ImperialTgRecipeFlechetteshell
+  - MagazineRifleIncendiary
+  - MagazinePistolIncendiary
+  - MagazinePistolSubMachineGunIncendiary
+  - MagazineLightRifleIncendiary
+  - MagazineShotgunIncendiary
+  - MagazineBoxPistolIncendiary
+  - MagazineBoxMagnumIncendiary
+  - MagazineBoxLightRifleIncendiary
+  - MagazineBoxRifleIncendiary
+  - MagazineRifleUranium
+  - MagazinePistolUranium
+  - MagazinePistolSubMachineGunUranium
+  - MagazineLightRifleUranium
+  - SpeedLoaderMagnumUranium
+  - MagazineBoxPistolUranium
+  - MagazineBoxMagnumUranium
+  - MagazineBoxLightRifleUranium
+  - MagazineBoxRifleUranium
+  - BoxShotgunUranium
+  technologyPrerequisites:
+  - ImperialTgExplosives
+
+- type: technology
+  id: ImperialTgElectricWeapons
+  name: imperial-tg-tech-electric-weapons
+  icon:
+    entity: ImperialTeslaCannon
+  discipline: ImperialTgSecurity
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - ImperialTgRecipeStunrevolver
+  - ImperialTgRecipeIoncarbine
+  - WeaponTemperatureGun
+  - ImperialTgRecipeLasershell
+  - WeaponParticleDecelerator
+  - BorgModuleLethalSecurityRecipe
+  - WeaponLaserCarbine
+  technologyPrerequisites:
+  - ImperialTgRiotSupression
+
+- type: technology
+  id: ImperialTgBeamWeapons
+  name: imperial-tg-tech-beam-weapons
+  icon:
+    entity: WeaponXrayCannon
+  discipline: ImperialTgSecurity
+  tier: 4
+  cost: 12000
+  recipeUnlocks:
+  - WeaponXrayCannon
+  - WeaponAdvancedLaser
+  - ImperialTgRecipeC38Flare
+  - WeaponLaserCannon
+  - PortableRecharger
+  technologyPrerequisites:
+  - ImperialTgElectricWeapons
+
+- type: technology
+  id: ImperialTgOfficeEquip
+  name: imperial-tg-tech-office-equip
+  icon:
+    entity: ImperialSecurityPen
+  discipline: ImperialTgService
+  tier: 1
+  cost: 0
+  recipeUnlocks:
+  - ImperialTgRecipeSecPen
+  - HandLabeler
+  - ImperialTgRecipeUniversalScanner
+  - ImperialTgRecipePackagewrap
+  - ImperialTgRecipeStickyTape
+  - UtilityKnife
+  - ImperialTgRecipeBouncedRadio
+  - ImperialTgRecipeRadioHeadset
+  - ImperialTgRecipeEarmuffs
+  - ImperialTgRecipeRecorder
+  - ImperialTgRecipeToyBalloon
+  - ImperialTgRecipePetCarrier
+  - ImperialTgRecipeSpraycan
+  - ImperialTgRecipeCamera
+  - ImperialTgRecipeRazor
+  - Bucket
+  - MopItem
+  - WetFloorSign
+  - ImperialTgRecipePushbroom
+  - TrashBag
+  - WireBrush
+  - FlashlightLantern
+  - Flare
+  - ImperialTgRecipeWaterBalloon
+  - FauxTileAstroGrass
+  - FauxTileMowedAstroGrass
+  - FauxTileJungleAstroGrass
+  - FauxTileDarkAstroGrass
+  - FauxTileLightAstroGrass
+  - FauxTileAstroIce
+  - FauxTileAstroSnow
+  - FauxTileAstroAsteroidSand
+  - FauxTileAstroAsteroidSandBorderless
+  - FauxTileDesertAstroSand
+  - FauxTileAstroIronsand
+  - FauxTileAstroIronsandBorderless
+
+- type: technology
+  id: ImperialTgSanitation
+  name: imperial-tg-tech-sanitation
+  icon:
+    entity: AdvMopItem
+  discipline: ImperialTgService
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - AdvMopItem
+  - LightReplacer
+  - SprayBottle
+  - ImperialTgRecipePaintRemover
+  - ImperialTgRecipeBeartrap
+  - MegaSprayBottle
+  - WeaponSprayNozzle
+  - ClothingBackpackWaterTank
+  technologyPrerequisites:
+  - ImperialTgOfficeEquip
+
+- type: technology
+  id: ImperialTgConsoles
+  name: imperial-tg-tech-consoles
+  icon:
+    entity: CommsComputerCircuitboard
+  discipline: ImperialTgService
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - ImperialTgRecipeComconsole
+  - ImperialTgRecipeCargorequest
+  - ImperialTgRecipeMedData
+  - ImperialTgRecipeCrewconsole
+  - SurveillanceCameraRouterCircuitboard
+  - SurveillanceCameraWirelessRouterCircuitboard
+  - SurveillanceWirelessCameraMovableCircuitboard
+  - SurveillanceWirelessCameraAnchoredCircuitboard
+  - SurveillanceWirelessCameraMonitorCircuitboard
+  technologyPrerequisites:
+  - ImperialTgOfficeEquip
+
+- type: technology
+  id: ImperialTgGaming
+  name: imperial-tg-tech-gaming
+  icon:
+    entity: SpaceVillainArcadeComputerCircuitboard
+  discipline: ImperialTgService
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - ImperialTgRecipeArcadeBattle
+  - ImperialTgRecipeArcadeOrion
+  - ComputerTelevisionCircuitboard
+  - SynthesizerInstrument
+  - DawInstrumentMachineCircuitboard
+  - MassMediaCircuitboard
+  - JukeboxCircuitBoard
+  technologyPrerequisites:
+  - ImperialTgConsoles
+
+- type: technology
+  id: ImperialTgCafeteriaEquip
+  name: imperial-tg-tech-cafeteria-equip
+  icon:
+    entity: ElectricGrillMachineCircuitboard
+  discipline: ImperialTgService
+  tier: 1
+  cost: 0
+  recipeUnlocks:
+  - ElectricGrillMachineCircuitboard
+  - MicrowaveMachineCircuitboard
+  - FoodBowlBig
+  - FoodPlate
+  - ImperialTgRecipeServingtray
+  - ImperialTgRecipeTongs
+  - ImperialTgRecipeSpoon
+  - ImperialTgRecipeFork
+  - KitchenKnife
+  - ImperialTgRecipePlasticSpoon
+  - ImperialTgRecipePlasticFork
+  - ImperialTgRecipePlasticKnife
+  - ImperialTgRecipeShaker
+  - DrinkGlass
+  - DrinkShotGlass
+  - ImperialTgRecipeFoodtray
+
+- type: technology
+  id: ImperialTgFoodProc
+  name: imperial-tg-tech-food-proc
+  icon:
+    entity: ImperialDeepFryerBoard
+  discipline: ImperialTgService
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - ImperialTgRecipeDeepfryer
+  - ImperialTgRecipeGibber
+  - SlimeMonkeyRecyclerMachineCircuitboard
+  - ReagentGrinderMachineCircuitboard
+  - MicrowaveMachineCircuitboard
+  - SmartFridgeCircuitboard
+  - SheetifierMachineCircuitboard
+  - FatExtractorMachineCircuitboard
+  - BiofabricatorMachineCircuitboard
+  - BiomassReclaimerMachineCircuitboard
+  technologyPrerequisites:
+  - ImperialTgCafeteriaEquip
+
+- type: technology
+  id: ImperialTgFishingEquip
+  name: imperial-tg-tech-fishing-equip
+  icon:
+    entity: ImperialFishingPortalGeneratorBoard
+  discipline: ImperialTgService
+  tier: 1
+  cost: 0
+  recipeUnlocks:
+  - ImperialTgRecipeFishingPortalGenerator
+  - ImperialTgRecipeFishingRod
+  - ImperialTgRecipeFishCase
+  - ImperialTgRecipeAquariumKit
+
+- type: technology
+  id: ImperialTgFishingEquipAdv
+  name: imperial-tg-tech-fishing-equip-adv
+  icon:
+    entity: ImperialFishingRodTech
+  discipline: ImperialTgService
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - ImperialTgRecipeFishingRodTech
+  - ImperialTgRecipeFishingGloves
+  - ImperialTgRecipeModFishing
+  - ImperialTgRecipeStabilizedHook
+  - ImperialTgRecipeAutoReel
+  - ImperialTgRecipeFishAnalyzer
+  - ImperialTgRecipeBluespaceFishCase
+  - ImperialTgRecipeBluespaceFishTankKit
+  technologyPrerequisites:
+  - ImperialTgFishingEquip
+  - ImperialTgUnlockExpFishingEquipAdv
+
+- type: technology
+  id: ImperialTgUnlockExpFishingEquipAdv
+  name: imperial-tg-unlock-fishing-equip-adv
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: experimental
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 0
+  hidden: true
+
+- type: technology
+  id: ImperialTgMarineUtil
+  name: imperial-tg-tech-marine-util
+  icon:
+    entity: ImperialAquariumUpgradeBioelectric
+  discipline: ImperialTgService
+  tier: 3
+  cost: 9000
+  recipeUnlocks:
+  - ImperialTgRecipeBioelecGen
+  - ImperialTgRecipeBluespaceReel
+  - ImperialTgRecipeFishGenegun
+  technologyPrerequisites:
+  - ImperialTgFishingEquipAdv
+
+- type: technology
+  id: ImperialTgSurgeryTools
+  name: imperial-tg-tech-surgery-tools
+  icon:
+    entity: ScalpelLaser
+  discipline: ImperialTgMedical
+  tier: 4
+  cost: 12000
+  recipeUnlocks:
+  - ImperialTgRecipeLaserscalpel
+  - ImperialTgRecipeSearingtool
+  technologyPrerequisites:
+  - ImperialTgMedbayEquip
+
+- type: technology
+  id: ImperialTgSyndicateBasic
+  name: imperial-tg-tech-syndicate-basic
+  icon:
+    entity: BorgModuleSyndicateWeapon
+  discipline: ImperialTgScience
+  tier: 5
+  cost: 15000
+  recipeUnlocks:
+  - ImperialTgRecipeBorgSyndicateModule
+  - ImperialTgRecipeLargecrossbow
+  - MagazinePistolSubMachineGunTopMounted
+  - ImperialTgRecipeMagAutorifleAp
+  - ImperialTgRecipeMagAutorifleIc
+  - ImperialTgRecipeRapidsyringe
+  - ImperialTgRecipeSuppressor
+  - ImperialTgRecipeSuperPointyTape
+  technologyPrerequisites:
+  - ImperialTgExpTools
+  - ImperialTgExoticAmmo
+  - ImperialTgUnlockSyndicateBasic
+
+- type: technology
+  id: ImperialTgUnlockSyndicateBasic
+  name: imperial-tg-unlock-syndicate-basic
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: experimental
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 0
+  hidden: true
+
+- type: technology
+  id: ImperialTgUnregulatedBluespace
+  name: imperial-tg-tech-unregulated-bluespace
+  icon:
+    entity: DeviceDesynchronizer
+  discipline: ImperialTgScience
+  tier: 1
+  cost: 3000
+  recipeUnlocks:
+  - DeviceDesynchronizer
+  - ImperialTgRecipeBeamrifle
+  technologyPrerequisites:
+  - ImperialTgPartsBluespace
+  - ImperialTgSyndicateBasic

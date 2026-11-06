@@ -1680,7 +1680,7 @@
   product: CrateCargoFursuits
   cost: 15000
   category: cargoproduct-category-name-fun
-  group: market
+  group: ImperialCargo
 
 - type: entity
   parent: [BaseCentcommContraband, ClothingOuterStorageBase, AllowSuitStorageClothing]

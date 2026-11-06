@@ -1,0 +1,196 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (mod_modules.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "module",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "active_sonar"
+    },
+    {
+      "name": "antigrav"
+    },
+    {
+      "name": "apparatus"
+    },
+    {
+      "name": "bikehorn"
+    },
+    {
+      "name": "carry"
+    },
+    {
+      "name": "clamp"
+    },
+    {
+      "name": "cloak"
+    },
+    {
+      "name": "constructor"
+    },
+    {
+      "name": "criminal_capture"
+    },
+    {
+      "name": "defibrillator"
+    },
+    {
+      "name": "diaghud_visor"
+    },
+    {
+      "name": "disposal"
+    },
+    {
+      "name": "dnalock"
+    },
+    {
+      "name": "drill"
+    },
+    {
+      "name": "empshield"
+    },
+    {
+      "name": "fishing_glove"
+    },
+    {
+      "name": "flashlight"
+    },
+    {
+      "name": "gps"
+    },
+    {
+      "name": "health"
+    },
+    {
+      "name": "holster"
+    },
+    {
+      "name": "injector"
+    },
+    {
+      "name": "jetpack"
+    },
+    {
+      "name": "joint_torsion"
+    },
+    {
+      "name": "kinesis"
+    },
+    {
+      "name": "longfall"
+    },
+    {
+      "name": "mag_harness"
+    },
+    {
+      "name": "magnet"
+    },
+    {
+      "name": "medhud_visor"
+    },
+    {
+      "name": "meson_visor"
+    },
+    {
+      "name": "microwave_beam"
+    },
+    {
+      "name": "mirage_grenade"
+    },
+    {
+      "name": "mister"
+    },
+    {
+      "name": "ore"
+    },
+    {
+      "name": "organizer"
+    },
+    {
+      "name": "pathfinder"
+    },
+    {
+      "name": "patient_transport"
+    },
+    {
+      "name": "plasma_stabilizer"
+    },
+    {
+      "name": "projectile_dampener"
+    },
+    {
+      "name": "radshield"
+    },
+    {
+      "name": "recycler"
+    },
+    {
+      "name": "regulator"
+    },
+    {
+      "name": "scanner"
+    },
+    {
+      "name": "sechud_visor"
+    },
+    {
+      "name": "shooting_assistant"
+    },
+    {
+      "name": "signlang_radio",
+      "delays": [
+        [
+          0.5,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "status"
+    },
+    {
+      "name": "storage"
+    },
+    {
+      "name": "storage_holding"
+    },
+    {
+      "name": "storage_large"
+    },
+    {
+      "name": "surgical_processor"
+    },
+    {
+      "name": "teleporter"
+    },
+    {
+      "name": "tether"
+    },
+    {
+      "name": "thread_ripper"
+    },
+    {
+      "name": "tray"
+    },
+    {
+      "name": "waddle"
+    },
+    {
+      "name": "welding"
+    }
+  ]
+}

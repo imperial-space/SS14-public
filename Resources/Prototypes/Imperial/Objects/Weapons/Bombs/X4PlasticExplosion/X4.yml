@@ -1,7 +1,9 @@
+# X-4 из TG (code/game/objects/items/grenades/plastic.dm, /obj/item/grenade/c4/x4):
+# направленный пробивной заряд — безопасен для поставившего, но не для того, кто по ту сторону стены.
 - type: entity
-  name: composition X-4
-  description: Used to put holes in specific areas without too much extra hole. A saboteur's favorite.
-  parent: BasePlasticExplosive
+  name: заряд X-4
+  description: Кумулятивный фугасный пробивной заряд. Безопасен для пользователя и совсем не безопасен для стены.
+  parent: [BasePlasticExplosive, BaseSyndicateContraband]
   id: X4
   components:
   - type: Sprite
@@ -10,21 +12,35 @@
     layers:
     - state: icon
       map: ["base"]
+  - type: Item
+    sprite: Imperial/Objects/Weapons/Bombs/X4Bomb.rsi
+  - type: TriggerOnActivate
+  - type: TriggerOnSignal
+  - type: TriggerOnStuck
+    keyOut: stuck
+  - type: ToggleTriggerCondition
+    keys:
+    - stuck
+    toggleVerb: toggle-trigger-condition-stick-verb
+    toggleOn: toggle-trigger-condition-stick-on
+    toggleOff: toggle-trigger-condition-stick-off
   - type: TimerTrigger
+    keysIn:
+    - trigger
+    - stuck
     delay: 10
     delayOptions: [10, 30, 60, 120, 300]
     initialBeepDelay: 0
     beepSound: /Audio/Machines/Nuke/general_beep.ogg
-    startOnStick: true
-    canToggleStartOnStick: true
-  - type: TriggerOnSignal
   - type: DeviceLinkSink
     ports:
-      - Trigger
-  - type: Explosive # Powerful explosion in a very small radius. Doesn't break underplating.
+    - Trigger
+  - type: Explosive
     explosionType: DemolitionCharge
     totalIntensity: 600
     intensitySlope: 10
     maxIntensity: 100
     canCreateVacuum: false
-  - type: ExplodeOnTrigger
+  - type: UplinkDirectionalCharge
+  - type: StaticPrice
+    price: 1000

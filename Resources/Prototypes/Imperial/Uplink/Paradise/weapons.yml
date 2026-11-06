@@ -1,0 +1,662 @@
+# Позиции аплинка Paradise (code/datums/uplink_items), которых нет в каталоге TG: оружие.
+
+# ── Snakesfang (melee/snakesfang + belt/sheath/snakesfang) ──
+
+- type: Tag
+  id: ImperialSnakesfang
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialSnakesfang
+  name: змеиный клык
+  description: Необычно изогнутый чёрно-красный меч. Острый во всех смыслах.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Paradise/snakesfang.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/Uplink/Paradise/snakesfang.rsi
+  - type: Sharp
+  - type: Tag
+    tags:
+    - ImperialSnakesfang
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 25
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 10
+
+- type: entity
+  parent: [ ClothingBeltSheath, BaseSyndicateContraband ]
+  id: ImperialSnakesfangSheath
+  name: ножны змеиного клыка
+  description: Вмещают сабли. Точнее, одну — змеиный клык.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Paradise/snakesfang_sheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: Imperial/Uplink/Paradise/snakesfang_sheath.rsi
+  - type: ItemSlots
+    slots:
+      item:
+        name: Snakesfang
+        startingItem: ImperialSnakesfang
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - ImperialSnakesfang
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - ImperialSnakesfang
+
+# ── Бензопила Синдиката (chainsaw/syndie) ──
+
+- type: entity
+  parent: [ Chainsaw, BaseSyndicateContraband ]
+  id: ImperialChainsawSyndicate
+  name: бензопила Синдиката
+  description: Идеально подходит для валки деревьев — или космонавтов.
+  components:
+  - type: MeleeWeapon
+    autoAttack: true
+    angle: 0
+    wideAnimationRotation: -135
+    attackRate: 4
+    damage:
+      types:
+        Slash: 3
+        Blunt: 1
+        Structural: 4
+    soundHit:
+      path: /Audio/Weapons/chainsaw.ogg
+      params:
+        volume: -3
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Slash: 6
+        Structural: 4
+  - type: Item
+    size: Large
+    sprite: Objects/Weapons/Melee/chainsaw.rsi
+
+# ── Mind Batterer (/obj/item/batterer) ──
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialMindBatterer
+  name: подавитель разума
+  description: Опасное устройство Синдиката для контроля толпы и побегов. Вызывает замешательство и другие неприятные эффекты у всех вокруг.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Paradise/batterer.rsi
+    layers:
+    - state: icon
+      map: ["batterer"]
+  - type: Item
+    size: Tiny
+    sprite: Imperial/Uplink/Paradise/batterer.rsi
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.UplinkBattererVisuals.Burnt:
+        batterer:
+          True: { state: burnt }
+          False: { state: icon }
+  - type: UplinkMindBatterer
+
+# ── Граната всплывающей турели (grenade/turret) ──
+
+- type: entity
+  parent: ImperialSpawnerGrenadeBase
+  id: ImperialPopupTurretGrenade
+  name: граната всплывающей турели
+  description: Надувается во всплывающую турель, которая стреляет во всех, кроме того, кто выдернул чеку.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Paradise/turret_grenade.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: UplinkPopupTurretGrenade
+
+- type: entity
+  parent: [ BaseWeaponBallisticTurret, BaseSyndicateContraband ]
+  id: ImperialPopupTurret
+  name: всплывающая турель Синдиката
+  description: С виду собрана кое-как, но ствол стреляет исправно.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Gun
+    fireRate: 2
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol
+    capacity: 200
+
+# ── Гаррота (/obj/item/garrote) ──
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialGarrote
+  name: оптоволоконная проволока
+  description: Отрезок тончайшей проволоки с изящными деревянными ручками на концах. Похоже, пользоваться ею нужно, стоя у жертвы за спиной.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Paradise/garrote.rsi
+    layers:
+    - state: icon
+      map: ["garrote"]
+  - type: Item
+    size: Tiny
+  - type: Wieldable
+  - type: UplinkGarrote
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.UplinkGarroteVisuals.Strangling:
+        garrote:
+          True: { state: unwrap }
+          False: { state: icon }
+
+# ── Кейс с ложным дном (storage/briefcase/false_bottomed) ──
+
+- type: entity
+  parent: [ BriefcaseBrown, BaseSyndicateContraband ]
+  id: ImperialFalseBottomBriefcase
+  name: кейс
+  suffix: Ложное дно
+  components:
+  - type: Gun
+    fireRate: 4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: BasicEntityAmmoProvider
+    proto: BulletPistol
+    capacity: 1
+    count: 1
+  - type: UplinkFalseBottom
+
+# ── Скоростной шприцемёт (gun/syringe/rapidsyringe) ──
+
+- type: entity
+  parent: ImperialReagentDartgun
+  id: ImperialRapidSyringeGun
+  name: скоростной шприцемёт
+  description: Скоростной шприцемёт Синдиката на основе архивного прототипа NanoTrasen. Сам наполняет шприцы из внутреннего резервуара на 300 единиц — залейте в него реагенты.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Paradise/rsg.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Uplink/Paradise/rsg.rsi
+  - type: SolutionContainerManager
+    solutions:
+      chemicals:
+        maxVol: 300
+  - type: SolutionAmmoProvider
+    solutionId: chemicals
+    proto: ImperialReagentDart
+    fireCost: 5
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/syringe_gun.ogg
+
+# ── Type 230 (gun/projectile/automatic/pistol/type_230) ──
+
+- type: Tag
+  id: ImperialMagazineType230
+
+- type: entity
+  parent: [ BaseWeaponPistol, BaseSyndicateContraband ]
+  id: ImperialWeaponPistolType230
+  name: автоматический пистолет Type 230
+  description: Компактный пистолет-пулемёт производства коллектива Rocino Armaments из СССП. Под патрон 10 мм.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Paradise/type230.rsi
+    layers:
+    - state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Uplink/Paradise/type230.rsi
+  - type: Gun
+    fireRate: 6
+    shotsPerBurst: 3
+    selectedMode: Burst
+    availableModes:
+    - Burst
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: ImperialMagazineType230
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - ImperialMagazineType230
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+          - ImperialCartridge10mm
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialMagazineType230
+  name: магазин Type 230 (10 мм)
+  description: Магазин на 20 патронов 10 мм для автоматического пистолета Type 230.
+  components:
+  - type: Tag
+    tags:
+    - ImperialMagazineType230
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+      - ImperialCartridge10mm
+    proto: ImperialCartridge10mm
+    capacity: 20
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/Uplink/Paradise/type230_mag.rsi
+    state: base
+
+- type: entity
+  parent: ImperialMagazineType230
+  id: ImperialMagazineType230AP
+  name: бронебойный магазин Type 230 (10 мм)
+  description: Магазин на 20 бронебойных патронов 10 мм для автоматического пистолета Type 230.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridge10mmAP
+  - type: Sprite
+    state: ap
+
+- type: entity
+  parent: ImperialMagazineType230
+  id: ImperialMagazineType230Fire
+  name: зажигательный магазин Type 230 (10 мм)
+  description: Магазин на 20 зажигательных патронов 10 мм для автоматического пистолета Type 230.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridge10mmFire
+  - type: Sprite
+    state: fire
+
+- type: entity
+  parent: ImperialMagazineType230
+  id: ImperialMagazineType230HP
+  name: экспансивный магазин Type 230 (10 мм)
+  description: Магазин на 20 экспансивных патронов 10 мм для автоматического пистолета Type 230.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridge10mmHP
+  - type: Sprite
+    state: hp
+
+# ── Игрушечное оружие ЯО (c20r/toy, l6_saw/toy) ──
+
+- type: Tag
+  id: ImperialMagazineDonksoftSmg
+
+- type: Tag
+  id: ImperialMagazineDonksoftLmg
+
+- type: entity
+  parent: WeaponSubMachineGunC20r
+  id: ImperialWeaponDonksoftSmg
+  name: игрушечный пистолет-пулемёт Donksoft
+  description: Игрушечный пистолет-пулемёт с отсечкой по два выстрела, обозначение «C-20r». Для детей от 8 лет. Заряжен бунтовыми дротиками.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Paradise/toy_c20r.rsi
+    layers:
+    - state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/Uplink/Paradise/toy_c20r.rsi
+  - type: Gun
+    minAngle: 21
+    maxAngle: 32
+    shotsPerBurst: 2
+    clumsyProof: true
+    availableModes:
+    - Burst
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/syringe_gun.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: ImperialMagazineDonksoftSmg
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - ImperialMagazineDonksoftSmg
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+          - BulletFoam
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialMagazineDonksoftSmg
+  name: магазин игрушечного пистолета-пулемёта
+  description: Магазин на 20 бунтовых поролоновых дротиков.
+  components:
+  - type: Tag
+    tags:
+    - ImperialMagazineDonksoftSmg
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+      - BulletFoam
+    proto: ImperialBulletFoamRiot
+    capacity: 20
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi
+    layers:
+    - state: base
+      color: "#ff8a3d"
+
+- type: entity
+  parent: WeaponLightMachineGunL6
+  id: ImperialWeaponDonksoftLmg
+  name: игрушечный пулемёт Donksoft
+  description: Сильно модифицированный игрушечный ручной пулемёт, обозначение «L6 SAW». Для детей от 8 лет. Заряжен бунтовыми дротиками.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Paradise/toy_l6.rsi
+    layers:
+    - state: icon
+  - type: Item
+    size: Huge
+    sprite: Imperial/Uplink/Paradise/toy_l6.rsi
+  - type: Gun
+    clumsyProof: true
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/syringe_gun.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: ImperialMagazineDonksoftLmg
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - ImperialMagazineDonksoftLmg
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+          - BulletFoam
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialMagazineDonksoftLmg
+  name: короб игрушечного пулемёта
+  description: Короб на 50 бунтовых поролоновых дротиков.
+  components:
+  - type: Tag
+    tags:
+    - ImperialMagazineDonksoftLmg
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+      - BulletFoam
+    proto: ImperialBulletFoamRiot
+    capacity: 50
+  - type: Item
+    size: Normal
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
+    layers:
+    - state: base
+      color: "#ff8a3d"
+
+# ── Снайперские патроны Paradise (sniper_rounds/antimatter, soporific, haemorrhage) ──
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletAntiMaterielExplosive
+  name: фугасная пуля (.60 anti-materiel)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 70
+  - type: UplinkProjectile
+    armorPenetration: 0.7
+    knockdown: 10
+    structureExplosion: true
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletAntiMaterielSoporific
+  name: снотворная пуля (.60 anti-materiel)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 0
+  - type: UplinkProjectile
+    sleep: 40
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletAntiMaterielShredder
+  name: пуля «Шреддер» (.60 anti-materiel)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 45
+  - type: UplinkProjectile
+    armorPenetration: 0.25
+    knockdown: 6
+    bloodLoss: 150
+    bleed: 5
+
+- type: entity
+  parent: CartridgeAntiMateriel
+  id: ImperialCartridgeAntiMaterielExplosive
+  name: фугасный патрон (.60 anti-materiel)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBulletAntiMaterielExplosive
+
+- type: entity
+  parent: CartridgeAntiMateriel
+  id: ImperialCartridgeAntiMaterielSoporific
+  name: снотворный патрон (.60 anti-materiel)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBulletAntiMaterielSoporific
+
+- type: entity
+  parent: CartridgeAntiMateriel
+  id: ImperialCartridgeAntiMaterielShredder
+  name: патрон «Шреддер» (.60 anti-materiel)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBulletAntiMaterielShredder
+
+- type: entity
+  parent: ImperialBaseAntiMaterielBox
+  id: ImperialAntiMaterielBoxExplosive
+  name: фугасные патроны (.60 anti-materiel)
+  description: Шесть фугасных патронов, способных разрушать бронированные конечности — и стены.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridgeAntiMaterielExplosive
+  - type: Sprite
+    sprite: Imperial/Uplink/Paradise/sniper_mags.rsi
+    state: antimatter
+
+- type: entity
+  parent: ImperialBaseAntiMaterielBox
+  id: ImperialAntiMaterielBoxSoporific
+  name: снотворные патроны (.60 anti-materiel)
+  description: Три слабых гиподермических патрона с быстродействующим снотворным — мгновенно усыпляют цель, не причиняя вреда.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridgeAntiMaterielSoporific
+    capacity: 3
+  - type: Sprite
+    sprite: Imperial/Uplink/Paradise/sniper_mags.rsi
+    state: soporific
+
+- type: entity
+  parent: ImperialBaseAntiMaterielBox
+  id: ImperialAntiMaterielBoxShredder
+  name: патроны «Шреддер» (.60 anti-materiel)
+  description: Пять патронов с зазубренными пулями, вызывающими сильнейшее кровотечение.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridgeAntiMaterielShredder
+    capacity: 5
+  - type: Sprite
+    sprite: Imperial/Uplink/Paradise/sniper_mags.rsi
+    state: haemorrhage
+
+# ── Наборы ──
+
+- type: entity
+  parent: [ BoxCardboard, BaseSyndicateContraband ]
+  id: ImperialUplinkBioterrorSyringes
+  name: коробка биотеррор-шприцев
+  description: Семь шприцев с парализующими реагентами.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,6,1
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialBioterrorSyringe
+          amount: 7
+
+- type: entity
+  parent: [ Syringe, BaseSyndicateContraband ]
+  id: ImperialBioterrorSyringe
+  name: биотеррор-шприц
+  description: Содержит несколько парализующих реагентов.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: Neurotoxin
+          Quantity: 5
+        - ReagentId: Pancuronium
+          Quantity: 5
+        - ReagentId: SodiumThiopental
+          Quantity: 5
+
+- type: entity
+  parent: [ BoxCardboard, BaseSyndicateContraband ]
+  id: ImperialUplinkC4Pack
+  name: пачка зарядов C-4
+  description: Пять зарядов пластиковой взрывчатки C-4.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,4,1
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: C4
+          amount: 5
+
+- type: entity
+  parent: [ BoxCardboard, BaseSyndicateContraband ]
+  id: ImperialUplinkFlamethrowerCanisters
+  name: канистры огнемёта
+  description: Две большие топливные канистры для огнемёта.
+  components:
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,5,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: FuelTankFlamethrowerBig
+          amount: 2

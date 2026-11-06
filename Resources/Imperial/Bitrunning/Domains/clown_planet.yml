@@ -1,0 +1,111 @@
+# Сконвертировано из clown_planet.dmm (tgstation/BandaStation, _maps/virtual_domains) утилитой dmm2domain.
+width: 33
+height: 44
+keyLength: 1
+legend:
+  "a": {t: Space}
+  "b": {t: Plating, a: bright, e: ["WallPlastitaniumIndestructible"]}
+  "c": {t: Plating, a: outdoors, e: ["WallReinforced"]}
+  "d": {t: FloorTechMaint, a: outdoors, e: ["DisposalUnit"]}
+  "e": {t: FloorTechMaint, a: outdoors}
+  "f": {t: FloorTechMaint, a: outdoors, e: ["ClothingHeadHatCone"]}
+  "g": {t: FloorTechMaint, a: outdoors, e: ["MobLavalandClown"]}
+  "h": {t: FloorBasalt, a: outdoors, e: ["FloorLavaEntity"]}
+  "i": {t: FloorTechMaint, a: outdoors, e: ["AlwaysPoweredSmallLight@180", "MobLavalandClown"]}
+  "j": {t: Plating, a: outdoors}
+  "k": {t: FloorWhite, a: outdoors}
+  "l": {t: FloorWhite, a: outdoors, e: ["SalvageHumanCorpse"]}
+  "m": {t: Plating, a: outdoors, e: ["WindowReinforcedDirectional"]}
+  "n": {t: FloorWhite, a: outdoors, e: ["AlwaysPoweredSmallLight"]}
+  "o": {t: FloorWhite, a: outdoors, e: ["BikeHorn"]}
+  "p": {t: FloorWhite, a: outdoors, e: ["AlwaysPoweredSmallLight@-90"]}
+  "q": {t: Plating, a: outdoors, e: ["ReinforcedWindow", "Grille"]}
+  "r": {t: FloorWhite, a: outdoors, e: ["AlwaysPoweredSmallLight@90"]}
+  "s": {t: FloorSteel, a: outdoors}
+  "t": {t: FloorSteel, a: outdoors, e: ["Table", "Pen"]}
+  "u": {t: FloorSteel, a: outdoors, e: ["Table", "Lamp"]}
+  "v": {t: FloorSteel, a: outdoors, e: ["Pickaxe"]}
+  "w": {t: FloorSteel, a: outdoors, e: ["AlwaysPoweredSmallLight@90"]}
+  "x": {t: FloorSteel, a: outdoors, e: ["AlwaysPoweredSmallLight@-90"]}
+  "y": {t: Plating, a: outdoors, e: ["WallRock"]}
+  "z": {t: FloorSteel, a: outdoors, e: ["DisposalUnit"]}
+  "A": {t: FloorWhite, a: outdoors, e: ["AlwaysPoweredWallLight"]}
+  "B": {t: FloorWood, a: outdoors, e: ["TableGlass", "Carpet"]}
+  "C": {t: FloorWood, a: outdoors, e: ["AlwaysPoweredSmallLight", "Carpet"]}
+  "D": {t: FloorWood, a: outdoors, e: ["DisposalUnit", "Carpet"]}
+  "E": {t: FloorWood, a: outdoors, e: ["Carpet"]}
+  "F": {t: FloorWood, a: outdoors, e: ["StatueVenusRed", "Carpet"]}
+  "G": {t: FloorWood, a: outdoors, e: ["TableGlass", "TrashBananaPeel", "Carpet"]}
+  "H": {t: FloorWood, a: outdoors, e: ["TableGlass", "ClothingShoesClown", "Carpet"]}
+  "I": {t: FloorWood, a: outdoors, e: ["AlwaysPoweredSmallLight@90", "Carpet"]}
+  "J": {t: FloorWood, a: outdoors, e: ["BikeHorn", "Carpet"]}
+  "K": {t: FloorWood, a: outdoors, e: ["AlwaysPoweredSmallLight@-90", "Carpet"]}
+  "L": {t: FloorSteel, a: outdoors, e: ["BikeHorn"]}
+  "M": {t: FloorSteel, a: outdoors, e: ["SalvageHumanCorpse"]}
+  "N": {t: FloorWood, a: outdoors, e: ["BitrunningEncryptedCache", "Carpet"]}
+  "O": {t: FloorSteel, a: outdoors, e: ["AlwaysPoweredWallLight"]}
+  "P": {t: FloorWood, a: outdoors, e: ["Airlock", "Carpet"]}
+  "Q": {t: FloorSteel, a: outdoors, e: ["AlwaysPoweredWallLight@180"]}
+  "R": {t: FloorBasalt, a: outdoors}
+  "S": {t: FloorBasalt, a: outdoors, e: ["DisposalUnit"]}
+  "T": {t: FloorBasalt, a: outdoors, e: ["#Basalt5"]}
+  "U": {t: FloorBasalt, a: outdoors, e: ["MarkerBeaconStructure"]}
+  "V": {t: FloorBasalt, a: outdoors, e: ["#Basalt7"]}
+  "W": {t: Plating, a: safe, e: ["WallSolid"]}
+  "X": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
+  "Y": {t: FloorDarkMono, a: safe, e: ["AirlockExternal"]}
+  "Z": {t: FloorDark, a: safe}
+  "0": {t: FloorDarkMono, a: safe}
+  "1": {t: FloorDarkMono, a: safe, e: ["AlwaysPoweredWallLight@90"]}
+  "2": {t: FloorSteel, a: safe, e: ["AlwaysPoweredWallLight@-90", "BitrunningMarkerGoal"]}
+  "3": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
+  "4": {t: FloorBasalt, a: outdoors, e: ["#Basalt4"]}
+  "5": {t: FloorDark, a: safe, e: ["Table", "Lantern", "Lantern", "Lantern"]}
+  "6": {t: FloorDarkMono, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "7": {t: FloorDark, a: safe, e: ["PottedPlantRandom"]}
+  "8": {t: FloorBasalt, a: outdoors, e: ["#Basalt3"]}
+rows:
+- "aaaaaaaaaaaabbbbbbbbbaaaaaaaaaaaa"
+- "bbbbbbbbbbbbbcccccccbbbbbbbbbbbbb"
+- "bbbbbbbbbbbbbcdeeeecbbbbbbbbbbbbb"
+- "bbbbbbbcccccccfgeggccccccccbbbbbb"
+- "bbbbbccchhhhhccdiecchhhhhhccbbbbb"
+- "bbbbcchhhccjjjccccchccjcchhccbbbb"
+- "bbbcchhcjklckkcjjcccccmcccchccbbb"
+- "bbbchhckkkknkkkkkkkkknkkkkchhcbbb"
+- "bbcchckkkkkkokkcckkkkkckkkkchccbb"
+- "bbchhjkkkkckkkkkkkkokcjkckkjhhcbb"
+- "bbchjjkkckkkckkkkckkkkkokkpcqhcbb"
+- "bbchcrokjccckkockkkkkcckckkkqhcbb"
+- "bbchjkkccsssckkkkkkcctusckkkqhcbb"
+- "bbchckkcsssvsckkkkkcssssscjjchcbb"
+- "bbcchcccwsssxckkjkkcwsssxccchccbb"
+- "bbbcchhcyvssskkkjokkssssychhccbbb"
+- "bbbbccckcysycckkkkkccyzyckcccbbbb"
+- "bbbbbcskAckccckkkkcjjcccAkscbbbbb"
+- "bbbabcsskckkkcckkklcckkkksscbabbb"
+- "bbbbbcssskkksccccccsskckssscbbbbb"
+- "bbbbcccscsssscBCDEBcsssssscccbbbb"
+- "bbbccssscscscFEGEHEFcsssssssccbbb"
+- "bbcchssssssccIEBJBEKccsssLsshccbb"
+- "bbchhqMscsssscEEEENcMssssscshhcbb"
+- "bbchqhsssssssOccPccOsssscsshjhcbb"
+- "bbchjhqssLsscsscssssssssssshqhcbb"
+- "bbcchhhcssssssssssssssLcschhhccbb"
+- "bbbchhqhqQsssLssssssssQchhjhhcbbb"
+- "bbbcchhjhchhhssscssshhchjqhhccbbb"
+- "bbbbcchhhhqqjhhhhhhhqqqjhhhccbbbb"
+- "bbbbbccchhhhqqqqqqqqjhhhhcccbbbbb"
+- "bbbabbbcccchhhhhhhhhhhccccbbbabbb"
+- "bbbbbbbbbcccccccccccccccbbbbbbbbb"
+- "bbbbbbbbbcRRRRRRRRSRRRRcbbbbbbbbb"
+- "bbbbbbbbbcTURRRRRRRVRRRcbbbbbbbbb"
+- "aaaaaaaabcRRRWXWYWXWRRRcbaaaaaaaa"
+- "aaaaaaaabcRRRWZ000ZWRURcbaaaaaaaa"
+- "aaaaaaaabcRRRW10002WRRRcbaaaaaaaa"
+- "aaaaaaaabcRRRX00003XRR4cbaaaaaaaa"
+- "aaaaaaaabcRRRX56667XRRRcbaaaaaaaa"
+- "aaaaaaaabcRURWWXXXWWRRRcbaaaaaaaa"
+- "aaaaaaaabcRRRTRRRRRRR8Rcbaaaaaaaa"
+- "aaaaaaaabcccccccccccccccbaaaaaaaa"
+- "aaaaaaaabbbbbbbbbbbbbbbbbaaaaaaaa"

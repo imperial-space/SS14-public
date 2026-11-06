@@ -1,0 +1,1071 @@
+# Предметы СБ из исследований TG (techweb: sec_equip, riot_supression, electric_weapons, beam_weapons, exotic_ammo, explosives).
+
+# === Бойки (code/modules/projectiles/pins.dm) ===
+
+- type: entity
+  parent: BaseItem
+  id: ImperialBaseFiringPin
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/firing_pins.rsi
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: ImperialBaseFiringPin
+  id: ImperialTestRangePin
+  name: боёк для тира
+  description: Безопасный боёк позволяет стрелять только рядом с мишенями тира. Вставьте в оружие, кликнув им.
+  components:
+  - type: Sprite
+    state: test
+  - type: ImperialFiringPin
+    mode: TestRange
+
+- type: entity
+  parent: ImperialBaseFiringPin
+  id: ImperialMindshieldPin
+  name: боёк защиты разума
+  description: Боёк СБ разрешает стрелять только носителям импланта защиты разума. Вставьте в оружие, кликнув им.
+  components:
+  - type: Sprite
+    state: mindshield
+  - type: ImperialFiringPin
+    mode: Mindshield
+
+- type: entity
+  parent: ImperialBaseFiringPin
+  id: ImperialExplorerPin
+  name: боёк исследователя
+  description: Боёк австраликусских сил обороны, переделанный так, чтобы оружие не стреляло на станции. Вставьте в оружие, кликнув им.
+  components:
+  - type: Sprite
+    state: explorer
+  - type: ImperialFiringPin
+    mode: Explorer
+
+# === Медвежий капкан (restraints/legcuffs/beartrap) ===
+
+- type: entity
+  parent: BaseItem
+  id: ImperialBearTrap
+  name: медвежий капкан
+  description: Ловушка для медведей и прочих существ с ногами. Взведите в руке и положите на пол.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/beartrap.rsi
+    layers:
+    - state: icon
+      map: [ "trap" ]
+  - type: Item
+    size: Normal
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ImperialBearTrapVisuals.Armed:
+        trap:
+          True: { state: armed }
+          False: { state: icon }
+  - type: ImperialBearTrap
+  - type: StepTrigger
+    intersectRatio: 0.2
+    requiredTriggeredSpeed: 0
+  - type: Ensnaring
+    freeTime: 10
+    breakoutTime: 10
+    walkSpeed: 0
+    sprintSpeed: 0
+    canThrowTrigger: false
+    staminaDamage: 0
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 500
+
+# === Бумеранг (melee/baton/security/boomerang) ===
+
+- type: entity
+  parent: Stunbaton
+  id: ImperialStunBoomerang
+  name: бумеранг OZtek
+  description: Устройство, изобретённое в 2486 году для Великой войны с космическими эму Конфедерацией Австраликуса. Эти высокотехнологичные бумеранги также исключительно хорошо оглушают членов экипажа. Только не забудьте поймать его, когда кидаете!
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/boomerang.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Item
+    sprite: Imperial/Research/TG/boomerang.rsi
+    heldPrefix: null
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: active }
+          False: { state: icon }
+  - type: ImperialBoomerang
+  - type: StaminaDamageOnCollide
+    damage: 35
+  - type: ItemTogglePrefix
+    on: null
+    off: null
+
+# === Патроны .38 (speedloader/c38) — в SS14 ими служит .45 магнум ===
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBullet38Rubber
+  name: резиновая пуля .38
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 10
+  - type: StaminaDamageOnCollide
+    damage: 30
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBullet38Iceblox
+  name: пуля .38 Iceblox
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 20
+  - type: ImperialTgProjectileEffects
+    bodyTemperature: 100
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBullet38Trac
+  name: пуля .38 TRAC
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 10
+  - type: ImperialTgProjectileEffects
+    implant: TrackingImplant
+
+- type: entity
+  parent: BaseBulletAP
+  id: ImperialBullet38True
+  name: пуля .38 True Strike
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 15
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBullet38Flare
+  name: сигнальная пуля .38
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 10
+  - type: ImperialTgProjectileEffects
+    glowTime: 60
+  - type: PointLight
+    radius: 2
+    color: "#ff9933"
+    energy: 2
+
+- type: entity
+  parent: BaseCartridgeMagnum
+  id: ImperialCartridge38Rubber
+  name: патрон .38 (резиновый)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBullet38Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#43c4f7"
+
+- type: entity
+  parent: BaseCartridgeMagnum
+  id: ImperialCartridge38Iceblox
+  name: патрон .38 (Iceblox)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBullet38Iceblox
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#b3f0ff"
+
+- type: entity
+  parent: BaseCartridgeMagnum
+  id: ImperialCartridge38Trac
+  name: патрон .38 (TRAC)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBullet38Trac
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#4cff4c"
+
+- type: entity
+  parent: BaseCartridgeMagnum
+  id: ImperialCartridge38True
+  name: патрон .38 (True Strike)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBullet38True
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#ffd24c"
+
+- type: entity
+  parent: BaseCartridgeMagnum
+  id: ImperialCartridge38Flare
+  name: патрон .38 (сигнальный)
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBullet38Flare
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#ff6e1a"
+
+- type: entity
+  parent: BaseSpeedLoaderMagnum
+  id: ImperialBaseSpeedLoader38
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: base-6
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: base
+    steps: 7
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: ImperialBaseSpeedLoader38
+  id: ImperialSpeedLoader38Rubber
+  name: спидлоадер .38 (резиновые)
+  description: Резиновые пули невероятно прыгучие и почти нелетальны.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridge38Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: rubber-6
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: rubber
+    steps: 7
+    zeroVisible: false
+
+- type: entity
+  parent: ImperialBaseSpeedLoader38
+  id: ImperialSpeedLoader38Iceblox
+  name: спидлоадер .38 (Iceblox)
+  description: Пули Iceblox содержат криогенный заряд, понижающий температуру тела цели.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridge38Iceblox
+
+- type: entity
+  parent: ImperialBaseSpeedLoader38
+  id: ImperialSpeedLoader38Trac
+  name: спидлоадер .38 (TRAC)
+  description: Пули TRAC вживляют цели имплант слежения.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridge38Trac
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: practice-6
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: practice
+    steps: 7
+    zeroVisible: false
+
+- type: entity
+  parent: ImperialBaseSpeedLoader38
+  id: ImperialSpeedLoader38True
+  name: спидлоадер .38 (True Strike)
+  description: Пули True Strike пробивают броню.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridge38True
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: piercing-6
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: piercing
+    steps: 7
+    zeroVisible: false
+
+- type: entity
+  parent: ImperialBaseSpeedLoader38
+  id: ImperialSpeedLoader38Flare
+  name: спидлоадер .38 (сигнальные)
+  description: Сигнальные пули подсвечивают цель, чтобы её видели все.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridge38Flare
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: uranium-6
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: uranium
+    steps: 7
+    zeroVisible: false
+
+# === Магазины WT-550 (ammo_box/magazine/wt550m9) ===
+
+- type: entity
+  parent: MagazinePistolSubMachineGunTopMounted
+  id: ImperialMagazineWT550AP
+  name: магазин WT-550 (бронебойный)
+  description: Магазин с бронебойными патронами для WT-550.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridgePistolAP
+  - type: Sprite
+    color: "#d9ff8c"
+
+- type: entity
+  parent: MagazinePistolSubMachineGunTopMounted
+  id: ImperialMagazineWT550Incendiary
+  name: магазин WT-550 (зажигательный)
+  description: Магазин с зажигательными патронами для WT-550.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolIncendiary
+  - type: Sprite
+    color: "#ffb38c"
+
+# === Патроны дробовика (ammo_casing/shotgun) ===
+
+- type: entity
+  parent: BaseShellShotgun
+  id: ImperialScatterLaserShell
+  name: лазерный дробовой патрон
+  description: Продвинутый патрон с микролазером, повторяющий действие лазерного дробовика в баллистическом корпусе.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/shells.rsi
+    layers:
+    - state: lasershell
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: ImperialScatterLaserPellets
+  - type: SpentAmmoVisuals
+    state: lasershell
+    suffix: true
+
+- type: entity
+  id: ImperialScatterLaserPellets
+  categories: [ HideSpawnMenu ]
+  parent: BulletLaserSpread
+  components:
+  - type: ProjectileSpread
+    proto: BulletLaser
+    count: 6
+    spread: 15
+
+- type: entity
+  parent: BaseShellShotgun
+  id: ImperialTechShell
+  name: незаряженный технологический патрон
+  description: Высокотехнологичный патрон, который можно снарядить материалами для особых эффектов. Варианты сборки — в меню действий.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/shells.rsi
+    layers:
+    - state: techshell
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: PelletShotgunPractice
+  - type: SpentAmmoVisuals
+    state: techshell
+    suffix: true
+  - type: ImperialTgCraft
+    recipes:
+    - name: imperial-tg-recipe-meteorslug
+      result: ImperialShellShotgunMeteor
+      time: 0.5
+      items:
+      - protos: [ RCDAmmo ]
+        name: imperial-tg-req-rcd-ammo
+      - protos: [ MicroManipulatorStockPart ]
+        count: 2
+        name: imperial-tg-req-servo
+      reagents:
+        Gunpowder: 10
+        Rum: 10
+    - name: imperial-tg-recipe-pulseslug
+      result: ImperialShellPulseSlug
+      time: 0.5
+      items:
+      - protos: [ PowerCellMedium, PowerCellHigh, PowerCellHyper ]
+        count: 2
+        name: imperial-tg-req-capacitor
+      - protos: [ MicroManipulatorStockPart ]
+        name: imperial-tg-req-laser
+    - name: imperial-tg-recipe-dragonsbreath
+      result: ShellShotgunIncendiary
+      time: 0.5
+      reagents:
+        Phosphorus: 5
+    - name: imperial-tg-recipe-frag12
+      result: ImperialShellFrag12
+      time: 0.5
+      reagents:
+        Gunpowder: 5
+        FluorosulfuricAcid: 10
+    - name: imperial-tg-recipe-ionshell
+      result: ImperialShellIon
+      time: 0.5
+      items:
+      - protos: [ MicroManipulatorStockPart ]
+        name: imperial-tg-req-laser
+      - protos: [ XenoBluespaceCrystal ]
+        name: imperial-tg-req-crystal
+
+- type: entity
+  parent: BaseShellShotgun
+  id: ImperialShellPulseSlug
+  name: импульсный патрон
+  description: Патрон, выпускающий импульсный луч.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/shells.rsi
+    layers:
+    - state: pulseshell
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: ImperialBulletPulseSlug
+  - type: SpentAmmoVisuals
+    state: pulseshell
+    suffix: true
+
+- type: entity
+  parent: BulletPulseDS
+  id: ImperialBulletPulseSlug
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 30
+
+- type: entity
+  parent: BaseShellShotgun
+  id: ImperialShellFrag12
+  name: патрон FRAG-12
+  description: Фугасная пуля, взрывающаяся при попадании.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/shells.rsi
+    layers:
+    - state: fragshell
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: ImperialBulletFrag12
+  - type: SpentAmmoVisuals
+    state: fragshell
+    suffix: true
+
+- type: entity
+  parent: BaseBulletTrigger
+  id: ImperialBulletFrag12
+  name: пуля FRAG-12
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 15
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 4
+    intensitySlope: 2
+    totalIntensity: 8
+    maxTileBreak: 0
+
+- type: entity
+  parent: BaseShellShotgun
+  id: ImperialShellIon
+  name: ионный патрон
+  description: Патрон с четырьмя слабыми ионными зарядами.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/shells.rsi
+    layers:
+    - state: ionshell
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: ImperialIonPelletSpread
+  - type: SpentAmmoVisuals
+    state: ionshell
+    suffix: true
+
+- type: entity
+  parent: ImperialBulletIonWeak
+  id: ImperialIonPelletSpread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: ImperialBulletIonWeak
+    count: 4
+    spread: 15
+
+# === Ионные снаряды (projectile/ion) ===
+
+- type: entity
+  parent: BaseBulletTrigger
+  id: ImperialBulletIon
+  name: ионный заряд
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/projectiles.rsi
+    layers:
+    - state: ion
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Shock: 0
+  - type: EmpOnTrigger
+    range: 1
+    energyConsumption: 20000
+    disableDuration: 10
+  - type: PointLight
+    radius: 1.5
+    color: "#4ca6ff"
+    energy: 1
+
+- type: entity
+  parent: ImperialBulletIon
+  id: ImperialBulletIonWeak
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmpOnTrigger
+    range: 0.5
+    energyConsumption: 5000
+    disableDuration: 5
+
+# === Наборы деталей оружия (weaponcrafting/gunkit) ===
+
+- type: entity
+  parent: BaseItem
+  id: ImperialBaseGunKit
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/gunkits.rsi
+    state: kit
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: ImperialBaseGunKit
+  id: ImperialIonCarbine
+  name: набор деталей ионного карабина
+  description: Чемоданчик с деталями, превращающими стандартный лазер в ионный карабин. Сборка — в меню действий, лазер нужно держать в руке или положить рядом.
+  components:
+  - type: ImperialTgCraft
+    recipes:
+    - name: imperial-tg-recipe-ioncarbine
+      result: ImperialWeaponIonCarbine
+      time: 5
+      items:
+      - protos: [ WeaponLaserCarbine, WeaponLaserGun ]
+        name: imperial-tg-req-laser-gun
+
+- type: entity
+  parent: ImperialBaseGunKit
+  id: ImperialTeslaCannon
+  name: набор деталей тесла-пушки
+  description: Чемоданчик с деталями для сборки тесла-пушки вокруг стабилизированного ядра электрической аномалии. Обращаться осторожно.
+  components:
+  - type: Sprite
+    state: tesla
+  - type: ImperialTgCraft
+    recipes:
+    - name: imperial-tg-recipe-teslacannon
+      result: ImperialWeaponTeslaCannon
+      time: 5
+      items:
+      - protos: [ AnomalyCoreElectricity ]
+        name: imperial-tg-req-flux-core
+
+- type: entity
+  parent: ImperialBaseGunKit
+  id: ImperialBeamRifle
+  name: набор деталей антиэкзистенциальной лучевой винтовки «Горизонт событий»
+  description: Какие воспалённые умы создали этот ужасный набор? НЕ СОБИРАТЬ. Нужны ядра гравитационной и блюспейс-аномалий.
+  components:
+  - type: ImperialTgCraft
+    recipes:
+    - name: imperial-tg-recipe-eventhorizon
+      result: ImperialWeaponEventHorizon
+      time: 30
+      items:
+      - protos: [ AnomalyCoreGravity ]
+        count: 2
+        name: imperial-tg-req-grav-core
+      - protos: [ AnomalyCoreBluespace ]
+        name: imperial-tg-req-bluespace-core
+
+# === Оружие из наборов ===
+
+- type: entity
+  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband ]
+  id: ImperialWeaponIonCarbine
+  name: ионный карабин
+  description: Прототип ионного проектора MK.II — облегчённая карабинная версия ионной винтовки, эргономичная и экономичная.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/ioncarbine.rsi
+    layers:
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-unshaded-4
+      map: [ "enum.GunVisualLayers.MagUnshaded" ]
+      shader: unshaded
+  - type: Item
+    size: Large
+    sprite: Imperial/Research/TG/ioncarbine.rsi
+  - type: Clothing
+    sprite: Imperial/Research/TG/ioncarbine.rsi
+    slots:
+    - Belt
+    - suitStorage
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: BatteryAmmoProvider
+    proto: ImperialBulletIon
+    fireCost: 100
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband ]
+  id: ImperialWeaponTeslaCannon
+  name: тесла-пушка
+  description: Прототип высоковольтного проектора потока, созданный по последним достижениям аномальной науки. Стрелять можно только с разложенным прикладом (держа двумя руками).
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/tesla_cannon.rsi
+    offset: -0.25,0
+    layers:
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-unshaded-2
+      map: [ "enum.GunVisualLayers.MagUnshaded" ]
+      shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Research/TG/tesla_cannon_inhand.rsi
+  - type: Clothing
+    sprite: Imperial/Research/TG/tesla_cannon_inhand.rsi
+    slots:
+    - Back
+  - type: GunRequiresWield
+  - type: Gun
+    fireRate: 10
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Effects/Lightning/lightningshock.ogg
+  - type: BatteryAmmoProvider
+    proto: ImperialBulletTeslaCannon
+    fireCost: 30
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletTeslaCannon
+  name: разряд теслы
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/projectiles.rsi
+    layers:
+    - state: tesla
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Shock: 5
+  - type: ImperialTgProjectileEffects
+    shock: 10
+
+- type: entity
+  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseMajorContraband ]
+  id: ImperialWeaponEventHorizon
+  name: антиэкзистенциальная лучевая винтовка «Горизонт событий»
+  description: Безумные умы НаноТрейзен в своей гордыне и злобе породили окончательный итог гонки вооружений — оружейные чёрные дыры. Стреляет только из прицела (держа двумя руками).
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/event_horizon.rsi
+    layers:
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    size: Huge
+    sprite: Imperial/Research/TG/event_horizon.rsi
+  - type: Clothing
+    sprite: Imperial/Research/TG/event_horizon.rsi
+    slots:
+    - Back
+  - type: GunRequiresWield
+  - type: Gun
+    fireRate: 0.5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: BatteryAmmoProvider
+    proto: ImperialBulletEventHorizon
+    fireCost: 1000
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 4
+    pvsIncrease: 0.4
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletEventHorizon
+  name: антиэкзистенциальный луч
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/projectiles.rsi
+    layers:
+    - state: ion
+      shader: unshaded
+      color: "#000000"
+  - type: Projectile
+    damage:
+      types:
+        Heat: 100
+  - type: ImperialTgProjectileEffects
+    spawnOnHit: ImperialRealityTear
+
+- type: entity
+  parent: Singularity
+  id: ImperialRealityTear
+  name: временный разрыв реальности
+  description: Чёрная дыра, вырванная из ткани бытия. К счастью, ненадолго.
+  components:
+  - type: TimedDespawn
+    lifetime: 10
+
+# === Корпуса химгранат (grenade/chem_grenade) ===
+
+- type: entity
+  parent: ModularGrenade
+  id: ImperialBaseTgGrenadeCasing
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/grenades.rsi
+
+- type: entity
+  parent: ImperialBaseTgGrenadeCasing
+  id: ImperialLargeGrenadeCasing
+  name: корпус большой гранаты
+  description: Самодельный большой корпус гранаты. Нагревает содержимое на 25 K при срабатывании. Нужны провод, триггер и химический заряд.
+  components:
+  - type: Sprite
+    layers:
+    - state: large
+      map: [ "enum.ConstructionVisuals.Layer" ]
+  - type: Construction
+    graph: ImperialTgGrenadeLargeGraph
+    node: emptyCase
+  - type: ImperialTgGrenadeCasing
+    temperatureDelta: 25
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Key:
+        enum.ConstructionVisuals.Layer:
+          emptyCase: { state: large }
+          wiredCase: { state: large-ass }
+          caseWithTrigger: { state: large-ass }
+          caseWithPayload: { state: large-ass }
+          grenade: { state: large-locked }
+      enum.Trigger.TriggerVisuals.VisualState:
+        enum.ConstructionVisuals.Layer:
+          Primed: { state: large-primed }
+
+- type: entity
+  parent: ImperialBaseTgGrenadeCasing
+  id: ImperialAdvancedGrenadeCasing
+  name: корпус гранаты с улучшенным выпуском
+  description: Самодельный корпус, срабатывающий несколько раз — каждые 5 секунд выпускает по 10 единиц смеси. Нужны провод, триггер и химический заряд.
+  components:
+  - type: Sprite
+    layers:
+    - state: adv
+      map: [ "enum.ConstructionVisuals.Layer" ]
+  - type: Construction
+    graph: ImperialTgGrenadeAdvGraph
+    node: emptyCase
+  - type: ImperialTgGrenadeCasing
+    releaseUnits: 10
+    temperatureDelta: 10
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Key:
+        enum.ConstructionVisuals.Layer:
+          emptyCase: { state: adv }
+          wiredCase: { state: adv-ass }
+          caseWithTrigger: { state: adv-ass }
+          caseWithPayload: { state: adv-ass }
+          grenade: { state: adv-locked }
+      enum.Trigger.TriggerVisuals.VisualState:
+        enum.ConstructionVisuals.Layer:
+          Primed: { state: adv-primed }
+
+- type: entity
+  parent: ImperialBaseTgGrenadeCasing
+  id: ImperialPyroGrenadeCasing
+  name: корпус пирогранаты
+  description: Самодельный пиротехнический корпус. Нагревает содержимое на 500 K при срабатывании. Нужны провод, триггер и химический заряд.
+  components:
+  - type: Sprite
+    layers:
+    - state: pyro
+      map: [ "enum.ConstructionVisuals.Layer" ]
+  - type: Construction
+    graph: ImperialTgGrenadePyroGraph
+    node: emptyCase
+  - type: ImperialTgGrenadeCasing
+    temperatureDelta: 500
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Key:
+        enum.ConstructionVisuals.Layer:
+          emptyCase: { state: pyro }
+          wiredCase: { state: pyro-ass }
+          caseWithTrigger: { state: pyro-ass }
+          caseWithPayload: { state: pyro-ass }
+          grenade: { state: pyro-locked }
+      enum.Trigger.TriggerVisuals.VisualState:
+        enum.ConstructionVisuals.Layer:
+          Primed: { state: pyro-primed }
+
+- type: entity
+  parent: ImperialBaseTgGrenadeCasing
+  id: ImperialCryoGrenadeCasing
+  name: корпус криогранаты
+  description: Самодельный криогенный корпус. Охлаждает содержимое на 100 K при срабатывании. Нужны провод, триггер и химический заряд.
+  components:
+  - type: Sprite
+    layers:
+    - state: cryo
+      map: [ "enum.ConstructionVisuals.Layer" ]
+  - type: Construction
+    graph: ImperialTgGrenadeCryoGraph
+    node: emptyCase
+  - type: ImperialTgGrenadeCasing
+    temperatureDelta: -100
+  - type: GenericVisualizer
+    visuals:
+      enum.ConstructionVisuals.Key:
+        enum.ConstructionVisuals.Layer:
+          emptyCase: { state: cryo }
+          wiredCase: { state: cryo-ass }
+          caseWithTrigger: { state: cryo-ass }
+          caseWithPayload: { state: cryo-ass }
+          grenade: { state: cryo-locked }
+      enum.Trigger.TriggerVisuals.VisualState:
+        enum.ConstructionVisuals.Layer:
+          Primed: { state: cryo-primed }
+
+# === Прочее СБ ===
+
+- type: entity
+  parent: BaseItem
+  id: ImperialNSpectScanner
+  name: N-spect сканер
+  description: Стандартное устройство проверки Центрального Командования. Ищет контрабанду у цели и печатает отчёт.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/inspector.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: ImperialInspector
+
+- type: entity
+  parent: Pen
+  id: ImperialSecurityPen
+  name: ручка СБ
+  description: Красная ручка для сотрудников СБ. На другом конце — голопроектор для приказа «стоять» (меню действий на человеке).
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/security_pen.rsi
+    state: icon
+  - type: ImperialSecurityPen
+
+- type: entity
+  id: ImperialSecurityPenHolo
+  categories: [ HideSpawnMenu ]
+  name: голограмма «СТОЯТЬ»
+  components:
+  - type: Sprite
+    sprite: Effects/text.rsi
+    state: exclamation
+    offset: 0,1
+    shader: unshaded
+    drawdepth: Effects
+  - type: TimedDespawn
+    lifetime: 5
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ImperialTacklerDolphin
+  name: перчатки дельфина
+  description: Гладкие обтекаемые перчатки для захвата. Хуже сбивают с ног, зато позволяют лететь по коридорам и устраивать аварии.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/tackler_dolphin.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Research/TG/tackler_dolphin.rsi
+  - type: ImperialTackler
+    range: 5
+    speed: 12
+    knockdown: 1
+    skillMod: -1
+    staminaCost: 20
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ImperialTacklerRocket
+  name: ракетные перчатки
+  description: Высокий риск — высокая награда, чтобы остановить преступника за пятьдесят шагов или погибнуть, пытаясь. Запрещены в большинстве лиг космического регби.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/tackler_rocket.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Research/TG/tackler_rocket.rsi
+  - type: ImperialTackler
+    range: 8
+    speed: 18
+    knockdown: 2
+    skillMod: 2
+    staminaCost: 40
+    crashChance: 0.5
+
+- type: entity
+  id: ImperialActionTackle
+  parent: BaseAction
+  name: Бросок
+  description: Прыгнуть к цели, чтобы сбить её с ног.
+  components:
+  - type: Action
+    useDelay: 3
+    icon:
+      sprite: Imperial/Research/TG/tackler_rocket.rsi
+      state: icon
+  - type: TargetAction
+    checkCanAccess: false
+    range: 10
+  - type: WorldTargetAction
+    event: !type:ImperialTackleActionEvent
+
+
+# === Резиновая дробь (ammo_casing/shotgun/rubbershot): 6 дробин по 3 урона и 10 стамины ===
+
+- type: entity
+  parent: PelletShotgunBeanbag
+  id: ImperialPelletShotgunRubber
+  name: резиновая дробина
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+  - type: StaminaDamageOnCollide
+    damage: 10
+
+- type: entity
+  parent: ImperialPelletShotgunRubber
+  id: ImperialPelletShotgunRubberSpread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ProjectileSpread
+    proto: ImperialPelletShotgunRubber
+    count: 6
+    spread: 15
+
+- type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  id: ImperialShellShotgunRubber
+  name: патрон (.50 резиновая дробь)
+  description: Резиновая дробь — менее летальная, но больно жалит.
+  components:
+  - type: Sprite
+    layers:
+    - state: beanbag
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    color: "#a0a0ff"
+  - type: CartridgeAmmo
+    proto: ImperialPelletShotgunRubberSpread
+  - type: SpentAmmoVisuals
+    state: beanbag

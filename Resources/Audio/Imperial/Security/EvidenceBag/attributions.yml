@@ -1,0 +1,4 @@
+- files: ["evidence_bag_drop.ogg", "evidence_bag_pickup.ogg", "evidence_bag_unzip.ogg", "evidence_bag_zip.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Evidence bag sounds made by sadboysuss, taken from tgstation/BandaStation"
+  source: "https://github.com/ss220club/BandaStation"

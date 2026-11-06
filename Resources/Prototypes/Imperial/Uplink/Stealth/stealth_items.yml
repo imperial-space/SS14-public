@@ -1,0 +1,279 @@
+# Скрытное оружие TG: набор ядов, плотоядная кровь.
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialUplinkBottlePolonium
+  suffix: Polonium
+  components:
+  - type: Label
+    currentLabel: reagent-name-polonium
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Polonium
+          Quantity: 30
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialUplinkBottleVenom
+  suffix: Venom
+  components:
+  - type: Label
+    currentLabel: reagent-name-venom
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Venom
+          Quantity: 30
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialUplinkBottleFentanyl
+  suffix: Fentanyl
+  components:
+  - type: Label
+    currentLabel: reagent-name-fentanyl
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Fentanyl
+          Quantity: 30
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialUplinkBottleAnacea
+  suffix: Anacea
+  components:
+  - type: Label
+    currentLabel: reagent-name-anacea
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Anacea
+          Quantity: 30
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialUplinkBottleSpewium
+  suffix: Spewium
+  components:
+  - type: Label
+    currentLabel: reagent-name-spewium
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Spewium
+          Quantity: 30
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialUplinkBottleSyndol
+  suffix: Syndol
+  components:
+  - type: Label
+    currentLabel: reagent-name-syndol
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Syndol
+          Quantity: 30
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialUplinkBottleCyanide
+  suffix: Cyanide
+  components:
+  - type: Label
+    currentLabel: reagent-name-cyanide
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Cyanide
+          Quantity: 30
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialUplinkBottleHistamine
+  suffix: Histamine
+  components:
+  - type: Label
+    currentLabel: reagent-name-histamine
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Histamine
+          Quantity: 30
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialUplinkBottleInitropidril
+  suffix: Initropidril
+  components:
+  - type: Label
+    currentLabel: reagent-name-initropidril
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Initropidril
+          Quantity: 30
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialUplinkBottlePancuronium
+  suffix: Pancuronium
+  components:
+  - type: Label
+    currentLabel: reagent-name-pancuronium
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Pancuronium
+          Quantity: 30
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialUplinkBottleSodiumThiopental
+  suffix: SodiumThiopental
+  components:
+  - type: Label
+    currentLabel: reagent-name-sodium-thiopental
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: SodiumThiopental
+          Quantity: 30
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialUplinkBottleConiine
+  suffix: Coniine
+  components:
+  - type: Label
+    currentLabel: reagent-name-coniine
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Coniine
+          Quantity: 30
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialUplinkBottleCurare
+  suffix: Curare
+  components:
+  - type: Label
+    currentLabel: reagent-name-curare
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Curare
+          Quantity: 30
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialUplinkBottleAmanitin
+  suffix: Amanitin
+  components:
+  - type: Label
+    currentLabel: reagent-name-amanitin
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Amanitin
+          Quantity: 30
+
+- type: entity
+  parent: BaseChemistryBottleFilled
+  id: ImperialUplinkBottleCarnivorousBlood
+  suffix: CarnivorousBlood
+  components:
+  - type: Label
+    currentLabel: reagent-name-carnivorous-blood
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: CarnivorousBlood
+          Quantity: 30
+
+# /obj/item/storage/box/syndie_kit/chemical
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkPoisonKit
+  name: набор ядов
+  description: Набор смертельных химикатов в компактной коробке. В комплекте шприц для точного применения.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,7,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialUplinkBottlePolonium
+        - id: ImperialUplinkBottleVenom
+        - id: ImperialUplinkBottleFentanyl
+        - id: ImperialUplinkBottleAnacea
+        - id: ImperialUplinkBottleSpewium
+        - id: ImperialUplinkBottleSyndol
+        - id: ImperialUplinkBottleCyanide
+        - id: ImperialUplinkBottleHistamine
+        - id: ImperialUplinkBottleInitropidril
+        - id: ImperialUplinkBottlePancuronium
+        - id: ImperialUplinkBottleSodiumThiopental
+        - id: ImperialUplinkBottleConiine
+        - id: ImperialUplinkBottleCurare
+        - id: ImperialUplinkBottleAmanitin
+        - id: Syringe
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+    - state: beaker
+
+# /obj/item/storage/box/syndie_kit/carnivorous_blood
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkCarnivorousBloodKit
+  name: набор плотоядной крови
+  description: Бутылка плотоядной крови, шприц и кусок мяса для её подкормки.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialUplinkBottleCarnivorousBlood
+        - id: Syringe
+        - id: FoodMeatHuman
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+    - state: beaker

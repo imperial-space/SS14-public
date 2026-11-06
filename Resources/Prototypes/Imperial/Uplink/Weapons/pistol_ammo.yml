@@ -1,0 +1,777 @@
+# Калибры TG: 9 мм (Макаров), 10 мм (Ансем), .357 (револьвер Синдиката), .160 Smart, бунтовые поролоновые дротики.
+# code/modules/projectiles/projectile/bullets/pistol.dm, revolver.dm; boxes_magazines/external/pistol.dm
+
+- type: Tag
+  id: ImperialCartridge9mm
+
+- type: Tag
+  id: ImperialMagazine9mm
+
+- type: Tag
+  id: ImperialCartridge10mm
+
+- type: Tag
+  id: ImperialMagazine10mm
+
+- type: Tag
+  id: ImperialCartridge357
+
+- type: Tag
+  id: ImperialSpeedLoader357
+
+- type: Tag
+  id: ImperialCartridgeSmart
+
+- type: Tag
+  id: ImperialMagazineSmart
+
+- type: Tag
+  id: ImperialMagazineDonksoft
+
+# ─── Пули ───
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBullet9mm
+  name: пуля (9 мм)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 16
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBullet9mmAP
+  name: бронебойная пуля (9 мм)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: piercing
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 14
+  - type: UplinkProjectile
+    armorPenetration: 0.4
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBullet9mmHP
+  name: экспансивная пуля (9 мм)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 21
+  - type: UplinkProjectile
+    weakAgainstArmor: true
+
+- type: entity
+  parent: BaseBulletIncendiary
+  id: ImperialBullet9mmFire
+  name: зажигательная пуля (9 мм)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 8
+  - type: IgniteOnCollide
+    fireStacks: 2
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBullet10mm
+  name: пуля (10 мм)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 21
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBullet10mmAP
+  name: бронебойная пуля (10 мм)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: piercing
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 19
+  - type: UplinkProjectile
+    armorPenetration: 0.4
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBullet10mmHP
+  name: экспансивная пуля (10 мм)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 27
+  - type: UplinkProjectile
+    weakAgainstArmor: true
+
+- type: entity
+  parent: BaseBulletIncendiary
+  id: ImperialBullet10mmFire
+  name: зажигательная пуля (10 мм)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 11
+  - type: IgniteOnCollide
+    fireStacks: 3
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBullet357
+  name: пуля (.357)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 35
+
+# Фазовая: проходит сквозь стены, двери, машины и столы — задевает только живых.
+- type: entity
+  parent: BaseBullet
+  id: ImperialBullet357Phasic
+  name: фазовая пуля (.357)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/projectiles.rsi
+    layers:
+    - state: gaussphase
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 20
+    ignoreResistances: true
+  - type: UplinkProjectile
+    phasing: true
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBullet357Heartseeker
+  name: пуля «сердцеискатель» (.357)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/projectiles.rsi
+    layers:
+    - state: gauss
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 29
+  - type: UplinkHomingProjectile
+    turnSpeed: 720
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletSmart
+  name: умная пуля (.160 Smart)
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/projectiles.rsi
+    layers:
+    - state: smartgun
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 5
+  - type: UplinkHomingProjectile
+    # homing_turn_speed = 5° на полклетки = 10° на клетку при 16 клетках/с; homing_inaccuracy 4–10 px.
+    turnSpeed: 160
+    inaccuracyMin: 0.125
+    inaccuracyMax: 0.3125
+
+# ─── Патроны ───
+
+- type: entity
+  abstract: true
+  parent: [ BaseCartridge, BaseSyndicateContraband ]
+  id: ImperialBaseCartridge9mm
+  name: патрон (9 мм)
+  description: Пистолетный патрон 9 мм для пистолета Макарова.
+  components:
+  - type: Tag
+    tags:
+    - ImperialCartridge9mm
+  - type: CartridgeAmmo
+    proto: ImperialBullet9mm
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  parent: ImperialBaseCartridge9mm
+  id: ImperialCartridge9mm
+
+- type: entity
+  parent: ImperialBaseCartridge9mm
+  id: ImperialCartridge9mmAP
+  name: бронебойный патрон (9 мм)
+  description: Меньше урона, но пробивает защитное снаряжение.
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBullet9mmAP
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#d9d9d9"
+
+- type: entity
+  parent: ImperialBaseCartridge9mm
+  id: ImperialCartridge9mmHP
+  name: экспансивный патрон (9 мм)
+  description: Больше урона, но плохо действует против брони.
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBullet9mmHP
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#ff9900"
+
+- type: entity
+  parent: ImperialBaseCartridge9mm
+  id: ImperialCartridge9mmFire
+  name: зажигательный патрон (9 мм)
+  description: Мало урона, но поджигает цель.
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBullet9mmFire
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#f4001f"
+
+- type: entity
+  abstract: true
+  parent: [ BaseCartridge, BaseSyndicateContraband ]
+  id: ImperialBaseCartridge10mm
+  name: патрон (10 мм)
+  description: Пистолетный патрон 10 мм для пистолета Ансем.
+  components:
+  - type: Tag
+    tags:
+    - ImperialCartridge10mm
+  - type: CartridgeAmmo
+    proto: ImperialBullet10mm
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  parent: ImperialBaseCartridge10mm
+  id: ImperialCartridge10mm
+
+- type: entity
+  parent: ImperialBaseCartridge10mm
+  id: ImperialCartridge10mmAP
+  name: бронебойный патрон (10 мм)
+  description: Меньше урона, но пробивает защитное снаряжение.
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBullet10mmAP
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#d9d9d9"
+
+- type: entity
+  parent: ImperialBaseCartridge10mm
+  id: ImperialCartridge10mmHP
+  name: экспансивный патрон (10 мм)
+  description: Больше урона, но плохо действует против брони.
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBullet10mmHP
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#ff9900"
+
+- type: entity
+  parent: ImperialBaseCartridge10mm
+  id: ImperialCartridge10mmFire
+  name: зажигательный патрон (10 мм)
+  description: Мало урона, но поджигает цель.
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBullet10mmFire
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#f4001f"
+
+- type: entity
+  abstract: true
+  parent: [ BaseCartridge, BaseSyndicateContraband ]
+  id: ImperialBaseCartridge357
+  name: патрон (.357)
+  description: Патрон .357 Магнум для револьвера Синдиката.
+  components:
+  - type: Tag
+    tags:
+    - ImperialCartridge357
+  - type: CartridgeAmmo
+    proto: ImperialBullet357
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  parent: ImperialBaseCartridge357
+  id: ImperialCartridge357
+
+- type: entity
+  parent: ImperialBaseCartridge357
+  id: ImperialCartridge357Phasic
+  name: фазовый патрон (.357)
+  description: Пуля из экспериментального сплава «призрачный свинец» проходит почти сквозь любой неорганический материал.
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBullet357Phasic
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#7f3fff"
+
+- type: entity
+  parent: ImperialBaseCartridge357
+  id: ImperialCartridge357Heartseeker
+  name: патрон «сердцеискатель» (.357)
+  description: Пуля сама доворачивает к цели.
+  components:
+  - type: CartridgeAmmo
+    proto: ImperialBullet357Heartseeker
+  - type: Sprite
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: tip
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#ff4fa0"
+
+- type: entity
+  parent: [ BaseCartridge, BaseSyndicateContraband ]
+  id: ImperialCartridgeSmart
+  name: патрон (.160 Smart)
+  description: Реактивная пуля для смарт-пистолета-пулемёта Abielle.
+  components:
+  - type: Tag
+    tags:
+    - ImperialCartridgeSmart
+  - type: CartridgeAmmo
+    proto: ImperialBulletSmart
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/ammo.rsi
+    layers:
+    - state: smartgun_casing-live
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+
+# ─── Магазины ───
+
+- type: entity
+  abstract: true
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialBaseMagazine9mm
+  name: пистолетный магазин (9 мм)
+  description: Магазин 9 мм для пистолета Макарова.
+  components:
+  - type: Tag
+    tags:
+    - ImperialMagazine9mm
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+      - ImperialCartridge9mm
+    proto: ImperialCartridge9mm
+    capacity: 12
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/ammo.rsi
+    layers:
+    - state: mag9
+
+- type: entity
+  parent: ImperialBaseMagazine9mm
+  id: ImperialMagazine9mm
+
+- type: entity
+  parent: ImperialBaseMagazine9mm
+  id: ImperialMagazine9mmAP
+  name: пистолетный магазин (9 мм, бронебойные)
+  description: Магазин 9 мм для пистолета Макарова. Бронебойные патроны эффективны против бронированных целей, но слабее против небронированных.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridge9mmAP
+  - type: Sprite
+    layers:
+    - state: mag9
+    - state: band9
+      color: "#d9d9d9"
+
+- type: entity
+  parent: ImperialBaseMagazine9mm
+  id: ImperialMagazine9mmHP
+  name: пистолетный магазин (9 мм, экспансивные)
+  description: Магазин 9 мм для пистолета Макарова. Экспансивные патроны эффективны против небронированных целей, но сильно страдают от брони.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridge9mmHP
+  - type: Sprite
+    layers:
+    - state: mag9
+    - state: band9
+      color: "#ff9900"
+
+- type: entity
+  parent: ImperialBaseMagazine9mm
+  id: ImperialMagazine9mmFire
+  name: пистолетный магазин (9 мм, зажигательные)
+  description: Магазин 9 мм для пистолета Макарова. Зажигательные патроны поджигают цель, но наносят меньше урона.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridge9mmFire
+  - type: Sprite
+    layers:
+    - state: mag9
+    - state: band9
+      color: "#f4001f"
+
+- type: entity
+  abstract: true
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialBaseMagazine10mm
+  name: пистолетный магазин (10 мм)
+  description: Магазин 10 мм для пистолета Ансем.
+  components:
+  - type: Tag
+    tags:
+    - ImperialMagazine10mm
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+      - ImperialCartridge10mm
+    proto: ImperialCartridge10mm
+    capacity: 8
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/ammo.rsi
+    layers:
+    - state: mag9
+
+- type: entity
+  parent: ImperialBaseMagazine10mm
+  id: ImperialMagazine10mm
+
+- type: entity
+  parent: ImperialBaseMagazine10mm
+  id: ImperialMagazine10mmAP
+  name: пистолетный магазин (10 мм, бронебойные)
+  description: Магазин 10 мм для пистолета Ансем. Бронебойные патроны эффективны против бронированных целей, но слабее против небронированных.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridge10mmAP
+  - type: Sprite
+    layers:
+    - state: mag9
+    - state: band9
+      color: "#d9d9d9"
+
+- type: entity
+  parent: ImperialBaseMagazine10mm
+  id: ImperialMagazine10mmHP
+  name: пистолетный магазин (10 мм, экспансивные)
+  description: Магазин 10 мм для пистолета Ансем. Экспансивные патроны эффективны против небронированных целей, но сильно страдают от брони.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridge10mmHP
+  - type: Sprite
+    layers:
+    - state: mag9
+    - state: band9
+      color: "#ff9900"
+
+- type: entity
+  parent: ImperialBaseMagazine10mm
+  id: ImperialMagazine10mmFire
+  name: пистолетный магазин (10 мм, зажигательные)
+  description: Магазин 10 мм для пистолета Ансем. Зажигательные патроны поджигают цель, но наносят меньше урона.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridge10mmFire
+  - type: Sprite
+    layers:
+    - state: mag9
+    - state: band9
+      color: "#f4001f"
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialMagazineSmart
+  name: магазин Abielle (.160 Smart)
+  description: Глубокий магазин .160 Smart для смарт-пистолета-пулемёта Abielle.
+  components:
+  - type: Tag
+    tags:
+    - ImperialMagazineSmart
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+      - ImperialCartridgeSmart
+    proto: ImperialCartridgeSmart
+    capacity: 50
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/ammo.rsi
+    layers:
+    - state: smartmag
+
+# ─── Спидлоадеры .357 ───
+
+- type: entity
+  abstract: true
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialBaseSpeedLoader357
+  name: спидлоадер (.357)
+  description: Семь патронов .357 Магнум для револьвера Синдиката. Когда очень нужно, чтобы много чего умерло.
+  components:
+  - type: Tag
+    tags:
+    - ImperialSpeedLoader357
+  - type: SpeedLoader
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - ImperialCartridge357
+    proto: ImperialCartridge357
+    capacity: 7
+  - type: Item
+    size: Tiny
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/ammo.rsi
+    layers:
+    - state: 357-0
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: 357-7
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: "357"
+    steps: 8
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: ImperialBaseSpeedLoader357
+  id: ImperialSpeedLoader357
+
+- type: entity
+  parent: ImperialBaseSpeedLoader357
+  id: ImperialSpeedLoader357Phasic
+  name: спидлоадер (.357, фазовые)
+  description: Семь фазовых патронов .357. Пули из «призрачного свинца» проходят почти сквозь любой неорганический материал. Название обманчиво — свинца в них нет вовсе!
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridge357Phasic
+  - type: Sprite
+    color: "#c9b0ff"
+
+- type: entity
+  parent: ImperialBaseSpeedLoader357
+  id: ImperialSpeedLoader357Heartseeker
+  name: спидлоадер (.357, «сердцеискатели»)
+  description: Семь патронов .357 «сердцеискатель», которые сами доворачивают к цели. Не промахнитесь с «сердцеискателем»!
+  components:
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridge357Heartseeker
+  - type: Sprite
+    color: "#ffb0d0"
+
+# ─── Коробки патронов ───
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialAmmoBox9mm
+  name: коробка патронов (9 мм)
+  description: Коробка россыпных патронов 9 мм.
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+      - ImperialCartridge9mm
+    proto: ImperialCartridge9mm
+    capacity: 30
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/ammo.rsi
+    state: 9mmbox
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialAmmoBox10mm
+  name: коробка патронов (10 мм)
+  description: Коробка россыпных патронов 10 мм.
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+      - ImperialCartridge10mm
+    proto: ImperialCartridge10mm
+    capacity: 20
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/ammo.rsi
+    state: 10mmbox
+
+# ─── Бунтовые поролоновые дротики Donksoft ───
+
+- type: entity
+  parent: BulletFoam
+  id: ImperialBulletFoamRiot
+  name: бунтовой поролоновый дротик
+  description: Утяжелённый дротик, способный вымотать цель.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/foam.rsi
+    layers:
+    - state: foamdart_riot
+  - type: StaminaDamageOnCollide
+    damage: 25
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialMagazineDonksoft
+  name: магазин пистолета Donksoft
+  description: Магазин на 12 бунтовых поролоновых дротиков.
+  components:
+  - type: Tag
+    tags:
+    - ImperialMagazineDonksoft
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+      - BulletFoam
+    proto: ImperialBulletFoamRiot
+    capacity: 12
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/ammo.rsi
+    layers:
+    - state: mag9
+      color: "#ff8a3d"
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialBoxFoamRiot
+  name: коробка бунтовых дротиков
+  description: Коробка россыпных бунтовых поролоновых дротиков.
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+      - BulletFoam
+    proto: ImperialBulletFoamRiot
+    capacity: 40
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/Uplink/Weapons/foam.rsi
+    state: foambox_riot

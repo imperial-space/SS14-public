@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (poster.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "rolled"
+    },
+    {
+      "name": "small_brain"
+    },
+    {
+      "name": "metroid"
+    },
+    {
+      "name": "supermatter"
+    },
+    {
+      "name": "cloning"
+    },
+    {
+      "name": "ai"
+    },
+    {
+      "name": "cash"
+    },
+    {
+      "name": "roof"
+    },
+    {
+      "name": "accident"
+    },
+    {
+      "name": "hungry"
+    }
+  ]
+}

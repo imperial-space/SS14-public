@@ -1,0 +1,45 @@
+# Биржа материалов TG (SSstock_market): value_per_unit × 100 и tradable_base_quantity.
+
+- type: imperialStockMaterial
+  id: ImperialStockIron
+  name: imperial-stock-material-iron
+  value: 5
+  minimum: 0
+  baseQuantity: 5000
+  sheet: SheetSteel1
+
+- type: imperialStockMaterial
+  id: ImperialStockGlass
+  name: imperial-stock-material-glass
+  value: 5
+  minimum: 0
+  baseQuantity: 5000
+  sheet: SheetGlass1
+
+- type: imperialStockMaterial
+  id: ImperialStockSilver
+  name: imperial-stock-material-silver
+  value: 50
+  baseQuantity: 1000
+  sheet: IngotSilver1
+
+- type: imperialStockMaterial
+  id: ImperialStockGold
+  name: imperial-stock-material-gold
+  value: 125
+  baseQuantity: 200
+  sheet: IngotGold1
+
+- type: imperialStockMaterial
+  id: ImperialStockUranium
+  name: imperial-stock-material-uranium
+  value: 100
+  baseQuantity: 200
+  sheet: SheetUranium1
+
+- type: imperialStockMaterial
+  id: ImperialStockDiamond
+  name: imperial-stock-material-diamond
+  value: 500
+  baseQuantity: 50
+  sheet: MaterialDiamond1

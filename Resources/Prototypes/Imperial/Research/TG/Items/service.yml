@@ -1,0 +1,928 @@
+# Предметы сервиса, ботаники, науки и прочего из исследований TG.
+
+# === Ботаника ===
+
+- type: entity
+  parent: BaseItem
+  id: ImperialWateringCan
+  name: лейка
+  description: Научно доказано, что полив из лейки, имитирующий дождь, делает растения счастливее!
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/watering_can.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Research/TG/watering_can.rsi
+  - type: SolutionContainerManager
+    solutions:
+      watering:
+        maxVol: 100
+        reagents:
+        - ReagentId: Water
+          Quantity: 100
+  - type: RefillableSolution
+    solution: watering
+  - type: DrainableSolution
+    solution: watering
+  - type: ExaminableSolution
+    solution: watering
+  - type: SolutionTransfer
+    transferAmount: 25
+    maxTransferAmount: 50
+    canChangeTransferAmount: true
+
+- type: entity
+  parent: ImperialWateringCan
+  id: ImperialWateringCanAdvanced
+  name: продвинутая лейка
+  description: Всё, о чём мечтает ботаник. Это чудо техники само вырабатывает воду!
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/watering_can_adv.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Research/TG/watering_can_adv.rsi
+  - type: SolutionContainerManager
+    solutions:
+      watering:
+        maxVol: 150
+        reagents:
+        - ReagentId: Water
+          Quantity: 150
+  - type: SolutionRegeneration
+    solution: watering
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 2
+
+- type: entity
+  parent: PlantBag
+  id: ImperialPortableSeedExtractor
+  name: портативный экстрактор семян
+  description: "Для предприимчивого ботаника в пути. Alt-клик превращает весь урожай внутри в семена — по одному на плод."
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/portaseeder.rsi
+    state: icon
+  - type: ImperialPortaseeder
+
+- type: entity
+  parent: BaseItem
+  id: ImperialGeneShears
+  name: ботаногенетические ножницы
+  description: Высокоточные ножницы, способные вырезать генетическое свойство из растения в лотке.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/gene_shears.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: ImperialGeneShears
+
+- type: entity
+  parent: [ BaseWeaponBatterySmall ]
+  id: ImperialFloraGun
+  name: флоральный соматолуч
+  description: Инструмент, испускающий направленное излучение, которое вызывает мутации или повышает урожай растений. Режим переключается.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/flora_gun.rsi
+    layers:
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    sprite: Imperial/Research/TG/flora_gun.rsi
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: BatteryAmmoProvider
+    proto: ImperialFloraBeamYield
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: ImperialFloraBeamYield
+      fireCost: 100
+    - proto: ImperialFloraBeamMutate
+      fireCost: 100
+  - type: BatterySelfRecharger
+    autoRechargeRate: 20
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialFloraBeamYield
+  name: луч урожайности
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    layers:
+    - state: u_laser
+      shader: unshaded
+      color: "#80ff80"
+  - type: Projectile
+    damage:
+      types:
+        Heat: 0
+  - type: ImperialFloraBeam
+    mode: Yield
+
+- type: entity
+  parent: ImperialFloraBeamYield
+  id: ImperialFloraBeamMutate
+  name: мутагенный луч
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: u_laser
+      shader: unshaded
+      color: "#c080ff"
+  - type: ImperialFloraBeam
+    mode: Mutate
+
+# === Кухня и сервис ===
+
+- type: entity
+  parent: DrinkMug
+  id: ImperialMaunaMug
+  name: кружка Мауна
+  description: Напиток в стильной кружке. Теперь со встроенным подогревом — включается в руке!
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/mauna_mug.rsi
+    layers:
+    - state: icon
+  - type: ImperialHeatingMug
+
+- type: entity
+  parent: BaseItem
+  id: ImperialServingTray
+  name: поднос
+  description: Металлический поднос для еды.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/trays.rsi
+    state: serving
+  - type: Item
+    size: Large
+  - type: Storage
+    grid:
+    - 0,0,5,3
+    maxItemSize: Normal
+    whitelist:
+      components:
+      - Edible
+      - Utensil
+      - Drink
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+
+- type: entity
+  parent: ImperialServingTray
+  id: ImperialCafeteriaTray
+  name: столовый поднос
+  description: Дешёвый металлический поднос, чтобы набрать сегодняшний обед.
+  components:
+  - type: Sprite
+    state: cafeteria
+  - type: Storage
+    grid:
+    - 0,0,3,2
+    maxItemSize: Small
+    whitelist:
+      components:
+      - Edible
+      - Utensil
+      - Drink
+
+- type: entity
+  parent: BaseItem
+  id: ImperialTongs
+  name: щипцы
+  description: Чтобы никогда не трогать еду грязными немытыми руками.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/tongs.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: Utensil
+    types:
+    - Fork
+
+- type: entity
+  parent: LargeBeaker
+  id: ImperialCoffeepotBluespace
+  name: блюспейс кофейник
+  description: Самый продвинутый кофейник, какой могли придумать яйцеголовые. Вмещает 240 единиц.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/coffeepot_bluespace.rsi
+    layers:
+    - state: icon
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 240
+  - type: SolutionContainerVisuals
+    maxFillLevels: 0
+
+- type: entity
+  parent: BaseStructureDynamic
+  id: ImperialRollingTable
+  name: столик на колёсиках
+  description: Стол на колёсиках марки НТ «Ролли полли». Его можно перемещать.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/rolling_table.rsi
+    state: icon
+    drawdepth: FloorObjects
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: PlaceableSurface
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 55
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Climbable
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Pullable
+
+# === Уборка ===
+
+- type: entity
+  parent: LightReplacer
+  id: ImperialLightReplacerBluespace
+  name: блюспейс заменитель ламп
+  description: Модифицированный заменитель ламп с увеличенным запасом.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/light_replacer_blue.rsi
+    state: icon
+  - type: LightReplacer
+    contents:
+    - id: LightTube
+      amount: 20
+    - id: LightBulb
+      amount: 12
+
+- type: entity
+  parent: BaseItem
+  id: ImperialPushBroom
+  name: метла-толкач
+  description: Это моя МЕТЛА! В двух руках сметает предметы перед собой при движении.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/push_broom.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/Research/TG/push_broom.rsi
+  - type: Wieldable
+  - type: ImperialPushBroom
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 6
+
+- type: entity
+  parent: BaseItem
+  id: ImperialPaintRemover
+  name: растворитель краски
+  description: Снимает краску со всего, что покрасили краскопультом.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/paint_remover.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: ImperialPaintRemover
+
+- type: entity
+  parent: BodyBag
+  id: ImperialBodyBagBluespace
+  name: блюспейс мешок для тел
+  description: Сложенный блюспейс-мешок для хранения и перевозки трупов. Вмещает больше обычного.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/bodybag_bluespace.rsi
+    layers:
+    - state: bag
+      map: [ "unfoldedLayer", "enum.StorageVisualLayers.Base" ]
+    - state: folded
+      map: [ "foldedLayer" ]
+    - state: open
+      map: [ "enum.StorageVisualLayers.Door" ]
+  - type: Icon
+    sprite: Imperial/Research/TG/bodybag_bluespace.rsi
+    state: bag
+  - type: EntityStorageVisuals
+    stateDoorOpen: open
+  - type: EntityStorage
+    capacity: 5
+
+# === Ленты ===
+
+- type: entity
+  parent: ImperialSuperPointyTape
+  id: ImperialStickyTape
+  name: липкая лента
+  description: Чтобы приклеивать к вещам другие вещи — и к людям тоже. Обмотанный предмет прилипает к цели при броске.
+  components:
+  - type: Sprite
+    color: "#d9d9d9"
+  - type: Stack
+    stackType: ImperialStickyTape
+  - type: UplinkPointyTape
+    damage: 0
+    removalTime: 3
+
+- type: entity
+  parent: ImperialSuperPointyTape
+  id: ImperialSuperStickyTape
+  name: суперлипкая лента
+  description: Пожалуй, самое озорное вещество в галактике. Отодрать прилипшее очень трудно.
+  components:
+  - type: Sprite
+    color: "#ffd24c"
+  - type: Stack
+    stackType: ImperialSuperStickyTape
+  - type: UplinkPointyTape
+    damage: 0
+    removalTime: 15
+
+- type: stack
+  id: ImperialStickyTape
+  name: липкая лента
+  icon: { sprite: Imperial/Uplink/Stealth/tape.rsi, state: icon }
+  spawn: ImperialStickyTape
+  maxCount: 5
+
+- type: stack
+  id: ImperialSuperStickyTape
+  name: суперлипкая лента
+  icon: { sprite: Imperial/Uplink/Stealth/tape.rsi, state: icon }
+  spawn: ImperialSuperStickyTape
+  maxCount: 5
+
+# === Одежда и прочее ===
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ImperialTinkerGloves
+  name: перчатки мастера
+  description: Переусложнённые инженерные перчатки с встроенными подпрограммами сборки.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/tinker_gloves.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Research/TG/tinker_gloves.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+
+- type: entity
+  parent: BaseItem
+  id: ImperialEarmuffs
+  name: наушники-беруши
+  description: Защищают слух от громких звуков, да и от тихих тоже.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/earmuffs.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Research/TG/earmuffs.rsi
+  - type: Clothing
+    sprite: Imperial/Research/TG/earmuffs.rsi
+    slots:
+    - ears
+
+- type: entity
+  parent: ClothingBeltBase
+  id: ImperialPolymorphBelt
+  name: инвертор полиморфного поля
+  description: Пояс, способный сканировать и хранить ДНК другой формы жизни. Нажмите им на существо, чтобы просканировать, затем активируйте, чтобы превратиться в него на минуту.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/polymorph_belt.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Research/TG/polymorph_belt.rsi
+  - type: ImperialPolymorphBelt
+
+- type: entity
+  parent: ClothingHeadHelmetBase
+  id: ImperialPerceptomatrix
+  name: шлем перцептоматрицы
+  description: Шлем на силе аномалии галлюцинаций — защищает мозг носителя и позволяет навязывать галлюцинации другим.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/perceptomatrix.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Research/TG/perceptomatrix.rsi
+  - type: ImperialPerceptomatrix
+
+- type: entity
+  id: ImperialActionPerceptomatrix
+  parent: BaseAction
+  name: Навязать галлюцинацию
+  description: Заставить цель видеть то, чего нет.
+  components:
+  - type: Action
+    useDelay: 30
+    icon:
+      sprite: Imperial/Research/TG/perceptomatrix.rsi
+      state: icon
+  - type: TargetAction
+    range: 7
+  - type: EntityTargetAction
+    event: !type:ImperialPerceptomatrixActionEvent
+
+- type: entity
+  parent: BaseItem
+  id: ImperialTapeRecorder
+  name: универсальный диктофон
+  description: Записывает речь вокруг и воспроизводит её. Управление — альтернативными действиями.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/tape_recorder.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: ImperialTapeRecorder
+  - type: Speech
+
+- type: entity
+  parent: Crayon
+  id: ImperialSpraycan
+  name: баллончик с краской
+  description: Металлический баллончик с вкусной краской. Рисует как мелок, но заряда хватает надолго.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/spraycan.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Research/TG/spraycan.rsi
+    heldPrefix: null
+  - type: Crayon
+    color: "#ff4040"
+    selectableColor: true
+  - type: LimitedCharges
+    maxCharges: 100
+
+- type: entity
+  parent: BaseItem
+  id: ImperialRazor
+  name: электробритва
+  description: Новейшая электробритва, рождённая наукой о бритье. Сбривает бороду, а если её нет — волосы.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/razor.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: ImperialRazor
+
+- type: entity
+  parent: BaseItem
+  id: ImperialWaterBalloon
+  name: водяной шарик
+  description: Прозрачный шарик. Наполните его жидкостью и бросьте — он лопнет.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/water_balloon.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      balloon:
+        maxVol: 10
+  - type: RefillableSolution
+    solution: balloon
+  - type: Spillable
+    solution: balloon
+    spillWhenThrown: true
+  - type: DamageOnLand
+    damage:
+      types:
+        Blunt: 10
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:SpillBehavior
+        solution: balloon
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: PartRodMetal
+  id: ImperialLavaRods
+  name: термостойкие стержни
+  description: Обработанные металлические стержни, выдерживающие жар активной лавы.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/lava_rods.rsi
+    state: lavarods-5
+    layers:
+    - state: lavarods-5
+      map: [ "base" ]
+  - type: Stack
+    stackType: MetalRod
+    baseLayer: base
+    layerStates:
+    - lavarods-1
+    - lavarods-1
+    - lavarods-3
+    - lavarods-3
+    - lavarods-5
+
+- type: entity
+  parent: PositronicBrain
+  id: ImperialPositronicSphere
+  name: позитронная сфера
+  description: Благодаря сокращению расходов позитронные кубы удалось распилить на вдвое более дешёвые сферы.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/posisphere.rsi
+    layers:
+    - state: icon
+      map: [ "base" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableGhostRoleVisuals.Status:
+        base:
+          Off: { state: icon }
+          Searching: { state: searching }
+          On: { state: occupied }
+
+- type: entity
+  parent: MiningDrill
+  id: ImperialSonicJackhammer
+  name: звуковой отбойный молоток
+  description: Раскалывает породу звуковыми ударами быстрее обычного бура.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/jackhammer.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Research/TG/jackhammer.rsi
+  - type: MeleeWeapon
+    attackRate: 2
+    autoAttack: true
+    angle: 0
+    wideAnimationRotation: -90
+    soundHit:
+      path: "/Audio/Items/drill_hit.ogg"
+    damage:
+      types:
+        Blunt: 6
+        Structural: 40
+
+- type: entity
+  parent: BaseItem
+  id: ImperialPKAMiningAoEMod
+  name: модуль акселератора (горный взрыв)
+  description: Кинетический акселератор разрушает породу по площади. Занимает 30% вместимости.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/pka_modkit.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: KineticModkit
+    cost: 30
+    aoeTurfs: true
+
+- type: entity
+  parent: BaseItem
+  id: ImperialAnomalyNeutralizer
+  name: нейтрализатор аномалий
+  description: Одноразовое устройство, мгновенно гасящее аномалию.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/anomaly_neutralizer.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: ImperialAnomalyNeutralizer
+
+- type: entity
+  parent: BaseItem
+  id: ImperialSpaceFurnace
+  name: космическая печь
+  description: Тяжёлая печь, держащая вокруг себя пузырь пригодного для дыхания воздуха. Включается в руке.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/space_furnace.rsi
+    state: icon
+  - type: Item
+    size: Large
+  - type: ImperialSpaceFurnace
+  - type: PointLight
+    radius: 3
+    energy: 1.5
+    color: "#ff9f40"
+
+# === Оружие ===
+
+- type: entity
+  parent: ImperialBaseGunKit
+  id: ImperialPhotonCannon
+  name: набор деталей фотонной пушки
+  description: Чемоданчик с деталями для сборки фотонной пушки вокруг стабилизированного ядра электрической аномалии. Сила солнца — в ваших руках.
+  components:
+  - type: ImperialTgCraft
+    recipes:
+    - name: imperial-tg-recipe-photoncannon
+      result: ImperialWeaponPhotonCannon
+      time: 5
+      items:
+      - protos: [ AnomalyCoreElectricity ]
+        name: imperial-tg-req-flux-core
+
+- type: entity
+  parent: [ BaseWeaponBattery, BaseGunWieldable ]
+  id: ImperialWeaponPhotonCannon
+  name: фотонная пушка
+  description: Нелетальная пушка, стреляющая ослепляющими сгустками света.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/photon_cannon.rsi
+    layers:
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-unshaded-4
+      map: [ "enum.GunVisualLayers.MagUnshaded" ]
+      shader: unshaded
+  - type: Item
+    size: Large
+    sprite: Imperial/Research/TG/flora_gun.rsi
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: BatteryAmmoProvider
+    proto: ImperialBulletPhoton
+    fireCost: 100
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+  - type: BatterySelfRecharger
+    autoRechargeRate: 15
+
+- type: entity
+  parent: BaseBulletTrigger
+  id: ImperialBulletPhoton
+  name: фотон
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    layers:
+    - state: u_laser
+      shader: unshaded
+      color: "#ffffa0"
+  - type: Projectile
+    damage:
+      types:
+        Heat: 0
+  - type: FlashOnTrigger
+    range: 1
+  - type: PointLight
+    radius: 2.5
+    color: "#ffffa0"
+    energy: 2
+
+# === Машины ===
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialRecyclerBoard
+  name: плата утилизатора
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: ImperialRecycler
+    stackRequirements:
+      Manipulator: 2
+      Steel: 5
+
+- type: entity
+  parent: [ Recycler, ConstructibleMachine ]
+  id: ImperialRecycler
+  name: утилизатор
+  description: Перемалывает попавшие в него предметы в материалы. Строится из платы.
+  components:
+  - type: Machine
+    board: ImperialRecyclerBoard
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialGibberBoard
+  name: плата мясорубки
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: ImperialGibber
+    stackRequirements:
+      Manipulator: 2
+      Steel: 5
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialGibber
+  name: мясорубка
+  description: Перемалывает мёртвых и умирающих в мясо. Перетащите тело на машину.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/gibber.rsi
+    state: icon
+  - type: ImperialGibber
+  - type: Machine
+    board: ImperialGibberBoard
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialDeepFryerBoard
+  name: плата фритюрницы
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: ImperialDeepFryer
+    stackRequirements:
+      Manipulator: 1
+      Steel: 2
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialDeepFryer
+  name: фритюрница
+  description: Обжаривает всё, что в неё положить. Жарка — альтернативным действием.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/deep_fryer.rsi
+    state: icon
+  - type: ImperialDeepFryer
+  - type: ItemSlots
+    slots:
+      fryer:
+        name: продукт
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      fryer: !type:ContainerSlot
+  - type: Machine
+    board: ImperialDeepFryerBoard
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialHypnochairBoard
+  name: плата кресла усиленного допроса
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ImperialHypnochair
+    stackRequirements:
+      Manipulator: 2
+      Cable: 5
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialHypnochair
+  name: кресло усиленного допроса
+  description: Пристегните человека и начните сеанс (альтернативное действие). Через 30 секунд он впадёт в транс, и следующая услышанная фраза станет его навязчивой идеей.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/hypnochair.rsi
+    state: icon
+  - type: Strap
+    position: Stand
+  - type: ImperialHypnochair
+  - type: Machine
+    board: ImperialHypnochairBoard
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialExperimentorBoard
+  name: плата E.X.P.E.R.I-MENTOR
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: ImperialExperimentor
+    stackRequirements:
+      Manipulator: 2
+      Cable: 5
+      Glass: 2
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialExperimentor
+  name: E.X.P.E.R.I-MENTOR
+  description: Ставит над вставленным предметом непредсказуемые опыты, иногда принося очки исследований. Опыты — в меню действий.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/experimentor.rsi
+    state: icon
+  - type: ImperialExperimentor
+  - type: ItemSlots
+    slots:
+      item:
+        name: образец
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      item: !type:ContainerSlot
+  - type: Machine
+    board: ImperialExperimentorBoard
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialCrystallizerMachineCircuitboard
+  name: плата кристаллизатора
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialCrystallizer
+    stackRequirements:
+      Manipulator: 2
+      Cable: 5
+      Glass: 2
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialCrystallizer
+  name: кристаллизатор
+  description: Превращает газы со своего тайла в кристаллы. Рецепт и питание — альтернативными действиями.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/crystallizer.rsi
+    state: icon
+  - type: AtmosDevice
+  - type: ImperialCrystallizer
+    recipes:
+    - name: imperial-crystallizer-diamond
+      result: MaterialDiamond1
+      time: 30
+      gases:
+        2: 150
+    - name: imperial-crystallizer-plasma
+      result: SheetPlasma1
+      time: 20
+      gases:
+        3: 45
+    - name: imperial-crystallizer-cell
+      result: PowerCellHyper
+      time: 40
+      gases:
+        3: 80
+        16: 5
+  - type: Machine
+    board: ImperialCrystallizerMachineCircuitboard

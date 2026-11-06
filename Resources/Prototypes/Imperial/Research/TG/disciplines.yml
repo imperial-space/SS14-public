@@ -1,0 +1,121 @@
+# Дисциплины дерева исследований TG (по отделам techweb). Ярусы не ограничивают — только предшественники.
+
+- type: techDiscipline
+  id: ImperialTgEngineering
+  name: imperial-tg-discipline-engineering
+  color: "#eeac34"
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: industrial
+  tierPrerequisites:
+    1: 0
+    2: 0
+    3: 0
+    4: 0
+    5: 0
+  lockoutTier: 99
+
+- type: techDiscipline
+  id: ImperialTgMedical
+  name: imperial-tg-discipline-medical
+  color: "#5ab4dc"
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: biochemical
+  tierPrerequisites:
+    1: 0
+    2: 0
+    3: 0
+    4: 0
+    5: 0
+  lockoutTier: 99
+
+- type: techDiscipline
+  id: ImperialTgSecurity
+  name: imperial-tg-discipline-security
+  color: "#dc373b"
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: arsenal
+  tierPrerequisites:
+    1: 0
+    2: 0
+    3: 0
+    4: 0
+    5: 0
+  lockoutTier: 99
+
+- type: techDiscipline
+  id: ImperialTgRobotics
+  name: imperial-tg-discipline-robotics
+  color: "#a0a0b4"
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Roboticist
+  tierPrerequisites:
+    1: 0
+    2: 0
+    3: 0
+    4: 0
+    5: 0
+  lockoutTier: 99
+
+- type: techDiscipline
+  id: ImperialTgService
+  name: imperial-tg-discipline-service
+  color: "#7ecd48"
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: civilianservices
+  tierPrerequisites:
+    1: 0
+    2: 0
+    3: 0
+    4: 0
+    5: 0
+  lockoutTier: 99
+
+- type: techDiscipline
+  id: ImperialTgSupply
+  name: imperial-tg-discipline-supply
+  color: "#c8963c"
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: CargoTechnician
+  tierPrerequisites:
+    1: 0
+    2: 0
+    3: 0
+    4: 0
+    5: 0
+  lockoutTier: 99
+
+- type: techDiscipline
+  id: ImperialTgScience
+  name: imperial-tg-discipline-science
+  color: "#9a6ef0"
+  icon:
+    sprite: Interface/Misc/research_disciplines.rsi
+    state: experimental
+  tierPrerequisites:
+    1: 0
+    2: 0
+    3: 0
+    4: 0
+    5: 0
+  lockoutTier: 99
+
+# Шаблон для ImperialTgResearchSystem: дисциплины TG подставляются серверу исследований через Sync.
+- type: entity
+  id: ImperialTgResearchTemplate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TechnologyDatabase
+    supportedDisciplines:
+    - ImperialTgEngineering
+    - ImperialTgMedical
+    - ImperialTgSecurity
+    - ImperialTgRobotics
+    - ImperialTgService
+    - ImperialTgSupply
+    - ImperialTgScience

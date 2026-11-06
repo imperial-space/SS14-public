@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (stickers.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "synd"
+    },
+    {
+      "name": "c4"
+    },
+    {
+      "name": "sbomb"
+    },
+    {
+      "name": "apc"
+    },
+    {
+      "name": "larva"
+    },
+    {
+      "name": "cult"
+    },
+    {
+      "name": "flash"
+    },
+    {
+      "name": "op"
+    },
+    {
+      "name": "trap"
+    }
+  ]
+}

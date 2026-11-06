@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (wide.dmi)",
+  "size": {
+    "x": 64,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "mastodon"
+    },
+    {
+      "name": "swordfish"
+    },
+    {
+      "name": "chainsawfish",
+      "delays": [
+        [
+          0.033,
+          0.033,
+          0.033,
+          0.033
+        ]
+      ]
+    },
+    {
+      "name": "chainsawfish_dead"
+    },
+    {
+      "name": "pike"
+    },
+    {
+      "name": "armored_pike"
+    },
+    {
+      "name": "nessiefish"
+    },
+    {
+      "name": "dolphish"
+    }
+  ]
+}

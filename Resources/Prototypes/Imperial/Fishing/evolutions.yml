@@ -1,0 +1,100 @@
+# Эволюции рыб (/datum/fish_evolution).
+
+- type: imperialFishEvolution
+  id: Lubefish
+  probability: 25
+  newFish: ImperialFishClownfishLube
+  newTraits: [ Lubed ]
+  conditionsNote: imperial-fish-evolution-note-lubefish
+  condition: fedLube
+
+- type: imperialFishEvolution
+  id: PurpleSludgefish
+  probability: 5
+  newFish: ImperialFishSludgefishPurple
+  newTraits: [ Recessive ]
+  removedTraits: [ NoMating ]
+
+- type: imperialFishEvolution
+  id: Mastodon
+  name: imperial-fish-evolution-unknown
+  probability: 40
+  newFish: ImperialFishMastodon
+  newTraits: [ Heavy, Amphibious, Predator, Territorial ]
+  conditionsNote: imperial-fish-evolution-note-mastodon
+  condition: mastodon
+  hideResult: true
+
+- type: imperialFishEvolution
+  id: ChasmChrab
+  probability: 50
+  newFish: ImperialFishChasmCrab
+  temperatureMin: 287.15
+  temperatureMax: 288.15
+
+- type: imperialFishEvolution
+  id: IceChrab
+  probability: 50
+  newFish: ImperialFishChasmCrabIce
+  temperatureMin: 282.15
+  temperatureMax: 283.15
+
+- type: imperialFishEvolution
+  id: ThreeEyes
+  probability: 3
+  newFish: ImperialFishGoldfishThreeEyes
+  newTraits: [ Recessive ]
+
+- type: imperialFishEvolution
+  id: Chainsawfish
+  probability: 30
+  newFish: ImperialFishChainsawfish
+  newTraits: [ Predator, Territorial ]
+  conditionsNote: imperial-fish-evolution-note-chainsawfish
+  condition: chainsawfish
+
+- type: imperialFishEvolution
+  id: ArmoredPike
+  probability: 75
+  newFish: ImperialFishPikeArmored
+  conditionsNote: imperial-fish-evolution-note-armored-pike
+  condition: armoredPike
+
+- type: imperialFishEvolution
+  id: Fritterish
+  newFish: ImperialFishFryishFritterish
+  removedTraits: [ NoMating ]
+  conditionsNote: imperial-fish-evolution-note-fritterish
+
+- type: imperialFishEvolution
+  id: Nessie
+  name: imperial-fish-evolution-unknown
+  newFish: ImperialFishFryishNessie
+  conditionsNote: imperial-fish-evolution-note-nessie
+  hideResult: true
+
+- type: imperialFishEvolution
+  id: Moonfish
+  probability: 200
+  newFish: ImperialFishMoonfish
+  conditionsNote: imperial-fish-evolution-note-moonfish
+  condition: moonfish
+
+- type: imperialFishEvolution
+  id: DwarfMoonfish
+  probability: 200
+  newFish: ImperialFishMoonfishDwarf
+  conditionsNote: imperial-fish-evolution-note-dwarf-moonfish
+  condition: dwarfMoonfish
+
+- type: imperialFishEvolution
+  id: Lavaloop
+  probability: 85
+  newFish: ImperialFishLavaloop
+  temperatureMin: 333.15
+
+- type: imperialFishEvolution
+  id: Plasmaloop
+  probability: 85
+  newFish: ImperialFishLavaloopPlasmaRiver
+  temperatureMax: 333.15

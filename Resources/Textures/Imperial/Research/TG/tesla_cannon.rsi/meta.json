@@ -1,0 +1,20 @@
+{
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "Taken from tgstation (BandaStation) at commit master",
+    "size":  {
+                 "x":  48,
+                 "y":  32
+             },
+    "states":  [
+                   {
+                       "name":  "icon"
+                   },
+                   {
+                       "name":  "mag-unshaded-1"
+                   },
+                   {
+                       "name":  "mag-unshaded-2"
+                   }
+               ]
+}

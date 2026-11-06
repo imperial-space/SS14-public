@@ -1,0 +1,1394 @@
+# Предметы торгоматов TG, сгенерировано scratchpad/cargo/vitems.pl.
+
+- type: entity
+  parent: FoodSnackBase
+  id: ImperialFoodCandyCornPrison
+  name: "высушенная конфетная кукуруза"
+  description: "Будь эта конфетная кукуруза хоть чуть твёрже, охрана конфисковала бы её как заточку."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/foodcandycornprison.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/foodcandycornprison.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Sugar
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - bitter
+
+- type: entity
+  parent: FoodSnackBase
+  id: ImperialFoodHotShots
+  name: "«Хот Шотс»"
+  description: "Лучшая закуска для бейсбола. Начнёшь — не остановишься!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/foodhotshots.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/foodhotshots.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - nutty
+
+- type: entity
+  parent: FoodSnackBase
+  id: ImperialFoodPeanuts
+  name: "арахис «Гэллери»"
+  description: "Любимое лакомство вечно злых."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/foodpeanuts.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/foodpeanuts.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - nutty
+    - salty
+
+- type: entity
+  parent: FoodSnackBase
+  id: ImperialFoodPeanutsBanAppeal
+  name: "арахис «Гэллери» «Бан-апелл»"
+  description: "Неудачная попытка походной смеси, запрещённая в 6 секторах. Ежегодное лоббирование отмены запрета проваливается не потому, что яблоки ядовиты, а потому что они постоянно обходят бан."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/foodpeanutsbanappeal.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/foodpeanutsbanappeal.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Cyanide
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - nutty
+    - apple
+
+- type: entity
+  parent: FoodSnackBase
+  id: ImperialFoodPeanutsRandom
+  name: "арахис «Гэллери» со всеми вкусами"
+  description: "Какой вкус попадётся вам?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/foodpeanutsrandom.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/foodpeanutsrandom.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - nutty
+    - strange
+
+- type: entity
+  parent: FoodSnackBase
+  id: ImperialFoodShokRoks
+  name: "«Шок-Рокс»: грозовая конфета"
+  description: "Слышали про «Снап-Рокс»? Встречайте «Шок-Рокс» — взрывные конфеты для эфириалов! Этот пакет со вкусом грозовой сахарной ваты — как обычная, только электрическая!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/foodshokroks.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/foodshokroks.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 3
+        - ReagentId: Licoxide
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - shocking
+
+- type: entity
+  parent: FoodSnackBase
+  id: ImperialFoodShokRoksRandom
+  name: "«Шок-Рокс»: скрытый ураган"
+  description: "Слышали про «Снап-Рокс»? Встречайте «Шок-Рокс» — взрывные конфеты для эфириалов! В этом пакете может оказаться любой из 5 вкусов!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/foodshokroksrandom.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/foodshokroksrandom.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 3
+        - ReagentId: Licoxide
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - shocking
+
+- type: entity
+  parent: FoodSnackBase
+  id: ImperialFoodSpacersSidekick
+  name: "мятные конфеты «Спутник космонавта»"
+  description: "«Спутник космонавта»: дышите легко, когда друг рядом!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/foodspacerssidekick.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/foodspacerssidekick.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 1
+        - ReagentId: Menthol
+          Quantity: 1
+        - ReagentId: Salbutamol
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - minty
+
+- type: entity
+  parent: FoodSnackBase
+  id: ImperialFoodSpaceTwinkie
+  name: "космический твинки"
+  description: "Гарантированно проживёт дольше вас."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/foodspacetwinkie.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/foodspacetwinkie.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 4
+  - type: FlavorProfile
+    flavors:
+    - sweet
+
+- type: entity
+  parent: FoodSnackBase
+  id: ImperialFoodSticko
+  name: "«Стико Классик»"
+  description: "Классическое лакомство для всех возрастов — «Стико», оригинальные бисквитные палочки в шоколаде! Это оригинальный (и, как говорят, лучший) вкус: бисквит и молочный шоколад."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/foodsticko.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/foodsticko.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 3
+        - ReagentId: CocoaPowder
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - chocolate
+
+- type: entity
+  parent: FoodSnackBase
+  id: ImperialFoodStickoRandom
+  name: "«Стико Мистери»"
+  description: "Классическое лакомство для всех возрастов — «Стико», оригинальные бисквитные палочки в шоколаде! Бумажная обёртка скрывает настоящий вкус…"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/foodstickorandom.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/foodstickorandom.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 3
+        - ReagentId: CocoaPowder
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - chocolate
+    - strange
+
+- type: entity
+  parent: FoodSnackBase
+  id: ImperialFoodBubblegum
+  name: "жвачка"
+  description: "Резиновая полоска жвачки. Не сытно, но занимает."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/foodbubblegum.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/foodbubblegum.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - chewy
+
+- type: entity
+  parent: FoodSnackBase
+  id: ImperialFoodBubblegumHappiness
+  name: "жвачка «ОЗ+»"
+  description: "Резиновая полоска жвачки. Странно пахнет."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/foodbubblegumhappiness.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/foodbubblegumhappiness.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Happiness
+          Quantity: 15
+  - type: FlavorProfile
+    flavors:
+    - paintthinner
+    - chewy
+
+- type: entity
+  parent: FoodSnackBase
+  id: ImperialFoodBubblegumNicotine
+  name: "никотиновая жвачка"
+  description: "Резиновая полоска жвачки. Не сытно, но занимает."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/foodbubblegumnicotine.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/foodbubblegumnicotine.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 15
+        reagents:
+        - ReagentId: Nicotine
+          Quantity: 10
+        - ReagentId: Menthol
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - minty
+    - chewy
+
+- type: entity
+  parent: BoxCardboard
+  id: ImperialBoxGum
+  name: "пачка жвачки"
+  description: "Упаковка полностью на японском. Ни слова не разобрать."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/boxgum.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/boxgum.rsi
+    heldPrefix: null
+  - type: StorageFill
+    contents:
+    - id: ImperialFoodBubblegum
+      amount: 4
+
+- type: entity
+  parent: BoxCardboard
+  id: ImperialBoxGumHappiness
+  name: "пачка жвачки «ОЗ+»"
+  description: "Самодельная на вид упаковка со странным запахом. На ней нарисовано улыбающееся лицо с высунутым языком."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/boxgumhappiness.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/boxgumhappiness.rsi
+    heldPrefix: null
+  - type: StorageFill
+    contents:
+    - id: ImperialFoodBubblegumHappiness
+      amount: 4
+
+- type: entity
+  parent: BoxCardboard
+  id: ImperialBoxGumNicotine
+  name: "пачка никотиновой жвачки"
+  description: "Помогает справиться и с никотиновой зависимостью, и с оральной фиксацией, не губя при этом лёгкие. Со вкусом мяты!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/boxgumnicotine.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/boxgumnicotine.rsi
+    heldPrefix: null
+  - type: StorageFill
+    contents:
+    - id: ImperialFoodBubblegumNicotine
+      amount: 4
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: ImperialDrinkAmarettoBottleFull
+  name: "амаретто «Луини»"
+  description: "Мягкий сиропный напиток со вкусом миндаля и абрикоса."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkamarettobottlefull.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkamarettobottlefull.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: Amaretto
+          Quantity: 100
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: ImperialDrinkAperitivoBottleFull
+  name: "«Камилло Аперитиво Россо»"
+  description: "Бутылка, с которой начался современный конгломерат напитков «Камилло». Как ни удивительно, производитель вашего любимого ликёра скорее всего хотя бы частично принадлежит «Камилло»."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkaperitivobottlefull.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkaperitivobottlefull.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: Aperitivo
+          Quantity: 100
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: ImperialDrinkApplejackBottleFull
+  name: "эпплджек «Бакин Бронко»"
+  description: "Бьёт как конь, на вкус как яблоко!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkapplejackbottlefull.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkapplejackbottlefull.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: Applejack
+          Quantity: 100
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: ImperialDrinkBittersBottleFull
+  name: "биттер «Андромеда»"
+  description: "Ароматное дополнение к любому напитку. Сделано в Новом Тринидаде, ныне и навеки."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkbittersbottlefull.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkbittersbottlefull.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Bitters
+          Quantity: 30
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: ImperialDrinkFernetBottleFull
+  name: "«Фернет Бранка»"
+  description: "Бутылка чистого «Фернет Бранка», произведённого на космической станции Кордова."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkfernetbottlefull.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkfernetbottlefull.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: Fernet
+          Quantity: 100
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: ImperialDrinkGrappaBottleFull
+  name: "граппа «Филлипс» с выдержкой"
+  description: "Бутылка граппы."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkgrappabottlefull.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkgrappabottlefull.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: Grappa
+          Quantity: 100
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: ImperialDrinkHakkaMateBottleFull
+  name: "Хакка-Мате"
+  description: "Хакка-Мате: на любителя."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkhakkamatebottlefull.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkhakkamatebottlefull.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: HakkaMate
+          Quantity: 30
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: ImperialDrinkHardCiderBottleFull
+  name: "крепкий сидр «Цзянь»"
+  description: "Яблочный сок для взрослых."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkhardciderbottlefull.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkhardciderbottlefull.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: HardCider
+          Quantity: 50
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: ImperialDrinkHerbalLiqueurBottleFull
+  name: "травяной ликёр «Беллармин D.O.P.»"
+  description: "Травяной ликёр почти тысячелетней истории по тайному рецепту, который передают поколения монахов. Неприятно осознавать, что состав его трав охраняют лучше, чем коды ядерного арсенала «Нанотрейзен»."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkherballiqueurbottlefull.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkherballiqueurbottlefull.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: HerbalLiqueur
+          Quantity: 100
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: ImperialDrinkMentholBottleFull
+  name: "ментол"
+  description: "Естественный мятный вкус и лёгкое онемение."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkmentholbottlefull.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkmentholbottlefull.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: Menthol
+          Quantity: 100
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: ImperialDrinkMaltLiquorBottleFull
+  name: "солодовый ликёр «Бешеный медведь»"
+  description: "Сороковник солодового ликёра. Бьёт сильнее, чем, ну, бешеный медведь."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkmaltliquorbottlefull.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkmaltliquorbottlefull.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: MaltLiquor
+          Quantity: 100
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: ImperialDrinkMaraschinoBottleFull
+  name: "мараскино «Далмация Ориджинале»"
+  description: "Записка на обороте бутылки просит всех недовольных отсутствием вишнёвого вкуса звонить по номеру, который, похоже, давно не обслуживается."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkmaraschinobottlefull.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkmaraschinobottlefull.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: Maraschino
+          Quantity: 100
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: ImperialDrinkMushiKombuchaBottleFull
+  name: "комбуча муши «Солзара»"
+  description: "Лучше пить со льдом, чтобы распробовать грибной вкус."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkmushikombuchabottlefull.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkmushikombuchabottlefull.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: MushiKombucha
+          Quantity: 30
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: ImperialDrinkShochuBottleFull
+  name: "сётю «Шу-Куба»"
+  description: "Более крепкий сётю для коктейлей. Прямиком из Пыльного города на Марсе — Шу-Кубы."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkshochubottlefull.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkshochubottlefull.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: Shochu
+          Quantity: 100
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: ImperialDrinkTrappistBottleFull
+  name: "траппистское пиво «Мон-де-Рекен Блю»"
+  description: "Сварено в космической Бельгии. Изысканно!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinktrappistbottlefull.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinktrappistbottlefull.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: TrappistBeer
+          Quantity: 50
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: ImperialDrinkYuyakeBottleFull
+  name: "юяке «Мунлабор»"
+  description: "Дистиллированная суть диско и брюк клёш, пойманная в бутылку, как молния."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkyuyakebottlefull.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkyuyakebottlefull.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: Yuyake
+          Quantity: 100
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: ImperialDrinkAirCan
+  name: "консервированный воздух"
+  description: "Дефицита воздуха нет. Не пить."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkaircan.rsi
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkaircan.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nitrogen
+          Quantity: 24
+        - ReagentId: Oxygen
+          Quantity: 6
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: ImperialDrinkGreyBullCan
+  name: "Грей Булл"
+  description: "Грей Булл дарит перчатки!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkgreybullcan.rsi
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkgreybullcan.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: GreyBull
+          Quantity: 20
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: ImperialDrinkLipoCan
+  name: "Лип-О"
+  description: "Вкуснейший, освежающий и балансирующий жиры напиток, который рекомендуют 9 из 10 стоматологов!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinklipocan.rsi
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinklipocan.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Cola
+          Quantity: 20
+        - ReagentId: Lipolicide
+          Quantity: 10
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: ImperialDrinkMonkeyEnergyCan
+  name: "Манки Энержи"
+  description: "Выпусти обезьяну на волю!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkmonkeyenergycan.rsi
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkmonkeyenergycan.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: MonkeyEnergy
+          Quantity: 50
+
+- type: entity
+  parent: DrinkCanBaseFull
+  id: ImperialDrinkWellcheersCan
+  name: "сок «Уэллчирс»"
+  description: "Странный фиолетовый напиток, пахнущий морской водой. Где-то вдалеке кричат чайки."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/drinkwellcheerscan.rsi
+  - type: Item
+    sprite: Imperial/Vending/Misc/drinkwellcheerscan.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Wellcheers
+          Quantity: 30
+
+- type: entity
+  parent: BaseItem
+  id: ImperialChisel
+  name: "долото"
+  description: "Ломает и создаёт искусство с 4000 года до н. э."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/chisel.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/chisel.rsi
+    heldPrefix: null
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 5
+
+- type: entity
+  parent: BaseItem
+  id: ImperialCoinAntagToken
+  name: "жетон антагониста"
+  description: "Сувенирная монета, которая помогает сердцу узнать то, чего не докажут улики."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/coinantagtoken.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/coinantagtoken.rsi
+    heldPrefix: null
+    size: Tiny
+
+- type: entity
+  parent: BaseItem
+  id: ImperialHourglass
+  name: "песочные часы"
+  description: "Запатентованные «Нанотрейзен» песочные часы, не зависящие от гравитации. Гарантированно идеально сыплются в любых условиях."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/hourglass.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/hourglass.rsi
+    heldPrefix: null
+    size: Small
+
+- type: entity
+  parent: BaseHandheldInstrument
+  id: ImperialMusicalMoth
+  name: "музыкальная моль"
+  description: "Несмотря на популярность, эту спорную музыкальную игрушку в итоге запретили из-за неэтично записанных криков мучающихся молей."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/musicalmoth.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/musicalmoth.rsi
+    heldPrefix: null
+  - type: Instrument
+    program: 79
+
+- type: entity
+  parent: BaseItem
+  id: ImperialFlyswatter
+  name: "мухобойка"
+  description: "Пригодится для уничтожения вредителей любых размеров."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/flyswatter.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/flyswatter.rsi
+    heldPrefix: null
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 1
+
+- type: entity
+  parent: BaseItem
+  id: ImperialSkateboard
+  name: "скейтборд"
+  description: "Профессиональный скейтборд марки «ЭйтО». Выглядит прочным и качественным."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/skateboard.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/skateboard.rsi
+    heldPrefix: null
+    size: Large
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 10
+
+- type: entity
+  parent: BaseItem
+  id: ImperialHoverboard
+  name: "ховерборд"
+  description: "Привет из прошлого, такое ретро!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/hoverboard.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/hoverboard.rsi
+    heldPrefix: null
+    size: Large
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 10
+
+- type: entity
+  parent: BaseItem
+  id: ImperialWizardStaffFake
+  name: "посох волшебника"
+  description: "Судя по всему, посох, которым пользуется волшебник."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/wizardstafffake.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/wizardstafffake.rsi
+    heldPrefix: null
+    size: Large
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 3
+
+- type: entity
+  parent: BaseItem
+  id: ImperialWandNothing
+  name: "палочка ничего"
+  description: "Это не просто палка, это ВОЛШЕБНАЯ палка?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/wandnothing.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/wandnothing.rsi
+    heldPrefix: null
+
+- type: entity
+  parent: BaseItem
+  id: ImperialRomanShieldFake
+  name: "римский щит"
+  description: "На внутренней стороне надпись: «Romanes venio domus». Выглядит хлипким."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/romanshieldfake.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/romanshieldfake.rsi
+    heldPrefix: null
+    size: Large
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+
+- type: entity
+  parent: BaseItem
+  id: ImperialToyIntento
+  name: "Интенто"
+  description: "В сущности бесполезно для любых намерений и целей."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/toyintento.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/toyintento.rsi
+    heldPrefix: null
+
+- type: entity
+  parent: BaseStorageItem
+  id: ImperialMoneyBag
+  name: "мешок для денег"
+  description: "Мешок для хранения прибыли."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/moneybag.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/moneybag.rsi
+    heldPrefix: null
+  - type: Storage
+    grid:
+    - 0,0,5,3
+    whitelist:
+      tags:
+      - Currency
+
+- type: entity
+  parent: BaseStorageItem
+  id: ImperialOrganBox
+  name: "контейнер для органов"
+  description: "Продвинутый контейнер с охлаждением для перевозки органов и частей тела."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/organbox.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/organbox.rsi
+    heldPrefix: null
+    size: Large
+  - type: Storage
+    grid:
+    - 0,0,5,3
+
+- type: entity
+  parent: BaseStorageItem
+  id: ImperialCardBinder
+  name: "альбом для карт"
+  description: "Лучший способ сохранить коллекцию карт в целости и ценности."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/cardbinder.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/cardbinder.rsi
+    heldPrefix: null
+  - type: Storage
+    grid:
+    - 0,0,5,3
+    whitelist:
+      components:
+      - UplinkCard
+
+- type: entity
+  parent: ClothingBackpackWaterTank
+  id: ImperialWatertankJanitor
+  name: "ранцевый бак уборщика"
+  description: "Ранцевый бак уборщика с распылителем для оттирания крови и граффити."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Back/watertankjanitor.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Back/watertankjanitor.rsi
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 500
+        reagents:
+        - ReagentId: SpaceCleaner
+          Quantity: 500
+
+- type: entity
+  parent: ClothingBackpackWaterTank
+  id: ImperialWatertankPepper
+  name: "ранцевый подавитель «АНТИ-НАБЕГ-2500»"
+  description: "Лучшее средство для разгона толпы: позволяет быстро и эффективно утихомирить группы враждебных целей."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Back/watertankpepper.rsi
+  - type: Clothing
+    sprite: Imperial/Vending/Back/watertankpepper.rsi
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 500
+        reagents:
+        - ReagentId: CapsaicinOil
+          Quantity: 500
+
+- type: entity
+  parent: BaseItem
+  id: ImperialWireBrush
+  name: "проволочная щётка"
+  description: "Инструмент, которым тщательно счищают ржавчину со стен. Не для волос!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/wirebrush.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/wirebrush.rsi
+    heldPrefix: null
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 2
+
+- type: entity
+  parent: BookBase
+  id: ImperialBookCookingSweets
+  name: "«Кулинария десертов 101»"
+  description: "Кулинарная книга с самыми новыми десертами. Одобрено ИИ, бестселлер на Хонкпланете."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/bookcookingsweets.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/bookcookingsweets.rsi
+    heldPrefix: null
+
+- type: entity
+  parent: SprayBottleBase
+  id: ImperialWaterFlower
+  name: "цветок-брызгалка"
+  description: "С виду невинный подсолнух… с подвохом."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/waterflower.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/waterflower.rsi
+    heldPrefix: null
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 10
+        reagents:
+        - ReagentId: Water
+          Quantity: 10
+
+- type: entity
+  parent: BoxCardboard
+  id: ImperialBoxBandages
+  name: "коробка бинтов"
+  description: "Коробка гелевых бинтов «ДеФорест» для лечения тупых травм."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/boxbandages.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/boxbandages.rsi
+    heldPrefix: null
+  - type: StorageFill
+    contents:
+    - id: Gauze
+      amount: 3
+
+- type: entity
+  parent: BoxCardboard
+  id: ImperialBoxSmartMetalFoam
+  name: "коробка гранат умной металлопены"
+  description: "Для быстрой заделки пробоин в корпусе. Эта разновидность подстраивается под стены помещения."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/boxsmartmetalfoam.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/boxsmartmetalfoam.rsi
+    heldPrefix: null
+  - type: Storage
+    grid:
+    - 0,0,6,1
+  - type: StorageFill
+    contents:
+    - id: MetalFoamGrenade
+      amount: 7
+
+- type: entity
+  parent: WeaponPistolN1984
+  id: ImperialWeaponPistolDeagleCamo
+  name: "«Пустынный орёл» (камуфляж)"
+  description: "Дигл марки «Дигл» для операторов, оперирующих оперативно. Стреляет патронами .45 магнум."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/weaponpistoldeaglecamo.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/weaponpistoldeaglecamo.rsi
+    heldPrefix: null
+  - type: Clothing
+    sprite: Imperial/Vending/Misc/weaponpistoldeaglecamo.rsi
+
+- type: entity
+  parent: WeaponPistolN1984
+  id: ImperialWeaponPistolDeagleGold
+  name: "«Пустынный орёл» (золотой)"
+  description: "Позолоченный «Пустынный орёл», миллион раз прокованный превосходными марсианскими оружейниками. Стреляет патронами .45 магнум."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/weaponpistoldeaglegold.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/weaponpistoldeaglegold.rsi
+    heldPrefix: null
+  - type: Clothing
+    sprite: Imperial/Vending/Misc/weaponpistoldeaglegold.rsi
+
+- type: entity
+  parent: WeaponPistolN1984
+  id: ImperialWeaponPistolGyrojet
+  name: "гироджет-пистолет"
+  description: "Опытный пистолет, стреляющий самоходными ракетами."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/weaponpistolgyrojet.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/weaponpistolgyrojet.rsi
+    heldPrefix: null
+  - type: Clothing
+    sprite: Imperial/Vending/Misc/weaponpistolgyrojet.rsi
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: ImperialMagazineGyrojet
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - ImperialMagazineGyrojet
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+          - ImperialCartridgeGyrojet
+
+- type: entity
+  parent: MagazineMagnum
+  id: ImperialMagazineGyrojet
+  name: "магазин гироджета (.75)"
+  description: "Магазин с гироджет-ракетами .75 для гироджет-пистолета."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/magazinegyrojet.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/magazinegyrojet.rsi
+    heldPrefix: null
+    inhandVisuals: {}
+  - type: BallisticAmmoProvider
+    proto: ImperialCartridgeGyrojet
+    capacity: 8
+    whitelist:
+      tags:
+      - ImperialCartridgeGyrojet
+  - type: Tag
+    tags:
+    - ImperialMagazineGyrojet
+
+- type: entity
+  parent: WeaponRifleLecter
+  id: ImperialWeaponRifleArg
+  name: "НТ-АРГ «Абордажник»"
+  description: "Надёжная штурмовая винтовка боевых сил «Нанотрейзен». Стреляет патронами .20 винтовочными."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/weaponriflearg.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/weaponriflearg.rsi
+    heldPrefix: null
+  - type: Clothing
+    sprite: Imperial/Vending/Misc/weaponriflearg.rsi
+
+- type: entity
+  parent: BaseItem
+  id: ImperialSoilSack
+  name: "мешок с грунтом"
+  description: "Большой пластиковый мешок с садовым грунтом: песок, торф и навоз. Вам эта смесь, может, и безразлична, а у растений странные вкусы."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/soilsack.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/soilsack.rsi
+    heldPrefix: null
+    size: Huge
+  - type: ImperialSoilSack
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 7
+
+- type: entity
+  parent: BaseItem
+  id: ImperialSoilSackGel
+  name: "мешок с гидрогелевыми шариками"
+  description: "Мешок гидрогелевых шариков: держат влагу намного дольше обычного грунта."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/soilsackgel.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/soilsackgel.rsi
+    heldPrefix: null
+    size: Huge
+  - type: ImperialSoilSack
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 7
+
+- type: entity
+  parent: BaseItem
+  id: ImperialSoilSackVermaculite
+  name: "мешок вермикулита НТ"
+  description: "Мешок вермикулита «НТ»: лёгкий минеральный грунт для гидропоники."
+  components:
+  - type: Sprite
+    sprite: Imperial/Vending/Misc/soilsackvermaculite.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: Imperial/Vending/Misc/soilsackvermaculite.rsi
+    heldPrefix: null
+    size: Huge
+  - type: ImperialSoilSack
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 7

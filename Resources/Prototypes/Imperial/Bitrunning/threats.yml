@@ -1,0 +1,234 @@
+# Угрозы доменов (antagonists/*, server/threats.dm, event.dm).
+
+- type: dataset
+  id: BitrunningCyberauthNames
+  values:
+  - Mr. One
+  - Process Kill
+  - Event Handler
+  - Q. Del
+  - Shutdown Exe
+  - Revert Commit
+  - Thread Manager
+  - Garbage Collector
+  - Core Debugger
+  - Kernel Panic
+  - IO Blocker
+  - Recursion Terminator
+  - Disk Doctor
+  - Format Syntax
+  - Byte Guardian
+  - Disk Defragmenter
+  - Security Patch
+  - Mandatory Upgrade
+  - Pull Review
+  - Bit Auditor
+  - Pen Test
+
+# /datum/outfit/cyber_police
+- type: startingGear
+  id: BitrunningCyberPoliceGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesColorBlack
+    shoes: ClothingShoesBootsLaceup
+
+# /datum/outfit/cyber_police/tactical
+- type: startingGear
+  id: BitrunningCyberTacGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesColorBlack
+    shoes: ClothingShoesBootsLaceup
+    outerClothing: ClothingOuterHardsuitSyndie
+    mask: ClothingMaskGasSyndicate
+    suitstorage: OxygenTankFilled
+    back: ClothingBackpackSyndicate
+  inhand:
+  - WeaponRifleM90GrenadeLauncher
+  storage:
+    back:
+    - MagazineRifle
+    - MagazineRifle
+    - MagazineRifle
+
+# /datum/antagonist/bitrunning_glitch/cyber_police: Спящий карп.
+- type: entity
+  parent: MobHuman
+  id: BitrunningCyberPolice
+  name: киберполицейский
+  suffix: Битраннинг, глюк
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: Loadout
+    prototypes: [ BitrunningCyberPoliceGear ]
+  - type: BitrunningGlitch
+    threat: 0
+    martialArt: MartialArtSleepingCarp
+    gear: BitrunningCyberPoliceGear
+
+# /datum/antagonist/bitrunning_glitch/cyber_tac
+- type: entity
+  parent: MobHuman
+  id: BitrunningCyberTac
+  name: кибертактик
+  suffix: Битраннинг, глюк
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: Loadout
+    prototypes: [ BitrunningCyberTacGear ]
+  - type: BitrunningGlitch
+    threat: 50
+    gear: BitrunningCyberTacGear
+
+# /mob/living/basic/netguardian
+- type: entity
+  parent: [ BaseSimpleMob, MobCombat, MobRobotic ]
+  id: BitrunningNetguardian
+  name: нетгардиан прайм
+  description: Последняя линия обороны от органического вторжения. Не похоже, что он рад вас видеть.
+  suffix: Битраннинг, глюк
+  components:
+  - type: Sprite
+    sprite: Imperial/Bitrunning/netguardian.rsi
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: netguardian
+    - state: netguardian_emissive
+      shader: unshaded
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: netguardian
+      Dead:
+        Base: crash
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Dead
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Items/drill_hit.ogg
+    damage:
+      types:
+        Blunt: 25
+        Piercing: 30
+    animation: WeaponArcPunch
+  - type: Gun
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/smg.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletPistol
+    capacity: 6
+    count: 6
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 4
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: PressureImmunity
+  - type: NoSlip
+  - type: ActionGrant
+    actions:
+    - ActionNetguardianRockets
+  - type: BitrunningGlitch
+    threat: 90
+  - type: PointLight
+    radius: 2
+    energy: 1.5
+    color: "#C83C64"
+
+- type: entity
+  parent: BaseAction
+  id: ActionNetguardianRockets
+  name: Ракетная установка 2E
+  description: Наведение и три ракеты по цели.
+  components:
+  - type: Action
+    useDelay: 30
+    icon:
+      sprite: Imperial/Bitrunning/netguardian.rsi
+      state: rockets
+  - type: TargetAction
+    range: 12
+  - type: WorldTargetAction
+    event: !type:NetguardianRocketActionEvent
+
+# ─── Спавнеры глюков (опрос призраков poll_ghosts_for_target) ───
+- type: entity
+  abstract: true
+  parent: MarkerBase
+  id: BitrunningGlitchSpawnerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Bitrunning/effects.rsi
+    layers:
+    - state: glitch
+
+- type: entity
+  parent: BitrunningGlitchSpawnerBase
+  id: BitrunningGlitchSpawnerCyberPolice
+  name: сбой — киберполицейский
+  components:
+  - type: GhostRole
+    name: bitrunning-glitch-cyber-police-name
+    description: bitrunning-glitch-desc
+    rules: bitrunning-glitch-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: BitrunningCyberPolice
+
+- type: entity
+  parent: BitrunningGlitchSpawnerBase
+  id: BitrunningGlitchSpawnerCyberTac
+  name: сбой — кибертактик
+  components:
+  - type: GhostRole
+    name: bitrunning-glitch-cyber-tac-name
+    description: bitrunning-glitch-desc
+    rules: bitrunning-glitch-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: BitrunningCyberTac
+
+- type: entity
+  parent: BitrunningGlitchSpawnerBase
+  id: BitrunningGlitchSpawnerNetguardian
+  name: сбой — нетгардиан
+  components:
+  - type: GhostRole
+    name: bitrunning-glitch-netguardian-name
+    description: bitrunning-glitch-desc
+    rules: bitrunning-glitch-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: BitrunningNetguardian
+
+# Админ-ивент: addgamerule BitrunningGlitch
+- type: entity
+  parent: BaseGameRule
+  id: BitrunningGlitch
+  components:
+  - type: BitrunningGlitchRule
+
+- type: alert
+  id: BitrunningBreach
+  icons:
+  - sprite: Imperial/Bitrunning/effects.rsi
+    state: redshift
+  name: alerts-bitrunning-breach-name
+  description: alerts-bitrunning-breach-desc

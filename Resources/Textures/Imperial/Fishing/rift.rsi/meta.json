@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (rift.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "gullion"
+    },
+    {
+      "name": "chrystarfish"
+    },
+    {
+      "name": "flumpulus"
+    },
+    {
+      "name": "gullion_small"
+    },
+    {
+      "name": "chrystarfish_small"
+    },
+    {
+      "name": "flumpulus_small"
+    },
+    {
+      "name": "dolphish_small"
+    },
+    {
+      "name": "mossglob"
+    },
+    {
+      "name": "babbelfish"
+    },
+    {
+      "name": "mossglob_small"
+    },
+    {
+      "name": "babbelfish_small"
+    }
+  ]
+}

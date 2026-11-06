@@ -1,0 +1,71 @@
+# Сконвертировано из wendigo.dmm (tgstation/BandaStation, _maps/virtual_domains) утилитой dmm2domain.
+width: 33
+height: 37
+keyLength: 1
+legend:
+  "a": {t: Space}
+  "b": {t: Plating, a: bright, e: ["WallPlastitaniumIndestructible"]}
+  "c": {t: FloorIce, a: outdoors}
+  "d": {t: FloorCave, a: outdoors}
+  "e": {t: FloorIce, a: outdoors, e: ["FloraTreeLarge"]}
+  "f": {t: Plating, a: outdoors, e: ["WallRockSnow"]}
+  "g": {t: FloorIce, a: outdoors, e: ["FloraRockSolid"]}
+  "h": {t: FloorIce, a: outdoors, e: ["#Grassb1"]}
+  "i": {t: Plating, a: outdoors, e: ["WallRockBasalt"]}
+  "j": {t: Plating, a: outdoors, e: ["#Grassb1", "WallRockSnow"]}
+  "k": {t: FloorCave, a: outdoors, e: ["SalvageHumanCorpse"]}
+  "l": {t: FloorCave, a: outdoors, e: ["MobGoliathAncient"]}
+  "m": {t: FloorIce, a: outdoors, e: ["FloraRockSolid", "#Grassb1"]}
+  "n": {t: FloorIce, a: outdoors, e: ["SalvageHumanCorpse"]}
+  "o": {t: Plating, a: safe, e: ["WallSolid"]}
+  "p": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
+  "q": {t: Plating, a: safe, e: ["WallSolid", "ExtinguisherCabinetFilled"]}
+  "r": {t: FloorDarkMono, a: safe, e: ["AirlockExternal"]}
+  "s": {t: FloorDark, a: safe}
+  "t": {t: FloorDarkMono, a: safe}
+  "u": {t: FloorDarkMono, a: safe, e: ["AlwaysPoweredWallLight@90"]}
+  "v": {t: FloorDarkMono, a: safe, e: ["WeaponProtoKineticAccelerator", "WeaponProtoKineticAccelerator", "WeaponProtoKineticAccelerator", "ClosetSteelBase", "WeaponCrusher", "WeaponCrusher"]}
+  "w": {t: FloorSteel, a: safe, e: ["AlwaysPoweredWallLight@-90", "Railing", "BitrunningMarkerGoal"]}
+  "x": {t: FloorDarkMono, a: safe, e: ["Table", "PKAUpgradeDamage", "PKAUpgradeDamage", "PKAUpgradeDamage", "PKAUpgradeRange", "PKAUpgradeRange", "PKAUpgradeRange", "PKAUpgradeFireRate", "PKAUpgradeFireRate", "PKAUpgradeFireRate", "ImperialLuxuryMedipen", "ImperialLuxuryMedipen"]}
+  "y": {t: FloorDarkMono, a: safe, e: ["ClosetSteelBase", "WeaponLauncherRocket", "EnergyKatana", "MagazineLightRifleBox"]}
+  "z": {t: FloorDark, a: safe, e: ["Table", "Lantern", "Lantern", "Lantern", "ClothingEyesGlassesMeson", "ClothingEyesGlassesMeson", "ClothingEyesGlassesMeson"]}
+  "A": {t: FloorDarkMono, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "B": {t: FloorDark, a: safe, e: ["ClosetSteelBase", "WeaponLightMachineGunL6", "MagazineBoxAntiMateriel", "WeaponSniperHristov"]}
+rows:
+- "aaaaaabbbbbbbbbbbbbbbbbbbbbaaaaaa"
+- "aaaaabbcccccccccdcccecccccbbaaaaa"
+- "aaaabbcccccccccddccccccccccbbaaaa"
+- "aaabbccccecffegdddhcgffcccgcbbaaa"
+- "aabbcccehhffffffdddfffffcccgcbbaa"
+- "abbcccgffffffffiiifffffffchcccbba"
+- "bbcchhfffffdcffiiiiegdfffehhcccbb"
+- "bcchcfffffhdceiiiidccdhjfffcccccb"
+- "bccfffffffdddddddddcddceffffccccb"
+- "bccffffffgcddddddddgddkddfffegccb"
+- "bcceffffhcccddddddddddddccffhcccb"
+- "bcccffffcddgccdddddddddgchffddccb"
+- "becgfffeccdddddddddddggcddiiidddb"
+- "bccddiiddccddddddddddddddiiiiddcb"
+- "bcdddfidddddddddlddddddddifffdccb"
+- "bddcdffdkddddddddddddgcdgfffffccb"
+- "bddceffghdddddddddkdddccheffffccb"
+- "bcdcffffhdcgddddddddddddhmffffccb"
+- "bcdcffffcgcddddddddddddddfffffccb"
+- "bcchfffffcgddddddddddcccfffffcccb"
+- "bechffffffdddddddddddgccffffccccb"
+- "bcccfecfffccddkdddddddcffffgccccb"
+- "bbcccgcffffgcddddddddffffccccccbb"
+- "abbcgcheffffffidddiffffffcccecbba"
+- "aabbcccchfffffiiddifffffgccccbbaa"
+- "aaabbccchgcfffhdddhfffccccecbbaaa"
+- "aaaabbcccccchgccdcchhccccccbbaaaa"
+- "aaaabbbcccdccencccccccdcccbbbaaaa"
+- "aaaabccccddcccchhcecccddccccbaaaa"
+- "aaaabccccdcccopqrqpocccddcccbaaaa"
+- "aaaabccccccccostttsocccdccccbaaaa"
+- "aaaabccdcccccoutvtwoccccccccbaaaa"
+- "aaaabcdddccccpttxtypccccddccbaaaa"
+- "aaaabcdddddccpzAAABpcccddcccbaaaa"
+- "aaaabccddccccoopppooccccdcccbaaaa"
+- "aaaabcccccccccccccccccccccccbaaaa"
+- "aaaabbbbbbbbbbbbbbbbbbbbbbbbbaaaa"

@@ -1,0 +1,371 @@
+# Яды из «Набора ядов» и «Плотоядной крови» TG (modules/reagents/chemistry/reagents/toxin_reagents.dm).
+# Скорость метаболизма TG: rate * REAGENTS_METABOLISM (0.2 ед. за 2 с) → rate * 0.1 ед./с.
+# Урон TG toxpwr за тик (REM = 0.5) → toxpwr * 0.5 в секунду.
+
+- type: reagent
+  id: Polonium
+  name: reagent-name-polonium
+  group: Toxins
+  desc: reagent-desc-polonium
+  physicalDesc: reagent-physical-desc-glowing
+  flavor: metallic
+  color: "#787878"
+  contrabandSeverity: Syndicate
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.0125
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Radiation: 2
+
+- type: reagent
+  id: Venom
+  name: reagent-name-venom
+  group: Toxins
+  desc: reagent-desc-venom
+  physicalDesc: reagent-physical-desc-viscous
+  flavor: bitter
+  color: "#F0FFF0"
+  contrabandSeverity: Syndicate
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.025
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Blunt: 2
+            Poison: 1
+      # С шансом 8% за тик распадается в гистамин.
+      - !type:AdjustReagent
+        probability: 0.04
+        reagent: Histamine
+        amount: 7
+      - !type:AdjustReagent
+        probability: 0.04
+        reagent: Venom
+        amount: -1.1
+
+- type: reagent
+  id: Fentanyl
+  name: reagent-name-fentanyl
+  group: Toxins
+  desc: reagent-desc-fentanyl
+  physicalDesc: reagent-physical-desc-nondescript
+  flavor: bitter
+  color: "#64916E"
+  contrabandSeverity: Syndicate
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.05
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.5
+            Cellular: 1.5
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 4
+        type: Update
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: Fentanyl
+          max: 28
+        effectProto: StatusEffectForcedSleeping
+        time: 4
+        type: Update
+
+- type: reagent
+  id: Anacea
+  name: reagent-name-anacea
+  group: Toxins
+  desc: reagent-desc-anacea
+  physicalDesc: reagent-physical-desc-nondescript
+  flavor: bitter
+  color: "#3C5133"
+  contrabandSeverity: Syndicate
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.008
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.075
+      # Быстро выводит лекарства.
+      - !type:UplinkAdjustReagentGroup
+        group: Medicine
+        amount: -2.5
+
+- type: reagent
+  id: Spewium
+  name: reagent-name-spewium
+  group: Toxins
+  desc: reagent-desc-spewium
+  physicalDesc: reagent-physical-desc-putrid
+  flavor: terrible
+  color: "#2F6617"
+  contrabandSeverity: Syndicate
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:Vomit
+        probability: 0.15
+      - !type:UplinkAdjustReagentGroup
+        group: Toxins
+        amount: -0.25
+        exclude: Spewium
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Spewium
+          min: 29
+        probability: 0.04
+        damage:
+          types:
+            Poison: 10
+            Bloodloss: 10
+
+- type: reagent
+  id: Syndol
+  name: reagent-name-syndol
+  group: Narcotics
+  desc: reagent-desc-syndol
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: bitter
+  color: "#C90000"
+  contrabandSeverity: Syndicate
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.25
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectSeeingRainbow
+        type: Add
+        time: 10
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectWoozy
+        type: Update
+        time: 4
+
+- type: reagent
+  id: Cyanide
+  name: reagent-name-cyanide
+  group: Toxins
+  desc: reagent-desc-cyanide
+  physicalDesc: reagent-physical-desc-nondescript
+  flavor: bitter
+  color: "#00B4FF"
+  contrabandSeverity: Syndicate
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.0125
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.625
+      - !type:HealthChange
+        probability: 0.0125
+        damage:
+          types:
+            Asphyxiation: 5
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages: [ "uplink-reagent-cyanide-weak" ]
+        probability: 0.02
+      - !type:ModifyParalysis
+        probability: 0.02
+        time: 4
+        type: Add
+
+- type: reagent
+  id: Initropidril
+  name: reagent-name-initropidril
+  group: Toxins
+  desc: reagent-desc-initropidril
+  physicalDesc: reagent-physical-desc-nondescript
+  flavor: bitter
+  color: "#7F10C0"
+  contrabandSeverity: Syndicate
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.05
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1.25
+      - !type:ModifyParalysis
+        probability: 0.0217
+        time: 6
+        type: Add
+      - !type:HealthChange
+        probability: 0.0217
+        damage:
+          types:
+            Asphyxiation: 30
+      # Остановка сердца.
+      - !type:HealthChange
+        probability: 0.0217
+        damage:
+          types:
+            Asphyxiation: 60
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "uplink-reagent-heart-stop" ]
+        probability: 0.0217
+
+- type: reagent
+  id: Pancuronium
+  name: reagent-name-pancuronium
+  group: Toxins
+  desc: reagent-desc-pancuronium
+  physicalDesc: reagent-physical-desc-nondescript
+  flavor: bitter
+  color: "#195096"
+  contrabandSeverity: Syndicate
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.025
+      effects:
+      - !type:ModifyParalysis
+        conditions:
+        - !type:ReagentCondition
+          reagent: Pancuronium
+          max: 29.5
+        time: 2
+        type: Update
+      - !type:HealthChange
+        probability: 0.05
+        damage:
+          types:
+            Asphyxiation: 4
+
+- type: reagent
+  id: SodiumThiopental
+  name: reagent-name-sodium-thiopental
+  group: Toxins
+  desc: reagent-desc-sodium-thiopental
+  physicalDesc: reagent-physical-desc-nondescript
+  flavor: bitter
+  color: "#6496FA"
+  contrabandSeverity: Syndicate
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.075
+      effects:
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: SodiumThiopental
+          max: 28.5
+        effectProto: StatusEffectForcedSleeping
+        time: 3
+        type: Update
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 4
+        type: Update
+
+- type: reagent
+  id: Coniine
+  name: reagent-name-coniine
+  group: Toxins
+  desc: reagent-desc-coniine
+  physicalDesc: reagent-physical-desc-nondescript
+  flavor: bitter
+  color: "#7DC3A0"
+  contrabandSeverity: Syndicate
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.006
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.875
+            Asphyxiation: 2
+
+- type: reagent
+  id: Curare
+  name: reagent-name-curare
+  group: Toxins
+  desc: reagent-desc-curare
+  physicalDesc: reagent-physical-desc-nondescript
+  flavor: bitter
+  color: "#191919"
+  contrabandSeverity: Syndicate
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.0125
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.5
+            Asphyxiation: 1
+      - !type:ModifyParalysis
+        conditions:
+        - !type:ReagentCondition
+          reagent: Curare
+          max: 29.7
+        time: 2
+        type: Update
+
+# Отложенный яд: пока метаболизируется, вреда нет; когда почти выведен — массивный урон.
+- type: reagent
+  id: Amanitin
+  name: reagent-name-amanitin
+  group: Toxins
+  desc: reagent-desc-amanitin
+  physicalDesc: reagent-physical-desc-nondescript
+  flavor: mushroom
+  color: "#FFFFFF"
+  contrabandSeverity: Syndicate
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.05
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Amanitin
+          max: 0.5
+        damage:
+          types:
+            Poison: 20
+
+- type: reagent
+  id: CarnivorousBlood
+  name: reagent-name-carnivorous-blood
+  group: Toxins
+  desc: reagent-desc-carnivorous-blood
+  physicalDesc: reagent-physical-desc-viscous
+  flavor: metallic
+  color: "#C80000"
+  contrabandSeverity: Syndicate
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.15
+      effects:
+      - !type:ModifyBloodLevel
+        amount: -4
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages: [ "uplink-reagent-carnivorous-blood" ]
+        probability: 0.1
+      - !type:Emote
+        emote: Scream
+        showInChat: true
+        probability: 0.025

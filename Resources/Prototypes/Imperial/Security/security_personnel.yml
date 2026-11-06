@@ -1,0 +1,215 @@
+# Перцовый баллончик, нарукавники помощников и HUD-имплант СБ (tgstation/BandaStation).
+
+# ─── Конденсированный капсаицин (datum/reagent/consumable/condensedcapsaicin) ───
+
+- type: reagent
+  id: ImperialCondensedCapsaicin
+  name: reagent-name-imperial-condensed-capsaicin
+  group: Foods
+  desc: reagent-desc-imperial-condensed-capsaicin
+  physicalDesc: reagent-physical-desc-oily
+  flavor: spicy
+  color: "#B31008"
+  recognizable: true
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:Emote
+        emote: Cough
+        probability: 0.05
+        showInChat: true
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:PepperSprayExposure
+
+# capsaicincondensation: 1 капсаицин + 5 этанола = 5 конденсированного капсаицина.
+- type: reaction
+  id: ImperialCapsaicinCondensation
+  reactants:
+    CapsaicinOil:
+      amount: 1
+    Ethanol:
+      amount: 5
+  products:
+    ImperialCondensedCapsaicin: 5
+
+# ─── Перцовый баллончик (spray/pepper) ───
+
+- type: entity
+  parent: BaseItem
+  id: PepperSpray
+  name: перцовый баллончик
+  description: Производства UhangInc. Позволяет быстро ослепить и уложить противника.
+  components:
+  - type: Sprite
+    sprite: Imperial/Security/pepper_spray.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Security/pepper_spray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      spray:
+        maxVol: 50
+        reagents:
+        - ReagentId: ImperialCondensedCapsaicin
+          Quantity: 50
+  - type: RefillableSolution
+    solution: spray
+  - type: DrainableSolution
+    solution: spray
+  - type: ExaminableSolution
+    solution: spray
+  - type: UseDelay
+  - type: Spray
+    solution: spray
+    transferAmount: 5
+    sprayDistance: 4
+    sprayVelocity: 4
+    spraySound:
+      path: /Audio/Effects/spray2.ogg
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/Imperial/Security/pepper_spray_pick_up.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Imperial/Security/pepper_spray_drop.ogg
+  - type: StaticPrice
+    price: 60
+
+- type: entity
+  parent: PepperSpray
+  id: PepperSprayEmpty
+  suffix: Пустой
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      spray:
+        maxVol: 50
+
+- type: entity
+  parent: CrateSecgear
+  id: CrateSecurityPepperSpray
+  name: ящик перцовых баллончиков
+  description: Шесть перцовых баллончиков. Требуется доступ СБ.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: PepperSpray
+          amount: 6
+
+- type: cargoProduct
+  id: SecurityPepperSpray
+  icon:
+    sprite: Imperial/Security/pepper_spray.rsi
+    state: icon
+  product: CrateSecurityPepperSpray
+  cost: 800
+  category: cargoproduct-category-name-security
+  group: ImperialCargo
+# ─── Нарукавник помощника (armband/deputy) ───
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckArmbandDeputy
+  name: нарукавник помощника СБ
+  description: Нарукавник, который носят те, кому разрешено действовать как помощник службы безопасности.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/ussp/armbands/redband.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/armbands/redband.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - ClothMade
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxDeputyArmbands
+  name: коробка нарукавников помощников
+  description: Выдаётся тем, кому разрешено действовать как помощник СБ.
+  components:
+  - type: Sprite
+    layers:
+    - state: box_security
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingNeckArmbandDeputy
+          amount: 7
+
+# ─── HUD-имплант СБ (cyberimp/eyes/hud/security) ───
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: SecurityHudImplant
+  name: HUD-имплант СБ
+  description: Кибернетические импланты глаз, выводящие HUD СБ поверх всего, что вы видите.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SecurityHudImplant
+
+- type: entity
+  parent: BaseImplantOnlyImplanter
+  id: SecurityHudImplanter
+  name: имплантер (HUD СБ)
+  components:
+  - type: Implanter
+    implant: SecurityHudImplant
+
+# cyberimp/eyes/hud/security/syndicate: незаметная версия в аплинке.
+- type: entity
+  parent: [ SecurityHudImplant, BaseSyndicateContraband ]
+  id: SecurityHudImplantSyndicate
+  name: контрабандный HUD-имплант СБ
+  description: HUD-имплант СБ марки Cybersun Industries.
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [ BaseImplantOnlyImplanterSyndi, BaseSyndicateContraband ]
+  id: SecurityHudImplanterSyndicate
+  name: имплантер (HUD СБ)
+  components:
+  - type: Implanter
+    implant: SecurityHudImplantSyndicate
+
+- type: entity
+  parent: CrateSecgear
+  id: CrateSecurityHudImplants
+  name: ящик HUD-имплантов СБ
+  description: Два имплантера HUD СБ. Требуется доступ СБ.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SecurityHudImplanter
+          amount: 2
+
+- type: cargoProduct
+  id: SecurityHudImplants
+  icon:
+    sprite: Objects/Specific/Medical/implanter.rsi
+    state: implanter0
+  product: CrateSecurityHudImplants
+  cost: 2000
+  category: cargoproduct-category-name-security
+  group: ImperialCargo
+
+- type: listing
+  id: UplinkSecurityHudImplant
+  name: Контрабандный HUD-имплант СБ
+  description: Незаметный имплант глаз Cybersun Industries с HUD СБ — статусы розыска и импланты защиты разума видны без очков.
+  productEntity: SecurityHudImplanterSyndicate
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkImplants

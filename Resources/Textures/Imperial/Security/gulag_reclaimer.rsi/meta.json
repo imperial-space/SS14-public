@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (wallmounts.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "base"
+    },
+    {
+      "name": "screen",
+      "delays": [
+        [
+          1,
+          0.2,
+          1,
+          0.2,
+          1,
+          0.2,
+          1,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "emagged",
+      "delays": [
+        [
+          2,
+          0.5
+        ]
+      ]
+    }
+  ]
+}

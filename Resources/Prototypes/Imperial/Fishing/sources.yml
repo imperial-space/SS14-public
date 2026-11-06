@@ -1,0 +1,534 @@
+# Сгенерировано gen_sources.pl из code/modules/fishing/sources (TG/BandaStation). Не править руками.
+
+- type: imperialFishSource
+  id: ImperialFishSourcePortal
+  table:
+    dud: 7
+    ImperialFishGoldfish: 10
+    ImperialFishGuppy: 10
+    ImperialFishAngelfish: 10
+    ImperialFishPerch: 5
+    ImperialFishGoldfishThreeEyes: 3
+    ImperialFishPlasmatetra: 3
+  radialState: fish_tank
+  catalogDescription: imperial-fish-source-portal
+
+- type: imperialFishSource
+  id: ImperialFishSourcePortalBeach
+  table:
+    dud: 7
+    ImperialMessageInABottle: 3
+    ImperialFishClownfish: 10
+    ImperialFishPufferfish: 10
+    ImperialFishCardinal: 10
+    ImperialFishGreenchromis: 10
+    ImperialFishSquid: 8
+    ImperialFishPlaice: 8
+  radialState: palm_beach
+  overlayState: portal_beach
+  catalogDescription: imperial-fish-source-portalbeach
+
+- type: imperialFishSource
+  id: ImperialFishSourcePortalChasm
+  table:
+    dud: 5
+    ImperialFishChasmCrab: 10
+    ImperialFishBoned: 5
+    MaterialBones1: 5
+  difficulty: 35
+  background: background_chasm
+  radialState: ground_hole
+  overlayState: portal_chasm
+  chasm: true
+  catalogDescription: imperial-fish-source-portalchasm
+
+- type: imperialFishSource
+  id: ImperialFishSourcePortalOcean
+  table:
+    dud: 3
+    ImperialMessageInABottle: 2
+    ImperialFishLanternfish: 5
+    ImperialFishFirefish: 5
+    ImperialFishGunnerJellyfish: 5
+    ImperialFishMoonfishDwarf: 4
+    ImperialFishNeedlefish: 5
+    ImperialFishArmorfish: 5
+    ImperialFishZipzap: 5
+    ImperialFishStingray: 4
+    ImperialFishMonkfish: 4
+    ImperialFishSwordfish: 3
+    ImperialFishMoonfish: 1
+  counts:
+    ImperialFishSwordfish: 2
+  countRegen:
+    ImperialFishSwordfish: 300
+  difficulty: 35
+  radialState: seaboat
+  overlayState: portal_ocean
+  catalogDescription: imperial-fish-source-portalocean
+
+- type: imperialFishSource
+  id: ImperialFishSourcePortalHyperspace
+  table:
+    dud: 5
+    ImperialFishStarfish: 6
+    ImperialFishBabyCarp: 6
+    XenoBluespaceCrystal: 2
+    MobCarp: 2
+  counts:
+    XenoBluespaceCrystal: 10
+  difficulty: 35
+  background: background_space
+  radialState: space_rocket
+  overlayState: portal_hyperspace
+  catalogDescription: imperial-fish-source-portalhyperspace
+
+- type: imperialFishSource
+  id: ImperialFishSourcePortalSyndicate
+  table:
+    dud: 5
+    ImperialFishDonkfish: 5
+    ImperialFishEmulsijack: 5
+    ImperialFishJumpercable: 5
+    ImperialFishChainsawfish: 2
+    ImperialFishPikeArmored: 2
+  counts:
+    ImperialFishChainsawfish: 1
+    ImperialFishPikeArmored: 1
+  countRegen:
+    ImperialFishChainsawfish: 420
+    ImperialFishPikeArmored: 420
+  difficulty: 40
+  background: background_lavaland
+  radialState: syndi_snake
+  overlayState: portal_syndicate
+  catalogDescription: imperial-fish-source-portalsyndicate
+
+- type: imperialFishSource
+  id: ImperialFishSourcePortalRandom
+  noBluespaceRod: true
+  radialState: misaligned_question_mark
+  overlayState: portal_randomizer
+  special: portalRandom
+
+- type: imperialFishSource
+  id: ImperialFishSourceCursedSpring
+  table:
+    dud: 2
+    ImperialFishSoul: 3
+    ImperialFishSkinCrab: 3
+    ImperialFishingRodMaster: 1
+  counts:
+    ImperialFishingRodMaster: 1
+  difficulty: 50
+  explosiveMalus: true
+  radialState: cursed
+
+- type: imperialFishSource
+  id: ImperialFishSourceChasm
+  table:
+    dud: 5
+    ImperialFishChasmCrab: 15
+    chasmDetritus: 30
+  difficulty: 30
+  background: background_chasm
+  explosiveNone: true
+  radialState: ground_hole
+  overlayState: portal_chasm
+  chasm: true
+  special: chasm
+  catalogDescription: imperial-fish-source-chasm
+
+- type: imperialFishSource
+  id: ImperialFishSourceLavaland
+  table:
+    dud: 5
+    ImperialFishLavaloop: 15
+    MaterialGoliathHide1: 15
+    MaterialBones1: 15
+    NecropolisCrate: 1
+    Remains: 1
+    MobLegionNormal: 1
+  counts:
+    NecropolisCrate: 1
+  countRegen:
+    NecropolisCrate: 1620
+  difficulty: 35
+  background: background_lavaland
+  explosiveMalus: true
+  radialState: lava
+  overlayState: portal_lava
+  requiresLavaLine: true
+  catalogDescription: imperial-fish-source-lavaland
+
+- type: imperialFishSource
+  id: ImperialFishSourceLavalandIcemoon
+  table:
+    dud: 5
+    ImperialFishChasmCrabIce: 30
+    ImperialFishLavaloopPlasmaRiver: 30
+    TreasureCoinIron: 6
+    PlasmaOre1: 6
+    Remains: 2
+    SheetAdamantine: 2
+    NecropolisCrate: 1
+  counts:
+    SheetAdamantine: 3
+    NecropolisCrate: 1
+  countRegen:
+    SheetAdamantine: 480
+    NecropolisCrate: 1800
+  difficulty: 35
+  background: background_plasma
+  explosiveMalus: true
+  radialState: plasma
+  overlayState: portal_plasma
+  requiresLavaLine: true
+  catalogDescription: imperial-fish-source-lavalandicemoon
+
+- type: imperialFishSource
+  id: ImperialFishSourceOilWell
+  table:
+    dud: 5
+    ImperialFishBoned: 10
+    MaterialBones1: 2
+    ClothingHandsImperialBracers: 2
+    Remains: 2
+    ImperialFishMastodon: 1
+    ImperialFishingRodMaster: 1
+  counts:
+    ClothingHandsImperialBracers: 1
+    Remains: 1
+    ImperialFishMastodon: 1
+    ImperialFishingRodMaster: 1
+  countRegen:
+    ImperialFishMastodon: 480
+  difficulty: 40
+  background: background_oil_well
+  radialState: oil
+  overlayState: portal_chasm
+  catalogDescription: imperial-fish-source-oilwell
+
+- type: imperialFishSource
+  id: ImperialFishSourceCarpRift
+  table:
+    dud: 3
+    ImperialFishBabyCarp: 5
+    MobCarp: 2
+    MobShark: 1
+    PlushieCarp: 1
+    DehydratedSpaceCarp: 1
+  counts:
+    MobShark: 2
+  countRegen:
+    MobShark: 540
+  difficulty: 43
+  background: background_carp_rift
+  radialState: carp
+  overlayState: portal_rift
+  catalogDescription: imperial-fish-source-carprift
+
+- type: imperialFishSource
+  id: ImperialFishSourceDimensionalRift
+  table:
+    influence: 6
+    randomArm: 3
+    ImperialFishStarfishChrystarfish: 7
+    ImperialFishDolphish: 7
+    ImperialFishFlumpulus: 7
+    ImperialFishGullion: 7
+    ImperialFishMossglob: 3
+    ImperialFishBabbelfish: 1
+    MobHereticFireShark: 3
+  counts:
+    ImperialFishMossglob: 3
+    ImperialFishBabbelfish: 1
+    MobHereticFireShark: 3
+  countRegen:
+    ImperialFishMossglob: 180
+    ImperialFishBabbelfish: 300
+    MobHereticFireShark: 360
+  difficulty: 50
+  background: background_mansus
+  explosiveNone: true
+  radialState: cursed
+  overlayState: portal_mansus
+  special: dimensionalRift
+
+- type: imperialFishSource
+  id: ImperialFishSourceMoistureTrap
+  table:
+    dud: 20
+    ImperialFishRatfish: 10
+    ImperialFishSlimefish: 4
+  difficulty: 35
+  background: background_dank
+  radialState: garbage
+  overlayState: portal_river
+  catalogDescription: imperial-fish-source-moisturetrap
+
+- type: imperialFishSource
+  id: ImperialFishSourceToilet
+  table:
+    dud: 18
+    ImperialFishSludgefish: 18
+    ImperialFishSlimefish: 4
+    SpaceCash100: 2
+  counts:
+    SpaceCash100: 2
+  difficulty: 20
+  background: background_dank
+  radialState: toilet
+  overlayState: portal_river
+  catalogDescription: imperial-fish-source-toilet
+
+- type: imperialFishSource
+  id: ImperialFishSourceHolographic
+  table:
+    ImperialFishHolo: 10
+    ImperialFishHoloCrab: 10
+    ImperialFishHoloPuffer: 10
+    ImperialFishHoloAngel: 10
+    ImperialFishHoloClown: 10
+    ImperialFishHoloCheckered: 5
+    ImperialFishHoloHalffish: 5
+  difficulty: 20
+  noBluespaceRod: true
+  special: holographic
+  catalogDescription: imperial-fish-source-holographic
+
+- type: imperialFishSource
+  id: ImperialFishSourceHydroTray
+  table:
+    dud: 25
+    randomSeed: 17
+    MobFrog: 1
+  counts:
+    randomSeed: 5
+    MobFrog: 1
+  background: background_tray
+  radialState: hydro
+  overlayState: portal_tray
+  special: hydroTray
+  catalogDescription: imperial-fish-source-hydrotray
+
+- type: imperialFishSource
+  id: ImperialFishSourceDeepfryer
+  table:
+    FoodBadRecipe: 15
+    FoodBakedNugget: 5
+    ImperialFishFryish: 40
+    ImperialFishFryishFritterish: 4
+    ImperialFishFryishNessie: 1
+  counts:
+    ImperialFishFryish: 10
+    ImperialFishFryishFritterish: 4
+    ImperialFishFryishNessie: 1
+  countRegen:
+    ImperialFishFryish: 120
+    ImperialFishFryishFritterish: 360
+    ImperialFishFryishNessie: 1320
+  difficulty: 38
+  background: background_lavaland
+  radialState: fryer
+  overlayState: portal_fry
+  catalogDescription: imperial-fish-source-deepfryer
+
+- type: imperialFishSource
+  id: ImperialFishSourceAquarium
+  table:
+    dud: 10
+  explosiveNone: true
+  noBluespaceRod: true
+  radialState: fish_tank
+  special: aquarium
+  catalogDescription: imperial-fish-source-aquarium
+
+- type: imperialFishSource
+  id: ImperialFishSourceVending
+  table:
+    dud: 10
+  difficulty: 10
+  background: background_chasm
+  explosiveNone: true
+  noBluespaceRod: true
+  radialState: vending
+  overlayState: portal_randomizer
+  special: vending
+  catalogDescription: imperial-fish-source-vending
+
+- type: imperialFishSource
+  id: ImperialFishSourceVendingCustom
+  table:
+    dud: 10
+  difficulty: 10
+  background: background_chasm
+  explosiveNone: true
+  noBluespaceRod: true
+  radialState: vending
+  overlayState: portal_randomizer
+  special: vending
+
+- type: imperialFishSource
+  id: ImperialFishSourceSurgery
+  table:
+    randomOrgan: 10
+  difficulty: -10
+  background: background_lavaland //Kinda red.
+  waitTimeRange: 6, 12
+  explosiveNone: true
+  radialState: innards
+  overlayState: portal_syndicate
+  special: surgery
+  catalogDescription: imperial-fish-source-surgery
+
+- type: imperialFishSource
+  id: ImperialFishSourceOcean
+  table:
+    dud: 10
+    ImperialMessageInABottle: 4
+    TreasureCoinGold: 6
+    ImperialFishClownfish: 11
+    ImperialFishPufferfish: 11
+    ImperialFishCardinal: 11
+    ImperialFishGreenchromis: 11
+    ImperialFishSquid: 11
+    ImperialFishStingray: 8
+    ImperialFishPlaice: 8
+    ImperialFishMonkfish: 5
+    ImperialFishLanternfish: 7
+    ImperialFishZipzap: 7
+    ImperialFishClownfishLube: 5
+    ImperialFishSwordfish: 5
+    ImperialFishingMysteryBox: 2
+  counts:
+    ImperialFishClownfishLube: 2
+    ImperialFishSwordfish: 2
+    ImperialFishingMysteryBox: 1
+  countRegen:
+    ImperialFishClownfishLube: 180
+    ImperialFishSwordfish: 300
+    ImperialFishingMysteryBox: 1920
+  difficulty: 30
+  explosiveMalus: true
+  radialState: seaboat
+  overlayState: portal_ocean
+
+- type: imperialFishSource
+  id: ImperialFishSourceOceanBeach
+  table:
+    dud: 10
+    ImperialMessageInABottle: 4
+    TreasureCoinGold: 6
+    ImperialFishClownfish: 11
+    ImperialFishPufferfish: 11
+    ImperialFishCardinal: 11
+    ImperialFishGreenchromis: 11
+    ImperialFishSquid: 11
+    ImperialFishStingray: 8
+    ImperialFishPlaice: 8
+    ImperialFishMonkfish: 5
+    ImperialFishLanternfish: 7
+    ImperialFishZipzap: 7
+    ImperialFishClownfishLube: 5
+    ImperialFishSwordfish: 5
+    ImperialFishingMysteryBox: 2
+  counts:
+    ImperialFishClownfishLube: 2
+    ImperialFishSwordfish: 2
+    ImperialFishingMysteryBox: 1
+  countRegen:
+    ImperialFishClownfishLube: 180
+    ImperialFishSwordfish: 300
+    ImperialFishingMysteryBox: 1920
+  difficulty: 30
+  explosiveMalus: true
+  radialState: palm_beach
+  overlayState: portal_beach
+  catalogDescription: imperial-fish-source-oceanbeach
+
+- type: imperialFishSource
+  id: ImperialFishSourceIceFishing
+  table:
+    dud: 4
+    ImperialFishArcticChar: 5
+    ImperialFishSockeyeSalmon: 5
+    ImperialFishChasmCrabIce: 2
+    ImperialFishBoned: 1
+  difficulty: 45
+  background: background_ice
+  radialState: ice
+  overlayState: portal_ocean
+  catalogDescription: imperial-fish-source-icefishing
+
+- type: imperialFishSource
+  id: ImperialFishSourceRiver
+  table:
+    dud: 4
+    ImperialFishGoldfish: 5
+    ImperialFishGuppy: 5
+    ImperialFishPlasmatetra: 4
+    ImperialFishPerch: 4
+    ImperialFishAngelfish: 4
+    ImperialFishCatfish: 4
+    ImperialFishSlimefish: 2
+    ImperialFishSockeyeSalmon: 1
+    ImperialFishArcticChar: 1
+    ImperialFishPike: 1
+    ImperialFishGoldfishThreeEyes: 1
+  counts:
+    ImperialFishPike: 3
+  countRegen:
+    ImperialFishPike: 240
+  difficulty: 30
+  explosiveMalus: true
+  radialState: river
+  overlayState: portal_river
+  catalogDescription: imperial-fish-source-river
+
+- type: imperialFishSource
+  id: ImperialFishSourceSand
+  table:
+    dud: 8
+    ImperialFishSandCrab: 10
+    ImperialFishSandSurfer: 10
+    ImperialFishBumpy: 10
+    TreasureCoinGold: 3
+  difficulty: 45
+  explosiveMalus: true
+  radialState: palm_beach
+  catalogDescription: imperial-fish-source-sand
+
+- type: imperialFishSource
+  id: ImperialFishSourceHotSpring
+  table:
+    dud: 20
+    ImperialFishBumpy: 10
+    ImperialFishSacabambaspis: 10
+    MobFrog: 2
+    ImperialFishingRodMaster: 1
+  counts:
+    ImperialFishSacabambaspis: 5
+    ImperialFishingRodMaster: 2
+  countRegen:
+    ImperialFishSacabambaspis: 240
+  difficulty: 45
+  explosiveMalus: true
+  radialState: onsen
+  overlayState: portal_ocean
+  catalogDescription: imperial-fish-source-hotspring
+
+- type: imperialFishSource
+  id: ImperialFishSourceTizira
+  table:
+    dud: 10
+    ImperialFishNeedlefish: 5
+    ImperialFishArmorfish: 5
+    ImperialFishGunnerJellyfish: 4
+    ImperialFishMoonfishDwarf: 2
+    ImperialFishMoonfish: 2
+  difficulty: 35
+  explosiveMalus: true
+  radialState: planet
+  overlayState: portal_beach
+  catalogDescription: imperial-fish-source-tizira

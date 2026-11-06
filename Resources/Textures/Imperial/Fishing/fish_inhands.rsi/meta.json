@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (inhands)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    { "name": "small-inhand-left", "directions": 4 },
+    { "name": "normal-inhand-left", "directions": 4 },
+    { "name": "bulky-inhand-left", "directions": 4 },
+    { "name": "huge-inhand-left", "directions": 4 },
+    { "name": "huge-wielded-inhand-left", "directions": 4 },
+    { "name": "swordfish-inhand-left", "directions": 4 },
+    { "name": "swordfish-wielded-inhand-left", "directions": 4 },
+    { "name": "chainsawfish-inhand-left", "directions": 4, "delays": [
+        [
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1
+        ]
+      ] },
+    { "name": "chainsawfish-wielded-inhand-left", "directions": 4, "delays": [
+        [
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1
+        ]
+      ] },
+    { "name": "chainsawfish-dead-inhand-left", "directions": 4 },
+    { "name": "chainsawfish-dead-wielded-inhand-left", "directions": 4 },
+    { "name": "pike-inhand-left", "directions": 4 },
+    { "name": "pike-wielded-inhand-left", "directions": 4 },
+    { "name": "armored-pike-inhand-left", "directions": 4 },
+    { "name": "armored-pike-wielded-inhand-left", "directions": 4 },
+    { "name": "small-inhand-right", "directions": 4 },
+    { "name": "normal-inhand-right", "directions": 4 },
+    { "name": "bulky-inhand-right", "directions": 4 },
+    { "name": "huge-inhand-right", "directions": 4 },
+    { "name": "huge-wielded-inhand-right", "directions": 4 },
+    { "name": "swordfish-inhand-right", "directions": 4 },
+    { "name": "swordfish-wielded-inhand-right", "directions": 4 },
+    { "name": "chainsawfish-inhand-right", "directions": 4, "delays": [
+        [
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1
+        ]
+      ] },
+    { "name": "chainsawfish-wielded-inhand-right", "directions": 4, "delays": [
+        [
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1
+        ]
+      ] },
+    { "name": "chainsawfish-dead-inhand-right", "directions": 4 },
+    { "name": "chainsawfish-dead-wielded-inhand-right", "directions": 4 },
+    { "name": "pike-inhand-right", "directions": 4 },
+    { "name": "pike-wielded-inhand-right", "directions": 4 },
+    { "name": "armored-pike-inhand-right", "directions": 4 },
+    { "name": "armored-pike-wielded-inhand-right", "directions": 4 }
+  ]
+}

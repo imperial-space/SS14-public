@@ -1,0 +1,296 @@
+# Модули МОДа из TG, этап М2: устройства в руке, хранилища, кобура, рудный мешок, замки и щиты.
+
+# === Устройства, которые модули выдают в руку ===
+
+- type: entity
+  parent: ImperialPiercingSyringe
+  id: ImperialModSyringe
+  name: шприц МОДа
+  description: Шприц большой ёмкости в запястье костюма. Кончик находит аварийные порты инъекций на любой броне.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 30
+
+- type: entity
+  parent: FireExtinguisher
+  id: ImperialModMisterAtmosNozzle
+  name: распылитель МОДа
+  description: Атмосферный распылитель костюма для быстрой обработки помещений.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      spray:
+        maxVol: 250
+        reagents:
+        - ReagentId: Water
+          Quantity: 250
+
+- type: entity
+  parent: SprayBottle
+  id: ImperialModMisterJanitorSpray
+  name: уборочный распылитель МОДа
+  description: Распылитель космического очистителя. Сам пополняет запас, пока включён.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: SpaceCleaner
+          Quantity: 100
+
+# === Активные модули с устройством ===
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleDefibrillator
+  name: модуль дефибриллятора МОДа
+  description: Модуль в перчатках костюма, «Исцеляющие руки» на жаргоне медиков. Ладони над пациентом, бортовой компьютер подбирает напряжение — и разряд из перчаток запускает сердце.
+  components:
+  - type: Sprite
+    state: defibrillator
+  - type: ImperialModModule
+    moduleType: Active
+    complexity: 2
+    usePower: 25
+    cooldown: 0.5
+    groups: [ defibrillator ]
+    requiredParts: Outer
+    device: DefibrillatorOneHandedUnpowered
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleHealthAnalyzer
+  name: модуль анализатора здоровья МОДа
+  description: Модуль в перчатке костюма — высокотехнологичный биосканер с подробными данными о здоровье и травмах.
+  components:
+  - type: Sprite
+    state: health
+  - type: ImperialModModule
+    moduleType: Active
+    complexity: 1
+    usePower: 1
+    cooldown: 0.5
+    groups: [ health_analyzer ]
+    requiredParts: Outer
+    device: HandheldHealthAnalyzer
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleInjector
+  name: модуль инъектора МОДа
+  description: Модуль в запястье костюма — шприц большой ёмкости. Кончик находит аварийные порты инъекций на любой броне и легко её пробивает. Даже вашу.
+  components:
+  - type: Sprite
+    state: injector
+  - type: ImperialModModule
+    moduleType: Active
+    complexity: 1
+    activePower: 0.3
+    cooldown: 0.5
+    groups: [ injector ]
+    requiredParts: Outer
+    device: ImperialModSyringe
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleDrill
+  name: модуль бура МОДа
+  description: Бур на руке костюма, выдвигается поверх кисти. Отлично проходит сквозь камень.
+  components:
+  - type: Sprite
+    state: drill
+  - type: ImperialModModule
+    moduleType: Active
+    complexity: 1
+    usePower: 1
+    cooldown: 0.2
+    groups: [ drill ]
+    requiredParts: Outer
+    device: MiningDrill
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleMisterAtmos
+  name: модуль распылителя смолы МОДа
+  description: Атмосферный распылитель для быстрой обработки помещений.
+  components:
+  - type: Sprite
+    state: mister
+  - type: ImperialModModule
+    moduleType: Active
+    complexity: 2
+    activePower: 0.3
+    cooldown: 0.5
+    groups: [ mister ]
+    device: ImperialModMisterAtmosNozzle
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleMisterJanitor
+  name: уборочный модуль распылителя МОДа
+  description: Распылитель космического очистителя для быстрой уборки. Сам синтезирует запас, пока включён.
+  components:
+  - type: Sprite
+    state: mister
+  - type: ImperialModModule
+    moduleType: Active
+    complexity: 2
+    activePower: 1
+    cooldown: 0.5
+    groups: [ mister ]
+    device: ImperialModMisterJanitorSpray
+  - type: ImperialModDeviceRefill
+    reagent: SpaceCleaner
+    rate: 2
+    solution: drink
+
+# === Хранилища ===
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleStorage
+  name: модуль компактного хранилища МОДа
+  description: Набор встроенных отделений и карманов по всей поверхности костюма. Эта версия урезана ради экономии места.
+  components:
+  - type: Sprite
+    state: storage
+  - type: ImperialModModule
+    complexity: 1
+    groups: [ storage ]
+    allowInactive: true
+  - type: ImperialModStorageModule
+    rows: 1
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleStorageExpanded
+  name: модуль хранилища МОДа
+  description: Скрытые отделения внутри костюма по образцу Donk Co. Вес распределяется равномерно — для контрабанды или просто переноски.
+  components:
+  - type: Sprite
+    state: storage_large
+  - type: ImperialModModule
+    complexity: 3
+    groups: [ storage ]
+    allowInactive: true
+  - type: ImperialModStorageModule
+    rows: 2
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleStorageHolding
+  name: блюспейс-модуль хранилища МОДа
+  description: Отделения на миниатюрных блюспейс-карманах — вершина технологий хранения, вес предметов не важен.
+  components:
+  - type: Sprite
+    state: storage_holding
+  - type: ImperialModModule
+    complexity: 4
+    groups: [ storage ]
+    allowInactive: true
+  - type: ImperialModStorageModule
+    rows: 4
+
+# === Применяемые ===
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleHolster
+  name: модуль кобуры МОДа
+  description: Крепит стандартное оружие на поверхности костюма для мгновенного извлечения.
+  components:
+  - type: Sprite
+    state: holster
+  - type: ImperialModModule
+    moduleType: Usable
+    complexity: 2
+    cooldown: 0.5
+    allowInactive: true
+    groups: [ holster ]
+  - type: ImperialModHolster
+  - type: ContainerContainer
+    containers:
+      imperial-mod-holster: !type:ContainerSlot
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleOreBag
+  name: модуль рудного мешка МОДа
+  description: Встроенное хранилище руды. Электромагниты сами собирают руду под ногами, применение высыпает её.
+  components:
+  - type: Sprite
+    state: ore
+  - type: ImperialModModule
+    moduleType: Usable
+    complexity: 1
+    usePower: 0.2
+    cooldown: 0.5
+    allowInactive: true
+    groups: [ orebag ]
+  - type: ImperialModOreBag
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleDnaLock
+  name: модуль ДНК-замка МОДа
+  description: Привязывает замки и уплотнения костюма к ДНК носителя — на чужом теле костюм не заработает. ЭМИ сбивает привязку.
+  components:
+  - type: Sprite
+    state: dnalock
+  - type: ImperialModModule
+    moduleType: Usable
+    complexity: 1
+    usePower: 3
+    cooldown: 0.5
+    groups: [ dna_lock ]
+  - type: ImperialModDnaLock
+
+# === Пассивные ===
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleEmpShield
+  name: модуль ЭМИ-щита МОДа
+  description: Подавитель полей защищает электронику костюма и модулей от электромагнитных импульсов, расходуя заряд.
+  components:
+  - type: Sprite
+    state: empshield
+  - type: ImperialModModule
+    complexity: 1
+    idlePower: 0.3
+    groups: [ emp_shield ]
+  - type: ImperialModEmpShield
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleStatusReadout
+  name: модуль вывода состояния МОДа
+  description: Подключается к позвоночнику костюма и снимает биометрию носителя. Динамик достаточно громкий, чтобы все вокруг узнали о его смерти.
+  components:
+  - type: Sprite
+    state: status
+  - type: ImperialModModule
+    complexity: 1
+    groups: [ status_readout ]
+    wearerComponents:
+    - type: ImperialModFlatline
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleMouthhole
+  name: модуль раструба для еды МОДа
+  description: Нанобарьер перед ртом позволяет есть и пить, не снимая шлема и сохраняя атмосферу.
+  components:
+  - type: Sprite
+    state: apparatus
+  - type: ImperialModModule
+    complexity: 1
+    groups: [ mouthhole ]
+    requiredParts: Head
+  - type: ImperialModMouthhole

@@ -1,0 +1,83 @@
+# Сконвертировано из blood_drunk_miner.dmm (tgstation/BandaStation, _maps/virtual_domains) утилитой dmm2domain.
+width: 35
+height: 46
+keyLength: 1
+legend:
+  "a": {t: Plating, a: bright, e: ["WallPlastitaniumIndestructible"]}
+  "b": {t: Plating, a: outdoors, e: ["WallRockBasalt"]}
+  "c": {t: FloorBasalt, a: outdoors, e: ["FloorLavaEntity"]}
+  "d": {t: FloorBasalt, a: outdoors}
+  "e": {t: FloorBasalt, a: outdoors, e: ["#Basalt1"]}
+  "f": {t: FloorBasalt, a: outdoors, e: ["#Basalt9"]}
+  "g": {t: FloorBasalt, a: outdoors, e: ["#Basalt5"]}
+  "h": {t: FloorBasalt, a: outdoors, e: ["#Basalt7"]}
+  "i": {t: FloorBasalt, a: outdoors, e: ["#Basalt3"]}
+  "j": {t: FloorBasalt, a: outdoors, e: ["#Basalt2"]}
+  "k": {t: FloorBasalt, a: outdoors, e: ["MarkerBeaconStructure"]}
+  "l": {t: FloorBasalt, a: outdoors, e: ["#Basalt6"]}
+  "m": {t: FloorBasalt, a: outdoors, e: ["#Basalt8"]}
+  "n": {t: FloorBasalt, a: outdoors, e: ["MobDeadMiner", "FloorLavaEntity"]}
+  "o": {t: FloorBasalt, a: outdoors, e: ["SalvageHumanCorpse"]}
+  "p": {t: FloorBasalt, a: outdoors, e: ["#Basalt4"]}
+  "q": {t: FloorBasalt, a: normal, e: ["AlwaysPoweredSmallLight@180"]}
+  "r": {t: Plating, a: safe, e: ["WallSolid"]}
+  "s": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
+  "t": {t: Plating, a: safe, e: ["WallSolid", "ExtinguisherCabinetFilled"]}
+  "u": {t: FloorDarkMono, a: safe, e: ["AirlockExternal"]}
+  "v": {t: FloorDark, a: safe}
+  "w": {t: FloorDarkMono, a: safe}
+  "x": {t: FloorDarkMono, a: safe, e: ["AlwaysPoweredWallLight@90"]}
+  "y": {t: FloorDarkMono, a: safe, e: ["WeaponProtoKineticAccelerator", "WeaponProtoKineticAccelerator", "WeaponProtoKineticAccelerator", "ClosetSteelBase", "WeaponCrusher", "WeaponCrusher"]}
+  "z": {t: FloorSteel, a: safe, e: ["AlwaysPoweredWallLight@-90", "Railing", "BitrunningMarkerGoal"]}
+  "A": {t: FloorDarkMono, a: safe, e: ["Table", "PKAUpgradeDamage", "PKAUpgradeDamage", "PKAUpgradeDamage", "PKAUpgradeRange", "PKAUpgradeRange", "PKAUpgradeRange", "PKAUpgradeFireRate", "PKAUpgradeFireRate", "PKAUpgradeFireRate", "ImperialLuxuryMedipen", "ImperialLuxuryMedipen"]}
+  "B": {t: FloorDarkMono, a: safe, e: ["ClosetSteelBase", "WeaponLauncherRocket", "EnergyKatana", "MagazineLightRifleBox"]}
+  "C": {t: FloorDark, a: safe, e: ["Table", "Lantern", "Lantern", "Lantern", "ClothingEyesGlassesMeson", "ClothingEyesGlassesMeson", "ClothingEyesGlassesMeson"]}
+  "D": {t: FloorDarkMono, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "E": {t: FloorDark, a: safe, e: ["ClosetSteelBase", "WeaponLightMachineGunL6", "MagazineBoxAntiMateriel", "WeaponSniperHristov"]}
+rows:
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba"
+- "abbbbbbbccbbbbccbbccbbccbbbccbbbbba"
+- "abbcccccccccccccccccccccccccccddbba"
+- "abbcddccccccccccccccccddccccccccbba"
+- "abccccccddccdddccddcddddddccccccbba"
+- "abccccdddddddddddddddefgddhddccccba"
+- "abbccddddddddddiddddddddddddgdcccba"
+- "abbccddddddjdddfddddddddddddddccbba"
+- "abccddddddkddddddddddddddddddcccbba"
+- "abcccddddddddddddddgddkdddddlcccbba"
+- "abbccdddddddddfddddddmddhddddcccbba"
+- "abbccdddddddmdddddddddddddddddcccba"
+- "abcccdddddddddddddddhdddfddddddccba"
+- "abccfddddddddddddddddddddddddddcbba"
+- "abccdddddddddddddddddddddddfddccbba"
+- "abcccddddddddddddcdddddddddddcccbba"
+- "abbccdddddddgddjcncddddddldddccdbba"
+- "abbcchdddddodddddcdddddddddpdcccbba"
+- "abbcccpdddddddddddddddddddddddccbba"
+- "abcccddddddddddddddddddjddddddcccba"
+- "abccddddddddddddddddddddddddddcccba"
+- "abccddgdkdddddddfddddddddkdddcccbba"
+- "abbccdddddddddddddddmdddjdddicccbba"
+- "abbccddldddddddddddddddddddddcccbba"
+- "abbcccddddddddddkdddddddddddddccbba"
+- "abbdccdddlddddddddddddddddddddcccba"
+- "abbcccddddddddddddddddddldddmdcccba"
+- "abbccddddddddddddddddddddddddcccbba"
+- "abbccdddddddddddddddddddddddmcccbba"
+- "abbcccdddddddddddldddiddddddddccbba"
+- "abbcccdddkddddfekgddddddddddddccbba"
+- "abbcccddddddddddddddddddddkddddccba"
+- "abcccdddddddddqdddddqddddddddddccba"
+- "abcccdddddddjdrstutsrddddddddddccba"
+- "abbcccddddddddrvwwwvrdddddddddccbba"
+- "abbccdddddddddrxwywzrddofddddcccbba"
+- "abbcccmdddddddswwAwBsddddddddcccbba"
+- "abcccdddddddddsCDDDEsdddddddddccbba"
+- "abcccdddddedddrrsssrrdddddddddccbba"
+- "abbcccddddedddddddddddddddddddccbba"
+- "abbcccccdddcdddddcddddddcdhccccccba"
+- "abcccccccccccccccccccccccccccccccba"
+- "abccbbcbcccccccccbccbbbcccccbbcccba"
+- "abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba"
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"

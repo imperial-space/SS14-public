@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (ammo.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "mag9"
+    },
+    {
+      "name": "band9"
+    },
+    {
+      "name": "357-0"
+    },
+    {
+      "name": "357-1"
+    },
+    {
+      "name": "357-2"
+    },
+    {
+      "name": "357-3"
+    },
+    {
+      "name": "357-4"
+    },
+    {
+      "name": "357-5"
+    },
+    {
+      "name": "357-6"
+    },
+    {
+      "name": "357-7"
+    },
+    {
+      "name": "smartmag"
+    },
+    {
+      "name": "9mmbox"
+    },
+    {
+      "name": "10mmbox"
+    },
+    {
+      "name": "m12gfl"
+    },
+    {
+      "name": "m12gbc"
+    },
+    {
+      "name": "m12gd"
+    },
+    {
+      "name": "flechette-live"
+    },
+    {
+      "name": "flechette_donk-live"
+    },
+    {
+      "name": "mshell-live"
+    },
+    {
+      "name": "surplus"
+    },
+    {
+      "name": "disruptor"
+    },
+    {
+      "name": "marksman"
+    },
+    {
+      "name": "penetrator"
+    },
+    {
+      "name": "incendiary"
+    },
+    {
+      "name": "a7mm"
+    },
+    {
+      "name": "banda7mm"
+    },
+    {
+      "name": "band223"
+    },
+    {
+      "name": "84mm-heap"
+    },
+    {
+      "name": "rocketbundle-3"
+    },
+    {
+      "name": "40mm"
+    },
+    {
+      "name": "40mm-shell-live"
+    },
+    {
+      "name": "smartgun_casing-live"
+    },
+    {
+      "name": "mag50"
+    },
+    {
+      "name": "mag223"
+    }
+  ]
+}

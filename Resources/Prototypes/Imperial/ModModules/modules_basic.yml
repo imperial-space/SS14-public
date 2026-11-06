@@ -1,0 +1,345 @@
+# Модули МОДа из TG (code/modules/mod/modules). Этап М1: ядро, визоры, защита, движение, простые модули.
+# Энергия — в долях DEFAULT_CHARGE_DRAIN (0.5% малой батареи в секунду).
+
+- type: entity
+  parent: BaseAction
+  id: ImperialActionModModule
+  name: модуль МОДа
+  components:
+  - type: Action
+    itemIconStyle: BigItem
+    useDelay: 0.5
+  - type: InstantAction
+    event: !type:ImperialModModuleActionEvent
+
+- type: entity
+  parent: BaseItem
+  id: ImperialModModuleBase
+  abstract: true
+  name: модуль МОДа
+  description: Особое устройство, которое ставится в МОД и даёт ему новые возможности.
+  components:
+  - type: Sprite
+    sprite: Imperial/ModModules/modules.rsi
+    state: module
+  - type: Item
+    size: Small
+  - type: ImperialModModule
+  - type: StaticPrice
+    price: 300
+  - type: Tag
+    tags:
+    - ImperialModModule
+
+- type: Tag
+  id: ImperialModModule
+
+# === Визоры (modules_visor.dm) ===
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleVisorBase
+  abstract: true
+  components:
+  - type: ImperialModModule
+    moduleType: Toggle
+    complexity: 1
+    activePower: 0.3
+    groups: [ visor ]
+    requiredParts: Head
+    effectPart: Head
+
+- type: entity
+  parent: ImperialModModuleVisorBase
+  id: ImperialModModuleVisorMedHud
+  name: модуль медицинского визора МОДа
+  description: Встроенный в визор костюма HUD. Сверяет данные датчиков костюма с биосканером и показывает здоровье органических существ.
+  components:
+  - type: Sprite
+    state: medhud_visor
+  - type: ImperialModModule
+    moduleType: Toggle
+    complexity: 1
+    activePower: 0.3
+    groups: [ visor ]
+    requiredParts: Head
+    effectPart: Head
+    partComponents:
+    - type: ShowHealthBars
+    - type: ShowHealthIcons
+
+- type: entity
+  parent: ImperialModModuleVisorBase
+  id: ImperialModModuleVisorSecHud
+  name: модуль визора СБ МОДа
+  description: Встроенный в визор костюма HUD на основе системы наведения, подключённой к базам судимостей. Показывает должности, импланты защиты разума и статусы розыска.
+  components:
+  - type: Sprite
+    state: sechud_visor
+  - type: ImperialModModule
+    moduleType: Toggle
+    complexity: 1
+    activePower: 0.3
+    groups: [ visor ]
+    requiredParts: Head
+    effectPart: Head
+    partComponents:
+    - type: ShowJobIcons
+    - type: ShowMindShieldIcons
+    - type: ShowCriminalRecordIcons
+
+- type: entity
+  parent: ImperialModModuleVisorBase
+  id: ImperialModModuleVisorDiagHud
+  name: модуль диагностического визора МОДа
+  description: Встроенный в визор костюма HUD с датчиками для техники, экзокостюмов и боргов. Показывает их целостность.
+  components:
+  - type: Sprite
+    state: diaghud_visor
+  - type: ImperialModModule
+    moduleType: Toggle
+    complexity: 1
+    activePower: 0.3
+    groups: [ visor ]
+    requiredParts: Head
+    effectPart: Head
+    partComponents:
+    - type: ShowHealthBars
+      damageContainers:
+      - Inorganic
+      - Silicon
+
+- type: entity
+  parent: ImperialModModuleVisorBase
+  id: ImperialModModuleVisorMeson
+  name: модуль мезонного визора МОДа
+  description: Встроенный в визор костюма HUD на основе мезонных сканеров строителей и шахтёров. Защищает глаза как инженерные очки.
+  components:
+  - type: Sprite
+    state: meson_visor
+  - type: ImperialModModule
+    moduleType: Toggle
+    complexity: 1
+    activePower: 0.3
+    groups: [ visor ]
+    requiredParts: Head
+    effectPart: Head
+    partComponents:
+    - type: EyeProtection
+    - type: MesonVision
+
+# === Голова ===
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleWelding
+  name: модуль сварочной защиты МОДа
+  description: Проецирует перед глазами поляризованный голографический фильтр. Защищает от сварки, солнечных затмений и вспышек.
+  components:
+  - type: Sprite
+    state: welding
+  - type: ImperialModModule
+    complexity: 1
+    groups: [ welding ]
+    requiredParts: Head
+    effectPart: Head
+    partComponents:
+    - type: EyeProtection
+    - type: FlashImmunity
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleTRay
+  name: модуль т-лучевого сканера МОДа
+  description: Модуль в визоре костюма. Импульсом терагерцового излучения показывает то, что спрятано под полом — в основном кабели и трубы.
+  components:
+  - type: Sprite
+    state: tray
+  - type: ImperialModModule
+    moduleType: Toggle
+    complexity: 1
+    activePower: 0.5
+    groups: [ t_ray ]
+    requiredParts: Head
+    effectPart: Head
+    partComponents:
+    - type: TrayScanner
+      enabled: true
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleReagentScanner
+  name: модуль сканера реагентов МОДа
+  description: Модуль на основе научных HUD Нанотрейзен. Сканирует содержимое ёмкостей и выводит его на дисплей. Вкус определить не может.
+  components:
+  - type: Sprite
+    state: scanner
+  - type: ImperialModModule
+    moduleType: Toggle
+    complexity: 1
+    activePower: 0.2
+    groups: [ reagent_scanner ]
+    requiredParts: Head
+    wearerComponents:
+    - type: SolutionScanner
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleFlashlight
+  name: модуль фонаря МОДа
+  description: Пара фонарей по бокам шлема.
+  components:
+  - type: Sprite
+    state: flashlight
+  - type: ImperialModModule
+    moduleType: Toggle
+    complexity: 1
+    activePower: 0.3
+    groups: [ flashlight ]
+    requiredParts: Head
+    wearerComponents:
+    - type: PointLight
+      radius: 4
+      energy: 1
+      color: "#FFFFFF"
+
+# === Защита ===
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleRadProtection
+  name: модуль радиационной защиты МОДа
+  description: Полимеры и отражающие экраны защищают носителя от ионизирующего излучения — частой опасности в космосе.
+  components:
+  - type: Sprite
+    state: radshield
+  - type: ImperialModModule
+    complexity: 2
+    idlePower: 0.3
+    groups: [ rad_protection ]
+    requiredParts: Head, Outer
+    effectPart: Outer
+    partComponents:
+    - type: ImperialModArmor
+      modifiers:
+        coefficients:
+          Radiation: 0
+
+# === Движение ===
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleMagboot
+  name: модуль магнитной стабилизации МОДа
+  description: Мощные электромагниты в ботинках костюма дают отличное сцепление и позволяют держаться за обшивку корпуса. Шаг становится заметно «липким».
+  components:
+  - type: Sprite
+    state: magnet
+  - type: ImperialModModule
+    moduleType: Toggle
+    complexity: 2
+    activePower: 0.5
+    groups: [ magboot, atrocinator ]
+    requiredParts: Outer
+    wearerComponents:
+    - type: ImperialModMagnet
+    - type: ImperialModSpeed
+      walk: 0.8
+      sprint: 0.8
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleJetpack
+  name: модуль ионного реактивного ранца МОДа
+  description: Электрические двигатели по всему костюму. Вместо сжигания газа разгоняют ионы зарядом батареи костюма.
+  components:
+  - type: Sprite
+    state: jetpack
+  - type: ImperialModModule
+    moduleType: Toggle
+    complexity: 3
+    activePower: 0.3
+    groups: [ jetpack ]
+    wearerComponents:
+    - type: ImperialModJetpackUser
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleWaddle
+  name: модуль переваливания МОДа
+  description: Одна из самых примитивных технологий Honk Co. Заставляет ботинки костюма ходить вразвалочку.
+  components:
+  - type: Sprite
+    state: waddle
+  - type: ImperialModModule
+    complexity: 1
+    idlePower: 0.2
+    groups: [ waddle ]
+    requiredParts: Outer
+    wearerComponents:
+    - type: ImperialModWaddle
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleJointTorsion
+  name: модуль храповика крутящего момента МОДа
+  description: Компактный слабый генератор, который заряжает батарею костюма при ходьбе. Не работает в невесомости. Можно поставить несколько.
+  components:
+  - type: Sprite
+    state: joint_torsion
+  - type: ImperialModModule
+    complexity: 1
+    requiredParts: Outer
+  - type: ImperialModJointTorsion
+
+# === Общие ===
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleThermalRegulator
+  name: модуль терморегулятора МОДа
+  description: Внутренний комбинезон с тысячами охлаждающих каналов держит температуру тела носителя.
+  components:
+  - type: Sprite
+    state: regulator
+  - type: ImperialModModule
+    moduleType: Toggle
+    complexity: 1
+    activePower: 0.3
+    groups: [ thermal_regulator ]
+  - type: ImperialModThermalRegulator
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleGps
+  name: модуль внутреннего GPS МОДа
+  description: Вычисляет положение носителя в космосе с точностью до координат.
+  components:
+  - type: Sprite
+    state: gps
+  - type: ImperialModModule
+    moduleType: Usable
+    complexity: 1
+    usePower: 0.2
+    cooldown: 0.5
+    allowInactive: true
+    groups: [ gps ]
+  - type: ImperialModGpsModule
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleBikeHorn
+  name: модуль велосипедного гудка МОДа
+  description: Наплечная тяжёлая звуковая артиллерия. Фемтоманипуляторы с ювелирной точностью сжимают... велосипедный гудок.
+  components:
+  - type: Sprite
+    state: bikehorn
+  - type: ImperialModModule
+    moduleType: Usable
+    complexity: 1
+    usePower: 1
+    cooldown: 1
+    groups: [ bikehorn ]
+  - type: ImperialModSoundModule
+    sound:
+      collection: BikeHorn

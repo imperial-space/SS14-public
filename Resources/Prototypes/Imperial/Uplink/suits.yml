@@ -1,0 +1,11 @@
+# РИГ оперативника с модулем энергощита (TG suits/energy_shield, Paradise suits/shielded).
+# Модулей у РИГов сборки нет, поэтому щит встроен в отдельный РИГ — так же, как у гамма-РИГа.
+
+- type: entity
+  parent: [ ClothingControlModsuitOperativeSealed, BaseSyndicateContraband ]
+  id: ImperialModsuitOperativeShielded
+  name: РИГ оперативника Синдиката с энергощитом
+  description: Боевой РИГ оперативника с модулем энергощита. Щит держит три удара и полностью гасит каждую атаку; заряды начинают восстанавливаться через 20 секунд после последнего удара.
+  components:
+  - type: GammaEnergyShield
+    shieldState: shield-red

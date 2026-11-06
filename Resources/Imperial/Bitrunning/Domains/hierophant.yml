@@ -1,0 +1,73 @@
+# Сконвертировано из hierophant.dmm (tgstation/BandaStation, _maps/virtual_domains) утилитой dmm2domain.
+width: 25
+height: 38
+keyLength: 1
+legend:
+  "a": {t: Plating, a: bright, e: ["WallPlastitaniumIndestructible"]}
+  "b": {t: Plating, a: outdoors, e: ["WallPlastitaniumIndestructible"]}
+  "c": {t: FloorDark, a: outdoors}
+  "d": {t: FloorDark, a: outdoors, e: ["SalvageHumanCorpse"]}
+  "e": {t: FloorDark, a: outdoors, e: ["MarkerBeaconStructure"]}
+  "f": {t: FloorDark, a: outdoors, e: ["MobHierophant"]}
+  "g": {t: Space}
+  "h": {t: FloorBasalt, a: outdoors}
+  "i": {t: FloorBasalt, a: outdoors, e: ["#Basalt6"]}
+  "j": {t: FloorBasalt, a: outdoors, e: ["#Basalt3"]}
+  "k": {t: FloorDark, a: outdoors, e: ["AlwaysPoweredSmallLight@180"]}
+  "l": {t: Plating, a: safe, e: ["WallSolid"]}
+  "m": {t: Plating, a: safe, e: ["ReinforcedWindow", "Grille"]}
+  "n": {t: Plating, a: safe, e: ["WallSolid", "ExtinguisherCabinetFilled"]}
+  "o": {t: FloorDarkMono, a: safe, e: ["AirlockExternal"]}
+  "p": {t: FloorDark, a: safe}
+  "q": {t: FloorDarkMono, a: safe}
+  "r": {t: FloorBasalt, a: outdoors, e: ["#Basalt8"]}
+  "s": {t: FloorDarkMono, a: safe, e: ["AlwaysPoweredWallLight@90"]}
+  "t": {t: FloorDarkMono, a: safe, e: ["WeaponProtoKineticAccelerator", "WeaponProtoKineticAccelerator", "WeaponProtoKineticAccelerator", "ClosetSteelBase", "WeaponCrusher", "WeaponCrusher"]}
+  "u": {t: FloorSteel, a: safe, e: ["AlwaysPoweredWallLight@-90", "Railing", "BitrunningMarkerGoal"]}
+  "v": {t: FloorBasalt, a: outdoors, e: ["#Basalt1"]}
+  "w": {t: FloorBasalt, a: outdoors, e: ["#Basalt5"]}
+  "x": {t: FloorDarkMono, a: safe, e: ["Table", "PKAUpgradeDamage", "PKAUpgradeDamage", "PKAUpgradeDamage", "PKAUpgradeRange", "PKAUpgradeRange", "PKAUpgradeRange", "PKAUpgradeFireRate", "PKAUpgradeFireRate", "PKAUpgradeFireRate", "ImperialLuxuryMedipen", "ImperialLuxuryMedipen"]}
+  "y": {t: FloorDarkMono, a: safe, e: ["ClosetSteelBase", "WeaponLauncherRocket", "EnergyKatana", "MagazineLightRifleBox"]}
+  "z": {t: FloorDark, a: safe, e: ["Table", "Lantern", "Lantern", "Lantern", "ClothingEyesGlassesMeson", "ClothingEyesGlassesMeson", "ClothingEyesGlassesMeson"]}
+  "A": {t: FloorDarkMono, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "B": {t: FloorDark, a: safe, e: ["ClosetSteelBase", "WeaponLightMachineGunL6", "MagazineBoxAntiMateriel", "WeaponSniperHristov"]}
+  "C": {t: FloorBasalt, a: outdoors, e: ["#Basalt7"]}
+rows:
+- "aaaaaaaaaaaaaaaaaaaaaaaaa"
+- "abbbbbbbbbbbbbbbbbbbbbbba"
+- "abcccccccccccccccccccccba"
+- "abccccccccbcccbccccccccba"
+- "abcccccccccccccccccccccba"
+- "abcccbbcccccccccccbbcccba"
+- "abcccbbcccccccccccbbcccba"
+- "abcccccccccccccccccdcccba"
+- "abccccccccbcccbccccccccba"
+- "abcccecccccccccccccccccba"
+- "abcbccccbcccccccbccccbcba"
+- "abcccccccccccccccccccccba"
+- "abccccccccccfccccccccccba"
+- "abcccccccccccccccccccccba"
+- "abcbccccbcccccccbccecbcba"
+- "abcccccccccccccccccccccba"
+- "abccccccccbcccbccccccccba"
+- "abcccccccccccccccccccccba"
+- "abcccbbcccccccccccbbcccba"
+- "abcccbbcccccccccccbbcccba"
+- "abcccccccccccccccccccccba"
+- "abccccceccbcccbccccccccba"
+- "abcccccccccccccccccccccba"
+- "abbbbccbbbbbbbbbbbccbbbba"
+- "aaaabccbaaaaaaaaabccbaaaa"
+- "gggabccbbbbbabbbbbccbaggg"
+- "gggabcccdccbabccccccbaggg"
+- "aaaabccccccbbbccccccbaaaa"
+- "ahhibbbbbcccccccbbbbbhhha"
+- "ajhhhhhhbkccccckbhhhhhhha"
+- "ahhhhhhhhlmnonmlhhhhhhhha"
+- "ahhhhhhhhlpqqqplhhhhhhhha"
+- "ahrhhhhhhlsqtqulvhhhhwhha"
+- "ahhhhhhhhmqqxqymhhhhhhhha"
+- "ahhhhhhhhmzAAABmhhhhhhhha"
+- "ahhhhChhhllmmmllhhhhhhhha"
+- "ahhhhhhhhhhhhhhhhhhhhhhha"
+- "aaaaaaaaaaaaaaaaaaaaaaaaa"

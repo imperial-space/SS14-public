@@ -1,0 +1,18 @@
+# /datum/emote/living/kiss: воздушный поцелуй. У нанёсших помаду Синдиката он становится лазерным.
+- type: emote
+  id: ImperialKiss
+  name: chat-emote-name-imperial-kiss
+  category: Hands
+  icon: Interface/Emotes/salute.png
+  whitelist:
+    components:
+    - Hands
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["chat-emote-msg-imperial-kiss"]
+  chatTriggers:
+  - посылает воздушный поцелуй
+  - целует
+  - kiss
+  - kisses

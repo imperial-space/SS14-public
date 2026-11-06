@@ -1,0 +1,1280 @@
+# Рыболовное снаряжение TG (code/modules/fishing): удочки, лески, крючки, наживка, блёсны, сумки, наборы.
+
+# === База рыбы ===
+
+- type: entity
+  parent: BaseItem
+  id: ImperialFishBase
+  abstract: true
+  name: рыба
+  description: Очень пресная.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fish.rsi
+    state: fish_greyscale
+  - type: Item
+    size: Normal
+    sprite: Imperial/Fishing/fish_inhands.rsi
+    heldPrefix: normal
+  - type: ImperialFish
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+  - type: Edible
+    utensil: None
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 6
+    soundHit:
+      path: /Audio/Effects/Fluids/splat.ogg
+  - type: Appearance
+  - type: Tag
+    tags:
+    - Meat
+    - ImperialFish
+  - type: StaticPrice
+    price: 20
+
+# === Удочки ===
+
+- type: entity
+  parent: BaseItem
+  id: ImperialFishingRod
+  name: удочка
+  description: Этим можно ловить рыбу.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fishing.rsi
+    layers:
+    - state: fishing_rod
+      map: [ "base" ]
+    - state: reel_overlay
+      map: [ "reel" ]
+    - state: line_overlay
+      map: [ "line" ]
+      visible: false
+    - state: hook_overlay
+      map: [ "hook" ]
+      visible: false
+    - state: worm_overlay
+      map: [ "bait" ]
+      visible: false
+  - type: Item
+    size: Huge
+    sprite: Imperial/Fishing/rod_inhands.rsi
+  - type: ImperialFishingRod
+    uiDescription: imperial-fishing-rod-desc-basic
+  - type: ImperialFishingRodVisuals
+  - type: Appearance
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 8
+  - type: ItemSlots
+    slots:
+      rod_line:
+        name: imperial-fishing-slot-line
+        startingItem: ImperialFishingLine
+        whitelist:
+          components:
+          - ImperialFishingLine
+      rod_hook:
+        name: imperial-fishing-slot-hook
+        startingItem: ImperialFishingHook
+        whitelist:
+          components:
+          - ImperialFishingHook
+      rod_bait:
+        name: imperial-fishing-slot-bait
+        whitelist:
+          components:
+          - ImperialFishingBait
+          - Edible
+          - ImperialFish
+          - Cash
+          - PowerCell
+  - type: ContainerContainer
+    containers:
+      rod_line: !type:ContainerSlot
+      rod_hook: !type:ContainerSlot
+      rod_bait: !type:ContainerSlot
+  - type: UserInterface
+    interfaces:
+      enum.ImperialFishingUiKey.Key:
+        type: ImperialFishingBoundUserInterface
+      enum.ImperialFishingRodUiKey.Key:
+        type: ImperialFishingRodBoundUserInterface
+  - type: StaticPrice
+    price: 75
+
+- type: entity
+  parent: ImperialFishingRod
+  id: ImperialFishingRodUnslotted
+  suffix: Без снасти
+  components:
+  - type: ItemSlots
+    slots:
+      rod_line:
+        name: imperial-fishing-slot-line
+        startingItem: null
+        whitelist:
+          components:
+          - ImperialFishingLine
+      rod_hook:
+        name: imperial-fishing-slot-hook
+        startingItem: null
+        whitelist:
+          components:
+          - ImperialFishingHook
+      rod_bait:
+        name: imperial-fishing-slot-bait
+        whitelist:
+          components:
+          - ImperialFishingBait
+          - Edible
+          - ImperialFish
+          - Cash
+          - PowerCell
+
+- type: entity
+  parent: ImperialFishingRod
+  id: ImperialFishingRodRescue
+  suffix: Спасательная
+  components:
+  - type: ItemSlots
+    slots:
+      rod_line:
+        name: imperial-fishing-slot-line
+        startingItem: ImperialFishingLine
+        whitelist:
+          components:
+          - ImperialFishingLine
+      rod_hook:
+        name: imperial-fishing-slot-hook
+        startingItem: ImperialFishingHookRescue
+        whitelist:
+          components:
+          - ImperialFishingHook
+      rod_bait:
+        name: imperial-fishing-slot-bait
+        whitelist:
+          components:
+          - ImperialFishingBait
+          - Edible
+          - ImperialFish
+          - Cash
+          - PowerCell
+
+- type: entity
+  parent: ImperialFishingRod
+  id: ImperialFishingRodBone
+  name: костяная удочка
+  description: Скромная удочка, сделанная из того, что было под рукой.
+  components:
+  - type: Sprite
+    layers:
+    - state: fishing_rod_bone
+      map: [ "base" ]
+    - state: reel_bone
+      map: [ "reel" ]
+    - state: line_overlay
+      map: [ "line" ]
+      visible: false
+    - state: hook_overlay
+      map: [ "hook" ]
+      visible: false
+    - state: worm_overlay
+      map: [ "bait" ]
+      visible: false
+  - type: ImperialFishingRod
+    frameState: frame_bone
+    uiDescription: imperial-fishing-rod-desc-bone
+  - type: ImperialFishingRodVisuals
+    reelState: reel_bone
+    defaultLineColor: Red
+  - type: ItemSlots
+    slots:
+      rod_line:
+        name: imperial-fishing-slot-line
+        startingItem: null
+        whitelist:
+          components:
+          - ImperialFishingLine
+      rod_hook:
+        name: imperial-fishing-slot-hook
+        startingItem: ImperialFishingHookBone
+        whitelist:
+          components:
+          - ImperialFishingHook
+      rod_bait:
+        name: imperial-fishing-slot-bait
+        whitelist:
+          components:
+          - ImperialFishingBait
+          - Edible
+          - ImperialFish
+          - Cash
+          - PowerCell
+
+- type: entity
+  parent: ImperialFishingRod
+  id: ImperialFishingRodTelescopic
+  name: телескопическая удочка
+  description: Лёгкая, эргономичная и удобная в хранении телескопическая удочка.
+  components:
+  - type: Sprite
+    layers:
+    - state: fishing_rod_telescopic_collapsed
+      map: [ "base" ]
+    - state: reel_telescopic
+      map: [ "reel" ]
+      visible: false
+    - state: line_overlay
+      map: [ "line" ]
+      visible: false
+    - state: hook_overlay
+      map: [ "hook" ]
+      visible: false
+    - state: worm_overlay
+      map: [ "bait" ]
+      visible: false
+  - type: Item
+    size: Normal
+  - type: ImperialFishingRod
+    requiresToggle: true
+    frameState: frame_telescopic
+    completionSpeedMult: 1.1
+    baitSpeedMult: 1.1
+    decelerationMult: 1.1
+    bouncinessMult: 0.9
+    gravityMult: 0.9
+    uiDescription: imperial-fishing-rod-desc-telescopic
+  - type: ImperialFishingRodVisuals
+    reelState: reel_telescopic
+    extendedState: fishing_rod_telescopic
+    collapsedState: fishing_rod_telescopic_collapsed
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Weapons/telescopicon.ogg
+      params:
+        volume: -5
+    soundDeactivate:
+      path: /Audio/Weapons/telescopicoff.ogg
+      params:
+        volume: -5
+  - type: ItemToggleSize
+    activatedSize: Huge
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Blunt: 8
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 0
+  - type: UseDelay
+    delay: 0.5
+  - type: StaticPrice
+    price: 450
+
+- type: entity
+  parent: ImperialFishingRodTelescopic
+  id: ImperialFishingRodMaster
+  name: удочка мастера
+  description: Мифическая удочка потерянного короля рыбаков. Говорят, в ней заключена несравненная рыболовная сила. На обороте удилища надпись «Сделано китайской космонавтикой».
+  components:
+  - type: Sprite
+    layers:
+    - state: fishing_rod_master_collapsed
+      map: [ "base" ]
+    - state: reel_master
+      map: [ "reel" ]
+      visible: false
+    - state: line_overlay
+      map: [ "line" ]
+      visible: false
+    - state: hook_overlay
+      map: [ "hook" ]
+      visible: false
+    - state: worm_overlay
+      map: [ "bait" ]
+      visible: false
+  - type: ImperialFishingRod
+    requiresToggle: true
+    difficultyModifier: -10
+    castRange: 5
+    frameState: frame_master
+    completionSpeedMult: 1.55
+    baitSpeedMult: 1.2
+    decelerationMult: 1.2
+    bouncinessMult: 0.3
+    gravityMult: 1.2
+    baitHeightMult: 1.4
+    uiDescription: imperial-fishing-rod-desc-master
+  - type: ImperialFishingRodVisuals
+    reelState: reel_master
+    extendedState: fishing_rod_master
+    collapsedState: fishing_rod_master_collapsed
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Blunt: 13
+  - type: ItemSlots
+    slots:
+      rod_line:
+        name: imperial-fishing-slot-line
+        startingItem: ImperialFishingLineBouncy
+        whitelist:
+          components:
+          - ImperialFishingLine
+      rod_hook:
+        name: imperial-fishing-slot-hook
+        startingItem: ImperialFishingHookWeighted
+        whitelist:
+          components:
+          - ImperialFishingHook
+      rod_bait:
+        name: imperial-fishing-slot-bait
+        whitelist:
+          components:
+          - ImperialFishingBait
+          - Edible
+          - ImperialFish
+          - Cash
+          - PowerCell
+  - type: StaticPrice
+    price: 2500
+
+- type: entity
+  parent: ImperialFishingRod
+  id: ImperialFishingRodTech
+  name: продвинутая удочка
+  description: Встроенный универсальный конструктор и микротермоядерный генератор — у этого чуда техники никогда не кончается наживка. Межзвёздные договоры запрещают использовать её где-либо кроме любительской рыбалки. А ещё ею можно ловить рыбу.
+  components:
+  - type: Sprite
+    layers:
+    - state: fishing_rod_science
+      map: [ "base" ]
+    - state: reel_science
+      map: [ "reel" ]
+    - state: line_overlay
+      map: [ "line" ]
+      visible: false
+    - state: hook_overlay
+      map: [ "hook" ]
+      visible: false
+    - state: dough_blue_overlay
+      map: [ "bait" ]
+      visible: false
+  - type: ImperialFishingRod
+    lockedBait: true
+    frameState: frame_science
+    completionSpeedMult: 1.1
+    baitSpeedMult: 1.1
+    decelerationMult: 1.1
+    gravityMult: 1.2
+    uiDescription: imperial-fishing-rod-desc-tech
+  - type: ImperialFishingRodVisuals
+    reelState: reel_science
+  - type: ItemSlots
+    slots:
+      rod_line:
+        name: imperial-fishing-slot-line
+        startingItem: ImperialFishingLine
+        whitelist:
+          components:
+          - ImperialFishingLine
+      rod_hook:
+        name: imperial-fishing-slot-hook
+        startingItem: ImperialFishingHook
+        whitelist:
+          components:
+          - ImperialFishingHook
+      rod_bait:
+        name: imperial-fishing-slot-bait
+        startingItem: ImperialBaitDoughballUnconsumable
+        locked: true
+        whitelist:
+          components:
+          - ImperialFishingBait
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  parent: ImperialFishingRod
+  id: ImperialFishingRodMaterial
+  name: удочка из материала
+  description: Удочка на заказ из вашего местного автолата.
+  components:
+  - type: Sprite
+    layers:
+    - state: fishing_rod_material
+      map: [ "base" ]
+    - state: reel_material
+      map: [ "reel" ]
+    - state: line_overlay
+      map: [ "line" ]
+      visible: false
+    - state: hook_overlay
+      map: [ "hook" ]
+      visible: false
+    - state: worm_overlay
+      map: [ "bait" ]
+      visible: false
+  - type: ImperialFishingRod
+    frameState: frame_material
+    uiDescription: imperial-fishing-rod-desc-material
+  - type: ImperialFishingRodVisuals
+    reelState: reel_material
+
+# === Лески ===
+
+- type: entity
+  parent: BaseItem
+  id: ImperialFishingLine
+  name: катушка лески
+  description: Леска. Несмотря на простоту, дополнительная длина немного облегчает рыбалку.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fishing.rsi
+    state: reel_blue
+  - type: Item
+    size: Small
+  - type: ImperialFishingLine
+    wikiDescription: imperial-fishing-line-wiki-basic
+  - type: StaticPrice
+    price: 20
+
+- type: entity
+  parent: ImperialFishingLine
+  id: ImperialFishingLineReinforced
+  name: катушка армированной лески
+  description: Незаменима для рыбалки в экстремальных условиях.
+  components:
+  - type: Sprite
+    state: reel_green
+  - type: ImperialFishingLine
+    lineColor: "#2aae34"
+    lavaUsable: true
+    wikiDescription: imperial-fishing-line-wiki-reinforced
+
+- type: entity
+  parent: ImperialFishingLine
+  id: ImperialFishingLineCloaked
+  name: катушка маскирующей лески
+  description: Ещё незаметнее обычной.
+  components:
+  - type: Sprite
+    state: reel_white
+  - type: ImperialFishingLine
+    traits: Cloaked
+    lineColor: "#82cfdd20"
+    wikiDescription: imperial-fishing-line-wiki-cloaked
+
+- type: entity
+  parent: ImperialFishingLine
+  id: ImperialFishingLineBouncy
+  name: катушка гибкой лески
+  description: Эту специальную леску гораздо сложнее порвать.
+  components:
+  - type: Sprite
+    state: reel_red
+  - type: ImperialFishingLine
+    traits: Bouncy
+    lineColor: "#af221f"
+    castRange: 3
+    wikiDescription: imperial-fishing-line-wiki-bouncy
+
+- type: entity
+  parent: ImperialFishingLine
+  id: ImperialFishingLineSinew
+  name: жильная леска
+  description: Натуральная леска из растянутых жил. Жестковата, но годится для экстремальных условий.
+  components:
+  - type: Sprite
+    state: reel_sinew
+  - type: ImperialFishingLine
+    traits: Stiff
+    lineColor: "#d1cca3"
+    lavaUsable: true
+    wikiDescription: imperial-fishing-line-wiki-sinew
+
+- type: entity
+  parent: ImperialFishingLine
+  id: ImperialFishingLineAutoReel
+  name: леска с автокатушкой
+  description: Леска, которая сама крутит блёсны и начинает вываживание, как только клюнет. Ещё ею удобно подтягивать к себе предметы.
+  components:
+  - type: Sprite
+    state: reel_auto
+  - type: ImperialFishingLine
+    traits: Autoreel
+    lineColor: "#F88414"
+    wikiDescription: imperial-fishing-line-wiki-autoreel
+
+- type: entity
+  parent: ImperialFishingLine
+  id: ImperialFishingLineBluespace
+  name: блюспейс-леска
+  description: Леска, способная проходить сквозь саму ткань реальности вместе с крючком, наживкой и всем, что к ним прицеплено.
+  components:
+  - type: Sprite
+    state: reel_bluespace
+  - type: ImperialFishingLine
+    traits: Phase
+    lineColor: Blue
+    castRange: 6
+    wikiDescription: imperial-fishing-line-wiki-bluespace
+
+# === Крючки ===
+
+- type: entity
+  parent: BaseItem
+  id: ImperialFishingHook
+  name: простой рыболовный крючок
+  description: Простой крючок. Без него ни за что не зацепишься.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fishing.rsi
+    state: hook
+  - type: Item
+    size: Tiny
+  - type: ImperialFishingHook
+    wikiDescription: imperial-fishing-hook-wiki-basic
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  parent: ImperialFishingHook
+  id: ImperialFishingHookMagnet
+  name: магнитный крючок
+  description: Рыбу ловить легче не станет, но, может, поможет найти что-то другое.
+  components:
+  - type: Sprite
+    state: treasure
+  - type: ImperialFishingHook
+    rodOverlay: hook_treasure_overlay
+    nonFishMultiplier: 5
+    removeDud: true
+    chasmDetritus: Objects
+    wikiDescription: imperial-fishing-hook-wiki-magnet
+
+- type: entity
+  parent: ImperialFishingHook
+  id: ImperialFishingHookShiny
+  name: блестящий крючок-приманка
+  description: Привлекает рыб, неравнодушных к блестящему.
+  components:
+  - type: Sprite
+    state: gold_shiny
+  - type: ImperialFishingHook
+    rodOverlay: fishing_rod_hook_shiny_overlay
+    attractShiny: true
+    wikiDescription: imperial-fishing-hook-wiki-shiny
+
+- type: entity
+  parent: ImperialFishingHook
+  id: ImperialFishingHookWeighted
+  name: утяжелённый крючок
+  description: Меньше отскакивает от краёв, когда вываживаешь.
+  components:
+  - type: Sprite
+    state: weighted
+  - type: ImperialFishingHook
+    traits: Weighted
+    rodOverlay: hook_weighted_overlay
+    wikiDescription: imperial-fishing-hook-wiki-weighted
+
+- type: entity
+  parent: ImperialFishingHook
+  id: ImperialFishingHookRescue
+  name: спасательный крюк
+  description: Неуклюжий крюк, чтобы вытаскивать упавших в пропасти. Рыбу им точно не поймать, и вне пропастей он бесполезен.
+  components:
+  - type: Sprite
+    state: rescue
+  - type: ImperialFishingHook
+    rodOverlay: hook_rescue_overlay
+    fishMultiplier: 0
+    onlyChasm: true
+    hookMobs: true
+    chasmDetritus: Bodies
+    wikiDescription: imperial-fishing-hook-wiki-rescue
+
+- type: entity
+  parent: ImperialFishingHook
+  id: ImperialFishingHookBone
+  name: костяной крючок
+  description: Простой крючок, вырезанный из заострённой кости.
+  components:
+  - type: Sprite
+    state: hook_bone
+  - type: ImperialFishingHook
+    wikiDescription: imperial-fishing-hook-wiki-bone
+
+- type: entity
+  parent: ImperialFishingHook
+  id: ImperialFishingHookStabilized
+  name: гиростабилизированный крючок
+  description: Причудливый крючок, дающий лучший контроль снасти — приманку можно тянуть и вверх, и вниз, а без натяжения она стоит на месте.
+  components:
+  - type: Sprite
+    state: gyro
+  - type: ImperialFishingHook
+    traits: Bidirectional
+    rodOverlay: hook_gyro_overlay
+    wikiDescription: imperial-fishing-hook-wiki-stabilized
+
+- type: entity
+  parent: ImperialFishingHook
+  id: ImperialFishingHookJaws
+  name: крючок-капкан
+  description: Несмотря на ржавчину, этот похожий на медвежий капкан крючок выглядит ещё страшнее настоящего. Да смилуется Нептун над тем, кто попадёт ему в пасть.
+  components:
+  - type: Sprite
+    state: jaws
+  - type: Item
+    size: Normal
+  - type: ImperialFishingHook
+    traits: NoEscape, Kill
+    rodOverlay: hook_jaws_overlay
+    hookMobs: true
+    wikiDescription: imperial-fishing-hook-wiki-jaws
+
+# === Наживка ===
+
+- type: entity
+  parent: FoodBase
+  id: ImperialBaitWorm
+  name: червь
+  description: Извивающийся червь из банки с наживкой. Вы же не собираетесь его есть?
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fishing.rsi
+    state: worm
+  - type: Item
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 1
+        reagents:
+        - ReagentId: Protein
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: ImperialFishingBait
+    quality: Basic
+    foodTypes: Gross, Meat, Bugs
+    rodOverlay: worm_overlay
+
+- type: entity
+  parent: ImperialBaitWorm
+  id: ImperialBaitWormPremium
+  name: особо склизкий червь
+  description: Этот червь выглядит очень изысканно.
+  components:
+  - type: ImperialFishingBait
+    quality: Good
+    foodTypes: Gross, Meat, Bugs
+    rodOverlay: worm_overlay
+
+- type: entity
+  parent: FoodBase
+  id: ImperialBaitDoughball
+  name: шарик теста
+  description: Маленький кусочек теста. Простая, но действенная наживка.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fishing.rsi
+    state: doughball
+  - type: Item
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 1
+        reagents:
+        - ReagentId: Protein
+          Quantity: 1
+  - type: FlavorProfile
+    flavors:
+    - bread
+  - type: ImperialFishingBait
+    quality: Basic
+    foodTypes: Grain
+    rodOverlay: dough_overlay
+
+- type: entity
+  parent: ImperialBaitDoughball
+  id: ImperialBaitDoughballSuper
+  name: супершарик теста
+  description: Ни травоядная, ни плотоядная рыба не устоит перед этим.
+  components:
+  - type: Sprite
+    state: doughball_blue
+  - type: ImperialFishingBait
+    quality: Great
+    omni: true
+    foodTypes: Grain
+    rodOverlay: dough_blue_overlay
+
+- type: entity
+  parent: ImperialBaitDoughball
+  id: ImperialBaitDoughballUnconsumable
+  name: синтетический шарик теста
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: doughball_blue
+  - type: ImperialFishingBait
+    quality: Basic
+    omni: true
+    unconsumable: true
+    foodTypes: Grain
+    rodOverlay: dough_blue_overlay
+
+# === Банки наживки ===
+
+- type: entity
+  parent: BaseItem
+  id: ImperialBaitCanWorm
+  name: банка червей
+  description: В этой банке черви.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fishing.rsi
+    state: bait_can
+  - type: Item
+    size: Small
+  - type: ImperialBaitCan
+    bait: ImperialBaitWorm
+  - type: StaticPrice
+    price: 30
+
+- type: entity
+  parent: ImperialBaitCanWorm
+  id: ImperialBaitCanWormPremium
+  name: банка червей «Люкс»
+  description: В этой банке модные черви.
+  components:
+  - type: ImperialBaitCan
+    bait: ImperialBaitWormPremium
+
+- type: entity
+  parent: ImperialBaitCanWorm
+  id: ImperialBaitCanSuper
+  name: банка супернаживки
+  description: В этой банке нектар богов.
+  components:
+  - type: ImperialBaitCan
+    bait: ImperialBaitDoughballSuper
+    uses: 12
+
+# === Блёсны ===
+
+- type: entity
+  parent: BaseItem
+  id: ImperialFishingLureBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fishing.rsi
+  - type: Item
+    size: Small
+  - type: StaticPrice
+    price: 15
+
+- type: entity
+  parent: ImperialFishingLureBase
+  id: ImperialFishingLureMinnow
+  name: искусственный малёк
+  description: Блесна для мелкой рыбы. Слишком мелкой, слишком крупной или слишком привередливой рыбе она неинтересна.
+  components:
+  - type: Sprite
+    state: minnow
+  - type: ImperialFishingBait
+    lure: Minnow
+    omni: true
+    allowDud: true
+    unconsumable: true
+    spinFrequency: 2, 3
+    rodOverlay: worm_overlay
+
+- type: entity
+  parent: ImperialFishingLureBase
+  id: ImperialFishingLurePlug
+  name: искусственный воблер
+  description: Крупная блесна для крупной рыбы. Мелкая или привередливая добыча останется равнодушна.
+  components:
+  - type: Sprite
+    state: plug
+  - type: ImperialFishingBait
+    lure: Plug
+    omni: true
+    allowDud: true
+    unconsumable: true
+    spinFrequency: 2, 3
+    rodOverlay: worm_overlay
+
+- type: entity
+  parent: ImperialFishingLureBase
+  id: ImperialFishingLureDropping
+  name: пластиковый помёт
+  description: Блесна для всякой склизкой, крысиной, мерзкой и любящей мусор рыбы.
+  components:
+  - type: Sprite
+    state: dropping
+  - type: ImperialFishingBait
+    lure: Dropping
+    omni: true
+    allowDud: true
+    unconsumable: true
+    spinFrequency: 1.5, 2.8
+    rodOverlay: worm_overlay
+
+- type: entity
+  parent: ImperialFishingLureBase
+  id: ImperialFishingLureSpoon
+  name: блесна-ложка «Инди»
+  description: Блестящая металлическая пластинка, подражающая рыбьей чешуе. Ловит мелкую и среднюю пресноводную рыбу.
+  components:
+  - type: Sprite
+    state: spoon
+  - type: ImperialFishingBait
+    lure: Spoon
+    omni: true
+    allowDud: true
+    unconsumable: true
+    spinFrequency: 1.25, 2.25
+    rodOverlay: worm_overlay
+
+- type: entity
+  parent: ImperialFishingLureBase
+  id: ImperialFishingLureArtificialFly
+  name: искусственная муха «Шёлковый жужжа»
+  description: Блесна в виде большой шерстяной мухи. В отличие от большинства блёсен, достаточно изысканна, чтобы заинтересовать привередливых рыб — но только их.
+  components:
+  - type: Sprite
+    state: artificial_fly
+  - type: ImperialFishingBait
+    lure: ArtificialFly
+    omni: true
+    allowDud: true
+    unconsumable: true
+    spinFrequency: 1.1, 2
+    rodOverlay: worm_overlay
+
+- type: entity
+  parent: ImperialFishingLureBase
+  id: ImperialFishingLureLed
+  name: светодиодная блесна
+  description: Тяжёлая водонепроницаемая светящаяся палочка в виде рыбки. Ловит только ночную и глубоководную рыбу.
+  components:
+  - type: Sprite
+    layers:
+    - state: led
+    - state: led_emissive
+      shader: unshaded
+  - type: ImperialFishingBait
+    lure: Led
+    omni: true
+    allowDud: true
+    unconsumable: true
+    spinFrequency: 3, 3.8
+    rodOverlay: worm_overlay
+
+- type: entity
+  parent: ImperialFishingLureBase
+  id: ImperialFishingLureLuckyCoin
+  name: блесна «Манэки-монета»
+  description: Позолоченная блесна. Привлекает рыб, любящих блестящее. Для остальных недостаточно аппетитна.
+  components:
+  - type: Sprite
+    state: lucky_coin
+  - type: ImperialFishingBait
+    lure: LuckyCoin
+    omni: true
+    allowDud: true
+    unconsumable: true
+    spinFrequency: 1.5, 2.7
+    rodOverlay: worm_overlay
+
+- type: entity
+  parent: ImperialFishingLureBase
+  id: ImperialFishingLureAlgae
+  name: пластиковые водоросли
+  description: Мягкий комок искусственных водорослей. Травоядные его обожают. Больше никто, даже всеядные.
+  components:
+  - type: Sprite
+    state: algae
+  - type: ImperialFishingBait
+    lure: Algae
+    omni: true
+    allowDud: true
+    unconsumable: true
+    spinFrequency: 3, 5
+    rodOverlay: worm_overlay
+
+- type: entity
+  parent: ImperialFishingLureBase
+  id: ImperialFishingLureGrub
+  name: блесна «Крутящийся червяк»
+  description: Мягкая пластиковая блесна с телом личинки и извивающимся хвостом. Для мелкой рыбы, если она не травоядная и не привередливая.
+  components:
+  - type: Sprite
+    state: grub
+  - type: ImperialFishingBait
+    lure: Grub
+    omni: true
+    allowDud: true
+    unconsumable: true
+    spinFrequency: 1, 2.7
+    rodOverlay: worm_overlay
+
+- type: entity
+  parent: ImperialFishingLureBase
+  id: ImperialFishingLureBuzzbait
+  name: блесна «Электро-жужжалка»
+  description: Металлическая цветная трещотка на проводах, которая непонятно как привлекает рыбу, способную бить током.
+  components:
+  - type: Sprite
+    state: buzzbait
+  - type: ImperialFishingBait
+    lure: Buzzbait
+    omni: true
+    allowDud: true
+    unconsumable: true
+    spinFrequency: 0.8, 1.7
+    rodOverlay: worm_overlay
+
+- type: entity
+  parent: ImperialFishingLureBase
+  id: ImperialFishingLureSpinnerbait
+  name: блесна-вертушка
+  description: Крутящаяся беззащитная на вид блесна. Отлично привлекает пресноводных хищников, всеядным неинтересна.
+  components:
+  - type: Sprite
+    state: spinnerbait
+  - type: ImperialFishingBait
+    lure: Spinnerbait
+    omni: true
+    allowDud: true
+    unconsumable: true
+    spinFrequency: 2, 4
+    rodOverlay: worm_overlay
+
+- type: entity
+  parent: ImperialFishingLureBase
+  id: ImperialFishingLureDaisyChain
+  name: блесна-гирлянда
+  description: Блесна в виде маленькой стайки рыб. Морские хищники её обожают, остальные почти не замечают.
+  components:
+  - type: Sprite
+    state: daisy_chain
+  - type: ImperialFishingBait
+    lure: DaisyChain
+    omni: true
+    allowDud: true
+    unconsumable: true
+    spinFrequency: 2, 4
+    rodOverlay: worm_overlay
+
+# === Сумки и наборы ===
+
+- type: entity
+  parent: BaseStorageItem
+  id: ImperialFishingBag
+  name: рыболовная сумка
+  description: Яркая сумка для пойманной рыбы.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fishing.rsi
+    state: fishing_bag
+  - type: Item
+    size: Normal
+  - type: Clothing
+    slots: [ belt ]
+    quickEquip: false
+  - type: Storage
+    grid:
+    - 0,0,5,3
+    whitelist:
+      components:
+      - ImperialFish
+      - ImperialFishingLine
+      - ImperialFishingHook
+      - ImperialFishingBait
+      - ImperialBaitCan
+  - type: ImperialFishingDifficultyModifier
+    modifier: -2
+    hands: true
+    slots: BELT
+  - type: StaticPrice
+    price: 150
+
+- type: entity
+  parent: ImperialFishingBag
+  id: ImperialFishingBagCarpskin
+  name: рыболовная сумка из кожи карпа
+  description: Щегольская рыболовная сумка из кожи карпа. В карманах между крупными чешуйками помещается много снасти.
+  components:
+  - type: Sprite
+    state: fishing_bag_carpskin
+  - type: Storage
+    grid:
+    - 0,0,7,3
+    whitelist:
+      components:
+      - ImperialFish
+      - ImperialFishingLine
+      - ImperialFishingHook
+      - ImperialFishingBait
+      - ImperialBaitCan
+      - ImperialFishingRod
+  - type: ImperialFishingDifficultyModifier
+    modifier: -4
+    hands: true
+    slots: BELT
+
+- type: entity
+  parent: BoxCardboard
+  id: ImperialFishingHookSet
+  name: набор крючков
+  components:
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,5,2
+  - type: StorageFill
+    contents:
+    - id: ImperialFishingHookMagnet
+    - id: ImperialFishingHookShiny
+    - id: ImperialFishingHookWeighted
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  parent: ImperialFishingHookSet
+  id: ImperialFishingHookSetMaster
+  suffix: Мастер
+  components:
+  - type: StorageFill
+    contents:
+    - id: ImperialFishingHookMagnet
+    - id: ImperialFishingHookShiny
+    - id: ImperialFishingHookWeighted
+    - id: ImperialFishingHookStabilized
+    - id: ImperialFishingHookJaws
+
+- type: entity
+  parent: BoxCardboard
+  id: ImperialFishingLineSet
+  name: набор лесок
+  components:
+  - type: StorageFill
+    contents:
+    - id: ImperialFishingLineBouncy
+    - id: ImperialFishingLineReinforced
+    - id: ImperialFishingLineCloaked
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  parent: ImperialFishingLineSet
+  id: ImperialFishingLineSetMaster
+  suffix: Мастер
+  components:
+  - type: StorageFill
+    contents:
+    - id: ImperialFishingLineBouncy
+    - id: ImperialFishingLineReinforced
+    - id: ImperialFishingLineCloaked
+    - id: ImperialFishingLineAutoReel
+
+- type: entity
+  parent: BoxCardboard
+  id: ImperialFishingLureSet
+  name: набор блёсен
+  description: Маленький ящик со снастями — все блёсны, которые вам когда-либо понадобятся, чтобы обуздать случайность.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ImperialFishingLureInstructions
+    - id: ImperialFishingLureMinnow
+    - id: ImperialFishingLurePlug
+    - id: ImperialFishingLureDropping
+    - id: ImperialFishingLureSpoon
+    - id: ImperialFishingLureArtificialFly
+    - id: ImperialFishingLureLed
+    - id: ImperialFishingLureLuckyCoin
+    - id: ImperialFishingLureAlgae
+    - id: ImperialFishingLureGrub
+    - id: ImperialFishingLureBuzzbait
+    - id: ImperialFishingLureSpinnerbait
+    - id: ImperialFishingLureDaisyChain
+  - type: Storage
+    grid:
+    - 0,0,6,3
+  - type: StaticPrice
+    price: 450
+
+- type: entity
+  parent: ToolboxBase
+  id: ImperialFishingToolbox
+  name: рыболовный ящик
+  description: Всё необходимое для рыбалки.
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,9,4
+  - type: Sprite
+    sprite: Objects/Tools/Toolboxes/toolbox_blue.rsi
+  - type: StorageFill
+    contents:
+    - id: ImperialBaitCanWorm
+    - id: ImperialFishingRodUnslotted
+    - id: ImperialFishingHook
+    - id: ImperialFishingLine
+    - id: ImperialFishingTip
+  - type: ImperialFishingDifficultyModifier
+    modifier: -4
+    hands: true
+  - type: StaticPrice
+    price: 200
+
+- type: entity
+  parent: ImperialFishingToolbox
+  id: ImperialFishingToolboxSmall
+  name: компактный рыболовный ящик
+  description: Всё необходимое для рыбалки. Кроме наживки.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ImperialFishingRodUnslotted
+    - id: ImperialFishingHook
+    - id: ImperialFishingLine
+    - id: ImperialFishingTip
+
+- type: entity
+  parent: ImperialFishingToolbox
+  id: ImperialFishingToolboxMaster
+  name: суперрыболовный ящик
+  description: Почти ВСЁ необходимое для рыбалки.
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/Toolboxes/toolbox_gold.rsi
+  - type: StorageFill
+    contents:
+    - id: ImperialFishingRodMaster
+    - id: ImperialFishingHookSetMaster
+    - id: ImperialFishingLineSetMaster
+    - id: ImperialBaitCanSuper
+  - type: ImperialFishingDifficultyModifier
+    modifier: -10
+    hands: true
+
+# === Бумаги ===
+
+- type: entity
+  parent: Paper
+  id: ImperialFishingTip
+  name: совет рыбаку
+  description: Клочок бумаги с жемчужиной рыболовной мудрости — жаль, что не с настоящей жемчужиной.
+  components:
+  - type: ImperialFishingTip
+
+- type: entity
+  parent: Paper
+  id: ImperialFishingLureInstructions
+  name: инструкция
+  description: Кусок серой бумаги с инструкцией для чайников о рыболовных блёснах. Пахнет дешёвкой.
+  components:
+  - type: Paper
+    content: imperial-fishing-lure-instructions
+
+- type: entity
+  parent: BaseItem
+  id: ImperialMessageInABottle
+  name: бутылка для послания
+  description: Пустая стеклянная бутылка. Положите внутрь записку или деньги и бросьте в море — может, кто-нибудь выловит их в другой раз.
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/bottle.rsi
+    layers:
+    - state: glassbottle
+    - state: paper_in_bottle
+      map: [ "paper_in_bottle" ]
+      visible: false
+  - type: Item
+    size: Small
+  - type: ImperialMessageInABottle
+  - type: ItemSlots
+    slots:
+      message:
+        name: imperial-fishing-slot-message
+        whitelist:
+          components:
+          - Paper
+          - Cash
+  - type: ContainerContainer
+    containers:
+      message: !type:ContainerSlot
+  - type: ItemMapper
+    mapLayers:
+      paper_in_bottle:
+        whitelist:
+          components:
+          - Paper
+          - Cash
+  - type: Appearance
+
+- type: entity
+  parent: ImperialMessageInABottle
+  id: ImperialMessageInABottleEmpty
+  suffix: Пустая
+  components:
+  - type: ImperialMessageInABottle
+    loadOnSpawn: false
+
+# === Рыбалка: служебное ===
+
+- type: entity
+  id: ImperialFishingFloat
+  name: поплавок
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Fishing/fishing.rsi
+    drawdepth: Effects
+    layers:
+    - state: float
+    - state: lure_light
+      map: [ "lure" ]
+      visible: false
+  - type: ImperialFishingFloat
+  - type: JointVisuals
+    sprite:
+      sprite: Imperial/Fishing/line.rsi
+      state: fishing_line
+    offsetB: 0.3, 0.2
+
+- type: entity
+  id: ImperialFishingLineEnd
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: JointVisuals
+    sprite:
+      sprite: Imperial/Fishing/line.rsi
+      state: fishing_line
+    offsetB: 0.3, 0.2

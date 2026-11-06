@@ -1,0 +1,274 @@
+# Наборы аплинка TG, собранные из предметов, которые уже есть в сборке.
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkThrowingWeaponsBox
+  name: коробка метательного оружия
+  description: Сюрикены, усиленные болы и пара бумажных самолётиков Синдиката из древних земных боевых искусств.
+  components:
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,5,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ThrowingStar
+          amount: 5
+        - id: ImperialPaperPlaneSyndicate
+          amount: 2
+        - id: Bola
+          amount: 2
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+    - state: throwing_knives
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkEmpKit
+  name: набор ЭМИ-гранат
+  description: Пять ЭМИ-гранат и имплантер ЭМИ-импланта.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,5,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmpGrenade
+          amount: 5
+        - id: EmpImplanter
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+    - state: flashbang
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkSmokeKit
+  name: набор дымовых гранат
+  description: Пять дымовых гранат, имплантер дымового импланта и противогаз.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,5,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SmokeGrenade
+          amount: 5
+        - id: ImperialSmokeImplanter
+        - id: ClothingMaskGasSyndicate
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+    - state: flashbang
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkFragGrenadeBox
+  name: коробка осколочных гранат
+  description: Семь осколочных гранат. Просто. Разрушительно.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,6,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: GrenadeShrapnel
+        amount: 7
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+    - state: flashbang
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ImperialUplinkC4Bag
+  name: сумка взрывчатки C-4
+  description: Иногда количество — это качество. Десять зарядов C-4.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: C4
+        amount: 10
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ImperialUplinkX4Bag
+  name: сумка взрывчатки X-4
+  description: Десять направленных зарядов X-4.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: X4
+        amount: 10
+
+- type: entity
+  parent: BriefcaseSyndie
+  id: ImperialUplinkCashBriefcase
+  name: кейс Синдиката с наличными
+  description: Надёжный кейс с 5000 кредитов. Чуть тяжелее обычного — на случай, если клиента придётся убеждать.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: SpaceCash1000
+        amount: 5
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 12
+
+- type: entity
+  parent: ImperialUplinkGunCaseBase
+  id: ImperialUplinkSwordAndBoardCase
+  name: кейс с энергощитом и мечом
+  description: Энергетический меч и энергетический щит для предприимчивого ядерного рыцаря. В комплекте средневековый шлем.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EnergySword
+        - id: EnergyShield
+        - id: ClothingHeadHelmetTemplar
+
+- type: entity
+  parent: ImperialUplinkGunCaseBase
+  id: ImperialUplinkDoubleSwordCase
+  name: кейс с двойным энергомечом
+  description: Двойной энергомеч, мыло Синдиката, нескользящая обувь, инжектор метамфетамина и тюремная роба.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EnergySwordDouble
+        - id: SoapSyndie
+        - id: ClothingShoesChameleonNoSlips
+        - id: ImperialMedipenMethamphetamine
+        - id: ClothingUniformJumpsuitPrisoner
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialUplinkRocketLauncherCase
+  name: кейс РПГ «Дардо-RE»
+  description: Многоразовый гранатомёт с выстрелом 84 мм и связкой запасных ракет. Откройте в руке.
+  components:
+  - type: Sprite
+    sprite: Objects/Storage/Briefcases/weapon_case.rsi
+    state: icon
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+    - id: WeaponLauncherRocket
+    - id: CartridgeRocket
+      amount: 3
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkRocketBundle
+  name: связка ракет 84 мм
+  description: Три фугасные противопехотные ракеты малой мощности.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: CartridgeRocket
+        amount: 3
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkBox40mmHE
+  name: коробка фугасных выстрелов 40 мм
+  description: Четыре фугасных выстрела для гранатомётов.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: GrenadeBlast
+        amount: 4
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkBox40mmRubber
+  name: коробка резиновых выстрелов 40 мм
+  description: Четыре резиновых выстрела для гранатомётов.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: GrenadeBaton
+        amount: 4
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkBox40mmFlak
+  name: коробка осколочных выстрелов 40 мм
+  description: Четыре выстрела, начинённых титановой картечью.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: GrenadeFrag
+        amount: 4
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+
+# /obj/item/reagent_containers/hypospray/medipen/methamphetamine
+- type: entity
+  parent: EmergencyMedipen
+  id: ImperialMedipenMethamphetamine
+  name: инжектор метамфетамина
+  description: Содержит несколько опасный препарат, при этом позволяющий двигаться быстрее.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 10
+        reagents:
+        - ReagentId: Desoxyephedrine
+          Quantity: 10
+
+# /obj/item/storage/briefcase/sniper: винтовка, 2 обычных магазина, 1 дизрапторный, костюм с галстуком.
+- type: entity
+  parent: BriefcaseSyndieSniperBundleFilled
+  id: ImperialUplinkSniperBriefcase
+  name: кейс антиматериальной винтовки
+  description: Устаревшая, но всё ещё чрезвычайно мощная антиматериальная снайперская винтовка. Два запасных набора патронов, набор дизрапторных и костюм с галстуком.
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,6,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSniperHristov
+        - id: MagazineBoxAntiMateriel
+          amount: 2
+        - id: ImperialAntiMaterielBoxDisruptor
+        - id: ClothingNeckTieRed
+        - id: ClothingUniformJumpsuitLawyerBlack

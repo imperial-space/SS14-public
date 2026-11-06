@@ -1,0 +1,3408 @@
+# Рецепты дизайнов TG для предметов сборки. Сгенерировано gen_research.pl из tg_manual_*.tsv — не править вручную.
+
+- type: latheRecipe
+  id: ImperialTgRecipeAdvCapacitor
+  result: ImperialStockPartCapacitor2
+  completetime: 2
+  materials:
+    Glass: 75
+    Steel: 75
+
+- type: latheRecipe
+  id: ImperialTgRecipeAdvFireExtinguisher
+  result: ImperialFireExtinguisherAdvanced
+  completetime: 2
+  materials:
+    Gold: 250
+    Plasteel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeAdvGrenade
+  result: ImperialAdvancedGrenadeCasing
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 750
+
+- type: latheRecipe
+  id: ImperialTgRecipeAdvMatterBin
+  result: ImperialStockPartMatterBin2
+  completetime: 2
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeAdvScanning
+  result: ImperialStockPartScanningModule2
+  completetime: 2
+  materials:
+    Glass: 50
+    Steel: 75
+
+- type: latheRecipe
+  id: ImperialTgRecipeAdvWateringCan
+  result: ImperialWateringCanAdvanced
+  completetime: 2
+  materials:
+    Glass: 100
+    Steel: 625
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeAicore
+  result: StationAiCoreElectronics
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeAifixer
+  result: StationAiFixerCircuitboard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeAiupload
+  result: StationAiUploadCircuitboard
+
+- type: latheRecipe
+  id: ImperialTgRecipeAnomalyNeutralizer
+  result: ImperialAnomalyNeutralizer
+  completetime: 2
+  materials:
+    Gold: 420
+    Plasma: 1045
+    Steel: 420
+    Uranium: 420
+
+- type: latheRecipe
+  id: ImperialTgRecipeAntimovModule
+  result: AntimovCircuitBoard
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeApcControl
+  result: PowerComputerCircuitboard
+
+- type: latheRecipe
+  id: ImperialTgRecipeAquariumKit
+  result: ImperialAquariumKit
+  completetime: 2
+  materials:
+    Steel: 250
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeArcadeBattle
+  result: SpaceVillainArcadeComputerCircuitboard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeArcadeOrion
+  result: BlockGameArcadeComputerCircuitboard
+
+- type: latheRecipe
+  id: ImperialTgRecipeAsimovModule
+  result: AsimovCircuitBoard
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipeAsimovppModule
+  result: ImperialLawBoardAsimovPP
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeAtmosControl
+  result: AtmosMonitoringComputerCircuitboard
+
+- type: latheRecipe
+  id: ImperialTgRecipeAtmosThermal
+  result: ImperialAtmosThermalGoggles
+  completetime: 2
+  materials:
+    Glass: 250
+    Plasma: 50
+    Steel: 250
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeAtmosalerts
+  result: AlertsComputerCircuitboard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeAtmosshieldgen
+  result: ImperialAtmosShieldGeneratorBoard
+
+- type: latheRecipe
+  id: ImperialTgRecipeAutoReel
+  result: ImperialFishingLineAutoReel
+  completetime: 2
+  materials:
+    Gold: 150
+    Silver: 150
+    Steel: 200
+
+- type: latheRecipe
+  id: ImperialTgRecipeAutopsyscanner
+  result: ImperialAutopsyScanner
+  completetime: 2
+  materials:
+    Glass: 50
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeBalanceModule
+  result: ImperialLawBoardBalance
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipeBallisticShield
+  result: RiotBulletShield
+  completetime: 2
+  materials:
+    Glass: 880
+    Plasteel: 440
+    Steel: 880
+
+- type: latheRecipe
+  id: ImperialTgRecipeBasicCapacitor
+  result: ImperialStockPartCapacitor1
+  completetime: 2
+  materials:
+    Glass: 50
+    Steel: 50
+
+- type: latheRecipe
+  id: ImperialTgRecipeBasicMatterBin
+  result: ImperialStockPartMatterBin1
+  completetime: 2
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeBasicMicroLaser
+  result: ImperialStockPartMicroLaser1
+  completetime: 2
+  materials:
+    Glass: 35
+    Steel: 65
+
+- type: latheRecipe
+  id: ImperialTgRecipeBasicScanning
+  result: ImperialStockPartScanningModule1
+  completetime: 2
+  materials:
+    Glass: 35
+    Steel: 65
+
+- type: latheRecipe
+  id: ImperialTgRecipeBeamrifle
+  result: ImperialBeamRifle
+  completetime: 2
+  materials:
+    Diamond: 660
+    Glass: 660
+    Gold: 660
+    Silver: 595
+    Steel: 1320
+    Uranium: 1055
+
+- type: latheRecipe
+  id: ImperialTgRecipeBeartrap
+  result: ImperialBearTrap
+  completetime: 2
+  materials:
+    Plasteel: 250
+    Steel: 1250
+
+- type: latheRecipe
+  id: ImperialTgRecipeBioelecGen
+  result: ImperialAquariumUpgradeBioelectric
+  completetime: 2
+  materials:
+    Gold: 50
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeBlast
+  result: RemoteSignaller
+  completetime: 2
+  materials:
+    Glass: 100
+    Plastic: 200
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeBloodFilter
+  result: ImperialBloodFilter
+  completetime: 2
+  materials:
+    Glass: 375
+    Silver: 250
+    Steel: 1000
+
+- type: latheRecipe
+  id: ImperialTgRecipeBloodPack
+  result: Bloodpack
+  completetime: 2
+  materials:
+    Plastic: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeBloodScanner
+  result: ImperialBloodScanner
+  completetime: 2
+  materials:
+    Glass: 25
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeBluespaceCoffeepot
+  result: ImperialCoffeepotBluespace
+  completetime: 2
+  materials:
+    Diamond: 250
+    Plastic: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeBluespaceCrystal
+  result: XenoBluespaceCrystal
+  completetime: 2
+  materials:
+    Diamond: 375
+    Plasma: 375
+
+- type: latheRecipe
+  id: ImperialTgRecipeBluespaceFishCase
+  result: ImperialFishCaseBluespace
+  completetime: 2
+  materials:
+    Diamond: 50
+    Plastic: 50
+    Steel: 50
+
+- type: latheRecipe
+  id: ImperialTgRecipeBluespaceFishTankKit
+  result: ImperialAquariumUpgradeBluespace
+  completetime: 2
+  materials:
+    Diamond: 150
+    Plasteel: 50
+    Steel: 150
+
+- type: latheRecipe
+  id: ImperialTgRecipeBluespaceMatterBin
+  result: ImperialStockPartMatterBin4
+  completetime: 2
+  materials:
+    Diamond: 100
+    Steel: 125
+
+- type: latheRecipe
+  id: ImperialTgRecipeBluespacePod
+  result: ImperialBluespacePodDisk
+  completetime: 2
+  materials:
+    Glass: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeBluespaceReel
+  result: ImperialFishingLineBluespace
+  completetime: 2
+  materials:
+    Diamond: 150
+    Gold: 150
+    Steel: 200
+
+- type: latheRecipe
+  id: ImperialTgRecipeBluespacebodybag
+  result: ImperialBodyBagBluespace
+  completetime: 2
+  materials:
+    Diamond: 500
+    Plasma: 500
+    Steel: 750
+
+- type: latheRecipe
+  id: ImperialTgRecipeBlutrash
+  result: TrashBagBlue
+  completetime: 2
+  materials:
+    Gold: 375
+    Plasma: 375
+    Uranium: 125
+
+- type: latheRecipe
+  id: ImperialTgRecipeBolterWrench
+  result: ImperialBolterWrench
+  completetime: 2
+  materials:
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeBonesetter
+  result: ImperialBonesetter
+  completetime: 2
+  materials:
+    Glass: 625
+    Steel: 1250
+
+- type: latheRecipe
+  id: ImperialTgRecipeBorgSyndicateModule
+  result: BorgModuleSyndicateWeapon
+  completetime: 2
+  materials:
+    Diamond: 1300
+    Glass: 1950
+    Steel: 1950
+
+- type: latheRecipe
+  id: ImperialTgRecipeBorgTransformClown
+  result: BorgModuleClowning
+  completetime: 2
+  materials:
+    Bananium: 140
+    Glass: 2080
+    Steel: 2080
+
+- type: latheRecipe
+  id: ImperialTgRecipeBorgUpgradeBeakerapp
+  result: BorgModuleChemical
+  completetime: 2
+  materials:
+    Glass: 565
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeBorgUpgradeBotany
+  result: BorgModuleGardening
+  completetime: 2
+  materials:
+    Steel: 3800
+
+- type: latheRecipe
+  id: ImperialTgRecipeBorgUpgradeBroomer
+  result: BorgModuleCleaning
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 1000
+
+- type: latheRecipe
+  id: ImperialTgRecipeBorgUpgradeDefibrillator
+  result: BorgModuleRescue
+  completetime: 2
+  materials:
+    Glass: 800
+    Gold: 480
+    Silver: 640
+    Steel: 1280
+
+- type: latheRecipe
+  id: ImperialTgRecipeBorgUpgradeExpandedsynthesiser
+  result: BorgModuleAdvancedTopical
+  completetime: 3
+  materials:
+    Glass: 500
+    Gold: 50
+    Plastic: 250
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeBorgUpgradePlunger
+  result: BorgModuleCustodial
+  completetime: 2
+  materials:
+    Glass: 190
+    Steel: 565
+
+- type: latheRecipe
+  id: ImperialTgRecipeBorgUpgradeServiceApparatus
+  result: BorgModuleService
+  completetime: 2
+  materials:
+    Steel: 1250
+
+- type: latheRecipe
+  id: ImperialTgRecipeBorgUpgradeThrusters
+  result: BorgModuleTraversal
+  completetime: 2
+  materials:
+    Glass: 865
+    Plasma: 720
+    Steel: 1445
+    Uranium: 865
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeBorgupload
+  result: StationAiUploadCircuitboard
+
+- type: latheRecipe
+  id: ImperialTgRecipeBouncedRadio
+  result: RadioHandheld
+  completetime: 2
+  materials:
+    Glass: 25
+    Steel: 75
+
+- type: latheRecipe
+  id: ImperialTgRecipeBrightHelmet
+  result: ClothingHeadHatHardhatRed
+  completetime: 2
+  materials:
+    Glass: 235
+    Plastic: 700
+    Silver: 235
+    Steel: 935
+
+- type: latheRecipe
+  id: ImperialTgRecipeBsRped
+  result: ImperialBluespaceRPED
+  completetime: 2
+  materials:
+    Glass: 765
+    Silver: 385
+    Steel: 2300
+
+- type: latheRecipe
+  id: ImperialTgRecipeC38Flare
+  result: ImperialSpeedLoader38Flare
+  completetime: 2
+  materials:
+    Gold: 250
+    Steel: 750
+    Uranium: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeC38Iceblox
+  result: ImperialSpeedLoader38Iceblox
+  completetime: 2
+  materials:
+    Plasma: 375
+    Steel: 750
+
+- type: latheRecipe
+  id: ImperialTgRecipeC38Rubber
+  result: ImperialSpeedLoader38Rubber
+  completetime: 2
+  materials:
+    Steel: 750
+
+- type: latheRecipe
+  id: ImperialTgRecipeC38Sec
+  result: SpeedLoaderMagnum
+  completetime: 5
+  materials:
+    Steel: 190
+
+- type: latheRecipe
+  id: ImperialTgRecipeC38Trac
+  result: ImperialSpeedLoader38Trac
+  completetime: 2
+  materials:
+    Gold: 250
+    Silver: 375
+    Steel: 750
+
+- type: latheRecipe
+  id: ImperialTgRecipeC38TrueStrike
+  result: ImperialSpeedLoader38True
+  completetime: 2
+  materials:
+    Diamond: 375
+    Steel: 750
+
+- type: latheRecipe
+  id: ImperialTgRecipeCamera
+  result: SurveillanceCameraAssembly
+  completetime: 2
+  materials:
+    Glass: 65
+    Steel: 35
+
+- type: latheRecipe
+  id: ImperialTgRecipeCapbox
+  result: BoxCartridgeCap
+  completetime: 2
+  materials:
+    Glass: 35
+    Steel: 65
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeCargoexpress
+  result: ImperialComputerCargoExpressCircuitboard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeCargorequest
+  result: CargoRequestComputerCircuitboard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeChemHeater
+  result: HotplateMachineCircuitboard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeChemMassSpec
+  result: ImperialChemMassSpecBoard
+
+- type: latheRecipe
+  id: ImperialTgRecipeChemPack
+  result: ImperialChemPack
+  completetime: 2
+  materials:
+    Plastic: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeCiNutriment
+  result: ImperialNutrimentPumpImplanter
+  completetime: 2
+  materials:
+    Glass: 250
+    Gold: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeCircularSaw
+  result: SawElectric
+  completetime: 2
+  materials:
+    Glass: 1050
+    Steel: 1750
+
+- type: latheRecipe
+  id: ImperialTgRecipeClownFiringPin
+  result: ImperialClownPin
+  completetime: 2
+  materials:
+    Bananium: 250
+    Glass: 150
+    Steel: 250
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeComconsole
+  result: CommsComputerCircuitboard
+
+- type: latheRecipe
+  id: ImperialTgRecipeCorporateModule
+  result: CorporateCircuitBoard
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeCrewconsole
+  result: CrewMonitoringComputerCircuitboard
+
+- type: latheRecipe
+  id: ImperialTgRecipeCrewpinpointer
+  result: ImperialCrewPinpointer
+  completetime: 2
+  materials:
+    Glass: 375
+    Gold: 250
+    Steel: 750
+
+- type: latheRecipe
+  id: ImperialTgRecipeCrowbar
+  result: Crowbar
+  completetime: 2
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeCryoGrenade
+  result: ImperialCryoGrenadeCasing
+  completetime: 2
+  materials:
+    Silver: 250
+    Steel: 500
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeCrystallizer
+  result: ImperialCrystallizerMachineCircuitboard
+
+- type: latheRecipe
+  id: ImperialTgRecipeDamagedModule
+  result: ImperialLawBoardDamaged
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipeDecalPainter
+  result: SprayPainter
+  completetime: 2
+  materials:
+    Glass: 50
+    Steel: 50
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeDeepfryer
+  result: ImperialDeepFryerBoard
+
+- type: latheRecipe
+  id: ImperialTgRecipeDefaultModule
+  result: NTDefaultCircuitBoard
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipeDefibmount
+  result: DefibrillatorCabinet
+  completetime: 2
+  materials:
+    Glass: 250
+    Silver: 250
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeDefibmountdefault
+  result: DefibrillatorCabinet
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeDiagnosticHud
+  result: ClothingEyesHudDiagnostic
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeDiagnosticHudNight
+  result: ImperialHudDiagnosticNight
+  completetime: 2
+  materials:
+    Glass: 300
+    Plasma: 150
+    Steel: 300
+    Uranium: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeDiodeDiskIncendiary
+  result: ImperialEmitterDiskIncendiary
+  completetime: 2
+  materials:
+    Diamond: 25
+    Glass: 50
+    Plasma: 100
+    Steel: 25
+
+- type: latheRecipe
+  id: ImperialTgRecipeDiodeDiskMagnetic
+  result: ImperialEmitterDiskMagnetic
+  completetime: 2
+  materials:
+    Glass: 50
+    Plasteel: 25
+    Steel: 25
+
+- type: latheRecipe
+  id: ImperialTgRecipeDiodeDiskSanity
+  result: ImperialEmitterDiskSanity
+  completetime: 2
+  materials:
+    Glass: 50
+    Steel: 25
+    Uranium: 25
+
+- type: latheRecipe
+  id: ImperialTgRecipeDiodeDiskStamina
+  result: ImperialEmitterDiskStamina
+  completetime: 2
+  materials:
+    Glass: 50
+    Gold: 50
+    Steel: 25
+
+- type: latheRecipe
+  id: ImperialTgRecipeDonkshell
+  result: ImperialShellShotgunDonkSpike
+  completetime: 2
+  materials:
+    Plastic: 100
+    Steel: 150
+
+- type: latheRecipe
+  id: ImperialTgRecipeDroneModule
+  result: ImperialLawBoardDrone
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipeDungeonMasterModule
+  result: GameMasterCircuitBoard
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipeEarmuffs
+  result: ImperialEarmuffs
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeEmergencyOxygen
+  result: EmergencyOxygenTank
+  completetime: 2
+  materials:
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeEmergencyOxygenEngi
+  result: ExtendedEmergencyOxygenTank
+  completetime: 2
+  materials:
+    Steel: 375
+
+- type: latheRecipe
+  id: ImperialTgRecipeEngGloves
+  result: ImperialTinkerGloves
+  completetime: 2
+  materials:
+    Gold: 250
+    Silver: 375
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeEngineGoggles
+  result: ClothingEyesGlassesMeson
+  completetime: 2
+  materials:
+    Glass: 250
+    Plasma: 50
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeEvidencebag
+  result: EvidenceBag
+  completetime: 2
+  materials:
+    Plastic: 100
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeExperimentor
+  result: ImperialExperimentorBoard
+
+- type: latheRecipe
+  id: ImperialTgRecipeFemtoServo
+  result: ImperialStockPartServo4
+  completetime: 2
+  materials:
+    Diamond: 15
+    Plasteel: 15
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeFishAnalyzer
+  result: ImperialFishAnalyzer
+  completetime: 2
+  materials:
+    Glass: 25
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeFishCase
+  result: ImperialFishCase
+  completetime: 2
+  materials:
+    Plastic: 50
+    Steel: 50
+
+- type: latheRecipe
+  id: ImperialTgRecipeFishGenegun
+  result: ImperialFishGenegun
+  completetime: 2
+  materials:
+    Diamond: 100
+    Glass: 200
+    Plasteel: 150
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeFishingGloves
+  result: ImperialClothingHandsFishing
+  completetime: 2
+  materials:
+    Plastic: 500
+    Steel: 250
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeFishingPortalGenerator
+  result: ImperialFishingPortalGeneratorBoard
+
+- type: latheRecipe
+  id: ImperialTgRecipeFishingRod
+  result: ImperialFishingRod
+  completetime: 2
+  materials:
+    Glass: 100
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeFishingRodTech
+  result: ImperialFishingRodTech
+  completetime: 2
+  materials:
+    Plastic: 500
+    Uranium: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeFlechetteshell
+  result: ImperialShellShotgunFlechette
+  completetime: 2
+  materials:
+    Glass: 100
+    Steel: 150
+
+- type: latheRecipe
+  id: ImperialTgRecipeFloraGun
+  result: ImperialFloraGun
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 500
+    Uranium: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeFoamDart
+  result: BoxDonkSoftBox
+  completetime: 2
+  materials:
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeFoodtray
+  result: ImperialCafeteriaTray
+  completetime: 2
+  materials:
+    Steel: 750
+
+- type: latheRecipe
+  id: ImperialTgRecipeFork
+  result: Fork
+  completetime: 2
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeGeigercounter
+  result: GeigerCounter
+  completetime: 2
+  materials:
+    Glass: 75
+    Steel: 75
+
+- type: latheRecipe
+  id: ImperialTgRecipeGeneShears
+  result: ImperialGeneShears
+  completetime: 2
+  materials:
+    Silver: 250
+    Steel: 1000
+    Uranium: 375
+
+- type: latheRecipe
+  id: ImperialTgRecipeGenericTank
+  result: AirTank
+  completetime: 4
+  materials:
+    Steel: 400
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeGibber
+  result: ImperialGibberBoard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeGroundingRod
+  result: TeslaGroundingRodFlatpack
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeHFRCore
+  result: ImperialHypertorusBoxCore
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeHFRCorner
+  result: ImperialHypertorusBoxCorner
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeHFRFuelInput
+  result: ImperialHypertorusBoxFuel
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeHFRInterface
+  result: ImperialHypertorusBoxInterface
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeHFRModeratorInput
+  result: ImperialHypertorusBoxModerator
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeHFRWasteOutput
+  result: ImperialHypertorusBoxWaste
+
+- type: latheRecipe
+  id: ImperialTgRecipeHealthHud
+  result: ClothingEyesHudMedical
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeHealthHudNight
+  result: ImperialHudMedicalNight
+  completetime: 2
+  materials:
+    Glass: 300
+    Silver: 175
+    Steel: 300
+    Uranium: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeHealthSensor
+  result: ImperialHealthSensor
+  completetime: 2
+  materials:
+    Glass: 100
+    Steel: 400
+
+- type: latheRecipe
+  id: ImperialTgRecipeHealthanalyzerAdvanced
+  result: ImperialHealthAnalyzerAdvanced
+  completetime: 2
+  materials:
+    Glass: 525
+    Gold: 315
+    Silver: 420
+    Steel: 1045
+
+- type: latheRecipe
+  id: ImperialTgRecipeHighMicroLaser
+  result: ImperialStockPartMicroLaser2
+  completetime: 2
+  materials:
+    Glass: 50
+    Steel: 75
+
+- type: latheRecipe
+  id: ImperialTgRecipeHippocraticModule
+  result: ImperialLawBoardHippocratic
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipeHolobarrierJani
+  result: ImperialHolobarrierJanitor
+  completetime: 2
+  materials:
+    Glass: 250
+    Silver: 250
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeHolobarrierMed
+  result: ImperialHolobarrierMedical
+  completetime: 2
+  materials:
+    Glass: 250
+    Silver: 50
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeHolosignbar
+  result: ImperialHolosignBar
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeHolosignrestaurant
+  result: ImperialHolosignRestaurant
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeHulkamaniaModule
+  result: ImperialLawBoardHulkamania
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipeHypermod
+  result: ImperialPKAMiningAoEMod
+  completetime: 2
+  materials:
+    Diamond: 355
+    Glass: 265
+    Gold: 355
+    Silver: 355
+    Steel: 1420
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeHypnochair
+  result: ImperialHypnochairBoard
+
+- type: latheRecipe
+  id: ImperialTgRecipeIgnition
+  result: RemoteSignaller
+  completetime: 2
+  materials:
+    Glass: 100
+    Plastic: 200
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeImplantBeacon
+  result: BeaconImplanter
+  completetime: 2
+  materials:
+    Diamond: 150
+    Glass: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeImplantBluespace
+  result: TeleportBlockerImplanter
+  completetime: 2
+  materials:
+    Diamond: 150
+    Glass: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeImplantChem
+  result: ChemImplanter
+  completetime: 2
+  materials:
+    Glass: 350
+
+- type: latheRecipe
+  id: ImperialTgRecipeImplantExile
+  result: ExileImplanter
+  completetime: 2
+  materials:
+    Glass: 250
+    Plasteel: 150
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeImplantTracking
+  result: TrackingImplanter
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeImplantTrombone
+  result: SadTromboneImplanter
+  completetime: 2
+  materials:
+    Bananium: 250
+    Glass: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeInducer
+  result: ImperialInducerScience
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 750
+
+- type: latheRecipe
+  id: ImperialTgRecipeInducerengi
+  result: ImperialInducer
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 750
+
+- type: latheRecipe
+  id: ImperialTgRecipeInfraredEmitter
+  result: ImperialInfraredEmitter
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeInhaler
+  result: ImperialInhaler
+  completetime: 2
+  materials:
+    Plastic: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeInhalerCanister
+  result: ImperialInhalerCanister
+  completetime: 2
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeInspector
+  result: ImperialNSpectScanner
+  completetime: 2
+  materials:
+    Glass: 235
+    Gold: 235
+    Steel: 1165
+    Uranium: 465
+
+- type: latheRecipe
+  id: ImperialTgRecipeIntellicard
+  result: Intellicard
+  completetime: 2
+  materials:
+    Glass: 250
+    Gold: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeIoncarbine
+  result: ImperialIonCarbine
+  completetime: 2
+  materials:
+    Silver: 1050
+    Steel: 1400
+    Uranium: 350
+
+- type: latheRecipe
+  id: ImperialTgRecipeJackhammer
+  result: ImperialSonicJackhammer
+  completetime: 2
+  materials:
+    Diamond: 1050
+    Glass: 350
+    Silver: 350
+    Steel: 1050
+
+- type: latheRecipe
+  id: ImperialTgRecipeLargeGrenade
+  result: ImperialLargeGrenadeCasing
+  completetime: 2
+  materials:
+    Steel: 750
+
+- type: latheRecipe
+  id: ImperialTgRecipeLargeWeldingTool
+  result: WelderIndustrial
+  completetime: 2
+  materials:
+    Glass: 45
+    Steel: 55
+
+- type: latheRecipe
+  id: ImperialTgRecipeLargecrossbow
+  result: WeaponEnergyCrossbow
+  completetime: 2
+  materials:
+    Glass: 340
+    Silver: 340
+    Steel: 1130
+    Uranium: 340
+
+- type: latheRecipe
+  id: ImperialTgRecipeLaserscalpel
+  result: ScalpelLaser
+  completetime: 2
+  materials:
+    Diamond: 70
+    Glass: 265
+    Gold: 265
+    Plasteel: 710
+    Silver: 355
+    Steel: 1070
+
+- type: latheRecipe
+  id: ImperialTgRecipeLasershell
+  result: ImperialScatterLaserShell
+  completetime: 2
+  materials:
+    Glass: 100
+    Gold: 100
+    Steel: 150
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeLaunchpad
+  result: ImperialUplinkLaunchpad
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeLaunchpadConsole
+  result: ImperialUplinkLaunchpadRemote
+
+- type: latheRecipe
+  id: ImperialTgRecipeLavaRods
+  result: ImperialLavaRods
+  completetime: 2
+  materials:
+    Plasma: 250
+    Plasteel: 500
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeLightReplacerBlue
+  result: ImperialLightReplacerBluespace
+  completetime: 2
+  materials:
+    Diamond: 150
+    Glass: 750
+    Silver: 75
+    Steel: 375
+
+- type: latheRecipe
+  id: ImperialTgRecipeLiveandletliveModule
+  result: LiveLetLiveCircuitBoard
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipeMagAutorifleAp
+  result: ImperialMagazineWT550AP
+  completetime: 2
+  materials:
+    Silver: 300
+    Steel: 1500
+
+- type: latheRecipe
+  id: ImperialTgRecipeMagAutorifleIc
+  result: ImperialMagazineWT550Incendiary
+  completetime: 2
+  materials:
+    Glass: 245
+    Silver: 295
+    Steel: 1480
+
+- type: latheRecipe
+  id: ImperialTgRecipeMagboots
+  result: ClothingShoesBootsMag
+  completetime: 2
+  materials:
+    Gold: 625
+    Silver: 375
+    Steel: 1000
+
+- type: latheRecipe
+  id: ImperialTgRecipeMaintainModule
+  result: StationEfficiencyCircuitBoard
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeManucrafter
+  result: ImperialManufacturingCrafterBoard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeManucrusher
+  result: ImperialManufacturingCrusherBoard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeManulathe
+  result: ImperialManufacturingLatheBoard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeManurouter
+  result: ImperialManufacturingRouterBoard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeManusmelter
+  result: ImperialManufacturingSmelterBoard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeManusorter
+  result: ImperialManufacturingSorterBoard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeManuunloader
+  result: ImperialManufacturingUnloaderBoard
+
+- type: latheRecipe
+  id: ImperialTgRecipeMaunaMug
+  result: ImperialMaunaMug
+  completetime: 2
+  materials:
+    Glass: 50
+    Steel: 250
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeMedData
+  result: MedicalRecordsComputerCircuitboard
+
+- type: latheRecipe
+  id: ImperialTgRecipeMedicalbed
+  result: MedicalBed
+  completetime: 2
+  materials:
+    Plasteel: 1275
+    Plastic: 805
+
+- type: latheRecipe
+  id: ImperialTgRecipeMedicalbedEmergency
+  result: EmergencyRollerBed
+  completetime: 2
+  materials:
+    Plasteel: 1275
+    Plastic: 805
+
+- type: latheRecipe
+  id: ImperialTgRecipeMedigel
+  result: ImperialMedigel
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 625
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeMedipenRefiller
+  result: ImperialMedipenRefillerBoard
+
+- type: latheRecipe
+  id: ImperialTgRecipeMesons
+  result: ClothingEyesGlassesMeson
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeMetaBeaker
+  result: ImperialMetamaterialBeaker
+  completetime: 2
+  materials:
+    Glass: 625
+    Gold: 250
+    Plasteel: 250
+    Plastic: 750
+
+- type: latheRecipe
+  id: ImperialTgRecipeMicroServo
+  result: ImperialStockPartServo1
+  completetime: 2
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeMiniWeldingTool
+  result: WelderMini
+  completetime: 2
+  materials:
+    Glass: 25
+    Steel: 75
+
+- type: latheRecipe
+  id: ImperialTgRecipeModAntigrav
+  result: ImperialModModuleAntigrav
+  completetime: 2
+  materials:
+    Glass: 500
+    Steel: 625
+    Uranium: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeModBikehorn
+  result: ImperialModModuleBikeHorn
+  completetime: 2
+  materials:
+    Plastic: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModClamp
+  result: ImperialModModuleClamp
+  completetime: 2
+  materials:
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeModCriminalcapture
+  result: ImperialModModuleCriminalCapture
+  completetime: 2
+  materials:
+    Diamond: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModDefib
+  result: ImperialModModuleDefibrillator
+  completetime: 2
+  materials:
+    Diamond: 250
+    Plasteel: 125
+    Silver: 375
+
+- type: latheRecipe
+  id: ImperialTgRecipeModDnaLock
+  result: ImperialModModuleDnaLock
+  completetime: 2
+  materials:
+    Diamond: 250
+    Glass: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModDrill
+  result: ImperialModModuleDrill
+  completetime: 2
+  materials:
+    Silver: 250
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeModEmpShield
+  result: ImperialModModuleEmpShield
+  completetime: 2
+  materials:
+    Plasma: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModFishing
+  result: ImperialModModuleFishingGlove
+  completetime: 2
+  materials:
+    Glass: 250
+    Plasteel: 250
+    Plastic: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModFlashlight
+  result: ImperialModModuleFlashlight
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModGps
+  result: ImperialModModuleGps
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModHealthAnalyzer
+  result: ImperialModModuleHealthAnalyzer
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModHolster
+  result: ImperialModModuleHolster
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 375
+
+- type: latheRecipe
+  id: ImperialTgRecipeModInjector
+  result: ImperialModModuleInjector
+  completetime: 2
+  materials:
+    Diamond: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModJetpack
+  result: ImperialModModuleJetpack
+  completetime: 2
+  materials:
+    Plasma: 250
+    Steel: 375
+
+- type: latheRecipe
+  id: ImperialTgRecipeModJointTorsion
+  result: ImperialModModuleJointTorsion
+  completetime: 2
+  materials:
+    Gold: 125
+    Plasteel: 50
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModKinesis
+  result: ImperialModModuleKinesis
+  completetime: 2
+  materials:
+    Diamond: 250
+    Glass: 500
+    Steel: 625
+    Uranium: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModMagHarness
+  result: ImperialModModuleMagHarness
+  completetime: 2
+  materials:
+    Silver: 250
+    Steel: 375
+
+- type: latheRecipe
+  id: ImperialTgRecipeModMagboot
+  result: ImperialModModuleMagboot
+  completetime: 2
+  materials:
+    Gold: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModMicrowaveBeam
+  result: ImperialModModuleMicrowaveBeam
+  completetime: 2
+  materials:
+    Steel: 250
+    Uranium: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModMirageGrenade
+  result: ImperialModModuleMirageGrenade
+  completetime: 2
+  materials:
+    Diamond: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModMisterAtmos
+  result: ImperialModModuleMisterAtmos
+  completetime: 2
+  materials:
+    Glass: 250
+    Plasteel: 375
+
+- type: latheRecipe
+  id: ImperialTgRecipeModMisterJanitor
+  result: ImperialModModuleMisterJanitor
+  completetime: 2
+  materials:
+    Glass: 250
+    Plasteel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModMouthhole
+  result: ImperialModModuleMouthhole
+  completetime: 2
+  materials:
+    Steel: 375
+
+- type: latheRecipe
+  id: ImperialTgRecipeModOrebag
+  result: ImperialModModuleOreBag
+  completetime: 2
+  materials:
+    Steel: 375
+
+- type: latheRecipe
+  id: ImperialTgRecipeModPaintKit
+  result: PaintKitModsuitConstructing
+  completetime: 2
+  materials:
+    Plastic: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModPathfinder
+  result: ImperialModModulePathfinder
+  completetime: 2
+  materials:
+    Steel: 250
+    Uranium: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModPatienttransport
+  result: ImperialModModulePatientTransport
+  completetime: 2
+  materials:
+    Diamond: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModProjectileDampener
+  result: ImperialModModuleProjectileDampener
+  completetime: 2
+  materials:
+    Diamond: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModRadProtection
+  result: ImperialModModuleRadProtection
+  completetime: 2
+  materials:
+    Steel: 250
+    Uranium: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModReagentScanner
+  result: ImperialModModuleReagentScanner
+  completetime: 2
+  materials:
+    Glass: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModRecycler
+  result: ImperialModModuleRecycler
+  completetime: 2
+  materials:
+    Glass: 250
+    Plastic: 100
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeModShooting
+  result: ImperialModModuleShootingAssistant
+  completetime: 2
+  materials:
+    Diamond: 50
+    Gold: 50
+    Silver: 100
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeModSonar
+  result: ImperialModModuleSonar
+  completetime: 2
+  materials:
+    Glass: 250
+    Gold: 250
+    Plasteel: 125
+    Uranium: 125
+
+- type: latheRecipe
+  id: ImperialTgRecipeModStatusreadout
+  result: ImperialModModuleStatusReadout
+  completetime: 2
+  materials:
+    Glass: 250
+    Plasteel: 100
+    Steel: 750
+
+- type: latheRecipe
+  id: ImperialTgRecipeModStealth
+  result: ImperialModModuleStealth
+  completetime: 2
+  materials:
+    Diamond: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModStorage
+  result: ImperialModModuleStorage
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 625
+
+- type: latheRecipe
+  id: ImperialTgRecipeModStorageExpanded
+  result: ImperialModModuleStorageExpanded
+  completetime: 2
+  materials:
+    Steel: 1250
+    Uranium: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeModStorageHolding
+  result: ImperialModModuleStorageHolding
+  completetime: 2
+  materials:
+    Diamond: 875
+    Gold: 750
+    Uranium: 125
+
+- type: latheRecipe
+  id: ImperialTgRecipeModTRay
+  result: ImperialModModuleTRay
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModTeleporter
+  result: ImperialModModuleTeleporter
+  completetime: 2
+  materials:
+    Diamond: 500
+    Glass: 500
+    Steel: 625
+
+- type: latheRecipe
+  id: ImperialTgRecipeModTether
+  result: ImperialModModuleTether
+  completetime: 2
+  materials:
+    Silver: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModThermalRegulator
+  result: ImperialModModuleThermalRegulator
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModVisorDiaghud
+  result: ImperialModModuleVisorDiagHud
+  completetime: 2
+  materials:
+    Glass: 250
+    Gold: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModVisorMedhud
+  result: ImperialModModuleVisorMedHud
+  completetime: 2
+  materials:
+    Glass: 250
+    Silver: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModVisorMeson
+  result: ImperialModModuleVisorMeson
+  completetime: 2
+  materials:
+    Glass: 250
+    Uranium: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModVisorSechud
+  result: ImperialModModuleVisorSecHud
+  completetime: 2
+  materials:
+    Glass: 250
+    Plasteel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModWaddle
+  result: ImperialModModuleWaddle
+  completetime: 2
+  materials:
+    Plastic: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeModWelding
+  result: ImperialModModuleWelding
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 250
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeModularShieldCable
+  result: ImperialModularShieldCableBoard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeModularShieldCharger
+  result: ImperialModularShieldChargerBoard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeModularShieldConsole
+  result: ImperialModularShieldConsoleBoard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeModularShieldGate
+  result: ImperialModularShieldGateBoard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeModularShieldGenerator
+  result: ImperialModularShieldGeneratorBoard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeModularShieldNode
+  result: ImperialModularShieldNodeBoard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeModularShieldRelay
+  result: ImperialModularShieldRelayBoard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeModularShieldWell
+  result: ImperialModularShieldWellBoard
+
+- type: latheRecipe
+  id: ImperialTgRecipeNanoServo
+  result: ImperialStockPartServo2
+  completetime: 2
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeNightVisisionGoggles
+  result: ImperialNightVisionGoggles
+  completetime: 2
+  materials:
+    Glass: 300
+    Plasma: 175
+    Steel: 300
+    Uranium: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeNutimovModule
+  result: NutimovCircuitBoard
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipeNvScigoggles
+  result: ImperialScienceGogglesNight
+  completetime: 2
+  materials:
+    Glass: 300
+    Plasma: 175
+    Steel: 300
+    Uranium: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeNvgmesons
+  result: ImperialMesonNight
+  completetime: 2
+  materials:
+    Glass: 300
+    Plasma: 175
+    Steel: 300
+    Uranium: 250
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeOperating
+  result: ImperialOperatingComputerCircuitboard
+
+- type: latheRecipe
+  id: ImperialTgRecipeOrganJar
+  result: ImperialOrganJar
+  completetime: 2
+  materials:
+    Glass: 625
+    Plastic: 750
+
+- type: latheRecipe
+  id: ImperialTgRecipeOverlordModule
+  result: OverlordCircuitBoard
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipeOxygenTank
+  result: OxygenTank
+  completetime: 2
+  materials:
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipePackagewrap
+  result: ParcelWrap
+  completetime: 2
+  materials:
+    Glass: 100
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipePaicard
+  result: PersonalAI
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipePaintRemover
+  result: ImperialPaintRemover
+  completetime: 2
+  materials:
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipePainterModule
+  result: ArtistCircuitBoard
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipePaladinDevotionModule
+  result: ImperialLawBoardPaladinDevotion
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipePaladinModule
+  result: PaladinCircuitBoard
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipePandemic
+  result: ImperialPandemicMachineCircuitboard
+
+- type: latheRecipe
+  id: ImperialTgRecipePeacekeeperModule
+  result: ImperialLawBoardPeacekeeper
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipePenlight
+  result: ImperialPenlight
+  completetime: 2
+  materials:
+    Glass: 25
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipePenlightParamedic
+  result: ImperialPenlightParamedic
+  completetime: 2
+  materials:
+    Glass: 50
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipePepperspray
+  result: PepperSpray
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 1250
+
+- type: latheRecipe
+  id: ImperialTgRecipePerceptomatrix
+  result: ImperialPerceptomatrix
+  completetime: 2
+  materials:
+    Gold: 180
+    Plasma: 1080
+    Plasteel: 720
+    Silver: 360
+    Uranium: 360
+
+- type: latheRecipe
+  id: ImperialTgRecipePetCarrier
+  result: PetCarrier
+  completetime: 2
+  materials:
+    Glass: 50
+    Steel: 1875
+
+- type: latheRecipe
+  id: ImperialTgRecipePhMeter
+  result: ImperialChemicalAnalyzer
+  completetime: 2
+  materials:
+    Glass: 625
+    Gold: 250
+    Plasteel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipePhasicScanning
+  result: ImperialStockPartScanningModule3
+  completetime: 2
+  materials:
+    Glass: 75
+    Silver: 30
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipePhotonCannon
+  result: ImperialPhotonCannon
+  completetime: 2
+  materials:
+    Glass: 1960
+    Gold: 1400
+    Steel: 840
+
+- type: latheRecipe
+  id: ImperialTgRecipePicoServo
+  result: ImperialStockPartServo3
+  completetime: 2
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipePiercesyringe
+  result: ImperialPiercingSyringe
+  completetime: 2
+  materials:
+    Diamond: 250
+    Glass: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipePinExplorer
+  result: ImperialExplorerPin
+  completetime: 2
+  materials:
+    Gold: 250
+    Silver: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipePinLoyalty
+  result: ImperialMindshieldPin
+  completetime: 2
+  materials:
+    Diamond: 300
+    Silver: 300
+    Uranium: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipePinTesting
+  result: ImperialTestRangePin
+  completetime: 2
+  materials:
+    Glass: 150
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipePlantAnalyzer
+  result: HandheldPlantsAnalyzer
+  completetime: 2
+  materials:
+    Glass: 40
+    Steel: 60
+
+- type: latheRecipe
+  id: ImperialTgRecipePlasmaTank
+  result: PlasmaTank
+  completetime: 2
+  materials:
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipePlasticFork
+  result: ForkPlastic
+  completetime: 2
+  materials:
+    Plastic: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipePlasticKnife
+  result: KnifePlastic
+  completetime: 2
+  materials:
+    Plastic: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipePlasticSpoon
+  result: SpoonPlastic
+  completetime: 2
+  materials:
+    Plastic: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipePlasticducky
+  result: ToyRubberDuck
+  completetime: 2
+  materials:
+    Plastic: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipePneumaticSeal
+  result: ImperialPneumaticSeal
+  completetime: 2
+  materials:
+    Plasma: 1400
+    Steel: 2800
+
+- type: latheRecipe
+  id: ImperialTgRecipePocketfireextinguisher
+  result: FireExtinguisherMini
+  completetime: 2
+  materials:
+    Glass: 45
+    Steel: 55
+
+- type: latheRecipe
+  id: ImperialTgRecipePointyTape
+  result: ImperialSuperPointyTape
+  completetime: 2
+  materials:
+    Plastic: 250
+    Steel: 375
+
+- type: latheRecipe
+  id: ImperialTgRecipePolymorphBelt
+  result: ImperialPolymorphBelt
+  completetime: 2
+  materials:
+    Diamond: 500
+    Silver: 1000
+    Uranium: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipePortableChemMixer
+  result: ImperialPortableChemMixer
+  completetime: 2
+  materials:
+    Glass: 500
+    Plastic: 835
+    Steel: 1665
+
+- type: latheRecipe
+  id: ImperialTgRecipePortaseeder
+  result: ImperialPortableSeedExtractor
+  completetime: 2
+  materials:
+    Glass: 200
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipePosisphere
+  result: ImperialPositronicSphere
+  completetime: 2
+  materials:
+    Glass: 165
+    Gold: 125
+    Steel: 215
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipePowermonitor
+  result: PowerComputerCircuitboard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipePrisonmanage
+  result: PrisonerManagementComputerCircuitboard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipePump
+  result: ImperialPortablePumpMachineCircuitboard
+
+- type: latheRecipe
+  id: ImperialTgRecipePushbroom
+  result: ImperialPushBroom
+  completetime: 2
+  materials:
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipePyroGrenade
+  result: ImperialPyroGrenadeCasing
+  completetime: 2
+  materials:
+    Plasma: 250
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeQuadraticCapacitor
+  result: ImperialStockPartCapacitor4
+  completetime: 2
+  materials:
+    Diamond: 50
+    Glass: 100
+    Gold: 50
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeQuadultraMicroLaser
+  result: ImperialStockPartMicroLaser4
+  completetime: 2
+  materials:
+    Diamond: 30
+    Glass: 100
+    Steel: 100
+    Uranium: 50
+
+- type: latheRecipe
+  id: ImperialTgRecipeRadioHeadset
+  result: ClothingHeadsetGrey
+  completetime: 2
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeRangedanalyzer
+  result: ImperialRangedGasAnalyzer
+  completetime: 2
+  materials:
+    Diamond: 100
+    Glass: 10
+    Gold: 150
+    Steel: 50
+
+- type: latheRecipe
+  id: ImperialTgRecipeRapidsyringe
+  result: ImperialRapidSyringeGun
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 1250
+
+- type: latheRecipe
+  id: ImperialTgRecipeRazor
+  result: ImperialRazor
+  completetime: 2
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeRdconsole
+  result: ResearchComputerCircuitboard
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeRdserver
+  result: ResearchAndDevelopmentServerMachineCircuitboard
+
+- type: latheRecipe
+  id: ImperialTgRecipeReactiveArmour
+  result: ReactiveArmorShell
+  completetime: 2
+  materials:
+    Diamond: 680
+    Gold: 680
+    Silver: 680
+    Steel: 1365
+    Uranium: 1090
+
+- type: latheRecipe
+  id: ImperialTgRecipeRecorder
+  result: ImperialTapeRecorder
+  completetime: 2
+  materials:
+    Glass: 35
+    Steel: 65
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeRecycler
+  result: ImperialRecyclerBoard
+
+- type: latheRecipe
+  id: ImperialTgRecipeReflexHammer
+  result: ImperialReflexHammer
+  completetime: 2
+  materials:
+    Plastic: 40
+    Steel: 60
+
+- type: latheRecipe
+  id: ImperialTgRecipeReporterModule
+  result: ImperialLawBoardReporter
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipeRldMini
+  result: ImperialRapidLightDeviceMini
+  completetime: 2
+  materials:
+    Glass: 1300
+    Gold: 260
+    Plastic: 1040
+    Steel: 2600
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeRobocontrol
+  result: RoboticsConsoleCircuitboard
+
+- type: latheRecipe
+  id: ImperialTgRecipeRobocopModule
+  result: RobocopCircuitBoard
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipeRollingTable
+  result: ImperialRollingTable
+  completetime: 2
+  materials:
+    Steel: 1000
+
+- type: latheRecipe
+  id: ImperialTgRecipeRped
+  result: ImperialRPED
+  completetime: 2
+  materials:
+    Glass: 900
+    Steel: 1800
+
+- type: latheRecipe
+  id: ImperialTgRecipeRtdLoaded
+  result: ImperialRapidTilingDevice
+  completetime: 2
+  materials:
+    Glass: 340
+    Steel: 4110
+
+- type: latheRecipe
+  id: ImperialTgRecipeRwd
+  result: ImperialRapidWiringDevice
+  completetime: 2
+  materials:
+    Glass: 900
+    Steel: 1800
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeScannerGate
+  result: MetalDetectorCircuitboard
+
+- type: latheRecipe
+  id: ImperialTgRecipeScigoggles
+  result: ClothingEyesGlassesChemical
+  completetime: 2
+  materials:
+    Glass: 500
+    Plastic: 300
+    Steel: 200
+
+- type: latheRecipe
+  id: ImperialTgRecipeSearingtool
+  result: ImperialSearingTool
+  completetime: 2
+  materials:
+    Glass: 370
+    Plasma: 370
+    Plasteel: 555
+    Steel: 745
+    Uranium: 555
+
+- type: latheRecipe
+  id: ImperialTgRecipeSecPen
+  result: ImperialSecurityPen
+  completetime: 2
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeSecRshot
+  result: ImperialShellShotgunRubber
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeSecdata
+  result: CriminalRecordsComputerCircuitboard
+
+- type: latheRecipe
+  id: ImperialTgRecipeSeclite
+  result: FlashlightSeclite
+  completetime: 2
+  materials:
+    Steel: 625
+
+- type: latheRecipe
+  id: ImperialTgRecipeSecurityHudNight
+  result: ImperialHudSecurityNight
+  completetime: 2
+  materials:
+    Glass: 300
+    Gold: 175
+    Steel: 300
+    Uranium: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeServingtray
+  result: ImperialServingTray
+  completetime: 2
+  materials:
+    Steel: 750
+
+- type: latheRecipe
+  id: ImperialTgRecipeShaker
+  result: DrinkShaker
+  completetime: 2
+  materials:
+    Steel: 375
+
+- type: latheRecipe
+  id: ImperialTgRecipeSignaler
+  result: RemoteSignaller
+  completetime: 2
+  materials:
+    Glass: 100
+    Plastic: 200
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeSlimeScanner
+  result: SlimeScanner
+  completetime: 2
+  materials:
+    Glass: 100
+    Steel: 150
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeSmokeMachine
+  result: ImperialSmokeMachineBoard
+
+- type: latheRecipe
+  id: ImperialTgRecipeSolarPanel
+  result: SolarAssemblyFlatpack
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 875
+
+- type: latheRecipe
+  id: ImperialTgRecipeSpaceFurnace
+  result: ImperialSpaceFurnace
+  completetime: 2
+  materials:
+    Gold: 800
+    Silver: 800
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipeSpoon
+  result: Spoon
+  completetime: 2
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeSpraycan
+  result: ImperialSpraycan
+  completetime: 2
+  materials:
+    Glass: 50
+    Steel: 50
+
+- type: latheRecipe
+  id: ImperialTgRecipeStabilizedHook
+  result: ImperialFishingHookStabilized
+  completetime: 2
+  materials:
+    Gold: 150
+    Plasteel: 100
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeStasisBodybag
+  result: ImperialStasisBodyBag
+  completetime: 2
+  materials:
+    Plastic: 3145
+    Silver: 155
+
+- type: latheRecipe
+  id: ImperialTgRecipeStethoscope
+  result: ClothingNeckStethoscope
+  completetime: 2
+  materials:
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeStickyTape
+  result: ImperialStickyTape
+  completetime: 2
+  materials:
+    Plastic: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeStunBoomerang
+  result: ImperialStunBoomerang
+  completetime: 2
+  materials:
+    Glass: 585
+    Gold: 290
+    Silver: 1460
+    Steel: 1460
+
+- type: latheRecipe
+  id: ImperialTgRecipeStunrevolver
+  result: ImperialTeslaCannon
+  completetime: 2
+  materials:
+    Glass: 1400
+    Silver: 1400
+    Steel: 1400
+
+- type: latheRecipe
+  id: ImperialTgRecipeSuperCapacitor
+  result: ImperialStockPartCapacitor3
+  completetime: 2
+  materials:
+    Glass: 100
+    Gold: 50
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeSuperMatterBin
+  result: ImperialStockPartMatterBin3
+  completetime: 2
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeSuperPointyTape
+  result: ImperialSuperPointyTape
+  completetime: 2
+  materials:
+    Plastic: 500
+    Steel: 750
+
+- type: latheRecipe
+  id: ImperialTgRecipeSuperStickyTape
+  result: ImperialSuperStickyTape
+  completetime: 2
+  materials:
+    Plastic: 750
+
+- type: latheRecipe
+  id: ImperialTgRecipeSuperresonator
+  result: WeaponResonatorUpgraded
+  completetime: 2
+  materials:
+    Glass: 375
+    Silver: 250
+    Steel: 1000
+    Uranium: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeSuppressor
+  result: ImperialSuppressor
+  completetime: 2
+  materials:
+    Silver: 250
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeSurgicalTape
+  result: ImperialSurgicalTape
+  completetime: 2
+  materials:
+    Plastic: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeTackleDolphin
+  result: ImperialTacklerDolphin
+  completetime: 2
+  materials:
+    Plastic: 625
+
+- type: latheRecipe
+  id: ImperialTgRecipeTackleRocket
+  result: ImperialTacklerRocket
+  completetime: 2
+  materials:
+    Plasma: 250
+    Plastic: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeTechDisk
+  result: TechnologyDisk
+  completetime: 2
+  materials:
+    Glass: 50
+    Steel: 150
+
+- type: latheRecipe
+  id: ImperialTgRecipeTechshotshell
+  result: ImperialTechShell
+  completetime: 2
+  materials:
+    Glass: 100
+    Steel: 150
+
+- type: latheRecipe
+  id: ImperialTgRecipeTenCommandmentsModule
+  result: CommandmentCircuitBoard
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeTeslaCoil
+  result: TeslaCoilFlatpack
+
+- type: latheRecipe
+  parent: BaseCircuitboardRecipe
+  id: ImperialTgRecipeThermomachine
+  result: ThermomachineHeaterMachineCircuitBoard
+
+- type: latheRecipe
+  id: ImperialTgRecipeThermurderdynamicModule
+  result: ImperialLawBoardThermodynamic
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipeThinkermovModule
+  result: ImperialLawBoardThinkermov
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipeTongs
+  result: ImperialTongs
+  completetime: 2
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeToyArmblade
+  result: ImperialToyArmblade
+  completetime: 2
+  materials:
+    Plastic: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeToyBalloon
+  result: BalloonNT
+  completetime: 2
+  materials:
+    Plastic: 300
+
+- type: latheRecipe
+  id: ImperialTgRecipeToygun
+  result: RevolverCapGun
+  completetime: 2
+  materials:
+    Glass: 35
+    Steel: 65
+
+- type: latheRecipe
+  id: ImperialTgRecipeTrayGoggles
+  result: ImperialTRayGoggles
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeTriphasicScanning
+  result: ImperialStockPartScanningModule4
+  completetime: 2
+  materials:
+    Diamond: 40
+    Glass: 100
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeTyrantModule
+  result: ImperialLawBoardTyrant
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipe
+  id: ImperialTgRecipeUltraMicroLaser
+  result: ImperialStockPartMicroLaser3
+  completetime: 2
+  materials:
+    Glass: 75
+    Steel: 100
+    Uranium: 30
+
+- type: latheRecipe
+  id: ImperialTgRecipeUniversalScanner
+  result: AppraisalTool
+  completetime: 4
+  materials:
+    Steel: 500
+
+- type: latheRecipe
+  id: ImperialTgRecipeVitalsMonitor
+  result: ImperialVitalsMonitor
+  completetime: 2
+  materials:
+    Glass: 785
+    Gold: 100
+    Steel: 1570
+
+- type: latheRecipe
+  id: ImperialTgRecipeVitalsMonitorAdvanced
+  result: ImperialVitalsMonitorAdvanced
+  completetime: 2
+  materials:
+    Glass: 755
+    Gold: 190
+    Silver: 95
+    Steel: 1510
+
+- type: latheRecipe
+  id: ImperialTgRecipeWaterBalloon
+  result: ImperialWaterBalloon
+  completetime: 2
+  materials:
+    Plastic: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeWateringCan
+  result: ImperialWateringCan
+  completetime: 2
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  id: ImperialTgRecipeWeldingGoggles
+  result: ImperialWeldingGoggles
+  completetime: 2
+  materials:
+    Glass: 250
+    Steel: 250
+
+- type: latheRecipe
+  id: ImperialTgRecipeWormholeprojector
+  result: HandTeleporter
+  completetime: 2
+  materials:
+    Diamond: 1000
+    Silver: 400
+    Steel: 1000
+
+- type: latheRecipe
+  id: ImperialTgRecipeYesmanModule
+  result: ImperialLawBoardYesman
+  completetime: 2
+  materials:
+    Glass: 1600
+    Steel: 1600
+
+- type: latheRecipePack
+  id: ImperialTgDynamicAutolathe
+  recipes:
+  - ImperialTgRecipeGenericTank
+  - ImperialTgRecipePocketfireextinguisher
+  - ImperialTgRecipeEmergencyOxygen
+  - ImperialTgRecipeEmergencyOxygenEngi
+  - ImperialTgRecipeLargeWeldingTool
+  - ImperialTgRecipeMicroServo
+  - ImperialTgRecipeBasicCapacitor
+  - ImperialTgRecipeBasicMatterBin
+  - ImperialTgRecipeBasicMicroLaser
+  - ImperialTgRecipeBasicScanning
+  - ImperialTgRecipeInfraredEmitter
+  - ImperialTgRecipeSignaler
+  - ImperialTgRecipeHealthSensor
+  - ImperialTgRecipeSolarPanel
+  - ImperialTgRecipeBlast
+  - ImperialTgRecipeIgnition
+  - ImperialTgRecipeDecalPainter
+  - ImperialTgRecipeRwd
+  - ImperialTgRecipeMiniWeldingTool
+  - ImperialTgRecipeCrowbar
+  - ImperialTgRecipeGeigercounter
+  - ImperialTgRecipeSlimeScanner
+  - ImperialTgRecipePlantAnalyzer
+  - ImperialTgRecipeWateringCan
+  - ImperialTgRecipeBloodFilter
+  - ImperialTgRecipeBloodScanner
+  - ImperialTgRecipeBonesetter
+  - ImperialTgRecipeCircularSaw
+  - ImperialTgRecipeReflexHammer
+  - ImperialTgRecipeStethoscope
+  - ImperialTgRecipeToyArmblade
+  - ImperialTgRecipeToygun
+  - ImperialTgRecipeCapbox
+  - ImperialTgRecipeFoamDart
+  - ImperialTgRecipeTechDisk
+  - ImperialTgRecipeSecPen
+  - ImperialTgRecipeUniversalScanner
+  - ImperialTgRecipePackagewrap
+  - ImperialTgRecipeStickyTape
+  - ImperialTgRecipeBouncedRadio
+  - ImperialTgRecipeRadioHeadset
+  - ImperialTgRecipeEarmuffs
+  - ImperialTgRecipeRecorder
+  - ImperialTgRecipeToyBalloon
+  - ImperialTgRecipePetCarrier
+  - ImperialTgRecipeSpraycan
+  - ImperialTgRecipeCamera
+  - ImperialTgRecipeRazor
+  - ImperialTgRecipePushbroom
+  - ImperialTgRecipeServingtray
+  - ImperialTgRecipeTongs
+  - ImperialTgRecipeSpoon
+  - ImperialTgRecipeFork
+  - ImperialTgRecipePlasticSpoon
+  - ImperialTgRecipePlasticFork
+  - ImperialTgRecipePlasticKnife
+  - ImperialTgRecipeShaker
+  - ImperialTgRecipeFoodtray
+  - ImperialTgRecipeFishingRod
+  - ImperialTgRecipeFishCase
+  - ImperialTgRecipeAquariumKit
+
+- type: latheRecipePack
+  id: ImperialTgDynamicCircuitImprinter
+  recipes:
+  - BitrunningRecipeByteforge
+  - BitrunningRecipeQuantumConsole
+  - BitrunningRecipeNetpod
+  - ImperialTgRecipeAtmosControl
+  - ImperialTgRecipeAtmosalerts
+  - ImperialTgRecipeThermomachine
+  - ImperialTgRecipePump
+  - ImperialTgRecipeHFRCore
+  - ImperialTgRecipeHFRCorner
+  - ImperialTgRecipeHFRFuelInput
+  - ImperialTgRecipeHFRInterface
+  - ImperialTgRecipeHFRModeratorInput
+  - ImperialTgRecipeHFRWasteOutput
+  - ImperialTgRecipeCrystallizer
+  - ImperialTgRecipeManuunloader
+  - ImperialTgRecipeManusmelter
+  - ImperialTgRecipeManucrusher
+  - ImperialTgRecipeManucrafter
+  - ImperialTgRecipeManulathe
+  - ImperialTgRecipeManusorter
+  - ImperialTgRecipeManurouter
+  - ImperialTgRecipeApcControl
+  - ImperialTgRecipePowermonitor
+  - ImperialTgRecipeGroundingRod
+  - ImperialTgRecipeTeslaCoil
+  - ImperialTgRecipeAtmosshieldgen
+  - ImperialTgRecipeModularShieldGate
+  - ImperialTgRecipeModularShieldGenerator
+  - ImperialTgRecipeModularShieldNode
+  - ImperialTgRecipeModularShieldCable
+  - ImperialTgRecipeModularShieldRelay
+  - ImperialTgRecipeModularShieldCharger
+  - ImperialTgRecipeModularShieldWell
+  - ImperialTgRecipeModularShieldConsole
+  - ImperialTgRecipePandemic
+  - ImperialTgRecipeOperating
+  - ImperialTgRecipeMedipenRefiller
+  - ImperialTgRecipeChemHeater
+  - ImperialTgRecipeChemMassSpec
+  - ImperialTgRecipeSmokeMachine
+  - ImperialTgRecipeSecdata
+  - ImperialTgRecipePrisonmanage
+  - ImperialTgRecipeScannerGate
+  - ImperialTgRecipeCargoexpress
+  - ImperialTgRecipeRobocontrol
+  - ImperialTgRecipeBorgupload
+  - ImperialTgRecipeAicore
+  - ImperialTgRecipeAifixer
+  - ImperialTgRecipeAiupload
+  - ImperialTgRecipeHypnochair
+  - ImperialTgRecipeRecycler
+  - ImperialTgRecipeRdserver
+  - ImperialTgRecipeRdconsole
+  - ImperialTgRecipeExperimentor
+  - ImperialTgRecipeLaunchpadConsole
+  - ImperialTgRecipeLaunchpad
+  - ImperialTgRecipeComconsole
+  - ImperialTgRecipeCargorequest
+  - ImperialTgRecipeMedData
+  - ImperialTgRecipeCrewconsole
+  - ImperialTgRecipeArcadeBattle
+  - ImperialTgRecipeArcadeOrion
+  - ImperialTgRecipeDeepfryer
+  - ImperialTgRecipeGibber
+  - ImperialTgRecipeFishingPortalGenerator
+
+- type: latheRecipePack
+  id: ImperialTgDynamicExosuitFabricator
+  recipes:
+  - ImperialTgRecipeBorgUpgradeDefibrillator
+  - ImperialTgRecipeBorgUpgradeServiceApparatus
+  - ImperialTgRecipeBorgUpgradeBotany
+  - ImperialTgRecipeBorgUpgradeBeakerapp
+  - ImperialTgRecipeBorgUpgradeExpandedsynthesiser
+  - ImperialTgRecipeBorgUpgradeBroomer
+  - ImperialTgRecipeBorgUpgradePlunger
+  - ImperialTgRecipeBorgUpgradeThrusters
+  - ImperialTgRecipeCiNutriment
+  - ImperialTgRecipeBorgTransformClown
+  - ImperialTgRecipeModPaintKit
+  - ImperialTgRecipePosisphere
+  - ImperialTgRecipeBorgSyndicateModule
+
+- type: latheRecipePack
+  id: ImperialTgDynamicMedicalTechFab
+  recipes:
+  - ImperialTgRecipeHolobarrierMed
+  - ImperialTgRecipeHealthHud
+  - ImperialTgRecipeHealthHudNight
+  - ImperialTgRecipeNvScigoggles
+  - ImperialTgRecipeAutopsyscanner
+  - ImperialTgRecipePhMeter
+  - ImperialTgRecipeScigoggles
+  - ImperialTgRecipeBloodFilter
+  - ImperialTgRecipeBloodPack
+  - ImperialTgRecipeBloodScanner
+  - ImperialTgRecipeBonesetter
+  - ImperialTgRecipeChemPack
+  - ImperialTgRecipeCircularSaw
+  - ImperialTgRecipeDefibmountdefault
+  - ImperialTgRecipeMedicalbed
+  - ImperialTgRecipeOrganJar
+  - ImperialTgRecipePenlight
+  - ImperialTgRecipePenlightParamedic
+  - ImperialTgRecipeReflexHammer
+  - ImperialTgRecipeStethoscope
+  - ImperialTgRecipeSurgicalTape
+  - ImperialTgRecipeVitalsMonitor
+  - ImperialTgRecipeInhaler
+  - ImperialTgRecipeInhalerCanister
+  - ImperialTgRecipeMedigel
+  - ImperialTgRecipePortableChemMixer
+  - ImperialTgRecipeMetaBeaker
+  - ImperialTgRecipeCrewpinpointer
+  - ImperialTgRecipeDefibmount
+  - ImperialTgRecipeHealthanalyzerAdvanced
+  - ImperialTgRecipeMedicalbedEmergency
+  - ImperialTgRecipePiercesyringe
+  - ImperialTgRecipeCryoGrenade
+  - ImperialTgRecipeStasisBodybag
+  - ImperialTgRecipeLargeGrenade
+  - ImperialTgRecipeAdvGrenade
+  - ImperialTgRecipePyroGrenade
+  - ImperialTgRecipeLaserscalpel
+  - ImperialTgRecipeSearingtool
+  - ImperialTgRecipeImplantTrombone
+  - ImperialTgRecipeImplantChem
+  - ImperialTgRecipeImplantTracking
+  - ImperialTgRecipeCiNutriment
+  - ImperialTgRecipeBluespacebodybag
+  - ImperialTgRecipeRazor
+  - ImperialTgRecipeRapidsyringe
+
+- type: latheRecipePack
+  id: ImperialTgDynamicProtolathe
+  recipes:
+  - ImperialTgRecipeGenericTank
+  - ImperialTgRecipeOxygenTank
+  - ImperialTgRecipePlasmaTank
+  - ImperialTgRecipePocketfireextinguisher
+  - ImperialTgRecipeEmergencyOxygen
+  - ImperialTgRecipeEmergencyOxygenEngi
+  - ImperialTgRecipeAtmosThermal
+  - ImperialTgRecipePneumaticSeal
+  - ImperialTgRecipeLargeWeldingTool
+  - ImperialTgRecipeDiodeDiskIncendiary
+  - ImperialTgRecipeAdvFireExtinguisher
+  - ImperialTgRecipeBolterWrench
+  - ImperialTgRecipeEngineGoggles
+  - ImperialTgRecipeRangedanalyzer
+  - ImperialTgRecipeRtdLoaded
+  - ImperialTgRecipeMagboots
+  - ImperialTgRecipeMicroServo
+  - ImperialTgRecipeBasicCapacitor
+  - ImperialTgRecipeBasicMatterBin
+  - ImperialTgRecipeBasicMicroLaser
+  - ImperialTgRecipeBasicScanning
+  - ImperialTgRecipeInfraredEmitter
+  - ImperialTgRecipeSignaler
+  - ImperialTgRecipeHealthSensor
+  - ImperialTgRecipeRped
+  - ImperialTgRecipeHighMicroLaser
+  - ImperialTgRecipeAdvCapacitor
+  - ImperialTgRecipeNanoServo
+  - ImperialTgRecipeAdvMatterBin
+  - ImperialTgRecipeAdvScanning
+  - ImperialTgRecipeUltraMicroLaser
+  - ImperialTgRecipeSuperCapacitor
+  - ImperialTgRecipePicoServo
+  - ImperialTgRecipeSuperMatterBin
+  - ImperialTgRecipePhasicScanning
+  - ImperialTgRecipeBsRped
+  - ImperialTgRecipeQuadultraMicroLaser
+  - ImperialTgRecipeQuadraticCapacitor
+  - ImperialTgRecipeFemtoServo
+  - ImperialTgRecipeBluespaceMatterBin
+  - ImperialTgRecipeTriphasicScanning
+  - ImperialTgRecipeSolarPanel
+  - ImperialTgRecipeBlast
+  - ImperialTgRecipeIgnition
+  - ImperialTgRecipeDecalPainter
+  - ImperialTgRecipeRwd
+  - ImperialTgRecipeMiniWeldingTool
+  - ImperialTgRecipeCrowbar
+  - ImperialTgRecipeInducer
+  - ImperialTgRecipeInducerengi
+  - ImperialTgRecipeWeldingGoggles
+  - ImperialTgRecipeTrayGoggles
+  - ImperialTgRecipeGeigercounter
+  - ImperialTgRecipeDiodeDiskStamina
+  - ImperialTgRecipeHolosignrestaurant
+  - ImperialTgRecipeHolosignbar
+  - ImperialTgRecipeHolobarrierJani
+  - ImperialTgRecipeHolobarrierMed
+  - ImperialTgRecipeDiodeDiskMagnetic
+  - ImperialTgRecipeHealthHud
+  - ImperialTgRecipeDiagnosticHud
+  - ImperialTgRecipeModVisorMedhud
+  - ImperialTgRecipeModVisorDiaghud
+  - ImperialTgRecipeModVisorSechud
+  - ImperialTgRecipeDiagnosticHudNight
+  - ImperialTgRecipeHealthHudNight
+  - ImperialTgRecipeNightVisisionGoggles
+  - ImperialTgRecipeNvgmesons
+  - ImperialTgRecipeNvScigoggles
+  - ImperialTgRecipeSecurityHudNight
+  - ImperialTgRecipeC38Sec
+  - ImperialTgRecipeSecRshot
+  - ImperialTgRecipeAutopsyscanner
+  - ImperialTgRecipePhMeter
+  - ImperialTgRecipeScigoggles
+  - ImperialTgRecipeModReagentScanner
+  - ImperialTgRecipeSlimeScanner
+  - ImperialTgRecipeModDnaLock
+  - ImperialTgRecipePlantAnalyzer
+  - ImperialTgRecipeWateringCan
+  - ImperialTgRecipePortaseeder
+  - ImperialTgRecipeFloraGun
+  - ImperialTgRecipeGeneShears
+  - ImperialTgRecipeBloodFilter
+  - ImperialTgRecipeBloodPack
+  - ImperialTgRecipeBloodScanner
+  - ImperialTgRecipeBonesetter
+  - ImperialTgRecipeChemPack
+  - ImperialTgRecipeCircularSaw
+  - ImperialTgRecipeDefibmountdefault
+  - ImperialTgRecipeMedicalbed
+  - ImperialTgRecipeOrganJar
+  - ImperialTgRecipePenlight
+  - ImperialTgRecipePenlightParamedic
+  - ImperialTgRecipeReflexHammer
+  - ImperialTgRecipeStethoscope
+  - ImperialTgRecipeSurgicalTape
+  - ImperialTgRecipeVitalsMonitor
+  - ImperialTgRecipeInhaler
+  - ImperialTgRecipeInhalerCanister
+  - ImperialTgRecipeMedigel
+  - ImperialTgRecipePortableChemMixer
+  - ImperialTgRecipeMetaBeaker
+  - ImperialTgRecipeCrewpinpointer
+  - ImperialTgRecipeDefibmount
+  - ImperialTgRecipeDiodeDiskSanity
+  - ImperialTgRecipeHealthanalyzerAdvanced
+  - ImperialTgRecipeMedicalbedEmergency
+  - ImperialTgRecipePiercesyringe
+  - ImperialTgRecipeVitalsMonitorAdvanced
+  - ImperialTgRecipeCryoGrenade
+  - ImperialTgRecipeStasisBodybag
+  - ImperialTgRecipeToyArmblade
+  - ImperialTgRecipeToygun
+  - ImperialTgRecipeC38Rubber
+  - ImperialTgRecipeCapbox
+  - ImperialTgRecipeFoamDart
+  - ImperialTgRecipePepperspray
+  - ImperialTgRecipeInspector
+  - ImperialTgRecipeEvidencebag
+  - ImperialTgRecipeSeclite
+  - ImperialTgRecipeClownFiringPin
+  - ImperialTgRecipePinTesting
+  - ImperialTgRecipePinLoyalty
+  - ImperialTgRecipeBallisticShield
+  - ImperialTgRecipeLargeGrenade
+  - ImperialTgRecipeAdvGrenade
+  - ImperialTgRecipePyroGrenade
+  - ImperialTgRecipeC38Iceblox
+  - ImperialTgRecipeC38Trac
+  - ImperialTgRecipeC38TrueStrike
+  - ImperialTgRecipeTechshotshell
+  - ImperialTgRecipeFlechetteshell
+  - ImperialTgRecipeStunrevolver
+  - ImperialTgRecipeIoncarbine
+  - ImperialTgRecipeLasershell
+  - ImperialTgRecipeC38Flare
+  - ImperialTgRecipeLaserscalpel
+  - ImperialTgRecipeSearingtool
+  - ImperialTgRecipeBluespacePod
+  - ImperialTgRecipeModDefib
+  - ImperialTgRecipeModDrill
+  - ImperialTgRecipeModHealthAnalyzer
+  - ImperialTgRecipeModTRay
+  - ImperialTgRecipeImplantTrombone
+  - ImperialTgRecipeImplantChem
+  - ImperialTgRecipeImplantTracking
+  - ImperialTgRecipeImplantExile
+  - ImperialTgRecipeImplantBeacon
+  - ImperialTgRecipeImplantBluespace
+  - ImperialTgRecipeCiNutriment
+  - ImperialTgRecipePaicard
+  - ImperialTgRecipeIntellicard
+  - ImperialTgRecipeAsimovModule
+  - ImperialTgRecipeCorporateModule
+  - ImperialTgRecipeDefaultModule
+  - ImperialTgRecipePaladinModule
+  - ImperialTgRecipeRobocopModule
+  - ImperialTgRecipeNutimovModule
+  - ImperialTgRecipeAntimovModule
+  - ImperialTgRecipeDungeonMasterModule
+  - ImperialTgRecipeLiveandletliveModule
+  - ImperialTgRecipeMaintainModule
+  - ImperialTgRecipeOverlordModule
+  - ImperialTgRecipePainterModule
+  - ImperialTgRecipeTenCommandmentsModule
+  - ImperialTgRecipeDroneModule
+  - ImperialTgRecipeAsimovppModule
+  - ImperialTgRecipeBalanceModule
+  - ImperialTgRecipeDamagedModule
+  - ImperialTgRecipeHippocraticModule
+  - ImperialTgRecipeHulkamaniaModule
+  - ImperialTgRecipePaladinDevotionModule
+  - ImperialTgRecipePeacekeeperModule
+  - ImperialTgRecipeReporterModule
+  - ImperialTgRecipeThermurderdynamicModule
+  - ImperialTgRecipeThinkermovModule
+  - ImperialTgRecipeTyrantModule
+  - ImperialTgRecipeYesmanModule
+  - ImperialTgRecipeModStorage
+  - ImperialTgRecipeModFlashlight
+  - ImperialTgRecipeModTether
+  - ImperialTgRecipeModWelding
+  - ImperialTgRecipeModThermalRegulator
+  - ImperialTgRecipeModStorageExpanded
+  - ImperialTgRecipeModClamp
+  - ImperialTgRecipeModMouthhole
+  - ImperialTgRecipeModMisterJanitor
+  - ImperialTgRecipeModBikehorn
+  - ImperialTgRecipeModMicrowaveBeam
+  - ImperialTgRecipeModWaddle
+  - ImperialTgRecipeModInjector
+  - ImperialTgRecipeModPatienttransport
+  - ImperialTgRecipeModMagboot
+  - ImperialTgRecipeModMisterAtmos
+  - ImperialTgRecipeModMirageGrenade
+  - ImperialTgRecipeModStealth
+  - ImperialTgRecipeModMagHarness
+  - ImperialTgRecipeModPathfinder
+  - ImperialTgRecipeModHolster
+  - ImperialTgRecipeModSonar
+  - ImperialTgRecipeModProjectileDampener
+  - ImperialTgRecipeModCriminalcapture
+  - ImperialTgRecipeModStatusreadout
+  - ImperialTgRecipeModJetpack
+  - ImperialTgRecipeModRadProtection
+  - ImperialTgRecipeModEmpShield
+  - ImperialTgRecipeModAntigrav
+  - ImperialTgRecipeModTeleporter
+  - ImperialTgRecipeModKinesis
+  - ImperialTgRecipeBrightHelmet
+  - ImperialTgRecipeRldMini
+  - ImperialTgRecipePhotonCannon
+  - ImperialTgRecipeMaunaMug
+  - ImperialTgRecipeRollingTable
+  - ImperialTgRecipePlasticducky
+  - ImperialTgRecipeEngGloves
+  - ImperialTgRecipeLavaRods
+  - ImperialTgRecipePinExplorer
+  - ImperialTgRecipeStunBoomerang
+  - ImperialTgRecipePointyTape
+  - ImperialTgRecipeSuperStickyTape
+  - ImperialTgRecipeTackleDolphin
+  - ImperialTgRecipeTackleRocket
+  - ImperialTgRecipeModJointTorsion
+  - ImperialTgRecipeModRecycler
+  - ImperialTgRecipeModShooting
+  - ImperialTgRecipeDonkshell
+  - ImperialTgRecipeSuperresonator
+  - ImperialTgRecipeModOrebag
+  - ImperialTgRecipeModGps
+  - ImperialTgRecipeModVisorMeson
+  - ImperialTgRecipeMesons
+  - ImperialTgRecipeHypermod
+  - ImperialTgRecipeJackhammer
+  - ImperialTgRecipeTechDisk
+  - ImperialTgRecipeBluespaceCrystal
+  - ImperialTgRecipeAdvWateringCan
+  - ImperialTgRecipeBluespaceCoffeepot
+  - ImperialTgRecipeBlutrash
+  - ImperialTgRecipeLightReplacerBlue
+  - ImperialTgRecipeBluespacebodybag
+  - ImperialTgRecipeAnomalyNeutralizer
+  - ImperialTgRecipeReactiveArmour
+  - ImperialTgRecipeSpaceFurnace
+  - ImperialTgRecipeModStorageHolding
+  - ImperialTgRecipeWormholeprojector
+  - ImperialTgRecipePolymorphBelt
+  - ImperialTgRecipePerceptomatrix
+  - ImperialTgRecipeSecPen
+  - ImperialTgRecipeUniversalScanner
+  - ImperialTgRecipePackagewrap
+  - ImperialTgRecipeStickyTape
+  - ImperialTgRecipeBouncedRadio
+  - ImperialTgRecipeRadioHeadset
+  - ImperialTgRecipeEarmuffs
+  - ImperialTgRecipeRecorder
+  - ImperialTgRecipeToyBalloon
+  - ImperialTgRecipePetCarrier
+  - ImperialTgRecipeSpraycan
+  - ImperialTgRecipeCamera
+  - ImperialTgRecipeRazor
+  - ImperialTgRecipePushbroom
+  - ImperialTgRecipeWaterBalloon
+  - ImperialTgRecipePaintRemover
+  - ImperialTgRecipeBeartrap
+  - ImperialTgRecipeServingtray
+  - ImperialTgRecipeTongs
+  - ImperialTgRecipeSpoon
+  - ImperialTgRecipeFork
+  - ImperialTgRecipePlasticSpoon
+  - ImperialTgRecipePlasticFork
+  - ImperialTgRecipePlasticKnife
+  - ImperialTgRecipeShaker
+  - ImperialTgRecipeFoodtray
+  - ImperialTgRecipeFishingRod
+  - ImperialTgRecipeFishCase
+  - ImperialTgRecipeAquariumKit
+  - ImperialTgRecipeFishingRodTech
+  - ImperialTgRecipeFishingGloves
+  - ImperialTgRecipeModFishing
+  - ImperialTgRecipeStabilizedHook
+  - ImperialTgRecipeAutoReel
+  - ImperialTgRecipeFishAnalyzer
+  - ImperialTgRecipeBluespaceFishCase
+  - ImperialTgRecipeBluespaceFishTankKit
+  - ImperialTgRecipeBioelecGen
+  - ImperialTgRecipeBluespaceReel
+  - ImperialTgRecipeFishGenegun
+  - ImperialTgRecipeLargecrossbow
+  - ImperialTgRecipeMagAutorifleAp
+  - ImperialTgRecipeMagAutorifleIc
+  - ImperialTgRecipeRapidsyringe
+  - ImperialTgRecipeSuppressor
+  - ImperialTgRecipeSuperPointyTape
+  - ImperialTgRecipeBeamrifle
+
+- type: latheRecipePack
+  id: ImperialTgDynamicSecurityTechFab
+  recipes:
+  - ImperialTgRecipePneumaticSeal
+  - ImperialTgRecipeNightVisisionGoggles
+  - ImperialTgRecipeSecurityHudNight
+  - ImperialTgRecipeC38Sec
+  - ImperialTgRecipeSecRshot
+  - ImperialTgRecipeC38Rubber
+  - ImperialTgRecipeFoamDart
+  - ImperialTgRecipePepperspray
+  - ImperialTgRecipeInspector
+  - ImperialTgRecipeEvidencebag
+  - ImperialTgRecipeSeclite
+  - ImperialTgRecipePinTesting
+  - ImperialTgRecipePinLoyalty
+  - ImperialTgRecipeBallisticShield
+  - ImperialTgRecipeC38Iceblox
+  - ImperialTgRecipeC38Trac
+  - ImperialTgRecipeC38TrueStrike
+  - ImperialTgRecipeTechshotshell
+  - ImperialTgRecipeFlechetteshell
+  - ImperialTgRecipeStunrevolver
+  - ImperialTgRecipeIoncarbine
+  - ImperialTgRecipeLasershell
+  - ImperialTgRecipeC38Flare
+  - ImperialTgRecipeImplantChem
+  - ImperialTgRecipeImplantTracking
+  - ImperialTgRecipeImplantExile
+  - ImperialTgRecipeImplantBeacon
+  - ImperialTgRecipeImplantBluespace
+  - ImperialTgRecipePhotonCannon
+  - ImperialTgRecipePinExplorer
+  - ImperialTgRecipeStunBoomerang
+  - ImperialTgRecipeTackleDolphin
+  - ImperialTgRecipeTackleRocket
+  - ImperialTgRecipeDonkshell
+  - ImperialTgRecipeSecPen
+  - ImperialTgRecipeRecorder
+  - ImperialTgRecipeRazor
+  - ImperialTgRecipeLargecrossbow
+  - ImperialTgRecipeMagAutorifleAp
+  - ImperialTgRecipeMagAutorifleIc
+  - ImperialTgRecipeSuppressor
+  - ImperialTgRecipeBeamrifle

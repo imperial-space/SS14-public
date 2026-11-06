@@ -1,0 +1,4981 @@
+# Ассортимент и цены торгоматов TG (code/modules/vending), сгенерировано scratchpad/cargo/gen_vending.pl.
+
+- type: imperialVendingProfile
+  id: AmmoVendInventory
+  tgVendor: liberationstation
+  defaultPrice: 250
+  extraPrice: 250
+  department: Security
+  replace: true
+  products:
+  - id: FoodBurgerPlain
+    amount: 5
+    price: 40
+  - id: FoodBurgerBaseball
+    amount: 3
+    price: 40
+  - id: FoodMealFries
+    amount: 5
+    price: 250
+  - id: DrinkBeerBottleFull
+    amount: 10
+    price: 50
+  - id: ImperialWeaponPistolDeagleGold
+    amount: 2
+    price: 250
+  - id: ImperialWeaponPistolDeagleCamo
+    amount: 2
+    price: 250
+  - id: WeaponPistolMk58
+    amount: 2
+    price: 250
+  - id: WeaponSubMachineGunSaber
+    amount: 2
+    price: 250
+  - id: WeaponShotgunEnforcer
+    amount: 2
+    price: 250
+  - id: ImperialWeaponPistolGyrojet
+    amount: 1
+    price: 250
+  - id: WeaponShotgunKammerer
+    amount: 2
+    price: 250
+  - id: ImperialWeaponRifleArg
+    amount: 2
+    price: 250
+  - id: ImperialClothingUniformMiscPatriotsuit
+    amount: 3
+    price: 250
+    type: Contraband
+  - id: BedsheetUSA
+    amount: 5
+    price: 250
+    type: Contraband
+  - id: FoodBurgerSuper
+    amount: 3
+    price: 250
+    type: Contraband
+  - id: MagazinePistolSubMachineGun
+    amount: 2
+    price: 250
+    type: Premium
+  - id: MagazineMagnum
+    amount: 4
+    price: 250
+    type: Premium
+  - id: MagazinePistol
+    amount: 2
+    price: 250
+    type: Premium
+  - id: ImperialMagazineGyrojet
+    amount: 2
+    price: 250
+    type: Premium
+  - id: FoodMealFriesCheesy
+    amount: 5
+    price: 250
+    type: Premium
+  - id: FoodBurgerBacon
+    amount: 5
+    price: 80
+    type: Premium
+
+- type: imperialVendingProfile
+  id: AtmosDrobeInventory
+  tgVendor: wardrobe/atmos_wardrobe
+  defaultPrice: 50
+  extraPrice: 100
+  department: Engineering
+  replace: true
+  products:
+  - id: ImperialClothingNeckPocketprotector
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpsuitAtmos
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpskirtAtmos
+    amount: 3
+    price: 50
+  - id: ImperialClothingOuterAtmosOveralls
+    amount: 3
+    price: 50
+  - id: ClothingOuterWinterAtmos
+    amount: 3
+    price: 50
+  - id: ClothingShoesColorBlack
+    amount: 3
+    price: 50
+  - id: ClothingBackpackSatchelEngineering
+    amount: 6
+    price: 50
+  - id: ClothingBackpackEngineering
+    amount: 3
+    price: 50
+  - id: ClothingBackpackDuffelEngineering
+    amount: 3
+    price: 50
+
+- type: imperialVendingProfile
+  id: BarDrobeInventory
+  tgVendor: wardrobe/bar_wardrobe
+  defaultPrice: 50
+  extraPrice: 100
+  department: Medical
+  replace: true
+  products:
+  - id: ClothingEyesHudBeer
+    amount: 1
+    price: 50
+  - id: ClothingOuterVest
+    amount: 2
+    price: 50
+  - id: ClothingHeadHatTophat
+    amount: 2
+    price: 50
+  - id: ClothingHeadHatBlacksoft
+    amount: 2
+    price: 50
+  - id: ImperialClothingNeckPetcollar
+    amount: 1
+    price: 50
+  - id: ClothingNeckTieRed
+    amount: 2
+    price: 50
+  - id: ClothingUniformRandomShirt
+    amount: 4
+    price: 50
+  - id: ClothingUniformJumpsuitBartenderPurple
+    amount: 2
+    price: 50
+  - id: ImperialClothingOuterToggleLawyerGreyscale
+    amount: 1
+    price: 50
+  - id: ClothingOuterArmorBasic
+    amount: 1
+    price: 50
+  - id: ClothingShoesColorBlack
+    amount: 2
+    price: 50
+  - id: ClothingBeltBandolier
+    amount: 1
+    price: 50
+  - id: ImperialMoneyBag
+    amount: 2
+    price: 50
+  - id: DiceBag
+    amount: 1
+    price: 50
+  - id: BoxBeanbag
+    amount: 1
+    price: 50
+  - id: ImperialDishDriveCircuitboard
+    amount: 1
+    price: 50
+  - id: RagItem
+    amount: 2
+    price: 50
+  - id: ClothingHeadsetService
+    amount: 2
+    price: 50
+  - id: ImperialBoxDishDrive
+    amount: 1
+    price: 150
+    type: Premium
+  - id: ImperialServiceConstructor
+    amount: 1
+    price: 300
+    type: Premium
+
+- type: imperialVendingProfile
+  id: BoozeOMatInventory
+  tgVendor: boozeomat
+  defaultPrice: 45
+  extraPrice: 100
+  department: Service
+  replace: true
+  products:
+  - id: DrinkBlueCuracaoBottleFull
+    amount: 5
+    price: 55
+    category: Алкогольное
+  - id: DrinkRumBottleFull
+    amount: 15
+    price: 55
+    category: Алкогольное
+  - id: ImperialDrinkApplejackBottleFull
+    amount: 5
+    price: 50
+    category: Алкогольное
+  - id: DrinkTequilaBottleFull
+    amount: 5
+    price: 55
+    category: Алкогольное
+  - id: ImperialDrinkAperitivoBottleFull
+    amount: 5
+    price: 55
+    category: Алкогольное
+  - id: DrinkCognacBottleFull
+    amount: 5
+    price: 55
+    category: Алкогольное
+  - id: ImperialDrinkMaraschinoBottleFull
+    amount: 5
+    price: 55
+    category: Алкогольное
+  - id: DrinkWineBottleFull
+    amount: 10
+    price: 55
+    category: Алкогольное
+  - id: DrinkAbsintheBottleFull
+    amount: 5
+    price: 55
+    category: Алкогольное
+  - id: DrinkVermouthBottleFull
+    amount: 5
+    price: 55
+    category: Алкогольное
+  - id: DrinkGinBottleFull
+    amount: 5
+    price: 55
+    category: Алкогольное
+  - id: ImperialDrinkHardCiderBottleFull
+    amount: 5
+    price: 55
+    category: Алкогольное
+  - id: ImperialDrinkAmarettoBottleFull
+    amount: 5
+    price: 55
+    category: Алкогольное
+  - id: DrinkAleBottleFull
+    amount: 6
+    price: 50
+    category: Алкогольное
+  - id: ImperialDrinkYuyakeBottleFull
+    amount: 5
+    price: 55
+    category: Алкогольное
+  - id: ImperialDrinkGrappaBottleFull
+    amount: 5
+    price: 55
+    category: Алкогольное
+  - id: ImperialDrinkMaltLiquorBottleFull
+    amount: 6
+    price: 50
+    category: Алкогольное
+  - id: DrinkCoffeeLiqueurBottleFull
+    amount: 5
+    price: 55
+    category: Алкогольное
+  - id: DrinkSakeBottleFull
+    amount: 5
+    price: 55
+    category: Алкогольное
+  - id: ImperialDrinkShochuBottleFull
+    amount: 5
+    price: 55
+    category: Алкогольное
+  - id: DrinkBeerBottleFull
+    amount: 6
+    price: 50
+    category: Алкогольное
+  - id: DrinkVodkaBottleFull
+    amount: 5
+    price: 55
+    category: Алкогольное
+  - id: DrinkWhiskeyBottleFull
+    amount: 5
+    price: 55
+    category: Алкогольное
+  - id: DrinkBeerCan
+    amount: 20
+    price: 45
+    category: Алкогольное
+  - id: ImperialDrinkHakkaMateBottleFull
+    amount: 5
+    price: 55
+    category: Безалкогольное
+  - id: DrinkIceGlass
+    amount: 10
+    price: 15
+    category: Безалкогольное
+  - id: DrinkGrenadineBottleFull
+    amount: 4
+    price: 50
+    category: Безалкогольное
+  - id: DrinkGrapeCan
+    amount: 5
+    price: 45
+    category: Безалкогольное
+  - id: DrinkJuiceLemonCarton
+    amount: 4
+    price: 50
+    category: Безалкогольное
+  - id: DrinkJuiceLimeCarton
+    amount: 4
+    price: 50
+    category: Безалкогольное
+  - id: DrinkJuiceOrangeCarton
+    amount: 4
+    price: 50
+    category: Безалкогольное
+  - id: ImperialDrinkMentholBottleFull
+    amount: 4
+    price: 50
+    category: Безалкогольное
+  - id: DrinkCreamCarton
+    amount: 4
+    price: 50
+    category: Безалкогольное
+  - id: DrinkJuiceTomatoCarton
+    amount: 4
+    price: 50
+    category: Безалкогольное
+  - id: DrinkSodaWaterCan
+    amount: 15
+    price: 45
+    category: Безалкогольное
+  - id: DrinkSolDryCan
+    amount: 8
+    price: 45
+    category: Безалкогольное
+  - id: DrinkColaCan
+    amount: 8
+    price: 45
+    category: Безалкогольное
+  - id: DrinkTonicWaterCan
+    amount: 8
+    price: 45
+    category: Безалкогольное
+  - id: DrinkGlass
+    amount: 30
+    price: 25
+    category: Посуда для напитков
+  - id: DrinkShotGlass
+    amount: 12
+    price: 20
+    category: Посуда для напитков
+  - id: DrinkFlaskBar
+    amount: 3
+    price: 200
+    category: Посуда для напитков
+  - id: DrinkBottleBeer
+    amount: 30
+    price: 55
+    category: Посуда для напитков
+  - id: ImperialDrinkHerbalLiqueurBottleFull
+    amount: 2
+    price: 155
+    type: Contraband
+  - id: DrinkTeacup
+    amount: 12
+    price: 100
+    type: Contraband
+  - id: ImperialDrinkFernetBottleFull
+    amount: 5
+    price: 155
+    type: Contraband
+  - id: ImperialDrinkBittersBottleFull
+    amount: 5
+    price: 155
+    type: Premium
+  - id: ImperialDrinkHerbalLiqueurBottleFull
+    amount: 2
+    price: 155
+    type: Premium
+  - id: ChemistryBottleEthanol
+    amount: 4
+    price: 100
+    type: Premium
+  - id: DrinkChampagneBottleFull
+    amount: 5
+    price: 155
+    type: Premium
+  - id: ImperialDrinkTrappistBottleFull
+    amount: 5
+    price: 155
+    type: Premium
+
+- type: imperialVendingProfile
+  id: CargoDrobeInventory
+  tgVendor: wardrobe/cargo_wardrobe
+  defaultPrice: 50
+  extraPrice: 100
+  department: Cargo
+  replace: true
+  products:
+  - id: ClothingHeadHatBeretQM
+    amount: 3
+    price: 50
+  - id: ClothingMaskBandBrown
+    amount: 3
+    price: 50
+  - id: ClothingHeadHatCargosoft
+    amount: 3
+    price: 50
+  - id: ClothingHeadHatHardhatOrange
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpsuitCargo
+    amount: 6
+    price: 50
+  - id: ClothingUniformJumpskirtCargo
+    amount: 6
+    price: 50
+  - id: ClothingOuterArmorCargoJacket
+    amount: 3
+    price: 50
+  - id: ClothingOuterWinterCargo
+    amount: 3
+    price: 50
+  - id: ClothingOuterVestHazard
+    amount: 3
+    price: 50
+  - id: ClothingHandsGlovesFingerless
+    amount: 3
+    price: 75
+  - id: ClothingShoesColorBlack
+    amount: 3
+    price: 50
+  - id: ClothingBackpack
+    amount: 3
+    price: 50
+  - id: ClothingBackpackSatchel
+    amount: 6
+    price: 50
+  - id: ClothingBackpackSatchelLeather
+    amount: 3
+    price: 50
+  - id: ClothingBackpackDuffel
+    amount: 3
+    price: 50
+  - id: ClothingHeadsetCargo
+    amount: 3
+    price: 50
+  - id: ImperialClothingNeckPocketprotector
+    amount: 3
+    price: 50
+  - id: MailBag
+    amount: 3
+    price: 25
+    type: Premium
+  - id: ImperialClothingHeadCostumeMailman
+    amount: 1
+    price: 50
+    type: Premium
+  - id: ClothingUniformJumpsuitCargo
+    amount: 4
+    price: 50
+    type: Premium
+  - id: ImperialMailSorterFlatpack
+    amount: 1
+    price: 150
+    type: Premium
+  - id: ClothingUniformJumpsuitSalvageSpecialist
+    amount: 6
+    price: 100
+    type: Premium
+
+- type: imperialVendingProfile
+  id: PTechInventory
+  tgVendor: cart
+  defaultPrice: 100
+  extraPrice: 250
+  department: Service
+  replace: true
+  products:
+  - id: MedTekCartridge
+    amount: 10
+    price: 100
+  - id: NetProbeCartridge
+    amount: 10
+    price: 100
+  - id: WantedListCartridge
+    amount: 10
+    price: 100
+  - id: AstroNavCartridge
+    amount: 10
+    price: 100
+  - id: NanoTaskCartridge
+    amount: 10
+    price: 100
+  - id: CrewManifestCartridge
+    amount: 3
+    price: 100
+  - id: PassengerPDA
+    amount: 10
+    price: 100
+
+- type: imperialVendingProfile
+  id: CentDrobeInventory
+  tgVendor: wardrobe/cent_wardrobe
+  defaultPrice: 50
+  extraPrice: 100
+  replace: true
+  products:
+  - id: ClothingEyesGlassesSunglasses
+    amount: 3
+    price: 50
+  - id: ClothingHeadHatCentComCap
+    amount: 9
+    price: 50
+  - id: ClothingUniformJumpsuitCentcomOfficial
+    amount: 6
+    price: 50
+  - id: ClothingUniformJumpskirtDressCentCom
+    amount: 6
+    price: 50
+  - id: ClothingUniformJumpsuitCentcomAgent
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpsuitCentcomOfficer
+    amount: 3
+    price: 50
+  - id: ClothingOuterArmorCentCom
+    amount: 6
+    price: 50
+  - id: ClothingOuterWinterCentcom
+    amount: 3
+    price: 50
+  - id: ClothingShoesBootsLaceup
+    amount: 3
+    price: 50
+  - id: ClothingShoesBootsJack
+    amount: 3
+    price: 50
+  - id: ClothingHandsGlovesCombat
+    amount: 3
+    price: 50
+
+- type: imperialVendingProfile
+  id: ChangInventory
+  defaultPrice: 30
+  extraPrice: 50
+  department: Service
+
+- type: imperialVendingProfile
+  id: PietyVendInventory
+  tgVendor: wardrobe/chap_wardrobe
+  defaultPrice: 50
+  extraPrice: 100
+  department: Service
+  replace: true
+  products:
+  - id: HolyArmamentsBeacon
+    amount: 1
+    price: 50
+  - id: ImperialClothingNeckPocketprotectorCosmetology
+    amount: 1
+    price: 50
+  - id: ClothingUniformJumpsuitChaplain
+    amount: 1
+    price: 50
+  - id: ClothingUniformJumpskirtChaplain
+    amount: 2
+    price: 50
+  - id: ClothingShoesColorBlack
+    amount: 1
+    price: 50
+  - id: ClothingOuterNunRobe
+    amount: 1
+    price: 50
+  - id: ClothingHeadHatHoodNunHood
+    amount: 2
+    price: 50
+  - id: ClothingOuterImperialHolidayPriest
+    amount: 1
+    price: 50
+  - id: ClothingOuterImperialMonkHabit
+    amount: 1
+    price: 50
+  - id: ImperialClothingHeadChaplainKippah
+    amount: 3
+    price: 50
+  - id: ClothingOuterImperialWhiteRobe
+    amount: 1
+    price: 50
+  - id: ImperialClothingHeadChaplainTaqiyahWhite
+    amount: 1
+    price: 50
+  - id: ClothingHeadHatFez
+    amount: 3
+    price: 50
+  - id: ClothingOuterImperialMonkRobeEast
+    amount: 1
+    price: 50
+  - id: ClothingHeadRastaHat
+    amount: 1
+    price: 50
+  - id: ClothingOuterImperialShrinehand
+    amount: 1
+    price: 50
+  - id: ClothingBackpackImperialCultpack
+    amount: 1
+    price: 50
+  - id: BoxCandle
+    amount: 2
+    price: 50
+  - id: ClothingHeadsetService
+    amount: 2
+    price: 50
+  - id: ClothingOuterImperialHabit
+    amount: 1
+    price: 50
+  - id: PlushieRatvar
+    amount: 1
+    price: 100
+    type: Contraband
+  - id: PlushieNar
+    amount: 1
+    price: 100
+    type: Contraband
+  - id: ImperialClothingHeadChaplainMedievaljewhat
+    amount: 3
+    price: 100
+    type: Contraband
+  - id: ClothingHeadHatMitreClown
+    amount: 1
+    price: 100
+    type: Contraband
+  - id: ClothingOuterClownPriest
+    amount: 1
+    price: 100
+    type: Contraband
+  - id: ImperialClothingHeadChaplainBishopmitre
+    amount: 1
+    price: 100
+    type: Premium
+  - id: ClothingOuterImperialBishopRobe
+    amount: 1
+    price: 100
+    type: Premium
+
+- type: imperialVendingProfile
+  id: ChefDrobeInventory
+  tgVendor: wardrobe/chef_wardrobe
+  defaultPrice: 50
+  extraPrice: 100
+  department: Service
+  replace: true
+  products:
+  - id: ClothingOuterVest
+    amount: 2
+    price: 50
+  - id: ClothingHeadHatMimesoft
+    amount: 2
+    price: 50
+  - id: ClothingHeadHatChef
+    amount: 2
+    price: 50
+  - id: ClothingUniformRandomShirt
+    amount: 4
+    price: 50
+  - id: ClothingUniformRandomShorts
+    amount: 2
+    price: 50
+  - id: ImperialClothingUniformSuitWaiter
+    amount: 2
+    price: 50
+  - id: ClothingOuterApronChef
+    amount: 4
+    price: 50
+  - id: ClothingOuterWinterCoat
+    amount: 2
+    price: 50
+  - id: ClothingShoesMartialSandals
+    amount: 2
+    price: 50
+  - id: ClothingShoesColorBlack
+    amount: 2
+    price: 50
+  - id: BoxMousetrap
+    amount: 2
+    price: 50
+  - id: ImperialDishDriveCircuitboard
+    amount: 1
+    price: 50
+  - id: RagItem
+    amount: 2
+    price: 50
+  - id: ClothingHeadsetService
+    amount: 2
+    price: 50
+
+- type: imperialVendingProfile
+  id: ChefvendInventory
+  defaultPrice: 40
+  extraPrice: 120
+  department: Service
+
+- type: imperialVendingProfile
+  id: ChemDrobeInventory
+  tgVendor: wardrobe/chem_wardrobe
+  defaultPrice: 50
+  extraPrice: 100
+  department: Medical
+  replace: true
+  products:
+  - id: ClothingHeadHatBeretMedic
+    amount: 2
+    price: 50
+  - id: ClothingUniformJumpsuitChemistry
+    amount: 2
+    price: 50
+  - id: ClothingUniformJumpskirtChemistry
+    amount: 2
+    price: 50
+  - id: ClothingOuterCoatLabChem
+    amount: 2
+    price: 50
+  - id: ClothingOuterWinterChem
+    amount: 2
+    price: 50
+  - id: ClothingHandsGlovesLatex
+    amount: 2
+    price: 50
+  - id: ClothingShoesColorWhite
+    amount: 2
+    price: 50
+  - id: ClothingBackpackChemistry
+    amount: 2
+    price: 50
+  - id: ClothingBackpackSatchelChemistry
+    amount: 4
+    price: 50
+  - id: ClothingBackpackDuffelChemistry
+    amount: 2
+    price: 50
+  - id: ChemBag
+    amount: 2
+    price: 50
+  - id: ImperialPhBooklet
+    amount: 3
+    price: 50
+  - id: ClothingHeadsetMedical
+    amount: 2
+    price: 50
+  - id: SprayBottle
+    amount: 2
+    price: 200
+    type: Contraband
+
+- type: imperialVendingProfile
+  id: ChemVendInventory
+  defaultPrice: 50
+  extraPrice: 100
+  department: Medical
+
+- type: imperialVendingProfile
+  id: ChemVendInventorySyndicate
+  free: true
+
+- type: imperialVendingProfile
+  id: CigaretteMachineInventory
+  tgVendor: cigarette
+  defaultPrice: 50
+  extraPrice: 100
+  department: Service
+  replace: true
+  products:
+  - id: CigPackRed
+    amount: 8
+    price: 50
+  - id: CigPackGreen
+    amount: 7
+    price: 50
+  - id: CigPackBlue
+    amount: 6
+    price: 50
+  - id: Matchbox
+    amount: 10
+    price: 20
+  - id: CheapLighter
+    amount: 4
+    price: 55
+  - id: PackPaperRolling
+    amount: 5
+    price: 25
+  - id: Vape
+    amount: 5
+    price: 100
+    type: Contraband
+  - id: Cigar
+    amount: 1
+    price: 100
+    type: Contraband
+  - id: CigPackBlack
+    amount: 1
+    price: 150
+    type: Contraband
+  - id: CigPackRed
+    amount: 3
+    price: 150
+    type: Premium
+  - id: ImperialBoxGumNicotine
+    amount: 2
+    price: 75
+    type: Premium
+  - id: Lighter
+    amount: 3
+    price: 155
+    type: Premium
+  - id: CigarCase
+    amount: 2
+    price: 150
+    type: Premium
+  - id: CigarGoldCase
+    amount: 1
+    price: 150
+    type: Premium
+
+- type: imperialVendingProfile
+  id: ClothesMateInventory
+  tgVendor: clothing
+  defaultPrice: 35
+  extraPrice: 100
+  replace: true
+  products:
+  - id: ClothingHeadHairJaneDoe
+    amount: 4
+    price: 100
+    category: Головные уборы
+  - id: ImperialClothingHeadCostumeFancy
+    amount: 4
+    price: 35
+    category: Головные уборы
+  - id: ClothingHeadHatCanadaBeanie
+    amount: 8
+    price: 60
+    category: Головные уборы
+  - id: ClothingHeadHatBeret
+    amount: 10
+    price: 35
+    category: Головные уборы
+  - id: ClothingMaskBandRed
+    amount: 3
+    price: 35
+    category: Головные уборы
+  - id: ClothingMaskBandGrey
+    amount: 3
+    price: 35
+    category: Головные уборы
+  - id: ClothingMaskBandSkull
+    amount: 3
+    price: 35
+    category: Головные уборы
+  - id: ImperialClothingMaskFacescarf
+    amount: 3
+    price: 50
+    category: Головные уборы
+  - id: ClothingNeckScarfStripedRed
+    amount: 24
+    price: 50
+    category: Головные уборы
+  - id: ClothingNeckScarfStripedGreen
+    amount: 6
+    price: 50
+    category: Головные уборы
+  - id: ClothingNeckScarfStripedBlue
+    amount: 6
+    price: 50
+    category: Головные уборы
+  - id: ClothingNeckTieRed
+    amount: 15
+    price: 50
+    category: Головные уборы
+  - id: ClothingHeadRastaHat
+    amount: 3
+    price: 35
+    category: Головные уборы
+  - id: ImperialClothingHeadChaplainKippah
+    amount: 3
+    price: 35
+    category: Головные уборы
+  - id: ClothingHeadHatFez
+    amount: 3
+    price: 35
+    category: Головные уборы
+  - id: ClothingHeadHatTophat
+    amount: 3
+    price: 35
+    category: Головные уборы
+  - id: ClothingHeadHatFedoraBrown
+    amount: 6
+    price: 35
+    category: Головные уборы
+  - id: ClothingHeadHatFedoraGrey
+    amount: 6
+    price: 35
+    category: Головные уборы
+  - id: ClothingHeadHatBowlerHat
+    amount: 3
+    price: 35
+    category: Головные уборы
+  - id: ClothingHeadHatCowboyWhite
+    amount: 3
+    price: 35
+    category: Головные уборы
+  - id: ClothingHeadHatCowboyGrey
+    amount: 3
+    price: 35
+    category: Головные уборы
+  - id: ImperialClothingHeadCostumeSombreroGreen
+    amount: 3
+    price: 35
+    category: Головные уборы
+  - id: ImperialClothingHeadCostumeNightcapBlue
+    amount: 3
+    price: 35
+    category: Головные уборы
+  - id: ImperialClothingHeadCostumeNightcapRed
+    amount: 3
+    price: 35
+    category: Головные уборы
+  - id: ClothingOuterVest
+    amount: 7
+    price: 35
+    category: Аксессуары
+  - id: ImperialClothingNeckSweatervest
+    amount: 4
+    price: 35
+    category: Аксессуары
+  - id: ClothingBeltSuspendersRed
+    amount: 4
+    price: 35
+    category: Аксессуары
+  - id: ImperialClothingNeckRobeCape
+    amount: 3
+    price: 35
+    category: Аксессуары
+  - id: ClothingEyesGlasses
+    amount: 3
+    price: 35
+    category: Аксессуары
+  - id: ClothingEyesGlassesJamjar
+    amount: 3
+    price: 35
+    category: Аксессуары
+  - id: ClothingEyesGlassesGarOrange
+    amount: 3
+    price: 35
+    category: Аксессуары
+  - id: ImperialClothingEyesRed
+    amount: 3
+    price: 35
+    category: Аксессуары
+  - id: ImperialClothingEyesMonocle
+    amount: 3
+    price: 35
+    category: Аксессуары
+  - id: ClothingHandsGlovesFingerless
+    amount: 3
+    price: 75
+    category: Аксессуары
+  - id: ImperialClothingBeltFannypack
+    amount: 3
+    price: 100
+    category: Аксессуары
+  - id: ImperialClothingBeltFannypackBlue
+    amount: 3
+    price: 100
+    category: Аксессуары
+  - id: ImperialClothingBeltFannypackRed
+    amount: 3
+    price: 100
+    category: Аксессуары
+  - id: ImperialClothingNeckCloakColorableCloak
+    amount: 3
+    price: 35
+    category: Аксессуары
+  - id: ImperialClothingUniformPantsSlacks
+    amount: 5
+    price: 50
+    category: Комбинезоны
+  - id: ClothingUniformRandomShorts
+    amount: 17
+    price: 35
+    category: Комбинезоны
+  - id: ImperialClothingUniformPantsJeans
+    amount: 5
+    price: 50
+    category: Комбинезоны
+  - id: ClothingUniformRandomShirt
+    amount: 16
+    price: 50
+    category: Комбинезоны
+  - id: ImperialClothingUniformDressSundress
+    amount: 3
+    price: 50
+    category: Комбинезоны
+  - id: ImperialClothingUniformDressTango
+    amount: 3
+    price: 50
+    category: Комбинезоны
+  - id: ClothingUniformJumpskirtColorRed
+    amount: 4
+    price: 50
+    category: Комбинезоны
+  - id: ClothingUniformJumpskirtColorBlack
+    amount: 7
+    price: 50
+    category: Комбинезоны
+  - id: ClothingUniformOveralls
+    amount: 3
+    price: 50
+    category: Комбинезоны
+  - id: ClothingUniformJumpsuitMinuteManCamoUrban
+    amount: 3
+    price: 50
+    category: Комбинезоны
+  - id: ImperialClothingUniformCostumeKilt
+    amount: 3
+    price: 35
+    category: Комбинезоны
+  - id: ClothingUniformJumpskirtRedStripedDress
+    amount: 3
+    price: 35
+    category: Комбинезоны
+  - id: ClothingUniformJumpskirtOldDress
+    amount: 3
+    price: 35
+    category: Комбинезоны
+  - id: ImperialClothingUniformDressEveninggown
+    amount: 3
+    price: 35
+    category: Комбинезоны
+  - id: ImperialClothingUniformMiscPjBlue
+    amount: 3
+    price: 35
+    category: Комбинезоны
+  - id: ImperialClothingUniformMiscPjRed
+    amount: 3
+    price: 35
+    category: Комбинезоны
+  - id: ImperialClothingOuterToggleJacketSweater
+    amount: 4
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterJacketBlazer
+    amount: 4
+    price: 35
+    category: Костюмы и юбки
+  - id: ClothingOuterCoatTrench
+    amount: 4
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterJacketOversized
+    amount: 4
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterJacketFancy
+    amount: 4
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterToggleLawyerGreyscale
+    amount: 4
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterHoodedWintercoatPullover
+    amount: 3
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterHoodedWintercoatZipup
+    amount: 3
+    price: 35
+    category: Костюмы и юбки
+  - id: ClothingOuterWinterCoat
+    amount: 6
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingUniformSuitNavy
+    amount: 3
+    price: 35
+    category: Костюмы и юбки
+  - id: ClothingUniformJumpsuitLawyerBlack
+    amount: 3
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingUniformSuitBurgundy
+    amount: 3
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingUniformSuitCharcoal
+    amount: 3
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingUniformSuitWhite
+    amount: 3
+    price: 35
+    category: Костюмы и юбки
+  - id: ClothingOuterCoatBomber
+    amount: 3
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterJacketPuffer
+    amount: 3
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterJacketLetterman
+    amount: 3
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterJacketLettermanRed
+    amount: 3
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterCostumeHawaiian
+    amount: 4
+    price: 35
+    category: Костюмы и юбки
+  - id: ClothingOuterPoncho
+    amount: 3
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingUniformSuitWhiteSkirt
+    amount: 3
+    price: 35
+    category: Костюмы и юбки
+  - id: ClothingUniformJumpsuitBartenderPurple
+    amount: 2
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterJacketMiljacket
+    amount: 3
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterApronOveralls
+    amount: 3
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterCostumeWellwornShirt
+    amount: 2
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterCostumeWellwornShirtGraphic
+    amount: 2
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterCostumeWellwornShirtGraphicIan
+    amount: 3
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterCostumeWellwornShirtWornout
+    amount: 2
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterCostumeWellwornShirtWornoutGraphic
+    amount: 2
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterCostumeWellwornShirtWornoutGraphicIan
+    amount: 2
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterCostumeWellwornShirtMessy
+    amount: 2
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterCostumeWellwornShirtMessyGraphic
+    amount: 2
+    price: 35
+    category: Костюмы и юбки
+  - id: ImperialClothingOuterCostumeWellwornShirtMessyGraphicIan
+    amount: 2
+    price: 35
+    category: Костюмы и юбки
+  - id: ClothingShoesColorBlack
+    amount: 4
+    price: 50
+    category: Обувь
+  - id: ClothingShoesColorWhite
+    amount: 4
+    price: 35
+    category: Обувь
+  - id: ClothingShoesSlippers
+    amount: 3
+    price: 35
+    category: Обувь
+  - id: ClothingShoesBootsLaceup
+    amount: 3
+    price: 35
+    category: Обувь
+  - id: ClothingShoesBootsWinter
+    amount: 2
+    price: 35
+    category: Обувь
+  - id: ImperialClothingShoesGlow
+    amount: 2
+    price: 35
+    category: Обувь
+  - id: ClothingShoesBootsCowboyBrown
+    amount: 3
+    price: 50
+    category: Обувь
+  - id: ClothingShoesBootsCowboyWhite
+    amount: 3
+    price: 50
+    category: Обувь
+  - id: ClothingShoesBootsCowboyBlack
+    amount: 3
+    price: 50
+    category: Обувь
+  - id: ImperialClothingHeadCostumeFootballHelmet
+    amount: 6
+    price: 35
+    category: Особое
+  - id: ImperialClothingUniformCostumeFootballSuit
+    amount: 6
+    price: 35
+    category: Особое
+  - id: ImperialClothingOuterCostumeFootballArmor
+    amount: 6
+    price: 35
+    category: Особое
+  - id: ImperialClothingOuterMothcoat
+    amount: 3
+    price: 35
+    category: Особое
+  - id: ImperialClothingOuterMothcoatWinter
+    amount: 3
+    price: 35
+    category: Особое
+  - id: ImperialClothingHeadMothcap
+    amount: 3
+    price: 35
+    category: Особое
+  - id: ImperialClothingOuterHoodedEtherealRaincoat
+    amount: 3
+    price: 35
+    category: Особое
+  - id: ImperialClothingUniformEtherealTunic
+    amount: 3
+    price: 35
+    category: Особое
+  - id: ClothingMaskFox
+    amount: 3
+    price: 50
+    category: Особое
+  - id: ImperialClothingMaskRebellion
+    amount: 6
+    price: 50
+    category: Особое
+  - id: ImperialClothingHeadCostumeHairpin
+    amount: 2
+    price: 35
+    category: Особое
+  - id: ClothingUniformJumpsuitKimono
+    amount: 12
+    price: 35
+    category: Особое
+  - id: ClothingShoesMartialSandals
+    amount: 4
+    price: 35
+    category: Особое
+  - id: ImperialClothingOuterCostumeIrs
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ImperialClothingHeadCostumeIrs
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ClothingHeadBandRed
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ClothingMultipleHeadphones
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ImperialClothingHeadCostumeYuri
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ImperialClothingHeadCostumeAllies
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ClothingEyesGlassesSunglasses
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ImperialClothingEyesPhantom
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ImperialClothingMaskGasDriscoll
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ImperialClothingUniformCostumeYuri
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ImperialClothingUniformCostumeDutch
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ImperialClothingUniformCostumeOsi
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ImperialClothingUniformCostumeTmc
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ClothingOuterHoodieBlack
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ImperialClothingOuterCostumeSoviet
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ImperialClothingOuterCostumeYuri
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ImperialClothingOuterCostumeTmc
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ImperialClothingOuterCostumePg
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ImperialClothingShoesJackbros
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ImperialClothingShoesSaints
+    amount: 20
+    price: 35
+    category: Особое
+  - id: ClothingUniformJumpsuitTacticool
+    amount: 2
+    price: 100
+    type: Contraband
+  - id: ClothingUniformJumpskirtTacticool
+    amount: 2
+    price: 100
+    type: Contraband
+  - id: ImperialClothingMaskBalaclava
+    amount: 3
+    price: 100
+    type: Contraband
+  - id: ClothingHeadHatUshanka
+    amount: 3
+    price: 100
+    type: Contraband
+  - id: ImperialClothingUniformCostumeSoviet
+    amount: 3
+    price: 100
+    type: Contraband
+  - id: ImperialClothingBeltFannypackBlack
+    amount: 2
+    price: 200
+    type: Contraband
+  - id: ImperialClothingOuterJacketLettermanSyndie
+    amount: 3
+    price: 100
+    type: Contraband
+  - id: ImperialClothingUniformCostumeJabroni
+    amount: 3
+    price: 100
+    type: Contraband
+  - id: ImperialClothingUniformCostumeGeisha
+    amount: 3
+    price: 100
+    type: Contraband
+  - id: ClothingUniformJumpsuitCentcomOfficer
+    amount: 2
+    price: 100
+    type: Contraband
+  - id: ClothingUniformJumpskirtDressCentCom
+    amount: 2
+    price: 100
+    type: Contraband
+  - id: ImperialClothingUniformSuitCheckered
+    amount: 3
+    price: 100
+    type: Premium
+  - id: ImperialClothingHeadCostumeMailman
+    amount: 3
+    price: 50
+    type: Premium
+  - id: ClothingUniformJumpsuitCargo
+    amount: 3
+    price: 50
+    type: Premium
+  - id: ClothingOuterCoatBomber
+    amount: 6
+    price: 100
+    type: Premium
+  - id: ImperialClothingNeckNecklaceDope
+    amount: 3
+    price: 100
+    type: Premium
+  - id: ImperialClothingOuterJacketLettermanNanotrasen
+    amount: 3
+    price: 100
+    type: Premium
+  - id: ImperialClothingUniformCostumeSwagoutfit
+    amount: 1
+    price: 100
+    type: Premium
+  - id: ImperialClothingShoesSwagshoes
+    amount: 1
+    price: 100
+    type: Premium
+  - id: ClothingMultipleHeadphones
+    amount: 1
+    price: 1800
+    type: Premium
+  - id: ClothingUniformJumpskirtJanimaid
+    amount: 3
+    price: 35
+    category: Костюмы
+  - id: ClothingUniformJumpskirtJanimaidmini
+    amount: 3
+    price: 35
+    category: Костюмы
+  - id: ClothingBeltJanimaid
+    amount: 3
+    price: 35
+    category: Костюмы
+  - id: ClothingNeckMaidChoker
+    amount: 3
+    price: 35
+    category: Костюмы
+  - id: ClothingBackpackMaidBackbow
+    amount: 3
+    price: 35
+    category: Костюмы
+
+- type: imperialVendingProfile
+  id: HotDrinksMachineInventory
+  tgVendor: coffee
+  defaultPrice: 25
+  extraPrice: 50
+  department: Service
+  replace: true
+  products:
+  - id: DrinkHotCoffee
+    amount: 6
+    price: 25
+  - id: DrinkTeacup
+    amount: 6
+    price: 25
+  - id: DrinkHotCoco
+    amount: 3
+    price: 60
+  - id: DrinkIceGlass
+    amount: 12
+    price: 65
+    type: Contraband
+
+- type: imperialVendingProfile
+  id: RobustSoftdrinksInventory
+  tgVendor: cola
+  defaultPrice: 35
+  extraPrice: 50
+  department: Service
+  replace: true
+  products:
+  - id: DrinkColaCan
+    amount: 10
+    price: 45
+  - id: DrinkSpaceMountainWindCan
+    amount: 10
+    price: 45
+  - id: DrinkDrGibbCan
+    amount: 10
+    price: 45
+  - id: DrinkStarkistCan
+    amount: 10
+    price: 45
+  - id: DrinkSpaceUpCan
+    amount: 10
+    price: 45
+  - id: DrinkPwrGameCan
+    amount: 10
+    price: 45
+  - id: DrinkLemonLimeCan
+    amount: 10
+    price: 45
+  - id: DrinkSolDryCan
+    amount: 10
+    price: 45
+  - id: ImperialDrinkLipoCan
+    amount: 5
+    price: 45
+  - id: DrinkWaterBottleFull
+    amount: 10
+    price: 20
+  - id: ImperialDrinkMushiKombuchaBottleFull
+    amount: 3
+    price: 55
+  - id: DrinkEnergyDrinkCan
+    amount: 3
+    price: 45
+  - id: DrinkFourteenLokoCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: DrinkShamblersJuiceCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: ImperialDrinkWellcheersCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: DrinkNuclearColaGlass
+    amount: 1
+    price: 75
+    type: Premium
+  - id: ImperialDrinkAirCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: ImperialDrinkMonkeyEnergyCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: ImperialDrinkGreyBullCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: DrinkRootBeerCan
+    amount: 1
+    price: 100
+    type: Premium
+
+- type: imperialVendingProfile
+  id: CondimentInventory
+  free: true
+
+- type: imperialVendingProfile
+  id: CuraDrobeInventory
+  tgVendor: wardrobe/curator_wardrobe
+  defaultPrice: 50
+  extraPrice: 100
+  department: Service
+  replace: true
+  products:
+  - id: ImperialClothingNeckPocketprotector
+    amount: 2
+    price: 50
+  - id: Pen
+    amount: 9
+    price: 50
+  - id: LuxuryPen
+    amount: 2
+    price: 50
+  - id: ClothingEyesGlasses
+    amount: 2
+    price: 50
+  - id: ClothingEyesGlassesJamjar
+    amount: 1
+    price: 50
+  - id: ClothingUniformJumpsuitCurator
+    amount: 1
+    price: 50
+  - id: ClothingUniformJumpskirtCurator
+    amount: 1
+    price: 50
+  - id: ClothingUniformJumpsuitCapFormal
+    amount: 1
+    price: 50
+  - id: ClothingUniformJumpskirtCapFormalDress
+    amount: 1
+    price: 50
+  - id: ClothingUniformJumpsuitHoP
+    amount: 1
+    price: 50
+  - id: ClothingUniformJumpskirtHoP
+    amount: 1
+    price: 50
+  - id: ImperialClothingOuterToggleLawyerGreyscale
+    amount: 1
+    price: 50
+  - id: ClothingBackpackSatchelSalvage
+    amount: 2
+    price: 50
+  - id: BooksBag
+    amount: 1
+    price: 50
+  - id: ClothingHeadsetService
+    amount: 2
+    price: 50
+
+- type: imperialVendingProfile
+  id: DetDrobeInventory
+  tgVendor: wardrobe/det_wardrobe
+  defaultPrice: 50
+  extraPrice: 175
+  department: Security
+  replace: true
+  products:
+  - id: ClothingHeadHatFedoraBrown
+    amount: 2
+    price: 50
+  - id: ClothingUniformJumpsuitDetective
+    amount: 2
+    price: 50
+  - id: ClothingUniformJumpskirtDetective
+    amount: 2
+    price: 50
+  - id: ClothingOuterCoatTrench
+    amount: 2
+    price: 50
+  - id: ClothingOuterCoatDetective
+    amount: 2
+    price: 50
+  - id: ClothingShoesColorBrown
+    amount: 2
+    price: 50
+  - id: ClothingHandsGlovesLatex
+    amount: 2
+    price: 50
+  - id: ClothingHandsGlovesColorBlack
+    amount: 2
+    price: 50
+  - id: ClothingOuterVest
+    amount: 2
+    price: 50
+  - id: ClothingUniformJumpsuitDetectiveGrey
+    amount: 2
+    price: 50
+  - id: ClothingUniformJumpskirtDetectiveGrey
+    amount: 2
+    price: 50
+  - id: ClothingShoesBootsLaceup
+    amount: 2
+    price: 50
+  - id: ClothingHeadHatFedoraGrey
+    amount: 1
+    price: 50
+  - id: ClothingOuterCoatDetectiveDark
+    amount: 2
+    price: 50
+  - id: ImperialClothingNeckTieDisco
+    amount: 1
+    price: 50
+  - id: ImperialClothingUniformRankSecurityDetectiveDisco
+    amount: 1
+    price: 50
+  - id: ImperialClothingOuterJacketDetSuitDisco
+    amount: 1
+    price: 50
+  - id: ClothingShoesColorGreen
+    amount: 1
+    price: 50
+  - id: ClothingEyesLinsesSona
+    amount: 1
+    price: 50
+  - id: ImperialClothingUniformRankSecurityDetectiveKim
+    amount: 1
+    price: 50
+  - id: ClothingOuterCoatBomber
+    amount: 1
+    price: 50
+  - id: ImperialClothingHandsKim
+    amount: 1
+    price: 50
+  - id: ClothingShoesBootsJack
+    amount: 1
+    price: 50
+  - id: DrinkDetFlask
+    amount: 2
+    price: 200
+  - id: CigPackRed
+    amount: 5
+    price: 50
+  - id: CigPackGreen
+    amount: 5
+    price: 50
+  - id: ClothingHeadHatGreyFlatcap
+    amount: 1
+    price: 175
+    type: Premium
+  - id: ClothingEyesGlassesNoir
+    amount: 1
+    price: 175
+    type: Premium
+
+- type: imperialVendingProfile
+  id: DinnerwareInventory
+  tgVendor: dinnerware
+  defaultPrice: 40
+  extraPrice: 120
+  department: Service
+  replace: true
+  products:
+  - id: ImperialServingTray
+    amount: 8
+    price: 30
+    category: Кухонная утварь
+  - id: FoodBowlBig
+    amount: 33
+    price: 200
+    category: Кухонная утварь
+  - id: Spoon
+    amount: 13
+    price: 100
+    category: Кухонная утварь
+  - id: ClothingOuterApronChef
+    amount: 2
+    price: 40
+    category: Кухонная утварь
+  - id: RollingPin
+    amount: 2
+    price: 75
+    category: Кухонная утварь
+  - id: ImperialTongs
+    amount: 2
+    price: 40
+    category: Кухонная утварь
+  - id: KitchenKnife
+    amount: 2
+    price: 40
+    category: Кухонная утварь
+  - id: Fork
+    amount: 6
+    price: 25
+    category: Столовые приборы
+  - id: FoodPlateSmall
+    amount: 5
+    price: 40
+    category: Посуда
+  - id: FoodPlate
+    amount: 15
+    price: 40
+    category: Посуда
+  - id: DrinkGlass
+    amount: 8
+    price: 25
+    category: Посуда
+  - id: FoodCondimentPacketKetchup
+    amount: 5
+    price: 40
+    category: Приправы
+  - id: FoodCondimentPacketHotsauce
+    amount: 5
+    price: 40
+    category: Приправы
+  - id: FoodCondimentPacketAstrotame
+    amount: 5
+    price: 40
+    category: Приправы
+  - id: FoodShakerSalt
+    amount: 5
+    price: 40
+    category: Приправы
+  - id: FoodShakerPepper
+    amount: 5
+    price: 40
+    category: Приправы
+  - id: ImperialBookCookingSweets
+    amount: 2
+    price: 40
+    category: Рецепты
+  - id: RollingPin
+    amount: 2
+    price: 220
+    type: Contraband
+  - id: ButchCleaver
+    amount: 2
+    price: 370
+    type: Contraband
+
+- type: imperialVendingProfile
+  id: DiscountDansInventory
+  defaultPrice: 30
+  extraPrice: 50
+  department: Service
+
+- type: imperialVendingProfile
+  id: DonutInventory
+  defaultPrice: 30
+  extraPrice: 50
+  department: Service
+
+- type: imperialVendingProfile
+  id: EmptyVendingMachineInventory
+  free: true
+
+- type: imperialVendingProfile
+  id: EngiDrobeInventory
+  tgVendor: wardrobe/engi_wardrobe
+  defaultPrice: 50
+  extraPrice: 100
+  department: Engineering
+  replace: true
+  products:
+  - id: ImperialClothingNeckPocketprotector
+    amount: 3
+    price: 50
+  - id: ClothingHeadHatHardhatYellow
+    amount: 6
+    price: 50
+  - id: ClothingHeadHatBeretEngineering
+    amount: 3
+    price: 50
+  - id: ClothingMaskBandGold
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpsuitEngineering
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpskirtEngineering
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpsuitEngineeringHazard
+    amount: 3
+    price: 50
+  - id: ClothingOuterVestHazard
+    amount: 3
+    price: 50
+  - id: ClothingOuterWinterEngi
+    amount: 3
+    price: 50
+  - id: ClothingShoesBootsWork
+    amount: 3
+    price: 50
+  - id: ClothingBackpackEngineering
+    amount: 3
+    price: 50
+  - id: ClothingBackpackSatchelEngineering
+    amount: 6
+    price: 50
+  - id: ClothingBackpackDuffelEngineering
+    amount: 3
+    price: 50
+
+- type: imperialVendingProfile
+  id: EngiVendInventory
+  tgVendor: engivend
+  defaultPrice: 50
+  extraPrice: 150
+  department: Engineering
+  replace: true
+  products:
+  - id: ClothingEyesGlassesMeson
+    amount: 2
+    price: 50
+  - id: ImperialWeldingGoggles
+    amount: 3
+    price: 50
+  - id: Multitool
+    amount: 4
+    price: 50
+  - id: MetalFoamGrenade
+    amount: 10
+    price: 50
+  - id: GeigerCounter
+    amount: 5
+    price: 50
+  - id: PowerCellHigh
+    amount: 10
+    price: 50
+  - id: PowerCageHigh
+    amount: 10
+    price: 50
+  - id: DoorElectronics
+    amount: 10
+    price: 25
+  - id: APCElectronics
+    amount: 10
+    price: 25
+  - id: AirAlarmElectronics
+    amount: 10
+    price: 25
+  - id: FireAlarmElectronics
+    amount: 10
+    price: 25
+  - id: FirelockElectronics
+    amount: 10
+    price: 25
+  - id: ImperialStickyTape
+    amount: 10
+    price: 50
+  - id: PowerCellPotato
+    amount: 3
+    price: 50
+    type: Contraband
+  - id: ClothingBeltUtility
+    amount: 3
+    price: 100
+    type: Premium
+  - id: MaterialBag
+    amount: 3
+    price: 150
+    type: Premium
+  - id: ImperialRapidLightDeviceMini
+    amount: 2
+    price: 300
+    type: Premium
+  - id: RCD
+    amount: 2
+    price: 200
+    type: Premium
+  - id: ImperialBoxSmartMetalFoam
+    amount: 1
+    price: 150
+    type: Premium
+
+- type: imperialVendingProfile
+  id: GoodCleanFunInventory
+  tgVendor: games
+  defaultPrice: 50
+  extraPrice: 125
+  department: Service
+  replace: true
+  products:
+  - id: ImperialPlayingCardDeck
+    amount: 5
+    price: 50
+    category: Карты
+  - id: ImperialPlayingCardDeckBlank
+    amount: 3
+    price: 50
+    category: Карты
+  - id: ImperialPlayingCardDeckBlankBlack
+    amount: 3
+    price: 50
+    category: Карты
+  - id: ImperialPlayingCardDeckCasWhite
+    amount: 3
+    price: 50
+    category: Карты
+  - id: ImperialPlayingCardDeckCasBlack
+    amount: 3
+    price: 50
+    category: Карты
+  - id: ImperialPlayingCardDeckKotahi
+    amount: 3
+    price: 50
+    category: Карты
+  - id: ImperialPlayingCardDeckTarot
+    amount: 3
+    price: 50
+    category: Карты
+  - id: ImperialPlayingCardDeckWizoff
+    amount: 3
+    price: 50
+    category: Карты
+  - id: ImperialPlayingCardShoe
+    amount: 3
+    price: 50
+    category: Карты
+  - id: PlushieAid
+    amount: 1
+    price: 125
+    category: Игрушки
+  - id: ImperialToyIntento
+    amount: 3
+    price: 125
+    category: Игрушки
+  - id: CrayonBox
+    amount: 5
+    price: 50
+    category: Искусство
+  - id: ImperialChisel
+    amount: 3
+    price: 50
+    category: Искусство
+  - id: Paper
+    amount: 26
+    price: 50
+    category: Искусство
+  - id: PaintingEmpty
+    amount: 5
+    price: 63
+    category: Искусство
+  - id: CableApcStack10
+    amount: 10
+    price: 25
+    category: Искусство
+  - id: ImperialFishingToolbox
+    amount: 2
+    price: 150
+    category: Рыбалка
+  - id: ImperialFishingHookSet
+    amount: 2
+    price: 100
+    category: Рыбалка
+  - id: ImperialFishingLineSet
+    amount: 2
+    price: 100
+    category: Рыбалка
+  - id: ImperialFishingLureSet
+    amount: 2
+    price: 450
+    category: Рыбалка
+  - id: ImperialFishCatalog
+    amount: 5
+    price: 100
+    category: Рыбалка
+  - id: ImperialFishFeedCan
+    amount: 4
+    price: 50
+    category: Рыбалка
+  - id: ImperialAquariumPropRocks
+    amount: 4
+    price: 25
+    category: Рыбалка
+  - id: ImperialFishAnalyzer
+    amount: 2
+    price: 150
+    category: Рыбалка
+  - id: ImperialFishingBag
+    amount: 2
+    price: 150
+    category: Рыбалка
+  - id: ImperialFishingRodTelescopic
+    amount: 1
+    price: 450
+    category: Рыбалка
+  - id: ImperialFishTank
+    amount: 1
+    price: 450
+    category: Рыбалка
+  - id: ImperialCamera
+    amount: 3
+    price: 100
+    category: Прочее
+  - id: ImperialCameraFilm
+    amount: 5
+    price: 50
+    category: Прочее
+  - id: ImperialTcgCardPackResin
+    amount: 20
+    price: 38
+    category: Прочее
+  - id: ImperialTcgCardPackSeries1
+    amount: 20
+    price: 38
+    category: Прочее
+  - id: ImperialHairDyeSpray
+    amount: 3
+    price: 50
+    category: Прочее
+  - id: ImperialHourglass
+    amount: 2
+    price: 50
+    category: Прочее
+  - id: ClothingMultipleHeadphones
+    amount: 4
+    price: 125
+    category: Прочее
+  - id: ImperialRazor
+    amount: 3
+    price: 50
+    category: Прочее
+  - id: ImperialCardBinder
+    amount: 10
+    price: 50
+    category: Прочее
+  - id: DiceBag
+    amount: 10
+    price: 50
+    category: Прочее
+  - id: d6Dice
+    amount: 9
+    price: 125
+    type: Contraband
+  - id: ClothingShoesBootsWinter
+    amount: 4
+    price: 80
+    type: Contraband
+  - id: ImperialMusicalMoth
+    amount: 1
+    price: 237
+    type: Contraband
+  - id: RevolverCapGun
+    amount: 1
+    price: 125
+    type: Contraband
+  - id: ImperialTapeRecorder
+    amount: 5
+    price: 125
+    type: Premium
+  - id: ImperialRapidWiringDevice
+    amount: 2
+    price: 125
+    type: Premium
+  - id: SprayPainter
+    amount: 1
+    price: 125
+    type: Premium
+  - id: ClothingShoesSkates
+    amount: 3
+    price: 250
+    type: Premium
+  - id: ImperialSkateboard
+    amount: 3
+    price: 500
+    type: Premium
+  - id: ImperialHoverboard
+    amount: 1
+    price: 540
+    type: Premium
+
+- type: imperialVendingProfile
+  id: GeneDrobeInventory
+  tgVendor: wardrobe/gene_wardrobe
+  defaultPrice: 50
+  extraPrice: 100
+  department: Science
+  replace: true
+  products:
+  - id: ClothingUniformJumpsuitGenetics
+    amount: 2
+    price: 50
+  - id: ClothingUniformJumpskirtGenetics
+    amount: 2
+    price: 50
+  - id: ClothingOuterCoatLabGene
+    amount: 2
+    price: 50
+  - id: ClothingOuterWinterGen
+    amount: 2
+    price: 50
+  - id: ClothingHandsGlovesLatex
+    amount: 2
+    price: 50
+  - id: ClothingShoesColorWhite
+    amount: 2
+    price: 50
+  - id: ClothingBackpackGenetics
+    amount: 2
+    price: 50
+  - id: ClothingBackpackSatchelGenetics
+    amount: 4
+    price: 50
+  - id: ClothingBackpackDuffelGenetics
+    amount: 2
+    price: 50
+  - id: ClothingHeadsetScience
+    amount: 2
+    price: 50
+
+- type: imperialVendingProfile
+  id: DrGibbInventory
+  tgVendor: cola
+  defaultPrice: 35
+  extraPrice: 50
+  department: Service
+  replace: true
+  products:
+  - id: DrinkColaCan
+    amount: 10
+    price: 45
+  - id: DrinkSpaceMountainWindCan
+    amount: 10
+    price: 45
+  - id: DrinkDrGibbCan
+    amount: 10
+    price: 45
+  - id: DrinkStarkistCan
+    amount: 10
+    price: 45
+  - id: DrinkSpaceUpCan
+    amount: 10
+    price: 45
+  - id: DrinkPwrGameCan
+    amount: 10
+    price: 45
+  - id: DrinkLemonLimeCan
+    amount: 10
+    price: 45
+  - id: DrinkSolDryCan
+    amount: 10
+    price: 45
+  - id: ImperialDrinkLipoCan
+    amount: 5
+    price: 45
+  - id: DrinkWaterBottleFull
+    amount: 10
+    price: 20
+  - id: ImperialDrinkMushiKombuchaBottleFull
+    amount: 3
+    price: 55
+  - id: DrinkEnergyDrinkCan
+    amount: 3
+    price: 45
+  - id: DrinkFourteenLokoCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: DrinkShamblersJuiceCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: ImperialDrinkWellcheersCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: DrinkNuclearColaGlass
+    amount: 1
+    price: 75
+    type: Premium
+  - id: ImperialDrinkAirCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: ImperialDrinkMonkeyEnergyCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: ImperialDrinkGreyBullCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: DrinkRootBeerCan
+    amount: 1
+    price: 100
+    type: Premium
+
+- type: imperialVendingProfile
+  id: HappyHonkDispenserInventory
+  defaultPrice: 30
+  extraPrice: 50
+  department: Service
+
+- type: imperialVendingProfile
+  id: HyDrobeInventory
+  tgVendor: wardrobe/hydro_wardrobe
+  defaultPrice: 50
+  extraPrice: 100
+  department: Service
+  replace: true
+  products:
+  - id: ImperialClothingNeckArmbandHydro
+    amount: 3
+    price: 50
+  - id: ClothingMaskBandBotany
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpsuitHydroponics
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpskirtHydroponics
+    amount: 3
+    price: 50
+  - id: ClothingOuterApron
+    amount: 3
+    price: 50
+  - id: ImperialClothingOuterApronOveralls
+    amount: 3
+    price: 50
+  - id: ClothingOuterApronBotanist
+    amount: 3
+    price: 50
+  - id: ClothingOuterWinterHydro
+    amount: 3
+    price: 50
+  - id: ClothingBackpackHydroponics
+    amount: 3
+    price: 50
+  - id: ClothingBackpackSatchelHydroponics
+    amount: 6
+    price: 50
+  - id: ClothingBackpackDuffelHydroponics
+    amount: 3
+    price: 50
+  - id: ClothingHeadsetService
+    amount: 3
+    price: 50
+
+- type: imperialVendingProfile
+  id: JaniDrobeInventory
+  tgVendor: wardrobe/jani_wardrobe
+  defaultPrice: 50
+  extraPrice: 80
+  department: Service
+  replace: true
+  products:
+  - id: ClothingHeadHatPurplesoft
+    amount: 2
+    price: 50
+  - id: ClothingMaskBandBlue
+    amount: 2
+    price: 50
+  - id: ClothingUniformJumpsuitJanitor
+    amount: 2
+    price: 50
+  - id: ClothingUniformJumpskirtJanitor
+    amount: 2
+    price: 50
+  - id: ClothingOuterWinterJani
+    amount: 2
+    price: 50
+  - id: ClothingShoesColorBlack
+    amount: 2
+    price: 50
+  - id: ClothingHandsGlovesColorBlack
+    amount: 2
+    price: 50
+  - id: ClothingShoesGaloshes
+    amount: 2
+    price: 150
+  - id: ClothingBeltJanitor
+    amount: 2
+    price: 50
+  - id: ImperialWatertankJanitor
+    amount: 1
+    price: 250
+  - id: FlashlightLantern
+    amount: 2
+    price: 50
+  - id: ImperialPushBroom
+    amount: 2
+    price: 50
+  - id: ImperialPaintRemover
+    amount: 2
+    price: 50
+  - id: ImperialFlyswatter
+    amount: 2
+    price: 50
+  - id: WetFloorSign
+    amount: 6
+    price: 50
+  - id: Holoprojector
+    amount: 2
+    price: 50
+  - id: LightReplacer
+    amount: 2
+    price: 50
+  - id: SoapNT
+    amount: 2
+    price: 50
+  - id: TrashBag
+    amount: 2
+    price: 50
+  - id: Plunger
+    amount: 2
+    price: 50
+  - id: ImperialWireBrush
+    amount: 2
+    price: 50
+  - id: ClothingHeadsetService
+    amount: 2
+    price: 50
+
+- type: imperialVendingProfile
+  id: LawDrobeInventory
+  tgVendor: wardrobe/law_wardrobe
+  defaultPrice: 50
+  extraPrice: 300
+  department: Service
+  replace: true
+  products:
+  - id: ClothingNeckLawyerbadge
+    amount: 2
+    price: 50
+  - id: ClothingNeckTieRed
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpsuitLawyerBlue
+    amount: 2
+    price: 50
+  - id: ClothingUniformJumpskirtLawyerBlue
+    amount: 2
+    price: 50
+  - id: ImperialClothingOuterToggleLawyer
+    amount: 1
+    price: 50
+  - id: ClothingUniformJumpsuitLawyerPurple
+    amount: 1
+    price: 50
+  - id: ClothingUniformJumpskirtLawyerPurple
+    amount: 1
+    price: 50
+  - id: ImperialClothingOuterToggleLawyerPurple
+    amount: 1
+    price: 50
+  - id: ClothingUniformRandomShirt
+    amount: 2
+    price: 50
+  - id: ImperialClothingOuterToggleLawyerBlack
+    amount: 1
+    price: 50
+  - id: ImperialClothingOuterToggleLawyerGreyscale
+    amount: 1
+    price: 50
+  - id: ClothingUniformJumpsuitLawyerBlack
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpskirtLawyerBlack
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpsuitLawyerGood
+    amount: 1
+    price: 50
+  - id: ClothingUniformJumpskirtLawyerGood
+    amount: 1
+    price: 50
+  - id: ClothingUniformJumpsuitLawyerRed
+    amount: 1
+    price: 50
+  - id: ClothingUniformJumpskirtLawyerRed
+    amount: 1
+    price: 50
+  - id: ClothingShoesBootsLaceup
+    amount: 2
+    price: 50
+  - id: ClothingHeadsetService
+    amount: 2
+    price: 50
+  - id: BoxEvidenceBags
+    amount: 2
+    price: 50
+  - id: ImperialFishFeedCan
+    amount: 1
+    price: 50
+  - id: BoxStamps
+    amount: 1
+    price: 50
+  - id: ClothingControlModsuitCivillianSealed
+    amount: 1
+    price: 300
+    type: Premium
+
+- type: imperialVendingProfile
+  id: MagiVendInventory
+  tgVendor: magivend
+  defaultPrice: 0
+  extraPrice: 100
+  department: Service
+  replace: true
+  products:
+  - id: ClothingHeadHatWizard
+    amount: 1
+    price: 0
+  - id: ClothingOuterWizard
+    amount: 3
+    price: 0
+  - id: ClothingHeadHatRedwizard
+    amount: 1
+    price: 0
+  - id: ClothingOuterWizardRed
+    amount: 1
+    price: 0
+  - id: ClothingHeadHatWizardFake
+    amount: 2
+    price: 0
+  - id: ClothingShoesMartialSandals
+    amount: 1
+    price: 0
+  - id: ImperialWizardStaffFake
+    amount: 2
+    price: 0
+  - id: ImperialDiseaseBottleWizarditis
+    amount: 1
+    price: 100
+    type: Contraband
+
+- type: imperialVendingProfile
+  id: NanoMedInventory
+  tgVendor: wallmed
+  defaultPrice: 15
+  extraPrice: 100
+  department: Medical
+  replace: true
+  products:
+  - id: Brutepack
+    amount: 4
+    price: 15
+  - id: Ointment
+    amount: 2
+    price: 15
+  - id: PillCharcoal
+    amount: 2
+    price: 15
+  - id: Gauze
+    amount: 4
+    price: 100
+  - id: EmergencyMedipen
+    amount: 2
+    price: 50
+  - id: HandheldHealthAnalyzer
+    amount: 2
+    price: 100
+  - id: ImperialBoxBandages
+    amount: 1
+    price: 188
+    type: Contraband
+  - id: ImperialBoxGumHappiness
+    amount: 1
+    price: 300
+    type: Contraband
+  - id: Brutepack
+    amount: 2
+    price: 100
+    type: Premium
+  - id: Ointment
+    amount: 2
+    price: 100
+    type: Premium
+
+- type: imperialVendingProfile
+  id: NanoMedCivilianWallInventory
+  tgVendor: wallmed
+  defaultPrice: 15
+  extraPrice: 100
+  department: Medical
+  replace: true
+  products:
+  - id: Brutepack
+    amount: 4
+    price: 15
+  - id: Ointment
+    amount: 2
+    price: 15
+  - id: PillCharcoal
+    amount: 2
+    price: 15
+  - id: Gauze
+    amount: 4
+    price: 100
+  - id: EmergencyMedipen
+    amount: 2
+    price: 50
+  - id: HandheldHealthAnalyzer
+    amount: 2
+    price: 100
+  - id: ImperialBoxBandages
+    amount: 1
+    price: 188
+    type: Contraband
+  - id: ImperialBoxGumHappiness
+    amount: 1
+    price: 300
+    type: Contraband
+  - id: Brutepack
+    amount: 2
+    price: 100
+    type: Premium
+  - id: Ointment
+    amount: 2
+    price: 100
+    type: Premium
+
+- type: imperialVendingProfile
+  id: NanoMedPlusInventory
+  tgVendor: medical
+  defaultPrice: 50
+  extraPrice: 100
+  department: Medical
+  replace: true
+  products:
+  - id: Gauze
+    amount: 8
+    price: 100
+  - id: Syringe
+    amount: 12
+    price: 25
+  - id: Dropper
+    amount: 3
+    price: 50
+  - id: HandheldHealthAnalyzer
+    amount: 8
+    price: 100
+  - id: Wrench
+    amount: 1
+    price: 50
+  - id: ImperialSurgicalTape
+    amount: 3
+    price: 50
+  - id: Ointment
+    amount: 2
+    price: 50
+  - id: MedicatedSuture
+    amount: 2
+    price: 50
+  - id: ImperialBoneGel
+    amount: 4
+    price: 50
+  - id: Cane
+    amount: 2
+    price: 50
+  - id: WhiteCane
+    amount: 2
+    price: 50
+  - id: ClothingEyesEyepatchHudMedical
+    amount: 2
+    price: 50
+  - id: ImperialBoxBandages
+    amount: 2
+    price: 88
+  - id: ImperialCrewPinpointer
+    amount: 2
+    price: 50
+  - id: ImperialBoxGumHappiness
+    amount: 3
+    price: 300
+    type: Contraband
+  - id: BoxHug
+    amount: 1
+    price: 100
+    type: Contraband
+  - id: EmergencyMedipen
+    amount: 3
+    price: 100
+    type: Premium
+  - id: ClothingBeltMedical
+    amount: 3
+    price: 100
+    type: Premium
+  - id: HandheldCrewMonitor
+    amount: 2
+    price: 300
+    type: Premium
+  - id: MedkitAdvancedFilled
+    amount: 2
+    price: 600
+    type: Premium
+  - id: ImperialGeneShears
+    amount: 1
+    price: 700
+    type: Premium
+  - id: Tourniquet
+    amount: 6
+    price: 100
+    type: Premium
+  - id: ImperialOrganBox
+    amount: 1
+    price: 200
+    type: Premium
+
+- type: imperialVendingProfile
+  id: NanoMedCivilianInventory
+  tgVendor: medical
+  defaultPrice: 50
+  extraPrice: 100
+  department: Medical
+  replace: true
+  products:
+  - id: Gauze
+    amount: 8
+    price: 100
+  - id: Syringe
+    amount: 12
+    price: 25
+  - id: Dropper
+    amount: 3
+    price: 50
+  - id: HandheldHealthAnalyzer
+    amount: 8
+    price: 100
+  - id: Wrench
+    amount: 1
+    price: 50
+  - id: ImperialSurgicalTape
+    amount: 3
+    price: 50
+  - id: Ointment
+    amount: 2
+    price: 50
+  - id: MedicatedSuture
+    amount: 2
+    price: 50
+  - id: ImperialBoneGel
+    amount: 4
+    price: 50
+  - id: Cane
+    amount: 2
+    price: 50
+  - id: WhiteCane
+    amount: 2
+    price: 50
+  - id: ClothingEyesEyepatchHudMedical
+    amount: 2
+    price: 50
+  - id: ImperialBoxBandages
+    amount: 2
+    price: 88
+  - id: ImperialCrewPinpointer
+    amount: 2
+    price: 50
+  - id: ImperialBoxGumHappiness
+    amount: 3
+    price: 300
+    type: Contraband
+  - id: BoxHug
+    amount: 1
+    price: 100
+    type: Contraband
+  - id: EmergencyMedipen
+    amount: 3
+    price: 100
+    type: Premium
+  - id: ClothingBeltMedical
+    amount: 3
+    price: 100
+    type: Premium
+  - id: HandheldCrewMonitor
+    amount: 2
+    price: 300
+    type: Premium
+  - id: MedkitAdvancedFilled
+    amount: 2
+    price: 600
+    type: Premium
+  - id: ImperialGeneShears
+    amount: 1
+    price: 700
+    type: Premium
+  - id: Tourniquet
+    amount: 6
+    price: 100
+    type: Premium
+  - id: ImperialOrganBox
+    amount: 1
+    price: 200
+    type: Premium
+
+- type: imperialVendingProfile
+  id: MediDrobeInventory
+  tgVendor: wardrobe/medi_wardrobe
+  defaultPrice: 50
+  extraPrice: 100
+  department: Medical
+  replace: true
+  products:
+  - id: ImperialClothingNeckPocketprotector
+    amount: 4
+    price: 50
+  - id: ClothingHeadNurseHat
+    amount: 4
+    price: 50
+  - id: ClothingHeadHatBeretMedic
+    amount: 4
+    price: 50
+  - id: ClothingHeadHatSurgcapBlue
+    amount: 4
+    price: 50
+  - id: ClothingHeadHatSurgcapPurple
+    amount: 4
+    price: 50
+  - id: ClothingHeadHatSurgcapGreen
+    amount: 4
+    price: 50
+  - id: ClothingHeadHatBeret
+    amount: 4
+    price: 50
+  - id: ClothingHeadHatParamedicsoft
+    amount: 4
+    price: 50
+  - id: ClothingHeadMirror
+    amount: 4
+    price: 50
+  - id: ClothingMaskBandBlue
+    amount: 4
+    price: 50
+  - id: ClothingMaskSterile
+    amount: 4
+    price: 50
+  - id: ClothingUniformJumpsuitMedicalDoctor
+    amount: 4
+    price: 50
+  - id: ClothingUniformJumpskirtMedicalDoctor
+    amount: 4
+    price: 50
+  - id: UniformScrubsColorBlue
+    amount: 4
+    price: 50
+  - id: UniformScrubsColorGreen
+    amount: 4
+    price: 50
+  - id: UniformScrubsColorPurple
+    amount: 4
+    price: 50
+  - id: ClothingUniformJumpsuitParamedic
+    amount: 4
+    price: 50
+  - id: ClothingUniformJumpskirtParamedic
+    amount: 4
+    price: 50
+  - id: ClothingOuterCoatLab
+    amount: 4
+    price: 50
+  - id: ClothingOuterCoatParamedicWB
+    amount: 4
+    price: 50
+  - id: ClothingOuterApron
+    amount: 4
+    price: 50
+  - id: ClothingOuterWinterMed
+    amount: 4
+    price: 50
+  - id: ClothingOuterWinterPara
+    amount: 4
+    price: 50
+  - id: ClothingShoesColorWhite
+    amount: 4
+    price: 50
+  - id: ClothingShoesColorBlue
+    amount: 4
+    price: 50
+  - id: ClothingHandsGlovesNitrile
+    amount: 4
+    price: 50
+  - id: ClothingHandsGlovesLatex
+    amount: 4
+    price: 50
+  - id: ClothingBackpackDuffelMedical
+    amount: 4
+    price: 50
+  - id: ClothingBackpackMedical
+    amount: 4
+    price: 50
+  - id: ClothingBackpackSatchelMedical
+    amount: 8
+    price: 50
+  - id: ClothingHeadsetMedical
+    amount: 4
+    price: 50
+
+- type: imperialVendingProfile
+  id: NutriMaxInventory
+  tgVendor: hydronutrients
+  defaultPrice: 40
+  extraPrice: 80
+  department: Service
+  replace: true
+  products:
+  - id: HydroponicsToolMiniHoe
+    amount: 3
+    price: 40
+  - id: HandheldPlantsAnalyzer
+    amount: 4
+    price: 40
+  - id: ChemistryBottleEZNutrient
+    amount: 6
+    price: 50
+  - id: ChemistryBottleLeft4Zed
+    amount: 4
+    price: 60
+  - id: ChemistryBottleRobustHarvest
+    amount: 3
+    price: 75
+  - id: PestSpray
+    amount: 20
+    price: 40
+  - id: Syringe
+    amount: 5
+    price: 25
+  - id: HydroponicsToolClippers
+    amount: 3
+    price: 40
+  - id: HydroponicsToolSpade
+    amount: 3
+    price: 40
+  - id: PlantBag
+    amount: 5
+    price: 40
+  - id: ImperialChemistryBottleAmmonia
+    amount: 10
+    price: 80
+    type: Contraband
+  - id: ImperialChemistryBottleDiethylamine
+    amount: 5
+    price: 80
+    type: Contraband
+  - id: ImperialChemistryBottleSaltpetre
+    amount: 5
+    price: 80
+    type: Contraband
+  - id: ImperialSoilSack
+    amount: 8
+    price: 50
+    type: Premium
+  - id: ImperialSoilSackVermaculite
+    amount: 3
+    price: 100
+    type: Premium
+  - id: ImperialSoilSackGel
+    amount: 3
+    price: 100
+    type: Premium
+
+- type: imperialVendingProfile
+  id: PrideDrobeInventory
+  defaultPrice: 35
+  extraPrice: 100
+
+- type: imperialVendingProfile
+  id: PwrGameInventory
+  tgVendor: cola/pwr_game
+  defaultPrice: 35
+  extraPrice: 50
+  department: Service
+  replace: true
+  products:
+  - id: DrinkColaCan
+    amount: 10
+    price: 45
+  - id: DrinkSpaceMountainWindCan
+    amount: 10
+    price: 45
+  - id: DrinkDrGibbCan
+    amount: 10
+    price: 45
+  - id: DrinkStarkistCan
+    amount: 10
+    price: 45
+  - id: DrinkSpaceUpCan
+    amount: 10
+    price: 45
+  - id: DrinkPwrGameCan
+    amount: 10
+    price: 45
+  - id: DrinkLemonLimeCan
+    amount: 10
+    price: 45
+  - id: DrinkSolDryCan
+    amount: 10
+    price: 45
+  - id: ImperialDrinkLipoCan
+    amount: 5
+    price: 45
+  - id: DrinkWaterBottleFull
+    amount: 10
+    price: 20
+  - id: ImperialDrinkMushiKombuchaBottleFull
+    amount: 3
+    price: 55
+  - id: DrinkEnergyDrinkCan
+    amount: 3
+    price: 45
+  - id: DrinkFourteenLokoCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: DrinkShamblersJuiceCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: ImperialDrinkWellcheersCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: DrinkNuclearColaGlass
+    amount: 1
+    price: 75
+    type: Premium
+  - id: ImperialDrinkAirCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: ImperialDrinkMonkeyEnergyCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: ImperialDrinkGreyBullCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: DrinkRootBeerCan
+    amount: 1
+    price: 100
+    type: Premium
+
+- type: imperialVendingProfile
+  id: RoboDrobeInventory
+  tgVendor: wardrobe/robo_wardrobe
+  defaultPrice: 50
+  extraPrice: 120
+  department: Science
+  replace: true
+  products:
+  - id: ClothingEyesHudDiagnostic
+    amount: 2
+    price: 50
+  - id: ClothingHeadHatBlacksoft
+    amount: 2
+    price: 50
+  - id: ClothingMaskBandSkull
+    amount: 2
+    price: 50
+  - id: ClothingUniformJumpsuitRoboticist
+    amount: 2
+    price: 50
+  - id: ClothingUniformJumpskirtRoboticist
+    amount: 2
+    price: 50
+  - id: ClothingOuterCoatRobo
+    amount: 2
+    price: 50
+  - id: ClothingOuterWinterRobo
+    amount: 2
+    price: 50
+  - id: ClothingHandsGlovesFingerless
+    amount: 2
+    price: 75
+  - id: ClothingShoesColorBlack
+    amount: 2
+    price: 50
+  - id: ClothingBackpackScience
+    amount: 3
+    price: 50
+  - id: ClothingBackpackSatchelScience
+    amount: 6
+    price: 50
+  - id: ClothingBackpackDuffelScience
+    amount: 3
+    price: 50
+  - id: ClothingHeadsetScience
+    amount: 2
+    price: 50
+  - id: ImperialClothingUniformCostumeMechSuit
+    amount: 2
+    price: 120
+    type: Contraband
+  - id: ImperialClothingOuterHoodedTechpriest
+    amount: 2
+    price: 120
+    type: Contraband
+  - id: ImperialOrganTongueRobot
+    amount: 2
+    price: 120
+    type: Contraband
+
+- type: imperialVendingProfile
+  id: RoboticsInventory
+  tgVendor: robotics
+  defaultPrice: 100
+  extraPrice: 50
+  department: Science
+  replace: true
+  products:
+  - id: ClothingOuterCoatLab
+    amount: 4
+    price: 100
+  - id: ClothingUniformJumpsuitRoboticist
+    amount: 4
+    price: 100
+  - id: CableHVStack
+    amount: 4
+    price: 20
+  - id: Flash
+    amount: 4
+    price: 100
+  - id: PowerCellHigh
+    amount: 12
+    price: 100
+  - id: ProximitySensor
+    amount: 3
+    price: 100
+  - id: RemoteSignaller
+    amount: 3
+    price: 100
+  - id: HandheldHealthAnalyzer
+    amount: 3
+    price: 100
+  - id: Scalpel
+    amount: 2
+    price: 100
+  - id: SawElectric
+    amount: 2
+    price: 100
+  - id: ImperialBonesetter
+    amount: 2
+    price: 100
+  - id: NitrousOxideTankFilled
+    amount: 2
+    price: 100
+  - id: ClothingMaskBreathMedical
+    amount: 5
+    price: 100
+  - id: Screwdriver
+    amount: 5
+    price: 100
+  - id: Crowbar
+    amount: 5
+    price: 100
+
+- type: imperialVendingProfile
+  id: SalvageEquipmentInventory
+  free: true
+
+- type: imperialVendingProfile
+  id: SciDrobeInventory
+  tgVendor: wardrobe/science_wardrobe
+  defaultPrice: 50
+  extraPrice: 100
+  department: Science
+  replace: true
+  products:
+  - id: ImperialClothingNeckPocketprotector
+    amount: 3
+    price: 50
+  - id: ClothingHeadHatBeretRND
+    amount: 3
+    price: 50
+  - id: ClothingMaskGas
+    amount: 3
+    price: 50
+  - id: ClothingMaskBandGrey
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpsuitScientist
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpskirtScientist
+    amount: 3
+    price: 50
+  - id: ClothingOuterCoatRnd
+    amount: 3
+    price: 50
+  - id: ClothingOuterWinterSci
+    amount: 3
+    price: 50
+  - id: ClothingHandsGlovesLatex
+    amount: 3
+    price: 50
+  - id: ClothingShoesColorWhite
+    amount: 3
+    price: 50
+  - id: ClothingBackpackScience
+    amount: 3
+    price: 50
+  - id: ClothingBackpackSatchelScience
+    amount: 6
+    price: 50
+  - id: ClothingBackpackDuffelScience
+    amount: 3
+    price: 50
+  - id: ClothingHeadsetScience
+    amount: 3
+    price: 50
+
+- type: imperialVendingProfile
+  id: SecTechInventory
+  tgVendor: security
+  defaultPrice: 50
+  extraPrice: 150
+  department: Security
+  replace: true
+  products:
+  - id: Handcuffs
+    amount: 8
+    price: 35
+  - id: Zipties
+    amount: 10
+    price: 35
+  - id: GrenadeFlashBang
+    amount: 4
+    price: 50
+  - id: Flash
+    amount: 5
+    price: 50
+  - id: FoodDonutHomer
+    amount: 12
+    price: 50
+  - id: BoxEvidenceBags
+    amount: 6
+    price: 50
+  - id: FlashlightSeclite
+    amount: 4
+    price: 50
+  - id: EnergyBola
+    amount: 7
+    price: 35
+  - id: ClothingHandsGlovesCombat
+    amount: 5
+    price: 50
+  - id: HoloprojectorSecurity
+    amount: 2
+    price: 50
+  - id: ImperialGunMaintenanceKit
+    amount: 2
+    price: 50
+  - id: ClothingBeltJudo
+    amount: 3
+    price: 50
+  - id: ClothingEyesGlassesSunglasses
+    amount: 2
+    price: 150
+    type: Contraband
+  - id: FoodBoxDonut
+    amount: 2
+    price: 175
+    type: Contraband
+  - id: ClothingBeltSecurityWebbing
+    amount: 5
+    price: 300
+    type: Premium
+  - id: ImperialCoinAntagToken
+    amount: 1
+    price: 150
+    type: Premium
+  - id: ClothingHeadHelmetBasic
+    amount: 1
+    price: 100
+    type: Premium
+  - id: ClothingHandsGlovesColorBlack
+    amount: 1
+    price: 150
+    type: Premium
+  - id: ClothingOuterArmorBasic
+    amount: 1
+    price: 100
+    type: Premium
+  - id: GrenadeStinger
+    amount: 1
+    price: 350
+    type: Premium
+  - id: ImperialWatertankPepper
+    amount: 2
+    price: 250
+    type: Premium
+  - id: ClothingBeltHolster
+    amount: 4
+    price: 150
+    type: Premium
+
+- type: imperialVendingProfile
+  id: SecDrobeInventory
+  tgVendor: wardrobe/sec_wardrobe
+  defaultPrice: 50
+  extraPrice: 100
+  department: Security
+  replace: true
+  products:
+  - id: ClothingHeadHatBeretSecurity
+    amount: 3
+    price: 50
+  - id: ClothingHeadHatSecsoft
+    amount: 3
+    price: 50
+  - id: ClothingHeadHatUshanka
+    amount: 3
+    price: 50
+  - id: ClothingMaskBandBlack
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpsuitSec
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpskirtSec
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpsuitSecGrey
+    amount: 3
+    price: 50
+  - id: ImperialClothingUniformPantsSlacks
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpsuitSecBlue
+    amount: 3
+    price: 50
+  - id: ClothingHandsGlovesColorBlack
+    amount: 6
+    price: 50
+  - id: ClothingOuterCoatBomber
+    amount: 3
+    price: 50
+  - id: ClothingOuterWinterSec
+    amount: 3
+    price: 50
+  - id: ClothingOuterArmorBasic
+    amount: 3
+    price: 50
+  - id: ClothingShoesBootsJack
+    amount: 3
+    price: 50
+  - id: ClothingBackpackSecurity
+    amount: 3
+    price: 50
+  - id: ClothingBackpackSatchelSecurity
+    amount: 6
+    price: 50
+  - id: ClothingBackpackDuffelSecurity
+    amount: 3
+    price: 50
+  - id: ClothingUniformJumpsuitSec
+    amount: 3
+    price: 100
+    type: Premium
+  - id: ImperialClothingOuterJacketOfficerBlue
+    amount: 3
+    price: 100
+    type: Premium
+  - id: ClothingHeadHatBeretSecurity
+    amount: 3
+    price: 100
+    type: Premium
+
+- type: imperialVendingProfile
+  id: MegaSeedServitorInventory
+  tgVendor: hydroseeds
+  defaultPrice: 25
+  extraPrice: 50
+  department: Service
+  replace: true
+  products:
+  - id: AppleSeeds
+    amount: 3
+    price: 25
+    category: Фрукты
+  - id: BananaSeeds
+    amount: 3
+    price: 25
+    category: Фрукты
+  - id: ImperialBellPepperSeeds
+    amount: 3
+    price: 25
+    category: Фрукты
+  - id: BerrySeeds
+    amount: 6
+    price: 25
+    category: Фрукты
+  - id: CherrySeeds
+    amount: 3
+    price: 25
+    category: Фрукты
+  - id: ChiliSeeds
+    amount: 3
+    price: 25
+    category: Фрукты
+  - id: CocoaSeeds
+    amount: 3
+    price: 25
+    category: Фрукты
+  - id: EggplantSeeds
+    amount: 3
+    price: 25
+    category: Фрукты
+  - id: GrapeSeeds
+    amount: 3
+    price: 25
+    category: Фрукты
+  - id: ImperialLanternfruitSeeds
+    amount: 3
+    price: 25
+    category: Фрукты
+  - id: LemonSeeds
+    amount: 3
+    price: 25
+    category: Фрукты
+  - id: LimeSeeds
+    amount: 3
+    price: 25
+    category: Фрукты
+  - id: ImperialOliveSeeds
+    amount: 3
+    price: 25
+    category: Фрукты
+  - id: OrangeSeeds
+    amount: 3
+    price: 25
+    category: Фрукты
+  - id: PineappleSeeds
+    amount: 3
+    price: 25
+    category: Фрукты
+  - id: ImperialPlumSeeds
+    amount: 3
+    price: 25
+    category: Фрукты
+  - id: PumpkinSeeds
+    amount: 3
+    price: 25
+    category: Фрукты
+  - id: TomatoSeeds
+    amount: 3
+    price: 25
+    category: Фрукты
+  - id: WatermelonSeeds
+    amount: 3
+    price: 25
+    category: Фрукты
+  - id: CabbageSeeds
+    amount: 3
+    price: 25
+    category: Овощи
+  - id: CarrotSeeds
+    amount: 3
+    price: 25
+    category: Овощи
+  - id: CornSeeds
+    amount: 3
+    price: 25
+    category: Овощи
+  - id: ImperialCucumberSeeds
+    amount: 3
+    price: 25
+    category: Овощи
+  - id: GarlicSeeds
+    amount: 3
+    price: 25
+    category: Овощи
+  - id: ImperialGreenBeanSeeds
+    amount: 3
+    price: 25
+    category: Овощи
+  - id: ImperialHerbsSeeds
+    amount: 3
+    price: 25
+    category: Овощи
+  - id: OnionSeeds
+    amount: 3
+    price: 25
+    category: Овощи
+  - id: ImperialPeanutSeeds
+    amount: 3
+    price: 25
+    category: Овощи
+  - id: PeaSeeds
+    amount: 3
+    price: 25
+    category: Овощи
+  - id: PotatoSeeds
+    amount: 3
+    price: 25
+    category: Овощи
+  - id: SoybeanSeeds
+    amount: 3
+    price: 25
+    category: Овощи
+  - id: SugarcaneSeeds
+    amount: 3
+    price: 25
+    category: Овощи
+  - id: ImperialWhiteBeetSeeds
+    amount: 3
+    price: 25
+    category: Овощи
+  - id: AloeSeeds
+    amount: 3
+    price: 25
+    category: Цветы
+  - id: AmbrosiaVulgarisSeeds
+    amount: 3
+    price: 25
+    category: Цветы
+  - id: PoppySeeds
+    amount: 3
+    price: 25
+    category: Цветы
+  - id: ImperialRoseSeeds
+    amount: 3
+    price: 25
+    category: Цветы
+  - id: ImperialSunflowerSeeds
+    amount: 3
+    price: 25
+    category: Цветы
+  - id: ChanterelleSeeds
+    amount: 3
+    price: 25
+    category: Разное
+  - id: ImperialCoffeeArabicaSeeds
+    amount: 3
+    price: 25
+    category: Разное
+  - id: CottonSeeds
+    amount: 3
+    price: 25
+    category: Разное
+  - id: ImperialGrassSeeds
+    amount: 3
+    price: 25
+    category: Разное
+  - id: ImperialKortaNutSeeds
+    amount: 3
+    price: 25
+    category: Разное
+  - id: RiceSeeds
+    amount: 3
+    price: 25
+    category: Разное
+  - id: TeaPlantSeeds
+    amount: 3
+    price: 25
+    category: Разное
+  - id: TobaccoSeeds
+    amount: 3
+    price: 25
+    category: Разное
+  - id: TowercapSeeds
+    amount: 3
+    price: 25
+    category: Разное
+  - id: WheatSeeds
+    amount: 3
+    price: 25
+    category: Разное
+  - id: FlyAmanitaSeeds
+    amount: 2
+    price: 50
+    type: Contraband
+  - id: ImperialGlowshroomSeeds
+    amount: 2
+    price: 50
+    type: Contraband
+  - id: ImperialLibertyCapSeeds
+    amount: 2
+    price: 50
+    type: Contraband
+  - id: NettleSeeds
+    amount: 2
+    price: 50
+    type: Contraband
+  - id: ImperialPlumpHelmetSeeds
+    amount: 2
+    price: 50
+    type: Contraband
+  - id: LingzhiSeeds
+    amount: 2
+    price: 50
+    type: Contraband
+  - id: CannabisSeeds
+    amount: 3
+    price: 50
+    type: Contraband
+  - id: GalaxythistleSeeds
+    amount: 2
+    price: 50
+    type: Contraband
+  - id: ImperialCocaLeafSeeds
+    amount: 2
+    price: 50
+    type: Contraband
+  - id: ImperialStrangeSeeds
+    amount: 2
+    price: 100
+    type: Contraband
+  - id: ImperialWaterFlower
+    amount: 1
+    price: 50
+    type: Premium
+
+- type: imperialVendingProfile
+  id: ShamblersJuiceInventory
+  tgVendor: cola/shamblers
+  defaultPrice: 35
+  extraPrice: 50
+  department: Service
+  replace: true
+  products:
+  - id: DrinkColaCan
+    amount: 10
+    price: 45
+  - id: DrinkSpaceMountainWindCan
+    amount: 10
+    price: 45
+  - id: DrinkDrGibbCan
+    amount: 10
+    price: 45
+  - id: DrinkStarkistCan
+    amount: 10
+    price: 45
+  - id: DrinkSpaceUpCan
+    amount: 10
+    price: 45
+  - id: DrinkPwrGameCan
+    amount: 10
+    price: 45
+  - id: DrinkLemonLimeCan
+    amount: 10
+    price: 45
+  - id: DrinkSolDryCan
+    amount: 10
+    price: 45
+  - id: DrinkShamblersJuiceCan
+    amount: 10
+    price: 45
+  - id: ImperialDrinkWellcheersCan
+    amount: 5
+    price: 45
+  - id: DrinkFourteenLokoCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: DrinkShamblersJuiceCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: ImperialDrinkWellcheersCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: DrinkNuclearColaGlass
+    amount: 1
+    price: 75
+    type: Premium
+  - id: ImperialDrinkAirCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: ImperialDrinkMonkeyEnergyCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: ImperialDrinkGreyBullCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: DrinkRootBeerCan
+    amount: 1
+    price: 100
+    type: Premium
+
+- type: imperialVendingProfile
+  id: SmartFridgeInventory
+  free: true
+
+- type: imperialVendingProfile
+  id: SmiteInventory
+  tgVendor: cola
+  defaultPrice: 35
+  extraPrice: 50
+  department: Service
+  replace: true
+  products:
+  - id: DrinkColaCan
+    amount: 10
+    price: 45
+  - id: DrinkSpaceMountainWindCan
+    amount: 10
+    price: 45
+  - id: DrinkDrGibbCan
+    amount: 10
+    price: 45
+  - id: DrinkStarkistCan
+    amount: 10
+    price: 45
+  - id: DrinkSpaceUpCan
+    amount: 10
+    price: 45
+  - id: DrinkPwrGameCan
+    amount: 10
+    price: 45
+  - id: DrinkLemonLimeCan
+    amount: 10
+    price: 45
+  - id: DrinkSolDryCan
+    amount: 10
+    price: 45
+  - id: ImperialDrinkLipoCan
+    amount: 5
+    price: 45
+  - id: DrinkWaterBottleFull
+    amount: 10
+    price: 20
+  - id: ImperialDrinkMushiKombuchaBottleFull
+    amount: 3
+    price: 55
+  - id: DrinkEnergyDrinkCan
+    amount: 3
+    price: 45
+  - id: DrinkFourteenLokoCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: DrinkShamblersJuiceCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: ImperialDrinkWellcheersCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: DrinkNuclearColaGlass
+    amount: 1
+    price: 75
+    type: Premium
+  - id: ImperialDrinkAirCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: ImperialDrinkMonkeyEnergyCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: ImperialDrinkGreyBullCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: DrinkRootBeerCan
+    amount: 1
+    price: 100
+    type: Premium
+
+- type: imperialVendingProfile
+  id: GetmoreChocolateCorpInventory
+  tgVendor: snack
+  defaultPrice: 30
+  extraPrice: 50
+  department: Service
+  replace: true
+  products:
+  - id: ImperialFoodSpaceTwinkie
+    amount: 6
+    price: 25
+  - id: FoodSnackCheesie
+    amount: 6
+    price: 30
+  - id: FoodSnackChocolate
+    amount: 6
+    price: 30
+  - id: FoodSnackChips
+    amount: 12
+    price: 30
+  - id: FoodSnackSus
+    amount: 6
+    price: 30
+  - id: FoodSnackBoritos
+    amount: 6
+    price: 20
+  - id: FoodSnackRaisins
+    amount: 6
+    price: 35
+  - id: ImperialFoodPeanuts
+    amount: 6
+    price: 40
+  - id: ImperialFoodPeanutsRandom
+    amount: 3
+    price: 40
+  - id: FoodSnackCnDs
+    amount: 9
+    price: 30
+  - id: FoodSnackSemki
+    amount: 6
+    price: 10
+  - id: DrinkRamen
+    amount: 3
+    price: 45
+  - id: ImperialBoxGum
+    amount: 3
+    price: 50
+  - id: FoodSnackEnergy
+    amount: 6
+    price: 30
+  - id: ImperialFoodHotShots
+    amount: 6
+    price: 30
+  - id: ImperialFoodSticko
+    amount: 6
+    price: 30
+  - id: ImperialFoodStickoRandom
+    amount: 3
+    price: 30
+  - id: ImperialFoodShokRoks
+    amount: 6
+    price: 30
+  - id: ImperialFoodShokRoksRandom
+    amount: 3
+    price: 30
+  - id: FoodSnackSyndi
+    amount: 6
+    price: 50
+    type: Contraband
+  - id: ImperialFoodPeanutsBanAppeal
+    amount: 3
+    price: 90
+    type: Contraband
+  - id: FoodSnackChocolate
+    amount: 1
+    price: 130
+    type: Contraband
+  - id: ImperialFoodSpacersSidekick
+    amount: 3
+    price: 50
+    type: Premium
+  - id: FoodSnackPistachios
+    amount: 3
+    price: 100
+    type: Premium
+  - id: FoodSnackSwirlLollipop
+    amount: 3
+    price: 50
+    type: Premium
+
+- type: imperialVendingProfile
+  id: SodaInventory
+  tgVendor: cola
+  defaultPrice: 35
+  extraPrice: 50
+  department: Service
+  replace: true
+  products:
+  - id: DrinkColaCan
+    amount: 10
+    price: 45
+  - id: DrinkSpaceMountainWindCan
+    amount: 10
+    price: 45
+  - id: DrinkDrGibbCan
+    amount: 10
+    price: 45
+  - id: DrinkStarkistCan
+    amount: 10
+    price: 45
+  - id: DrinkSpaceUpCan
+    amount: 10
+    price: 45
+  - id: DrinkPwrGameCan
+    amount: 10
+    price: 45
+  - id: DrinkLemonLimeCan
+    amount: 10
+    price: 45
+  - id: DrinkSolDryCan
+    amount: 10
+    price: 45
+  - id: ImperialDrinkLipoCan
+    amount: 5
+    price: 45
+  - id: DrinkWaterBottleFull
+    amount: 10
+    price: 20
+  - id: ImperialDrinkMushiKombuchaBottleFull
+    amount: 3
+    price: 55
+  - id: DrinkEnergyDrinkCan
+    amount: 3
+    price: 45
+  - id: DrinkFourteenLokoCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: DrinkShamblersJuiceCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: ImperialDrinkWellcheersCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: DrinkNuclearColaGlass
+    amount: 1
+    price: 75
+    type: Premium
+  - id: ImperialDrinkAirCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: ImperialDrinkMonkeyEnergyCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: ImperialDrinkGreyBullCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: DrinkRootBeerCan
+    amount: 1
+    price: 100
+    type: Premium
+
+- type: imperialVendingProfile
+  id: BodaInventory
+  tgVendor: sovietsoda
+  defaultPrice: 1
+  extraPrice: 50
+  replace: true
+  products:
+  - id: DrinkSodaWaterCan
+    amount: 30
+    price: 25
+  - id: DrinkColaCan
+    amount: 20
+    price: 75
+    type: Contraband
+
+- type: imperialVendingProfile
+  id: SpaceUpInventory
+  tgVendor: cola/space_up
+  defaultPrice: 35
+  extraPrice: 50
+  department: Service
+  replace: true
+  products:
+  - id: DrinkColaCan
+    amount: 10
+    price: 45
+  - id: DrinkSpaceMountainWindCan
+    amount: 10
+    price: 45
+  - id: DrinkDrGibbCan
+    amount: 10
+    price: 45
+  - id: DrinkStarkistCan
+    amount: 10
+    price: 45
+  - id: DrinkSpaceUpCan
+    amount: 10
+    price: 45
+  - id: DrinkPwrGameCan
+    amount: 10
+    price: 45
+  - id: DrinkLemonLimeCan
+    amount: 10
+    price: 45
+  - id: DrinkSolDryCan
+    amount: 10
+    price: 45
+  - id: ImperialDrinkLipoCan
+    amount: 5
+    price: 45
+  - id: DrinkWaterBottleFull
+    amount: 10
+    price: 20
+  - id: ImperialDrinkMushiKombuchaBottleFull
+    amount: 3
+    price: 55
+  - id: DrinkEnergyDrinkCan
+    amount: 3
+    price: 45
+  - id: DrinkFourteenLokoCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: DrinkShamblersJuiceCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: ImperialDrinkWellcheersCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: DrinkNuclearColaGlass
+    amount: 1
+    price: 75
+    type: Premium
+  - id: ImperialDrinkAirCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: ImperialDrinkMonkeyEnergyCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: ImperialDrinkGreyBullCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: DrinkRootBeerCan
+    amount: 1
+    price: 100
+    type: Premium
+
+- type: imperialVendingProfile
+  id: StarkistInventory
+  tgVendor: cola/starkist
+  defaultPrice: 35
+  extraPrice: 50
+  department: Service
+  replace: true
+  products:
+  - id: DrinkColaCan
+    amount: 10
+    price: 45
+  - id: DrinkSpaceMountainWindCan
+    amount: 10
+    price: 45
+  - id: DrinkDrGibbCan
+    amount: 10
+    price: 45
+  - id: DrinkStarkistCan
+    amount: 10
+    price: 45
+  - id: DrinkSpaceUpCan
+    amount: 10
+    price: 45
+  - id: DrinkPwrGameCan
+    amount: 10
+    price: 45
+  - id: DrinkLemonLimeCan
+    amount: 10
+    price: 45
+  - id: DrinkSolDryCan
+    amount: 10
+    price: 45
+  - id: ImperialDrinkLipoCan
+    amount: 5
+    price: 45
+  - id: DrinkWaterBottleFull
+    amount: 10
+    price: 20
+  - id: ImperialDrinkMushiKombuchaBottleFull
+    amount: 3
+    price: 55
+  - id: DrinkEnergyDrinkCan
+    amount: 3
+    price: 45
+  - id: DrinkFourteenLokoCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: DrinkShamblersJuiceCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: ImperialDrinkWellcheersCan
+    amount: 6
+    price: 95
+    type: Contraband
+  - id: DrinkNuclearColaGlass
+    amount: 1
+    price: 75
+    type: Premium
+  - id: ImperialDrinkAirCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: ImperialDrinkMonkeyEnergyCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: ImperialDrinkGreyBullCan
+    amount: 1
+    price: 95
+    type: Premium
+  - id: DrinkRootBeerCan
+    amount: 1
+    price: 100
+    type: Premium
+
+- type: imperialVendingProfile
+  id: SustenanceInventory
+  tgVendor: sustenance
+  defaultPrice: 25
+  extraPrice: 15
+  replace: true
+  products:
+  - id: FoodTofu
+    amount: 24
+    price: 25
+  - id: FoodBreadMoldySlice
+    amount: 15
+    price: 25
+  - id: DrinkIceGlass
+    amount: 12
+    price: 15
+  - id: ImperialFoodCandyCornPrison
+    amount: 6
+    price: 25
+  - id: SpoonPlastic
+    amount: 6
+    price: 25
+  - id: KitchenKnife
+    amount: 6
+    price: 15
+    type: Contraband
+  - id: Spoon
+    amount: 6
+    price: 65
+    type: Contraband
+  - id: DrinkHotCoffee
+    amount: 12
+    price: 15
+    type: Contraband
+  - id: EmergencyOxygenTankFilled
+    amount: 6
+    price: 15
+    type: Contraband
+  - id: ClothingMaskBreath
+    amount: 6
+    price: 15
+    type: Contraband
+
+- type: imperialVendingProfile
+  id: SyndieDrobeInventory
+  free: true
+
+- type: imperialVendingProfile
+  id: TankDispenserEVAInventory
+  free: true
+
+- type: imperialVendingProfile
+  id: TankDispenserEngineeringInventory
+  free: true
+
+- type: imperialVendingProfile
+  id: AutoDrobeInventory
+  tgVendor: autodrobe
+  defaultPrice: 40
+  extraPrice: 100
+  department: Service
+  replace: true
+  products:
+  - id: ClothingUniformJumpsuitGladiator
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingHeadHatGladiator
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingOuterCoatLab
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingOuterPlagueSuit
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingHeadHatPlaguedoctor
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingMaskPlague
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingUniformJumpskirtMedicalDoctor
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingOuterToggleOwlwings
+    amount: 1
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingUniformCostumeOwl
+    amount: 1
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingMaskGasOwlMask
+    amount: 1
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingOuterToggleOwlwingsGriffinwings
+    amount: 1
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingUniformCostumeGriffin
+    amount: 1
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingShoesGriffin
+    amount: 1
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingHeadCostumeGriffin
+    amount: 1
+    price: 40
+    category: Костюмы
+  - id: ClothingUniformJumpsuitPirate
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingOuterCoatPirate
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingHeadHatPirate
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingHeadBandRed
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingShoesBootsMagPirate
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingUniformCostumeSoviet
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingHeadHatUshanka
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingOuterVest
+    amount: 5
+    price: 40
+    category: Костюмы
+  - id: ClothingHeadHatCowboyBrown
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingHeadHatCowboyRed
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingHeadHatCowboyBlack
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingHeadCostumeSombreroGreen
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingOuterPoncho
+    amount: 9
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingOuterCostumeSnowman
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingHeadCostumeSnowman
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingUniformCostumeReferee
+    amount: 1
+    price: 40
+    category: Костюмы
+  - id: SecurityWhistle
+    amount: 1
+    price: 150
+    category: Костюмы
+  - id: ImperialClothingBackHenchmen
+    amount: 5
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingUniformCostumeHenchmen
+    amount: 5
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingHeadCostumeJackbros
+    amount: 5
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingUniformCostumeJackbros
+    amount: 5
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingUniformCostumeDeckers
+    amount: 5
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingUniformCostumeSailor
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingHeadCostumeDelinquent
+    amount: 1
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingOuterCostumeDracula
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingUniformCostumeDraculass
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ImperialClothingOuterCostumeGothcoat
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingEyesEyepatch
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingEyesEyepatchHudMedical
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingUniformMartialGi
+    amount: 4
+    price: 40
+    category: Костюмы
+  - id: ClothingHeadPropellerHat
+    amount: 3
+    price: 40
+    category: Костюмы
+  - id: ClothingNeckScarfStripedRainbow
+    amount: 3
+    price: 50
+    category: Костюмы
+  - id: ImperialClothingOuterCostumeImperiumMonk
+    amount: 3
+    price: 40
+    category: Сверхъестественное
+  - id: ClothingOuterImperialHolidayPriest
+    amount: 3
+    price: 40
+    category: Сверхъестественное
+  - id: ClothingOuterImperialHabit
+    amount: 3
+    price: 40
+    category: Сверхъестественное
+  - id: ClothingHeadHatHoodNunHood
+    amount: 3
+    price: 40
+    category: Сверхъестественное
+  - id: ClothingOuterImperialWhiteRobe
+    amount: 3
+    price: 40
+    category: Сверхъестественное
+  - id: ClothingHeadHatWitch
+    amount: 3
+    price: 40
+    category: Сверхъестественное
+  - id: ClothingOuterSuitWitchRobes
+    amount: 3
+    price: 40
+    category: Сверхъестественное
+  - id: ClothingHeadHatWitch1
+    amount: 3
+    price: 40
+    category: Сверхъестественное
+  - id: ImperialPushBroom
+    amount: 3
+    price: 40
+    category: Сверхъестественное
+  - id: ClothingOuterWizard
+    amount: 3
+    price: 40
+    category: Сверхъестественное
+  - id: ClothingHeadHatWizardFake
+    amount: 3
+    price: 40
+    category: Сверхъестественное
+  - id: ImperialWizardStaffFake
+    amount: 3
+    price: 40
+    category: Сверхъестественное
+  - id: ClothingHeadHatShrineMaidenWig
+    amount: 1
+    price: 40
+    category: Сверхъестественное
+  - id: ClothingOuterSuitShrineMaiden
+    amount: 1
+    price: 40
+    category: Сверхъестественное
+  - id: Gohei
+    amount: 3
+    price: 40
+    category: Сверхъестественное
+  - id: ClothingUniformJumpsuitClown
+    amount: 18
+    price: 40
+    category: Артистам
+  - id: ClothingMaskClown
+    amount: 3
+    price: 40
+    category: Артистам
+  - id: ClothingHeadHatBeret
+    amount: 6
+    price: 40
+    category: Артистам
+  - id: ClothingMaskMime
+    amount: 3
+    price: 40
+    category: Артистам
+  - id: ClothingUniformJumpsuitMime
+    amount: 3
+    price: 40
+    category: Артистам
+  - id: ClothingUniformJumpskirtMime
+    amount: 3
+    price: 40
+    category: Артистам
+  - id: ClothingUniformJumpsuitJester
+    amount: 3
+    price: 40
+    category: Артистам
+  - id: ClothingHeadHatJester
+    amount: 3
+    price: 40
+    category: Артистам
+  - id: ClothingShoesJester
+    amount: 4
+    price: 40
+    category: Артистам
+  - id: ClothingUniformJumpsuitJesterAlt
+    amount: 3
+    price: 40
+    category: Артистам
+  - id: ClothingHeadHatJesterAlt
+    amount: 3
+    price: 40
+    category: Артистам
+  - id: ImperialClothingUniformCostumeVillain
+    amount: 3
+    price: 40
+    category: Артистам
+  - id: ImperialClothingOuterCostumeJoker
+    amount: 3
+    price: 40
+    category: Артистам
+  - id: ImperialClothingUniformCostumeJoker
+    amount: 3
+    price: 40
+    category: Артистам
+  - id: ClothingShoesBootsPerformer
+    amount: 3
+    price: 40
+    category: Артистам
+  - id: ClothingUniformJumpskirtPerformer
+    amount: 3
+    price: 40
+    category: Артистам
+  - id: ImperialClothingHeadCostumeCueball
+    amount: 1
+    price: 40
+    category: Артистам
+  - id: ClothingUniformJumpsuitCapFormal
+    amount: 1
+    price: 40
+    category: Нарядное
+  - id: ClothingUniformJumpskirtCapFormalDress
+    amount: 1
+    price: 40
+    category: Нарядное
+  - id: ImperialClothingUniformCostumeSeifuku
+    amount: 3
+    price: 40
+    category: Нарядное
+  - id: ImperialClothingUniformCostumeSeifukuRed
+    amount: 3
+    price: 40
+    category: Нарядное
+  - id: ImperialClothingUniformCostumeSeifukuTeal
+    amount: 3
+    price: 40
+    category: Нарядное
+  - id: ImperialClothingUniformCostumeSeifukuTan
+    amount: 3
+    price: 40
+    category: Нарядное
+  - id: ClothingUniformJumpskirtColorBlack
+    amount: 3
+    price: 40
+    category: Нарядное
+  - id: ClothingNeckTieRed
+    amount: 9
+    price: 50
+    category: Нарядное
+  - id: ClothingHeadHatTophat
+    amount: 3
+    price: 40
+    category: Нарядное
+  - id: ImperialClothingUniformCostumeKilt
+    amount: 3
+    price: 40
+    category: Нарядное
+  - id: ImperialClothingEyesMonocle
+    amount: 3
+    price: 40
+    category: Нарядное
+  - id: ClothingHeadHatBowlerHat
+    amount: 3
+    price: 40
+    category: Нарядное
+  - id: Cane
+    amount: 3
+    price: 40
+    category: Нарядное
+  - id: ImperialClothingUniformDressSundress
+    amount: 3
+    price: 50
+    category: Нарядное
+  - id: ImperialClothingOuterCostumeWhitedress
+    amount: 3
+    price: 40
+    category: Нарядное
+  - id: ImperialClothingOuterCostumeChangshanRed
+    amount: 3
+    price: 40
+    category: Нарядное
+  - id: ImperialClothingOuterCostumeChangshanBlue
+    amount: 3
+    price: 40
+    category: Нарядное
+  - id: ImperialClothingOuterCostumeCheongsamRed
+    amount: 3
+    price: 40
+    category: Нарядное
+  - id: ImperialClothingOuterCostumeCheongsamBlue
+    amount: 3
+    price: 40
+    category: Нарядное
+  - id: ClothingHeadHatCatEars
+    amount: 3
+    price: 40
+    category: Животные
+  - id: ClothingHeadHatBunny
+    amount: 3
+    price: 40
+    category: Животные
+  - id: ClothingOuterSuitChicken
+    amount: 3
+    price: 40
+    category: Животные
+  - id: ClothingHeadHatChickenhead
+    amount: 3
+    price: 40
+    category: Животные
+  - id: ClothingOuterSuitCarp
+    amount: 3
+    price: 40
+    category: Животные
+  - id: ClothingOuterSuitIan
+    amount: 3
+    price: 40
+    category: Животные
+  - id: ImperialClothingOuterHoodedBeeCostume
+    amount: 3
+    price: 40
+    category: Животные
+  - id: ClothingMaskBat
+    amount: 3
+    price: 40
+    category: Животные
+  - id: ClothingMaskBee
+    amount: 3
+    price: 40
+    category: Животные
+  - id: ClothingMaskBear
+    amount: 3
+    price: 40
+    category: Животные
+  - id: ClothingMaskRaven
+    amount: 3
+    price: 40
+    category: Животные
+  - id: ClothingMaskJackal
+    amount: 3
+    price: 40
+    category: Животные
+  - id: ClothingMaskFox
+    amount: 3
+    price: 40
+    category: Животные
+  - id: ImperialClothingMaskAnimalFrog
+    amount: 3
+    price: 40
+    category: Животные
+  - id: ClothingMaskRat
+    amount: 3
+    price: 40
+    category: Животные
+  - id: ImperialClothingMaskAnimalPig
+    amount: 3
+    price: 40
+    category: Животные
+  - id: ImperialClothingMaskAnimalCowmask
+    amount: 3
+    price: 40
+    category: Животные
+  - id: ImperialClothingMaskAnimalHorsehead
+    amount: 3
+    price: 40
+    category: Животные
+  - id: ClothingUniformRandomShirt
+    amount: 6
+    price: 50
+    category: Сервис
+  - id: ImperialClothingUniformSuitWaiter
+    amount: 4
+    price: 40
+    category: Сервис
+  - id: ClothingOuterApron
+    amount: 6
+    price: 40
+    category: Сервис
+  - id: ImperialClothingOuterApronOveralls
+    amount: 3
+    price: 40
+    category: Сервис
+  - id: ClothingHeadHatTacticalMaidHeadband
+    amount: 3
+    price: 40
+    category: Сервис
+  - id: ClothingUniformJumpskirtJanimaid
+    amount: 6
+    price: 40
+    category: Сервис
+  - id: ClothingHeadHairJaneDoe
+    amount: 6
+    price: 40
+    category: Прочее
+  - id: ClothingHeadHatGreyFlatcap
+    amount: 3
+    price: 40
+    category: Прочее
+  - id: ImperialClothingOuterJacketMiljacket
+    amount: 3
+    price: 40
+    category: Прочее
+  - id: ClothingShoesBootsWork
+    amount: 3
+    price: 40
+    category: Прочее
+  - id: ClothingMaskItalianMoustache
+    amount: 3
+    price: 40
+    category: Прочее
+  - id: ImperialClothingEyesCold
+    amount: 3
+    price: 40
+    category: Прочее
+  - id: ImperialClothingEyesHeat
+    amount: 3
+    price: 40
+    category: Прочее
+  - id: ImperialClothingMaskGasCyborg
+    amount: 3
+    price: 40
+    category: Прочее
+  - id: ClothingMaskJoy
+    amount: 3
+    price: 40
+    category: Прочее
+  - id: ClothingMaskGas
+    amount: 4
+    price: 40
+    category: Прочее
+  - id: ClothingMaskGasAtmos
+    amount: 3
+    price: 40
+    category: Прочее
+  - id: ImperialClothingMaskAnimalSmallTribal
+    amount: 1
+    price: 40
+    category: Прочее
+  - id: ClothingEyesBlindfold
+    amount: 1
+    price: 100
+    type: Contraband
+  - id: ClothingEyesGlassesGar
+    amount: 2
+    price: 100
+    type: Contraband
+  - id: ImperialClothingHeadCostumePowderedWig
+    amount: 1
+    price: 100
+    type: Contraband
+  - id: ImperialClothingHeadCostumeTvHead
+    amount: 1
+    price: 100
+    type: Contraband
+  - id: ClothingMaskMuzzle
+    amount: 2
+    price: 100
+    type: Contraband
+  - id: ImperialClothingShoesClownShoesMeownShoes
+    amount: 1
+    price: 100
+    type: Contraband
+  - id: ImperialClothingShoesClownShoesMoffers
+    amount: 1
+    price: 100
+    type: Contraband
+  - id: ImperialClothingShoesDuckyShoes
+    amount: 1
+    price: 100
+    type: Contraband
+  - id: ClothingOuterRobesJudge
+    amount: 1
+    price: 100
+    type: Contraband
+  - id: ImperialClothingHeadCostumeLobsterhat
+    amount: 1
+    price: 100
+    type: Contraband
+  - id: ImperialClothingUniformCostumeLobster
+    amount: 1
+    price: 100
+    type: Contraband
+  - id: ImperialWandNothing
+    amount: 2
+    price: 100
+    type: Contraband
+  - id: ClothingHeadHatWizardFake
+    amount: 1
+    price: 100
+    type: Contraband
+  - id: ClothingOuterCoatPirate
+    amount: 2
+    price: 100
+    type: Premium
+  - id: ClothingHeadHatPirateCaptain
+    amount: 2
+    price: 100
+    type: Premium
+  - id: ClothingUniformColorRainbow
+    amount: 1
+    price: 100
+    type: Premium
+  - id: ImperialClothingHeadHelmetRomanFake
+    amount: 3
+    price: 100
+    type: Premium
+  - id: ImperialClothingHeadHelmetRomanLegionnaireFake
+    amount: 3
+    price: 100
+    type: Premium
+  - id: ImperialClothingUniformCostumeRoman
+    amount: 3
+    price: 100
+    type: Premium
+  - id: ClothingShoesMartialSandals
+    amount: 3
+    price: 100
+    type: Premium
+  - id: ImperialRomanShieldFake
+    amount: 3
+    price: 100
+    type: Premium
+  - id: ClothingOuterClownPriest
+    amount: 1
+    price: 100
+    type: Premium
+  - id: ClothingHeadHatMitreClown
+    amount: 1
+    price: 100
+    type: Premium
+  - id: Skub
+    amount: 1
+    price: 100
+    type: Premium
+  - id: ImperialClothingOuterHoodedMysticrobe
+    amount: 1
+    price: 100
+    type: Premium
+  - id: ImperialClothingUniformDressWeddingDress
+    amount: 1
+    price: 100
+    type: Premium
+  - id: ImperialClothingUniformSuitTuxedo
+    amount: 1
+    price: 100
+    type: Premium
+  - id: ImperialClothingHeadCostumeWeddingveil
+    amount: 1
+    price: 100
+    type: Premium
+  - id: ImperialClothingBeltFannypackCummerbund
+    amount: 1
+    price: 200
+    type: Premium
+  - id: ClothingOuterCoatLab
+    amount: 1
+    price: 100
+    type: Premium
+  - id: ImperialClothingUniformCostumeDrfreeze
+    amount: 1
+    price: 100
+    type: Premium
+  - id: ImperialClothingHeadCostumeDrfreezehat
+    amount: 1
+    price: 100
+    type: Premium
+
+- type: imperialVendingProfile
+  id: VendomatInventory
+  tgVendor: assist
+  defaultPrice: 35
+  extraPrice: 50
+  replace: true
+  products:
+  - id: Igniter
+    amount: 3
+    price: 35
+  - id: ProximitySensor
+    amount: 5
+    price: 35
+  - id: RemoteSignaller
+    amount: 4
+    price: 35
+  - id: AstroNavCartridge
+    amount: 4
+    price: 35
+  - id: ImperialStockPartCapacitor1
+    amount: 3
+    price: 35
+  - id: ImperialStockPartServo1
+    amount: 3
+    price: 35
+  - id: ImperialStockPartMatterBin1
+    amount: 3
+    price: 35
+  - id: ImperialStockPartMicroLaser1
+    amount: 3
+    price: 35
+  - id: ImperialStockPartScanningModule1
+    amount: 3
+    price: 35
+  - id: Wirecutter
+    amount: 2
+    price: 35
+  - id: ImperialStickyTape
+    amount: 3
+    price: 35
+  - id: ImperialHealthSensor
+    amount: 2
+    price: 50
+    type: Contraband
+  - id: TimerTrigger
+    amount: 2
+    price: 50
+    type: Contraband
+  - id: VoiceTrigger
+    amount: 2
+    price: 50
+    type: Contraband
+  - id: PowerCellHigh
+    amount: 1
+    price: 50
+    type: Contraband
+  - id: PowerCageHigh
+    amount: 1
+    price: 50
+    type: Contraband
+  - id: ImperialBlackMarketUplink
+    amount: 1
+    price: 125
+    type: Contraband
+  - id: Screwdriver
+    amount: 2
+    price: 50
+    type: Contraband
+  - id: Mousetrap
+    amount: 4
+    price: 50
+    type: Contraband
+  - id: RifleStock
+    amount: 2
+    price: 50
+    type: Contraband
+  - id: Igniter
+    amount: 2
+    price: 50
+    type: Premium
+  - id: ImperialCustomVendorCircuitboard
+    amount: 3
+    price: 75
+    type: Premium
+  - id: AppraisalTool
+    amount: 3
+    price: 50
+    type: Premium
+  - id: ImperialVendingRefillCustom
+    amount: 3
+    price: 50
+    type: Premium
+
+- type: imperialVendingProfile
+  id: ViroDrobeInventory
+  tgVendor: wardrobe/viro_wardrobe
+  defaultPrice: 50
+  extraPrice: 100
+  department: Medical
+  replace: true
+  products:
+  - id: ClothingMaskSterile
+    amount: 2
+    price: 50
+  - id: ClothingUniformJumpsuitVirology
+    amount: 2
+    price: 50
+  - id: ClothingUniformJumpskirtVirology
+    amount: 2
+    price: 50
+  - id: ClothingHeadHatBeretMedic
+    amount: 2
+    price: 50
+  - id: ClothingShoesColorWhite
+    amount: 2
+    price: 50
+  - id: ClothingOuterCoatLabViro
+    amount: 2
+    price: 50
+  - id: ClothingOuterWinterViro
+    amount: 2
+    price: 50
+  - id: ClothingHandsGlovesLatex
+    amount: 2
+    price: 50
+  - id: ClothingBackpackVirology
+    amount: 2
+    price: 50
+  - id: ClothingBackpackSatchelVirology
+    amount: 4
+    price: 50
+  - id: ClothingBackpackDuffelVirology
+    amount: 2
+    price: 50
+  - id: ClothingHeadsetMedical
+    amount: 2
+    price: 50
+
+- type: imperialVendingProfile
+  id: WinterDrobeInventory
+  defaultPrice: 35
+  extraPrice: 100
+
+- type: imperialVendingProfile
+  id: YouToolInventory
+  tgVendor: tool
+  defaultPrice: 50
+  extraPrice: 150
+  department: Engineering
+  replace: true
+  products:
+  - id: CableHVStack
+    amount: 10
+    price: 20
+  - id: Crowbar
+    amount: 5
+    price: 50
+  - id: Welder
+    amount: 3
+    price: 50
+  - id: Wirecutter
+    amount: 5
+    price: 50
+  - id: Wrench
+    amount: 5
+    price: 50
+  - id: GasAnalyzer
+    amount: 5
+    price: 23
+  - id: trayScanner
+    amount: 5
+    price: 18
+  - id: Screwdriver
+    amount: 5
+    price: 50
+  - id: GlowstickGreen
+    amount: 3
+    price: 25
+  - id: GlowstickRed
+    amount: 3
+    price: 25
+  - id: FlashlightLantern
+    amount: 5
+    price: 50
+  - id: ImperialEarmuffs
+    amount: 1
+    price: 150
+  - id: ClothingHandsGlovesColorYellowBudget
+    amount: 2
+    price: 150
+    type: Contraband
+  - id: ClothingBeltUtility
+    amount: 2
+    price: 100
+    type: Premium
+  - id: Multitool
+    amount: 4
+    price: 150
+    type: Premium
+  - id: WelderIndustrialAdvanced
+    amount: 2
+    price: 150
+    type: Premium
+  - id: ClothingHeadHatWelding
+    amount: 2
+    price: 150
+    type: Premium
+  - id: ClothingHandsGlovesColorYellow
+    amount: 1
+    price: 600
+    type: Premium

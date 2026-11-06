@@ -1,0 +1,289 @@
+# Снаряжение СБ 1 в 1 с tgstation/BandaStation: Compli-o-nator, мегафоны, телескопическая дубинка, электростул.
+
+# ─── Compli-o-nator (clothing/mask/gas/sechailer) ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionSecHailerHalt
+  name: СТОЯТЬ!
+  description: Проиграть одну из записанных фраз Compli-o-Nator 3000.
+  components:
+  - type: Action
+    itemIconStyle: BigItem
+    useDelay: 3
+  - type: InstantAction
+    event: !type:SecHailerHaltActionEvent {}
+
+# ─── Мегафоны (obj/item/megaphone) ───
+
+- type: speechVerb
+  id: ImperialMegaphone
+  name: chat-speech-verb-name-megaphone
+  speechVerbStrings:
+  - chat-speech-verb-megaphone-1
+  bold: true
+  fontSize: 17
+
+- type: speechVerb
+  id: ImperialMegaphoneEmagged
+  name: chat-speech-verb-name-megaphone
+  speechVerbStrings:
+  - chat-speech-verb-megaphone-emagged-1
+  bold: true
+  fontSize: 26
+
+- type: entity
+  parent: BaseItem
+  id: Megaphone
+  name: мегафон
+  description: Устройство, усиливающее голос. Громко.
+  components:
+  - type: Sprite
+    sprite: Imperial/Security/megaphone.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Security/megaphone.rsi
+  - type: Megaphone
+
+- type: entity
+  parent: Megaphone
+  id: MegaphoneSecurity
+  name: мегафон СБ
+  components:
+  - type: Sprite
+    sprite: Imperial/Security/megaphone-sec.rsi
+  - type: Item
+    sprite: Imperial/Security/megaphone-sec.rsi
+
+- type: entity
+  parent: Megaphone
+  id: MegaphoneCommand
+  name: командный мегафон
+  components:
+  - type: Sprite
+    sprite: Imperial/Security/megaphone-command.rsi
+  - type: Item
+    sprite: Imperial/Security/megaphone-command.rsi
+
+- type: entity
+  parent: Megaphone
+  id: MegaphoneCargo
+  name: мегафон снабжения
+  components:
+  - type: Sprite
+    sprite: Imperial/Security/megaphone-cargo.rsi
+  - type: Item
+    sprite: Imperial/Security/megaphone-cargo.rsi
+
+- type: entity
+  parent: Megaphone
+  id: MegaphoneClown
+  name: клоунский мегафон
+  description: Чего-то такого не должно существовать.
+  components:
+  - type: Sprite
+    sprite: Imperial/Security/megaphone-clown.rsi
+  - type: Item
+    sprite: Imperial/Security/megaphone-clown.rsi
+
+# ─── Телескопическая дубинка (melee/baton/telescopic) ───
+
+- type: entity
+  parent: BaseItem
+  id: TelescopicBaton
+  name: телескопическая дубинка
+  description: Компактное, но надёжное оружие личной защиты. В сложенном виде его можно спрятать.
+  components:
+  - type: TelescopicBaton
+  - type: Sprite
+    sprite: Imperial/Security/telebaton.rsi
+    layers:
+    - state: icon
+    - state: icon-on
+      visible: false
+      map: [ "extended" ]
+  - type: Item
+    size: Small
+    sprite: Imperial/Security/telebaton.rsi
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - belt
+    sprite: Imperial/Security/telebaton.rsi
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Imperial/Security/batonextend.ogg
+    soundDeactivate:
+      path: /Audio/Imperial/Security/batonextend.ogg
+  - type: ItemToggleSize
+    activatedSize: Normal
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Blunt: 10
+    activatedSoundOnHit:
+      path: /Audio/Weapons/genhit1.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 0
+    soundHit:
+      path: /Audio/Weapons/punch1.ogg
+  - type: UseDelay
+    delay: 0.5
+  - type: Appearance
+  - type: ToggleableVisuals
+    spriteLayer: extended
+    inhandVisuals:
+      left:
+      - state: on-inhand-left
+      right:
+      - state: on-inhand-right
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/Imperial/Security/telescopic_baton_folded_pickup.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Imperial/Security/telescopic_baton_folded_drop.ogg
+  - type: StaticPrice
+    price: 150
+
+- type: entity
+  parent: TelescopicBaton
+  id: TelescopicBatonBronze
+  name: телескопическая дубинка с бронзовым навершием
+  description: Компактное, но надёжное оружие личной защиты. В сложенном виде его можно спрятать. Бронзовый вариант.
+  components:
+  - type: Sprite
+    sprite: Imperial/Security/telebaton_bronze.rsi
+  - type: Item
+    sprite: Imperial/Security/telebaton_bronze.rsi
+  - type: Clothing
+    sprite: Imperial/Security/telebaton_bronze.rsi
+
+- type: entity
+  parent: TelescopicBaton
+  id: TelescopicBatonSilver
+  name: телескопическая дубинка с серебряным навершием
+  description: Компактное, но надёжное оружие личной защиты. В сложенном виде его можно спрятать. Серебряный вариант.
+  components:
+  - type: Sprite
+    sprite: Imperial/Security/telebaton_silver.rsi
+  - type: Item
+    sprite: Imperial/Security/telebaton_silver.rsi
+  - type: Clothing
+    sprite: Imperial/Security/telebaton_silver.rsi
+
+- type: entity
+  parent: TelescopicBaton
+  id: TelescopicBatonGold
+  name: телескопическая дубинка с золотым навершием
+  description: Компактное, но надёжное оружие личной защиты. В сложенном виде его можно спрятать. Золото — сила.
+  components:
+  - type: Sprite
+    sprite: Imperial/Security/telebaton_gold.rsi
+  - type: Item
+    sprite: Imperial/Security/telebaton_gold.rsi
+  - type: Clothing
+    sprite: Imperial/Security/telebaton_gold.rsi
+
+# ─── Электростул ───
+
+# assembly/shock_kit: электропак на шлеме.
+- type: entity
+  parent: BaseItem
+  id: ShockKit
+  name: сборка электрошлема
+  description: Похоже, её собрали из электропака и шлема. Прикрутите к стулу — получится электростул.
+  components:
+  - type: ShockKit
+  - type: Sprite
+    sprite: Imperial/Security/shock_kit.rsi
+    state: icon
+  - type: Item
+    size: Huge
+
+- type: constructionGraph
+  id: ImperialShockKit
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: kit
+      steps:
+      - component: ShockOnTrigger
+        name: construction-graph-component-electropack
+        icon:
+          sprite: Clothing/Back/Backpacks/electropack.rsi
+          state: icon
+      - tag: SecurityHelmet
+        name: construction-graph-tag-security-helmet
+        icon:
+          sprite: Clothing/Head/Helmets/security.rsi
+          state: icon
+        doAfter: 2
+  - node: kit
+    entity: ShockKit
+
+- type: construction
+  id: ImperialShockKit
+  graph: ImperialShockKit
+  startNode: start
+  targetNode: kit
+  category: construction-category-tools
+  objectType: Item
+
+# chair/e_chair
+- type: entity
+  parent: ChairBase
+  id: ImperialElectricChair
+  name: электрический стул
+  description: Выглядит просто ШОКИРУЮЩЕ! Включается и выключается сигналом — привяжите кнопку или пульт мультитулом.
+  components:
+  - type: ElectricChair
+  - type: Sprite
+    sprite: Imperial/Security/electric_chair.rsi
+    layers:
+    - state: chair
+    - state: over
+    - state: shock
+      visible: false
+      shader: unshaded
+      map: [ "shock" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ElectricChairVisuals.Shocking:
+        shock:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ContainerContainer
+    containers:
+      shock-kit: !type:ContainerSlot
+  - type: DeviceLinkSink
+    ports:
+    - Toggle
+  - type: Electrified
+    requirePower: true
+    onBump: false
+    onAttacked: false
+    onHandInteract: false
+    onInteractUsing: false
+    shockDamage: 20
+    highVoltageNode: high
+    mediumVoltageNode: medium
+    lowVoltageNode: low
+  - type: NodeContainer
+    nodes:
+      high:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+      medium:
+        !type:CableDeviceNode
+        nodeGroupID: MVPower
+      low:
+        !type:CableDeviceNode
+        nodeGroupID: Apc

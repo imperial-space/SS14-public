@@ -1,0 +1,245 @@
+# /obj/vehicle/sealed/car/clowncar
+- type: entity
+  parent: BaseImperialVehicleRideable
+  id: ImperialClownCar
+  name: машина клоуна
+  description: Как туда вообще кто-то помещается — уму непостижимо.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Roles/clowncar.rsi
+    layers:
+    - state: icon
+      map: [ "base" ]
+    - sprite: Structures/Power/Generation/Singularity/singularity_1.rsi
+      state: singularity_1
+      map: [ "singularity" ]
+      visible: false
+      shader: unshaded
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ImperialClownCarVisuals.State:
+        base:
+          Normal: { state: icon }
+          ToFire: { state: tofire }
+          Fire: { state: fire }
+          FromFire: { state: fromfire }
+          Recoil: { state: recoil }
+      enum.ImperialClownCarVisuals.Singularity:
+        base:
+          True: { visible: false }
+          False: { visible: true }
+        singularity:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ImperialVehicle
+    autoAnimate: false
+    hideRider: true
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 5
+    acceleration: 2.0
+    useHand: false
+  - type: Strap
+    buckleOffset: "0,0"
+    maxBuckleDistance: 1
+    position: Stand
+    buckleOnInteractHand: false
+  - type: ImperialClownCar
+  - type: ContainerContainer
+    containers:
+      clowncar_victims: !type:Container
+      clowncar_key: !type:ContainerSlot
+  - type: PointLight
+    enabled: false
+    radius: 6
+    energy: 2
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: ImperialClownCar
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 30
+    intensitySlope: 5
+    maxIntensity: 10
+    canCreateVacuum: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:ExplodeBehavior
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# /datum/armor/car_clowncar: melee 70, bullet 40, laser 40, bomb 30, fire 80, acid 80.
+- type: damageModifierSet
+  id: ImperialClownCar
+  coefficients:
+    Blunt: 0.3
+    Slash: 0.3
+    Piercing: 0.6
+    Heat: 0.4
+    Caustic: 0.2
+    Structural: 0.7
+
+# /obj/item/grown/bananapeel/specialpeel
+- type: entity
+  parent: TrashBananaPeel
+  id: ImperialClownCarSpecialPeel
+  name: синтезированная банановая кожура
+  description: Синтетическая банановая кожура.
+  components:
+  - type: Slippery
+    slipData:
+      knockdownTime: 4
+
+# /obj/effect/decal/cleanable/blood/oil/slippery
+- type: reagent
+  id: ImperialSlipperyOil
+  name: reagent-name-imperial-slippery-oil
+  desc: reagent-desc-imperial-slippery-oil
+  physicalDesc: reagent-physical-desc-oily
+  flavor: oily
+  color: "#1a1a1a"
+  slipData:
+    requiredSlipSpeed: 3.5
+    knockdownTime: 8
+  tileReactions:
+  - !type:FlammableTileReaction {}
+
+# /datum/reagent/consumable/ethanol/irishcarbomb
+- type: reagent
+  id: ImperialIrishCarBomb
+  name: reagent-name-imperial-irish-car-bomb
+  parent: BaseAlcohol
+  desc: reagent-desc-imperial-irish-car-bomb
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: alcohol
+  color: "#2E6671"
+  metabolisms:
+    Digestion:
+      metabolites:
+        Ethanol: 0.25
+
+- type: reaction
+  id: ImperialIrishCarBomb
+  reactants:
+    Ale:
+      amount: 1
+    IrishCream:
+      amount: 1
+  products:
+    ImperialIrishCarBomb: 2
+
+# Действия машины (vehicle_actions.dm)
+- type: entity
+  abstract: true
+  id: BaseImperialActionClownCar
+  components:
+  - type: Action
+    checkCanInteract: false
+    checkConsciousness: true
+
+- type: entity
+  parent: BaseImperialActionClownCar
+  id: ImperialActionClownCarHorn
+  name: Посигналить
+  description: Посигнальте своим классным клаксоном.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Uplink/Roles/clowncar_actions.rsi, state: horn }
+  - type: InstantAction
+    event: !type:ImperialClownCarHornEvent
+
+- type: entity
+  parent: BaseImperialActionClownCar
+  id: ImperialActionClownCarHeadlights
+  name: Фары
+  description: Включите дальний свет!
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Uplink/Roles/clowncar_actions.rsi, state: headlights }
+  - type: InstantAction
+    event: !type:ImperialClownCarHeadlightsEvent
+
+- type: entity
+  parent: BaseImperialActionClownCar
+  id: ImperialActionClownCarDump
+  name: Выгрузить похищенных
+  description: Вывалить всех похищенных из машины на пол.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Uplink/Roles/clowncar_actions.rsi, state: dump }
+  - type: InstantAction
+    event: !type:ImperialClownCarDumpEvent
+
+- type: entity
+  parent: BaseImperialActionClownCar
+  id: ImperialActionClownCarRemoveKey
+  name: Вынуть ключ
+  description: Вынуть ключ из замка зажигания.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Uplink/Roles/clowncar_actions.rsi, state: removekey }
+  - type: InstantAction
+    event: !type:ImperialClownCarRemoveKeyEvent
+
+- type: entity
+  parent: BaseImperialActionClownCar
+  id: ImperialActionClownCarExit
+  name: Вылезти
+  description: Вылезти из машины!
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Uplink/Roles/clowncar_actions.rsi, state: eject }
+  - type: InstantAction
+    event: !type:ImperialClownCarExitEvent
+
+- type: entity
+  parent: BaseImperialActionClownCar
+  id: ImperialActionClownCarDice
+  name: Нажать цветную кнопку
+  description: Нажмите одну из разноцветных кнопок на приборной панели!
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Uplink/Roles/clowncar_actions.rsi, state: rtd }
+  - type: InstantAction
+    event: !type:ImperialClownCarDiceEvent
+
+- type: entity
+  parent: BaseImperialActionClownCar
+  id: ImperialActionClownCarCannon
+  name: Режим осады
+  description: Уничтожьте их их же собственным мясом!
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Uplink/Roles/clowncar_actions.rsi, state: cannon }
+  - type: InstantAction
+    event: !type:ImperialClownCarCannonEvent
+
+- type: entity
+  parent: BaseImperialActionClownCar
+  id: ImperialActionClownCarFire
+  name: Выстрелить пассажиром
+  description: Выстрелить случайным похищенным в выбранную точку.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Uplink/Roles/clowncar.rsi, state: fire }
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ImperialClownCarFireEvent
+
+- type: entity
+  parent: BaseImperialActionClownCar
+  id: ImperialActionClownCarThank
+  name: Поблагодарить водителя
+  description: Он просто делает свою работу.
+  components:
+  - type: Action
+    useDelay: 6
+    icon: { sprite: Imperial/Uplink/Roles/clowncar_actions.rsi, state: thank }
+  - type: InstantAction
+    event: !type:ImperialClownCarThankEvent

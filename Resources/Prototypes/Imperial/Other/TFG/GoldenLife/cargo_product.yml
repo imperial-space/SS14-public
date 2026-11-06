@@ -28,7 +28,7 @@
   product: PremiumAkKit
   cost: 90000
   category: Premium
-  group: market
+  group: ImperialCargo
 #Cargo Golden AK END
 
 #Cargo Golden Thruster
@@ -40,7 +40,7 @@
   product: GoldenThrusterUnanchored
   cost: 40000
   category: Premium
-  group: market
+  group: ImperialCargo
 #Cargo Golden Thruster END
 
 #Cargo Golden Pizza
@@ -85,7 +85,7 @@
   product: FoodPresentablePizzaBoxFilled
   cost: 35000
   category: Premium
-  group: market
+  group: ImperialCargo
 #Cargo Golden Pizza END
 
 #Cargo Golden Watermellon
@@ -112,7 +112,7 @@
   product: ToolboxPresentableFilledGoldenmellon
   cost: 5000
   category: Premium
-  group: market
+  group: ImperialCargo
 #Cargo Golden Watermellon END
 
 #Cargo Golden MK-58
@@ -147,5 +147,5 @@
   product: PremiumMk58Kit
   cost: 10000
   category: Premium
-  group: market
+  group: ImperialCargo
 #Cargo Golden MK-58 END

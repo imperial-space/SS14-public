@@ -1,0 +1,733 @@
+# Bundles и Reinforcements: uplink_items/bundle.dm, nukeops.dm, storage/uplink_kits.dm.
+
+- type: entity
+  abstract: true
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkSyndiKitBase
+  name: коробка Синдиката
+  description: Простая коробка без опознавательных знаков.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Badass/boxes.rsi
+    layers:
+    - state: syndiebox
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Ginormous
+    grid:
+    - 0,0,11,11
+
+# ── Syndi-kit Tactical (box/syndicate/bundle_a) ──
+
+- type: entity
+  parent: ImperialUplinkSyndiKitBase
+  id: ImperialUplinkSyndiKitTactical
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:GroupSelector
+        children:
+        # KIT_RECON
+        - !type:AllSelector
+          weight: 2
+          children:
+          - id: ClothingEyesGlassesThermal
+          - id: ImperialUplinkLaunchpadKit
+          - id: Binoculars
+          - id: EncryptionKeySyndie
+          - id: ClothingBackpackDuffelSyndicateEVABundle
+          - id: GrenadeShrapnel
+            amount: 2
+          - id: ImperialEmpFlashlight
+        # KIT_BLOODY_SPAI
+        - !type:AllSelector
+          weight: 3
+          children:
+          - id: AgentIDCard
+          - id: ClothingUniformJumpsuitChameleon
+          - id: ClothingMaskGasChameleon
+          - id: ClothingShoesChameleonNoSlips
+          - id: CameraBug
+          - id: ImperialAiDetector
+          - id: EncryptionKeySyndie
+          - id: ImperialUplinkMulliganKit
+          - id: CombatKnife
+          - id: CigPackSyndicate
+          - id: ImperialEmpFlashlight
+          - id: ChameleonProjector
+          - id: StorageImplanter
+        # KIT_STEALTHY
+        - !type:AllSelector
+          weight: 2
+          children:
+          - id: WeaponEnergyCrossbow
+          - id: ImperialSleepyPen
+          - id: ImperialRadLaser
+          - id: ChameleonProjector
+          - id: SoapSyndie
+          - id: ClothingEyesGlassesThermal
+          - id: ImperialEmpFlashlight
+          - id: RadioJammer
+        # KIT_SCREWED
+        - !type:AllSelector
+          weight: 2
+          children:
+          - id: ImperialSyndicateBombBeacon
+          - id: SyndieMiniBomb
+          - id: ImperialPowerSinkBeacon
+          - id: ClothingOuterEVASuitSyndicate
+          - id: ClothingHeadHelmetSyndicate
+          - id: EncryptionKeySyndie
+        # KIT_SABOTAGE
+        - !type:AllSelector
+          weight: 3
+          children:
+          - id: ImperialUplinkSabotageBag
+          - id: CameraBug
+          - id: ImperialPowerSinkBeacon
+          - id: ImperialDetomatixDisk
+          - id: ToolboxSyndicateFilled
+          - id: ImperialPizzaBomb
+          - id: ImperialUplinkEmpKit
+        # KIT_GUN
+        - !type:AllSelector
+          weight: 2
+          children:
+          - id: ImperialWeaponRevolverSyndicate
+          - id: ImperialSpeedLoader357
+            amount: 2
+          - id: ImperialHolsterChameleon
+          - id: AccessBreaker
+          - id: C4
+          - id: ClothingHandsGlovesNitrile
+          - id: ClothingMaskClown
+          - id: ClothingUniformJumpsuitLawyerBlack
+          - id: ClothingNeckTieRed
+        # KIT_MURDER
+        - !type:AllSelector
+          weight: 2
+          children:
+          - id: EnergySword
+          - id: ClothingEyesGlassesThermal
+          - id: AccessBreaker
+          - id: ClothingShoesChameleonNoSlips
+          - id: EncryptionKeySyndie
+          - id: SyndieMiniBomb
+        # KIT_IMPLANTS
+        - !type:AllSelector
+          weight: 1
+          children:
+          - id: FreedomImplanter
+          - id: UplinkImplanter
+          - id: EmpImplanter
+          - id: MicroBombImplanter
+          - id: StorageImplanter
+        # KIT_HACKER
+        - !type:AllSelector
+          weight: 3
+          children:
+          - id: ImperialHackedLawModule
+          - id: Emag
+          - id: AccessBreaker
+          - id: EncryptionKeyBinarySyndicate
+          - id: ImperialAiDetector
+          - id: ToolboxSyndicateFilled
+          - id: CameraBug
+          - id: ClothingEyesGlassesThermal
+          - id: AgentIDCard
+        # KIT_SNIPER
+        - !type:AllSelector
+          weight: 1
+          children:
+          - id: WeaponSniperHristov
+          - id: ImperialAntiMaterielBoxPenetrator
+          - id: ClothingEyesGlassesThermal
+          - id: ClothingHandsGlovesNitrile
+          - id: ClothingMaskClown
+          - id: ClothingUniformJumpsuitLawyerBlack
+          - id: ClothingNeckTieRed
+        # KIT_NUKEOPS_METAGAME
+        - !type:AllSelector
+          weight: 1
+          children:
+          - id: ClothingBackpackDuffelSyndicateHardsuitBundle
+          - id: WeaponShotgunBulldog
+          - id: MicroBombImplanter
+          - id: MagazineShotgun
+            amount: 2
+          - id: C4
+            amount: 2
+          - id: Emag
+          - id: AccessBreaker
+        # KIT_REVOLUTIONARY
+        - !type:AllSelector
+          weight: 2
+          children:
+          - id: ImperialRadLaser
+          - id: ImperialHypnoticFlash
+          - id: ImperialSleepyPen
+          - id: WeaponRevolverInspector
+          - id: Megaphone
+          - id: BedsheetRed
+          - id: ClothingHeadHatUshanka
+          - id: ImperialUplinkPosterBox
+
+# ── Syndi-kit Special (box/syndicate/bundle_b) ──
+
+- type: entity
+  parent: ImperialUplinkSyndiKitBase
+  id: ImperialUplinkSyndiKitSpecial
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:GroupSelector
+        children:
+        # KIT_JAMES_BOND
+        - !type:AllSelector
+          weight: 2
+          children:
+          - id: ImperialWeaponPistolMakarov
+          - id: ImperialSuppressor
+          - id: ImperialMagazine9mm
+            amount: 2
+          - id: AgentIDCard
+          - id: ClothingUniformJumpsuitChameleon
+          - id: Stimpack
+          - id: FreedomImplanter
+          - id: ImperialEmpFlashlight
+          - id: X4
+          - id: ImperialUplinkBottleCyanide
+          - id: ImperialSyndicateCardDeck
+        # KIT_NINJA
+        - !type:AllSelector
+          weight: 1
+          children:
+          - id: Katana
+          - id: ClothingBeltKatanaSheath
+          - id: Stimpack
+          - id: ThrowingStar
+            amount: 6
+          - id: ChameleonProjector
+          - id: AgentIDCard
+          - id: AccessBreaker
+          - id: ImperialUplinkSmokeKit
+        # KIT_DARK_LORD
+        - !type:AllSelector
+          weight: 1
+          children:
+          - id: EnergySwordDouble
+          - id: ClothingOuterHoodieChaplain
+          - id: AgentIDCard
+          - id: ClothingShoesChameleonNoSlips
+        # KIT_WHITE_WHALE_HOLY_GRAIL
+        - !type:AllSelector
+          weight: 2
+          children:
+          - id: ClothingOuterHardsuitCarp
+          - id: ImperialCarpGrenade
+          - id: DehydratedSpaceCarp
+        # KIT_MAD_SCIENTIST
+        - !type:AllSelector
+          weight: 2
+          children:
+          - id: ClothingOuterCoatLab
+          - id: ClothingShoesBootsJack
+          - id: Megaphone
+          - id: ClusterBangFull
+            amount: 2
+          - id: RemoteSignaller
+            amount: 4
+          - id: ToolboxSyndicateFilled
+          - id: EnergyDagger
+        # KIT_BEES
+        - !type:AllSelector
+          weight: 1
+          children:
+          - id: ClothingMaskBee
+          - id: ImperialBuzzkillGrenade
+            amount: 2
+        # KIT_MR_FREEZE
+        - !type:AllSelector
+          weight: 2
+          children:
+          - id: ClothingHandsGlovesColorBlack
+          - id: ClothingMaskGasChameleon
+          - id: ClothingOuterWinterCoat
+          - id: ClothingShoesBootsWinter
+          - id: WeaponTemperatureGun
+          - id: EnergySword
+        # KIT_DEAD_MONEY
+        - !type:AllSelector
+          weight: 2
+          children:
+          - id: RemoteSignaller
+            amount: 6
+          - id: ClothingBackpackDuffelSyndicateHardsuitBundle
+          - id: AgentIDCard
+          - id: ClothingMaskGasChameleon
+          - id: ContractorStunbaton
+          - id: RadioJammer
+        # KIT_TRAITOR_2006
+        - !type:AllSelector
+          weight: 1
+          children:
+          - id: ImperialUplinkAncientBundle
+        # KIT_SAM_FISHER
+        - !type:AllSelector
+          weight: 1
+          children:
+          - id: ClothingUniformJumpsuitOperative
+          - id: ClothingOuterArmorBulletproof
+          - id: ClothingHeadHelmetBasic
+          - id: ClothingMaskGasSecurity
+          - id: ClothingHandsGlovesCombat
+          - id: ClothingShoesBootsJack
+          - id: ImperialWeaponPistolAnsem
+          - id: ImperialSuppressor
+          - id: ImperialMagazine10mm
+            amount: 2
+          - id: AccessBreaker
+          - id: CombatKnife
+        # KIT_PROP_HUNT
+        - !type:AllSelector
+          weight: 1
+          children:
+          - id: ChameleonProjector
+          - id: AccessBreaker
+          - id: ImperialStealthImplanter
+          - id: ImperialWeaponPistolMakarov
+          - id: ClothingEyesGlassesThermal
+
+- type: entity
+  parent: [ToolboxSyndicate, BaseSyndicateContraband]
+  id: ImperialUplinkAncientBundle
+  name: древний ящик для инструментов
+  description: Всё, что было в аплинке предателя в 2006 году.
+  components:
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,7,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Emag
+        - id: AccessBreaker
+        - id: ImperialSleepyPen
+        - id: ImperialUplinkBottleCyanide
+        - id: ChameleonProjector
+        - id: ImperialWeaponRevolverSyndicate
+        - id: FreedomImplanter
+        - id: Telecrystal1
+
+- type: entity
+  parent: [ClothingBackpackDuffelSyndicate, BaseSyndicateContraband]
+  id: ImperialUplinkSabotageBag
+  name: вещмешок диверсанта
+  description: Три заряда C-4, два X-4 и шесть сигнализаторов.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: C4
+          amount: 3
+        - id: X4
+          amount: 2
+        - id: RemoteSignaller
+          amount: 6
+
+- type: entity
+  parent: ImperialSpawnerGrenadeBase
+  id: ImperialCarpGrenade
+  name: граната с карпами
+  description: Внутри в стазисе несколько космических карпов. Они не различают своих и чужих.
+  components:
+  - type: SpawnEntityTableOnTrigger
+    keysIn:
+    - timer
+    table: !type:AllSelector
+      children:
+      - id: MobCarp
+        amount: 5
+
+# ── Ящики излишков (bundles_tc/surplus) ──
+
+- type: entity
+  parent: [CrateSyndicate, BaseSyndicateContraband]
+  id: ImperialUplinkSurplusCrate
+  name: ящик излишков Синдиката
+  description: Пыльный ящик из глубин склада Синдиката. Внутри случайные предметы на 40 ТК.
+  components:
+  - type: UplinkSurplusCrate
+    value: 40
+
+- type: entity
+  parent: [CrateBaseWeldable, BaseSyndicateContraband]
+  id: ImperialUplinkUnitedSurplusCrate
+  name: объединённый ящик излишков
+  description: Блестящий большой ящик с хитрым замком и защитой от взлома. Открыть его можно только ключом объединённого ящика. Внутри случайные предметы на 100 ТК.
+  components:
+  - type: Icon
+    sprite: Imperial/Uplink/Badass/syndicrate.rsi
+    state: closed
+  - type: Sprite
+    sprite: Imperial/Uplink/Badass/syndicrate.rsi
+    offset: 0,0.25
+    layers:
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: EntityStorageVisuals
+    stateDoorOpen: open
+    stateDoorClosed: closed
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: UplinkSurplusCrate
+    value: 100
+    united: true
+
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: ImperialSyndicrateKey
+  name: ключ объединённого ящика
+  description: Устройство со змеиной эмблемой, способное разделиться на два ключа. Открывает один объединённый ящик излишков.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Badass/syndicrate.rsi
+    state: key
+  - type: Item
+    size: Tiny
+  - type: UplinkSyndicrateKey
+
+# ── Наборы ядерных оперативников ──
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkCyberImplantsBox
+  name: коробка кибернетических имплантов
+  description: Гладкая прочная коробка.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Badass/boxes.rsi
+    layers:
+    - state: cyber_implants
+  - type: Item
+    size: Small
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,5,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialAutosurgeonXrayEyes
+        - id: ImperialAutosurgeonCnsRebooter
+        - id: ImperialAutosurgeonReviver
+
+- type: entity
+  parent: [ClothingBackpackDuffelSyndicateMedical, BaseSyndicateContraband]
+  id: ImperialUplinkMedicalBundle
+  name: медицинский набор
+  description: Большой вещмешок с медицинским снаряжением, игрушечным оружием Donksoft, коробкой усиленных дротиков и магнитными ботинками.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingShoesBootsMagSyndie
+        - id: ImperialMedkitTacticalPremium
+        - id: ImperialWeaponPistolDonksoft
+        - id: ImperialBoxFoamRiot
+
+- type: entity
+  parent: [ClothingBackpackDuffelSyndicate, BaseSyndicateContraband]
+  id: ImperialUplinkFirestarterBundle
+  name: набор поджигателя спецназа
+  description: Вещмешок с элитным скафандром, автоматическим пистолетом, двумя зажигательными магазинами, мини-бомбой и стимулятором. И бутылкой водки от товарища Бориса.
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,9,5
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitSyndieElite
+        - !type:NestedSelector
+          tableId: SyndicateHardsuitExtrasEntityTable
+        - id: WeaponPistolViper
+        - id: MagazinePistolIncendiary
+          amount: 2
+        - id: DrinkVodkaBottleFull
+        - id: Stimpack
+        - id: SyndieMiniBomb
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ImperialInductionImplant
+  name: имплант ядерного оперативника
+  description: Регистрирует носителя как члена команды ядерных оперативников Синдиката.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: UplinkInductionImplant
+
+- type: entity
+  parent: BaseImplantOnlyImplanterSyndi
+  id: ImperialInductionImplanter
+  name: имплантер (ядерный оперативник)
+  description: Стерильный автоматический имплантер. Сбоку крошечная, но разборчивая наклейка — «НЕ УСТРОЙСТВО ДЛЯ ПРОМЫВКИ МОЗГОВ».
+  components:
+  - type: Implanter
+    implant: ImperialInductionImplant
+
+- type: entity
+  parent: ImperialUplinkSyndiKitBase
+  id: ImperialUplinkInductionKit
+  name: набор вступления в Синдикат
+  description: Всё, что нужно, чтобы представить нового товарища Синдикату и всем его льготам.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialWeaponPistolAnsem
+        - id: ImperialMagazine10mmHP
+        - id: ImperialMagazine10mmAP
+        - id: EnergyDagger
+        - id: ClothingHeadsetAltSyndicate
+        - id: SyndiPDA
+        - id: AgentIDCard
+        - id: ClothingOuterEVASuitSyndicate
+        - id: ClothingHeadHelmetSyndicate
+        - id: JetpackBlackFilled
+        - id: ClothingShoesBootsCombatFilled
+        - id: ClothingUniformJumpsuitOperative
+        - id: ClothingHandsGlovesFingerless
+        - id: ImperialInductionImplanter
+
+- type: entity
+  parent: ImperialUplinkSyndiKitBase
+  id: ImperialUplinkCowboyKit
+  name: набор преступника Дикого Запада
+  description: Всё, чтобы стать лихим ковбоем, о котором вы всегда мечтали. Будьте одиноким рейнджером или приходите с бандой.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingShoesBootsCowboyBlack
+        - id: ClothingHeadHatCowboyBlack
+        - id: ImperialHolsterTacticool
+        - id: ImperialWeaponRevolverSyndicate
+        - id: FlippoLighter
+        - id: FoodApple
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkCoreGearBox
+  name: коробка базового снаряжения
+  description: Всё необходимое для успеха ядерного оперативника, не уверенного, что ему нужно. Всё здесь ТОЧНО поможет.
+  components:
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,7,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: FreedomImplanter
+        - id: AccessBreaker
+        - id: Stimpack
+        - id: C4
+        - id: EnergyShield
+
+# ── Подкрепления (reinforcements) ──
+
+- type: entity
+  parent: ReinforcementRadio
+  id: ImperialReinforcementRadioSyndicateCyborgMedical
+  name: рация вызова киборга-медика Синдиката
+  description: Вызовите боевого медицинского киборга. Наступательный потенциал невелик, но поддержка с лихвой это окупает.
+  suffix: ЯО
+  components:
+  - type: GhostRole
+    name: ghost-role-information-syndicate-cyborg-medical-name
+    description: ghost-role-information-syndicate-cyborg-description
+    rules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleGhostRoleSilicon
+    raffle:
+      settings: default
+    job: Borg
+  - type: GhostRoleMobSpawner
+    prototype: PlayerBorgSyndicateMedicalBattery
+
+- type: entity
+  parent: ReinforcementRadio
+  id: ImperialReinforcementRadioSyndicateCyborgSaboteur
+  name: рация вызова саботажного киборга Синдиката
+  description: Вызовите обтекаемого инженерного киборга со скрытными модулями. Проектор хамелеона позволяет ему выдать себя за киборга NanoTrasen.
+  suffix: ЯО
+  components:
+  - type: GhostRole
+    name: ghost-role-information-syndicate-cyborg-saboteur-name
+    description: ghost-role-information-syndicate-cyborg-description
+    rules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleGhostRoleSilicon
+    raffle:
+      settings: default
+    job: Borg
+  - type: GhostRoleMobSpawner
+    prototype: PlayerBorgSyndicateSaboteurBattery
+
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: ImperialEd209Beacon
+  name: маяк ED-209 Синдиката
+  description: Одноразовый маяк для быстрой доставки подкреплений на поле боя.
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    layers:
+    - state: old-radio
+  - type: Item
+    size: Small
+  - type: SpawnItemsOnUse
+    items:
+    - id: ImperialSyndicateEd209
+    sound:
+      path: /Audio/Effects/sparks4.ogg
+
+- type: entity
+  parent: [ BaseSimpleMob, MobCombat, MobRobotic ]
+  id: ImperialSyndicateEd209
+  name: ED-209(+1) Синдиката
+  description: Погодите, этот красный? Это не к добру... правда?
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Uplink/Badass/ed209.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: icon
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: icon
+      Dead:
+        Base: off
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+    blackboard:
+      NavSmash: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 300
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Dead: BorgDead
+    showOverlays: false
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    soundHit:
+      collection: MetalThud
+    damage:
+      types:
+        Blunt: 15
+        Structural: 60
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.5
+  - type: BasicEntityAmmoProvider
+    proto: BulletLightRifle
+    capacity: 1
+    count: 1
+  - type: Gun
+    fireRate: 2
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - Unimplantable
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+
+# ── Подозрительные маяки (sbeacondrop) ──
+
+- type: entity
+  abstract: true
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: ImperialSuspiciousBeaconBase
+  name: подозрительный маяк
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Badass/beacon.rsi
+    state: icon
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ImperialSuspiciousBeaconBase
+  id: ImperialSyndicateBombBeacon
+  description: "Надпись на маяке гласит: «Внимание — при активации к вам будет отправлена мощная взрывчатка»."
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: SyndicateBomb
+    sound:
+      path: /Audio/Effects/sparks4.ogg
+
+- type: entity
+  parent: ImperialSuspiciousBeaconBase
+  id: ImperialPowerSinkBeacon
+  description: "Надпись на маяке гласит: «Внимание — при активации к вам будет отправлено устройство, выкачивающее энергию»."
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: PowerSink
+    sound:
+      path: /Audio/Effects/sparks4.ogg

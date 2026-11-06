@@ -1,0 +1,4 @@
+- files: ["flatline.ogg", "sonar_ping.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation (BandaStation), sound/effects/flatline3.ogg, sound/effects/ping_hit.ogg"
+  source: "https://github.com/tgstation/tgstation"

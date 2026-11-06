@@ -1,0 +1,400 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (fish.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "fish_greyscale"
+    },
+    {
+      "name": "guppy"
+    },
+    {
+      "name": "firefish"
+    },
+    {
+      "name": "greenchromis"
+    },
+    {
+      "name": "cardinalfish"
+    },
+    {
+      "name": "catfish"
+    },
+    {
+      "name": "plastetra"
+    },
+    {
+      "name": "angelfish"
+    },
+    {
+      "name": "clownfish"
+    },
+    {
+      "name": "clownfish_small"
+    },
+    {
+      "name": "holo_clownfish"
+    },
+    {
+      "name": "holo_clownfish_small"
+    },
+    {
+      "name": "lubefish"
+    },
+    {
+      "name": "lubefish_small"
+    },
+    {
+      "name": "lanternfish"
+    },
+    {
+      "name": "goldfish"
+    },
+    {
+      "name": "dwarf_moonfish"
+    },
+    {
+      "name": "tizira_moonfish"
+    },
+    {
+      "name": "checkered"
+    },
+    {
+      "name": "checkered_small"
+    },
+    {
+      "name": "gunner_jellyfish"
+    },
+    {
+      "name": "needlefish"
+    },
+    {
+      "name": "needlefish_small"
+    },
+    {
+      "name": "armorfish"
+    },
+    {
+      "name": "armorfish_small"
+    },
+    {
+      "name": "pufferfish"
+    },
+    {
+      "name": "emulsijack"
+    },
+    {
+      "name": "donkfish"
+    },
+    {
+      "name": "ratfish"
+    },
+    {
+      "name": "chrab"
+    },
+    {
+      "name": "chrab_small"
+    },
+    {
+      "name": "arctic_chrab"
+    },
+    {
+      "name": "arctic_chrab_small"
+    },
+    {
+      "name": "crab"
+    },
+    {
+      "name": "crab_small"
+    },
+    {
+      "name": "half_fish"
+    },
+    {
+      "name": "half_fish_small"
+    },
+    {
+      "name": "slimefish",
+      "delays": [
+        [
+          0.05,
+          0.05,
+          0.05,
+          0.1,
+          0.1,
+          0.1,
+          0.07,
+          0.07,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "slimefish_dead"
+    },
+    {
+      "name": "slimefish_small"
+    },
+    {
+      "name": "bonemass"
+    },
+    {
+      "name": "bonemass_small"
+    },
+    {
+      "name": "mastodon_small"
+    },
+    {
+      "name": "sludgefish"
+    },
+    {
+      "name": "sludgefish_small"
+    },
+    {
+      "name": "sludgefish_purple"
+    },
+    {
+      "name": "sludgefish_purple_small"
+    },
+    {
+      "name": "starfish",
+      "delays": [
+        [
+          0.4,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "starfish_dead"
+    },
+    {
+      "name": "starfish_emissive",
+      "delays": [
+        [
+          0.4,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "starfish_small"
+    },
+    {
+      "name": "lava_loop"
+    },
+    {
+      "name": "plasma_loop"
+    },
+    {
+      "name": "zipzap",
+      "delays": [
+        [
+          1.2,
+          0.1,
+          1.2
+        ]
+      ]
+    },
+    {
+      "name": "zipzap_dead"
+    },
+    {
+      "name": "jumpercable"
+    },
+    {
+      "name": "jumpercable_small"
+    },
+    {
+      "name": "lava_loop_small"
+    },
+    {
+      "name": "soulfish"
+    },
+    {
+      "name": "skin_crab"
+    },
+    {
+      "name": "skin_crab_small"
+    },
+    {
+      "name": "arctic_char"
+    },
+    {
+      "name": "arctic_char_small"
+    },
+    {
+      "name": "stingray"
+    },
+    {
+      "name": "stingray_small"
+    },
+    {
+      "name": "sockeye"
+    },
+    {
+      "name": "sockeye_small"
+    },
+    {
+      "name": "swordfish_small"
+    },
+    {
+      "name": "bumpy"
+    },
+    {
+      "name": "bumpy_small"
+    },
+    {
+      "name": "sand_surfer"
+    },
+    {
+      "name": "sand_surfer_small"
+    },
+    {
+      "name": "three_eyes"
+    },
+    {
+      "name": "tadpole"
+    },
+    {
+      "name": "tadpole_small"
+    },
+    {
+      "name": "squid"
+    },
+    {
+      "name": "squid_small"
+    },
+    {
+      "name": "perch"
+    },
+    {
+      "name": "plaice"
+    },
+    {
+      "name": "plaice_small"
+    },
+    {
+      "name": "monkfish"
+    },
+    {
+      "name": "monkfish_small"
+    },
+    {
+      "name": "pike_small"
+    },
+    {
+      "name": "armored_pike_small"
+    },
+    {
+      "name": "guppy_small"
+    },
+    {
+      "name": "firefish_small"
+    },
+    {
+      "name": "greenchromis_small"
+    },
+    {
+      "name": "cardinalfish_small"
+    },
+    {
+      "name": "catfish_small"
+    },
+    {
+      "name": "plastetra_small"
+    },
+    {
+      "name": "angelfish_small"
+    },
+    {
+      "name": "lanternfish_small"
+    },
+    {
+      "name": "dwarf_moonfish_small"
+    },
+    {
+      "name": "tizira_moonfish_small"
+    },
+    {
+      "name": "gunner_jellyfish_small"
+    },
+    {
+      "name": "pufferfish_small"
+    },
+    {
+      "name": "emulsijack_small"
+    },
+    {
+      "name": "donkfish_small"
+    },
+    {
+      "name": "ratfish_small"
+    },
+    {
+      "name": "zipzap_small"
+    },
+    {
+      "name": "soulfish_small"
+    },
+    {
+      "name": "chainsawfish_small"
+    },
+    {
+      "name": "baby_carp"
+    },
+    {
+      "name": "baby_carp_eyes"
+    },
+    {
+      "name": "baby_carp_eyes_dead"
+    },
+    {
+      "name": "baby_carp_small"
+    },
+    {
+      "name": "fryish"
+    },
+    {
+      "name": "fryish_small"
+    },
+    {
+      "name": "fritterish"
+    },
+    {
+      "name": "fritterish_small"
+    },
+    {
+      "name": "bernardfish"
+    },
+    {
+      "name": "bernardfish_small"
+    },
+    {
+      "name": "matthewfish"
+    },
+    {
+      "name": "matthewfish_small"
+    },
+    {
+      "name": "nessiefish_small"
+    },
+    {
+      "name": "sacabambaspis"
+    },
+    {
+      "name": "sacabambaspis_small"
+    }
+  ]
+}

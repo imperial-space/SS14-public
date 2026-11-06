@@ -1,0 +1,40 @@
+# Свои версии аплинка с каталогом TG: для агентов (предателей) и ядерных оперативников.
+# Ванильные аплинки остаются со старым каталогом; каталог TG автоматически получают
+# аплинки агентов при выдаче (UplinkSystem) и рации ЯО 40/60 ТК.
+
+- type: entity
+  parent: BaseUplinkRadio
+  id: ImperialUplinkRadioAgent
+  name: аплинк Синдиката
+  description: Подозрительно выглядящее старое радио...
+  suffix: Агент, 20 ТК
+  components:
+  - type: ImperialUplink
+  - type: Store
+    balance:
+      Telecrystal: 20
+
+- type: entity
+  parent: BaseUplinkRadio40TC
+  id: ImperialUplinkRadioNukeops
+  name: аплинк Синдиката
+  description: Подозрительно выглядящее старое радио...
+  suffix: ЯО, 40 ТК
+  components:
+  - type: ImperialUplink
+
+- type: entity
+  parent: BaseUplinkRadio60TC
+  id: ImperialUplinkRadioLoneOps
+  name: аплинк Синдиката
+  description: Подозрительно выглядящее старое радио...
+  suffix: ЯО-одиночка, 60 ТК
+  components:
+  - type: ImperialUplink
+
+- type: entity
+  parent: BaseUplinkRadioDebug
+  id: ImperialUplinkRadioDebug
+  suffix: Каталог TG, DEBUG
+  components:
+  - type: ImperialUplink

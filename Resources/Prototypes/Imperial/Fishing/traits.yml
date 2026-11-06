@@ -1,0 +1,210 @@
+# Черты рыб (/datum/fish_trait). Поведение — в ImperialFishTraitSystem по ID.
+
+- type: imperialFishTrait
+  id: Wary
+  name: imperial-fish-trait-wary
+  description: imperial-fish-trait-wary-desc
+
+- type: imperialFishTrait
+  id: ShinyLover
+  name: imperial-fish-trait-shiny-lover
+  description: imperial-fish-trait-shiny-lover-desc
+
+- type: imperialFishTrait
+  id: PickyEater
+  name: imperial-fish-trait-picky-eater
+  description: imperial-fish-trait-picky-eater-desc
+
+- type: imperialFishTrait
+  id: Nocturnal
+  name: imperial-fish-trait-nocturnal
+  description: imperial-fish-trait-nocturnal-desc
+
+- type: imperialFishTrait
+  id: Heavy
+  name: imperial-fish-trait-heavy
+  description: imperial-fish-trait-heavy-desc
+
+- type: imperialFishTrait
+  id: Carnivore
+  name: imperial-fish-trait-carnivore
+  description: imperial-fish-trait-carnivore-desc
+  incompatible: [ Vegan ]
+
+- type: imperialFishTrait
+  id: Vegan
+  name: imperial-fish-trait-vegan
+  description: imperial-fish-trait-vegan-desc
+  incompatible: [ Carnivore, Predator, Necrophage ]
+
+- type: imperialFishTrait
+  id: Emulsijack
+  name: imperial-fish-trait-emulsijack
+  description: imperial-fish-trait-emulsijack-desc
+
+- type: imperialFishTrait
+  id: PsychicAura
+  name: imperial-fish-trait-psychic
+  description: imperial-fish-trait-psychic-desc
+
+- type: imperialFishTrait
+  id: Necrophage
+  name: imperial-fish-trait-necrophage
+  description: imperial-fish-trait-necrophage-desc
+  incompatible: [ Vegan ]
+
+- type: imperialFishTrait
+  id: Parthenogenesis
+  name: imperial-fish-trait-parthenogenesis
+  description: imperial-fish-trait-parthenogenesis-desc
+  inheritability: 40
+
+- type: imperialFishTrait
+  id: NoMating
+  name: imperial-fish-trait-no-mating
+  description: imperial-fish-trait-no-mating-desc
+  incompatible: [ Crossbreeder ]
+  spontaneous:
+    ImperialFishFryish: 100
+    ImperialFishFryishFritterish: 0
+    ImperialFishFryishNessie: 0
+
+- type: imperialFishTrait
+  id: Recessive
+  name: imperial-fish-trait-recessive
+  description: imperial-fish-trait-recessive-desc
+  inheritability: 0
+
+- type: imperialFishTrait
+  id: Revival
+  name: imperial-fish-trait-revival
+  description: imperial-fish-trait-revival-desc
+  spontaneous:
+    ImperialFishBoned: 100
+    ImperialFishMastodon: 100
+
+- type: imperialFishTrait
+  id: Predator
+  name: imperial-fish-trait-predator
+  description: imperial-fish-trait-predator-desc
+  incompatible: [ Vegan ]
+
+- type: imperialFishTrait
+  id: Yucky
+  name: imperial-fish-trait-yucky
+  description: imperial-fish-trait-yucky-desc
+
+- type: imperialFishTrait
+  id: Toxic
+  name: imperial-fish-trait-toxic
+  description: imperial-fish-trait-toxic-desc
+  reagents:
+    Toxin: 1
+
+- type: imperialFishTrait
+  id: Carpotoxin
+  name: imperial-fish-trait-carpotoxin
+  description: imperial-fish-trait-carpotoxin-desc
+  reagents:
+    CarpoToxin: 4
+
+- type: imperialFishTrait
+  id: ToxinImmunity
+  name: imperial-fish-trait-toxin-immunity
+  description: imperial-fish-trait-toxin-immunity-desc
+
+- type: imperialFishTrait
+  id: Crossbreeder
+  name: imperial-fish-trait-crossbreeder
+  description: imperial-fish-trait-crossbreeder-desc
+  inheritability: 40
+  incompatible: [ NoMating ]
+
+- type: imperialFishTrait
+  id: Territorial
+  name: imperial-fish-trait-territorial
+  description: imperial-fish-trait-territorial-desc
+
+- type: imperialFishTrait
+  id: Lubed
+  name: imperial-fish-trait-lubed
+  description: imperial-fish-trait-lubed-desc
+  addedDifficulty: 5
+  spontaneous:
+    ImperialFishClownfishLube: 100
+  reagents:
+    SpaceLube: 1.2
+
+- type: imperialFishTrait
+  id: Amphibious
+  name: imperial-fish-trait-amphibious
+  description: imperial-fish-trait-amphibious-desc
+
+- type: imperialFishTrait
+  id: Mixotroph
+  name: imperial-fish-trait-mixotroph
+  description: imperial-fish-trait-mixotroph-desc
+  incompatible: [ Predator, Necrophage ]
+
+- type: imperialFishTrait
+  id: Antigrav
+  name: imperial-fish-trait-antigrav
+  description: imperial-fish-trait-antigrav-desc
+  addedDifficulty: 20
+
+- type: imperialFishTrait
+  id: Anxiety
+  name: imperial-fish-trait-anxiety
+  description: imperial-fish-trait-anxiety-desc
+
+- type: imperialFishTrait
+  id: Electrogenesis
+  name: imperial-fish-trait-electrogenesis
+  description: imperial-fish-trait-electrogenesis-desc
+
+- type: imperialFishTrait
+  id: Stunted
+  name: imperial-fish-trait-stunted
+  description: imperial-fish-trait-stunted-desc
+  spontaneous:
+    ImperialFishChasmCrab: 12
+  whitelist: [ ImperialFishChasmCrab, ImperialFishChasmCrabIce ]
+
+- type: imperialFishTrait
+  id: Stinger
+  name: imperial-fish-trait-stinger
+  description: imperial-fish-trait-stinger-desc
+  spontaneous:
+    ImperialFishStingray: 100
+    ImperialFishSwordfish: 100
+    ImperialFishChainsawfish: 100
+    ImperialFishPikeArmored: 100
+
+- type: imperialFishTrait
+  id: ToxicBarbs
+  name: imperial-fish-trait-toxic-barbs
+  description: imperial-fish-trait-toxic-barbs-desc
+  spontaneous:
+    ImperialFishStingray: 35
+
+- type: imperialFishTrait
+  id: Hallucinogenic
+  name: imperial-fish-trait-hallucinogenic
+  description: imperial-fish-trait-hallucinogenic-desc
+  reagents:
+    MindbreakerToxin: 1
+
+- type: imperialFishTrait
+  id: Ink
+  name: imperial-fish-trait-ink
+  description: imperial-fish-trait-ink-desc
+  spontaneous:
+    ImperialFishSquid: 35
+
+- type: imperialFishTrait
+  id: Camouflage
+  name: imperial-fish-trait-camouflage
+  description: imperial-fish-trait-camouflage-desc
+  addedDifficulty: 5
+  spontaneous:
+    ImperialFishSquid: 35

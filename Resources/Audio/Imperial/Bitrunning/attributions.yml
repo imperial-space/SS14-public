@@ -1,0 +1,14 @@
+- files: ["terminal_processing.ogg", "terminal_success.ogg", "terminal_off.ogg", "terminal_alert.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/machines/terminal)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["tramopen.ogg", "tramclose.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/machines/tram)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["submerge.ogg", "splash.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/effects)"
+  source: "https://github.com/tgstation/tgstation"

@@ -1,0 +1,373 @@
+# Чёрный рынок TG (code/modules/cargo/markets/market_items), сгенерировано scratchpad/cargo/gen_market.pl.
+
+- type: imperialMarketItem
+  id: ImperialMarketClothingChameleonHat
+  item: ImperialBrokenChameleonHat
+  name: "Шляпа-хамелеон"
+  description: "Выберите любую шляпу этим удобным устройством. Контроль качества не проводился."
+  category: Одежда
+  priceMin: 100
+  priceMax: 200
+  stockMin: 1
+  stockMax: 2
+  availability: 70
+
+- type: imperialMarketItem
+  id: ImperialMarketClothingFullSpacesuitSet
+  item: ClothingOuterSuitEmergency
+  name: "Коробка скафандров «Нанотрейзен»"
+  description: "С кузова космического грузовика упало несколько коробок со скафандрами «старого образца»."
+  category: Одежда
+  priceMin: 375
+  priceMax: 800
+  stockMin: 1
+  stockMax: 3
+  availability: 30
+
+- type: imperialMarketItem
+  id: ImperialMarketClothingNinjaMask
+  item: ClothingMaskNinja
+  name: "Маска космического ниндзя"
+  description: "Не горит, не плавится в кислоте и лаве, с трудом снимается — и больше ничего особенного."
+  category: Одежда
+  priceMin: 200
+  priceMax: 500
+  stockMin: 1
+  stockMax: 3
+  availability: 40
+
+- type: imperialMarketItem
+  id: ImperialMarketClothingRocketBoots
+  item: ClothingShoesBootsSpeed
+  name: "Ракетные ботинки"
+  description: "Мы нашли прыжковые ботинки и разогнали их до предела. За тяжкий вред телу (или телом) не отвечаем."
+  category: Одежда
+  priceMin: 1000
+  priceMax: 2000
+  stockMin: 1
+  stockMax: 1
+  availability: 40
+
+- type: imperialMarketItem
+  id: ImperialMarketClothingTotallyNormalPetCollar
+  item: ImperialClothingNeckPetcollar
+  name: "Странный ошейник"
+  description: "Нашли в грузовом отсеке бронированного шаттла, летевшего в Новую Осаку. Кто возит ошейники на броневике? Да какая разница."
+  category: Одежда
+  priceMin: 1000
+  priceMax: 2000
+  stockMin: 1
+  stockMax: 5
+  availability: 20
+
+- type: imperialMarketItem
+  id: ImperialMarketConsumableDonkPocketBox
+  item: FoodBoxDonkpocket
+  name: "Коробка донк-покетов"
+  description: "Хорошо упакованная коробка любимой закуски каждого космонавта."
+  category: Расходники
+  priceMin: 275
+  priceMax: 365
+  stockMin: 2
+  stockMax: 5
+  availability: 80
+
+- type: imperialMarketItem
+  id: ImperialMarketConsumableFloorPill
+  item: StrangePill
+  name: "Странная таблетка"
+  description: "Русская рулетка технических тоннелей."
+  category: Расходники
+  priceMin: 10
+  priceMax: 60
+  stockMin: 5
+  stockMax: 35
+  availability: 50
+
+- type: imperialMarketItem
+  id: ImperialMarketConsumableSuspiciousPills
+  item: BoxPillCanister
+  name: "Баночка подозрительных таблеток"
+  description: "Случайный коктейль роскошных препаратов, который точно вызовет улыбку!"
+  category: Расходники
+  priceMin: 125
+  priceMax: 250
+  stockMin: 2
+  stockMax: 3
+  availability: 50
+
+- type: imperialMarketItem
+  id: ImperialMarketMiscAtrocinator
+  item: ImperialModModuleAntigrav
+  name: "Антигравитационный модуль МОДа"
+  description: "Нашли этот модуль в техтоннеле за конусами и знаками опасности, без маркировки. Наверное, безопасно."
+  category: Разное
+  priceMin: 800
+  priceMax: 1400
+  stockMin: 1
+  stockMax: 1
+  availability: 22
+
+- type: imperialMarketItem
+  id: ImperialMarketMiscCapGun
+  item: RevolverCapGun
+  name: "Пистонный пистолет"
+  description: "Разыграйте друзей безвредным пистолетом! Безвредность гарантирована."
+  category: Разное
+  priceMin: 50
+  priceMax: 200
+  stockMin: 1
+  stockMax: 6
+  availability: 80
+
+- type: imperialMarketItem
+  id: ImperialMarketMiscClearPda
+  item: ClearPDA
+  name: "Прозрачный КПК"
+  description: "Покажите свой стиль с этим КПК ограниченной серии!"
+  category: Разное
+  priceMin: 250
+  priceMax: 600
+  stockMin: 1
+  stockMax: 2
+  availability: 50
+
+- type: imperialMarketItem
+  id: ImperialMarketMiscDonkRecycler
+  item: ImperialModModuleRecycler
+  name: "Модуль-переработчик МОДа"
+  description: "Любите игрушечное оружие, ненавидите уборку и у вас есть МОД? Этот модуль обязателен."
+  category: Разное
+  priceMin: 400
+  priceMax: 900
+  stockMin: 1
+  stockMax: 2
+  availability: 30
+
+- type: imperialMarketItem
+  id: ImperialMarketMiscFish
+  item: ImperialFishCaseBlackmarket
+  name: "Рыба"
+  description: "Рыба! Свежая рыба! Её можно резать, молоть и даже держать в аквариуме! Берите, пока в моей деревне не началась очередная драка!"
+  category: Разное
+  priceMin: 25
+  priceMax: 60
+  stockMin: 3
+  stockMax: 8
+  availability: 90
+
+- type: imperialMarketItem
+  id: ImperialMarketMiscGirlypop
+  item: PosterContrabandClown
+  name: "Милые плакаты"
+  description: "Коллекция милых и очаровательных плакатов. Сила девчонок!"
+  category: Разное
+  priceMin: 100
+  priceMax: 250
+  stockMin: 1
+  stockMax: 3
+  availability: 90
+
+- type: imperialMarketItem
+  id: ImperialMarketMiscHolywater
+  item: ChemistryBottleHolywater
+  name: "Фляга святой воды"
+  description: "Готовая святая вода от отца Лутиуса."
+  category: Разное
+  priceMin: 400
+  priceMax: 600
+  stockMin: 1
+  stockMax: 3
+  availability: 40
+
+- type: imperialMarketItem
+  id: ImperialMarketMiscJadeLantern
+  item: Lantern
+  name: "Нефритовый фонарь"
+  description: "Найден в ящике с надписью «Опасно: радиоактивно». Наверное, безопасно."
+  category: Разное
+  priceMin: 150
+  priceMax: 500
+  stockMin: 1
+  stockMax: 2
+  availability: 45
+
+- type: imperialMarketItem
+  id: ImperialMarketMiscJawedHook
+  item: ImperialFishingHookJaws
+  name: "Челюстной рыболовный крючок"
+  description: "То, что нужно, если рыба не поддаётся. Только не забудьте вовремя подсечь — эта штука ранит рыбу как арканзасская зубочистка."
+  category: Разное
+  priceMin: 150
+  priceMax: 400
+  stockMin: 1
+  stockMax: 3
+  availability: 70
+
+- type: imperialMarketItem
+  id: ImperialMarketMiscShoulderHolster
+  item: ClothingBeltHolster
+  name: "Плечевая кобура"
+  description: "Йи-ха, крутые друзья! Эта кобура — первый шаг к мечте стать детективом, которому разрешают стрелять из настоящего оружия!"
+  category: Разное
+  priceMin: 400
+  priceMax: 800
+  stockMin: 1
+  stockMax: 8
+  availability: 60
+
+- type: imperialMarketItem
+  id: ImperialMarketMiscSmugglersSatchel
+  item: ClothingBackpackSatchelSmuggler
+  name: "Сумка контрабандиста"
+  description: "Эту легко прячущуюся сумку можно спрятать под полом, и её содержимое не найдут сканеры контрабанды."
+  category: Разное
+  priceMin: 750
+  priceMax: 1000
+  stockMin: 1
+  stockMax: 2
+  availability: 30
+
+- type: imperialMarketItem
+  id: ImperialMarketMiscStrangeSeed
+  item: ImperialStrangeSeeds
+  name: "Странные семена"
+  description: "Экзотический сорт семян, из которых может вырасти что угодно — от светящегося до кислотного."
+  category: Разное
+  priceMin: 320
+  priceMax: 360
+  stockMin: 2
+  stockMax: 5
+  availability: 50
+
+- type: imperialMarketItem
+  id: ImperialMarketToolBinoculars
+  item: Binoculars
+  name: "Бинокль"
+  description: "Увеличьте дальность обзора на 150% с этим удобным инструментом!"
+  category: Инструменты
+  priceMin: 350
+  priceMax: 800
+  stockMin: 1
+  stockMax: 1
+  availability: 30
+
+- type: imperialMarketItem
+  id: ImperialMarketToolMedsechud
+  item: ClothingEyesHudMedSec
+  name: "Медицинско-охранный ИЛС"
+  description: "Почти снятая с производства комбинация ИЛС охраны и медицинского сканера."
+  category: Инструменты
+  priceMin: 400
+  priceMax: 700
+  stockMin: 1
+  stockMax: 3
+  availability: 50
+
+- type: imperialMarketItem
+  id: ImperialMarketToolRiotShield
+  item: RiotShield
+  name: "Щит для разгона толпы"
+  description: "Защитите себя от неожиданного бунта в местном полицейском участке!"
+  category: Инструменты
+  priceMin: 450
+  priceMax: 650
+  stockMin: 1
+  stockMax: 2
+  availability: 50
+
+- type: imperialMarketItem
+  id: ImperialMarketWeaponBearTrap
+  item: ImperialBearTrap
+  name: "Медвежий капкан"
+  description: "Отомстите уборщику его же оружием с этим доступным набором для розыгрышей."
+  category: Оружие
+  priceMin: 300
+  priceMax: 550
+  stockMin: 1
+  stockMax: 3
+  availability: 40
+
+- type: imperialMarketItem
+  id: ImperialMarketWeaponBoneSpear
+  item: SpearBone
+  name: "Костяное копьё"
+  description: "Подлинное племенное копьё из настоящих костей! Выгодно при любой цене, особенно если вы пещерный человек."
+  category: Оружие
+  priceMin: 200
+  priceMax: 300
+  stockMin: 1
+  stockMax: 3
+  availability: 60
+
+- type: imperialMarketItem
+  id: ImperialMarketWeaponBuckshot
+  item: BoxLethalshot
+  name: "Коробка картечи"
+  description: "Картечь нынче облагают огромным налогом, но мы нашли целый склад… где-то. Предупреждаем: товар может быть староват."
+  category: Оружие
+  priceMin: 200
+  priceMax: 600
+  stockMin: 1
+  stockMax: 7
+  availability: 35
+
+- type: imperialMarketItem
+  id: ImperialMarketWeaponChainsaw
+  item: Chainsaw
+  name: "Бензопила"
+  description: "Лучший друг лесоруба: отлично пилит деревья и конечности."
+  category: Оружие
+  priceMin: 350
+  priceMax: 600
+  stockMin: 1
+  stockMax: 1
+  availability: 35
+
+- type: imperialMarketItem
+  id: ImperialMarketWeaponEarthcracker
+  item: ImperialEarthcracker
+  name: "Землеразлом E-1"
+  description: "Излишки горного оборудования одной из безымянных компаний, скупленных «Нанотрейзен». Астероиды они раскалывали неплохо, но по-настоящему хороши в другом."
+  category: Оружие
+  priceMin: 200
+  priceMax: 600
+  stockMin: 1
+  stockMax: 1
+  availability: 30
+
+- type: imperialMarketItem
+  id: ImperialMarketWeaponEmpGrenade
+  item: EmpGrenade
+  name: "ЭМИ-граната"
+  description: "Используйте эту гранату для ШОКИРУЮЩИХ результатов!"
+  category: Оружие
+  priceMin: 100
+  priceMax: 400
+  stockMin: 1
+  stockMax: 2
+  availability: 50
+
+- type: imperialMarketItem
+  id: ImperialMarketWeaponShotgunDart
+  item: BoxDarts
+  name: "Коробка дротиков XL для дробовика"
+  description: "Эти дротики можно наполнить любым реагентом и выстрелить из дробовика! Разыграйте друзей выстрелом смехом! Для коммерческого использования не рекомендуется."
+  category: Оружие
+  priceMin: 275
+  priceMax: 575
+  stockMin: 1
+  stockMax: 4
+  availability: 40
+
+- type: imperialMarketItem
+  id: ImperialMarketWeaponSurplusEsword
+  item: EnergySword
+  name: "Энергомеч образца I «Иайто»"
+  description: "Серийный энергомеч, уступающий армейским образцам. Но лучше, чем ничего."
+  category: Оружие
+  priceMin: 400
+  priceMax: 1000
+  stockMin: 1
+  stockMax: 2
+  availability: 80

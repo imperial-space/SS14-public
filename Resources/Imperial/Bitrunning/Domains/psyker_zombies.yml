@@ -1,0 +1,75 @@
+# Сконвертировано из psyker_zombies.dmm (tgstation/BandaStation, _maps/virtual_domains) утилитой dmm2domain.
+width: 36
+height: 25
+keyLength: 1
+legend:
+  "a": {t: Space}
+  "b": {t: Plating, a: bright, e: ["WallPlastitaniumIndestructible"]}
+  "c": {t: FloorDark, a: normal, e: ["SalvageHumanCorpse", "BitrunningMarkerCache"]}
+  "d": {t: FloorDark, a: normal, e: ["Rack"]}
+  "e": {t: FloorDark, a: normal, e: ["#DirtMedium"]}
+  "f": {t: FloorDark, a: normal}
+  "g": {t: FloorDark, a: normal, e: ["BitrunningMarkerCache", "AlwaysPoweredWallLight"]}
+  "h": {t: FloorBasalt, a: normal, e: ["FloorChasmEntity"]}
+  "i": {t: FloorDark, a: normal, e: ["AlwaysPoweredWallLight"]}
+  "j": {t: FloorDark, a: normal, e: ["#DirtLight"]}
+  "k": {t: FloorDark, a: normal, e: ["ImperialSCPZombie"]}
+  "l": {t: FloorDark, a: normal, e: ["SalvageHumanCorpse"]}
+  "m": {t: FloorDark, a: normal, e: ["LandMineExplosive"]}
+  "n": {t: FloorDark, a: normal, e: ["BitrunningMarkerCache"]}
+  "o": {t: FloorDark, a: normal, e: ["Rack", "DrinkRootBeerGlass", "DrinkRootBeerGlass", "DrinkRootBeerGlass"]}
+  "p": {t: FloorDark, a: normal, e: ["AlwaysPoweredWallLight@180"]}
+  "q": {t: FloorDark, a: normal, e: ["AirlockShuttle"]}
+  "r": {t: FloorDark, a: normal, e: ["AirlockShuttle", "AlwaysPoweredWallLight@-90"]}
+  "s": {t: FloorDark, a: normal, e: ["#DirtHeavy"]}
+  "t": {t: FloorDark, a: normal, e: ["AlwaysPoweredWallLight@90"]}
+  "u": {t: FloorDark, a: normal, e: ["ImperialSCPZombie", "AlwaysPoweredWallLight"]}
+  "v": {t: FloorDark, a: normal, e: ["AlwaysPoweredWallLight@-90"]}
+  "w": {t: FloorDark, a: protected, e: ["AirlockShuttle"]}
+  "x": {t: FloorDark, a: protected, e: ["Rack"]}
+  "y": {t: FloorDark, a: protected}
+  "z": {t: FloorDark, a: protected, e: ["AlwaysPoweredWallLight"]}
+  "A": {t: FloorDark, a: protected, e: ["#DirtHeavy"]}
+  "B": {t: FloorDark, a: protected, e: ["#DirtMedium"]}
+  "C": {t: FloorDark, a: protected, e: ["AlwaysPoweredWallLight@-90"]}
+  "D": {t: Plating, a: safe, e: ["WallSilver"]}
+  "E": {t: Plating, a: safe, e: ["WallSilver", "ExtinguisherCabinetFilled"]}
+  "F": {t: FloorFreezer, a: safe, e: ["AirlockFreezer"]}
+  "G": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@90"]}
+  "H": {t: FloorFreezer, a: safe}
+  "I": {t: FloorSteel, a: safe, e: ["BitrunningMarkerGoal", "AlwaysPoweredSmallLight@-90"]}
+  "J": {t: FloorFreezer, a: safe, e: ["ToiletEmpty@90"]}
+  "K": {t: FloorFreezer, a: safe, e: ["RailingCorner@90"]}
+  "L": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
+  "M": {t: FloorFreezer, a: safe, e: ["#DirtHeavy"]}
+  "N": {t: Plating, a: safe, e: ["WallSilver", "RandomPosterLegit"]}
+  "O": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@90", "MedkitFilled", "MedkitFilled", "Brutepack1"]}
+  "P": {t: FloorFreezer, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "Q": {t: FloorFreezer, a: safe, e: ["AlwaysPoweredSmallLight@-90", "ImperialVehicleWheelchair", "EmergencyMedipen"]}
+  "R": {t: FloorFreezer, a: safe, e: ["Window", "Grille"]}
+rows:
+- "aabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbaaa"
+- "aabcdbbbbbeffffffghhbbbbhhifffejbbbb"
+- "aabkdbbkliffffmffbhhhhhhhhfkbfffminb"
+- "aabfobbffhhfpffffhhhhbbbbbqbbmfffffb"
+- "aabrbbbsfhhfbfbkbbbbbbbbbbfnbbbbbffb"
+- "aabfmfbffhhfbbbbbbknbbbbblfkbbfffjfb"
+- "abbffffffhhfffffjsffffifqffkbmfmbjkb"
+- "abffffffpfjffffffpffffsfblbbbtfbbfbb"
+- "bbfffbbbbbjffbbkfbbbbbbbbbbkffbbffba"
+- "bffmbbjfubbbbbbbqbbfbbbbbbbbffbbfbba"
+- "bffbbffffffffffjfkbeffbbbbfffffbmbba"
+- "bfvbbffsfhhvbbbfffifmfbbbiffffffvbba"
+- "bsjkbbbffhhfffbbffffffsbbfmfbfffffba"
+- "bjfjkbbffhhfffffffffsejfffffbjlpelba"
+- "bnjjfbbffhhffsvbbbbwbbbbjffmbkbbfnba"
+- "bbfffbfffhhfjefbxyzyyyxbmfbbbbbbflba"
+- "abbfjfsmpffffskbyyyAyBybbbbaaaabhhba"
+- "aabbfffbbbbbbbbbyyyByyCbbaaaaaabhhba"
+- "aabbbbbbaaaaaaabDDEFEDDbaaaaaaabbbba"
+- "aaaaaaaaaaaaaaabDGHHHIDbaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaabDJHHKLDbaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaabDHHHHMNbaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaabDOPPPQDbaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaabDDDDDRDbaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaabbbbbbbbbaaaaaaaaaaaa"

@@ -1,0 +1,148 @@
+# Сконвертировано из fredingtonfastingbear.dmm (tgstation/BandaStation, _maps/virtual_domains) утилитой dmm2domain.
+width: 33
+height: 45
+keyLength: 2
+legend:
+  "aa": {t: Space}
+  "ab": {t: Plating, a: bright, e: ["HospitalCurtainsOpen", "WallPlastitaniumIndestructible"]}
+  "ac": {t: FloorWood, a: normal}
+  "ad": {t: FloorWood, a: normal, e: ["#DirtLight"]}
+  "ae": {t: FloorWood, a: normal, e: ["BitrunningMarkerCache"]}
+  "af": {t: FloorWood, a: normal, e: ["MobBearSpace"]}
+  "ag": {t: Plating, a: normal, e: ["WallPlastitaniumIndestructible"]}
+  "ah": {t: Plating, a: normal, e: ["RandomPosterLegit", "WallPlastitaniumIndestructible"]}
+  "ai": {t: Plating, a: normal, e: ["WallPlastitaniumIndestructible", "RandomPosterLegit"]}
+  "aj": {t: FloorWood, a: normal, e: ["Railing", "HospitalCurtainsOpen"]}
+  "ak": {t: FloorWood, a: normal, e: ["HospitalCurtainsOpen"]}
+  "al": {t: FloorKitchen, a: normal}
+  "am": {t: FloorKitchen, a: normal, e: ["CrateGenericSteel"]}
+  "an": {t: FloorWood, a: normal, e: ["Railing"]}
+  "ao": {t: FloorKitchen, a: normal, e: ["#DirtLight"]}
+  "ap": {t: FloorKitchen, a: normal, e: ["MobBearSpace"]}
+  "aq": {t: FloorKitchen, a: normal, e: ["StoolBar"]}
+  "ar": {t: FloorKitchen, a: normal, e: ["TableWood"]}
+  "as": {t: FloorKitchen, a: normal, e: ["BoozeDispenser", "TableWood"]}
+  "at": {t: FloorKitchen, a: normal, e: ["VendingMachineBooze"]}
+  "au": {t: FloorKitchen, a: normal, e: ["BitrunningMarkerCache"]}
+  "av": {t: FloorKitchen, a: normal, e: ["FoodPacketChipsTrash"]}
+  "aw": {t: FloorKitchen, a: normal, e: ["AlwaysPoweredWallLight@90"]}
+  "ax": {t: FloorKitchen, a: normal, e: ["AlwaysPoweredWallLight@-90"]}
+  "ay": {t: FloorKitchen, a: normal, e: ["TableWood", "DrinkShaker"]}
+  "az": {t: FloorKitchen, a: normal, e: ["AlwaysPoweredWallLight@90", "LightTubeBroken"]}
+  "aA": {t: FloorKitchen, a: normal, e: ["ComputerBroken"]}
+  "aB": {t: FloorKitchen, a: normal, e: ["Chair@90"]}
+  "aC": {t: FloorKitchen, a: normal, e: ["Table", "FoodPizzaMargherita"]}
+  "aD": {t: FloorKitchen, a: normal, e: ["Chair@-90"]}
+  "aE": {t: FloorKitchen, a: normal, e: ["Table"]}
+  "aF": {t: FloorKitchen, a: normal, e: ["TableWood", "DrinkRumBottleFull", "DrinkCognacBottleFull"]}
+  "aG": {t: FloorKitchen, a: normal, e: ["Table", "FoodPlateTrash"]}
+  "aH": {t: FloorKitchen, a: normal, e: ["#DirtMedium"]}
+  "aI": {t: FloorKitchen, a: normal, e: ["#DirtHeavy"]}
+  "aJ": {t: FloorKitchen, a: normal, e: ["ComputerBroken@180"]}
+  "aK": {t: FloorKitchen, a: normal, e: ["Table", "FoodPizzaMargheritaSlice"]}
+  "aL": {t: FloorKitchen, a: normal, e: ["FoodPacketPopcornTrash"]}
+  "aM": {t: FloorWood, a: normal, e: ["Railing@90"]}
+  "aN": {t: FloorKitchen, a: normal, e: ["ComfyChair@-90"]}
+  "aO": {t: FloorKitchen, a: normal, e: ["ComfyChair@-90", "FoodPacketChipsTrash"]}
+  "aP": {t: FloorKitchen, a: normal, e: ["TableCarpet", "ImperialPlayingCardDeck"]}
+  "aQ": {t: FloorKitchen, a: normal, e: ["TableCarpet"]}
+  "aR": {t: FloorKitchen, a: normal, e: ["ChairPilotSeat"]}
+  "aS": {t: FloorWood, a: normal, e: ["#DirtMedium"]}
+  "aT": {t: FloorKitchen, a: normal, e: ["TableCarpet", "FoodPacketChipsTrash"]}
+  "aU": {t: FloorKitchen, a: normal, e: ["TableGlass", "DrinkEnergyDrinkCan"]}
+  "aV": {t: FloorKitchen, a: normal, e: ["TableGlass"]}
+  "aW": {t: FloorKitchen, a: normal, e: ["TableGlass", "DrinkGlass"]}
+  "aX": {t: FloorKitchen, a: normal, e: ["ChairPilotSeat@180"]}
+  "aY": {t: FloorKitchen, a: normal, e: ["ImperialBearTrap"]}
+  "aZ": {t: FloorSteel, a: normal, e: ["ReinforcedPlasmaWindow", "Grille"]}
+  "a0": {t: FloorKitchen, a: normal, e: ["Airlock"]}
+  "a1": {t: FloorKitchen, a: normal, e: ["DrinkColaCanEmpty"]}
+  "a2": {t: FloorKitchen, a: normal, e: ["WaterCooler"]}
+  "a3": {t: FloorKitchen, a: normal, e: ["VendingMachineCola"]}
+  "a4": {t: FloorKitchen, a: normal, e: ["LockerFreezer"]}
+  "a5": {t: Space, a: normal}
+  "a6": {t: FloorKitchen, a: normal, e: ["AlwaysPoweredWallLight@-90", "BitrunningMarkerCache"]}
+  "a7": {t: FloorKitchen, a: normal, e: ["Table", "RollingPin"]}
+  "a8": {t: FloorKitchen, a: normal, e: ["ImperialDeepFryer"]}
+  "a9": {t: FloorKitchen, a: normal, e: ["KitchenElectricGrill"]}
+  "ba": {t: Plating, a: protectedbright, e: ["WallPlastitaniumIndestructible"]}
+  "bb": {t: Plating, a: protectedbright, e: ["RandomPosterLegit", "RandomPosterLegit", "WallPlastitaniumIndestructible", "RandomPosterLegit"]}
+  "bc": {t: Plating, a: protectedbright, e: ["RandomPosterLegit", "WallPlastitaniumIndestructible"]}
+  "bd": {t: Plating, a: protectedbright, e: ["WallPlastitaniumIndestructible", "RandomPosterLegit"]}
+  "be": {t: FloorSteelCheckerLight, a: protectedbright, e: ["TableReinforced", "FlashlightSeclite", "FlashlightSeclite", "FlashlightSeclite"]}
+  "bf": {t: FloorSteelCheckerLight, a: protectedbright, e: ["TableReinforced"]}
+  "bg": {t: FloorSteelCheckerLight, a: protectedbright, e: ["TableReinforced", "PlushieNuke", "PhoneInstrument"]}
+  "bh": {t: FloorSteel, a: protectedbright, e: ["ReinforcedWindow", "Grille"]}
+  "bi": {t: FloorSteelCheckerLight, a: protectedbright}
+  "bj": {t: FloorKitchen, a: protectedbright, e: ["BlastDoor"]}
+  "bk": {t: Plating, a: normal, e: ["WallPlastitaniumIndestructible", "RandomPosterLegit", "RandomPosterLegit"]}
+  "bl": {t: Plating, a: protectedbright, e: ["WallPlastitaniumIndestructible", "SignalButton", "SignalButton"]}
+  "bm": {t: FloorSteelCheckerLight, a: protectedbright, e: ["TableReinforced", "WeaponLaserGun", "WeaponLaserGun", "WeaponLaserGun", "WeaponCapacitorRecharger"]}
+  "bn": {t: FloorSteelCheckerLight, a: protectedbright, e: ["Airlock"]}
+  "bo": {t: FloorKitchen, a: normal, e: ["ClosetSteelBase", "ClothingMaskBear"]}
+  "bp": {t: FloorKitchen, a: normal, e: ["JanitorialTrolley"]}
+  "bq": {t: FloorDirt, a: bright, e: ["#DirtLight"]}
+  "br": {t: FloorDirt, a: bright}
+  "bs": {t: FloorDirt, a: bright, e: ["CrateGenericSteel"]}
+  "bt": {t: FloorKitchen, a: normal, e: ["ClosetSteelBase"]}
+  "bu": {t: Plating, a: bright, e: ["WallPlastitaniumIndestructible"]}
+  "bv": {t: Plating, a: safe, e: ["WallWood"]}
+  "bw": {t: Plating, a: safe, e: ["Window", "Grille"]}
+  "bx": {t: Plating, a: safe, e: ["WoodDoor"]}
+  "by": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@90"]}
+  "bz": {t: FloorSteel, a: safe, e: ["PottedPlantRandom"]}
+  "bA": {t: FloorSteel, a: safe}
+  "bB": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@-90", "BitrunningMarkerGoal"]}
+  "bC": {t: FloorSteel, a: safe, e: ["#DirtLight"]}
+  "bD": {t: FloorWood, a: safe, e: ["CarpetGreen"]}
+  "bE": {t: FloorWood, a: safe, e: ["RailingCorner@90", "CarpetGreen"]}
+  "bF": {t: FloorSteel, a: safe, e: ["Railing", "BitrunningMarkerGoal"]}
+  "bG": {t: Plating, a: safe, e: ["WallWood", "RandomPosterLegit"]}
+  "bH": {t: FloorSteel, a: safe, e: ["BitrunningMarkerHololadder"]}
+  "bI": {t: FloorSteel, a: safe, e: ["AlwaysPoweredSmallLight@-90", "TableWood"]}
+rows:
+- "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaabababababababababababaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaabacacacacacacadacacabaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaabacacacacacacacacacabaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaabaeacacacadadacafaeabaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaagagagahagagagaiajakakakakajagagagagagaiagagagaaagagagag"
+- "aaaaaaaaaaagalamamamalagalalananananalalaoagapaqarasatagaaagalauag"
+- "aaaaaaaaaaagalavalalalagawalalaoalalalalaxagalaqaralalagaaagalalag"
+- "aaaaaaaaaaagalalalalalagalalalalalalalalalagalaqaraoayagaaagalalag"
+- "aaaaaaaaaaagazaAaAaAalalaBaCaCaDalaBaEaEaDalalaqaralaFagaaagalalag"
+- "aaaaaaaaaaagalavalalalalaBaEaGaDalaBaEaCaDalalaqaralaxagaaagalalag"
+- "aaaaaaaaaaahalavalalalalalalalalalaHalaoalalalaqarararagaaagapaIag"
+- "aaaaaaaaaaagalaJaJaJalalaBaKaEaDalaBaEaEaDalaoalaqaqaqagaaagalalag"
+- "aaaaaaaaaaagalalalalalagaBaEaCaDalaBaEaEaDagalalalalaoagagagalalag"
+- "aaaaaaaaaaagalalalalalaiawaHalalalalalapaxagalalalalalalalalalalag"
+- "aaababababagalalalalalagagagalalalalalagagagalalalalalalalalalalag"
+- "aaabacacaeagawalalalalalalalalaLalalalalalalalalalapaHagagagalalag"
+- "aaabacacacacaMalaNaOaNalalalaPaQaQaQaQalalalalaRaRaRaHagaaagalalag"
+- "aaabacacacaSaMalaNaNaNalalalaTaoalalaPalalalalaUaVaWaxagaaagalalag"
+- "aaabacacacacaMalaNaNaNalalalalalalalalalalalalaXaXaXalagaaagalalag"
+- "aaabacafaeagawalalalalapalalalaoalalalalapalalalalalalagaaagalaIag"
+- "aaababababagagagagahagagalaYagaZalaZagalalagagaga0a0agagaaagagagag"
+- "aaaaaaaaaaaaaaaaaaaaaaagalalaga1aHavagalalagaaagalalagaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaagaHalaga2a3atagalalagaaagalalagagagagaaaaaa"
+- "aaaaaaaaaaaaaaagagagagagawalagagagagagalaxagaaagapala4a4a4agaaaaaa"
+- "aaaaaaaaaaaaaaagalalalagalalaga5a5a5agalalagaaagaEalalala6agaaaaaa"
+- "aaaaaaaaaaaaaaagalapalagaIalaga5a5a5agalaHagaaaga7aEa8ala9agaaaaaa"
+- "aaaaaaaaaaaaaaagalalalagalalaga5a5a5aialalagaaagagagagagagagaaaaaa"
+- "aaaaaaaaaaaaaaagalalalagalalbababbbcbaalalagaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaagagagagagalaHbdbebfbgbaalaHaiaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaialaHbhbibibibhalalagaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaialalbjbibibibjalalagaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaabkalalblbibibmblalalagaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaialalbcbibibibcalalagaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaagalalbababnbabaalalagaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaagbobpagbqbrbsagbtbtagaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaagagagagbrbrbragagagagaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaabubuagbrbrbragbubuaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaabubvbwbvbxbvbwbvbuaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaabubvbybzbAbAbBbvbuaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaabubwbCbDbDbEbFbwbuaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaabubvbAbDbDbDbAbGbuaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaabubvbybHbHbHbIbvbuaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaabubvbwbvbvbvbwbvbuaaaaaaaaaaaaaaaaaaaaaaaa"
+- "aaaaaaaaaaaaaaaaaaaaaaaabububububububububuaaaaaaaaaaaaaaaaaaaaaaaa"

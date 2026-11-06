@@ -1,0 +1,765 @@
+# Инженерные предметы из исследований TG (techweb: atmos, engi, construction, energy_manipulation, ...).
+
+# === Очки ===
+
+- type: entity
+  parent: ClothingEyesGlassesMeson
+  id: ImperialAtmosThermalGoggles
+  name: атмосферные термальные очки
+  description: Очки атмосферных техников для наблюдения за тепловой энергией газов. Работают как мезонные.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/atmos_thermal_goggles.rsi
+  - type: MesonVision
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Research/TG/atmos_thermal_goggles.rsi
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ImperialTRayGoggles
+  name: оптический т-лучевой сканер
+  description: Очки инженеров для наблюдения за подпольными объектами — кабелями и трубами.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/tray_goggles.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Research/TG/tray_goggles.rsi
+  - type: ImperialWornTrayScanner
+    range: 4
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ImperialWeldingGoggles
+  name: сварочные очки
+  description: Защищают глаза от ярких вспышек. Одобрено ассоциацией безумных учёных.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/welding_goggles.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Research/TG/welding_goggles.rsi
+  - type: EyeProtection
+  - type: FlashImmunity
+  - type: IdentityBlocker
+    coverage: EYES
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ImperialNightVisionGoggles
+  name: очки ночного видения
+  description: Теперь вы точно видите в темноте!
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/night_vision_goggles.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Research/TG/night_vision_goggles.rsi
+  - type: ImperialGrantNightVision
+
+- type: entity
+  parent: ClothingEyesGlassesMeson
+  id: ImperialMesonNight
+  name: мезонный сканер ночного видения
+  description: Оптический мезонный сканер с усилителем видимого света для лучшей видимости в темноте.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/night_meson.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Research/TG/night_meson.rsi
+  - type: ImperialGrantNightVision
+  - type: MesonVision
+
+- type: entity
+  parent: ClothingEyesHudMedical
+  id: ImperialHudMedicalNight
+  name: медицинский HUD ночного видения
+  description: Продвинутый медицинский HUD, позволяющий врачам находить пациентов в полной темноте.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/night_hud_health.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Research/TG/night_hud_health.rsi
+  - type: ImperialGrantNightVision
+
+- type: entity
+  parent: ClothingEyesHudDiagnostic
+  id: ImperialHudDiagnosticNight
+  name: диагностический HUD ночного видения
+  description: Диагностический HUD робототехника с усилителем света.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/night_hud_diagnostic.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Research/TG/night_hud_diagnostic.rsi
+  - type: ImperialGrantNightVision
+
+- type: entity
+  parent: ClothingEyesHudSecurity
+  id: ImperialHudSecurityNight
+  name: HUD СБ ночного видения
+  description: Продвинутый HUD, показывающий данные ID и дающий зрение в полной темноте.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/night_hud_security.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Research/TG/night_hud_security.rsi
+  - type: ImperialGrantNightVision
+
+- type: entity
+  parent: ClothingEyesGlassesChemical
+  id: ImperialScienceGogglesNight
+  name: научные очки ночного видения
+  description: Позволяют видеть в темноте и с одного взгляда распознавать химические соединения.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/night_science.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Research/TG/night_science.rsi
+  - type: ImperialGrantNightVision
+
+# === Инструменты ===
+
+- type: entity
+  parent: BaseItem
+  id: ImperialPneumaticSeal
+  name: пневматический затвор шлюза
+  description: Распорка, запечатывающая и укрепляющая закрытый шлюз. Снимается альтернативным действием на двери.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/pneumatic_seal.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Research/TG/pneumatic_seal.rsi
+  - type: ImperialPneumaticSeal
+
+- type: entity
+  parent: Wrench
+  id: ImperialBolterWrench
+  name: болтерный ключ
+  description: Ключ, цепляющийся за болтовую систему шлюза и поднимающий её независимо от питания.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/bolter_wrench.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Research/TG/bolter_wrench.rsi
+  - type: ImperialBolterWrench
+
+- type: entity
+  parent: BaseItem
+  id: ImperialRangedGasAnalyzer
+  name: дальнобойный газоанализатор
+  description: Ручной дальнобойный сканер окружающей среды, сообщающий состав газа на выбранном тайле.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/ranged_analyzer.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Research/TG/ranged_analyzer.rsi
+  - type: ImperialRangedGasAnalyzer
+
+- type: entity
+  parent: FireExtinguisher
+  id: ImperialFireExtinguisherAdvanced
+  name: продвинутый огнетушитель
+  description: Чтобы термоядерный пожар не расползался за пределы двигателя. Вмещает втрое больше и бьёт дальше.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/adv_extinguisher.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Item
+    sprite: Imperial/Research/TG/adv_extinguisher.rsi
+  - type: SolutionContainerManager
+    solutions:
+      spray:
+        maxVol: 300
+        reagents:
+        - ReagentId: Water
+          Quantity: 300
+  - type: SolutionTransfer
+    maxTransferAmount: 300
+    transferAmount: 300
+  - type: Spray
+    transferAmount: 15
+    pushbackAmount: 40
+    spraySound:
+      path: /Audio/Effects/extinguish.ogg
+    sprayedPrototype: ExtinguisherSpray
+    vaporAmount: 5
+    vaporSpread: 60
+    sprayVelocity: 3.0
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: icon-open }
+          False: { state: icon }
+
+- type: entity
+  parent: RCD
+  id: ImperialRapidTilingDevice
+  name: устройство быстрой укладки плитки (РТД)
+  description: Для быстрой укладки и снятия напольной плитки.
+  components:
+  - type: RCD
+    availablePrototypes:
+    - FloorSteel
+    - Plating
+    - Catwalk
+    - DeconstructTile
+  - type: LimitedCharges
+    maxCharges: 60
+  - type: Sprite
+    sprite: Imperial/Research/TG/rtd.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Research/TG/rtd.rsi
+  - type: Clothing
+    sprite: Imperial/Research/TG/rtd.rsi
+
+- type: entity
+  parent: RCD
+  id: ImperialRapidWiringDevice
+  name: устройство быстрой прокладки кабеля (РВД)
+  description: Для быстрой прокладки кабеля любого напряжения.
+  components:
+  - type: RCD
+    availablePrototypes:
+    - LVCable
+    - MVCable
+    - HVCable
+    - CableTerminal
+  - type: LimitedCharges
+    maxCharges: 90
+  - type: Sprite
+    sprite: Imperial/Research/TG/rwd.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Research/TG/rwd.rsi
+  - type: Clothing
+    sprite: Imperial/Research/TG/rwd.rsi
+
+- type: entity
+  parent: RCD
+  id: ImperialRapidLightDeviceMini
+  name: мини-устройство быстрой установки освещения (РЛД)
+  description: Компактное устройство для быстрой установки ламп.
+  components:
+  - type: RCD
+    availablePrototypes:
+    - TubeLight
+    - BulbLight
+    - Deconstruct
+  - type: LimitedCharges
+    maxCharges: 30
+  - type: Sprite
+    sprite: Imperial/Research/TG/rld_mini.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Research/TG/rld_mini.rsi
+  - type: Clothing
+    sprite: Imperial/Research/TG/rld_mini.rsi
+
+- type: entity
+  parent: BaseItem
+  id: ImperialRPED
+  name: быстрый заменитель деталей (БЗД)
+  description: Модуль для хранения и сортировки деталей машин и плат.
+  components:
+  - type: ImperialPartReplacer
+  - type: Sprite
+    sprite: Imperial/Research/TG/rped.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/Research/TG/rped.rsi
+  - type: Storage
+    grid:
+    - 0,0,9,4
+    maxItemSize: Small
+    whitelist:
+      tags:
+      - Manipulator
+      components:
+      - ImperialStockPart
+      - MachineBoard
+      - ComputerBoard
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+
+- type: entity
+  parent: ImperialRPED
+  id: ImperialBluespaceRPED
+  name: блюспейс БЗД
+  description: Версия БЗД с увеличенной вместимостью.
+  components:
+  - type: ImperialPartReplacer
+    bluespace: true
+  - type: Sprite
+    sprite: Imperial/Research/TG/bs_rped.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Research/TG/bs_rped.rsi
+  - type: Storage
+    grid:
+    - 0,0,15,7
+    maxItemSize: Small
+    whitelist:
+      tags:
+      - Manipulator
+      components:
+      - ImperialStockPart
+      - MachineBoard
+      - ComputerBoard
+
+- type: entity
+  parent: BaseItem
+  id: ImperialInducer
+  name: индуктор
+  description: Инструмент для индуктивной зарядки внутренних батарей и аккумуляторов.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/inducer_engi.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Research/TG/inducer_engi.rsi
+  - type: ImperialInducer
+    transfer: 400
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+
+- type: entity
+  parent: ImperialInducer
+  id: ImperialInducerScience
+  name: научный индуктор
+  description: Индуктор в цветах научного отдела — слабее инженерного.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/inducer_sci.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Research/TG/inducer_sci.rsi
+  - type: ImperialInducer
+    transfer: 200
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+
+# === Сборки ===
+
+- type: entity
+  parent: BaseItem
+  id: ImperialInfraredEmitter
+  name: инфракрасный излучатель
+  description: Излучает луч и срабатывает, когда кто-то его пересекает. Луч идёт вперёд на 8 тайлов; вставляется в сборки как триггер.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/infrared.rsi
+    layers:
+    - state: off
+      map: [ "enum.ProximityTriggerVisualLayers.Base" ]
+  - type: PointLight
+    enabled: false
+    radius: 1
+    color: "#ff3030"
+    energy: 0.5
+  - type: Item
+    size: Small
+  - type: PayloadTrigger
+    components:
+    - type: TriggerOnProximity
+      enabled: true
+      cooldown: 2
+      repeating: true
+      shape:
+        !type:PolygonShape
+          vertices:
+          - -0.1,0.5
+          - 0.1,0.5
+          - 0.1,8
+          - -0.1,8
+  - type: TriggerOnProximity
+    enabled: true
+    cooldown: 2
+    repeating: true
+    shape:
+      !type:PolygonShape
+      vertices:
+      - -0.1,0.5
+      - 0.1,0.5
+      - 0.1,8
+      - -0.1,8
+  - type: Appearance
+
+- type: entity
+  parent: BaseItem
+  id: ImperialHealthSensor
+  name: датчик здоровья
+  description: Следит за здоровьем носителя и срабатывает, когда тот впадает в критическое состояние (или умирает — переключается в руке).
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/assemblies.rsi
+    state: health
+  - type: Item
+    size: Small
+  - type: ImperialHealthSensor
+  - type: PayloadTrigger
+    components:
+    - type: ImperialHealthSensor
+
+# === Диски эмиттера (emitter_disk) ===
+
+- type: entity
+  parent: BaseItem
+  id: ImperialBaseEmitterDisk
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/emitter_disk.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: ImperialBaseEmitterDisk
+  id: ImperialEmitterDiskIncendiary
+  name: "диск диода: воспламеняющий"
+  description: Вставьте в эмиттер — он начнёт стрелять поджигающими лучами.
+  components:
+  - type: Sprite
+    color: "#ff6040"
+  - type: UplinkEmitterDisk
+    bolt: ImperialEmitterBoltIncendiary
+    fireIntervalMultiplier: 1
+
+- type: entity
+  parent: ImperialBaseEmitterDisk
+  id: ImperialEmitterDiskStamina
+  name: "диск диода: электроразрушающий"
+  description: Вставьте в эмиттер — он начнёт стрелять оглушающими лучами.
+  components:
+  - type: Sprite
+    color: "#40a0ff"
+  - type: UplinkEmitterDisk
+    bolt: ImperialEmitterBoltStamina
+    fireIntervalMultiplier: 1
+
+- type: entity
+  parent: ImperialBaseEmitterDisk
+  id: ImperialEmitterDiskSanity
+  name: "диск диода: психосифонный"
+  description: Вставьте в эмиттер — его лучи начнут портить рассудок задетых.
+  components:
+  - type: Sprite
+    color: "#ff80c0"
+  - type: UplinkEmitterDisk
+    bolt: ImperialEmitterBoltSanity
+    fireIntervalMultiplier: 1
+
+- type: entity
+  parent: ImperialBaseEmitterDisk
+  id: ImperialEmitterDiskMagnetic
+  name: "диск диода: магнитогенерирующий"
+  description: Вставьте в эмиттер — его лучи начнут притягивать предметы к точке попадания.
+  components:
+  - type: Sprite
+    color: "#c0c0c0"
+  - type: UplinkEmitterDisk
+    bolt: ImperialEmitterBoltMagnetic
+    fireIntervalMultiplier: 1
+
+- type: entity
+  parent: EmitterBolt
+  id: ImperialEmitterBoltIncendiary
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 20
+  - type: ImperialEmitterBeamEffects
+    fireStacks: 5
+  - type: Sprite
+    color: "#ff6040"
+
+- type: entity
+  parent: EmitterBolt
+  id: ImperialEmitterBoltStamina
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 0
+  - type: StaminaDamageOnCollide
+    damage: 30
+  - type: Sprite
+    color: "#40a0ff"
+
+- type: entity
+  parent: EmitterBolt
+  id: ImperialEmitterBoltSanity
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 0
+  - type: ImperialEmitterBeamEffects
+    sanity: -25
+  - type: Sprite
+    color: "#ff80c0"
+
+- type: entity
+  parent: EmitterBolt
+  id: ImperialEmitterBoltMagnetic
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 0
+  - type: ImperialEmitterBeamEffects
+    vortexRange: 4
+  - type: Sprite
+    color: "#c0c0c0"
+
+# === Голопроекторы ===
+
+- type: entity
+  parent: Holoprojector
+  id: ImperialHolobarrierJanitor
+  name: голобарьер уборщика
+  description: Голографический проектор, создающий твёрдые световые барьеры «мокрый пол».
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/holo_projectors.rsi
+    state: janitor
+  - type: HolosignProjector
+    signProto: ImperialHolobarrierWetFloor
+    chargeUse: 120
+
+- type: entity
+  parent: HolosignWetFloor
+  id: ImperialHolobarrierWetFloor
+  name: голобарьер «мокрый пол»
+  description: Твёрдый световой барьер. Осторожно, скользко!
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/holosigns.rsi
+    state: holosign
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+
+- type: entity
+  parent: Holoprojector
+  id: ImperialHolobarrierMedical
+  name: проектор барьеров PENLITE
+  description: Голографический проектор барьеров PENLITE. Полезен при карантине — не пропускает заражённых.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/holo_projectors.rsi
+    state: medical
+  - type: HolosignProjector
+    signProto: ImperialHolobarrierMedicalSign
+    chargeUse: 120
+
+- type: entity
+  parent: HolosignWetFloor
+  id: ImperialHolobarrierMedicalSign
+  name: голобарьер PENLITE
+  description: Медицинский голобарьер карантина.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/holosigns.rsi
+    state: medical
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+
+- type: entity
+  parent: Holoprojector
+  id: ImperialHolosignRestaurant
+  name: проектор мест ресторана
+  description: Размечает голографические места для гостей ресторана.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/holo_projectors.rsi
+    state: service
+  - type: HolosignProjector
+    signProto: ImperialHolosignSeat
+    chargeUse: 60
+
+- type: entity
+  parent: ImperialHolosignRestaurant
+  id: ImperialHolosignBar
+  name: проектор мест бара
+  description: Размечает голографические места для гостей бара.
+
+- type: entity
+  parent: HolosignWetFloor
+  id: ImperialHolosignSeat
+  name: голографическое место
+  description: Это место занято для гостя.
+  components:
+  - type: Sprite
+    sprite: Imperial/Research/TG/holosigns.rsi
+    state: pass
+
+# === Машины ===
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialPortablePumpMachineCircuitboard
+  name: плата портативной помпы
+  description: Плата машины портативной воздушной помпы.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialPortablePump
+    stackRequirements:
+      Manipulator: 2
+      Cable: 5
+      Glass: 2
+
+- type: entity
+  parent: [ BaseMachinePowered, SmallConstructibleMachine, StructureWheeled ]
+  id: ImperialPortablePump
+  name: портативная воздушная помпа
+  description: Качает воздух с тайла во внутренний бак или обратно. Управление — альтернативными действиями.
+  components:
+  - type: Transform
+    anchored: false
+  - type: Physics
+    bodyType: Dynamic
+  - type: AtmosDevice
+    joinSystem: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: Imperial/Research/TG/portable_pump.rsi
+    noRot: true
+    state: icon
+  - type: ImperialPortablePump
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: Machine
+    board: ImperialPortablePumpMachineCircuitboard
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ImperialAtmosShieldGeneratorBoard
+  name: плата генератора атмосферного щита
+  description: Плата генератора атмосферного щита.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: ImperialAtmosShieldGenerator
+    stackRequirements:
+      Manipulator: 1
+      Cable: 5
+      Glass: 1
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ImperialAtmosShieldGenerator
+  name: генератор атмосферного щита
+  description: Создаёт атмосферный щит на линии между собой и другим генератором, если оба смотрят друг на друга на расстоянии до 2 тайлов и запитаны.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    sprite: Imperial/Research/TG/atmos_shield_gen.rsi
+    state: icon
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        density: 190
+        mask:
+        - MachineMask
+  - type: ImperialAtmosShieldGen
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: Rotatable
+  - type: Machine
+    board: ImperialAtmosShieldGeneratorBoard
+
+- type: entity
+  id: ImperialAtmosShieldField
+  categories: [ HideSpawnMenu ]
+  name: атмосферный щит
+  description: Барьер из твёрдого света, удерживающий воздух.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Imperial/Research/TG/holosigns.rsi
+    state: firelock
+    drawdepth: Overdoors
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+  - type: Clickable

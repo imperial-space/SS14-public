@@ -1,0 +1,273 @@
+# announce_channels узлов techweb TG. Сгенерировано из tg_nodes.tsv.
+
+- type: imperialTgNode
+  id: ImperialTgGasCompression
+  channels: [ Engineering ]
+
+- type: imperialTgNode
+  id: ImperialTgPlasmaControl
+  channels: [ Engineering ]
+
+- type: imperialTgNode
+  id: ImperialTgFusion
+  channels: [ Engineering ]
+
+- type: imperialTgNode
+  id: ImperialTgExpTools
+  channels: [ Engineering ]
+
+- type: imperialTgNode
+  id: ImperialTgLightApps
+  channels: [ Common ]
+
+- type: imperialTgNode
+  id: ImperialTgExtremeOffice
+  channels: [ Common ]
+
+- type: imperialTgNode
+  id: ImperialTgSpecEng
+  channels: [ Engineering ]
+
+- type: imperialTgNode
+  id: ImperialTgAusSecurity
+  channels: [ Security ]
+
+- type: imperialTgNode
+  id: ImperialTgInterrogation
+  channels: [ Security ]
+
+- type: imperialTgNode
+  id: ImperialTgStickyAdvanced
+  channels: [ Common ]
+
+- type: imperialTgNode
+  id: ImperialTgTackleAdvanced
+  channels: [ Security ]
+
+- type: imperialTgNode
+  id: ImperialTgModExperimental
+  channels: [ Common ]
+
+- type: imperialTgNode
+  id: ImperialTgPositronicSphere
+  channels: [ Science ]
+
+- type: imperialTgNode
+  id: ImperialTgDonkProducts
+  channels: [ Security ]
+
+- type: imperialTgNode
+  id: ImperialTgBioScan
+  channels: [ Medical ]
+
+- type: imperialTgNode
+  id: ImperialTgGeneEngineering
+  channels: [ Science ]
+
+- type: imperialTgNode
+  id: ImperialTgHydroponics
+  channels: [ Service ]
+
+- type: imperialTgNode
+  id: ImperialTgSelection
+  channels: [ Service ]
+
+- type: imperialTgNode
+  id: ImperialTgCybernetics
+  channels: [ Science ]
+
+- type: imperialTgNode
+  id: ImperialTgBorgServices
+  channels: [ Science ]
+
+- type: imperialTgNode
+  id: ImperialTgBorgMining
+  channels: [ Science ]
+
+- type: imperialTgNode
+  id: ImperialTgBorgMedical
+  channels: [ Science ]
+
+- type: imperialTgNode
+  id: ImperialTgBorgUtility
+  channels: [ Science ]
+
+- type: imperialTgNode
+  id: ImperialTgBorgEngi
+  channels: [ Science ]
+
+- type: imperialTgNode
+  id: ImperialTgPassiveImplants
+  channels: [ Security, Medical ]
+
+- type: imperialTgNode
+  id: ImperialTgCyberImplants
+  channels: [ Science, Medical ]
+
+- type: imperialTgNode
+  id: ImperialTgPartsUpg
+  channels: [ Engineering ]
+
+- type: imperialTgNode
+  id: ImperialTgPartsAdv
+  channels: [ Engineering ]
+
+- type: imperialTgNode
+  id: ImperialTgPartsBluespace
+  channels: [ Engineering ]
+
+- type: imperialTgNode
+  id: ImperialTgEnergyManipulation
+  channels: [ Engineering ]
+
+- type: imperialTgNode
+  id: ImperialTgShuttleEng
+  channels: [ Engineering, Science, Supply ]
+
+- type: imperialTgNode
+  id: ImperialTgHud
+  channels: [ Engineering, Security, Science, Medical ]
+
+- type: imperialTgNode
+  id: ImperialTgNightVision
+  channels: [ Engineering, Security, Science, Medical ]
+
+- type: imperialTgNode
+  id: ImperialTgMechEquipment
+  channels: [ Science ]
+
+- type: imperialTgNode
+  id: ImperialTgMechClown
+  channels: [ Science, Security ]
+
+- type: imperialTgNode
+  id: ImperialTgChemSynthesis
+  channels: [ Medical ]
+
+- type: imperialTgNode
+  id: ImperialTgMedbayEquipAdv
+  channels: [ Medical ]
+
+- type: imperialTgNode
+  id: ImperialTgCryostasis
+  channels: [ Medical ]
+
+- type: imperialTgNode
+  id: ImperialTgMining
+  channels: [ Supply ]
+
+- type: imperialTgNode
+  id: ImperialTgLowPressureExcavation
+  channels: [ Supply ]
+
+- type: imperialTgNode
+  id: ImperialTgPlasmaMining
+  channels: [ Supply ]
+
+- type: imperialTgNode
+  id: ImperialTgMiningAdv
+  channels: [ Supply ]
+
+- type: imperialTgNode
+  id: ImperialTgModEquip
+  channels: [ Science ]
+
+- type: imperialTgNode
+  id: ImperialTgModService
+  channels: [ Science, Service ]
+
+- type: imperialTgNode
+  id: ImperialTgModEntertainment
+  channels: [ Science, Service ]
+
+- type: imperialTgNode
+  id: ImperialTgModMedical
+  channels: [ Science, Medical ]
+
+- type: imperialTgNode
+  id: ImperialTgModEngi
+  channels: [ Science, Engineering ]
+
+- type: imperialTgNode
+  id: ImperialTgModSecurity
+  channels: [ Science, Security ]
+
+- type: imperialTgNode
+  id: ImperialTgModMedicalAdv
+  channels: [ Science, Medical ]
+
+- type: imperialTgNode
+  id: ImperialTgModEngiAdv
+  channels: [ Science, Engineering ]
+
+- type: imperialTgNode
+  id: ImperialTgModAnomaly
+  channels: [ Science ]
+
+- type: imperialTgNode
+  id: ImperialTgBluespaceTheory
+  channels: [ Science ]
+
+- type: imperialTgNode
+  id: ImperialTgAppliedBluespace
+  channels: [ Science, Medical, Service, Supply ]
+
+- type: imperialTgNode
+  id: ImperialTgBluespaceTravel
+  channels: [ Science ]
+
+- type: imperialTgNode
+  id: ImperialTgAnomalyResearch
+  channels: [ Science ]
+
+- type: imperialTgNode
+  id: ImperialTgAnomalyShells
+  channels: [ Science ]
+
+- type: imperialTgNode
+  id: ImperialTgAi
+  channels: [ Science ]
+
+- type: imperialTgNode
+  id: ImperialTgAiLaws
+  channels: [ Science, Command ]
+
+- type: imperialTgNode
+  id: ImperialTgSecEquip
+  channels: [ Security ]
+
+- type: imperialTgNode
+  id: ImperialTgRiotSupression
+  channels: [ Security ]
+
+- type: imperialTgNode
+  id: ImperialTgExplosives
+  channels: [ Security, Medical ]
+
+- type: imperialTgNode
+  id: ImperialTgExoticAmmo
+  channels: [ Security ]
+
+- type: imperialTgNode
+  id: ImperialTgElectricWeapons
+  channels: [ Security ]
+
+- type: imperialTgNode
+  id: ImperialTgBeamWeapons
+  channels: [ Security ]
+
+- type: imperialTgNode
+  id: ImperialTgSanitation
+  channels: [ Service ]
+
+- type: imperialTgNode
+  id: ImperialTgConsoles
+  channels: [ Service ]
+
+- type: imperialTgNode
+  id: ImperialTgFoodProc
+  channels: [ Service ]
+
+- type: imperialTgNode
+  id: ImperialTgSurgeryTools
+  channels: [ Medical ]

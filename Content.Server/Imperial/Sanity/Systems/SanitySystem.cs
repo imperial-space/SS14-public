@@ -55,6 +55,8 @@ public sealed class SanitySystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
 
+    private static readonly TimeSpan HighRegenTickDelay = TimeSpan.FromSeconds(1);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -104,7 +106,7 @@ public sealed class SanitySystem : EntitySystem
             if (delta <= 0)
                 continue;
 
-            total += (float) delta;
+            total += (float)delta;
         }
 
         if (total <= 0f)
@@ -348,7 +350,7 @@ public sealed class SanitySystem : EntitySystem
         if (now < ent.Comp.NextHighRegenTick)
             return;
 
-        ent.Comp.NextHighRegenTick = now + TimeSpan.FromSeconds(1);
+        ent.Comp.NextHighRegenTick = now + HighRegenTickDelay;
 
         if (!TryComp<DamageableComponent>(ent, out var damageable))
             return;
@@ -376,7 +378,7 @@ public sealed class SanitySystem : EntitySystem
 
         var min = ent.Comp.LowSoundMinInterval.TotalSeconds;
         var max = ent.Comp.LowSoundMaxInterval.TotalSeconds;
-        var next = _random.NextFloat((float) min, (float) max);
+        var next = _random.NextFloat((float)min, (float)max);
         ent.Comp.NextLowSound = now + TimeSpan.FromSeconds(next);
     }
 
@@ -503,7 +505,7 @@ public sealed class SanitySystem : EntitySystem
         return false;
     }
 
-    private void ModifySanity(Entity<SanityComponent> ent, float delta)
+    public void ModifySanity(Entity<SanityComponent> ent, float delta)
     {
         if (MathF.Abs(delta) <= 0.0001f)
             return;
@@ -522,7 +524,7 @@ public sealed class SanitySystem : EntitySystem
 
     private void UpdateAlert(EntityUid uid, SanityComponent comp)
     {
-        var severity = (short) Math.Clamp((int) MathF.Floor(comp.Value / comp.MaxSanity * 10f), 0, 10);
+        var severity = (short)Math.Clamp((int)MathF.Floor(comp.Value / comp.MaxSanity * 10f), 0, 10);
         _alerts.ShowAlert(uid, _sanityAlert, severity);
     }
 }

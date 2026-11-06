@@ -1,0 +1,7 @@
+# ImperialFishMountSystem.cs: FluffCatchers
+- type: localizedDataset
+  id: ImperialImperialFishMountSystemFluffCatchers
+  values:
+    prefix: imperial-fishing-imperial-fish-mount-system-fluff-catchers-
+    count: 6
+

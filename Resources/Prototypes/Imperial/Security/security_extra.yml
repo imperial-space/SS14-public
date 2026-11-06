@@ -1,0 +1,575 @@
+# Снаряжение СБ: секвей и задания (tgstation/BandaStation), плакаты розыска (tgstation),
+# пейнтбольный маркер с перцовыми шариками (ParadiseSS13).
+
+- type: Tag
+  id: ImperialSecwayKey
+
+- type: Tag
+  id: ImperialPaintballMagazine
+
+- type: Tag
+  id: ImperialPaintball
+
+# ─── Секвей (vehicle/ridden/secway) ───
+
+- type: entity
+  parent: BaseItem
+  id: SecwayKey
+  name: ключ от секвея
+  description: Связка с небольшим стальным ключом и брелоком-дубинкой из резины.
+  components:
+  - type: Sprite
+    sprite: Imperial/Security/secway_key.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - ImperialSecwayKey
+
+- type: entity
+  parent: BaseImperialVehicleRideable
+  id: VehicleSecway
+  name: секвей
+  description: Отважный киборг СБ отдал жизнь, чтобы вы выглядели полным идиотом.
+  components:
+  - type: Secway
+  - type: Sprite
+    sprite: Imperial/Security/secway.rsi
+    noRot: true
+    layers:
+    - state: secway
+  - type: ImperialVehicle
+    autoAnimate: false
+    hideRider: false
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 5.7
+    acceleration: 2.0
+    useHand: true
+    hornActionId: ActionSecwaySiren
+    hornSound:
+      path: /Audio/Effects/Vehicle/policesiren.ogg
+      params:
+        volume: -4
+  - type: AmbientSound
+    sound: /Audio/Effects/Vehicle/vehicleengineidle.ogg
+    range: 8
+    volume: -12
+    enabled: false
+  - type: Strap
+    buckleOffset: "0,0.12"
+    maxBuckleDistance: 1
+    position: Stand
+  - type: ItemSlots
+    slots:
+      secway_key:
+        name: Key
+        insertSound: /Audio/Machines/id_insert.ogg
+        ejectSound: /Audio/Machines/id_swipe.ogg
+        whitelist:
+          tags:
+          - ImperialSecwayKey
+  - type: ContainerContainer
+    containers:
+      secway_key: !type:ContainerSlot
+      secway-exhaust: !type:Container
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Repairable
+    fuelCost: 5
+    doAfterDelay: 3
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 4
+    intensitySlope: 2
+    totalIntensity: 16
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:ExplodeBehavior
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: StaticPrice
+    price: 1500
+
+- type: entity
+  parent: CrateSecgear
+  id: CrateSecurityVehicleSecway
+  name: ящик с секвеем СБ
+  description: Секвей и ключ к нему. Требуется доступ СБ.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: VehicleSecway
+        - id: SecwayKey
+
+- type: cargoProduct
+  id: SecurityVehicleSecway
+  icon:
+    sprite: Imperial/Security/secway.rsi
+    state: secway
+  product: CrateSecurityVehicleSecway
+  cost: 3000
+  category: cargoproduct-category-name-security
+  group: ImperialCargo
+# ─── Плакаты розыска (poster/wanted) ───
+
+- type: entity
+  parent: BaseItem
+  id: WantedPosterRolled
+  name: плакат розыска
+  description: Свёрнутый плакат. Повесьте его на стену.
+  components:
+  - type: WantedPoster
+  - type: Sprite
+    sprite: Imperial/Security/wanted_poster.rsi
+    state: rolled
+  - type: Item
+    size: Small
+
+- type: entity
+  id: WantedPosterWall
+  name: плакат розыска
+  description: Плакат с портретом и обвинением. Сорвать — рукой, снять целым — кусачками.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: WantedPoster
+    rolled: false
+  - type: Sprite
+    sprite: Imperial/Security/wanted_poster.rsi
+    drawdepth: WallMountedItems
+    layers:
+    - state: background
+    - state: portrait
+    - state: wanted
+      map: [ "header" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.WantedPosterVisuals.Missing:
+        header:
+          True: { state: missing }
+          False: { state: wanted }
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+
+# ─── Задания СБ (civilian bounty terminal / pad) ───
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerSecurityBounty
+  name: терминал заданий СБ
+  description: Выдаёт сотрудникам СБ задания на вставленную ID-карту и отправляет цели с пада на ЦК.
+  components:
+  - type: SecurityBountyConsole
+  - type: Sprite
+    layers:
+    - map: [ "computerLayerBody" ]
+      state: computer
+    - map: [ "computerLayerKeyboard" ]
+      state: generic_keyboard
+    - map: [ "computerLayerScreen" ]
+      state: request-sec
+    - map: [ "computerLayerKeys" ]
+      state: id_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#e05050"
+  - type: Computer
+    board: SecurityBountyComputerCircuitboard
+  - type: ItemSlots
+    slots:
+      bounty_id:
+        name: ID
+        whitelist:
+          components:
+          - IdCard
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      bounty_id: !type:ContainerSlot
+  - type: ActivatableUI
+    key: enum.SecurityBountyUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SecurityBountyUiKey.Key:
+        type: SecurityBountyBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: SecurityBountyComputerCircuitboard
+  name: плата терминала заданий СБ
+  description: Печатная плата компьютера — терминала заданий СБ.
+  components:
+  - type: Sprite
+    state: cpu_security
+  - type: ComputerBoard
+    prototype: ComputerSecurityBounty
+
+- type: entity
+  parent: BaseStructure
+  id: SecurityBountyPad
+  name: пад заданий СБ
+  description: Устройство для отправки целей заданий СБ на ЦК. Терминал должен стоять в пределах 4 клеток.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: SecurityBountyPad
+  - type: Sprite
+    sprite: Structures/cargo_telepad.rsi
+    drawdepth: FloorObjects
+    layers:
+    - state: idle
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Transform
+    anchored: true
+  - type: Anchorable
+  - type: Clickable
+  - type: InteractionOutline
+
+- type: entity
+  parent: BaseItem
+  id: SecurityBountyCube
+  name: куб награды
+  description: Отправьте этот куб через отдел снабжения, чтобы получить награду за задание.
+  components:
+  - type: SecurityBountyCube
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: generic
+    color: "#d4a017"
+  - type: Item
+    size: Small
+  - type: StaticPrice
+    price: 0
+
+- type: entity
+  parent: BaseFlatpack
+  id: ComputerSecurityBountyFlatpack
+  name: флэтпак терминала заданий СБ
+  description: Флэтпак для сборки терминала заданий СБ.
+  components:
+  - type: Flatpack
+    entity: ComputerSecurityBounty
+
+- type: entity
+  parent: BaseFlatpack
+  id: SecurityBountyPadFlatpack
+  name: флэтпак пада заданий СБ
+  description: Флэтпак для сборки пада заданий СБ.
+  components:
+  - type: Flatpack
+    entity: SecurityBountyPad
+
+- type: entity
+  parent: CrateSecgear
+  id: CrateSecurityBountyTerminal
+  name: ящик терминала заданий СБ
+  description: Терминал и пад для заданий СБ. Требуется доступ СБ.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ComputerSecurityBountyFlatpack
+        - id: SecurityBountyPadFlatpack
+
+- type: cargoProduct
+  id: SecurityBountyTerminal
+  icon:
+    sprite: Structures/cargo_telepad.rsi
+    state: idle
+  product: CrateSecurityBountyTerminal
+  cost: 1500
+  category: cargoproduct-category-name-security
+  group: ImperialCargo
+# ─── Пейнтбол (paintball_gun, Paradise) ───
+
+- type: entity
+  parent: BaseBullet
+  id: BulletPaintball
+  name: шарик с краской
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Security/paintball.rsi
+    layers:
+    - state: ball
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 1
+  - type: PaintballProjectile
+  - type: PaintballColor
+
+- type: entity
+  parent: BaseBullet
+  id: BulletPepperball
+  name: перцовый шарик
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Security/paintball.rsi
+    layers:
+    - state: ball
+      color: "#660000"
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 1
+  - type: TriggerOnCollide
+    fixtureID: projectile
+    maxTriggers: 1
+  # Конденсированный капсаицин при попадании: в SS14 это облачко слезоточивого газа.
+  - type: SmokeOnTrigger
+    duration: 4
+    spreadAmount: 2
+    smokePrototype: TearGasSmokeWhite
+    solution:
+      reagents:
+      - ReagentId: TearGas
+        Quantity: 5
+
+- type: entity
+  parent: BaseItem
+  id: CartridgePaintball
+  name: шарик с краской
+  description: Не цельтесь в глаза.
+  components:
+  - type: Tag
+    tags:
+    - ImperialPaintball
+  - type: CartridgeAmmo
+    proto: BulletPaintball
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Imperial/Security/paintball.rsi
+    state: ball
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: CartridgePaintball
+  id: CartridgePepperball
+  name: перцовый шарик
+  description: Цельтесь в глаза для максимального эффекта.
+  components:
+  - type: CartridgeAmmo
+    proto: BulletPepperball
+    deleteOnSpawn: true
+  - type: Sprite
+    color: "#660000"
+
+- type: entity
+  parent: BaseItem
+  id: MagazinePaintball
+  name: магазин пейнтбольных шариков
+  description: Магазин, вмещающий много шариков с краской.
+  components:
+  - type: Tag
+    tags:
+    - ImperialPaintballMagazine
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePaintball
+    capacity: 25
+    whitelist:
+      tags:
+      - ImperialPaintball
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Imperial/Security/paintball_mag.rsi
+    layers:
+    - state: paint-1
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: paint
+    steps: 2
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  parent: MagazinePaintball
+  id: MagazinePepperball
+  name: магазин перцовых шариков
+  description: Магазин, вмещающий много перцовых шариков.
+  components:
+  - type: PepperballMagazine
+  - type: BallisticAmmoProvider
+    proto: CartridgePepperball
+    capacity: 10
+  - type: Sprite
+    layers:
+    - state: pepper-1
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: pepper
+    steps: 2
+    zeroVisible: true
+
+- type: entity
+  parent: BaseItem
+  id: WeaponPaintballGun
+  name: пейнтбольный маркер
+  description: Пневматический маркер, стреляющий шариками с краской! От 13 лет. Не целиться в глаза.
+  components:
+  - type: PaintballGun
+  - type: Sprite
+    sprite: Imperial/Security/paintball_gun.rsi
+    layers:
+    - state: icon
+    - state: mag-blue
+      visible: false
+      map: [ "overlay" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PaintballGunVisuals.Overlay:
+        overlay:
+          None: { visible: false }
+          Blue: { visible: true, state: mag-blue }
+          BlueEmpty: { visible: true, state: mag-blue-empty }
+          Red: { visible: true, state: mag-red }
+          RedEmpty: { visible: true, state: mag-red-empty }
+          Green: { visible: true, state: mag-green }
+          GreenEmpty: { visible: true, state: mag-green-empty }
+          Yellow: { visible: true, state: mag-yellow }
+          YellowEmpty: { visible: true, state: mag-yellow-empty }
+          Pepper: { visible: true, state: mag-pepper }
+          PepperEmpty: { visible: true, state: mag-pepper-empty }
+  - type: Item
+    size: Small
+    sprite: Imperial/Security/paintball_gun.rsi
+  - type: Gun
+    fireRate: 3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+      params:
+        volume: -6
+        pitch: 1.4
+  - type: MagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePaintball
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        whitelist:
+          tags:
+          - ImperialPaintballMagazine
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+  - type: AmmoCounter
+  - type: StaticPrice
+    price: 150
+
+# effect/decal/cleanable/paint_splat
+- type: entity
+  id: PaintballSplat
+  name: пятно краски
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Security/paintball.rsi
+    drawdepth: FloorObjects
+    layers:
+    - state: splat-1
+      map: [ "splat" ]
+  - type: RandomSprite
+    available:
+    - splat:
+        splat-1: ""
+        splat-2: ""
+        splat-3: ""
+  - type: PaintballColor
+  - type: Clickable
+  - type: TimedDespawn
+    lifetime: 300
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateFunPaintball
+  name: ящик пейнтбола
+  description: Два пейнтбольных маркера и два магазина к ним.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponPaintballGun
+          amount: 2
+        - id: MagazinePaintball
+          amount: 2
+
+- type: cargoProduct
+  id: FunPaintball
+  icon:
+    sprite: Imperial/Security/paintball_gun.rsi
+    state: icon
+  product: CrateFunPaintball
+  cost: 1500
+  category: cargoproduct-category-name-fun
+  group: ImperialCargo
+
+- type: entity
+  parent: CrateSecgear
+  id: CrateSecurityPepperball
+  name: ящик перцовых шариков
+  description: Три магазина перцовых шариков для пейнтбольного маркера. Требуется доступ СБ.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MagazinePepperball
+          amount: 3
+
+- type: cargoProduct
+  id: SecurityPepperball
+  icon:
+    sprite: Imperial/Security/paintball_mag.rsi
+    state: pepper-1
+  product: CrateSecurityPepperball
+  cost: 750
+  category: cargoproduct-category-name-security
+  group: ImperialCargo
+# Сирена СБ вместо гудка: по длине звука.
+- type: entity
+  parent: BaseAction
+  id: ActionSecwaySiren
+  name: Сирена
+  description: Включить сирену секвея.
+  components:
+  - type: Action
+    useDelay: 4
+    icon: { sprite: Imperial/Security/secway.rsi, state: secway }
+  - type: InstantAction
+    event: !type:HornActionEvent

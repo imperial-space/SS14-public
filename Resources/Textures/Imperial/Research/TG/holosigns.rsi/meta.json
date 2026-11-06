@@ -1,0 +1,62 @@
+{
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "Taken from tgstation (BandaStation) at commit master",
+    "size":  {
+                 "x":  32,
+                 "y":  32
+             },
+    "states":  [
+                   {
+                       "name":  "holosign",
+                       "delays":  [
+                                      [
+                                          0.2,
+                                          0.2,
+                                          0.1,
+                                          0.1,
+                                          0.4
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "medical",
+                       "delays":  [
+                                      [
+                                          1,
+                                          1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "firelock",
+                       "delays":  [
+                                      [
+                                          0.3,
+                                          0.3,
+                                          0.3,
+                                          0.3,
+                                          0.3,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "pass",
+                       "delays":  [
+                                      [
+                                          0.2,
+                                          0.2,
+                                          0.1,
+                                          0.7
+                                      ]
+                                  ]
+                   }
+               ]
+}

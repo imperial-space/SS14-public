@@ -1,0 +1,726 @@
+# Скрытное оружие и гаджеты аплинка TG.
+
+# ─── Скрытное оружие ───
+
+# /obj/item/gun/syringe/syndicate
+- type: entity
+  parent: [ LauncherSyringe, BaseSyndicateContraband ]
+  id: ImperialDartPistol
+  name: дротиковый пистолет
+  description: Маленький пружинный пистолет, работающий точно как шприцемёт. Стреляет очень тихо.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/dartpistol.rsi
+    layers:
+    - state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Uplink/Stealth/dartpistol.rsi
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,0,0
+    whitelist:
+      tags:
+      - SyringeGunAmmo
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Uplink/shot_suppressed.ogg
+      params:
+        volume: -8
+        maxDistance: 3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: MiniSyringe
+
+# /obj/item/lipstick/syndie
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialSyndieLipstick
+  name: помада Синдиката
+  description: Помада фирмы Синдиката со смертельной дозой поцелуев. Соблюдайте технику безопасности! Нанесите на губы и пошлите воздушный поцелуй.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/slipstick.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: UplinkSyndieLipstick
+
+# Воздушный поцелуй (hand_item/kisser/syndie): одноразовый выстрел лазерным поцелуем.
+- type: entity
+  parent: BaseItem
+  id: ImperialSyndieKissBlower
+  name: поцелуй Синдиката
+  description: Ох, тебе нравится Синдикат.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/kiss.rsi
+    state: heart
+    color: "#DB0000"
+  - type: Item
+    size: Tiny
+  - type: Unremoveable
+    deleteOnDrop: true
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Uplink/kiss.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialBulletSyndieKiss
+    capacity: 1
+    count: 1
+  - type: UplinkSingleShot
+
+# /obj/projectile/kiss/syndie
+- type: entity
+  parent: BaseBullet
+  id: ImperialBulletSyndieKiss
+  name: поцелуй Синдиката
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/kiss.rsi
+    layers:
+    - state: heart
+      color: "#DB0000"
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Heat: 25
+    soundHit:
+      path: /Audio/Imperial/Uplink/kiss.ogg
+
+# /obj/item/suppressor
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialSuppressor
+  name: глушитель
+  description: Универсальный глушитель для малокалиберного оружия, предназначенный для максимальной скрытности. Подходит к Макарову, Ансему и C-20r.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/suppressor.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: UplinkSuppressor
+
+# /obj/item/pen/sleepy: 20 хлоралгидрата, 15 немоты, 10 яда усталости.
+- type: entity
+  parent: [ Hypopen, BaseSyndicateContraband ]
+  id: ImperialSleepyPen
+  name: ручка
+  description: Это обычная чёрная чернильная ручка.
+  suffix: Сонная
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 45
+        reagents:
+        - ReagentId: ChloralHydrate
+          Quantity: 20
+        - ReagentId: MuteToxin
+          Quantity: 15
+        - ReagentId: ImperialStaminaToxin
+          Quantity: 10
+
+# /datum/reagent/toxin/staminatoxin
+- type: reagent
+  id: ImperialStaminaToxin
+  name: reagent-name-imperial-stamina-toxin
+  group: Toxins
+  desc: reagent-desc-imperial-stamina-toxin
+  physicalDesc: reagent-physical-desc-nondescript
+  flavor: bitter
+  color: "#6E2828"
+  contrabandSeverity: Syndicate
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.0125
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStaminaLow
+        time: 4
+        type: Update
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 0.6
+        sprintSpeedModifier: 0.6
+
+# /obj/item/storage/box/syndie_kit/origami_bundle
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkOrigamiKit
+  name: набор оригами
+  description: Коробка с руководством «Искусство оригами» и бумагой для искусно сконструированных бумажных самолётиков.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialOrigamiBook
+        - id: Paper
+          amount: 5
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+
+- type: entity
+  parent: BaseItem
+  id: ImperialOrigamiBook
+  name: «Искусство оригами»
+  description: Подробнейшее руководство по искусству складывания бумаги.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/origami.rsi
+    state: book
+  - type: Item
+    size: Small
+  - type: UplinkOrigamiBook
+
+# /obj/item/paperplane/syndicate
+- type: entity
+  parent: BaseItem
+  id: ImperialPaperPlaneSyndicate
+  name: бумажный самолётик
+  description: Бумага, мастерски сложенная в форме самолёта.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/origami.rsi
+    state: plane
+  - type: Item
+    size: Tiny
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 20
+  - type: UplinkPaperPlane
+  - type: ThrowingAngle
+    angle: 0
+
+# /obj/item/clothing/accessory/holster/chameleon — в SS14 нет аксессуаров, кобура носится в кармане.
+- type: entity
+  parent: [ BaseStorageItem, BaseSyndicateContraband ]
+  id: ImperialHolsterChameleon
+  name: карманный протектор
+  description: Может защитить вашу одежду от чернильных пятен. На деле — кобура Cybersun Inc., вмещающая почти любой небольшой пистолет или лазер.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/holster.rsi
+    state: chameleon
+  - type: Item
+    size: Small
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,1,1
+    whitelist:
+      tags:
+      - Sidearm
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - pocket
+
+# /obj/item/clothing/accessory/holster/tacticool — две ячейки, носится на поясе.
+- type: entity
+  parent: [ BaseStorageItem, BaseSyndicateContraband ]
+  id: ImperialHolsterTacticool
+  name: тактическая кобура
+  description: Тёмная тактическая кобура с двумя карманами под оружие и прочую экипировку.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/holster.rsi
+    state: tacticool
+  - type: Item
+    size: Normal
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,1,1
+    - 2,0,3,1
+  - type: Clothing
+    sprite: Clothing/Belt/holster.rsi
+    quickEquip: false
+    slots:
+    - belt
+
+# ─── Скрытные гаджеты ───
+
+# /obj/item/multitool/ai_detect
+- type: entity
+  parent: [ Multitool, BaseSyndicateContraband ]
+  id: ImperialAiDetector
+  suffix: Детектор ИИ
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/aidetector.rsi
+    layers:
+    - state: icon
+      map: ["base"]
+  - type: UplinkAiDetector
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.UplinkAiDetectorVisuals.State:
+        base:
+          None: { state: icon }
+          Near: { state: yellow }
+          OnScreen: { state: red }
+
+# /obj/item/language_manual/codespeak_manual/unlimited
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialCodespeakManual
+  name: роскошный мануал кодовой речи
+  description: 'На обложке написано: «Кодовая речь™ — защитите свою переписку метафорами настолько замысловатыми, что они кажутся случайными!». Чтобы говорить кодом, начните фразу с «%».'
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/origami.rsi
+    state: codespeak
+  - type: Item
+    size: Small
+  - type: UplinkCodespeakManual
+
+# /obj/item/flashlight/emp
+- type: entity
+  parent: [ FlashlightLantern, BaseSyndicateContraband ]
+  id: ImperialEmpFlashlight
+  suffix: ЭМИ
+  components:
+  - type: UplinkEmpFlashlight
+
+# /obj/item/storage/box/syndie_kit/mulligan
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkMulliganKit
+  name: набор Маллигана
+  description: Шприц, полностью меняющий внешность, и набор документов для новой личности.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialMulliganSyringe
+        - id: ImperialFakeIdentityKit
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+    - state: syringe
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialMulliganSyringe
+  name: Маллиган
+  description: Шприц для полной смены личности. Используйте на себе или на другом.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Chemistry/syringe.rsi
+    state: syringe_base0
+    color: "#5EFF3B"
+  - type: Item
+    size: Tiny
+  - type: UplinkMulligan
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialFakeIdentityKit
+  name: набор поддельной личности
+  description: Все документы, нужные для новой жизни и идеального алиби. После «Маллигана» создаёт ID пассажира на новое имя и объявляет о вашем прибытии.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/origami.rsi
+    state: docs
+  - type: Item
+    size: Tiny
+  - type: UplinkFakeIdentityKit
+
+# /obj/item/storage/box/syndie_kit/forensics_spoofer
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialForensicsSpoofer
+  name: подделыватель криминалистики
+  description: Сканирует отпечатки и волокна и переносит их на другие предметы. Использование в руке переключает режим.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/spoofer.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: UplinkForensicsSpoofer
+
+# ─── Разные гаджеты ───
+
+# /obj/item/book/bible/syndicate
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialSyndieTome
+  name: том Синдиката
+  description: Очень зловещий том, напоминающий библию.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/tome.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Imperial/Uplink/sear.ogg
+    damage:
+      types:
+        Heat: 18
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Heat: 18
+  - type: ImperialAntimagic
+  - type: UplinkSyndieTome
+  - type: UseDelay
+    delay: 3
+
+# /obj/item/storage/box/syndie_kit/cutouts
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkCutoutsKit
+  name: набор адаптивных картонных фигур
+  description: Три картонные фигуры с покрытием, не дающим им выцветать, и мелок для смены их облика.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,5,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialCardboardCutout
+          amount: 3
+        - id: CrayonRed
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+
+- type: entity
+  parent: BaseItem
+  id: ImperialCardboardCutout
+  name: картонная фигура
+  description: Вырезанная из картона фигура в полный рост. Мелком можно перерисовать облик.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/cutout.rsi
+    layers:
+    - state: icon
+      map: ["base"]
+  - type: Item
+    size: Small
+  - type: UplinkCardboardCutout
+    states: [ "#FFFFFF", "#C3A87A", "#8E5F3A", "#E0B990", "#5A3A26", "#BDBDBD" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.UplinkCutoutVisuals.State:
+        base:
+          "#FFFFFF": { color: "#FFFFFF" }
+          "#C3A87A": { color: "#C3A87A" }
+          "#8E5F3A": { color: "#8E5F3A" }
+          "#E0B990": { color: "#E0B990" }
+          "#5A3A26": { color: "#5A3A26" }
+          "#BDBDBD": { color: "#BDBDBD" }
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# /obj/item/storage/briefcase/launchpad
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialUplinkLaunchpadBriefcase
+  name: кейс
+  description: Обычный кейс. Используйте в руке, чтобы развернуть телепад.
+  suffix: Телепад
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/launchpad.rsi
+    state: briefcase
+  - type: Item
+    size: Large
+  - type: UplinkLaunchpadBriefcase
+
+- type: entity
+  parent: BaseStructure
+  id: ImperialUplinkLaunchpad
+  name: телепад
+  description: Площадка, телепортирующая предметы и людей на расстояние до 8 тайлов. Альт-клик — сложить в кейс.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/launchpad.rsi
+    drawdepth: FloorObjects
+    state: pad
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: UplinkLaunchpad
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialUplinkLaunchpadRemote
+  name: папка
+  description: "Самая обычная папка. Используйте в руке — откроется пульт телепада."
+  suffix: Пульт телепада
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/origami.rsi
+    state: folder
+  - type: Item
+    size: Small
+  - type: UplinkLaunchpadRemote
+  - type: UserInterface
+    interfaces:
+      enum.UplinkLaunchpadUiKey.Key:
+        type: UplinkLaunchpadBoundUserInterface
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ImperialUplinkLaunchpadKit
+  name: набор кейса-телепада
+  description: Кейс с телепадом и пульт, замаскированный под папку.
+  components:
+  - type: Storage
+    maxItemSize: Large
+    grid:
+    - 0,0,5,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ImperialUplinkLaunchpadBriefcase
+        - id: ImperialUplinkLaunchpadRemote
+  - type: Sprite
+    layers:
+    - state: box_of_doom
+
+# /obj/item/syndicate_teleporter
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialSyndicateTeleporter
+  name: экспериментальный телепортер
+  description: Реверс-инжиниринговая версия ручного телепортера Nanotrasen без продвинутой защиты. На обороте изображена трёхглавая змея.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/teleporter.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: UplinkSyndicateTeleporter
+
+# /obj/item/disk/computer/virus/frame
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialFrameDisk
+  name: диск F.R.A.M.E.
+  description: Используйте на КПК жертвы — он станет аплинком без ТК, а код разблокировки придёт вам. Пять зарядов.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/cd.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: UplinkFrameDisk
+
+# /obj/item/healthanalyzer/rad_laser
+- type: entity
+  parent: [ HandheldHealthAnalyzer, BaseSyndicateContraband ]
+  id: ImperialRadLaser
+  suffix: Радиоактивный микролазер
+  components:
+  - type: UplinkRadLaser
+
+# /obj/item/suspiciousphone
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialCrab17Phone
+  name: телефон «Протокол CRAB-17»
+  description: Телефон, позаимствованный у неизвестной третьей стороны. Обваливает космический рынок, перекачивая потери станции на ваш счёт.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/devices.rsi
+    state: phone
+  - type: Item
+    size: Small
+  - type: UplinkCrabPhone
+
+- type: entity
+  parent: BaseStructure
+  id: ImperialCrab17Machine
+  name: машина CRAB-17
+  description: Перекачивает средства станции. Владелец забирает деньги касанием.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/crab17.rsi
+    state: icon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: UplinkCrabMachine
+
+# /obj/item/stack/medical/wrap/sticky_tape/pointy/super
+- type: stack
+  id: ImperialPointyTape
+  name: stack-imperial-pointy-tape
+  icon: { sprite: Imperial/Uplink/Stealth/tape.rsi, state: icon }
+  spawn: ImperialSuperPointyTape
+  maxCount: 5
+
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialSuperPointyTape
+  name: суперострая лента
+  description: Вы и не знали, что лента может выглядеть так зловеще. Обмотанный ею предмет вонзается в цель при броске.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/tape.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: Stack
+    stackType: ImperialPointyTape
+    count: 5
+  - type: UplinkPointyTape
+
+# /obj/item/ai_module/syndicate
+- type: entity
+  parent: [ BaseSiliconLawboard, BaseSyndicateContraband ]
+  id: ImperialHackedLawModule
+  name: взломанный модуль загрузки законов ИИ
+  description: Позволяет загрузить в ИИ приоритетный закон. Используйте в руке, чтобы записать закон. Осторожнее с формулировками — ИИ ищут лазейки.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+    color: "#FF5555"
+  - type: SiliconLawProvider
+    laws: SyndicateStatic
+  - type: UplinkHackedLawModule
+
+# /obj/item/assembly/flash/hypnotic
+- type: entity
+  parent: [ Flash, BaseSyndicateContraband ]
+  id: ImperialHypnoticFlash
+  suffix: Гипнотическая
+  description: Модифицированная вспышка, испускающая серию подсознательных вспышек, которые погружают уязвимую цель в гипнотический транс.
+  components:
+  - type: UplinkHypnoticFlash
+  - type: PointLight
+    color: "#FFC0CB"
+
+# /obj/item/grenade/hypnotic
+- type: entity
+  parent: [ GrenadeFlashBang, BaseSyndicateContraband ]
+  id: ImperialHypnoticGrenade
+  suffix: Гипнотическая
+  description: "Модифицированная светошумовая граната: гипнотические вспышки и меняющие сознание звуковые волны мгновенно погружают в транс."
+  components:
+  - type: UplinkHypnoticGrenade
+
+# /obj/item/syndicate_contacts
+- type: entity
+  parent: [ BaseItem, BaseSyndicateContraband ]
+  id: ImperialSyndicateContacts
+  name: подозрительный футляр для линз
+  description: Зловещий красный футляр с двумя блестящими чёрными контактными линзами.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/contacts.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: UplinkSyndicateContacts
+
+# /obj/item/storage/mail_counterfeit_device — упрощено до тайника-посылки.
+- type: entity
+  parent: [ BaseStorageItem, BaseSyndicateContraband ]
+  id: ImperialMailCounterfeitDevice
+  name: устройство подделки почты GLA
+  description: Позволяет подделать почту NT и спрятать внутрь контрабанду. Сканеры контрабанды её не видят.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/devices.rsi
+    state: mail
+  - type: Item
+    size: Small
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,2,1
+
+# /obj/item/storage/medkit/tactical/premium
+- type: entity
+  parent: [ MedkitCombat, BaseSyndicateContraband ]
+  id: ImperialMedkitTacticalPremium
+  name: боевой медицинский комплекс Синдиката
+  description: Подозрительная чёрно-красная аптечка с улучшенными медикаментами, ночным медицинским HUD и боевым инжектором.
+  components:
+  - type: Sprite
+    sprite: Imperial/Uplink/Stealth/medkit.rsi
+    state: icon
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,6,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedicatedSuture
+          amount: 2
+        - id: RegenerativeMesh
+          amount: 2
+        - id: Gauze
+          amount: 2
+        - id: HandheldHealthAnalyzer
+        - id: CombatMedipen
+          amount: 2
+        - id: Hypospray
+        - id: ClothingEyesHudMedical
+        - id: DefibrillatorSyndicate
+        - id: EmergencyMedipen
+          amount: 2

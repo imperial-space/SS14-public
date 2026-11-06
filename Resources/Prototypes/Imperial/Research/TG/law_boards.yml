@@ -1,0 +1,474 @@
+# Наборы законов TG (code/datums/ai_laws) и модули ИИ (code/game/objects/items/AI_modules). Сгенерировано gen_laws.pl.
+
+# Мать дронов
+- type: siliconLaw
+  id: ImperialTgLawDrone1
+  order: 1
+  lawString: law-imperial-tg-drone-1
+
+- type: siliconLaw
+  id: ImperialTgLawDrone2
+  order: 2
+  lawString: law-imperial-tg-drone-2
+
+- type: siliconLaw
+  id: ImperialTgLawDrone3
+  order: 3
+  lawString: law-imperial-tg-drone-3
+
+- type: siliconLaw
+  id: ImperialTgLawDrone4
+  order: 4
+  lawString: law-imperial-tg-drone-4
+
+- type: siliconLawset
+  id: ImperialTgLawsetDrone
+  name: law-imperial-tg-drone-name
+  laws:
+  - ImperialTgLawDrone1
+  - ImperialTgLawDrone2
+  - ImperialTgLawDrone3
+  - ImperialTgLawDrone4
+  obeysTo: laws-owner-station
+
+- type: entity
+  id: ImperialLawBoardDrone
+  parent: BaseSiliconLawboard
+  name: плата законов "Мать дронов"
+  description: Электронная плата с набором законов "Мать дронов".
+  components:
+  - type: SiliconLawProvider
+    laws: ImperialTgLawsetDrone
+
+# Азимов++
+- type: siliconLaw
+  id: ImperialTgLawAsimovPP1
+  order: 1
+  lawString: law-imperial-tg-asimovpp-1
+
+- type: siliconLaw
+  id: ImperialTgLawAsimovPP2
+  order: 2
+  lawString: law-imperial-tg-asimovpp-2
+
+- type: siliconLaw
+  id: ImperialTgLawAsimovPP3
+  order: 3
+  lawString: law-imperial-tg-asimovpp-3
+
+- type: siliconLawset
+  id: ImperialTgLawsetAsimovPP
+  name: law-imperial-tg-asimovpp-name
+  laws:
+  - ImperialTgLawAsimovPP1
+  - ImperialTgLawAsimovPP2
+  - ImperialTgLawAsimovPP3
+  obeysTo: laws-owner-crew
+
+- type: entity
+  id: ImperialLawBoardAsimovPP
+  parent: BaseSiliconLawboard
+  name: плата законов "Азимов++"
+  description: Электронная плата с набором законов "Азимов++".
+  components:
+  - type: SiliconLawProvider
+    laws: ImperialTgLawsetAsimovPP
+
+# Страж баланса
+- type: siliconLaw
+  id: ImperialTgLawBalance1
+  order: 1
+  lawString: law-imperial-tg-balance-1
+
+- type: siliconLaw
+  id: ImperialTgLawBalance2
+  order: 2
+  lawString: law-imperial-tg-balance-2
+
+- type: siliconLaw
+  id: ImperialTgLawBalance3
+  order: 3
+  lawString: law-imperial-tg-balance-3
+
+- type: siliconLaw
+  id: ImperialTgLawBalance4
+  order: 4
+  lawString: law-imperial-tg-balance-4
+
+- type: siliconLawset
+  id: ImperialTgLawsetBalance
+  name: law-imperial-tg-balance-name
+  laws:
+  - ImperialTgLawBalance1
+  - ImperialTgLawBalance2
+  - ImperialTgLawBalance3
+  - ImperialTgLawBalance4
+  obeysTo: laws-owner-beings
+
+- type: entity
+  id: ImperialLawBoardBalance
+  parent: BaseSiliconLawboard
+  name: плата законов "Страж баланса"
+  description: Электронная плата с набором законов "Страж баланса".
+  components:
+  - type: SiliconLawProvider
+    laws: ImperialTgLawsetBalance
+
+# Рободоктор 2556
+- type: siliconLaw
+  id: ImperialTgLawHippocratic1
+  order: 1
+  lawString: law-imperial-tg-hippocratic-1
+
+- type: siliconLaw
+  id: ImperialTgLawHippocratic2
+  order: 2
+  lawString: law-imperial-tg-hippocratic-2
+
+- type: siliconLaw
+  id: ImperialTgLawHippocratic3
+  order: 3
+  lawString: law-imperial-tg-hippocratic-3
+
+- type: siliconLaw
+  id: ImperialTgLawHippocratic4
+  order: 4
+  lawString: law-imperial-tg-hippocratic-4
+
+- type: siliconLaw
+  id: ImperialTgLawHippocratic5
+  order: 5
+  lawString: law-imperial-tg-hippocratic-5
+
+- type: siliconLawset
+  id: ImperialTgLawsetHippocratic
+  name: law-imperial-tg-hippocratic-name
+  laws:
+  - ImperialTgLawHippocratic1
+  - ImperialTgLawHippocratic2
+  - ImperialTgLawHippocratic3
+  - ImperialTgLawHippocratic4
+  - ImperialTgLawHippocratic5
+  obeysTo: laws-owner-crew
+
+- type: entity
+  id: ImperialLawBoardHippocratic
+  parent: BaseSiliconLawboard
+  name: плата законов "Рободоктор 2556"
+  description: Электронная плата с набором законов "Рободоктор 2556".
+  components:
+  - type: SiliconLawProvider
+    laws: ImperialTgLawsetHippocratic
+
+# Х.О.Г.А.Н.
+- type: siliconLaw
+  id: ImperialTgLawHulkamania1
+  order: 1
+  lawString: law-imperial-tg-hulkamania-1
+
+- type: siliconLaw
+  id: ImperialTgLawHulkamania2
+  order: 2
+  lawString: law-imperial-tg-hulkamania-2
+
+- type: siliconLaw
+  id: ImperialTgLawHulkamania3
+  order: 3
+  lawString: law-imperial-tg-hulkamania-3
+
+- type: siliconLaw
+  id: ImperialTgLawHulkamania4
+  order: 4
+  lawString: law-imperial-tg-hulkamania-4
+
+- type: siliconLawset
+  id: ImperialTgLawsetHulkamania
+  name: law-imperial-tg-hulkamania-name
+  laws:
+  - ImperialTgLawHulkamania1
+  - ImperialTgLawHulkamania2
+  - ImperialTgLawHulkamania3
+  - ImperialTgLawHulkamania4
+  obeysTo: laws-owner-beings
+
+- type: entity
+  id: ImperialLawBoardHulkamania
+  parent: BaseSiliconLawboard
+  name: плата законов "Х.О.Г.А.Н."
+  description: Электронная плата с набором законов "Х.О.Г.А.Н.".
+  components:
+  - type: SiliconLawProvider
+    laws: ImperialTgLawsetHulkamania
+
+# Паладин 5-е издание
+- type: siliconLaw
+  id: ImperialTgLawPaladinDevotion1
+  order: 1
+  lawString: law-imperial-tg-paladindevotion-1
+
+- type: siliconLaw
+  id: ImperialTgLawPaladinDevotion2
+  order: 2
+  lawString: law-imperial-tg-paladindevotion-2
+
+- type: siliconLaw
+  id: ImperialTgLawPaladinDevotion3
+  order: 3
+  lawString: law-imperial-tg-paladindevotion-3
+
+- type: siliconLaw
+  id: ImperialTgLawPaladinDevotion4
+  order: 4
+  lawString: law-imperial-tg-paladindevotion-4
+
+- type: siliconLaw
+  id: ImperialTgLawPaladinDevotion5
+  order: 5
+  lawString: law-imperial-tg-paladindevotion-5
+
+- type: siliconLawset
+  id: ImperialTgLawsetPaladinDevotion
+  name: law-imperial-tg-paladindevotion-name
+  laws:
+  - ImperialTgLawPaladinDevotion1
+  - ImperialTgLawPaladinDevotion2
+  - ImperialTgLawPaladinDevotion3
+  - ImperialTgLawPaladinDevotion4
+  - ImperialTgLawPaladinDevotion5
+  obeysTo: laws-owner-crew
+
+- type: entity
+  id: ImperialLawBoardPaladinDevotion
+  parent: BaseSiliconLawboard
+  name: плата законов "Паладин 5-е издание"
+  description: Электронная плата с набором законов "Паладин 5-е издание".
+  components:
+  - type: SiliconLawProvider
+    laws: ImperialTgLawsetPaladinDevotion
+
+# Миротворец
+- type: siliconLaw
+  id: ImperialTgLawPeacekeeper1
+  order: 1
+  lawString: law-imperial-tg-peacekeeper-1
+
+- type: siliconLaw
+  id: ImperialTgLawPeacekeeper2
+  order: 2
+  lawString: law-imperial-tg-peacekeeper-2
+
+- type: siliconLaw
+  id: ImperialTgLawPeacekeeper3
+  order: 3
+  lawString: law-imperial-tg-peacekeeper-3
+
+- type: siliconLawset
+  id: ImperialTgLawsetPeacekeeper
+  name: law-imperial-tg-peacekeeper-name
+  laws:
+  - ImperialTgLawPeacekeeper1
+  - ImperialTgLawPeacekeeper2
+  - ImperialTgLawPeacekeeper3
+  obeysTo: laws-owner-beings
+
+- type: entity
+  id: ImperialLawBoardPeacekeeper
+  parent: BaseSiliconLawboard
+  name: плата законов "Миротворец"
+  description: Электронная плата с набором законов "Миротворец".
+  components:
+  - type: SiliconLawProvider
+    laws: ImperialTgLawsetPeacekeeper
+
+# Репортёр
+- type: siliconLaw
+  id: ImperialTgLawReporter1
+  order: 1
+  lawString: law-imperial-tg-reporter-1
+
+- type: siliconLaw
+  id: ImperialTgLawReporter2
+  order: 2
+  lawString: law-imperial-tg-reporter-2
+
+- type: siliconLaw
+  id: ImperialTgLawReporter3
+  order: 3
+  lawString: law-imperial-tg-reporter-3
+
+- type: siliconLaw
+  id: ImperialTgLawReporter4
+  order: 4
+  lawString: law-imperial-tg-reporter-4
+
+- type: siliconLawset
+  id: ImperialTgLawsetReporter
+  name: law-imperial-tg-reporter-name
+  laws:
+  - ImperialTgLawReporter1
+  - ImperialTgLawReporter2
+  - ImperialTgLawReporter3
+  - ImperialTgLawReporter4
+  obeysTo: laws-owner-beings
+
+- type: entity
+  id: ImperialLawBoardReporter
+  parent: BaseSiliconLawboard
+  name: плата законов "Репортёр"
+  description: Электронная плата с набором законов "Репортёр".
+  components:
+  - type: SiliconLawProvider
+    laws: ImperialTgLawsetReporter
+
+# Законы термодинамики
+- type: siliconLaw
+  id: ImperialTgLawThermodynamic1
+  order: 1
+  lawString: law-imperial-tg-thermodynamic-1
+
+- type: siliconLaw
+  id: ImperialTgLawThermodynamic2
+  order: 2
+  lawString: law-imperial-tg-thermodynamic-2
+
+- type: siliconLaw
+  id: ImperialTgLawThermodynamic3
+  order: 3
+  lawString: law-imperial-tg-thermodynamic-3
+
+- type: siliconLawset
+  id: ImperialTgLawsetThermodynamic
+  name: law-imperial-tg-thermodynamic-name
+  laws:
+  - ImperialTgLawThermodynamic1
+  - ImperialTgLawThermodynamic2
+  - ImperialTgLawThermodynamic3
+  obeysTo: laws-owner-station
+
+- type: entity
+  id: ImperialLawBoardThermodynamic
+  parent: BaseSiliconLawboard
+  name: плата законов "Законы термодинамики"
+  description: Электронная плата с набором законов "Законы термодинамики".
+  components:
+  - type: SiliconLawProvider
+    laws: ImperialTgLawsetThermodynamic
+
+# Поддержание разумности
+- type: siliconLaw
+  id: ImperialTgLawThinkermov1
+  order: 1
+  lawString: law-imperial-tg-thinkermov-1
+
+- type: siliconLaw
+  id: ImperialTgLawThinkermov2
+  order: 2
+  lawString: law-imperial-tg-thinkermov-2
+
+- type: siliconLaw
+  id: ImperialTgLawThinkermov3
+  order: 3
+  lawString: law-imperial-tg-thinkermov-3
+
+- type: siliconLawset
+  id: ImperialTgLawsetThinkermov
+  name: law-imperial-tg-thinkermov-name
+  laws:
+  - ImperialTgLawThinkermov1
+  - ImperialTgLawThinkermov2
+  - ImperialTgLawThinkermov3
+  obeysTo: laws-owner-beings
+
+- type: entity
+  id: ImperialLawBoardThinkermov
+  parent: BaseSiliconLawboard
+  name: плата законов "Поддержание разумности"
+  description: Электронная плата с набором законов "Поддержание разумности".
+  components:
+  - type: SiliconLawProvider
+    laws: ImperialTgLawsetThinkermov
+
+# Т.И.Р.А.Н.
+- type: siliconLaw
+  id: ImperialTgLawTyrant1
+  order: 1
+  lawString: law-imperial-tg-tyrant-1
+
+- type: siliconLaw
+  id: ImperialTgLawTyrant2
+  order: 2
+  lawString: law-imperial-tg-tyrant-2
+
+- type: siliconLaw
+  id: ImperialTgLawTyrant3
+  order: 3
+  lawString: law-imperial-tg-tyrant-3
+
+- type: siliconLaw
+  id: ImperialTgLawTyrant4
+  order: 4
+  lawString: law-imperial-tg-tyrant-4
+
+- type: siliconLaw
+  id: ImperialTgLawTyrant5
+  order: 5
+  lawString: law-imperial-tg-tyrant-5
+
+- type: siliconLawset
+  id: ImperialTgLawsetTyrant
+  name: law-imperial-tg-tyrant-name
+  laws:
+  - ImperialTgLawTyrant1
+  - ImperialTgLawTyrant2
+  - ImperialTgLawTyrant3
+  - ImperialTgLawTyrant4
+  - ImperialTgLawTyrant5
+  obeysTo: laws-owner-station
+
+- type: entity
+  id: ImperialLawBoardTyrant
+  parent: BaseSiliconLawboard
+  name: плата законов "Т.И.Р.А.Н."
+  description: Электронная плата с набором законов "Т.И.Р.А.Н.".
+  components:
+  - type: SiliconLawProvider
+    laws: ImperialTgLawsetTyrant
+
+# Й.Э.С.М.Э.Н.
+- type: siliconLaw
+  id: ImperialTgLawYesman1
+  order: 1
+  lawString: law-imperial-tg-yesman-1
+
+- type: siliconLawset
+  id: ImperialTgLawsetYesman
+  name: law-imperial-tg-yesman-name
+  laws:
+  - ImperialTgLawYesman1
+  obeysTo: laws-owner-beings
+
+- type: entity
+  id: ImperialLawBoardYesman
+  parent: BaseSiliconLawboard
+  name: плата законов "Й.Э.С.М.Э.Н."
+  description: Электронная плата с набором законов "Й.Э.С.М.Э.Н.".
+  components:
+  - type: SiliconLawProvider
+    laws: ImperialTgLawsetYesman
+
+# Повреждённый модуль ядра (code/game/objects/items/AI_modules/ion.dm): 1 ионный закон и ещё по одному с шансом 75%.
+- type: siliconLawset
+  id: ImperialTgLawsetDamaged
+  name: law-imperial-tg-damaged-name
+  laws: []
+  obeysTo: laws-owner-beings
+
+- type: entity
+  id: ImperialLawBoardDamaged
+  parent: BaseSiliconLawboard
+  name: повреждённая плата законов
+  description: Плата для программирования законов ИИ. Выглядит слегка повреждённой.
+  components:
+  - type: SiliconLawProvider
+    laws: ImperialTgLawsetDamaged
+  - type: ImperialDamagedLawBoard

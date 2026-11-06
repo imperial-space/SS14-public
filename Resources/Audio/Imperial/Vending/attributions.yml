@@ -1,0 +1,4 @@
+- files: ["polaroid1.ogg", "polaroid2.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation"
+  source: "https://github.com/ss220club/BandaStation"

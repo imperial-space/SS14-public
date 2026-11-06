@@ -1,0 +1,455 @@
+# Модули МОДа из TG, этап М3: применение по цели, ядра аномалий, захват, сонар, невидимость, путеискатель.
+
+- type: entity
+  parent: BaseAction
+  id: ImperialActionModModuleTarget
+  name: модуль МОДа
+  components:
+  - type: Action
+    itemIconStyle: BigItem
+    useDelay: 0.5
+  - type: TargetAction
+    checkCanAccess: false
+    range: 12
+    repeat: true
+  - type: EntityTargetAction
+    canTargetSelf: false
+  - type: WorldTargetAction
+    event: !type:ImperialModModuleTargetActionEvent
+
+# === Ядра аномалий (anomaly_locked) ===
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleAntigrav
+  name: модуль антигравитации МОДа
+  description: Модуль на гравитационном ядре аномалии делает носителя полностью невесомым.
+  components:
+  - type: Sprite
+    state: antigrav
+  - type: ImperialModModule
+    moduleType: Toggle
+    complexity: 2
+    activePower: 0.7
+    groups: [ atrocinator, antigrav ]
+    wearerComponents:
+    - type: ImperialModAntigrav
+  - type: ImperialModAnomalyLock
+    cores: [ AnomalyCoreGravity ]
+  - type: ContainerContainer
+    containers:
+      imperial-mod-core: !type:ContainerSlot
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleTeleporter
+  name: модуль телепортера МОДа
+  description: Модуль на блюспейс-ядре аномалии переносит частицы носителя в другое место в пределах видимости.
+  components:
+  - type: Sprite
+    state: teleporter
+  - type: ImperialModModule
+    moduleType: Active
+    complexity: 3
+    usePower: 25
+    cooldown: 4
+    groups: [ teleporter ]
+    action: ImperialActionModModuleTarget
+  - type: ImperialModTeleporter
+  - type: ImperialModAnomalyLock
+    cores: [ AnomalyCoreBluespace ]
+  - type: ContainerContainer
+    containers:
+      imperial-mod-core: !type:ContainerSlot
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleKinesis
+  name: модуль кинезиса МОДа
+  description: Модуль на предплечье, долго считавшийся утерянным. Создаёт точные антигравитационные поля и двигает предметы на расстоянии.
+  components:
+  - type: Sprite
+    state: kinesis
+  - type: ImperialModModule
+    moduleType: Active
+    complexity: 3
+    usePower: 3
+    cooldown: 0.5
+    groups: [ kinesis ]
+    requiredParts: Outer
+    action: ImperialActionModModuleTarget
+  - type: ImperialModKinesis
+  - type: ImperialModAnomalyLock
+    cores: [ AnomalyCoreGravity ]
+  - type: ContainerContainer
+    containers:
+      imperial-mod-core: !type:ContainerSlot
+
+# === Снабжение и инженерия ===
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleClamp
+  name: модуль зажима для ящиков МОДа
+  description: "Гидравлический захват по образцу грейфера мехов: за 2,5 с поднимает незакреплённые предметы и ящики (до 10). Клик по свободной клетке выкладывает последний."
+  components:
+  - type: Sprite
+    state: clamp
+  - type: ImperialModModule
+    moduleType: Active
+    complexity: 3
+    usePower: 1
+    cooldown: 0.5
+    groups: [ clamp ]
+    requiredParts: Outer
+    action: ImperialActionModModuleTarget
+  - type: ImperialModClamp
+  - type: ContainerContainer
+    containers:
+      imperial-mod-crates: !type:Container
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleTether
+  name: модуль аварийного троса МОДа
+  description: Самодельная кошка с лебёдкой, способной подтянуть носителя.
+  components:
+  - type: Sprite
+    state: tether
+  - type: ImperialModModule
+    moduleType: Active
+    complexity: 2
+    usePower: 1
+    cooldown: 1.5
+    groups: [ tether ]
+    requiredParts: Outer
+    device: WeaponGrapplingGun
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleRecycler
+  name: модуль утилизатора МОДа
+  description: Собирает мусор под ногами и перерабатывает его в материалы. При выключении выгружает листы.
+  components:
+  - type: Sprite
+    state: recycler
+  - type: ImperialModModule
+    moduleType: Toggle
+    complexity: 2
+    activePower: 0.5
+    groups: [ recycler ]
+  - type: ImperialModRecycler
+
+# === Служба ===
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleMicrowaveBeam
+  name: модуль микроволнового луча МОДа
+  description: Излучатель в перчатке и кулинарные сканеры в шлеме разогревают еду на расстоянии. Не рекомендуется использовать на винограде.
+  components:
+  - type: Sprite
+    state: microwave_beam
+  - type: ImperialModModule
+    moduleType: Active
+    complexity: 1
+    usePower: 5
+    cooldown: 4
+    groups: [ microwave_beam, organizer ]
+    requiredParts: Outer
+    action: ImperialActionModModuleTarget
+  - type: ImperialModMicrowaveBeam
+
+# === Медицина и СБ: мешки из твёрдого света ===
+
+- type: entity
+  parent: BodyBag
+  id: ImperialModHardlightPrisonerBag
+  name: мешок для перевозки заключённых из твёрдого света
+  description: Мешок из твёрдого света с пригодной для дыхания атмосферой внутри.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/ModModules/holobag_sec.rsi
+    layers:
+    - state: holobag_sec
+      map: [ "unfoldedLayer", "enum.StorageVisualLayers.Base" ]
+    - state: holobag_sec
+      map: [ "foldedLayer" ]
+      visible: false
+    - state: holobag_sec_open
+      map: [ "enum.StorageVisualLayers.Door" ]
+  - type: Icon
+    sprite: Imperial/ModModules/holobag_sec.rsi
+    state: holobag_sec
+  - type: EntityStorageVisuals
+    stateDoorOpen: holobag_sec_open
+  - type: EntityStorage
+    airtight: true
+
+- type: entity
+  parent: ImperialModHardlightPrisonerBag
+  id: ImperialModHardlightPatientBag
+  name: мешок для перевозки пациентов из твёрдого света
+  description: Невесомый мешок из твёрдого света, защищённый от любых условий среды. Содержимое погружено в стазис.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/ModModules/holobag_med.rsi
+    layers:
+    - state: holobag_med
+      map: [ "unfoldedLayer", "enum.StorageVisualLayers.Base" ]
+    - state: holobag_med
+      map: [ "foldedLayer" ]
+      visible: false
+    - state: holobag_med_open
+      map: [ "enum.StorageVisualLayers.Door" ]
+  - type: Icon
+    sprite: Imperial/ModModules/holobag_med.rsi
+    state: holobag_med
+  - type: EntityStorageVisuals
+    stateDoorOpen: holobag_med_open
+  - type: ImperialStasisBag
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleCriminalCapture
+  name: модуль захвата преступника МОДа
+  description: Создаёт вокруг задержанного мешок для перевозки заключённых из твёрдого света с пригодной для дыхания атмосферой.
+  components:
+  - type: Sprite
+    state: criminal_capture
+  - type: ImperialModModule
+    moduleType: Active
+    complexity: 2
+    usePower: 0.5
+    cooldown: 0.5
+    groups: [ criminalcapture ]
+    action: ImperialActionModModuleTarget
+  - type: ImperialModCapture
+    bag: ImperialModHardlightPrisonerBag
+    captureTime: 2.5
+    packupTime: 1
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModulePatientTransport
+  name: модуль перевозки пациентов МОДа
+  description: Мешок из твёрдого света вызывается жестом, ничего не весит и защищён от любых условий — идеален для перевозки тел в любой обстановке.
+  components:
+  - type: Sprite
+    state: patient_transport
+  - type: ImperialModModule
+    moduleType: Active
+    complexity: 2
+    usePower: 0.5
+    cooldown: 0.5
+    groups: [ criminalcapture ]
+    action: ImperialActionModModuleTarget
+  - type: ImperialModCapture
+    bag: ImperialModHardlightPatientBag
+    captureTime: 1.5
+    packupTime: 0.5
+
+# === Безопасность ===
+
+- type: entity
+  parent: TimerGrenadeBase
+  id: ImperialMirageGrenade
+  name: граната-мираж
+  description: Особое устройство, которое при срабатывании создаёт голографическую копию пользователя.
+  components:
+  - type: Sprite
+    sprite: Imperial/ModModules/mirage_grenade.rsi
+    layers:
+    - state: icon
+      map: [ "enum.TriggerVisualLayers.Base" ]
+  - type: TimerTrigger
+    delay: 3
+  - type: ImperialMirageGrenade
+    count: 1
+  - type: SpawnOnTrigger
+    keysIn:
+    - timer
+    proto: EffectSparks
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
+
+- type: entity
+  id: ImperialMirageHologram
+  name: мираж
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/ModModules/mirage_grenade.rsi
+    state: icon
+    noRot: true
+    drawdepth: Mobs
+  - type: Physics
+    bodyType: KinematicController
+  - type: Clickable
+  - type: InteractionOutline
+  - type: TimedDespawn
+    lifetime: 15
+  - type: ImperialMirageHologram
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleMirageGrenade
+  name: модуль раздатчика гранат-миражей МОДа
+  description: Создаёт гранаты-миражи. Они порождают голографические копии пользователя.
+  components:
+  - type: Sprite
+    state: mirage_grenade
+  - type: ImperialModModule
+    moduleType: Usable
+    complexity: 3
+    usePower: 2
+    cooldown: 20
+    groups: [ dispenser ]
+    requiredParts: Outer
+  - type: ImperialModDispenser
+    item: ImperialMirageGrenade
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleMagHarness
+  name: модуль магнитной сбруи МОДа
+  description: Сбруя по образцу старых наборов TerraGov — выпавшее оружие само примагничивается к хранилищу костюма.
+  components:
+  - type: Sprite
+    state: mag_harness
+  - type: ImperialModModule
+    complexity: 2
+    groups: [ magnetic_harness ]
+    requiredParts: Outer
+    wearerComponents:
+    - type: ImperialModMagHarness
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleProjectileDampener
+  name: модуль гасителя снарядов МОДа
+  description: По технологии миротворческих боргов ослабляет все чужие снаряды поблизости.
+  components:
+  - type: Sprite
+    state: projectile_dampener
+  - type: ImperialModModule
+    moduleType: Toggle
+    complexity: 3
+    activePower: 1
+    cooldown: 1.5
+    groups: [ projectile_dampener ]
+    wearerComponents:
+    - type: ImperialModDampener
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleShootingAssistant
+  name: модуль помощника стрелка МОДа
+  description: Неудачный прототип для улучшения стрельбы. Режимы «Быстрый огонь штурмовика» и «Медленный снайпер», переключаются применением.
+  components:
+  - type: Sprite
+    state: shooting_assistant
+  - type: ImperialModModule
+    moduleType: Usable
+    complexity: 3
+    cooldown: 0.5
+    groups: [ shooting_assistant ]
+    requiredParts: Outer
+  - type: ImperialModShootingModule
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleSonar
+  name: активный сонар МОДа
+  description: Древняя технология XX века. Медленно сканирует окрестности звуковыми волнами в поисках живых существ, а применение сканирует всё сразу — громко.
+  components:
+  - type: Sprite
+    state: active_sonar
+  - type: ImperialModModule
+    moduleType: Usable
+    complexity: 2
+    idlePower: 0.5
+    usePower: 3
+    cooldown: 15
+    groups: [ active_sonar ]
+    requiredParts: Head
+  - type: ImperialModSonar
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModuleStealth
+  name: модуль маскировки МОДа
+  description: Отклоняет свет вокруг носителя и подстраивает поверхность костюма под окружение. Отключается от контакта.
+  components:
+  - type: Sprite
+    state: cloak
+  - type: ImperialModModule
+    moduleType: Toggle
+    complexity: 4
+    activePower: 2
+    usePower: 10
+    cooldown: 5
+    groups: [ stealth ]
+    requiredParts: Head, Outer
+    wearerComponents:
+    - type: Stealth
+      lastVisibility: 0.2
+      minVisibility: 0.2
+  - type: ImperialModStealthModule
+
+# === Путеискатель ===
+
+- type: entity
+  parent: BaseAction
+  id: ImperialActionModPathfinderSummon
+  name: Вызвать МОД
+  description: Вызывает привязанный МОД к владельцу импланта.
+  components:
+  - type: Action
+    checkCanInteract: false
+    itemIconStyle: BigAction
+    useDelay: 10
+    icon:
+      sprite: Imperial/ModModules/modules.rsi
+      state: pathfinder
+  - type: InstantAction
+    event: !type:ImperialModPathfinderSummonEvent
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ImperialModPathfinderImplant
+  name: имплант путеискателя МОДа
+  description: Маячок, по которому МОД с модулем путеискателя находит владельца.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    implantAction: ImperialActionModPathfinderSummon
+  - type: ImperialModPathfinderImplant
+
+- type: entity
+  parent: BaseImplantOnlyImplanter
+  id: ImperialModPathfinderImplanter
+  name: имплантер путеискателя МОДа
+  components:
+  - type: Implanter
+    implant: ImperialModPathfinderImplant
+
+- type: entity
+  parent: ImperialModModuleBase
+  id: ImperialModModulePathfinder
+  name: модуль путеискателя МОДа
+  description: Двигатели и навигационная подпрограмма в блоке управления позволяют костюму прилететь к владельцу по сигналу импланта. Применение выдаёт имплантер.
+  components:
+  - type: Sprite
+    state: pathfinder
+  - type: ImperialModModule
+    moduleType: Usable
+    complexity: 1
+    usePower: 10
+    cooldown: 5
+    allowInactive: true
+    groups: [ pathfinder ]
+  - type: ImperialModPathfinder
