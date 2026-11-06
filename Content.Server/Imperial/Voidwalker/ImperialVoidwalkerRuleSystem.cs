@@ -78,7 +78,7 @@ public sealed class ImperialVoidwalkerRuleSystem : GameRuleSystem<ImperialVoidwa
         {
             if (ent.Comp.ObjectiveTexts.Count > 0)
             {
-                var text = _random.Prob(0.05f) ? "imperial-voidwalker-objective-glass" : _random.Pick(ent.Comp.ObjectiveTexts).Id;
+                var text = _random.Prob(ent.Comp.MindAddedChance) ? "imperial-voidwalker-objective-glass" : _random.Pick(ent.Comp.ObjectiveTexts).Id;
                 _meta.SetEntityName(objective, Loc.GetString(text));
             }
 

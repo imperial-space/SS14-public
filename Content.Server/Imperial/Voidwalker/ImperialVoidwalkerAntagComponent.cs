@@ -36,4 +36,7 @@ public sealed partial class ImperialVoidwalkerAntagComponent : Component
 
     [ViewVariables]
     public bool Given;
+
+    [DataField]
+    public float MindAddedChance = 0.05f;
 }

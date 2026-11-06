@@ -25,4 +25,13 @@ public sealed partial class ImperialGlassPasserComponent : Component
     /// <summary>До этого момента стекло пропускает (после продавливания).</summary>
     [DataField, AutoNetworkedField]
     public TimeSpan PhasingUntil;
+
+    [DataField]
+    public TimeSpan UpdateDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public TimeSpan PhasingDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public float UpdateRange = 0.4f;
 }

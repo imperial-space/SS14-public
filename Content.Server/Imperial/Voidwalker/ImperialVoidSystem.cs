@@ -19,6 +19,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
+using Content.Shared.FixedPoint;
 
 namespace Content.Server.Imperial.Voidwalker;
 
@@ -50,6 +53,14 @@ public sealed class ImperialVoidSystem : EntitySystem
     private static readonly TimeSpan RideTime = TimeSpan.FromSeconds(60);
 
     private EntityUid? _voidGrid;
+
+    private static readonly EntProtoId ImperialWispFood = "ImperialWispFood";
+    private static readonly ProtoId<DamageTypePrototype> AsphyxiationDamageType = "Asphyxiation";
+    private static readonly EntProtoId ImperialWispMobile = "ImperialWispMobile";
+
+    private const float SendToVoidAmount = 90f;
+    private const float SendToVoidAmount2 = -100f;
+    private static readonly FixedPoint2 SendToVoidAmount3 = 100;
 
     public override void Initialize()
     {
@@ -92,7 +103,7 @@ public sealed class ImperialVoidSystem : EntitySystem
         air.AdjustMoles(Content.Shared.Atmos.Gas.Nitrogen, Content.Shared.Atmos.Atmospherics.NitrogenMolesStandard);
         _atmos.SetMapAtmosphere(mapUid, false, air);
         RemComp<Content.Shared.Atmos.Components.GridAtmosphereComponent>(grid.Owner);
-        Spawn("ImperialWispFood", RandomTile(grid.Owner));
+        Spawn(ImperialWispFood, RandomTile(grid.Owner));
         _voidGrid = grid.Owner;
         return grid.Owner;
     }
@@ -106,13 +117,13 @@ public sealed class ImperialVoidSystem : EntitySystem
     public void SendToVoid(EntityUid victim)
     {
         // heal_and_revive(90) + adjust_oxy_loss(-100)
-        HealOrdered(victim, 90f);
+        HealOrdered(victim, SendToVoidAmount);
         // TRAIT_STASIS: кровь не уходит, пока огонёк везёт.
-        _blood.TryModifyBleedAmount(victim, -100f);
-        _blood.TryModifyBloodLevel(victim, 100);
-        _damage.TryChangeDamage(victim, new DamageSpecifier { DamageDict = { ["Asphyxiation"] = -100 } }, true);
+        _blood.TryModifyBleedAmount(victim, SendToVoidAmount2);
+        _blood.TryModifyBloodLevel(victim, SendToVoidAmount3);
+        _damage.TryChangeDamage(victim, new DamageSpecifier { DamageDict = { [AsphyxiationDamageType] = -100 } }, true);
         var grid = GetVoid();
-        var wisp = Spawn("ImperialWispMobile", RandomTile(grid));
+        var wisp = Spawn(ImperialWispMobile, RandomTile(grid));
         var comp = EnsureComp<ImperialWispComponent>(wisp);
         comp.Driver = victim;
         comp.ReleaseAt = _timing.CurTime + RideTime;
@@ -185,12 +196,12 @@ public sealed class ImperialVoidSystem : EntitySystem
                 _transform.SetLocalPosition(uid, wrapped, xform);
 
             // Moved(): съесть еду, подлечить водителя, вырастить новую.
-            foreach (var food in EntityManager.System<EntityLookupSystem>().GetEntitiesInRange<ImperialWispFoodComponent>(xform.Coordinates, 0.6f))
+            foreach (var food in EntityManager.System<EntityLookupSystem>().GetEntitiesInRange<ImperialWispFoodComponent>(xform.Coordinates, wisp.UpdateRange))
             {
                 var foodXform = Transform(food);
                 QueueDel(food);
                 if (foodXform.GridUid is { } grid)
-                    Spawn("ImperialWispFood", RandomTile(grid));
+                    Spawn(ImperialWispFood, RandomTile(grid));
 
                 HealOrdered(driver, wisp.HealPerFood);
                 _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Voidwalker/server-ready.ogg"), uid);

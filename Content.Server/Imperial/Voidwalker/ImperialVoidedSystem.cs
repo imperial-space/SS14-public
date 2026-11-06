@@ -23,6 +23,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Voidwalker;
 
@@ -50,6 +52,16 @@ public sealed class ImperialVoidedSystem : EntitySystem
 
     private static readonly SoundSpecifier ShatterSound = new SoundCollectionSpecifier("GlassBreak");
 
+    private static readonly EntProtoId ShardGlass = "ShardGlass";
+    private static readonly EntProtoId ImperialVoidEater = "ImperialVoidEater";
+    private static readonly EntProtoId ImperialNebulaVomit = "ImperialNebulaVomit";
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+
+    private static readonly TimeSpan PassDelay = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan DeformGlassDelay = TimeSpan.FromSeconds(2);
+
+    private const float MakeVoidedChance = 0.5f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -69,7 +81,7 @@ public sealed class ImperialVoidedSystem : EntitySystem
     {
         var voided = EnsureComp<ImperialVoidedComponent>(uid);
         voided.Stable = stable;
-        if (voided.SpaceColor == Color.White && _random.Prob(0.5f))
+        if (voided.SpaceColor == Color.White && _random.Prob(MakeVoidedChance))
             voided.SpaceColor = Color.FromHex(_random.Pick(SpaceColors));
         Dirty(uid, voided);
 
@@ -87,8 +99,8 @@ public sealed class ImperialVoidedSystem : EntitySystem
 
             EnsureComp<PressureImmunityComponent>(uid);
             var passer = EnsureComp<ImperialGlassPasserComponent>(uid);
-            passer.PassTime = TimeSpan.FromSeconds(2);
-            passer.DeformGlass = TimeSpan.FromSeconds(2);
+            passer.PassTime = PassDelay;
+            passer.DeformGlass = DeformGlassDelay;
             Dirty(uid, passer);
             return;
         }
@@ -136,8 +148,8 @@ public sealed class ImperialVoidedSystem : EntitySystem
             return;
 
         var brute = delta.DamageDict.Where(d => d.Key.Id is "Blunt" or "Slash" or "Piercing").Sum(d => d.Value.Float());
-        if (brute >= 5f && _random.Prob(0.3f))
-            Spawn("ShardGlass", Transform(ent).Coordinates);
+        if (brute >= 5f && _random.Prob(ent.Comp.DamagedChance))
+            Spawn(ShardGlass, Transform(ent).Coordinates);
         if (brute >= 20f)
             _audio.PlayPvs(ShatterSound, ent);
     }
@@ -168,7 +180,7 @@ public sealed class ImperialVoidedSystem : EntitySystem
             return;
 
         _popup.PopupEntity(Loc.GetString("imperial-voidwalker-skull-start", ("skull", ent.Owner)), args.User, args.User);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(10), new ImperialCosmicSkullDoAfterEvent(), ent, used: ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.SkullUseDelay, new ImperialCosmicSkullDoAfterEvent(), ent, used: ent)
         {
             BreakOnMove = true,
             NeedHand = true,
@@ -191,7 +203,7 @@ public sealed class ImperialVoidedSystem : EntitySystem
 
         if (TryComp<ImperialVoidedComponent>(user, out var voided) && voided.Stable)
         {
-            var eater = Spawn("ImperialVoidEater", Transform(user).Coordinates);
+            var eater = Spawn(ImperialVoidEater, Transform(user).Coordinates);
             _hands.TryPickupAnyHand(user, eater);
             _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Voidwalker/blobattack.ogg"), user);
         }
@@ -211,7 +223,7 @@ public sealed class ImperialVoidedSystem : EntitySystem
             return;
 
         args.Handled = true;
-        Deform(target, TimeSpan.FromSeconds(5));
+        Deform(target, ent.Comp.EaterInteractTime);
         _audio.PlayPvs(ShatterSound, target);
     }
 
@@ -246,7 +258,7 @@ public sealed class ImperialVoidedSystem : EntitySystem
             return;
 
         args.Handled = true;
-        ent.Comp.PhasingUntil = _timing.CurTime + TimeSpan.FromSeconds(1);
+        ent.Comp.PhasingUntil = _timing.CurTime + ent.Comp.PhasingDelay;
         Dirty(ent);
     }
 
@@ -264,9 +276,9 @@ public sealed class ImperialVoidedSystem : EntitySystem
             if (passer.DeformGlass <= TimeSpan.Zero)
                 continue;
 
-            foreach (var near in EntityManager.System<EntityLookupSystem>().GetEntitiesInRange(xform.Coordinates, 0.4f, LookupFlags.Static))
+            foreach (var near in EntityManager.System<EntityLookupSystem>().GetEntitiesInRange(xform.Coordinates, passer.UpdateRange, LookupFlags.Static))
             {
-                if (near != uid && _glass.IsGlass(near) && (!TryComp<ImperialDeformedGlassComponent>(near, out var d) || d.Until < now + passer.DeformGlass - TimeSpan.FromSeconds(1)))
+                if (near != uid && _glass.IsGlass(near) && (!TryComp<ImperialDeformedGlassComponent>(near, out var d) || d.Until < now + passer.DeformGlass - passer.UpdateDelay))
                     Deform(near, passer.DeformGlass);
             }
         }
@@ -289,7 +301,7 @@ public sealed class ImperialVoidedSystem : EntitySystem
             else if (xform.GridUid is { } onGrid && xform.ParentUid == onGrid)
             {
                 var here = xform.Coordinates;
-                if (state.LastTiles.Count == 0 || !state.LastTiles[^1].InRange(EntityManager, _transform, here, 0.9f))
+                if (state.LastTiles.Count == 0 || !state.LastTiles[^1].InRange(EntityManager, _transform, here, voided.UpdateRange))
                 {
                     state.LastTiles.Add(here);
                     if (state.LastTiles.Count > 4)
@@ -300,18 +312,18 @@ public sealed class ImperialVoidedSystem : EntitySystem
             if (now < state.NextTick)
                 continue;
 
-            state.NextTick = now + TimeSpan.FromSeconds(2);
+            state.NextTick = now + voided.TickDelay;
 
             // on_life(): 2% — туманная рвота с падением.
-            if (_random.Prob(0.02f))
+            if (_random.Prob(voided.UpdateChance))
             {
-                Spawn("ImperialNebulaVomit", xform.Coordinates);
-                _stun.TryKnockdown(uid, TimeSpan.FromSeconds(2), true);
+                Spawn(ImperialNebulaVomit, xform.Coordinates);
+                _stun.TryKnockdown(uid, voided.UpdateTime, true);
                 _popup.PopupEntity(Loc.GetString("imperial-voidwalker-vomit", ("user", uid)), uid, PopupType.MediumCaution);
             }
 
             if (state.PlanetAllergy && IsOnPlanet(uid))
-                _damage.TryChangeDamage(uid, new DamageSpecifier { DamageDict = { ["Blunt"] = 2 } }, true);
+                _damage.TryChangeDamage(uid, new DamageSpecifier { DamageDict = { [BluntDamageType] = 2 } }, true);
         }
     }
 }

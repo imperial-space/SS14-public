@@ -51,4 +51,8 @@ namespace Content.Server.Imperial.Voidwalker;
 
 /// <summary>/obj/effect/decal/cleanable/vomit/nebula: отсюда можно похищать и нырять.</summary>
 [RegisterComponent]
-public sealed partial class ImperialNebulaVomitComponent : Component;
+public sealed partial class ImperialNebulaVomitComponent : Component
+{
+    [DataField]
+    public TimeSpan VomitInteractDelay = TimeSpan.FromSeconds(1);
+}

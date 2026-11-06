@@ -35,4 +35,7 @@ public sealed partial class ImperialWispComponent : Component
     /// <summary>heal_per_food.</summary>
     [DataField]
     public float HealPerFood = 15f;
+
+    [DataField]
+    public float UpdateRange = 0.6f;
 }

@@ -48,6 +48,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Voidwalker;
 
@@ -93,6 +94,22 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
     private static readonly EntProtoId ForcedSleepStatus = "StatusEffectForcedSleeping";
     private static readonly SoundSpecifier ShatterSound = new SoundCollectionSpecifier("GlassBreak");
     private static readonly string[] WeakWallMarkers = { "Reinforced", "Plastitanium", "Titanium", "Indestructible", "Shuttle", "Diamond", "Uranium" };
+
+    private static readonly EntProtoId EffectSparks = "EffectSparks";
+    private static readonly EntProtoId ImperialVoidUnsettleWave = "ImperialVoidUnsettleWave";
+    private static readonly EntProtoId EffectHearts = "EffectHearts";
+    private static readonly EntProtoId Grille = "Grille";
+    private static readonly EntProtoId ImperialVoidWindow = "ImperialVoidWindow";
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+    private static readonly ProtoId<DamageTypePrototype> PiercingDamageType = "Piercing";
+    private static readonly ProtoId<DamageTypePrototype> HeatDamageType = "Heat";
+
+    private static readonly TimeSpan CamoDelay = TimeSpan.FromSeconds(5);
+
+    private const float NebulaVomitRange = 0.5f;
+    private const float DiveRange = 0.5f;
+    private const float IsStaringRange = 9f;
 
     public override void Initialize()
     {
@@ -165,7 +182,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
 
     public bool OnNebulaVomit(EntityUid uid)
     {
-        return _lookup.GetEntitiesInRange<ImperialNebulaVomitComponent>(Transform(uid).Coordinates, 0.5f).Count > 0;
+        return _lookup.GetEntitiesInRange<ImperialNebulaVomitComponent>(Transform(uid).Coordinates, NebulaVomitRange).Count > 0;
     }
 
     private bool OnPlanet(EntityUid uid)
@@ -200,7 +217,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
                 {
                     _flammable.AdjustFireStacks(hit, 2f, flammable, ignite: true);
                 }
-                Spawn("EffectSparks", Transform(hit).Coordinates);
+                Spawn(EffectSparks, Transform(hit).Coordinates);
                 continue;
             }
 
@@ -208,7 +225,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
                 continue;
 
             // void_chomped: жертва 15 секунд не может умереть.
-            EnsureComp<ImperialVoidChompedComponent>(hit).Until = _timing.CurTime + TimeSpan.FromSeconds(15);
+            EnsureComp<ImperialVoidChompedComponent>(hit).Until = _timing.CurTime + ent.Comp.MeleeHitDelay;
             if (!TryKidnap(ent, hit))
             {
                 args.Handled = true;
@@ -218,7 +235,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
             if (_mobs.IsCritical(hit) && !HasComp<ImperialVoidedComponent>(hit))
             {
                 _popup.PopupEntity(Loc.GetString("imperial-voidwalker-in-crit"), hit, ent);
-                _stun.TryUpdateStunDuration(hit, TimeSpan.FromSeconds(5));
+                _stun.TryUpdateStunDuration(hit, ent.Comp.MeleeHitDuration);
                 args.Handled = true;
             }
         }
@@ -233,8 +250,8 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
         if (HasComp<ImperialVoidedComponent>(victim))
         {
             _popup.PopupEntity(Loc.GetString("imperial-voidwalker-already-voided"), victim, ent);
-            Spawn("ImperialVoidUnsettleWave", Transform(victim).Coordinates);
-            _status.TryUpdateStatusEffectDuration(victim, ForcedSleepStatus, TimeSpan.FromSeconds(30));
+            Spawn(ImperialVoidUnsettleWave, Transform(victim).Coordinates);
+            _status.TryUpdateStatusEffectDuration(victim, ForcedSleepStatus, ent.Comp.KidnapDuration);
             return false;
         }
 
@@ -310,7 +327,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
         if (HasComp<HumanoidProfileComponent>(victim))
             _voided.MakeVoided(victim, false);
 
-        Spawn("ImperialVoidUnsettleWave", Transform(victim).Coordinates);
+        Spawn(ImperialVoidUnsettleWave, Transform(victim).Coordinates);
         ent.Comp.ConversionsRemaining++;
         _void.SendToVoid(victim);
         _popup.PopupEntity(Loc.GetString("imperial-voidwalker-kidnap-done", ("victim", victim), ("count", ent.Comp.ConversionsRemaining)), ent, ent, PopupType.Medium);
@@ -338,7 +355,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
 
         args.Cancel();
         _popup.PopupEntity(Loc.GetString("imperial-voidwalker-nuzzles", ("user", ent.Owner), ("window", target)), target);
-        Spawn("EffectHearts", Transform(target).Coordinates);
+        Spawn(EffectHearts, Transform(target).Coordinates);
     }
 
     #endregion
@@ -354,7 +371,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
         RevealCamo(ent);
         // debris_bleeder: стекло сыплется от ударов.
         var brute = delta.DamageDict.Where(d => d.Key.Id is "Blunt" or "Slash" or "Piercing").Sum(d => d.Value.Float());
-        if (brute >= 5f && _random.Prob(0.5f))
+        if (brute >= 5f && _random.Prob(ent.Comp.DamagedChance))
             Spawn(_random.Pick(new[] { "ShardGlass", "ShardGlassPlasma", "ShardGlassReinforced" }), Transform(ent).Coordinates);
         if (brute >= 20f)
             _audio.PlayPvs(ShatterSound, ent);
@@ -404,7 +421,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
         if (!TryComp<ImperialVoidwalkerComponent>(uid, out var walker))
             return;
 
-        walker.NextCamo = _timing.CurTime + TimeSpan.FromSeconds(5);
+        walker.NextCamo = _timing.CurTime + CamoDelay;
         if (TryComp<StealthComponent>(uid, out var stealth) && stealth.Enabled)
             _stealth.SetEnabled(uid, false, stealth);
     }
@@ -428,7 +445,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
             return;
 
         ent.Comp.DiveAttempt = true;
-        var started = _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(3), new ImperialVoidDiveDoAfterEvent(), ent, other)
+        var started = _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.CollideDelay, new ImperialVoidDiveDoAfterEvent(), ent, other)
         {
             BreakOnMove = true,
             RequireCanInteract = false,
@@ -457,7 +474,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
 
         args.Handled = true;
         walker.DiveAttempt = true;
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(1), new ImperialVoidDiveDoAfterEvent(), args.User, ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.VomitInteractDelay, new ImperialVoidDiveDoAfterEvent(), args.User, ent)
         {
             BreakOnMove = true,
             RequireCanInteract = false,
@@ -472,18 +489,18 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
             _hands.TryDrop(uid, held);
         }
 
-        foreach (var vomit in _lookup.GetEntitiesInRange<ImperialNebulaVomitComponent>(where, 0.5f))
+        foreach (var vomit in _lookup.GetEntitiesInRange<ImperialNebulaVomitComponent>(where, DiveRange))
         {
-            Spawn("ImperialVoidUnsettleWave", Transform(vomit).Coordinates);
+            Spawn(ImperialVoidUnsettleWave, Transform(vomit).Coordinates);
             QueueDel(vomit);
         }
 
         _transform.SetCoordinates(uid, where);
         _physics.SetLinearVelocity(uid, Vector2.Zero);
         var diving = EnsureComp<ImperialSpaceDivingComponent>(uid);
-        _visibility.SetLayer(uid, (ushort) VisibilityFlags.Ghost);
+        _visibility.SetLayer(uid, (ushort)VisibilityFlags.Ghost);
         if (TryComp<EyeComponent>(uid, out var eye))
-            _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int) VisibilityFlags.Ghost, eye);
+            _eye.SetVisibilityMask(uid, eye.VisibilityMask | (int)VisibilityFlags.Ghost, eye);
 
         if (TryComp<FixturesComponent>(uid, out var fixtures))
         {
@@ -512,9 +529,9 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
         args.Handled = true;
         if (OnNebulaVomit(ent))
         {
-            foreach (var vomit in _lookup.GetEntitiesInRange<ImperialNebulaVomitComponent>(Transform(ent).Coordinates, 0.5f))
+            foreach (var vomit in _lookup.GetEntitiesInRange<ImperialNebulaVomitComponent>(Transform(ent).Coordinates, ent.Comp.SurfaceDoAfterRange))
             {
-                Spawn("ImperialVoidUnsettleWave", Transform(vomit).Coordinates);
+                Spawn(ImperialVoidUnsettleWave, Transform(vomit).Coordinates);
             }
         }
 
@@ -524,9 +541,9 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
     /// <summary>surface(): вынырнуть в космос или из туманной рвоты.</summary>
     public void Surface(EntityUid uid, ImperialSpaceDivingComponent diving)
     {
-        _visibility.SetLayer(uid, (ushort) VisibilityFlags.Normal);
+        _visibility.SetLayer(uid, (ushort)VisibilityFlags.Normal);
         if (TryComp<EyeComponent>(uid, out var eye))
-            _eye.SetVisibilityMask(uid, eye.VisibilityMask & ~(int) VisibilityFlags.Ghost, eye);
+            _eye.SetVisibilityMask(uid, eye.VisibilityMask & ~(int)VisibilityFlags.Ghost, eye);
 
         if (TryComp<FixturesComponent>(uid, out var fixtures))
         {
@@ -568,7 +585,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
 
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString("imperial-voidwalker-unsettle-start"), ent, ent);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(6), new ImperialVoidUnsettleDoAfterEvent(), ent, args.Target)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.UnsettleDelay, new ImperialVoidUnsettleDoAfterEvent(), ent, args.Target)
         {
             BreakOnMove = false,
             RequireCanInteract = false,
@@ -584,7 +601,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
         if (TryComp<BlindableComponent>(target, out var blindable) && blindable.IsBlind)
             return false;
 
-        return _examine.InRangeUnOccluded(target, walker, 9f);
+        return _examine.InRangeUnOccluded(target, walker, IsStaringRange);
     }
 
     private void OnUnsettleAttempt(Entity<ImperialVoidwalkerComponent> ent, ref DoAfterAttemptEvent<ImperialVoidUnsettleDoAfterEvent> args)
@@ -603,12 +620,12 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
             return;
 
         args.Handled = true;
-        _stun.TryUpdateParalyzeDuration(target, TimeSpan.FromSeconds(2));
+        _stun.TryUpdateParalyzeDuration(target, ent.Comp.UnsettleDoAfterDuration);
         _stamina.TakeStaminaDamage(target, 80f);
-        _status.TryUpdateStatusEffectDuration(target, SlurredStatus, TimeSpan.FromSeconds(10));
+        _status.TryUpdateStatusEffectDuration(target, SlurredStatus, ent.Comp.UnsettleDoAfterDuration2);
         EntityManager.System<Content.Server.Chat.Systems.ChatSystem>().TryEmoteWithChat(target, "Scream");
-        Spawn("ImperialVoidUnsettleWave", Transform(ent).Coordinates);
-        Spawn("ImperialVoidUnsettleWave", Transform(target).Coordinates);
+        Spawn(ImperialVoidUnsettleWave, Transform(ent).Coordinates);
+        Spawn(ImperialVoidUnsettleWave, Transform(target).Coordinates);
         RevealCamo(ent);
     }
 
@@ -660,7 +677,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
         args.Handled = true;
         ent.Comp.Dashing = true;
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Voidwalker/curse1.ogg"), ent);
-        _throwing.TryThrow(ent, args.Target, 15f, ent, 0f, compensateFriction: true);
+        _throwing.TryThrow(ent, args.Target, ent.Comp.DashBaseThrowSpeed, ent, 0f, compensateFriction: true);
     }
 
     private void OnDashHit(Entity<ImperialVoidwalkerComponent> ent, ref ThrowDoHitEvent args)
@@ -670,7 +687,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
 
         var damage = new DamageSpecifier { DamageDict = { [ent.Comp.Sunwalker ? "Heat" : "Blunt"] = ent.Comp.DashDamage } };
         _damage.TryChangeDamage(args.Target, damage, origin: ent);
-        _stun.TryKnockdown(args.Target, TimeSpan.FromSeconds(1), true);
+        _stun.TryKnockdown(args.Target, ent.Comp.DashHitTime, true);
     }
 
     /// <summary>sunwalker/charge_end(): огонь вокруг места приземления.</summary>
@@ -715,7 +732,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
         if (_timing.CurTime < ent.Comp.NextConversion)
         {
             _popup.PopupEntity(Loc.GetString("imperial-voidwalker-wall-cooldown",
-                ("time", (int) Math.Ceiling((ent.Comp.NextConversion - _timing.CurTime).TotalSeconds))), ent, ent);
+                ("time", (int)Math.Ceiling((ent.Comp.NextConversion - _timing.CurTime).TotalSeconds))), ent, ent);
             return;
         }
 
@@ -727,9 +744,9 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
 
         args.Handled = true;
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Voidwalker/blind.ogg"), args.Target);
-        Spawn("ImperialVoidUnsettleWave", Transform(args.Target).Coordinates);
+        Spawn(ImperialVoidUnsettleWave, Transform(args.Target).Coordinates);
         _popup.PopupEntity(Loc.GetString("imperial-voidwalker-wall-opening"), ent, ent);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(8), new ImperialVoidConvertWallDoAfterEvent(), ent, args.Target)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, ent, ent.Comp.ConvertWallDelay, new ImperialVoidConvertWallDoAfterEvent(), ent, args.Target)
         {
             BreakOnMove = true,
             RequireCanInteract = false,
@@ -754,7 +771,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
 
         args.Handled = true;
         var walls = new List<EntityUid> { wall };
-        foreach (var near in _lookup.GetEntitiesInRange(Transform(wall).Coordinates, 1.5f, LookupFlags.Static))
+        foreach (var near in _lookup.GetEntitiesInRange(Transform(wall).Coordinates, ent.Comp.ConvertWallDoAfterRange, LookupFlags.Static))
         {
             if (near != wall && IsConvertibleWall(near))
                 walls.Add(near);
@@ -764,10 +781,10 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
         foreach (var target in walls)
         {
             var coords = Transform(target).Coordinates;
-            Spawn("ImperialVoidUnsettleWave", coords);
+            Spawn(ImperialVoidUnsettleWave, coords);
             QueueDel(target);
-            Spawn("Grille", coords);
-            Spawn("ImperialVoidWindow", coords);
+            Spawn(Grille, coords);
+            Spawn(ImperialVoidWindow, coords);
         }
 
         ent.Comp.ConversionsRemaining--;
@@ -799,7 +816,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
             if (diving && dive != null && !dive.Surfacing && (inSpace || OnNebulaVomit(uid)))
             {
                 dive.Surfacing = true;
-                var started = _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, TimeSpan.FromSeconds(1), new ImperialVoidSurfaceDoAfterEvent(), uid)
+                var started = _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, walker.UpdateDelay, new ImperialVoidSurfaceDoAfterEvent(), uid)
                 {
                     BreakOnMove = true,
                     RequireCanInteract = false,
@@ -811,18 +828,18 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
             if (now < walker.NextTick)
                 continue;
 
-            walker.NextTick = now + TimeSpan.FromSeconds(1);
+            walker.NextTick = now + walker.TickDelay;
 
             // regenerator: 2 ед. в секунду в космосе, если 6 секунд не били.
-            if (inSpace && now > walker.LastDamaged + TimeSpan.FromSeconds(6) && TryComp<DamageableComponent>(uid, out var damageable)
+            if (inSpace && now > walker.LastDamaged + walker.UpdateDelay2 && TryComp<DamageableComponent>(uid, out var damageable)
                 && _damage.GetTotalDamage((uid, damageable)) > 0)
             {
-                _damage.TryChangeDamage(uid, new DamageSpecifier { DamageDict = { ["Blunt"] = -2, ["Slash"] = -2, ["Piercing"] = -2, ["Heat"] = -2 } }, true);
+                _damage.TryChangeDamage(uid, new DamageSpecifier { DamageDict = { [BluntDamageType] = -2, [SlashDamageType] = -2, [PiercingDamageType] = -2, [HeatDamageType] = -2 } }, true);
             }
 
             // planet_allergy: гравитация планет давит.
             if (OnPlanet(uid) && !_gravity.IsWeightless(uid))
-                _damage.TryChangeDamage(uid, new DamageSpecifier { DamageDict = { ["Blunt"] = 1 } }, true);
+                _damage.TryChangeDamage(uid, new DamageSpecifier { DamageDict = { [BluntDamageType] = 1 } }, true);
 
             var grounded = !_gravity.IsWeightless(uid) && EntityManager.System<Content.Server.Station.Systems.StationSystem>().GetOwningStation(uid) == null && !inSpace;
             if (grounded != walker.Grounded)
@@ -835,7 +852,7 @@ public sealed class ImperialVoidwalkerSystem : EntitySystem
             if (walker.Sunwalker && !diving && xform.GridUid is { } grid)
             {
                 var tile = _transform.GetGridTilePositionOrDefault((uid, xform));
-                _atmos.HotspotExpose(grid, tile, 1000f, 100f, uid, _random.Prob(0.02f));
+                _atmos.HotspotExpose(grid, tile, 1000f, 100f, uid, _random.Prob(walker.UpdateChance));
             }
         }
 

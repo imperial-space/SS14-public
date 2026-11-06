@@ -106,4 +106,55 @@ public sealed partial class ImperialVoidwalkerComponent : Component
 
     [ViewVariables]
     public bool DiveAttempt;
+
+    [DataField]
+    public TimeSpan UpdateDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public TimeSpan TickDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public TimeSpan UpdateDelay2 = TimeSpan.FromSeconds(6);
+
+    [DataField]
+    public TimeSpan MeleeHitDelay = TimeSpan.FromSeconds(15);
+
+    [DataField]
+    public TimeSpan MeleeHitDuration = TimeSpan.FromSeconds(5);
+
+    [DataField]
+    public TimeSpan KidnapDuration = TimeSpan.FromSeconds(30);
+
+    [DataField]
+    public TimeSpan CollideDelay = TimeSpan.FromSeconds(3);
+
+    [DataField]
+    public TimeSpan UnsettleDelay = TimeSpan.FromSeconds(6);
+
+    [DataField]
+    public TimeSpan UnsettleDoAfterDuration = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan UnsettleDoAfterDuration2 = TimeSpan.FromSeconds(10);
+
+    [DataField]
+    public TimeSpan DashHitTime = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public TimeSpan ConvertWallDelay = TimeSpan.FromSeconds(8);
+
+    [DataField]
+    public float UpdateChance = 0.02f;
+
+    [DataField]
+    public float DamagedChance = 0.5f;
+
+    [DataField]
+    public float SurfaceDoAfterRange = 0.5f;
+
+    [DataField]
+    public float DashBaseThrowSpeed = 15f;
+
+    [DataField]
+    public float ConvertWallDoAfterRange = 1.5f;
 }

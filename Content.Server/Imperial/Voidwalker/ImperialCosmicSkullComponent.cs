@@ -32,4 +32,7 @@ public sealed partial class ImperialCosmicSkullComponent : Component
 {
     [DataField]
     public int Uses = 1;
+
+    [DataField]
+    public TimeSpan SkullUseDelay = TimeSpan.FromSeconds(10);
 }

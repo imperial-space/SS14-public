@@ -28,4 +28,8 @@ namespace Content.Server.Imperial.Voidwalker;
 
 /// <summary>/obj/item/void_eater: временно разбивает стекло касанием.</summary>
 [RegisterComponent]
-public sealed partial class ImperialVoidEaterComponent : Component;
+public sealed partial class ImperialVoidEaterComponent : Component
+{
+    [DataField]
+    public TimeSpan EaterInteractTime = TimeSpan.FromSeconds(5);
+}
