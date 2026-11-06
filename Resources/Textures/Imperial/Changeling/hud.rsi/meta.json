@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (screen_changeling.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "sting_null"
+    },
+    {
+      "name": "hallucination_sting"
+    },
+    {
+      "name": "cryogenic_sting"
+    },
+    {
+      "name": "mute_sting"
+    },
+    {
+      "name": "extract_dna_sting"
+    },
+    {
+      "name": "transformation_sting"
+    },
+    {
+      "name": "false_armblade_sting"
+    },
+    {
+      "name": "blind_sting"
+    },
+    {
+      "name": "poison_sting"
+    },
+    {
+      "name": "power_display"
+    }
+  ]
+}

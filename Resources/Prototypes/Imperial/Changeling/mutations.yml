@@ -1,0 +1,286 @@
+# Мутации генокрада: /datum/action/changeling/weapon/* и /suit/* (mutations.dm).
+
+- type: imperialChangelingPower
+  id: ImperialChangelingArmBladePower
+  name: imperial-changeling-armblade-name
+  description: imperial-changeling-armblade-desc
+  helpText: imperial-changeling-armblade-help
+  icon: arm_blade
+  category: Combat
+  chemicalCost: 20
+  dnaCost: 2
+  reqHuman: true
+  action: ActionImperialChangelingArmBlade
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingArmBlade
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: arm_blade
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingArmBladePower
+
+- type: imperialChangelingPower
+  id: ImperialChangelingTentaclePower
+  name: imperial-changeling-tentacle-name
+  description: imperial-changeling-tentacle-desc
+  helpText: imperial-changeling-tentacle-help
+  icon: tentacle
+  category: Combat
+  chemicalCost: 10
+  dnaCost: 2
+  reqHuman: true
+  action: ActionImperialChangelingTentacle
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingTentacle
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: tentacle
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingTentaclePower
+
+- type: imperialChangelingPower
+  id: ImperialChangelingShieldPower
+  name: imperial-changeling-shield-name
+  description: imperial-changeling-shield-desc
+  helpText: imperial-changeling-shield-help
+  icon: organic_shield
+  category: Combat
+  chemicalCost: 20
+  dnaCost: 1
+  reqHuman: true
+  action: ActionImperialChangelingShield
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingShield
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: organic_shield
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingShieldPower
+
+- type: imperialChangelingPower
+  id: ImperialChangelingArmorPower
+  name: imperial-changeling-armor-name
+  description: imperial-changeling-armor-desc
+  helpText: imperial-changeling-armor-help
+  icon: chitinous_armor
+  category: Combat
+  chemicalCost: 20
+  dnaCost: 1
+  reqHuman: true
+  action: ActionImperialChangelingArmor
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingArmor
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: chitinous_armor
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingArmorPower
+
+- type: imperialChangelingPower
+  id: ImperialChangelingHiveHeadPower
+  name: imperial-changeling-hivehead-name
+  description: imperial-changeling-hivehead-desc
+  helpText: imperial-changeling-hivehead-help
+  icon: hive_head
+  category: Combat
+  chemicalCost: 15
+  dnaCost: 2
+  action: ActionImperialChangelingHiveHead
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingHiveHead
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: hive_head
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingHiveHeadPower
+
+# ── Предметы ──
+
+# /obj/item/gun/magic/tentacle
+- type: entity
+  parent: BaseItem
+  id: ImperialChangelingTentacle
+  components:
+  - type: Sprite
+    sprite: Imperial/Changeling/tentacle.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Imperial/Changeling/tentacle.rsi
+  - type: Gun
+    fireRate: 10
+    clumsyProof: true
+    soundGunshot: /Audio/Effects/Fluids/splat.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialChangelingTentacleProjectile
+    capacity: 1
+  - type: Unremoveable
+  - type: ImperialChangelingTentacle
+
+# /obj/projectile/tentacle: range = 8.
+- type: entity
+  parent: BaseBullet
+  id: ImperialChangelingTentacleProjectile
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    noRot: false
+    sprite: Imperial/Changeling/tentacle_end.rsi
+    layers:
+    - state: tentacle_end
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 0
+    soundHit:
+      path: /Audio/Imperial/Changeling/shove.ogg
+  - type: TimedDespawn
+    lifetime: 0.4
+  - type: ImperialChangelingTentacleProjectile
+
+# /obj/item/shield/changeling
+- type: entity
+  parent: BaseItem
+  id: ImperialChangelingShield
+  components:
+  - type: Sprite
+    sprite: Imperial/Changeling/ling_shield.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Imperial/Changeling/ling_shield.rsi
+  - type: Unremoveable
+  - type: ImperialChangelingShield
+
+# /obj/item/clothing/suit/armor/changeling
+- type: entity
+  parent: ClothingOuterBase
+  id: ImperialChangelingArmor
+  components:
+  - type: Sprite
+    sprite: Imperial/Changeling/armor.rsi
+  - type: Clothing
+    sprite: Imperial/Changeling/armor.rsi
+  # melee 40, bullet 40, laser 40, energy 50, bomb 10, acid 90
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6
+        Shock: 0.5
+        Caustic: 0.1
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: Unremoveable
+
+# /obj/item/clothing/head/helmet/changeling
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialChangelingHelmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Changeling/helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Changeling/helmet.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6
+        Shock: 0.5
+        Caustic: 0.1
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+  - type: IdentityBlocker
+  - type: Unremoveable
+
+# /obj/item/clothing/head/helmet/changeling_hivehead
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialChangelingHiveHead
+  components:
+  - type: Sprite
+    sprite: Imperial/Changeling/hivehead.rsi
+  - type: Clothing
+    sprite: Imperial/Changeling/hivehead.rsi
+  # melee/bullet/laser/energy 10, bio 50
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: FlashImmunity
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+  - type: IdentityBlocker
+  - type: Unremoveable
+  - type: ActionGrant
+    actions:
+    - ActionImperialChangelingReleaseBees
+  - type: ItemActionGrant
+    actions:
+    - ActionImperialChangelingReleaseBees
+    activeIfWorn: true
+  - type: ImperialChangelingHiveHead
+  # create_reagents(50, REFILLABLE): пчёлы жалят одним из реагентов.
+  - type: SolutionContainerManager
+    solutions:
+      hive:
+        maxVol: 50
+  - type: RefillableSolution
+    solution: hive
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingReleaseBees
+  components:
+  - type: Action
+    useDelay: 30
+    checkConsciousness: false
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: queen_item
+    background:
+      sprite: Imperial/Changeling/actions.rsi
+      state: bg_demon_full
+  - type: InstantAction
+    event: !type:ImperialChangelingReleaseBeesEvent

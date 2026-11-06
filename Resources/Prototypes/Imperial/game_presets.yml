@@ -20,6 +20,7 @@
     - Blob
     - Cult
     - BloodBrother
+    - ImperialChangelingRule
     - BasicStationEventScheduler
     - KesslerSyndromeScheduler
     - MeteorSwarmMildScheduler

@@ -1,0 +1,577 @@
+# Прочие способности генокрада (adrenaline.dm … void_adaption.dm, lesserform.dm, headcrab.dm).
+
+- type: imperialChangelingPower
+  id: ImperialChangelingAdrenaline
+  name: imperial-changeling-power-adrenaline-name
+  description: imperial-changeling-power-adrenaline-desc
+  helpText: imperial-changeling-power-adrenaline-help
+  icon: adrenaline
+  category: Combat
+  chemicalCost: 25
+  dnaCost: 2
+  action: ActionImperialChangelingAdrenaline
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingAdrenaline
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: adrenaline
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingAdrenaline
+
+- type: imperialChangelingPower
+  id: ImperialChangelingEyesight
+  name: imperial-changeling-power-eyesight-name
+  description: imperial-changeling-power-eyesight-desc
+  helpText: imperial-changeling-power-eyesight-help
+  icon: augmented_eyesight
+  category: Utility
+  dnaCost: 2
+  action: ActionImperialChangelingEyesight
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingEyesight
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: augmented_eyesight
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingEyesight
+
+- type: imperialChangelingPower
+  id: ImperialChangelingBiodegrade
+  name: imperial-changeling-power-biodegrade-name
+  description: imperial-changeling-power-biodegrade-desc
+  helpText: imperial-changeling-power-biodegrade-help
+  icon: biodegrade
+  category: Utility
+  chemicalCost: 30
+  dnaCost: 2
+  reqHuman: true
+  disabledByFire: false
+  action: ActionImperialChangelingBiodegrade
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingBiodegrade
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: biodegrade
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingBiodegrade
+
+- type: imperialChangelingPower
+  id: ImperialChangelingChameleon
+  name: imperial-changeling-power-chameleon-name
+  description: imperial-changeling-power-chameleon-desc
+  helpText: imperial-changeling-power-chameleon-help
+  icon: chameleon_skin
+  category: Stealth
+  chemicalCost: 10
+  dnaCost: 1
+  reqHuman: true
+  action: ActionImperialChangelingChameleon
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingChameleon
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: chameleon_skin
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingChameleon
+
+- type: imperialChangelingPower
+  id: ImperialChangelingDarkness
+  name: imperial-changeling-power-darkness-name
+  description: imperial-changeling-power-darkness-desc
+  helpText: imperial-changeling-power-darkness-help
+  icon: darkness_adaptation
+  category: Stealth
+  chemicalCost: 15
+  dnaCost: 2
+  action: ActionImperialChangelingDarkness
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingDarkness
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: darkness_adaptation
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingDarkness
+
+- type: imperialChangelingPower
+  id: ImperialChangelingDefibGrasp
+  name: imperial-changeling-power-defibgrasp-name
+  description: imperial-changeling-power-defibgrasp-desc
+  helpText: imperial-changeling-power-defibgrasp-help
+  icon: defibrillator_grasp
+  category: Utility
+  dnaCost: 0
+  disabledByFire: false
+
+- type: imperialChangelingPower
+  id: ImperialChangelingDigitalCamo
+  name: imperial-changeling-power-digitalcamo-name
+  description: imperial-changeling-power-digitalcamo-desc
+  helpText: imperial-changeling-power-digitalcamo-help
+  icon: digital_camouflage
+  category: Stealth
+  dnaCost: 1
+  action: ActionImperialChangelingDigitalCamo
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingDigitalCamo
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: digital_camouflage
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingDigitalCamo
+
+- type: imperialChangelingPower
+  id: ImperialChangelingFleshmend
+  name: imperial-changeling-power-fleshmend-name
+  description: imperial-changeling-power-fleshmend-desc
+  helpText: imperial-changeling-power-fleshmend-help
+  icon: fleshmend
+  category: Combat
+  chemicalCost: 20
+  dnaCost: 2
+  reqStat: HardCrit
+  action: ActionImperialChangelingFleshmend
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingFleshmend
+  components:
+  - type: Action
+    checkConsciousness: false
+    checkCanInteract: false
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: fleshmend
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingFleshmend
+
+- type: imperialChangelingPower
+  id: ImperialChangelingPanacea
+  name: imperial-changeling-power-panacea-name
+  description: imperial-changeling-power-panacea-desc
+  helpText: imperial-changeling-power-panacea-help
+  icon: anatomic_panacea
+  category: Utility
+  chemicalCost: 20
+  dnaCost: 1
+  reqStat: HardCrit
+  action: ActionImperialChangelingPanacea
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingPanacea
+  components:
+  - type: Action
+    checkConsciousness: false
+    checkCanInteract: false
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: anatomic_panacea
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingPanacea
+
+- type: imperialChangelingPower
+  id: ImperialChangelingPheromone
+  name: imperial-changeling-power-pheromone-name
+  description: imperial-changeling-power-pheromone-desc
+  helpText: imperial-changeling-power-pheromone-help
+  icon: pheromone_receptors
+  category: Utility
+  dnaCost: 2
+  action: ActionImperialChangelingPheromone
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingPheromone
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: pheromone_receptors
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingPheromone
+
+- type: imperialChangelingPower
+  id: ImperialChangelingResonantShriek
+  name: imperial-changeling-power-resonantshriek-name
+  description: imperial-changeling-power-resonantshriek-desc
+  helpText: imperial-changeling-power-resonantshriek-help
+  icon: resonant_shriek
+  category: Combat
+  chemicalCost: 20
+  dnaCost: 1
+  reqHuman: true
+  disabledByFire: false
+  action: ActionImperialChangelingResonantShriek
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingResonantShriek
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: resonant_shriek
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingResonantShriek
+
+- type: imperialChangelingPower
+  id: ImperialChangelingTechnoShriek
+  name: imperial-changeling-power-technoshriek-name
+  description: imperial-changeling-power-technoshriek-desc
+  helpText: imperial-changeling-power-technoshriek-help
+  icon: technophagic_shriek
+  category: Combat
+  chemicalCost: 20
+  dnaCost: 1
+  disabledByFire: false
+  action: ActionImperialChangelingTechnoShriek
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingTechnoShriek
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: technophagic_shriek
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingTechnoShriek
+
+- type: imperialChangelingPower
+  id: ImperialChangelingSpiders
+  name: imperial-changeling-power-spiders-name
+  description: imperial-changeling-power-spiders-desc
+  helpText: imperial-changeling-power-spiders-help
+  icon: spread_infestation
+  category: Utility
+  chemicalCost: 45
+  dnaCost: 1
+  reqAbsorbs: 3
+  action: ActionImperialChangelingSpiders
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingSpiders
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: spread_infestation
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingSpiders
+
+- type: imperialChangelingPower
+  id: ImperialChangelingMuscles
+  name: imperial-changeling-power-muscles-name
+  description: imperial-changeling-power-muscles-desc
+  helpText: imperial-changeling-power-muscles-help
+  icon: strained_muscles
+  category: Utility
+  dnaCost: 1
+  reqHuman: true
+  disabledByFire: false
+  action: ActionImperialChangelingMuscles
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingMuscles
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: strained_muscles
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingMuscles
+
+- type: imperialChangelingPower
+  id: ImperialChangelingVoidAdaption
+  name: imperial-changeling-power-voidadaption-name
+  description: imperial-changeling-power-voidadaption-desc
+  helpText: imperial-changeling-power-voidadaption-help
+  icon: void_adaption
+  category: Utility
+  dnaCost: 2
+
+- type: imperialChangelingPower
+  id: ImperialChangelingMimicVoice
+  name: imperial-changeling-power-mimicvoice-name
+  description: imperial-changeling-power-mimicvoice-desc
+  helpText: imperial-changeling-power-mimicvoice-help
+  icon: mimic_voice
+  category: Stealth
+  dnaCost: 1
+  reqHuman: true
+  action: ActionImperialChangelingMimicVoice
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingMimicVoice
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: mimic_voice
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingMimicVoice
+
+- type: imperialChangelingPower
+  id: ImperialChangelingLesserForm
+  name: imperial-changeling-power-lesserform-name
+  description: imperial-changeling-power-lesserform-desc
+  helpText: imperial-changeling-power-lesserform-help
+  icon: lesser_form
+  category: Stealth
+  chemicalCost: 5
+  dnaCost: 1
+  action: ActionImperialChangelingLesserForm
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingLesserForm
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: lesser_form
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingLesserForm
+
+- type: imperialChangelingPower
+  id: ImperialChangelingLastResort
+  name: imperial-changeling-power-lastresort-name
+  description: imperial-changeling-power-lastresort-desc
+  helpText: imperial-changeling-power-lastresort-help
+  icon: last_resort
+  category: Utility
+  chemicalCost: 20
+  dnaCost: 1
+  reqStat: Dead
+  disabledByFire: false
+  ignoresFakedeath: true
+  action: ActionImperialChangelingLastResort
+
+- type: entity
+  parent: BaseActionImperialChangeling
+  id: ActionImperialChangelingLastResort
+  components:
+  - type: Action
+    checkConsciousness: false
+    checkCanInteract: false
+    icon:
+      sprite: Imperial/Changeling/actions.rsi
+      state: last_resort
+  - type: InstantAction
+    event: !type:ImperialChangelingPowerActionEvent
+      power: ImperialChangelingLastResort
+
+# /datum/reagent/medicine/changelingadrenaline
+- type: reagent
+  id: ImperialChangelingAdrenaline
+  name: reagent-name-imperial-changeling-adrenaline
+  group: Medicine
+  desc: reagent-desc-imperial-changeling-adrenaline
+  physicalDesc: reagent-physical-desc-energizing
+  flavor: sharp
+  color: "#C1151D"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.2
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStunned
+        time: 3
+        type: Remove
+      - !type:ModifyKnockdown
+        time: 3
+        type: Remove
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectForcedSleeping
+        time: 3
+        type: Remove
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStimulantsStamina
+        time: 3
+      - !type:GenericStatusEffect
+        key: Adrenaline
+        component: IgnoreSlowOnDamage
+        time: 3
+      - !type:Jitter
+      # overdose_threshold = 30
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: ImperialChangelingAdrenaline
+          min: 30
+        damage:
+          types:
+            Poison: 0.5
+
+# /obj/effect/mob_spawn/ghost_role/spider/bloody: кладка, из которой вылупится паук.
+- type: entity
+  id: ImperialChangelingSpiderEggs
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Changeling/spider_eggs.rsi
+    state: eggs
+    drawdepth: FloorObjects
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        hard: false
+        mask:
+        - ItemMask
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: GhostRole
+    name: imperial-changeling-spider-role-name
+    description: imperial-changeling-spider-role-desc
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: MobGiantSpider
+
+# /mob/living/basic/headslug
+- type: entity
+  parent: [SimpleMobBase, BaseMobAnimal]
+  id: ImperialChangelingHeadslug
+  components:
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: Imperial/Changeling/headslug.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: headslug
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: headslug
+      Dead:
+        Base: headslug_dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 50
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 5
+  - type: NpcFactionMember
+    factions:
+    - SimpleNeutral
+  - type: CombatMode
+  - type: VentCrawler
+  - type: ImperialChangelingHeadslug
+
+# /atom/movable/screen/alert/status_effect/fleshmend: 1 — fleshmend, 2 — fleshmend_fire.
+- type: alert
+  id: ImperialChangelingFleshmend
+  name: imperial-changeling-fleshmend-alert-name
+  description: imperial-changeling-fleshmend-alert-desc
+  minSeverity: 1
+  maxSeverity: 2
+  icons:
+  - sprite: /Textures/Imperial/Changeling/alerts.rsi
+    state: fleshmend
+  - sprite: /Textures/Imperial/Changeling/alerts.rsi
+    state: fleshmend_fire
+
+# /obj/effect/temp_visual/monkeyify: duration = 22.
+- type: entity
+  id: ImperialChangelingMonkeyifyEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Changeling/monkeyify.rsi
+    state: h2monkey
+    drawdepth: Mobs
+    noRot: true
+  - type: TimedDespawn
+    lifetime: 2.2
+
+# /obj/effect/temp_visual/monkeyify/humanify
+- type: entity
+  parent: ImperialChangelingMonkeyifyEffect
+  id: ImperialChangelingHumanifyEffect
+  components:
+  - type: Sprite
+    sprite: Imperial/Changeling/monkeyify.rsi
+    state: monkey2h
+    drawdepth: Mobs
+    noRot: true

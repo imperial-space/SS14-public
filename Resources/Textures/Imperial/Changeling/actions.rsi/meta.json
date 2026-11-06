@@ -1,0 +1,159 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (actions_changeling.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    { "name": "bg_changeling_full" },
+    { "name": "bg_default_full" },
+    { "name": "round_end" },
+    {
+      "name": "bg_changeling"
+    },
+    {
+      "name": "adrenaline"
+    },
+    {
+      "name": "fake_death"
+    },
+    {
+      "name": "fleshmend"
+    },
+    {
+      "name": "lesser_form"
+    },
+    {
+      "name": "human_form"
+    },
+    {
+      "name": "revive"
+    },
+    {
+      "name": "hivemind_channel"
+    },
+    {
+      "name": "mimic_voice"
+    },
+    {
+      "name": "resonant_shriek"
+    },
+    {
+      "name": "transform"
+    },
+    {
+      "name": "last_resort"
+    },
+    {
+      "name": "tentacle"
+    },
+    {
+      "name": "organic_shield"
+    },
+    {
+      "name": "chameleon_skin"
+    },
+    {
+      "name": "regenerate"
+    },
+    {
+      "name": "augmented_eyesight"
+    },
+    {
+      "name": "hive_absorb"
+    },
+    {
+      "name": "absorb_dna"
+    },
+    {
+      "name": "chitinous_armor"
+    },
+    {
+      "name": "strained_muscles"
+    },
+    {
+      "name": "spread_infestation"
+    },
+    {
+      "name": "biodegrade"
+    },
+    {
+      "name": "hivemind_link"
+    },
+    {
+      "name": "changelingsting"
+    },
+    {
+      "name": "darkness_adaptation"
+    },
+    {
+      "name": "hive_head"
+    },
+    {
+      "name": "expel_worm"
+    },
+    {
+      "name": "digital_camouflage"
+    },
+    {
+      "name": "anatomic_panacea"
+    },
+    {
+      "name": "technophagic_shriek"
+    },
+    {
+      "name": "arm_blade"
+    },
+    {
+      "name": "blind_sting"
+    },
+    {
+      "name": "cryogenic_sting"
+    },
+    {
+      "name": "hallucination_sting"
+    },
+    {
+      "name": "extract_dna_sting"
+    },
+    {
+      "name": "transformation_sting"
+    },
+    {
+      "name": "mute_sting"
+    },
+    {
+      "name": "void_adaption"
+    },
+    {
+      "name": "false_armblade_sting"
+    },
+    {
+      "name": "pheromone_receptors"
+    },
+    {
+      "name": "defibrillator_grasp"
+    },
+    {
+      "name": "bg_demon_full"
+    },
+    {
+      "name": "queen_item",
+      "delays": [
+        [
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+# Органическое оружие генокрада (mutations.dm).
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseImperialChangelingArmBlade
+  components:
+  - type: Sprite
+    sprite: Imperial/Changeling/arm_blade.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Imperial/Changeling/arm_blade.rsi
+  - type: Unremoveable
+
+# /obj/item/melee/arm_blade: режет, вскрывает шлюзы (10 секунд под питанием).
+- type: entity
+  parent: BaseImperialChangelingArmBlade
+  id: ImperialChangelingArmBlade
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    damage:
+      types:
+        Slash: 25
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Sharp
+  - type: Prying
+    pryPowered: true
+    # do_after 10 секунд у запитанного шлюза: 1.5 * 9 / 1.35.
+    speedModifier: 1.35
+  - type: ImperialChangelingArmBlade
+
+# /obj/item/melee/arm_blade/false: тупой и бесполезный.
+- type: entity
+  parent: BaseImperialChangelingArmBlade
+  id: ImperialChangelingArmBladeFalse
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    damage:
+      types:
+        Slash: 5
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg

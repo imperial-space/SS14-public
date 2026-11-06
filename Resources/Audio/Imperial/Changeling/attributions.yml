@@ -1,0 +1,29 @@
+- files: ["changeling_absorb1.ogg", "changeling_absorb2.ogg", "changeling_absorb3.ogg", "changeling_absorb4.ogg", "changeling_absorb5.ogg", "changeling_absorb6.ogg", "changeling_absorb7.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made by sadboysuss, taken from tgstation/BandaStation (sound/effects/changeling_absorb)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["ling_alert.ogg", "demon_consume.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/music/antag/ling_alert.ogg, sound/effects/magic/demon_consume.ogg)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["bee_swarm.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/mobs/non-humanoids/bee/bee_swarm.ogg)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["goresplat.ogg", "crack1.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/effects/goresplat.ogg, sound/effects/wounds/crack1.ogg)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["bileworm_spit.ogg", "shove.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/mobs/non-humanoids/bileworm/bileworm_spit.ogg, sound/items/weapons/shove.ogg)"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["airlock_alien_prying.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/machines/airlock/airlock_alien_prying.ogg)"
+  source: "https://github.com/tgstation/tgstation"
