@@ -1,0 +1,231 @@
+# Добыча блюспейс-сборщика (bluespace_tap_spawners.dm из Paradise, предметы заменены на аналоги SS14).
+
+- type: entityTable
+  id: ImperialBluespaceTapClothesCommon
+  table: !type:GroupSelector
+    children:
+    - id: ClothingHeadHatChef
+    - id: ClothingHeadHatPaper
+    - id: ClothingHeadHatTophat
+    - id: ClothingHeadHatCapcap
+    - id: ClothingHeadHatBeret
+    - id: ClothingHeadHatWelding
+    - id: ClothingHeadHatPirate
+    - id: ClothingHeadHatFancyCrown
+    - id: ClothingHeadHatWizard
+    - id: ClothingHeadHatHardhatYellow
+    - id: ClothingHeadHatBeretHoS
+    - id: ClothingHeadHelmetThunderdome
+    - id: ClothingHeadHatXmasCrown
+    - id: ClothingHeadHatCowboyBrown
+    - id: ClothingHeadHatCowboyBlack
+    - id: ClothingUniformJumpsuitMedicalDoctor
+    - id: ClothingUniformJumpsuitEngineering
+    - id: ClothingUniformJumpsuitScientist
+    - id: ClothingUniformJumpsuitSec
+    - id: ClothingUniformJumpsuitCaptain
+    - id: ClothingUniformJumpskirtJanimaid
+    - id: ClothingUniformJumpsuitClown
+    - id: ClothingUniformJumpsuitMime
+    - id: ClothingOuterCoatBomber
+
+- type: entityTable
+  id: ImperialBluespaceTapClothesUncommon
+  table: !type:GroupSelector
+    children:
+    - id: ClothingHeadHatCatEars
+    - id: ClothingHeadHatBunny
+    - id: ClothingOuterArmorBasic
+    - id: ClothingOuterArmorRiot
+    - id: ClothingOuterArmorBulletproof
+    - id: ClothingOuterArmorBone
+    - id: ClothingNeckCloakGoliathCloak
+    - id: ClothingUniformJumpsuitChameleon
+    - id: ClothingEyesChameleon
+    - id: ClothingHandsChameleon
+    - id: ClothingHeadHatChameleon
+    - id: ClothingMaskGasChameleon
+    - id: ClothingMaskGasVoiceChameleon
+    - id: ClothingShoesChameleon
+    - id: ClothingShoesChameleonNoSlips
+    - id: ClothingHeadHelmetBasic
+    - id: ClothingHeadHelmetRiot
+    - id: ClothingOuterWizard
+    - id: ClothingNeckCloakHerald
+
+- type: entityTable
+  id: ImperialBluespaceTapClothesRare
+  table: !type:GroupSelector
+    children:
+    - id: ClothingOuterArmorReflective
+    - id: ClothingOuterArmorHeavy
+    - id: ClothingOuterArmorCaptainCarapace
+    - id: ClothingEyesGlassesThermal
+    - id: ClothingEyesGlassesMeson
+    - id: ClothingHeadHelmetJustice
+    - id: ClothingHeadHelmetSwat
+    - id: ClothingOuterHardsuitEVA
+    - id: ClothingOuterHardsuitEngineering
+    - id: ClothingOuterHardsuitAtmos
+    - id: ClothingOuterHardsuitSalvage
+    - id: ClothingOuterHardsuitMedical
+    - id: ClothingOuterHardsuitSecurity
+    - id: ClothingOuterHardsuitClown
+    - id: ClothingShoesBootsMagAdv
+
+- type: entityTable
+  id: ImperialBluespaceTapFoodCommon
+  table: !type:GroupSelector
+    children:
+    - id: FoodPieApple
+    - id: FoodSoupMeatball
+    - id: FoodSoupMystery
+    - id: FoodSoupStew
+    - id: FoodSoupChiliHot
+    - id: FoodMealCubancarp
+    - id: FoodPieMeat
+    - id: FoodCookieFortune
+    - id: FoodPieBananaCream
+    - id: FoodDonutPink
+    - id: FoodRiceBoiled
+    - id: FoodBakedPancake
+    - id: FoodSaladCitrus
+    - id: FoodDonkpocketWarm
+    - id: FoodBakedWaffle
+    - id: FoodKebabSkewer
+    - id: FoodPizzaMargherita
+    - id: FoodBurgerBacon
+    - id: FoodSoupTomato
+    - id: FoodPieCherry
+    - id: FoodDonutChocolate
+    - id: FoodMealQueso
+    - id: FoodMealSashimi
+
+- type: entityTable
+  id: ImperialBluespaceTapFoodUncommon
+  table: !type:GroupSelector
+    children:
+    - id: FoodCakeCheese
+    - id: FoodCakeChocolate
+    - id: FoodCakeBirthday
+    - id: FoodCakeCarrot
+    - id: FoodPieAmanita
+    - id: FoodPieXeno
+    - id: FoodPiePumpkin
+    - id: FoodDonutChaos
+    - id: FoodPizzaMeat
+    - id: FoodPizzaMushroom
+    - id: FoodBurgerXeno
+    - id: FoodBurgerSpell
+    - id: FoodBurgerSuper
+    - id: FoodBurgerCrazy
+    - id: FoodBurgerBig
+    - id: FoodBurgerCarp
+    - id: FoodBreadBaguette
+    - id: FoodBakedWaffleRoffle
+    - id: FoodBreadBanana
+
+- type: entityTable
+  id: ImperialBluespaceTapFoodRare
+  table: !type:GroupSelector
+    children:
+    - id: FoodBurgerBrain
+    - id: FoodBurgerGhost
+    - id: FoodBurgerMcrib
+    - id: FoodSoupMonkey
+    - id: FoodDonkpocketDank
+    - id: FoodBreadBaguetteCotton
+
+- type: entityTable
+  id: ImperialBluespaceTapCulturalCommon
+  table: !type:GroupSelector
+    children:
+    - id: ClusterBananaPeel
+    - id: BalloonSyn
+    - id: BalloonNT
+    - id: FlippoLighter
+    - id: FlippoEngravedLighter
+    - id: RevolverCapGun
+    - id: FoamCrossbow
+    - id: ClothingHeadHatCatEars
+    - id: BedsheetNT
+    - id: BedsheetRainbow
+    - id: BedsheetCaptain
+    - id: GoldenBikeHorn
+    - id: ToySword
+    - id: FoamBlade
+    - id: ToyAi
+    - id: ToyFigurineChiefEngineer
+    - id: ToyFigurineNukie
+    - id: ToyFigurineCaptain
+    - id: ToyFigurineClown
+    - id: MaterialBananium
+    - id: PlushieNuke
+    - id: PlushieLizard
+    - id: PlushieCarp
+    - id: ToyAmongPequeno
+
+- type: entityTable
+  id: ImperialBluespaceTapCulturalUncommon
+  table: !type:GroupSelector
+    children:
+    - id: BedsheetSyndie
+    - id: BedsheetWiz
+    - id: ClothingHandsGlovesCombat
+    - id: ToolboxSyndicateFilled
+    - id: WelderExperimental
+    - id: FoamCutlass
+    - id: ToyRipley
+    - id: ToyHonk
+    - id: ToyDurand
+    - id: ToyDeathRipley
+    - id: TreasureCoinGold
+    - id: SheetBrass
+
+- type: entityTable
+  id: ImperialBluespaceTapCulturalRare
+  table: !type:GroupSelector
+    children:
+    - id: BedsheetCentcom
+    - id: BaseBallBat
+    - id: ToyNuke
+    - id: CigarGold
+    - id: TreasureCoinPileRare
+    - id: ClothingShoesBootsMag
+    - id: JetpackBlueFilled
+
+- type: entityTable
+  id: ImperialBluespaceTapOrganicCommon
+  table: !type:GroupSelector
+    children:
+    - id: Soap
+    - id: SoapSyndie
+    - id: SoapDeluxe
+    - id: ChemistryBottleOmnizine
+    - id: RegenerativeMesh
+    - id: StrangePill
+    - id: ImperialChromosomeStabilizer
+    - id: ImperialChromosomeSynchronizer
+
+- type: entityTable
+  id: ImperialBluespaceTapOrganicUncommon
+  table: !type:GroupSelector
+    children:
+    - id: PillCanisterRandom
+    - id: OrganAnimalHeart
+    - id: OrganHumanHeart
+    - id: RadProtPotion
+    - id: LaserProtPotion
+    - id: CoolingPotion
+    - id: ImperialChromosomePower
+    - id: ImperialChromosomeEnergy
+
+- type: entityTable
+  id: ImperialBluespaceTapOrganicRare
+  table: !type:GroupSelector
+    children:
+    - id: HoloparasiteInjector
+    - id: MindPotion
+    - id: ConsciousnessTransferPotion
+    - id: FoodGatfruit
+

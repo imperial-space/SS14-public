@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from ParadiseSS13 https://github.com/ParadiseSS13/Paradise",
+    "size": {"x": 32, "y": 32},
+    "states": [
+        {"name": "creature", "directions": 4, "delays": [[0.2, 0.2, 0.1, 0.2], [0.2, 0.2, 0.1, 0.2], [0.2, 0.2, 0.1, 0.2], [0.2, 0.2, 0.1, 0.2]]},
+        {"name": "creature-dead", "directions": 4},
+        {"name": "migo", "directions": 4},
+        {"name": "migo-dead"},
+        {"name": "blank", "directions": 4},
+        {"name": "blank-dead"}
+    ]
+}
