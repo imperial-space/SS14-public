@@ -73,4 +73,28 @@ public sealed partial class SlimeComponent : Component
     /// <summary>Слайм лишён ядер (спрайт «-cut»).</summary>
     [ViewVariables]
     public bool Cut => Cores <= 0;
+
+    [DataField]
+    public TimeSpan AttackCommandDelay = TimeSpan.FromSeconds(10);
+
+    [DataField]
+    public TimeSpan ShockCarbonDuration = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public float RandomChatterChance = 0.5f;
+
+    [DataField]
+    public float InteractHandChance = 0.6f;
+
+    [DataField]
+    public float InteractHandChance2 = 0.3f;
+
+    [DataField]
+    public float AttackedChance = 0.25f;
+
+    [DataField]
+    public float ReproduceRange = 0.45f;
+
+    [DataField]
+    public float CanFeedOnRange = 1.5f;
 }

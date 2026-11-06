@@ -41,4 +41,7 @@ public sealed partial class VatGrowerComponent : Component
 
     [ViewVariables]
     public TimeSpan NextTick;
+
+    [DataField]
+    public float GrowChance = 0.1f;
 }

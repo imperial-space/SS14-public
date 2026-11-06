@@ -31,6 +31,9 @@ public sealed partial class SlimeCrossbreedSystem
     private static readonly Color SpookTint = Color.FromHex("#E8E8E8");
     private static readonly Color CloneTint = Color.FromHex("#007BA7");
 
+    private static readonly TimeSpan RewindDelay = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan DecayDelay = TimeSpan.FromSeconds(1);
+
     private void InitializeEffects()
     {
         SubscribeLocalEvent<SlimeCrossEffectsComponent, DamageModifyEvent>(OnEffectsDamageModify);
@@ -249,7 +252,7 @@ public sealed partial class SlimeCrossbreedSystem
 
             if (now < comp.NextTick)
                 continue;
-            comp.NextTick = now + TimeSpan.FromSeconds(1);
+            comp.NextTick = now + comp.TickDelay;
             TickEffects(uid, comp);
 
             if (comp.Effects.Count == 0 && !comp.GavePacified && !comp.GaveGodmode && !comp.GaveNoSlip)
@@ -275,25 +278,25 @@ public sealed partial class SlimeCrossbreedSystem
 
         if (effects.ContainsKey("love") && !_mobState.IsIncapacitated(uid))
         {
-            var huggables = _lookup.GetEntitiesInRange<HumanoidProfileComponent>(coords, 1.5f).Where(h => h.Owner != uid).ToList();
+            var huggables = _lookup.GetEntitiesInRange<HumanoidProfileComponent>(coords, comp.TickEffectsRange).Where(h => h.Owner != uid).ToList();
             if (huggables.Count > 0)
-                Popup("slime-cookie-hug", uid, ("user", uid), ("target", (object) _random.Pick(huggables).Owner));
+                Popup("slime-cookie-hug", uid, ("user", uid), ("target", (object)_random.Pick(huggables).Owner));
         }
 
         if (effects.ContainsKey("tar"))
         {
-            foreach (var mob in _lookup.GetEntitiesInRange<HumanoidProfileComponent>(coords, 1.5f))
+            foreach (var mob in _lookup.GetEntitiesInRange<HumanoidProfileComponent>(coords, comp.TickEffectsRange))
             {
                 if (mob.Owner != uid)
-                    AddEffect(mob, "tarfoot", TimeSpan.FromSeconds(3));
+                    AddEffect(mob, "tarfoot", comp.TickEffectsDuration);
             }
         }
 
         if (effects.ContainsKey("peace"))
         {
-            foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 1.5f))
+            foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(coords, comp.TickEffectsRange))
             {
-                AddEffect(mob, "plur", TimeSpan.FromSeconds(3));
+                AddEffect(mob, "plur", comp.TickEffectsDuration);
             }
         }
 
@@ -301,8 +304,8 @@ public sealed partial class SlimeCrossbreedSystem
         if (effects.ContainsKey("golem") || effects.ContainsKey("rebreathing"))
             Heal(uid, 0f, 0f, 0f, 6f);
 
-        if (effects.ContainsKey("bloodchill") && _random.Prob(0.5f))
-            Damage(uid, "Cold", 2f);
+        if (effects.ContainsKey("bloodchill") && _random.Prob(comp.TickEffectsChance))
+            Damage(uid, "Cold", comp.TickEffectsAmount);
     }
 
     #endregion
@@ -314,7 +317,7 @@ public sealed partial class SlimeCrossbreedSystem
     {
         var dejavu = EnsureComp<SlimeDejavuComponent>(target);
         dejavu.Origin = At(target);
-        dejavu.RewindAt = _timing.CurTime + TimeSpan.FromSeconds(10);
+        dejavu.RewindAt = _timing.CurTime + RewindDelay;
         dejavu.Rewinds = rewinds;
         dejavu.Damage.Clear();
         if (TryComp<DamageableComponent>(target, out var damageable))
@@ -363,7 +366,7 @@ public sealed partial class SlimeCrossbreedSystem
             if (dejavu.Rewinds <= 0)
                 RemCompDeferred<SlimeDejavuComponent>(uid);
             else
-                dejavu.RewindAt = now + TimeSpan.FromSeconds(10);
+                dejavu.RewindAt = now + dejavu.RewindDelay;
         }
     }
 
@@ -394,7 +397,7 @@ public sealed partial class SlimeCrossbreedSystem
         _meta.SetEntityName(clone, Name(owner));
         var cloneComp = EnsureComp<SlimeCloneComponent>(clone);
         cloneComp.Original = owner;
-        cloneComp.NextDecay = _timing.CurTime + TimeSpan.FromSeconds(1);
+        cloneComp.NextDecay = _timing.CurTime + DecayDelay;
         SetTint(clone, "clone", CloneTint);
 
         if (_mind.TryGetMind(owner, out var mindId, out var mind))
@@ -412,7 +415,7 @@ public sealed partial class SlimeCrossbreedSystem
         {
             if (now < clone.NextDecay)
                 continue;
-            clone.NextDecay = now + TimeSpan.FromSeconds(1);
+            clone.NextDecay = now + clone.DecayDelay;
             Damage(uid, "Poison", 1f);
             Damage(uid, "Asphyxiation", 1f);
             Damage(uid, "Blunt", 1f);

@@ -95,6 +95,10 @@ public sealed partial class SlimeCrossbreedSystem : EntitySystem
     private static readonly ProtoId<ReagentPrototype> Plasma = "Plasma";
     private static readonly EntProtoId SmokeProto = "Smoke";
 
+    private const float ScatterChance = 0.5f;
+    private const float ChemSmokeDuration = 15f;
+    private const float HotspotRange = 0.5f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -153,7 +157,7 @@ public sealed partial class SlimeCrossbreedSystem : EntitySystem
 
     private EntityCoordinates Scatter(EntityCoordinates coords, int maxSteps = 3)
     {
-        if (!_random.Prob(0.5f))
+        if (!_random.Prob(ScatterChance))
             return coords;
         return coords.Offset(_random.NextAngle().ToVec() * _random.Next(1, maxSteps + 1) * 0.5f);
     }
@@ -196,7 +200,7 @@ public sealed partial class SlimeCrossbreedSystem : EntitySystem
         var solution = new Solution();
         solution.AddReagent(reagent, FixedPoint2.New(amount));
         var smoke = Spawn(SmokeProto, coords.SnapToGrid(EntityManager, null));
-        _smoke.StartSmoke(smoke, solution, 15f, range * range);
+        _smoke.StartSmoke(smoke, solution, ChemSmokeDuration, range * range);
     }
 
     /// <summary>atmos_spawn_air().</summary>
@@ -220,7 +224,7 @@ public sealed partial class SlimeCrossbreedSystem : EntitySystem
             _atmos.HotspotExpose(grid, tile, 700f, 50f);
         }
 
-        foreach (var mob in _lookup.GetEntitiesInRange<Content.Shared.Atmos.Components.FlammableComponent>(coords, 0.5f))
+        foreach (var mob in _lookup.GetEntitiesInRange<Content.Shared.Atmos.Components.FlammableComponent>(coords, HotspotRange))
         {
             _flammable.AdjustFireStacks(mob, 1f, mob.Comp, ignite: true);
         }

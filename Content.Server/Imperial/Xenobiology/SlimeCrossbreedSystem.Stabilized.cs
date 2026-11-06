@@ -28,6 +28,11 @@ public sealed partial class SlimeCrossbreedSystem
 {
     [Dependency] private readonly QuickDialogSystem _dialog = default!;
 
+    private static readonly EntProtoId MobMonkey = "MobMonkey";
+
+    private const float TickStabilizedBlackAmount = 3f;
+    private const float TickStabilizedBlackAmount2 = 1.2f;
+
 
     private void InitializeStabilized()
     {
@@ -78,7 +83,7 @@ public sealed partial class SlimeCrossbreedSystem
         {
             if (now < stab.NextTick)
                 continue;
-            stab.NextTick = now + TimeSpan.FromSeconds(1);
+            stab.NextTick = now + stab.TickDelay;
 
             var holder = HeldMob(uid);
             if (stab.Holder != holder)
@@ -115,16 +120,16 @@ public sealed partial class SlimeCrossbreedSystem
                 AddEffect(holder, "stab-blue", null);
                 break;
             case "SlimeCerulean":
-            {
-                var proto = MetaData(holder).EntityPrototype?.ID;
-                if (proto != null && HasComp<HumanoidProfileComponent>(holder))
                 {
-                    var clone = Spawn(proto, At(holder));
-                    _meta.SetEntityName(clone, Name(holder));
-                    ent.Comp.Clone = clone;
+                    var proto = MetaData(holder).EntityPrototype?.ID;
+                    if (proto != null && HasComp<HumanoidProfileComponent>(holder))
+                    {
+                        var clone = Spawn(proto, At(holder));
+                        _meta.SetEntityName(clone, Name(holder));
+                        ent.Comp.Clone = clone;
+                    }
+                    break;
                 }
-                break;
-            }
             case "SlimeGreen":
                 PopupUser("slime-cross-stabilized-green-on", holder);
                 ent.Comp.OriginalName = Name(holder);
@@ -203,7 +208,7 @@ public sealed partial class SlimeCrossbreedSystem
         switch (Colour(ent))
         {
             case "SlimeGrey":
-                foreach (var slime in _lookup.GetEntitiesInRange<SlimeComponent>(coords, 1.5f))
+                foreach (var slime in _lookup.GetEntitiesInRange<SlimeComponent>(coords, ent.Comp.TickStabilizedSlimeGreyRange))
                 {
                     if (TryComp<SlimeBrainComponent>(slime, out var brain) && !brain.Friends.Contains(holder))
                     {
@@ -239,7 +244,7 @@ public sealed partial class SlimeCrossbreedSystem
                     {
                         var (stackUid, stack) = _random.Pick(stacks);
                         _stack.SetCount((stackUid, stack), stack.Count + 1);
-                        PopupUser("slime-cross-stabilized-metal", holder, ("extract", ent.Owner), ("stack", (object) stackUid));
+                        PopupUser("slime-cross-stabilized-metal", holder, ("extract", ent.Owner), ("stack", (object)stackUid));
                     }
                 }
                 break;
@@ -259,7 +264,7 @@ public sealed partial class SlimeCrossbreedSystem
                 }
                 break;
             case "SlimeDarkBlue":
-                if (TryComp<FlammableComponent>(holder, out var flammable) && flammable.FireStacks > 0 && _random.Prob(0.8f))
+                if (TryComp<FlammableComponent>(holder, out var flammable) && flammable.FireStacks > 0 && _random.Prob(ent.Comp.TickStabilizedSlimeDarkBlueChance))
                 {
                     _flammable.AdjustFireStacks(holder, -1f, flammable);
                     if (flammable.FireStacks <= 0)
@@ -270,10 +275,10 @@ public sealed partial class SlimeCrossbreedSystem
                 {
                     PopupUser("slime-cross-stabilized-darkblue-cube", holder, ("extract", ent.Owner), ("item", wet));
                     if (_solutions.TryGetSolution(wet, "cube", out var cubeSol, out _))
-                        _solutions.TryAddReagent(cubeSol.Value, "Water", 5);
+                        _solutions.TryAddReagent(cubeSol.Value, "Water", ent.Comp.TickStabilizedSlimeDarkBlueQuantity);
                     else
                     {
-                        Spawn("MobMonkey", At(wet));
+                        Spawn(MobMonkey, At(wet));
                         QueueDel(wet);
                     }
                 }
@@ -282,7 +287,7 @@ public sealed partial class SlimeCrossbreedSystem
                 TickStabilizedBluespace(ent, holder);
                 break;
             case "SlimeSepia":
-                if (_random.Prob(0.5f) && ent.Comp.SepiaMod > -1)
+                if (_random.Prob(ent.Comp.TickStabilizedSlimeSepiaChance) && ent.Comp.SepiaMod > -1)
                 {
                     ent.Comp.SepiaMod--;
                     _speed.SetModifier(holder, "stab-sepia", 1.33f);
@@ -337,7 +342,7 @@ public sealed partial class SlimeCrossbreedSystem
                 if (_mobState.IsDead(holder))
                 {
                     // explosion(1, 2, 4, flame 5)
-                    _explosion.QueueExplosion(_transform.ToMapCoordinates(coords), "Default", 140f, 10f, 30f, holder);
+                    _explosion.QueueExplosion(_transform.ToMapCoordinates(coords), "Default", ent.Comp.TickStabilizedSlimeOilTotalIntensity, ent.Comp.TickStabilizedSlimeOilSlope, ent.Comp.TickStabilizedSlimeOilMaxTileIntensity, holder);
                     QueueDel(ent);
                 }
                 break;
@@ -345,14 +350,14 @@ public sealed partial class SlimeCrossbreedSystem
                 TickStabilizedBlack(holder);
                 break;
             case "SlimeLightPink":
-                foreach (var mob in _lookup.GetEntitiesInRange<HumanoidProfileComponent>(coords, 1.5f))
+                foreach (var mob in _lookup.GetEntitiesInRange<HumanoidProfileComponent>(coords, ent.Comp.TickStabilizedSlimeLightPinkRange))
                 {
                     if (mob.Owner == holder || _mobState.IsDead(mob) || !_mobState.IsCritical(mob))
                         continue;
                     if (HasReagent(mob, "Epinephrine"))
                         continue;
                     PopupUser("slime-cross-stabilized-lightpink", holder, ("extract", ent.Owner), ("target", mob.Owner));
-                    InjectReagent(mob, "Epinephrine", 5f);
+                    InjectReagent(mob, "Epinephrine", ent.Comp.TickStabilizedSlimeLightPinkAmount);
                 }
                 break;
             case "SlimeRainbow":
@@ -417,9 +422,9 @@ public sealed partial class SlimeCrossbreedSystem
         {
             Popup("slime-cross-stabilized-bluespace", holder, ("extract", ent.Owner), ("target", holder));
             _audio.PlayPvs(Sparks, holder);
-            _items.BlinkMob(holder, 15);
+            _items.BlinkMob(holder, ent.Comp.TickStabilizedBluespaceRange);
             PopupUser("slime-cross-stabilized-bluespace-cooldown", holder, ("extract", ent.Owner));
-            ent.Comp.BluespaceCooldown = _timing.CurTime + TimeSpan.FromMinutes(2);
+            ent.Comp.BluespaceCooldown = _timing.CurTime + ent.Comp.BluespaceCooldown2;
         }
 
         ent.Comp.LastHealth = damage;
@@ -442,7 +447,7 @@ public sealed partial class SlimeCrossbreedSystem
             var damage = TryComp<Content.Shared.Damage.Components.DamageableComponent>(mob, out var dmg) ? _damageable.GetTotalDamage((mob, dmg)).Float() : 0f;
             if (damage > lastDamage + 0.01f)
             {
-                ent.Comp.BrokenPeaceUntil = now + TimeSpan.FromMinutes(2);
+                ent.Comp.BrokenPeaceUntil = now + ent.Comp.BrokenPeaceDelay;
                 ent.Comp.PinkTracked[mob] = damage;
             }
 
@@ -453,7 +458,7 @@ public sealed partial class SlimeCrossbreedSystem
             }
         }
 
-        foreach (var mob in _lookup.GetEntitiesInRange<Content.Shared.NPC.Components.NpcFactionMemberComponent>(coords, 7f))
+        foreach (var mob in _lookup.GetEntitiesInRange<Content.Shared.NPC.Components.NpcFactionMemberComponent>(coords, ent.Comp.TickStabilizedPinkRange))
         {
             if (mob.Owner == holder || HasComp<HumanoidProfileComponent>(mob) || ent.Comp.PinkTracked.ContainsKey(mob))
                 continue;
@@ -515,8 +520,8 @@ public sealed partial class SlimeCrossbreedSystem
 
         Heal(holder, 1f, 0f, 0f);
         if (TryComp<HungerComponent>(holder, out var hunger))
-            _hunger.ModifyHunger(holder, 3f, hunger);
-        Damage(drained, "Blunt", 1.2f, holder);
+            _hunger.ModifyHunger(holder, TickStabilizedBlackAmount, hunger);
+        Damage(drained, "Blunt", TickStabilizedBlackAmount2, holder);
     }
 
     private string RandomHumanName(EntityUid holder)

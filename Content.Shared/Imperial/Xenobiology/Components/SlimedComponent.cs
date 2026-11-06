@@ -18,4 +18,7 @@ public sealed partial class SlimedComponent : Component
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan NextTick;
+
+    [DataField]
+    public float RemoveSlimedStacksChance = 0.1f;
 }

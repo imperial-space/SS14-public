@@ -23,7 +23,7 @@ public sealed partial class SlimeGrenadeComponent : Component
 
     /// <summary>det_time гранаты при ручном взведении.</summary>
     [DataField]
-    public float Delay = 5f;
+    public TimeSpan Delay = TimeSpan.FromSeconds(5f);
 
     [ViewVariables]
     public bool Armed;

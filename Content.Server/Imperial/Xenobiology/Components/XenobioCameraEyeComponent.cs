@@ -18,4 +18,7 @@ public sealed partial class XenobioCameraEyeComponent : Component
 
     [ViewVariables]
     public EntityCoordinates LastValid;
+
+    [DataField]
+    public TimeSpan FeedPotionDelay = TimeSpan.FromSeconds(0.3);
 }

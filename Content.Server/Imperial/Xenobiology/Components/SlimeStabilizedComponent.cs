@@ -1,5 +1,6 @@
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Content.Shared.FixedPoint;
 
 namespace Content.Server.Imperial.Xenobiology.Components;
 
@@ -59,4 +60,46 @@ public sealed partial class SlimeStabilizedComponent : Component
 
     [ViewVariables]
     public bool PinkPeaceful;
+
+    [DataField]
+    public TimeSpan BluespaceCooldown2 = TimeSpan.FromMinutes(2);
+
+    [DataField]
+    public TimeSpan BrokenPeaceDelay = TimeSpan.FromMinutes(2);
+
+    [DataField]
+    public TimeSpan TickDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public float TickStabilizedSlimeGreyRange = 1.5f;
+
+    [DataField]
+    public float TickStabilizedSlimeDarkBlueChance = 0.8f;
+
+    [DataField]
+    public FixedPoint2 TickStabilizedSlimeDarkBlueQuantity = 5;
+
+    [DataField]
+    public float TickStabilizedSlimeSepiaChance = 0.5f;
+
+    [DataField]
+    public float TickStabilizedSlimeOilTotalIntensity = 140f;
+
+    [DataField]
+    public float TickStabilizedSlimeOilSlope = 10f;
+
+    [DataField]
+    public float TickStabilizedSlimeOilMaxTileIntensity = 30f;
+
+    [DataField]
+    public float TickStabilizedSlimeLightPinkRange = 1.5f;
+
+    [DataField]
+    public float TickStabilizedSlimeLightPinkAmount = 5f;
+
+    [DataField]
+    public int TickStabilizedBluespaceRange = 15;
+
+    [DataField]
+    public float TickStabilizedPinkRange = 7f;
 }

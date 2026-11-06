@@ -32,6 +32,10 @@ public sealed partial class SlimeSystem
 
     private static readonly ProtoId<LocalizedDatasetPrototype> StayCommandsDataset = "ImperialSlimeSystemAiStayCommands";
 
+    private const float UpdateAiChance = 0.05f;
+    private const float UpdateAiChance2 = 0.01f;
+    private const float TargetCaughtChance = 0.2f;
+
     private static string[] StayCommands => ImperialLocalizedLists.Get(StayCommandsDataset);
     private static readonly ProtoId<LocalizedDatasetPrototype> FreeCommandsDataset = "ImperialSlimeSystemAiFreeCommands";
 
@@ -104,7 +108,7 @@ public sealed partial class SlimeSystem
         var player = HasComp<ActorComponent>(ent);
 
         // change_slime_face: 5% в секунду.
-        if (!player && _random.Prob(0.05f))
+        if (!player && _random.Prob(UpdateAiChance))
             ChangeFace(ent, brain);
 
         if (player)
@@ -120,7 +124,7 @@ public sealed partial class SlimeSystem
             return;
 
         // random_speech: 1% в секунду.
-        if (_random.Prob(0.01f))
+        if (_random.Prob(UpdateAiChance2))
             RandomChatter(ent);
 
         if (brain.FeedingOn != null)
@@ -224,7 +228,7 @@ public sealed partial class SlimeSystem
             return;
 
         // Лежит или повезло (20%) — кормимся.
-        if (_standing.IsDown(hunted) || _random.Prob(0.2f))
+        if (_standing.IsDown(hunted) || _random.Prob(TargetCaughtChance))
         {
             StartFeeding(ent, hunted);
             return;
@@ -263,7 +267,7 @@ public sealed partial class SlimeSystem
     /// <summary>random_speech/slime.</summary>
     private void RandomChatter(Entity<SlimeComponent> ent)
     {
-        if (_random.Prob(0.5f))
+        if (_random.Prob(ent.Comp.RandomChatterChance))
             _chat.TrySendInGameICMessage(ent, Loc.GetString(_random.Pick(RandomSpeech)), InGameICChatType.Speak, hideChat: false);
         else
             _chat.TrySendInGameICMessage(ent, Loc.GetString(_random.Pick(RandomEmotes)), InGameICChatType.Emote, hideChat: false);
@@ -303,7 +307,7 @@ public sealed partial class SlimeSystem
         else if (AttackCommands.Any(text.Contains))
         {
             brain.AttackCommander = args.Source;
-            brain.AttackCommandUntil = _timing.CurTime + TimeSpan.FromSeconds(10);
+            brain.AttackCommandUntil = _timing.CurTime + ent.Comp.AttackCommandDelay;
             Respond(ent, "slime-command-attack");
         }
         else

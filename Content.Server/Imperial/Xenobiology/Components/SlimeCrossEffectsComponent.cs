@@ -24,4 +24,19 @@ public sealed partial class SlimeCrossEffectsComponent : Component
     /// <summary>Нескользящие ботинки выданы эффектами.</summary>
     [ViewVariables]
     public bool GaveNoSlip;
+
+    [DataField]
+    public TimeSpan TickEffectsDuration = TimeSpan.FromSeconds(3);
+
+    [DataField]
+    public TimeSpan TickDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public float TickEffectsRange = 1.5f;
+
+    [DataField]
+    public float TickEffectsChance = 0.5f;
+
+    [DataField]
+    public float TickEffectsAmount = 2f;
 }

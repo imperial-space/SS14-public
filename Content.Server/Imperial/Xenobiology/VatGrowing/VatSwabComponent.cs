@@ -34,4 +34,7 @@ public sealed partial class VatSwabComponent : Component
 
     [ViewVariables]
     public VatSample? Sample;
+
+    [DataField]
+    public TimeSpan SwabInteractDelay = TimeSpan.FromSeconds(3);
 }

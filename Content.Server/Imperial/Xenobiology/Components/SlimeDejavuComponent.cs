@@ -18,4 +18,7 @@ public sealed partial class SlimeDejavuComponent : Component
 
     [ViewVariables]
     public int Rewinds = 1;
+
+    [DataField]
+    public TimeSpan RewindDelay = TimeSpan.FromSeconds(10);
 }

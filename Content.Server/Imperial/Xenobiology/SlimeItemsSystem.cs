@@ -66,6 +66,8 @@ public sealed class SlimeItemsSystem : EntitySystem
     private List<EntProtoId>? _extracts;
     private TimeSpan _nextFloorCheck;
 
+    private static readonly TimeSpan FloorCheckDelay = TimeSpan.FromSeconds(0.25);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -90,7 +92,7 @@ public sealed class SlimeItemsSystem : EntitySystem
         if (args.Handled || ent.Comp.Armed)
             return;
         args.Handled = true;
-        Arm(ent, TimeSpan.FromSeconds(ent.Comp.Delay));
+        Arm(ent, ent.Comp.Delay);
         _popup.PopupEntity(Loc.GetString("slime-grenade-armed", ("grenade", ent.Owner)), args.User, args.User);
     }
 
@@ -251,7 +253,7 @@ public sealed class SlimeItemsSystem : EntitySystem
 
             if (now < stop.NextTick)
                 continue;
-            stop.NextTick = now + TimeSpan.FromSeconds(0.1);
+            stop.NextTick = now + stop.TickDelay;
 
             var remaining = stop.End - now;
             var coords = _transform.GetMapCoordinates(uid);
@@ -333,7 +335,7 @@ public sealed class SlimeItemsSystem : EntitySystem
 
         if (now >= _nextFloorCheck)
         {
-            _nextFloorCheck = now + TimeSpan.FromSeconds(0.25);
+            _nextFloorCheck = now + FloorCheckDelay;
             UpdateFloors();
         }
     }

@@ -79,6 +79,12 @@ public sealed class SlimeExtractSystem : EntitySystem
     private List<EntProtoId>? _drinks;
     private List<EntProtoId>? _crayons;
 
+    private static readonly TimeSpan BorkFlashDurationDelay = TimeSpan.FromSeconds(2);
+
+    private const float BloodlustRange = 7f;
+    private const float BorkRange = 7f;
+    private const float BorkChance = 0.5f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -272,7 +278,7 @@ public sealed class SlimeExtractSystem : EntitySystem
             var delay = TimeSpan.FromSeconds(reaction.Delay);
             Schedule(delay, () => DelayedEffect(ent, reaction, createdVolume));
             if (!reaction.DeletesExtract)
-                ent.Comp.DeleteAt = _timing.CurTime + TimeSpan.FromSeconds(5.5);
+                ent.Comp.DeleteAt = _timing.CurTime + ent.Comp.DeleteDelay;
             return;
         }
 
@@ -312,7 +318,7 @@ public sealed class SlimeExtractSystem : EntitySystem
                 }
                 else
                 {
-                    var stage = _random.Prob(0.5f) ? SlimeLifeStage.Adult : SlimeLifeStage.Baby;
+                    var stage = _random.Prob(ent.Comp.EffectRandomSlimeOrBombChance) ? SlimeLifeStage.Adult : SlimeLifeStage.Baby;
                     var random = _slime.SpawnSlime(coords, _slime.RandomSlimeType(), stage);
                     _popup.PopupEntity(Loc.GetString("slime-reaction-spawn"), random, PopupType.MediumCaution);
                 }
@@ -337,12 +343,12 @@ public sealed class SlimeExtractSystem : EntitySystem
 
             case SlimeReactionEffect.Emp:
                 // empulse(turf, 3, 5): лёгкий радиус 5.
-                _emp.EmpPulse(map, 5f, 50000f, TimeSpan.FromSeconds(60));
+                _emp.EmpPulse(map, ent.Comp.EffectEmpRange, ent.Comp.EffectEmpEnergyConsumption, ent.Comp.EffectEmpDuration);
                 break;
 
             case SlimeReactionEffect.Explosion:
                 // explosion(1, 2, 4)
-                _explosion.QueueExplosion(map, "Default", 140f, 10f, 30f, ent.Comp.LastHolder);
+                _explosion.QueueExplosion(map, "Default", ent.Comp.EffectExplosionTotalIntensity, ent.Comp.EffectExplosionSlope, ent.Comp.EffectExplosionMaxTileIntensity, ent.Comp.LastHolder);
                 break;
 
             case SlimeReactionEffect.Bloodlust:
@@ -399,7 +405,7 @@ public sealed class SlimeExtractSystem : EntitySystem
         }
 
         var foam = Spawn(FoamEffect, coords.SnapToGrid(EntityManager));
-        _smoke.StartSmoke(foam, solution, 20f, 80);
+        _smoke.StartSmoke(foam, solution, (float)ent.Comp.FoamDuration.TotalSeconds, 80);
         _popup.PopupCoordinates(Loc.GetString("slime-reaction-foam", ("extract", ent.Owner)), coords, PopupType.Medium);
     }
 
@@ -417,7 +423,7 @@ public sealed class SlimeExtractSystem : EntitySystem
     /// <summary>slimebloodlust: дрессированные слаймы дичают, остальные звереют.</summary>
     private void Bloodlust(EntityCoordinates coords)
     {
-        foreach (var (uid, slime) in _lookup.GetEntitiesInRange<SlimeComponent>(coords, 7f))
+        foreach (var (uid, slime) in _lookup.GetEntitiesInRange<SlimeComponent>(coords, BloodlustRange))
         {
             if (_mobState.IsDead(uid))
                 continue;
@@ -458,13 +464,13 @@ public sealed class SlimeExtractSystem : EntitySystem
 
         _audio.PlayPvs(PhaseIn, coords);
         var flasher = Spawn(null, coords);
-        _flash.FlashArea(flasher, null, 7f, TimeSpan.FromSeconds(2));
+        _flash.FlashArea(flasher, null, BorkRange, BorkFlashDurationDelay);
         QueueDel(flasher);
 
         var count = 4 + _random.Next(1, 3);
         for (var i = 0; i < count; i++)
         {
-            var offset = _random.Prob(0.5f)
+            var offset = _random.Prob(BorkChance)
                 ? new System.Numerics.Vector2(_random.Next(-3, 4), _random.Next(-3, 4)) * 0.5f
                 : System.Numerics.Vector2.Zero;
             Spawn(_random.Pick(pool), coords.Offset(offset));

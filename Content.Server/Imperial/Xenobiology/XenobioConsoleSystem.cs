@@ -61,6 +61,11 @@ public sealed class XenobioConsoleSystem : EntitySystem
     private static readonly SoundSpecifier Juicer = new SoundPathSpecifier("/Audio/Machines/juicer.ogg");
     private static readonly SoundSpecifier Hiss = new SoundPathSpecifier("/Audio/Imperial/Xenobiology/hiss.ogg");
 
+    private static readonly TimeSpan SuckUpDelay = TimeSpan.FromSeconds(0.1);
+    private static readonly TimeSpan SpitOutDelay = TimeSpan.FromSeconds(0.1);
+
+    private const float TileRange = 0.5f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -265,7 +270,7 @@ public sealed class XenobioConsoleSystem : EntitySystem
 
     private IEnumerable<EntityUid> OnTile<T>(EntityCoordinates coords) where T : IComponent
     {
-        return _lookup.GetEntitiesInRange<T>(coords, 0.5f).Select(e => e.Owner);
+        return _lookup.GetEntitiesInRange<T>(coords, TileRange).Select(e => e.Owner);
     }
 
     private void OnCameraOff(Entity<XenobioCameraEyeComponent> ent, ref XenobioCameraOffEvent args)
@@ -464,7 +469,7 @@ public sealed class XenobioConsoleSystem : EntitySystem
         // spit_atom(): зелье вылетает и разбивается о слайма.
         _container.Remove(potion, slot, destination: coords);
         SpitOut(coords);
-        _schedule.Schedule(TimeSpan.FromSeconds(0.3), () =>
+        _schedule.Schedule(ent.Comp.FeedPotionDelay, () =>
         {
             if (!TerminatingOrDeleted(potion))
                 _audio.PlayPvs(Shatter, coords);
@@ -485,14 +490,14 @@ public sealed class XenobioConsoleSystem : EntitySystem
     {
         var coords = _transform.GetMoverCoordinates(target);
         Spawn(SuctionEffect, coords);
-        _schedule.Schedule(TimeSpan.FromSeconds(0.1), () => _audio.PlayPvs(AirSuck, coords));
+        _schedule.Schedule(SuckUpDelay, () => _audio.PlayPvs(AirSuck, coords));
     }
 
     /// <summary>spit_out().</summary>
     private void SpitOut(EntityCoordinates coords)
     {
         Spawn(SuctionEffect, coords);
-        _schedule.Schedule(TimeSpan.FromSeconds(0.1), () => _audio.PlayPvs(AirShoot, coords));
+        _schedule.Schedule(SpitOutDelay, () => _audio.PlayPvs(AirShoot, coords));
     }
 
     private void SendScan(EntityUid viewer, Entity<SlimeComponent> slime)
@@ -648,11 +653,11 @@ public sealed class XenobioConsoleSystem : EntitySystem
 
             if (now < processor.NextPickup)
                 continue;
-            processor.NextPickup = now + TimeSpan.FromSeconds(1);
+            processor.NextPickup = now + processor.PickupDelay;
 
             var picked = 0;
             var picked1 = new List<EntityUid>();
-            foreach (var slime in _lookup.GetEntitiesInRange<SlimeComponent>(_transform.GetMapCoordinates(uid), 1.2f))
+            foreach (var slime in _lookup.GetEntitiesInRange<SlimeComponent>(_transform.GetMapCoordinates(uid), processor.UpdateProcessorsRange))
             {
                 if (!_mobState.IsDead(slime) || _container.IsEntityInContainer(slime))
                     continue;

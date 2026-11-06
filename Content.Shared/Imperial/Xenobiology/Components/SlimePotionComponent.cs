@@ -21,4 +21,7 @@ public sealed partial class SlimePotionComponent : Component
     /// <summary>being_used / prompted.</summary>
     [ViewVariables]
     public bool InUse;
+
+    [DataField]
+    public TimeSpan GenderChangeDelay = TimeSpan.FromSeconds(5);
 }

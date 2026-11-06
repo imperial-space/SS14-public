@@ -15,4 +15,7 @@ public sealed partial class SlimeCrossMobSpawnerComponent : Component
 
     [ViewVariables]
     public TimeSpan NextSpawn;
+
+    [DataField]
+    public TimeSpan SpawnDelay = TimeSpan.FromSeconds(2);
 }

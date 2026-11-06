@@ -30,4 +30,10 @@ public sealed partial class SlimeProcessorComponent : Component
 
     [ViewVariables]
     public TimeSpan NextPickup;
+
+    [DataField]
+    public TimeSpan PickupDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public float UpdateProcessorsRange = 1.2f;
 }

@@ -13,4 +13,7 @@ public sealed partial class SlimePrismaticComponent : Component
     /// <summary>prismatic/grey смывает краску.</summary>
     [DataField]
     public bool Remover;
+
+    [DataField]
+    public float PrismaticInteractDistance = 0.5f;
 }

@@ -14,6 +14,8 @@ using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Xenobiology;
 
@@ -34,6 +36,13 @@ public sealed partial class SlimeSystem
     {
         "slime-pain-1", "slime-pain-2", "slime-pain-3", "slime-pain-4", "slime-pain-5", "slime-pain-6", "slime-pain-7",
     };
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> PoisonDamageType = "Poison";
+
+    private static readonly ProtoId<DamageTypePrototype> CausticDamageType = "Caustic";
+
+    private const float VictimDrainedChance = 0.6f;
 
     private void InitializeFeeding()
     {
@@ -56,7 +65,7 @@ public sealed partial class SlimeSystem
             error = "slime-feed-not-hungry";
         else if (checkFriendship && TryComp<SlimeBrainComponent>(ent, out var brain) && brain.Friends.Contains(meal))
             return false;
-        else if (checkAdjacent && !_transform.InRange(_transform.GetMoverCoordinates(ent), _transform.GetMoverCoordinates(meal), 1.5f))
+        else if (checkAdjacent && !_transform.InRange(_transform.GetMoverCoordinates(ent), _transform.GetMoverCoordinates(meal), ent.Comp.CanFeedOnRange))
             return false;
         else if (_mobState.IsDead(meal))
             error = "slime-feed-no-energy";
@@ -131,7 +140,7 @@ public sealed partial class SlimeSystem
     /// <summary>Защита от биологических угроз (getarmor BIO): по сопротивлению ядам одежды.</summary>
     private float BioProtection(EntityUid uid)
     {
-        var ev = new Content.Shared.Damage.Systems.DamageModifyEvent(new Content.Shared.Damage.DamageSpecifier { DamageDict = { ["Caustic"] = 100 } });
+        var ev = new Content.Shared.Damage.Systems.DamageModifyEvent(new Content.Shared.Damage.DamageSpecifier { DamageDict = { [CausticDamageType] = 100 } });
         RaiseLocalEvent(uid, ev);
         var left = ev.Damage.GetTotal().Float();
         return Math.Clamp(1f - left / 100f, 0f, 1f);
@@ -168,8 +177,8 @@ public sealed partial class SlimeSystem
         var brute = _random.Next(2, 5) * 0.5f * LeechInterval;
         var tox = _random.Next(1, 3) * 0.5f * LeechInterval;
         var spec = new Content.Shared.Damage.DamageSpecifier();
-        spec.DamageDict["Blunt"] = brute;
-        spec.DamageDict["Poison"] = tox;
+        spec.DamageDict[BluntDamageType] = brute;
+        spec.DamageDict[PoisonDamageType] = tox;
         if (!_damageable.TryChangeDamage(victim, spec, out var dealt, origin: ent))
         {
             _popup.PopupEntity(Loc.GetString("slime-feed-not-food"), ent, ent);
@@ -203,7 +212,7 @@ public sealed partial class SlimeSystem
             RemComp<SlimeFoodComponent>(victim);
         }
 
-        if (_random.Prob(0.6f) && HasComp<HumanoidProfileComponent>(victim) && HasComp<ActorComponent>(victim) && !ent.Comp.Rabid)
+        if (_random.Prob(VictimDrainedChance) && HasComp<HumanoidProfileComponent>(victim) && HasComp<ActorComponent>(victim) && !ent.Comp.Rabid)
             SetRabid(ent, true);
 
         StopFeeding(ent, brain);
@@ -265,7 +274,7 @@ public sealed partial class SlimeSystem
             return;
         }
 
-        if (_random.Prob(0.1f))
+        if (_random.Prob(ent.Comp.RemoveSlimedStacksChance))
             _popup.PopupEntity(Loc.GetString("slimed-thinner"), ent, ent);
         Dirty(ent);
     }

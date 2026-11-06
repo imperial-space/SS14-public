@@ -31,6 +31,9 @@ public sealed partial class SlimeSystem
     private static readonly SoundSpecifier Shove = new SoundPathSpecifier("/Audio/Effects/thudswoosh.ogg");
     private static readonly SoundSpecifier Sparks = new SoundCollectionSpecifier("sparks");
 
+    private const float DisciplineChance = 0.8f;
+    private const float DisciplineChance2 = 0.1f;
+
     private void InitializeCombat()
     {
         SubscribeLocalEvent<SlimeComponent, MeleeHitEvent>(OnSlimeMeleeHit);
@@ -103,7 +106,7 @@ public sealed partial class SlimeSystem
         _audio.PlayPvs(Sparks, target);
 
         var power = ent.Comp.PowerLevel + _random.Next(0, 4);
-        _stun.TryUpdateParalyzeDuration(target, TimeSpan.FromSeconds(2));
+        _stun.TryUpdateParalyzeDuration(target, ent.Comp.ShockCarbonDuration);
         _stun.TryKnockdown(target, TimeSpan.FromSeconds(power * 2));
         _stutter.DoStutter(target, TimeSpan.FromSeconds(power * 2), refresh: false);
 
@@ -163,7 +166,7 @@ public sealed partial class SlimeSystem
 
         args.Handled = true;
         var self = victim == args.User;
-        if (self ? _random.Prob(0.6f) : _random.Prob(0.3f))
+        if (self ? _random.Prob(ent.Comp.InteractHandChance) : _random.Prob(ent.Comp.InteractHandChance2))
         {
             _popup.PopupEntity(Loc.GetString(self ? "slime-wrestle-fail-self" : "slime-wrestle-fail", ("user", args.User), ("slime", ent.Owner), ("victim", victim)), ent, PopupType.Medium);
             _audio.PlayPvs(PunchMiss, ent);
@@ -187,7 +190,7 @@ public sealed partial class SlimeSystem
             return;
 
         // check_item_passthrough(): 25% — предмет проходит насквозь.
-        if (_random.Prob(0.25f))
+        if (_random.Prob(ent.Comp.AttackedChance))
         {
             args.BonusDamage -= damage;
             _popup.PopupEntity(Loc.GetString("slime-passthrough", ("item", args.Used), ("slime", ent.Owner)), ent, args.User, PopupType.MediumCaution);
@@ -296,13 +299,13 @@ public sealed partial class SlimeSystem
     public void Discipline(Entity<SlimeComponent> ent, SlimeBrainComponent brain)
     {
         StopFeeding(ent, brain, silent: true);
-        if (ent.Comp.Stage == SlimeLifeStage.Baby && _random.Prob(0.8f))
+        if (ent.Comp.Stage == SlimeLifeStage.Baby && _random.Prob(DisciplineChance))
         {
             brain.Target = null;
             brain.HuntTarget = null;
         }
 
-        if (_random.Prob(0.1f))
+        if (_random.Prob(DisciplineChance2))
             SetRabid(ent, false);
     }
 }

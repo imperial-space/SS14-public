@@ -15,4 +15,7 @@ public sealed partial class SlimeCloneComponent : Component
 
     [ViewVariables]
     public TimeSpan NextDecay;
+
+    [DataField]
+    public TimeSpan DecayDelay = TimeSpan.FromSeconds(1);
 }

@@ -30,6 +30,8 @@ using Content.Shared.Verbs;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Humanoid.Prototypes;
 
 namespace Content.Server.Imperial.Xenobiology;
 
@@ -45,6 +47,12 @@ public sealed partial class SlimeCrossbreedSystem
     private static readonly ProtoId<TagPrototype> MonkeyCubeTag = "MonkeyCube";
     private static readonly ProtoId<DecalPrototype> PaintDecal = "FullTileOverlayGreyscale";
     private static readonly string[] Coins = { "TreasureCoinGold", "TreasureCoinSilver", "TreasureCoinIron", "TreasureCoinDiamond", "TreasureCoinAdamantine" };
+
+    private static readonly EntProtoId ClosetSteelBase = "ClosetSteelBase";
+    private static readonly EntProtoId SlimeCrossRegenerativeGrey = "SlimeCrossRegenerativeGrey";
+    private static readonly ProtoId<SpeciesPrototype> SlimePersonSpecies = "SlimePerson";
+    private static readonly ProtoId<ReagentPrototype> NutrimentReagent = "Nutriment";
+    private static readonly EntProtoId TreasureCoinGold = "TreasureCoinGold";
 
     private void InitializePassive()
     {
@@ -87,7 +95,7 @@ public sealed partial class SlimeCrossbreedSystem
         {
             if (now < industrial.NextTick)
                 continue;
-            industrial.NextTick = now + TimeSpan.FromSeconds(2);
+            industrial.NextTick = now + industrial.TickDelay;
 
             var working = false;
             if (_solutions.TryGetSolution(uid, industrial.Solution, out var solutionEnt, out var solution))
@@ -95,7 +103,7 @@ public sealed partial class SlimeCrossbreedSystem
                 var plasma = solution.GetTotalPrototypeQuantity(Plasma);
                 if (plasma >= 2 && industrial.PlasmaRequired > 1)
                 {
-                    _solutions.RemoveReagent(solutionEnt.Value, Plasma, 2);
+                    _solutions.RemoveReagent(solutionEnt.Value, Plasma, industrial.UpdateIndustrialQuantity);
                     industrial.Absorbed += 2;
                     working = true;
                 }
@@ -142,19 +150,19 @@ public sealed partial class SlimeCrossbreedSystem
         switch (industrial.RandomPool)
         {
             case "foodordrink":
-            {
-                var pool = _random.Prob(0.5f) ? _extract.Foods() : _extract.Drinks();
-                return pool.Count > 0 ? _random.Pick(pool) : (EntProtoId?) null;
-            }
+                {
+                    var pool = _random.Prob(industrial.IndustrialProductFoodordrinkChance) ? _extract.Foods() : _extract.Drinks();
+                    return pool.Count > 0 ? _random.Pick(pool) : (EntProtoId?)null;
+                }
             case "coin":
                 return _random.Pick(Coins);
             case "extract":
-            {
-                var extracts = _proto.EnumeratePrototypes<EntityPrototype>()
-                    .Where(p => !p.Abstract && p.ID.StartsWith("SlimeExtract") && p.HasComponent<SlimeExtractComponent>(EntityManager.ComponentFactory))
-                    .Select(p => p.ID).ToList();
-                return extracts.Count > 0 ? new EntProtoId(_random.Pick(extracts)) : (EntProtoId?) null;
-            }
+                {
+                    var extracts = _proto.EnumeratePrototypes<EntityPrototype>()
+                        .Where(p => !p.Abstract && p.ID.StartsWith("SlimeExtract") && p.HasComponent<SlimeExtractComponent>(EntityManager.ComponentFactory))
+                        .Select(p => p.ID).ToList();
+                    return extracts.Count > 0 ? new EntProtoId(_random.Pick(extracts)) : (EntProtoId?)null;
+                }
             default:
                 return industrial.Item;
         }
@@ -345,7 +353,7 @@ public sealed partial class SlimeCrossbreedSystem
 
         args.Handled = true;
         var decalCoords = coords.Offset(new System.Numerics.Vector2(-0.5f, -0.5f));
-        foreach (var (id, decal) in _decals.GetDecalsInRange(grid, _transform.ToMapCoordinates(coords).Position, 0.5f).ToList())
+        foreach (var (id, decal) in _decals.GetDecalsInRange(grid, _transform.ToMapCoordinates(coords).Position, ent.Comp.PrismaticInteractDistance).ToList())
         {
             if (decal.Id == PaintDecal.Id)
                 _decals.RemoveDecal(grid, id);
@@ -424,56 +432,56 @@ public sealed partial class SlimeCrossbreedSystem
         switch (colour)
         {
             case "SlimePurple":
-                InjectReagent(target, "RegenJelly", 10f);
+                InjectReagent(target, "RegenJelly", ent.Comp.RegenerativeAfterSlimePurpleAmount);
                 break;
             case "SlimeBlue":
-                _puddle.TrySpillAt(coords, new Solution("Water", 15), out _, sound: false);
+                _puddle.TrySpillAt(coords, new Solution("Water", ent.Comp.RegenerativeAfterSlimeBlueQuantity), out _, sound: false);
                 Popup("slime-cross-regenerative-blue", target);
                 break;
             case "SlimeMetal":
-            {
-                Popup("slime-cross-regenerative-metal", target, ("target", target));
-                var closet = Spawn("ClosetSteelBase", coords);
-                _meta.SetEntityName(closet, Loc.GetString("slime-cross-slimy-closet"));
-                if (!_entityStorage.Insert(target, closet))
-                    _entityStorage.OpenStorage(closet);
-                break;
-            }
+                {
+                    Popup("slime-cross-regenerative-metal", target, ("target", target));
+                    var closet = Spawn(ClosetSteelBase, coords);
+                    _meta.SetEntityName(closet, Loc.GetString("slime-cross-slimy-closet"));
+                    if (!_entityStorage.Insert(target, closet))
+                        _entityStorage.OpenStorage(closet);
+                    break;
+                }
             case "SlimeYellow":
                 if (ChargeOneBattery(target, 1f))
                     PopupUser("slime-cross-regenerative-yellow", target);
                 break;
             case "SlimeDarkPurple":
-            {
-                var equipped = false;
-                equipped |= EquipIfEmpty(target, "ClothingShoesColorPurple", "shoes");
-                equipped |= EquipIfEmpty(target, "ClothingUniformJumpsuitColorPurple", "jumpsuit");
-                equipped |= EquipIfEmpty(target, "ClothingHandsGlovesColorPurple", "gloves");
-                equipped |= EquipIfEmpty(target, "ClothingHeadHatPurplesoft", "head");
-                if (equipped)
-                    Popup("slime-cross-regenerative-darkpurple", target);
-                break;
-            }
-            case "SlimeDarkBlue":
-            {
-                var any = false;
-                foreach (var slot in new[] { "outerClothing", "head" })
                 {
-                    if (!_inventory.TryGetSlotEntity(target, slot, out var clothing))
-                        continue;
-                    var potioned = EnsureComp<SlimePotionedComponent>(clothing.Value);
-                    if (!potioned.Fireproof)
-                    {
-                        potioned.Fireproof = true;
-                        Dirty(clothing.Value, potioned);
-                        _meta.SetEntityName(clothing.Value, Loc.GetString("slime-potion-fireproofed-name", ("name", Name(clothing.Value))));
-                    }
-                    any = true;
+                    var equipped = false;
+                    equipped |= EquipIfEmpty(target, "ClothingShoesColorPurple", "shoes");
+                    equipped |= EquipIfEmpty(target, "ClothingUniformJumpsuitColorPurple", "jumpsuit");
+                    equipped |= EquipIfEmpty(target, "ClothingHandsGlovesColorPurple", "gloves");
+                    equipped |= EquipIfEmpty(target, "ClothingHeadHatPurplesoft", "head");
+                    if (equipped)
+                        Popup("slime-cross-regenerative-darkpurple", target);
+                    break;
                 }
-                if (any)
-                    Popup("slime-cross-regenerative-darkblue", target, ("target", target));
-                break;
-            }
+            case "SlimeDarkBlue":
+                {
+                    var any = false;
+                    foreach (var slot in new[] { "outerClothing", "head" })
+                    {
+                        if (!_inventory.TryGetSlotEntity(target, slot, out var clothing))
+                            continue;
+                        var potioned = EnsureComp<SlimePotionedComponent>(clothing.Value);
+                        if (!potioned.Fireproof)
+                        {
+                            potioned.Fireproof = true;
+                            Dirty(clothing.Value, potioned);
+                            _meta.SetEntityName(clothing.Value, Loc.GetString("slime-potion-fireproofed-name", ("name", Name(clothing.Value))));
+                        }
+                        any = true;
+                    }
+                    if (any)
+                        Popup("slime-cross-regenerative-darkblue", target, ("target", target));
+                    break;
+                }
             case "SlimeSilver":
                 if (TryComp<HungerComponent>(target, out var hunger))
                     _hunger.SetHunger(target, hunger.Thresholds[Content.Shared.Nutrition.Components.HungerThreshold.Overfed] - 1f, hunger);
@@ -489,20 +497,20 @@ public sealed partial class SlimeCrossbreedSystem
                 }
                 break;
             case "SlimeCerulean":
-            {
-                var copy = Spawn("SlimeCrossRegenerativeGrey", At(user));
-                _meta.SetEntityName(copy, Name(ent));
-                _hands.TryPickupAnyHand(user, copy);
-                PopupUser("slime-cross-regenerative-cerulean", user);
-                break;
-            }
+                {
+                    var copy = Spawn(SlimeCrossRegenerativeGrey, At(user));
+                    _meta.SetEntityName(copy, Name(ent));
+                    _hands.TryPickupAnyHand(user, copy);
+                    PopupUser("slime-cross-regenerative-cerulean", user);
+                    break;
+                }
             case "SlimePyrite":
                 Popup("slime-cross-regenerative-pyrite", target, ("target", target));
                 SetTint(target, "pyrite", new Color(_random.NextFloat(), _random.NextFloat(), _random.NextFloat()));
                 break;
             case "SlimeRed":
                 PopupUser("slime-cross-regenerative-red", target);
-                InjectReagent(target, "Ephedrine", 3f);
+                InjectReagent(target, "Ephedrine", ent.Comp.RegenerativeAfterSlimeRedAmount);
                 break;
             case "SlimeGreen":
                 if (TryComp<SlimeComponent>(target, out var slime))
@@ -510,23 +518,23 @@ public sealed partial class SlimeCrossbreedSystem
                     Popup("slime-cross-regenerative-green", target, ("target", target));
                     _slime.SetSlimeType((target, slime), _slime.RandomSlimeType());
                 }
-                else if (TryComp<HumanoidProfileComponent>(target, out var profile) && profile.Species == "SlimePerson")
+                else if (TryComp<HumanoidProfileComponent>(target, out var profile) && profile.Species == SlimePersonSpecies)
                 {
-                    InjectReagent(target, "MutationToxinJelly", 5f);
+                    InjectReagent(target, "MutationToxinJelly", ent.Comp.RegenerativeAfterSlimeGreenAmount);
                 }
                 break;
             case "SlimePink":
                 PopupUser("slime-cross-regenerative-pink", target);
-                InjectReagent(target, "SpaceDrugs", 4f);
+                InjectReagent(target, "SpaceDrugs", ent.Comp.RegenerativeAfterSlimePinkAmount);
                 break;
             case "SlimeGold":
-            {
-                var coin = Spawn(_random.Pick(Coins), coords);
-                _hands.TryPickupAnyHand(target, coin);
-                break;
-            }
+                {
+                    var coin = Spawn(_random.Pick(Coins), coords);
+                    _hands.TryPickupAnyHand(target, coin);
+                    break;
+                }
             case "SlimeOil":
-                _flash.FlashArea(user, user, 7f, TimeSpan.FromSeconds(4));
+                _flash.FlashArea(user, user, ent.Comp.RegenerativeAfterSlimeOilRange, ent.Comp.RegenerativeAfterSlimeOilFlashDurationDelay);
                 break;
             case "SlimeLightPink":
                 if (target != user)
@@ -537,11 +545,11 @@ public sealed partial class SlimeCrossbreedSystem
                 break;
             case "SlimeAdamantine":
                 Popup("slime-cross-slimeskin-on", target, ("target", target));
-                AddEffect(target, "slimeskin", TimeSpan.FromSeconds(30));
+                AddEffect(target, "slimeskin", ent.Comp.RegenerativeAfterSlimeAdamantineDuration);
                 break;
             case "SlimeRainbow":
                 Popup("slime-cross-rainbow-on", target, ("target", target));
-                AddEffect(target, "rainbow", TimeSpan.FromSeconds(10));
+                AddEffect(target, "rainbow", ent.Comp.RegenerativeAfterSlimeRainbowDuration);
                 break;
         }
     }
@@ -623,7 +631,7 @@ public sealed partial class SlimeCrossbreedSystem
 
         var nutriment = 0f;
         if (_solutions.TryGetSolution(args.Used, "food", out _, out var food))
-            nutriment = food.GetTotalPrototypeQuantity("Nutriment").Float();
+            nutriment = food.GetTotalPrototypeQuantity(NutrimentReagent).Float();
 
         if (nutriment <= 0f)
         {
@@ -707,7 +715,7 @@ public sealed partial class SlimeCrossbreedSystem
         }
 
         Popup("slime-cookie-force", target, ("user", args.User), ("target", target), ("cookie", ent.Owner));
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(2), new SlimeCookieFeedDoAfterEvent(), ent, target, ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.CookieInteractDelay, new SlimeCookieFeedDoAfterEvent(), ent, target, ent)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -745,7 +753,7 @@ public sealed partial class SlimeCrossbreedSystem
         switch (ent.Comp.Effect)
         {
             case "SlimeOrange":
-                AddEffect(eater, "fire", TimeSpan.FromSeconds(10));
+                AddEffect(eater, "fire", ent.Comp.CookieEffectSlimeOrangeDuration);
                 if (TryComp<Content.Shared.Temperature.Components.TemperatureComponent>(eater, out var heat))
                     _temperature.ForceChangeTemperature(eater, heat.CurrentTemperature + 110f, heat);
                 break;
@@ -753,16 +761,16 @@ public sealed partial class SlimeCrossbreedSystem
                 Heal(eater, 5f, 5f, 5f, 5f);
                 break;
             case "SlimeBlue":
-                AddEffect(eater, "water", TimeSpan.FromSeconds(10));
+                AddEffect(eater, "water", ent.Comp.CookieEffectSlimeBlueDuration);
                 break;
             case "SlimeMetal":
-                AddEffect(eater, "metal", TimeSpan.FromSeconds(10));
+                AddEffect(eater, "metal", ent.Comp.CookieEffectSlimeMetalDuration);
                 break;
             case "SlimeYellow":
-                AddEffect(eater, "spark", TimeSpan.FromSeconds(30));
+                AddEffect(eater, "spark", ent.Comp.CookieEffectSlimeYellowDuration);
                 break;
             case "SlimeDarkPurple":
-                AddEffect(eater, "toxinlover", TimeSpan.FromMinutes(1));
+                AddEffect(eater, "toxinlover", ent.Comp.CookieEffectSlimeDarkPurpleDuration);
                 break;
             case "SlimeDarkBlue":
                 if (TryComp<Content.Shared.Temperature.Components.TemperatureComponent>(eater, out var cold))
@@ -770,16 +778,16 @@ public sealed partial class SlimeCrossbreedSystem
                 _flammable.Extinguish(eater);
                 break;
             case "SlimeSilver":
-                InjectReagent(eater, "Nutriment", 10f);
+                InjectReagent(eater, "Nutriment", ent.Comp.CookieEffectSlimeSilverAmount);
                 break;
             case "SlimeBluespace":
-                _items.BlinkMob(eater, 10);
+                _items.BlinkMob(eater, ent.Comp.CookieEffectSlimeBluespaceRange);
                 break;
             case "SlimeSepia":
-                AddEffect(eater, "time", TimeSpan.FromMinutes(1));
+                AddEffect(eater, "time", ent.Comp.CookieEffectSlimeSepiaDuration);
                 break;
             case "SlimeCerulean":
-                if (_random.Prob(0.5f))
+                if (_random.Prob(ent.Comp.CookieEffectSlimeCeruleanChance))
                 {
                     PopupUser("slime-cookie-cerulean", eater, ("cookie", ent.Owner));
                     Spawn(MetaData(ent).EntityPrototype?.ID ?? "SlimeCookieCerulean", coords);
@@ -790,9 +798,9 @@ public sealed partial class SlimeCrossbreedSystem
                     SetTint(eater, "pyrite", dye);
                 break;
             case "SlimeRed":
-                _puddle.TrySpillAt(coords, new Solution("Blood", 5), out _, sound: false);
+                _puddle.TrySpillAt(coords, new Solution("Blood", ent.Comp.CookieEffectSlimeRedQuantity), out _, sound: false);
                 _audio.PlayPvs(Splat, coords);
-                _bloodstream.TryModifyBloodLevel(eater, 25);
+                _bloodstream.TryModifyBloodLevel(eater, ent.Comp.CookieEffectSlimeRedAmount);
                 break;
             case "SlimeGreen":
                 _vomit.Vomit(eater, force: true);
@@ -807,25 +815,25 @@ public sealed partial class SlimeCrossbreedSystem
                 }
                 break;
             case "SlimePink":
-                AddEffect(eater, "love", TimeSpan.FromSeconds(30));
+                AddEffect(eater, "love", ent.Comp.CookieEffectSlimePinkDuration);
                 break;
             case "SlimeGold":
-            {
-                var coin = Spawn("TreasureCoinGold", coords);
-                _hands.TryPickupAnyHand(eater, coin);
-                break;
-            }
+                {
+                    var coin = Spawn(TreasureCoinGold, coords);
+                    _hands.TryPickupAnyHand(eater, coin);
+                    break;
+                }
             case "SlimeOil":
-                AddEffect(eater, "tar", TimeSpan.FromSeconds(10));
+                AddEffect(eater, "tar", ent.Comp.CookieEffectSlimeOilDuration);
                 break;
             case "SlimeBlack":
-                AddEffect(eater, "spook", TimeSpan.FromSeconds(30));
+                AddEffect(eater, "spook", ent.Comp.CookieEffectSlimeBlackDuration);
                 break;
             case "SlimeLightPink":
-                AddEffect(eater, "peace", TimeSpan.FromSeconds(10));
+                AddEffect(eater, "peace", ent.Comp.CookieEffectSlimeLightPinkDuration);
                 break;
             case "SlimeAdamantine":
-                AddEffect(eater, "adamantinecookie", TimeSpan.FromSeconds(10));
+                AddEffect(eater, "adamantinecookie", ent.Comp.CookieEffectSlimeAdamantineDuration);
                 break;
         }
     }

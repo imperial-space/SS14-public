@@ -26,4 +26,7 @@ public sealed partial class SlimeTransformationComponent : Component
 
     [ViewVariables]
     public TimeSpan NextTick;
+
+    [DataField]
+    public float UpdateChance = 0.05f;
 }

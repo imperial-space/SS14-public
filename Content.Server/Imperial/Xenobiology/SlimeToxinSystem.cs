@@ -96,7 +96,7 @@ public sealed class SlimeToxinSystem : EntitySystem
                     continue;
             }
 
-            if (_random.Prob(0.05f) || disease.Stage == 5)
+            if (_random.Prob(disease.UpdateChance) || disease.Stage == 5)
                 _popup.PopupEntity(Loc.GetString($"slime-transformation-stage-{disease.Stage}"), uid, uid,
                     disease.Stage >= 3 ? PopupType.MediumCaution : PopupType.Small);
 

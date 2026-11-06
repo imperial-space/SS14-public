@@ -200,7 +200,7 @@ public sealed class VatGrowingSystem : EntitySystem
         }
 
         _popup.PopupEntity(Loc.GetString("vat-swab-start", ("target", target)), args.User, args.User);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(3), new VatSwabDoAfterEvent(), ent, target, ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.SwabInteractDelay, new VatSwabDoAfterEvent(), ent, target, ent)
         {
             BreakOnMove = true,
             NeedHand = true,
@@ -274,7 +274,7 @@ public sealed class VatGrowingSystem : EntitySystem
         if (organism.Virus || organism.Line is not { } lineId || !_proto.TryIndex(lineId, out var line))
             return Loc.GetString("vat-organism-virus");
 
-        var text = Loc.GetString("vat-organism-line", ("desc", Loc.GetString(line.Desc)), ("growth", (int) organism.Growth));
+        var text = Loc.GetString("vat-organism-line", ("desc", Loc.GetString(line.Desc)), ("growth", (int)organism.Growth));
         if (!full)
             return text;
 
@@ -470,7 +470,7 @@ public sealed class VatGrowingSystem : EntitySystem
                 return;
         }
 
-        if (anyGrowing && _random.Prob(0.1f))
+        if (anyGrowing && _random.Prob(ent.Comp.GrowChance))
         {
             _audio.PlayPvs(Slosh, ent);
             _popup.PopupEntity(Loc.GetString(_random.Pick(new[] { "vat-grumbles", "vat-splashes", "vat-sloshes" }), ("vat", ent.Owner)), ent);

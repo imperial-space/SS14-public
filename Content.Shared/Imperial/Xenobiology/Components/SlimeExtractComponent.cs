@@ -35,4 +35,31 @@ public sealed partial class SlimeExtractComponent : Component
     /// <summary>Последний, кто держал экстракт (fingerprintslast).</summary>
     [ViewVariables]
     public EntityUid? LastHolder;
+
+    [DataField]
+    public TimeSpan DeleteDelay = TimeSpan.FromSeconds(5.5);
+
+    [DataField]
+    public TimeSpan EffectEmpDuration = TimeSpan.FromSeconds(60);
+
+    [DataField]
+    public float EffectRandomSlimeOrBombChance = 0.5f;
+
+    [DataField]
+    public float EffectEmpRange = 5f;
+
+    [DataField]
+    public float EffectEmpEnergyConsumption = 50000f;
+
+    [DataField]
+    public float EffectExplosionTotalIntensity = 140f;
+
+    [DataField]
+    public float EffectExplosionSlope = 10f;
+
+    [DataField]
+    public float EffectExplosionMaxTileIntensity = 30f;
+
+    [DataField]
+    public TimeSpan FoamDuration = TimeSpan.FromSeconds(20f);
 }

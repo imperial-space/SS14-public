@@ -615,7 +615,7 @@ public sealed class SlimePotionSystem : EntitySystem
 
         if (HasPlayer(target))
         {
-            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(5), new SlimeGenderChangeDoAfterEvent(), ent, target, ent)
+            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, ent.Comp.GenderChangeDelay, new SlimeGenderChangeDoAfterEvent(), ent, target, ent)
             {
                 BreakOnMove = true,
                 BreakOnDamage = true,

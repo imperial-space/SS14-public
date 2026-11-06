@@ -40,6 +40,10 @@ public sealed partial class SlimeCrossbreedSystem
     private static readonly EntProtoId PrismPlaceAction = "ActionSlimePrismPlace";
     private static readonly ProtoId<Content.Shared.NPC.Prototypes.NpcFactionPrototype>[] AggressiveFactions = { "SimpleHostile", "Xeno", "Dragon" };
 
+    private static readonly EntProtoId SlimeLightPrism = "SlimeLightPrism";
+
+    private static readonly TimeSpan BloodChillHitDuration = TimeSpan.FromSeconds(10);
+
     private void InitializeItems()
     {
         SubscribeLocalEvent<SlimeBarrierCubeComponent, UseInHandEvent>(OnBarrierCubeUse);
@@ -72,7 +76,7 @@ public sealed partial class SlimeCrossbreedSystem
         {
             if (now < chiller.NextCharge)
                 continue;
-            chiller.NextCharge = now + TimeSpan.FromSeconds(1);
+            chiller.NextCharge = now + chiller.ChargeDelay;
             if (ammo.Count >= ammo.Capacity)
                 continue;
 
@@ -81,9 +85,9 @@ public sealed partial class SlimeCrossbreedSystem
             if (!HasComp<MobStateComponent>(owner))
                 continue;
             if (HasComp<Content.Shared.Body.Components.BloodstreamComponent>(owner))
-                _bloodstream.TryModifyBloodLevel(owner, -20);
+                _bloodstream.TryModifyBloodLevel(owner, chiller.UpdateItemsAmount);
             else
-                Damage(owner, "Blunt", 5f);
+                Damage(owner, "Blunt", chiller.UpdateItemsAmount2);
             _gunAmmo.ChangeBasicEntityAmmoCount((uid, ammo), 1);
         }
     }
@@ -100,7 +104,7 @@ public sealed partial class SlimeCrossbreedSystem
         args.Handled = true;
 
         var coords = At(args.User).SnapToGrid(EntityManager);
-        if (_lookup.GetEntitiesInRange(coords, 0.4f).Any(e => MetaData(e).EntityPrototype?.ID == ent.Comp.Barrier.Id))
+        if (_lookup.GetEntitiesInRange(coords, ent.Comp.BarrierCubeUseRange).Any(e => MetaData(e).EntityPrototype?.ID == ent.Comp.Barrier.Id))
         {
             PopupUser("slime-cross-barrier-occupied", args.User);
             return;
@@ -232,7 +236,7 @@ public sealed partial class SlimeCrossbreedSystem
     private void OnBloodChillHit(Entity<SlimeBloodChillProjectileComponent> ent, ref ProjectileHitEvent args)
     {
         if (HasComp<MobStateComponent>(args.Target))
-            AddEffect(args.Target, "bloodchill", TimeSpan.FromSeconds(10));
+            AddEffect(args.Target, "bloodchill", BloodChillHitDuration);
     }
 
     #endregion
@@ -259,14 +263,14 @@ public sealed partial class SlimeCrossbreedSystem
     {
         args.Handled = true;
         var coords = At(args.Performer).SnapToGrid(EntityManager);
-        if (_lookup.GetEntitiesInRange<SlimeLightPrismComponent>(coords, 0.4f).Count > 0)
+        if (_lookup.GetEntitiesInRange<SlimeLightPrismComponent>(coords, ent.Comp.PrismPlaceRange).Count > 0)
         {
             PopupUser("slime-cross-prism-occupied", args.Performer);
             return;
         }
 
         PopupUser("slime-cross-prism-place", args.Performer);
-        var prism = Spawn("SlimeLightPrism", coords);
+        var prism = Spawn(SlimeLightPrism, coords);
         _pointLight.SetColor(prism, ent.Comp.Color);
         SetTint(prism, "prism", ent.Comp.Color);
     }
@@ -344,175 +348,175 @@ public sealed partial class SlimeCrossbreedSystem
         {
             // extract_cloner: копия обычного экстракта вместе с зарядами.
             case "extractcloner":
-            {
-                if (HasComp<SlimeCrossbreedComponent>(target))
                 {
-                    PopupUser("slime-cross-potion-too-complex", user, ("target", target));
+                    if (HasComp<SlimeCrossbreedComponent>(target))
+                    {
+                        PopupUser("slime-cross-potion-too-complex", user, ("target", target));
+                        args.Handled = true;
+                        return;
+                    }
+
+                    if (!TryComp<SlimeExtractComponent>(target, out var extract))
+                        return;
                     args.Handled = true;
+                    if (extract.Recurring)
+                    {
+                        PopupUser("slime-cross-potion-too-complex", user, ("target", target));
+                        return;
+                    }
+
+                    var proto = MetaData(target).EntityPrototype?.ID;
+                    if (proto == null)
+                        return;
+                    var copy = Spawn(proto, At(target));
+                    if (TryComp<SlimeExtractComponent>(copy, out var copyExtract))
+                    {
+                        copyExtract.Uses = extract.Uses;
+                        Dirty(copy, copyExtract);
+                    }
+
+                    PopupUser("slime-cross-potion-cloned", user, ("target", target));
+                    QueueDel(ent);
                     return;
                 }
-
-                if (!TryComp<SlimeExtractComponent>(target, out var extract))
-                    return;
-                args.Handled = true;
-                if (extract.Recurring)
-                {
-                    PopupUser("slime-cross-potion-too-complex", user, ("target", target));
-                    return;
-                }
-
-                var proto = MetaData(target).EntityPrototype?.ID;
-                if (proto == null)
-                    return;
-                var copy = Spawn(proto, At(target));
-                if (TryComp<SlimeExtractComponent>(copy, out var copyExtract))
-                {
-                    copyExtract.Uses = extract.Uses;
-                    Dirty(copy, copyExtract);
-                }
-
-                PopupUser("slime-cross-potion-cloned", user, ("target", target));
-                QueueDel(ent);
-                return;
-            }
             // peacepotion, lovepotion: кормление с do_after.
             case "peace":
             case "love":
-            {
-                if (!HasComp<MobStateComponent>(target))
-                    return;
-                args.Handled = true;
-                if (_mobState.IsDead(target))
                 {
-                    PopupUser("slime-potion-living-only", user);
-                    return;
-                }
-
-                // ismegafauna(): компонент мегафауны лаваленда ищется по имени, чтобы не зависеть от его сборки.
-                if (EntityManager.ComponentFactory.TryGetRegistration("MegafaunaAi", out var megafauna) && HasComp(target, megafauna.Type))
-                {
-                    PopupUser("slime-cross-potion-evil", user, ("potion", ent.Owner));
-                    return;
-                }
-
-                if (ent.Comp.Kind == "love")
-                {
-                    if (target == user)
+                    if (!HasComp<MobStateComponent>(target))
+                        return;
+                    args.Handled = true;
+                    if (_mobState.IsDead(target))
                     {
-                        PopupUser("slime-cross-potion-narcissist", user);
+                        PopupUser("slime-potion-living-only", user);
                         return;
                     }
 
-                    if (HasEffect(target, "inlove"))
+                    // ismegafauna(): компонент мегафауны лаваленда ищется по имени, чтобы не зависеть от его сборки.
+                    if (EntityManager.ComponentFactory.TryGetRegistration("MegafaunaAi", out var megafauna) && HasComp(target, megafauna.Type))
                     {
-                        PopupUser("slime-cross-potion-already-love", user, ("target", target));
+                        PopupUser("slime-cross-potion-evil", user, ("potion", ent.Owner));
                         return;
                     }
-                }
 
-                Popup(target == user ? "slime-cross-potion-drink-start" : "slime-cross-potion-feed-start", target,
-                    ("user", user), ("target", target), ("potion", ent.Owner));
-                _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(ent.Comp.Kind == "love" ? 5 : 10),
-                    new SlimeCrossPotionDoAfterEvent(), ent, target, ent)
-                {
-                    BreakOnMove = true,
-                    BreakOnDamage = true,
-                    NeedHand = true,
-                });
-                return;
-            }
+                    if (ent.Comp.Kind == "love")
+                    {
+                        if (target == user)
+                        {
+                            PopupUser("slime-cross-potion-narcissist", user);
+                            return;
+                        }
+
+                        if (HasEffect(target, "inlove"))
+                        {
+                            PopupUser("slime-cross-potion-already-love", user, ("target", target));
+                            return;
+                        }
+                    }
+
+                    Popup(target == user ? "slime-cross-potion-drink-start" : "slime-cross-potion-feed-start", target,
+                        ("user", user), ("target", target), ("potion", ent.Owner));
+                    _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(ent.Comp.Kind == "love" ? 5 : 10),
+                        new SlimeCrossPotionDoAfterEvent(), ent, target, ent)
+                    {
+                        BreakOnMove = true,
+                        BreakOnDamage = true,
+                        NeedHand = true,
+                    });
+                    return;
+                }
             // spaceproof / lavaproof: обработка одежды и предметов, два применения.
             case "spaceproof":
             case "lavaproof":
-            {
-                var space = ent.Comp.Kind == "spaceproof";
-                if (space && !HasComp<ClothingComponent>(target) || !space && HasComp<MobStateComponent>(target))
+                {
+                    var space = ent.Comp.Kind == "spaceproof";
+                    if (space && !HasComp<ClothingComponent>(target) || !space && HasComp<MobStateComponent>(target))
+                        return;
+                    args.Handled = true;
+
+                    var potioned = EnsureComp<SlimePotionedComponent>(target);
+                    if (space && (potioned.Spaceproof || HasComp<PressureProtectionComponent>(target)))
+                    {
+                        PopupUser("slime-cross-potion-already-spaceproof", user, ("target", target));
+                        return;
+                    }
+
+                    if (space)
+                    {
+                        potioned.Spaceproof = true;
+                        EnsureComp<PressureProtectionComponent>(target);
+                        _meta.SetEntityName(target, Loc.GetString("slime-cross-spaceproof-name", ("name", Name(target))));
+                        PopupUser("slime-cross-potion-spaceproof", user, ("target", target));
+                    }
+                    else
+                    {
+                        potioned.Lavaproof = true;
+                        _meta.SetEntityName(target, Loc.GetString("slime-cross-lavaproof-name", ("name", Name(target))));
+                        PopupUser("slime-cross-potion-lavaproof", user, ("target", target));
+                    }
+
+                    Dirty(target, potioned);
+                    ent.Comp.Uses--;
+                    if (ent.Comp.Uses <= 0)
+                        QueueDel(ent);
                     return;
-                args.Handled = true;
-
-                var potioned = EnsureComp<SlimePotionedComponent>(target);
-                if (space && (potioned.Spaceproof || HasComp<PressureProtectionComponent>(target)))
-                {
-                    PopupUser("slime-cross-potion-already-spaceproof", user, ("target", target));
-                    return;
                 }
-
-                if (space)
-                {
-                    potioned.Spaceproof = true;
-                    EnsureComp<PressureProtectionComponent>(target);
-                    _meta.SetEntityName(target, Loc.GetString("slime-cross-spaceproof-name", ("name", Name(target))));
-                    PopupUser("slime-cross-potion-spaceproof", user, ("target", target));
-                }
-                else
-                {
-                    potioned.Lavaproof = true;
-                    _meta.SetEntityName(target, Loc.GetString("slime-cross-lavaproof-name", ("name", Name(target))));
-                    PopupUser("slime-cross-potion-lavaproof", user, ("target", target));
-                }
-
-                Dirty(target, potioned);
-                ent.Comp.Uses--;
-                if (ent.Comp.Uses <= 0)
-                    QueueDel(ent);
-                return;
-            }
             // slime_reviver: оживляет мёртвого слайма ценой 10 здоровья.
             case "reviver":
-            {
-                if (!TryComp<SlimeComponent>(target, out _))
                 {
-                    if (HasComp<MobStateComponent>(target))
+                    if (!TryComp<SlimeComponent>(target, out _))
                     {
-                        PopupUser("slime-cross-potion-slimes-only", user);
-                        args.Handled = true;
+                        if (HasComp<MobStateComponent>(target))
+                        {
+                            PopupUser("slime-cross-potion-slimes-only", user);
+                            args.Handled = true;
+                        }
+                        return;
                     }
+
+                    args.Handled = true;
+                    if (!_mobState.IsDead(target))
+                    {
+                        PopupUser("slime-cross-potion-still-alive", user);
+                        return;
+                    }
+
+                    if (!_thresholds.TryGetDeadThreshold(target, out var dead) || dead <= 10)
+                    {
+                        PopupUser("slime-cross-potion-unstable", user);
+                        return;
+                    }
+
+                    _rejuvenate.PerformRejuvenate(target);
+                    _thresholds.SetMobStateThreshold(target, dead.Value - 10, Content.Shared.Mobs.MobState.Dead);
+                    Popup("slime-cross-potion-revived", target, ("target", target));
+                    QueueDel(ent);
                     return;
                 }
-
-                args.Handled = true;
-                if (!_mobState.IsDead(target))
-                {
-                    PopupUser("slime-cross-potion-still-alive", user);
-                    return;
-                }
-
-                if (!_thresholds.TryGetDeadThreshold(target, out var dead) || dead <= 10)
-                {
-                    PopupUser("slime-cross-potion-unstable", user);
-                    return;
-                }
-
-                _rejuvenate.PerformRejuvenate(target);
-                _thresholds.SetMobStateThreshold(target, dead.Value - 10, Content.Shared.Mobs.MobState.Dead);
-                Popup("slime-cross-potion-revived", target, ("target", target));
-                QueueDel(ent);
-                return;
-            }
             // chargedstabilizer: шанс мутации обнуляется.
             case "omnistabilizer":
-            {
-                if (!TryComp<SlimeComponent>(target, out var slime))
-                    return;
-                args.Handled = true;
-                if (_mobState.IsDead(target))
                 {
-                    PopupUser("slime-potion-slime-dead", user);
+                    if (!TryComp<SlimeComponent>(target, out var slime))
+                        return;
+                    args.Handled = true;
+                    if (_mobState.IsDead(target))
+                    {
+                        PopupUser("slime-potion-slime-dead", user);
+                        return;
+                    }
+
+                    if (slime.MutationChance <= 0)
+                    {
+                        PopupUser("slime-potion-stabilizer-max", user);
+                        return;
+                    }
+
+                    slime.MutationChance = 0;
+                    Dirty(target, slime);
+                    PopupUser("slime-cross-potion-omnistabilizer", user);
+                    QueueDel(ent);
                     return;
                 }
-
-                if (slime.MutationChance <= 0)
-                {
-                    PopupUser("slime-potion-stabilizer-max", user);
-                    return;
-                }
-
-                slime.MutationChance = 0;
-                Dirty(target, slime);
-                PopupUser("slime-cross-potion-omnistabilizer", user);
-                QueueDel(ent);
-                return;
-            }
         }
     }
 

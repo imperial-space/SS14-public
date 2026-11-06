@@ -1,5 +1,6 @@
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Content.Shared.FixedPoint;
 
 namespace Content.Server.Imperial.Xenobiology.Components;
 
@@ -39,4 +40,13 @@ public sealed partial class SlimeIndustrialComponent : Component
 
     [ViewVariables]
     public bool Working;
+
+    [DataField]
+    public TimeSpan TickDelay = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public float IndustrialProductFoodordrinkChance = 0.5f;
+
+    [DataField]
+    public FixedPoint2 UpdateIndustrialQuantity = 2;
 }

@@ -8,5 +8,5 @@ namespace Content.Server.Imperial.Xenobiology.Components;
 public sealed partial class SlimeTemporaryComponent : Component
 {
     [DataField]
-    public float Lifetime = 10f;
+    public TimeSpan Lifetime = TimeSpan.FromSeconds(10f);
 }

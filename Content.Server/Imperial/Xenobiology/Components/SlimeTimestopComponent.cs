@@ -19,4 +19,7 @@ public sealed partial class SlimeTimestopComponent : Component
     /// <summary>Кто не замирает (TRAIT_TIME_STOP_IMMUNE у владельца эффекта).</summary>
     [ViewVariables]
     public HashSet<EntityUid> Immune = new();
+
+    [DataField]
+    public TimeSpan TickDelay = TimeSpan.FromSeconds(0.1);
 }

@@ -9,4 +9,7 @@ public sealed partial class SlimeBarrierCubeComponent : Component
 {
     [DataField]
     public EntProtoId Barrier = "SlimeBarricade";
+
+    [DataField]
+    public float BarrierCubeUseRange = 0.4f;
 }

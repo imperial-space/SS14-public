@@ -15,4 +15,7 @@ public sealed partial class SlimePrismGlassesComponent : Component
 
     [ViewVariables]
     public EntityUid? PlaceAction;
+
+    [DataField]
+    public float PrismPlaceRange = 0.4f;
 }

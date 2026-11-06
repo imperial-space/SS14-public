@@ -63,6 +63,8 @@ public sealed partial class SlimeSystem : EntitySystem
     /// <summary>Здоровье детёныша (maxHealth 150); взрослый — 150 / 0.75 = 200.</summary>
     private const float BabyHealth = 150f;
 
+    private static readonly ProtoId<SlimeTypePrototype> SlimeRainbowSlimeType = "SlimeRainbow";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -242,13 +244,13 @@ public sealed partial class SlimeSystem : EntitySystem
 
         var health = 100;
         if (TryComp<DamageableComponent>(ent, out var damageable) && _thresholds.TryGetDeadThreshold(ent, out var dead) && dead > 0)
-            health = (int) MathF.Round((1f - (_damageable.GetTotalDamage((ent, damageable)) / dead.Value).Float()) * 100f);
+            health = (int)MathF.Round((1f - (_damageable.GetTotalDamage((ent, damageable)) / dead.Value).Float()) * 100f);
         lines.Add(Loc.GetString("slime-scan-power", ("power", slime.PowerLevel), ("health", health)));
 
         var mutations = type.Mutations.Keys.Select(k => Loc.GetString(_proto.Index(k).Name)).ToList();
         lines.Add(Loc.GetString("slime-scan-mutations", ("count", mutations.Count),
             ("list", mutations.Count == 0 ? Loc.GetString("slime-scan-none") : string.Join(", ", mutations))));
-        lines.Add(Loc.GetString("slime-scan-instability", ("chance", (int) slime.MutationChance)));
+        lines.Add(Loc.GetString("slime-scan-instability", ("chance", (int)slime.MutationChance)));
         if (slime.Cores > 1)
             lines.Add(Loc.GetString("slime-scan-multiple-cores"));
         lines.Add(Loc.GetString("slime-scan-growth", ("grown", slime.AmountGrown), ("max", SlimeConstants.EvolutionThreshold)));
@@ -521,7 +523,7 @@ public sealed partial class SlimeSystem : EntitySystem
         }
 
         var coords = _transform.GetMoverCoordinates(ent);
-        var neighbours = _lookup.GetEntitiesInRange<SlimeComponent>(coords, 0.45f).Count(s => s.Owner != ent.Owner);
+        var neighbours = _lookup.GetEntitiesInRange<SlimeComponent>(coords, ent.Comp.ReproduceRange).Count(s => s.Owner != ent.Owner);
         slime.Overcrowded = neighbours >= SlimeConstants.OvercrowdAmount;
         Dirty(ent);
         if (slime.Overcrowded)
@@ -532,7 +534,7 @@ public sealed partial class SlimeSystem : EntitySystem
         }
 
         var newNutrition = MathF.Floor(slime.Nutrition * 0.9f);
-        var newPower = (int) MathF.Floor(slime.PowerLevel * 0.25f);
+        var newPower = (int)MathF.Floor(slime.PowerLevel * 0.25f);
         var friends = TryComp<SlimeBrainComponent>(ent, out var brain) ? brain.Friends.ToList() : new List<EntityUid>();
         var player = HasComp<Robust.Shared.Player.ActorComponent>(ent);
 
@@ -577,7 +579,7 @@ public sealed partial class SlimeSystem : EntitySystem
     public ProtoId<SlimeTypePrototype> RandomMutation(SlimeComponent slime)
     {
         if (slime.MutationChance >= 100)
-            return "SlimeRainbow";
+            return SlimeRainbowSlimeType;
 
         if (!_random.Prob(slime.MutationChance / 100f) || !_proto.TryIndex(slime.SlimeType, out var type) || type.Mutations.Count == 0)
             return slime.SlimeType;
