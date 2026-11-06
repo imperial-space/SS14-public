@@ -1,0 +1,54 @@
+- type: soundCollection
+  id: ImperialEmoteGiggleMale
+  files:
+  - /Audio/Imperial/EmotePanel/giggle_male_1.ogg
+  - /Audio/Imperial/EmotePanel/giggle_male_2.ogg
+
+- type: soundCollection
+  id: ImperialEmoteGiggleFemale
+  files:
+  - /Audio/Imperial/EmotePanel/giggle_female_1.ogg
+  - /Audio/Imperial/EmotePanel/giggle_female_2.ogg
+  - /Audio/Imperial/EmotePanel/giggle_female_3.ogg
+  - /Audio/Imperial/EmotePanel/giggle_female_4.ogg
+
+- type: soundCollection
+  id: ImperialEmoteChokeMale
+  files:
+  - /Audio/Imperial/EmotePanel/choke_male_1.ogg
+  - /Audio/Imperial/EmotePanel/choke_male_2.ogg
+  - /Audio/Imperial/EmotePanel/choke_male_3.ogg
+
+- type: soundCollection
+  id: ImperialEmoteChokeFemale
+  files:
+  - /Audio/Imperial/EmotePanel/choke_female_1.ogg
+  - /Audio/Imperial/EmotePanel/choke_female_2.ogg
+  - /Audio/Imperial/EmotePanel/choke_female_3.ogg
+
+- type: soundCollection
+  id: ImperialEmoteMoanMale
+  files:
+  - /Audio/Imperial/EmotePanel/moan_male_1.ogg
+  - /Audio/Imperial/EmotePanel/moan_male_2.ogg
+  - /Audio/Imperial/EmotePanel/moan_male_3.ogg
+
+- type: soundCollection
+  id: ImperialEmoteMoanFemale
+  files:
+  - /Audio/Imperial/EmotePanel/moan_female_1.ogg
+  - /Audio/Imperial/EmotePanel/moan_female_2.ogg
+  - /Audio/Imperial/EmotePanel/moan_female_3.ogg
+
+- type: soundCollection
+  id: ImperialEmoteEvilLaughMale
+  files:
+  - /Audio/Imperial/EmotePanel/evil_laugh_male_1.ogg
+  - /Audio/Imperial/EmotePanel/evil_laugh_male_2.ogg
+
+- type: soundCollection
+  id: ImperialEmoteEvilLaughFemale
+  files:
+  - /Audio/Imperial/EmotePanel/evil_laugh_female_1.ogg
+  - /Audio/Imperial/EmotePanel/evil_laugh_female_2.ogg
+
