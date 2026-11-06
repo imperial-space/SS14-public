@@ -1,0 +1,260 @@
+# Реагенты блоба (datum/reagent/blob). Касание облаком спор действует как атака штамма.
+
+- type: reagent
+  id: BlobBlazingOil
+  name: reagent-name-blob-blazing-oil
+  group: Toxins
+  desc: reagent-desc-blob-blazing-oil
+  flavor: bitter
+  physicalDesc: reagent-physical-desc-viscous
+  color: "#B68D00"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:BlobStrainExposure
+        strain: BlobBlazingOil
+
+- type: reagent
+  id: BlobCryogenicPoison
+  name: reagent-name-blob-cryogenic-poison
+  group: Toxins
+  desc: reagent-desc-blob-cryogenic-poison
+  flavor: bitter
+  physicalDesc: reagent-physical-desc-viscous
+  color: "#8BA6E9"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:BlobStrainExposure
+        strain: BlobCryogenicPoison
+
+- type: reagent
+  id: BlobDebrisDevourer
+  name: reagent-name-blob-debris-devourer
+  group: Toxins
+  desc: reagent-desc-blob-debris-devourer
+  flavor: bitter
+  physicalDesc: reagent-physical-desc-viscous
+  color: "#8B1000"
+
+- type: reagent
+  id: BlobDistributedNeurons
+  name: reagent-name-blob-distributed-neurons
+  group: Toxins
+  desc: reagent-desc-blob-distributed-neurons
+  flavor: bitter
+  physicalDesc: reagent-physical-desc-viscous
+  color: "#E88D5D"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:BlobStrainExposure
+        strain: BlobDistributedNeurons
+
+- type: reagent
+  id: BlobElectromagneticWeb
+  name: reagent-name-blob-electromagnetic-web
+  group: Toxins
+  desc: reagent-desc-blob-electromagnetic-web
+  flavor: bitter
+  physicalDesc: reagent-physical-desc-viscous
+  color: "#83ECEC"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:BlobStrainExposure
+        strain: BlobElectromagneticWeb
+
+- type: reagent
+  id: BlobEnergizedJelly
+  name: reagent-name-blob-energized-jelly
+  group: Toxins
+  desc: reagent-desc-blob-energized-jelly
+  flavor: bitter
+  physicalDesc: reagent-physical-desc-viscous
+  color: "#EFD65A"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:BlobStrainExposure
+        strain: BlobEnergizedJelly
+
+- type: reagent
+  id: BlobExplosiveLattice
+  name: reagent-name-blob-explosive-lattice
+  group: Toxins
+  desc: reagent-desc-blob-explosive-lattice
+  flavor: bitter
+  physicalDesc: reagent-physical-desc-viscous
+  color: "#8B2500"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:BlobStrainExposure
+        strain: BlobExplosiveLattice
+
+- type: reagent
+  id: BlobNetworkedFibers
+  name: reagent-name-blob-networked-fibers
+  group: Toxins
+  desc: reagent-desc-blob-networked-fibers
+  flavor: bitter
+  physicalDesc: reagent-physical-desc-viscous
+  color: "#4F4441"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:BlobStrainExposure
+        strain: BlobNetworkedFibers
+
+- type: reagent
+  id: BlobPressurizedSlime
+  name: reagent-name-blob-pressurized-slime
+  group: Toxins
+  desc: reagent-desc-blob-pressurized-slime
+  flavor: bitter
+  physicalDesc: reagent-physical-desc-viscous
+  color: "#AAAABB"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:BlobStrainExposure
+        strain: BlobPressurizedSlime
+
+- type: reagent
+  id: BlobReactiveSpines
+  name: reagent-name-blob-reactive-spines
+  group: Toxins
+  desc: reagent-desc-blob-reactive-spines
+  flavor: bitter
+  physicalDesc: reagent-physical-desc-viscous
+  color: "#9ACD32"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:BlobStrainExposure
+        strain: BlobReactiveSpines
+
+- type: reagent
+  id: BlobRegenerativeMateria
+  name: reagent-name-blob-regenerative-materia
+  group: Toxins
+  desc: reagent-desc-blob-regenerative-materia
+  flavor: bitter
+  physicalDesc: reagent-physical-desc-viscous
+  color: "#A88FB7"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:BlobStrainExposure
+        strain: BlobRegenerativeMateria
+
+- type: reagent
+  id: BlobReplicatingFoam
+  name: reagent-name-blob-replicating-foam
+  group: Toxins
+  desc: reagent-desc-blob-replicating-foam
+  flavor: bitter
+  physicalDesc: reagent-physical-desc-viscous
+  color: "#7B5A57"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:BlobStrainExposure
+        strain: BlobReplicatingFoam
+
+- type: reagent
+  id: BlobShiftingFragments
+  name: reagent-name-blob-shifting-fragments
+  group: Toxins
+  desc: reagent-desc-blob-shifting-fragments
+  flavor: bitter
+  physicalDesc: reagent-physical-desc-viscous
+  color: "#C8963C"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:BlobStrainExposure
+        strain: BlobShiftingFragments
+
+- type: reagent
+  id: BlobSynchronousMesh
+  name: reagent-name-blob-synchronous-mesh
+  group: Toxins
+  desc: reagent-desc-blob-synchronous-mesh
+  flavor: bitter
+  physicalDesc: reagent-physical-desc-viscous
+  color: "#65ADA2"
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:BlobStrainExposure
+        strain: BlobSynchronousMesh
+
+# cryogenic_poison/on_mob_life: 0.25 brute/burn/tox в секунду.
+- type: reagent
+  id: BlobCryogenicPoisonChem
+  name: reagent-name-blob-cryogenic-poison-chem
+  group: Toxins
+  desc: reagent-desc-blob-cryogenic-poison-chem
+  flavor: bitter
+  physicalDesc: reagent-physical-desc-viscous
+  color: "#8BA6E9"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        ignoreResistances: true
+        damage:
+          types:
+            Blunt: 0.25
+            Heat: 0.25
+            Poison: 0.25
+
+# regenerative_materia/on_mob_life: 0.5 tox в секунду.
+- type: reagent
+  id: BlobRegenerativeMateriaChem
+  name: reagent-name-blob-regenerative-materia-chem
+  group: Toxins
+  desc: reagent-desc-blob-regenerative-materia-chem
+  flavor: bitter
+  physicalDesc: reagent-physical-desc-viscous
+  color: "#A88FB7"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        ignoreResistances: true
+        damage:
+          types:
+            Poison: 0.5
+
+# reagent/toxin/spore: toxpwr 1.
+- type: reagent
+  id: BlobSporeToxin
+  name: reagent-name-blob-spore-toxin
+  group: Toxins
+  desc: reagent-desc-blob-spore-toxin
+  flavor: bitter
+  physicalDesc: reagent-physical-desc-opaque
+  color: "#9ACD32"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.5

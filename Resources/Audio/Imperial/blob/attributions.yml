@@ -1,0 +1,20 @@
+- files:
+  - splat.ogg
+  - attackblob.ogg
+  - blobattack.ogg
+  - blob_spore_burst.ogg
+  - blobbernaut_death.ogg
+  - blobalert.ogg
+  - outbreak5.ogg
+  - nuke_alarm.ogg
+  - tap.ogg
+  - welder.ogg
+  - genhit1.ogg
+  - sear.ogg
+  - pop_expl.ogg
+  - explosion2.ogg
+  - ping.ogg
+  - eatfood.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/effects, sound/effects/blob, sound/mobs/non-humanoids/blobmob, sound/music/antag, sound/announcer, sound/items, sound/machines)"
+  source: "https://github.com/ss220club/BandaStation"

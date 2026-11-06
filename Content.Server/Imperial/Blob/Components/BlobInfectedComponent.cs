@@ -1,19 +1,14 @@
+using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
+
 namespace Content.Server.Imperial.Blob.Components;
 
-using Content.Shared.Imperial.Blob;
-
+/// <summary>Заражённый спорой: союзник блоба с панцирем на голове.</summary>
 [RegisterComponent]
 public sealed partial class BlobInfectedComponent : Component
 {
-    [DataField]
-    public float TransformDelay = 8f;
+    [ViewVariables] public EntityUid? Overmind;
 
-    [ViewVariables]
-    public float TransformAccumulator;
-
-    [ViewVariables]
-    public EntityUid? OwnerMind;
-
-    [ViewVariables]
-    public BlobChemicalType Chemical = BlobChemicalType.Toxin;
+    /// <summary>Снятые маски столкновений (BlobImpassable) по фикстурам.</summary>
+    [ViewVariables] public Dictionary<string, int> DisabledFixtureMasks = new();
 }

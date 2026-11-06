@@ -412,13 +412,11 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
 
     private bool ShouldIgnoreBlobStructureCollision(EntityUid mover, EntityUid otherEntity)
     {
-        if (!TryComp<BlobStructureComponent>(otherEntity, out var structure) || structure.OwnerMind is not { } blobId)
+        if (!HasComp<BlobStructureComponent>(otherEntity))
             return false;
 
-        if (TryComp<BlobMobComponent>(mover, out var blobMob) && blobMob.OwnerMind == blobId)
-            return true;
-
-        if (TryComp<BlobOvermindComponent>(mover, out var overmind) && overmind.BlobId == blobId)
+        // PASSBLOB: миньоны и оверманд проходят сквозь любые структуры блоба.
+        if (HasComp<BlobMobComponent>(mover) || HasComp<BlobOvermindComponent>(mover))
             return true;
 
         return _npcFaction.IsMember(mover, BlobFaction);
@@ -455,8 +453,8 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
     private Vector2i GetTileDirection(Vector2 wishDir)
     {
         return new Vector2i(
-            (int) MathF.Sign(wishDir.X),
-            (int) MathF.Sign(wishDir.Y));
+            (int)MathF.Sign(wishDir.X),
+            (int)MathF.Sign(wishDir.Y));
     }
 
     private void StopMovement(EntityUid uid, InputMoverComponent mover)

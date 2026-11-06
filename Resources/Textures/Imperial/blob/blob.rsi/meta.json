@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "https://github.com/ParadiseSS13",
+  "copyright": "Taken from tgstation/BandaStation: icons/mob/nonhuman-player/blob.dmi, icons/hud/blob.dmi, icons/mob/eyemob.dmi (marker), icons/effects/effects.dmi (blob_attack, heal, emppulse, empdisable)",
   "size": {
     "x": 32,
     "y": 32
@@ -10,20 +10,6 @@
     {
       "name": "blob_spore_temp",
       "directions": 4
-    },
-    {
-      "name": "blobpod",
-      "delays": [
-        [
-          1,
-          0.3,
-          0.5,
-          0.3
-        ]
-      ]
-    },
-    {
-      "name": "blob_head"
     },
     {
       "name": "blob",
@@ -655,92 +641,6 @@
       ]
     },
     {
-      "name": "blobbernaut_produce",
-      "delays": [
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.15,
-          0.15,
-          0.15,
-          0.15
-        ]
-      ]
-    },
-    {
-      "name": "blobbernaut",
-      "directions": 4
-    },
-    {
-      "name": "blobbernaut_death",
-      "delays": [
-        [
-          0.2,
-          0.2,
-          0.2,
-          0.15,
-          0.15,
-          0.15,
-          0.1
-        ]
-      ]
-    },
-    {
-      "name": "blobbernaut_dead"
-    },
-    {
-      "name": "nautdamage",
-      "directions": 4,
-      "delays": [
-        [
-          0.075,
-          0.075,
-          0.075,
-          0.075,
-          0.2,
-          0.075,
-          0.075,
-          0.075,
-          0.075
-        ],
-        [
-          0.075,
-          0.075,
-          0.075,
-          0.075,
-          0.2,
-          0.075,
-          0.075,
-          0.075,
-          0.075
-        ],
-        [
-          0.075,
-          0.075,
-          0.075,
-          0.075,
-          0.2,
-          0.075,
-          0.075,
-          0.075,
-          0.075
-        ],
-        [
-          0.075,
-          0.075,
-          0.075,
-          0.075,
-          0.2,
-          0.075,
-          0.075,
-          0.075,
-          0.075
-        ]
-      ]
-    },
-    {
       "name": "blob_core_overlay",
       "directions": 4,
       "delays": [
@@ -801,9 +701,6 @@
           0.2
         ]
       ]
-    },
-    {
-      "name": "blob_nuke_overlay"
     },
     {
       "name": "blob_node_overlay",
@@ -871,6 +768,81 @@
       "name": "blank_blob"
     },
     {
+      "name": "blobbernaut_produce",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.15,
+          0.15,
+          0.15,
+          0.15
+        ]
+      ]
+    },
+    {
+      "name": "blobbernaut_eyes",
+      "directions": 4
+    },
+    {
+      "name": "blobbernaut_veins",
+      "directions": 4
+    },
+    {
+      "name": "blobbernaut",
+      "directions": 4
+    },
+    {
+      "name": "blobbernaut_death",
+      "delays": [
+        [
+          0.1,
+          0.8,
+          0.05,
+          0.1,
+          0.075,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "blobbernaut_dead"
+    },
+    {
+      "name": "blobpod"
+    },
+    {
+      "name": "blob_head"
+    },
+    {
+      "name": "blobbernaut_independent",
+      "directions": 4
+    },
+    {
+      "name": "blobbernaut_independent_death",
+      "delays": [
+        [
+          0.1,
+          0.8,
+          0.05,
+          0.1,
+          0.075,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "blobbernaut_independent_dead"
+    },
+    {
+      "name": "blobpod_independent"
+    },
+    {
+      "name": "blob_head_independent"
+    },
+    {
       "name": "ui_help"
     },
     {
@@ -895,19 +867,16 @@
       "name": "ui_swap"
     },
     {
+      "name": "ui_blobbernaut"
+    },
+    {
+      "name": "corehealth"
+    },
+    {
       "name": "block"
     },
     {
       "name": "block2"
-    },
-    {
-      "name": "ui_blobbernaut"
-    },
-    {
-      "name": "nauthealth"
-    },
-    {
-      "name": "corehealth"
     },
     {
       "name": "marker",
@@ -919,7 +888,132 @@
       ]
     },
     {
-      "name": "ui_split"
+      "name": "blob_attack",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "heal",
+      "delays": [
+        [
+          0.01,
+          0.02,
+          0.030000001,
+          0.04,
+          0.05,
+          0.060000002,
+          0.07,
+          0.08,
+          0.089999996,
+          0.1,
+          0.15,
+          0.2,
+          0.25,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "emppulse",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "empdisable",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
     }
   ]
 }
