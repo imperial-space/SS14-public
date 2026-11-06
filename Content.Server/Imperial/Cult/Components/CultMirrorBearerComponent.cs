@@ -9,4 +9,7 @@ namespace Content.Server.Imperial.Cult.Components;
 public sealed partial class CultMirrorBearerComponent : Component
 {
     [ViewVariables] public EntityUid? Shield;
+
+    [DataField]
+    public float BearerDamageChance = 0.5f;
 }

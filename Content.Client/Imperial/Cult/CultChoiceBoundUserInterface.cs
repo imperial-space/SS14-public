@@ -40,7 +40,7 @@ public sealed class CultChoiceBoundUserInterface : BoundUserInterface
             _radial = new SimpleRadialMenu();
             _radial.OnClose += OnWindowClosed;
             _radial.Track(Owner);
-            var buttons = choice.Options.Select(o => (RadialMenuOptionBase) new RadialMenuActionOption<string>(Pick, o.Id)
+            var buttons = choice.Options.Select(o => (RadialMenuOptionBase)new RadialMenuActionOption<string>(Pick, o.Id)
             {
                 IconSpecifier = RadialMenuIconSpecifier.With(o.Icon!),
                 ToolTip = o.Tooltip == null ? o.Label : $"{o.Label}\n{o.Tooltip}",

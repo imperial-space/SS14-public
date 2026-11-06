@@ -112,6 +112,21 @@ public sealed class CultRuneSystem : EntitySystem
 
     private List<(EntProtoId Id, CultRuneComponent Rune, string Name)>? _scribable;
 
+    private static readonly EntProtoId CultDagger = "CultDagger";
+    private static readonly EntProtoId CultSoulStone = "CultSoulStone";
+    private static readonly EntProtoId CultEffectPortal = "CultEffectPortal";
+    private static readonly EntProtoId CultNarSie = "CultNarSie";
+    private static readonly EntProtoId CultRuneBarrierShield = "CultRuneBarrierShield";
+    private static readonly EntProtoId MobCultGhost = "MobCultGhost";
+    private static readonly EntProtoId CultShieldWeak = "CultShieldWeak";
+    private static readonly EntProtoId CultShieldNarSie = "CultShieldNarSie";
+
+    private const float EntitiesOnRuneRange = 0.5f;
+    private const float MovablesOnRuneRange = 0.45f;
+    private const float SetBoilLightRadius = 6f;
+    private const float BoilTargetsRange = 7f;
+    private const float RuneAtRange = 0.45f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -238,7 +253,7 @@ public sealed class CultRuneSystem : EntitySystem
         if (rune.Comp.ReqCultists <= 1 && rune.Comp.RuneType != CultRuneType.Offer)
             return invokers;
 
-        foreach (var other in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(rune).Coordinates, 1.5f))
+        foreach (var other in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(rune).Coordinates, rune.Comp.CanInvokeRange))
         {
             var uid = other.Owner;
             if (uid == user || !_cult.IsCultAligned(uid))
@@ -253,7 +268,7 @@ public sealed class CultRuneSystem : EntitySystem
                     _cult.Message(uid, Loc.GetString("cult-shade-in-stone"));
                     continue;
                 }
-                if (shade.ReleaseTime.Value + TimeSpan.FromMinutes(1) > _timing.CurTime)
+                if (shade.ReleaseTime.Value + rune.Comp.CanInvokeDelay > _timing.CurTime)
                 {
                     _cult.Message(uid, Loc.GetString("cult-shade-too-weak"));
                     continue;
@@ -367,7 +382,7 @@ public sealed class CultRuneSystem : EntitySystem
     private List<EntityUid> EntitiesOnRune(EntityUid rune)
     {
         var result = new List<EntityUid>();
-        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(rune).Coordinates, 0.5f))
+        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(rune).Coordinates, EntitiesOnRuneRange))
         {
             if (Transform(mob).ParentUid == Transform(rune).ParentUid)
                 result.Add(mob.Owner);
@@ -411,7 +426,7 @@ public sealed class CultRuneSystem : EntitySystem
 
         _cult.CheckSize();
 
-        _schedule.Schedule(TimeSpan.FromSeconds(0.5), () =>
+        _schedule.Schedule(rune.Comp.InvokeOfferDelay, () =>
         {
             if (!TerminatingOrDeleted(rune))
                 SetRuneColor(rune, rune.Comp.RuneColor);
@@ -455,8 +470,8 @@ public sealed class CultRuneSystem : EntitySystem
             _cult.ClearSpeechEffects(target);
         }
 
-        _cult.Unconscious(target, 10);
-        Spawn("CultDagger", Transform(rune).Coordinates);
+        _cult.Unconscious(target, (float)rune.Comp.ConvertSeconds.TotalSeconds);
+        Spawn(CultDagger, Transform(rune).Coordinates);
         _cult.AddCultist(target, converted: true, silent: true);
         _cult.SoundTo(target, CultSounds.BloodcultGain);
         _cult.Message(target, Loc.GetString("cult-rune-offer-converted-1"));
@@ -507,7 +522,7 @@ public sealed class CultRuneSystem : EntitySystem
             return true;
         }
 
-        var stone = Spawn("CultSoulStone", Transform(rune).Coordinates);
+        var stone = Spawn(CultSoulStone, Transform(rune).Coordinates);
         if (mindId != default)
             _constructs.CaptureSoul(stone, victim, invokers[0], forced: true);
         _audio.PlayPvs(CultSounds.Disintegrate, Transform(rune).Coordinates);
@@ -654,7 +669,7 @@ public sealed class CultRuneSystem : EntitySystem
     {
         var result = new List<EntityUid>();
         var xform = Transform(rune);
-        foreach (var ent in _lookup.GetEntitiesInRange(xform.Coordinates, 0.45f, LookupFlags.Dynamic | LookupFlags.Sundries))
+        foreach (var ent in _lookup.GetEntitiesInRange(xform.Coordinates, MovablesOnRuneRange, LookupFlags.Dynamic | LookupFlags.Sundries))
         {
             if (ent == rune)
                 continue;
@@ -692,10 +707,10 @@ public sealed class CultRuneSystem : EntitySystem
         var coords = Transform(rune).Coordinates;
         _audio.PlayPvs(CultSounds.PortalCreated, coords, AudioParams.Default.WithMaxDistance(14));
 
-        var inner = Spawn("CultEffectPortal", coords);
+        var inner = Spawn(CultEffectPortal, coords);
         _appearance.SetData(inner, CultVisuals.State, type);
         rune.Comp.Portal = inner;
-        SpawnRuneSpawn(coords, "runeouter", 179, 60f, rune.Comp.RuneColor);
+        SpawnRuneSpawn(coords, "runeouter", 179, (float)rune.Comp.PortalDuration.TotalSeconds, rune.Comp.RuneColor);
 
         Color lightColor;
         if (type == "space")
@@ -711,12 +726,12 @@ public sealed class CultRuneSystem : EntitySystem
 
         var light = _light.EnsureLight(rune);
         _light.SetColor(rune, lightColor, light);
-        _light.SetRadius(rune, 4, light);
+        _light.SetRadius(rune, rune.Comp.PortalRadius, light);
         _light.SetEnergy(rune, 4, light);
         _light.SetEnabled(rune, true, light);
 
         var target = rune.Owner;
-        _schedule.Schedule(TimeSpan.FromSeconds(60), () =>
+        _schedule.Schedule(rune.Comp.PortalDelay, () =>
         {
             if (!TerminatingOrDeleted(target) && TryComp<CultRuneComponent>(target, out var comp) && comp.Portal == inner)
                 ClosePortal((target, comp));
@@ -740,7 +755,7 @@ public sealed class CultRuneSystem : EntitySystem
         _appearance.SetData(effect, CultVisuals.State, state);
         _appearance.SetData(effect, CultVisuals.Color, color);
         var comp = EnsureComp<CultRuneSpawnEffectComponent>(effect);
-        comp.Duration = duration;
+        comp.Duration = TimeSpan.FromSeconds(duration);
         comp.Turn = turn;
         Dirty(effect, comp);
         EnsureComp<TimedDespawnComponent>(effect).Lifetime = duration;
@@ -797,11 +812,11 @@ public sealed class CultRuneSystem : EntitySystem
 
         var coords = _transform.GetMapCoordinates(rune);
         var runeUid = rune.Owner;
-        _schedule.Schedule(TimeSpan.FromSeconds(4), () =>
+        _schedule.Schedule(rune.Comp.InvokeNarSieDelay, () =>
         {
             if (!TerminatingOrDeleted(runeUid))
                 SetRuneColor((runeUid, rune.Comp), ColorRed);
-            Spawn("CultNarSie", coords);
+            Spawn(CultNarSie, coords);
             RaiseLocalEvent(new CultNarSieSummonedEvent());
         });
     }
@@ -913,14 +928,14 @@ public sealed class CultRuneSystem : EntitySystem
         BaseInvoke(rune, invokers);
         if (rune.Comp.Barrier == null || TerminatingOrDeleted(rune.Comp.Barrier.Value))
         {
-            var barrier = Spawn("CultRuneBarrierShield", Transform(rune).Coordinates);
+            var barrier = Spawn(CultRuneBarrierShield, Transform(rune).Coordinates);
             rune.Comp.Barrier = barrier;
             EnsureComp<CultBarrierComponent>(barrier).Rune = rune;
             SetBarrier(barrier, false);
         }
         ToggleBarrier(rune.Comp.Barrier.Value);
         if (HasComp<HumanoidProfileComponent>(user))
-            _cult.Damage(user, "Slash", 2);
+            _cult.Damage(user, "Slash", rune.Comp.InvokeBarrierAmount);
     }
 
     /// <summary>create_rune/wall: руна барьера, созданная конструктом, сразу активна.</summary>
@@ -928,7 +943,7 @@ public sealed class CultRuneSystem : EntitySystem
     {
         if (!TryComp<CultRuneComponent>(rune, out var comp))
             return;
-        var barrier = Spawn("CultRuneBarrierShield", Transform(rune).Coordinates);
+        var barrier = Spawn(CultRuneBarrierShield, Transform(rune).Coordinates);
         comp.Barrier = barrier;
         EnsureComp<CultBarrierComponent>(barrier).Rune = rune;
         SetBarrier(barrier, true);
@@ -950,7 +965,7 @@ public sealed class CultRuneSystem : EntitySystem
         if (TryComp<PhysicsComponent>(barrier, out var physics))
             _physics.SetCanCollide(barrier, active, body: physics);
         var vis = EnsureComp<VisibilityComponent>(barrier);
-        _visibility.SetLayer((barrier, vis), (ushort) (active ? VisibilityFlags.Normal : VisibilityFlags.Ghost));
+        _visibility.SetLayer((barrier, vis), (ushort)(active ? VisibilityFlags.Normal : VisibilityFlags.Ghost));
         _appearance.SetData(barrier, CultVisuals.Concealed, !active);
     }
 
@@ -1055,19 +1070,19 @@ public sealed class CultRuneSystem : EntitySystem
 
         var uid = rune.Owner;
         SetRuneColor(rune, Color.FromHex("#FCB56D"));
-        _schedule.Schedule(TimeSpan.FromSeconds(0.4), () =>
+        _schedule.Schedule(rune.Comp.InvokeBloodBoilDelay, () =>
         {
             if (TerminatingOrDeleted(uid))
                 return;
             DoAreaBurn(rune, 0.5f);
             SetRuneColor(rune, Color.FromHex("#FFDF80"));
-            _schedule.Schedule(TimeSpan.FromSeconds(0.5), () =>
+            _schedule.Schedule(rune.Comp.InvokeBloodBoilDelay2, () =>
             {
                 if (TerminatingOrDeleted(uid))
                     return;
                 DoAreaBurn(rune, 1f);
                 SetRuneColor(rune, Color.FromHex("#FFFDF4"));
-                _schedule.Schedule(TimeSpan.FromSeconds(0.6), () =>
+                _schedule.Schedule(rune.Comp.InvokeBloodBoilDelay3, () =>
                 {
                     if (TerminatingOrDeleted(uid))
                         return;
@@ -1083,7 +1098,7 @@ public sealed class CultRuneSystem : EntitySystem
     {
         var light = _light.EnsureLight(rune);
         _light.SetColor(rune, color, light);
-        _light.SetRadius(rune, 6, light);
+        _light.SetRadius(rune, SetBoilLightRadius, light);
         _light.SetEnergy(rune, 1, light);
         _light.SetEnabled(rune, true, light);
     }
@@ -1093,11 +1108,11 @@ public sealed class CultRuneSystem : EntitySystem
     {
         var result = new List<EntityUid>();
         var origin = _transform.GetMapCoordinates(rune);
-        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(origin, 7f))
+        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(origin, BoilTargetsRange))
         {
             if (_cult.IsCultist(mob) || !HasComp<Content.Shared.Body.Components.BloodstreamComponent>(mob))
                 continue;
-            if (!_examine.InRangeUnOccluded(origin, _transform.GetMapCoordinates(mob), 7f, null))
+            if (!_examine.InRangeUnOccluded(origin, _transform.GetMapCoordinates(mob), BoilTargetsRange, null))
                 continue;
             if (_cult.BlocksMagic(mob))
                 continue;
@@ -1168,7 +1183,7 @@ public sealed class CultRuneSystem : EntitySystem
         _audio.PlayGlobal(CultSounds.Ghost2, ghostFilter, true);
 
         var ghosts = new List<EntityUid>();
-        foreach (var ghost in _lookup.GetEntitiesInRange<GhostComponent>(coords, 0.6f))
+        foreach (var ghost in _lookup.GetEntitiesInRange<GhostComponent>(coords, rune.Comp.SummonCultGhostRange))
         {
             if (HasComp<ActorComponent>(ghost) && _mind.TryGetMind(ghost, out _, out _))
                 ghosts.Add(ghost.Owner);
@@ -1185,22 +1200,22 @@ public sealed class CultRuneSystem : EntitySystem
         if (!_mind.TryGetMind(chosen, out var mindId, out var mind))
             return;
 
-        var human = Spawn("MobCultGhost", coords);
+        var human = Spawn(MobCultGhost, coords);
         _cult.SetName(human, mind.CharacterName ?? Name(chosen));
         _spawning.EquipStartingGear(human, "CultGhostGear");
-        _eye.SetVisibilityMask(human, (int) (VisibilityFlags.Normal | VisibilityFlags.Ghost));
+        _eye.SetVisibilityMask(human, (int)(VisibilityFlags.Normal | VisibilityFlags.Ghost));
         rune.Comp.Ghosts++;
 
         _audio.PlayPvs(CultSounds.ExitBlood, coords, AudioParams.Default.WithVolume(CultSystem.Db(50)).WithVariation(0.05f));
         _popup.PopupEntity(Loc.GetString("cult-rune-manifest-mist", ("rune", rune)), rune, PopupType.MediumCaution);
         _cult.Message(user, Loc.GetString("cult-rune-manifest-flowing", ("rune", rune)));
 
-        var shield = Spawn("CultShieldWeak", coords);
+        var shield = Spawn(CultShieldWeak, coords);
         var spirit = EnsureComp<CultSpiritGhostComponent>(human);
         spirit.Rune = rune;
         spirit.Invoker = user;
         spirit.Shield = shield;
-        spirit.NextDrain = _timing.CurTime + TimeSpan.FromSeconds(0.1);
+        spirit.NextDrain = _timing.CurTime + rune.Comp.DrainDelay;
         spirit.OriginalMind = mindId;
 
         _mind.TransferTo(mindId, human, mind: mind);
@@ -1253,7 +1268,7 @@ public sealed class CultRuneSystem : EntitySystem
         var spirit = EnsureComp<CultDarkSpiritComponent>(ghost.Value);
         spirit.Body = user;
         spirit.Rune = rune;
-        spirit.NextCheck = _timing.CurTime + TimeSpan.FromSeconds(0.5);
+        spirit.NextCheck = _timing.CurTime + rune.Comp.CheckDelay;
         _cult.GrantDarkSpiritActions(ghost.Value, spirit);
 
         var body = EnsureComp<CultSpiritBodyComponent>(user);
@@ -1274,12 +1289,12 @@ public sealed class CultRuneSystem : EntitySystem
                     ended.Add(uid);
                 continue;
             }
-            spirit.NextCheck = now + TimeSpan.FromSeconds(0.5);
+            spirit.NextCheck = now + body.CheckDelay;
 
             if (body.Rune is { } rune && !TerminatingOrDeleted(rune) && !OnRuneTile(rune, uid))
             {
                 _popup.PopupEntity(Loc.GetString("cult-rune-ascend-pulled", ("target", uid)), uid, PopupType.MediumCaution);
-                _cult.Beam(uid, Transform(rune).Coordinates, "CultBeamDrain", 0.2f);
+                _cult.Beam(uid, Transform(rune).Coordinates, "CultBeamDrain", (float)body.UpdateDarkSpiritsSeconds.TotalSeconds);
                 Teleport(uid, Transform(rune).Coordinates);
             }
 
@@ -1287,7 +1302,7 @@ public sealed class CultRuneSystem : EntitySystem
             {
                 _popup.PopupEntity(Loc.GetString("cult-rune-ascend-relax", ("target", uid)), uid, Filter.PvsExcept(uid), true, PopupType.Medium);
                 _cult.Message(uid, Loc.GetString("cult-rune-ascend-reunited", ("rune", body.Rune ?? uid)));
-                _cult.Paralyze(uid, 4);
+                _cult.Paralyze(uid, body.UpdateDarkSpiritsSeconds2);
                 ended.Add(uid);
                 continue;
             }
@@ -1362,16 +1377,16 @@ public sealed class CultRuneSystem : EntitySystem
             if (_cult.IsCultist(mob))
                 cultists++;
         }
-        var ratio = players == 0 ? 0f : (float) cultists / players;
+        var ratio = players == 0 ? 0f : (float)cultists / players;
         var intensity = MathF.Max(60f, 360f - 360f * MathF.Pow(ratio + 0.3f, 2));
         var duration = TimeSpan.FromSeconds(intensity);
 
         _audio.PlayPvs(CultSounds.EnterBlood, coords, AudioParams.Default.WithVariation(0.05f));
         _popup.PopupCoordinates(Loc.GetString("cult-rune-apoc-shockwave"), coords, PopupType.LargeCaution);
 
-        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 3f))
-            _cult.Paralyze(mob, 3);
-        _emp.EmpPulse(_transform.ToMapCoordinates(coords), 0.42f * intensity, 50000f, TimeSpan.FromSeconds(intensity / 10f));
+        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(coords, rune.Comp.InvokeApocalypseRange))
+            _cult.Paralyze(mob, (float)rune.Comp.InvokeApocalypseSeconds.TotalSeconds);
+        _emp.EmpPulse(_transform.ToMapCoordinates(coords), 0.42f * intensity, rune.Comp.InvokeApocalypseEnergyConsumption, TimeSpan.FromSeconds(intensity / 10f));
 
         var mapId = _transform.GetMapId(coords);
         var end = _timing.CurTime + duration;
@@ -1406,7 +1421,7 @@ public sealed class CultRuneSystem : EntitySystem
     private void ApocalypseEvent()
     {
         var outcome = _random.Next(1, 101);
-        string[] rules = outcome switch
+        var rules = outcome switch
         {
             <= 10 => new[] { "MouseMigration" },
             <= 20 => new[] { "SolarFlare" },
@@ -1514,10 +1529,10 @@ public sealed class CultRuneSystem : EntitySystem
         if (rune.RuneType == CultRuneType.Apocalypse)
         {
             var elapsed = _ticker.RoundDuration();
-            if (elapsed <= TimeSpan.FromMinutes(10))
+            if (elapsed <= rune.ContinueScribeDelay)
             {
-                var wait = TimeSpan.FromMinutes(10) - elapsed;
-                _cult.Message(user, Loc.GetString("cult-scribe-apoc-wait", ("time", $"{(int) wait.TotalMinutes}:{wait.Seconds:00}")));
+                var wait = rune.ContinueScribeWaitDelay - elapsed;
+                _cult.Message(user, Loc.GetString("cult-scribe-apoc-wait", ("time", $"{(int)wait.TotalMinutes}:{wait.Seconds:00}")));
                 return;
             }
             if (!CheckRitualSite(user, failIfLast: true))
@@ -1591,7 +1606,7 @@ public sealed class CultRuneSystem : EntitySystem
             rule.Comp.SummonAnnounced = true;
 
             foreach (var coords in _cult.FreeTurfsAround(user, includeBlocked: true))
-                ent.Comp.Shields.Add(Spawn("CultShieldNarSie", coords));
+                ent.Comp.Shields.Add(Spawn(CultShieldNarSie, coords));
 
             var ghostFilter = Filter.Empty().AddWhereAttachedEntity(HasComp<GhostComponent>);
             _cult.MessageGhosts(ghostFilter, Loc.GetString("cult-narsie-scribe-ghosts", ("name", Name(user))));
@@ -1737,7 +1752,7 @@ public sealed class CultRuneSystem : EntitySystem
 
     public EntityUid? RuneAt(EntityCoordinates coords)
     {
-        foreach (var rune in _lookup.GetEntitiesInRange<CultRuneComponent>(coords, 0.45f))
+        foreach (var rune in _lookup.GetEntitiesInRange<CultRuneComponent>(coords, RuneAtRange))
             return rune.Owner;
         return null;
     }
@@ -1836,7 +1851,7 @@ public sealed class CultRuneSystem : EntitySystem
         {
             if (ghost.Dissolving || now < ghost.NextDrain)
                 continue;
-            ghost.NextDrain = now + TimeSpan.FromSeconds(0.1);
+            ghost.NextDrain = now + ghost.DrainDelay;
 
             if (ghost.Rune is not { } rune || TerminatingOrDeleted(rune) || ghost.Invoker is not { } invoker || TerminatingOrDeleted(invoker)
                 || !OnRuneTile(rune, invoker) || !_mobState.IsAlive(invoker) || HasComp<SleepingComponent>(invoker)
@@ -1845,7 +1860,7 @@ public sealed class CultRuneSystem : EntitySystem
                 dissolve.Add(uid);
                 continue;
             }
-            _cult.Damage(invoker, "Blunt", 0.1f);
+            _cult.Damage(invoker, "Blunt", ghost.UpdateAmount);
         }
         foreach (var uid in dissolve)
             DissolveCultGhost((uid, Comp<CultSpiritGhostComponent>(uid)));

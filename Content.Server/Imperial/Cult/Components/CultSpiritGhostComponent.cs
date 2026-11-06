@@ -14,4 +14,10 @@ public sealed partial class CultSpiritGhostComponent : Component
     [ViewVariables] public TimeSpan NextDrain;
     [ViewVariables] public EntityUid? OriginalMind;
     [ViewVariables] public bool Dissolving;
+
+    [DataField]
+    public TimeSpan DrainDelay = TimeSpan.FromSeconds(0.1);
+
+    [DataField]
+    public float UpdateAmount = 0.1f;
 }

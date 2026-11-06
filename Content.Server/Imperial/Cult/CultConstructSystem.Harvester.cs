@@ -30,6 +30,8 @@ public sealed partial class CultConstructSystem
         ("LegRight", "FootRight"),
     };
 
+    private const float HarvestSeconds = 6f;
+
     private void InitializeHarvester()
     {
         SubscribeLocalEvent<CultConstructComponent, CultSeekMasterActionEvent>(OnSeekMaster);
@@ -62,7 +64,7 @@ public sealed partial class CultConstructSystem
             return true;
         }
 
-        _cult.Paralyze(target, 6);
+        _cult.Paralyze(target, HarvestSeconds);
         _popup.PopupEntity(Loc.GetString("cult-harvester-knockdown", ("user", harvester), ("target", target)), target, PopupType.MediumCaution);
         _cult.Message(harvester, Loc.GetString("cult-harvester-bring", ("target", target)));
         return true;

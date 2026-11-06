@@ -22,4 +22,19 @@ public sealed partial class CultNarSieComponent : Component
     [ViewVariables] public HashSet<EntityUid> SoulsNeeded = new();
     [ViewVariables] public int SoulGoal;
     [ViewVariables] public int Souls;
+
+    [DataField]
+    public TimeSpan MoveDelay2 = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public TimeSpan NarsieActMobDelay = TimeSpan.FromSeconds(12);
+
+    [DataField]
+    public TimeSpan MoveDelay = TimeSpan.FromSeconds(3.5);
+
+    [DataField]
+    public TimeSpan EndStageDelay = TimeSpan.FromSeconds(15);
+
+    [DataField]
+    public float ChooseDirectionChance = 0.6f;
 }

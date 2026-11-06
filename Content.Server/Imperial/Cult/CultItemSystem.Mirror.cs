@@ -48,7 +48,7 @@ public sealed partial class CultItemSystem
     {
         if (args.Cancelled || !args.Damage.AnyPositive() || _cult.IsCultist(ent))
             return;
-        if (!_random.Prob(0.5f))
+        if (!_random.Prob(ent.Comp.BearerDamageChance))
             return;
         SpawnIllusion(ent, ent, life: 10f);
         _cult.Message(ent, Loc.GetString("cult-mirror-betrayed"));
@@ -66,14 +66,14 @@ public sealed partial class CultItemSystem
                 _popup.PopupCoordinates(Loc.GetString("cult-mirror-shatter", ("item", args.Origin!.Value)), coords, PopupType.MediumCaution);
                 _cult.Effect("CultEffectSparks", coords, randomDir: true);
                 _audio.PlayPvs(CultSounds.GlassBreak3, coords);
-                _cult.Paralyze(owner, 2.5f);
+                _cult.Paralyze(owner, (float)mirror.MirrorBlockSeconds.TotalSeconds);
                 QueueDel(shield);
                 return false;
             }
         }
 
         // block_chance 50.
-        if (!_random.Prob(0.5f))
+        if (!_random.Prob(mirror.MirrorBlockChance))
             return false;
 
         args.Cancelled = true;
@@ -82,8 +82,8 @@ public sealed partial class CultItemSystem
             return true;
 
         mirror.Illusions--;
-        mirror.Restore.Add(_timing.CurTime + TimeSpan.FromSeconds(45));
-        if (_random.Prob(0.6f))
+        mirror.Restore.Add(_timing.CurTime + mirror.MirrorBlockDelay);
+        if (_random.Prob(mirror.MirrorBlockChance2))
             SpawnIllusion(owner, null, life: 7f);
         else
             SpawnIllusion(owner, null, life: 7f, escape: true);

@@ -17,11 +17,16 @@ public sealed partial class CultStructureSystem
     private TimeSpan _nextHolyScan;
     private readonly HashSet<EntityUid> _blessedPuddles = new();
 
+    private static readonly TimeSpan HolyScanDelay = TimeSpan.FromSeconds(1);
+
+    private const float UpdateHolyWaterRange = 0.45f;
+    private const float BlessRange = 0.45f;
+
     private void UpdateHolyWater(TimeSpan now)
     {
         if (now < _nextHolyScan)
             return;
-        _nextHolyScan = now + TimeSpan.FromSeconds(1);
+        _nextHolyScan = now + HolyScanDelay;
 
         _blessedPuddles.RemoveWhere(p => TerminatingOrDeleted(p));
         var query = EntityQueryEnumerator<PuddleComponent, TransformComponent>();
@@ -39,7 +44,7 @@ public sealed partial class CultStructureSystem
             var coords = SnapTile(xform.Coordinates);
             if (holy >= 10)
             {
-                foreach (var rune in _lookup.GetEntitiesInRange<CultRuneComponent>(coords, 0.45f))
+                foreach (var rune in _lookup.GetEntitiesInRange<CultRuneComponent>(coords, UpdateHolyWaterRange))
                     QueueDel(rune);
             }
             Bless(coords);
@@ -50,7 +55,7 @@ public sealed partial class CultStructureSystem
     public void Bless(EntityCoordinates coords)
     {
         coords = SnapTile(coords);
-        foreach (var _ in _lookup.GetEntitiesInRange<CultBlessingComponent>(coords, 0.45f))
+        foreach (var _ in _lookup.GetEntitiesInRange<CultBlessingComponent>(coords, BlessRange))
             return;
         Spawn(BlessingProto, coords);
     }

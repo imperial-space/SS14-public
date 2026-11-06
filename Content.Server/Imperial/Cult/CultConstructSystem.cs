@@ -88,6 +88,16 @@ public sealed partial class CultConstructSystem : EntitySystem
         { CultConstructType.Proteon, "proteon" },
     };
 
+    private static readonly EntProtoId CultEctoplasm = "CultEctoplasm";
+    private static readonly EntProtoId CultGauntletEcho = "CultGauntletEcho";
+    private static readonly EntProtoId CultWallForce = "CultWallForce";
+    private static readonly EntProtoId CultMagicMissile = "CultMagicMissile";
+    private static readonly EntProtoId WallCultArtificer = "WallCultArtificer";
+    private static readonly EntProtoId MobCultShade = "MobCultShade";
+
+    private const float WrackedSeconds = 10f;
+    private const float HotPotatoAmount = 10f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -168,7 +178,7 @@ public sealed partial class CultConstructSystem : EntitySystem
             return;
         // DEL_ON_DEATH + death_message + death_drops (эктоплазма).
         _popup.PopupEntity(Loc.GetString("cult-construct-death", ("target", ent)), ent, PopupType.MediumCaution);
-        Spawn("CultEctoplasm", Transform(ent).Coordinates);
+        Spawn(CultEctoplasm, Transform(ent).Coordinates);
         QueueDel(ent);
     }
 
@@ -223,7 +233,7 @@ public sealed partial class CultConstructSystem : EntitySystem
         }
 
         _popup.PopupEntity(Loc.GetString("cult-construct-repair-start", ("user", ent), ("target", target)), target, PopupType.Small);
-        _cult.HealGroup(target, "Brute", 5f);
+        _cult.HealGroup(target, "Brute", ent.Comp.ConstructActivateAmount);
         _popup.PopupEntity(Loc.GetString("cult-construct-repair-done", ("target", target)), target, PopupType.Small);
         _cult.Effect("CultEffectHeal", Transform(target).Coordinates);
     }
@@ -307,8 +317,8 @@ public sealed partial class CultConstructSystem : EntitySystem
         if (dir.LengthSquared() < 0.01f)
             return;
         _audio.PlayPvs(CultSounds.ResonatorBlast, ent);
-        var proj = Spawn("CultGauntletEcho", from);
-        _gun.ShootProjectile(proj, Vector2.Normalize(dir), Vector2.Zero, ent, ent, 3f);
+        var proj = Spawn(CultGauntletEcho, from);
+        _gun.ShootProjectile(proj, Vector2.Normalize(dir), Vector2.Zero, ent, ent, ent.Comp.GauntletEchoSpeed);
     }
 
     private void OnGauntletHit(Entity<CultGauntletProjectileComponent> ent, ref ProjectileHitEvent args)
@@ -317,15 +327,15 @@ public sealed partial class CultConstructSystem : EntitySystem
         _audio.PlayPvs(CultSounds.ResonatorBlast, coords);
         _cult.Effect("CultEffectSacrifice", coords);
         if (HasComp<MobStateComponent>(args.Target) && !_cult.IsCultAligned(args.Target))
-            EntityManager.System<Content.Shared.Stunnable.SharedStunSystem>().TryKnockdown(args.Target, TimeSpan.FromSeconds(5), true);
+            EntityManager.System<Content.Shared.Stunnable.SharedStunSystem>().TryKnockdown(args.Target, ent.Comp.GauntletHitTime, true);
 
-        foreach (var obj in _lookup.GetEntitiesInRange(coords, 1.5f, LookupFlags.Static | LookupFlags.Dynamic))
+        foreach (var obj in _lookup.GetEntitiesInRange(coords, ent.Comp.GauntletHitRange, LookupFlags.Static | LookupFlags.Dynamic))
         {
             if (HasComp<MobStateComponent>(obj) || HasComp<CultStructureComponent>(obj))
                 continue;
             if (!TryComp<PhysicsComponent>(obj, out var physics) || !physics.Hard || !physics.CanCollide || !HasComp<DamageableComponent>(obj))
                 continue;
-            _cult.Damage(obj, "Blunt", 90, ignoreResistances: false);
+            _cult.Damage(obj, "Blunt", ent.Comp.GauntletHitAmount, ignoreResistances: false);
             _cult.Effect("CultEffectFloorGlow", Transform(obj).Coordinates);
         }
     }
@@ -339,11 +349,11 @@ public sealed partial class CultConstructSystem : EntitySystem
         var facing = xform.LocalRotation.GetCardinalDir();
         var left = facing.ToAngle() + Angle.FromDegrees(90);
         var center = xform.Coordinates.SnapToGrid(EntityManager);
-        var wall = Spawn("CultWallForce", center);
+        var wall = Spawn(CultWallForce, center);
         EnsureComp<PreventCollideComponent>(wall).Uid = ent;
         Dirty(wall, Comp<PreventCollideComponent>(wall));
-        Spawn("CultWallForce", center.Offset(left.ToVec()));
-        Spawn("CultWallForce", center.Offset(-left.ToVec()));
+        Spawn(CultWallForce, center.Offset(left.ToVec()));
+        Spawn(CultWallForce, center.Offset(-left.ToVec()));
     }
 
     /// <summary>ethereal_jaunt/shift: 5 с сквозь стены.</summary>
@@ -356,7 +366,7 @@ public sealed partial class CultConstructSystem : EntitySystem
         _cult.Effect("CultEffectWraithOut", Transform(ent).Coordinates, Transform(ent).LocalRotation);
 
         var phased = EnsureComp<CultPhasedComponent>(ent);
-        phased.End = _timing.CurTime + TimeSpan.FromSeconds(5);
+        phased.End = _timing.CurTime + ent.Comp.PhaseShiftDelay;
         SetPhased(ent, phased, true);
     }
 
@@ -380,7 +390,7 @@ public sealed partial class CultConstructSystem : EntitySystem
             }
         }
         var vis = EnsureComp<VisibilityComponent>(uid);
-        _visibility.SetLayer((uid, vis), (ushort) (enabled ? VisibilityFlags.Ghost : VisibilityFlags.Normal));
+        _visibility.SetLayer((uid, vis), (ushort)(enabled ? VisibilityFlags.Ghost : VisibilityFlags.Normal));
     }
 
     private void OnPhasedInteract(Entity<CultPhasedComponent> ent, ref InteractionAttemptEvent args) => args.Cancelled = true;
@@ -392,9 +402,9 @@ public sealed partial class CultConstructSystem : EntitySystem
         args.Handled = true;
         _audio.PlayPvs(CultSounds.MagicMissile, ent);
         var origin = _transform.GetMapCoordinates(ent);
-        var targets = _lookup.GetEntitiesInRange<MobStateComponent>(origin, 7f)
+        var targets = _lookup.GetEntitiesInRange<MobStateComponent>(origin, ent.Comp.MagicMissileRange)
             .Where(m => m.Owner != ent.Owner && !_cult.IsCultAligned(m) && !_mobState.IsDead(m)
-                        && _examine.InRangeUnOccluded(origin, _transform.GetMapCoordinates(m), 7f, null))
+                        && _examine.InRangeUnOccluded(origin, _transform.GetMapCoordinates(m), ent.Comp.MagicMissileRange, null))
             .Select(m => m.Owner).ToList();
         _random.Shuffle(targets);
 
@@ -403,9 +413,9 @@ public sealed partial class CultConstructSystem : EntitySystem
             var dir = _transform.GetWorldPosition(target) - origin.Position;
             if (dir.LengthSquared() < 0.01f)
                 continue;
-            var proj = Spawn("CultMagicMissile", origin);
+            var proj = Spawn(CultMagicMissile, origin);
             EnsureComp<CultMissileProjectileComponent>(proj).Target = target;
-            _gun.ShootProjectile(proj, Vector2.Normalize(dir), Vector2.Zero, ent, ent, 4f);
+            _gun.ShootProjectile(proj, Vector2.Normalize(dir), Vector2.Zero, ent, ent, ent.Comp.MagicMissileSpeed);
         }
     }
 
@@ -414,7 +424,7 @@ public sealed partial class CultConstructSystem : EntitySystem
         if (!HasComp<MobStateComponent>(args.Target) || _cult.BlocksMagic(args.Target))
             return;
         _audio.PlayPvs(CultSounds.MissileHit, args.Target);
-        _cult.Paralyze(args.Target, 6);
+        _cult.Paralyze(args.Target, (float)ent.Comp.MissileHitSeconds.TotalSeconds);
     }
 
     /// <summary>conjure/*: оболочка, пол культа, стена культа, камень душ.</summary>
@@ -431,7 +441,7 @@ public sealed partial class CultConstructSystem : EntitySystem
         {
             if (_structures.IsBlocked(coords))
                 return;
-            Spawn("WallCultArtificer", coords.SnapToGrid(EntityManager));
+            Spawn(WallCultArtificer, coords.SnapToGrid(EntityManager));
             return;
         }
         if (args.Prototype is { } proto)
@@ -583,7 +593,7 @@ public sealed partial class CultConstructSystem : EntitySystem
         if (args.NewMobState != MobState.Dead)
             return;
         _popup.PopupEntity(Loc.GetString("cult-shade-death", ("target", ent)), ent, PopupType.MediumCaution);
-        Spawn("CultEctoplasm", Transform(ent).Coordinates);
+        Spawn(CultEctoplasm, Transform(ent).Coordinates);
         QueueDel(ent);
     }
 
@@ -615,7 +625,7 @@ public sealed partial class CultConstructSystem : EntitySystem
 
     private void Wracked(EntityUid user)
     {
-        _cult.Unconscious(user, 10);
+        _cult.Unconscious(user, WrackedSeconds);
         _cult.Message(user, Loc.GetString("cult-soulstone-wracked"));
     }
 
@@ -691,7 +701,7 @@ public sealed partial class CultConstructSystem : EntitySystem
     private void HotPotato(EntityUid stone, EntityUid user)
     {
         _cult.Message(user, Loc.GetString("cult-soulstone-holy-burn", ("stone", stone)));
-        _cult.Damage(user, "Heat", 10);
+        _cult.Damage(user, "Heat", HotPotatoAmount);
         _hands.TryDrop(user, stone, checkActionBlocker: false);
     }
 
@@ -717,7 +727,7 @@ public sealed partial class CultConstructSystem : EntitySystem
             }
         }
 
-        var shade = Spawn("MobCultShade", Transform(stoneUid).Coordinates);
+        var shade = Spawn(MobCultShade, Transform(stoneUid).Coordinates);
         _cult.SetName(shade, Loc.GetString("cult-shade-name", ("name", Name(victim))));
         _container.Insert(shade, Slot(stoneUid), force: true);
         if (TryComp<CultShadeComponent>(shade, out var shadeComp))
@@ -916,7 +926,7 @@ public sealed partial class CultConstructSystem : EntitySystem
             // Нельзя выйти внутри стены: ждём свободного тайла.
             if (_structures.IsDense(Transform(uid).Coordinates))
             {
-                phased.End = now + TimeSpan.FromSeconds(0.5);
+                phased.End = now + phased.UpdateDelay;
                 continue;
             }
             ended.Add((uid, phased));

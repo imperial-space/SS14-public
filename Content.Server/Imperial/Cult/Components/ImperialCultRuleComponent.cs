@@ -76,4 +76,13 @@ public sealed partial class ImperialCultRuleComponent : Component
     [ViewVariables] public int ShuttleCurses;
     [ViewVariables] public TimeSpan FirstCurseTime;
     [ViewVariables] public List<string> RemainingCurses = new();
+
+    [DataField]
+    public TimeSpan LeaderPendingDelay = TimeSpan.FromSeconds(3);
+
+    [DataField]
+    public TimeSpan CheckDelay = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan FinishDelay = TimeSpan.FromSeconds(2);
 }

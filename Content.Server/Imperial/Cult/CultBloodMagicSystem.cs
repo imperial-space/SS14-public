@@ -36,6 +36,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using NewStatus = Content.Shared.StatusEffectNew.StatusEffectsSystem;
+using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server.Imperial.Cult;
 
@@ -97,6 +98,19 @@ public sealed class CultBloodMagicSystem : EntitySystem
         (CultSpell.BloodRites, "ActionCultSpellBloodRites"),
     };
 
+    private static readonly EntProtoId CultDagger = "CultDagger";
+    private static readonly EntProtoId CultShackles = "CultShackles";
+    private static readonly ProtoId<StackPrototype> SteelStack = "Steel";
+    private static readonly EntProtoId CultConstructShell = "CultConstructShell";
+    private static readonly ProtoId<StackPrototype> PlasteelStack = "Plasteel";
+    private static readonly ProtoId<StackPrototype> CultRunedMetalStack = "CultRunedMetal";
+    private static readonly EntProtoId CultBola = "CultBola";
+    private static readonly ProtoId<ReagentPrototype> BloodReagent = "Blood";
+    private static readonly ProtoId<ReagentPrototype> HolywaterReagent = "Holywater";
+
+    private const float NearEmpowerRuneRange = 1.5f;
+    private const float SteelStacksRange = 0.45f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -133,7 +147,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
 
     private bool NearEmpowerRune(EntityUid user)
     {
-        foreach (var rune in _lookup.GetEntitiesInRange<CultRuneComponent>(Transform(user).Coordinates, 1.5f))
+        foreach (var rune in _lookup.GetEntitiesInRange<CultRuneComponent>(Transform(user).Coordinates, NearEmpowerRuneRange))
         {
             if (rune.Comp.RuneType == CultRuneType.Empower)
                 return true;
@@ -324,7 +338,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
                 _cult.Whisper(user, spell.Invocation ?? "Ta'gh fara'qha fel d'amar det!");
                 _popup.PopupEntity(Loc.GetString("cult-spell-emp-others", ("user", user)), user, Filter.PvsExcept(user), true, PopupType.MediumCaution);
                 _cult.Message(user, Loc.GetString("cult-spell-emp-self"));
-                _emp.EmpPulse(_transform.GetMapCoordinates(user), 5f, 50000f, TimeSpan.FromSeconds(30), user);
+                _emp.EmpPulse(_transform.GetMapCoordinates(user), ent.Comp.SpellActionEmpRange, ent.Comp.SpellActionEmpEnergyConsumption, ent.Comp.SpellActionEmpDuration, user);
                 ConsumeCharge(user, action, spell);
                 return;
 
@@ -332,7 +346,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
                 _cult.Whisper(user, spell.Invocation ?? "Wur d'dai leev'mai k'sagan!");
                 _popup.PopupEntity(Loc.GetString("cult-spell-dagger-others", ("user", user)), user, Filter.PvsExcept(user), true, PopupType.Medium);
                 _cult.Message(user, Loc.GetString("cult-spell-dagger-self"));
-                var blade = Spawn("CultDagger", Transform(user).Coordinates);
+                var blade = Spawn(CultDagger, Transform(user).Coordinates);
                 if (_hands.TryPickupAnyHand(user, blade))
                     _cult.Message(user, Loc.GetString("cult-spell-dagger-hand", ("item", blade)));
                 else
@@ -382,7 +396,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("cult-spell-veil-others", ("user", user)), user, Filter.PvsExcept(user), true, PopupType.Medium);
             _cult.Message(user, Loc.GetString("cult-spell-veil-self"));
             _cult.SoundTo(user, CultSounds.Smoke, CultSystem.Db(25));
-            _structures.ConcealAround(_transform.GetMapCoordinates(user), 5f);
+            _structures.ConcealAround(_transform.GetMapCoordinates(user), spell.CastVeilingRange);
             spell.Revealing = true;
             _meta.SetEntityName(action, Loc.GetString("cult-spell-reveal-name"));
             _actions.SetIcon(action, new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/BloodCult/actions.rsi"), "back"));
@@ -392,7 +406,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("cult-spell-reveal-others", ("user", user)), user, Filter.PvsExcept(user), true, PopupType.Medium);
             _cult.Message(user, Loc.GetString("cult-spell-reveal-self"));
             _cult.SoundTo(user, CultSounds.EnterBlood, CultSystem.Db(25));
-            _structures.RevealAround(_transform.GetMapCoordinates(user), 7f, structureRange: 6f);
+            _structures.RevealAround(_transform.GetMapCoordinates(user), spell.CastVeilingRange2, structureRange: 6f);
             spell.Revealing = false;
             _meta.SetEntityName(action, Loc.GetString("cult-spell-conceal-name"));
             _actions.SetIcon(action, new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/BloodCult/actions.rsi"), "gone"));
@@ -415,10 +429,10 @@ public sealed class CultBloodMagicSystem : EntitySystem
             return;
 
         args.Handled = true;
-        _status.TryUpdateStatusEffectDuration(target, HallucinationEffect, TimeSpan.FromSeconds(240));
+        _status.TryUpdateStatusEffectDuration(target, HallucinationEffect, ent.Comp.HorrorDuration);
         _cult.SoundTo(ent, CultSounds.Ghost, CultSystem.Db(50));
         var mark = EnsureComp<CultHorrorMarkComponent>(target);
-        mark.End = _timing.CurTime + TimeSpan.FromMinutes(4);
+        mark.End = _timing.CurTime + ent.Comp.HorrorDelay;
         Dirty(target, mark);
         _cult.Message(ent, Loc.GetString("cult-spell-horror-cursed", ("target", target)));
 
@@ -564,13 +578,13 @@ public sealed class CultBloodMagicSystem : EntitySystem
 
         _popup.PopupEntity(Loc.GetString("cult-spell-stun-others", ("user", user)), user, Filter.PvsExcept(user), true, PopupType.MediumCaution);
         _cult.Message(user, Loc.GetString("cult-spell-stun-self", ("target", target)));
-        _cult.FlashLight(user, Color.FromHex("#A01010"), 1.1f, 2f, 0.2f);
+        _cult.FlashLight(user, Color.FromHex("#A01010"), ent.Comp.CastStunRange, 2f, (float)ent.Comp.CastStunSeconds.TotalSeconds);
         ent.Comp.Uses--;
 
         if (CultForeignComponents.Has(EntityManager, target, CultForeignComponents.Heretic))
         {
-            _stun.TryKnockdown(target, TimeSpan.FromSeconds(0.5), true);
-            _cult.FlashLight(target, Color.FromHex("#00FF00"), 1.5f, 2.5f, 0.5f);
+            _stun.TryKnockdown(target, ent.Comp.CastStunTime, true);
+            _cult.FlashLight(target, Color.FromHex("#00FF00"), ent.Comp.CastStunRange2, 2.5f, ent.Comp.CastStunSeconds2);
             _audio.PlayPvs(CultSounds.MagicBlockMind, target);
             _cult.Message(user, Loc.GetString("cult-spell-stun-heretic-user", ("target", target)));
             _cult.Message(target, Loc.GetString("cult-spell-stun-heretic-target", ("user", user)));
@@ -589,7 +603,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
         _cult.Flash(target, user);
         if (HasComp<BorgChassisComponent>(target))
         {
-            _emp.EmpPulse(_transform.GetMapCoordinates(target), 0.5f, 100000f, TimeSpan.FromSeconds(20), user);
+            _emp.EmpPulse(_transform.GetMapCoordinates(target), ent.Comp.CastStunRange3, ent.Comp.CastStunEnergyConsumption, ent.Comp.CastStunDuration, user);
         }
         else if (HasComp<HumanoidProfileComponent>(target))
         {
@@ -686,7 +700,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("cult-spell-shackles-start-others", ("user", user), ("target", target)), target, Filter.PvsExcept(target), true, PopupType.MediumCaution);
         _popup.PopupEntity(Loc.GetString("cult-spell-shackles-start-target", ("user", user)), target, target, PopupType.LargeCaution);
 
-        var doAfter = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(3), new CultShackleDoAfterEvent(), user, target: target, used: ent)
+        var doAfter = new DoAfterArgs(EntityManager, user, ent.Comp.CastShacklesDelay, new CultShackleDoAfterEvent(), user, target: target, used: ent)
         {
             BreakOnMove = true,
             NeedHand = true,
@@ -711,10 +725,10 @@ public sealed class CultBloodMagicSystem : EntitySystem
 
         if (TryComp<CuffableComponent>(target, out var cuffable) && !_cuffs.IsCuffed((target.Value, cuffable)))
         {
-            var cuffs = Spawn("CultShackles", Transform(target.Value).Coordinates);
+            var cuffs = Spawn(CultShackles, Transform(target.Value).Coordinates);
             if (_cuffs.TryAddNewCuffs(target.Value, ent, cuffs, cuffable))
             {
-                _cult.Silence(target.Value, 10);
+                _cult.Silence(target.Value, (float)ent.Comp.ShackleDoAfterSeconds.TotalSeconds);
                 _cult.Message(ent, Loc.GetString("cult-spell-shackles-done", ("target", target.Value)));
                 aura.Uses--;
             }
@@ -743,7 +757,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
 
         if (TryComp<StackComponent>(target, out var stack))
         {
-            if (stack.StackTypeId == "Steel")
+            if (stack.StackTypeId == SteelStack)
             {
                 // В SS14 стопка стали — максимум 30 листов (в SS13 — 50): собираем сталь со всего тайла и из рук.
                 var steel = SteelStacks(target, user);
@@ -763,18 +777,18 @@ public sealed class CultBloodMagicSystem : EntitySystem
                 }
                 ent.Comp.Uses--;
                 _cult.Message(user, Loc.GetString("cult-spell-construction-shell"));
-                Spawn("CultConstructShell", coords);
+                Spawn(CultConstructShell, coords);
                 _cult.SoundTo(user, CultSounds.Magic, CultSystem.Db(25));
                 BaseCast(ent, user);
                 return;
             }
 
-            if (stack.StackTypeId == "Plasteel")
+            if (stack.StackTypeId == PlasteelStack)
             {
                 var quantity = stack.Count;
                 ent.Comp.Uses--;
                 Del(target);
-                _stack.SpawnAtPosition(quantity, "CultRunedMetal", coords);
+                _stack.SpawnAtPosition(quantity, CultRunedMetalStack, coords);
                 _cult.Message(user, Loc.GetString("cult-spell-construction-runed"));
                 _cult.SoundTo(user, CultSounds.Magic, CultSystem.Db(25));
                 BaseCast(ent, user);
@@ -793,7 +807,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
                 tint.Color = Color.Black;
                 Dirty(target, tint);
 
-                var doAfter = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(9), new CultConstructionDoAfterEvent(), user, target: target, used: ent)
+                var doAfter = new DoAfterArgs(EntityManager, user, ent.Comp.CastConstructionDelay, new CultConstructionDoAfterEvent(), user, target: target, used: ent)
                 {
                     BreakOnMove = true,
                     NeedHand = true,
@@ -808,7 +822,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
 
             ent.Comp.Uses--;
             _cult.Message(user, Loc.GetString("cult-spell-construction-borg-shell", ("target", target)));
-            Spawn("CultConstructShell", coords);
+            Spawn(CultConstructShell, coords);
             _cult.SoundTo(user, CultSounds.Magic, CultSystem.Db(25));
             QueueDel(target);
             BaseCast(ent, user);
@@ -820,7 +834,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
             ent.Comp.Channeling = true;
             _audio.PlayPvs(CultSounds.AirlockForced, coords, AudioParams.Default.WithVolume(CultSystem.Db(50)).WithVariation(0.05f));
             _cult.Sparks(coords);
-            var doAfter = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(5), new CultConstructionDoAfterEvent(), user, target: target, used: ent)
+            var doAfter = new DoAfterArgs(EntityManager, user, ent.Comp.CastConstructionDelay2, new CultConstructionDoAfterEvent(), user, target: target, used: ent)
             {
                 BreakOnMove = true,
                 NeedHand = true,
@@ -865,7 +879,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
 
         if (HasComp<BorgChassisComponent>(target))
         {
-            _emp.EmpPulse(_transform.GetMapCoordinates(target), 0.5f, 100000f, TimeSpan.FromSeconds(20), user);
+            _emp.EmpPulse(_transform.GetMapCoordinates(target), ent.Comp.ConstructionDoAfterRange, ent.Comp.ConstructionDoAfterEnergyConsumption, ent.Comp.ConstructionDoAfterDuration, user);
             aura.Channeling = true;
             _constructs.OpenConstructChoice(user, type =>
             {
@@ -902,12 +916,12 @@ public sealed class CultBloodMagicSystem : EntitySystem
         var seen = new HashSet<EntityUid>();
         void Add(EntityUid uid)
         {
-            if (seen.Add(uid) && TryComp<StackComponent>(uid, out var s) && s.StackTypeId == "Steel" && !TerminatingOrDeleted(uid))
+            if (seen.Add(uid) && TryComp<StackComponent>(uid, out var s) && s.StackTypeId == SteelStack && !TerminatingOrDeleted(uid))
                 result.Add((uid, s));
         }
 
         Add(target);
-        foreach (var near in _lookup.GetEntitiesInRange<StackComponent>(Transform(target).Coordinates, 0.45f))
+        foreach (var near in _lookup.GetEntitiesInRange<StackComponent>(Transform(target).Coordinates, SteelStacksRange))
             Add(near.Owner);
         foreach (var held in _hands.EnumerateHeld(user))
             Add(held);
@@ -931,9 +945,9 @@ public sealed class CultBloodMagicSystem : EntitySystem
             QueueDel(ent);
 
         var coords = Transform(target).Coordinates;
-        var dagger = Spawn("CultDagger", coords);
+        var dagger = Spawn(CultDagger, coords);
         _hands.TryPickupAnyHand(target, dagger);
-        var bola = Spawn("CultBola", coords);
+        var bola = Spawn(CultBola, coords);
         _hands.TryPickupAnyHand(target, bola);
         return true;
     }
@@ -1012,7 +1026,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
         {
             _cult.HealAll(target, missing);
             _popup.PopupEntity(Loc.GetString("cult-rites-construct-full", ("target", target), ("user", user)), target, PopupType.Medium);
-            ent.Comp.Uses -= (int) MathF.Ceiling(missing);
+            ent.Comp.Uses -= (int)MathF.Ceiling(missing);
         }
         else
         {
@@ -1049,7 +1063,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
             }
             donor = true;
             ModifyBloodSs13(target, needed);
-            ent.Comp.Uses -= (int) MathF.Round(needed / UsesToBlood);
+            ent.Comp.Uses -= (int)MathF.Round(needed / UsesToBlood);
             _cult.Message(user, Loc.GetString(target == user ? "cult-rites-blood-restored-self" : "cult-rites-blood-restored", ("target", target)));
         }
 
@@ -1074,7 +1088,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
             healed = MathF.Min(ent.Comp.Uses * (1f / SelfHealPenalty), overall);
             cost = healed * SelfHealPenalty;
         }
-        ent.Comp.Uses = Math.Max(0, ent.Comp.Uses - (int) MathF.Round(cost));
+        ent.Comp.Uses = Math.Max(0, ent.Comp.Uses - (int)MathF.Round(cost));
 
         _popup.PopupEntity(Loc.GetString(ent.Comp.Uses == 0 ? "cult-rites-healed-partial" : "cult-rites-healed-full", ("target", target)), target, PopupType.Medium);
         _cult.HealGroup(target, "Airloss", healed * (oxy / overall));
@@ -1085,7 +1099,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
         _audio.PlayPvs(CultSounds.StaffHealing, target, AudioParams.Default.WithVolume(CultSystem.Db(25)));
         _cult.Effect("CultEffectSparks", Transform(target).Coordinates, randomDir: true);
         if (user != target)
-            _cult.Beam(user, Transform(target).Coordinates, "CultBeamSend", 1.5f);
+            _cult.Beam(user, Transform(target).Coordinates, "CultBeamSend", (float)ent.Comp.HealCultistSeconds.TotalSeconds);
         return true;
     }
 
@@ -1116,11 +1130,11 @@ public sealed class CultBloodMagicSystem : EntitySystem
     private void BloodDraw(Entity<CultAuraComponent> ent, EntityCoordinates coords, EntityUid user)
     {
         var gain = 0f;
-        foreach (var puddle in _lookup.GetEntitiesInRange<PuddleComponent>(coords, 2.5f))
+        foreach (var puddle in _lookup.GetEntitiesInRange<PuddleComponent>(coords, ent.Comp.BloodDrawRange))
         {
             if (!_solutions.TryGetSolution(puddle.Owner, puddle.Comp.SolutionName, out _, out var solution))
                 continue;
-            var blood = solution.GetTotalPrototypeQuantity("Blood").Float();
+            var blood = solution.GetTotalPrototypeQuantity(BloodReagent).Float();
             if (blood <= 0)
                 continue;
             gain += MathF.Max(blood * 0.6f, 1f);
@@ -1131,10 +1145,10 @@ public sealed class CultBloodMagicSystem : EntitySystem
         if (gain <= 0)
             return;
 
-        _cult.Beam(user, coords, "CultBeamDrain", 1.5f);
+        _cult.Beam(user, coords, "CultBeamDrain", (float)ent.Comp.BloodDrawSeconds.TotalSeconds);
         _cult.Effect("CultEffectSparks", Transform(user).Coordinates, randomDir: true);
         _audio.PlayPvs(CultSounds.EnterBlood, coords, AudioParams.Default.WithVolume(CultSystem.Db(50)));
-        var charges = Math.Max(1, (int) MathF.Round(gain));
+        var charges = Math.Max(1, (int)MathF.Round(gain));
         _cult.Message(user, Loc.GetString("cult-rites-floor", ("count", charges)));
         ent.Comp.Uses += charges;
     }
@@ -1212,7 +1226,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
     {
         if (!_solutions.TryGetSolution(target, "chemicals", out var solEnt, out var solution))
             return true;
-        var holy = solution.GetTotalPrototypeQuantity("Holywater");
+        var holy = solution.GetTotalPrototypeQuantity(HolywaterReagent);
         if (holy <= 0)
             return true;
 

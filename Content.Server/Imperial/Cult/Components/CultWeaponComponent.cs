@@ -22,4 +22,7 @@ public sealed partial class CultWeaponComponent : Component
 
     [DataField]
     public float Force = 30f;
+
+    [DataField]
+    public TimeSpan WeaponAttemptSeconds = TimeSpan.FromSeconds(10f);
 }

@@ -49,6 +49,23 @@ public sealed class NarSieSystem : EntitySystem
     private const float MesmerizeChance = 0.25f;
     private static readonly ProtoId<TagPrototype> WallTag = "Wall";
 
+    private static readonly EntProtoId WallCult = "WallCult";
+    private static readonly EntProtoId Ash = "Ash";
+
+    private static readonly TimeSpan EndStageDelay = TimeSpan.FromSeconds(50);
+    private static readonly TimeSpan EndStageDelay2 = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan EndStageDelay3 = TimeSpan.FromMinutes(1);
+
+    private const float ConsumeChance = 0.2f;
+    private const float MesmerizeSeconds = 6f;
+    private const float PlayCinematicArmDelay = 2.5f;
+    private const float PlayCinematicArmDelay2 = 5.3f;
+    private const float PlayCinematicArmDelay3 = 7.3f;
+    private const float PlayCinematicFailDelay = 2f;
+    private const float PlayCinematicFailDelay2 = 8f;
+    private const float PlayCinematicFailDelay3 = 9f;
+    private const float PlayCinematicDelay = 3.5f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -60,7 +77,7 @@ public sealed class NarSieSystem : EntitySystem
     {
         // narsie_spawn_animation(): 3.5 с анимации, потом движение.
         _cult.SetState(ent, "narsie_spawn_anim");
-        ent.Comp.NextMove = _timing.CurTime + TimeSpan.FromSeconds(3.5);
+        ent.Comp.NextMove = _timing.CurTime + ent.Comp.MoveDelay;
         ent.Comp.SpawnAnimEnd = ent.Comp.NextMove;
         StartEndingTheRound(ent);
     }
@@ -95,10 +112,10 @@ public sealed class NarSieSystem : EntitySystem
                 continue;
             ent.Comp.SoulsNeeded.Add(mob);
         }
-        ent.Comp.SoulGoal = (int) MathF.Round(1 + ent.Comp.SoulsNeeded.Count * 0.75f);
+        ent.Comp.SoulGoal = (int)MathF.Round(1 + ent.Comp.SoulsNeeded.Count * 0.75f);
 
         rule.Comp.EndStage = 1;
-        rule.Comp.NextEndStage = _timing.CurTime + TimeSpan.FromSeconds(15);
+        rule.Comp.NextEndStage = _timing.CurTime + ent.Comp.EndStageDelay;
         _rule.UpdateObjectiveTexts(rule.Comp);
     }
 
@@ -131,7 +148,7 @@ public sealed class NarSieSystem : EntitySystem
                 continue;
             if (narsie.NextRetarget == TimeSpan.Zero)
                 _cult.SetState(uid, "narsie");
-            narsie.NextMove = now + TimeSpan.FromSeconds(1);
+            narsie.NextMove = now + narsie.MoveDelay2;
 
             if (narsie.Target == null || TerminatingOrDeleted(narsie.Target.Value) || _random.Prob(PickTargetChance))
                 PickCultist((uid, narsie));
@@ -188,7 +205,7 @@ public sealed class NarSieSystem : EntitySystem
     private void ChooseDirection(Entity<CultNarSieComponent> ent, TransformComponent xform)
     {
         var pos = _transform.GetWorldPosition(xform);
-        if (ent.Comp.Target is { } target && !TerminatingOrDeleted(target) && Transform(target).MapID == xform.MapID && _random.Prob(0.6f))
+        if (ent.Comp.Target is { } target && !TerminatingOrDeleted(target) && Transform(target).MapID == xform.MapID && _random.Prob(ent.Comp.ChooseDirectionChance))
         {
             var delta = _transform.GetWorldPosition(target) - pos;
             if (delta.LengthSquared() < 0.25f)
@@ -232,7 +249,7 @@ public sealed class NarSieSystem : EntitySystem
             var changes = new List<(Vector2i, Tile)>();
             foreach (var tile in _map.GetTilesIntersecting(grid, grid.Comp, new Circle(center.Position, ConsumeRange)))
             {
-                if (!_random.Prob(0.2f))
+                if (!_random.Prob(ConsumeChance))
                     continue;
                 if (_structures.CultFloorTileFor(tile) is { } cult)
                     changes.Add((tile.GridIndices, cult));
@@ -243,7 +260,7 @@ public sealed class NarSieSystem : EntitySystem
 
         foreach (var ent in _lookup.GetEntitiesInRange(center, ConsumeRange, LookupFlags.Static).ToList())
         {
-            if (!_random.Prob(0.2f) || TerminatingOrDeleted(ent))
+            if (!_random.Prob(ConsumeChance) || TerminatingOrDeleted(ent))
                 continue;
             if (HasComp<AirlockComponent>(ent) && !HasComp<CultRunedDoorComponent>(ent))
             {
@@ -255,7 +272,7 @@ public sealed class NarSieSystem : EntitySystem
             {
                 var coords = Transform(ent).Coordinates;
                 QueueDel(ent);
-                Spawn("WallCult", coords);
+                Spawn(WallCult, coords);
             }
         }
     }
@@ -278,7 +295,7 @@ public sealed class NarSieSystem : EntitySystem
                 soulRule.Value.Comp.Resolved = true;
                 soulRule.Value.Comp.EndStage = 0;
                 _audio.PlayGlobal(CultSounds.NukeAlarm, Filter.Broadcast(), true, AudioParams.Default.WithVolume(CultSystem.Db(70)));
-                _schedule.Schedule(TimeSpan.FromSeconds(12), () => PlayCinematic(CultCinematic.Arm));
+                _schedule.Schedule(narsie.NarsieActMobDelay, () => PlayCinematic(CultCinematic.Arm));
             }
         }
         var coords = Transform(mob).Coordinates;
@@ -292,7 +309,7 @@ public sealed class NarSieSystem : EntitySystem
             if (CultConstructSystem.ConstructProtos.TryGetValue(type, out var proto))
                 Spawn(proto, coords);
         }
-        Spawn("Ash", coords);
+        Spawn(Ash, coords);
         _gibbing.Gib(mob);
     }
 
@@ -307,7 +324,7 @@ public sealed class NarSieSystem : EntitySystem
             if (!_examine.InRangeUnOccluded(origin, _transform.GetMapCoordinates(mob), ConsumeRange, null))
                 continue;
             _cult.Message(mob, Loc.GetString("cult-narsie-mesmerize", ("narsie", narsie)));
-            _cult.Stun(mob, 6);
+            _cult.Stun(mob, MesmerizeSeconds);
         }
     }
 
@@ -352,7 +369,7 @@ public sealed class NarSieSystem : EntitySystem
                 }
                 _cult.Announce(Loc.GetString("cult-narsie-end-1"), CultSounds.CultRiseAnnounce);
                 rule.EndStage = 2;
-                rule.NextEndStage = now + TimeSpan.FromSeconds(50);
+                rule.NextEndStage = now + EndStageDelay;
                 break;
             case 2:
                 if (!alive)
@@ -363,14 +380,14 @@ public sealed class NarSieSystem : EntitySystem
                 }
                 _cult.Announce(Loc.GetString("cult-narsie-end-2"), null);
                 rule.EndStage = 3;
-                rule.NextEndStage = now + TimeSpan.FromSeconds(5);
+                rule.NextEndStage = now + EndStageDelay2;
                 break;
             case 3:
                 // narsie_start_destroy_station(): шаттл заблокирован.
                 if (_roundEnd.ExpectedCountdownEnd != null)
                     _roundEnd.CancelRoundEndCountdown(forceRecall: true);
                 rule.EndStage = 4;
-                rule.NextEndStage = now + TimeSpan.FromMinutes(1);
+                rule.NextEndStage = now + EndStageDelay3;
                 break;
             case 4:
                 if (!alive)
@@ -410,7 +427,7 @@ public sealed class NarSieSystem : EntitySystem
         }
         rule.NarSieKilled = true;
         // addtimer(cult_ending_helper(CULT_FAILURE_NARSIE_KILLED), 2 SECONDS)
-        _schedule.Schedule(TimeSpan.FromSeconds(2), () => PlayCinematic(CultCinematic.Fail));
+        _schedule.Schedule(rule.FinishDelay, () => PlayCinematic(CultCinematic.Fail));
     }
 
     /// <summary>cult_ending_helper(): синематик, затем конец раунда.</summary>
@@ -421,20 +438,20 @@ public sealed class NarSieSystem : EntitySystem
         switch (cinematic)
         {
             case CultCinematic.Arm:
-                Sound(2.5f, CultSounds.EnterBlood);
-                Sound(5.3f, CultSounds.TerminalOff);
-                Sound(7.3f, CultSounds.Ghost);
+                Sound(PlayCinematicArmDelay, CultSounds.EnterBlood);
+                Sound(PlayCinematicArmDelay2, CultSounds.TerminalOff);
+                Sound(PlayCinematicArmDelay3, CultSounds.Ghost);
                 // Манифест закрывает синематик: даём досмотреть поглощение станции.
                 end = 20f;
                 break;
             case CultCinematic.Fail:
-                Sound(2f, CultSounds.NarsieRises);
-                Sound(8f, CultSounds.ExplosionDistant);
-                Sound(9f, CultSounds.DemonDies);
+                Sound(PlayCinematicFailDelay, CultSounds.NarsieRises);
+                Sound(PlayCinematicFailDelay2, CultSounds.ExplosionDistant);
+                Sound(PlayCinematicFailDelay3, CultSounds.DemonDies);
                 end = 12f;
                 break;
             default:
-                Sound(3.5f, CultSounds.ExplosionDistant);
+                Sound(PlayCinematicDelay, CultSounds.ExplosionDistant);
                 // intro_cult_fleet (3.5 с) + station_explode_fleet_fade_red (7.9 с) + итоговый кадр.
                 end = 13.4f;
                 break;

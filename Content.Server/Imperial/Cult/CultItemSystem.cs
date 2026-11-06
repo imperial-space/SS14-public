@@ -43,6 +43,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.Imperial.Achievements;
 
 namespace Content.Server.Imperial.Cult;
 
@@ -76,6 +78,16 @@ public sealed partial class CultItemSystem : EntitySystem
 
     private const int MaxShuttleCurses = 3;
     private static readonly EntProtoId BondAction = "ActionCultBloodBond";
+
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+    private static readonly ProtoId<ImperialAchievementPrototype> ImperialAchievementCultShuttleOmfg = "ImperialAchievementCultShuttleOmfg";
+    private static readonly EntProtoId PuddleBlood = "PuddleBlood";
+    private static readonly EntProtoId CultShieldWeak = "CultShieldWeak";
+
+    private const float FireBeamRange = 0.5f;
+    private const float FireBeamSeconds = 2f;
+    private const float FireBeamAmount = 45f;
+    private const float FireBeamSeconds2 = 0.7f;
 
     public override void Initialize()
     {
@@ -121,7 +133,7 @@ public sealed partial class CultItemSystem : EntitySystem
             return;
         args.Cancelled = true;
         var user = args.User;
-        _cult.Paralyze(user, 10);
+        _cult.Paralyze(user, (float)ent.Comp.WeaponAttemptSeconds.TotalSeconds);
         _hands.TryDrop(user, ent.Owner, checkActionBlocker: false);
         _popup.PopupEntity(Loc.GetString("cult-blade-shove-others", ("user", user)), user, Filter.PvsExcept(user), true, PopupType.MediumCaution);
         _cult.Message(user, Loc.GetString("cult-blade-shove-self"));
@@ -181,7 +193,7 @@ public sealed partial class CultItemSystem : EntitySystem
         if (!_cult.IsCultist(args.Target) || !TryComp<EnsnaringComponent>(ent, out var ensnaring))
             return;
         // Проходит сквозь культистов.
-        _schedule.Schedule(TimeSpan.FromMilliseconds(1), () =>
+        _schedule.Schedule(ent.Comp.BolaHitDelay, () =>
         {
             if (!TerminatingOrDeleted(ent) && ensnaring.Ensnared != null)
                 _ensnare.ForceFree(ent, ensnaring);
@@ -195,7 +207,7 @@ public sealed partial class CultItemSystem : EntitySystem
         if (_cult.IsCultist(user) || !HasComp<HumanoidProfileComponent>(user) || !TryComp<EnsnaringComponent>(ent, out var ensnaring))
             return;
 
-        _schedule.Schedule(TimeSpan.FromMilliseconds(1), () =>
+        _schedule.Schedule(ent.Comp.BolaPickupDelay, () =>
         {
             if (TerminatingOrDeleted(ent) || TerminatingOrDeleted(user))
                 return;
@@ -207,7 +219,7 @@ public sealed partial class CultItemSystem : EntitySystem
             else
             {
                 _cult.Message(user, Loc.GetString("cult-blade-pickup-warning"));
-                _cult.Paralyze(user, 6);
+                _cult.Paralyze(user, (float)ent.Comp.BolaPickupSeconds.TotalSeconds);
             }
         });
     }
@@ -248,7 +260,7 @@ public sealed partial class CultItemSystem : EntitySystem
         }
 
         var add = MathF.Min(ent.Comp.Increment, ent.Comp.Max - total);
-        Robust.Shared.Prototypes.ProtoId<Content.Shared.Damage.Prototypes.DamageTypePrototype> type = melee.Damage.DamageDict.Count > 0 ? melee.Damage.DamageDict.MaxBy(p => p.Value).Key : "Slash";
+        var type = melee.Damage.DamageDict.Count > 0 ? melee.Damage.DamageDict.MaxBy(p => p.Value).Key : SlashDamageType;
         melee.Damage.DamageDict[type] += FixedPoint2.New(add);
         Dirty(target, melee);
         EnsureComp<CultSharpenedComponent>(target);
@@ -276,7 +288,7 @@ public sealed partial class CultItemSystem : EntitySystem
         if (!_cult.IsCultist(user))
         {
             _hands.TryDrop(user, ent.Owner, checkActionBlocker: false);
-            _cult.Paralyze(user, 10);
+            _cult.Paralyze(user, (float)ent.Comp.CurseOrbSeconds.TotalSeconds);
             _cult.Message(user, Loc.GetString("cult-curse-shoved", ("orb", ent)));
             return;
         }
@@ -296,7 +308,7 @@ public sealed partial class CultItemSystem : EntitySystem
         if (_roundEnd.ExpectedCountdownEnd == null || _emergency.EmergencyShuttleArrived)
             return;
 
-        if (!DelayShuttle(TimeSpan.FromMinutes(3)))
+        if (!DelayShuttle(ent.Comp.CurseOrbDelay))
             return;
 
         if (rule.Comp.ShuttleCurses == 0)
@@ -317,7 +329,7 @@ public sealed partial class CultItemSystem : EntitySystem
         _chat().DispatchGlobalAnnouncement(message, Loc.GetString("cult-curse-sender"), true, CultSounds.Notice1, Color.Gold);
 
         // Все проклятия за 10 секунд — Транспортный Департамент в ярости.
-        if (rule.Comp.ShuttleCurses >= MaxShuttleCurses && _timing.CurTime < rule.Comp.FirstCurseTime + TimeSpan.FromSeconds(10))
+        if (rule.Comp.ShuttleCurses >= MaxShuttleCurses && _timing.CurTime < rule.Comp.FirstCurseTime + ent.Comp.CurseOrbDelay2)
         {
             var omfg = Loc.GetString($"cult-curse-omfg-{_random.Next(1, 8)}");
             _schedule.Schedule(TimeSpan.FromSeconds(_random.NextFloat(2f, 6f)), () =>
@@ -413,7 +425,7 @@ public sealed partial class CultItemSystem : EntitySystem
             return;
         }
 
-        EntityUid? pulled = TryComp<PullerComponent>(user, out var puller) ? puller.Pulling : null;
+        var pulled = TryComp<PullerComponent>(user, out var puller) ? puller.Pulling : null;
         if (pulled != null)
             _runes.Teleport(pulled.Value, dest.Value);
         _runes.Teleport(user, dest.Value);
@@ -491,7 +503,7 @@ public sealed partial class CultItemSystem : EntitySystem
         {
             _transform.AttachToGridOrMap(halberd.Value);
         }
-        _throwing.TryThrow(halberd.Value, Transform(ent).Coordinates, 10f, ent);
+        _throwing.TryThrow(halberd.Value, Transform(ent).Coordinates, ent.Comp.BloodBondBaseThrowSpeed, ent);
     }
 
     /// <summary>halberd/throw_impact(): ловит культист, не-культист падает, алебарда ломается.</summary>
@@ -513,11 +525,11 @@ public sealed partial class CultItemSystem : EntitySystem
             return;
         }
 
-        _cult.Paralyze(target, 5);
+        _cult.Paralyze(target, (float)ent.Comp.HalberdHitSeconds.TotalSeconds);
         var coords = Transform(target).Coordinates;
         _popup.PopupCoordinates(Loc.GetString("cult-halberd-shatter", ("item", ent)), coords, PopupType.MediumCaution);
         _cult.Effect("CultEffectSparks", coords, randomDir: true);
-        Spawn("PuddleBlood", coords);
+        Spawn(PuddleBlood, coords);
         _audio.PlayPvs(CultSounds.GlassBreak3, coords);
         QueueDel(ent);
     }
@@ -577,7 +589,7 @@ public sealed partial class CultItemSystem : EntitySystem
         ent.Comp.NextPulse = _timing.CurTime;
         _audio.PlayPvs(CultSounds.LightningChargeup, user);
 
-        var doAfter = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(9), new CultBloodBeamDoAfterEvent { Firing = false }, user, used: ent)
+        var doAfter = new DoAfterArgs(EntityManager, user, ent.Comp.StartBeamDelay, new CultBloodBeamDoAfterEvent { Firing = false }, user, used: ent)
         {
             BreakOnMove = true,
         };
@@ -609,10 +621,10 @@ public sealed partial class CultItemSystem : EntitySystem
             beam.Spread = 40f;
             beam.Second = false;
             beam.NextPulse = _timing.CurTime;
-            beam.Shield = Spawn("CultShieldWeak", Transform(ent).Coordinates);
+            beam.Shield = Spawn(CultShieldWeak, Transform(ent).Coordinates);
             _cult.Immobilize(ent, true);
 
-            var doAfter = new DoAfterArgs(EntityManager, ent, TimeSpan.FromSeconds(9), new CultBloodBeamDoAfterEvent { Firing = true }, ent, used: used)
+            var doAfter = new DoAfterArgs(EntityManager, ent, ent.Comp.BeamDoAfterDelay, new CultBloodBeamDoAfterEvent { Firing = true }, ent, used: used)
             {
                 BreakOnMove = false,
                 BreakOnDamage = false,
@@ -623,7 +635,7 @@ public sealed partial class CultItemSystem : EntitySystem
 
         if (!args.Cancelled)
         {
-            _cult.Paralyze(ent, 4);
+            _cult.Paralyze(ent, (float)ent.Comp.BeamDoAfterSeconds.TotalSeconds);
             _cult.Message(ent, Loc.GetString("cult-beam-exhausted"));
         }
         EndBeam((used, beam));
@@ -651,7 +663,7 @@ public sealed partial class CultItemSystem : EntitySystem
             if (beam.Charging)
             {
                 beam.Pulses++;
-                beam.NextPulse = now + TimeSpan.FromSeconds(1.5);
+                beam.NextPulse = now + beam.PulseDelay;
                 if (beam.Pulses > 12)
                     continue;
                 var coords = Transform(user).Coordinates;
@@ -663,11 +675,11 @@ public sealed partial class CultItemSystem : EntitySystem
                 beam.ChargeEffects.Clear();
                 if (beam.Pulses < 4)
                 {
-                    beam.ChargeEffects.Add(_runes.SpawnRuneSpawn(coords, "rune1inner", 179, 3f, Color.Red));
+                    beam.ChargeEffects.Add(_runes.SpawnRuneSpawn(coords, "rune1inner", 179, (float)beam.UpdateBeamsDuration.TotalSeconds, Color.Red));
                 }
                 else
                 {
-                    beam.ChargeEffects.Add(_runes.SpawnRuneSpawn(coords, "rune5words", 181, 3f, Color.Red));
+                    beam.ChargeEffects.Add(_runes.SpawnRuneSpawn(coords, "rune5words", 181, (float)beam.UpdateBeamsDuration.TotalSeconds, Color.Red));
                     _cult.Effect("CultEffectPhaseOut", coords, Transform(user).LocalRotation);
                 }
                 continue;
@@ -683,14 +695,14 @@ public sealed partial class CultItemSystem : EntitySystem
             float angle;
             if (beam.Second)
             {
-                angle = (float) beam.Angle.Degrees - beam.Spread;
+                angle = (float)beam.Angle.Degrees - beam.Spread;
                 beam.Spread -= 8f;
                 beam.NextPulse = now;
             }
             else
             {
-                angle = (float) beam.Angle.Degrees + beam.Spread;
-                beam.NextPulse = now + TimeSpan.FromSeconds(1.5);
+                angle = (float)beam.Angle.Degrees + beam.Spread;
+                beam.NextPulse = now + beam.PulseDelay;
             }
             beam.Second = !beam.Second;
             FireBeam(user, Angle.FromDegrees(angle));
@@ -722,7 +734,7 @@ public sealed partial class CultItemSystem : EntitySystem
             }
             _structures.NarsieActTurf(entCoords);
 
-            foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 0.5f))
+            foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(coords, FireBeamRange))
             {
                 if (mob.Owner == user || !hitMobs.Add(mob.Owner))
                     continue;
@@ -732,14 +744,14 @@ public sealed partial class CultItemSystem : EntitySystem
                     HealByBlood(mob, 7, 15);
                     continue;
                 }
-                _cult.Paralyze(mob, 2);
-                _cult.Damage(mob, "Blunt", 45, origin: user);
+                _cult.Paralyze(mob, FireBeamSeconds);
+                _cult.Damage(mob, "Blunt", FireBeamAmount, origin: user);
                 _audio.PlayPvs(CultSounds.Wail, mob, AudioParams.Default.WithVolume(CultSystem.Db(50)).WithVariation(0.05f));
                 _cult.Scream(mob);
             }
         }
 
-        _cult.Beam(user, _transform.ToCoordinates(new MapCoordinates(end, mapId)), "CultBeamBlood", 0.7f);
+        _cult.Beam(user, _transform.ToCoordinates(new MapCoordinates(end, mapId)), "CultBeamBlood", FireBeamSeconds2);
     }
 
     #endregion
@@ -756,7 +768,7 @@ public sealed partial class CultItemSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("cult-halberd-bounce", ("target", target), ("item", ent)), target, PopupType.Medium);
             return;
         }
-        _cult.Paralyze(target, 3);
+        _cult.Paralyze(target, (float)ent.Comp.MirrorThrowHitSeconds.TotalSeconds);
         _cult.Effect("CultEffectSparks", Transform(target).Coordinates, randomDir: true);
         _audio.PlayPvs(CultSounds.GlassBreak3, target);
         QueueDel(ent);
@@ -771,7 +783,7 @@ public sealed partial class CultItemSystem : EntitySystem
         if ((args.SlotFlags & SlotFlags.EYES) == 0)
             return;
         ent.Comp.Wearer = args.EquipTarget;
-        ent.Comp.NextTick = _timing.CurTime + TimeSpan.FromSeconds(2);
+        ent.Comp.NextTick = _timing.CurTime + ent.Comp.TickDelay;
     }
 
     private void OnBlindfoldUnequipped(Entity<CultBlindfoldComponent> ent, ref GotUnequippedEvent args)
@@ -784,7 +796,7 @@ public sealed partial class CultItemSystem : EntitySystem
         if ((args.SlotFlags & SlotFlags.OUTERCLOTHING) == 0)
             return;
         ent.Comp.Wearer = args.EquipTarget;
-        ent.Comp.NextTick = _timing.CurTime + TimeSpan.FromSeconds(1);
+        ent.Comp.NextTick = _timing.CurTime + ent.Comp.TickDelay;
         if (!_cult.IsCultist(args.EquipTarget))
             _cult.Message(args.EquipTarget, Loc.GetString("cult-armor-burn"));
     }
@@ -801,7 +813,7 @@ public sealed partial class CultItemSystem : EntitySystem
         {
             if (blindfold.Wearer is not { } wearer || now < blindfold.NextTick)
                 continue;
-            blindfold.NextTick = now + TimeSpan.FromSeconds(2);
+            blindfold.NextTick = now + blindfold.TickDelay;
             if (!_cult.IsCultist(wearer))
                 _blindable.AdjustEyeDamage(wearer, 1);
         }
@@ -811,12 +823,12 @@ public sealed partial class CultItemSystem : EntitySystem
         {
             if (armor.Wearer is not { } wearer || now < armor.NextTick)
                 continue;
-            armor.NextTick = now + TimeSpan.FromSeconds(1);
+            armor.NextTick = now + armor.TickDelay;
             if (_cult.IsCultist(wearer) || _mobState.IsDead(wearer))
                 continue;
-            if (_random.Prob(0.15f))
+            if (_random.Prob(armor.UpdateWornChance))
             {
-                _cult.Damage(wearer, "Slash", 5);
+                _cult.Damage(wearer, "Slash", armor.UpdateWornAmount);
                 _cult.Message(wearer, Loc.GetString("cult-armor-wound"));
             }
         }

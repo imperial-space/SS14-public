@@ -18,4 +18,7 @@ public sealed partial class CultPylonComponent : Component
 
     [ViewVariables] public TimeSpan NextHeal;
     [ViewVariables] public TimeSpan NextCorruption;
+
+    [DataField]
+    public TimeSpan HealDelay = TimeSpan.FromSeconds(1);
 }

@@ -10,6 +10,7 @@ using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Robust.Shared.Prototypes;
 using NewStatus = Content.Shared.StatusEffectNew.StatusEffectsSystem;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Cult;
 
@@ -26,6 +27,11 @@ public sealed partial class CultSystem
     private static readonly EntProtoId StutterEffect = "StatusEffectStutter";
     private static readonly EntProtoId SlurEffect = "StatusEffectSlurred";
     private static readonly EntProtoId SleepEffect = "StatusEffectForcedSleeping";
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> HeatDamageType = "Heat";
+
+    private static readonly TimeSpan FlashFlashDurationDelay = TimeSpan.FromSeconds(2);
 
     public void Paralyze(EntityUid uid, float seconds)
     {
@@ -65,7 +71,7 @@ public sealed partial class CultSystem
 
     public void Flash(EntityUid uid, EntityUid? user)
     {
-        _flash.Flash(uid, user, null, TimeSpan.FromSeconds(2), 0.8f, displayPopup: false);
+        _flash.Flash(uid, user, null, FlashFlashDurationDelay, 0.8f, displayPopup: false);
     }
 
     /// <summary>Снять немоту, заикание и культовую невнятность (руна обращения).</summary>
@@ -103,9 +109,9 @@ public sealed partial class CultSystem
     {
         var spec = new DamageSpecifier();
         if (brute > 0)
-            spec.DamageDict["Blunt"] = brute;
+            spec.DamageDict[BluntDamageType] = brute;
         if (burn > 0)
-            spec.DamageDict["Heat"] = burn;
+            spec.DamageDict[HeatDamageType] = burn;
         _damageable.TryChangeDamage(uid, spec, origin: origin);
     }
 }

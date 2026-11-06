@@ -36,4 +36,19 @@ public sealed partial class CultConstructComponent : Component
     [ViewVariables] public bool Seeking;
     [ViewVariables] public EntityUid? SeekTarget;
     [ViewVariables] public EntityUid? SeekAction;
+
+    [DataField]
+    public TimeSpan PhaseShiftDelay = TimeSpan.FromSeconds(5);
+
+    [DataField]
+    public float ConstructActivateAmount = 5f;
+
+    [DataField]
+    public float GauntletEchoSpeed = 3f;
+
+    [DataField]
+    public float MagicMissileRange = 7f;
+
+    [DataField]
+    public float MagicMissileSpeed = 4f;
 }

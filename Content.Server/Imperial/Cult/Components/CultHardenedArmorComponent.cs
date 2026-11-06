@@ -10,4 +10,13 @@ public sealed partial class CultHardenedArmorComponent : Component
 {
     [ViewVariables] public EntityUid? Wearer;
     [ViewVariables] public TimeSpan NextTick;
+
+    [DataField]
+    public TimeSpan TickDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public float UpdateWornChance = 0.15f;
+
+    [DataField]
+    public float UpdateWornAmount = 5f;
 }

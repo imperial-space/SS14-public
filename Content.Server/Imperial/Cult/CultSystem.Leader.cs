@@ -23,6 +23,8 @@ public sealed partial class CultSystem
 
     private const float MarkDuration = 90f;
 
+    private static readonly TimeSpan ReckoningStageDelay = TimeSpan.FromSeconds(3);
+
     private void InitializeLeader()
     {
         SubscribeLocalEvent<CultistComponent, CultPassMantleActionEvent>(OnPassMantle);
@@ -205,7 +207,7 @@ public sealed partial class CultSystem
             return;
         }
 
-        var doAfter = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(3), new CultReckoningDoAfterEvent { Stage = stage }, user)
+        var doAfter = new DoAfterArgs(EntityManager, user, ReckoningStageDelay, new CultReckoningDoAfterEvent { Stage = stage }, user)
         {
             BreakOnMove = true,
             BreakOnDamage = false,
@@ -253,7 +255,7 @@ public sealed partial class CultSystem
                     var final = _random.Pick(destinations);
                     Effect("CultEffectBloodIn", final);
                     var target = member;
-                    _schedule.Schedule(TimeSpan.FromSeconds(1), () =>
+                    _schedule.Schedule(ent.Comp.ReckoningDoAfterDelay, () =>
                     {
                         if (TerminatingOrDeleted(target))
                             return;
@@ -445,8 +447,8 @@ public sealed partial class CultSystem
         _transform.AttachToGridOrMap(seized);
         Effect("CultEffectSparks", Transform(seized).Coordinates);
         _audio.PlayPvs(CultSounds.ExitBlood, Transform(seized).Coordinates, Robust.Shared.Audio.AudioParams.Default.WithVolume(Db(50)));
-        Beam(user, Transform(seized).Coordinates, "CultBeamSend", 0.4f);
-        Beam(user, prev, "CultBeamSend", 0.4f);
+        Beam(user, Transform(seized).Coordinates, "CultBeamSend", (float)ent.Comp.EldritchPulseSeconds.TotalSeconds);
+        Beam(user, prev, "CultBeamSend", (float)ent.Comp.EldritchPulseSeconds.TotalSeconds);
         Message(user, Loc.GetString("cult-pulse-success", ("target", seized)));
         args.Handled = true;
     }

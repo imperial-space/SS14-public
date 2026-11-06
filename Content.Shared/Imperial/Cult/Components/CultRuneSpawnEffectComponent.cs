@@ -9,7 +9,7 @@ namespace Content.Shared.Imperial.Cult.Components;
 public sealed partial class CultRuneSpawnEffectComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public float Duration = 6f;
+    public TimeSpan Duration = TimeSpan.FromSeconds(6f);
 
     /// <summary>turnedness: 179 — против часовой, 181 — по часовой.</summary>
     [DataField, AutoNetworkedField]

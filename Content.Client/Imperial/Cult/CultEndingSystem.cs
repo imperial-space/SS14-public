@@ -88,14 +88,14 @@ public sealed class CultEndingSystem : EntitySystem
         switch (ev.Cinematic)
         {
             case CultCinematic.Nuke:
-            {
-                var intro = 3.5f;
-                var explode = StateLength("station_explode_fleet_fade_red");
-                Flick(0, "intro_cult_fleet");
-                Flick(intro, "station_explode_fleet_fade_red");
-                _schedule.Add((TimeSpan.FromSeconds(intro + explode), "summary_cult_fleet"));
-                break;
-            }
+                {
+                    var intro = 3.5f;
+                    var explode = StateLength("station_explode_fleet_fade_red");
+                    Flick(0, "intro_cult_fleet");
+                    Flick(intro, "station_explode_fleet_fade_red");
+                    _schedule.Add((TimeSpan.FromSeconds(intro + explode), "summary_cult_fleet"));
+                    break;
+                }
             case CultCinematic.Arm:
                 Flick(0, "intro_cult");
                 _schedule.Add((TimeSpan.FromSeconds(StateLength("intro_cult")), null));

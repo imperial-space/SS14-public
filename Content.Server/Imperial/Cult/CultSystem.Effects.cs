@@ -3,6 +3,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Cult;
 
@@ -10,12 +11,15 @@ public sealed partial class CultSystem
 {
     [Dependency] private readonly SharedPointLightSystem _light = default!;
 
+    private static readonly EntProtoId CultLightFlash = "CultLightFlash";
+    private static readonly EntProtoId EffectSparks = "EffectSparks";
+
     public Entity<ImperialCultRuleComponent>? GetRule() => _rule.TryGetRule(out var rule) ? rule : null;
 
     /// <summary>mob_light(range, power, color, duration).</summary>
     public void FlashLight(EntityUid uid, Color color, float range, float power, float seconds)
     {
-        var light = Spawn("CultLightFlash", Transform(uid).Coordinates);
+        var light = Spawn(CultLightFlash, Transform(uid).Coordinates);
         _transform.SetParent(light, uid);
         var comp = _light.EnsureLight(light);
         _light.SetColor(light, color, comp);
@@ -28,7 +32,7 @@ public sealed partial class CultSystem
     /// <summary>do_sparks().</summary>
     public void Sparks(EntityCoordinates coords)
     {
-        Spawn("EffectSparks", coords);
+        Spawn(EffectSparks, coords);
         _audio.PlayPvs(CultSounds.Sparks, coords, AudioParams.Default.WithVariation(0.05f));
     }
 

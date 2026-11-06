@@ -59,7 +59,7 @@ public sealed class CultStarlightOverlay : Overlay
     {
         if (_active)
         {
-            var t = (float) (_timing.RealTime - _start).TotalSeconds;
+            var t = (float)(_timing.RealTime - _start).TotalSeconds;
             if (_summoning)
             {
                 // hsv_gradient(i, 1, start, 3, mid, 6, mid, 9, end), шаги по 8 с.

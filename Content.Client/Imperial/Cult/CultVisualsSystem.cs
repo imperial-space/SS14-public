@@ -217,7 +217,7 @@ public sealed class CultVisualsSystem : EntitySystem
                 _glows.Remove(uid);
                 continue;
             }
-            var t = (float) (now - glow.Start).TotalSeconds / 0.5f;
+            var t = (float)(now - glow.Start).TotalSeconds / 0.5f;
             if (t >= 1f)
             {
                 _sprite.SetScale((uid, sprite), Vector2.One);
@@ -238,7 +238,7 @@ public sealed class CultVisualsSystem : EntitySystem
                 continue;
             }
             var baseColor = _appearance.TryGetData<Color>(uid, CultVisuals.Color, out var c) ? c : Color.White;
-            var t = (float) (now - fail.Start).TotalSeconds / 0.5f;
+            var t = (float)(now - fail.Start).TotalSeconds / 0.5f;
             if (t >= 1f)
             {
                 _sprite.LayerSetColor((uid, sprite), CultVisualLayers.Base, baseColor);
@@ -254,7 +254,7 @@ public sealed class CultVisualsSystem : EntitySystem
         {
             if (!_spawnStarts.TryGetValue(uid, out var start))
                 _spawnStarts[uid] = start = now;
-            var p = Math.Clamp((float) (now - start).TotalSeconds / MathF.Max(effect.Duration, 0.01f), 0f, 1f);
+            var p = Math.Clamp((float)(now - start).TotalSeconds / MathF.Max((float)effect.Duration.TotalSeconds, 0.01f), 0f, 1f);
             _sprite.SetColor((uid, sprite), sprite.Color.WithAlpha(BounceEase(p)));
             _sprite.SetScale((uid, sprite), Vector2.One * (2f - p));
             _sprite.SetRotation((uid, sprite), Angle.FromDegrees(effect.Turn * (1f - p)));
@@ -307,7 +307,7 @@ public sealed class CultVisualsSystem : EntitySystem
         {
             if (uid == local)
                 continue;
-            var cycle = (float) ((vision.End - now).TotalSeconds % 60.0);
+            var cycle = (float)((vision.End - now).TotalSeconds % 60.0);
             var alpha = 1f;
             var phase = 60f - cycle;
             if (phase < 2.5f)

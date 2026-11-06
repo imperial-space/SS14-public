@@ -87,6 +87,13 @@ public sealed partial class CultStructureSystem : EntitySystem
 
     private readonly Dictionary<EntityUid, TimeSpan> _doorCooldown = new();
 
+    private static readonly EntProtoId CultRunedMetal = "CultRunedMetal";
+    private static readonly EntProtoId WallCult = "WallCult";
+    private static readonly EntProtoId CultRunedAirlockBrittle = "CultRunedAirlockBrittle";
+    private static readonly EntProtoId Ash = "Ash";
+
+    private const float CanBuildHereRange = 0.4f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -144,7 +151,7 @@ public sealed partial class CultStructureSystem : EntitySystem
             var max = _destructible.DestroyedAt(ent).Float();
             if (max > 0)
             {
-                var percent = (int) MathF.Round((max - _cult.TotalDamage(ent)) * 100f / max);
+                var percent = (int)MathF.Round((max - _cult.TotalDamage(ent)) * 100f / max);
                 args.PushMarkup(Loc.GetString("cult-structure-stability", ("percent", percent)));
             }
         }
@@ -158,8 +165,8 @@ public sealed partial class CultStructureSystem : EntitySystem
     public static string FormatTime(TimeSpan time)
     {
         return time.TotalMinutes >= 1
-            ? $"{(int) time.TotalMinutes}:{time.Seconds:00}"
-            : Robust.Shared.Localization.Loc.GetString("imperial-cult-structure-seconds", ("seconds", (int) Math.Ceiling(time.TotalSeconds)));
+            ? $"{(int)time.TotalMinutes}:{time.Seconds:00}"
+            : Robust.Shared.Localization.Loc.GetString("imperial-cult-structure-seconds", ("seconds", (int)Math.Ceiling(time.TotalSeconds)));
     }
 
     private void OnStructureActivate(Entity<CultStructureComponent> ent, ref ActivateInWorldEvent args)
@@ -222,7 +229,7 @@ public sealed partial class CultStructureSystem : EntitySystem
             _audio.PlayPvs(CultSounds.ResonatorBlast, target, AudioParams.Default.WithVolume(CultSystem.Db(40)).WithVariation(0.05f));
             _popup.PopupEntity(Loc.GetString("cult-girder-strike-others", ("user", user), ("target", target), ("item", item)), user, Filter.PvsExcept(user), true);
             _popup.PopupEntity(Loc.GetString("cult-girder-strike-self", ("target", target)), user, user);
-            Spawn("CultRunedMetal", Transform(target).Coordinates);
+            Spawn(CultRunedMetal, Transform(target).Coordinates);
             QueueDel(target);
             return true;
         }
@@ -260,7 +267,7 @@ public sealed partial class CultStructureSystem : EntitySystem
 
             if (now >= pylon.NextHeal)
             {
-                pylon.NextHeal = now + TimeSpan.FromSeconds(1);
+                pylon.NextHeal = now + pylon.HealDelay;
                 PylonHeal(uid, pylon);
             }
 
@@ -310,7 +317,7 @@ public sealed partial class CultStructureSystem : EntitySystem
         var center = _map.TileIndicesFor(grid, gridComp, xform.Coordinates);
         var valid = new List<Vector2i>();
         var cult = new List<Vector2i>();
-        var range = (int) comp.Range;
+        var range = (int)comp.Range;
         var origin = _transform.GetMapCoordinates(pylon);
 
         for (var x = -range; x <= range; x++)
@@ -323,7 +330,7 @@ public sealed partial class CultStructureSystem : EntitySystem
                 if (!_map.TryGetTileRef(grid, gridComp, idx, out var tile) || tile.Tile.IsEmpty || _turf.IsSpace(tile))
                     continue;
 
-                var def = (ContentTileDefinition) _tiles[tile.Tile.TypeId];
+                var def = (ContentTileDefinition)_tiles[tile.Tile.TypeId];
                 var coords = _map.GridTileToLocal(grid, gridComp, idx);
                 if (def.ID == CultFloor)
                 {
@@ -471,7 +478,7 @@ public sealed partial class CultStructureSystem : EntitySystem
             _cult.Message(user, Loc.GetString("cult-runed-metal-solid-ground"));
             return false;
         }
-        foreach (var ent in _lookup.GetEntitiesInRange(coords, 0.4f, LookupFlags.Static))
+        foreach (var ent in _lookup.GetEntitiesInRange(coords, CanBuildHereRange, LookupFlags.Static))
         {
             if (TryComp<PhysicsComponent>(ent, out var physics) && physics.Hard && physics.CanCollide && Transform(ent).Anchored)
             {
@@ -497,7 +504,7 @@ public sealed partial class CultStructureSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("cult-girder-plated-self"), ent, ent);
             var coords = Transform(girder).Coordinates;
             QueueDel(girder);
-            Spawn("WallCult", coords);
+            Spawn(WallCult, coords);
             return;
         }
 
@@ -526,7 +533,7 @@ public sealed partial class CultStructureSystem : EntitySystem
 
         _popup.PopupEntity(Loc.GetString("cult-girder-plating-others", ("user", args.User), ("target", target)), args.User, Filter.PvsExcept(args.User), true);
         _popup.PopupEntity(Loc.GetString("cult-girder-plating-self"), args.User, args.User);
-        var doAfter = new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(5),
+        var doAfter = new DoAfterArgs(EntityManager, args.User, ent.Comp.RunedMetalInteractDelay,
             new CultRunedMetalDoAfterEvent { Result = "WallCult", Cost = 1 }, args.User, target: target, used: ent)
         {
             BreakOnMove = true,
@@ -564,11 +571,11 @@ public sealed partial class CultStructureSystem : EntitySystem
         var now = _timing.CurTime;
         if (_doorCooldown.TryGetValue(user, out var next) && now < next)
             return;
-        _doorCooldown[user] = now + TimeSpan.FromSeconds(1);
+        _doorCooldown[user] = now + ent.Comp.DoorCooldown;
 
         _cult.Effect("CultEffectSacrifice", Transform(ent).Coordinates);
         _cult.SoundTo(user, CultSounds.TurnAround, CultSystem.Db(50));
-        _cult.Paralyze(user, 4);
+        _cult.Paralyze(user, (float)ent.Comp.DoorOpeningSeconds.TotalSeconds);
 
         var doorPos = _transform.GetWorldPosition(ent);
         var userPos = _transform.GetWorldPosition(user);
@@ -576,7 +583,7 @@ public sealed partial class CultStructureSystem : EntitySystem
         if (dir.LengthSquared() < 0.01f)
             dir = new System.Numerics.Vector2(0, -1);
         dir = System.Numerics.Vector2.Normalize(dir);
-        _throwing.TryThrow(user, Transform(user).Coordinates.Offset(dir * 5f), 10f, ent);
+        _throwing.TryThrow(user, Transform(user).Coordinates.Offset(dir * 5f), ent.Comp.DoorOpeningBaseThrowSpeed, ent);
     }
 
     /// <summary>airlock/narsie_act(): шлюз становится хрупким рунным.</summary>
@@ -587,7 +594,7 @@ public sealed partial class CultStructureSystem : EntitySystem
         var coords = xform.Coordinates;
         var rot = xform.LocalRotation;
         QueueDel(airlock);
-        var door = Spawn("CultRunedAirlockBrittle", coords);
+        var door = Spawn(CultRunedAirlockBrittle, coords);
         _transform.SetLocalRotation(door, rot);
         _cult.SetName(door, name);
     }
@@ -659,7 +666,7 @@ public sealed partial class CultStructureSystem : EntitySystem
         rune.Comp.Concealed = concealed;
         _popup.PopupEntity(Loc.GetString(concealed ? "cult-conceal-fades" : "cult-conceal-appears", ("target", rune)), rune, PopupType.SmallCaution);
         var vis = EnsureComp<VisibilityComponent>(rune);
-        _visibility.SetLayer((rune, vis), (ushort) (concealed ? VisibilityFlags.Ghost : VisibilityFlags.Normal));
+        _visibility.SetLayer((rune, vis), (ushort)(concealed ? VisibilityFlags.Ghost : VisibilityFlags.Normal));
         _appearance.SetData(rune, CultVisuals.Concealed, concealed);
     }
 
@@ -670,7 +677,7 @@ public sealed partial class CultStructureSystem : EntitySystem
         if (TryComp<PhysicsComponent>(structure, out var physics))
             _physics.SetCanCollide(structure, !concealed, body: physics);
         var vis = EnsureComp<VisibilityComponent>(structure);
-        _visibility.SetLayer((structure, vis), (ushort) (concealed ? VisibilityFlags.Ghost : VisibilityFlags.Normal));
+        _visibility.SetLayer((structure, vis), (ushort)(concealed ? VisibilityFlags.Ghost : VisibilityFlags.Normal));
         _appearance.SetData(structure, CultVisuals.Concealed, concealed);
         if (TryComp<PointLightComponent>(structure, out var light))
             _light.SetEnabled(structure, !concealed && Transform(structure).Anchored, light);
@@ -702,7 +709,7 @@ public sealed partial class CultStructureSystem : EntitySystem
             else
                 _hands.TryDrop(uid, held, checkActionBlocker: false);
         }
-        Spawn("Ash", coords);
+        Spawn(Ash, coords);
         QueueDel(uid);
     }
 }

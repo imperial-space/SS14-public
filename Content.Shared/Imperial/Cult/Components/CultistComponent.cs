@@ -50,7 +50,49 @@ public sealed partial class CultistComponent : Component
     [ViewVariables] public bool MagicEnhanced;
 
     /// <summary>Секунды метаболизма святой воды (deciseconds_metabolized).</summary>
-    [ViewVariables] public float HolyWaterSeconds;
+    [ViewVariables] public TimeSpan HolyWaterSeconds;
 
     [ViewVariables] public TimeSpan NextHolyWaterMessage;
+
+    [DataField]
+    public TimeSpan SpellActionEmpDuration = TimeSpan.FromSeconds(30);
+
+    [DataField]
+    public TimeSpan HorrorDuration = TimeSpan.FromSeconds(240);
+
+    [DataField]
+    public TimeSpan HorrorDelay = TimeSpan.FromMinutes(4);
+
+    [DataField]
+    public TimeSpan ConstructionDoAfterDuration = TimeSpan.FromSeconds(20);
+
+    [DataField]
+    public TimeSpan BeamDoAfterDelay = TimeSpan.FromSeconds(9);
+
+    [DataField]
+    public TimeSpan ReckoningDoAfterDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public float SpellActionEmpRange = 5f;
+
+    [DataField]
+    public float SpellActionEmpEnergyConsumption = 50000f;
+
+    [DataField]
+    public TimeSpan ShackleDoAfterSeconds = TimeSpan.FromSeconds(10f);
+
+    [DataField]
+    public float ConstructionDoAfterRange = 0.5f;
+
+    [DataField]
+    public float ConstructionDoAfterEnergyConsumption = 100000f;
+
+    [DataField]
+    public float BloodBondBaseThrowSpeed = 10f;
+
+    [DataField]
+    public TimeSpan BeamDoAfterSeconds = TimeSpan.FromSeconds(4f);
+
+    [DataField]
+    public TimeSpan EldritchPulseSeconds = TimeSpan.FromSeconds(0.4f);
 }

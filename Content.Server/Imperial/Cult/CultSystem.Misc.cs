@@ -30,6 +30,8 @@ public sealed partial class CultSystem
     /// <summary>Трек ритуала уже играл в этом раунде (сбрасывается на рестарте).</summary>
     private bool _ritualMusicPlayed;
 
+    private static readonly EntProtoId CultBloodMarkMarker = "CultBloodMarkMarker";
+
     private void OnCultRoundRestart(Content.Shared.GameTicking.RoundRestartCleanupEvent ev)
     {
         _narsieSummonCount = 0;
@@ -201,14 +203,14 @@ public sealed partial class CultSystem
         }
         else
         {
-            target = Spawn("CultBloodMarkMarker", _transform.GetMapCoordinates(ent));
+            target = Spawn(CultBloodMarkMarker, _transform.GetMapCoordinates(ent));
             rule.Comp.BloodTargetMarker = target;
         }
 
-        if (SetBloodTarget(target, ent, TimeSpan.FromSeconds(60)))
+        if (SetBloodTarget(target, ent, ent.Comp.GhostMarkDuration))
         {
             Message(ent, Loc.GetString("cult-ghostmark-set", ("target", target)));
-            ent.Comp.NextMark = now + TimeSpan.FromSeconds(60);
+            ent.Comp.NextMark = now + ent.Comp.MarkDelay;
         }
     }
 

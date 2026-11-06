@@ -14,4 +14,13 @@ public sealed partial class CultRunedDoorComponent : Component
     [DataField] public bool Friendly;
 
     [ViewVariables] public bool Concealed;
+
+    [DataField]
+    public TimeSpan DoorCooldown = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public TimeSpan DoorOpeningSeconds = TimeSpan.FromSeconds(4f);
+
+    [DataField]
+    public float DoorOpeningBaseThrowSpeed = 10f;
 }

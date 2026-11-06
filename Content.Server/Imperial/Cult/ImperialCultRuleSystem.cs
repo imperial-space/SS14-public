@@ -122,7 +122,7 @@ public sealed class ImperialCultRuleSystem : GameRuleSystem<ImperialCultRuleComp
     private void OnSelected(Entity<ImperialCultRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
     {
         _cult.AddCultist(args.EntityUid, equip: true);
-        ent.Comp.LeaderPending = _timing.CurTime + TimeSpan.FromSeconds(3);
+        ent.Comp.LeaderPending = _timing.CurTime + ent.Comp.LeaderPendingDelay;
     }
 
     public void AddMember(Entity<ImperialCultRuleComponent> rule, EntityUid mindId, bool cultGhost)
@@ -192,7 +192,7 @@ public sealed class ImperialCultRuleSystem : GameRuleSystem<ImperialCultRuleComp
 
         if (now < _nextCheck)
             return;
-        _nextCheck = now + TimeSpan.FromSeconds(2);
+        _nextCheck = now + comp.CheckDelay;
 
         // Цель жертвы исчезла, не будучи принесённой в жертву.
         if (!comp.SacrificeDone && comp.SacrificeTarget is { } target)

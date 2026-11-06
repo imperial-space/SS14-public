@@ -10,4 +10,7 @@ public sealed partial class CultBlindfoldComponent : Component
 {
     [ViewVariables] public EntityUid? Wearer;
     [ViewVariables] public TimeSpan NextTick;
+
+    [DataField]
+    public TimeSpan TickDelay = TimeSpan.FromSeconds(2);
 }

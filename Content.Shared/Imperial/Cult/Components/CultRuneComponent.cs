@@ -111,4 +111,64 @@ public sealed partial class CultRuneComponent : Component
     /// <summary>Портал на руне телепортации после прибытия из космоса/лаваленда.</summary>
     [ViewVariables] public EntityUid? Portal;
     [ViewVariables] public string? PortalDescription;
+
+    [DataField]
+    public TimeSpan CanInvokeDelay = TimeSpan.FromMinutes(1);
+
+    [DataField]
+    public TimeSpan InvokeOfferDelay = TimeSpan.FromSeconds(0.5);
+
+    [DataField]
+    public TimeSpan PortalDelay = TimeSpan.FromSeconds(60);
+
+    [DataField]
+    public TimeSpan InvokeNarSieDelay = TimeSpan.FromSeconds(4);
+
+    [DataField]
+    public TimeSpan InvokeBloodBoilDelay = TimeSpan.FromSeconds(0.4);
+
+    [DataField]
+    public TimeSpan InvokeBloodBoilDelay2 = TimeSpan.FromSeconds(0.5);
+
+    [DataField]
+    public TimeSpan InvokeBloodBoilDelay3 = TimeSpan.FromSeconds(0.6);
+
+    [DataField]
+    public TimeSpan DrainDelay = TimeSpan.FromSeconds(0.1);
+
+    [DataField]
+    public TimeSpan CheckDelay = TimeSpan.FromSeconds(0.5);
+
+    [DataField]
+    public TimeSpan ContinueScribeDelay = TimeSpan.FromMinutes(10);
+
+    [DataField]
+    public TimeSpan ContinueScribeWaitDelay = TimeSpan.FromMinutes(10);
+
+    [DataField]
+    public float CanInvokeRange = 1.5f;
+
+    [DataField]
+    public TimeSpan ConvertSeconds = TimeSpan.FromSeconds(10f);
+
+    [DataField]
+    public TimeSpan PortalDuration = TimeSpan.FromSeconds(60f);
+
+    [DataField]
+    public float PortalRadius = 4f;
+
+    [DataField]
+    public float InvokeBarrierAmount = 2f;
+
+    [DataField]
+    public float SummonCultGhostRange = 0.6f;
+
+    [DataField]
+    public float InvokeApocalypseRange = 3f;
+
+    [DataField]
+    public TimeSpan InvokeApocalypseSeconds = TimeSpan.FromSeconds(3f);
+
+    [DataField]
+    public float InvokeApocalypseEnergyConsumption = 50000f;
 }

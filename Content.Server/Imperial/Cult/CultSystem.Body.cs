@@ -16,6 +16,8 @@ public sealed partial class CultSystem
 
     private static readonly ProtoId<EmotePrototype> ScreamEmote = "Scream";
 
+    private const float IsBlessedRange = 0.45f;
+
     private void InitializeBody()
     {
         SubscribeLocalEvent<CultImmobilizedComponent, UpdateCanMoveEvent>(OnImmobilizedMove);
@@ -45,7 +47,7 @@ public sealed partial class CultSystem
     /// <summary>obj/effect/blessing (освящённый пол). В SS14 нет — оставлено для капеллана.</summary>
     public bool IsBlessed(EntityCoordinates coords)
     {
-        foreach (var _ in _lookup.GetEntitiesInRange<CultBlessingComponent>(coords, 0.45f))
+        foreach (var _ in _lookup.GetEntitiesInRange<CultBlessingComponent>(coords, IsBlessedRange))
             return true;
         return false;
     }

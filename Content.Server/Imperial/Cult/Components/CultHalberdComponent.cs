@@ -10,4 +10,7 @@ public sealed partial class CultHalberdComponent : Component
 {
     [ViewVariables] public EntityUid? OwnerEntity;
     [ViewVariables] public EntityUid? BondAction;
+
+    [DataField]
+    public TimeSpan HalberdHitSeconds = TimeSpan.FromSeconds(5f);
 }

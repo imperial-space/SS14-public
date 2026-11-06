@@ -18,4 +18,13 @@ public sealed partial class CultBloodBeamComponent : Component
     [ViewVariables] public EntityUid? Shield;
     [ViewVariables] public EntityUid? User;
     [ViewVariables] public List<EntityUid> ChargeEffects = new();
+
+    [DataField]
+    public TimeSpan PulseDelay = TimeSpan.FromSeconds(1.5);
+
+    [DataField]
+    public TimeSpan StartBeamDelay = TimeSpan.FromSeconds(9);
+
+    [DataField]
+    public TimeSpan UpdateBeamsDuration = TimeSpan.FromSeconds(3f);
 }

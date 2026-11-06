@@ -38,4 +38,10 @@ public sealed partial class CultBloodSpellComponent : Component
 
     /// <summary>Conceal Presence: следующее применение раскроет.</summary>
     [ViewVariables] public bool Revealing;
+
+    [DataField]
+    public float CastVeilingRange = 5f;
+
+    [DataField]
+    public float CastVeilingRange2 = 7f;
 }

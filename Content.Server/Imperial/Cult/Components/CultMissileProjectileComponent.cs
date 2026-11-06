@@ -10,4 +10,7 @@ public sealed partial class CultMissileProjectileComponent : Component
 {
     [ViewVariables] public EntityUid? Target;
     [DataField] public float Speed = 4f;
+
+    [DataField]
+    public TimeSpan MissileHitSeconds = TimeSpan.FromSeconds(6f);
 }

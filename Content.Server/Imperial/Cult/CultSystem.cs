@@ -84,6 +84,9 @@ public sealed partial class CultSystem : EntitySystem
 
     private TimeSpan _nextSenseUpdate;
 
+    private static readonly TimeSpan SenseUpdateDelay = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan CheckSizeDelay = TimeSpan.FromSeconds(20);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -108,7 +111,7 @@ public sealed partial class CultSystem : EntitySystem
 
         if (now < _nextSenseUpdate)
             return;
-        _nextSenseUpdate = now + TimeSpan.FromSeconds(1);
+        _nextSenseUpdate = now + SenseUpdateDelay;
         UpdateBloodSense();
     }
 
@@ -318,7 +321,7 @@ public sealed partial class CultSystem : EntitySystem
         var highpop = alive >= comp.HighpopThreshold;
         var risenThreshold = highpop ? comp.RisenHighpop : comp.RisenLowpop;
         var ascendThreshold = highpop ? comp.AscendentHighpop : comp.AscendentLowpop;
-        var ratio = alive > 0 ? (float) cultists / alive : 1f;
+        var ratio = alive > 0 ? (float)cultists / alive : 1f;
 
         if (ratio >= risenThreshold && !comp.Risen)
         {
@@ -329,7 +332,7 @@ public sealed partial class CultSystem : EntitySystem
                 Message(member, Loc.GetString("cult-risen"));
                 // cult_eyes: initial_delay 20 секунд.
                 var eyes = member;
-                _schedule.Schedule(TimeSpan.FromSeconds(20), () =>
+                _schedule.Schedule(CheckSizeDelay, () =>
                 {
                     if (!TerminatingOrDeleted(eyes))
                         SetRedEyes(eyes, true);
@@ -346,7 +349,7 @@ public sealed partial class CultSystem : EntitySystem
                 Message(member, Loc.GetString("cult-ascendent"));
                 // Нимб появляется через 20 секунд (initial_delay).
                 var target = member;
-                _schedule.Schedule(TimeSpan.FromSeconds(20), () =>
+                _schedule.Schedule(CheckSizeDelay, () =>
                 {
                     if (!TerminatingOrDeleted(target))
                         SetHalo(target, true);
@@ -354,7 +357,7 @@ public sealed partial class CultSystem : EntitySystem
             }
 
             _chat.DispatchGlobalAnnouncement(
-                Loc.GetString("cult-ascendent-announcement", ("percent", (int) MathF.Floor(ratio * 100))),
+                Loc.GetString("cult-ascendent-announcement", ("percent", (int)MathF.Floor(ratio * 100))),
                 Loc.GetString("cult-paranormal-sender"),
                 playSound: true);
         }
@@ -454,7 +457,7 @@ public sealed partial class CultSystem : EntitySystem
                 else
                 {
                     var delta = _transform.GetWorldPosition(txform) - _transform.GetWorldPosition(xform);
-                    var dist = (int) MathF.Round(MathF.Max(MathF.Abs(delta.X), MathF.Abs(delta.Y)));
+                    var dist = (int)MathF.Round(MathF.Max(MathF.Abs(delta.X), MathF.Abs(delta.Y)));
                     if (dist <= 1)
                     {
                         severity = 3;
@@ -466,8 +469,8 @@ public sealed partial class CultSystem : EntitySystem
                         var degrees = Math.Atan2(delta.X, delta.Y) * 180.0 / Math.PI;
                         if (degrees < 0)
                             degrees += 360;
-                        var dir = (int) Math.Round(degrees / 22.5) % 16;
-                        severity = (short) (4 + bucket * 16 + dir);
+                        var dir = (int)Math.Round(degrees / 22.5) % 16;
+                        severity = (short)(4 + bucket * 16 + dir);
                     }
                 }
             }

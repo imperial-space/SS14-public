@@ -26,6 +26,12 @@ public sealed class CultPortalStormSystem : EntitySystem
     private static readonly SoundSpecifier Lightning = new SoundPathSpecifier(CultSounds.Root + "lightningbolt.ogg");
     private static readonly EntProtoId Boss = "MobCultArtificerHostile";
 
+    private static readonly EntProtoId CultPortalStormEffect = "CultPortalStormEffect";
+
+    private static readonly TimeSpan TickDelay = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan StartStormDelay = TimeSpan.FromSeconds(8);
+    private static readonly TimeSpan StartStormDelay2 = TimeSpan.FromSeconds(2);
+
     private sealed class Storm
     {
         public int ActiveFor;
@@ -41,7 +47,7 @@ public sealed class CultPortalStormSystem : EntitySystem
 
     public void StartStorm()
     {
-        var storm = new Storm { NextTick = _timing.CurTime + TimeSpan.FromSeconds(2) };
+        var storm = new Storm { NextTick = _timing.CurTime + TickDelay };
         for (var i = 0; i < 14; i++)
         {
             if (_rule.TryRandomStationTile(out var c))
@@ -53,15 +59,15 @@ public sealed class CultPortalStormSystem : EntitySystem
                 storm.BossSpawns.Add(c);
         }
         // start_when + ceil(2 * hostiles / bosses)
-        storm.NextBossSpawn = 7 + (int) MathF.Ceiling(2f * 14 / 6);
+        storm.NextBossSpawn = 7 + (int)MathF.Ceiling(2f * 14 / 6);
         _storms.Add(storm);
 
         // announce()
         _audio.PlayGlobal(CultSounds.LightningChargeup, Filter.Broadcast(), true);
-        _schedule.Schedule(TimeSpan.FromSeconds(8), () =>
+        _schedule.Schedule(StartStormDelay, () =>
         {
             _chat.DispatchGlobalAnnouncement(Loc.GetString("cult-portal-storm-announcement"), playSound: true);
-            _schedule.Schedule(TimeSpan.FromSeconds(2), () => _audio.PlayGlobal(Lightning, Filter.Broadcast(), true));
+            _schedule.Schedule(StartStormDelay2, () => _audio.PlayGlobal(Lightning, Filter.Broadcast(), true));
         });
     }
 
@@ -75,7 +81,7 @@ public sealed class CultPortalStormSystem : EntitySystem
             var storm = _storms[i];
             if (now < storm.NextTick)
                 continue;
-            storm.NextTick = now + TimeSpan.FromSeconds(2);
+            storm.NextTick = now + TickDelay;
             storm.ActiveFor++;
             if (storm.ActiveFor < 7)
                 continue;
@@ -95,7 +101,7 @@ public sealed class CultPortalStormSystem : EntitySystem
 
             if (storm.Bosses > 0 && storm.ActiveFor == storm.NextBossSpawn)
             {
-                storm.NextBossSpawn += (int) MathF.Ceiling(14f / 6);
+                storm.NextBossSpawn += (int)MathF.Ceiling(14f / 6);
                 storm.Bosses--;
                 SpawnMob(Boss, storm.BossSpawns);
             }
@@ -116,7 +122,7 @@ public sealed class CultPortalStormSystem : EntitySystem
 
     private void SpawnEffects(EntityCoordinates at)
     {
-        Spawn("CultPortalStormEffect", at);
+        Spawn(CultPortalStormEffect, at);
         _audio.PlayPvs(Lightning, at, AudioParams.Default.WithVolume(CultSystem.Db(_random.Next(80, 101))).WithVariation(0.05f));
     }
 }

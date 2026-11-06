@@ -11,4 +11,7 @@ public sealed partial class CultPhasedComponent : Component
     [ViewVariables] public TimeSpan End;
     [ViewVariables] public Robust.Shared.Map.EntityCoordinates? LastSafe;
     [ViewVariables] public Dictionary<string, (int Mask, int Layer)> Masks = new();
+
+    [DataField]
+    public TimeSpan UpdateDelay = TimeSpan.FromSeconds(0.5);
 }

@@ -13,4 +13,10 @@ public sealed partial class CultDarkSpiritComponent : Component
     [ViewVariables] public List<EntityUid> Actions = new();
     [ViewVariables] public TimeSpan NextMark;
     [ViewVariables] public TimeSpan NextCheck;
+
+    [DataField]
+    public TimeSpan GhostMarkDuration = TimeSpan.FromSeconds(60);
+
+    [DataField]
+    public TimeSpan MarkDelay = TimeSpan.FromSeconds(60);
 }
