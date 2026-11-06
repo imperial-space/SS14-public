@@ -75,6 +75,8 @@ public sealed class MeteorShieldSystem : EntitySystem
     private TimeSpan _nextMeteorRoll;
     private int _cachedCoverage;
 
+    private static readonly EntProtoId ExplosionLight = "ExplosionLight";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -155,7 +157,7 @@ public sealed class MeteorShieldSystem : EntitySystem
 
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString(ent.Comp.Active ? "meteor-shield-looking-off" : "meteor-shield-looking-on"), ent, args.User);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(2), new SatelliteToggleDoAfterEvent(), ent, ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ent.Comp.SatelliteActivateDelay, new SatelliteToggleDoAfterEvent(), ent, ent)
         {
             BreakOnMove = true,
         });
@@ -273,7 +275,7 @@ public sealed class MeteorShieldSystem : EntitySystem
         if (now < _emagCooldownEnd)
         {
             _popup.PopupEntity(Loc.GetString("meteor-shield-emag-cooldown",
-                ("seconds", (int) Math.Ceiling((_emagCooldownEnd - now).TotalSeconds))), ent, args.UserUid, PopupType.MediumCaution);
+                ("seconds", (int)Math.Ceiling((_emagCooldownEnd - now).TotalSeconds))), ent, args.UserUid, PopupType.MediumCaution);
             return;
         }
 
@@ -283,7 +285,7 @@ public sealed class MeteorShieldSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("meteor-shield-emagged"), ent, args.UserUid, PopupType.MediumCaution);
         // AddComponent(/datum/component/gps): сигнал виден как маяк.
         ent.Comp.SignalEntity = SpawnAttachedTo(ent.Comp.Signal, new EntityCoordinates(ent, Vector2.Zero));
-        Say(ent, Loc.GetString("meteor-shield-say-recalibrating", ("seconds", (int) EmagCooldown.TotalSeconds)));
+        Say(ent, Loc.GetString("meteor-shield-say-recalibrating", ("seconds", (int)EmagCooldown.TotalSeconds)));
 
         if (ent.Comp.Active)
             UpdateEmaggedSatellite(ent, args.UserUid);
@@ -353,7 +355,7 @@ public sealed class MeteorShieldSystem : EntitySystem
             if (!sat.Active || now < sat.NextCheck)
                 continue;
 
-            sat.NextCheck = now + TimeSpan.FromSeconds(0.2);
+            sat.NextCheck = now + sat.CheckDelay;
             CheckMeteors((uid, sat));
         }
 
@@ -387,7 +389,7 @@ public sealed class MeteorShieldSystem : EntitySystem
                 // dark_matteor/shield_defense: луч отражается и уничтожает спутник.
                 _popup.PopupCoordinates(Loc.GetString("meteor-shield-beam-reflected", ("satellite", sat.Owner)),
                     Transform(sat).Coordinates, PopupType.LargeCaution);
-                Spawn("ExplosionLight", satCoords);
+                Spawn(ExplosionLight, satCoords);
                 QueueDel(sat);
                 return;
             }
@@ -400,10 +402,10 @@ public sealed class MeteorShieldSystem : EntitySystem
     private bool SpaceLineOfSight(MapCoordinates from, MapCoordinates to)
     {
         var delta = to.Position - from.Position;
-        var steps = (int) Math.Ceiling(delta.Length() * 2);
+        var steps = (int)Math.Ceiling(delta.Length() * 2);
         for (var i = 0; i <= steps; i++)
         {
-            var point = new MapCoordinates(from.Position + delta * (steps == 0 ? 0 : i / (float) steps), from.MapId);
+            var point = new MapCoordinates(from.Position + delta * (steps == 0 ? 0 : i / (float)steps), from.MapId);
             if (!_mapManager.TryFindGridAt(point, out var grid, out var gridComp))
                 continue;
 
@@ -454,8 +456,8 @@ public sealed class MeteorShieldSystem : EntitySystem
                 continue;
 
             var pos = _xform.GetWorldPosition(xform);
-            var cx = (int) Math.Floor(pos.X);
-            var cy = (int) Math.Floor(pos.Y);
+            var cx = (int)Math.Floor(pos.X);
+            var cy = (int)Math.Floor(pos.Y);
             for (var x = -sat.KillRange; x <= sat.KillRange; x++)
             {
                 for (var y = -sat.KillRange; y <= sat.KillRange; y++)
@@ -568,7 +570,7 @@ public sealed class MeteorShieldSystem : EntitySystem
         if (_timing.CurTime < ent.Comp.NextImpactSound)
             return;
 
-        ent.Comp.NextImpactSound = _timing.CurTime + TimeSpan.FromSeconds(0.5);
+        ent.Comp.NextImpactSound = _timing.CurTime + ent.Comp.ImpactSoundDelay;
         _audio.PlayPvs(ent.Comp.Sound, ent);
     }
 

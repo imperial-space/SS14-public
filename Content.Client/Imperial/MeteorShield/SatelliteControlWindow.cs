@@ -33,7 +33,7 @@ public sealed class SatelliteControlWindow : DefaultWindow
 
         if (state.MeteorShield)
         {
-            var ratio = state.CoverageMax > 0 ? state.Coverage / (float) state.CoverageMax : 0;
+            var ratio = state.CoverageMax > 0 ? state.Coverage / (float)state.CoverageMax : 0;
             var color = ratio >= 1 ? Good : ratio >= 0.3f ? Average : Bad;
             var bar = new ProgressBar
             {

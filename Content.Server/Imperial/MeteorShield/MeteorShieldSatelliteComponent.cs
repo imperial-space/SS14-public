@@ -56,4 +56,10 @@ public sealed partial class MeteorShieldSatelliteComponent : Component
     [ViewVariables] public bool Active;
     [ViewVariables] public TimeSpan NextCheck;
     [ViewVariables] public EntityUid? SignalEntity;
+
+    [DataField]
+    public TimeSpan CheckDelay = TimeSpan.FromSeconds(0.2);
+
+    [DataField]
+    public TimeSpan SatelliteActivateDelay = TimeSpan.FromSeconds(2);
 }

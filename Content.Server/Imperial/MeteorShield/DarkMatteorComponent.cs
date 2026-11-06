@@ -46,4 +46,7 @@ public sealed partial class DarkMatteorComponent : Component
     [ViewVariables] public EntityUid? Station;
     [ViewVariables] public string? PreviousLevel;
     [ViewVariables] public bool Hit;
+
+    [DataField]
+    public TimeSpan ImpactSoundDelay = TimeSpan.FromSeconds(0.5);
 }
