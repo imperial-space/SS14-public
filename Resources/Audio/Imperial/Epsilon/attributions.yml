@@ -1,0 +1,9 @@
+- files: ["epsilon.ogg"]
+  license: "CC-BY-SA-4.0"
+  copyright: "boich9585 (discord) for Space Station 14 server Мёртвый Космос"
+  source: "https://github.com/dead-space-server/dead-space-14/blob/master/Resources/Audio/_DeadSpace/AlertLevels/epsilon.ogg"
+
+- files: ["pulse.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound/items/weapons/pulse.ogg)"
+  source: "https://github.com/tgstation/tgstation"
