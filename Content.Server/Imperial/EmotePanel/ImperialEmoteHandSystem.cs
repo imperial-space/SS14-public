@@ -41,7 +41,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Humanoid.Prototypes;
-using Content.Server.Imperial.Mood;
 
 namespace Content.Server.Imperial.EmotePanel;
 
