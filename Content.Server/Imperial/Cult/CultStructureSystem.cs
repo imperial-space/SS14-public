@@ -94,6 +94,9 @@ public sealed partial class CultStructureSystem : EntitySystem
 
     private const float CanBuildHereRange = 0.4f;
 
+    private static readonly EntProtoId CultEffectFloorGlow = "CultEffectFloorGlow";
+    private static readonly EntProtoId CultEffectSacrifice = "CultEffectSacrifice";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -357,7 +360,7 @@ public sealed partial class CultStructureSystem : EntitySystem
         if (cult.Count > 0)
         {
             var idx = _random.Pick(cult);
-            _cult.Effect("CultEffectFloorGlow", _map.GridTileToLocal(grid, gridComp, idx));
+            _cult.Effect(CultEffectFloorGlow, _map.GridTileToLocal(grid, gridComp, idx));
             return true;
         }
 
@@ -573,7 +576,7 @@ public sealed partial class CultStructureSystem : EntitySystem
             return;
         _doorCooldown[user] = now + ent.Comp.DoorCooldown;
 
-        _cult.Effect("CultEffectSacrifice", Transform(ent).Coordinates);
+        _cult.Effect(CultEffectSacrifice, Transform(ent).Coordinates);
         _cult.SoundTo(user, CultSounds.TurnAround, CultSystem.Db(50));
         _cult.Paralyze(user, (float)ent.Comp.DoorOpeningSeconds.TotalSeconds);
 

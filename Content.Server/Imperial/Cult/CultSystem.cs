@@ -87,6 +87,8 @@ public sealed partial class CultSystem : EntitySystem
     private static readonly TimeSpan SenseUpdateDelay = TimeSpan.FromSeconds(1);
     private static readonly TimeSpan CheckSizeDelay = TimeSpan.FromSeconds(20);
 
+    private static readonly EntProtoId CultEffectSparks = "CultEffectSparks";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -287,7 +289,7 @@ public sealed partial class CultSystem : EntitySystem
         if (enabled)
         {
             EnsureComp<CultHaloVisualsComponent>(uid);
-            Effect("CultEffectSparks", Transform(uid).Coordinates, randomDir: true);
+            Effect(CultEffectSparks, Transform(uid).Coordinates, randomDir: true);
         }
         else
         {

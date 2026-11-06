@@ -127,6 +127,12 @@ public sealed class CultRuneSystem : EntitySystem
     private const float BoilTargetsRange = 7f;
     private const float RuneAtRange = 0.45f;
 
+    private static readonly EntProtoId CultEffectSacrifice = "CultEffectSacrifice";
+    private static readonly EntProtoId CultEffectPhaseOut = "CultEffectPhaseOut";
+    private static readonly EntProtoId CultEffectPhaseIn = "CultEffectPhaseIn";
+    private static readonly EntProtoId CultBeamDrain = "CultBeamDrain";
+    private static readonly EntProtoId CultEffectGraspPortal = "CultEffectGraspPortal";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -498,7 +504,7 @@ public sealed class CultRuneSystem : EntitySystem
         if (isTarget)
             _rule.SacrificeCompleted(mindId);
 
-        _cult.Effect("CultEffectSacrifice", Transform(rune).Coordinates);
+        _cult.Effect(CultEffectSacrifice, Transform(rune).Coordinates);
 
         foreach (var invoker in invokers)
         {
@@ -611,8 +617,8 @@ public sealed class CultRuneSystem : EntitySystem
                 continue;
             if (HasComp<HumanoidProfileComponent>(ent))
             {
-                _cult.Effect("CultEffectPhaseOut", origin, Transform(ent).LocalRotation);
-                _cult.Effect("CultEffectPhaseIn", target, Transform(ent).LocalRotation);
+                _cult.Effect(CultEffectPhaseOut, origin, Transform(ent).LocalRotation);
+                _cult.Effect(CultEffectPhaseIn, target, Transform(ent).LocalRotation);
             }
             if (ent == user)
             {
@@ -1294,7 +1300,7 @@ public sealed class CultRuneSystem : EntitySystem
             if (body.Rune is { } rune && !TerminatingOrDeleted(rune) && !OnRuneTile(rune, uid))
             {
                 _popup.PopupEntity(Loc.GetString("cult-rune-ascend-pulled", ("target", uid)), uid, PopupType.MediumCaution);
-                _cult.Beam(uid, Transform(rune).Coordinates, "CultBeamDrain", (float)body.UpdateDarkSpiritsSeconds.TotalSeconds);
+                _cult.Beam(uid, Transform(rune).Coordinates, CultBeamDrain, (float)body.UpdateDarkSpiritsSeconds.TotalSeconds);
                 Teleport(uid, Transform(rune).Coordinates);
             }
 
@@ -1365,7 +1371,7 @@ public sealed class CultRuneSystem : EntitySystem
         rune.Comp.InUse = true;
 
         var coords = Transform(rune).Coordinates;
-        _cult.Effect("CultEffectGraspPortal", coords);
+        _cult.Effect(CultEffectGraspPortal, coords);
 
         var cultists = 0;
         var players = 0;

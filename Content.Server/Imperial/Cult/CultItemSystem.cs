@@ -45,6 +45,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Imperial.Achievements;
+using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server.Imperial.Cult;
 
@@ -88,6 +89,12 @@ public sealed partial class CultItemSystem : EntitySystem
     private const float FireBeamSeconds = 2f;
     private const float FireBeamAmount = 45f;
     private const float FireBeamSeconds2 = 0.7f;
+
+    private static readonly EntProtoId CultEffectSparks = "CultEffectSparks";
+    private static readonly EntProtoId CultEffectPhaseOut = "CultEffectPhaseOut";
+    private static readonly EntProtoId CultEffectPhaseIn = "CultEffectPhaseIn";
+    private static readonly ProtoId<ReagentPrototype> UnholyWaterReagent = "UnholyWater";
+    private static readonly EntProtoId CultBeamBlood = "CultBeamBlood";
 
     public override void Initialize()
     {
@@ -177,7 +184,7 @@ public sealed partial class CultItemSystem : EntitySystem
                 continue;
 
             args.Cancelled = true;
-            _cult.Effect("CultEffectSparks", Transform(ent).Coordinates, randomDir: true);
+            _cult.Effect(CultEffectSparks, Transform(ent).Coordinates, randomDir: true);
             _audio.PlayPvs(CultSounds.Parry, ent);
             _popup.PopupEntity(Loc.GetString("cult-parry", ("user", ent), ("item", held)), ent, PopupType.MediumCaution);
             return;
@@ -436,8 +443,8 @@ public sealed partial class CultItemSystem : EntitySystem
         if (ent.Comp.Uses <= 0)
             _appearance().SetData(ent, CultVisuals.State, "shifter_drained");
 
-        _cult.Effect("CultEffectPhaseOut", origin, xform.LocalRotation);
-        _cult.Effect("CultEffectPhaseIn", dest.Value, xform.LocalRotation);
+        _cult.Effect(CultEffectPhaseOut, origin, xform.LocalRotation);
+        _cult.Effect(CultEffectPhaseIn, dest.Value, xform.LocalRotation);
         _audio.PlayPvs(CultSounds.PortalEnter, origin, AudioParams.Default.WithVolume(CultSystem.Db(50)).WithVariation(0.05f));
         _audio.PlayPvs(CultSounds.PhaseIn, dest.Value, AudioParams.Default.WithVolume(CultSystem.Db(25)).WithVariation(0.05f));
         _audio.PlayPvs(CultSounds.PortalEnter, dest.Value, AudioParams.Default.WithVolume(CultSystem.Db(50)).WithVariation(0.05f));
@@ -528,7 +535,7 @@ public sealed partial class CultItemSystem : EntitySystem
         _cult.Paralyze(target, (float)ent.Comp.HalberdHitSeconds.TotalSeconds);
         var coords = Transform(target).Coordinates;
         _popup.PopupCoordinates(Loc.GetString("cult-halberd-shatter", ("item", ent)), coords, PopupType.MediumCaution);
-        _cult.Effect("CultEffectSparks", coords, randomDir: true);
+        _cult.Effect(CultEffectSparks, coords, randomDir: true);
         Spawn(PuddleBlood, coords);
         _audio.PlayPvs(CultSounds.GlassBreak3, coords);
         QueueDel(ent);
@@ -560,7 +567,7 @@ public sealed partial class CultItemSystem : EntitySystem
         if (_mobState.IsDead(target))
             return;
         if (_solutions.TryGetSolution(target, "chemicals", out var sol, out _))
-            _solutions.TryAddReagent(sol.Value, "UnholyWater", FixedPoint2.New(unholy), out _);
+            _solutions.TryAddReagent(sol.Value, UnholyWaterReagent, FixedPoint2.New(unholy), out _);
     }
 
     #endregion
@@ -680,7 +687,7 @@ public sealed partial class CultItemSystem : EntitySystem
                 else
                 {
                     beam.ChargeEffects.Add(_runes.SpawnRuneSpawn(coords, "rune5words", 181, (float)beam.UpdateBeamsDuration.TotalSeconds, Color.Red));
-                    _cult.Effect("CultEffectPhaseOut", coords, Transform(user).LocalRotation);
+                    _cult.Effect(CultEffectPhaseOut, coords, Transform(user).LocalRotation);
                 }
                 continue;
             }
@@ -713,7 +720,7 @@ public sealed partial class CultItemSystem : EntitySystem
     {
         var xform = Transform(user);
         _audio.PlayPvs(CultSounds.ExitBlood, user, AudioParams.Default.WithVolume(CultSystem.Db(75)).WithVariation(0.05f));
-        _cult.Effect("CultEffectPhaseIn", xform.Coordinates, xform.LocalRotation);
+        _cult.Effect(CultEffectPhaseIn, xform.Coordinates, xform.LocalRotation);
 
         var origin = _transform.GetWorldPosition(xform);
         var dir = angle.ToWorldVec();
@@ -740,7 +747,7 @@ public sealed partial class CultItemSystem : EntitySystem
                     continue;
                 if (_cult.IsCultAligned(mob))
                 {
-                    _cult.Effect("CultEffectSparks", Transform(mob).Coordinates, randomDir: true);
+                    _cult.Effect(CultEffectSparks, Transform(mob).Coordinates, randomDir: true);
                     HealByBlood(mob, 7, 15);
                     continue;
                 }
@@ -751,7 +758,7 @@ public sealed partial class CultItemSystem : EntitySystem
             }
         }
 
-        _cult.Beam(user, _transform.ToCoordinates(new MapCoordinates(end, mapId)), "CultBeamBlood", FireBeamSeconds2);
+        _cult.Beam(user, _transform.ToCoordinates(new MapCoordinates(end, mapId)), CultBeamBlood, FireBeamSeconds2);
     }
 
     #endregion
@@ -769,7 +776,7 @@ public sealed partial class CultItemSystem : EntitySystem
             return;
         }
         _cult.Paralyze(target, (float)ent.Comp.MirrorThrowHitSeconds.TotalSeconds);
-        _cult.Effect("CultEffectSparks", Transform(target).Coordinates, randomDir: true);
+        _cult.Effect(CultEffectSparks, Transform(target).Coordinates, randomDir: true);
         _audio.PlayPvs(CultSounds.GlassBreak3, target);
         QueueDel(ent);
     }

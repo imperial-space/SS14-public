@@ -64,7 +64,7 @@ public sealed partial class CultItemSystem
             {
                 var coords = Transform(owner).Coordinates;
                 _popup.PopupCoordinates(Loc.GetString("cult-mirror-shatter", ("item", args.Origin!.Value)), coords, PopupType.MediumCaution);
-                _cult.Effect("CultEffectSparks", coords, randomDir: true);
+                _cult.Effect(CultEffectSparks, coords, randomDir: true);
                 _audio.PlayPvs(CultSounds.GlassBreak3, coords);
                 _cult.Paralyze(owner, (float)mirror.MirrorBlockSeconds.TotalSeconds);
                 QueueDel(shield);

@@ -10,6 +10,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Cult;
 
@@ -24,6 +25,12 @@ public sealed partial class CultSystem
     private const float MarkDuration = 90f;
 
     private static readonly TimeSpan ReckoningStageDelay = TimeSpan.FromSeconds(3);
+
+    private static readonly EntProtoId CultEffectPhaseOut = "CultEffectPhaseOut";
+    private static readonly EntProtoId CultEffectPhaseIn = "CultEffectPhaseIn";
+    private static readonly EntProtoId CultEffectBloodIn = "CultEffectBloodIn";
+    private static readonly EntProtoId CultEffectBloodOut = "CultEffectBloodOut";
+    private static readonly EntProtoId CultBeamSend = "CultBeamSend";
 
     private void InitializeLeader()
     {
@@ -237,15 +244,15 @@ public sealed partial class CultSystem
             switch (stage)
             {
                 case 1:
-                    Effect("CultEffectSparks", coords);
+                    Effect(CultEffectSparks, coords);
                     _audio.PlayPvs(CultSounds.Sparks, coords, Robust.Shared.Audio.AudioParams.Default.WithVolume(Db(50)));
                     break;
                 case 2:
-                    Effect("CultEffectPhaseOut", coords, Transform(member).LocalRotation);
+                    Effect(CultEffectPhaseOut, coords, Transform(member).LocalRotation);
                     _audio.PlayPvs(CultSounds.Sparks, coords, Robust.Shared.Audio.AudioParams.Default.WithVolume(Db(75)));
                     break;
                 case 3:
-                    Effect("CultEffectPhaseIn", coords, Transform(member).LocalRotation);
+                    Effect(CultEffectPhaseIn, coords, Transform(member).LocalRotation);
                     _audio.PlayPvs(CultSounds.Sparks, coords);
                     break;
                 case 4:
@@ -253,13 +260,13 @@ public sealed partial class CultSystem
                     if (member == ent.Owner)
                         break;
                     var final = _random.Pick(destinations);
-                    Effect("CultEffectBloodIn", final);
+                    Effect(CultEffectBloodIn, final);
                     var target = member;
                     _schedule.Schedule(ent.Comp.ReckoningDoAfterDelay, () =>
                     {
                         if (TerminatingOrDeleted(target))
                             return;
-                        Effect("CultEffectBloodOut", Transform(target).Coordinates);
+                        Effect(CultEffectBloodOut, Transform(target).Coordinates);
                         _transform.SetCoordinates(target, final);
                         _transform.AttachToGridOrMap(target);
                     });
@@ -442,13 +449,13 @@ public sealed partial class CultSystem
         }
 
         var prev = Transform(seized).Coordinates;
-        Effect("CultEffectSparks", prev);
+        Effect(CultEffectSparks, prev);
         _transform.SetMapCoordinates(seized, targetCoords);
         _transform.AttachToGridOrMap(seized);
-        Effect("CultEffectSparks", Transform(seized).Coordinates);
+        Effect(CultEffectSparks, Transform(seized).Coordinates);
         _audio.PlayPvs(CultSounds.ExitBlood, Transform(seized).Coordinates, Robust.Shared.Audio.AudioParams.Default.WithVolume(Db(50)));
-        Beam(user, Transform(seized).Coordinates, "CultBeamSend", (float)ent.Comp.EldritchPulseSeconds.TotalSeconds);
-        Beam(user, prev, "CultBeamSend", (float)ent.Comp.EldritchPulseSeconds.TotalSeconds);
+        Beam(user, Transform(seized).Coordinates, CultBeamSend, (float)ent.Comp.EldritchPulseSeconds.TotalSeconds);
+        Beam(user, prev, CultBeamSend, (float)ent.Comp.EldritchPulseSeconds.TotalSeconds);
         Message(user, Loc.GetString("cult-pulse-success", ("target", seized)));
         args.Handled = true;
     }

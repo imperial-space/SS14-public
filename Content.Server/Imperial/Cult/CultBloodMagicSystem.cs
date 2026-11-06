@@ -111,6 +111,16 @@ public sealed class CultBloodMagicSystem : EntitySystem
     private const float NearEmpowerRuneRange = 1.5f;
     private const float SteelStacksRange = 0.45f;
 
+    private static readonly EntProtoId ClothingUniformJumpsuitColorBlack = "ClothingUniformJumpsuitColorBlack";
+    private static readonly EntProtoId ClothingOuterCultRobesAlt = "ClothingOuterCultRobesAlt";
+    private static readonly EntProtoId ClothingShoesCultAlt = "ClothingShoesCultAlt";
+    private static readonly EntProtoId ClothingBackpackCult = "ClothingBackpackCult";
+    private static readonly EntProtoId CultBeamSend = "CultBeamSend";
+    private static readonly EntProtoId CultEffectSparks = "CultEffectSparks";
+    private static readonly EntProtoId CultBeamDrain = "CultBeamDrain";
+    private static readonly EntProtoId CultEffectFloorGlow = "CultEffectFloorGlow";
+    private static readonly ProtoId<ReagentPrototype> UnholyWaterReagent = "UnholyWater";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -936,10 +946,10 @@ public sealed class CultBloodMagicSystem : EntitySystem
         ent.Comp.Uses--;
         _popup.PopupEntity(Loc.GetString("cult-spell-equipment", ("target", target)), target, PopupType.Medium);
 
-        EquipOrDelete(target, "ClothingUniformJumpsuitColorBlack", "jumpsuit");
-        EquipOrDelete(target, "ClothingOuterCultRobesAlt", "outerClothing");
-        EquipOrDelete(target, "ClothingShoesCultAlt", "shoes");
-        EquipOrDelete(target, "ClothingBackpackCult", "back");
+        EquipOrDelete(target, ClothingUniformJumpsuitColorBlack, "jumpsuit");
+        EquipOrDelete(target, ClothingOuterCultRobesAlt, "outerClothing");
+        EquipOrDelete(target, ClothingShoesCultAlt, "shoes");
+        EquipOrDelete(target, ClothingBackpackCult, "back");
 
         if (target == user)
             QueueDel(ent);
@@ -1035,7 +1045,7 @@ public sealed class CultBloodMagicSystem : EntitySystem
             ent.Comp.Uses = 0;
         }
         _audio.PlayPvs(CultSounds.StaffHealing, target, AudioParams.Default.WithVolume(CultSystem.Db(25)));
-        _cult.Beam(user, Transform(target).Coordinates, "CultBeamSend", 1f);
+        _cult.Beam(user, Transform(target).Coordinates, CultBeamSend, 1f);
         return true;
     }
 
@@ -1097,9 +1107,9 @@ public sealed class CultBloodMagicSystem : EntitySystem
         _cult.HealGroup(target, "Brute", healed * (brute / overall));
 
         _audio.PlayPvs(CultSounds.StaffHealing, target, AudioParams.Default.WithVolume(CultSystem.Db(25)));
-        _cult.Effect("CultEffectSparks", Transform(target).Coordinates, randomDir: true);
+        _cult.Effect(CultEffectSparks, Transform(target).Coordinates, randomDir: true);
         if (user != target)
-            _cult.Beam(user, Transform(target).Coordinates, "CultBeamSend", (float)ent.Comp.HealCultistSeconds.TotalSeconds);
+            _cult.Beam(user, Transform(target).Coordinates, CultBeamSend, (float)ent.Comp.HealCultistSeconds.TotalSeconds);
         return true;
     }
 
@@ -1118,11 +1128,11 @@ public sealed class CultBloodMagicSystem : EntitySystem
 
         ModifyBloodSs13(target, -BloodDrainGain * UsesToBlood);
         ent.Comp.Uses += BloodDrainGain;
-        _cult.Beam(user, Transform(target).Coordinates, "CultBeamDrain", 1f);
+        _cult.Beam(user, Transform(target).Coordinates, CultBeamDrain, 1f);
         _audio.PlayPvs(CultSounds.EnterBlood, target, AudioParams.Default.WithVolume(CultSystem.Db(50)));
         _popup.PopupEntity(Loc.GetString("cult-rites-drain-others", ("user", user), ("target", target)), target, PopupType.MediumCaution);
         _cult.Message(user, Loc.GetString("cult-rites-drain-self", ("target", target)));
-        _cult.Effect("CultEffectSparks", Transform(target).Coordinates, randomDir: true);
+        _cult.Effect(CultEffectSparks, Transform(target).Coordinates, randomDir: true);
         return true;
     }
 
@@ -1138,15 +1148,15 @@ public sealed class CultBloodMagicSystem : EntitySystem
             if (blood <= 0)
                 continue;
             gain += MathF.Max(blood * 0.6f, 1f);
-            _cult.Effect("CultEffectFloorGlow", Transform(puddle).Coordinates);
+            _cult.Effect(CultEffectFloorGlow, Transform(puddle).Coordinates);
             QueueDel(puddle);
         }
 
         if (gain <= 0)
             return;
 
-        _cult.Beam(user, coords, "CultBeamDrain", (float)ent.Comp.BloodDrawSeconds.TotalSeconds);
-        _cult.Effect("CultEffectSparks", Transform(user).Coordinates, randomDir: true);
+        _cult.Beam(user, coords, CultBeamDrain, (float)ent.Comp.BloodDrawSeconds.TotalSeconds);
+        _cult.Effect(CultEffectSparks, Transform(user).Coordinates, randomDir: true);
         _audio.PlayPvs(CultSounds.EnterBlood, coords, AudioParams.Default.WithVolume(CultSystem.Db(50)));
         var charges = Math.Max(1, (int)MathF.Round(gain));
         _cult.Message(user, Loc.GetString("cult-rites-floor", ("count", charges)));
@@ -1231,8 +1241,8 @@ public sealed class CultBloodMagicSystem : EntitySystem
             return true;
 
         _cult.Message(user, Loc.GetString("cult-purge-holywater", ("target", target), ("item", item)));
-        _solutions.RemoveReagent(solEnt.Value, "Holywater", holy);
-        _solutions.TryAddReagent(solEnt.Value, "UnholyWater", holy, out _);
+        _solutions.RemoveReagent(solEnt.Value, HolywaterReagent, holy);
+        _solutions.TryAddReagent(solEnt.Value, UnholyWaterReagent, holy, out _);
         return true;
     }
 }

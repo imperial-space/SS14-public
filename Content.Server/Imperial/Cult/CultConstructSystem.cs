@@ -98,6 +98,14 @@ public sealed partial class CultConstructSystem : EntitySystem
     private const float WrackedSeconds = 10f;
     private const float HotPotatoAmount = 10f;
 
+    private static readonly EntProtoId CultEffectHeal = "CultEffectHeal";
+    private static readonly EntProtoId CultEffectConstructForm = "CultEffectConstructForm";
+    private static readonly EntProtoId CultEffectSacrifice = "CultEffectSacrifice";
+    private static readonly EntProtoId CultEffectFloorGlow = "CultEffectFloorGlow";
+    private static readonly EntProtoId CultEffectWraithOut = "CultEffectWraithOut";
+    private static readonly EntProtoId CultEffectSparks = "CultEffectSparks";
+    private static readonly EntProtoId CultEffectWraithIn = "CultEffectWraithIn";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -235,7 +243,7 @@ public sealed partial class CultConstructSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("cult-construct-repair-start", ("user", ent), ("target", target)), target, PopupType.Small);
         _cult.HealGroup(target, "Brute", ent.Comp.ConstructActivateAmount);
         _popup.PopupEntity(Loc.GetString("cult-construct-repair-done", ("target", target)), target, PopupType.Small);
-        _cult.Effect("CultEffectHeal", Transform(target).Coordinates);
+        _cult.Effect(CultEffectHeal, Transform(target).Coordinates);
     }
 
     public bool BorgHasMind(EntityUid borg)
@@ -278,7 +286,7 @@ public sealed partial class CultConstructSystem : EntitySystem
         var construct = Spawn(proto, coords);
         // Анимация сборки есть только у ремесленника, призрака и джаггернаута (состояния make_*_cult в constructs.rsi).
         if (ConstructStates.TryGetValue(type, out var state) && FormAnimated.Contains(type))
-            _cult.Effect("CultEffectConstructForm", coords, color: null).Also(e => _appearance.SetData(e, CultVisuals.State, $"make_{state}_cult"));
+            _cult.Effect(CultEffectConstructForm, coords, color: null).Also(e => _appearance.SetData(e, CultVisuals.State, $"make_{state}_cult"));
         _audio.PlayPvs(CultSounds.ConstructForm, construct, AudioParams.Default.WithVolume(CultSystem.Db(50)));
 
         if (TryComp<CultConstructComponent>(construct, out var comp))
@@ -325,7 +333,7 @@ public sealed partial class CultConstructSystem : EntitySystem
     {
         var coords = Transform(ent).Coordinates;
         _audio.PlayPvs(CultSounds.ResonatorBlast, coords);
-        _cult.Effect("CultEffectSacrifice", coords);
+        _cult.Effect(CultEffectSacrifice, coords);
         if (HasComp<MobStateComponent>(args.Target) && !_cult.IsCultAligned(args.Target))
             EntityManager.System<Content.Shared.Stunnable.SharedStunSystem>().TryKnockdown(args.Target, ent.Comp.GauntletHitTime, true);
 
@@ -336,7 +344,7 @@ public sealed partial class CultConstructSystem : EntitySystem
             if (!TryComp<PhysicsComponent>(obj, out var physics) || !physics.Hard || !physics.CanCollide || !HasComp<DamageableComponent>(obj))
                 continue;
             _cult.Damage(obj, "Blunt", ent.Comp.GauntletHitAmount, ignoreResistances: false);
-            _cult.Effect("CultEffectFloorGlow", Transform(obj).Coordinates);
+            _cult.Effect(CultEffectFloorGlow, Transform(obj).Coordinates);
         }
     }
 
@@ -363,7 +371,7 @@ public sealed partial class CultConstructSystem : EntitySystem
             return;
         args.Handled = true;
         _audio.PlayPvs(CultSounds.EtherealEnter, ent, AudioParams.Default.WithVolume(CultSystem.Db(50)));
-        _cult.Effect("CultEffectWraithOut", Transform(ent).Coordinates, Transform(ent).LocalRotation);
+        _cult.Effect(CultEffectWraithOut, Transform(ent).Coordinates, Transform(ent).LocalRotation);
 
         var phased = EnsureComp<CultPhasedComponent>(ent);
         phased.End = _timing.CurTime + ent.Comp.PhaseShiftDelay;
@@ -894,7 +902,7 @@ public sealed partial class CultConstructSystem : EntitySystem
     {
         var target = args.Target;
         _audio.PlayPvs(CultSounds.Splat, target);
-        _cult.Effect("CultEffectSparks", Transform(target).Coordinates, randomDir: true);
+        _cult.Effect(CultEffectSparks, Transform(target).Coordinates, randomDir: true);
     }
 
     #endregion
@@ -936,7 +944,7 @@ public sealed partial class CultConstructSystem : EntitySystem
         {
             SetPhased(uid, phased, false);
             RemComp<CultPhasedComponent>(uid);
-            _cult.Effect("CultEffectWraithIn", Transform(uid).Coordinates, Transform(uid).LocalRotation);
+            _cult.Effect(CultEffectWraithIn, Transform(uid).Coordinates, Transform(uid).LocalRotation);
             _audio.PlayPvs(CultSounds.EtherealExit, uid, AudioParams.Default.WithVolume(CultSystem.Db(50)));
         }
     }
