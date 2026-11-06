@@ -249,7 +249,7 @@ public sealed partial class ImperialChangelingSystem
     /// <summary>tentacle/on_hit().</summary>
     private void OnTentacleHit(Entity<ImperialChangelingTentacleProjectileComponent> ent, ref ProjectileHitEvent args)
     {
-        if (args.Shooter is not { } ling || !TryComp<ImperialChangelingComponent>(ling, out _))
+        if (args.Shooter is not { } ling || !HasComp<ImperialChangelingComponent>(ling))
             return;
 
         var target = args.Target;

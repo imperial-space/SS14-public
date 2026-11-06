@@ -116,11 +116,6 @@ public sealed partial class ImperialChangelingSystem
     /// <summary>strained_muscles: multiplicative_slowdown = -0.55.</summary>
     private const float MusclesSpeed = 1.5f;
 
-    /// <summary>Генокрады, у которых мы убрали дыхание (void_adaption): вернуть из прототипа.</summary>
-    private readonly HashSet<EntityUid> _removedRespirator = new();
-
-    private readonly Dictionary<EntityUid, float> _oldColdThreshold = new();
-
     private static readonly FixedPoint2 UpdateMeltQuantity = 5;
 
     private static readonly ProtoId<ReagentPrototype> ImperialChangelingAdrenalineReagent = "ImperialChangelingAdrenaline";
@@ -396,7 +391,7 @@ public sealed partial class ImperialChangelingSystem
         {
             ent.Comp.Toggled.Add(DarknessPower);
             EnsureComp<StealthComponent>(uid);
-            _darkAlpha.Remove(uid);
+            RemComp<ImperialChangelingDarkAlphaComponent>(uid);
             UpdateDarkness(ent);
             EnsureComp<ImperialNightVisionComponent>(uid);
             ent.Comp.RechargeSlowdown += DarknessSlowdown;
@@ -407,7 +402,7 @@ public sealed partial class ImperialChangelingSystem
         else
         {
             ent.Comp.Toggled.Remove(DarknessPower);
-            _darkAlpha.Remove(uid);
+            RemComp<ImperialChangelingDarkAlphaComponent>(uid);
             if (!ent.Comp.Toggled.Contains(ChameleonPower))
                 RemComp<StealthComponent>(uid);
             RemComp<ImperialNightVisionComponent>(uid);
@@ -878,22 +873,22 @@ public sealed partial class ImperialChangelingSystem
         EnsureComp<PressureImmunityComponent>(uid);
         if (TryComp<TemperatureDamageComponent>(uid, out var temp))
         {
-            _oldColdThreshold[uid] = temp.ColdDamageThreshold;
+            EnsureComp<ImperialChangelingOldColdThresholdComponent>(uid).Value = temp.ColdDamageThreshold;
             temp.ColdDamageThreshold = 0;
         }
 
         if (RemComp<RespiratorComponent>(uid))
-            _removedRespirator.Add(uid);
+            EnsureComp<ImperialChangelingRemovedRespiratorComponent>(uid);
     }
 
     private void RemoveVoid(Entity<ImperialChangelingComponent> ent)
     {
         var uid = ent.Owner;
         RemComp<PressureImmunityComponent>(uid);
-        if (_oldColdThreshold.Remove(uid, out var cold) && TryComp<TemperatureDamageComponent>(uid, out var temp))
+        if (TryRemoveOldColdThreshold(uid, out var cold) && TryComp<TemperatureDamageComponent>(uid, out var temp))
             temp.ColdDamageThreshold = cold;
 
-        if (_removedRespirator.Remove(uid) && MetaData(uid).EntityPrototype is { } proto
+        if (RemComp<ImperialChangelingRemovedRespiratorComponent>(uid) && MetaData(uid).EntityPrototype is { } proto
             && proto.Components.TryGetValue(_factory.GetComponentName<RespiratorComponent>(), out var respirator))
         {
             EntityManager.AddComponents(uid, new ComponentRegistry { [_factory.GetComponentName<RespiratorComponent>()] = respirator });
@@ -942,4 +937,17 @@ public sealed partial class ImperialChangelingSystem
     }
 
     #endregion
+
+    private bool TryRemoveOldColdThreshold(EntityUid uid, out float value)
+    {
+        if (TryComp<ImperialChangelingOldColdThresholdComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            RemComp(uid, comp);
+            return true;
+        }
+
+        value = default!;
+        return false;
+    }
 }

@@ -41,8 +41,6 @@ public sealed partial class ImperialChangelingSystem
     /// <summary>LAST_RESORT_BLIND_RANGE.</summary>
     private const float LastResortBlindRange = 4;
 
-    private readonly Dictionary<EntityUid, TimeSpan> _lastResortConfirm = new();
-
     /// <summary>headcrab: тело лопнет (1.1 с), червь появится ещё через 0.5 с.</summary>
     private readonly List<(EntityUid Body, TimeSpan At)> _pendingBurst = new();
 
@@ -97,7 +95,7 @@ public sealed partial class ImperialChangelingSystem
             if (slug.DieAt is { } die && now >= die)
             {
                 slug.DieAt = null;
-                if (TryComp<DamageableComponent>(uid, out _))
+                if (HasComp<DamageableComponent>(uid))
                     _damage.TryChangeDamage(uid, new Content.Shared.Damage.DamageSpecifier(_proto.Index<Content.Shared.Damage.Prototypes.DamageTypePrototype>(new Robust.Shared.Prototypes.ProtoId<Content.Shared.Damage.Prototypes.DamageTypePrototype>("Bloodloss")), 200), true);
             }
         }
@@ -332,9 +330,6 @@ public sealed partial class ImperialChangelingSystem
     /// <summary>Тела в процессе превращения: когда закончить и в кого (null — в обезьяну).</summary>
     private readonly Dictionary<EntityUid, (TimeSpan At, EntityUid? Profile)> _pendingMorph = new();
 
-    /// <summary>Тела, которым мы сами запретили двигаться на время превращения.</summary>
-    private readonly HashSet<EntityUid> _morphBlocked = new();
-
     /// <summary>lesserform/sting_action(): обезьяна и обратно.</summary>
     private bool UseLesserForm(Entity<ImperialChangelingComponent> ent, EntityUid? _)
     {
@@ -396,7 +391,7 @@ public sealed partial class ImperialChangelingSystem
         if (!HasComp<Content.Shared.Interaction.Components.BlockMovementComponent>(uid))
         {
             AddComp<Content.Shared.Interaction.Components.BlockMovementComponent>(uid);
-            _morphBlocked.Add(uid);
+            EnsureComp<ImperialChangelingMorphBlockedComponent>(uid);
         }
 
         var stealth = EnsureComp<Content.Shared.Stealth.Components.StealthComponent>(uid);
@@ -412,7 +407,7 @@ public sealed partial class ImperialChangelingSystem
                 continue;
 
             _pendingMorph.Remove(uid);
-            if (_morphBlocked.Remove(uid) && !TerminatingOrDeleted(uid))
+            if (RemComp<ImperialChangelingMorphBlockedComponent>(uid) && !TerminatingOrDeleted(uid))
                 RemComp<Content.Shared.Interaction.Components.BlockMovementComponent>(uid);
 
             if (TerminatingOrDeleted(uid) || !TryComp<ImperialChangelingComponent>(uid, out var comp))

@@ -98,9 +98,6 @@ public sealed partial class ImperialChangelingSystem
         ["back"] = "ChangelingFleshClothingBack",
     };
 
-    private readonly Dictionary<EntityUid, TimeSpan> _fakeDeathConfirm = new();
-    private readonly Dictionary<EntityUid, TimeSpan> _absorbSoundAt = new();
-
     private void InitializeInnate()
     {
         _powers[AbsorbPower] = UseAbsorb;
@@ -142,9 +139,9 @@ public sealed partial class ImperialChangelingSystem
             SetFakeDeathIcon(ent, "revive");
         }
 
-        if (ent.Comp.Absorbing && _absorbSoundAt.TryGetValue(ent.Owner, out var soundAt) && now >= soundAt)
+        if (ent.Comp.Absorbing && TryGetAbsorbSoundAt(ent.Owner, out var soundAt) && now >= soundAt)
         {
-            _absorbSoundAt[ent.Owner] = now + AbsorbSoundInterval;
+            EnsureComp<ImperialChangelingAbsorbSoundAtComponent>(ent.Owner).Value = now + AbsorbSoundInterval;
             _audio.PlayPvs(AbsorbSound, ent.Owner);
         }
     }
@@ -269,7 +266,7 @@ public sealed partial class ImperialChangelingSystem
                 _popup.PopupEntity(Loc.GetString("imperial-changeling-absorb-stage3-target"), target, target, PopupType.LargeCaution);
                 var damage = new DamageSpecifier(_proto.Index(AbsorbDamage), 40);
                 _damage.TryChangeDamage(target, damage, origin: user);
-                _absorbSoundAt[user] = _timing.CurTime;
+                EnsureComp<ImperialChangelingAbsorbSoundAtComponent>(user).Value = _timing.CurTime;
                 break;
         }
 
@@ -289,7 +286,7 @@ public sealed partial class ImperialChangelingSystem
     private void StopAbsorb(Entity<ImperialChangelingComponent> ent)
     {
         ent.Comp.Absorbing = false;
-        _absorbSoundAt.Remove(ent.Owner);
+        RemComp<ImperialChangelingAbsorbSoundAtComponent>(ent.Owner);
     }
 
     private void OnAbsorbDoAfter(Entity<ImperialChangelingComponent> ent, ref ImperialChangelingAbsorbDoAfterEvent args)
@@ -574,4 +571,16 @@ public sealed partial class ImperialChangelingSystem
     }
 
     #endregion
+
+    private bool TryGetAbsorbSoundAt(EntityUid uid, out TimeSpan value)
+    {
+        if (TryComp<ImperialChangelingAbsorbSoundAtComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            return true;
+        }
+
+        value = default!;
+        return false;
+    }
 }

@@ -55,9 +55,6 @@ public sealed partial class ImperialChangelingSystem
     private const float DarkAlphaThreshold = 70;
     private const float TileIsDark = 0.2f;
 
-    /// <summary>Последняя прозрачность генокрада во тьме (last_alpha).</summary>
-    private readonly Dictionary<EntityUid, float> _darkAlpha = new();
-
     /// <summary>headcrab/escaping_prison(): стены рушатся через секунду, если генокрад не сдвинулся.</summary>
     private readonly List<(EntityUid Ling, EntityCoordinates Where, List<EntityUid> Walls, TimeSpan At)> _pendingWallBreak = new();
 
@@ -245,10 +242,10 @@ public sealed partial class ImperialChangelingSystem
     private void UpdateDarkness(Entity<ImperialChangelingComponent> ent)
     {
         var alpha = Math.Clamp(65 + (GetLumcount(ent) - TileIsDark) * 255, 65, 255);
-        if (_darkAlpha.TryGetValue(ent.Owner, out var last) && Math.Abs(last - alpha) < 1)
+        if (TryGetDarkAlpha(ent.Owner, out var last) && Math.Abs(last - alpha) < 1)
             return;
 
-        _darkAlpha[ent.Owner] = alpha;
+        EnsureComp<ImperialChangelingDarkAlphaComponent>(ent.Owner).Value = alpha;
         // Хамелеон сам управляет невидимостью, пока включён.
         if (ent.Comp.Toggled.Contains(ChameleonPower) || !TryComp<Content.Shared.Stealth.Components.StealthComponent>(ent, out var stealth))
             return;
@@ -259,7 +256,7 @@ public sealed partial class ImperialChangelingSystem
     /// <summary>examine_mob(): кожа неестественно мерцает на свету.</summary>
     private bool IsShimmering(EntityUid uid)
     {
-        return _darkAlpha.TryGetValue(uid, out var alpha) && alpha > DarkAlphaThreshold;
+        return TryGetDarkAlpha(uid, out var alpha) && alpha > DarkAlphaThreshold;
     }
 
     #endregion
@@ -427,4 +424,16 @@ public sealed partial class ImperialChangelingSystem
     }
 
     #endregion
+
+    private bool TryGetDarkAlpha(EntityUid uid, out float value)
+    {
+        if (TryComp<ImperialChangelingDarkAlphaComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            return true;
+        }
+
+        value = default!;
+        return false;
+    }
 }

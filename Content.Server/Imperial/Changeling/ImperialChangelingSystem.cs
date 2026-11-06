@@ -504,15 +504,6 @@ public sealed partial class ImperialChangelingSystem : EntitySystem
         return true;
     }
 
-    #endregion
-
-    #region Улей
-
-    /// <summary>Генокрады, у которых мы сами завели передатчик (его надо убрать вместе с ульем).</summary>
-    private readonly HashSet<EntityUid> _ownTransmitter = new();
-
-    private readonly HashSet<EntityUid> _ownReceiver = new();
-
     /// <summary>Кто прямо сейчас говорит в улей: имя в радио — позывной.</summary>
     private EntityUid? _hiveSpeaker;
 
@@ -524,13 +515,13 @@ public sealed partial class ImperialChangelingSystem : EntitySystem
             var transmitter = AddComp<IntrinsicRadioTransmitterComponent>(body);
             // По умолчанию там общий канал — без гарнитуры его быть не должно.
             transmitter.Channels.Clear();
-            _ownTransmitter.Add(body);
+            EnsureComp<ImperialChangelingOwnTransmitterComponent>(body);
         }
 
         if (!HasComp<IntrinsicRadioReceiverComponent>(body))
         {
             AddComp<IntrinsicRadioReceiverComponent>(body);
-            _ownReceiver.Add(body);
+            EnsureComp<ImperialChangelingOwnReceiverComponent>(body);
         }
 
         Comp<IntrinsicRadioTransmitterComponent>(body).Channels.Add(HiveChannel);
@@ -545,10 +536,10 @@ public sealed partial class ImperialChangelingSystem : EntitySystem
         if (TryComp<ActiveRadioComponent>(body, out var active))
             active.Channels.Remove(HiveChannel);
 
-        if (_ownTransmitter.Remove(body))
+        if (RemComp<ImperialChangelingOwnTransmitterComponent>(body))
             RemComp<IntrinsicRadioTransmitterComponent>(body);
 
-        if (_ownReceiver.Remove(body))
+        if (RemComp<ImperialChangelingOwnReceiverComponent>(body))
             RemComp<IntrinsicRadioReceiverComponent>(body);
     }
 
