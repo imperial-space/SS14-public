@@ -5,13 +5,6 @@
   objective: roles-antag-contractor-objective
 
 - type: entity
-  parent: BaseMindRole
-  id: MindRoleContractorCandidate
-  name: Contractor Candidate Role
-  components:
-  - type: ContractorCandidateRole
-
-- type: entity
   parent: BaseMindRoleAntag
   id: MindRoleContractor
   name: Contractor Role
@@ -21,5 +14,3 @@
     roleType: SoloAntagonist
     subtype: role-subtype-contractor
   - type: ContractorRole
-  - type: RoleBriefing
-    briefing: contractor-role-briefing
