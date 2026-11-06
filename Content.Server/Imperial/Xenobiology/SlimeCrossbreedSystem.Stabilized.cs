@@ -275,7 +275,7 @@ public sealed partial class SlimeCrossbreedSystem
                 {
                     PopupUser("slime-cross-stabilized-darkblue-cube", holder, ("extract", ent.Owner), ("item", wet));
                     if (_solutions.TryGetSolution(wet, "cube", out var cubeSol, out _))
-                        _solutions.TryAddReagent(cubeSol.Value, "Water", ent.Comp.TickStabilizedSlimeDarkBlueQuantity);
+                        _solutions.TryAddReagent(cubeSol.Value, WaterReagent, ent.Comp.TickStabilizedSlimeDarkBlueQuantity);
                     else
                     {
                         Spawn(MobMonkey, At(wet));

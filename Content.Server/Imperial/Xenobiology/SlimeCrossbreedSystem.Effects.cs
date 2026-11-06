@@ -19,6 +19,8 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Slippery;
+using Content.Shared.Chemistry.Reagent;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Xenobiology;
 
@@ -33,6 +35,8 @@ public sealed partial class SlimeCrossbreedSystem
 
     private static readonly TimeSpan RewindDelay = TimeSpan.FromSeconds(10);
     private static readonly TimeSpan DecayDelay = TimeSpan.FromSeconds(1);
+
+    private static readonly ProtoId<ReagentPrototype> WaterReagent = "Water";
 
     private void InitializeEffects()
     {
@@ -272,7 +276,7 @@ public sealed partial class SlimeCrossbreedSystem
         {
             foreach (var tile in TilesAround(coords.SnapToGrid(EntityManager), 1))
             {
-                _puddle.TrySpillAt(tile, new Solution("Water", 1), out _, sound: false);
+                _puddle.TrySpillAt(tile, new Solution(WaterReagent, 1), out _, sound: false);
             }
         }
 

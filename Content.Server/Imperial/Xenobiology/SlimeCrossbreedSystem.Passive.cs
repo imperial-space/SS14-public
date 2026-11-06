@@ -54,6 +54,12 @@ public sealed partial class SlimeCrossbreedSystem
     private static readonly ProtoId<ReagentPrototype> NutrimentReagent = "Nutriment";
     private static readonly EntProtoId TreasureCoinGold = "TreasureCoinGold";
 
+    private static readonly EntProtoId ClothingShoesColorPurple = "ClothingShoesColorPurple";
+    private static readonly EntProtoId ClothingUniformJumpsuitColorPurple = "ClothingUniformJumpsuitColorPurple";
+    private static readonly EntProtoId ClothingHandsGlovesColorPurple = "ClothingHandsGlovesColorPurple";
+    private static readonly EntProtoId ClothingHeadHatPurplesoft = "ClothingHeadHatPurplesoft";
+    private static readonly ProtoId<ReagentPrototype> BloodReagent = "Blood";
+
     private void InitializePassive()
     {
         SubscribeLocalEvent<SlimeIndustrialComponent, ExaminedEvent>(OnIndustrialExamined);
@@ -435,7 +441,7 @@ public sealed partial class SlimeCrossbreedSystem
                 InjectReagent(target, "RegenJelly", ent.Comp.RegenerativeAfterSlimePurpleAmount);
                 break;
             case "SlimeBlue":
-                _puddle.TrySpillAt(coords, new Solution("Water", ent.Comp.RegenerativeAfterSlimeBlueQuantity), out _, sound: false);
+                _puddle.TrySpillAt(coords, new Solution(WaterReagent, ent.Comp.RegenerativeAfterSlimeBlueQuantity), out _, sound: false);
                 Popup("slime-cross-regenerative-blue", target);
                 break;
             case "SlimeMetal":
@@ -454,10 +460,10 @@ public sealed partial class SlimeCrossbreedSystem
             case "SlimeDarkPurple":
                 {
                     var equipped = false;
-                    equipped |= EquipIfEmpty(target, "ClothingShoesColorPurple", "shoes");
-                    equipped |= EquipIfEmpty(target, "ClothingUniformJumpsuitColorPurple", "jumpsuit");
-                    equipped |= EquipIfEmpty(target, "ClothingHandsGlovesColorPurple", "gloves");
-                    equipped |= EquipIfEmpty(target, "ClothingHeadHatPurplesoft", "head");
+                    equipped |= EquipIfEmpty(target, ClothingShoesColorPurple, "shoes");
+                    equipped |= EquipIfEmpty(target, ClothingUniformJumpsuitColorPurple, "jumpsuit");
+                    equipped |= EquipIfEmpty(target, ClothingHandsGlovesColorPurple, "gloves");
+                    equipped |= EquipIfEmpty(target, ClothingHeadHatPurplesoft, "head");
                     if (equipped)
                         Popup("slime-cross-regenerative-darkpurple", target);
                     break;
@@ -798,7 +804,7 @@ public sealed partial class SlimeCrossbreedSystem
                     SetTint(eater, "pyrite", dye);
                 break;
             case "SlimeRed":
-                _puddle.TrySpillAt(coords, new Solution("Blood", ent.Comp.CookieEffectSlimeRedQuantity), out _, sound: false);
+                _puddle.TrySpillAt(coords, new Solution(BloodReagent, ent.Comp.CookieEffectSlimeRedQuantity), out _, sound: false);
                 _audio.PlayPvs(Splat, coords);
                 _bloodstream.TryModifyBloodLevel(eater, ent.Comp.CookieEffectSlimeRedAmount);
                 break;

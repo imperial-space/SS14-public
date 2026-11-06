@@ -22,6 +22,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Content.Shared.Polymorph;
 using Content.Shared.FixedPoint;
+using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server.Imperial.Xenobiology;
 
@@ -119,6 +120,9 @@ public sealed partial class SlimeCrossbreedSystem
     private const float ChillingSlimeOilMaxTileIntensity = 4f;
     private const float ChillingSlimeRainbowRange = 10f;
 
+    private static readonly ProtoId<ReagentPrototype> IceReagent = "Ice";
+    private static readonly ProtoId<ReagentPrototype> SlimeJellyReagent = "SlimeJelly";
+
     #region Burning
 
     /// <summary>burning.dm: наступательные эффекты.</summary>
@@ -149,7 +153,7 @@ public sealed partial class SlimeCrossbreedSystem
                 Popup("slime-cross-burning-blue", user, ("extract", ext));
                 foreach (var tile in TilesAround(coords, BurningSlimeBlueRange))
                 {
-                    _puddle.TrySpillAt(tile, new Content.Shared.Chemistry.Components.Solution("Ice", 5), out _, sound: false);
+                    _puddle.TrySpillAt(tile, new Content.Shared.Chemistry.Components.Solution(IceReagent, 5), out _, sound: false);
                 }
 
                 foreach (var mob in _lookup.GetEntitiesInRange<HumanoidProfileComponent>(coords, BurningSlimeBlueRange2))
@@ -196,7 +200,7 @@ public sealed partial class SlimeCrossbreedSystem
                     {
                         var food = Spawn(_random.Pick(foods), Scatter(coords, 1));
                         if (_solutions.TryGetSolution(food, "food", out var sol, out _))
-                            _solutions.TryAddReagent(sol.Value, "SlimeJelly", BurningSlimeSilverQuantity);
+                            _solutions.TryAddReagent(sol.Value, SlimeJellyReagent, BurningSlimeSilverQuantity);
                     }
                     Popup("slime-cross-burning-silver", user, ("extract", ext));
                     break;
