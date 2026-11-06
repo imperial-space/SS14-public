@@ -147,7 +147,7 @@ public sealed class BlobCarrierSystem : EntitySystem
             if (uid == self || !TryComp<PhysicsComponent>(uid, out var physics) || !physics.Hard || !physics.CanCollide ||
                 !Transform(uid).Anchored)
                 continue;
-            if ((physics.CollisionLayer & (int) CollisionGroup.Impassable) != 0)
+            if ((physics.CollisionLayer & (int)CollisionGroup.Impassable) != 0)
                 return true;
         }
 

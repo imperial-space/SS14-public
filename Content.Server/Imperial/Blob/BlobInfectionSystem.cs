@@ -173,7 +173,7 @@ public sealed class BlobInfectionSystem : EntitySystem
         if (spore.Comp.LatchInProgress || !IsValidTarget(target) || CompOrNull<BlobMobComponent>(spore)?.Type == BlobMobType.WeakSpore)
             return false;
 
-        var args = new DoAfterArgs(EntityManager, spore, TimeSpan.FromSeconds(spore.Comp.LatchDuration),
+        var args = new DoAfterArgs(EntityManager, spore, spore.Comp.LatchDuration,
             new BlobSporeLatchDoAfterEvent(), spore, target: target, used: spore)
         {
             BreakOnMove = true,
@@ -278,7 +278,7 @@ public sealed class BlobInfectionSystem : EntitySystem
 
         foreach (var (id, fixture) in fixtures.Fixtures)
         {
-            var removed = fixture.CollisionMask & (int) CollisionGroup.BlobImpassable;
+            var removed = fixture.CollisionMask & (int)CollisionGroup.BlobImpassable;
             if (!fixture.Hard || removed == 0)
                 continue;
             infected.DisabledFixtureMasks[id] = removed;

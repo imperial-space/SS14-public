@@ -31,7 +31,7 @@ public sealed class BlobAttackEffectSystem : EntitySystem
 
         var animation = new Animation
         {
-            Length = TimeSpan.FromSeconds(0.4),
+            Length = ent.Comp.LengthDelay,
             AnimationTracks =
             {
                 new AnimationTrackComponentProperty

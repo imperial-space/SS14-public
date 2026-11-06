@@ -93,6 +93,9 @@ public sealed class BlobMobSystem : EntitySystem
 
     private readonly List<(EntityUid, BlobMobComponent)> _mobBuffer = new();
 
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> StructuralDamageType = "Structural";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -254,7 +257,7 @@ public sealed class BlobMobSystem : EntitySystem
         var comp = EnsureComp<BlobbernautSpawnerComponent>(spawner);
         comp.Overmind = overmind;
         comp.Factory = factory;
-        comp.Expire = _timing.CurTime + TimeSpan.FromSeconds(20);
+        comp.Expire = _timing.CurTime + factory.Comp.ExpireDelay;
     }
 
     private void OnSpawnerUsed(Entity<BlobMobComponent> ent, ref GhostRoleSpawnerUsedEvent args)
@@ -273,7 +276,7 @@ public sealed class BlobMobSystem : EntitySystem
 
         // assign_key(): начинает раненым, чтобы не убегал от блоба.
         if (_thresholds.TryGetDeadThreshold(ent, out var max) && max != null)
-            _structure.Damage(ent, "Blunt", (float) max.Value / 2, true);
+            _structure.Damage(ent, BluntDamageType, (float)max.Value / 2, true);
 
         // flick("blobbernaut_produce").
         _structure.SpawnTinted(ProduceEffect, Transform(ent).Coordinates, GetStrain(ent.Comp)?.Color ?? Color.White);
@@ -281,7 +284,7 @@ public sealed class BlobMobSystem : EntitySystem
         spawner.Factory = null;
         QueueDel(args.Spawner);
 
-        _schedule.Schedule(TimeSpan.FromSeconds(0.5), () => GreetBlobbernaut(ent));
+        _schedule.Schedule(ent.Comp.SpawnerUsedDelay, () => GreetBlobbernaut(ent));
     }
 
     private void GreetBlobbernaut(EntityUid naut)
@@ -358,8 +361,8 @@ public sealed class BlobMobSystem : EntitySystem
     {
         if (!_thresholds.TryGetDeadThreshold(ent, out var maxHealth) || maxHealth == null)
             return;
-        var max = (float) maxHealth.Value;
-        var seconds = (float) LifeInterval.TotalSeconds;
+        var max = (float)maxHealth.Value;
+        var seconds = (float)LifeInterval.TotalSeconds;
 
         var damageSources = 0;
         var nearCore = false;
@@ -367,7 +370,7 @@ public sealed class BlobMobSystem : EntitySystem
         var nearBlob = false;
         if (_structure.TryGetTile(ent, out var grid, out var tile))
         {
-            foreach (var blob in _structure.BlobsInRange(grid, tile, 2))
+            foreach (var blob in _structure.BlobsInRange(grid, tile, ent.Comp.BlobbernautLifeRange))
             {
                 nearBlob = true;
                 var type = Comp<BlobStructureComponent>(blob).Type;
@@ -410,7 +413,7 @@ public sealed class BlobMobSystem : EntitySystem
         hsv.X = (hsv.X + 0.5f) % 1f;
         var flash = Spawn(VeinsFlashEffect, new EntityCoordinates(ent, 0, 0));
         _appearance.SetData(flash, BlobVisuals.Color, Color.FromHsv(hsv));
-        if (_random.Prob(0.2f))
+        if (_random.Prob(ent.Comp.BlobbernautLifeChance))
             _audio.PlayPvs(SearSound, ent, AudioParams.Default.WithVolume(BlobStructureSystem.Db(5)).WithVariation(0.125f));
     }
 
@@ -442,7 +445,7 @@ public sealed class BlobMobSystem : EntitySystem
             : Color.Black;
         SpawnHeal(mob, color);
         SpawnHeal(mob, color);
-        HealBrute(mob, (float) max.Value * HealingMultiplier);
+        HealBrute(mob, (float)max.Value * HealingMultiplier);
         return false;
     }
 
@@ -477,9 +480,9 @@ public sealed class BlobMobSystem : EntitySystem
         };
 
         var damage = new DamageSpecifier();
-        damage.DamageDict["Blunt"] = _random.Next(lower, upper + 1);
+        damage.DamageDict[BluntDamageType] = _random.Next(lower, upper + 1);
         if (obj > 0)
-            damage.DamageDict["Structural"] = obj;
+            damage.DamageDict[StructuralDamageType] = obj;
         args.Damage = damage;
     }
 
@@ -530,7 +533,7 @@ public sealed class BlobMobSystem : EntitySystem
     {
         if (GetStrain(ent.Comp)?.Kind != BlobStrainKind.DebrisDevourer || !HasComp<ItemComponent>(target) ||
             _container.IsEntityInContainer(target) ||
-            !_transform.InRange(Transform(ent).Coordinates, Transform(target).Coordinates, 1.5f))
+            !_transform.InRange(Transform(ent).Coordinates, Transform(target).Coordinates, ent.Comp.EatDebrisRange))
             return false;
 
         // mob_size * 5: блоббернаут крупный (15), остальные — 10.

@@ -453,8 +453,8 @@ public sealed class SharedEntityTileMovementSystem : VirtualController
     private Vector2i GetTileDirection(Vector2 wishDir)
     {
         return new Vector2i(
-            (int) MathF.Sign(wishDir.X),
-            (int) MathF.Sign(wishDir.Y));
+            (int)MathF.Sign(wishDir.X),
+            (int)MathF.Sign(wishDir.Y));
     }
 
     private void StopMovement(EntityUid uid, InputMoverComponent mover)

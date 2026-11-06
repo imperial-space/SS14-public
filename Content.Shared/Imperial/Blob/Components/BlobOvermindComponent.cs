@@ -200,5 +200,11 @@ public sealed partial class BlobOvermindComponent : Component
     /// <summary>Правило, создавшее блоба.</summary>
     [ViewVariables] public EntityUid? Rule;
 
+    [DataField]
+    public TimeSpan ProcessDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public TimeSpan VictoryDelay2 = TimeSpan.FromSeconds(10);
+
     #endregion
 }

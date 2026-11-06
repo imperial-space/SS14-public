@@ -24,6 +24,8 @@ public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComp
     [Dependency] private readonly TargetObjectiveSystem _targetObjective = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
 
+    private static readonly EntProtoId MindRoleBloodBrother = "MindRoleBloodBrother";
+
     public override void Initialize()
     {
         base.Initialize();

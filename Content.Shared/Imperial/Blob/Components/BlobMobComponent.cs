@@ -39,4 +39,16 @@ public sealed partial class BlobMobComponent : Component
     [ViewVariables] public EntityUid? CorpseTarget;
     [ViewVariables] public TimeSpan CorpseTargetSince;
     [ViewVariables] public EntityUid? IgnoredCorpse;
+
+    [DataField]
+    public TimeSpan SpawnerUsedDelay = TimeSpan.FromSeconds(0.5);
+
+    [DataField]
+    public int BlobbernautLifeRange = 2;
+
+    [DataField]
+    public float BlobbernautLifeChance = 0.2f;
+
+    [DataField]
+    public float EatDebrisRange = 1.5f;
 }

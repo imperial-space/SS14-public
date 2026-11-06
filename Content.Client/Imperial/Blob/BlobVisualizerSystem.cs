@@ -34,27 +34,27 @@ public sealed class BlobVisualizerSystem : VisualizerSystem<BlobVisualsComponent
                 break;
 
             case BlobVisualsMode.Blobbernaut:
-            {
-                if (SpriteSystem.LayerMapTryGet(sprite, BlobVisualLayers.Base, out var body, false))
-                    SpriteSystem.LayerSetColor(sprite, body, color);
-
-                var alive = !AppearanceSystem.TryGetData<bool>(uid, BlobVisuals.Alive, out var a, args.Component) || a;
-                if (SpriteSystem.LayerMapTryGet(sprite, BlobVisualLayers.Veins, out var veins, false))
                 {
-                    SpriteSystem.LayerSetVisible(sprite, veins, alive);
-                    if (AppearanceSystem.TryGetData<Color>(uid, BlobVisuals.SecondaryColor, out var veinColor, args.Component))
-                        SpriteSystem.LayerSetColor(sprite, veins, veinColor);
-                }
+                    if (SpriteSystem.LayerMapTryGet(sprite, BlobVisualLayers.Base, out var body, false))
+                        SpriteSystem.LayerSetColor(sprite, body, color);
 
-                if (SpriteSystem.LayerMapTryGet(sprite, BlobVisualLayers.Eyes, out var eyes, false))
-                {
-                    SpriteSystem.LayerSetVisible(sprite, eyes, alive);
-                    if (AppearanceSystem.TryGetData<Color>(uid, BlobVisuals.EyesColor, out var eyeColor, args.Component))
-                        SpriteSystem.LayerSetColor(sprite, eyes, eyeColor);
-                }
+                    var alive = !AppearanceSystem.TryGetData<bool>(uid, BlobVisuals.Alive, out var a, args.Component) || a;
+                    if (SpriteSystem.LayerMapTryGet(sprite, BlobVisualLayers.Veins, out var veins, false))
+                    {
+                        SpriteSystem.LayerSetVisible(sprite, veins, alive);
+                        if (AppearanceSystem.TryGetData<Color>(uid, BlobVisuals.SecondaryColor, out var veinColor, args.Component))
+                            SpriteSystem.LayerSetColor(sprite, veins, veinColor);
+                    }
 
-                break;
-            }
+                    if (SpriteSystem.LayerMapTryGet(sprite, BlobVisualLayers.Eyes, out var eyes, false))
+                    {
+                        SpriteSystem.LayerSetVisible(sprite, eyes, alive);
+                        if (AppearanceSystem.TryGetData<Color>(uid, BlobVisuals.EyesColor, out var eyeColor, args.Component))
+                            SpriteSystem.LayerSetColor(sprite, eyes, eyeColor);
+                    }
+
+                    break;
+                }
 
             case BlobVisualsMode.Zombie:
                 if (SpriteSystem.LayerMapTryGet(sprite, BlobVisualLayers.Overlay, out var head, false))

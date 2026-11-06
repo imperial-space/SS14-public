@@ -45,6 +45,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Chemistry.Reaction;
 
 namespace Content.Server.Imperial.Blob;
 
@@ -95,6 +96,14 @@ public sealed partial class BlobStructureSystem : EntitySystem
     private readonly Dictionary<EntityUid, Dictionary<Vector2i, EntityUid>> _index = new();
     private readonly HashSet<EntityUid> _specials = new();
     private readonly HashSet<EntityUid> _tileEntities = new();
+
+    private static readonly ProtoId<ReactiveGroupPrototype> ExtinguishReactiveGroup = "Extinguish";
+
+    private const float MobBlobActAmount = 30f;
+    private const float MobBlobActAmount2 = 5f;
+    private const float MobBlobActAmount3 = 20f;
+    private const int SmokeGrenadeTerminatingRange = 8;
+    private const float SmokeGrenadeTerminatingRange2 = 8.5f;
 
     public override void Initialize()
     {
@@ -436,7 +445,7 @@ public sealed partial class BlobStructureSystem : EntitySystem
         BePulsed(ent);
 
         var expanded = false;
-        if (_random.Prob(0.7f) && Expand(ent, null, null) != null)
+        if (_random.Prob(ent.Comp.PulseAreaChance) && Expand(ent, null, null) != null)
             expanded = true;
 
         if (!TryGetTile(ent, out var grid, out var center))
@@ -452,7 +461,7 @@ public sealed partial class BlobStructureSystem : EntitySystem
                 !TryGetTile(blob, out _, out var tile))
                 continue;
 
-            if (comp.Overmind == null && pulsingOvermind is { } claimer && _random.Prob(0.3f) &&
+            if (comp.Overmind == null && pulsingOvermind is { } claimer && _random.Prob(ent.Comp.PulseAreaChance2) &&
                 TryComp<BlobOvermindComponent>(claimer, out var claimerComp))
             {
                 Register(claimer, claimerComp, (blob, comp));
@@ -491,11 +500,11 @@ public sealed partial class BlobStructureSystem : EntitySystem
             if (now >= ent.Comp.HealCooldown)
             {
                 ent.Comp.Integrity = Math.Min(ent.Comp.MaxIntegrity, ent.Comp.Integrity + ent.Comp.HealthRegen);
-                ent.Comp.HealCooldown = now + TimeSpan.FromSeconds(2);
+                ent.Comp.HealCooldown = now + ent.Comp.HealCooldown2;
             }
 
             UpdateState(ent, ent.Comp);
-            ent.Comp.PulseCooldown = now + TimeSpan.FromSeconds(1);
+            ent.Comp.PulseCooldown = now + ent.Comp.PulseCooldown2;
             pulsed = true;
         }
 
@@ -629,7 +638,7 @@ public sealed partial class BlobStructureSystem : EntitySystem
         }
 
         var isSpace = IsSpace(grid, tile);
-        if (isSpace && _random.Prob(0.8f))
+        if (isSpace && _random.Prob(ent.Comp.ExpandChance))
         {
             makeBlob = false;
             _audio.PlayPvs(ent.Comp.DestroySound, ent, AudioParams.Default.WithVolume(Db(50)).WithVariation(0.125f));
@@ -720,7 +729,7 @@ public sealed partial class BlobStructureSystem : EntitySystem
         if (!TryComp<FixturesComponent>(uid, out var fixtures))
             return false;
 
-        const int blocking = (int) (CollisionGroup.Impassable | CollisionGroup.MidImpassable | CollisionGroup.HighImpassable | CollisionGroup.LowImpassable);
+        const int blocking = (int)(CollisionGroup.Impassable | CollisionGroup.MidImpassable | CollisionGroup.HighImpassable | CollisionGroup.LowImpassable);
         foreach (var fixture in fixtures.Fixtures.Values)
         {
             if (fixture.Hard && (fixture.CollisionLayer & blocking) != 0)
@@ -781,7 +790,7 @@ public sealed partial class BlobStructureSystem : EntitySystem
 
         if (HasComp<MechComponent>(target))
         {
-            Damage(target, Blunt, 30, false);
+            Damage(target, Blunt, blob.Comp.BlobActAmount, false);
             return true;
         }
 
@@ -792,7 +801,7 @@ public sealed partial class BlobStructureSystem : EntitySystem
         // turf/closed/mineral: prob(50) — разрушить породу.
         if (HasComp<GatherableComponent>(target) && _tag.HasTag(target, WallTag))
         {
-            if (_random.Prob(0.5f))
+            if (_random.Prob(blob.Comp.BlobActChance))
                 _gatherable.Gather(target);
             return true;
         }
@@ -800,7 +809,7 @@ public sealed partial class BlobStructureSystem : EntitySystem
         // turf/closed/wall: prob(50) — разобрать стену.
         if (_tag.HasTag(target, WallTag))
         {
-            if (_random.Prob(0.5f))
+            if (_random.Prob(blob.Comp.BlobActChance))
                 DestroyObject(target);
             return true;
         }
@@ -821,7 +830,7 @@ public sealed partial class BlobStructureSystem : EntitySystem
         // obj: take_damage(400, BRUTE, MELEE).
         if (HasComp<DamageableComponent>(target))
         {
-            Damage(target, Blunt, 400, false);
+            Damage(target, Blunt, blob.Comp.BlobActAmount2, false);
             return true;
         }
 
@@ -835,7 +844,7 @@ public sealed partial class BlobStructureSystem : EntitySystem
             if (_mobState.IsDead(target))
                 _gibbing.Gib(target);
             else
-                Damage(target, Blunt, 30, true);
+                Damage(target, Blunt, MobBlobActAmount, true);
             return true;
         }
 
@@ -844,11 +853,11 @@ public sealed partial class BlobStructureSystem : EntitySystem
             if (_mobState.IsDead(target))
                 return false;
             _popup.PopupEntity(Loc.GetString("blob-attacks-you"), target, target, PopupType.LargeCaution);
-            Damage(target, Blunt, 5, false);
+            Damage(target, Blunt, MobBlobActAmount2, false);
             return true;
         }
 
-        Damage(target, Blunt, 20, true);
+        Damage(target, Blunt, MobBlobActAmount3, true);
         return true;
     }
 
@@ -871,7 +880,7 @@ public sealed partial class BlobStructureSystem : EntitySystem
         }
 
         var current = _damageable.GetTotalDamage(uid);
-        Damage(uid, Blunt, (float) (amount - current) + 1, true);
+        Damage(uid, Blunt, (float)(amount - current) + 1, true);
     }
 
     public void Damage(EntityUid target, ProtoId<DamageTypePrototype> type, float amount, bool ignoreResistances, EntityUid? origin = null)
@@ -939,12 +948,12 @@ public sealed partial class BlobStructureSystem : EntitySystem
 
         var origin = _transform.GetMapCoordinates(ent, xform);
         var center = _map.TileIndicesFor(gridUid, gridComp, xform.Coordinates);
-        foreach (var blob in BlobsInRange(gridUid, center, 8))
+        foreach (var blob in BlobsInRange(gridUid, center, SmokeGrenadeTerminatingRange))
         {
             if (!TryComp<BlobStructureComponent>(blob, out var comp) || !TryGetTile(blob, out _, out var tile))
                 continue;
             var target = _transform.GetMapCoordinates(blob);
-            if (!_examine.InRangeUnOccluded(origin, target, 8.5f, e => e == blob))
+            if (!_examine.InRangeUnOccluded(origin, target, SmokeGrenadeTerminatingRange2, e => e == blob))
                 continue;
             var damage = MathF.Round(30f / (Chebyshev(center, tile) + 1));
             TakeDamage((blob, comp), damage, false, BlobDamageFlag.Melee, false);
@@ -1101,7 +1110,7 @@ public sealed partial class BlobStructureSystem : EntitySystem
             _strain.EmpReaction(ent);
 
         // prob(100 - severity * 30): тяжёлый ЭМИ.
-        if (!TerminatingOrDeleted(ent) && _random.Prob(0.7f))
+        if (!TerminatingOrDeleted(ent) && _random.Prob(ent.Comp.EmpChance))
         {
             var emp = Spawn(EmpEffect, Transform(ent).Coordinates);
             _transform.SetLocalRotation(emp, Angle.FromDegrees(90 * _random.Next(4)));
@@ -1112,7 +1121,7 @@ public sealed partial class BlobStructureSystem : EntitySystem
     private void OnReaction(Entity<BlobStructureComponent> ent, ref ReactionEntityEvent args)
     {
         if (args.Method != ReactionMethod.Touch || args.Reagent.ReactiveEffects == null ||
-            !args.Reagent.ReactiveEffects.ContainsKey("Extinguish") || ent.Comp.Overmind == null)
+            !args.Reagent.ReactiveEffects.ContainsKey(ExtinguishReactiveGroup) || ent.Comp.Overmind == null)
             return;
 
         _strain.ExtinguishReaction(ent);
@@ -1144,26 +1153,26 @@ public sealed partial class BlobStructureSystem : EntitySystem
         switch (comp.Type)
         {
             case BlobStructureType.Normal:
-            {
-                var fragile = comp.Integrity <= 15;
-                _appearance.SetData(uid, BlobVisuals.State, fragile ? "blob_damaged" : "blob");
-                comp.BruteResist = fragile ? 0.5f : 0.25f;
-                var name = Loc.GetString(fragile ? "blob-normal-name-fragile" : comp.Overmind == null ? "blob-normal-name-dead" : "blob-normal-name");
-                var desc = Loc.GetString(fragile ? "blob-normal-desc-fragile" : comp.Overmind == null ? "blob-normal-desc-dead" : "blob-normal-desc");
-                SetNameDesc(uid, name, desc);
-                break;
-            }
+                {
+                    var fragile = comp.Integrity <= 15;
+                    _appearance.SetData(uid, BlobVisuals.State, fragile ? "blob_damaged" : "blob");
+                    comp.BruteResist = fragile ? 0.5f : 0.25f;
+                    var name = Loc.GetString(fragile ? "blob-normal-name-fragile" : comp.Overmind == null ? "blob-normal-name-dead" : "blob-normal-name");
+                    var desc = Loc.GetString(fragile ? "blob-normal-desc-fragile" : comp.Overmind == null ? "blob-normal-desc-dead" : "blob-normal-desc");
+                    SetNameDesc(uid, name, desc);
+                    break;
+                }
             case BlobStructureType.Strong:
             case BlobStructureType.Reflective:
-            {
-                var weakened = comp.Integrity < comp.MaxIntegrity * 0.5f;
-                _appearance.SetData(uid, BlobVisuals.State, weakened ? comp.BaseState + "_damaged" : comp.BaseState);
-                var key = comp.Type == BlobStructureType.Strong ? "blob-strong" : "blob-reflective";
-                SetNameDesc(uid,
-                    Loc.GetString(weakened ? key + "-name-weakened" : key + "-name"),
-                    Loc.GetString(weakened ? key + "-desc-damaged" : key + "-desc"));
-                break;
-            }
+                {
+                    var weakened = comp.Integrity < comp.MaxIntegrity * 0.5f;
+                    _appearance.SetData(uid, BlobVisuals.State, weakened ? comp.BaseState + "_damaged" : comp.BaseState);
+                    var key = comp.Type == BlobStructureType.Strong ? "blob-strong" : "blob-reflective";
+                    SetNameDesc(uid,
+                        Loc.GetString(weakened ? key + "-name-weakened" : key + "-name"),
+                        Loc.GetString(weakened ? key + "-desc-damaged" : key + "-desc"));
+                    break;
+                }
             default:
                 _appearance.SetData(uid, BlobVisuals.State, comp.BaseState);
                 break;

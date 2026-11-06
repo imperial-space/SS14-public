@@ -17,7 +17,7 @@ public sealed partial class BlobSporeLatchComponent : Component
     [DataField] public float TargetSearchRange = 20f;
 
     /// <summary>Время, за которое спора забирается на голову.</summary>
-    [DataField] public float LatchDuration = 5f;
+    [DataField] public TimeSpan LatchDuration = TimeSpan.FromSeconds(5f);
 
     [ViewVariables] public EntityUid? LatchTarget;
     [ViewVariables] public bool LatchInProgress;

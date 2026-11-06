@@ -32,6 +32,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.FixedPoint;
 
 namespace Content.Server.Imperial.Blob;
 
@@ -97,6 +98,15 @@ public sealed class BlobStrainSystem : EntitySystem
 
     /// <summary>reactive_spines: retaliate_cooldown на оверманда.</summary>
     private readonly Dictionary<EntityUid, TimeSpan> _retaliateCooldown = new();
+
+    private static readonly TimeSpan ExposeMobElectromagneticWebDuration = TimeSpan.FromSeconds(5);
+
+    private const float ExposeMobElectromagneticWebRange = 0.5f;
+    private const float ExposeMobElectromagneticWebEnergyConsumption = 5000f;
+    private static readonly FixedPoint2 LubeQuantity = 5;
+    private const float DebrisAttackBaseThrowSpeed = 5f;
+    private const float SporeDeathDebrisDevourerBaseThrowSpeed = 5f;
+    private const float SporeCloudDuration = 10f;
 
     public BlobStrainPrototype? GetStrain(EntityUid? overmind)
     {
@@ -232,7 +242,7 @@ public sealed class BlobStrainSystem : EntitySystem
 
             case BlobStrainKind.ElectromagneticWeb:
                 if (_random.Prob(Math.Clamp(v * 2 / 100f, 0f, 1f)))
-                    _emp.EmpPulse(_transform.GetMapCoordinates(target), 0.5f, 5000f, TimeSpan.FromSeconds(5));
+                    _emp.EmpPulse(_transform.GetMapCoordinates(target), ExposeMobElectromagneticWebRange, ExposeMobElectromagneticWebEnergyConsumption, ExposeMobElectromagneticWebDuration);
                 Damage(target, Heat, v);
                 break;
 
@@ -360,7 +370,7 @@ public sealed class BlobStrainSystem : EntitySystem
                             var other = _structure.GetBlobAt(grid, tile + new Vector2i(x, y));
                             if (other != null && Kind(Comp<BlobStructureComponent>(other.Value).Overmind) == strain.Kind)
                                 continue;
-                            if (_random.Prob(0.8f))
+                            if (_random.Prob(blob.Comp.DamageReactionBlazingOilChance))
                                 _atmos.HotspotExpose(grid.Owner, tile + new Vector2i(x, y), 700f, 50f, blob, true);
                         }
                     }
@@ -371,7 +381,7 @@ public sealed class BlobStrainSystem : EntitySystem
                 return MathF.Round(Math.Max(damage - Math.Min(DebrisDensity(blob.Comp.Overmind), 10), 0));
 
             case BlobStrainKind.DistributedNeurons:
-                if (direct && damage <= 20 && !survives && _random.Prob(0.15f))
+                if (direct && damage <= 20 && !survives && _random.Prob(blob.Comp.DamageReactionDistributedNeuronsChance))
                 {
                     _popup.PopupEntity(Loc.GetString("blob-spore-floats-free"), blob, PopupType.MediumCaution);
                     _blobMob.CreateSpore(blob.Comp.Overmind, Transform(blob).Coordinates, BlobMobType.WeakSpore);
@@ -382,7 +392,7 @@ public sealed class BlobStrainSystem : EntitySystem
                 return brute ? damage / blob.Comp.BruteResist : damage * 1.25f;
 
             case BlobStrainKind.EnergizedJelly:
-                if (direct && !survives && _random.Prob(0.1f))
+                if (direct && !survives && _random.Prob(blob.Comp.DamageReactionEnergizedJellyChance))
                     Sparks(Transform(blob).Coordinates);
                 return damage;
 
@@ -400,7 +410,7 @@ public sealed class BlobStrainSystem : EntitySystem
                 if (damage > 0 && survives && blob.Comp.Overmind is { } overmind &&
                     _timing.CurTime >= _retaliateCooldown.GetValueOrDefault(overmind))
                 {
-                    _retaliateCooldown[overmind] = _timing.CurTime + TimeSpan.FromSeconds(2.5);
+                    _retaliateCooldown[overmind] = _timing.CurTime + blob.Comp.RetaliateCooldown;
                     _popup.PopupEntity(Loc.GetString("blob-retaliates"), blob, PopupType.MediumCaution);
                     Retaliate(blob, overmind);
                 }
@@ -409,7 +419,7 @@ public sealed class BlobStrainSystem : EntitySystem
             case BlobStrainKind.ReplicatingFoam:
                 if (brute)
                     return damage * 2;
-                if (damage > 0 && survives && _random.Prob(0.6f))
+                if (damage > 0 && survives && _random.Prob(blob.Comp.DamageReactionReplicatingFoamChance))
                 {
                     var newBlob = _structure.Expand(blob, null, null, false);
                     if (newBlob != null && TryComp<BlobStructureComponent>(newBlob, out var newComp))
@@ -431,7 +441,7 @@ public sealed class BlobStrainSystem : EntitySystem
                         if (Kind(otherComp.Overmind) != strain.Kind)
                             continue;
                         if (otherComp.Type == BlobStructureType.Normal ||
-                            otherComp.Type is BlobStructureType.Strong or BlobStructureType.Reflective && _random.Prob(0.25f))
+                            otherComp.Type is BlobStructureType.Strong or BlobStructureType.Reflective && _random.Prob(blob.Comp.DamageReactionShiftingFragmentsChance))
                             candidates.Add(other);
                     }
 
@@ -498,7 +508,7 @@ public sealed class BlobStrainSystem : EntitySystem
         switch (Kind(blob.Comp.Overmind))
         {
             case BlobStrainKind.ElectromagneticWeb when direct:
-                _emp.EmpPulse(_transform.GetMapCoordinates(blob), 3f, 10000f, TimeSpan.FromSeconds(10));
+                _emp.EmpPulse(_transform.GetMapCoordinates(blob), blob.Comp.DeathReactionElectromagneticWebRange, blob.Comp.DeathReactionElectromagneticWebEnergyConsumption, blob.Comp.DeathReactionElectromagneticWebDuration);
                 break;
             case BlobStrainKind.PressurizedSlime when direct:
                 _popup.PopupEntity(Loc.GetString("blob-ruptures"), blob, PopupType.MediumCaution);
@@ -532,7 +542,7 @@ public sealed class BlobStrainSystem : EntitySystem
                 break;
 
             case BlobStrainKind.ReplicatingFoam:
-                if (_random.Prob(0.3f))
+                if (_random.Prob(source.Comp.ExpandReactionReplicatingFoamChance))
                     _structure.Expand(newBlob, null, null, false);
                 break;
 
@@ -584,7 +594,7 @@ public sealed class BlobStrainSystem : EntitySystem
     public void ExtinguishReaction(Entity<BlobStructureComponent> blob)
     {
         if (Kind(blob.Comp.Overmind) == BlobStrainKind.BlazingOil)
-            _structure.TakeDamage(blob, 4.5f, false, BlobDamageFlag.Energy);
+            _structure.TakeDamage(blob, blob.Comp.ExtinguishReactionAmount, false, BlobDamageFlag.Energy);
     }
 
     /// <summary>pressurized_slime extinguisharea(): смазка и тушение вокруг.</summary>
@@ -614,7 +624,7 @@ public sealed class BlobStrainSystem : EntitySystem
     private void Lube(EntityCoordinates coords)
     {
         var solution = new Solution();
-        solution.AddReagent(SpaceLube, 5);
+        solution.AddReagent(SpaceLube, LubeQuantity);
         _puddle.TrySpillAt(coords, solution, out _, false);
     }
 
@@ -655,7 +665,7 @@ public sealed class BlobStrainSystem : EntitySystem
 
         _container.TryRemoveFromContainer(item, true);
         _transform.SetCoordinates(item, Transform(source).Coordinates);
-        _throwing.TryThrow(item, Transform(target).Coordinates, 5f);
+        _throwing.TryThrow(item, Transform(target).Coordinates, DebrisAttackBaseThrowSpeed);
     }
 
     private List<EntityUid> DebrisSource(EntityUid? overmind, EntityUid fallback)
@@ -685,23 +695,23 @@ public sealed class BlobStrainSystem : EntitySystem
         switch (strain.Kind)
         {
             case BlobStrainKind.DebrisDevourer:
-            {
-                var items = DebrisSource(overmind, mob);
-                var count = overmind != null ? 3 : items.Count;
-                for (var i = 0; i < count && items.Count > 0; i++)
                 {
-                    var item = _random.PickAndTake(items);
-                    if (TerminatingOrDeleted(item))
-                        continue;
-                    _container.TryRemoveFromContainer(item, true);
-                    _transform.SetCoordinates(item, coords);
-                    var dir = new Angle(_random.NextFloat() * MathF.Tau).ToVec() * 6;
-                    _throwing.TryThrow(item, coords.Offset(dir), 5f);
-                }
+                    var items = DebrisSource(overmind, mob);
+                    var count = overmind != null ? 3 : items.Count;
+                    for (var i = 0; i < count && items.Count > 0; i++)
+                    {
+                        var item = _random.PickAndTake(items);
+                        if (TerminatingOrDeleted(item))
+                            continue;
+                        _container.TryRemoveFromContainer(item, true);
+                        _transform.SetCoordinates(item, coords);
+                        var dir = new Angle(_random.NextFloat() * MathF.Tau).ToVec() * 6;
+                        _throwing.TryThrow(item, coords.Offset(dir), SporeDeathDebrisDevourerBaseThrowSpeed);
+                    }
 
-                _audio.PlayPvs(PopSound, coords, AudioParams.Default.WithVariation(0.125f));
-                break;
-            }
+                    _audio.PlayPvs(PopSound, coords, AudioParams.Default.WithVariation(0.125f));
+                    break;
+                }
 
             case BlobStrainKind.ExplosiveLattice:
                 Spawn(ExplosionEffect, coords);
@@ -732,7 +742,7 @@ public sealed class BlobStrainSystem : EntitySystem
         var solution = new Solution();
         solution.AddReagent(reagent, CloudVolume);
         var spread = range <= 0 ? 1 : (2 * range + 1) * (2 * range + 1);
-        _smoke.StartSmoke(smoke, solution, 10f, spread);
+        _smoke.StartSmoke(smoke, solution, SporeCloudDuration, spread);
     }
 
     #endregion

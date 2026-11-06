@@ -84,6 +84,8 @@ public sealed class BlobOvermindSystem : EntitySystem
     public const string BlobFaction = "Blob";
     public const string RallyKey = "BlobRallyPoint";
 
+    private const float CheckCoreVisibilityRange = 13f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -126,7 +128,7 @@ public sealed class BlobOvermindSystem : EntitySystem
         comp.AutoPlaceTime = now + comp.AutoPlaceDelay;
         comp.LastAttack = now;
         comp.LastReroll = now;
-        comp.NextProcess = now + TimeSpan.FromSeconds(1);
+        comp.NextProcess = now + ent.Comp.ProcessDelay;
 
         var name = Loc.GetString("blob-overmind-name", ("number", _random.Next(1, 1000)));
         _meta.SetEntityName(ent, name);
@@ -147,8 +149,8 @@ public sealed class BlobOvermindSystem : EntitySystem
 
         // INVISIBILITY_OBSERVER: экипаж не видит камеру оверманда.
         var visibility = EnsureComp<VisibilityComponent>(ent);
-        _visibility.AddLayer((ent, visibility), (int) VisibilityFlags.Ghost, false);
-        _visibility.RemoveLayer((ent, visibility), (int) VisibilityFlags.Normal, false);
+        _visibility.AddLayer((ent, visibility), (int)VisibilityFlags.Ghost, false);
+        _visibility.RemoveLayer((ent, visibility), (int)VisibilityFlags.Normal, false);
         _visibility.RefreshVisibility(ent, visibilityComponent: visibility);
         _eye.RefreshVisibilityMask(ent.Owner);
         _faction.AddFaction(ent.Owner, BlobFaction);
@@ -158,7 +160,7 @@ public sealed class BlobOvermindSystem : EntitySystem
 
     private void OnGetVisMask(Entity<BlobOvermindComponent> ent, ref GetVisMaskEvent args)
     {
-        args.VisibilityMask |= (int) VisibilityFlags.Ghost;
+        args.VisibilityMask |= (int)VisibilityFlags.Ghost;
     }
 
     private void OnShutdown(Entity<BlobOvermindComponent> ent, ref ComponentShutdown args)
@@ -234,7 +236,7 @@ public sealed class BlobOvermindSystem : EntitySystem
 
             if (now < comp.NextProcess)
                 continue;
-            comp.NextProcess = now + TimeSpan.FromSeconds(1);
+            comp.NextProcess = now + comp.ProcessDelay;
             Process(uid, comp, now);
         }
     }
@@ -352,7 +354,7 @@ public sealed class BlobOvermindSystem : EntitySystem
 
         _chatManager.DispatchServerAnnouncement(Loc.GetString("blob-victory-world", ("name", Name(uid))), Color.FromHex("#4aa34a"));
         _audio.PlayGlobal(comp.NukeAlarmSound, Filter.Broadcast(), true, AudioParams.Default.WithVolume(BlobStructureSystem.Db(70)));
-        _schedule.Schedule(TimeSpan.FromSeconds(10), () => VictorySequence(uid));
+        _schedule.Schedule(comp.VictoryDelay2, () => VictorySequence(uid));
     }
 
     /// <summary>victory_sequence(): все не-блобы на станции погибают, на их месте появляются споры.</summary>
@@ -420,7 +422,7 @@ public sealed class BlobOvermindSystem : EntitySystem
     {
         var health = -1;
         if (comp.Core is { } core && TryComp<BlobStructureComponent>(core, out var coreComp))
-            health = (int) MathF.Round(coreComp.Integrity / coreComp.MaxIntegrity * 100);
+            health = (int)MathF.Round(coreComp.Integrity / coreComp.MaxIntegrity * 100);
 
         if (comp.CoreHealth != health)
         {
@@ -554,7 +556,7 @@ public sealed class BlobOvermindSystem : EntitySystem
                 return false;
             }
 
-            if (dist <= 13 && _examine.InRangeUnOccluded(other, coords, 13, null))
+            if (dist <= 13 && _examine.InRangeUnOccluded(other, coords, CheckCoreVisibilityRange, null))
             {
                 SendMessage(uid, Loc.GetString("blob-core-someone-see"));
                 return false;
@@ -1200,7 +1202,7 @@ public sealed class BlobOvermindSystem : EntitySystem
         if (time < TimeSpan.Zero)
             time = TimeSpan.Zero;
         return time.TotalMinutes >= 1
-            ? Loc.GetString("blob-time-minutes", ("minutes", (int) time.TotalMinutes), ("seconds", time.Seconds))
-            : Loc.GetString("blob-time-seconds", ("seconds", (int) time.TotalSeconds));
+            ? Loc.GetString("blob-time-minutes", ("minutes", (int)time.TotalMinutes), ("seconds", time.Seconds))
+            : Loc.GetString("blob-time-seconds", ("seconds", (int)time.TotalSeconds));
     }
 }

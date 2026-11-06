@@ -57,7 +57,7 @@ public sealed class BlobHudOverlay : Overlay
             var iconX = args.ViewportBounds.Right - IconSize - 8;
             if (overmind.CoreHealth >= 0)
                 DrawIcon(handle, _healthIcon, new Vector2(iconX, y - IconSize - 4), overmind.CoreHealth + "%", HealthColor);
-            var points = float.IsPositiveInfinity(overmind.Points) ? "∞" : ((int) overmind.Points).ToString();
+            var points = float.IsPositiveInfinity(overmind.Points) ? "∞" : ((int)overmind.Points).ToString();
             DrawIcon(handle, _powerIcon, new Vector2(iconX, y), points, PowerColor);
             y += IconSize + 8;
 

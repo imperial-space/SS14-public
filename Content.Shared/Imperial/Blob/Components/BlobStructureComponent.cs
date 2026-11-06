@@ -125,4 +125,67 @@ public sealed partial class BlobStructureComponent : Component
 
     /// <summary>Не бить урон повторно при внутреннем лечении.</summary>
     [ViewVariables] public bool IgnoreDamage;
+
+    [DataField]
+    public TimeSpan ExpireDelay = TimeSpan.FromSeconds(20);
+
+    [DataField]
+    public TimeSpan RetaliateCooldown = TimeSpan.FromSeconds(2.5);
+
+    [DataField]
+    public TimeSpan DeathReactionElectromagneticWebDuration = TimeSpan.FromSeconds(10);
+
+    [DataField]
+    public TimeSpan HealCooldown2 = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan PulseCooldown2 = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public float DamageReactionBlazingOilChance = 0.8f;
+
+    [DataField]
+    public float DamageReactionDistributedNeuronsChance = 0.15f;
+
+    [DataField]
+    public float DamageReactionEnergizedJellyChance = 0.1f;
+
+    [DataField]
+    public float DamageReactionReplicatingFoamChance = 0.6f;
+
+    [DataField]
+    public float DamageReactionShiftingFragmentsChance = 0.25f;
+
+    [DataField]
+    public float DeathReactionElectromagneticWebRange = 3f;
+
+    [DataField]
+    public float DeathReactionElectromagneticWebEnergyConsumption = 10000f;
+
+    [DataField]
+    public float ExpandReactionReplicatingFoamChance = 0.3f;
+
+    [DataField]
+    public float ExtinguishReactionAmount = 4.5f;
+
+    [DataField]
+    public float PulseAreaChance = 0.7f;
+
+    [DataField]
+    public float PulseAreaChance2 = 0.3f;
+
+    [DataField]
+    public float ExpandChance = 0.8f;
+
+    [DataField]
+    public float BlobActAmount = 30f;
+
+    [DataField]
+    public float BlobActChance = 0.5f;
+
+    [DataField]
+    public float BlobActAmount2 = 400f;
+
+    [DataField]
+    public float EmpChance = 0.7f;
 }
