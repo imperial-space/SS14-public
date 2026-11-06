@@ -60,7 +60,7 @@ public sealed class DnaVaultSystem : EntitySystem
         crew = Math.Max(1, crew);
         ent.Comp.AnimalsMax = _random.Next(16, 21);
         ent.Comp.PlantsMax = _random.Next(8, 13);
-        ent.Comp.DnaMax = Math.Max(1, _random.Next((int) Math.Round(crew * 0.75), crew + 1));
+        ent.Comp.DnaMax = Math.Max(1, _random.Next((int)Math.Round(crew * 0.75), crew + 1));
     }
 
     private void OnVaultExamined(Entity<DnaVaultComponent> ent, ref ExaminedEvent args)

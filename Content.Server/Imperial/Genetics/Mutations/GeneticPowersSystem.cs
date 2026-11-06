@@ -24,6 +24,7 @@ using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Genetics.Mutations;
 
@@ -50,6 +51,13 @@ public sealed class GeneticPowersSystem : EntitySystem
     private static readonly ProtoId<GeneticMutationPrototype> MendingMutation = "MutationLayOnHands";
     private static readonly ProtoId<GeneticMutationPrototype> TelekinesisMutation = "MutationTelekinesis";
     private static readonly ProtoId<GeneticMutationPrototype> FarsightMutation = "MutationFarsight";
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+    private static readonly ProtoId<DamageTypePrototype> PiercingDamageType = "Piercing";
+    private static readonly ProtoId<DamageTypePrototype> HeatDamageType = "Heat";
+    private static readonly ProtoId<DamageTypePrototype> ColdDamageType = "Cold";
+    private static readonly ProtoId<DamageTypePrototype> ShockDamageType = "Shock";
 
     public override void Initialize()
     {
@@ -98,7 +106,7 @@ public sealed class GeneticPowersSystem : EntitySystem
             if (!_hands.TryPickupAnyHand(user, target))
             {
                 var direction = _xform.GetWorldPosition(user) - _xform.GetWorldPosition(target);
-                _throwing.TryThrow(target, direction, 10f, user);
+                _throwing.TryThrow(target, direction, ent.Comp.TelekinesisBaseThrowSpeed, user);
             }
 
             return;
@@ -110,7 +118,7 @@ public sealed class GeneticPowersSystem : EntitySystem
             if (away.LengthSquared() < 0.01f)
                 away = Vector2.UnitX;
 
-            _throwing.TryThrow(target, Vector2.Normalize(away) * 4f * Power(ent, TelekinesisMutation), 8f, user);
+            _throwing.TryThrow(target, Vector2.Normalize(away) * 4f * Power(ent, TelekinesisMutation), ent.Comp.TelekinesisBaseThrowSpeed2, user);
         }
     }
 
@@ -121,7 +129,7 @@ public sealed class GeneticPowersSystem : EntitySystem
 
         args.Handled = true;
         var power = Power(ent, ShockMutation);
-        _electrocution.TryDoElectrocution(args.Target, ent, (int) (20 * power), TimeSpan.FromSeconds(3 * power), true);
+        _electrocution.TryDoElectrocution(args.Target, ent, (int)(20 * power), TimeSpan.FromSeconds(3 * power), true);
     }
 
     /// <summary>Исцеляющее касание: цель лечится, треть исцелённого урона переходит на целителя.</summary>
@@ -137,8 +145,8 @@ public sealed class GeneticPowersSystem : EntitySystem
         {
             DamageDict =
             {
-                ["Blunt"] = amount, ["Slash"] = amount, ["Piercing"] = amount,
-                ["Heat"] = amount, ["Cold"] = amount, ["Shock"] = amount,
+                [BluntDamageType] = amount, [SlashDamageType] = amount, [PiercingDamageType] = amount,
+                [HeatDamageType] = amount, [ColdDamageType] = amount, [ShockDamageType] = amount,
             },
         };
         var healed = _damageable.ChangeDamage(args.Target, heal, true, origin: ent);
@@ -147,7 +155,7 @@ public sealed class GeneticPowersSystem : EntitySystem
 
         var taken = -healed.GetTotal().Float() / 3f;
         if (taken > 0)
-            _damageable.TryChangeDamage(ent.Owner, new DamageSpecifier { DamageDict = { ["Blunt"] = taken } }, true);
+            _damageable.TryChangeDamage(ent.Owner, new DamageSpecifier { DamageDict = { [BluntDamageType] = taken } }, true);
 
         _popup.PopupEntity(Loc.GetString("genetics-power-mending", ("user", ent.Owner), ("target", args.Target)), args.Target);
     }
@@ -228,7 +236,7 @@ public sealed class GeneticPowersSystem : EntitySystem
             var delta = ownerPos.Position - userPos.Position;
             var direction = Loc.GetString($"genetics-direction-{delta.ToWorldAngle().GetDir().ToString().ToLowerInvariant()}");
             _popup.PopupEntity(Loc.GetString("genetics-power-olfaction-found",
-                ("direction", direction), ("distance", (int) delta.Length())), ent, ent, PopupType.Medium);
+                ("direction", direction), ("distance", (int)delta.Length())), ent, ent, PopupType.Medium);
             return;
         }
 
@@ -259,7 +267,7 @@ public sealed class GeneticPowersSystem : EntitySystem
 
         args.Handled = true;
         _cuffable.Uncuff(ent, ent, cuffable.Container.ContainedEntities.Last(), cuffable);
-        _damageable.TryChangeDamage(ent.Owner, new DamageSpecifier { DamageDict = { ["Slash"] = 15 } }, true);
+        _damageable.TryChangeDamage(ent.Owner, new DamageSpecifier { DamageDict = { [SlashDamageType] = 15 } }, true);
         _popup.PopupEntity(Loc.GetString("genetics-power-autotomy", ("user", ent.Owner)), ent, PopupType.MediumCaution);
     }
 

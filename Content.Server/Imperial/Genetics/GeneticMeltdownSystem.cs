@@ -38,6 +38,8 @@ public sealed class GeneticMeltdownSystem : EntitySystem
     private static readonly EntProtoId AshProto = "Ash";
     private static readonly TimeSpan DecloningInterval = TimeSpan.FromSeconds(2);
 
+    private const float ApplyYeetBaseThrowSpeed = 10f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -117,7 +119,7 @@ public sealed class GeneticMeltdownSystem : EntitySystem
                 break;
             case MeltdownAction.Yeet:
                 var direction = _random.NextAngle().ToVec();
-                _throwing.TryThrow(uid, direction * 20f, 10f);
+                _throwing.TryThrow(uid, direction * 20f, ApplyYeetBaseThrowSpeed);
                 break;
             case MeltdownAction.Paraplegic:
                 EnsureComp<LegsParalyzedComponent>(uid);

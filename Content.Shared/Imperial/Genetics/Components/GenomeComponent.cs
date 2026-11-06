@@ -28,4 +28,10 @@ public sealed partial class GenomeComponent : Component
     /// <summary>Генетический урон (status_effect/genetic_damage): копится от работы консоли, спадает со временем.</summary>
     [DataField]
     public float GeneticDamage;
+
+    [DataField]
+    public float TelekinesisBaseThrowSpeed = 10f;
+
+    [DataField]
+    public float TelekinesisBaseThrowSpeed2 = 8f;
 }

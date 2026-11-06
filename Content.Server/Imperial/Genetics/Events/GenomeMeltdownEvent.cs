@@ -1,7 +1,7 @@
 using Content.Shared.Imperial.Genetics.Prototypes;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Imperial.Genetics;
+namespace Content.Server.Imperial.Genetics;
 
 /// <summary>
 /// Распад ДНК довёл до срыва (something_horrible из SS13).

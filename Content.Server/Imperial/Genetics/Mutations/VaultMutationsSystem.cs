@@ -24,6 +24,8 @@ public sealed class VaultMutationsSystem : EntitySystem
 
     private TimeSpan _nextUpdate;
 
+    private static readonly TimeSpan UpdateDelay = TimeSpan.FromSeconds(1);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -42,7 +44,7 @@ public sealed class VaultMutationsSystem : EntitySystem
         if (_timing.CurTime < _nextUpdate)
             return;
 
-        _nextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
+        _nextUpdate = _timing.CurTime + UpdateDelay;
 
         var breathless = EntityQueryEnumerator<GeneticBreathlessComponent, RespiratorComponent>();
         while (breathless.MoveNext(out var uid, out _, out var respirator))

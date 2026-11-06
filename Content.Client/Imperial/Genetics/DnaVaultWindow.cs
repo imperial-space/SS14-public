@@ -67,7 +67,7 @@ public sealed class DnaVaultWindow : DefaultWindow
     /// <summary>ProgressBar «N / M Samples».</summary>
     private static Control Samples(int value, int max)
     {
-        var ratio = max > 0 ? value / (float) max : 0;
+        var ratio = max > 0 ? value / (float)max : 0;
         return Tgui.ProgressBar(ratio, Tgui.Primary, Loc.GetString("dna-vault-samples", ("value", value), ("max", max)));
     }
 }

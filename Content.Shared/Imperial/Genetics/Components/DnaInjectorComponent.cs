@@ -37,4 +37,10 @@ public sealed partial class DnaInjectorComponent : Component
 
     [ViewVariables]
     public DnaMakeupType MakeupType;
+
+    [DataField]
+    public TimeSpan StartInjectDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public float InjectAmount = 100f;
 }

@@ -15,6 +15,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Genetics;
 
@@ -35,6 +36,8 @@ public sealed class DnaInfuserSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private static readonly SoundSpecifier InfuseSound = new SoundPathSpecifier("/Audio/Effects/demon_consume.ogg");
+
+    private static readonly ProtoId<DamageTypePrototype> CellularDamageType = "Cellular";
 
     public override void Initialize()
     {
@@ -129,7 +132,7 @@ public sealed class DnaInfuserSystem : EntitySystem
                 _popup.PopupEntity(Loc.GetString(text), occupant, occupant, PopupType.Large);
         }
 
-        _damageable.TryChangeDamage(occupant, new DamageSpecifier { DamageDict = { ["Cellular"] = 10 } }, true);
+        _damageable.TryChangeDamage(occupant, new DamageSpecifier { DamageDict = { [CellularDamageType] = 10 } }, true);
         _audio.PlayPvs(InfuseSound, infuser);
         _popup.PopupEntity(Loc.GetString("dna-infuser-done", ("set", Loc.GetString(infusion.Name)),
             ("count", count), ("threshold", infusion.Threshold)), occupant, occupant, PopupType.MediumCaution);

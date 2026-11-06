@@ -92,4 +92,7 @@ public sealed partial class DnaConsoleComponent : Component
 
     [ViewVariables]
     public TimeSpan NextMakeup;
+
+    [DataField]
+    public TimeSpan InjectorDelay = TimeSpan.FromSeconds(10);
 }

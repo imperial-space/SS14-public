@@ -271,7 +271,7 @@ public sealed class DnaConsoleSystem : EntitySystem
             PulseStrength = comp.PulseStrength,
             PulseDuration = comp.PulseDuration,
             StdDevStr = comp.PulseStrength * StrengthMultiplier,
-            StdDevAcc = (AccuracyMultiplier / (float) comp.PulseDuration) switch
+            StdDevAcc = (AccuracyMultiplier / (float)comp.PulseDuration) switch
             {
                 <= 0.25f => ">95 %",
                 <= 0.5f => "68-95 %",
@@ -437,7 +437,7 @@ public sealed class DnaConsoleSystem : EntitySystem
 
     private static int Seconds(TimeSpan span)
     {
-        return Math.Max(0, (int) Math.Ceiling(span.TotalSeconds));
+        return Math.Max(0, (int)Math.Ceiling(span.TotalSeconds));
     }
 
     #endregion
@@ -896,11 +896,11 @@ public sealed class DnaConsoleSystem : EntitySystem
         if (block.Length == 0)
             return;
 
-        var target = (int) Math.Round(Gaussian(AccuracyMultiplier / (double) console.Comp.PulseDuration) + index);
+        var target = (int)Math.Round(Gaussian(AccuracyMultiplier / (double)console.Comp.PulseDuration) + index);
         target = ((target % block.Length) + block.Length) % block.Length;
 
         var shift = Gaussian(console.Comp.PulseStrength * StrengthMultiplier);
-        var delta = shift == 0 ? _random.Pick(new[] { -1, 1 }) : shift < 0 ? (int) Math.Floor(shift) : (int) Math.Ceiling(shift);
+        var delta = shift == 0 ? _random.Pick(new[] { -1, 1 }) : shift < 0 ? (int)Math.Floor(shift) : (int)Math.Ceiling(shift);
         var value = int.Parse(block[target].ToString(), NumberStyles.HexNumber, CultureInfo.InvariantCulture);
         value = ((value + delta) % 16 + 16) % 16;
         block = block[..target] + value.ToString("X") + block[(target + 1)..];
@@ -988,7 +988,7 @@ public sealed class DnaConsoleSystem : EntitySystem
             ("name", makeup.Name)));
         _audio.PlayPvs(PrintSound, console);
 
-        console.Comp.NextInjector = _timing.CurTime + TimeSpan.FromSeconds(10);
+        console.Comp.NextInjector = _timing.CurTime + console.Comp.InjectorDelay;
         UpdateUi(console);
     }
 

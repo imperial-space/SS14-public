@@ -66,7 +66,7 @@ public sealed class DnaInjectorSystem : EntitySystem
             return;
         }
 
-        var delay = user == target ? TimeSpan.FromSeconds(1) : injector.Comp.InjectTime;
+        var delay = user == target ? injector.Comp.StartInjectDelay : injector.Comp.InjectTime;
         var args = new DoAfterArgs(EntityManager, user, delay, new DnaInjectDoAfterEvent(), injector, target, injector)
         {
             BreakOnMove = true,
@@ -99,7 +99,7 @@ public sealed class DnaInjectorSystem : EntitySystem
         if (injector.Comp.Mode == DnaInjectorMode.Makeup && injector.Comp.Makeup is { } makeup)
         {
             _makeup.Apply(target, makeup, injector.Comp.MakeupType);
-            _genetics.AddGeneticDamage(target, 100);
+            _genetics.AddGeneticDamage(target, injector.Comp.InjectAmount);
             affected = true;
         }
 

@@ -94,7 +94,7 @@ public sealed class GeneticExtraMutationsSystem : EntitySystem
             if (now < blink.NextCheck)
                 continue;
 
-            blink.NextCheck = now + TimeSpan.FromSeconds(1);
+            blink.NextCheck = now + blink.CheckDelay;
             UpdateBadBlink((uid, blink));
         }
 
@@ -104,7 +104,7 @@ public sealed class GeneticExtraMutationsSystem : EntitySystem
             if (now < magnet.NextCheck)
                 continue;
 
-            magnet.NextCheck = now + TimeSpan.FromSeconds(1);
+            magnet.NextCheck = now + magnet.CheckDelay;
             UpdateVoidCurse((uid, magnet));
         }
 
@@ -263,7 +263,7 @@ public sealed class GeneticExtraMutationsSystem : EntitySystem
 
         var coords = _xform.GetMapCoordinates(ent);
         _popup.PopupEntity(Loc.GetString("genetics-martyrdom-burst", ("user", ent.Owner)), ent, PopupType.LargeCaution);
-        _explosion.QueueExplosion(coords, "Default", 8f, 4f, 2f, ent);
+        _explosion.QueueExplosion(coords, "Default", ent.Comp.MartyrdomStateTotalIntensity, ent.Comp.MartyrdomStateSlope, ent.Comp.MartyrdomStateMaxTileIntensity, ent);
 
         foreach (var splashed in _lookup.GetEntitiesInRange<HumanoidProfileComponent>(coords, ent.Comp.Range))
         {
