@@ -50,9 +50,6 @@ public sealed partial class XenomorphSystem
         new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/Xenomorph/nest.rsi"), "nest"),
     };
 
-    /// <summary>Тех, кто выбрался из гнезда сам, отпускаем без повторной проверки.</summary>
-    private readonly HashSet<EntityUid> _nestEscaping = new();
-
     private TimeSpan _nextEggCheck;
     private TimeSpan _nextHeatCheck;
 
@@ -356,7 +353,7 @@ public sealed partial class XenomorphSystem
     private void OnNestUnstrapAttempt(Entity<XenoNestComponent> ent, ref UnstrapAttemptEvent args)
     {
         var captive = args.Buckle.Owner;
-        if (_nestEscaping.Remove(captive))
+        if (RemComp<XenomorphNestEscapingComponent>(captive))
             return;
 
         if (args.User != captive)
@@ -381,9 +378,9 @@ public sealed partial class XenomorphSystem
             return;
 
         args.Handled = true;
-        _nestEscaping.Add(captive);
+        EnsureComp<XenomorphNestEscapingComponent>(captive);
         _buckle.Unbuckle(captive, captive);
-        _nestEscaping.Remove(captive);
+        RemComp<XenomorphNestEscapingComponent>(captive);
         _popup.PopupEntity(Loc.GetString("xeno-nest-escaped", ("captive", captive)), ent, PopupType.Medium);
     }
 
