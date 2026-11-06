@@ -29,8 +29,6 @@ public sealed partial class MorphSystem
     /// <summary>oview(src): что видит морф, выбирая облик без игрока.</summary>
     private const float AiDisguiseRange = 7f;
 
-    private readonly Dictionary<EntityUid, TimeSpan> _nextAiDisguise = new();
-
     private const float FindWeldedVentsRange = 1.5f;
 
     private void InitializeAbilities()
@@ -534,10 +532,10 @@ public sealed partial class MorphSystem
         if (morph.Comp.Morphed || HasComp<ActorComponent>(morph) || _mobs.IsDead(morph))
             return;
 
-        if (_nextAiDisguise.TryGetValue(morph, out var next) && now < next)
+        if (TryGetNextAiDisguise(morph, out var next) && now < next)
             return;
 
-        _nextAiDisguise[morph] = now + AiDisguiseInterval;
+        EnsureComp<MorphNextAiDisguiseComponent>(morph).Value = now + AiDisguiseInterval;
 
         var candidates = new List<EntityUid>();
         foreach (var item in _lookup.GetEntitiesInRange<ItemComponent>(Transform(morph).Coordinates, AiDisguiseRange))
@@ -562,4 +560,16 @@ public sealed partial class MorphSystem
     }
 
     #endregion
+
+    private bool TryGetNextAiDisguise(EntityUid uid, out TimeSpan value)
+    {
+        if (TryComp<MorphNextAiDisguiseComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            return true;
+        }
+
+        value = default!;
+        return false;
+    }
 }
