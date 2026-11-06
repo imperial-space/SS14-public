@@ -47,9 +47,9 @@ public sealed class ZStairsSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<ZStairsComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<ZStairsComponent, MapInitEvent>(OnUpdateSurrounding);
         SubscribeLocalEvent<ZStairsComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<ZStairsComponent, AnchorStateChangedEvent>(OnAnchor);
+        SubscribeLocalEvent<ZStairsComponent, AnchorStateChangedEvent>(OnUpdateSurrounding);
         SubscribeLocalEvent<ZStairsComponent, MoveEvent>(OnMoved);
         SubscribeLocalEvent<ZStairsComponent, StepTriggerAttemptEvent>(OnStepAttempt);
         SubscribeLocalEvent<ZStairsComponent, StepTriggeredOffEvent>(OnStepOff);
@@ -59,19 +59,13 @@ public sealed class ZStairsSystem : EntitySystem
         SubscribeLocalEvent<ZLevelsRelinkedEvent>(OnRelinked);
     }
 
-    private void OnMapInit(Entity<ZStairsComponent> ent, ref MapInitEvent args)
+    private void OnUpdateSurrounding<T>(Entity<ZStairsComponent> ent, ref T args)
     {
         UpdateSurrounding(ent);
         UpdateTop(ent);
     }
 
     private void OnShutdown(Entity<ZStairsComponent> ent, ref ComponentShutdown args) => RemoveTop(ent);
-
-    private void OnAnchor(Entity<ZStairsComponent> ent, ref AnchorStateChangedEvent args)
-    {
-        UpdateSurrounding(ent);
-        UpdateTop(ent);
-    }
 
     private void OnMoved(Entity<ZStairsComponent> ent, ref MoveEvent args)
     {
