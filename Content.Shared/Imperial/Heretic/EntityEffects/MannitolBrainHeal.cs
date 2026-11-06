@@ -13,5 +13,5 @@ public sealed partial class MannitolBrainHeal : EntityEffectBase<MannitolBrainHe
     public float HealAmount = 10f;
 
     public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
-        "Маннитол снижает накопленный урон мозгу от воздействий Пути Луны.";
+        Loc.GetString("reagent-effect-guidebook-mannitol-brain-heal");
 }

@@ -3081,3 +3081,8 @@ heretic-glittering-array-braindeath = Вас настигла ужасная с�
 heretic-glittering-array-head-pops = Голова { $name } разлетается вдребезги с тошнотворным хрустом!
 heretic-moon-ascension-mind-explode = ВАШ ИМПЛАНТ АКТИВИРУЕТ АВАРИЙНУЮ ПСИОНИЧЕСКУЮ ЗАЩИТУ, СНОСЯ ВАМ ГОЛОВУ!
 heretic-void-prison-blocked = Зияющая Пустота начинает открываться, но волна жара разрывает её на части!
+
+heretic-info-gift = ДАР
+imperial-heretic-give-heretic-knowledge-command-amount-hint = <количество>
+reagent-effect-guidebook-heretic-essence = Эльдрическая эссенция по-разному воздействует на тех, кто причастен к Мансусу, и на обычных смертных.
+reagent-effect-guidebook-mannitol-brain-heal = Маннитол снижает накопленный урон мозгу от воздействий Пути Луны.

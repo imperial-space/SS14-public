@@ -17,5 +17,5 @@ public sealed partial class HereticEssenceEffect : EntityEffectBase<HereticEssen
     public DamageSpecifier PoisonDamage = new();
 
     public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) =>
-        "Эльдрическая эссенция по-разному воздействует на тех, кто причастен к Мансусу, и на обычных смертных.";
+        Loc.GetString("reagent-effect-guidebook-heretic-essence");
 }

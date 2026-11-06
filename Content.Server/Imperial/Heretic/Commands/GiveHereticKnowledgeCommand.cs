@@ -17,7 +17,7 @@ sealed class GiveHereticKnowledgeCommand : IConsoleCommand
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
     {
         if (args.Length == 1)
-            return CompletionResult.FromHint("<количество>");
+            return CompletionResult.FromHint(Loc.GetString("imperial-heretic-give-heretic-knowledge-command-amount-hint"));
         if (args.Length == 2)
             return CompletionResult.FromHint("[entityUid]");
         return CompletionResult.Empty;

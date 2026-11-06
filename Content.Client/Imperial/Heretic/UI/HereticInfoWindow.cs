@@ -929,7 +929,7 @@ public sealed class HereticInfoWindow : DefaultWindow
                 ToolTip = $"{node.Name}\n{node.Description}",
             };
             var badgeText = isBuyable
-                ? ((node.IsGift || node.Cost == 0) ? "ДАР" : node.Cost.ToString())
+                ? ((node.IsGift || node.Cost == 0) ? Loc.GetString("heretic-info-gift") : node.Cost.ToString())
                 : " ";
             wrapper.AddChild(new Label
             {
@@ -1027,7 +1027,7 @@ public sealed class HereticInfoWindow : DefaultWindow
                     if (!isAscension)
                     {
                         var badgeText = isBuyable
-                            ? ((node.IsGift || node.Cost == 0) ? "ДАР" : node.Cost.ToString())
+                            ? ((node.IsGift || node.Cost == 0) ? Loc.GetString("heretic-info-gift") : node.Cost.ToString())
                             : " ";
                         wrapper.AddChild(new Label
                         {
