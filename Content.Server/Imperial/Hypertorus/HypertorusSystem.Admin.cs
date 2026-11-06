@@ -8,6 +8,13 @@ namespace Content.Server.Imperial.Hypertorus;
 /// <summary>Методы для админ-команды «hypertorus»: поставить собранный реактор и заправить его.</summary>
 public sealed partial class HypertorusSystem
 {
+    private static readonly EntProtoId ImperialHypertorusInterface = "ImperialHypertorusInterface";
+    private static readonly EntProtoId ImperialHypertorusFuelInput = "ImperialHypertorusFuelInput";
+    private static readonly EntProtoId ImperialHypertorusWasteOutput = "ImperialHypertorusWasteOutput";
+    private static readonly EntProtoId ImperialHypertorusModeratorInput = "ImperialHypertorusModeratorInput";
+    private static readonly EntProtoId ImperialHypertorusCorner = "ImperialHypertorusCorner";
+    private static readonly EntProtoId ImperialHypertorusCore = "ImperialHypertorusCore";
+
     /// <summary>Ставит собранный реактор 3×3 с центром на клетке и связывает детали, как мультитул по интерфейсу.</summary>
     public EntityUid? SpawnAssembled(EntityCoordinates coordinates)
     {
@@ -18,10 +25,10 @@ public sealed partial class HypertorusSystem
         var tile = _map.TileIndicesFor(grid, grid, coordinates);
         var parts = new (EntProtoId Proto, Direction Dir)[]
         {
-            ("ImperialHypertorusInterface", Direction.North),
-            ("ImperialHypertorusFuelInput", Direction.East),
-            ("ImperialHypertorusWasteOutput", Direction.South),
-            ("ImperialHypertorusModeratorInput", Direction.West),
+            (ImperialHypertorusInterface, Direction.North),
+            (ImperialHypertorusFuelInput, Direction.East),
+            (ImperialHypertorusWasteOutput, Direction.South),
+            (ImperialHypertorusModeratorInput, Direction.West),
         };
 
         for (var i = 0; i < Cardinals.Length; i++)
@@ -31,10 +38,10 @@ public sealed partial class HypertorusSystem
 
         foreach (var (offset, dir) in Diagonals)
         {
-            SpawnPart("ImperialHypertorusCorner", grid, tile + offset, dir);
+            SpawnPart(ImperialHypertorusCorner, grid, tile + offset, dir);
         }
 
-        var core = SpawnPart("ImperialHypertorusCore", grid, tile, Direction.South);
+        var core = SpawnPart(ImperialHypertorusCore, grid, tile, Direction.South);
         var coreComp = Comp<HypertorusCoreComponent>(core);
         if (!CheckPartConnectivity((core, coreComp)) || coreComp.Interface is not { } iface)
             return core;

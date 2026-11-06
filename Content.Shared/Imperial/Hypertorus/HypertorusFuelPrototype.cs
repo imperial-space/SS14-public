@@ -47,7 +47,7 @@ public sealed partial class HypertorusFuelPrototype : IPrototype
     /// </summary>
     public static Gas? ResolveGas(string id)
     {
-        return Enum.TryParse<Gas>(id, out var gas) && Enum.IsDefined(gas) && (int) gas < Atmospherics.TotalNumberOfGases
+        return Enum.TryParse<Gas>(id, out var gas) && Enum.IsDefined(gas) && (int)gas < Atmospherics.TotalNumberOfGases
             ? gas
             : null;
     }

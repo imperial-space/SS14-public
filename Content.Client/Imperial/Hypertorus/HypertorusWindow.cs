@@ -453,7 +453,7 @@ public sealed class HypertorusWindow : DefaultWindow
         for (var i = 0; i < chars.Length; i++)
         {
             if (chars[i] >= '₀' && chars[i] <= '₉')
-                chars[i] = (char) ('0' + (chars[i] - '₀'));
+                chars[i] = (char)('0' + (chars[i] - '₀'));
         }
 
         return new string(chars);
@@ -545,9 +545,9 @@ public sealed class HypertorusWindow : DefaultWindow
         _ironGauge.Value = state.IronContent;
         _apcGauge.Value = state.ApcEnergy;
         _levelGauge.Value = state.PowerLevel;
-        _energyGauge.Value = (float) Math.Max(0, state.EnergyLevel > 0 ? Math.Log10(state.EnergyLevel) : 0);
-        _activityGauge.Value = (float) (activity * 100);
-        _instabilityGauge.Value = (float) Math.Max(state.Instability, 0);
+        _energyGauge.Value = (float)Math.Max(0, state.EnergyLevel > 0 ? Math.Log10(state.EnergyLevel) : 0);
+        _activityGauge.Value = (float)(activity * 100);
+        _instabilityGauge.Value = (float)Math.Max(state.Instability, 0);
     }
 
     /// <summary>formatSiUnit из tgui-core с минимальной приставкой (minBase1000 = 4 — тера).</summary>
@@ -555,9 +555,9 @@ public sealed class HypertorusWindow : DefaultWindow
     {
         string[] symbols = { "q", "r", "y", "z", "a", "f", "p", "n", "μ", "m", "", "k", "M", "G", "T", "P", "E", "Z", "Y", "R", "Q" };
         const int zero = 10;
-        var realBase10 = value == 0 ? int.MinValue / 4 : (int) Math.Floor(Math.Log10(Math.Abs(value)));
+        var realBase10 = value == 0 ? int.MinValue / 4 : (int)Math.Floor(Math.Log10(Math.Abs(value)));
         var base10 = Math.Max(minBase1000 * 3, realBase10);
-        var base1000 = (int) Math.Floor(base10 / 3.0);
+        var base1000 = (int)Math.Floor(base10 / 3.0);
         var symbol = symbols[Math.Min(base1000 + zero, symbols.Length - 1)];
         var scaled = value / Math.Pow(10, base1000 * 3);
         var precision = base1000 > minBase1000 ? 2 + base1000 * 3 - base10 : 0;
@@ -644,7 +644,7 @@ public sealed class HypertorusWindow : DefaultWindow
                 return 0;
 
             var ratio = (Math.Log10(value) - Math.Log10(_min)) / (Math.Log10(_max) - Math.Log10(_min));
-            return (float) (ChartHeight * Math.Clamp(ratio, 0, 1));
+            return (float)(ChartHeight * Math.Clamp(ratio, 0, 1));
         }
 
         protected override void Draw(DrawingHandleScreen handle)

@@ -25,4 +25,7 @@ public sealed partial class HypertorusPartComponent : Component
 
     /// <summary>Интерфейс выдаёт памятку при первой активации.</summary>
     [ViewVariables] public bool Activated;
+
+    [DataField]
+    public TimeSpan PartInteractUsingDoAfterDelay = TimeSpan.FromSeconds(10f);
 }

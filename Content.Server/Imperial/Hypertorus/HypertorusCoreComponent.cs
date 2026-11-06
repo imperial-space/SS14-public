@@ -161,4 +161,19 @@ public sealed partial class HypertorusCoreComponent : Component
 
     [DataField]
     public EntProtoId NuclearParticle = "ImperialHypertorusParticle";
+
+    [DataField]
+    public TimeSpan CountdownStepDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public float CheckLightningArcsChance = 0.2f;
+
+    [DataField]
+    public float CheckLightningArcsRange = 5f;
+
+    [DataField]
+    public float CheckGravityPulseBaseThrowSpeed = 5f;
+
+    [DataField]
+    public float MeltdownEnergyConsumption = 100000f;
 }

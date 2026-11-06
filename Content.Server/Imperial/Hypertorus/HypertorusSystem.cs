@@ -444,7 +444,7 @@ public sealed partial class HypertorusSystem : EntitySystem
         {
             args.Handled = true;
             _popup.PopupEntity(Loc.GetString("hypertorus-repairing"), ent, user);
-            _tool.UseTool(used, user, ent, 10f, WeldingQuality, new HypertorusRepairDoAfterEvent());
+            _tool.UseTool(used, user, ent, (float)ent.Comp.PartInteractUsingDoAfterDelay.TotalSeconds, WeldingQuality, new HypertorusRepairDoAfterEvent());
             return;
         }
 

@@ -311,7 +311,7 @@ public sealed partial class HypertorusSystem
 
         var fuelConsumptionRate = Math.Clamp(core.FuelInjectionRate * 0.01 * 5 * core.PowerLevel, 0.05, 30);
         var consumptionAmount = fuelConsumptionRate * secondsPerTick;
-        double productionAmount = core.PowerLevel is 3 or 4
+        var productionAmount = core.PowerLevel is 3 or 4
             ? Math.Clamp(core.HeatOutput / 1000, 0, fuelConsumptionRate) * secondsPerTick
             : Math.Clamp(core.HeatOutput * 2 / Math.Pow(10, core.PowerLevel + 1), 0, fuelConsumptionRate) * secondsPerTick;
 
@@ -332,8 +332,8 @@ public sealed partial class HypertorusSystem
     private void ModeratorFuelProcess(HypertorusCoreComponent core, double productionAmount, double consumptionAmount,
         Dictionary<Gas, float> moderatorList, HypertorusFuelPrototype fuel, Dictionary<Gas, float> fuelList)
     {
-        var fuelConsumption = (float) (consumptionAmount * 0.85 * fuel.FuelConsumptionMultiplier);
-        var scaledProduction = (float) (productionAmount * fuel.GasProductionMultiplier);
+        var fuelConsumption = (float)(consumptionAmount * 0.85 * fuel.FuelConsumptionMultiplier);
+        var scaledProduction = (float)(productionAmount * fuel.GasProductionMultiplier);
         var fusion = core.InternalFusion;
         var moderator = core.ModeratorInternal;
 
@@ -398,7 +398,7 @@ public sealed partial class HypertorusSystem
         var core = ent.Comp;
         var moderator = core.ModeratorInternal;
         var fusion = core.InternalFusion;
-        var scaledProduction = (float) scaledProductionD;
+        var scaledProduction = (float)scaledProductionD;
         float ML(Gas gas) => moderatorList.GetValueOrDefault(gas);
         void Consume(Gas gas, float amount) => moderator.AdjustMoles(gas, -Math.Min(moderator.GetMoles(gas), amount));
 
@@ -495,7 +495,7 @@ public sealed partial class HypertorusSystem
                 HealiumRepair(core, moderatorList, scaledProduction, secondsPerTick);
 
                 if (core.ModeratorTemp < 1e7 || ML(Gas.Plasma) > 100 && ML(Gas.BZ) > 50)
-                    internalOutput.AdjustMoles(Gas.AntiNoblium, (float) (dirtyProductionRate * 0.9 / 0.065 * secondsPerTick));
+                    internalOutput.AdjustMoles(Gas.AntiNoblium, (float)(dirtyProductionRate * 0.9 / 0.065 * secondsPerTick));
                 break;
             case 6:
                 if (ML(Gas.Plasma) > 30)
@@ -516,11 +516,11 @@ public sealed partial class HypertorusSystem
                 if (ML(Gas.BZ) > 0)
                 {
                     HallucinationPulse(ent, secondsPerTick);
-                    internalOutput.AdjustMoles(Gas.AntiNoblium, (float) (Math.Clamp(dirtyProductionRate / 0.045, 0, 10) * secondsPerTick));
+                    internalOutput.AdjustMoles(Gas.AntiNoblium, (float)(Math.Clamp(dirtyProductionRate / 0.045, 0, 10) * secondsPerTick));
                 }
 
                 HealiumRepair(core, moderatorList, scaledProduction, secondsPerTick);
-                fusion.AdjustMoles(Gas.AntiNoblium, (float) (dirtyProductionRate * 0.01 / 0.095 * secondsPerTick));
+                fusion.AdjustMoles(Gas.AntiNoblium, (float)(dirtyProductionRate * 0.01 / 0.095 * secondsPerTick));
                 break;
         }
 
@@ -539,7 +539,7 @@ public sealed partial class HypertorusSystem
         // Произведённые газы уходят в порт отходов, нагретые модератором или топливом.
         if (internalOutput.TotalMoles > 0 && GetPipeAir(core.WasteOutput) is { } outputPort)
         {
-            internalOutput.Temperature = (float) Math.Min(Atmospherics.Tmax, moderator.TotalMoles > 0
+            internalOutput.Temperature = (float)Math.Min(Atmospherics.Tmax, moderator.TotalMoles > 0
                 ? core.ModeratorTemp * HighEfficiencyConductivity
                 : core.FusionTemp * MetallicVoidConductivity);
             _atmos.Merge(outputPort, internalOutput);
@@ -579,7 +579,7 @@ public sealed partial class HypertorusSystem
             return;
 
         var ratio = 1 - Math.Pow(1 - 0.0005 * core.PowerLevel, secondsPerTick);
-        core.ModeratorInternal.Remove((float) (core.ModeratorInternal.TotalMoles * ratio));
+        core.ModeratorInternal.Remove((float)(core.ModeratorInternal.TotalMoles * ratio));
     }
 
     #endregion
@@ -618,7 +618,7 @@ public sealed partial class HypertorusSystem
             var moderatorHc = _atmos.GetHeatCapacity(moderator, true);
             var delta = removed.Temperature - core.ModeratorTemp;
             var heat = (1 - Math.Pow(1 - HighEfficiencyConductivity, secondsPerTick)) * delta * (removedHc * moderatorHc / (removedHc + moderatorHc));
-            removed.Temperature = (float) Math.Max(removed.Temperature - heat / removedHc, Tcmb);
+            removed.Temperature = (float)Math.Max(removed.Temperature - heat / removedHc, Tcmb);
             core.ModeratorTemp = Math.Max(core.ModeratorTemp + heat / moderatorHc, Tcmb);
         }
         else if (fusion.TotalMoles > 0)
@@ -626,7 +626,7 @@ public sealed partial class HypertorusSystem
             var fusionHc = _atmos.GetHeatCapacity(fusion, true);
             var delta = removed.Temperature - core.FusionTemp;
             var heat = (1 - Math.Pow(1 - MetallicVoidConductivity, secondsPerTick)) * delta * (removedHc * fusionHc / (removedHc + fusionHc));
-            removed.Temperature = (float) Math.Max(removed.Temperature - heat / removedHc, Tcmb);
+            removed.Temperature = (float)Math.Max(removed.Temperature - heat / removedHc, Tcmb);
             core.FusionTemp = Math.Max(core.FusionTemp + heat / fusionHc, Tcmb);
         }
 
@@ -675,14 +675,14 @@ public sealed partial class HypertorusSystem
             if (moles <= 0)
                 continue;
 
-            _atmos.Merge(output, RemoveSpecific(core.InternalFusion, gas, (float) (moles * (1 - Math.Pow(1 - 0.25, secondsPerTick))), core.FusionTemp));
+            _atmos.Merge(output, RemoveSpecific(core.InternalFusion, gas, (float)(moles * (1 - Math.Pow(1 - 0.25, secondsPerTick))), core.FusionTemp));
         }
     }
 
     /// <summary>remove_specific: забрать только один газ из смеси, с её температурой.</summary>
     private static GasMixture RemoveSpecific(GasMixture mixture, Gas gas, float amount, double? temperature = null)
     {
-        var removed = new GasMixture { Temperature = (float) Math.Min(Atmospherics.Tmax, temperature ?? mixture.Temperature) };
+        var removed = new GasMixture { Temperature = (float)Math.Min(Atmospherics.Tmax, temperature ?? mixture.Temperature) };
         var moles = Math.Min(Math.Max(amount, 0), mixture.GetMoles(gas));
         if (moles <= 0)
             return removed;
@@ -710,7 +710,7 @@ public sealed partial class HypertorusSystem
     private static GasMixture RemoveRatioAt(GasMixture mixture, double temperature, float ratio)
     {
         var removed = mixture.RemoveRatio(ratio);
-        removed.Temperature = (float) Math.Min(Atmospherics.Tmax, temperature);
+        removed.Temperature = (float)Math.Min(Atmospherics.Tmax, temperature);
         return removed;
     }
 
@@ -754,9 +754,9 @@ public sealed partial class HypertorusSystem
     {
         var core = ent.Comp;
         core.FusionTemperatureArchived = core.FusionTemperature;
-        core.FusionTemperature = (float) core.FusionTemp;
+        core.FusionTemperature = (float)core.FusionTemp;
         core.ModeratorTemperatureArchived = core.ModeratorTemperature;
-        core.ModeratorTemperature = (float) core.ModeratorTemp;
+        core.ModeratorTemperature = (float)core.ModeratorTemp;
         core.CoolantTemperatureArchived = core.CoolantTemperature;
         core.CoolantTemperature = GetPipeAir(ent)?.Temperature ?? 0;
         core.OutputTemperatureArchived = core.OutputTemperature;

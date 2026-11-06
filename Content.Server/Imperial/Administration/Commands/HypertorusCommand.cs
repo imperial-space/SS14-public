@@ -51,57 +51,57 @@ public sealed class HypertorusCommand : LocalizedCommands
         switch (args[0])
         {
             case "spawn":
-            {
-                // Без игрока (консоль сервера) — у первой точки спавна.
-                var anchor = shell.Player?.AttachedEntity;
-                if (anchor == null)
                 {
-                    var spawns = _entityManager.EntityQueryEnumerator<SpawnPointComponent>();
-                    if (spawns.MoveNext(out var spawn, out _))
-                        anchor = spawn;
-                }
+                    // Без игрока (консоль сервера) — у первой точки спавна.
+                    var anchor = shell.Player?.AttachedEntity;
+                    if (anchor == null)
+                    {
+                        var spawns = _entityManager.EntityQueryEnumerator<SpawnPointComponent>();
+                        if (spawns.MoveNext(out var spawn, out _))
+                            anchor = spawn;
+                    }
 
-                if (anchor is not { } at)
-                {
-                    shell.WriteError(Loc.GetString("cmd-hypertorus-no-place"));
-                    return;
-                }
+                    if (anchor is not { } at)
+                    {
+                        shell.WriteError(Loc.GetString("cmd-hypertorus-no-place"));
+                        return;
+                    }
 
-                var core = hypertorus.SpawnAssembled(_entityManager.GetComponent<TransformComponent>(at).Coordinates);
-                shell.WriteLine(core is { } c ? hypertorus.Status(c) : Loc.GetString("cmd-hypertorus-no-place"));
-                break;
-            }
+                    var core = hypertorus.SpawnAssembled(_entityManager.GetComponent<TransformComponent>(at).Coordinates);
+                    shell.WriteLine(core is { } c ? hypertorus.Status(c) : Loc.GetString("cmd-hypertorus-no-place"));
+                    break;
+                }
             case "fill":
-            {
-                if (args.Length < 2 || !_proto.HasIndex<HypertorusFuelPrototype>(args[1]))
                 {
-                    shell.WriteError(Loc.GetString("cmd-hypertorus-bad-fuel"));
-                    return;
-                }
+                    if (args.Length < 2 || !_proto.HasIndex<HypertorusFuelPrototype>(args[1]))
+                    {
+                        shell.WriteError(Loc.GetString("cmd-hypertorus-bad-fuel"));
+                        return;
+                    }
 
-                var fuelMoles = args.Length > 2 && float.TryParse(args[2], NumberStyles.Float, CultureInfo.InvariantCulture, out var f) ? f : 1000;
-                var moderatorGas = args.Length > 3 && Enum.TryParse<Gas>(args[3], out var g) ? g : Gas.Plasma;
-                var moderatorMoles = args.Length > 4 && float.TryParse(args[4], NumberStyles.Float, CultureInfo.InvariantCulture, out var m) ? m : 0;
-                var temperature = args.Length > 5 && float.TryParse(args[5], NumberStyles.Float, CultureInfo.InvariantCulture, out var t) ? t : 0;
+                    var fuelMoles = args.Length > 2 && float.TryParse(args[2], NumberStyles.Float, CultureInfo.InvariantCulture, out var f) ? f : 1000;
+                    var moderatorGas = args.Length > 3 && Enum.TryParse<Gas>(args[3], out var g) ? g : Gas.Plasma;
+                    var moderatorMoles = args.Length > 4 && float.TryParse(args[4], NumberStyles.Float, CultureInfo.InvariantCulture, out var m) ? m : 0;
+                    var temperature = args.Length > 5 && float.TryParse(args[5], NumberStyles.Float, CultureInfo.InvariantCulture, out var t) ? t : 0;
 
-                var query = _entityManager.EntityQueryEnumerator<HypertorusCoreComponent>();
-                while (query.MoveNext(out var uid, out _))
-                {
-                    hypertorus.Fill(uid, args[1], fuelMoles, moderatorGas, moderatorMoles, temperature);
-                    shell.WriteLine(hypertorus.Status(uid));
+                    var query = _entityManager.EntityQueryEnumerator<HypertorusCoreComponent>();
+                    while (query.MoveNext(out var uid, out _))
+                    {
+                        hypertorus.Fill(uid, args[1], fuelMoles, moderatorGas, moderatorMoles, temperature);
+                        shell.WriteLine(hypertorus.Status(uid));
+                    }
+                    break;
                 }
-                break;
-            }
             case "status":
-            {
-                var query = _entityManager.EntityQueryEnumerator<HypertorusCoreComponent>();
-                while (query.MoveNext(out var uid, out _))
                 {
-                    shell.WriteLine(hypertorus.Status(uid));
-                    shell.WriteLine(hypertorus.PartsInfo(uid));
+                    var query = _entityManager.EntityQueryEnumerator<HypertorusCoreComponent>();
+                    while (query.MoveNext(out var uid, out _))
+                    {
+                        shell.WriteLine(hypertorus.Status(uid));
+                        shell.WriteLine(hypertorus.PartsInfo(uid));
+                    }
+                    break;
                 }
-                break;
-            }
             default:
                 shell.WriteError(Loc.GetString("shell-wrong-arguments-number"));
                 break;

@@ -46,7 +46,7 @@ public sealed partial class HypertorusSystem
         if (core.PowerLevel >= OverfullMinPowerLevel)
         {
             var overfull = OverfullMolarSlope * fusionMoles + OverfullTemperatureSlope * core.CoolantTemperature + OverfullConstant;
-            core.CriticalThresholdProximity = (float) Math.Max(core.CriticalThresholdProximity + Math.Max(overfull * secondsPerTick, 0), 0);
+            core.CriticalThresholdProximity = (float)Math.Max(core.CriticalThresholdProximity + Math.Max(overfull * secondsPerTick, 0), 0);
             core.WarningDamageFlags |= HypertorusDamageFlags.HighPowerDamage;
         }
 
@@ -60,7 +60,7 @@ public sealed partial class HypertorusSystem
         if (fusionMoles > 0 && coolantMoles > 0 && core.CoolantTemperature < ColdCoolantThreshold && core.PowerLevel <= 4)
         {
             var restore = Math.Log10(Math.Max(core.CoolantTemperature, 1) * ColdCoolantScale) - ColdCoolantMaxRestore * 2;
-            core.CriticalThresholdProximity = (float) Math.Max(core.CriticalThresholdProximity + Math.Min(restore * secondsPerTick, 0), 0);
+            core.CriticalThresholdProximity = (float)Math.Max(core.CriticalThresholdProximity + Math.Min(restore * secondsPerTick, 0), 0);
         }
 
         core.CriticalThresholdProximity += Math.Max(core.IronContent - MaxSafeIron, 0) * secondsPerTick;
@@ -114,7 +114,7 @@ public sealed partial class HypertorusSystem
                 leakRate = pressure < StrongSpillPressure ? MediumSpillRate : StrongSpillRate;
             }
 
-            SpillGases(cracked, moderator, core.ModeratorTemp, (float) (1 - Math.Pow(1 - leakRate, secondsPerTick)));
+            SpillGases(cracked, moderator, core.ModeratorTemp, (float)(1 - Math.Pow(1 - leakRate, secondsPerTick)));
             return;
         }
 
@@ -183,7 +183,7 @@ public sealed partial class HypertorusSystem
             return;
 
         var zaps = core.PowerLevel - 2;
-        if (core.CriticalThresholdProximity > 650 && _random.Prob(0.2f))
+        if (core.CriticalThresholdProximity > 650 && _random.Prob(ent.Comp.CheckLightningArcsChance))
             zaps += 1;
 
         var lightning = core.PowerLevel switch
@@ -194,7 +194,7 @@ public sealed partial class HypertorusSystem
         };
 
         _audio.PlayPvs(core.ZapSound, ent, AudioParams.Default.WithMaxDistance(17));
-        _lightning.ShootRandomLightnings(ent, 5, zaps, lightning);
+        _lightning.ShootRandomLightnings(ent, ent.Comp.CheckLightningArcsRange, zaps, lightning);
     }
 
     /// <summary>check_gravity_pulse: при повреждениях ядро притягивает живых на шаг к себе.</summary>
@@ -202,10 +202,10 @@ public sealed partial class HypertorusSystem
     {
         var core = ent.Comp;
         var chance = Math.Clamp(core.CriticalThresholdProximity / 15f, 0, 100) / 100f;
-        if (chance <= 0 || !_random.Prob(1 - (float) Math.Pow(1 - chance, secondsPerTick)))
+        if (chance <= 0 || !_random.Prob(1 - (float)Math.Pow(1 - chance, secondsPerTick)))
             return;
 
-        var range = (int) Math.Round(Math.Log(core.CriticalThresholdProximity, 2.5));
+        var range = (int)Math.Round(Math.Log(core.CriticalThresholdProximity, 2.5));
         if (range <= 0)
             return;
 
@@ -219,7 +219,7 @@ public sealed partial class HypertorusSystem
             if (direction.LengthSquared() < 0.25f)
                 continue;
 
-            _throwing.TryThrow(mob, Vector2.Normalize(direction), 5f, ent, pushbackRatio: 0, doSpin: false);
+            _throwing.TryThrow(mob, Vector2.Normalize(direction), ent.Comp.CheckGravityPulseBaseThrowSpeed, ent, pushbackRatio: 0, doSpin: false);
         }
     }
 
@@ -227,7 +227,7 @@ public sealed partial class HypertorusSystem
     private void HallucinationPulse(Entity<HypertorusCoreComponent> ent, float secondsPerTick)
     {
         var core = ent.Comp;
-        var range = Math.Min(7, (int) Math.Round(Math.Pow(Math.Abs(core.HeatOutput), 0.25)));
+        var range = Math.Min(7, (int)Math.Round(Math.Pow(Math.Abs(core.HeatOutput), 0.25)));
         if (range <= 0)
             return;
 
@@ -244,7 +244,7 @@ public sealed partial class HypertorusSystem
     {
         var core = ent.Comp;
         var now = _timing.CurTime;
-        if (core.LastAccentSound < now && _random.Prob(1 - (float) Math.Pow(0.9, secondsPerTick)))
+        if (core.LastAccentSound < now && _random.Prob(1 - (float)Math.Pow(0.9, secondsPerTick)))
         {
             var aggression = Math.Min(core.CriticalThresholdProximity / 800f * (core.PowerLevel / 5f), 1f) * 100;
             var volume = SharedAudioSystem.GainToVolume(Math.Max(50, aggression) / 100f);
@@ -381,7 +381,7 @@ public sealed partial class HypertorusSystem
     private void CountdownStep(Entity<HypertorusCoreComponent> ent)
     {
         var core = ent.Comp;
-        core.NextCountdownStep = _timing.CurTime + TimeSpan.FromSeconds(1);
+        core.NextCountdownStep = _timing.CurTime + ent.Comp.CountdownStepDelay;
 
         if (core.CriticalThresholdProximity < core.MeltingPoint)
         {
@@ -505,7 +505,7 @@ public sealed partial class HypertorusSystem
 
         // В SS13 лёгкий радиус ЭМИ без критического сценария берётся из тяжёлого — сохранено.
         if (emp && empHeavy + empLight > 0)
-            _emp.EmpPulse(coords, critical ? empLight * 2 : empHeavy, 100000, TimeSpan.FromSeconds(critical ? empHeavy * 4 : empHeavy * 2));
+            _emp.EmpPulse(coords, critical ? empLight * 2 : empHeavy, ent.Comp.MeltdownEnergyConsumption, TimeSpan.FromSeconds(critical ? empHeavy * 4 : empHeavy * 2));
 
         QueueDel(ent);
     }
@@ -516,22 +516,22 @@ public sealed partial class HypertorusSystem
         if (mixture.TotalMoles <= 0)
             return;
 
-        mixture.Temperature = (float) Math.Min(Atmospherics.Tmax, temperature);
+        mixture.Temperature = (float)Math.Min(Atmospherics.Tmax, temperature);
         var spreadMix = mixture.RemoveRatio(0.2f);
         if (pockets > 0 && spread > 0 && TryGetTile(core, out var grid, out var center))
         {
             var tiles = new List<Vector2i>();
-            var radius = (int) spread;
+            var radius = (int)spread;
             for (var x = -radius; x <= radius; x++)
-            for (var y = -radius; y <= radius; y++)
-            {
-                if (x * x + y * y > spread * spread)
-                    continue;
+                for (var y = -radius; y <= radius; y++)
+                {
+                    if (x * x + y * y > spread * spread)
+                        continue;
 
-                var tile = center + new Vector2i(x, y);
-                if (_atmos.GetTileMixture(grid.Owner, null, tile, true) is { Immutable: false })
-                    tiles.Add(tile);
-            }
+                    var tile = center + new Vector2i(x, y);
+                    if (_atmos.GetTileMixture(grid.Owner, null, tile, true) is { Immutable: false })
+                        tiles.Add(tile);
+                }
 
             for (var i = 0; i < pockets && tiles.Count > 0; i++)
             {
