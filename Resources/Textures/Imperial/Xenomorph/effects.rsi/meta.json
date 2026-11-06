@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation/BandaStation https://github.com/ss220club/BandaStation",
+    "size": {"x": 32, "y": 32},
+    "states": [
+        {"name": "acid"},
+        {"name": "infected0"},
+        {"name": "infected1"},
+        {"name": "infected2"},
+        {"name": "infected3"},
+        {"name": "infected4"},
+        {"name": "infected5"},
+        {"name": "burst_lie", "delays": [[0.1, 0.1, 0.1, 0.1, 0.1, 0.1]]},
+        {"name": "bursted_lie"},
+        {"name": "nestoverlay"},
+        {"name": "alienspit", "directions": 4, "delays": [[0.2, 0.2, 0.2, 0.2, 0.2, 0.2], [0.2, 0.2, 0.2, 0.2, 0.2, 0.2], [0.2, 0.2, 0.2, 0.2, 0.2, 0.2], [0.2, 0.2, 0.2, 0.2, 0.2, 0.2]]}
+    ]
+}

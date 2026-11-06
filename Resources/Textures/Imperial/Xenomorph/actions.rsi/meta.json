@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation/BandaStation https://github.com/ss220club/BandaStation",
+    "size": {"x": 32, "y": 32},
+    "states": [
+        {"name": "alien_neurotoxin_0"},
+        {"name": "alien_neurotoxin_1"},
+        {"name": "alien_egg"},
+        {"name": "alien_resin"},
+        {"name": "alien_plant"},
+        {"name": "alien_whisper"},
+        {"name": "alien_transfer"},
+        {"name": "alien_acid"},
+        {"name": "alien_barf"},
+        {"name": "alien_evolve_larva"},
+        {"name": "alien_evolve_drone"},
+        {"name": "alien_evolve_praetorian"},
+        {"name": "alien_queen_promote"},
+        {"name": "alien_hide"},
+        {"name": "tailsweep"},
+        {"name": "alien_sneak"},
+        {"name": "alien_sneak_on"},
+        {"name": "smallqueen"},
+        {"name": "leap_on"},
+        {"name": "leap_off"},
+        {"name": "power_display"}
+    ]
+}

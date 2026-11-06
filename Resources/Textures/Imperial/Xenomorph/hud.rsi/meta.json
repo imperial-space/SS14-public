@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from BandaStation (tgstation) icons/hud/screen_alien.dmi and icons/hud/screen_alert.dmi",
+    "size": {"x": 32, "y": 32},
+    "states": [
+        {"name": "health0"},
+        {"name": "health1"},
+        {"name": "health2"},
+        {"name": "health3"},
+        {"name": "health4"},
+        {"name": "health5"},
+        {"name": "health6", "delays": [[0.5, 0.5]]},
+        {"name": "health7"},
+        {"name": "health8"},
+        {"name": "power_display"},
+        {"name": "queen_finder"},
+        {"name": "finder_center", "delays": [[0.1, 0.1]]},
+        {"name": "finder_near", "directions": 8},
+        {"name": "finder_med", "directions": 8},
+        {"name": "finder_far", "directions": 8},
+        {"name": "leap_on"},
+        {"name": "leap_off"},
+        {"name": "alien_fire"},
+        {"name": "alien_plas"},
+        {"name": "alien_noqueen"},
+        {"name": "nest_life"}
+    ]
+}

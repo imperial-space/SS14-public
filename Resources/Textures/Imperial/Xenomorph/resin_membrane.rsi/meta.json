@@ -1,0 +1,18 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation/BandaStation https://github.com/ss220club/BandaStation",
+    "size": {"x": 32, "y": 32},
+    "states": [
+        {"name": "membrane0", "directions": 4},
+        {"name": "membrane1", "directions": 4},
+        {"name": "membrane2", "directions": 4},
+        {"name": "membrane3", "directions": 4},
+        {"name": "membrane4", "directions": 4},
+        {"name": "membrane5", "directions": 4},
+        {"name": "membrane6", "directions": 4},
+        {"name": "membrane7", "directions": 4},
+        {"name": "membrane"},
+        {"name": "membrane_full"}
+    ]
+}

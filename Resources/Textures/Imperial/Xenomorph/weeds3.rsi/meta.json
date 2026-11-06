@@ -1,0 +1,18 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation/BandaStation https://github.com/ss220club/BandaStation",
+    "size": {"x": 40, "y": 40},
+    "states": [
+        {"name": "weeds0", "directions": 4},
+        {"name": "weeds1", "directions": 4},
+        {"name": "weeds2", "directions": 4},
+        {"name": "weeds3", "directions": 4},
+        {"name": "weeds4", "directions": 4},
+        {"name": "weeds5", "directions": 4},
+        {"name": "weeds6", "directions": 4},
+        {"name": "weeds7", "directions": 4},
+        {"name": "weeds"},
+        {"name": "weeds_full"}
+    ]
+}

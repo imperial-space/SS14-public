@@ -1,0 +1,209 @@
+## Ксеноморфы (SS13)
+
+xeno-not-enough-plasma = Недостаточно плазмы.
+xeno-claws-too-clumsy = Ваши когти недостаточно ловки, чтобы держать { $item }.
+xeno-examine-plasma = Запас плазмы: [color=violet]{ $plasma }/{ $max }[/color].
+xeno-queen-died = Ваша Королева была повержена! Вас охватывает невероятная агония — связь с ульем прервана.
+xeno-evolved = { CAPITALIZE($xeno) } эволюционирует в { $caste }!
+xeno-evolve-royal-exists = Улей уже возглавляет королевская особь.
+xeno-larva-grown = Вы выросли и готовы к эволюции.
+xeno-larva-not-grown = Вы ещё не выросли: { $growth }/{ $max }.
+xeno-queen-death-cleared = Боль от смерти королевы ослабевает. Вы снова чувствуете связь с ульем.
+xeno-evolve-queen-death = Улей ещё не оправился от гибели королевы.
+
+xeno-whisper-title = Шёпот
+xeno-whisper-prompt = Что прошептать?
+xeno-whisper-received = [color=#a6197c]Вы слышите странный, чужой голос в голове...[/color] [italic]{ $message }[/italic]
+xeno-whisper-sent = Вы шепчете { $target }: [italic]{ $message }[/italic]
+
+xeno-transfer-title = Передача плазмы
+xeno-transfer-prompt = Сколько плазмы передать?
+xeno-transfer-invalid = Плазму можно передать только другому ксеноморфу.
+xeno-transfer-done = Вы передаёте { $amount } плазмы { $target }.
+xeno-transfer-received = { CAPITALIZE($source) } передаёт вам { $amount } плазмы.
+
+xeno-acid-invalid = Кислота на это не подействует.
+xeno-acid-creature = На живых существ это не действует!
+xeno-acid-wall-crumble = { CAPITALIZE($target) } начинает осыпаться под кислотой!
+xeno-acid-wall-collapse = { CAPITALIZE($target) } оседает лужей слизи и непереваренного мусора!
+xeno-tail-sweep-slam = { CAPITALIZE($xeno) } вбивает вас в пол!
+xeno-tail-sweep-thrown = { CAPITALIZE($xeno) } отбрасывает вас хвостом!
+xeno-acid-applied = { CAPITALIZE($xeno) } извергает кислоту на { $target }! Оно начинает плавиться!
+xeno-leap-no-gravity = Прыгать без гравитации опасно!
+xeno-leap-pounce = { CAPITALIZE($xeno) } набрасывается на { $target }!
+xeno-leap-smash = { CAPITALIZE($xeno) } врезается в { $target }!
+xeno-sneak-on = Вы сливаетесь с тенями.
+xeno-sneak-off = Вы выходите из тени.
+xeno-hide-on = { CAPITALIZE($xeno) } прячется.
+xeno-hide-off = { CAPITALIZE($xeno) } выползает из укрытия.
+xeno-devour-need-pull = Сначала крепко схватите добычу.
+xeno-devour-start = { CAPITALIZE($xeno) } пытается сожрать { $target }!
+xeno-devour-done = { CAPITALIZE($xeno) } пожирает { $target }!
+xeno-regurgitate = { CAPITALIZE($xeno) } отрыгивает содержимое желудка!
+xeno-regurgitate-empty = Желудок пуст.
+
+xeno-build-invalid-tile = Здесь нельзя строить.
+xeno-weeds-already = Здесь уже растут сорняки.
+xeno-weeds-planted = { CAPITALIZE($xeno) } высаживает сорняки.
+xeno-resin-already = Здесь уже есть смола.
+xeno-resin-secreted = { CAPITALIZE($xeno) } выделяет густую смолу.
+xeno-nest-only-xeno = Только ксеноморфы могут прикреплять к гнезду.
+xeno-nest-not-for-xeno = Гнездо — для добычи. Ксеноморфы в него не ложатся.
+xeno-nest-struggle = Вы пытаетесь выбраться из липкого гнезда...
+xeno-nest-escaped = { CAPITALIZE($captive) } вырывается из липкого гнезда!
+xeno-egg-already = Здесь уже есть яйцо.
+xeno-egg-laid = { CAPITALIZE($xeno) } откладывает яйцо!
+xeno-egg-growing = Яйцо ещё растёт.
+xeno-egg-empty = Яйцо пустое.
+xeno-egg-slimy = Оно скользкое.
+xeno-egg-retrieve = Вы достаёте дитя.
+xeno-egg-hatching = Дитя вылупляется.
+xeno-egg-clear = Вы убираете пустое яйцо.
+xeno-royal-parasite-created = Вы создаёте королевского паразита.
+xeno-royal-parasite-invalid = Паразит может возвысить только взрослого ксеноморфа.
+xeno-royal-parasite-exists = У улья уже есть преторианец.
+xeno-royal-parasite-discard = Вы выбрасываете королевского паразита.
+xeno-royal-parasite-no-hand = Для паразита нужна свободная рука.
+xeno-royal-parasite-unavailable = Сейчас нельзя никого возвысить.
+xeno-royal-parasite-promoted = Вы возвысили { $target } до преторианца!
+xeno-royal-parasite-not-queen = Паразита может ввести только королева.
+xeno-royal-parasite-not-conscious = { CAPITALIZE($target) } должна быть в сознании.
+xeno-royal-parasite-no-mind = Разум { $target } пуст — возвышать некого.
+
+xeno-hugger-leap = { CAPITALIZE($hugger) } прыгает на лицо { $target }!
+xeno-hugger-smash = { CAPITALIZE($hugger) } разбивается о { $head }!
+xeno-hugger-tear-mask = { CAPITALIZE($hugger) } срывает { $mask } с лица { $target }!
+xeno-hugger-impregnated = Вы чувствуете, как что-то проникает вам в горло...
+xeno-hugger-dies = { CAPITALIZE($hugger) } сворачивается и замирает.
+xeno-hugger-latched = Он вцепился слишком крепко! Позовите на помощь или ждите, пока он отпустит!
+xeno-hugger-violates = { CAPITALIZE($hugger) } насилует лицо { $target }!
+
+xeno-embryo-throat = У вас болит горло.
+xeno-embryo-mucous = Слизь стекает по задней стенке горла.
+xeno-embryo-muscles = У вас ноют мышцы.
+xeno-embryo-stomach = У вас болит живот.
+xeno-embryo-tearing = Вы чувствуете, как что-то прорывается наружу из вашей груди...
+xeno-burst = { CAPITALIZE($larva) } вырывается из груди { $host } фонтаном крови!
+xeno-burst-wriggle = { CAPITALIZE($larva) } выползает из { $host }!
+xeno-embryo-removal-standing = { CAPITALIZE($target) } должен лежать.
+xeno-embryo-removal-start = { CAPITALIZE($user) } вскрывает грудь { $target }, пытаясь извлечь паразита!
+xeno-embryo-removal-done = { CAPITALIZE($user) } извлекает из груди { $target } извивающегося эмбриона.
+xeno-embryo-removal-writhes = Он уже большой и извивается у вас в руках...
+
+xeno-infestation-sender = Неопознанные формы жизни
+xeno-infestation-announcement = На борту станции обнаружены неопознанные формы жизни. Перекройте все внешние шлюзы, включая трубы и вентиляции.
+
+chat-radio-xeno-hive = Связь улья
+alerts-xeno-plasma-name = Запас плазмы
+alerts-xeno-plasma-desc = Плазма для способностей. Восполняется на сорняках улья и от вдыхаемой плазмы.
+alerts-xeno-health-name = Здоровье
+alerts-xeno-health-desc = Состояние вашего тела. На сорняках улья раны затягиваются.
+alerts-xeno-queen-finder-name = Чутьё королевы
+alerts-xeno-queen-finder-desc = Позволяет чувствовать, в какой стороне ваша Королева.
+alerts-xeno-fire-name = Слишком горячо
+alerts-xeno-fire-desc = Здесь слишком горячо! Выбегайте в космос или уходите от огня. Стоя на траве, вы будете исцеляться.
+alerts-xeno-plasma-air-name = Плазма
+alerts-xeno-plasma-air-desc = Здесь легковоспламеняемая плазма в воздухе. Если она загорится, то вас поджарит.
+alerts-xeno-noqueen-name = Крах Матриархата
+alerts-xeno-noqueen-desc = Ваша королева была убита. Вы теряете разум улья и страдаете от замедления. Новая королева не может быть сделана, пока вы не поправитесь.
+alerts-xeno-nest-name = Поддержка гнезда
+alerts-xeno-nest-desc = Смола вокруг пульсирует. Кажется, она поддерживает ваши жизненные функции. Вам нехорошо...
+
+roles-antag-xenomorph-name = Ксеноморф
+roles-antag-xenomorph-objective = Разрастайтесь: заражайте экипаж, защищайте королеву и улей.
+role-subtype-xenomorph = Ксеноморф
+ghost-role-information-xeno-larva-name = Личинка ксеноморфа
+ghost-role-information-xeno-larva-desc = Вы — личинка ксеноморфа. Растите, эволюционируйте и стройте улей вместе с сёстрами.
+
+## Сущности
+
+ent-ImperialXenoBase = чужой
+    .desc = Разрушающее рассудок нечто.
+ent-ImperialXenoLarva = личинка чужого
+    .desc = { ent-ImperialXenoBase.desc }
+ent-ImperialXenoHunter = чужой-охотник
+    .desc = { ent-ImperialXenoBase.desc }
+ent-ImperialXenoSentinel = чужой-страж
+    .desc = { ent-ImperialXenoBase.desc }
+ent-ImperialXenoDrone = чужой-трутень
+    .desc = { ent-ImperialXenoBase.desc }
+ent-ImperialXenoPraetorian = чужой-преторианец
+    .desc = { ent-ImperialXenoBase.desc }
+ent-ImperialXenoQueen = королева чужих
+    .desc = { ent-ImperialXenoBase.desc }
+
+ent-ImperialXenoWeedsBase = смоляной пол
+    .desc = Пол покрыт толстым слоем смолы.
+ent-ImperialXenoWeeds1 = { ent-ImperialXenoWeedsBase }
+    .desc = { ent-ImperialXenoWeedsBase.desc }
+ent-ImperialXenoWeeds2 = { ent-ImperialXenoWeedsBase }
+    .desc = { ent-ImperialXenoWeedsBase.desc }
+ent-ImperialXenoWeeds3 = { ent-ImperialXenoWeedsBase }
+    .desc = { ent-ImperialXenoWeedsBase.desc }
+ent-ImperialXenoWeedNode = светящаяся смола
+    .desc = Из-под поверхности пробивается голубое свечение.
+ent-ImperialXenoResinWall = смоляная стена
+    .desc = Густая смола, застывшая в стену.
+ent-ImperialXenoResinMembrane = смоляная мембрана
+    .desc = Смола достаточно тонкая, чтобы пропускать свет.
+ent-ImperialXenoNest = гнездо чужих
+    .desc = Жуткая куча густой липкой смолы в форме гнезда.
+ent-ImperialXenoEgg = яйцо
+    .desc = Большое пятнистое яйцо.
+ent-ImperialXenoEggGrown = { ent-ImperialXenoEgg }
+    .desc = { ent-ImperialXenoEgg.desc }
+ent-ImperialXenoFacehugger = лицехват
+    .desc = На конце хвоста у него какая-то трубка.
+ent-ImperialXenoFacehuggerSterile = { ent-ImperialXenoFacehugger }
+    .desc = { ent-ImperialXenoFacehugger.desc }
+ent-ImperialXenoAcidOverlay = кислота
+    .desc = Шипящая кислота.
+ent-ImperialXenoNeurotoxin = плевок нейротоксина
+    .desc = Липкий яд.
+ent-ImperialXenoRoyalParasite = королевский паразит
+    .desc = Введите его одному из взрослых детей, чтобы возвысить её до преторианца!
+ent-ImperialXenoBurstSpawner = { ent-ImperialXenoLarva }
+    .desc = { ent-ImperialXenoBase.desc }
+ent-ImperialXenoLarvaSpawner = спавнер личинки чужого
+    .desc = { ent-ImperialXenoBase.desc }
+ent-ImperialXenomorphInfestation = Нашествие чужих
+    .desc = Личинки ксеноморфов в вентиляции.
+
+## Способности
+
+ent-ActionXenoBase = способность чужого
+    .desc = { "" }
+ent-ActionXenoPlantWeeds = Посадить сорняки (50П)
+    .desc = Высаживает узел сорняков улья.
+ent-ActionXenoSecreteResin = Выделить смолу (55П)
+    .desc = Выделить прочную вязкую смолу: стена, мембрана или гнездо.
+ent-ActionXenoWhisper = Шёпот (10П)
+    .desc = Прошептать что-нибудь существу.
+ent-ActionXenoTransferPlasma = Передать плазму
+    .desc = Передать плазму другому чужому.
+ent-ActionXenoAcid = Разъедающая кислота (200П)
+    .desc = Облить предмет кислотой, разъедающей его со временем.
+ent-ActionXenoNeurotoxin = Плевок нейротоксином (50П)
+    .desc = Плюнуть нейротоксином, нанося много урона выносливости.
+ent-ActionXenoSneak = Скрытность
+    .desc = Слиться с тенями, чтобы выслеживать добычу.
+ent-ActionXenoLeap = Прыжок
+    .desc = Броситься на врага, сбивая его с ног.
+ent-ActionXenoTailSweep = Удар хвостом
+    .desc = Отбросить нападающих взмахом хвоста.
+ent-ActionXenoDevour = Пожрать
+    .desc = Сожрать существо, которое вы тащите.
+ent-ActionXenoRegurgitate = Отрыгнуть
+    .desc = Опустошить желудок.
+ent-ActionXenoLayEgg = Отложить яйцо (75П)
+    .desc = Отложить яйцо, из которого выйдет лицехват.
+ent-ActionXenoRoyalParasite = Королевский паразит (500П)
+    .desc = Создать паразита, возвышающего одного из детей до преторианца.
+ent-ActionXenoEvolveLarva = Эволюция
+    .desc = Эволюционировать в одну из каст.
+ent-ActionXenoEvolvePraetorian = Эволюция в преторианца (500П)
+    .desc = Стать преторианцем, если у улья нет королевской особи.
+ent-ActionXenoEvolveQueen = Эволюция в королеву (500П)
+    .desc = Вырастить яйцеклад и стать королевой. Королева может быть только одна.
+ent-ActionXenoHide = Спрятаться
+    .desc = Спрятаться под столами и предметами.

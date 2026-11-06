@@ -1,0 +1,506 @@
+# Улей ксеноморфов (code/game/objects/structures/aliens.dm, alien_nest.dm, facehugger.dm).
+
+# alien/run_atom_armor: ближний бой по смоле — brute ×0.25, огонь ×2. Пули и лазеры бьют в полную силу,
+# поэтому ослаблены только удары и порезы.
+- type: damageModifierSet
+  id: ImperialXenoResin
+  coefficients:
+    Blunt: 0.25
+    Slash: 0.25
+
+# ────────────── Сорняки ──────────────
+
+- type: entity
+  id: ImperialXenoWeedsBase
+  abstract: true
+  name: resin floor
+  description: A thick resin surface covers the floor.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Sprite
+    drawdepth: FloorObjects
+  - type: IconSmooth
+    key: XenoWeeds
+    base: weeds
+  - type: XenoWeeds
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: ImperialXenoResin
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Imperial/Xenomorph/attackblob.ogg
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialXenoWeeds1
+  parent: ImperialXenoWeedsBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenomorph/weeds1.rsi
+  - type: Icon
+    sprite: Imperial/Xenomorph/weeds1.rsi
+    state: weeds
+
+- type: entity
+  id: ImperialXenoWeeds2
+  parent: ImperialXenoWeedsBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenomorph/weeds2.rsi
+  - type: Icon
+    sprite: Imperial/Xenomorph/weeds2.rsi
+    state: weeds
+
+- type: entity
+  id: ImperialXenoWeeds3
+  parent: ImperialXenoWeedsBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenomorph/weeds3.rsi
+  - type: Icon
+    sprite: Imperial/Xenomorph/weeds3.rsi
+    state: weeds
+
+- type: entity
+  id: ImperialXenoWeedNode
+  parent: ImperialXenoWeedsBase
+  name: glowing resin
+  description: Blue bioluminescence shines from beneath the surface.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenomorph/weednode.rsi
+  - type: Icon
+    sprite: Imperial/Xenomorph/weednode.rsi
+    state: weeds
+  - type: XenoWeedNode
+  - type: PointLight
+    radius: 4
+    energy: 0.5
+    color: "#6496fa"
+  - type: Tag
+    tags: []
+
+# ────────────── Смола ──────────────
+
+- type: entity
+  id: ImperialXenoResinWall
+  parent: BaseStructureWall
+  name: resin wall
+  description: Thick resin solidified into a wall.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenomorph/resin_wall.rsi
+  - type: Icon
+    sprite: Imperial/Xenomorph/resin_wall.rsi
+    state: wall
+  - type: IconSmooth
+    key: XenoResin
+    base: wall
+  - type: Occluder
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: ImperialXenoResin
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Imperial/Xenomorph/attackblob.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Xenomorph/attackblob.ogg
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: ImperialXenoResinMembrane
+  parent: ImperialXenoResinWall
+  name: resin membrane
+  description: Resin just thin enough to let light pass through.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenomorph/resin_membrane.rsi
+  - type: Icon
+    sprite: Imperial/Xenomorph/resin_membrane.rsi
+    state: membrane
+  - type: IconSmooth
+    key: XenoResin
+    base: membrane
+  - type: Occluder
+    enabled: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 160
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Xenomorph/attackblob.ogg
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: ImperialXenoNest
+  name: alien nest
+  description: It's a gruesome pile of thick, sticky resin shaped like a nest.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Xenomorph/nest.rsi
+    drawdepth: FloorObjects
+  - type: Icon
+    sprite: Imperial/Xenomorph/nest.rsi
+    state: nest
+  - type: IconSmooth
+    key: XenoNest
+    base: nest
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 100
+        hard: false
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Strap
+    position: Down
+    rotation: -90
+  - type: XenoNest
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Imperial/Xenomorph/attackblob.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 120
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# ────────────── Яйцо и лицехват ──────────────
+
+- type: entity
+  id: ImperialXenoEgg
+  name: egg
+  description: A large mottled egg.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Xenomorph/egg.rsi
+    drawdepth: Objects
+    layers:
+    - state: growing
+      map: [ "base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.XenoVisuals.EggState:
+        base:
+          Growing: { state: growing }
+          Grown: { state: grown }
+          Opening: { state: opening }
+          Hatched: { state: hatched }
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        density: 100
+        hard: false
+        mask:
+        - ItemMask
+        layer:
+        - SlipLayer
+  - type: XenoEgg
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: ImperialXenoResin
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Imperial/Xenomorph/attackblob.ogg
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Xenomorph/attackblob.ogg
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: ImperialXenoEggGrown
+  parent: ImperialXenoEgg
+  suffix: Grown
+  components:
+  - type: XenoEgg
+    startGrown: true
+
+- type: entity
+  id: ImperialXenoFacehugger
+  parent: BaseItem
+  name: alien
+  description: It has some sort of a tube at the end of its tail.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenomorph/facehugger.rsi
+    layers:
+    - state: icon
+      map: [ "base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.XenoVisuals.FacehuggerState:
+        base:
+          Active: { state: icon }
+          Idle: { state: inactive }
+          Dead: { state: dead }
+          Impregnated: { state: impregnated }
+  - type: Item
+    size: Small
+  - type: Clothing
+    sprite: Imperial/Xenomorph/facehugger.rsi
+    slots:
+    - MASK
+  - type: XenoFacehugger
+  - type: XenoHoldable
+  - type: Blindfold
+  - type: IngestionBlocker
+  # muffles_speech: речь глушится в «ммммф», звуковые эмоции заблокированы.
+  - type: AddAccentClothing
+    accent: MumbleAccent
+  - type: EmoteBlocker
+    blocksCategories:
+    - Vocal
+  - type: ClothingSpeedModifier
+    walkModifier: 0.52
+    sprintModifier: 0.52
+  - type: Damageable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: ImperialXenoFacehuggerSterile
+  parent: ImperialXenoFacehugger
+  suffix: Sterile
+  components:
+  - type: XenoFacehugger
+    sterile: true
+
+# ────────────── Эффекты и предметы ──────────────
+
+- type: entity
+  id: ImperialXenoAcidOverlay
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenomorph/effects.rsi
+    state: acid
+    drawdepth: Effects
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: ImperialXenoNeurotoxin
+  parent: BaseBullet
+  name: neurotoxin spit
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenomorph/effects.rsi
+    layers:
+    - state: alienspit
+      shader: unshaded
+  - type: StaminaDamageOnCollide
+    damage: 65
+  - type: Projectile
+    damage:
+      types:
+        Poison: 0
+    soundHit:
+      path: /Audio/Imperial/Xenomorph/alien_spitacid.ogg
+
+- type: entity
+  id: ImperialXenoRoyalParasite
+  parent: BaseItem
+  name: royal parasite
+  description: Inject this into one of your grown children to promote her to a Praetorian!
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenomorph/actions.rsi
+    state: smallqueen
+  - type: Item
+    size: Small
+  - type: XenoRoyalParasite
+  - type: XenoHoldable
+
+# ────────────── Гост-роли ──────────────
+
+- type: entity
+  id: ImperialXenoBurstSpawner
+  name: alien larva
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GhostRole
+    name: ghost-role-information-xeno-larva-name
+    description: ghost-role-information-xeno-larva-desc
+    rules: ghost-role-information-rules-team-antagonist
+    raffle:
+      settings: short
+    mindRoles:
+    - MindRoleXenomorph
+  - type: GhostRoleMobSpawner
+    prototype: ImperialXenoLarva
+
+- type: entity
+  id: ImperialXenoLarvaSpawner
+  parent: MarkerBase
+  name: alien larva spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Imperial/Xenomorph/larva.rsi
+      state: larva0
+  - type: GhostRole
+    name: ghost-role-information-xeno-larva-name
+    description: ghost-role-information-xeno-larva-desc
+    rules: ghost-role-information-rules-team-antagonist
+    raffle:
+      settings: short
+    mindRoles:
+    - MindRoleXenomorph
+  - type: GhostRoleMobSpawner
+    prototype: ImperialXenoLarva
+
+# ────────────── Иконки заражения (видны только ксеноморфам) ──────────────
+
+- type: factionIcon
+  id: XenoInfected0
+  priority: 11
+  showTo:
+    components:
+    - Xenomorph
+  icon:
+    sprite: /Textures/Imperial/Xenomorph/infected_icons.rsi
+    state: infected0
+
+- type: factionIcon
+  id: XenoInfected1
+  parent: XenoInfected0
+  icon:
+    sprite: /Textures/Imperial/Xenomorph/infected_icons.rsi
+    state: infected1
+
+- type: factionIcon
+  id: XenoInfected2
+  parent: XenoInfected0
+  icon:
+    sprite: /Textures/Imperial/Xenomorph/infected_icons.rsi
+    state: infected2
+
+- type: factionIcon
+  id: XenoInfected3
+  parent: XenoInfected0
+  icon:
+    sprite: /Textures/Imperial/Xenomorph/infected_icons.rsi
+    state: infected3
+
+- type: factionIcon
+  id: XenoInfected4
+  parent: XenoInfected0
+  icon:
+    sprite: /Textures/Imperial/Xenomorph/infected_icons.rsi
+    state: infected4
+
+- type: factionIcon
+  id: XenoInfected5
+  parent: XenoInfected0
+  icon:
+    sprite: /Textures/Imperial/Xenomorph/infected_icons.rsi
+    state: infected5
+
+# ────────────── Роль и мидраунд ──────────────
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleXenomorph
+  name: Xenomorph Role
+  components:
+  - type: MindRole
+    antagPrototype: Xenomorph
+    exclusiveAntag: true
+    roleType: TeamAntagonist
+    subtype: role-subtype-xenomorph
+
+- type: antag
+  id: Xenomorph
+  name: roles-antag-xenomorph-name
+  antagonist: true
+  objective: roles-antag-xenomorph-objective
+
+- type: entity
+  id: ImperialXenomorphInfestation
+  parent: BaseGameRule
+  components:
+  - type: StationEvent
+    weight: 5
+    duration: 700
+    earliestStart: 30
+    minimumPlayers: 25
+    maxOccurrences: 1
+  - type: XenomorphInfestationRule

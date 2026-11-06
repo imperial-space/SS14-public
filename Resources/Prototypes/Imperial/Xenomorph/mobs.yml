@@ -1,0 +1,446 @@
+# Ксеноморфы SS13 (code/modules/mob/living/carbon/alien). Без ИИ: только игроки (гост-роли).
+# Смерть: crit при maxHealth урона, гибель — ещё через 100 (HEALTH_THRESHOLD_DEAD = -100).
+
+- type: entity
+  id: ImperialXenoBase
+  parent: [ BaseSimpleMob, MobCombat, MobBloodstream, MobFlammable, MobAtmosStandard ]
+  abstract: true
+  name: alien
+  description: A sanity-destroying otherthing.
+  components:
+  - type: Xenomorph
+  - type: XenoPlasma
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 1.5
+    useSound:
+      path: /Audio/Imperial/Xenomorph/airlock_alien_prying.ogg
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 185
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: MobThresholds
+    triggersAlerts: false
+    thresholds:
+      0: Alive
+      125: Critical
+      225: Dead
+  - type: Damageable
+    damageContainer: Biological
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcClaw
+    soundHit:
+      collection: AlienClaw
+    damage:
+      types:
+        Slash: 20
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: FluorosulfuricAcid
+        Quantity: 300
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4.5
+  - type: TypingIndicator
+    proto: alien
+  - type: Speech
+    speechVerb: LargeMob
+    speechSounds: XenoHiss
+  - type: ThermalSight
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - XenoHive
+  - type: ActiveRadio
+    channels:
+    - XenoHive
+  - type: Temperature
+    currentTemperature: 310.15
+  - type: TemperatureDamage
+    heatDamageThreshold: 360
+    coldDamageThreshold: 200
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.28
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CannotSuicide
+  - type: UserInterface
+    interfaces:
+      enum.XenoRadialUiKey.Resin:
+        type: XenoRadialBoundUserInterface
+      enum.XenoRadialUiKey.Evolve:
+        type: XenoRadialBoundUserInterface
+  - type: MindContainer
+
+# Взрослые: руки, хватка (larva/start_pulling — нельзя) и желудок (stomach/alien есть только у взрослых).
+- type: entity
+  id: ImperialXenoAdultBase
+  parent: ImperialXenoBase
+  abstract: true
+  components:
+  # itempicky: когтями можно держать только xeno_allowed_items.
+  - type: Hands
+    activeHandId: Right
+    hands:
+      Right:
+        location: Right
+        whitelist:
+          components:
+          - XenoHoldable
+      Left:
+        location: Left
+        whitelist:
+          components:
+          - XenoHoldable
+  - type: ComplexInteraction
+  - type: Puller
+    needsHands: false
+  - type: XenoStomach
+  - type: ContainerContainer
+    containers:
+      xeno_stomach: !type:Container
+
+# ────────────── Личинка ──────────────
+
+- type: entity
+  id: ImperialXenoLarva
+  parent: ImperialXenoBase
+  name: alien larva
+  components:
+  - type: VentCrawler
+  - type: Xenomorph
+    caste: Larva
+  - type: XenoLarva
+  - type: XenoPlasma
+    plasma: 100
+    maxPlasma: 100
+    plasmaRate: 2.5
+  - type: Sprite
+    sprite: Imperial/Xenomorph/larva.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: larva0
+  - type: GenericVisualizer
+    visuals:
+      enum.XenoVisuals.LarvaStage:
+        enum.DamageStateVisualLayers.Base:
+          0: { state: larva0 }
+          1: { state: larva1 }
+          2: { state: larva2 }
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: larva0
+      Critical:
+        Base: larva0_sleep
+      Dead:
+        Base: larva0_dead
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 50
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: MobThresholds
+    triggersAlerts: false
+    thresholds:
+      0: Alive
+      25: Critical
+      50: Dead
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      collection: AlienClaw
+    damage:
+      types:
+        Piercing: 2
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4.5
+  - type: ActionGrant
+    actions:
+    - ActionXenoWhisper
+    - ActionXenoTransferPlasma
+    - ActionXenoHide
+    - ActionXenoEvolveLarva
+
+# ────────────── Охотник ──────────────
+
+- type: entity
+  id: ImperialXenoHunter
+  parent: ImperialXenoAdultBase
+  name: alien hunter
+  components:
+  - type: VentCrawler
+  - type: Xenomorph
+    caste: Hunter
+  - type: XenoPlasma
+    plasma: 100
+    maxPlasma: 150
+    plasmaRate: 2.5
+  - type: XenoLeaper
+  - type: Sprite
+    sprite: Imperial/Xenomorph/alienh.rsi
+  - type: MobThresholds
+    triggersAlerts: false
+    thresholds:
+      0: Alive
+      125: Critical
+      225: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.7
+    baseSprintSpeed: 5.26
+  - type: ActionGrant
+    actions:
+    - ActionXenoPlantWeeds
+    - ActionXenoTransferPlasma
+    - ActionXenoWhisper
+    - ActionXenoLeap
+    - ActionXenoDevour
+    - ActionXenoRegurgitate
+
+# ────────────── Страж ──────────────
+
+- type: entity
+  id: ImperialXenoSentinel
+  parent: ImperialXenoAdultBase
+  name: alien sentinel
+  components:
+  - type: VentCrawler
+  - type: Xenomorph
+    caste: Sentinel
+  - type: XenoPlasma
+    plasma: 100
+    maxPlasma: 250
+    plasmaRate: 5
+  - type: Sprite
+    sprite: Imperial/Xenomorph/aliens.rsi
+  - type: MobThresholds
+    triggersAlerts: false
+    thresholds:
+      0: Alive
+      150: Critical
+      250: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.38
+    baseSprintSpeed: 4.17
+  - type: ActionGrant
+    actions:
+    - ActionXenoPlantWeeds
+    - ActionXenoTransferPlasma
+    - ActionXenoWhisper
+    - ActionXenoAcid
+    - ActionXenoNeurotoxin
+    - ActionXenoSneak
+    - ActionXenoDevour
+    - ActionXenoRegurgitate
+
+# ────────────── Трутень ──────────────
+
+- type: entity
+  id: ImperialXenoDrone
+  parent: ImperialXenoAdultBase
+  name: alien drone
+  components:
+  - type: VentCrawler
+  - type: Xenomorph
+    caste: Drone
+    evolvesTo: ImperialXenoPraetorian
+    evolveCost: 500
+  - type: XenoPlasma
+    plasma: 200
+    maxPlasma: 500
+    plasmaRate: 7.5
+  - type: Sprite
+    sprite: Imperial/Xenomorph/aliend.rsi
+  - type: MobThresholds
+    triggersAlerts: false
+    thresholds:
+      0: Alive
+      125: Critical
+      225: Dead
+  - type: ActionGrant
+    actions:
+    - ActionXenoPlantWeeds
+    - ActionXenoTransferPlasma
+    - ActionXenoWhisper
+    - ActionXenoSecreteResin
+    - ActionXenoAcid
+    - ActionXenoEvolvePraetorian
+    - ActionXenoDevour
+    - ActionXenoRegurgitate
+
+# ────────────── Преторианец ──────────────
+
+- type: entity
+  id: ImperialXenoPraetorian
+  parent: ImperialXenoAdultBase
+  name: alien praetorian
+  components:
+  - type: Xenomorph
+    caste: Praetorian
+    evolvesTo: ImperialXenoQueen
+    evolveCost: 500
+  - type: XenoPlasma
+    plasma: 200
+    maxPlasma: 500
+    plasmaRate: 7.5
+  - type: Sprite
+    sprite: Imperial/Xenomorph/praetorian.rsi
+    offset: 0,0.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 400
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    triggersAlerts: false
+    thresholds:
+      0: Alive
+      250: Critical
+      350: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.22
+    baseSprintSpeed: 3.7
+  - type: ActionGrant
+    actions:
+    - ActionXenoPlantWeeds
+    - ActionXenoTransferPlasma
+    - ActionXenoWhisper
+    - ActionXenoSecreteResin
+    - ActionXenoAcid
+    - ActionXenoNeurotoxin
+    - ActionXenoTailSweep
+    - ActionXenoEvolveQueen
+    - ActionXenoDevour
+    - ActionXenoRegurgitate
+
+# ────────────── Королева ──────────────
+
+- type: entity
+  id: ImperialXenoQueen
+  parent: ImperialXenoAdultBase
+  name: alien queen
+  components:
+  - type: Xenomorph
+    caste: Queen
+  - type: XenoPlasma
+    plasma: 200
+    maxPlasma: 500
+    plasmaRate: 10
+  - type: Sprite
+    sprite: Imperial/Xenomorph/queen.rsi
+    offset: 0,0.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 600
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    triggersAlerts: false
+    thresholds:
+      0: Alive
+      500: Critical
+      600: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.67
+    baseSprintSpeed: 2.38
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcClaw
+    soundHit:
+      collection: AlienClaw
+    damage:
+      types:
+        Slash: 50
+  - type: Speech
+    speechVerb: LargeMob
+    speechSounds: XenoHiss
+  - type: ActionGrant
+    actions:
+    - ActionXenoPlantWeeds
+    - ActionXenoTransferPlasma
+    - ActionXenoWhisper
+    - ActionXenoSecreteResin
+    - ActionXenoAcid
+    - ActionXenoNeurotoxin
+    - ActionXenoLayEgg
+    - ActionXenoRoyalParasite
+    - ActionXenoTailSweep
+    - ActionXenoDevour
+    - ActionXenoRegurgitate
+
+# ────────────── Голос и связь улья ──────────────
+
+- type: speechSounds
+  id: XenoHiss
+  saySound:
+    path: /Audio/Imperial/Xenomorph/lowHiss1.ogg
+  askSound:
+    path: /Audio/Imperial/Xenomorph/lowHiss2.ogg
+  exclaimSound:
+    path: /Audio/Imperial/Xenomorph/hiss4.ogg
+
+- type: radioChannel
+  id: XenoHive
+  name: chat-radio-xeno-hive
+  keycode: 'р'
+  frequency: 1235
+  color: "#a6197c"
+  longRange: true
