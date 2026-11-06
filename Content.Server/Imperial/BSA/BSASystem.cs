@@ -32,6 +32,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.BSA;
 
@@ -71,6 +72,12 @@ public sealed class BSASystem : EntitySystem
     private bool _unlocked;
 
     private readonly HashSet<EntityUid> _tileEntities = new();
+
+    private static readonly ProtoId<DamageTypePrototype> HeatDamageType = "Heat";
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> StructuralDamageType = "Structural";
+    private static readonly EntProtoId Smoke = "Smoke";
+    private static readonly EntProtoId ImperialBSABlockedMarker = "ImperialBSABlockedMarker";
 
     public override void Initialize()
     {
@@ -244,8 +251,8 @@ public sealed class BSASystem : EntitySystem
                 continue;
 
             var damage = HasComp<MobStateComponent>(uid)
-                ? new DamageSpecifier { DamageDict = { ["Heat"] = 300, ["Blunt"] = 300 } }
-                : new DamageSpecifier { DamageDict = { ["Structural"] = 5000, ["Blunt"] = 1000 } };
+                ? new DamageSpecifier { DamageDict = { [HeatDamageType] = 300, [BluntDamageType] = 300 } }
+                : new DamageSpecifier { DamageDict = { [StructuralDamageType] = 5000, [BluntDamageType] = 1000 } };
 
             _damageable.TryChangeDamage(uid, damage, ignoreResistances: true, origin: cannon);
         }
@@ -434,8 +441,8 @@ public sealed class BSASystem : EntitySystem
             return null;
 
         var middleCoords = Transform(middle).Coordinates;
-        var smoke = Spawn("Smoke", middleCoords);
-        _smoke.StartSmoke(smoke, new Solution(), 4f, 4);
+        var smoke = Spawn(Smoke, middleCoords);
+        _smoke.StartSmoke(smoke, new Solution(), (float) ent.Comp.DeployDuration.TotalSeconds, 4);
 
         var spawned = Spawn(west ? ent.Comp.CannonWest : ent.Comp.CannonEast, middleCoords);
         _xform.SetLocalRotation(spawned, Angle.Zero);
@@ -507,7 +514,7 @@ public sealed class BSASystem : EntitySystem
                     continue;
 
                 blocked = true;
-                Spawn("ImperialBSABlockedMarker", _map.GridTileToLocal(grid, gridComp, indices));
+                Spawn(ImperialBSABlockedMarker, _map.GridTileToLocal(grid, gridComp, indices));
             }
         }
 

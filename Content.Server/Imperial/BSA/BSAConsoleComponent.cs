@@ -73,4 +73,7 @@ public sealed partial class BSAConsoleComponent : Component
 
     [ViewVariables]
     public TimeSpan PendingUntil;
+
+    [DataField]
+    public TimeSpan DeployDuration = TimeSpan.FromSeconds(4f);
 }
