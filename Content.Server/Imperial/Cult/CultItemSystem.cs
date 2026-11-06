@@ -372,7 +372,7 @@ public sealed partial class CultItemSystem : EntitySystem
         var remaining = newEnd - _timing.CurTime;
         if (remaining < TimeSpan.Zero)
             remaining = TimeSpan.Zero;
-        Robust.Shared.Timing.Timer.Spawn(remaining, _emergency.DockEmergencyShuttle, source.Token);
+        _schedule.Schedule(remaining, _emergency.DockEmergencyShuttle, source.Token);
         RaiseLocalEvent(RoundEndSystemChangedEvent.Default);
         return true;
     }
