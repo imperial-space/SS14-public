@@ -66,8 +66,6 @@ public sealed class SlimePotionSystem : EntitySystem
     /// <summary>Подтверждение переноса сознания: повторное применение в течение этого времени.</summary>
     private static readonly TimeSpan ConfirmWindow = TimeSpan.FromSeconds(5);
 
-    private readonly Dictionary<EntityUid, (EntityUid Target, TimeSpan Until)> _transferConfirm = new();
-
     public override void Initialize()
     {
         base.Initialize();
@@ -403,14 +401,14 @@ public sealed class SlimePotionSystem : EntitySystem
 
         // tgui_alert «Вы уверены?»: подтверждение повторным применением.
         var now = _timing.CurTime;
-        if (!_transferConfirm.TryGetValue(user, out var confirm) || confirm.Target != target || now > confirm.Until)
+        if (!TryGetTransferConfirm(user, out var confirm) || confirm.Target != target || now > confirm.Until)
         {
-            _transferConfirm[user] = (target, now + ConfirmWindow);
+            EnsureComp<SlimePotionTransferConfirmComponent>(user).Value = (target, now + ConfirmWindow);
             Popup("slime-potion-transference-confirm", user, ("target", target));
             return true;
         }
 
-        _transferConfirm.Remove(user);
+        RemComp<SlimePotionTransferConfirmComponent>(user);
         Popup("slime-potion-transference-drink", user, ("target", target));
 
         var userName = Name(user);
@@ -646,4 +644,16 @@ public sealed class SlimePotionSystem : EntitySystem
     }
 
     #endregion
+
+    private bool TryGetTransferConfirm(EntityUid uid, out (EntityUid Target, TimeSpan Until) value)
+    {
+        if (TryComp<SlimePotionTransferConfirmComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            return true;
+        }
+
+        value = default!;
+        return false;
+    }
 }

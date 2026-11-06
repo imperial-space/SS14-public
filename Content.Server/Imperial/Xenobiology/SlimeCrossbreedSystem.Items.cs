@@ -464,7 +464,7 @@ public sealed partial class SlimeCrossbreedSystem
             // slime_reviver: оживляет мёртвого слайма ценой 10 здоровья.
             case "reviver":
                 {
-                    if (!TryComp<SlimeComponent>(target, out _))
+                    if (!HasComp<SlimeComponent>(target))
                     {
                         if (HasComp<MobStateComponent>(target))
                         {

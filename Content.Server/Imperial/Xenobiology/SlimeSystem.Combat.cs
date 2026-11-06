@@ -76,7 +76,7 @@ public sealed partial class SlimeSystem
             return;
         }
 
-        if (TryComp<BorgChassisComponent>(target, out _))
+        if (HasComp<BorgChassisComponent>(target))
         {
             ShockBorg(ent, target);
             args.Handled = true;

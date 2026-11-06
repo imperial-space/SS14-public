@@ -389,7 +389,7 @@ public sealed partial class SlimeCrossbreedSystem
         {
             foreach (var child in container.ContainedEntities)
             {
-                if (TryComp<StackComponent>(child, out var stack) && TryComp<Content.Shared.Materials.MaterialComponent>(child, out _)
+                if (TryComp<StackComponent>(child, out var stack) && HasComp<Content.Shared.Materials.MaterialComponent>(child)
                     && stack.Count < _stack.GetMaxCount(stack))
                     list.Add((child, stack));
                 CollectStacks(child, list, depth + 1);
@@ -494,18 +494,16 @@ public sealed partial class SlimeCrossbreedSystem
     /// <summary>remove_ally: исключение снимается вместе с компонентом, если его создал экстракт.</summary>
     private void Unignore(EntityUid mob, EntityUid holder)
     {
-        if (_pinkCreated.Remove(mob))
+        if (RemComp<SlimeCrossbreedPinkCreatedComponent>(mob))
             RemComp<Content.Shared.NPC.Components.FactionExceptionComponent>(mob);
     }
 
     private void PinkIgnore(EntityUid mob, EntityUid holder)
     {
         if (!HasComp<Content.Shared.NPC.Components.FactionExceptionComponent>(mob))
-            _pinkCreated.Add(mob);
+            EnsureComp<SlimeCrossbreedPinkCreatedComponent>(mob);
         _faction.IgnoreEntity(mob, holder);
     }
-
-    private readonly HashSet<EntityUid> _pinkCreated = new();
 
     /// <summary>stabilized/black: удушающий захват высасывает жизнь.</summary>
     private void TickStabilizedBlack(EntityUid holder)
