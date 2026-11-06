@@ -6,7 +6,6 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
-using Content.Shared.Imperial.Achievements;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Fishing;
@@ -20,9 +19,6 @@ public sealed partial class ImperialFishingSystem
 
     /// <summary>EXPERIENCE_MALUS_MULT.</summary>
     private const float ExperienceMalusMult = 0.08f;
-
-    private static readonly ProtoId<ImperialAchievementPrototype> ImperialAchievementLegendaryFisher = "ImperialAchievementLegendaryFisher";
-    private static readonly ProtoId<ImperialAchievementPrototype> ImperialAchievementFishScore = "ImperialAchievementFishScore";
 
     private static readonly TimeSpan AutoSpinDelay = TimeSpan.FromSeconds(0.2);
 

@@ -61,7 +61,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Prototypes;
-using Content.Shared.Imperial.Achievements;
 
 namespace Content.Server.Imperial.Uplink.Roles.ClownCar;
 
@@ -162,9 +161,6 @@ public sealed class ImperialClownCarSystem : SharedImperialClownCarSystem
     private static readonly AudioParams Loud = AudioParams.Default.WithVolume(2f);
 
     private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
-
-    private static readonly ProtoId<ImperialAchievementPrototype> ImperialAchievementRoundAndFull = "ImperialAchievementRoundAndFull";
-    private static readonly ProtoId<ImperialAchievementPrototype> ImperialAchievementBestDriver = "ImperialAchievementBestDriver";
 
     private const float SpawnFluidDuration = 10f;
 

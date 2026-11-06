@@ -28,6 +28,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server.Imperial.Manufacturing;
 
