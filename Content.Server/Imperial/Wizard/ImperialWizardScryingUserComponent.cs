@@ -27,4 +27,7 @@ public sealed partial class ImperialWizardScryingUserComponent : Component
 
     [ViewVariables]
     public EntityUid? Action;
+
+    [DataField]
+    public float UpdateRange = 1.5f;
 }

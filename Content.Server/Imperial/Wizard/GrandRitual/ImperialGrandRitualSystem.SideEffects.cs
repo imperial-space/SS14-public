@@ -19,6 +19,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Spawners;
+using Content.Shared.FixedPoint;
 
 namespace Content.Server.Imperial.Wizard.GrandRitual;
 
@@ -81,6 +82,33 @@ public sealed partial class ImperialGrandRitualSystem
         "TromboneInstrument", "HarmonicaInstrument", "BanjoInstrument",
     };
 
+    private static readonly EntProtoId Foam = "Foam";
+    private static readonly EntProtoId ImperialGrandRitualTeleportMark = "ImperialGrandRitualTeleportMark";
+    private static readonly EntProtoId Smoke2 = "Smoke";
+    private static readonly EntProtoId ImperialDelayedMobPortal = "ImperialDelayedMobPortal";
+    private static readonly EntProtoId EffectSparks = "EffectSparks";
+    private static readonly EntProtoId MobMonkey = "MobMonkey";
+
+    private static readonly TimeSpan TransmogrifyAreaStepDelay = TimeSpan.FromSeconds(0.5);
+    private static readonly TimeSpan SummonCrewmateDuration = TimeSpan.FromSeconds(9);
+    private static readonly TimeSpan SummonCrewmateDelay = TimeSpan.FromSeconds(9);
+
+    private const float SideEffectsRange = 5f;
+    private const float ScrambleTurfsRadius = 7f;
+    private const float CreateAnomaliesRadius = 4f;
+    private const float EmpEnergyConsumption = 50000f;
+    private const float TranslocateRange = 5f;
+    private static readonly FixedPoint2 SlipperyQuantity = 100;
+    private const float SlipperyDuration = 15f;
+    private const float SummonCrewmateRadius = 1.5f;
+    private static readonly FixedPoint2 SmokeQuantity = 10;
+    private const float SmokeDuration = 10f;
+    private const float GoreRadius = 2f;
+    private static readonly FixedPoint2 GoreQuantity = 40;
+    private const float FoodRainRadius = 3f;
+    private const float DelayedMobsRadius = 3f;
+    private const float OrchestraRadius = 2f;
+
     private static float Lerp(float a, float b, int potency)
     {
         return a + (b - a) * potency / FinaleCount;
@@ -115,7 +143,7 @@ public sealed partial class ImperialGrandRitualSystem
             ["orchestra"] = () => Orchestra(potency, location),
         };
 
-        if (!checkConditions || _lookup.GetEntitiesInRange<MobStateComponent>(location, 5f).Count >= 2)
+        if (!checkConditions || _lookup.GetEntitiesInRange<MobStateComponent>(location, SideEffectsRange).Count >= 2)
             effects["translocate"] = () => Translocate(location);
 
         if (!checkConditions || SummonCandidates(location).Count > 0)
@@ -128,14 +156,14 @@ public sealed partial class ImperialGrandRitualSystem
     private void ScrambleTurfs(int potency, EntityCoordinates location)
     {
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Wizard/timeparadox2.ogg"), location);
-        _spells.CreateSpacetime(location, 7f, TimeSpan.FromSeconds(Lerp(10, 15, potency)));
+        _spells.CreateSpacetime(location, ScrambleTurfsRadius, TimeSpan.FromSeconds(Lerp(10, 15, potency)));
     }
 
     /// <summary>transmogrify_area: местность вокруг превращается в случайное измерение.</summary>
     private void TransmogrifyArea(int potency, EntityCoordinates location)
     {
-        var range = (int) Math.Round(Lerp(2, 4, potency));
-        TransformAround(_random.Pick(Themes), location, range, TimeSpan.FromSeconds(0.5));
+        var range = (int)Math.Round(Lerp(2, 4, potency));
+        TransformAround(_random.Pick(Themes), location, range, TransmogrifyAreaStepDelay);
     }
 
     /// <summary>Превратить клетки кольцами от центра: каждое кольцо — через <paramref name="step"/>.</summary>
@@ -192,7 +220,7 @@ public sealed partial class ImperialGrandRitualSystem
             }
         }
 
-        var def = (ContentTileDefinition) _tileDefs[theme.Floor];
+        var def = (ContentTileDefinition)_tileDefs[theme.Floor];
         if (tileRef.Tile.TypeId != def.TileId)
             _map.SetTile(gridUid, grid, indices, new Tile(def.TileId));
     }
@@ -200,9 +228,9 @@ public sealed partial class ImperialGrandRitualSystem
     /// <summary>create_anomalies: 1–4 безопасных аномалии на 15–30 секунд, без ядер.</summary>
     private void CreateAnomalies(int potency, EntityCoordinates location)
     {
-        var toCreate = Math.Clamp((int) Math.Round(_random.Next(1, 5) + Lerp(-1, 1, potency)), 1, 4);
+        var toCreate = Math.Clamp((int)Math.Round(_random.Next(1, 5) + Lerp(-1, 1, potency)), 1, 4);
         var left = PermittedAnomalies.ToDictionary(a => a.Proto, a => a.Max);
-        var tiles = _spells.FreeTilesAround(location, 4f, true);
+        var tiles = _spells.FreeTilesAround(location, CreateAnomaliesRadius, true);
         while (toCreate > 0 && tiles.Count > 0 && left.Values.Any(v => v > 0))
         {
             var proto = _random.Pick(left.Where(p => p.Value > 0).Select(p => p.Key).ToList());
@@ -216,7 +244,7 @@ public sealed partial class ImperialGrandRitualSystem
     /// <summary>emp: empulse вокруг руны.</summary>
     private void Emp(int potency, EntityCoordinates location)
     {
-        _emp.EmpPulse(_transform.ToMapCoordinates(location), Lerp(3, 6, potency), 50000f, TimeSpan.FromSeconds(Lerp(10, 30, potency)));
+        _emp.EmpPulse(_transform.ToMapCoordinates(location), Lerp(3, 6, potency), EmpEnergyConsumption, TimeSpan.FromSeconds(Lerp(10, 30, potency)));
     }
 
     private List<EntityUid> SummonCandidates(EntityCoordinates location)
@@ -238,7 +266,7 @@ public sealed partial class ImperialGrandRitualSystem
     /// <summary>translocate: существа рядом меняются местами.</summary>
     private void Translocate(EntityCoordinates location)
     {
-        var mobs = _lookup.GetEntitiesInRange<MobStateComponent>(location, 5f).Select(m => m.Owner).ToList();
+        var mobs = _lookup.GetEntitiesInRange<MobStateComponent>(location, TranslocateRange).Select(m => m.Owner).ToList();
         if (mobs.Count < 2)
             return;
 
@@ -246,7 +274,7 @@ public sealed partial class ImperialGrandRitualSystem
         _random.Shuffle(positions);
         for (var i = 0; i < mobs.Count; i++)
         {
-            Spawn("WizardSmoke", _transform.GetMapCoordinates(mobs[i]));
+            Spawn(WizardSmoke, _transform.GetMapCoordinates(mobs[i]));
             _transform.SetMapCoordinates(mobs[i], positions[i]);
         }
     }
@@ -254,11 +282,11 @@ public sealed partial class ImperialGrandRitualSystem
     /// <summary>slippery: пена из космической смазки.</summary>
     private void Slippery(int potency, EntityCoordinates location)
     {
-        var foam = Spawn("Foam", _transform.ToMapCoordinates(location));
+        var foam = Spawn(Foam, _transform.ToMapCoordinates(location));
         var solution = new Solution();
-        solution.AddReagent(SpaceLube, 100);
+        solution.AddReagent(SpaceLube, SlipperyQuantity);
         var range = Lerp(2, 4, potency);
-        _smoke.StartSmoke(foam, solution, 15f, (int) Math.Round(range * range * 2));
+        _smoke.StartSmoke(foam, solution, SlipperyDuration, (int)Math.Round(range * range * 2));
     }
 
     /// <summary>summon_crewmate: кого-то с другого конца станции поднимает в воздух и переносит к руне.</summary>
@@ -270,18 +298,18 @@ public sealed partial class ImperialGrandRitualSystem
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Wizard/lightning_chargeup.ogg"), location);
         var victim = _random.Pick(candidates);
-        var tiles = _spells.FreeTilesAround(location, 1.5f, true);
+        var tiles = _spells.FreeTilesAround(location, SummonCrewmateRadius, true);
         var landing = tiles.Count > 0 ? _random.Pick(tiles) : location;
-        Spawn("ImperialGrandRitualTeleportMark", landing);
+        Spawn(ImperialGrandRitualTeleportMark, landing);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Wizard/repulse.ogg"), victim);
-        _stun.TryAddStunDuration(victim, TimeSpan.FromSeconds(9));
+        _stun.TryAddStunDuration(victim, SummonCrewmateDuration);
         _popup.PopupEntity(Loc.GetString("imperial-grand-ritual-summon-float"), victim, victim, PopupType.LargeCaution);
-        Schedule(TimeSpan.FromSeconds(9), () =>
+        Schedule(SummonCrewmateDelay, () =>
         {
             if (TerminatingOrDeleted(victim))
                 return;
 
-            Spawn("WizardSmoke", _transform.GetMapCoordinates(victim));
+            Spawn(WizardSmoke, _transform.GetMapCoordinates(victim));
             _transform.SetCoordinates(victim, landing);
             _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Wizard/teleport_app.ogg"), victim);
         });
@@ -291,21 +319,21 @@ public sealed partial class ImperialGrandRitualSystem
     private void Smoke(int potency, EntityCoordinates location)
     {
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Wizard/smoke.ogg"), location);
-        var smoke = Spawn("Smoke", _transform.ToMapCoordinates(location));
+        var smoke = Spawn(Smoke2, _transform.ToMapCoordinates(location));
         var solution = new Solution();
-        solution.AddReagent(_random.Pick(SmokeReagents), 10);
+        solution.AddReagent(_random.Pick(SmokeReagents), SmokeQuantity);
         var range = Lerp(2, 4, potency);
-        _smoke.StartSmoke(smoke, solution, 10f, (int) Math.Round(range * range * 2));
+        _smoke.StartSmoke(smoke, solution, SmokeDuration, (int)Math.Round(range * range * 2));
     }
 
     /// <summary>gore: кровавое месиво.</summary>
     private void Gore(EntityCoordinates location)
     {
-        var tiles = _spells.FreeTilesAround(location, 2f, true);
+        var tiles = _spells.FreeTilesAround(location, GoreRadius, true);
         for (var i = 0; i < 4 && tiles.Count > 0; i++)
         {
             var solution = new Solution();
-            solution.AddReagent(BloodReagent, 40);
+            solution.AddReagent(BloodReagent, GoreQuantity);
             _puddle.TrySpillAt(_random.Pick(tiles), solution, out _, sound: false);
         }
     }
@@ -313,12 +341,12 @@ public sealed partial class ImperialGrandRitualSystem
     /// <summary>create_food: с неба 10–30 секунд падает еда.</summary>
     private void FoodRain(int potency, EntityCoordinates location)
     {
-        var seconds = (int) Lerp(10, 30, potency);
+        var seconds = (int)Lerp(10, 30, potency);
         for (var s = 0; s < seconds; s++)
         {
             Schedule(TimeSpan.FromSeconds(s), () =>
             {
-                var tiles = _spells.FreeTilesAround(location, 3f, true);
+                var tiles = _spells.FreeTilesAround(location, FoodRainRadius, true);
                 var count = _random.Next(0, 4);
                 for (var i = 0; i < count && tiles.Count > 0; i++)
                 {
@@ -331,19 +359,19 @@ public sealed partial class ImperialGrandRitualSystem
     /// <summary>spawn_delayed_mobs: порталы, из которых через 10–15 секунд выходят существа.</summary>
     private void DelayedMobs(int potency, EntityCoordinates location)
     {
-        var count = (int) Lerp(1, 4, potency);
-        var tiles = _spells.FreeTilesAround(location, 3f, true);
+        var count = (int)Lerp(1, 4, potency);
+        var tiles = _spells.FreeTilesAround(location, DelayedMobsRadius, true);
         var mob = _random.Pick(PermittedMobs);
         for (var i = 0; i < count && tiles.Count > 0; i++)
         {
             var spot = _random.PickAndTake(tiles);
             var delay = TimeSpan.FromSeconds(_random.NextFloat(10f, 15f));
-            var portal = Spawn("ImperialDelayedMobPortal", spot);
-            EnsureComp<TimedDespawnComponent>(portal).Lifetime = (float) delay.TotalSeconds;
+            var portal = Spawn(ImperialDelayedMobPortal, spot);
+            EnsureComp<TimedDespawnComponent>(portal).Lifetime = (float)delay.TotalSeconds;
             Schedule(delay, () =>
             {
                 _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Wizard/teleport_app.ogg"), spot);
-                Spawn("EffectSparks", spot);
+                Spawn(EffectSparks, spot);
                 Spawn(mob, spot);
             });
         }
@@ -352,11 +380,11 @@ public sealed partial class ImperialGrandRitualSystem
     /// <summary>orchestra: обезьяны-официанты с инструментами.</summary>
     private void Orchestra(int potency, EntityCoordinates location)
     {
-        var count = (int) Lerp(1, 4, potency);
-        var tiles = _spells.FreeTilesAround(location, 2f, true);
+        var count = (int)Lerp(1, 4, potency);
+        var tiles = _spells.FreeTilesAround(location, OrchestraRadius, true);
         for (var i = 0; i < count && tiles.Count > 0; i++)
         {
-            var monkey = Spawn("MobMonkey", _random.PickAndTake(tiles));
+            var monkey = Spawn(MobMonkey, _random.PickAndTake(tiles));
             var instrument = Spawn(_random.Pick(Instruments), Transform(monkey).Coordinates);
             _hands.TryPickupAnyHand(monkey, instrument);
         }

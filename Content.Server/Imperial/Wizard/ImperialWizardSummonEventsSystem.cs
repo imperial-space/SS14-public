@@ -19,6 +19,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Wizard;
 
@@ -64,6 +65,13 @@ public sealed class ImperialWizardSummonEventsSystem : EntitySystem
         "imperial-wizard-event-madness-4",
     };
 
+    private static readonly EntProtoId WizardSmoke = "WizardSmoke";
+    private static readonly EntProtoId MobCarpMagic = "MobCarpMagic";
+
+    private static readonly TimeSpan UpperDelay = TimeSpan.FromMinutes(5);
+    private static readonly TimeSpan UpperDelay2 = TimeSpan.FromMinutes(1);
+    private static readonly TimeSpan InvincibilityDelay = TimeSpan.FromSeconds(40);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -80,12 +88,12 @@ public sealed class ImperialWizardSummonEventsSystem : EntitySystem
         if (!_wizardMode)
         {
             _wizardMode = true;
-            _upper = TimeSpan.FromMinutes(5);
+            _upper = UpperDelay;
             Reschedule();
             return;
         }
 
-        _upper -= TimeSpan.FromMinutes(1);
+        _upper -= UpperDelay2;
         if (_upper < Lower)
             _upper = Lower;
         Reschedule();
@@ -175,7 +183,7 @@ public sealed class ImperialWizardSummonEventsSystem : EntitySystem
     /// <summary>invincible: 40 секунд неуязвимости для всех.</summary>
     private void Invincibility()
     {
-        var end = _timing.CurTime + TimeSpan.FromSeconds(40);
+        var end = _timing.CurTime + InvincibilityDelay;
         foreach (var human in Humans())
         {
             _godmode.EnableGodmode(human);
@@ -243,7 +251,7 @@ public sealed class ImperialWizardSummonEventsSystem : EntitySystem
         _random.Shuffle(coords);
         for (var i = 0; i < humans.Count; i++)
         {
-            Spawn("WizardSmoke", _xform.GetMapCoordinates(humans[i]));
+            Spawn(WizardSmoke, _xform.GetMapCoordinates(humans[i]));
             _xform.SetMapCoordinates(humans[i], coords[i]);
         }
 
@@ -304,7 +312,7 @@ public sealed class ImperialWizardSummonEventsSystem : EntitySystem
 
             for (var j = 0; j < _random.Next(2, 5); j++)
             {
-                Spawn("MobCarpMagic", coords);
+                Spawn(MobCarpMagic, coords);
             }
         }
 

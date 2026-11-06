@@ -35,6 +35,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Wizard.Spells;
 
@@ -75,6 +76,33 @@ public sealed class ImperialWizardArtefactsSystem : EntitySystem
     {
         ("head", "ImperialClothingHeadHelmetRoman"), ("jumpsuit", "ImperialClothingUniformRoman"), ("shoes", "ImperialClothingShoesRoman"),
     };
+
+    private static readonly EntProtoId ImperialWarpTornado = "ImperialWarpTornado";
+    private static readonly EntProtoId EffectSparks = "EffectSparks";
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly EntProtoId ImperialTeleportFluxEffect = "ImperialTeleportFluxEffect";
+
+    private static readonly TimeSpan SendDelay = TimeSpan.FromSeconds(4);
+    private static readonly TimeSpan UpdateWhistlesDuration = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan ScepterDelay = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan ScepterRechargeDelay = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan DecayDelay = TimeSpan.FromSeconds(30);
+    private static readonly TimeSpan YeetShockDuration = TimeSpan.FromSeconds(1.5);
+    private static readonly TimeSpan YeetShockTime = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan ChargeDelay = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan SingularityHitDuration = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan TeleportRodDelay = TimeSpan.FromSeconds(6);
+
+    private const float WhistleChance = 0.5f;
+    private const float ScepterRange = 0.5f;
+    private const float VendorInitRange = 2.5f;
+    private const float VendorInitBaseThrowSpeed = 8f;
+    private const float RunicExplosionTotalIntensity = 30f;
+    private const float RunicExplosionSlope = 5f;
+    private const float RunicExplosionMaxTileIntensity = 8f;
+    private const float YeetShockBaseThrowSpeed = 12f;
+    private const float SingularityHitRange = 5f;
+    private const float SingularityHitBaseThrowSpeed = 6f;
 
     public override void Initialize()
     {
@@ -231,10 +259,10 @@ public sealed class ImperialWizardArtefactsSystem : EntitySystem
         }
 
         ent.Comp.Whistler = args.User;
-        ent.Comp.SendAt = _timing.CurTime + TimeSpan.FromSeconds(4);
+        ent.Comp.SendAt = _timing.CurTime + SendDelay;
         _audio.PlayPvs(WhistleSound, args.User);
-        var side = _random.Prob(0.5f) ? -7f : 7f;
-        var tornado = Spawn("ImperialWarpTornado", _transform.GetMapCoordinates(args.User).Offset(new Vector2(side, 0)));
+        var side = _random.Prob(WhistleChance) ? -7f : 7f;
+        var tornado = Spawn(ImperialWarpTornado, _transform.GetMapCoordinates(args.User).Offset(new Vector2(side, 0)));
         EnsureComp<Robust.Shared.Spawners.TimedDespawnComponent>(tornado).Lifetime = 6f;
         if (TryComp<Robust.Shared.Physics.Components.PhysicsComponent>(tornado, out var physics))
             EntityManager.System<Robust.Shared.Physics.Systems.SharedPhysicsSystem>().SetLinearVelocity(tornado, new Vector2(-side / 3.5f, 0), body: physics);
@@ -258,7 +286,7 @@ public sealed class ImperialWizardArtefactsSystem : EntitySystem
             if (areas.Count == 0 || !_teleport.TryGetDestination(_random.Pick(areas.Values.ToList()), out var destination))
                 continue;
 
-            _stun.TryUpdateStunDuration(user, TimeSpan.FromSeconds(1));
+            _stun.TryUpdateStunDuration(user, UpdateWhistlesDuration);
             _teleport.Teleport(user, destination, false);
         }
     }
@@ -278,7 +306,7 @@ public sealed class ImperialWizardArtefactsSystem : EntitySystem
         // Взорвать торгомат, если он на клетке.
         var vendor = args.Target is { } t && HasComp<ImperialRunicVendorComponent>(t)
             ? t
-            : _lookup.GetEntitiesInRange<ImperialRunicVendorComponent>(coords, 0.5f).Select(v => (EntityUid?) v.Owner).FirstOrDefault();
+            : _lookup.GetEntitiesInRange<ImperialRunicVendorComponent>(coords, ScepterRange).Select(v => (EntityUid?)v.Owner).FirstOrDefault();
         if (vendor is { } found)
         {
             args.Handled = true;
@@ -305,7 +333,7 @@ public sealed class ImperialWizardArtefactsSystem : EntitySystem
         }
 
         args.Handled = true;
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(1), new ImperialArtefactDoAfterEvent(), ent, used: ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, ScepterDelay, new ImperialArtefactDoAfterEvent(), ent, used: ent)
         {
             BreakOnMove = true,
             Hidden = false,
@@ -321,7 +349,7 @@ public sealed class ImperialWizardArtefactsSystem : EntitySystem
         args.Handled = true;
         ent.Comp.PendingTarget = null;
         _popup.PopupEntity(Loc.GetString("imperial-scepter-recharging"), args.User, args.User);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(5), new ImperialArtefactDoAfterEvent(), ent, used: ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, ScepterRechargeDelay, new ImperialArtefactDoAfterEvent(), ent, used: ent)
         {
             BreakOnMove = true,
         });
@@ -365,22 +393,22 @@ public sealed class ImperialWizardArtefactsSystem : EntitySystem
     /// <summary>runic_pulse(): отталкивание всех в радиусе 2 при появлении.</summary>
     private void OnVendorInit(Entity<ImperialRunicVendorComponent> ent, ref MapInitEvent args)
     {
-        ent.Comp.DecayAt = _timing.CurTime + TimeSpan.FromSeconds(30);
+        ent.Comp.DecayAt = _timing.CurTime + DecayDelay;
         var center = _transform.GetWorldPosition(ent);
-        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(ent).Coordinates, 2.5f))
+        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(ent).Coordinates, VendorInitRange))
         {
             var away = _transform.GetWorldPosition(mob) - center;
             if (away.LengthSquared() < 0.01f)
                 away = new Vector2(0, 1);
             _popup.PopupEntity(Loc.GetString("imperial-runic-vendor-repel"), mob, mob, Content.Shared.Popups.PopupType.MediumCaution);
-            _throwing.TryThrow(mob, away.Normalized() * 4f, 8f, recoil: false);
+            _throwing.TryThrow(mob, away.Normalized() * 4f, VendorInitBaseThrowSpeed, recoil: false);
         }
     }
 
     /// <summary>runic_explosion(): лёгкий взрыв радиусом 2.</summary>
     private void RunicExplosion(EntityUid vendor)
     {
-        _explosion.QueueExplosion(_transform.GetMapCoordinates(vendor), "Default", 30, 5, 8, vendor);
+        _explosion.QueueExplosion(_transform.GetMapCoordinates(vendor), "Default", RunicExplosionTotalIntensity, RunicExplosionSlope, RunicExplosionMaxTileIntensity, vendor);
         QueueDel(vendor);
     }
 
@@ -409,14 +437,14 @@ public sealed class ImperialWizardArtefactsSystem : EntitySystem
     /// <summary>yeet_shock(): оглушение, падение и полёт прочь.</summary>
     private void YeetShock(EntityUid hammer, EntityUid target)
     {
-        _stun.TryUpdateStunDuration(target, TimeSpan.FromSeconds(1.5));
-        _stun.TryKnockdown(target, TimeSpan.FromSeconds(10));
-        Spawn("EffectSparks", Transform(target).Coordinates);
+        _stun.TryUpdateStunDuration(target, YeetShockDuration);
+        _stun.TryKnockdown(target, YeetShockTime);
+        Spawn(EffectSparks, Transform(target).Coordinates);
         _popup.PopupEntity(Loc.GetString("imperial-mjolnir-shock", ("target", target)), target, Content.Shared.Popups.PopupType.LargeCaution);
         var away = _transform.GetWorldPosition(target) - _transform.GetWorldPosition(hammer);
         if (away.LengthSquared() < 0.01f)
             away = _random.NextVector2();
-        _throwing.TryThrow(target, away.Normalized() * 20f, 12f, recoil: false);
+        _throwing.TryThrow(target, away.Normalized() * 20f, YeetShockBaseThrowSpeed, recoil: false);
     }
 
     private void OnMjolnirHit(Entity<ImperialMjolnirComponent> ent, ref MeleeHitEvent args)
@@ -443,7 +471,7 @@ public sealed class ImperialWizardArtefactsSystem : EntitySystem
         if (!args.IsHit || !TryComp<WieldableComponent>(ent, out var wield) || !wield.Wielded || _timing.CurTime < ent.Comp.NextCharge)
             return;
 
-        ent.Comp.NextCharge = _timing.CurTime + TimeSpan.FromSeconds(10);
+        ent.Comp.NextCharge = _timing.CurTime + ChargeDelay;
         if (args.HitEntities.Count == 0)
             return;
 
@@ -451,22 +479,22 @@ public sealed class ImperialWizardArtefactsSystem : EntitySystem
         foreach (var hit in args.HitEntities)
         {
             if (HasComp<MobStateComponent>(hit))
-                _damage.TryChangeDamage(hit, new DamageSpecifier { DamageDict = { ["Blunt"] = 20 } }, origin: args.User);
+                _damage.TryChangeDamage(hit, new DamageSpecifier { DamageDict = { [BluntDamageType] = 20 } }, origin: args.User);
         }
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Wizard/marauder.ogg"), args.User);
         var pullTo = _transform.ToMapCoordinates(center).Position;
-        foreach (var thing in _lookup.GetEntitiesInRange(center, 5f, LookupFlags.Dynamic | LookupFlags.Sundries))
+        foreach (var thing in _lookup.GetEntitiesInRange(center, SingularityHitRange, LookupFlags.Dynamic | LookupFlags.Sundries))
         {
             if (thing == args.User || Transform(thing).Anchored)
                 continue;
 
             if (HasComp<MobStateComponent>(thing))
-                _stun.TryUpdateParalyzeDuration(thing, TimeSpan.FromSeconds(2));
+                _stun.TryUpdateParalyzeDuration(thing, SingularityHitDuration);
 
             var toward = pullTo - _transform.GetWorldPosition(thing);
             if (toward.LengthSquared() > 0.25f)
-                _throwing.TryThrow(thing, toward.Length() > 3f ? toward.Normalized() * 3f : toward, 6f, recoil: false);
+                _throwing.TryThrow(thing, toward.Length() > 3f ? toward.Normalized() * 3f : toward, SingularityHitBaseThrowSpeed, recoil: false);
         }
     }
 
@@ -504,10 +532,10 @@ public sealed class ImperialWizardArtefactsSystem : EntitySystem
         if (!gifted)
             target = target.Offset(_random.NextVector2(2f));
 
-        Spawn("ImperialTeleportFluxEffect", start);
+        Spawn(ImperialTeleportFluxEffect, start);
         _transform.SetCoordinates(user, target);
         _transform.AttachToGridOrMap(user);
-        Spawn("ImperialTeleportFluxEffect", Transform(user).Coordinates);
+        Spawn(ImperialTeleportFluxEffect, Transform(user).Coordinates);
         _audio.PlayPvs(TeleportSound, user, AudioParams.Default.WithPitchScale(0.5f));
 
         // teleport_flux: повторный прыжок в течение 6 секунд — 15 урона.
@@ -515,10 +543,10 @@ public sealed class ImperialWizardArtefactsSystem : EntitySystem
         if (_timing.CurTime < flux.End)
         {
             _popup.PopupEntity(Loc.GetString("imperial-telerod-too-soon"), user, user, Content.Shared.Popups.PopupType.MediumCaution);
-            _damage.TryChangeDamage(user, new DamageSpecifier { DamageDict = { ["Blunt"] = 15 } }, true);
+            _damage.TryChangeDamage(user, new DamageSpecifier { DamageDict = { [BluntDamageType] = 15 } }, true);
         }
 
-        flux.End = _timing.CurTime + TimeSpan.FromSeconds(6);
+        flux.End = _timing.CurTime + TeleportRodDelay;
     }
 
     #endregion

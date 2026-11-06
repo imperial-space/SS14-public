@@ -40,6 +40,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.FixedPoint;
 
 namespace Content.Server.Imperial.Wizard.Demons;
 
@@ -75,4 +76,10 @@ public sealed partial class ImperialSlaughterDemonComponent : Component
     /// <summary>consume_count.</summary>
     [ViewVariables]
     public int ConsumeCount;
+
+    [DataField]
+    public float SlamBaseThrowSpeed = 5f;
+
+    [DataField]
+    public FixedPoint2 DemonStateChangedQuantity = 50;
 }

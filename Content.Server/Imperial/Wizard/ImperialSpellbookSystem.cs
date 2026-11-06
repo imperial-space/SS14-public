@@ -462,17 +462,17 @@ public sealed class ImperialSpellbookSystem : EntitySystem
         foreach (var entry in Entries())
         {
             var name = Loc.GetString(entry.Name);
-            float? cooldown = entry.Cooldown;
+            var cooldown = entry.Cooldown;
             var garb = entry.RequiresGarb ?? false;
             if (entry.Spell is { } spellProto && _proto.TryIndex(spellProto, out var proto)
                 && proto.TryGetComponent<ImperialSpellComponent>(out var spellComp, EntityManager.ComponentFactory))
             {
                 garb = entry.RequiresGarb ?? (spellComp.Requirements & ImperialSpellRequirements.WizardGarb) != 0;
-                cooldown ??= (float) spellComp.Cooldown.TotalSeconds;
+                cooldown ??= (float)spellComp.Cooldown.TotalSeconds;
                 if (_spells.FindSpell(user, spellProto) is { } owned)
                 {
                     name = Name(owned);
-                    cooldown = (float) _spells.GetCooldown(owned.Comp).TotalSeconds;
+                    cooldown = (float)_spells.GetCooldown(owned.Comp).TotalSeconds;
                 }
             }
 

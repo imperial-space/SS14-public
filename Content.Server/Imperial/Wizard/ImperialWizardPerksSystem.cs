@@ -25,6 +25,7 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Wizard;
 
@@ -53,6 +54,11 @@ public sealed class ImperialWizardPerksSystem : EntitySystem
     private static readonly TimeSpan SlimeInterval = TimeSpan.FromSeconds(20);
     private static readonly EntProtoId[] Slimes = { "MobAdultSlimesBlueAngry", "MobAdultSlimesGreenAngry", "MobAdultSlimesYellowAngry" };
 
+    private static readonly EntProtoId ImperialWizardWorm = "ImperialWizardWorm";
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+    private static readonly EntProtoId ImperialRippedHeart = "ImperialRippedHeart";
+    private static readonly EntProtoId ImperialWizardStalker = "ImperialWizardStalker";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -77,7 +83,7 @@ public sealed class ImperialWizardPerksSystem : EntitySystem
             return;
 
         RemComp<ImperialWormbornComponent>(ent);
-        var worm = Spawn("ImperialWizardWorm", _transform.GetMapCoordinates(ent));
+        var worm = Spawn(ImperialWizardWorm, _transform.GetMapCoordinates(ent));
         if (_mind.TryGetMind(ent, out var mindId, out var mind))
             _mind.TransferTo(mindId, worm, mind: mind);
 
@@ -146,8 +152,8 @@ public sealed class ImperialWizardPerksSystem : EntitySystem
                 continue;
 
             EnsureComp<ImperialHeartRippedComponent>(target);
-            _damage.TryChangeDamage(target, new DamageSpecifier { DamageDict = { ["Slash"] = 20 } }, true, origin: args.User);
-            var heart = Spawn("ImperialRippedHeart", Transform(target).Coordinates);
+            _damage.TryChangeDamage(target, new DamageSpecifier { DamageDict = { [SlashDamageType] = 20 } }, true, origin: args.User);
+            var heart = Spawn(ImperialRippedHeart, Transform(target).Coordinates);
             _meta.SetEntityName(heart, Loc.GetString("imperial-perk-heart-name", ("name", Name(target))));
             _hands.TryPickupAnyHand(args.User, heart);
             _popup.PopupEntity(Loc.GetString("imperial-perk-heart-ripped", ("user", args.User), ("target", target)), target, PopupType.LargeCaution);
@@ -167,7 +173,7 @@ public sealed class ImperialWizardPerksSystem : EntitySystem
         if (TryComp<DamageableComponent>(user, out var damageable))
             _damage.SetAllDamage((user, damageable), 0);
 
-        if (_random.Prob(0.5f) && eater.Resistance < 0.5f)
+        if (_random.Prob(ent.Comp.HeartEatChance) && eater.Resistance < 0.5f)
         {
             eater.Resistance += 0.1f;
             _popup.PopupEntity(Loc.GetString("imperial-perk-heart-resist"), user, user, PopupType.Large);
@@ -273,7 +279,7 @@ public sealed class ImperialWizardPerksSystem : EntitySystem
             }
 
             if (TryComp<HungerComponent>(uid, out var hunger))
-                _hunger.ModifyHunger(uid, -50, hunger);
+                _hunger.ModifyHunger(uid, comp.UpdateAmount, hunger);
         }
 
         var transparent = EntityQueryEnumerator<ImperialTransparentComponent>();
@@ -285,7 +291,7 @@ public sealed class ImperialWizardPerksSystem : EntitySystem
             // make_stalker(): проклятие появляется, как только маг покидает логово.
             comp.StalkerSent = true;
             var offset = _random.NextVector2(12f, 16f);
-            var stalker = Spawn("ImperialWizardStalker", _transform.GetMapCoordinates(uid).Offset(offset));
+            var stalker = Spawn(ImperialWizardStalker, _transform.GetMapCoordinates(uid).Offset(offset));
             EnsureComp<ImperialStalkerComponent>(stalker).Target = uid;
         }
 
@@ -310,19 +316,19 @@ public sealed class ImperialWizardPerksSystem : EntitySystem
             if (now < stalker.NextTick || !_mobs.IsAlive(stalker.Target))
                 continue;
 
-            stalker.NextTick = now + TimeSpan.FromSeconds(2);
+            stalker.NextTick = now + stalker.TickDelay;
             var dir = targetPos.Position - myPos.Position;
             if (dir.Length() <= 1.5f)
             {
                 // take_bodypart_damage(rand(20, 45))
                 _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Wizard/demon_attack1.ogg"), stalker.Target);
                 _popup.PopupEntity(Loc.GetString("imperial-perk-stalker-got-you"), stalker.Target, stalker.Target, PopupType.LargeCaution);
-                _damage.TryChangeDamage(stalker.Target, new DamageSpecifier { DamageDict = { ["Slash"] = _random.Next(20, 46) } }, true);
+                _damage.TryChangeDamage(stalker.Target, new DamageSpecifier { DamageDict = { [SlashDamageType] = _random.Next(20, 46) } }, true);
                 continue;
             }
 
             // SPT_PROB(30, 2 с): шаг к жертве.
-            if (_random.Prob(0.51f))
+            if (_random.Prob(stalker.UpdateChance))
                 _transform.SetWorldPosition(uid, myPos.Position + dir.Normalized() * Math.Min(1f, dir.Length()));
         }
 
@@ -332,9 +338,9 @@ public sealed class ImperialWizardPerksSystem : EntitySystem
             if (now < magnet.NextPull || !Away(uid) || _mobs.IsDead(uid))
                 continue;
 
-            magnet.NextPull = now + TimeSpan.FromSeconds(0.5);
+            magnet.NextPull = now + magnet.PullDelay;
             var center = _transform.GetWorldPosition(xform);
-            foreach (var thing in _lookup.GetEntitiesInRange(xform.Coordinates, 5f, LookupFlags.Dynamic | LookupFlags.Sundries))
+            foreach (var thing in _lookup.GetEntitiesInRange(xform.Coordinates, magnet.UpdateRange, LookupFlags.Dynamic | LookupFlags.Sundries))
             {
                 if (thing == uid || Transform(thing).Anchored || _containers.IsEntityInContainer(thing))
                     continue;

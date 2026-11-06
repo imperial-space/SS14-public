@@ -72,4 +72,7 @@ public sealed partial class ImperialSpellComponent : Component
     /// <summary>initial(name): имя без приставки уровня.</summary>
     [DataField, AutoNetworkedField]
     public string? BaseName;
+
+    [DataField]
+    public TimeSpan GetCooldownDelay = TimeSpan.FromSeconds(0.25);
 }

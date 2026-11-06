@@ -108,7 +108,7 @@ public sealed class ImperialSpellbookWindow : DefaultWindow
             return;
 
         _points.RemoveAllChildren();
-        var bar = Tgui.ProgressBar(Math.Clamp(state.Points / (float) state.MaxPoints, 0f, 1f), Theme.Primary,
+        var bar = Tgui.ProgressBar(Math.Clamp(state.Points / (float)state.MaxPoints, 0f, 1f), Theme.Primary,
             Loc.GetString("imperial-spellbook-points", ("points", state.Points)));
         bar.HorizontalExpand = true;
         _points.AddChild(bar);
@@ -129,8 +129,8 @@ public sealed class ImperialSpellbookWindow : DefaultWindow
             return;
         }
 
-        var left = (Page) (_tab - 1);
-        var right = (Page) _tab;
+        var left = (Page)(_tab - 1);
+        var right = (Page)_tab;
 
         var prev = WizardIcons.Button(Loc.GetString("imperial-spellbook-prev"), "arrow-left", () =>
         {
@@ -250,7 +250,7 @@ public sealed class ImperialSpellbookWindow : DefaultWindow
         {
             var button = WizardIcons.Button(Loc.GetString(text), icon, page == null ? null : () =>
             {
-                _tab = (int) page.Value % 2 == 0 ? (int) page.Value + 1 : (int) page.Value;
+                _tab = (int)page.Value % 2 == 0 ? (int)page.Value + 1 : (int)page.Value;
                 Rebuild();
             }, disabled: page == null, fluid: true, theme: Theme);
             button.MinHeight = 30;
@@ -336,7 +336,7 @@ public sealed class ImperialSpellbookWindow : DefaultWindow
                 disabled: state.Points < entry.Cost);
             buy.MinWidth = 105;
 
-            Control refund = entry.Refundable
+            var refund = entry.Refundable
                 ? WizardIcons.Button(Loc.GetString("imperial-spellbook-refund"), "arrow-left", () => OnRefund?.Invoke(id), theme: Theme)
                 : Tgui.NoticeBox(Loc.GetString("imperial-spellbook-no-refund-notice"), theme: Theme);
             refund.MinWidth = 105;

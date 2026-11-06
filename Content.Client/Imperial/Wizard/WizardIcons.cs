@@ -44,7 +44,7 @@ public static class WizardIcons
         var button = Tgui.Button(text, onPressed, color, disabled, fluid, tooltip: tooltip, theme: theme);
         var glyph = Icon(icon);
         glyph.Margin = new Thickness(4, 0, 0, 0);
-        var content = (BoxContainer) ((PanelContainer) button.Children.First()).Children.First();
+        var content = (BoxContainer)((PanelContainer)button.Children.First()).Children.First();
         content.AddChild(glyph);
         glyph.SetPositionFirst();
         if (string.IsNullOrEmpty(text))

@@ -154,7 +154,7 @@ public sealed class ImperialWizardDenSystem : EntitySystem
         while (query.MoveNext(out var uid, out var user, out var xform))
         {
             if (TerminatingOrDeleted(user.Console) || TerminatingOrDeleted(user.Eye)
-                || !_transform.InRange(xform.Coordinates, Transform(user.Console).Coordinates, 1.5f))
+                || !_transform.InRange(xform.Coordinates, Transform(user.Console).Coordinates, user.UpdateRange))
                 RemCompDeferred<ImperialWizardScryingUserComponent>(uid);
         }
     }

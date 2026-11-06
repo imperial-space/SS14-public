@@ -323,7 +323,7 @@ public sealed class ImperialSpellSystem : EntitySystem
         if (spell.CooldownReductionPerRank < TimeSpan.Zero)
             return reduced;
 
-        return reduced < TimeSpan.FromSeconds(0.25) ? TimeSpan.FromSeconds(0.25) : reduced;
+        return reduced < spell.GetCooldownDelay ? spell.GetCooldownDelay : reduced;
     }
 
     private void UpdateCooldown(Entity<ImperialSpellComponent> spell)

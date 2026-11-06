@@ -20,6 +20,8 @@ public sealed partial class ImperialWizardSpellsSystem
 
     private const float TapHealth = 20f;
 
+    private static readonly TimeSpan SummonItemSharedDelay = TimeSpan.FromSeconds(5);
+
     private void InitializeAssistance()
     {
         SubscribeLocalEvent<ImperialSummonItemSpellComponent, ImperialSpellEffectEvent>(OnSummonItem);
@@ -59,7 +61,7 @@ public sealed partial class ImperialWizardSpellsSystem
         {
             args.Handled = true;
             _popup.PopupEntity(Loc.GetString("imperial-spell-summon-unmarking", ("item", marked)), caster, caster);
-            _doAfter.TryStartDoAfter(new Content.Shared.DoAfter.DoAfterArgs(EntityManager, caster, TimeSpan.FromSeconds(5),
+            _doAfter.TryStartDoAfter(new Content.Shared.DoAfter.DoAfterArgs(EntityManager, caster, SummonItemSharedDelay,
                 new ImperialSpellChannelDoAfterEvent(), ent, marked)
             {
                 BreakOnMove = true,

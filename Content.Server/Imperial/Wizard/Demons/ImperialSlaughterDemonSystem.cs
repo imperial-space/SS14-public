@@ -40,6 +40,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Wizard.Demons;
 
@@ -85,6 +86,10 @@ public sealed class ImperialSlaughterDemonSystem : EntitySystem
 
     /// <summary>Когда мы сами наносим урон в крови — его нельзя отменять.</summary>
     private bool _selfDamage;
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+
+    private static readonly TimeSpan ExitCrawlDelay = TimeSpan.FromSeconds(6);
 
     public override void Initialize()
     {
@@ -165,9 +170,9 @@ public sealed class ImperialSlaughterDemonSystem : EntitySystem
         if (comingWith is { } pulled && TryComp<PullableComponent>(pulled, out var pullable))
             _pulling.TryStopPull(pulled, pullable);
 
-        _visibility.SetLayer(ent.Owner, (ushort) VisibilityFlags.Ghost);
+        _visibility.SetLayer(ent.Owner, (ushort)VisibilityFlags.Ghost);
         if (TryComp<EyeComponent>(ent, out var eye))
-            _eye.SetVisibilityMask(ent, eye.VisibilityMask | (int) VisibilityFlags.Ghost, eye);
+            _eye.SetVisibilityMask(ent, eye.VisibilityMask | (int)VisibilityFlags.Ghost, eye);
 
         if (TryComp<FixturesComponent>(ent, out var fixtures))
         {
@@ -321,9 +326,9 @@ public sealed class ImperialSlaughterDemonSystem : EntitySystem
     /// <summary>exit_jaunt() + exit_blood_effect().</summary>
     public void ExitCrawl(Entity<ImperialBloodCrawlComponent> ent, ImperialBloodCrawlingComponent crawling)
     {
-        _visibility.SetLayer(ent.Owner, (ushort) VisibilityFlags.Normal);
+        _visibility.SetLayer(ent.Owner, (ushort)VisibilityFlags.Normal);
         if (TryComp<EyeComponent>(ent, out var eye))
-            _eye.SetVisibilityMask(ent, eye.VisibilityMask & ~(int) VisibilityFlags.Ghost, eye);
+            _eye.SetVisibilityMask(ent, eye.VisibilityMask & ~(int)VisibilityFlags.Ghost, eye);
 
         if (TryComp<FixturesComponent>(ent, out var fixtures))
         {
@@ -347,7 +352,7 @@ public sealed class ImperialSlaughterDemonSystem : EntitySystem
 
         // on_crawl(): рывок, только если мы уже в мире смертных.
         var boost = EnsureComp<ImperialDemonSpeedBoostComponent>(ent);
-        boost.Until = _timing.CurTime + TimeSpan.FromSeconds(6);
+        boost.Until = _timing.CurTime + ExitCrawlDelay;
         _speed.RefreshMovementSpeedModifiers(ent);
     }
 
@@ -407,10 +412,10 @@ public sealed class ImperialSlaughterDemonSystem : EntitySystem
         }
 
         args.Handled = true;
-        _damage.TryChangeDamage(target, new DamageSpecifier { DamageDict = { ["Blunt"] = 20 } }, origin: ent);
+        _damage.TryChangeDamage(target, new DamageSpecifier { DamageDict = { [BluntDamageType] = 20 } }, origin: ent);
         _popup.PopupEntity(Loc.GetString("imperial-demon-slam", ("user", ent.Owner), ("target", target)), target, PopupType.LargeCaution);
         var dir = delta.LengthSquared() > 0.01f ? delta.Normalized() : _transform.GetWorldRotation(ent).ToWorldVec();
-        _throwing.TryThrow(target, dir * 10f, 5f, ent);
+        _throwing.TryThrow(target, dir * 10f, ent.Comp.SlamBaseThrowSpeed, ent);
     }
 
     /// <summary>mind_initialize(): цели и приветствие при вселении игрока.</summary>
@@ -459,7 +464,7 @@ public sealed class ImperialSlaughterDemonSystem : EntitySystem
         if (!ent.Comp.Laughter)
         {
             var blood = new Solution();
-            blood.AddReagent(BloodReagent, 50);
+            blood.AddReagent(BloodReagent, ent.Comp.DemonStateChangedQuantity);
             _puddles.TrySpillAt(Transform(ent).Coordinates, blood, out _, false);
         }
 
@@ -558,7 +563,7 @@ public sealed class ImperialSlaughterDemonSystem : EntitySystem
         if (TryComp<ImperialBloodCrawlComponent>(demon, out var crawl))
         {
             var blood = new Solution();
-            blood.AddReagent(BloodReagent, 20);
+            blood.AddReagent(BloodReagent, ent.Comp.BottleUsedQuantity);
             _puddles.TrySpillAt(Transform(user).Coordinates, blood, out _, false);
             EnterCrawl((demon, crawl), null);
         }
@@ -584,7 +589,7 @@ public sealed class ImperialSlaughterDemonSystem : EntitySystem
 
             crawl.NextDamage = now + JauntDamageInterval;
             _selfDamage = true;
-            _damage.TryChangeDamage(uid, new DamageSpecifier { DamageDict = { ["Blunt"] = 10 } }, true);
+            _damage.TryChangeDamage(uid, new DamageSpecifier { DamageDict = { [BluntDamageType] = 10 } }, true);
             _selfDamage = false;
             _popup.PopupEntity(Loc.GetString("imperial-bloodcrawl-dissolving"), uid, uid, PopupType.MediumCaution);
         }

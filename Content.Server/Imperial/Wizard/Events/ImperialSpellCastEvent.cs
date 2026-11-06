@@ -2,7 +2,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Imperial.Wizard;
+namespace Content.Server.Imperial.Wizard;
 
 /// <summary>Заклинание прочитано (COMSIG_MOB_CAST_SPELL): поднимается на заклинателе.</summary>
 [ByRefEvent]

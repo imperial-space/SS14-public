@@ -33,6 +33,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.FixedPoint;
 
 namespace Content.Server.Imperial.Wizard.Spells;
 
@@ -60,6 +62,23 @@ public sealed partial class ImperialWizardSpellsSystem
 
     /// <summary>Временные союзники призванных (фракция и когда её снять).</summary>
     private readonly List<(EntityUid Mob, string Faction, TimeSpan End)> _temporaryAllies = new();
+
+    private static readonly EntProtoId BulletLaser = "BulletLaser";
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+
+    private static readonly TimeSpan SmiteFlashDurationDelay = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan FleshToStoneDuration = TimeSpan.FromSeconds(4);
+    private static readonly TimeSpan BarnyardFlashDurationDelay = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan TieShoesTime = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan TripDelay = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan TeslaChargedTime = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan SplattercastingDelay = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan DrainDelay = TimeSpan.FromSeconds(10);
+
+    private const float SmiteRange = 7f;
+    private const float UpdateLacesChance = 0.3f;
+    private static readonly FixedPoint2 SanguineHitAmount = -50;
+    private static readonly FixedPoint2 SanguineHitAmount2 = 50;
 
     private void InitializeOffensive()
     {
@@ -98,13 +117,13 @@ public sealed partial class ImperialWizardSpellsSystem
         if (_antimagic.CanBlockMagic(args.Target))
         {
             _popup.PopupEntity(Loc.GetString("imperial-spell-smite-feedback", ("target", args.Target)), args.Caster, args.Caster, PopupType.LargeCaution);
-            _damage.TryChangeDamage(args.Caster, new DamageSpecifier { DamageDict = { ["Blunt"] = 25 } }, origin: args.Caster);
-            _flash.FlashArea(args.Caster, args.Caster, 7, TimeSpan.FromSeconds(5));
+            _damage.TryChangeDamage(args.Caster, new DamageSpecifier { DamageDict = { [BluntDamageType] = 25 } }, origin: args.Caster);
+            _flash.FlashArea(args.Caster, args.Caster, SmiteRange, SmiteFlashDurationDelay);
             return;
         }
 
-        Spawn("EffectSparks", Transform(args.Target).Coordinates);
-        _flash.FlashArea(args.Target, args.Caster, 7, TimeSpan.FromSeconds(5));
+        Spawn(EffectSparks, Transform(args.Target).Coordinates);
+        _flash.FlashArea(args.Target, args.Caster, SmiteRange, SmiteFlashDurationDelay);
         Log.Info($"{ToPrettyString(args.Caster)} разорвал {ToPrettyString(args.Target)} заклинанием «Кара»");
         _gibbing.Gib(args.Target, user: args.Caster);
     }
@@ -120,7 +139,7 @@ public sealed partial class ImperialWizardSpellsSystem
             return;
         }
 
-        _stun.TryUpdateStunDuration(args.Target, TimeSpan.FromSeconds(4));
+        _stun.TryUpdateStunDuration(args.Target, FleshToStoneDuration);
         if (HasComp<TurnedToStoneComponent>(args.Target))
             return;
 
@@ -196,7 +215,7 @@ public sealed partial class ImperialWizardSpellsSystem
         }
 
         _popup.PopupEntity(Loc.GetString("imperial-spell-barnyard-victim", ("animal", Name(mask))), target, target, PopupType.LargeCaution);
-        _flash.Flash(target, args.Caster, null, TimeSpan.FromSeconds(2), 0.8f, false);
+        _flash.Flash(target, args.Caster, null, BarnyardFlashDurationDelay, 0.8f, false);
     }
 
     /// <summary>untie_shoes: развязать, затем завязать узлом; с уровнем — шнурки на любой обуви и призыв обуви.</summary>
@@ -212,7 +231,7 @@ public sealed partial class ImperialWizardSpellsSystem
         if (!HasComp<HumanoidProfileComponent>(target))
         {
             // Животным — магические путы: замедление на 3 × уровень секунд.
-            _stun.TryKnockdown(target, TimeSpan.FromSeconds(1));
+            _stun.TryKnockdown(target, TieShoesTime);
             _popup.PopupEntity(Loc.GetString("imperial-spell-shoes-tied-animal", ("target", target)), args.Caster, args.Caster);
             return;
         }
@@ -277,8 +296,8 @@ public sealed partial class ImperialWizardSpellsSystem
             if (!TryComp<PhysicsComponent>(wearer, out var physics) || physics.LinearVelocity.LengthSquared() < 1f)
                 continue;
 
-            laces.NextTrip = now + TimeSpan.FromSeconds(2);
-            if (laces.State == ImperialLaceState.Untied && !_random.Prob(0.3f))
+            laces.NextTrip = now + TripDelay;
+            if (laces.State == ImperialLaceState.Untied && !_random.Prob(UpdateLacesChance))
                 continue;
 
             _stun.TryKnockdown(wearer, TimeSpan.FromSeconds(laces.State == ImperialLaceState.Knotted ? 3 : 1));
@@ -315,7 +334,7 @@ public sealed partial class ImperialWizardSpellsSystem
     private void OnHulkDamage(Entity<ImperialWizardMutatedComponent> ent, ref Content.Shared.Weapons.Melee.Events.GetMeleeDamageEvent args)
     {
         // hulk: удары 15 грубого урона.
-        args.Damage += new DamageSpecifier { DamageDict = { ["Blunt"] = 10 } };
+        args.Damage += new DamageSpecifier { DamageDict = { [BluntDamageType] = 10 } };
     }
 
     /// <summary>laser_eyes: лазер из глаз в точку клика.</summary>
@@ -331,8 +350,8 @@ public sealed partial class ImperialWizardSpellsSystem
         if (from.MapId != to.MapId || direction.LengthSquared() < 0.01f)
             return;
 
-        var laser = Spawn("BulletLaser", from);
-        _guns.ShootProjectile(laser, direction.Normalized(), Vector2.Zero, ent, ent, 25f);
+        var laser = Spawn(BulletLaser, from);
+        _guns.ShootProjectile(laser, direction.Normalized(), Vector2.Zero, ent, ent, ent.Comp.LaserEyesSpeed);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Weapons/Guns/Gunshots/laser.ogg"), ent);
     }
 
@@ -396,7 +415,7 @@ public sealed partial class ImperialWizardSpellsSystem
         }
 
         _popup.PopupEntity(Loc.GetString("imperial-spell-rod-hit", ("target", target)), target, PopupType.LargeCaution);
-        _damage.TryChangeDamage(target, new DamageSpecifier { DamageDict = { ["Blunt"] = ent.Comp.Damage } }, true, origin: ent.Comp.Wizard);
+        _damage.TryChangeDamage(target, new DamageSpecifier { DamageDict = { [BluntDamageType] = ent.Comp.Damage } }, true, origin: ent.Comp.Wizard);
     }
 
     private void UpdateRods()
@@ -443,7 +462,7 @@ public sealed partial class ImperialWizardSpellsSystem
             var tile = _random.PickAndTake(tiles);
             var summoned = Spawn(_random.Pick(ent.Comp.Summons), tile);
             if (ent.Comp.Lifespan > TimeSpan.Zero)
-                EnsureComp<Robust.Shared.Spawners.TimedDespawnComponent>(summoned).Lifetime = (float) ent.Comp.Lifespan.TotalSeconds;
+                EnsureComp<Robust.Shared.Spawners.TimedDespawnComponent>(summoned).Lifetime = (float)ent.Comp.Lifespan.TotalSeconds;
 
             if (ent.Comp.Faction is { } faction)
             {
@@ -473,19 +492,19 @@ public sealed partial class ImperialWizardSpellsSystem
         var maps = EntityManager.System<SharedMapSystem>();
         var turf = EntityManager.System<Content.Shared.Maps.TurfSystem>();
         var origin = maps.LocalToTile(gridUid, grid, center);
-        var r = (int) radius;
+        var r = (int)radius;
         for (var x = -r; x <= r; x++)
-        for (var y = -r; y <= r; y++)
-        {
-            var pos = origin + new Vector2i(x, y);
-            if (!maps.TryGetTileRef(gridUid, grid, pos, out var tileRef) || turf.IsSpace(tileRef))
-                continue;
+            for (var y = -r; y <= r; y++)
+            {
+                var pos = origin + new Vector2i(x, y);
+                if (!maps.TryGetTileRef(gridUid, grid, pos, out var tileRef) || turf.IsSpace(tileRef))
+                    continue;
 
-            if (respectDensity && turf.IsTileBlocked(tileRef, Content.Shared.Physics.CollisionGroup.Impassable))
-                continue;
+                if (respectDensity && turf.IsTileBlocked(tileRef, Content.Shared.Physics.CollisionGroup.Impassable))
+                    continue;
 
-            result.Add(maps.GridTileToLocal(gridUid, grid, pos));
-        }
+                result.Add(maps.GridTileToLocal(gridUid, grid, pos));
+            }
 
         return result;
     }
@@ -618,7 +637,7 @@ public sealed partial class ImperialWizardSpellsSystem
             if (_antimagic.CanBlockMagic(to))
                 _popup.PopupEntity(Loc.GetString("imperial-spell-tesla-absorb", ("target", to)), to, PopupType.Medium);
             else
-                _electrocution.TryDoElectrocution(to, null, energy, TimeSpan.FromSeconds(2), true, ignoreInsulation: true);
+                _electrocution.TryDoElectrocution(to, null, energy, TeslaChargedTime, true, ignoreInsulation: true);
 
             energy -= ent.Comp.EnergyLostPerBounce;
             if (bounce < 1 || energy <= 0 || RandomTarget(caster, to, ent.Comp.Radius) is not { } next)
@@ -682,7 +701,7 @@ public sealed partial class ImperialWizardSpellsSystem
     {
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString("imperial-spell-splatter-focus"), args.Caster, args.Caster);
-        var doAfter = new DoAfterArgs(EntityManager, args.Caster, TimeSpan.FromSeconds(5), new ImperialSpellChannelDoAfterEvent(), ent, args.Caster)
+        var doAfter = new DoAfterArgs(EntityManager, args.Caster, SplattercastingDelay, new ImperialSpellChannelDoAfterEvent(), ent, args.Caster)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -701,7 +720,7 @@ public sealed partial class ImperialWizardSpellsSystem
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Wizard/pope_entry.ogg"), caster);
         _popup.PopupEntity(Loc.GetString("imperial-spell-splatter-done"), caster, caster, PopupType.LargeCaution);
-        EnsureComp<ImperialSplattercasterComponent>(caster).NextDrain = _timing.CurTime + TimeSpan.FromSeconds(10);
+        EnsureComp<ImperialSplattercasterComponent>(caster).NextDrain = _timing.CurTime + DrainDelay;
 
         // Красная мантия вместо обычной.
         foreach (var (slot, proto) in new[] { ("outerClothing", "ClothingOuterWizardRed"), ("head", "ClothingHeadHatRedwizard"), ("jumpsuit", "ClothingUniformJumpsuitColorRed") })
@@ -728,7 +747,7 @@ public sealed partial class ImperialWizardSpellsSystem
             return;
 
         var reduced = remaining / 10;
-        var cost = (float) (remaining - reduced).TotalSeconds * 10f * 0.5f;
+        var cost = (float)(remaining - reduced).TotalSeconds * 10f * 0.5f;
         _actions.SetCooldown(args.Spell, reduced);
         _blood.TryModifyBloodLevel(ent.Owner, -cost / 10f);
         var desc = cost switch
@@ -750,7 +769,7 @@ public sealed partial class ImperialWizardSpellsSystem
             if (now < splatter.NextDrain)
                 continue;
 
-            splatter.NextDrain = now + TimeSpan.FromSeconds(10);
+            splatter.NextDrain = now + DrainDelay;
             _blood.TryModifyBloodLevel(uid, -1f);
         }
     }
@@ -785,9 +804,9 @@ public sealed partial class ImperialWizardSpellsSystem
 
         var target = args.HitEntities[0];
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Wizard/charge.ogg"), target);
-        _blood.TryModifyBloodLevel(target, -50);
-        _blood.TryModifyBloodLevel(args.User, 50);
-        _damage.TryChangeDamage(args.User, new DamageSpecifier { DamageDict = { ["Blunt"] = -extra / 2, ["Slash"] = -extra / 2 } }, true);
+        _blood.TryModifyBloodLevel(target, SanguineHitAmount);
+        _blood.TryModifyBloodLevel(args.User, SanguineHitAmount2);
+        _damage.TryChangeDamage(args.User, new DamageSpecifier { DamageDict = { [BluntDamageType] = -extra / 2, [SlashDamageType] = -extra / 2 } }, true);
         EndSanguine(ent);
     }
 

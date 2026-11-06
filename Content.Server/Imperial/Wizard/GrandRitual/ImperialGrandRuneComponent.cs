@@ -80,4 +80,13 @@ public sealed partial class ImperialGrandRuneComponent : Component
 
     [DataField]
     public string StatePrefix = "rune";
+
+    [DataField]
+    public TimeSpan InvocationCompleteDelay = TimeSpan.FromSeconds(0.6);
+
+    [DataField]
+    public float InvokeDoAfterRange = 4f;
+
+    [DataField]
+    public float SacrificeCheeseRange = 1.5f;
 }

@@ -2,6 +2,7 @@ using Content.Server.Imperial.Wizard.Spells;
 using Content.Shared.Eye;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Wizard;
 
@@ -15,6 +16,9 @@ public sealed partial class ImperialSpellbookSpecialsSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedEyeSystem _eye = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+
+    private static readonly EntProtoId ImperialSpellConstructShell = "ImperialSpellConstructShell";
+    private static readonly EntProtoId ImperialBattlemageArmor = "ImperialBattlemageArmor";
 
     public override void Initialize()
     {
@@ -35,7 +39,7 @@ public sealed partial class ImperialSpellbookSpecialsSystem : EntitySystem
                 // soulstones/buy_spell(): в придачу — заклинание оболочки конструкта.
                 args.Handled = true;
                 args.Success = true;
-                _spellbook.GrantSpell(args.User, "ImperialSpellConstructShell");
+                _spellbook.GrantSpell(args.User, ImperialSpellConstructShell);
                 break;
             case "ScryingXray":
                 // Покупка шара навсегда даёт рентгеновское зрение.
@@ -59,7 +63,7 @@ public sealed partial class ImperialSpellbookSpecialsSystem : EntitySystem
     /// <summary>armor/try_equip_item(): старая мантия и шляпа падают, доспехи надеваются.</summary>
     private bool EquipArmor(EntityUid user)
     {
-        var armor = Spawn("ImperialBattlemageArmor", Transform(user).Coordinates);
+        var armor = Spawn(ImperialBattlemageArmor, Transform(user).Coordinates);
         _inventory.TryUnequip(user, "outerClothing", true, true);
         _inventory.TryUnequip(user, "head", true, true);
         if (!_inventory.TryEquip(user, armor, "outerClothing", true, true))

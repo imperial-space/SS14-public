@@ -203,7 +203,10 @@ public sealed class ImperialWizardRuleSystem : GameRuleSystem<ImperialWizardRule
 
         _meta.SetEntityName(body, name);
         if (TryComp<MindComponent>(mindId, out var mind))
+        {
             mind.CharacterName = name;
+            Dirty(mindId, mind);
+        }
 
         foreach (var item in AllItems(body))
         {

@@ -7,6 +7,8 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Wizard.Spells;
 
@@ -25,6 +27,12 @@ public sealed class ImperialWizardSmokeSystem : EntitySystem
     private readonly Dictionary<EntityUid, TimeSpan> _nextSmoke = new();
     private TimeSpan _nextCheck;
 
+    private static readonly ProtoId<DamageTypePrototype> AsphyxiationDamageType = "Asphyxiation";
+
+    private static readonly TimeSpan CheckDelay = TimeSpan.FromSeconds(0.5);
+
+    private const float UpdateRange = 0.5f;
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -32,12 +40,12 @@ public sealed class ImperialWizardSmokeSystem : EntitySystem
         if (now < _nextCheck)
             return;
 
-        _nextCheck = now + TimeSpan.FromSeconds(0.5);
+        _nextCheck = now + CheckDelay;
         var smoked = new HashSet<EntityUid>();
         var query = EntityQueryEnumerator<ImperialBadSmokeComponent, TransformComponent>();
         while (query.MoveNext(out _, out _, out var xform))
         {
-            foreach (var mob in _lookup.GetEntitiesInRange<HumanoidProfileComponent>(xform.Coordinates, 0.5f))
+            foreach (var mob in _lookup.GetEntitiesInRange<HumanoidProfileComponent>(xform.Coordinates, UpdateRange))
             {
                 smoked.Add(mob.Owner);
             }
@@ -54,7 +62,7 @@ public sealed class ImperialWizardSmokeSystem : EntitySystem
                 _hands.TryDrop(mob, held, checkActionBlocker: false);
             }
 
-            _damage.TryChangeDamage(mob, new DamageSpecifier { DamageDict = { ["Asphyxiation"] = 1 } }, true);
+            _damage.TryChangeDamage(mob, new DamageSpecifier { DamageDict = { [AsphyxiationDamageType] = 1 } }, true);
             _chat.TryEmoteWithChat(mob, "Cough");
         }
 

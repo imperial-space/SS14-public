@@ -33,6 +33,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
+using Content.Shared.Imperial.Achievements;
 
 namespace Content.Server.Imperial.Wizard.GrandRitual;
 
@@ -99,6 +100,12 @@ public sealed partial class ImperialGrandRitualSystem : EntitySystem
 
     /// <summary>possible_magic_words.</summary>
     private static readonly ProtoId<LocalizedDatasetPrototype>[] PossibleMagicWordsDatasets = ["ImperialImperialGrandRitualSystemPossibleMagicWords1", "ImperialImperialGrandRitualSystemPossibleMagicWords2", "ImperialImperialGrandRitualSystemPossibleMagicWords3", "ImperialImperialGrandRitualSystemPossibleMagicWords4", "ImperialImperialGrandRitualSystemPossibleMagicWords5", "ImperialImperialGrandRitualSystemPossibleMagicWords6", "ImperialImperialGrandRitualSystemPossibleMagicWords7", "ImperialImperialGrandRitualSystemPossibleMagicWords8", "ImperialImperialGrandRitualSystemPossibleMagicWords9", "ImperialImperialGrandRitualSystemPossibleMagicWords10", "ImperialImperialGrandRitualSystemPossibleMagicWords11", "ImperialImperialGrandRitualSystemPossibleMagicWords12", "ImperialImperialGrandRitualSystemPossibleMagicWords13", "ImperialImperialGrandRitualSystemPossibleMagicWords14", "ImperialImperialGrandRitualSystemPossibleMagicWords15", "ImperialImperialGrandRitualSystemPossibleMagicWords16", "ImperialImperialGrandRitualSystemPossibleMagicWords17", "ImperialImperialGrandRitualSystemPossibleMagicWords18", "ImperialImperialGrandRitualSystemPossibleMagicWords19", "ImperialImperialGrandRitualSystemPossibleMagicWords20", "ImperialImperialGrandRitualSystemPossibleMagicWords21", "ImperialImperialGrandRitualSystemPossibleMagicWords22", "ImperialImperialGrandRitualSystemPossibleMagicWords23"];
+
+    private static readonly EntProtoId EffectEmpPulse = "EffectEmpPulse";
+    private static readonly ProtoId<ImperialAchievementPrototype> ImperialAchievementArchmage = "ImperialAchievementArchmage";
+
+    private const float DrawDoAfterRange = 1.4f;
+    private const float TearRealityChance = 0.5f;
 
     private static string[][] PossibleMagicWords => PossibleMagicWordsDatasets.Select(ImperialLocalizedLists.Get).ToArray();
 
@@ -288,7 +295,7 @@ public sealed partial class ImperialGrandRitualSystem : EntitySystem
             return;
         }
 
-        foreach (var near in _lookup.GetEntitiesInRange<ImperialGrandRuneComponent>(coords, 3f))
+        foreach (var near in _lookup.GetEntitiesInRange<ImperialGrandRuneComponent>(coords, ritual.StartDrawingRuneRange))
         {
             _popup.PopupEntity(Loc.GetString("imperial-grand-ritual-too-close"), user, user);
             return;
@@ -372,15 +379,15 @@ public sealed partial class ImperialGrandRitualSystem : EntitySystem
         args.Handled = true;
         var coords = Transform(user).Coordinates;
         var evaporated = false;
-        foreach (var obstacle in _lookup.GetEntitiesInRange(coords, 1.4f, LookupFlags.Static | LookupFlags.Dynamic))
+        foreach (var obstacle in _lookup.GetEntitiesInRange(coords, DrawDoAfterRange, LookupFlags.Static | LookupFlags.Dynamic))
         {
             if (obstacle == user || HasComp<Content.Shared.Mobs.Components.MobStateComponent>(obstacle)
                 || !TryComp<PhysicsComponent>(obstacle, out var physics) || !physics.CanCollide || !physics.Hard
-                || (physics.CollisionLayer & (int) (CollisionGroup.Impassable | CollisionGroup.MidImpassable | CollisionGroup.HighImpassable)) == 0)
+                || (physics.CollisionLayer & (int)(CollisionGroup.Impassable | CollisionGroup.MidImpassable | CollisionGroup.HighImpassable)) == 0)
                 continue;
 
             evaporated = true;
-            Spawn("EffectEmpPulse", _transform.GetMapCoordinates(obstacle));
+            Spawn(EffectEmpPulse, _transform.GetMapCoordinates(obstacle));
             QueueDel(obstacle);
         }
 
@@ -531,7 +538,7 @@ public sealed partial class ImperialGrandRitualSystem : EntitySystem
             _chat.TrySendInGameICMessage(user, words[Math.Min(ent.Comp.TimesInvoked, words.Length) - 1], InGameICChatType.Speak, false, ignoreActionBlocker: true);
 
         // light.flicker()
-        foreach (var light in _lookup.GetEntitiesInRange<PoweredLightComponent>(Transform(ent).Coordinates, 4f))
+        foreach (var light in _lookup.GetEntitiesInRange<PoweredLightComponent>(Transform(ent).Coordinates, ent.Comp.InvokeDoAfterRange))
         {
             RaiseLocalEvent(light, new GhostBooEvent());
         }
@@ -551,7 +558,7 @@ public sealed partial class ImperialGrandRitualSystem : EntitySystem
     private void SacrificeCheese(Entity<ImperialGrandRuneComponent> ent)
     {
         var cheese = new List<EntityUid>();
-        foreach (var near in _lookup.GetEntitiesInRange(Transform(ent).Coordinates, 1.5f))
+        foreach (var near in _lookup.GetEntitiesInRange(Transform(ent).Coordinates, ent.Comp.SacrificeCheeseRange))
         {
             if (MetaData(near).EntityPrototype?.ID == CheeseWheel.Id && !HasComp<TimedDespawnComponent>(near))
                 cheese.Add(near);
@@ -561,7 +568,7 @@ public sealed partial class ImperialGrandRitualSystem : EntitySystem
             return;
 
         _random.Shuffle(cheese);
-        var take = Math.Min(cheese.Count, Math.Max((int) Math.Round(cheese.Count * ent.Comp.TimesInvoked * 0.4), ent.Comp.TimesInvoked >= InvokesToComplete ? cheese.Count : 1));
+        var take = Math.Min(cheese.Count, Math.Max((int)Math.Round(cheese.Count * ent.Comp.TimesInvoked * 0.4), ent.Comp.TimesInvoked >= InvokesToComplete ? cheese.Count : 1));
         foreach (var wheel in cheese.Take(take))
         {
             _popup.PopupEntity(Loc.GetString("imperial-grand-ritual-cheese-haunted", ("cheese", wheel)), wheel, PopupType.Medium);
@@ -598,7 +605,7 @@ public sealed partial class ImperialGrandRitualSystem : EntitySystem
         Spawn(cheese ? "ImperialGrandRuneActivateCheese" : "ImperialGrandRuneActivate", coords);
         var remains = cheese ? "ImperialGrandRuneRemainsCheese" : "ImperialGrandRuneRemains";
         var rune = ent.Owner;
-        Schedule(TimeSpan.FromSeconds(0.6), () =>
+        Schedule(ent.Comp.InvocationCompleteDelay, () =>
         {
             if (TerminatingOrDeleted(rune))
                 return;
@@ -639,7 +646,7 @@ public sealed partial class ImperialGrandRitualSystem : EntitySystem
             if (!_teleport.TryGetDestination(_random.Pick(areas), out var dest))
                 continue;
 
-            Spawn(_random.Prob(0.5f) ? "HereticRealityBreach" : "HereticRealityRift", dest);
+            Spawn(_random.Prob(TearRealityChance) ? "HereticRealityBreach" : "HereticRealityRift", dest);
         }
     }
 

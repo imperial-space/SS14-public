@@ -22,6 +22,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.FixedPoint;
 
 namespace Content.Server.Imperial.Wizard.Spells;
 
@@ -55,6 +57,33 @@ public sealed partial class ImperialWizardSpellsSystem
     {
         "WoodDoor", "MetalDoor", "SilverDoor", "GoldDoor", "UraniumDoor", "SandstoneDoor", "PlasmaDoor", "DiamondDoor",
     };
+
+    private static readonly EntProtoId WizardSmoke = "WizardSmoke";
+    private static readonly EntProtoId StatusEffectSeeingRainbow = "StatusEffectSeeingRainbow";
+    private static readonly EntProtoId FoodPizzaMargheritaSlice = "FoodPizzaMargheritaSlice";
+    private static readonly EntProtoId TrashBananaPeel = "TrashBananaPeel";
+    private static readonly ProtoId<DamageTypePrototype> PoisonDamageType = "Poison";
+    private static readonly EntProtoId ImperialAnimatedObject = "ImperialAnimatedObject";
+    private static readonly EntProtoId ImperialCursedLocker = "ImperialCursedLocker";
+
+    private static readonly TimeSpan ApplyBoltRepulseDuration = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan ApplyBoltChillDuration = TimeSpan.FromSeconds(4);
+    private static readonly TimeSpan ApplyBoltTentacleTime = TimeSpan.FromSeconds(6);
+    private static readonly TimeSpan ApplyBoltHallucinationDuration = TimeSpan.FromSeconds(30);
+    private static readonly TimeSpan ApplyBoltPaxTime = TimeSpan.FromSeconds(30);
+    private static readonly TimeSpan ApplyBoltPrankTime = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan ApplyBoltZapTime = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan BustDelay = TimeSpan.FromMinutes(5);
+
+    private const float GunChargedChance = 0.8f;
+    private const float ApplyBoltTeleportRadius = 10f;
+    private const float ApplyBoltFlyingBaseThrowSpeed = 12f;
+    private const float ApplyBoltFetchBaseThrowSpeed = 12f;
+    private const float ApplyBoltRepulseBaseThrowSpeed = 10f;
+    private const float ApplyBoltFireballTotalIntensity = 20f;
+    private const float ApplyBoltFireballSlope = 4f;
+    private const float ApplyBoltFireballMaxTileIntensity = 6f;
+    private static readonly FixedPoint2 ApplyBoltBoozeQuantity = 15;
 
     private void InitializeMagicGuns()
     {
@@ -123,8 +152,8 @@ public sealed partial class ImperialWizardSpellsSystem
         var max = roll switch
         {
             0 => capacity,
-            3 => (int) Math.Ceiling(capacity / 3f),
-            _ => (int) Math.Ceiling(capacity / 2f),
+            3 => (int)Math.Ceiling(capacity / 3f),
+            _ => (int)Math.Ceiling(capacity / 2f),
         };
         ammo.Capacity = max;
         _guns.UpdateBasicEntityAmmoCount((ent, ammo), max);
@@ -163,7 +192,7 @@ public sealed partial class ImperialWizardSpellsSystem
             return;
 
         args.Charged = true;
-        if (HasComp<ImperialWandComponent>(ent) && _random.Prob(0.8f))
+        if (HasComp<ImperialWandComponent>(ent) && _random.Prob(GunChargedChance))
             capacity--;
 
         if (capacity <= 0)
@@ -233,10 +262,10 @@ public sealed partial class ImperialWizardSpellsSystem
             case ImperialMagicBolt.Teleport:
                 if (Transform(target).Anchored)
                     break;
-                var tiles = FreeTilesAround(Transform(target).Coordinates, 10f, true);
+                var tiles = FreeTilesAround(Transform(target).Coordinates, ApplyBoltTeleportRadius, true);
                 if (tiles.Count > 0)
                 {
-                    Spawn("WizardSmoke", Transform(target).Coordinates);
+                    Spawn(WizardSmoke, Transform(target).Coordinates);
                     _transform.SetCoordinates(target, _random.Pick(tiles));
                     _transform.AttachToGridOrMap(target);
                 }
@@ -245,10 +274,10 @@ public sealed partial class ImperialWizardSpellsSystem
                 var areas = _teleport.GetAreas();
                 if (areas.Count > 0 && _teleport.TryGetDestination(_random.Pick(areas.Values.ToList()), out var safe))
                 {
-                    Spawn("WizardSmoke", Transform(target).Coordinates);
+                    Spawn(WizardSmoke, Transform(target).Coordinates);
                     _transform.SetCoordinates(target, safe);
                     _transform.AttachToGridOrMap(target);
-                    Spawn("WizardSmoke", safe);
+                    Spawn(WizardSmoke, safe);
                 }
                 break;
             case ImperialMagicBolt.Door:
@@ -264,15 +293,15 @@ public sealed partial class ImperialWizardSpellsSystem
                 CursedLocker(target, impact);
                 break;
             case ImperialMagicBolt.Flying when isMob && velocity.LengthSquared() > 0:
-                _throwing.TryThrow(target, velocity.Normalized() * 30f, 12f, shooter, recoil: false);
+                _throwing.TryThrow(target, velocity.Normalized() * 30f, ApplyBoltFlyingBaseThrowSpeed, shooter, recoil: false);
                 break;
             case ImperialMagicBolt.Fetch when isMob && shooter != null:
                 var toShooter = _transform.GetWorldPosition(shooter.Value) - _transform.GetWorldPosition(target);
-                _throwing.TryThrow(target, toShooter, 12f, shooter, recoil: false);
+                _throwing.TryThrow(target, toShooter, ApplyBoltFetchBaseThrowSpeed, shooter, recoil: false);
                 break;
             case ImperialMagicBolt.Repulse when isMob && velocity.LengthSquared() > 0:
-                _throwing.TryThrow(target, velocity.Normalized() * 7f, 10f, shooter, recoil: false);
-                _stun.TryUpdateParalyzeDuration(target, TimeSpan.FromSeconds(2));
+                _throwing.TryThrow(target, velocity.Normalized() * 7f, ApplyBoltRepulseBaseThrowSpeed, shooter, recoil: false);
+                _stun.TryUpdateParalyzeDuration(target, ApplyBoltRepulseDuration);
                 break;
             case ImperialMagicBolt.Antimagic when isMob:
                 _popup.PopupEntity(Loc.GetString("imperial-bolt-antimagic"), target, target);
@@ -286,9 +315,9 @@ public sealed partial class ImperialWizardSpellsSystem
                 SoulTap(target);
                 break;
             case ImperialMagicBolt.Fireball:
-                _damage.TryChangeDamage(target, new DamageSpecifier { DamageDict = { ["Heat"] = 10 } }, origin: shooter);
+                _damage.TryChangeDamage(target, new DamageSpecifier { DamageDict = { [HeatDamageType] = 10 } }, origin: shooter);
                 EntityManager.System<Content.Server.Explosion.EntitySystems.ExplosionSystem>()
-                    .QueueExplosion(_transform.ToMapCoordinates(impact), "Default", 20, 4, 6, shooter);
+                    .QueueExplosion(_transform.ToMapCoordinates(impact), "Default", ApplyBoltFireballTotalIntensity, ApplyBoltFireballSlope, ApplyBoltFireballMaxTileIntensity, shooter);
                 break;
             case ImperialMagicBolt.Shrink:
                 Shrink(target, TimeSpan.FromSeconds(_random.Next(60, 91)));
@@ -298,7 +327,7 @@ public sealed partial class ImperialWizardSpellsSystem
                 if (TryComp<Content.Shared.Temperature.Components.TemperatureComponent>(target, out var temperature))
                     _temperature.ForceChangeTemperature(target, Math.Max(2.7f, temperature.CurrentTemperature - 200), temperature);
                 if (effect == ImperialMagicBolt.Freeze)
-                    _stun.TryUpdateStunDuration(target, TimeSpan.FromSeconds(4));
+                    _stun.TryUpdateStunDuration(target, ApplyBoltChillDuration);
                 break;
             case ImperialMagicBolt.Swap when isMob && shooter != null:
                 var a = _transform.GetMapCoordinates(target);
@@ -310,30 +339,30 @@ public sealed partial class ImperialWizardSpellsSystem
             case ImperialMagicBolt.Tentacle when isMob:
             case ImperialMagicBolt.Levitate when isMob:
             case ImperialMagicBolt.Rebellion when isMob:
-                _stun.TryKnockdown(target, TimeSpan.FromSeconds(6));
+                _stun.TryKnockdown(target, ApplyBoltTentacleTime);
                 break;
             case ImperialMagicBolt.Booze when isMob:
                 if (_solutions.TryGetSolution(target, "chemicals", out var chem, out _))
-                    _solutions.TryAddReagent(chem.Value, "Ethanol", 15, out _);
+                    _solutions.TryAddReagent(chem.Value, "Ethanol", ApplyBoltBoozeQuantity, out _);
                 break;
             case ImperialMagicBolt.Hallucination when isMob:
-                _statusNew.TryAddStatusEffectDuration(target, "StatusEffectSeeingRainbow", TimeSpan.FromSeconds(30));
+                _statusNew.TryAddStatusEffectDuration(target, StatusEffectSeeingRainbow, ApplyBoltHallucinationDuration);
                 break;
             case ImperialMagicBolt.Pax when isMob:
-                _status.TryAddStatusEffect<PacifiedComponent>(target, "Pacified", TimeSpan.FromSeconds(30), true);
+                _status.TryAddStatusEffect<PacifiedComponent>(target, "Pacified", ApplyBoltPaxTime, true);
                 break;
             case ImperialMagicBolt.Pizza:
-                Spawn("FoodPizzaMargheritaSlice", impact);
+                Spawn(FoodPizzaMargheritaSlice, impact);
                 break;
             case ImperialMagicBolt.Prank when isMob:
-                _stun.TryKnockdown(target, TimeSpan.FromSeconds(3));
-                Spawn("TrashBananaPeel", Transform(target).Coordinates);
+                _stun.TryKnockdown(target, ApplyBoltPrankTime);
+                Spawn(TrashBananaPeel, Transform(target).Coordinates);
                 break;
             case ImperialMagicBolt.Zap when isMob:
-                _electrocution.TryDoElectrocution(target, null, 20, TimeSpan.FromSeconds(2), true, ignoreInsulation: true);
+                _electrocution.TryDoElectrocution(target, null, 20, ApplyBoltZapTime, true, ignoreInsulation: true);
                 break;
             case ImperialMagicBolt.Plague when isMob:
-                _damage.TryChangeDamage(target, new DamageSpecifier { DamageDict = { ["Poison"] = 20 } }, origin: shooter);
+                _damage.TryChangeDamage(target, new DamageSpecifier { DamageDict = { [PoisonDamageType] = 20 } }, origin: shooter);
                 break;
             case ImperialMagicBolt.Bald when isMob:
             case ImperialMagicBolt.Bounty when isMob:
@@ -395,7 +424,7 @@ public sealed partial class ImperialWizardSpellsSystem
         if (MetaData(target).EntityPrototype is not { } proto)
             return;
 
-        var mimic = Spawn("ImperialAnimatedObject", Transform(target).Coordinates);
+        var mimic = Spawn(ImperialAnimatedObject, Transform(target).Coordinates);
         var comp = EnsureComp<ImperialAnimatedComponent>(mimic);
         comp.Proto = proto.ID;
         Dirty(mimic, comp);
@@ -414,8 +443,8 @@ public sealed partial class ImperialWizardSpellsSystem
     /// <summary>locker: жертва оказывается в заваренном проклятом шкафу.</summary>
     private void CursedLocker(EntityUid target, EntityCoordinates impact)
     {
-        var locker = Spawn("ImperialCursedLocker", Transform(target).Coordinates);
-        EnsureComp<ImperialDecayLockerComponent>(locker).BustAt = _timing.CurTime + TimeSpan.FromMinutes(5);
+        var locker = Spawn(ImperialCursedLocker, Transform(target).Coordinates);
+        EnsureComp<ImperialDecayLockerComponent>(locker).BustAt = _timing.CurTime + BustDelay;
         if (TryComp<EntityStorageComponent>(locker, out var storage))
         {
             _storage.Insert(target, locker, storage);

@@ -90,7 +90,7 @@ public sealed partial class ImperialWizardSpellsSystem : EntitySystem
         EntityUid? homingTarget = null;
         if (ent.Comp.Homing)
         {
-            foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(to, 1.5f))
+            foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(to, ent.Comp.ProjectileSpellRange))
             {
                 if (mob.Owner != args.Caster && !_mobs.IsDead(mob))
                 {

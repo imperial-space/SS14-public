@@ -34,4 +34,7 @@ public sealed partial class ImperialSlimeFriendsComponent : Component
 {
     [ViewVariables]
     public TimeSpan NextSlime;
+
+    [DataField]
+    public float UpdateAmount = -50f;
 }

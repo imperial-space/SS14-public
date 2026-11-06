@@ -40,6 +40,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.FixedPoint;
 
 namespace Content.Server.Imperial.Wizard.Demons;
 
@@ -55,4 +56,7 @@ public sealed partial class ImperialDemonBottleComponent : Component
 
     [ViewVariables]
     public bool Used;
+
+    [DataField]
+    public FixedPoint2 BottleUsedQuantity = 20;
 }

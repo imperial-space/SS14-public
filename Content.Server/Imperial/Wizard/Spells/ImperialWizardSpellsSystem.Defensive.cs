@@ -19,6 +19,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Wizard.Spells;
 
@@ -48,6 +49,39 @@ public sealed partial class ImperialWizardSpellsSystem
         ["forbidden"] = "imperial-chuuni-forbidden",
         ["sanguine"] = "imperial-chuuni-sanguine",
     };
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly EntProtoId EffectGravityPulse = "EffectGravityPulse";
+    private static readonly EntProtoId MobSkeletonPerson = "MobSkeletonPerson";
+    private static readonly EntProtoId Ash = "Ash";
+    private static readonly EntProtoId ImperialClothingEyesChuuniPatch = "ImperialClothingEyesChuuniPatch";
+    private static readonly ProtoId<DamageTypePrototype> HeatDamageType = "Heat";
+    private static readonly EntProtoId ImperialSpacetimeDistortion = "ImperialSpacetimeDistortion";
+    private static readonly EntProtoId EffectSparks = "EffectSparks";
+    private static readonly EntProtoId ImperialTrapRock = "ImperialTrapRock";
+    private static readonly ProtoId<DamageTypePrototype> StaminaDamageType = "Stamina";
+    private static readonly ProtoId<DamageTypePrototype> PiercingDamageType = "Piercing";
+
+    private static readonly TimeSpan RepulseDuration = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan RepulseDuration2 = TimeSpan.FromSeconds(4);
+    private static readonly TimeSpan PacketHitTime = TimeSpan.FromSeconds(4);
+    private static readonly TimeSpan UpdateTimestopDuration = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan LichdomDelay = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan ChuuniDelay = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan HealDelay = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan BusyDelay = TimeSpan.FromSeconds(0.5);
+    private static readonly TimeSpan TrapStepStunTime = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan TrapStepStunDuration = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan TrapStepFireDuration = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan TrapStepChillDuration = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan TrapStepDamageDuration = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan DuffelbagFlashDurationDelay = TimeSpan.FromSeconds(2);
+    private static readonly TimeSpan DuffelbagDuration = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan TickDelay = TimeSpan.FromSeconds(10);
+
+    private const float MagicMissileSpeed = 4f;
+    private const float RepulseBaseThrowSpeed = 10f;
+    private const float TrapsRange = 4f;
 
     private void InitializeDefensive()
     {
@@ -100,7 +134,7 @@ public sealed partial class ImperialWizardSpellsSystem
         {
             var direction = _transform.GetWorldPosition(target) - from.Position;
             var missile = Spawn(ent.Comp.Projectile, from);
-            _guns.ShootProjectile(missile, direction.Normalized(), Vector2.Zero, ent, caster, 4f);
+            _guns.ShootProjectile(missile, direction.Normalized(), Vector2.Zero, ent, caster, MagicMissileSpeed);
             var homing = EnsureComp<ImperialHomingProjectileComponent>(missile);
             homing.Target = target;
             homing.TurnRate = 360f;
@@ -145,8 +179,8 @@ public sealed partial class ImperialWizardSpellsSystem
             {
                 if (HasComp<MobStateComponent>(victim))
                 {
-                    _stun.TryUpdateParalyzeDuration(victim, TimeSpan.FromSeconds(10));
-                    _damage.TryChangeDamage(victim, new DamageSpecifier { DamageDict = { ["Blunt"] = 5 } }, origin: caster);
+                    _stun.TryUpdateParalyzeDuration(victim, RepulseDuration);
+                    _damage.TryChangeDamage(victim, new DamageSpecifier { DamageDict = { [BluntDamageType] = 5 } }, origin: caster);
                     _popup.PopupEntity(Loc.GetString("imperial-spell-repulse-slammed", ("caster", caster)), victim, victim, PopupType.LargeCaution);
                 }
 
@@ -155,13 +189,13 @@ public sealed partial class ImperialWizardSpellsSystem
 
             if (HasComp<MobStateComponent>(victim))
             {
-                _stun.TryUpdateParalyzeDuration(victim, TimeSpan.FromSeconds(4));
+                _stun.TryUpdateParalyzeDuration(victim, RepulseDuration2);
                 _popup.PopupEntity(Loc.GetString("imperial-spell-repulse-thrown", ("caster", caster)), victim, victim, PopupType.LargeCaution);
             }
 
-            Spawn("EffectGravityPulse", Transform(victim).Coordinates);
+            Spawn(EffectGravityPulse, Transform(victim).Coordinates);
             var range = Math.Clamp(ent.Comp.MaxThrow - Math.Clamp(distance - 2, 0, distance), 3, ent.Comp.MaxThrow);
-            _throwing.TryThrow(victim, offset.Normalized() * range, 10f, caster, recoil: false);
+            _throwing.TryThrow(victim, offset.Normalized() * range, RepulseBaseThrowSpeed, caster, recoil: false);
         }
     }
 
@@ -169,7 +203,7 @@ public sealed partial class ImperialWizardSpellsSystem
     private void OnPacketHit(Entity<ImperialSpellPacketComponent> ent, ref ThrowDoHitEvent args)
     {
         if (HasComp<MobStateComponent>(args.Target) && !_antimagic.CanBlockMagic(args.Target))
-            _electrocution.TryDoElectrocution(args.Target, ent, ent.Comp.Shock, TimeSpan.FromSeconds(4), true, ignoreInsulation: true);
+            _electrocution.TryDoElectrocution(args.Target, ent, ent.Comp.Shock, PacketHitTime, true, ignoreInsulation: true);
         QueueDel(ent);
     }
 
@@ -226,7 +260,7 @@ public sealed partial class ImperialWizardSpellsSystem
                         continue;
 
                     field.Mobs.Add(other);
-                    _stun.TryUpdateStunDuration(other, TimeSpan.FromSeconds(1));
+                    _stun.TryUpdateStunDuration(other, UpdateTimestopDuration);
                     continue;
                 }
 
@@ -303,7 +337,7 @@ public sealed partial class ImperialWizardSpellsSystem
         args.Handled = true;
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Wizard/pope_entry.ogg"), caster);
         _popup.PopupEntity(Loc.GetString("imperial-spell-lich-focus", ("item", item.Value)), caster, caster);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, caster, TimeSpan.FromSeconds(5), new ImperialSpellChannelDoAfterEvent(), ent, item.Value)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, caster, LichdomDelay, new ImperialSpellChannelDoAfterEvent(), ent, item.Value)
         {
             BreakOnMove = true,
             NeedHand = true,
@@ -346,7 +380,7 @@ public sealed partial class ImperialWizardSpellsSystem
     public EntityUid Skeletonize(EntityUid body)
     {
         var coords = Transform(body).Coordinates;
-        var skeleton = Spawn("MobSkeletonPerson", coords);
+        var skeleton = Spawn(MobSkeletonPerson, coords);
         if (_inventory.TryGetSlots(body, out var slots))
         {
             foreach (var slot in slots)
@@ -424,7 +458,7 @@ public sealed partial class ImperialWizardSpellsSystem
         }
     }
 
-private bool IsLichAlive(MindComponent mind)
+    private bool IsLichAlive(MindComponent mind)
     {
         return mind.OwnedEntity is { } body && HasComp<MobStateComponent>(body) && !_mobs.IsDead(body);
     }
@@ -466,7 +500,7 @@ private bool IsLichAlive(MindComponent mind)
             return;
 
         var coords = _transform.GetMapCoordinates(phylactery);
-        var lich = Spawn("MobSkeletonPerson", coords);
+        var lich = Spawn(MobSkeletonPerson, coords);
         foreach (var (slot, proto) in new[] { ("shoes", "ClothingShoesWizard"), ("jumpsuit", "ClothingUniformJumpsuitColorBlack"), ("outerClothing", "ImperialClothingOuterWizardBlack"), ("head", "ImperialClothingHeadHatWizardBlack") })
         {
             var item = Spawn(proto, coords);
@@ -494,7 +528,7 @@ private bool IsLichAlive(MindComponent mind)
             foreach (var held in _hands.EnumerateHeld(corpse).ToList())
                 _hands.TryDrop(corpse, held, checkActionBlocker: false);
 
-            Spawn("Ash", Transform(corpse).Coordinates);
+            Spawn(Ash, Transform(corpse).Coordinates);
             QueueDel(corpse);
         }
 
@@ -509,7 +543,7 @@ private bool IsLichAlive(MindComponent mind)
     {
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString("imperial-spell-chuuni-focus"), args.Caster, args.Caster);
-        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.Caster, TimeSpan.FromSeconds(5), new ImperialSpellChannelDoAfterEvent(), ent)
+        _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.Caster, ChuuniDelay, new ImperialSpellChannelDoAfterEvent(), ent)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -533,7 +567,7 @@ private bool IsLichAlive(MindComponent mind)
         _inventory.TryUnequip(caster, "eyes", true, true);
         if (_inventory.TryGetSlotEntity(caster, "head", out var hat) && HasComp<Content.Shared.Magic.Components.WizardClothesComponent>(hat))
             QueueDel(hat.Value);
-        var patch = Spawn("ImperialClothingEyesChuuniPatch", Transform(caster).Coordinates);
+        var patch = Spawn(ImperialClothingEyesChuuniPatch, Transform(caster).Coordinates);
         if (!_inventory.TryEquip(caster, patch, "eyes", true, true))
             QueueDel(patch);
 
@@ -563,8 +597,8 @@ private bool IsLichAlive(MindComponent mind)
             return;
         }
 
-        ent.Comp.NextHeal = _timing.CurTime + TimeSpan.FromSeconds(5);
-        _damage.TryChangeDamage(ent.Owner, new DamageSpecifier { DamageDict = { ["Blunt"] = -ent.Comp.Heal / 2, ["Heat"] = -ent.Comp.Heal / 2 } }, true);
+        ent.Comp.NextHeal = _timing.CurTime + HealDelay;
+        _damage.TryChangeDamage(ent.Owner, new DamageSpecifier { DamageDict = { [BluntDamageType] = -ent.Comp.Heal / 2, [HeatDamageType] = -ent.Comp.Heal / 2 } }, true);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Wizard/staff_healing.ogg"), ent);
         _popup.PopupEntity(Loc.GetString("imperial-spell-chuuni-heal"), ent, ent);
     }
@@ -595,7 +629,7 @@ private bool IsLichAlive(MindComponent mind)
     /// <summary>spacetime_dist/cast(): искажения вокруг точки (и для Великого ритуала).</summary>
     public void CreateSpacetime(EntityCoordinates center, float radius, TimeSpan duration)
     {
-        LinkDistortions(FreeTilesAround(center, radius, true), "ImperialSpacetimeDistortion", duration);
+        LinkDistortions(FreeTilesAround(center, radius, true), ImperialSpacetimeDistortion, duration);
     }
 
     private void LinkDistortions(List<EntityCoordinates> tiles, EntProtoId effect, TimeSpan duration)
@@ -607,8 +641,8 @@ private bool IsLichAlive(MindComponent mind)
             var b = Spawn(effect, _random.PickAndTake(tiles));
             EnsureComp<ImperialSpacetimeDistortionComponent>(a).Linked = b;
             EnsureComp<ImperialSpacetimeDistortionComponent>(b).Linked = a;
-            EnsureComp<Robust.Shared.Spawners.TimedDespawnComponent>(a).Lifetime = (float) duration.TotalSeconds;
-            EnsureComp<Robust.Shared.Spawners.TimedDespawnComponent>(b).Lifetime = (float) duration.TotalSeconds;
+            EnsureComp<Robust.Shared.Spawners.TimedDespawnComponent>(a).Lifetime = (float)duration.TotalSeconds;
+            EnsureComp<Robust.Shared.Spawners.TimedDespawnComponent>(b).Lifetime = (float)duration.TotalSeconds;
         }
     }
 
@@ -628,7 +662,7 @@ private bool IsLichAlive(MindComponent mind)
             return;
 
         ent.Comp.WalksLeft--;
-        other.Busy = _timing.CurTime + TimeSpan.FromSeconds(0.5);
+        other.Busy = _timing.CurTime + BusyDelay;
         _transform.SetCoordinates(args.Tripper, Transform(linked).Coordinates);
     }
 
@@ -653,7 +687,7 @@ private bool IsLichAlive(MindComponent mind)
         if (!_mind.TryGetMind(args.Caster, out var mindId, out _))
             return;
 
-        foreach (var trap in _lookup.GetEntitiesInRange<ImperialWizardTrapComponent>(Transform(args.Caster).Coordinates, 4f))
+        foreach (var trap in _lookup.GetEntitiesInRange<ImperialWizardTrapComponent>(Transform(args.Caster).Coordinates, TrapsRange))
         {
             trap.Comp.ImmuneMinds.Add(mindId);
         }
@@ -669,7 +703,7 @@ private bool IsLichAlive(MindComponent mind)
     private void OnTrapStep(Entity<ImperialWizardTrapComponent> ent, ref StepTriggeredOffEvent args)
     {
         var victim = args.Tripper;
-        Spawn("EffectSparks", Transform(ent).Coordinates);
+        Spawn(EffectSparks, Transform(ent).Coordinates);
         // flare(): spark_system — искры с треском.
         _audio.PlayPvs(new SoundCollectionSpecifier("sparks"), ent);
         _popup.PopupEntity(Loc.GetString("imperial-trap-flare", ("trap", ent.Owner)), ent, PopupType.MediumCaution);
@@ -683,12 +717,12 @@ private bool IsLichAlive(MindComponent mind)
         switch (ent.Comp.Kind)
         {
             case ImperialTrapKind.Stun:
-                _electrocution.TryDoElectrocution(victim, ent, 30, TimeSpan.FromSeconds(2), true, ignoreInsulation: true);
-                _stun.TryUpdateParalyzeDuration(victim, TimeSpan.FromSeconds(10));
+                _electrocution.TryDoElectrocution(victim, ent, 30, TrapStepStunTime, true, ignoreInsulation: true);
+                _stun.TryUpdateParalyzeDuration(victim, TrapStepStunDuration);
                 break;
             case ImperialTrapKind.Fire:
                 _popup.PopupEntity(Loc.GetString("imperial-trap-fire"), victim, victim, PopupType.LargeCaution);
-                _stun.TryUpdateParalyzeDuration(victim, TimeSpan.FromSeconds(2));
+                _stun.TryUpdateParalyzeDuration(victim, TrapStepFireDuration);
                 var trapXform = Transform(ent);
                 if (trapXform.GridUid is { } trapGrid && TryComp<Robust.Shared.Map.Components.MapGridComponent>(trapGrid, out var trapMapGrid))
                     EntityManager.System<Content.Server.Atmos.EntitySystems.AtmosphereSystem>().HotspotExpose(trapGrid,
@@ -700,15 +734,15 @@ private bool IsLichAlive(MindComponent mind)
                 break;
             case ImperialTrapKind.Chill:
                 _popup.PopupEntity(Loc.GetString("imperial-trap-chill"), victim, victim, PopupType.LargeCaution);
-                _stun.TryUpdateParalyzeDuration(victim, TimeSpan.FromSeconds(2));
+                _stun.TryUpdateParalyzeDuration(victim, TrapStepChillDuration);
                 if (TryComp<Content.Shared.Temperature.Components.TemperatureComponent>(victim, out var temperature))
                     _temperature.ForceChangeTemperature(victim, Math.Max(2.7f, temperature.CurrentTemperature - 300), temperature);
                 break;
             case ImperialTrapKind.Damage:
                 _popup.PopupEntity(Loc.GetString("imperial-trap-earth"), victim, victim, PopupType.LargeCaution);
-                _stun.TryUpdateParalyzeDuration(victim, TimeSpan.FromSeconds(10));
-                _damage.TryChangeDamage(victim, new DamageSpecifier { DamageDict = { ["Blunt"] = 35 } }, origin: ent);
-                var rock = Spawn("ImperialTrapRock", Transform(ent).Coordinates);
+                _stun.TryUpdateParalyzeDuration(victim, TrapStepDamageDuration);
+                _damage.TryChangeDamage(victim, new DamageSpecifier { DamageDict = { [BluntDamageType] = 35 } }, origin: ent);
+                var rock = Spawn(ImperialTrapRock, Transform(ent).Coordinates);
                 EnsureComp<Robust.Shared.Spawners.TimedDespawnComponent>(rock).Lifetime = 20f;
                 break;
         }
@@ -732,9 +766,9 @@ private bool IsLichAlive(MindComponent mind)
             return;
         }
 
-        _flash.Flash(victim, args.Caster, null, TimeSpan.FromSeconds(2), 0.8f, false);
-        _stun.TryUpdateParalyzeDuration(victim, TimeSpan.FromSeconds(5));
-        _damage.TryChangeDamage(victim, new DamageSpecifier { DamageDict = { ["Stamina"] = 80 } }, origin: args.Caster);
+        _flash.Flash(victim, args.Caster, null, DuffelbagFlashDurationDelay, 0.8f, false);
+        _stun.TryUpdateParalyzeDuration(victim, DuffelbagDuration);
+        _damage.TryChangeDamage(victim, new DamageSpecifier { DamageDict = { [StaminaDamageType] = 80 } }, origin: args.Caster);
 
         if (_inventory.TryGetSlotEntity(victim, "back", out var back) && HasComp<ImperialCurseOfHungerComponent>(back))
         {
@@ -760,13 +794,13 @@ private bool IsLichAlive(MindComponent mind)
             if (now < curse.NextTick)
                 continue;
 
-            curse.NextTick = now + TimeSpan.FromSeconds(10);
+            curse.NextTick = now + TickDelay;
             curse.Hunger += 10;
             if (curse.Hunger < 100 || !HasComp<MobStateComponent>(xform.ParentUid))
                 continue;
 
             var wearer = xform.ParentUid;
-            _damage.TryChangeDamage(wearer, new DamageSpecifier { DamageDict = { ["Piercing"] = 10 } }, origin: uid);
+            _damage.TryChangeDamage(wearer, new DamageSpecifier { DamageDict = { [PiercingDamageType] = 10 } }, origin: uid);
             _popup.PopupEntity(Loc.GetString("imperial-spell-duffel-bite"), wearer, wearer, PopupType.MediumCaution);
         }
     }

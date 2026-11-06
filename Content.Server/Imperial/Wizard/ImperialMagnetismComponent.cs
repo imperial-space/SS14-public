@@ -34,4 +34,10 @@ public sealed partial class ImperialMagnetismComponent : Component
 {
     [ViewVariables]
     public TimeSpan NextPull;
+
+    [DataField]
+    public TimeSpan PullDelay = TimeSpan.FromSeconds(0.5);
+
+    [DataField]
+    public float UpdateRange = 5f;
 }

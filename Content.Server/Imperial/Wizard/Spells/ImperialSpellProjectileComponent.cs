@@ -61,4 +61,7 @@ public sealed partial class ImperialSpellProjectileComponent : Component
 
     [ViewVariables]
     public int ShotsLeft;
+
+    [DataField]
+    public float ProjectileSpellRange = 1.5f;
 }

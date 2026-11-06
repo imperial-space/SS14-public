@@ -54,6 +54,9 @@ public sealed class ImperialWizardServantsSystem : EntitySystem
         ["robeless"] = (new[] { "ImperialSpellKnock", "ImperialSpellMindSwap" }, Array.Empty<string>()),
     };
 
+    private static readonly EntProtoId MobHuman = "MobHuman";
+    private static readonly EntProtoId WizardSmoke = "WizardSmoke";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -94,8 +97,8 @@ public sealed class ImperialWizardServantsSystem : EntitySystem
 
                 ent.Comp.Polling = true;
                 _popup.PopupEntity(Loc.GetString("imperial-contract-contacting"), user, user);
-                var body = Spawn("MobHuman", Transform(ent).Coordinates);
-                Spawn("WizardSmoke", Transform(ent).Coordinates);
+                var body = Spawn(MobHuman, Transform(ent).Coordinates);
+                Spawn(WizardSmoke, Transform(ent).Coordinates);
                 var pending = EnsureComp<ImperialApprenticePendingComponent>(body);
                 pending.School = school;
                 pending.Master = user;
@@ -215,7 +218,7 @@ public sealed class ImperialWizardServantsSystem : EntitySystem
             return;
         }
 
-        ent.Comp.NextUse = _timing.CurTime + TimeSpan.FromSeconds(30);
+        ent.Comp.NextUse = _timing.CurTime + ent.Comp.UseDelay;
         if (ent.Comp.Frog is not { } frog || TerminatingOrDeleted(frog))
         {
             _popup.PopupEntity(Loc.GetString("imperial-frog-none"), args.User, args.User);
@@ -227,7 +230,7 @@ public sealed class ImperialWizardServantsSystem : EntitySystem
         {
             _containers.Remove(frog, container, force: true);
             _npc.WakeNPC(frog);
-            var tiles = _spells.FreeTilesAround(Transform(args.User).Coordinates, 2f, true);
+            var tiles = _spells.FreeTilesAround(Transform(args.User).Coordinates, ent.Comp.FrogStatueRadius, true);
             if (tiles.Count > 0)
                 _transform.SetCoordinates(frog, _random.Pick(tiles));
             _transform.AttachToGridOrMap(frog);

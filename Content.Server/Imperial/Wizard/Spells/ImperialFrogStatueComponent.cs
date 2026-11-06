@@ -35,4 +35,10 @@ public sealed partial class ImperialFrogStatueComponent : Component
 
     [DataField]
     public string Container = "imperial_frog";
+
+    [DataField]
+    public TimeSpan UseDelay = TimeSpan.FromSeconds(30);
+
+    [DataField]
+    public float FrogStatueRadius = 2f;
 }

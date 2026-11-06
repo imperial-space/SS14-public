@@ -62,6 +62,29 @@ public sealed partial class ImperialGrandRitualSystem
     /// <summary>Annihilation: possible_last_words.</summary>
     private static readonly ProtoId<LocalizedDatasetPrototype> LastWordsDataset = "ImperialImperialGrandRitualSystemFinalesLastWords";
 
+    private static readonly EntProtoId Singularity2 = "Singularity";
+    private static readonly EntProtoId TeslaEnergyBall = "TeslaEnergyBall";
+    private static readonly EntProtoId ImperialSpellTieShoes = "ImperialSpellTieShoes";
+    private static readonly EntProtoId WizardSmoke = "WizardSmoke";
+    private static readonly EntProtoId ClothingUniformJumpsuitClown = "ClothingUniformJumpsuitClown";
+    private static readonly EntProtoId ClothingMaskClown = "ClothingMaskClown";
+    private static readonly EntProtoId ClothingUniformJumpsuitCaptain = "ClothingUniformJumpsuitCaptain";
+    private static readonly EntProtoId CaptainIDCard = "CaptainIDCard";
+    private static readonly EntProtoId ClothingHeadsetAltCommand = "ClothingHeadsetAltCommand";
+    private static readonly EntProtoId TelescopicBaton = "TelescopicBaton";
+    private static readonly EntProtoId ImperialImmortalityPulse = "ImperialImmortalityPulse";
+    private static readonly EntProtoId ImperialSpectreOfResurrection = "ImperialSpectreOfResurrection";
+    private static readonly EntProtoId ImperialTrueWabbajack = "ImperialTrueWabbajack";
+
+    private static readonly TimeSpan MidasDelay = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan ClownDuration = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan UsurpDuration = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan MobStateChangedDelay = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan MobStateChangedDelay2 = TimeSpan.FromSeconds(50);
+
+    private const float ClownChance = 0.15f;
+    private const float UsurpChance = 0.1f;
+
     private static string[] LastWords => ImperialLocalizedLists.Get(LastWordsDataset);
 
     /// <summary>midas: permitted_transforms (без пиццы — её измерения в SS14 нет).</summary>
@@ -105,7 +128,7 @@ public sealed partial class ImperialGrandRitualSystem
 
         if (ent.Comp.FinaleEffect is { } id && GetFinale(id) is { } finale && finale.MinimumTime >= _ticker.RoundDuration())
         {
-            _popup.PopupEntity(Loc.GetString("imperial-grand-finale-wait", ("time", (int) Math.Ceiling((finale.MinimumTime - _ticker.RoundDuration()).TotalMinutes))), user, user);
+            _popup.PopupEntity(Loc.GetString("imperial-grand-finale-wait", ("time", (int)Math.Ceiling((finale.MinimumTime - _ticker.RoundDuration()).TotalMinutes))), user, user);
             return false;
         }
 
@@ -124,7 +147,7 @@ public sealed partial class ImperialGrandRitualSystem
             var label = Loc.GetString($"imperial-grand-finale-{finale.Id.ToLowerInvariant()}-name") + " — " +
                         Loc.GetString($"imperial-grand-finale-{finale.Id.ToLowerInvariant()}-desc");
             if (finale.MinimumTime >= _ticker.RoundDuration())
-                label += " " + Loc.GetString("imperial-grand-finale-available-in", ("time", (int) Math.Ceiling((finale.MinimumTime - _ticker.RoundDuration()).TotalMinutes)));
+                label += " " + Loc.GetString("imperial-grand-finale-available-in", ("time", (int)Math.Ceiling((finale.MinimumTime - _ticker.RoundDuration()).TotalMinutes)));
             options[label] = finale.Id;
         }
 
@@ -137,7 +160,7 @@ public sealed partial class ImperialGrandRitualSystem
 
                 if (GetFinale(id) is { } picked && picked.MinimumTime >= _ticker.RoundDuration())
                 {
-                    _popup.PopupEntity(Loc.GetString("imperial-grand-finale-wait", ("time", (int) Math.Ceiling((picked.MinimumTime - _ticker.RoundDuration()).TotalMinutes))), user, user);
+                    _popup.PopupEntity(Loc.GetString("imperial-grand-finale-wait", ("time", (int)Math.Ceiling((picked.MinimumTime - _ticker.RoundDuration()).TotalMinutes))), user, user);
                     return;
                 }
 
@@ -161,7 +184,7 @@ public sealed partial class ImperialGrandRitualSystem
             return;
 
         var area = AreaName(ent);
-        string? message = ent.Comp.DireWarningsGiven switch
+        var message = ent.Comp.DireWarningsGiven switch
         {
             0 => Loc.GetString("imperial-grand-finale-dire-1", ("area", area)),
             1 => Loc.GetString("imperial-grand-finale-dire-2", ("area", area)),
@@ -279,10 +302,10 @@ public sealed partial class ImperialGrandRitualSystem
         switch (_random.Next(3))
         {
             case 0:
-                Spawn("Singularity", location);
+                Spawn(Singularity2, location);
                 break;
             case 1:
-                Spawn("TeslaEnergyBall", location);
+                Spawn(TeslaEnergyBall, location);
                 break;
             default:
                 _ticker.StartGameRule("MeteorSwarmScheduler");
@@ -313,7 +336,7 @@ public sealed partial class ImperialGrandRitualSystem
             foreach (var tile in _map.GetAllTiles(gridUid, grid))
             {
                 var world = _map.GridTileToWorldPos(gridUid, grid, tile.GridIndices);
-                var dist = (int) Math.Max(Math.Abs(world.X - origin.X), Math.Abs(world.Y - origin.Y));
+                var dist = (int)Math.Max(Math.Abs(world.X - origin.X), Math.Abs(world.Y - origin.Y));
                 if (gridUid != invokerGrid)
                     dist = Math.Max(dist, 1);
                 if (!rings.TryGetValue(dist, out var ring))
@@ -324,7 +347,7 @@ public sealed partial class ImperialGrandRitualSystem
             foreach (var (dist, tiles) in rings)
             {
                 var g = gridUid;
-                Schedule(TimeSpan.FromSeconds(5) * dist, () =>
+                Schedule(MidasDelay * dist, () =>
                 {
                     if (TerminatingOrDeleted(g))
                         return;
@@ -342,20 +365,21 @@ public sealed partial class ImperialGrandRitualSystem
     {
         foreach (var victim in CrewWithMinds().ToList())
         {
-            _stun.TryUpdateParalyzeDuration(victim, TimeSpan.FromSeconds(3));
+            _stun.TryUpdateParalyzeDuration(victim, ClownDuration);
             if (victim == invoker)
             {
                 // untie_shoes на максимум, выкрикивается.
                 if (_spellSystem.FindSpell(invoker, "ImperialSpellTieShoes") != null)
                     continue;
 
-                if (_spellbook.GrantSpell(invoker, "ImperialSpellTieShoes") is { } spell && TryComp<ImperialSpellComponent>(spell, out var comp))
+                if (_spellbook.GrantSpell(invoker, ImperialSpellTieShoes) is { } spell && TryComp<ImperialSpellComponent>(spell, out var comp))
                 {
                     while (_spellSystem.LevelSpell((spell, comp)))
                     {
                     }
 
                     comp.InvocationType = ImperialInvocationType.Shout;
+                    Dirty(spell, comp);
                 }
 
                 continue;
@@ -364,12 +388,12 @@ public sealed partial class ImperialGrandRitualSystem
             _popup.PopupEntity(Loc.GetString("imperial-grand-finale-clown-popup"), victim, victim, PopupType.Large);
             if (HasJob(victim, ClownJob))
             {
-                _spellbook.GrantSpell(victim, "ImperialSpellTieShoes");
+                _spellbook.GrantSpell(victim, ImperialSpellTieShoes);
                 continue;
             }
 
             DressAsClown(victim);
-            if (_random.Prob(0.15f))
+            if (_random.Prob(ClownChance))
                 CreateVendetta(victim, invoker);
         }
     }
@@ -377,7 +401,7 @@ public sealed partial class ImperialGrandRitualSystem
     /// <summary>dress_as_magic_clown(): комбинезон и маска клоуна, карманы и пояс возвращаются на место.</summary>
     private void DressAsClown(EntityUid victim)
     {
-        Spawn("WizardSmoke", _transform.GetMapCoordinates(victim));
+        Spawn(WizardSmoke, _transform.GetMapCoordinates(victim));
         var kept = new List<(string Slot, EntityUid Item)>();
         foreach (var slot in new[] { "pocket1", "pocket2", "id", "belt" })
         {
@@ -394,8 +418,8 @@ public sealed partial class ImperialGrandRitualSystem
             }
         }
 
-        EquipNew(victim, "jumpsuit", "ClothingUniformJumpsuitClown");
-        EquipNew(victim, "mask", "ClothingMaskClown");
+        EquipNew(victim, "jumpsuit", ClothingUniformJumpsuitClown);
+        EquipNew(victim, "mask", ClothingMaskClown);
         foreach (var (slot, item) in kept)
         {
             if (!_inventory.TryEquip(victim, item, slot, true, true))
@@ -418,7 +442,7 @@ public sealed partial class ImperialGrandRitualSystem
         var otherCrew = new List<EntityUid>();
         foreach (var crew in CrewWithMinds().ToList())
         {
-            _stun.TryUpdateParalyzeDuration(crew, TimeSpan.FromSeconds(3));
+            _stun.TryUpdateParalyzeDuration(crew, UsurpDuration);
             if (crew == invoker)
                 continue;
 
@@ -443,7 +467,7 @@ public sealed partial class ImperialGrandRitualSystem
 
         foreach (var crew in otherCrew)
         {
-            if (_random.Prob(0.1f))
+            if (_random.Prob(UsurpChance))
                 CreateVendetta(crew, invoker);
         }
     }
@@ -451,7 +475,7 @@ public sealed partial class ImperialGrandRitualSystem
     /// <summary>demote_to_assistant(): бывший капитан раздет, одет пассажиром и отправлен куда-то на станцию.</summary>
     private void DemoteToAssistant(EntityUid captain)
     {
-        Spawn("WizardSmoke", _transform.GetMapCoordinates(captain));
+        Spawn(WizardSmoke, _transform.GetMapCoordinates(captain));
         if (_inventory.TryGetContainerSlotEnumerator(captain, out var slots))
         {
             while (slots.NextItem(out var item, out var slot))
@@ -467,7 +491,7 @@ public sealed partial class ImperialGrandRitualSystem
         var areas = _teleport.GetAreas().Values.ToList();
         if (areas.Count > 0 && _teleport.TryGetDestination(_random.Pick(areas), out var dest))
             _transform.SetCoordinates(captain, dest);
-        Spawn("WizardSmoke", _transform.GetMapCoordinates(captain));
+        Spawn(WizardSmoke, _transform.GetMapCoordinates(captain));
     }
 
     /// <summary>dress_candidate(): карта, гарнитура и форма капитана, мантия остаётся.</summary>
@@ -489,16 +513,16 @@ public sealed partial class ImperialGrandRitualSystem
             }
         }
 
-        EquipNew(invoker, "jumpsuit", "ClothingUniformJumpsuitCaptain");
-        EquipNew(invoker, "id", "CaptainIDCard");
-        EquipNew(invoker, "ears", "ClothingHeadsetAltCommand");
+        EquipNew(invoker, "jumpsuit", ClothingUniformJumpsuitCaptain);
+        EquipNew(invoker, "id", CaptainIDCard);
+        EquipNew(invoker, "ears", ClothingHeadsetAltCommand);
         foreach (var (slot, proto) in new[] { ("eyes", "ClothingEyesGlassesSunglasses"), ("gloves", "ClothingHandsGlovesCaptain"), ("neck", "ClothingNeckGoldmedal") })
         {
             if (!_inventory.TryGetSlotEntity(invoker, slot, out _))
                 EquipNew(invoker, slot, proto);
         }
 
-        var baton = Spawn("TelescopicBaton", Transform(invoker).Coordinates);
+        var baton = Spawn(TelescopicBaton, Transform(invoker).Coordinates);
         _hands.TryPickupAnyHand(invoker, baton);
         foreach (var (slot, item) in kept)
         {
@@ -514,7 +538,7 @@ public sealed partial class ImperialGrandRitualSystem
         var query = EntityQueryEnumerator<MobStateComponent>();
         while (query.MoveNext(out var uid, out _))
         {
-            Spawn("ImperialImmortalityPulse", _transform.GetMapCoordinates(uid));
+            Spawn(ImperialImmortalityPulse, _transform.GetMapCoordinates(uid));
             if (_mind.TryGetMind(uid, out _, out _))
                 _popup.PopupEntity(Loc.GetString("imperial-grand-finale-immortal-popup"), uid, uid, PopupType.Large);
         }
@@ -532,18 +556,18 @@ public sealed partial class ImperialGrandRitualSystem
         if (_mind.TryGetMind(died, out _, out _))
             _popup.PopupEntity(Loc.GetString("imperial-grand-finale-immortal-surge"), died, died, PopupType.Large);
 
-        Schedule(TimeSpan.FromSeconds(10), () =>
+        Schedule(MobStateChangedDelay, () =>
         {
             if (TerminatingOrDeleted(died) || !_mobs.IsDead(died) || _containers.IsEntityInContainer(died))
                 return;
 
-            var spectre = Spawn("ImperialSpectreOfResurrection", _transform.GetMapCoordinates(died));
+            var spectre = Spawn(ImperialSpectreOfResurrection, _transform.GetMapCoordinates(died));
             _meta.SetEntityName(spectre, Loc.GetString("imperial-grand-finale-spectre-name", ("name", Name(died))));
             var container = _containers.EnsureContainer<ContainerSlot>(spectre, "corpse");
             _containers.Insert(died, container, force: true);
             var comp = EnsureComp<ImperialSpectreOfResurrectionComponent>(spectre);
             comp.Corpse = died;
-            Schedule(TimeSpan.FromSeconds(50), () => Revive(spectre));
+            Schedule(MobStateChangedDelay2, () => Revive(spectre));
         });
     }
 
@@ -587,7 +611,7 @@ public sealed partial class ImperialGrandRitualSystem
 #pragma warning restore CS0618
         }
 
-        var wabbajack = Spawn("ImperialTrueWabbajack", Transform(invoker).Coordinates);
+        var wabbajack = Spawn(ImperialTrueWabbajack, Transform(invoker).Coordinates);
         _hands.TryPickupAnyHand(invoker, wabbajack);
         _popup.PopupEntity(Loc.GetString("imperial-grand-finale-cheese-wabbajack", ("item", wabbajack)), invoker, invoker, PopupType.Large);
     }

@@ -30,4 +30,7 @@ public sealed partial class ImperialSoulstoneComponent : Component
 
     [DataField]
     public EntProtoId Shade = "ImperialWizardShade";
+
+    [DataField]
+    public TimeSpan CanUseDuration = TimeSpan.FromSeconds(10);
 }

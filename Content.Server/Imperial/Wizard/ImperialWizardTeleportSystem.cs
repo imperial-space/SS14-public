@@ -83,17 +83,17 @@ public sealed class ImperialWizardTeleportSystem : EntitySystem
 
         var center = _maps.LocalToTile(gridUid, grid, xform.Coordinates);
         var candidates = new List<Vector2i>();
-        var radius = (int) AreaRadius;
+        var radius = (int)AreaRadius;
         for (var x = -radius; x <= radius; x++)
-        for (var y = -radius; y <= radius; y++)
-        {
-            var tile = center + new Vector2i(x, y);
-            if (!_maps.TryGetTileRef(gridUid, grid, tile, out var tileRef) || _turf.IsSpace(tileRef)
-                || _turf.IsTileBlocked(tileRef, CollisionGroup.Impassable))
-                continue;
+            for (var y = -radius; y <= radius; y++)
+            {
+                var tile = center + new Vector2i(x, y);
+                if (!_maps.TryGetTileRef(gridUid, grid, tile, out var tileRef) || _turf.IsSpace(tileRef)
+                    || _turf.IsTileBlocked(tileRef, CollisionGroup.Impassable))
+                    continue;
 
-            candidates.Add(tile);
-        }
+                candidates.Add(tile);
+            }
 
         if (candidates.Count == 0)
             return false;

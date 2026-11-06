@@ -35,7 +35,7 @@ public sealed class MakeImperialWizardCommand : IConsoleCommand
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        EntityUid? target = shell.Player?.AttachedEntity;
+        var target = shell.Player?.AttachedEntity;
         if (args.Length > 0)
         {
             if (!_entManager.TryParseNetEntity(args[0], out var net) || !_entManager.EntityExists(net))

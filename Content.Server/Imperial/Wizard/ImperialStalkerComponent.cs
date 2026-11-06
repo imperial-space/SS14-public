@@ -38,4 +38,10 @@ public sealed partial class ImperialStalkerComponent : Component
     /// <summary>on_life(): тик раз в 2 секунды.</summary>
     [ViewVariables]
     public TimeSpan NextTick;
+
+    [DataField]
+    public TimeSpan TickDelay = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public float UpdateChance = 0.51f;
 }

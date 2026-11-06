@@ -38,6 +38,11 @@ public sealed partial class ImperialWizardSpellsSystem
     private static readonly SoundSpecifier SwapSound = new SoundPathSpecifier("/Audio/Imperial/Wizard/swap.ogg");
     private static readonly ProtoId<PolymorphPrototype> SpiritPhase = "ImperialSpiritPhase";
 
+    private static readonly EntProtoId ImperialSteamEffect = "ImperialSteamEffect";
+
+    private static readonly TimeSpan CheckDelay = TimeSpan.FromSeconds(0.2);
+    private static readonly TimeSpan GhostlinessSharedDelay = TimeSpan.FromSeconds(5);
+
     private void InitializeMobility()
     {
         SubscribeLocalEvent<ImperialMindSwapSpellComponent, ImperialSpellEffectEvent>(OnMindSwap);
@@ -202,7 +207,7 @@ public sealed partial class ImperialWizardSpellsSystem
         var tracker = EnsureComp<ImperialJauntTrackerComponent>(jaunt);
         tracker.Start = start;
         tracker.LastFree = start;
-        Spawn("ImperialSteamEffect", start);
+        Spawn(ImperialSteamEffect, start);
     }
 
     /// <summary>update_exit_point(): последняя свободная клетка на пути.</summary>
@@ -215,7 +220,7 @@ public sealed partial class ImperialWizardSpellsSystem
             if (now < tracker.NextCheck)
                 continue;
 
-            tracker.NextCheck = now + TimeSpan.FromSeconds(0.2);
+            tracker.NextCheck = now + CheckDelay;
             if (!IsTileBlocked(xform.Coordinates))
                 tracker.LastFree = xform.Coordinates;
         }
@@ -250,7 +255,7 @@ public sealed partial class ImperialWizardSpellsSystem
             }
         }
 
-        Spawn("ImperialSteamEffect", Transform(args.NewEntity).Coordinates);
+        Spawn(ImperialSteamEffect, Transform(args.NewEntity).Coordinates);
     }
 
     #endregion
@@ -269,7 +274,7 @@ public sealed partial class ImperialWizardSpellsSystem
 
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString(HasComp<ImperialSpiritComponent>(caster) ? "imperial-spell-ghost-focus-spirit" : "imperial-spell-ghost-focus"), caster, caster);
-        _doAfter.TryStartDoAfter(new Content.Shared.DoAfter.DoAfterArgs(EntityManager, caster, TimeSpan.FromSeconds(5), new ImperialSpellChannelDoAfterEvent(), ent)
+        _doAfter.TryStartDoAfter(new Content.Shared.DoAfter.DoAfterArgs(EntityManager, caster, GhostlinessSharedDelay, new ImperialSpellChannelDoAfterEvent(), ent)
         {
             BreakOnMove = true,
             BreakOnDamage = true,

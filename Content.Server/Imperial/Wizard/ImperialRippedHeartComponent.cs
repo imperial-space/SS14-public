@@ -30,4 +30,8 @@ namespace Content.Server.Imperial.Wizard;
 
 /// <summary>Вырванное сердце: съесть — исцеление и сила.</summary>
 [RegisterComponent]
-public sealed partial class ImperialRippedHeartComponent : Component;
+public sealed partial class ImperialRippedHeartComponent : Component
+{
+    [DataField]
+    public float HeartEatChance = 0.5f;
+}

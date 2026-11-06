@@ -44,6 +44,8 @@ public sealed class ImperialWizardSoulstoneSystem : EntitySystem
         ("imperial-construct-artificer", "ImperialMobConstructArtificer"),
     };
 
+    private static readonly EntProtoId Ash = "Ash";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -60,7 +62,7 @@ public sealed class ImperialWizardSoulstoneSystem : EntitySystem
             return true;
 
         // role_check(): «вас скручивает изнурительная боль».
-        _stun.TryUpdateParalyzeDuration(user, TimeSpan.FromSeconds(10));
+        _stun.TryUpdateParalyzeDuration(user, stone.Comp.CanUseDuration);
         _popup.PopupEntity(Loc.GetString("imperial-soulstone-wracked"), user, user, PopupType.LargeCaution);
         return false;
     }
@@ -143,7 +145,7 @@ public sealed class ImperialWizardSoulstoneSystem : EntitySystem
         UpdateStone(ent);
 
         // victim.dust(drop_items = TRUE)
-        Spawn("Ash", Transform(victim).Coordinates);
+        Spawn(Ash, Transform(victim).Coordinates);
         EntityManager.System<ImperialWizardSpellsSystem>().DropEverything(victim);
         QueueDel(victim);
     }

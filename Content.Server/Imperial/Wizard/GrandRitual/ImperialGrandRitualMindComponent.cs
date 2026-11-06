@@ -70,4 +70,7 @@ public sealed partial class ImperialGrandRitualMindComponent : Component
 
     [ViewVariables]
     public EntityUid? Action;
+
+    [DataField]
+    public float StartDrawingRuneRange = 3f;
 }

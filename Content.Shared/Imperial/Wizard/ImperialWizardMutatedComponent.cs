@@ -13,4 +13,7 @@ public sealed partial class ImperialWizardMutatedComponent : Component
 
     [ViewVariables]
     public EntityUid? LaserAction;
+
+    [DataField]
+    public float LaserEyesSpeed = 25f;
 }
