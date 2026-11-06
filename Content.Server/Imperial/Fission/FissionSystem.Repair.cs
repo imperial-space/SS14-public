@@ -162,7 +162,7 @@ public sealed partial class FissionSystem
                 welder = held;
         }
 
-        if (welder == null || !TryComp<ToolComponent>(welder, out _))
+        if (welder == null || !HasComp<ToolComponent>(welder))
         {
             _popup.PopupEntity(Loc.GetString("fission-reactor-need-welder"), ent, user);
             return;
