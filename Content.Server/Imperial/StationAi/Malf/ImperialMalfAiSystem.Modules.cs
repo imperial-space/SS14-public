@@ -88,10 +88,6 @@ public sealed partial class ImperialMalfAiSystem
     private readonly List<(TimeSpan At, EntityUid Ai, Vector2 Direction)> _pendingRolls = new();
     private readonly List<(TimeSpan At, EntityUid Vendor, EntityCoordinates Target)> _pendingTilts = new();
     private TimeSpan? _lockdownEnd;
-    private readonly Dictionary<EntityUid, TimeSpan> _rollCooldown = new();
-
-    /// <summary>overload: счётчик перегрузок ЛКП для «Отключения света».</summary>
-    private readonly Dictionary<EntityUid, int> _apcOverload = new();
 
     private static readonly DamageSpecifier CrushDamage = new() { DamageDict = { ["Blunt"] = 75 } };
 
@@ -340,7 +336,7 @@ public sealed partial class ImperialMalfAiSystem
             if (!OnStation(ent, apc))
                 continue;
 
-            var overload = _apcOverload.GetValueOrDefault(apc);
+            var overload = (CompOrNull<ImperialMalfAiApcOverloadComponent>(apc)?.Value ?? default);
             if (_random.Prob(Math.Min(1f, 0.3f * overload)))
             {
                 foreach (var receiver in provider.LinkedReceivers.ToList())
@@ -352,7 +348,7 @@ public sealed partial class ImperialMalfAiSystem
             }
             else
             {
-                _apcOverload[apc] = overload + 1;
+                EnsureComp<ImperialMalfAiApcOverloadComponent>(apc).Value = overload + 1;
             }
         }
 
@@ -603,7 +599,7 @@ public sealed partial class ImperialMalfAiSystem
         if (args.Handled || !_ai.TryGetCore(ent, out var core))
             return;
 
-        if (_rollCooldown.TryGetValue(ent, out var until) && _timing.CurTime < until)
+        if (TryGetRollCooldown(ent, out var until) && _timing.CurTime < until)
         {
             _popup.PopupEntity(Loc.GetString("imperial-malf-roll-cooldown"), ent, ent);
             return;
@@ -620,7 +616,7 @@ public sealed partial class ImperialMalfAiSystem
             return;
 
         args.Handled = true;
-        _rollCooldown[ent] = _timing.CurTime + RollTime + RollCooldown;
+        EnsureComp<ImperialMalfAiRollCooldownComponent>(ent).Value = _timing.CurTime + RollTime + RollCooldown;
         _pendingRolls.Add((_timing.CurTime + RollTime, ent, direction));
         _popup.PopupEntity(Loc.GetString("imperial-malf-rolling"), core.Owner, PopupType.MediumCaution);
     }
@@ -827,5 +823,17 @@ public sealed partial class ImperialMalfAiSystem
     private void OnModuleBought(Entity<ImperialMalfAiComponent> ent, ref ImperialMalfModuleBoughtEvent args)
     {
         ApplyUpgrade(ent, args.Module);
+    }
+
+    private bool TryGetRollCooldown(EntityUid uid, out TimeSpan value)
+    {
+        if (TryComp<ImperialMalfAiRollCooldownComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            return true;
+        }
+
+        value = default!;
+        return false;
     }
 }
