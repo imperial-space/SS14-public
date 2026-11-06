@@ -1,9 +1,3 @@
-using Content.Server.Imperial.Heretic;
-using Content.Server.Imperial.Heretic.Effects;
-using Content.Server.Imperial.Heretic.Items;
-using Content.Server.Imperial.Heretic.Paths.Moon;
-using Content.Server.Imperial.Heretic.Paths.Moon.Parade;
-using Content.Server.Imperial.Heretic.Paths.Void;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Server.Imperial.Antimagic;
@@ -11,22 +5,15 @@ using Content.Server.Mind;
 using Content.Server.Objectives;
 using Content.Server.Popups;
 using Content.Shared.Actions;
-using Content.Shared.Actions.Components;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
-using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Imperial.Cult.Components;
 using Content.Shared.Imperial.Heretic.Core;
-using Content.Shared.Imperial.Heretic.Effects;
-using Content.Shared.Imperial.Heretic.Items;
 using Content.Shared.Imperial.Heretic.Paths.Moon;
-using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
-using Content.Shared.Imperial.Heretic.Paths.Void;
-using Content.Shared.Imperial.Heretic.Rituals;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Mind;
@@ -238,7 +225,7 @@ public sealed class HereticLunaticSystem : EntitySystem
         if (ent.Comp.Master is not { } master || !Exists(master))
         {
             _popup.PopupEntity(Loc.GetString("lunatic-track-no-master"), ent, ent, PopupType.MediumCaution);
-            _actions.SetCooldown(args.Action.Owner, TimeSpan.FromSeconds(1));
+            _actions.SetCooldown(args.Action.Owner, ent.Comp.TrackCooldown);
             return;
         }
 
@@ -326,8 +313,7 @@ public sealed class HereticLunaticSystem : EntitySystem
         _audio.PlayPvs(GraspSound, target);
 
         // apply_damage(10, BRUTE)
-        var brute = new DamageSpecifier();
-        brute.DamageDict["Blunt"] = FixedPoint2.New(10);
+        var brute = new DamageSpecifier(ent.Comp.GraspHitBluntDamage);
         _damage.TryChangeDamage(target, brute, origin: args.User);
 
         if (HasComp<HumanoidProfileComponent>(target))
@@ -335,13 +321,13 @@ public sealed class HereticLunaticSystem : EntitySystem
             if (HasComp<CultistComponent>(target))
             {
                 // Кровавая магия культиста поглощает большую часть эффекта.
-                _stun.TryKnockdown(target, TimeSpan.FromSeconds(0.5), true);
+                _stun.TryKnockdown(target, ent.Comp.GraspHitTime, true);
                 _popup.PopupEntity(Loc.GetString("lunatic-grasp-cult-absorb"), target, PopupType.MediumCaution);
             }
             else
             {
-                _statusEffects.TryAddStatusEffectDuration(target, SlurredEffect, TimeSpan.FromSeconds(4));
-                _stun.TryKnockdown(target, TimeSpan.FromSeconds(5), true);
+                _statusEffects.TryAddStatusEffectDuration(target, SlurredEffect, ent.Comp.GraspHitDuration);
+                _stun.TryKnockdown(target, ent.Comp.GraspHitTime2, true);
                 _stamina.TakeStaminaDamage(target, 80f, source: args.User);
             }
         }

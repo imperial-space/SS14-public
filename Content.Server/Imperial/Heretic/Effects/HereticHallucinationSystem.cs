@@ -59,7 +59,7 @@ public sealed class HereticHallucinationSystem : EntitySystem
     private void OnApplied(Entity<HereticWeeepingHallucinationStatusEffectComponent> ent, ref StatusEffectAppliedEvent args)
     {
         ent.Comp.NextHallucinationTime = _timing.CurTime + TimeSpan.FromSeconds(
-            _random.NextFloat(ent.Comp.MinInterval * 0.1f, ent.Comp.MinInterval * 0.5f));
+            _random.NextFloat((float)ent.Comp.MinInterval.TotalSeconds * 0.1f, (float)ent.Comp.MinInterval.TotalSeconds * 0.5f));
 
         EnsureComp<HereticMoonIllusionViewerComponent>(args.Target);
         _eye.RefreshVisibilityMask(args.Target);
@@ -104,7 +104,7 @@ public sealed class HereticHallucinationSystem : EntitySystem
                 continue;
 
             hallucination.NextHallucinationTime = now + TimeSpan.FromSeconds(
-                _random.NextFloat(hallucination.MinInterval, hallucination.MaxInterval));
+                _random.NextFloat((float)hallucination.MinInterval.TotalSeconds, (float)hallucination.MaxInterval.TotalSeconds));
 
             TriggerHallucination(target);
         }

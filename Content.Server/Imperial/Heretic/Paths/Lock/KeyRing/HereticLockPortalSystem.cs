@@ -24,6 +24,8 @@ public sealed class HereticLockPortalSystem : EntitySystem
     private static readonly SoundPathSpecifier SoundDeparture = new("/Audio/Effects/teleport_departure.ogg");
     private static readonly SoundPathSpecifier SoundArrival = new("/Audio/Effects/teleport_arrival.ogg");
 
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -61,7 +63,7 @@ public sealed class HereticLockPortalSystem : EntitySystem
                 {
                     DamageDict = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>
                     {
-                        ["Blunt"] = 20
+                        [BluntDamageType] = 20
                     }
                 }, ignoreResistances: false);
             }

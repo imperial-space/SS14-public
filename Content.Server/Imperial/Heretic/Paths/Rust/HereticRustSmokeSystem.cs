@@ -5,7 +5,8 @@ using Content.Shared.Imperial.Heretic.Paths.Rust;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Silicons.Borgs.Components;
-using Robust.Shared.Map;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Rust;
 
@@ -15,6 +16,10 @@ public sealed class HereticRustSmokeSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly MobStateSystem _mobs = default!;
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+
+    private static readonly EntProtoId HereticRustOverlay = "HereticRustOverlay";
 
     public override void Initialize()
     {
@@ -26,10 +31,10 @@ public sealed class HereticRustSmokeSystem : EntitySystem
     {
         var mapCoords = _xform.GetMapCoordinates(ent.Owner);
 
-        if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(mapCoords, 0.4f, LookupFlags.Static).Count == 0)
-            Spawn("HereticRustOverlay", mapCoords);
+        if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(mapCoords, ent.Comp.MapInitRange, LookupFlags.Static).Count == 0)
+            Spawn(HereticRustOverlay, mapCoords);
 
-        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(mapCoords, 0.6f))
+        foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(mapCoords, ent.Comp.MapInitRange2))
         {
             if (!HasComp<BorgChassisComponent>(mob.Owner))
                 continue;
@@ -37,7 +42,7 @@ public sealed class HereticRustSmokeSystem : EntitySystem
                 continue;
 
             var dmg = new DamageSpecifier();
-            dmg.DamageDict["Blunt"] = FixedPoint2.New(ent.Comp.BorgDamage);
+            dmg.DamageDict[BluntDamageType] = FixedPoint2.New(ent.Comp.BorgDamage);
             _damage.TryChangeDamage(mob.Owner, dmg, ignoreResistances: true);
         }
     }

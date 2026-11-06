@@ -44,8 +44,8 @@ public sealed class LionhunterRifleSystem : EntitySystem
         if (dist >= MinAimedDistance)
         {
             _stamina.TakeStaminaDamage(args.Target, 60f, visual: true);
-            _stun.TryKnockdown(args.Target, TimeSpan.FromSeconds(0.5), true);
-            _stuttering.DoStutter(args.Target, TimeSpan.FromSeconds(6), true);
+            _stun.TryKnockdown(args.Target, ent.Comp.BulletHitTime, true);
+            _stuttering.DoStutter(args.Target, ent.Comp.BulletHitTime2, true);
 
             if (TryComp<HereticComponent>(shooter, out var hereticComp))
                 _hereticSystem.ApplyGraspMark(shooter, hereticComp, args.Target);

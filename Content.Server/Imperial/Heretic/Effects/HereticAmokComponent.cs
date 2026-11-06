@@ -4,10 +4,10 @@ namespace Content.Server.Imperial.Heretic.Effects;
 public sealed partial class HereticAmokComponent : Component
 {
     [DataField]
-    public float Duration = 10f;
+    public TimeSpan Duration = TimeSpan.FromSeconds(10f);
 
     [DataField]
-    public float AttackCooldown = 1.5f;
+    public TimeSpan AttackCooldown = TimeSpan.FromSeconds(1.5f);
 
     [ViewVariables, AutoPausedField]
     public TimeSpan End;

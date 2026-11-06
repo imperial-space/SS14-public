@@ -15,6 +15,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Content.Server.Imperial.Antimagic;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
@@ -30,6 +31,14 @@ public sealed class HereticStarBlastSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
+
+    private static readonly EntProtoId ProjectileStarBlast = "ProjectileStarBlast";
+    private static readonly EntProtoId StarMarkStatusEffect = "StarMarkStatusEffect";
+    private static readonly EntProtoId HereticCosmicCarpet = "HereticCosmicCarpet";
+
+    private static readonly TimeSpan PullVictimsDuration = TimeSpan.FromSeconds(30);
+
+    private const float PullVictimsRange = 2f;
 
     public override void Initialize()
     {
@@ -49,7 +58,7 @@ public sealed class HereticStarBlastSystem : EntitySystem
             if (_timing.CurTime < comp.NextTrail)
                 continue;
 
-            comp.NextTrail = _timing.CurTime + TimeSpan.FromSeconds(comp.TrailInterval);
+            comp.NextTrail = _timing.CurTime + comp.TrailInterval;
             var localPos = xform.LocalPosition;
             var snapped = new Vector2(MathF.Floor(localPos.X) + 0.5f, MathF.Floor(localPos.Y) + 0.5f);
             var trailLevel = comp.Shooter != null && TryComp<HereticComponent>(comp.Shooter, out var trailH)
@@ -83,7 +92,7 @@ public sealed class HereticStarBlastSystem : EntitySystem
             direction = new Vector2(1f, 0f);
         direction = Vector2.Normalize(direction);
 
-        var projectile = Spawn("ProjectileStarBlast", originCoords);
+        var projectile = Spawn(ProjectileStarBlast, originCoords);
         var projComp = EnsureComp<HereticStarBlastProjectileComponent>(projectile);
         projComp.Shooter = uid;
 
@@ -94,7 +103,7 @@ public sealed class HereticStarBlastSystem : EntitySystem
         starBlast.StarBlastAction = args.Action.Owner;
 
         // SetUseDelay изменяет компонент ДО того как система вызовет StartUseDelay(UseDelay)
-        _actions.SetUseDelay(new Entity<ActionComponent?>(args.Action.Owner, args.Action.Comp), TimeSpan.FromSeconds(0.5));
+        _actions.SetUseDelay(new Entity<ActionComponent?>(args.Action.Owner, args.Action.Comp), starBlast.ShootDelay);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_magic_cosmic_energy.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-star-blast-fired"), uid, uid, PopupType.Medium);
     }
@@ -133,14 +142,14 @@ public sealed class HereticStarBlastSystem : EntitySystem
 
         var hereticWorldPos = _xform.GetWorldPosition(hereticUid);
 
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 2f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, PullVictimsRange))
         {
             if (ent.Owner == hereticUid)
                 continue;
             if (_antimagic.CanBlockMagic(ent.Owner))
                 continue;
 
-            _statusEffects.TrySetStatusEffectDuration(ent.Owner, "StarMarkStatusEffect", TimeSpan.FromSeconds(30));
+            _statusEffects.TrySetStatusEffectDuration(ent.Owner, StarMarkStatusEffect, PullVictimsDuration);
 
             if (!TryComp<PhysicsComponent>(ent.Owner, out var mobPhysics))
                 continue;
@@ -164,15 +173,15 @@ public sealed class HereticStarBlastSystem : EntitySystem
 
                 var coords = Transform(uid).Coordinates;
                 if (!_antimagic.CanBlockMagic(args.OtherEntity))
-                    _stun.TryKnockdown(args.OtherEntity, TimeSpan.FromSeconds(4), true);
+                    _stun.TryKnockdown(args.OtherEntity, comp.ProjectileCollideMobSensorTime, true);
 
-                foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 3f))
+                foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, comp.ProjectileCollideMobSensorRange))
                 {
                     if (ent.Owner == comp.Shooter)
                         continue;
                     if (_antimagic.CanBlockMagic(ent.Owner))
                         continue;
-                    _statusEffects.TrySetStatusEffectDuration(ent.Owner, "StarMarkStatusEffect", TimeSpan.FromSeconds(30));
+                    _statusEffects.TrySetStatusEffectDuration(ent.Owner, StarMarkStatusEffect, comp.ProjectileCollideMobSensorDuration);
                 }
 
                 QueueDel(uid);
@@ -186,7 +195,7 @@ public sealed class HereticStarBlastSystem : EntitySystem
 
     private void SpawnCarpet(int passiveLevel, EntityUid parent, Vector2 pos)
     {
-        var carpet = Spawn("HereticCosmicCarpet", new EntityCoordinates(parent, pos));
+        var carpet = Spawn(HereticCosmicCarpet, new EntityCoordinates(parent, pos));
         if (passiveLevel > 0 && TryComp<HereticCosmicFieldComponent>(carpet, out var field))
             field.PassiveLevel = passiveLevel;
     }
@@ -203,8 +212,8 @@ public sealed class HereticStarBlastSystem : EntitySystem
         if (starBlast.StarBlastAction != null)
         {
             var actionEnt = new Entity<ActionComponent?>(starBlast.StarBlastAction.Value, null);
-            _actions.SetUseDelay(actionEnt, TimeSpan.FromSeconds(25));
-            _actions.SetCooldown(actionEnt, TimeSpan.FromSeconds(25));
+            _actions.SetUseDelay(actionEnt, comp.ProjectileTerminatingDelay);
+            _actions.SetCooldown(actionEnt, comp.ProjectileTerminatingCooldown);
         }
     }
 }

@@ -1,9 +1,4 @@
-using Content.Server.Imperial.Heretic;
 using Content.Server.Imperial.Heretic.Effects;
-using Content.Server.Imperial.Heretic.Items;
-using Content.Server.Imperial.Heretic.Paths.Moon;
-using Content.Server.Imperial.Heretic.Paths.Moon.Parade;
-using Content.Server.Imperial.Heretic.Paths.Void;
 using Content.Shared.Alert;
 using Content.Shared.Clothing;
 using Content.Shared.Damage.Prototypes;
@@ -12,12 +7,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Heretic.Core;
-using Content.Shared.Imperial.Heretic.Effects;
-using Content.Shared.Imperial.Heretic.Items;
 using Content.Shared.Imperial.Heretic.Paths.Moon;
-using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
-using Content.Shared.Imperial.Heretic.Paths.Void;
-using Content.Shared.Imperial.Heretic.Rituals;
 using Content.Shared.Imperial.Lavaland.ColossusLoot;
 using Content.Shared.Inventory;
 using Content.Shared.Mindshield.Components;
@@ -27,7 +17,6 @@ using Content.Shared.Popups;
 using Content.Shared.Speech.Muting;
 using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
-using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -36,15 +25,15 @@ namespace Content.Server.Imperial.Heretic.Paths.Moon;
 
 public sealed class HereticMoonAmuletSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem          _damage        = default!;
-    [Dependency] private readonly InventorySystem           _inventory     = default!;
-    [Dependency] private readonly StatusEffectsSystem       _statusEffects = default!;
-    [Dependency] private readonly SharedStunSystem          _stun          = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly HereticMoonBrainDamageSystem _brainDamage = default!;
-    [Dependency] private readonly HereticStatusEffectsSystem   _hereticEffects = default!;
-    [Dependency] private readonly MobStateSystem            _mobs          = default!;
-    [Dependency] private readonly SharedPopupSystem         _popup         = default!;
-    [Dependency] private readonly IGameTiming               _gameTiming    = default!;
+    [Dependency] private readonly HereticStatusEffectsSystem _hereticEffects = default!;
+    [Dependency] private readonly MobStateSystem _mobs = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly Content.Shared.StatusEffectNew.StatusEffectsSystem _newStatusEffects = default!;
 
     /// <summary>SANITY_LEVEL_INSANE: ниже этого рассудок считается сломанным.</summary>
@@ -78,6 +67,8 @@ public sealed class HereticMoonAmuletSystem : EntitySystem
     private static readonly TimeSpan CuredUnconscious = TimeSpan.FromSeconds(5);
 
     [Dependency] private readonly AlertsSystem _alerts = default!;
+
+    private static readonly ProtoId<DamageTypePrototype> HeatDamageType = "Heat";
 
     public override void Initialize()
     {
@@ -199,7 +190,7 @@ public sealed class HereticMoonAmuletSystem : EntitySystem
         if (!HasComp<HumanoidProfileComponent>(target))
         {
             var burn = new DamageSpecifier();
-            burn.DamageDict["Heat"] = FixedPoint2.New(NonHumanBurn);
+            burn.DamageDict[HeatDamageType] = FixedPoint2.New(NonHumanBurn);
             _damage.TryChangeDamage(target, burn, ignoreResistances: false);
             return true;
         }

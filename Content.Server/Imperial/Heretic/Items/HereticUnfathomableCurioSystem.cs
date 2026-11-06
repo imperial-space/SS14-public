@@ -3,8 +3,8 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Heretic.Items;
 using Content.Shared.Popups;
-using Robust.Shared.IoC;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Items;
 
@@ -13,6 +13,8 @@ public sealed class HereticUnfathomableCurioSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+
+    private static readonly EntProtoId HereticCurioShieldVisual = "HereticCurioShieldVisual";
 
     public override void Initialize()
     {
@@ -83,9 +85,10 @@ public sealed class HereticUnfathomableCurioSystem : EntitySystem
     private void SpawnShieldVisual(EntityUid wearer, HereticCurioShieldComponent shield)
     {
         RemoveShieldVisual(shield);
-        var visual = Spawn("HereticCurioShieldVisual", Transform(wearer).Coordinates);
+        var visual = Spawn(HereticCurioShieldVisual, Transform(wearer).Coordinates);
         _xform.SetParent(visual, wearer);
         shield.ShieldVisual = visual;
+        Dirty(wearer, shield);
     }
 
     private void RemoveShieldVisual(HereticCurioShieldComponent shield)

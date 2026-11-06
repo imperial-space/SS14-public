@@ -1,90 +1,26 @@
 using System.Numerics;
 using Content.Server.Atmos.Components;
-using Content.Server.Beam;
-using Content.Server.Body;
 using Content.Server.Body.Components;
-using Content.Server.Chat.Systems;
-using Content.Server.Damage.Systems;
-using Content.Server.Decals;
-using Content.Server.DoAfter;
-using Content.Server.Doors.Systems;
 using Content.Server.Imperial.Heretic.Effects;
-using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
-using Content.Shared.Access;
-using Content.Shared.Access.Components;
-using Content.Shared.Access.Systems;
-using Content.Shared.Actions;
-using Content.Shared.Actions.Components;
-using Content.Shared.Alert;
-using Content.Shared.Atmos;
-using Content.Shared.Atmos.Components;
-using Content.Shared.Bed.Sleep;
-using Content.Shared.Body;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Events;
-using Content.Shared.Body.Systems;
-using Content.Shared.Chat;
-using Content.Shared.CombatMode;
-using Content.Shared.CombatMode.Pacification;
-using Content.Shared.Coordinates.Helpers;
-using Content.Shared.Cuffs;
-using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Doors.Components;
-using Content.Shared.Electrocution;
-using Content.Shared.Eye;
-using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.FixedPoint;
-using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Cosmos;
-using Content.Shared.Interaction;
-using Content.Shared.Interaction.Events;
-using Content.Shared.Inventory;
-using Content.Shared.Item;
-using Content.Shared.Maps;
-using Content.Shared.Medical;
-using Content.Shared.Mind.Components;
-using Content.Shared.Mindshield.Components;
-using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Movement.Pulling.Components;
-using Content.Shared.Movement.Pulling.Systems;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Physics;
-using Content.Shared.Polymorph;
 using Content.Shared.Popups;
-using Content.Shared.SSDIndicator;
-using Content.Shared.Slippery;
-using Content.Shared.Speech.Muting;
-using Content.Shared.Stacks;
-using Content.Shared.StatusEffect;
-using Content.Shared.Stealth;
-using Content.Shared.Stealth.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Temperature.Components;
-using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Containers;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Maths;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Systems;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using NewStatusEffectsSystem = Content.Shared.StatusEffectNew.StatusEffectsSystem;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
@@ -105,6 +41,16 @@ public sealed class HereticCosmosActionsSystem : EntitySystem
     [Dependency] private readonly HereticStatusEffectsSystem _hereticEffects = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedEyeSystem _eye = default!;
+
+    private static readonly EntProtoId HereticCosmicCarpet = "HereticCosmicCarpet";
+    private static readonly EntProtoId HereticEffectCosmicCloud = "HereticEffectCosmicCloud";
+    private static readonly ProtoId<DamageTypePrototype> RadiationDamageType = "Radiation";
+    private static readonly EntProtoId HereticEffectSpaceExplosion = "HereticEffectSpaceExplosion";
+    private static readonly EntProtoId MobHereticStarGazer = "MobHereticStarGazer";
+
+    private static readonly TimeSpan AscensionCosmosDuration = TimeSpan.FromSeconds(30);
+
+    private const float AscensionCosmosRange = 7f;
 
     public override void Initialize()
     {
@@ -162,19 +108,19 @@ public sealed class HereticCosmosActionsSystem : EntitySystem
             for (var i = 1; i <= 3; i++)
             {
                 var pos = center + dir * i;
-                var carpet = Spawn("HereticCosmicCarpet", new EntityCoordinates(parentUid, pos));
+                var carpet = Spawn(HereticCosmicCarpet, new EntityCoordinates(parentUid, pos));
                 if (passiveLevel > 0 && TryComp<HereticCosmicFieldComponent>(carpet, out var field))
                     field.PassiveLevel = passiveLevel;
             }
         }
 
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 7f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, AscensionCosmosRange))
         {
             if (ent.Owner == uid)
                 continue;
             if (HasComp<HereticComponent>(ent.Owner))
                 continue;
-            _hereticEffects.AddStarMark(ent.Owner, TimeSpan.FromSeconds(30));
+            _hereticEffects.AddStarMark(ent.Owner, AscensionCosmosDuration);
         }
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_magic_cosmic_expansion.ogg"), uid);
@@ -226,16 +172,16 @@ public sealed class HereticCosmosActionsSystem : EntitySystem
                 var dist = _random.NextFloat(3f, 6f);
                 var teleportPos = currentPos + new Vector2(MathF.Cos(angle) * dist, MathF.Sin(angle) * dist);
                 _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/boss/sound_magic_repulse.ogg"), target);
-                Spawn("HereticEffectCosmicCloud", Transform(target).Coordinates);
+                Spawn(HereticEffectCosmicCloud, Transform(target).Coordinates);
                 _xform.SetWorldPosition(target, teleportPos);
-                Spawn("HereticEffectCosmicCloud", Transform(target).Coordinates);
-                _stun.TryKnockdown(target, TimeSpan.FromSeconds(2), true);
+                Spawn(HereticEffectCosmicCloud, Transform(target).Coordinates);
+                _stun.TryKnockdown(target, blade.Comp.CosmosBladeMeleeHitTime, true);
             }
 
-            _hereticEffects.AddStarMark(target, TimeSpan.FromSeconds(30));
+            _hereticEffects.AddStarMark(target, blade.Comp.CosmosBladeMeleeHitDuration);
 
             _damage.TryChangeDamage(target,
-                new DamageSpecifier { DamageDict = { ["Radiation"] = FixedPoint2.New(5) } },
+                new DamageSpecifier { DamageDict = { [RadiationDamageType] = FixedPoint2.New(5) } },
                 ignoreResistances: false);
 
             if (combo.ComboCount == 0)
@@ -251,20 +197,20 @@ public sealed class HereticCosmosActionsSystem : EntitySystem
                 combo.ResetAt = now + combo.ComboWindow;
 
                 _damage.TryChangeDamage(target,
-                    new DamageSpecifier { DamageDict = { ["Radiation"] = FixedPoint2.New(14) } },
+                    new DamageSpecifier { DamageDict = { [RadiationDamageType] = FixedPoint2.New(14) } },
                     ignoreResistances: false);
 
-                Spawn("HereticEffectSpaceExplosion", Transform(target).Coordinates);
+                Spawn(HereticEffectSpaceExplosion, Transform(target).Coordinates);
             }
             else if (combo.ComboCount == 2 && target != combo.FirstTarget && target != combo.SecondTarget)
             {
                 combo.ComboCount = 3;
 
                 _damage.TryChangeDamage(target,
-                    new DamageSpecifier { DamageDict = { ["Radiation"] = FixedPoint2.New(28) } },
+                    new DamageSpecifier { DamageDict = { [RadiationDamageType] = FixedPoint2.New(28) } },
                     ignoreResistances: false);
 
-                Spawn("HereticEffectSpaceExplosion", Transform(target).Coordinates);
+                Spawn(HereticEffectSpaceExplosion, Transform(target).Coordinates);
                 combo.ResetAt = now + combo.ComboWindow;
             }
 
@@ -291,7 +237,7 @@ public sealed class HereticCosmosActionsSystem : EntitySystem
             _eye.SetDrawFov(uid, false, eye);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_ambience_antag_heretic_ascend_cosmic.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-ascension-cosmos"), uid, uid, PopupType.Large);
-        var gazerUid = Spawn("MobHereticStarGazer", coords);
+        var gazerUid = Spawn(MobHereticStarGazer, coords);
         var gazerComp = EnsureComp<HereticStarGazerComponent>(gazerUid);
         gazerComp.Master = uid;
     }

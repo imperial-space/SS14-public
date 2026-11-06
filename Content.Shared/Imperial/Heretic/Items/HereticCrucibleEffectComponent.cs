@@ -17,7 +17,7 @@ public sealed partial class HereticCrucibleEffectComponent : Component
     public List<(string Id, bool Hard, int Layer, int Mask)> FixtureStates = new();
     // Cooldown to apply to the player after the Soul effect ends
     [ViewVariables]
-    public float SoulCooldown = 120f;
+    public TimeSpan SoulCooldown = TimeSpan.FromSeconds(120f);
 
     // Clarity potion: original FOV value to restore
     [ViewVariables]
@@ -26,4 +26,7 @@ public sealed partial class HereticCrucibleEffectComponent : Component
     // Marshal potion: heal on ticks
     [ViewVariables]
     public TimeSpan NextHealTick;
+
+    [DataField]
+    public TimeSpan HealTickDelay = TimeSpan.FromSeconds(1);
 }

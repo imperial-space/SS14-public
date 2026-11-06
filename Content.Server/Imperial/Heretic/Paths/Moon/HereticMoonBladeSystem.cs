@@ -1,20 +1,10 @@
-using Content.Server.Imperial.Heretic;
 using Content.Server.Imperial.Heretic.Effects;
-using Content.Server.Imperial.Heretic.Items;
-using Content.Server.Imperial.Heretic.Paths.Moon;
-using Content.Server.Imperial.Heretic.Paths.Moon.Parade;
-using Content.Server.Imperial.Heretic.Paths.Void;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Heretic.Core;
-using Content.Shared.Imperial.Heretic.Effects;
-using Content.Shared.Imperial.Heretic.Items;
 using Content.Shared.Imperial.Heretic.Paths.Moon;
-using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
-using Content.Shared.Imperial.Heretic.Paths.Void;
-using Content.Shared.Imperial.Heretic.Rituals;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
@@ -22,6 +12,8 @@ using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
+using Content.Shared.Imperial.Heretic.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Moon;
 
@@ -30,15 +22,15 @@ namespace Content.Server.Imperial.Heretic.Paths.Moon;
 /// </summary>
 public sealed class HereticMoonBladeSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem            _audio          = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly HereticMarkSystem _marks = default!;
-    [Dependency] private readonly HereticMoonAmuletSystem      _amulet         = default!;
-    [Dependency] private readonly HereticMoonBrainDamageSystem _brainDamage    = default!;
-    [Dependency] private readonly HereticStatusEffectsSystem   _hereticEffects = default!;
-    [Dependency] private readonly HereticSystem                _heretic        = default!;
-    [Dependency] private readonly MobStateSystem               _mobs           = default!;
-    [Dependency] private readonly SharedPopupSystem            _popup          = default!;
-    [Dependency] private readonly IRobustRandom                _random         = default!;
+    [Dependency] private readonly HereticMoonAmuletSystem _amulet = default!;
+    [Dependency] private readonly HereticMoonBrainDamageSystem _brainDamage = default!;
+    [Dependency] private readonly HereticStatusEffectsSystem _hereticEffects = default!;
+    [Dependency] private readonly HereticSystem _heretic = default!;
+    [Dependency] private readonly MobStateSystem _mobs = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     /// <summary>SANITY_NEUTRAL: выше него клинок бьёт мозг слабее.</summary>
     private const float NeutralSanity = 100f;
@@ -59,6 +51,11 @@ public sealed class HereticMoonBladeSystem : EntitySystem
         new("/Audio/Voice/Human/manlaugh2.ogg"),
         new("/Audio/Voice/Human/womanlaugh.ogg"),
     ];
+
+    private static readonly ProtoId<HereticKnowledgePrototype> KnowledgeMoonBladeHereticKnowledge = "KnowledgeMoonBlade";
+
+    private static readonly TimeSpan DetonateMarkDuration = TimeSpan.FromSeconds(30);
+    private static readonly TimeSpan UpgradeEffectsDuration = TimeSpan.FromSeconds(10);
 
     public override void Initialize()
     {
@@ -114,7 +111,7 @@ public sealed class HereticMoonBladeSystem : EntitySystem
     /// <summary>eldritch/moon/on_effect(): подрыв метки клинком.</summary>
     private void DetonateMark(EntityUid target)
     {
-        _hereticEffects.ApplyInsanity(target, TimeSpan.FromSeconds(30));
+        _hereticEffects.ApplyInsanity(target, DetonateMarkDuration);
         _brainDamage.AddBrainDamage(target, MarkBrainDamage);
         Laugh(target);
         RemComp<MoonMarkComponent>(target);
@@ -135,7 +132,7 @@ public sealed class HereticMoonBladeSystem : EntitySystem
         if (!args.IsHit)
             return;
 
-        var upgraded = _heretic.HasKnowledge(heretic, "KnowledgeMoonBlade");
+        var upgraded = _heretic.HasKnowledge(heretic, KnowledgeMoonBladeHereticKnowledge);
 
         foreach (var target in args.HitEntities)
         {
@@ -163,7 +160,7 @@ public sealed class HereticMoonBladeSystem : EntitySystem
     {
         var brainComp = EnsureComp<HereticMoonBrainDamageComponent>(target);
 
-        _hereticEffects.ApplyHallucination(target, TimeSpan.FromSeconds(10));
+        _hereticEffects.ApplyHallucination(target, UpgradeEffectsDuration);
         Laugh(target);
         brainComp.Sanity = Math.Max(0f, brainComp.Sanity - SanityDamage);
 

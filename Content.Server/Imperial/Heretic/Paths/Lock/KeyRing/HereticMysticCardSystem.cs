@@ -10,6 +10,7 @@ using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Lock.KeyRing;
 
@@ -19,6 +20,8 @@ public sealed class HereticMysticCardSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedIdCardSystem _idCard = default!;
+
+    private static readonly EntProtoId HereticLockPortal = "HereticLockPortal";
 
     public override void Initialize()
     {
@@ -93,8 +96,8 @@ public sealed class HereticMysticCardSystem : EntitySystem
             QueueDel(comp.PortalTwo.Value);
 
         // Создаём новые
-        var p1 = Spawn("HereticLockPortal", Transform(door1).Coordinates);
-        var p2 = Spawn("HereticLockPortal", Transform(door2).Coordinates);
+        var p1 = Spawn(HereticLockPortal, Transform(door1).Coordinates);
+        var p2 = Spawn(HereticLockPortal, Transform(door2).Coordinates);
 
         if (TryComp<HereticLockPortalComponent>(p1, out var pc1))
         {

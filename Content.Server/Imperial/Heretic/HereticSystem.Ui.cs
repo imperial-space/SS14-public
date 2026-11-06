@@ -1,82 +1,7 @@
 using System.Linq;
-using System.Text;
-using Content.Server.Actions;
-using Content.Server.Atmos.Components;
-using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Components;
-using Content.Server.Chat.Managers;
-using Content.Server.Chat.Systems;
-using Content.Server.Decals;
-using Content.Server.Doors.Systems;
-using Content.Server.Mind;
-using Content.Server.Popups;
-using Content.Server.Roles;
-using Content.Shared.Access.Components;
-using Content.Shared.Access.Systems;
-using Content.Shared.Actions;
-using Content.Shared.Actions.Components;
-using Content.Shared.Antag;
-using Content.Shared.Atmos.Components;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
-using Content.Shared.Chat;
-using Content.Shared.CombatMode.Pacification;
-using Content.Shared.Coordinates.Helpers;
-using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Prototypes;
-using Content.Shared.Damage.Systems;
-using Content.Shared.Decals;
-using Content.Shared.Doors.Components;
-using Content.Shared.Emag.Systems;
-using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Eye.Blinding.Systems;
-using Content.Shared.FixedPoint;
-using Content.Shared.Follower.Components;
-using Content.Shared.Hands.EntitySystems;
-using Content.Shared.IdentityManagement;
-using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Prototypes;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Mech.Components;
-using Content.Shared.Mech.EntitySystems;
-using Content.Shared.Mind;
-using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
-using Content.Shared.Objectives.Systems;
-using Content.Shared.Overlays;
-using Content.Shared.PDA;
-using Content.Shared.Popups;
-using Content.Shared.Roles;
-using Content.Shared.Roles.Jobs;
-using Content.Shared.Speech.EntitySystems;
-using Content.Shared.Speech.Muting;
-using Content.Shared.Standing;
-using Content.Shared.StatusEffect;
-using Content.Shared.Stealth;
-using Content.Shared.Stealth.Components;
-using Content.Shared.Storage.Components;
-using Content.Shared.Storage.EntitySystems;
-using Content.Shared.Stunnable;
-using Content.Shared.Tag;
-using Content.Shared.Temperature.Components;
-using Content.Shared.UserInterface;
-using Content.Shared.Weapons.Melee;
-using Robust.Server.GameObjects;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
-using Robust.Shared.Maths;
-using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
-using Robust.Shared.Timing;
-using CancellationTokenSource = System.Threading.CancellationTokenSource;
-using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Imperial.Heretic;
 
@@ -101,13 +26,14 @@ public sealed partial class HereticSystem
 
         args.Handled = true;
         hereticComp.MansusBook = uid;
+        Dirty(args.User, hereticComp);
         if (hereticComp.BuiHolder == null || !Exists(hereticComp.BuiHolder))
             return;
 
         OpenInfoBui(args.User, hereticComp);
 
         comp.NextState = HereticMansusBookVisualState.Open;
-        comp.TransitionEnd = _timing.CurTime + TimeSpan.FromSeconds(comp.OpeningAnimDuration);
+        comp.TransitionEnd = _timing.CurTime + comp.OpeningAnimDuration;
         _appearance.SetData(uid, HereticMansusBookVisuals.State, HereticMansusBookVisualState.Opening);
     }
 
@@ -121,7 +47,7 @@ public sealed partial class HereticSystem
             return;
 
         bookComp.NextState = HereticMansusBookVisualState.Closed;
-        bookComp.TransitionEnd = _timing.CurTime + TimeSpan.FromSeconds(bookComp.ClosingAnimDuration);
+        bookComp.TransitionEnd = _timing.CurTime + bookComp.ClosingAnimDuration;
         _appearance.SetData(bookUid, HereticMansusBookVisuals.State, HereticMansusBookVisualState.Closing);
     }
 
@@ -189,6 +115,7 @@ public sealed partial class HereticSystem
         if (!TryComp<HereticComponent>(args.Actor, out var heretic))
             return;
         heretic.AscensionDenied = true;
+        Dirty(args.Actor, heretic);
         SendInfoBuiState(args.Actor, heretic);
     }
 

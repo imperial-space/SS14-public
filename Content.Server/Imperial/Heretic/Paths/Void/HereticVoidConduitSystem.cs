@@ -1,9 +1,4 @@
-using Content.Server.Imperial.Heretic;
 using Content.Server.Imperial.Heretic.Effects;
-using Content.Server.Imperial.Heretic.Items;
-using Content.Server.Imperial.Heretic.Paths.Moon;
-using Content.Server.Imperial.Heretic.Paths.Moon.Parade;
-using Content.Server.Imperial.Heretic.Paths.Void;
 using Content.Server.Atmos.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -13,12 +8,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Content.Shared.Imperial.Heretic.Core;
-using Content.Shared.Imperial.Heretic.Effects;
-using Content.Shared.Imperial.Heretic.Items;
-using Content.Shared.Imperial.Heretic.Paths.Moon;
-using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
 using Content.Shared.Imperial.Heretic.Paths.Void;
-using Content.Shared.Imperial.Heretic.Rituals;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -26,29 +16,35 @@ using Robust.Shared.Map;
 using System.Numerics;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Timer = Robust.Shared.Timing.Timer;
 using Content.Server.Imperial.Antimagic;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Void;
 
 public sealed class HereticVoidConduitSystem : EntitySystem
 {
     [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
-    [Dependency] private readonly DamageableSystem           _damage         = default!;
-    [Dependency] private readonly EntityLookupSystem         _lookup         = default!;
-    [Dependency] private readonly SharedAudioSystem          _audio          = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly HereticStatusEffectsSystem _hereticEffects = default!;
-    [Dependency] private readonly IRobustRandom              _random         = default!;
-    [Dependency] private readonly IGameTiming                _timing         = default!;
-    [Dependency] private readonly SharedTransformSystem      _xform          = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
-    [Dependency] private readonly TagSystem                  _tag            = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly Content.Server.Destructible.DestructibleSystem _destructible = default!;
 
     private static readonly ProtoId<TagPrototype> WindowTag = "Window";
 
     private static readonly SoundPathSpecifier AmbientSound =
         new("/Audio/Imperial/heretic/sound_ambience_misc_ambiatm1.ogg");
+
+    private static readonly ProtoId<DamageTypePrototype> StructuralDamageType = "Structural";
+
+    private static readonly EntProtoId HereticVoidConduitTileOverlay = "HereticVoidConduitTileOverlay";
+
+    private static readonly TimeSpan ExpiresDelay = TimeSpan.FromSeconds(15);
 
     public override void Initialize()
     {
@@ -78,7 +74,7 @@ public sealed class HereticVoidConduitSystem : EntitySystem
         while (query.MoveNext(out var uid, out var comp))
         {
             if (comp.LifetimeEnd == TimeSpan.Zero)
-                comp.LifetimeEnd = _timing.CurTime + TimeSpan.FromSeconds(comp.Lifetime);
+                comp.LifetimeEnd = _timing.CurTime + comp.Lifetime;
 
             if (_timing.CurTime >= comp.LifetimeEnd)
             {
@@ -89,7 +85,7 @@ public sealed class HereticVoidConduitSystem : EntitySystem
             if (_timing.CurTime < comp.NextPulse)
                 continue;
 
-            comp.NextPulse = _timing.CurTime + TimeSpan.FromSeconds(comp.PulseInterval);
+            comp.NextPulse = _timing.CurTime + comp.PulseInterval;
             StartPulseWave(uid, comp);
         }
 
@@ -149,7 +145,7 @@ public sealed class HereticVoidConduitSystem : EntitySystem
             for (var dy = -radius; dy <= radius; dy++)
             {
                 if (dx * dx + dy * dy > r2) continue;
-                Spawn("HereticVoidConduitTileOverlay",
+                Spawn(HereticVoidConduitTileOverlay,
                     new EntityCoordinates(gridUid, snapped + new Vector2(dx, dy)));
             }
         }
@@ -202,7 +198,7 @@ public sealed class HereticVoidConduitSystem : EntitySystem
             if (HasComp<HereticComponent>(target))
             {
                 var pressure = EnsureComp<VoidConduitPressureComponent>(target);
-                pressure.ExpiresAt = _timing.CurTime + TimeSpan.FromSeconds(15);
+                pressure.ExpiresAt = _timing.CurTime + ExpiresDelay;
                 EnsureComp<PressureImmunityComponent>(target);
             }
             else
@@ -258,7 +254,7 @@ public sealed class HereticVoidConduitSystem : EntitySystem
             : tgDamage / tgIntegrity * threshold.Float();
 
         var dmg = new DamageSpecifier();
-        dmg.DamageDict["Structural"] = FixedPoint2.New(amount);
+        dmg.DamageDict[StructuralDamageType] = FixedPoint2.New(amount);
         _damage.TryChangeDamage(target, dmg, ignoreResistances: true);
     }
 }

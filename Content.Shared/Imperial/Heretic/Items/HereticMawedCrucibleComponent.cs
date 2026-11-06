@@ -13,18 +13,21 @@ public sealed partial class HereticMawedCrucibleComponent : Component
     public int Charges = 5;
 
     [DataField]
-    public float SoulDuration = 60f;
+    public TimeSpan SoulDuration = TimeSpan.FromSeconds(60f);
 
     [DataField]
-    public float SoulCooldown = 120f;
+    public TimeSpan SoulCooldown = TimeSpan.FromSeconds(120f);
 
     [DataField]
-    public float ClarityDuration = 60f;
+    public TimeSpan ClarityDuration = TimeSpan.FromSeconds(60f);
 
     [DataField]
-    public float MarshalDuration = 60f;
+    public TimeSpan MarshalDuration = TimeSpan.FromSeconds(60f);
 
     [ViewVariables]
     [AutoNetworkedField]
     public TimeSpan CooldownEnd = TimeSpan.Zero;
+
+    [DataField]
+    public TimeSpan Cooldown = TimeSpan.FromSeconds(60);
 }

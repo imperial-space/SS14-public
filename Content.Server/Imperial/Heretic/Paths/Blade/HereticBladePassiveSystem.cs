@@ -1,6 +1,5 @@
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
-using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Blade;
@@ -60,8 +59,7 @@ public sealed class HereticBladePassiveSystem : EntitySystem
 
         comp.LastCounterTime = now;
 
-        var damage = new DamageSpecifier();
-        damage.DamageDict["Slash"] = FixedPoint2.New(20);
+        var damage = new DamageSpecifier(comp.AttackedSlashDamage);
         _damageable.TryChangeDamage(args.User, damage, true);
     }
 }

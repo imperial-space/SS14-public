@@ -5,6 +5,7 @@ using Content.Shared.StatusEffectNew;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
@@ -13,6 +14,13 @@ public sealed class HereticCosmicExpansionSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+
+    private static readonly EntProtoId StarMarkStatusEffect = "StarMarkStatusEffect";
+    private static readonly EntProtoId HereticCosmicCarpet = "HereticCosmicCarpet";
+
+    private static readonly TimeSpan CosmicExpansionDuration = TimeSpan.FromSeconds(30);
+
+    private const float CosmicExpansionRange = 7f;
 
     public override void Initialize()
     {
@@ -40,13 +48,13 @@ public sealed class HereticCosmicExpansionSystem : EntitySystem
         }
 
         var coords = xform.Coordinates;
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 7f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, CosmicExpansionRange))
         {
             if (ent.Owner == uid)
                 continue;
             if (HasComp<HereticComponent>(ent.Owner))
                 continue;
-            _statusEffects.TrySetStatusEffectDuration(ent.Owner, "StarMarkStatusEffect", TimeSpan.FromSeconds(30));
+            _statusEffects.TrySetStatusEffectDuration(ent.Owner, StarMarkStatusEffect, CosmicExpansionDuration);
         }
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_magic_cosmic_expansion.ogg"), uid);
@@ -54,7 +62,7 @@ public sealed class HereticCosmicExpansionSystem : EntitySystem
 
     private void SpawnCarpet(int passiveLevel, EntityUid parent, Vector2 pos)
     {
-        var carpet = Spawn("HereticCosmicCarpet", new EntityCoordinates(parent, pos));
+        var carpet = Spawn(HereticCosmicCarpet, new EntityCoordinates(parent, pos));
         if (passiveLevel > 0 && TryComp<HereticCosmicFieldComponent>(carpet, out var field))
             field.PassiveLevel = passiveLevel;
     }

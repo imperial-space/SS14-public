@@ -7,6 +7,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Items;
 
@@ -20,6 +21,8 @@ public sealed class HereticLivingHeartSystem : EntitySystem
 
     private static readonly SoundPathSpecifier HeartbeatSound =
         new("/Audio/Imperial/heretic/sound_effects_singlebeat.ogg");
+
+    private static readonly EntProtoId HereticEffectRuneActivate = "HereticEffectRuneActivate";
 
     public override void Initialize()
     {
@@ -79,10 +82,10 @@ public sealed class HereticLivingHeartSystem : EntitySystem
         var runeCoords = Transform(runeUid).Coordinates;
 
         var targetName = MetaData(comp.Target.Value).EntityName;
-        _heretic.AddKnowledgePoints(user, heretic, 4);
-        _heretic.AddSacrifice(user, 2);
+        _heretic.AddKnowledgePoints(user, heretic, comp.SacrificeAtRuneAmount);
+        _heretic.AddSacrifice(user, comp.SacrificeAtRuneAmount2);
 
-        Spawn("HereticEffectRuneActivate", runeCoords);
+        Spawn(HereticEffectRuneActivate, runeCoords);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_magic_castsummon.ogg"), user);
 
         _popup.PopupEntity(
@@ -108,7 +111,7 @@ public sealed class HereticLivingHeartSystem : EntitySystem
             var dist = (tgtPos - myPos).Length();
 
             var t = Math.Clamp(dist / heart.TrackRange, 0f, 1f);
-            var interval = heart.MinInterval + (heart.MaxInterval - heart.MinInterval) * t;
+            var interval = (float)heart.MinInterval.TotalSeconds + ((float)heart.MaxInterval.TotalSeconds - (float)heart.MinInterval.TotalSeconds) * t;
 
             if (_timing.CurTime < heart.NextHeartbeat)
                 continue;

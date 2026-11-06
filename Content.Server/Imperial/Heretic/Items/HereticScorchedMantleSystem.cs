@@ -10,6 +10,8 @@ using Content.Shared.Imperial.Heretic.Items;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Items;
 
@@ -24,10 +26,12 @@ public sealed class HereticScorchedMantleSystem : EntitySystem
 
     private static readonly DamageSpecifier BurnDamage;
 
+    private static readonly ProtoId<DamageTypePrototype> HeatDamageType = "Heat";
+
     static HereticScorchedMantleSystem()
     {
         BurnDamage = new DamageSpecifier();
-        BurnDamage.DamageDict["Heat"] = FixedPoint2.New(60);
+        BurnDamage.DamageDict[HeatDamageType] = FixedPoint2.New(60);
     }
 
     public override void Initialize()

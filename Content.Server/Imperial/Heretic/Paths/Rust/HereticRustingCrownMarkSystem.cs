@@ -4,6 +4,8 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Heretic.Paths.Rust;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Rust;
 
@@ -14,6 +16,8 @@ public sealed class HereticRustingCrownMarkSystem : EntitySystem
 {
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+
+    private static readonly ProtoId<DamageTypePrototype> CausticDamageType = "Caustic";
 
     public override void Update(float frameTime)
     {
@@ -27,14 +31,14 @@ public sealed class HereticRustingCrownMarkSystem : EntitySystem
                 continue;
 
             var dmg = new DamageSpecifier();
-            dmg.DamageDict["Caustic"] = FixedPoint2.New(mark.DamagePerTick);
+            dmg.DamageDict[CausticDamageType] = FixedPoint2.New(mark.DamagePerTick);
             _damage.TryChangeDamage(uid, dmg, ignoreResistances: false);
 
             mark.TicksRemaining--;
             if (mark.TicksRemaining <= 0)
                 RemCompDeferred<HereticRustingCrownMarkComponent>(uid);
             else
-                mark.NextTick = now + TimeSpan.FromSeconds(5);
+                mark.NextTick = now + mark.TickDelay;
         }
     }
 }

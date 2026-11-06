@@ -24,6 +24,8 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Items;
 
@@ -41,6 +43,12 @@ public sealed class HereticMawedCrucibleSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+    private static readonly ProtoId<DamageTypePrototype> PiercingDamageType = "Piercing";
+
+    private static readonly TimeSpan HealTickDelay = TimeSpan.FromSeconds(1);
 
     public override void Initialize()
     {
@@ -62,7 +70,7 @@ public sealed class HereticMawedCrucibleSystem : EntitySystem
             if (eff.ActivePotion == HereticCruciblePotionType.Marshal && now >= eff.NextHealTick)
             {
                 DoMarshalHeal(uid, eff);
-                eff.NextHealTick = now + TimeSpan.FromSeconds(1);
+                eff.NextHealTick = now + eff.HealTickDelay;
             }
 
             if (now >= eff.EndTime)
@@ -163,14 +171,14 @@ public sealed class HereticMawedCrucibleSystem : EntitySystem
         if (TryComp<HereticCruciblePotionComponent>(potion, out var potionComp))
         {
             potionComp.SourceCrucible = uid;
-            potionComp.SoulCooldown = comp.SoulCooldown;
+            potionComp.SoulCooldown = TimeSpan.FromSeconds((float)comp.SoulCooldown.TotalSeconds);
         }
 
         _hands.TryPickupAnyHand(player, potion);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/desecration-02.ogg"), uid);
 
         comp.Charges--;
-        comp.CooldownEnd = now + TimeSpan.FromSeconds(60);
+        comp.CooldownEnd = now + comp.Cooldown;
         Dirty(uid, comp);
         UpdateBuiState(uid, comp);
     }
@@ -193,7 +201,7 @@ public sealed class HereticMawedCrucibleSystem : EntitySystem
         var doAfterArgs = new DoAfterArgs(
             EntityManager,
             player,
-            TimeSpan.FromSeconds(comp.DrinkDelay),
+            comp.DrinkDelay,
             new HereticCruciblePotionDoAfterEvent(),
             uid,
             used: uid)
@@ -215,7 +223,7 @@ public sealed class HereticMawedCrucibleSystem : EntitySystem
             return;
 
         var player = args.User;
-        if (!TryComp<HereticComponent>(player, out var heretic))
+        if (!HasComp<HereticComponent>(player))
             return;
 
         // Re-check Soul cooldown in case it was still active when drinking completed
@@ -238,15 +246,15 @@ public sealed class HereticMawedCrucibleSystem : EntitySystem
         if (comp.SourceCrucible.HasValue &&
             TryComp<HereticMawedCrucibleComponent>(comp.SourceCrucible.Value, out var crucComp))
         {
-            soulDuration = crucComp.SoulDuration;
-            clarityDuration = crucComp.ClarityDuration;
-            marshalDuration = crucComp.MarshalDuration;
+            soulDuration = (float)crucComp.SoulDuration.TotalSeconds;
+            clarityDuration = (float)crucComp.ClarityDuration.TotalSeconds;
+            marshalDuration = (float)crucComp.MarshalDuration.TotalSeconds;
         }
 
         switch (comp.PotionType)
         {
             case HereticCruciblePotionType.Soul:
-                ApplySoulPotion(player, soulDuration, comp.SoulCooldown);
+                ApplySoulPotion(player, soulDuration, (float)comp.SoulCooldown.TotalSeconds);
                 break;
             case HereticCruciblePotionType.Clarity:
                 ApplyClarityPotion(player, clarityDuration);
@@ -275,7 +283,7 @@ public sealed class HereticMawedCrucibleSystem : EntitySystem
         eff.ActivePotion = HereticCruciblePotionType.Soul;
         eff.EndTime = _timing.CurTime + TimeSpan.FromSeconds(duration);
         eff.OriginalPosition = Transform(playerUid).Coordinates;
-        eff.SoulCooldown = soulCooldown;
+        eff.SoulCooldown = TimeSpan.FromSeconds(soulCooldown);
         eff.FixtureStates.Clear();
 
         foreach (var (id, fixture) in fixtures.Fixtures)
@@ -313,7 +321,7 @@ public sealed class HereticMawedCrucibleSystem : EntitySystem
         var eff = EnsureComp<HereticCrucibleEffectComponent>(playerUid);
         eff.ActivePotion = HereticCruciblePotionType.Marshal;
         eff.EndTime = _timing.CurTime + TimeSpan.FromSeconds(duration);
-        eff.NextHealTick = _timing.CurTime + TimeSpan.FromSeconds(1);
+        eff.NextHealTick = _timing.CurTime + HealTickDelay;
 
         EnsureComp<IgnoreSlowOnDamageComponent>(playerUid);
 
@@ -331,9 +339,9 @@ public sealed class HereticMawedCrucibleSystem : EntitySystem
         {
             DamageDict =
             {
-                ["Blunt"] = -amount,
-                ["Slash"] = -amount,
-                ["Piercing"] = -amount,
+                [BluntDamageType] = -amount,
+                [SlashDamageType] = -amount,
+                [PiercingDamageType] = -amount,
             }
         };
         _damageable.TryChangeDamage(uid, heal, ignoreResistances: true);
@@ -406,7 +414,7 @@ public sealed class HereticMawedCrucibleSystem : EntitySystem
 
         // Apply cooldown AFTER effect ends — player cannot create another Soul potion for SoulCooldown seconds
         var soulCd = EnsureComp<HereticSoulCooldownComponent>(uid);
-        soulCd.CooldownEnd = _timing.CurTime + TimeSpan.FromSeconds(eff.SoulCooldown);
+        soulCd.CooldownEnd = _timing.CurTime + eff.SoulCooldown;
     }
 
     // ─── BUI state ────────────────────────────────────────────────────────────

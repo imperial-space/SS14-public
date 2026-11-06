@@ -9,6 +9,8 @@ using Content.Shared.Imperial.Heretic.Paths.Cosmos;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
@@ -21,10 +23,12 @@ public sealed class HereticCosmosCloakSystem : EntitySystem
 
     private static readonly DamageSpecifier CurseDamage;
 
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+
     static HereticCosmosCloakSystem()
     {
         CurseDamage = new DamageSpecifier();
-        CurseDamage.DamageDict["Blunt"] = FixedPoint2.New(40);
+        CurseDamage.DamageDict[BluntDamageType] = FixedPoint2.New(40);
     }
 
     public override void Initialize()

@@ -17,7 +17,7 @@ public sealed partial class VoidChillStatusEffectComponent : Component
     public int Stacks = 0;
 
     [DataField]
-    public float TickInterval = 1f;
+    public TimeSpan TickInterval = TimeSpan.FromSeconds(1f);
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]

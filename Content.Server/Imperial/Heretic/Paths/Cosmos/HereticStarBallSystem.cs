@@ -2,13 +2,13 @@ using System.Numerics;
 using Content.Server.Imperial.Heretic.Effects;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
-using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
@@ -28,6 +28,14 @@ public sealed class HereticStarBallSystem : EntitySystem
 
     private static readonly SoundPathSpecifier ArriveSound =
         new SoundPathSpecifier("/Audio/Imperial/heretic/sound_magic_cosmic_energy.ogg");
+
+    private static readonly EntProtoId HereticEffectSpaceExplosion = "HereticEffectSpaceExplosion";
+    private static readonly EntProtoId HereticEffectCosmicBurst = "HereticEffectCosmicBurst";
+
+    private static readonly TimeSpan PullVictimsDuration = TimeSpan.FromSeconds(30);
+
+    private const float PullVictimsRange = 2f;
+    private const float PullVictimsBaseThrowSpeed = 3f;
 
     public override void Update(float frameTime)
     {
@@ -66,22 +74,21 @@ public sealed class HereticStarBallSystem : EntitySystem
 
         // SS13 on_hit: primary victim receives burn + knockdown, nearby victims get star mark.
         bool first = true;
-        var hitDamage = new DamageSpecifier();
-        hitDamage.DamageDict["Heat"] = FixedPoint2.New(20);
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 3f))
+        var hitDamage = new DamageSpecifier(ball.HitDamage);
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, ball.BallArriveRange))
         {
             if (ent.Owner == casterUid)
                 continue;
-            _hereticEffects.AddStarMark(ent.Owner, TimeSpan.FromSeconds(30));
+            _hereticEffects.AddStarMark(ent.Owner, ball.BallArriveDuration);
             if (first)
             {
                 _damage.TryChangeDamage(ent.Owner, hitDamage, ignoreResistances: false);
-                _stun.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(4), true);
+                _stun.TryKnockdown(ent.Owner, ball.BallArriveTime, true);
                 first = false;
             }
         }
 
-        Spawn("HereticEffectSpaceExplosion", coords);
+        Spawn(HereticEffectSpaceExplosion, coords);
         _audio.PlayPvs(ArriveSound, uid);
 
         RemoveActiveBall(casterUid, uid);
@@ -94,7 +101,7 @@ public sealed class HereticStarBallSystem : EntitySystem
     /// </summary>
     public void RecastBall(EntityUid ballUid, EntityUid casterUid)
     {
-        if (!TryComp<HereticStarBallComponent>(ballUid, out _))
+        if (!HasComp<HereticStarBallComponent>(ballUid))
             return;
 
         var ballCoords = Transform(ballUid).Coordinates;
@@ -109,7 +116,7 @@ public sealed class HereticStarBallSystem : EntitySystem
         // SS13: pull_victims(owner.loc) — AFTER teleport (same position as ball)
         PullVictims(casterUid, ballCoords, ballWorldPos);
 
-        Spawn("HereticEffectSpaceExplosion", ballCoords);
+        Spawn(HereticEffectSpaceExplosion, ballCoords);
         _audio.PlayPvs(ArriveSound, casterUid);
 
         RemoveActiveBall(casterUid, ballUid);
@@ -118,24 +125,24 @@ public sealed class HereticStarBallSystem : EntitySystem
 
     private void PullVictims(EntityUid casterUid, EntityCoordinates center, Vector2 centerWorldPos)
     {
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(center, 2f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(center, PullVictimsRange))
         {
             if (ent.Owner == casterUid)
                 continue;
-            Spawn("HereticEffectCosmicBurst", center);
+            Spawn(HereticEffectCosmicBurst, center);
             var victimPos = _xform.GetWorldPosition(ent.Owner);
             var dist = (victimPos - centerWorldPos).Length();
             if (dist <= 1.0f)
             {
                 // SS13: range <= 1 → apply star mark
-                _hereticEffects.AddStarMark(ent.Owner, TimeSpan.FromSeconds(30));
+                _hereticEffects.AddStarMark(ent.Owner, PullVictimsDuration);
             }
             else
             {
                 // SS13: else → pull one step toward center
                 var pullDir = centerWorldPos - victimPos;
                 if (pullDir.Length() > 0.01f)
-                    _throw.TryThrow(ent.Owner, pullDir.Normalized() * 3f, 3f);
+                    _throw.TryThrow(ent.Owner, pullDir.Normalized() * 3f, PullVictimsBaseThrowSpeed);
             }
         }
     }

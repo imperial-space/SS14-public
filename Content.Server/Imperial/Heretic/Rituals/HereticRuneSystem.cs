@@ -50,7 +50,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Spawners;
-using Robust.Shared.Timing;
+using Content.Server.Imperial.Heretic.Core;
 
 namespace Content.Server.Imperial.Heretic.Rituals;
 
@@ -91,6 +91,15 @@ public sealed class HereticRuneSystem : EntitySystem
     private const float DrawTime = 22.0f; // full cycle of transmutation_rune_draw_colour
     private const float DrawTimeFast = 8.2f; // full active portion of transmutation_rune_fast_colour (before 20s hold)
 
+    private static readonly EntProtoId HereticEyeDrippingEffect = "HereticEyeDrippingEffect";
+    private static readonly EntProtoId HereticRealityBreach = "HereticRealityBreach";
+    private static readonly EntProtoId HereticEffectRuneEraseCodex = "HereticEffectRuneEraseCodex";
+    private static readonly EntProtoId HereticTransmutationRune = "HereticTransmutationRune";
+    private static readonly EntProtoId HereticGhoulBrutalFist = "HereticGhoulBrutalFist";
+    private static readonly EntProtoId HereticVoicelessDead = "HereticVoicelessDead";
+    private static readonly EntProtoId HereticEffectRuneActivate = "HereticEffectRuneActivate";
+    private static readonly EntProtoId HereticEffectRingleader = "HereticEffectRingleader";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -125,7 +134,7 @@ public sealed class HereticRuneSystem : EntitySystem
             return;
 
         var user = args.User;
-        if (!TryComp<HereticComponent>(user, out _))
+        if (!HasComp<HereticComponent>(user))
             return;
 
         args.Handled = true;
@@ -138,7 +147,7 @@ public sealed class HereticRuneSystem : EntitySystem
             return;
 
         var user = args.User;
-        if (!TryComp<HereticComponent>(user, out _))
+        if (!HasComp<HereticComponent>(user))
             return;
 
         args.Handled = true;
@@ -156,7 +165,7 @@ public sealed class HereticRuneSystem : EntitySystem
             return;
 
         var user = args.User;
-        if (!TryComp<HereticComponent>(user, out _))
+        if (!HasComp<HereticComponent>(user))
             return;
 
         if (!comp.IsOpen)
@@ -187,10 +196,10 @@ public sealed class HereticRuneSystem : EntitySystem
                 args.Handled = true;
                 _popup.PopupEntity(Loc.GetString("heretic-rift-absorbing"), user, user);
                 var absorbTime = _heretic.HasMorbiusCodex(user)
-                    ? rift.AbsorbTime * 0.5f
-                    : rift.AbsorbTime;
+                    ? (float)rift.AbsorbTime.TotalSeconds * 0.5f
+                    : (float)rift.AbsorbTime.TotalSeconds;
 
-                var eyeEffect = Spawn("HereticEyeDrippingEffect", Transform(user).Coordinates);
+                var eyeEffect = Spawn(HereticEyeDrippingEffect, Transform(user).Coordinates);
                 _xform.SetParent(eyeEffect, user);
                 if (TryComp<TimedDespawnComponent>(eyeEffect, out var timed))
                     timed.Lifetime = absorbTime;
@@ -249,9 +258,9 @@ public sealed class HereticRuneSystem : EntitySystem
         _heretic.SendHereticMessage(uid, Loc.GetString("heretic-rift-absorbed-chat"));
 
         var coords = _xform.GetMapCoordinates(args.Used.Value);
-        var delay = TimeSpan.FromSeconds(rift.RespawnDelay);
+        var delay = rift.RespawnDelay;
         QueueDel(args.Used.Value);
-        _schedule.Schedule(delay, () => Spawn("HereticRealityBreach", coords));
+        _schedule.Schedule(delay, () => Spawn(HereticRealityBreach, coords));
     }
 
     private void EraseRune(EntityUid runeUid, HereticRuneComponent rune, EntityUid user)
@@ -262,7 +271,7 @@ public sealed class HereticRuneSystem : EntitySystem
             return;
         }
 
-        Spawn("HereticEffectRuneEraseCodex", Transform(runeUid).Coordinates);
+        Spawn(HereticEffectRuneEraseCodex, Transform(runeUid).Coordinates);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_singlebeat.ogg"), runeUid);
         _popup.PopupEntity(Loc.GetString("heretic-rune-erased"), user, user, PopupType.Medium);
         QueueDel(runeUid);
@@ -300,7 +309,7 @@ public sealed class HereticRuneSystem : EntitySystem
 
         var coords = Transform(uid).Coordinates;
         EnforceRuneLimit(uid);
-        var rune = Spawn("HereticTransmutationRune", coords);
+        var rune = Spawn(HereticTransmutationRune, coords);
         if (TryComp<HereticRuneComponent>(rune, out var runeComp))
             runeComp.Caster = uid;
 
@@ -537,7 +546,7 @@ public sealed class HereticRuneSystem : EntitySystem
                 _faction.AddFaction(corpseUid, FamiliarFaction);
 
                 // Установить порог смерти на 125 HP
-                _mobThresholds.SetMobStateThreshold(corpseUid, 125, MobState.Dead);
+                _mobThresholds.SetMobStateThreshold(corpseUid, rune.RitualSelectedDamage, MobState.Dead);
 
                 // Окрасить кожу игрока в тёмно-синий
                 if (_visualBody.TryGatherMarkingsData(corpseUid, null, out var profiles, out _, out _))
@@ -565,7 +574,7 @@ public sealed class HereticRuneSystem : EntitySystem
                 var weaponCoords = Transform(corpseUid).Coordinates;
                 for (var i = 0; i < 2; i++)
                 {
-                    var weapon = Spawn("HereticGhoulBrutalFist", weaponCoords);
+                    var weapon = Spawn(HereticGhoulBrutalFist, weaponCoords);
                     AddComp<UnremoveableComponent>(weapon);
                     if (!_hands.TryPickupAnyHand(corpseUid, weapon, checkActionBlocker: false))
                         QueueDel(weapon);
@@ -619,7 +628,7 @@ public sealed class HereticRuneSystem : EntitySystem
             }
             if (_faction.IsMember(spawned, FamiliarFaction))
                 _heretic.AddSummon(args.Actor);
-            if (TryComp<HereticPactTokenComponent>(spawned, out _) && heretic.PassiveLevel < 3)
+            if (HasComp<HereticPactTokenComponent>(spawned) && heretic.PassiveLevel < 3)
             {
                 _heretic.SetPassiveLevel(args.Actor, heretic, 3);
                 if (heretic.CurrentPath == HereticPath.Ash)
@@ -632,18 +641,18 @@ public sealed class HereticRuneSystem : EntitySystem
                     _rustPassive.ApplyPassiveLevel1(args.Actor);
                 if (heretic.CurrentPath == HereticPath.Cosmos)
                     _cosmosPassive.ApplyPassiveLevel3(args.Actor);
-                _heretic.AddKnowledgePoints(args.Actor, heretic, 4);
+                _heretic.AddKnowledgePoints(args.Actor, heretic, rune.RitualSelectedAmount);
                 _heretic.SendInfoBuiState(args.Actor, heretic);
                 _popup.PopupEntity(Loc.GetString("heretic-pact-ritual-complete"), args.Actor, args.Actor, PopupType.Large);
                 _heretic.SendHereticMessage(args.Actor, Loc.GetString("heretic-pact-ritual-complete-chat"));
                 QueueDel(spawned);
             }
-            if (TryComp<HereticAscensionResultComponent>(spawned, out _))
+            if (HasComp<HereticAscensionResultComponent>(spawned))
             {
                 _heretic.TryTriggerAscension(args.Actor);
                 QueueDel(spawned);
             }
-            if (TryComp<HereticPathRobeComponent>(spawned, out _))
+            if (HasComp<HereticPathRobeComponent>(spawned))
                 _heretic.ActivateHereticAura(args.Actor, heretic);
         }
 
@@ -654,7 +663,7 @@ public sealed class HereticRuneSystem : EntitySystem
                 QueueDel(vPoppy);
                 var corpsePos = _xform.GetMapCoordinates(vCorpse);
                 QueueDel(vCorpse);
-                var dead = Spawn("HereticVoicelessDead", corpsePos);
+                var dead = Spawn(HereticVoicelessDead, corpsePos);
                 if (TryComp<HereticVoicelessDeadComponent>(dead, out var deadComp))
                     deadComp.Master = args.Actor;
                 _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_curse.ogg"), args.Actor);
@@ -707,7 +716,7 @@ public sealed class HereticRuneSystem : EntitySystem
                         // Спящая цель: трясётся 5 секунд, затем гибается
                         var isHead = HasComp<CommandStaffComponent>(target);
                         _jitter.AddJitter(target, 20f, 6f);
-                        _schedule.Schedule(TimeSpan.FromMilliseconds(5000), () =>
+                        _schedule.Schedule(rune.RitualSelectedDelay, () =>
                         {
                             if (!Exists(target))
                                 return;
@@ -784,8 +793,8 @@ public sealed class HereticRuneSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("heretic-relentless-heartbeat"), args.Actor, args.Actor, PopupType.Large);
         }
 
-        Spawn("HereticEffectRuneActivate", coords);
-        Spawn("HereticEffectRingleader", coords);
+        Spawn(HereticEffectRuneActivate, coords);
+        Spawn(HereticEffectRingleader, coords);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_magic_castsummon.ogg"), args.Actor);
 
         _popup.PopupEntity(Loc.GetString("heretic-ritual-success", ("name", Loc.GetString(ritual.Name))), args.Actor, args.Actor, PopupType.Large);

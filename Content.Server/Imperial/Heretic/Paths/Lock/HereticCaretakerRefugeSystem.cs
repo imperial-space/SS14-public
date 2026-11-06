@@ -19,6 +19,8 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Lock;
 
@@ -33,6 +35,10 @@ public sealed class HereticCaretakerRefugeSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private const string ExitActionProto = "ActionHereticCaretakerRefugeExit";
+
+    private static readonly ProtoId<DamageTypePrototype> HolyDamageType = "Holy";
+
+    private const float HasNearbySentientRange = 5f;
 
     public override void Initialize()
     {
@@ -77,7 +83,7 @@ public sealed class HereticCaretakerRefugeSystem : EntitySystem
         if (args.Damage.GetTotal() <= FixedPoint2.Zero)
             return;
 
-        if (args.Damage.DamageDict.TryGetValue("Holy", out var holy) && holy > FixedPoint2.Zero)
+        if (args.Damage.DamageDict.TryGetValue(HolyDamageType, out var holy) && holy > FixedPoint2.Zero)
         {
             // Антимагия — снять убежище и пропустить урон
             DeactivateRefuge(ent.Owner, ent.Comp, popupKey: "heretic-caretaker-refuge-broken-holy");
@@ -199,7 +205,7 @@ public sealed class HereticCaretakerRefugeSystem : EntitySystem
             var now = _timing.CurTime;
             _actions.SetCooldown(
                 new Entity<ActionComponent?>(refuge.MainActionEntity.Value, CompOrNull<ActionComponent>(refuge.MainActionEntity.Value)),
-                now, now + TimeSpan.FromSeconds(60));
+                now, now + refuge.DeactivateRefugeDelay);
         }
 
         RemComp<HereticCaretakerRefugeActiveComponent>(uid);
@@ -212,7 +218,7 @@ public sealed class HereticCaretakerRefugeSystem : EntitySystem
     private bool HasNearbySentient(EntityUid self)
     {
         var coords = Transform(self).Coordinates;
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 5f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, HasNearbySentientRange))
         {
             if (ent.Owner == self)
                 continue;

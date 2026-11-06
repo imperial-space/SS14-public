@@ -1,9 +1,4 @@
-using Content.Server.Imperial.Heretic;
 using Content.Server.Imperial.Heretic.Effects;
-using Content.Server.Imperial.Heretic.Items;
-using Content.Server.Imperial.Heretic.Paths.Moon;
-using Content.Server.Imperial.Heretic.Paths.Moon.Parade;
-using Content.Server.Imperial.Heretic.Paths.Void;
 using System.Linq;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
@@ -11,31 +6,20 @@ using Content.Shared.Temperature.Components;
 using Content.Server.Body;
 using Content.Server.Station.Systems;
 using Content.Server.Temperature.Systems;
-using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Doors.Components;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
-using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Heretic.Core;
-using Content.Shared.Imperial.Heretic.Effects;
-using Content.Shared.Imperial.Heretic.Items;
-using Content.Shared.Imperial.Heretic.Paths.Moon;
-using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
 using Content.Shared.Imperial.Heretic.Paths.Void;
-using Content.Shared.Imperial.Heretic.Rituals;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Speech.Muting;
 using Content.Shared.Station.Components;
 using Content.Shared.StatusEffect;
-using Content.Shared.Tag;
 using Content.Shared.Weapons.Reflect;
 using Content.Shared.Weather;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -81,6 +65,9 @@ public sealed class HereticVoidAscensionSystem : EntitySystem
 
     // SS13 TEMPERATURE_DAMAGE_COEFFICIENT = 6.08
     private const float TempCoeff = 6.08f;
+
+    private static readonly TimeSpan ExpiresDelay = TimeSpan.FromSeconds(15);
+    private static readonly TimeSpan ApplyEntityEffectTime = TimeSpan.FromSeconds(20);
 
     public override void Initialize()
     {
@@ -213,13 +200,13 @@ public sealed class HereticVoidAscensionSystem : EntitySystem
             {
                 // SS13: apply_status_effect(/datum/status_effect/void_conduit) → pressure immunity 15s
                 var pressure = EnsureComp<VoidConduitPressureComponent>(target);
-                pressure.ExpiresAt = _timing.CurTime + TimeSpan.FromSeconds(15);
+                pressure.ExpiresAt = _timing.CurTime + ExpiresDelay;
                 EnsureComp<PressureImmunityComponent>(target);
                 return;
             }
 
             // adjust_silence_up_to(2 SECONDS, 20 SECONDS)
-            _statusEffects.TryAddStatusEffect<MutedComponent>(target, "Muted", TimeSpan.FromSeconds(20), true);
+            _statusEffects.TryAddStatusEffect<MutedComponent>(target, "Muted", ApplyEntityEffectTime, true);
 
             // apply_status_effect(/datum/status_effect/void_chill, 1)
             _hereticEffects.ApplyVoidChill(target, 1);

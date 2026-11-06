@@ -3,7 +3,6 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
-using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Heretic.Effects;
 using Content.Shared.Imperial.Heretic.Paths.Flesh;
 using Content.Shared.Nutrition;
@@ -37,6 +36,7 @@ public sealed class HereticFleshPassiveSystem : EntitySystem
 
         var stamRes = EnsureComp<StaminaResistanceComponent>(uid);
         stamRes.DamageCoefficient = 0.75f;
+        Dirty(uid, stamRes);
     }
 
     private void OnIngesting(Entity<HereticFleshPassiveComponent> ent, ref IngestingEvent args)
@@ -45,10 +45,7 @@ public sealed class HereticFleshPassiveSystem : EntitySystem
         if (!_tag.HasTag(food, MeatTag) && !HasComp<OrganComponent>(food))
             return;
 
-        var heal = new DamageSpecifier();
-        heal.DamageDict["Blunt"] = FixedPoint2.New(-15);
-        heal.DamageDict["Slash"] = FixedPoint2.New(-10);
-        heal.DamageDict["Piercing"] = FixedPoint2.New(-5);
+        var heal = new DamageSpecifier(ent.Comp.IngestingHeal);
         _damageable.TryChangeDamage(ent.Owner, heal, true);
     }
 }

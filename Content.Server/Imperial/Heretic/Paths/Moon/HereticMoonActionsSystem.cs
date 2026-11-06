@@ -1,91 +1,25 @@
-using System.Numerics;
-using Content.Server.Atmos.Components;
-using Content.Server.Atmos.EntitySystems;
-using Content.Server.Beam;
 using Content.Server.Body;
-using Content.Server.Chat.Managers;
-using Content.Server.Chat.Systems;
-using Content.Server.Damage.Systems;
-using Content.Server.Decals;
-using Content.Server.DoAfter;
-using Content.Server.Doors.Systems;
 using Content.Server.Imperial.Heretic.Effects;
-using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
-using Content.Shared.Access;
-using Content.Shared.Access.Components;
-using Content.Shared.Access.Systems;
-using Content.Shared.Actions;
-using Content.Shared.Actions.Components;
-using Content.Shared.Alert;
-using Content.Shared.Atmos;
-using Content.Shared.Atmos.Components;
-using Content.Shared.Bed.Sleep;
-using Content.Shared.Body;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Events;
-using Content.Shared.Body.Systems;
-using Content.Shared.Chat;
-using Content.Shared.CombatMode;
-using Content.Shared.CombatMode.Pacification;
-using Content.Shared.Coordinates.Helpers;
-using Content.Shared.Cuffs;
-using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Doors.Components;
-using Content.Shared.Electrocution;
-using Content.Shared.Eye;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
-using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Moon;
-using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
-using Content.Shared.Interaction;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
-using Content.Shared.Maps;
-using Content.Shared.Medical;
-using Content.Shared.Mind.Components;
-using Content.Shared.Mindshield.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Pulling.Systems;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Physics;
-using Content.Shared.Polymorph;
 using Content.Shared.Popups;
-using Content.Shared.SSDIndicator;
 using Content.Shared.Speech.Muting;
 using Content.Shared.StatusEffect;
-using Content.Shared.Stealth.Components;
 using Content.Shared.Stunnable;
-using Content.Shared.Temperature.Components;
-using Content.Shared.Throwing;
-using Content.Shared.Weapons.Melee;
-using Content.Shared.Weapons.Melee.Events;
-using Content.Shared.Weapons.Reflect;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Containers;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
-using Robust.Shared.Maths;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Systems;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Spawners;
-using Timer = Robust.Shared.Timing.Timer;
-using NewStatusEffectsSystem = Content.Shared.StatusEffectNew.StatusEffectsSystem;
 
 namespace Content.Server.Imperial.Heretic.Paths.Moon;
 
@@ -115,6 +49,14 @@ public sealed class HereticMoonActionsSystem : EntitySystem
     [Dependency] private readonly Content.Server.Mind.MindSystem _mind = default!;
     [Dependency] private readonly Content.Server.Imperial.Antimagic.ImperialAntimagicSystem _antimagic = default!;
 
+    private static readonly DamageSpecifier ApplyMoonGateEffectsAsphyxiationDamage = new() { DamageDict = { ["Asphyxiation"] = 30 } };
+
+    private static readonly TimeSpan ApplyMoonGateEffectsDuration = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan ApplyMoonGateEffectsTime = TimeSpan.FromSeconds(2);
+
+    private const float ApplyMoonGateEffectsAmount = 20f;
+    private const float ApplyMoonGateEffectsAmount2 = 30f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -143,7 +85,7 @@ public sealed class HereticMoonActionsSystem : EntitySystem
     private void ApplyMoonGateEffects(EntityUid uid, EntityUid target)
     {
         // SS13: living_owner.adjust_organ_loss(ORGAN_SLOT_BRAIN, 20, 140)
-        _brainDamage.AddBrainDamage(uid, 20f, isCasterCapped: true);
+        _brainDamage.AddBrainDamage(uid, ApplyMoonGateEffectsAmount, isCasterCapped: true);
 
         // SS13: cast_on.mob_mood.adjust_sanity(-20)
         if (!TryComp<HereticMoonBrainDamageComponent>(target, out var targetBrain))
@@ -153,15 +95,14 @@ public sealed class HereticMoonActionsSystem : EntitySystem
         targetBrain.Sanity = Math.Max(0f, targetBrain.Sanity - 20f);
 
         // SS13: cast_on.adjust_oxy_loss(30)
-        var oxyDmg = new DamageSpecifier();
-        oxyDmg.DamageDict["Asphyxiation"] = FixedPoint2.New(30);
+        var oxyDmg = new DamageSpecifier(ApplyMoonGateEffectsAsphyxiationDamage);
         _damage.TryChangeDamage(target, oxyDmg, ignoreResistances: false);
 
         // SS13: cast_on.cause_hallucination(body) + cause_hallucination(heretic/gate)
-        _hereticEffects.ApplyHallucination(target, TimeSpan.FromSeconds(10));
+        _hereticEffects.ApplyHallucination(target, ApplyMoonGateEffectsDuration);
 
         // SS13: cast_on.adjust_organ_loss(ORGAN_SLOT_BRAIN, 30)
-        _brainDamage.AddBrainDamage(target, 30f, isCasterCapped: false);
+        _brainDamage.AddBrainDamage(target, ApplyMoonGateEffectsAmount2, isCasterCapped: false);
 
         // SS13 duration formula: ((SANITY_MAXIMUM - sanity) / (SANITY_MAXIMUM - SANITY_INSANE)) * 15s + 1s
         // SANITY_MAXIMUM=150, SANITY_INSANE=0 → divisor = 150
@@ -176,11 +117,11 @@ public sealed class HereticMoonActionsSystem : EntitySystem
         _hereticEffects.ApplyDeafness(target, duration);
 
         // SS13: cast_on.adjust_confusion(10 SECONDS) — insanity is the closest SS14 analog
-        _hereticEffects.ApplyInsanity(target, TimeSpan.FromSeconds(10));
+        _hereticEffects.ApplyInsanity(target, ApplyMoonGateEffectsDuration);
 
         // SS13: if(cast_on.mob_mood.sanity < 40) cast_on.AdjustKnockdown(2 SECONDS)
         if (targetSanity < 40f)
-            _stun.TryKnockdown(target, TimeSpan.FromSeconds(2), true);
+            _stun.TryKnockdown(target, ApplyMoonGateEffectsTime, true);
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_curse.ogg"), uid);
 
@@ -220,7 +161,7 @@ public sealed class HereticMoonActionsSystem : EntitySystem
         }
 
         _random.Shuffle(candidates);
-        var maxLunatics = (int) Math.Ceiling(candidates.Count * 0.2);
+        var maxLunatics = (int)Math.Ceiling(candidates.Count * 0.2);
         var lunatics = 0;
         foreach (var crewmate in candidates)
         {

@@ -13,6 +13,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Rust;
 
@@ -40,6 +42,15 @@ public sealed class HereticRustWalkerSystem : EntitySystem
     private readonly HashSet<EntityUid> _wallBuffer = new();
     private readonly HashSet<EntityUid> _structBuffer = new();
 
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> StructuralDamageType = "Structural";
+
+    private static readonly EntProtoId HereticPatrinsReachProjectile = "HereticPatrinsReachProjectile";
+    private static readonly EntProtoId HereticRustOverlay = "HereticRustOverlay";
+
+    private const float ReplaceWallsNearRange = 0.6f;
+    private const float SpawnRustOverlayAtRange = 0.4f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -57,11 +68,11 @@ public sealed class HereticRustWalkerSystem : EntitySystem
         {
             if (_timing.CurTime >= comp.NextHeal)
             {
-                comp.NextHeal = _timing.CurTime + TimeSpan.FromSeconds(comp.HealInterval);
-                if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(_xform.GetMapCoordinates(uid), 0.6f).Count > 0)
+                comp.NextHeal = _timing.CurTime + comp.HealInterval;
+                if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(_xform.GetMapCoordinates(uid), comp.UpdateRange).Count > 0)
                 {
                     var heal = new DamageSpecifier();
-                    heal.DamageDict["Blunt"] = FixedPoint2.New(-comp.HealAmount);
+                    heal.DamageDict[BluntDamageType] = FixedPoint2.New(-comp.HealAmount);
                     _damage.TryChangeDamage(uid, heal, ignoreResistances: true);
                 }
             }
@@ -104,7 +115,7 @@ public sealed class HereticRustWalkerSystem : EntitySystem
                     SpawnRustOverlayAt(tileMapPos);
                     Spawn(_random.Pick(RuneEffects), tileMapPos);
                     ReplaceWallsNear(tileMapPos);
-                    DamageStructuresAt(tileMapPos, 0.6f, 15f);
+                    DamageStructuresAt(tileMapPos, proj.UpdateRadius, proj.UpdateAmount);
                 }
 
                 _audio.PlayPvs(WelderSound, uid,
@@ -117,9 +128,8 @@ public sealed class HereticRustWalkerSystem : EntitySystem
     {
         var projMapCoords = _xform.GetMapCoordinates(uid);
 
-        var causticDamage = new DamageSpecifier();
-        causticDamage.DamageDict["Caustic"] = FixedPoint2.New(25);
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(projMapCoords, 1.5f))
+        var causticDamage = new DamageSpecifier(proj.CausticDamage);
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(projMapCoords, proj.ProjectileArriveRange))
         {
             if (ent.Owner == proj.CasterUid)
                 continue;
@@ -135,7 +145,7 @@ public sealed class HereticRustWalkerSystem : EntitySystem
                 SpawnRustOverlayAt(pos);
                 Spawn(_random.Pick(RuneEffects), pos);
                 ReplaceWallsNear(pos);
-                DamageStructuresAt(pos, 0.6f, 30f);
+                DamageStructuresAt(pos, proj.ProjectileArriveRadius, proj.ProjectileArriveAmount);
             }
 
         QueueDel(uid);
@@ -157,7 +167,7 @@ public sealed class HereticRustWalkerSystem : EntitySystem
                 SpawnRustOverlayAt(pos);
                 Spawn(_random.Pick(RuneEffects), pos);
                 ReplaceWallsNear(pos);
-                DamageStructuresAt(pos, 0.6f, 25f);
+                DamageStructuresAt(pos, comp.AggressiveSpreadRadius, comp.AggressiveSpreadAmount);
             }
 
         _audio.PlayPvs(WelderSound, uid);
@@ -171,7 +181,7 @@ public sealed class HereticRustWalkerSystem : EntitySystem
         args.Handled = true;
 
         var targetWorld = _xform.ToMapCoordinates(args.Target).Position;
-        var projUid = Spawn("HereticPatrinsReachProjectile", Transform(uid).Coordinates);
+        var projUid = Spawn(HereticPatrinsReachProjectile, Transform(uid).Coordinates);
         if (!TryComp<HereticPatrinsReachComponent>(projUid, out var projComp))
             return;
 
@@ -198,7 +208,7 @@ public sealed class HereticRustWalkerSystem : EntitySystem
     private void ReplaceWallsNear(MapCoordinates tilePos)
     {
         _wallBuffer.Clear();
-        _lookup.GetEntitiesInRange(tilePos.MapId, tilePos.Position, 0.6f, _wallBuffer);
+        _lookup.GetEntitiesInRange(tilePos.MapId, tilePos.Position, ReplaceWallsNearRange, _wallBuffer);
         foreach (var wallUid in _wallBuffer)
         {
             var protoId = MetaData(wallUid).EntityPrototype?.ID;
@@ -212,9 +222,9 @@ public sealed class HereticRustWalkerSystem : EntitySystem
 
     private void SpawnRustOverlayAt(MapCoordinates pos)
     {
-        if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(pos, 0.4f).Count > 0)
+        if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(pos, SpawnRustOverlayAtRange).Count > 0)
             return;
-        Spawn("HereticRustOverlay", pos);
+        Spawn(HereticRustOverlay, pos);
     }
 
     private void DamageStructuresAt(MapCoordinates pos, float radius, float amount)
@@ -222,7 +232,7 @@ public sealed class HereticRustWalkerSystem : EntitySystem
         _structBuffer.Clear();
         _lookup.GetEntitiesInRange(pos.MapId, pos.Position, radius, _structBuffer);
         var dmg = new DamageSpecifier();
-        dmg.DamageDict["Structural"] = FixedPoint2.New(amount);
+        dmg.DamageDict[StructuralDamageType] = FixedPoint2.New(amount);
         foreach (var uid in _structBuffer)
         {
             if (HasComp<MobStateComponent>(uid))

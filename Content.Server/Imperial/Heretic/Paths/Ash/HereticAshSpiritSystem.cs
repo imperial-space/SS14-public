@@ -18,7 +18,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
-using Timer = Robust.Shared.Timing.Timer;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Ash;
 
@@ -35,6 +35,8 @@ public sealed class HereticAshSpiritSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damage = default!;
     [Dependency] private readonly FlammableSystem _flammable = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+
+    private static readonly EntProtoId HereticEffectAshBlink = "HereticEffectAshBlink";
 
     public override void Initialize()
     {
@@ -141,7 +143,7 @@ public sealed class HereticAshSpiritSystem : EntitySystem
             _physics.SetCollisionMask(uid, id, fixture, (int)CollisionGroup.None, fixtures, physics);
         }
 
-        Spawn("HereticEffectAshBlink", Transform(uid).Coordinates);
+        Spawn(HereticEffectAshBlink, Transform(uid).Coordinates);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_magic_ethereal_enter.ogg"), uid);
 
         var stealthComp = EnsureComp<StealthComponent>(uid);
@@ -150,7 +152,7 @@ public sealed class HereticAshSpiritSystem : EntitySystem
 
         _popup.PopupEntity(Loc.GetString("heretic-ash-passage"), uid, uid, PopupType.Medium);
 
-        _schedule.Schedule(TimeSpan.FromSeconds(1.1), () =>
+        _schedule.Schedule(comp.ShiftDelay, () =>
         {
             if (!Exists(uid))
                 return;
@@ -169,7 +171,7 @@ public sealed class HereticAshSpiritSystem : EntitySystem
             if (!Exists(uid))
                 return;
 
-            Spawn("HereticEffectAshBlink", Transform(uid).Coordinates);
+            Spawn(HereticEffectAshBlink, Transform(uid).Coordinates);
             _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_magic_ethereal_exit.ogg"), Transform(uid).Coordinates);
             if (TryComp<StealthComponent>(uid, out var sc) && sc.Enabled)
                 _stealth.SetEnabled(uid, false, sc);

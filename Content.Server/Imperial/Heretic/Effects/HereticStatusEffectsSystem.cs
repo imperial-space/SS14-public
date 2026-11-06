@@ -1,14 +1,4 @@
-using Content.Shared.Imperial.Heretic.Rituals;
-using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
-using Content.Shared.Imperial.Heretic.Paths.Moon;
-using Content.Shared.Imperial.Heretic.Items;
 using Content.Shared.Imperial.Heretic.Effects;
-using Content.Server.Imperial.Heretic;
-using Content.Server.Imperial.Heretic.Effects;
-using Content.Server.Imperial.Heretic.Items;
-using Content.Server.Imperial.Heretic.Paths.Moon;
-using Content.Server.Imperial.Heretic.Paths.Moon.Parade;
-using Content.Server.Imperial.Heretic.Paths.Void;
 using Content.Server.Popups;
 using Content.Server.Temperature.Systems;
 using Content.Shared.Imperial.Heretic.Core;
@@ -37,6 +27,8 @@ public sealed class HereticStatusEffectsSystem : EntitySystem
 
     public static readonly EntProtoId InsanityId = "HereticInsanityStatusEffect";
     public static readonly EntProtoId VoidChillId = "VoidChillStatusEffect";
+
+    private static readonly TimeSpan ApplyVoidChillDuration = TimeSpan.FromSeconds(20);
 
     public override void Initialize()
     {
@@ -73,7 +65,7 @@ public sealed class HereticStatusEffectsSystem : EntitySystem
 
     private void OnVoidChillApplied(Entity<VoidChillStatusEffectComponent> ent, ref StatusEffectAppliedEvent args)
     {
-        ent.Comp.NextTickTime = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.TickInterval);
+        ent.Comp.NextTickTime = _timing.CurTime + ent.Comp.TickInterval;
     }
 
     private void OnVoidChillRemoved(Entity<VoidChillStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
@@ -96,7 +88,7 @@ public sealed class HereticStatusEffectsSystem : EntitySystem
             insanity.NextJitterTime = _timing.CurTime + TimeSpan.FromSeconds(
                 _random.NextFloat(insanity.JitterIntervalMin, insanity.JitterIntervalMax));
 
-            _stun.TryAddStunDuration(target, TimeSpan.FromSeconds(1));
+            _stun.TryAddStunDuration(target, insanity.UpdateDuration);
             _popup.PopupEntity(Loc.GetString("heretic-insanity-jitter"), target, target, PopupType.SmallCaution);
         }
 
@@ -115,7 +107,7 @@ public sealed class HereticStatusEffectsSystem : EntitySystem
             if (statusEffect.AppliedTo is not { } target)
                 continue;
 
-            chill.NextTickTime = _timing.CurTime + TimeSpan.FromSeconds(chill.TickInterval);
+            chill.NextTickTime = _timing.CurTime + chill.TickInterval;
 
             if (TryComp<TemperatureComponent>(target, out var temp))
             {
@@ -138,7 +130,7 @@ public sealed class HereticStatusEffectsSystem : EntitySystem
     /// </summary>
     public void ApplyVoidChill(EntityUid target, int stacks = 1)
     {
-        if (!_statusEffects.TrySetStatusEffectDuration(target, VoidChillId, out var effectUid, TimeSpan.FromSeconds(20)))
+        if (!_statusEffects.TrySetStatusEffectDuration(target, VoidChillId, out var effectUid, ApplyVoidChillDuration))
             return;
 
         if (!TryComp<VoidChillStatusEffectComponent>(effectUid, out var chill))

@@ -1,5 +1,3 @@
-using Robust.Shared.Serialization.Manager.Attributes;
-
 namespace Content.Shared.Imperial.Heretic.Paths.Blade;
 
 /// <summary>
@@ -11,8 +9,17 @@ public sealed partial class HereticMaelstromOfSilverComponent : Component
 {
     // SS13: add_stun_absorption — tracks absorbed stun seconds; max 45s, recharge 2 min.
     [DataField]
-    public float StunAbsorbedSeconds = 0f;
+    public TimeSpan StunAbsorbedSeconds = TimeSpan.FromSeconds(0f);
 
     [DataField]
     public TimeSpan? StunAbsorptionRechargeDoneAt = null;
+
+    [DataField]
+    public TimeSpan StunAbsorbedSecondsDelay = TimeSpan.FromSeconds(0f);
+
+    [DataField]
+    public TimeSpan StunAbsorptionRechargeDoneDelay = TimeSpan.FromMinutes(2);
+
+    [DataField]
+    public TimeSpan MaelstromStunnedDelay = TimeSpan.FromMinutes(2);
 }

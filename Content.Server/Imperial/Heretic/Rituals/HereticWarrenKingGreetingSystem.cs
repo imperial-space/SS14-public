@@ -28,6 +28,8 @@ public sealed class HereticWarrenKingGreetingSystem : EntitySystem
 
     private const float BrandRange = 5f;
 
+    private static readonly EntProtoId HereticEffectEldritchSparks = "HereticEffectEldritchSparks";
+
     public void OnGreetingCreated(EntityUid spawned, HereticWarrenKingGreetingResultComponent comp, EntityUid caster)
     {
         var coords = Transform(spawned).Coordinates;
@@ -47,7 +49,7 @@ public sealed class HereticWarrenKingGreetingSystem : EntitySystem
             access.Tags.Add(MaintenanceAccess);
             access.Tags.Add(ExternalAccess);
             Dirty(ent.Owner, access);
-            Spawn("HereticEffectEldritchSparks", Transform(ent.Owner).Coordinates);
+            Spawn(HereticEffectEldritchSparks, Transform(ent.Owner).Coordinates);
             _audio.PlayPvs(SparksSound, ent.Owner);
             branded++;
         }
@@ -56,7 +58,7 @@ public sealed class HereticWarrenKingGreetingSystem : EntitySystem
         {
             // Airlocks delegate access to a door electronics board inside them.
             // GetMainAccessReader resolves to that inner reader (or the door's own if none).
-            if (!TryComp<AccessReaderComponent>(ent.Owner, out _))
+            if (!HasComp<AccessReaderComponent>(ent.Owner))
                 continue;
 
             if (!_accessReader.GetMainAccessReader(ent.Owner, out var mainReader))
@@ -65,7 +67,7 @@ public sealed class HereticWarrenKingGreetingSystem : EntitySystem
             _accessReader.TrySetAccesses(
                 mainReader.Value,
                 new List<HashSet<ProtoId<AccessLevelPrototype>>> { new HashSet<ProtoId<AccessLevelPrototype>> { brandId } });
-            Spawn("HereticEffectEldritchSparks", Transform(ent.Owner).Coordinates);
+            Spawn(HereticEffectEldritchSparks, Transform(ent.Owner).Coordinates);
             _audio.PlayPvs(SparksSound, ent.Owner);
             _audio.PlayPvs(MagicSound, ent.Owner);
             lockedDoors++;

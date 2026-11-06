@@ -20,4 +20,16 @@ public sealed partial class HereticPaintingComponent : Component
 
     [ViewVariables]
     public Dictionary<EntityUid, TimeSpan> PlayerCooldowns = new();
+
+    [DataField]
+    public TimeSpan ApplyHereticEffectWeepingDuration = TimeSpan.FromSeconds(30);
+
+    [DataField]
+    public TimeSpan ApplyNonHereticEffectWeepingDuration = TimeSpan.FromSeconds(30);
+
+    [DataField]
+    public float ApplyNonHereticEffectDesireAmount = -100f;
+
+    [DataField]
+    public float ApplyNonHereticEffectRustRange = 0.4f;
 }

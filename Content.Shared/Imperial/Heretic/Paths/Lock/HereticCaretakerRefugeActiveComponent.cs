@@ -11,4 +11,7 @@ public sealed partial class HereticCaretakerRefugeActiveComponent : Component
     public EntityUid? ExitActionEntity;
     [ViewVariables]
     public bool AddedStealth;
+
+    [DataField]
+    public TimeSpan DeactivateRefugeDelay = TimeSpan.FromSeconds(60);
 }

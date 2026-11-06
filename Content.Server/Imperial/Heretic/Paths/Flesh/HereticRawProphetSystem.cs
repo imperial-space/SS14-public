@@ -13,7 +13,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
-using Timer = Robust.Shared.Timing.Timer;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Flesh;
 
@@ -25,6 +25,10 @@ public sealed class HereticRawProphetSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+
+    private static readonly EntProtoId HereticEffectAshBlink = "HereticEffectAshBlink";
+
+    private static readonly TimeSpan ExecuteJauntDelay = TimeSpan.FromSeconds(2.5);
 
     public override void Initialize()
     {
@@ -68,9 +72,9 @@ public sealed class HereticRawProphetSystem : EntitySystem
             _physics.SetCollisionMask(uid, id, fixture, (int)CollisionGroup.None, fixtures, physics);
         }
 
-        Spawn("HereticEffectAshBlink", Transform(uid).Coordinates);
+        Spawn(HereticEffectAshBlink, Transform(uid).Coordinates);
 
-        _schedule.Schedule(TimeSpan.FromSeconds(2.5), () =>
+        _schedule.Schedule(ExecuteJauntDelay, () =>
         {
             if (!Exists(uid))
                 return;
@@ -88,7 +92,7 @@ public sealed class HereticRawProphetSystem : EntitySystem
 
             if (!Exists(uid))
                 return;
-            Spawn("HereticEffectAshBlink", Transform(uid).Coordinates);
+            Spawn(HereticEffectAshBlink, Transform(uid).Coordinates);
             _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_magic_ethereal_exit.ogg"), Transform(uid).Coordinates);
         });
     }
@@ -107,7 +111,7 @@ public sealed class HereticRawProphetSystem : EntitySystem
         _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(
             target,
             TemporaryBlindnessSystem.BlindingStatusEffect,
-            TimeSpan.FromSeconds(8),
+            comp.BlindTime,
             true);
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/blind.ogg"), uid);

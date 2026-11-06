@@ -9,7 +9,6 @@ using Content.Server.RoundEnd;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Prototypes;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -24,6 +23,13 @@ public sealed class HereticRuleSystem : GameRuleSystem<HereticRuleComponent>
     [Dependency] private readonly HereticRealityRiftSystem _rift = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+
+    private static readonly EntProtoId HereticSacrificeObjective = "HereticSacrificeObjective";
+    private static readonly EntProtoId HereticMajorSacrificeObjective = "HereticMajorSacrificeObjective";
+    private static readonly EntProtoId HereticResearchObjective = "HereticResearchObjective";
+    private static readonly EntProtoId HereticAscensionObjective = "HereticAscensionObjective";
+
+    private static readonly TimeSpan HereticAscendedCountdownTimeDelay = TimeSpan.FromMinutes(10);
 
     public override void Initialize()
     {
@@ -49,13 +55,13 @@ public sealed class HereticRuleSystem : GameRuleSystem<HereticRuleComponent>
         const int requiredSacrifices = 4;
         var requiredKnowledge = 0;
 
-        _mind.TryAddObjective(mindId, mind, "HereticSacrificeObjective");
+        _mind.TryAddObjective(mindId, mind, HereticSacrificeObjective);
         if (TryComp<HereticSacrificeConditionComponent>(mind.Objectives[^1], out var sacrificeCondition))
             sacrificeCondition.RequiredSacrifices = requiredSacrifices;
 
-        _mind.TryAddObjective(mindId, mind, "HereticMajorSacrificeObjective");
+        _mind.TryAddObjective(mindId, mind, HereticMajorSacrificeObjective);
 
-        _mind.TryAddObjective(mindId, mind, "HereticResearchObjective");
+        _mind.TryAddObjective(mindId, mind, HereticResearchObjective);
         if (TryComp<HereticResearchConditionComponent>(mind.Objectives[^1], out var researchCondition))
         {
             requiredKnowledge = GetDynamicResearchTarget();
@@ -64,7 +70,7 @@ public sealed class HereticRuleSystem : GameRuleSystem<HereticRuleComponent>
 
         _heretic.SetAscensionTargets(args.EntityUid, requiredSacrifices, requiredKnowledge);
 
-        _mind.TryAddObjective(mindId, mind, "HereticAscensionObjective");
+        _mind.TryAddObjective(mindId, mind, HereticAscensionObjective);
 
         SpawnInitialRifts(args.EntityUid);
     }
@@ -191,6 +197,6 @@ public sealed class HereticRuleSystem : GameRuleSystem<HereticRuleComponent>
 
     private void OnHereticAscended(HereticAscendedEvent ev)
     {
-        _roundEnd.RequestRoundEnd(TimeSpan.FromMinutes(10), checkCooldown: false);
+        _roundEnd.RequestRoundEnd(HereticAscendedCountdownTimeDelay, checkCooldown: false);
     }
 }

@@ -1,6 +1,5 @@
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
-using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Rituals;
 using Content.Shared.StepTrigger.Systems;
@@ -31,9 +30,8 @@ public sealed class HereticStunRuneSystem : EntitySystem
     private void OnTriggered(Entity<HereticStunRuneComponent> ent, ref StepTriggeredOnEvent args)
     {
         var target = args.Tripper;
-        _stun.TryAddStunDuration(target, TimeSpan.FromSeconds(5));
-        var dmg = new DamageSpecifier();
-        dmg.DamageDict["Blunt"] = FixedPoint2.New(15);
+        _stun.TryAddStunDuration(target, ent.Comp.TriggeredDuration);
+        var dmg = new DamageSpecifier(ent.Comp.TriggeredBluntDamage);
         _damage.TryChangeDamage(target, dmg, ignoreResistances: false);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_misc_demon_attack1.ogg"), target);
         var coords = Transform(ent.Owner).Coordinates;

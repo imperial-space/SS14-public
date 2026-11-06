@@ -1,21 +1,9 @@
-using Content.Server.Imperial.Heretic;
 using Content.Server.Imperial.Heretic.Effects;
-using Content.Server.Imperial.Heretic.Items;
-using Content.Server.Imperial.Heretic.Paths.Moon;
-using Content.Server.Imperial.Heretic.Paths.Moon.Parade;
-using Content.Server.Imperial.Heretic.Paths.Void;
 using System.Numerics;
 using Content.Server.Chat.Systems;
-using Content.Shared.Chat;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Imperial.Heretic.Core;
-using Content.Shared.Imperial.Heretic.Effects;
-using Content.Shared.Imperial.Heretic.Items;
 using Content.Shared.Imperial.Heretic.Paths.Moon;
-using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
-using Content.Shared.Imperial.Heretic.Paths.Void;
-using Content.Shared.Imperial.Heretic.Rituals;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Audio;
@@ -24,19 +12,22 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Content.Server.Imperial.Antimagic;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Moon;
 
 public sealed class HereticMoonParadeSystem : EntitySystem
 {
     [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
-    [Dependency] private readonly ChatSystem                  _chat           = default!;
-    [Dependency] private readonly SharedAudioSystem          _audio          = default!;
-    [Dependency] private readonly SharedPhysicsSystem        _physics        = default!;
-    [Dependency] private readonly SharedTransformSystem      _xform          = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly HereticStatusEffectsSystem _hereticEffects = default!;
-    [Dependency] private readonly MobStateSystem             _mobs           = default!;
+    [Dependency] private readonly MobStateSystem _mobs = default!;
     [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
+
+    private static readonly EntProtoId ProjectileMoonParade = "ProjectileMoonParade";
 
     public override void Initialize()
     {
@@ -59,7 +50,7 @@ public sealed class HereticMoonParadeSystem : EntitySystem
             direction = new Vector2(1f, 0f);
         direction = Vector2.Normalize(direction);
 
-        var projectile = Spawn("ProjectileMoonParade", Transform(uid).Coordinates);
+        var projectile = Spawn(ProjectileMoonParade, Transform(uid).Coordinates);
         var projComp = EnsureComp<HereticMoonParadeProjectileComponent>(projectile);
         projComp.Shooter = uid;
 
@@ -88,7 +79,7 @@ public sealed class HereticMoonParadeSystem : EntitySystem
                 {
                     var leash = EnsureComp<HereticMoonParadeLeashComponent>(args.OtherEntity);
                     leash.Projectile = uid;
-                    leash.End = _timing.CurTime + TimeSpan.FromSeconds(20f);
+                    leash.End = _timing.CurTime + comp.CollideMobSensorDelay;
                     leash.DamageAccumulated = 0f;
                 }
 
@@ -96,14 +87,14 @@ public sealed class HereticMoonParadeSystem : EntitySystem
                     brainComp = AddComp<HereticMoonBrainDamageComponent>(args.OtherEntity);
                 brainComp.Sanity = Math.Max(0f, brainComp.Sanity - 20f);
                 // delusion/preset/moon на каждое касание.
-                _hereticEffects.ApplyMoonDelusion(args.OtherEntity, TimeSpan.FromSeconds(15));
+                _hereticEffects.ApplyMoonDelusion(args.OtherEntity, comp.CollideMobSensorDuration);
                 break;
 
             case "wall_stop":
                 if (!TryComp<PhysicsComponent>(uid, out var physics)) { QueueDel(uid); return; }
 
-                var velocity  = _physics.GetMapLinearVelocity(uid, component: physics);
-                var normal    = args.WorldNormal;
+                var velocity = _physics.GetMapLinearVelocity(uid, component: physics);
+                var normal = args.WorldNormal;
                 var reflected = velocity - 2f * Vector2.Dot(velocity, normal) * normal;
 
                 _physics.SetLinearVelocity(uid, reflected, body: physics);
@@ -158,8 +149,8 @@ public sealed class HereticMoonParadeSystem : EntitySystem
 
             // Тянем жертву к снаряду
             var victimPos = _xform.GetWorldPosition(uid);
-            var projPos   = _xform.GetWorldPosition(leash.Projectile);
-            var dir       = projPos - victimPos;
+            var projPos = _xform.GetWorldPosition(leash.Projectile);
+            var dir = projPos - victimPos;
 
             if (dir.LengthSquared() < 0.25f)
                 continue;

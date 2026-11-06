@@ -10,7 +10,6 @@ using Content.Shared.StepTrigger.Systems;
 using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Imperial.Heretic.Rituals;
 
@@ -39,10 +38,10 @@ public sealed class HereticMadnessRuneSystem : EntitySystem
         var target = args.Tripper;
 
         _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(
-            target, TemporaryBlindnessSystem.BlindingStatusEffect, TimeSpan.FromSeconds(5), true);
+            target, TemporaryBlindnessSystem.BlindingStatusEffect, ent.Comp.TriggeredTime, true);
 
         _statusEffects.TryAddStatusEffect(
-            target, "Stutter", TimeSpan.FromSeconds(10), true, "StutteringAccentComponent");
+            target, "Stutter", ent.Comp.TriggeredTime2, true, "StutteringAccentComponent");
 
         if (EnsureComp<ParacusiaComponent>(target, out var paracusia))
         {
@@ -51,7 +50,7 @@ public sealed class HereticMadnessRuneSystem : EntitySystem
             _paracusia.SetDistance(target, 5f);
         }
 
-        _schedule.Schedule(TimeSpan.FromMilliseconds(15000), () =>
+        _schedule.Schedule(ent.Comp.TriggeredDelay, () =>
         {
             if (Exists(target))
                 RemComp<ParacusiaComponent>(target);
@@ -59,7 +58,7 @@ public sealed class HereticMadnessRuneSystem : EntitySystem
 
         EnsureComp<JitteringComponent>(target);
 
-        _schedule.Schedule(TimeSpan.FromMilliseconds(10000), () =>
+        _schedule.Schedule(ent.Comp.TriggeredDelay2, () =>
         {
             if (Exists(target))
                 RemComp<JitteringComponent>(target);

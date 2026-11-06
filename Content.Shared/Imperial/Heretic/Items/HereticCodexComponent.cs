@@ -50,4 +50,10 @@ public sealed partial class HereticCodexComponent : Component
     /// <summary>Клиентское: когда закончится анимация открытия/закрытия.</summary>
     [ViewVariables]
     public TimeSpan? TransitionEndTime;
+
+    [DataField]
+    public TimeSpan HallucinationDelay = TimeSpan.FromSeconds(60);
+
+    [DataField]
+    public TimeSpan CodexExaminedDuration = TimeSpan.FromSeconds(30);
 }

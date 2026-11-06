@@ -1,7 +1,6 @@
 using System.Numerics;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Maths;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -38,7 +37,7 @@ public sealed class HereticMoonIllusionMovementSystem : EntitySystem
 
             if (now >= move.NextFootstep)
             {
-                move.NextFootstep = now + TimeSpan.FromSeconds(0.5f);
+                move.NextFootstep = now + move.FootstepDelay;
                 _audio.PlayPvs(FootstepSound, uid);
             }
         }

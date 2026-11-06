@@ -14,6 +14,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Reality;
 
@@ -54,6 +55,9 @@ public sealed class HereticRealityRiftSystem : EntitySystem
     };
 
     private TimeSpan _nextUpdate;
+
+    private static readonly EntProtoId HereticRealityRift = "HereticRealityRift";
+    private static readonly EntProtoId HereticRealityBreach = "HereticRealityBreach";
 
     public override void Initialize()
     {
@@ -204,15 +208,15 @@ public sealed class HereticRealityRiftSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!TryComp<HereticComponent>(args.User, out _))
+        if (!HasComp<HereticComponent>(args.User))
             return;
 
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString("heretic-rift-absorbing"), args.User, args.User);
 
         var absorbTime = _heretic.HasMorbiusCodex(args.User)
-            ? rift.AbsorbTime * 0.5f
-            : rift.AbsorbTime;
+            ? (float)rift.AbsorbTime.TotalSeconds * 0.5f
+            : (float)rift.AbsorbTime.TotalSeconds;
 
         _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, absorbTime,
             new AbsorbRealityRiftDoAfterEvent(),
@@ -240,7 +244,7 @@ public sealed class HereticRealityRiftSystem : EntitySystem
         _heretic.SendHereticMessage(uid, Loc.GetString("heretic-rift-absorbed-chat"));
 
         var coords = _xform.GetMapCoordinates(args.Used.Value);
-        var delay = TimeSpan.FromSeconds(rift.RespawnDelay);
+        var delay = rift.RespawnDelay;
         QueueDel(args.Used.Value);
 
         _schedule.Schedule(delay, () => SpawnBreach(coords));
@@ -249,8 +253,8 @@ public sealed class HereticRealityRiftSystem : EntitySystem
     // ─── Spawn API ────────────────────────────────────────────────────────────
 
     public EntityUid SpawnRift(EntityCoordinates coords)
-        => Spawn("HereticRealityRift", coords);
+        => Spawn(HereticRealityRift, coords);
 
     private void SpawnBreach(MapCoordinates coords)
-        => Spawn("HereticRealityBreach", coords);
+        => Spawn(HereticRealityBreach, coords);
 }

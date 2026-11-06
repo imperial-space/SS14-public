@@ -19,4 +19,10 @@ public sealed partial class HereticMoonParadeProjectileComponent : Component
 
     [ViewVariables]
     public HashSet<EntityUid> MobsHit = new();
+
+    [DataField]
+    public TimeSpan CollideMobSensorDelay = TimeSpan.FromSeconds(20f);
+
+    [DataField]
+    public TimeSpan CollideMobSensorDuration = TimeSpan.FromSeconds(15);
 }

@@ -87,7 +87,7 @@ public sealed class HereticMaskOfMadnessSystem : EntitySystem
             if (_timing.CurTime < mask.NextTick)
                 continue;
 
-            mask.NextTick = _timing.CurTime + TimeSpan.FromSeconds(mask.TickInterval);
+            mask.NextTick = _timing.CurTime + mask.TickInterval;
 
             if (!_container.TryGetContainingContainer(uid, out var container))
                 continue;
@@ -107,7 +107,7 @@ public sealed class HereticMaskOfMadnessSystem : EntitySystem
                     continue;
 
                 // 60%: auditory hallucinations
-                if (_random.Prob(0.6f))
+                if (_random.Prob(mask.UpdateChance))
                 {
                     var paracusia = EnsureComp<ParacusiaComponent>(ent.Owner);
                     _paracusia.SetSounds(ent.Owner, new SoundCollectionSpecifier("Paracusia"), paracusia);
@@ -116,11 +116,11 @@ public sealed class HereticMaskOfMadnessSystem : EntitySystem
                 }
 
                 // 40%: jitter (10s)
-                if (_random.Prob(0.4f))
-                    _jitter.DoJitter(ent.Owner, TimeSpan.FromSeconds(10), true);
+                if (_random.Prob(mask.UpdateChance2))
+                    _jitter.DoJitter(ent.Owner, mask.UpdateTime, true);
 
                 // 30%: stamina damage, only while below soft threshold
-                if (_random.Prob(0.3f)
+                if (_random.Prob(mask.UpdateChance3)
                     && TryComp<StaminaComponent>(ent.Owner, out var stamina)
                     && stamina.StaminaDamage <= 85f)
                 {

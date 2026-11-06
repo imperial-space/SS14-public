@@ -11,6 +11,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
@@ -25,6 +26,11 @@ public sealed class HereticStarTouchSystem : EntitySystem
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
 
     private const float BeamRange = 8f;
+
+    private static readonly EntProtoId StarMarkStatusEffect = "StarMarkStatusEffect";
+    private static readonly EntProtoId HereticCosmicCarpet = "HereticCosmicCarpet";
+
+    private static readonly TimeSpan StarTouchDuration = TimeSpan.FromSeconds(30);
 
     public override void Initialize()
     {
@@ -60,9 +66,9 @@ public sealed class HereticStarTouchSystem : EntitySystem
             _xform.SetCoordinates(comp.Target, herXform.Coordinates);
             var pullLevel = TryComp<HereticComponent>(uid, out var pullHeretic) ? pullHeretic.PassiveLevel : 0;
             SpawnCarpet(pullLevel, herXform.ParentUid, Snap(herXform.LocalPosition));
-            _stun.TryKnockdown(comp.Target, TimeSpan.FromSeconds(8), true);
-            _statusEffects.TryAddStatusEffectDuration(comp.Target, SleepingSystem.StatusEffectForcedSleeping, TimeSpan.FromSeconds(4));
-            _statusEffects.TrySetStatusEffectDuration(comp.Target, "StarMarkStatusEffect", TimeSpan.FromSeconds(30));
+            _stun.TryKnockdown(comp.Target, comp.UpdateTime, true);
+            _statusEffects.TryAddStatusEffectDuration(comp.Target, SleepingSystem.StatusEffectForcedSleeping, comp.UpdateDuration);
+            _statusEffects.TrySetStatusEffectDuration(comp.Target, StarMarkStatusEffect, comp.UpdateDuration2);
             _popup.PopupEntity(Loc.GetString("heretic-star-touch-beam-complete"), uid, uid, PopupType.Large);
             RemComp<HereticStarTouchBeamComponent>(uid);
         }
@@ -92,7 +98,7 @@ public sealed class HereticStarTouchSystem : EntitySystem
         }
         else
         {
-            _statusEffects.TrySetStatusEffectDuration(target, "StarMarkStatusEffect", TimeSpan.FromSeconds(30));
+            _statusEffects.TrySetStatusEffectDuration(target, StarMarkStatusEffect, StarTouchDuration);
             _popup.PopupEntity(Loc.GetString("heretic-star-touch-marked"), uid, uid, PopupType.Medium);
         }
     }
@@ -118,7 +124,7 @@ public sealed class HereticStarTouchSystem : EntitySystem
 
     private void SpawnCarpet(int passiveLevel, EntityUid parent, Vector2 pos)
     {
-        var carpet = Spawn("HereticCosmicCarpet", new EntityCoordinates(parent, pos));
+        var carpet = Spawn(HereticCosmicCarpet, new EntityCoordinates(parent, pos));
         if (passiveLevel > 0 && TryComp<HereticCosmicFieldComponent>(carpet, out var field))
             field.PassiveLevel = passiveLevel;
     }

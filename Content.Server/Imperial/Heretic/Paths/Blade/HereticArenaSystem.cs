@@ -3,7 +3,6 @@ using Content.Server.Popups;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
-using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
@@ -14,7 +13,6 @@ using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
-using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Imperial.Heretic.Paths.Blade;
 
@@ -97,12 +95,7 @@ public sealed class HereticArenaSystem : EntitySystem
         if (Exists(heretic) && victor == heretic)
         {
             // Еретик победил — лечение (SS13: heal_overall_damage(60,60,60) + tox/oxy -60)
-            var heal = new DamageSpecifier();
-            heal.DamageDict["Blunt"] = FixedPoint2.New(-60);
-            heal.DamageDict["Heat"] = FixedPoint2.New(-60);
-            heal.DamageDict["Cellular"] = FixedPoint2.New(-60);
-            heal.DamageDict["Asphyxiation"] = FixedPoint2.New(-60);
-            heal.DamageDict["Poison"] = FixedPoint2.New(-60);
+            var heal = new DamageSpecifier(comp.ParticipantStateChangedHeal);
             _damage.TryChangeDamage(heretic, heal, ignoreResistances: true);
 
             _heretic.SpawnOrbitingBlade(heretic);
@@ -122,7 +115,7 @@ public sealed class HereticArenaSystem : EntitySystem
             arena.Participants.Remove(victor);
 
             // Через 60 секунд — убираем маркерный компонент
-            _schedule.Schedule(TimeSpan.FromMilliseconds(60_000), () =>
+            _schedule.Schedule(comp.ParticipantStateChangedDelay, () =>
             {
                 if (Exists(victor))
                     RemCompDeferred<HereticArenaParticipantComponent>(victor);

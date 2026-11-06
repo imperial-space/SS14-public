@@ -4,6 +4,8 @@ using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Flesh;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Imperial.Heretic.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Flesh;
 
@@ -16,6 +18,8 @@ public sealed class HereticFleshBladeSystem : EntitySystem
     /// <summary>Кровотечение, которое открывает сработавшая метка Плоти.</summary>
     private const float FleshMarkBleed = 15f;
 
+    private static readonly ProtoId<HereticKnowledgePrototype> KnowledgeBleedingSteelHereticKnowledge = "KnowledgeBleedingSteel";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -27,11 +31,11 @@ public sealed class HereticFleshBladeSystem : EntitySystem
         if (!args.IsHit || !TryComp<HereticComponent>(args.User, out var heretic))
             return;
 
-        var bleedingSteel = _heretic.HasKnowledge(heretic, "KnowledgeBleedingSteel");
+        var bleedingSteel = _heretic.HasKnowledge(heretic, KnowledgeBleedingSteelHereticKnowledge);
         foreach (var target in args.HitEntities)
         {
             if (bleedingSteel)
-                _bloodstream.TryModifyBleedAmount(target, 5f);
+                _bloodstream.TryModifyBleedAmount(target, comp.MeleeHitAmount);
 
             // Метка Плоти: удар клинком Плоти по меченой цели вскрывает раны.
             if (!RemComp<FleshMarkComponent>(target))

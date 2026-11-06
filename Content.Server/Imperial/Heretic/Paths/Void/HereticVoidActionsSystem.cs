@@ -2,94 +2,35 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body;
-using Content.Server.Body.Components;
-using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
-using Content.Server.Decals;
-using Content.Server.DoAfter;
-using Content.Server.Doors.Systems;
 using Content.Server.Imperial.Heretic.Effects;
 using Content.Server.Imperial.Heretic.Paths.Moon;
-using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
 using Content.Server.Imperial.Antimagic;
-using Content.Shared.Access;
-using Content.Shared.Access.Components;
-using Content.Shared.Access.Systems;
-using Content.Shared.Actions;
-using Content.Shared.Actions.Components;
-using Content.Shared.Alert;
-using Content.Shared.Atmos;
-using Content.Shared.Atmos.Components;
-using Content.Shared.Bed.Sleep;
-using Content.Shared.Body;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Events;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chat;
 using Content.Shared.CombatMode;
-using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Doors.Components;
-using Content.Shared.Electrocution;
-using Content.Shared.Eye;
-using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Eye.Blinding.Systems;
-using Content.Shared.FixedPoint;
-using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Rust;
 using Content.Shared.Imperial.Heretic.Paths.Void;
-using Content.Shared.Interaction;
-using Content.Shared.Interaction.Events;
-using Content.Shared.Inventory;
-using Content.Shared.Item;
-using Content.Shared.Maps;
-using Content.Shared.Medical;
-using Content.Shared.Mind.Components;
-using Content.Shared.Mindshield.Components;
-using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Polymorph;
 using Content.Shared.Popups;
-using Content.Shared.SSDIndicator;
-using Content.Shared.Slippery;
-using Content.Shared.Speech.Muting;
-using Content.Shared.Stacks;
-using Content.Shared.StatusEffect;
-using Content.Shared.Stealth;
-using Content.Shared.Stealth.Components;
 using Content.Shared.Stunnable;
-using Content.Shared.Temperature.Components;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Reflect;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Containers;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
-using Robust.Shared.Maths;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Systems;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
-using Robust.Shared.Spawners;
-using Robust.Shared.Timing;
-using Timer = Robust.Shared.Timing.Timer;
+using Content.Shared.Imperial.Heretic.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Void;
 
@@ -119,6 +60,36 @@ public sealed class HereticVoidActionsSystem : EntitySystem
     [Dependency] private readonly HereticMoonBrainDamageSystem _brainDamage = default!;
     [Dependency] private readonly HereticVoidPrisonSystem _voidPrison = default!;
     [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
+
+    private static readonly DamageSpecifier VoidPullBluntDamage = new() { DamageDict = { ["Blunt"] = 30 } };
+    private static readonly DamageSpecifier VoidPhaseBluntDamage = new() { DamageDict = { ["Blunt"] = 40 } };
+    private static readonly DamageSpecifier WaveOfDesperationBluntDamage = new() { DamageDict = { ["Blunt"] = 15 } };
+
+    private static readonly EntProtoId HereticEffectVoidBlinkIn = "HereticEffectVoidBlinkIn";
+    private static readonly EntProtoId HereticVoidConduit = "HereticVoidConduit";
+    private static readonly ProtoId<HereticKnowledgePrototype> KnowledgeVoidBladeUpgradeHereticKnowledge = "KnowledgeVoidBladeUpgrade";
+    private static readonly EntProtoId HereticEffectVoidBlinkOut = "HereticEffectVoidBlinkOut";
+    private static readonly EntProtoId HereticEffectRingleader = "HereticEffectRingleader";
+    private static readonly EntProtoId HereticLastResortStatusEffect = "HereticLastResortStatusEffect";
+    private static readonly EntProtoId EffectVoidBlink = "EffectVoidBlink";
+    private static readonly EntProtoId MobHereticMaidInMirror = "MobHereticMaidInMirror";
+    private static readonly EntProtoId HereticEffectSpaceExplosion = "HereticEffectSpaceExplosion";
+
+    private static readonly TimeSpan VoidPullDuration = TimeSpan.FromSeconds(0.5);
+    private static readonly TimeSpan VoidPullTime = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan WaveOfDesperationTime = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan WaveOfDesperationDuration = TimeSpan.FromSeconds(12);
+    private static readonly TimeSpan WaveOfDesperationDelay = TimeSpan.FromSeconds(12);
+    private static readonly TimeSpan WaveOfDesperationTime2 = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan ApplyWaveMansusTouchMoonDuration = TimeSpan.FromSeconds(10);
+
+    private const float VoidPullRange = 2f;
+    private const float VoidPhaseRange = 2.99f;
+    private const float WaveOfDesperationRange = 3f;
+    private const float WaveOfDesperationBaseThrowSpeed = 4f;
+    private const float ApplyWaveMansusTouchMoonAmount = 20f;
+    private const float ApplyWaveMansusTouchFleshAmount = 6f;
+    private const float ApplyWaveMansusTouchBladeAmount = 6f;
 
     public override void Initialize()
     {
@@ -151,11 +122,10 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         var myLocalPos = Transform(uid).LocalPosition;
         var coords = Transform(uid).Coordinates;
 
-        var dmg = new DamageSpecifier();
-        dmg.DamageDict["Blunt"] = FixedPoint2.New(30);
+        var dmg = new DamageSpecifier(VoidPullBluntDamage);
 
         // aoe_radius = 2
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 2f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, VoidPullRange))
         {
             if (ent.Owner == uid)
                 continue;
@@ -172,8 +142,8 @@ public sealed class HereticVoidActionsSystem : EntitySystem
             var dir = myLocalPos - targetLocalPos;
             var dist = dir.Length();
 
-            _stun.TryAddParalyzeDuration(ent.Owner, TimeSpan.FromSeconds(0.5));
-            _stun.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(3), true);
+            _stun.TryAddParalyzeDuration(ent.Owner, VoidPullDuration);
+            _stun.TryKnockdown(ent.Owner, VoidPullTime, true);
 
             if (dist > 0.01f)
             {
@@ -185,7 +155,7 @@ public sealed class HereticVoidActionsSystem : EntitySystem
             _hereticEffects.ApplyVoidChill(ent.Owner, 3);
         }
 
-        Spawn("HereticEffectVoidBlinkIn", coords);
+        Spawn(HereticEffectVoidBlinkIn, coords);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Magic/Eldritch/voidblink.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-void-pull-activate"), uid, uid, PopupType.Medium);
     }
@@ -203,7 +173,7 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         _chat.TrySendInGameICMessage(uid, Loc.GetString("heretic-incantation-void-conduit"), InGameICChatType.Speak, false, ignoreActionBlocker: true);
         // conjure/void_conduit: sound = null — у самих врат свой гул.
 
-        var conduit = Spawn("HereticVoidConduit", _xform.GetMapCoordinates(uid));
+        var conduit = Spawn(HereticVoidConduit, _xform.GetMapCoordinates(uid));
         if (TryComp<HereticVoidConduitComponent>(conduit, out var conduitComp))
             conduitComp.Caster = uid;
 
@@ -220,7 +190,7 @@ public sealed class HereticVoidActionsSystem : EntitySystem
             return;
 
         // Холод клинок накладывает только после улучшения «Ищущий клинок».
-        if (!_heretic.HasKnowledge(comp, "KnowledgeVoidBladeUpgrade"))
+        if (!_heretic.HasKnowledge(comp, KnowledgeVoidBladeUpgradeHereticKnowledge))
             return;
 
         foreach (var target in args.HitEntities)
@@ -294,7 +264,7 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         }
         var srcCoords = Transform(uid).Coordinates;
 
-        if (_xform.InRange(srcCoords, args.Target, 2.99f))
+        if (_xform.InRange(srcCoords, args.Target, VoidPhaseRange))
         {
             _popup.PopupEntity(Loc.GetString("heretic-void-phase-fail"), uid, uid, PopupType.SmallCaution);
             return;
@@ -304,11 +274,10 @@ public sealed class HereticVoidActionsSystem : EntitySystem
 
         _chat.TrySendInGameICMessage(uid, Loc.GetString("heretic-incantation-void-phase"), InGameICChatType.Whisper, false, ignoreActionBlocker: true);
 
-        Spawn("HereticEffectVoidBlinkIn", srcCoords);
+        Spawn(HereticEffectVoidBlinkIn, srcCoords);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Magic/Eldritch/voidblink.ogg"), srcCoords);
 
-        var aoe = new DamageSpecifier();
-        aoe.DamageDict["Blunt"] = FixedPoint2.New(40);
+        var aoe = new DamageSpecifier(VoidPhaseBluntDamage);
 
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(srcCoords, 1f))
         {
@@ -324,7 +293,7 @@ public sealed class HereticVoidActionsSystem : EntitySystem
 
         _xform.SetWorldPosition(uid, _xform.ToMapCoordinates(args.Target).Position);
         var dstCoords = Transform(uid).Coordinates;
-        Spawn("HereticEffectVoidBlinkOut", dstCoords);
+        Spawn(HereticEffectVoidBlinkOut, dstCoords);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Magic/Eldritch/voidblink.ogg"), dstCoords);
 
         foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(dstCoords, 1f))
@@ -401,36 +370,35 @@ public sealed class HereticVoidActionsSystem : EntitySystem
 
         var coords = Transform(uid).Coordinates;
         var myPos = _xform.GetWorldPosition(uid);
-        var dmg = new DamageSpecifier();
-        dmg.DamageDict["Blunt"] = FixedPoint2.New(15);
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 3f))
+        var dmg = new DamageSpecifier(WaveOfDesperationBluntDamage);
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, WaveOfDesperationRange))
         {
             if (ent.Owner == uid)
                 continue;
             if (_antimagic.CanBlockMagic(ent.Owner))
                 continue;
             _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
-            _stun.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(3), true);
+            _stun.TryKnockdown(ent.Owner, WaveOfDesperationTime, true);
             ApplyWaveMansusTouch(uid, comp, ent.Owner);
             var dir = _xform.GetWorldPosition(ent.Owner) - myPos;
             if (dir.Length() > 0.01f)
-                _throw.TryThrow(ent.Owner, dir.Normalized() * 3f, 4f);
+                _throw.TryThrow(ent.Owner, dir.Normalized() * 3f, WaveOfDesperationBaseThrowSpeed);
         }
-        Spawn("HereticEffectRingleader", coords);
+        Spawn(HereticEffectRingleader, coords);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/swap.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-wave-of-desperation"), uid, uid, PopupType.Large);
 
         // Speed boost for 12 seconds — caster ignores slowdowns until they fall unconscious.
-        _movementMod.TryAddMovementSpeedModDuration(uid, "HereticLastResortStatusEffect", TimeSpan.FromSeconds(12), 1.3f);
+        _movementMod.TryAddMovementSpeedModDuration(uid, HereticLastResortStatusEffect, WaveOfDesperationDuration, 1.3f);
         _popup.PopupEntity(Loc.GetString("heretic-wave-of-desperation-buff"), uid, uid, PopupType.Medium);
 
         // Caster loses consciousness 12 seconds after the spell fires (not immediately).
         var capturedUid = uid;
-        _schedule.Schedule(TimeSpan.FromSeconds(12), () =>
+        _schedule.Schedule(WaveOfDesperationDelay, () =>
         {
             if (Deleted(capturedUid) || !_mobs.IsAlive(capturedUid))
                 return;
-            _stun.TryKnockdown(capturedUid, TimeSpan.FromSeconds(5), true);
+            _stun.TryKnockdown(capturedUid, WaveOfDesperationTime2, true);
         });
     }
 
@@ -443,12 +411,12 @@ public sealed class HereticVoidActionsSystem : EntitySystem
                 break;
 
             case HereticPath.Moon:
-                _hereticEffects.ApplyHallucination(target, TimeSpan.FromSeconds(10));
-                _brainDamage.AddBrainDamage(target, 20f);
+                _hereticEffects.ApplyHallucination(target, ApplyWaveMansusTouchMoonDuration);
+                _brainDamage.AddBrainDamage(target, ApplyWaveMansusTouchMoonAmount);
                 break;
 
             case HereticPath.Flesh when _heretic.HasKnowledge(comp, "KnowledgeMarkOfFlesh"):
-                _bloodstream.TryModifyBleedAmount(target, 6f);
+                _bloodstream.TryModifyBleedAmount(target, ApplyWaveMansusTouchFleshAmount);
                 break;
 
             case HereticPath.Void when _heretic.HasKnowledge(comp, "KnowledgeVoidTraveler"):
@@ -456,7 +424,7 @@ public sealed class HereticVoidActionsSystem : EntitySystem
                 break;
 
             case HereticPath.Blade when _heretic.HasKnowledge(comp, "KnowledgeSanguineSurge"):
-                _bloodstream.TryModifyBleedAmount(target, 6f);
+                _bloodstream.TryModifyBleedAmount(target, ApplyWaveMansusTouchBladeAmount);
                 break;
 
             case HereticPath.Rust when _heretic.HasKnowledge(comp, "KnowledgeMarkOfRust"):
@@ -481,9 +449,9 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         {
             var angle = i * (Math.PI * 2 / 3);
             var offset = new Vector2((float)Math.Cos(angle) * 1.5f, (float)Math.Sin(angle) * 1.5f);
-            Spawn("EffectVoidBlink", coords.Offset(offset));
+            Spawn(EffectVoidBlink, coords.Offset(offset));
         }
-        Spawn("MobHereticMaidInMirror", coords);
+        Spawn(MobHereticMaidInMirror, coords);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_curse.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-maid-in-mirror"), uid, uid, PopupType.Large);
     }
@@ -501,12 +469,14 @@ public sealed class HereticVoidActionsSystem : EntitySystem
         // SS13: TRAIT_NEGATES_GRAVITY + TRAIT_MOVE_FLYING
         var gravity = EnsureComp<MovementIgnoreGravityComponent>(uid);
         gravity.Weightless = true;
+        Dirty(uid, gravity);
         // SS13: RegisterSignal(COMSIG_ATOM_PRE_BULLET_ACT) → 75% deflect back
         var reflect = EnsureComp<ReflectComponent>(uid);
         reflect.ReflectProb = 0.75f;
+        Dirty(uid, reflect);
         // SS13: sound_loop = new(user, TRUE, TRUE) + COMSIG_LIVING_LIFE
         EnsureComp<HereticVoidAscendedComponent>(uid);
-        Spawn("HereticEffectSpaceExplosion", coords);
+        Spawn(HereticEffectSpaceExplosion, coords);
         _popup.PopupEntity(Loc.GetString("heretic-ascension-void"), uid, uid, PopupType.Large);
     }
 }

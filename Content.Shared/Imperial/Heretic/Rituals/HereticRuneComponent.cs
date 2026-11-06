@@ -1,3 +1,5 @@
+using Content.Shared.FixedPoint;
+
 namespace Content.Shared.Imperial.Heretic.Rituals;
 
 /// <summary>
@@ -13,4 +15,13 @@ public sealed partial class HereticRuneComponent : Component
     /// <summary>Radius (in tiles) around the rune to search for ritual ingredients.</summary>
     [DataField]
     public float IngredientSearchRadius = 1.5f;
+
+    [DataField]
+    public TimeSpan RitualSelectedDelay = TimeSpan.FromMilliseconds(5000);
+
+    [DataField]
+    public FixedPoint2 RitualSelectedDamage = 125;
+
+    [DataField]
+    public int RitualSelectedAmount = 4;
 }

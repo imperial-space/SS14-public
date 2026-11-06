@@ -22,4 +22,13 @@ public sealed partial class HereticStalkerComponent : Component
         "StalkerPolymorphBorg",
         "StalkerPolymorphDrone",
     };
+
+    [DataField]
+    public TimeSpan EmpDuration = TimeSpan.FromSeconds(15);
+
+    [DataField]
+    public float EmpRange = 5f;
+
+    [DataField]
+    public float EmpEnergyConsumption = 300f;
 }

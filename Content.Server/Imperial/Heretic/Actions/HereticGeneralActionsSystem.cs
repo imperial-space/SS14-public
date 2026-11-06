@@ -1,94 +1,22 @@
 using System.Linq;
-using System.Threading;
-using Content.Server.Atmos.Components;
-using Content.Server.Atmos.EntitySystems;
-using Content.Server.Beam;
-using Content.Server.Body;
-using Content.Server.Body.Components;
-using Content.Server.Chat.Managers;
-using Content.Server.Chat.Systems;
-using Content.Server.Damage.Systems;
-using Content.Server.Decals;
-using Content.Server.DoAfter;
-using Content.Server.Doors.Systems;
 using Content.Server.Mind;
 using Content.Server.Popups;
-using Content.Shared.Access;
-using Content.Shared.Access.Components;
-using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
-using Content.Shared.Atmos;
-using Content.Shared.Atmos.Components;
-using Content.Shared.Bed.Sleep;
 using Content.Shared.Body;
-using Content.Shared.Body.Events;
-using Content.Shared.Body.Systems;
-using Content.Shared.Chat;
-using Content.Shared.CombatMode;
-using Content.Shared.CombatMode.Pacification;
-using Content.Shared.Coordinates.Helpers;
-using Content.Shared.Cuffs;
-using Content.Shared.Cuffs.Components;
-using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Systems;
-using Content.Shared.DoAfter;
-using Content.Shared.Doors.Components;
-using Content.Shared.Electrocution;
-using Content.Shared.Eye;
-using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Eye.Blinding.Systems;
-using Content.Shared.FixedPoint;
-using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Items;
-using Content.Shared.Interaction;
-using Content.Shared.Interaction.Events;
-using Content.Shared.Inventory;
-using Content.Shared.Item;
-using Content.Shared.Maps;
-using Content.Shared.Medical;
-using Content.Shared.Mind.Components;
-using Content.Shared.Mindshield.Components;
-using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Polymorph;
 using Content.Shared.Popups;
-using Content.Shared.SSDIndicator;
-using Content.Shared.Slippery;
-using Content.Shared.Speech.Muting;
-using Content.Shared.Stacks;
-using Content.Shared.StatusEffect;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
-using Content.Shared.Tag;
-using Content.Shared.Temperature.Components;
-using Content.Shared.Throwing;
-using Content.Shared.Weapons.Melee;
-using Content.Shared.Weapons.Melee.Events;
-using Content.Shared.Weapons.Reflect;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
-using Robust.Shared.Maths;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
-using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Imperial.Heretic.Actions;
 
@@ -111,6 +39,14 @@ public sealed class HereticGeneralActionsSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
 
     private static readonly EntProtoId DisableCloakProto = "ActionHereticDisableCloak";
+
+    private static readonly EntProtoId HereticEffectSmoke = "HereticEffectSmoke";
+    private static readonly EntProtoId HereticCloakEffect = "HereticCloakEffect";
+    private static readonly EntProtoId HereticCloakTrailEffect = "HereticCloakTrailEffect";
+    private static readonly ProtoId<OrganCategoryPrototype> HeartOrganCategory = "Heart";
+    private static readonly EntProtoId OrganHereticHeart = "OrganHereticHeart";
+
+    private static readonly TimeSpan CloakOfShadowDelay = TimeSpan.FromMilliseconds(100);
 
     public override void Initialize()
     {
@@ -151,12 +87,12 @@ public sealed class HereticGeneralActionsSystem : EntitySystem
         var originalName = MetaData(uid).EntityName;
 
         // Effects: smoke + sound + popup
-        Spawn("HereticEffectSmoke", Transform(uid).Coordinates);
+        Spawn(HereticEffectSmoke, Transform(uid).Coordinates);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_curse.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-cloak-of-shadow"), uid, uid, PopupType.Medium);
 
         // Spawn persistent curse overlay parented to the player
-        var effectUid = Spawn("HereticCloakEffect", Transform(uid).Coordinates);
+        var effectUid = Spawn(HereticCloakEffect, Transform(uid).Coordinates);
         _xform.SetParent(effectUid, uid);
 
         // Rename player, apply 25% speed boost, hide original sprite
@@ -187,10 +123,10 @@ public sealed class HereticGeneralActionsSystem : EntitySystem
         {
             if (!cloakComp.IsActive || Deleted(uid))
                 return;
-            Spawn("HereticCloakTrailEffect", Transform(uid).Coordinates);
-            _schedule.Schedule(TimeSpan.FromMilliseconds(100), SpawnTrail);
+            Spawn(HereticCloakTrailEffect, Transform(uid).Coordinates);
+            _schedule.Schedule(CloakOfShadowDelay, SpawnTrail);
         }
-        _schedule.Schedule(TimeSpan.FromMilliseconds(100), SpawnTrail);
+        _schedule.Schedule(CloakOfShadowDelay, SpawnTrail);
 
         _schedule.Schedule(TimeSpan.FromSeconds(durationSeconds), () =>
         {
@@ -263,7 +199,7 @@ public sealed class HereticGeneralActionsSystem : EntitySystem
         {
             if (!TryComp<OrganComponent>(organ, out var organComp) || organComp.Category is not { } category)
                 continue;
-            if (category == "Heart")
+            if (category == HeartOrganCategory)
             {
                 oldHeart = organ;
                 break;
@@ -276,7 +212,7 @@ public sealed class HereticGeneralActionsSystem : EntitySystem
             Del(oldHeart.Value);
         }
 
-        var newHeart = Spawn("OrganHereticHeart", Transform(uid).Coordinates);
+        var newHeart = Spawn(OrganHereticHeart, Transform(uid).Coordinates);
         _container.Insert(newHeart, organs);
     }
 

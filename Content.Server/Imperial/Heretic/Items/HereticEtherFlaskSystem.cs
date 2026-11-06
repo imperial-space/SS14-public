@@ -55,8 +55,9 @@ public sealed class HereticEtherFlaskSystem : EntitySystem
 
         var sleep = EnsureComp<SleepingComponent>(user);
         sleep.WakeThreshold = FixedPoint2.New(100);
-        sleep.Cooldown = TimeSpan.FromSeconds(1);
-        sleep.CooldownEnd = _timing.CurTime + TimeSpan.FromSeconds(60);
+        sleep.Cooldown = comp.Cooldown;
+        sleep.CooldownEnd = _timing.CurTime + comp.Cooldown2;
+        Dirty(user, sleep);
 
         EnsureComp<HereticEtherFlaskSleepingComponent>(user);
 

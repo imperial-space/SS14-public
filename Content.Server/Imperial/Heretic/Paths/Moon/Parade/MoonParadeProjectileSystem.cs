@@ -5,11 +5,10 @@ using Content.Shared.Chat;
 using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
-using Robust.Shared.Map;
-using Robust.Shared.Maths;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Moon.Parade;
 
@@ -22,6 +21,8 @@ public sealed class MoonParadeProjectileSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _xform = default!;
 
     private const float PullSpeed = 5f;
+
+    private static readonly EntProtoId HereticEffectRingleader = "HereticEffectRingleader";
 
     public override void Initialize()
     {
@@ -93,8 +94,8 @@ public sealed class MoonParadeProjectileSystem : EntitySystem
 
         if (comp.HitMobs.Add(target))
         {
-            _hereticEffects.ApplyInsanity(target, TimeSpan.FromSeconds(20));
-            Spawn("HereticEffectRingleader", Transform(target).Coordinates);
+            _hereticEffects.ApplyInsanity(target, comp.CaptureMobDuration);
+            Spawn(HereticEffectRingleader, Transform(target).Coordinates);
             _popup.PopupEntity(Loc.GetString("heretic-moon-parade-hit"), target, target, PopupType.LargeCaution);
             _chat.TrySendInGameICMessage(target, Loc.GetString("heretic-moon-parade-enslaved"), InGameICChatType.Emote, true);
         }

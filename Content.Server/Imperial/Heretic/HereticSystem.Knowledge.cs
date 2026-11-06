@@ -1,80 +1,14 @@
 using System.Linq;
-using System.Text;
-using Content.Server.Actions;
-using Content.Server.Atmos.Components;
-using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Components;
-using Content.Server.Chat.Managers;
-using Content.Server.Chat.Systems;
-using Content.Server.Decals;
-using Content.Server.Doors.Systems;
 using Content.Server.Imperial.Heretic.Objectives;
-using Content.Server.Popups;
-using Content.Server.Roles;
-using Content.Shared.Access.Components;
-using Content.Shared.Access.Systems;
-using Content.Shared.Actions;
-using Content.Shared.Actions.Components;
-using Content.Shared.Antag;
 using Content.Shared.Atmos.Components;
-using Content.Shared.Body.Systems;
-using Content.Shared.Chat;
-using Content.Shared.CombatMode.Pacification;
-using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
-using Content.Shared.Damage.Systems;
-using Content.Shared.Decals;
-using Content.Shared.Doors.Components;
-using Content.Shared.Emag.Systems;
-using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.FixedPoint;
-using Content.Shared.Hands.EntitySystems;
-using Content.Shared.IdentityManagement;
-using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Moon;
 using Content.Shared.Imperial.Heretic.Prototypes;
-using Content.Shared.Interaction.Components;
-using Content.Shared.Interaction.Events;
-using Content.Shared.Inventory;
-using Content.Shared.Mech.Components;
-using Content.Shared.Mech.EntitySystems;
-using Content.Shared.Mind;
-using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
-using Content.Shared.Objectives.Systems;
-using Content.Shared.Overlays;
-using Content.Shared.PDA;
 using Content.Shared.Popups;
-using Content.Shared.Roles.Jobs;
-using Content.Shared.Speech.EntitySystems;
-using Content.Shared.Speech.Muting;
-using Content.Shared.Standing;
-using Content.Shared.StatusEffect;
-using Content.Shared.Stealth;
-using Content.Shared.Stealth.Components;
-using Content.Shared.Storage.Components;
-using Content.Shared.Storage.EntitySystems;
-using Content.Shared.Stunnable;
-using Content.Shared.Tag;
-using Content.Shared.Temperature.Components;
-using Content.Shared.UserInterface;
-using Content.Shared.Weapons.Melee;
-using Robust.Server.GameObjects;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
-using Robust.Shared.Maths;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
-using Robust.Shared.Timing;
-using CancellationTokenSource = System.Threading.CancellationTokenSource;
-using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Imperial.Heretic;
 
@@ -83,6 +17,10 @@ namespace Content.Server.Imperial.Heretic;
 /// </summary>
 public sealed partial class HereticSystem
 {
+    private static readonly ProtoId<DamageTypePrototype> CellularDamageType = "Cellular";
+
+    private static readonly EntProtoId HereticSpaceHands = "HereticSpaceHands";
+
     public bool TryResearchKnowledge(EntityUid uid, HereticComponent comp, string knowledgeId)
     {
         if (!_proto.TryIndex<HereticKnowledgePrototype>(knowledgeId, out var proto))
@@ -252,47 +190,47 @@ public sealed partial class HereticSystem
             case "KnowledgeLockwielder":
                 {
                     heal = new DamageSpecifier();
-                    heal.DamageDict["Blunt"] = FixedPoint2.New(-20);
-                    heal.DamageDict["Slash"] = FixedPoint2.New(-10);
+                    heal.DamageDict[BluntDamageType] = FixedPoint2.New(-20);
+                    heal.DamageDict[SlashDamageType] = FixedPoint2.New(-10);
                     break;
                 }
 
             case "KnowledgeFleshArtisan":
                 heal = new DamageSpecifier();
-                heal.DamageDict["Slash"] = FixedPoint2.New(-25);
-                heal.DamageDict["Piercing"] = FixedPoint2.New(-15);
+                heal.DamageDict[SlashDamageType] = FixedPoint2.New(-25);
+                heal.DamageDict[PiercingDamageType] = FixedPoint2.New(-15);
                 popupKey = "heretic-passive-flesh-artisan";
                 break;
 
             case "KnowledgeVoidTraveler":
                 heal = new DamageSpecifier();
-                heal.DamageDict["Cold"] = FixedPoint2.New(-15);
-                heal.DamageDict["Cellular"] = FixedPoint2.New(-10);
+                heal.DamageDict[ColdDamageType] = FixedPoint2.New(-15);
+                heal.DamageDict[CellularDamageType] = FixedPoint2.New(-10);
                 popupKey = "heretic-passive-void-traveler";
                 break;
 
             case "KnowledgeBladeAdept":
                 heal = new DamageSpecifier();
-                heal.DamageDict["Slash"] = FixedPoint2.New(-20);
-                heal.DamageDict["Blunt"] = FixedPoint2.New(-10);
+                heal.DamageDict[SlashDamageType] = FixedPoint2.New(-20);
+                heal.DamageDict[BluntDamageType] = FixedPoint2.New(-10);
                 popupKey = "heretic-passive-blade-adept";
                 break;
 
             case "KnowledgeRustReaper":
                 {
                     heal = new DamageSpecifier();
-                    heal.DamageDict["Caustic"] = FixedPoint2.New(-15);
-                    heal.DamageDict["Slash"] = FixedPoint2.New(-10);
+                    heal.DamageDict[CausticDamageType] = FixedPoint2.New(-15);
+                    heal.DamageDict[SlashDamageType] = FixedPoint2.New(-10);
                     break;
                 }
 
             case "KnowledgeCosmicAcolyte":
                 {
                     heal = new DamageSpecifier();
-                    heal.DamageDict["Radiation"] = FixedPoint2.New(-15);
-                    heal.DamageDict["Heat"] = FixedPoint2.New(-10);
+                    heal.DamageDict[RadiationDamageType] = FixedPoint2.New(-15);
+                    heal.DamageDict[HeatDamageType] = FixedPoint2.New(-10);
                     var coords = Transform(uid).Coordinates;
-                    var spaceHands = Spawn("HereticSpaceHands", coords);
+                    var spaceHands = Spawn(HereticSpaceHands, coords);
                     _hands.TryPickupAnyHand(uid, spaceHands);
                     popupKey = "heretic-space-hands-obtained";
                     break;
@@ -321,12 +259,14 @@ public sealed partial class HereticSystem
             case "KnowledgeMoonBlade":
                 ApplyBladeUpgrade(uid, comp);
                 comp.BladeUpgraded = true;
+                Dirty(uid, comp);
                 popupKey = "heretic-blade-upgrade-ritual";
                 break;
 
             case "KnowledgeEmpoweredBlades":
                 ApplyBladeUpgrade(uid, comp);
                 comp.BladeUpgraded = true;
+                Dirty(uid, comp);
                 popupKey = "heretic-passive-empowered-blades-learned";
                 break;
 

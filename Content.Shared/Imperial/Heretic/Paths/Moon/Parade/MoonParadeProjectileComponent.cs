@@ -1,5 +1,3 @@
-using Robust.Shared.Serialization.Manager.Attributes;
-
 namespace Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
 
 [RegisterComponent]
@@ -20,4 +18,7 @@ public sealed partial class MoonParadeProjectileComponent : Component
     // Runtime only — not networked
     [ViewVariables]
     public HashSet<EntityUid> HitMobs = new();
+
+    [DataField]
+    public TimeSpan CaptureMobDuration = TimeSpan.FromSeconds(20);
 }

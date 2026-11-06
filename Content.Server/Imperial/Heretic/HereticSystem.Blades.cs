@@ -1,39 +1,7 @@
-using System.Numerics;
-using System.Text;
-using Content.Server.Actions;
 using Content.Server.Atmos.Components;
-using Content.Server.Body.Components;
-using Content.Server.Chat.Managers;
-using Content.Server.Chat.Systems;
-using Content.Server.Decals;
-using Content.Server.Doors.Systems;
-using Content.Server.Mind;
-using Content.Server.Popups;
-using Content.Server.Roles;
-using Content.Shared.Access.Components;
-using Content.Shared.Access.Systems;
-using Content.Shared.Actions;
-using Content.Shared.Actions.Components;
-using Content.Shared.Antag;
-using Content.Shared.Atmos.Components;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
-using Content.Shared.Chat;
-using Content.Shared.CombatMode.Pacification;
-using Content.Shared.Coordinates.Helpers;
-using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
-using Content.Shared.Damage.Systems;
-using Content.Shared.Decals;
-using Content.Shared.Doors.Components;
-using Content.Shared.Emag.Systems;
-using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Follower.Components;
-using Content.Shared.IdentityManagement;
-using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Ash;
 using Content.Shared.Imperial.Heretic.Paths.Blade;
@@ -43,45 +11,8 @@ using Content.Shared.Imperial.Heretic.Paths.Lock;
 using Content.Shared.Imperial.Heretic.Paths.Moon;
 using Content.Shared.Imperial.Heretic.Paths.Rust;
 using Content.Shared.Imperial.Heretic.Paths.Void;
-using Content.Shared.Interaction.Components;
-using Content.Shared.Interaction.Events;
-using Content.Shared.Inventory;
-using Content.Shared.Mech.Components;
-using Content.Shared.Mech.EntitySystems;
-using Content.Shared.Mind;
-using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
-using Content.Shared.Objectives.Systems;
-using Content.Shared.Overlays;
-using Content.Shared.PDA;
-using Content.Shared.Popups;
-using Content.Shared.Roles;
-using Content.Shared.Roles.Jobs;
-using Content.Shared.Speech.EntitySystems;
-using Content.Shared.Speech.Muting;
-using Content.Shared.Standing;
-using Content.Shared.StatusEffect;
-using Content.Shared.Stealth;
-using Content.Shared.Stealth.Components;
-using Content.Shared.Storage.Components;
-using Content.Shared.Storage.EntitySystems;
-using Content.Shared.Stunnable;
-using Content.Shared.Tag;
-using Content.Shared.Temperature.Components;
-using Content.Shared.UserInterface;
 using Content.Shared.Weapons.Melee;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
-using Robust.Shared.Maths;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
-using Robust.Shared.Timing;
-using CancellationTokenSource = System.Threading.CancellationTokenSource;
-using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Imperial.Heretic;
 
@@ -90,6 +21,19 @@ namespace Content.Server.Imperial.Heretic;
 /// </summary>
 public sealed partial class HereticSystem
 {
+    private static readonly ProtoId<DamageTypePrototype> HeatDamageType = "Heat";
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> BloodlossDamageType = "Bloodloss";
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+    private static readonly ProtoId<DamageTypePrototype> PiercingDamageType = "Piercing";
+    private static readonly ProtoId<DamageTypePrototype> ColdDamageType = "Cold";
+    private static readonly ProtoId<DamageTypePrototype> CausticDamageType = "Caustic";
+    private static readonly ProtoId<DamageTypePrototype> RadiationDamageType = "Radiation";
+
+    private static readonly EntProtoId HereticOrbitingBlade = "HereticOrbitingBlade";
+    private static readonly EntProtoId HereticBladeFlesh = "HereticBladeFlesh";
+    private static readonly EntProtoId HereticBladeCosmos = "HereticBladeCosmos";
+
     public void IncrementSunderedBladeCraft(EntityUid uid)
     {
         if (!TryComp<HereticComponent>(uid, out var comp))
@@ -140,7 +84,7 @@ public sealed partial class HereticSystem
         if (!Resolve(uid, ref comp))
             return null;
 
-        var blade = Spawn("HereticOrbitingBlade", Transform(uid).Coordinates);
+        var blade = Spawn(HereticOrbitingBlade, Transform(uid).Coordinates);
         _xform.SetParent(blade, uid);
         var orbitComp = EnsureComp<HereticOrbitingBladeComponent>(blade);
         orbitComp.OwnerHeretic = uid;
@@ -285,18 +229,18 @@ public sealed partial class HereticSystem
         switch (comp.CurrentPath)
         {
             case HereticPath.Ash:
-                melee.Damage.DamageDict["Heat"] = FixedPoint2.New(12);
+                melee.Damage.DamageDict[HeatDamageType] = FixedPoint2.New(12);
                 var ignite = EnsureComp<IgniteOnMeleeHitComponent>(blade);
                 ignite.FireStacks = 1.0f;
                 break;
             case HereticPath.Lock:
-                melee.Damage.DamageDict["Blunt"] = FixedPoint2.New(10);
-                melee.Damage.DamageDict["Bloodloss"] = FixedPoint2.New(5);
+                melee.Damage.DamageDict[BluntDamageType] = FixedPoint2.New(10);
+                melee.Damage.DamageDict[BloodlossDamageType] = FixedPoint2.New(5);
                 break;
             case HereticPath.Flesh:
                 {
                     var fleshPos = Transform(blade).Coordinates;
-                    var fleshBlade = Spawn("HereticBladeFlesh", fleshPos);
+                    var fleshBlade = Spawn(HereticBladeFlesh, fleshPos);
                     EnsureComp<HereticFleshBladeComponent>(fleshBlade);
                     Del(blade);
                     comp.CurrentBlade = fleshBlade;
@@ -304,27 +248,27 @@ public sealed partial class HereticSystem
                     _hands.TryPickupAnyHand(uid, fleshBlade);
                     if (TryComp<MeleeWeaponComponent>(fleshBlade, out var fleshMelee))
                     {
-                        fleshMelee.Damage.DamageDict["Slash"] = FixedPoint2.New(22);
-                        fleshMelee.Damage.DamageDict["Piercing"] = FixedPoint2.New(8);
-                        fleshMelee.Damage.DamageDict["Bloodloss"] = FixedPoint2.New(8);
+                        fleshMelee.Damage.DamageDict[SlashDamageType] = FixedPoint2.New(22);
+                        fleshMelee.Damage.DamageDict[PiercingDamageType] = FixedPoint2.New(8);
+                        fleshMelee.Damage.DamageDict[BloodlossDamageType] = FixedPoint2.New(8);
                         Dirty(fleshBlade, fleshMelee);
                     }
                     return;
                 }
             case HereticPath.Void:
-                melee.Damage.DamageDict["Cold"] = FixedPoint2.New(12);
+                melee.Damage.DamageDict[ColdDamageType] = FixedPoint2.New(12);
                 break;
             case HereticPath.Blade:
-                melee.Damage.DamageDict["Slash"] = FixedPoint2.New(28);
+                melee.Damage.DamageDict[SlashDamageType] = FixedPoint2.New(28);
                 melee.AttackRate = 2.0f;
                 break;
             case HereticPath.Rust:
-                melee.Damage.DamageDict["Caustic"] = FixedPoint2.New(12);
+                melee.Damage.DamageDict[CausticDamageType] = FixedPoint2.New(12);
                 break;
             case HereticPath.Cosmos:
                 {
                     var cosmosPos = Transform(blade).Coordinates;
-                    var cosmosBlade = Spawn("HereticBladeCosmos", cosmosPos);
+                    var cosmosBlade = Spawn(HereticBladeCosmos, cosmosPos);
                     EnsureComp<HereticCosmosBladeComponent>(cosmosBlade);
                     Del(blade);
                     comp.CurrentBlade = cosmosBlade;
@@ -332,7 +276,7 @@ public sealed partial class HereticSystem
                     _hands.TryPickupAnyHand(uid, cosmosBlade);
                     if (TryComp<MeleeWeaponComponent>(cosmosBlade, out var cosmelee))
                     {
-                        cosmelee.Damage.DamageDict["Radiation"] = FixedPoint2.New(12);
+                        cosmelee.Damage.DamageDict[RadiationDamageType] = FixedPoint2.New(12);
                         Dirty(cosmosBlade, cosmelee);
                     }
                     return;

@@ -14,7 +14,6 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Tools.Components;
-using Robust.Shared.Map;
 
 namespace Content.Server.Imperial.Heretic.Paths.Rust;
 
@@ -44,6 +43,12 @@ public sealed class HereticRustEffectsSystem : EntitySystem
 
     private TimeSpan _nextCorruption;
     private TimeSpan _nextHeal;
+
+    private static readonly DamageSpecifier ApplyRustHealingHeal = new() { DamageDict = { ["Blunt"] = -3, ["Heat"] = -3, ["Poison"] = -3, ["Asphyxiation"] = -3 } };
+    private static readonly DamageSpecifier ApplyRustCorruptionBluntDamage = new() { DamageDict = { ["Blunt"] = 20 } };
+
+    private const float UpdateRange = 0.6f;
+    private static readonly FixedPoint2 ApplyRustCorruptionQuantity = FixedPoint2.New(1.5f);
 
     public override void Initialize()
     {
@@ -112,7 +117,7 @@ public sealed class HereticRustEffectsSystem : EntitySystem
                 continue;
 
             var onRust = _lookup.GetEntitiesInRange<HereticRustOverlayComponent>(
-                _xform.GetMapCoordinates(uid), 0.6f).Count > 0;
+                _xform.GetMapCoordinates(uid), UpdateRange).Count > 0;
 
             if (!onRust)
                 continue;
@@ -134,11 +139,7 @@ public sealed class HereticRustEffectsSystem : EntitySystem
 
     private void ApplyRustHealing(EntityUid uid)
     {
-        var heal = new DamageSpecifier();
-        heal.DamageDict["Blunt"] = FixedPoint2.New(-3);
-        heal.DamageDict["Heat"] = FixedPoint2.New(-3);
-        heal.DamageDict["Poison"] = FixedPoint2.New(-3);
-        heal.DamageDict["Asphyxiation"] = FixedPoint2.New(-3);
+        var heal = new DamageSpecifier(ApplyRustHealingHeal);
         _damage.TryChangeDamage(uid, heal, ignoreResistances: true);
 
         _stamina.TakeStaminaDamage(uid, -10f, visual: false);
@@ -149,15 +150,14 @@ public sealed class HereticRustEffectsSystem : EntitySystem
         if (HasComp<BorgChassisComponent>(uid))
         {
             // Silicons: 20 brute per 2 seconds
-            var dmg = new DamageSpecifier();
-            dmg.DamageDict["Blunt"] = FixedPoint2.New(20);
+            var dmg = new DamageSpecifier(ApplyRustCorruptionBluntDamage);
             _damage.TryChangeDamage(uid, dmg, ignoreResistances: true);
         }
         else if (TryComp<BloodstreamComponent>(uid, out var bloodstream))
         {
             // Organics: forced vomit + flush 1.5 units of blood chemicals
             _vomit.Vomit(uid, force: true);
-            _bloodstream.FlushChemicals((uid, bloodstream), FixedPoint2.New(1.5f));
+            _bloodstream.FlushChemicals((uid, bloodstream), ApplyRustCorruptionQuantity);
         }
     }
 }

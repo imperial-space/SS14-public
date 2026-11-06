@@ -9,6 +9,8 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Server.GameObjects;
+using Content.Shared.Chemistry.Reagent;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Items;
 
@@ -18,6 +20,8 @@ public sealed class HereticPhylacterySystem : EntitySystem
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
+
+    private static readonly ProtoId<ReagentPrototype> BloodReagent = "Blood";
 
     public override void Initialize()
     {
@@ -89,7 +93,7 @@ public sealed class HereticPhylacterySystem : EntitySystem
 
         var draw = FixedPoint2.Min(FixedPoint2.New(comp.BloodPerClick), maxVol - sol.Volume);
         _bloodstream.TryModifyBloodLevel((target, blood), -draw);
-        _solution.TryAddReagent(solEnt.Value, "Blood", draw, out _);
+        _solution.TryAddReagent(solEnt.Value, BloodReagent, draw, out _);
 
         if (!_solution.TryGetSolution(uid, "phylactery", out _, out var updated))
             return;

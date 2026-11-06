@@ -35,7 +35,7 @@ public sealed class HereticFeastOfOwlsSystem : EntitySystem
 
             _heretic.SetFeastOfOwlsUsed(caster, heretic);
 
-            _heretic.AddKnowledgePoints(caster, heretic, 5);
+            _heretic.AddKnowledgePoints(caster, heretic, comp.FeastCreatedAmount);
             _heretic.SetAscensionTriggered(caster, heretic);
             _audio.PlayPvs(FeastSound, caster);
             _popup.PopupEntity(Loc.GetString("heretic-feast-of-owls-complete"), caster, caster, PopupType.LargeCaution);
@@ -45,7 +45,7 @@ public sealed class HereticFeastOfOwlsSystem : EntitySystem
                 var wrapped = Loc.GetString("chat-manager-server-wrap-message", ("message", rawMsg));
                 _chatManager.ChatMessageToOne(ChatChannel.Server, rawMsg, wrapped, default, false, casterActor.PlayerSession.Channel);
             }
-            _stun.TryKnockdown(caster, TimeSpan.FromSeconds(10), true);
+            _stun.TryKnockdown(caster, comp.FeastCreatedTime, true);
         }
         QueueDel(spawned);
     }

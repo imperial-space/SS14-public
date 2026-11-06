@@ -1,18 +1,7 @@
-using Content.Shared.Imperial.Heretic.Rituals;
-using Content.Shared.Imperial.Heretic.Paths.Void;
-using Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
 using Content.Shared.Imperial.Heretic.Items;
-using Content.Shared.Imperial.Heretic.Effects;
-using Content.Server.Imperial.Heretic;
-using Content.Server.Imperial.Heretic.Effects;
-using Content.Server.Imperial.Heretic.Items;
-using Content.Server.Imperial.Heretic.Paths.Moon;
-using Content.Server.Imperial.Heretic.Paths.Moon.Parade;
-using Content.Server.Imperial.Heretic.Paths.Void;
 using Content.Server.Popups;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
-using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Moon;
 using Content.Shared.Popups;
@@ -28,6 +17,10 @@ public sealed class HereticMoonBrainDamageSystem : EntitySystem
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
 
     private static readonly EntProtoId HallucinationId = "HereticWeeepingHallucinationStatusEffect";
+
+    private static readonly DamageSpecifier DeathDamage = new() { DamageDict = { ["Cellular"] = 200 } };
+
+    private static readonly TimeSpan AddBrainDamageDuration = TimeSpan.FromSeconds(300);
 
     /// <summary>
     /// Наносит урон по мозгу еретика Пути Луны.
@@ -76,15 +69,14 @@ public sealed class HereticMoonBrainDamageSystem : EntitySystem
         {
             comp.DeathTriggered = true;
             _popup.PopupEntity(Loc.GetString("heretic-moon-brain-death"), target, target, PopupType.LargeCaution);
-            var deathDmg = new DamageSpecifier();
-            deathDmg.DamageDict["Cellular"] = FixedPoint2.New(200);
+            var deathDmg = new DamageSpecifier(DeathDamage);
             _damage.TryChangeDamage(target, deathDmg, ignoreResistances: true);
         }
 
         // Галлюцинации при высоком уроне мозгу (порог 120), только если нет Moon-защиты
         if (!isMoonProtected && comp.BrainDamage >= HereticMoonBrainDamageComponent.HighThreshold)
         {
-            _statusEffects.TryAddStatusEffectDuration(target, HallucinationId, TimeSpan.FromSeconds(300));
+            _statusEffects.TryAddStatusEffectDuration(target, HallucinationId, AddBrainDamageDuration);
         }
     }
 }

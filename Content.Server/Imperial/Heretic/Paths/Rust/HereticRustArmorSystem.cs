@@ -7,6 +7,8 @@ using Content.Shared.Imperial.Heretic.Paths.Rust;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Rust;
 
@@ -19,10 +21,12 @@ public sealed class HereticRustArmorSystem : EntitySystem
 
     private static readonly DamageSpecifier CurseDamage;
 
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+
     static HereticRustArmorSystem()
     {
         CurseDamage = new DamageSpecifier();
-        CurseDamage.DamageDict["Blunt"] = FixedPoint2.New(60);
+        CurseDamage.DamageDict[BluntDamageType] = FixedPoint2.New(60);
     }
 
     public override void Initialize()

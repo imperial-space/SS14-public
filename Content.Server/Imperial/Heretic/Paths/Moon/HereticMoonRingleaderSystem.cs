@@ -51,21 +51,21 @@ namespace Content.Server.Imperial.Heretic.Paths.Moon;
 /// </summary>
 public sealed class HereticMoonRingleaderSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem            _audio          = default!;
-    [Dependency] private readonly EntityLookupSystem           _lookup         = default!;
-    [Dependency] private readonly HereticMoonAmuletSystem      _moonAmulet     = default!;
-    [Dependency] private readonly HereticMoonBrainDamageSystem _brainDamage    = default!;
-    [Dependency] private readonly IRobustRandom                _random         = default!;
-    [Dependency] private readonly MobStateSystem               _mobs           = default!;
-    [Dependency] private readonly SharedStunSystem             _stun           = default!;
-    [Dependency] private readonly MetaDataSystem               _metaData       = default!;
-    [Dependency] private readonly VisualBodySystem             _visualBody     = default!;
-    [Dependency] private readonly InventorySystem              _inventory      = default!;
-    [Dependency] private readonly IPrototypeManager            _prototype      = default!;
-    [Dependency] private readonly SharedPhysicsSystem          _physics        = default!;
-    [Dependency] private readonly SharedTransformSystem        _xform          = default!;
-    [Dependency] private readonly ImperialAntimagicSystem      _antimagic      = default!;
-    [Dependency] private readonly TagSystem                    _tags           = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly HereticMoonAmuletSystem _moonAmulet = default!;
+    [Dependency] private readonly HereticMoonBrainDamageSystem _brainDamage = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly MobStateSystem _mobs = default!;
+    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly VisualBodySystem _visualBody = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
+    [Dependency] private readonly TagSystem _tags = default!;
 
     private static readonly ProtoId<TagPrototype> DoorBumpTag = "DoorBumpOpener";
 

@@ -2,7 +2,6 @@ using Content.Shared.Imperial.Heretic.Paths.Cosmos;
 using Content.Shared.Trigger;
 using Content.Shared.Trigger.Components;
 using Content.Shared.Trigger.Systems;
-using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
@@ -16,6 +15,8 @@ public sealed class HereticCosmosPassiveSystem : EntitySystem
 
     private TimeSpan _nextGrenadeCheck;
     private static readonly TimeSpan GrenadeCheckInterval = TimeSpan.FromSeconds(0.5);
+
+    private const float IsInCosmicFieldRange = 0.6f;
 
     public override void Initialize()
     {
@@ -53,7 +54,7 @@ public sealed class HereticCosmosPassiveSystem : EntitySystem
     private bool IsInCosmicField(EntityUid uid, int minLevel)
     {
         var mapCoords = _xform.GetMapCoordinates(uid);
-        foreach (var field in _lookup.GetEntitiesInRange<HereticCosmicFieldComponent>(mapCoords, 0.6f))
+        foreach (var field in _lookup.GetEntitiesInRange<HereticCosmicFieldComponent>(mapCoords, IsInCosmicFieldRange))
         {
             if (field.Comp.PassiveLevel >= minLevel)
                 return true;

@@ -15,6 +15,7 @@ using Content.Shared.Popups;
 using Robust.Server.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Items;
 
@@ -35,15 +36,19 @@ public sealed class HereticWrithingEmbraceSystem : EntitySystem
     private static readonly DamageSpecifier CurseDamage;
     private static readonly DamageSpecifier HealAmount;
 
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> PiercingDamageType = "Piercing";
+
     static HereticWrithingEmbraceSystem()
     {
         CurseDamage = new DamageSpecifier();
-        CurseDamage.DamageDict["Slash"] = FixedPoint2.New(40);
+        CurseDamage.DamageDict[SlashDamageType] = FixedPoint2.New(40);
 
         HealAmount = new DamageSpecifier();
-        HealAmount.DamageDict["Blunt"] = FixedPoint2.New(-5);
-        HealAmount.DamageDict["Slash"] = FixedPoint2.New(-5);
-        HealAmount.DamageDict["Piercing"] = FixedPoint2.New(-5);
+        HealAmount.DamageDict[BluntDamageType] = FixedPoint2.New(-5);
+        HealAmount.DamageDict[SlashDamageType] = FixedPoint2.New(-5);
+        HealAmount.DamageDict[PiercingDamageType] = FixedPoint2.New(-5);
     }
 
     public override void Initialize()
@@ -57,6 +62,7 @@ public sealed class HereticWrithingEmbraceSystem : EntitySystem
     private void OnEquipped(EntityUid uid, HereticWrithingEmbraceComponent comp, ClothingGotEquippedEvent args)
     {
         comp.Wearer = args.Wearer;
+        Dirty(uid, comp);
 
         if (!HasComp<HereticComponent>(args.Wearer))
         {
@@ -74,6 +80,7 @@ public sealed class HereticWrithingEmbraceSystem : EntitySystem
             _actions.RemoveAction(wearer, toggleAction);
 
         comp.Wearer = null;
+        Dirty(uid, comp);
         comp.SenseToggleAction = null;
         comp.SilenceNotifications = false;
     }

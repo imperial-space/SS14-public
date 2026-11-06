@@ -35,7 +35,7 @@ public sealed class HereticFleshWeaveSystem : EntitySystem
 
         var target = args.Target;
 
-        if (!TryComp<BodyComponent>(target, out _))
+        if (!HasComp<BodyComponent>(target))
         {
             _popup.PopupEntity(Loc.GetString("heretic-flesh-weave-no-body"), uid, uid, PopupType.SmallCaution);
             return;
@@ -78,7 +78,7 @@ public sealed class HereticFleshWeaveSystem : EntitySystem
     private void OnSelectOrgan(EntityUid holderUid, HereticKnowledgeHolderComponent holderComp, HereticFleshWeaveSelectOrganMessage args)
     {
         var hereticUid = args.Actor;
-        if (!TryComp<HereticComponent>(hereticUid, out _))
+        if (!HasComp<HereticComponent>(hereticUid))
             return;
 
         var organ = GetEntity(args.Organ);

@@ -2,12 +2,17 @@ using Content.Shared.Actions;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Items;
 using Content.Shared.Imperial.Heretic.Rituals;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Items;
 
 public sealed class HereticCarvingKnifeSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
+
+    private static readonly EntProtoId HereticCarvingAlertRune = "HereticCarvingAlertRune";
+    private static readonly EntProtoId HereticCarvingStunRune = "HereticCarvingStunRune";
+    private static readonly EntProtoId HereticCarvingMadnessRune = "HereticCarvingMadnessRune";
 
     public override void Initialize()
     {
@@ -51,7 +56,7 @@ public sealed class HereticCarvingKnifeSystem : EntitySystem
         args.Handled = true;
         if (!UseCharge(ent))
             return;
-        var rune = Spawn("HereticCarvingAlertRune", args.Target);
+        var rune = Spawn(HereticCarvingAlertRune, args.Target);
         var alertComp = EnsureComp<HereticAlertRuneComponent>(rune);
         alertComp.HereticUid = args.Performer;
         Dirty(rune, alertComp);
@@ -62,7 +67,7 @@ public sealed class HereticCarvingKnifeSystem : EntitySystem
         args.Handled = true;
         if (!UseCharge(ent))
             return;
-        Spawn("HereticCarvingStunRune", args.Target);
+        Spawn(HereticCarvingStunRune, args.Target);
     }
 
     private void OnMadnessRune(Entity<HereticCarvingKnifeComponent> ent, ref HereticCarvingMadnessRuneActionEvent args)
@@ -70,6 +75,6 @@ public sealed class HereticCarvingKnifeSystem : EntitySystem
         args.Handled = true;
         if (!UseCharge(ent))
             return;
-        Spawn("HereticCarvingMadnessRune", args.Target);
+        Spawn(HereticCarvingMadnessRune, args.Target);
     }
 }

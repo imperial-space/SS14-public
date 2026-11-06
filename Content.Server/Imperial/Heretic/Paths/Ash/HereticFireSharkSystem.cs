@@ -13,6 +13,7 @@ using Content.Shared.NPC.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Ash;
 
@@ -31,6 +32,11 @@ public sealed class HereticFireSharkSystem : EntitySystem
     private static readonly SoundPathSpecifier AttackSound =
         new("/Audio/Imperial/heretic/sound_effects_curse_curse2.ogg");
 
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+
+    private static readonly EntProtoId HereticEffectFireExplosion = "HereticEffectFireExplosion";
+    private static readonly EntProtoId HereticEffectAshBlink = "HereticEffectAshBlink";
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -40,17 +46,17 @@ public sealed class HereticFireSharkSystem : EntitySystem
         {
             if (mobState.CurrentState == MobState.Dead)
             {
-                Spawn("HereticEffectFireExplosion", Transform(uid).Coordinates);
+                Spawn(HereticEffectFireExplosion, Transform(uid).Coordinates);
                 QueueDel(uid);
                 continue;
             }
 
             if (shark.LifetimeEnd == TimeSpan.Zero)
-                shark.LifetimeEnd = _timing.CurTime + TimeSpan.FromSeconds(shark.Lifetime);
+                shark.LifetimeEnd = _timing.CurTime + shark.Lifetime;
 
             if (_timing.CurTime >= shark.LifetimeEnd)
             {
-                Spawn("HereticEffectFireExplosion", Transform(uid).Coordinates);
+                Spawn(HereticEffectFireExplosion, Transform(uid).Coordinates);
                 QueueDel(uid);
                 continue;
             }
@@ -58,17 +64,17 @@ public sealed class HereticFireSharkSystem : EntitySystem
             // Passive regen
             if (_timing.CurTime >= shark.NextRegen)
             {
-                shark.NextRegen = _timing.CurTime + TimeSpan.FromSeconds(shark.RegenInterval);
+                shark.NextRegen = _timing.CurTime + shark.RegenInterval;
                 var heal = new DamageSpecifier();
-                heal.DamageDict["Blunt"] = FixedPoint2.New(-shark.RegenAmount);
+                heal.DamageDict[BluntDamageType] = FixedPoint2.New(-shark.RegenAmount);
                 _damage.TryChangeDamage(uid, heal, ignoreResistances: true);
             }
 
             // Fire trail
             if (_timing.CurTime >= shark.NextFireTrail)
             {
-                shark.NextFireTrail = _timing.CurTime + TimeSpan.FromSeconds(shark.FireTrailInterval);
-                Spawn("HereticEffectAshBlink", Transform(uid).Coordinates);
+                shark.NextFireTrail = _timing.CurTime + shark.FireTrailInterval;
+                Spawn(HereticEffectAshBlink, Transform(uid).Coordinates);
             }
 
             if (_timing.CurTime >= shark.NextRetarget || shark.CachedTarget is { } old && (TerminatingOrDeleted(old)
@@ -91,25 +97,23 @@ public sealed class HereticFireSharkSystem : EntitySystem
             {
                 if (_timing.CurTime >= shark.NextAttack)
                 {
-                    shark.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(shark.AttackCooldown);
+                    shark.NextAttack = _timing.CurTime + shark.AttackCooldown;
 
-                    var dmg = new DamageSpecifier();
-                    dmg.DamageDict["Blunt"] = FixedPoint2.New(8);
+                    var dmg = new DamageSpecifier(shark.UpdateBluntDamage);
                     _damage.TryChangeDamage(target.Value, dmg, ignoreResistances: false);
                     if (HasComp<FlammableComponent>(target.Value))
                         _flammable.AdjustFireStacks(target.Value, 3f, ignite: true);
                     _audio.PlayPvs(AttackSound, uid);
-                    Spawn("HereticEffectAshBlink", Transform(target.Value).Coordinates);
+                    Spawn(HereticEffectAshBlink, Transform(target.Value).Coordinates);
 
                     // Bonus burst on marked target — consumes the mark
                     if (HasComp<AshMarkComponent>(target.Value))
                     {
-                        var bonusDmg = new DamageSpecifier();
-                        bonusDmg.DamageDict["Heat"] = FixedPoint2.New(25);
+                        var bonusDmg = new DamageSpecifier(shark.BonusDamage);
                         _damage.TryChangeDamage(target.Value, bonusDmg, ignoreResistances: false);
                         if (HasComp<FlammableComponent>(target.Value))
                             _flammable.AdjustFireStacks(target.Value, 5f, ignite: true);
-                        Spawn("HereticEffectFireExplosion", Transform(target.Value).Coordinates);
+                        Spawn(HereticEffectFireExplosion, Transform(target.Value).Coordinates);
                         RemCompDeferred<AshMarkComponent>(target.Value);
                     }
                 }
@@ -137,7 +141,7 @@ public sealed class HereticFireSharkSystem : EntitySystem
         EntityUid? nearest = null;
         float nearestDist = float.MaxValue;
 
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(self).Coordinates, 15f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(self).Coordinates, shark.ResolveTargetRange))
         {
             if (ent.Owner == self)
                 continue;

@@ -7,13 +7,13 @@ public sealed partial class HereticVoidConduitComponent : Component
     public EntityUid? Caster;
 
     [DataField]
-    public float PulseInterval = 2f;
+    public TimeSpan PulseInterval = TimeSpan.FromSeconds(2f);
 
     [DataField]
     public float WaveRadius = 8f;
 
     [DataField]
-    public float Lifetime = 60f;
+    public TimeSpan Lifetime = TimeSpan.FromSeconds(60f);
 
     [DataField]
     public int StructureDamageMin = 15;

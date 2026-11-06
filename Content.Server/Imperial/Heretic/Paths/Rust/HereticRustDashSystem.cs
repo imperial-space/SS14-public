@@ -9,6 +9,8 @@ using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Rust;
 
@@ -30,6 +32,13 @@ public sealed class HereticRustDashSystem : EntitySystem
 
     private readonly HashSet<EntityUid> _hitBuffer = new();
 
+    private static readonly ProtoId<DamageTypePrototype> CausticDamageType = "Caustic";
+
+    private static readonly EntProtoId HereticRustOverlay = "HereticRustOverlay";
+
+    private const float RustDashRange = 0.6f;
+    private const float SpawnRustOverlayAtRange = 0.4f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -45,7 +54,7 @@ public sealed class HereticRustDashSystem : EntitySystem
             if (comp.IsWaiting)
             {
                 if (comp.WaitEnd == TimeSpan.Zero)
-                    comp.WaitEnd = _timing.CurTime + TimeSpan.FromSeconds(comp.DashWaitDuration);
+                    comp.WaitEnd = _timing.CurTime + comp.DashWaitDuration;
 
                 if (_timing.CurTime >= comp.WaitEnd)
                 {
@@ -67,7 +76,7 @@ public sealed class HereticRustDashSystem : EntitySystem
             return;
 
         var mapCoords = _xform.GetMapCoordinates(ent.Owner);
-        if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(mapCoords, 0.6f).Count == 0)
+        if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(mapCoords, RustDashRange).Count == 0)
         {
             _popup.PopupEntity(Loc.GetString("heretic-rust-dash-no-rust"), ent.Owner, ent.Owner, PopupType.Medium);
             return;
@@ -108,20 +117,20 @@ public sealed class HereticRustDashSystem : EntitySystem
 
         if (_timing.CurTime >= comp.NextTrail)
         {
-            comp.NextTrail = _timing.CurTime + TimeSpan.FromSeconds(comp.TrailInterval);
+            comp.NextTrail = _timing.CurTime + comp.TrailInterval;
             Spawn(comp.DashTrailPrototype, nowMap);
         }
 
         if (_timing.CurTime >= comp.NextRust)
         {
-            comp.NextRust = _timing.CurTime + TimeSpan.FromSeconds(comp.RustInterval);
+            comp.NextRust = _timing.CurTime + comp.RustInterval;
             SpawnRustOverlayAt(nowMap);
             Spawn(_random.Pick(RuneEffects), nowMap);
         }
 
         if (_timing.CurTime >= comp.NextDamage)
         {
-            comp.NextDamage = _timing.CurTime + TimeSpan.FromSeconds(comp.DamageInterval);
+            comp.NextDamage = _timing.CurTime + comp.DamageInterval;
             HitEntitiesNear(uid, nowMap, comp);
         }
     }
@@ -147,16 +156,16 @@ public sealed class HereticRustDashSystem : EntitySystem
                 continue;
 
             var dmg = new DamageSpecifier();
-            dmg.DamageDict["Caustic"] = FixedPoint2.New(comp.DashDamage);
+            dmg.DamageDict[CausticDamageType] = FixedPoint2.New(comp.DashDamage);
             _damage.TryChangeDamage(ent, dmg, ignoreResistances: false);
         }
     }
 
     private void SpawnRustOverlayAt(MapCoordinates pos)
     {
-        if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(pos, 0.4f).Count > 0)
+        if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(pos, SpawnRustOverlayAtRange).Count > 0)
             return;
-        Spawn("HereticRustOverlay", pos);
+        Spawn(HereticRustOverlay, pos);
     }
 
     private void FinishDash(EntityUid uid) => RemComp<HereticRustDashComponent>(uid);

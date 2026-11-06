@@ -10,6 +10,7 @@ using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
@@ -28,6 +29,10 @@ public sealed class HereticCosmicPhaseSystem : EntitySystem
     private static readonly SoundPathSpecifier PhaseSound =
         new("/Audio/Imperial/heretic/sound_magic_cosmic_energy.ogg");
 
+    private static readonly EntProtoId MobHereticCosmicGhost = "MobHereticCosmicGhost";
+
+    private const float UpdateAmount = 10f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -43,7 +48,7 @@ public sealed class HereticCosmicPhaseSystem : EntitySystem
         base.Update(frameTime);
         var query = EntityQueryEnumerator<HereticCosmicPhaseComponent>();
         while (query.MoveNext(out var uid, out _))
-            _respirator.UpdateSaturation(uid, 10f);
+            _respirator.UpdateSaturation(uid, UpdateAmount);
     }
 
     private bool IsInLowPressure(EntityUid uid)
@@ -70,7 +75,7 @@ public sealed class HereticCosmicPhaseSystem : EntitySystem
         if (!_mind.TryGetMind(uid, out var mindId, out _))
             return;
 
-        var ghostUid = Spawn("MobHereticCosmicGhost", Transform(uid).Coordinates);
+        var ghostUid = Spawn(MobHereticCosmicGhost, Transform(uid).Coordinates);
 
         if (!TryComp<HereticCosmicGhostComponent>(ghostUid, out var ghostComp))
         {

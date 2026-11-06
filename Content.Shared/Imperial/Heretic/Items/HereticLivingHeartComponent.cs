@@ -12,11 +12,17 @@ public sealed partial class HereticLivingHeartComponent : Component
     public TimeSpan NextHeartbeat;
 
     [DataField]
-    public float MinInterval = 0.35f;
+    public TimeSpan MinInterval = TimeSpan.FromSeconds(0.35f);
 
     [DataField]
-    public float MaxInterval = 3.0f;
+    public TimeSpan MaxInterval = TimeSpan.FromSeconds(3.0f);
 
     [DataField]
     public float TrackRange = 30f;
+
+    [DataField]
+    public int SacrificeAtRuneAmount = 4;
+
+    [DataField]
+    public int SacrificeAtRuneAmount2 = 2;
 }

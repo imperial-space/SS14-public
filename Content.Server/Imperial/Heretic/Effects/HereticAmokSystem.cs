@@ -13,6 +13,8 @@ public sealed class HereticAmokSystem : EntitySystem
     [Dependency] private readonly SharedMeleeWeaponSystem _melee = default!;
     [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
 
+    private const float FindNearestRange = 10f;
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -21,7 +23,7 @@ public sealed class HereticAmokSystem : EntitySystem
         while (query.MoveNext(out var uid, out var amok))
         {
             if (amok.End == TimeSpan.Zero)
-                amok.End = _timing.CurTime + TimeSpan.FromSeconds(amok.Duration);
+                amok.End = _timing.CurTime + amok.Duration;
 
             if (_timing.CurTime >= amok.End)
             {
@@ -36,7 +38,7 @@ public sealed class HereticAmokSystem : EntitySystem
             if (target == null)
                 continue;
 
-            amok.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(amok.AttackCooldown);
+            amok.NextAttack = _timing.CurTime + amok.AttackCooldown;
 
             if (!_melee.TryGetWeapon(uid, out var weaponUid, out var weapon))
                 continue;
@@ -58,7 +60,7 @@ public sealed class HereticAmokSystem : EntitySystem
         EntityUid? nearest = null;
         var nearestDist = float.MaxValue;
 
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(self).Coordinates, 10f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(self).Coordinates, FindNearestRange))
         {
             if (ent.Owner == self)
                 continue;

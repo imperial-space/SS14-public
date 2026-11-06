@@ -15,7 +15,7 @@ public sealed class HereticLockRiftSystem : EntitySystem
             if (_timing.CurTime < comp.NextSpawn)
                 continue;
 
-            comp.NextSpawn = _timing.CurTime + TimeSpan.FromSeconds(comp.SpawnInterval);
+            comp.NextSpawn = _timing.CurTime + comp.SpawnInterval;
             Spawn(comp.SpawnEntity, Transform(uid).Coordinates);
         }
     }

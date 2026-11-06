@@ -1,7 +1,5 @@
-using System.Linq;
 using Content.Shared.Imperial.Helpers;
 using Content.Shared.Dataset;
-using System.Numerics;
 using System.Text;
 using Content.Server.Actions;
 using Content.Server.Atmos.EntitySystems;
@@ -22,24 +20,12 @@ using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Server.Roles;
 using Content.Shared.Access.Systems;
-using Content.Shared.Actions.Components;
 using Content.Shared.Antag;
-using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chat;
-using Content.Shared.Coordinates.Helpers;
-using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Doors.Components;
-using Content.Shared.Emag.Systems;
-using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
-using Content.Shared.Follower.Components;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.IdentityManagement.Components;
-using Content.Shared.Imperial.Antimagic;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Items;
 using Content.Shared.Imperial.Heretic.Prototypes;
@@ -48,7 +34,6 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Mech.EntitySystems;
 using Content.Shared.Mind;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Objectives.Systems;
 using Content.Shared.Overlays;
@@ -58,22 +43,15 @@ using Content.Shared.Speech.EntitySystems;
 using Content.Shared.Standing;
 using Content.Shared.StatusEffect;
 using Content.Shared.Stealth;
-using Content.Shared.Storage.Components;
-using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
-using Content.Shared.UserInterface;
-using Content.Shared.Weapons.Melee;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map.Components;
-using Robust.Shared.Maths;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Imperial.Heretic;
 
@@ -137,6 +115,10 @@ public sealed partial class HereticSystem : SharedHereticSystem
     private const string RustDecalId = "Rust";
 
     private static readonly ProtoId<LocalizedDatasetPrototype> DrainMessagesDataset = "ImperialHereticSystemDrainMessages";
+
+    private static readonly EntProtoId HereticAuraEffect = "HereticAuraEffect";
+    private static readonly EntProtoId HereticKnowledgeHolder = "HereticKnowledgeHolder";
+    private static readonly EntProtoId MindRoleHeretic = "MindRoleHeretic";
 
     private static string[] DrainMessages => ImperialLocalizedLists.Get(DrainMessagesDataset);
 
@@ -293,7 +275,7 @@ public sealed partial class HereticSystem : SharedHereticSystem
     {
         if (visComp.AuraEntity != null && !Deleted(visComp.AuraEntity.Value))
             return;
-        var effect = Spawn("HereticAuraEffect", Transform(uid).Coordinates);
+        var effect = Spawn(HereticAuraEffect, Transform(uid).Coordinates);
         _xform.SetParent(effect, uid);
         visComp.AuraEntity = effect;
     }
@@ -391,7 +373,7 @@ public sealed partial class HereticSystem : SharedHereticSystem
         var comp = EnsureComp<HereticComponent>(uid);
 
         // Spawn knowledge BUI holder as child
-        var holder = Spawn("HereticKnowledgeHolder", Transform(uid).Coordinates);
+        var holder = Spawn(HereticKnowledgeHolder, Transform(uid).Coordinates);
         _xform.SetParent(holder, uid);
         comp.BuiHolder = holder;
 
@@ -401,7 +383,7 @@ public sealed partial class HereticSystem : SharedHereticSystem
         if (_mind.TryGetMind(uid, out var mindId, out var mind))
         {
             if (!_role.MindHasRole<HereticRoleComponent>(mindId))
-                _role.MindAddRole(mindId, "MindRoleHeretic", mind: mind, silent: true);
+                _role.MindAddRole(mindId, MindRoleHeretic, mind: mind, silent: true);
         }
 
         // Grant starting abilities
@@ -443,7 +425,7 @@ public sealed partial class HereticSystem : SharedHereticSystem
         {
             if (_timing.CurTime >= comp.NextPassiveGain)
             {
-                comp.NextPassiveGain = _timing.CurTime + TimeSpan.FromSeconds(comp.PassiveGainIntervalSeconds);
+                comp.NextPassiveGain = _timing.CurTime + comp.PassiveGainIntervalSeconds;
                 comp.KnowledgePoints++;
                 _popup.PopupEntity(Loc.GetString("heretic-passive-knowledge-gain"), uid, uid, PopupType.Small);
                 var drain = DrainMessages[_random.Next(DrainMessages.Length)];

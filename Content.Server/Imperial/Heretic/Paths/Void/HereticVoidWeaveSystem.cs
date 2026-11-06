@@ -11,6 +11,8 @@ using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Void;
 
@@ -24,10 +26,12 @@ public sealed class HereticVoidWeaveSystem : EntitySystem
 
     private static readonly DamageSpecifier CurseDamage;
 
+    private static readonly ProtoId<DamageTypePrototype> ColdDamageType = "Cold";
+
     static HereticVoidWeaveSystem()
     {
         CurseDamage = new DamageSpecifier();
-        CurseDamage.DamageDict["Cold"] = FixedPoint2.New(60);
+        CurseDamage.DamageDict[ColdDamageType] = FixedPoint2.New(60);
     }
 
     public override void Initialize()

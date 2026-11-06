@@ -6,6 +6,7 @@ using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
@@ -14,6 +15,8 @@ public sealed class HereticCosmicRuneSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
+
+    private static readonly EntProtoId HereticCosmicRune = "HereticCosmicRune";
 
     public override void Initialize()
     {
@@ -42,7 +45,7 @@ public sealed class HereticCosmicRuneSystem : EntitySystem
             existingRunes.RemoveAt(0);
         }
 
-        var rune = Spawn("HereticCosmicRune", args.Target);
+        var rune = Spawn(HereticCosmicRune, args.Target);
         var newComp = EnsureComp<HereticCosmicRuneComponent>(rune);
         newComp.HereticUid = uid;
 

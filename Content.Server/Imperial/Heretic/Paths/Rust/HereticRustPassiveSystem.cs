@@ -7,8 +7,9 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Rust;
-using Robust.Shared.Map;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Rust;
 
@@ -22,6 +23,12 @@ public sealed class HereticRustPassiveSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     private const string RustDecalId = "Rust";
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+    private static readonly ProtoId<DamageTypePrototype> PiercingDamageType = "Piercing";
+
+    private const float IsOnRustRange = 0.4f;
 
     public void ApplyPassiveLevel1(EntityUid uid)
     {
@@ -53,9 +60,9 @@ public sealed class HereticRustPassiveSystem : EntitySystem
             };
 
             var heal = new DamageSpecifier();
-            heal.DamageDict["Blunt"] = healAmount;
-            heal.DamageDict["Slash"] = healAmount;
-            heal.DamageDict["Piercing"] = healAmount;
+            heal.DamageDict[BluntDamageType] = healAmount;
+            heal.DamageDict[SlashDamageType] = healAmount;
+            heal.DamageDict[PiercingDamageType] = healAmount;
             _damageable.TryChangeDamage(uid, heal, true);
 
             if (heretic.PassiveLevel == 1)
@@ -88,6 +95,6 @@ public sealed class HereticRustPassiveSystem : EntitySystem
                 return true;
         }
         var mapCoords = _xform.ToMapCoordinates(snapped);
-        return _lookup.GetEntitiesInRange<HereticRustOverlayComponent>(mapCoords, 0.4f).Count > 0;
+        return _lookup.GetEntitiesInRange<HereticRustOverlayComponent>(mapCoords, IsOnRustRange).Count > 0;
     }
 }

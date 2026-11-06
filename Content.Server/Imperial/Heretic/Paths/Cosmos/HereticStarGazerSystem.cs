@@ -21,6 +21,8 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
@@ -49,6 +51,23 @@ public sealed class HereticStarGazerSystem : EntitySystem
     private static readonly SoundPathSpecifier BeamLoopSound =
         new("/Audio/Imperial/heretic/beam_loop_one.ogg");
 
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+
+    private static readonly EntProtoId HereticCosmicCarpet = "HereticCosmicCarpet";
+    private static readonly EntProtoId StarMarkStatusEffect = "StarMarkStatusEffect";
+    private static readonly EntProtoId ProjectileStarBlast = "ProjectileStarBlast";
+    private static readonly EntProtoId HereticStarGazerChargeOrb = "HereticStarGazerChargeOrb";
+    private static readonly EntProtoId HereticStarGazerBeamHead = "HereticStarGazerBeamHead";
+    private static readonly EntProtoId HereticStarGazerBeamTile = "HereticStarGazerBeamTile";
+    private static readonly EntProtoId Ash2 = "Ash";
+    private static readonly EntProtoId HereticStarGazerBeamHeadPreview = "HereticStarGazerBeamHeadPreview";
+    private static readonly EntProtoId HereticStarGazerBeamTilePreview = "HereticStarGazerBeamTilePreview";
+    private static readonly EntProtoId HereticStarGazerBeamTailPreview = "HereticStarGazerBeamTailPreview";
+
+    private static readonly TimeSpan PullVictimsDuration = TimeSpan.FromSeconds(30);
+
+    private const float PullVictimsRange = 2f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -73,9 +92,9 @@ public sealed class HereticStarGazerSystem : EntitySystem
             // Регенерация HP
             if (_timing.CurTime >= comp.NextHeal)
             {
-                comp.NextHeal = _timing.CurTime + TimeSpan.FromSeconds(comp.HealInterval);
+                comp.NextHeal = _timing.CurTime + comp.HealInterval;
                 var heal = new DamageSpecifier();
-                heal.DamageDict["Blunt"] = FixedPoint2.New(-comp.HealAmount);
+                heal.DamageDict[BluntDamageType] = FixedPoint2.New(-comp.HealAmount);
                 _damage.TryChangeDamage(uid, heal, ignoreResistances: true);
             }
 
@@ -114,7 +133,7 @@ public sealed class HereticStarGazerSystem : EntitySystem
 
                 if (_timing.CurTime >= comp.NextBeamDmg)
                 {
-                    comp.NextBeamDmg = _timing.CurTime + TimeSpan.FromSeconds(comp.BeamDmgInterval);
+                    comp.NextBeamDmg = _timing.CurTime + comp.BeamDmgInterval;
                     FireBeamTick(uid, comp);
                 }
 
@@ -132,10 +151,10 @@ public sealed class HereticStarGazerSystem : EntitySystem
             if (_timing.CurTime < proj.NextTrail)
                 continue;
 
-            proj.NextTrail = _timing.CurTime + TimeSpan.FromSeconds(proj.TrailInterval);
+            proj.NextTrail = _timing.CurTime + proj.TrailInterval;
             var localPos = xform.LocalPosition;
             var snapped = new Vector2(MathF.Floor(localPos.X) + 0.5f, MathF.Floor(localPos.Y) + 0.5f);
-            Spawn("HereticCosmicCarpet", new EntityCoordinates(xform.ParentUid, snapped));
+            Spawn(HereticCosmicCarpet, new EntityCoordinates(xform.ParentUid, snapped));
         }
     }
 
@@ -153,14 +172,14 @@ public sealed class HereticStarGazerSystem : EntitySystem
 
         for (var dx = -2; dx <= 2; dx++)
             for (var dy = -2; dy <= 2; dy++)
-                Spawn("HereticCosmicCarpet", new EntityCoordinates(parentUid, center + new Vector2(dx, dy)));
+                Spawn(HereticCosmicCarpet, new EntityCoordinates(parentUid, center + new Vector2(dx, dy)));
 
         var coords = xform.Coordinates;
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 7f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, comp.CosmicExpansionRange))
         {
             if (ent.Owner == uid)
                 continue;
-            _statusEffects.TrySetStatusEffectDuration(ent.Owner, "StarMarkStatusEffect", TimeSpan.FromSeconds(30));
+            _statusEffects.TrySetStatusEffectDuration(ent.Owner, StarMarkStatusEffect, comp.CosmicExpansionDuration);
         }
 
         _audio.PlayPvs(ExpansionSound, uid);
@@ -192,7 +211,7 @@ public sealed class HereticStarGazerSystem : EntitySystem
             direction = new Vector2(1f, 0f);
         direction = Vector2.Normalize(direction);
 
-        var projectile = Spawn("ProjectileStarBlast", originCoords);
+        var projectile = Spawn(ProjectileStarBlast, originCoords);
         var projComp = EnsureComp<HereticStarGazerProjectileComponent>(projectile);
         projComp.Shooter = uid;
 
@@ -202,7 +221,7 @@ public sealed class HereticStarGazerSystem : EntitySystem
         comp.ActiveProjectile = projectile;
         comp.StarBlastAction = args.Action.Owner;
 
-        _actions.SetUseDelay(new Entity<ActionComponent?>(args.Action.Owner, args.Action.Comp), TimeSpan.FromSeconds(1));
+        _actions.SetUseDelay(new Entity<ActionComponent?>(args.Action.Owner, args.Action.Comp), comp.ShootStarBlastDelay);
         _audio.PlayPvs(StarBlastSound, uid);
         _popup.PopupEntity(Loc.GetString("heretic-star-gazer-star-blast-fired"), uid, uid, PopupType.Medium);
     }
@@ -230,15 +249,15 @@ public sealed class HereticStarGazerSystem : EntitySystem
 
         for (var dx = -1; dx <= 1; dx++)
             for (var dy = -1; dy <= 1; dy++)
-                Spawn("HereticCosmicCarpet", new EntityCoordinates(parentUid, snapped + new Vector2(dx, dy)));
+                Spawn(HereticCosmicCarpet, new EntityCoordinates(parentUid, snapped + new Vector2(dx, dy)));
 
         var hereticWorldPos = _xform.GetWorldPosition(uid);
 
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 2f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, PullVictimsRange))
         {
             if (ent.Owner == uid)
                 continue;
-            _statusEffects.TrySetStatusEffectDuration(ent.Owner, "StarMarkStatusEffect", TimeSpan.FromSeconds(30));
+            _statusEffects.TrySetStatusEffectDuration(ent.Owner, StarMarkStatusEffect, PullVictimsDuration);
 
             if (!TryComp<PhysicsComponent>(ent.Owner, out var mobPhysics))
                 continue;
@@ -259,14 +278,14 @@ public sealed class HereticStarGazerSystem : EntitySystem
                 if (!HasComp<MobStateComponent>(args.OtherEntity))
                     return;
 
-                _stun.TryKnockdown(args.OtherEntity, TimeSpan.FromSeconds(4), true);
+                _stun.TryKnockdown(args.OtherEntity, comp.ProjectileCollideMobSensorTime, true);
 
                 var coords = Transform(uid).Coordinates;
-                foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 3f))
+                foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, comp.ProjectileCollideMobSensorRange))
                 {
                     if (ent.Owner == comp.Shooter)
                         continue;
-                    _statusEffects.TrySetStatusEffectDuration(ent.Owner, "StarMarkStatusEffect", TimeSpan.FromSeconds(30));
+                    _statusEffects.TrySetStatusEffectDuration(ent.Owner, StarMarkStatusEffect, comp.ProjectileCollideMobSensorDuration);
                 }
 
                 QueueDel(uid);
@@ -290,8 +309,8 @@ public sealed class HereticStarGazerSystem : EntitySystem
         if (gazer.StarBlastAction != null)
         {
             var actionEnt = new Entity<ActionComponent?>(gazer.StarBlastAction.Value, null);
-            _actions.SetUseDelay(actionEnt, TimeSpan.FromSeconds(25));
-            _actions.SetCooldown(actionEnt, TimeSpan.FromSeconds(25));
+            _actions.SetUseDelay(actionEnt, comp.ProjectileTerminatingDelay);
+            _actions.SetCooldown(actionEnt, comp.ProjectileTerminatingCooldown);
         }
     }
 
@@ -309,7 +328,8 @@ public sealed class HereticStarGazerSystem : EntitySystem
 
         var xform = Transform(uid);
         comp.BeamWindUp = true;
-        comp.BeamWindUpEnd = _timing.CurTime + TimeSpan.FromSeconds(comp.BeamWindUpDuration);
+        Dirty(uid, comp);
+        comp.BeamWindUpEnd = _timing.CurTime + comp.BeamWindUpDuration;
         comp.BeamVisualShown = false;
         comp.BeamDeathGazeAction = args.Action.Owner;
         comp.BeamStartPos = xform.LocalPosition;
@@ -325,7 +345,7 @@ public sealed class HereticStarGazerSystem : EntitySystem
 
         // Орб — 1 тайл вперёд от гейзера (как в BandaStation)
         var orbOffset = comp.BeamStartRot.ToVec();
-        comp.BeamChargeOrb = Spawn("HereticStarGazerChargeOrb",
+        comp.BeamChargeOrb = Spawn(HereticStarGazerChargeOrb,
             new EntityCoordinates(xform.ParentUid, xform.LocalPosition + orbOffset));
 
         _audio.PlayPvs(BeamWindUpSound, uid);
@@ -363,7 +383,8 @@ public sealed class HereticStarGazerSystem : EntitySystem
 
         comp.BeamWindUp = false;
         comp.BeamChanneling = true;
-        comp.BeamChannelEnd = _timing.CurTime + TimeSpan.FromSeconds(comp.BeamChannelDuration);
+        Dirty(uid, comp);
+        comp.BeamChannelEnd = _timing.CurTime + comp.BeamChannelDuration;
         comp.NextBeamDmg = TimeSpan.Zero;
 
         _audio.PlayPvs(BeamLoopSound, uid);
@@ -381,13 +402,14 @@ public sealed class HereticStarGazerSystem : EntitySystem
         comp.BeamChargeOrb = null;
         comp.BeamWindUp = false;
         comp.BeamChanneling = false;
+        Dirty(uid, comp);
 
         // Прерван во время раскрутки — кулдаун сбрасывается до 1с (как в BandaStation)
         if (wasWindingUp && comp.BeamDeathGazeAction.HasValue)
         {
             var actionEnt = new Entity<ActionComponent?>(comp.BeamDeathGazeAction.Value, null);
-            _actions.SetUseDelay(actionEnt, TimeSpan.FromSeconds(1));
-            _actions.SetCooldown(actionEnt, TimeSpan.FromSeconds(1));
+            _actions.SetUseDelay(actionEnt, comp.CancelBeamDelay);
+            _actions.SetCooldown(actionEnt, comp.CancelBeamCooldown);
         }
 
         _movement.RefreshMovementSpeedModifiers(uid);
@@ -397,6 +419,7 @@ public sealed class HereticStarGazerSystem : EntitySystem
     private void StopBeam(EntityUid uid, HereticStarGazerComponent comp)
     {
         comp.BeamChanneling = false;
+        Dirty(uid, comp);
         _movement.RefreshMovementSpeedModifiers(uid);
         _popup.PopupEntity(Loc.GetString("heretic-star-gazer-beam-done"), uid, uid, PopupType.Medium);
     }
@@ -422,7 +445,7 @@ public sealed class HereticStarGazerSystem : EntitySystem
         // ── Визуалы ────────────────────────────────────────────────────────────
 
         // Голова — 2 тайла вперёд
-        var headEnt = Spawn("HereticStarGazerBeamHead",
+        var headEnt = Spawn(HereticStarGazerBeamHead,
             new MapCoordinates(worldPos + forward * 2.0f, mapId));
         _xform.SetWorldRotation(headEnt, worldRot);
 
@@ -430,11 +453,11 @@ public sealed class HereticStarGazerSystem : EntitySystem
         for (var step = 3; step < comp.BeamRange - 1; step++)
         {
             var tileCenter = worldPos + forward * (step + 0.5f);
-            var fillEnt = Spawn("HereticStarGazerBeamTile",
+            var fillEnt = Spawn(HereticStarGazerBeamTile,
                 new MapCoordinates(tileCenter, mapId));
             _xform.SetWorldRotation(fillEnt, new Angle(worldRot.Theta + Math.PI / 2));
 
-            if (_random.Prob(0.02f))
+            if (_random.Prob(comp.FireBeamTickChance))
                 PullTowards(uid, comp, tileCenter, mapId);
         }
 
@@ -446,11 +469,9 @@ public sealed class HereticStarGazerSystem : EntitySystem
 
         // ── Урон (все тайлы 0..BeamRange-1, три полосы) ───────────────────────
 
-        var burnDmg = new DamageSpecifier();
-        burnDmg.DamageDict["Heat"] = FixedPoint2.New(30);
+        var burnDmg = new DamageSpecifier(comp.BurnDamage);
 
-        var wallDmg = new DamageSpecifier();
-        wallDmg.DamageDict["Heat"] = FixedPoint2.New(10000);
+        var wallDmg = new DamageSpecifier(comp.WallDamage);
 
         var ashSet = new HashSet<EntityUid>();
 
@@ -461,7 +482,7 @@ public sealed class HereticStarGazerSystem : EntitySystem
                 var tileCenter = worldPos + forward * (step + 0.5f) + perp * side;
                 var mapCoords = new MapCoordinates(tileCenter, mapId);
 
-                foreach (var ent in _lookup.GetEntitiesInRange<DamageableComponent>(mapCoords, 0.6f))
+                foreach (var ent in _lookup.GetEntitiesInRange<DamageableComponent>(mapCoords, comp.FireBeamTickRange))
                 {
                     if (ent.Owner == uid)
                         continue;
@@ -475,7 +496,7 @@ public sealed class HereticStarGazerSystem : EntitySystem
                         {
                             if (ashSet.Add(ent.Owner))
                             {
-                                Spawn("Ash", Transform(ent.Owner).Coordinates);
+                                Spawn(Ash2, Transform(ent.Owner).Coordinates);
                                 _popup.PopupEntity(
                                     Loc.GetString("heretic-star-gazer-beam-ash"),
                                     ent.Owner, PopupType.LargeCaution);
@@ -518,20 +539,20 @@ public sealed class HereticStarGazerSystem : EntitySystem
 
         var forward = worldRot.ToVec();
 
-        var headEnt = Spawn("HereticStarGazerBeamHeadPreview",
+        var headEnt = Spawn(HereticStarGazerBeamHeadPreview,
             new MapCoordinates(worldPos + forward * 2.0f, mapId));
         _xform.SetWorldRotation(headEnt, worldRot);
 
         for (var step = 3; step < comp.BeamRange - 1; step++)
         {
             var tileCenter = worldPos + forward * (step + 0.5f);
-            var fillEnt = Spawn("HereticStarGazerBeamTilePreview",
+            var fillEnt = Spawn(HereticStarGazerBeamTilePreview,
                 new MapCoordinates(tileCenter, mapId));
             _xform.SetWorldRotation(fillEnt, new Angle(worldRot.Theta + Math.PI / 2));
         }
 
         var tailPreviewCenter = worldPos + forward * (comp.BeamRange - 0.5f);
-        var tailPreviewEnt = Spawn("HereticStarGazerBeamTailPreview",
+        var tailPreviewEnt = Spawn(HereticStarGazerBeamTailPreview,
             new MapCoordinates(tailPreviewCenter, mapId));
         _xform.SetWorldRotation(tailPreviewEnt, new Angle(worldRot.Theta + Math.PI / 2));
     }
@@ -540,7 +561,7 @@ public sealed class HereticStarGazerSystem : EntitySystem
     private void PullTowards(EntityUid uid, HereticStarGazerComponent comp, Vector2 point, MapId mapId)
     {
         var mapCoords = new MapCoordinates(point, mapId);
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(mapCoords, 5f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(mapCoords, comp.PullTowardsRange))
         {
             if (ent.Owner == uid)
                 continue;
@@ -586,8 +607,7 @@ public sealed class HereticStarGazerSystem : EntitySystem
             return;
 
         // Мастер получает 200 Brute при гибели Созерцателя
-        var dmg = new DamageSpecifier();
-        dmg.DamageDict["Blunt"] = FixedPoint2.New(200);
+        var dmg = new DamageSpecifier(comp.DiedBluntDamage);
         _damage.TryChangeDamage(comp.Master.Value, dmg, ignoreResistances: false);
     }
 }

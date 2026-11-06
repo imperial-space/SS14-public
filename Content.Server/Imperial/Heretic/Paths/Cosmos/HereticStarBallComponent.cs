@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Damage;
 
 namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
@@ -17,4 +18,16 @@ public sealed partial class HereticStarBallComponent : Component
     public float MaxRange = 25f;
     [ViewVariables]
     public float TraveledDistance = 0f;
+
+    [DataField]
+    public DamageSpecifier HitDamage = new() { DamageDict = { ["Heat"] = 20 } };
+
+    [DataField]
+    public TimeSpan BallArriveDuration = TimeSpan.FromSeconds(30);
+
+    [DataField]
+    public TimeSpan BallArriveTime = TimeSpan.FromSeconds(4);
+
+    [DataField]
+    public float BallArriveRange = 3f;
 }

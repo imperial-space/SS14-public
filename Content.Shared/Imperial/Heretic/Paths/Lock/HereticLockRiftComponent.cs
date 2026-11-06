@@ -7,7 +7,7 @@ public sealed partial class HereticLockRiftComponent : Component
     public EntityUid? Caster;
 
     [DataField]
-    public float SpawnInterval = 30f;
+    public TimeSpan SpawnInterval = TimeSpan.FromSeconds(30f);
 
     [DataField]
     public string SpawnEntity = "HereticFamiliarStalker";

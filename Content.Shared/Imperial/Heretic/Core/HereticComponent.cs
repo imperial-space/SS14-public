@@ -38,7 +38,7 @@ public sealed partial class HereticComponent : Component
 
     // Passive knowledge gain
     [DataField]
-    public float PassiveGainIntervalSeconds = 1200f;
+    public TimeSpan PassiveGainIntervalSeconds = TimeSpan.FromSeconds(1200f);
 
     [ViewVariables, AutoPausedField, AutoNetworkedField]
     public TimeSpan NextPassiveGain;

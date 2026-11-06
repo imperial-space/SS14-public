@@ -10,10 +10,10 @@ public sealed partial class HereticWeeepingHallucinationStatusEffectComponent : 
     public TimeSpan NextHallucinationTime = TimeSpan.Zero;
 
     [DataField]
-    public float MinInterval = 120f;
+    public TimeSpan MinInterval = TimeSpan.FromSeconds(120f);
 
     [DataField]
-    public float MaxInterval = 480f;
+    public TimeSpan MaxInterval = TimeSpan.FromSeconds(480f);
 
     // ─── Визуал галлюцинации: окружающие видятся еретиками ────────────────────
 
@@ -40,4 +40,7 @@ public sealed partial class HereticWeeepingHallucinationStatusEffectComponent : 
     /// <summary>Шанс, что лунный еретик из галлюцинации держит клинок.</summary>
     [DataField]
     public float MoonBladeChance = 0.5f;
+
+    [DataField]
+    public float AddLayersChance = 0.5f;
 }

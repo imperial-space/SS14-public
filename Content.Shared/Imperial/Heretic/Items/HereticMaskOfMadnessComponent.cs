@@ -19,7 +19,7 @@ public sealed partial class HereticMaskOfMadnessComponent : Component
     public float StaminaDamagePerTick = 10f;
 
     [DataField]
-    public float TickInterval = 2.5f;
+    public TimeSpan TickInterval = TimeSpan.FromSeconds(2.5f);
 
     [ViewVariables, AutoPausedField]
     public TimeSpan NextTick;
@@ -29,4 +29,16 @@ public sealed partial class HereticMaskOfMadnessComponent : Component
     /// </summary>
     [DataField]
     public bool Locked = false;
+
+    [DataField]
+    public TimeSpan UpdateTime = TimeSpan.FromSeconds(10);
+
+    [DataField]
+    public float UpdateChance = 0.6f;
+
+    [DataField]
+    public float UpdateChance2 = 0.4f;
+
+    [DataField]
+    public float UpdateChance3 = 0.3f;
 }

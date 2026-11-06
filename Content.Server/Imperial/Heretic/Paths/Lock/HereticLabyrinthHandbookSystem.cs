@@ -6,6 +6,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Lock;
 
@@ -14,6 +15,8 @@ public sealed class HereticLabyrinthHandbookSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedChargesSystem _charges = default!;
+
+    private static readonly EntProtoId HereticLabyrinthBarrier = "HereticLabyrinthBarrier";
 
     public override void Initialize()
     {
@@ -39,7 +42,7 @@ public sealed class HereticLabyrinthHandbookSystem : EntitySystem
 
         args.Handled = true;
 
-        Spawn("HereticLabyrinthBarrier", args.ClickLocation);
+        Spawn(HereticLabyrinthBarrier, args.ClickLocation);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_magic_smoke.ogg"), args.User);
         _popup.PopupEntity(Loc.GetString("heretic-labyrinth-handbook-placed"), args.User, args.User, PopupType.Medium);
     }

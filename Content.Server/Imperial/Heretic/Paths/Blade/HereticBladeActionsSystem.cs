@@ -1,89 +1,50 @@
 using System.Numerics;
-using Content.Server.Atmos.Components;
-using Content.Server.Atmos.EntitySystems;
-using Content.Server.Beam;
-using Content.Server.Body;
-using Content.Server.Body.Components;
-using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Damage.Systems;
 using Content.Server.Decals;
-using Content.Server.Doors.Systems;
-using Content.Server.Mind;
-using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Server.Imperial.Antimagic;
-using Content.Shared.Access.Components;
-using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Alert;
-using Content.Shared.Atmos.Components;
-using Content.Shared.Bed.Sleep;
-using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chat;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Coordinates.Helpers;
-using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Doors.Components;
-using Content.Shared.Electrocution;
-using Content.Shared.Eye;
-using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Blade;
 using Content.Shared.Imperial.Heretic.Paths.Lock;
 using Content.Shared.Imperial.Lavaland.ColossusLoot;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Item;
 using Content.Shared.Maps;
-using Content.Shared.Mind.Components;
-using Content.Shared.Mindshield.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Movement.Pulling.Components;
-using Content.Shared.Movement.Pulling.Systems;
-using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
-using Content.Shared.SSDIndicator;
-using Content.Shared.Slippery;
-using Content.Shared.Speech.Muting;
-using Content.Shared.Stacks;
 using Content.Shared.StatusEffect;
-using Content.Shared.Stealth.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
-using Content.Shared.Throwing;
-using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Collections;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Systems;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Timer = Robust.Shared.Timing.Timer;
 using NewStatusEffectsSystem = Content.Shared.StatusEffectNew.StatusEffectsSystem;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.Imperial.Heretic.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Blade;
 
@@ -121,6 +82,41 @@ public sealed class HereticBladeActionsSystem : EntitySystem
     [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
 
     private static readonly ProtoId<TagPrototype> HereticBladeTag = "HereticBlade";
+
+    private static readonly DamageSpecifier CounterDamage = new() { DamageDict = { ["Slash"] = 15 } };
+    private static readonly DamageSpecifier SanguineSurgeSlashDamage = new() { DamageDict = { ["Slash"] = 25 } };
+    private static readonly DamageSpecifier HealHeal = new() { DamageDict = { ["Slash"] = -15 } };
+    private static readonly DamageSpecifier CleaveSlashDamage = new() { DamageDict = { ["Slash"] = 15 } };
+    private static readonly DamageSpecifier RawRitualSlashDamage = new() { DamageDict = { ["Slash"] = 15 } };
+    private static readonly DamageSpecifier SelfDamage = new() { DamageDict = { ["Slash"] = 10 } };
+    private static readonly DamageSpecifier LionhunterRifleSlashDamage = new() { DamageDict = { ["Slash"] = 40 } };
+
+    private static readonly ProtoId<HereticKnowledgePrototype> KnowledgeOpeningBladeHereticKnowledge = "KnowledgeOpeningBlade";
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> HeatDamageType = "Heat";
+    private static readonly ProtoId<HereticKnowledgePrototype> KnowledgeEmpoweredBladesHereticKnowledge = "KnowledgeEmpoweredBlades";
+    private static readonly ProtoId<HereticKnowledgePrototype> KnowledgeDanceOfBrandHereticKnowledge = "KnowledgeDanceOfBrand";
+    private static readonly ProtoId<AlertPrototype> HereticRealignmentAlert = "HereticRealignment";
+    private static readonly EntProtoId HereticEffectCleave = "HereticEffectCleave";
+    private static readonly EntProtoId HereticThrownBlade = "HereticThrownBlade";
+    private static readonly EntProtoId HereticArenaWall = "HereticArenaWall";
+    private static readonly EntProtoId HereticArenaMarker = "HereticArenaMarker";
+    private static readonly EntProtoId HereticBladeBase = "HereticBladeBase";
+
+    private static readonly TimeSpan RealignmentDelay = TimeSpan.FromSeconds(8);
+    private static readonly TimeSpan RealignmentDelay2 = TimeSpan.FromSeconds(90);
+    private static readonly TimeSpan FuriousSteelDelay = TimeSpan.FromSeconds(60);
+    private static readonly TimeSpan HereticDamageModifyDelay = TimeSpan.FromSeconds(60);
+    private static readonly TimeSpan LionhunterRifleDelay = TimeSpan.FromSeconds(6);
+
+    private const float SanguineSurgeRange = 2f;
+    private const float CleaveAmount = -9999f;
+    private const float CleaveRange = 1.5f;
+    private const float FuriousSteelSpeed = 9f;
+    private const float WolvesAmongSheepRange = 25f;
+    private const float WolvesAmongSheepRange2 = 9f;
+    private const float RawRitualRange = 3f;
 
     public override void Initialize()
     {
@@ -161,7 +157,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
             return;
 
         // Lock path: Opening Blade — bleed on hit (65% after ascension, 35% before)
-        if (comp.CurrentPath == HereticPath.Lock && _heretic.HasKnowledge(comp, "KnowledgeOpeningBlade"))
+        if (comp.CurrentPath == HereticPath.Lock && _heretic.HasKnowledge(comp, KnowledgeOpeningBladeHereticKnowledge))
         {
             var bleedChance = HasComp<HereticLockAscendedComponent>(args.User) ? 0.65f : 0.35f;
             foreach (var target in args.HitEntities)
@@ -170,7 +166,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
                     continue;
                 if (!_random.Prob(bleedChance))
                     continue;
-                _bloodstream.TryModifyBleedAmount(target, 10f);
+                _bloodstream.TryModifyBleedAmount(target, blade.Comp.BladeBladeMeleeHitAmount);
             }
         }
 
@@ -199,11 +195,11 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
                 // Blood steal
                 if (TryComp<BloodstreamComponent>(target, out var targetBlood))
-                    _bloodstream.TryModifyBloodLevel((target, targetBlood), -FixedPoint2.New(10));
+                    _bloodstream.TryModifyBloodLevel((target, targetBlood), -blade.Comp.BladeBladeMeleeHitAmount2);
 
                 // SS13: on_eldritch_blade — bonus_damage ~10 BRUTE + self-heal brute/burn 5+5
-                _damage.TryChangeDamage(target, new DamageSpecifier { DamageDict = { ["Slash"] = FixedPoint2.New(10) } }, ignoreResistances: false);
-                _damage.TryChangeDamage(args.User, new DamageSpecifier { DamageDict = { ["Blunt"] = FixedPoint2.New(-5), ["Heat"] = FixedPoint2.New(-5) } }, ignoreResistances: true);
+                _damage.TryChangeDamage(target, new DamageSpecifier { DamageDict = { [SlashDamageType] = FixedPoint2.New(10) } }, ignoreResistances: false);
+                _damage.TryChangeDamage(args.User, new DamageSpecifier { DamageDict = { [BluntDamageType] = FixedPoint2.New(-5), [HeatDamageType] = FixedPoint2.New(-5) } }, ignoreResistances: true);
             }
         }
 
@@ -218,7 +214,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
             }
         }
 
-        if (!_heretic.HasKnowledge(comp, "KnowledgeEmpoweredBlades"))
+        if (!_heretic.HasKnowledge(comp, KnowledgeEmpoweredBladesHereticKnowledge))
             return;
 
         foreach (var target in args.HitEntities)
@@ -291,7 +287,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
     {
         if (comp.CurrentPath != HereticPath.Blade)
             return;
-        if (!_heretic.HasKnowledge(comp, "KnowledgeDanceOfBrand"))
+        if (!_heretic.HasKnowledge(comp, KnowledgeDanceOfBrandHereticKnowledge))
             return;
         if (args.DamageDelta == null || args.DamageDelta.GetTotal() <= FixedPoint2.Zero)
             return;
@@ -318,8 +314,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
         dance.NextTrigger = now + dance.Cooldown;
 
-        var counter = new DamageSpecifier();
-        counter.DamageDict["Slash"] = FixedPoint2.New(15);
+        var counter = new DamageSpecifier(CounterDamage);
         _damage.TryChangeDamage(attacker, counter, ignoreResistances: false, origin: uid);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_weapons_guillotine.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-dance-of-brand"), uid, uid, PopupType.Medium);
@@ -347,15 +342,15 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         if (TryComp<StaminaComponent>(uid, out var staminaComp))
             _stamina.TakeStaminaDamage(uid, -staminaComp.StaminaDamage, visual: false);
 
-        _alert.ShowAlert(uid, "HereticRealignment");
+        _alert.ShowAlert(uid, HereticRealignmentAlert);
 
         var captured = uid;
-        _schedule.Schedule(TimeSpan.FromSeconds(8), () =>
+        _schedule.Schedule(RealignmentDelay, () =>
         {
             if (!Deleted(captured))
             {
                 RemCompDeferred<PacifiedComponent>(captured);
-                _alert.ClearAlert(captured, "HereticRealignment");
+                _alert.ClearAlert(captured, HereticRealignmentAlert);
             }
         });
 
@@ -365,7 +360,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
         _actions.SetCooldown(new Entity<ActionComponent?>(args.Action.Owner, args.Action.Comp), cooldown);
 
-        _schedule.Schedule(TimeSpan.FromSeconds(90), () =>
+        _schedule.Schedule(RealignmentDelay2, () =>
         {
             if (Deleted(captured))
                 return;
@@ -392,9 +387,8 @@ public sealed class HereticBladeActionsSystem : EntitySystem
             return;
         }
         args.Handled = true;
-        var dmg = new DamageSpecifier();
-        dmg.DamageDict["Slash"] = FixedPoint2.New(25);
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, 2f))
+        var dmg = new DamageSpecifier(SanguineSurgeSlashDamage);
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, SanguineSurgeRange))
         {
             if (ent.Owner == uid)
                 continue;
@@ -402,7 +396,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
                 continue;
             _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
         }
-        Spawn("HereticEffectCleave", Transform(uid).Coordinates);
+        Spawn(HereticEffectCleave, Transform(uid).Coordinates);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_weapons_guillotine.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-sanguine-surge"), uid, uid, PopupType.Medium);
     }
@@ -419,13 +413,12 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         args.Handled = true;
 
         // Remove all bleeding from owner (SS13: remove all wounds on cast)
-        _bloodstream.TryModifyBleedAmount(uid, -9999f);
+        _bloodstream.TryModifyBleedAmount(uid, CleaveAmount);
 
-        var healDmg = new DamageSpecifier();
-        healDmg.DamageDict["Slash"] = FixedPoint2.New(-15);
+        var healDmg = new DamageSpecifier(HealHeal);
 
         var targetCoords = args.Target;
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(targetCoords, 1.5f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(targetCoords, CleaveRange))
         {
             if (ent.Owner == uid)
                 continue;
@@ -434,11 +427,10 @@ public sealed class HereticBladeActionsSystem : EntitySystem
             if (HasComp<HereticComponent>(ent.Owner))
                 continue;
 
-            var dmg = new DamageSpecifier();
-            dmg.DamageDict["Slash"] = FixedPoint2.New(15);
+            var dmg = new DamageSpecifier(CleaveSlashDamage);
             _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
             _damage.TryChangeDamage(uid, healDmg, ignoreResistances: true);
-            Spawn("HereticEffectCleave", Transform(ent.Owner).Coordinates);
+            Spawn(HereticEffectCleave, Transform(ent.Owner).Coordinates);
         }
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_weapons_guillotine.ogg"), uid);
@@ -522,8 +514,8 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
         _heretic.TryConsumeOrbitingBlade(uid, comp);
 
-        var blade = Spawn("HereticThrownBlade", Transform(uid).Coordinates);
-        _gun.ShootProjectile(blade, direction, Vector2.Zero, uid, uid, 9f);
+        var blade = Spawn(HereticThrownBlade, Transform(uid).Coordinates);
+        _gun.ShootProjectile(blade, direction, Vector2.Zero, uid, uid, FuriousSteelSpeed);
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_weapons_guillotine.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-furious-steel-thrown"), uid, uid, PopupType.Large);
@@ -534,7 +526,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         // SS13: protective_blades/recharging — 60s recharge after ascension
         if (HasComp<HereticMaelstromOfSilverComponent>(uid))
         {
-            _schedule.Schedule(TimeSpan.FromSeconds(60), () =>
+            _schedule.Schedule(FuriousSteelDelay, () =>
             {
                 if (Deleted(uid) || !HasComp<HereticMaelstromOfSilverComponent>(uid))
                     return;
@@ -561,7 +553,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         // SS13: protective_blades/recharging — 60s recharge after ascension
         if (HasComp<HereticMaelstromOfSilverComponent>(uid))
         {
-            _schedule.Schedule(TimeSpan.FromSeconds(60), () =>
+            _schedule.Schedule(HereticDamageModifyDelay, () =>
             {
                 if (Deleted(uid) || !HasComp<HereticMaelstromOfSilverComponent>(uid))
                     return;
@@ -582,7 +574,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         }
         args.Handled = true;
 
-        if (_lookup.GetEntitiesInRange<HereticArenaComponent>(Transform(uid).Coordinates, 25f).Count > 0)
+        if (_lookup.GetEntitiesInRange<HereticArenaComponent>(Transform(uid).Coordinates, WolvesAmongSheepRange).Count > 0)
         {
             _popup.PopupEntity(Loc.GetString("heretic-wolves-arena-exists"), uid, uid, PopupType.SmallCaution);
             _actions.ClearCooldown(new Entity<ActionComponent?>(args.Action.Owner, args.Action.Comp));
@@ -602,12 +594,12 @@ public sealed class HereticBladeActionsSystem : EntitySystem
             {
                 if (System.Math.Abs(dx) != 9 && System.Math.Abs(dy) != 9)
                     continue;
-                var wall = Spawn("HereticArenaWall", targetCoords.Offset(new Vector2(dx, dy)));
+                var wall = Spawn(HereticArenaWall, targetCoords.Offset(new Vector2(dx, dy)));
                 walls.Add(wall);
             }
         }
 
-        var marker = Spawn("HereticArenaMarker", targetCoords);
+        var marker = Spawn(HereticArenaMarker, targetCoords);
         if (!TryComp<HereticArenaComponent>(marker, out var arena))
             return;
 
@@ -632,7 +624,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         }
 
         // Добавить всех не-еретиков в радиусе 9 как участников и выдать тренировочные клинки
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(targetCoords, 9f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(targetCoords, WolvesAmongSheepRange2))
         {
             if (ent.Owner == uid)
                 continue;
@@ -641,7 +633,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
 
             _arena.AddParticipant(ent.Owner, marker, arena);
 
-            var blade = Spawn("HereticBladeBase", Transform(ent.Owner).Coordinates);
+            var blade = Spawn(HereticBladeBase, Transform(ent.Owner).Coordinates);
             if (TryComp<HereticArenaParticipantComponent>(ent.Owner, out var partComp))
                 partComp.TrainingBlade = blade;
             _hands.TryPickupAnyHand(ent.Owner, blade);
@@ -662,9 +654,8 @@ public sealed class HereticBladeActionsSystem : EntitySystem
             return;
         }
         args.Handled = true;
-        var dmg = new DamageSpecifier();
-        dmg.DamageDict["Slash"] = FixedPoint2.New(15);
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, 3f))
+        var dmg = new DamageSpecifier(RawRitualSlashDamage);
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, RawRitualRange))
         {
             if (ent.Owner == uid)
                 continue;
@@ -672,10 +663,9 @@ public sealed class HereticBladeActionsSystem : EntitySystem
                 continue;
             _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
         }
-        var selfDmg = new DamageSpecifier();
-        selfDmg.DamageDict["Slash"] = FixedPoint2.New(10);
+        var selfDmg = new DamageSpecifier(SelfDamage);
         _damage.TryChangeDamage(uid, selfDmg, ignoreResistances: true);
-        Spawn("HereticEffectCleave", Transform(uid).Coordinates);
+        Spawn(HereticEffectCleave, Transform(uid).Coordinates);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_weapons_guillotine.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-raw-ritual"), uid, uid, PopupType.Medium);
     }
@@ -746,16 +736,15 @@ public sealed class HereticBladeActionsSystem : EntitySystem
         args.Handled = true;
         if (args.Entity is not { } target)
             return;
-        var dmg = new DamageSpecifier();
-        dmg.DamageDict["Slash"] = FixedPoint2.New(40);
+        var dmg = new DamageSpecifier(LionhunterRifleSlashDamage);
         _damage.TryChangeDamage(target, dmg, ignoreResistances: false);
-        Spawn("HereticEffectCleave", Transform(target).Coordinates);
+        Spawn(HereticEffectCleave, Transform(target).Coordinates);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_weapons_guillotine.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-lionhunter-rifle"), uid, uid, PopupType.Medium);
 
         // SS220: "Прицеливание даёт теплозрение" — выстрел даёт временное теплозрение
         EnsureComp<ThermalEntityVisionComponent>(uid);
-        _schedule.Schedule(TimeSpan.FromSeconds(6), () =>
+        _schedule.Schedule(LionhunterRifleDelay, () =>
         {
             if (!TerminatingOrDeleted(uid))
                 RemComp<ThermalEntityVisionComponent>(uid);
@@ -773,12 +762,12 @@ public sealed class HereticBladeActionsSystem : EntitySystem
             var remaining = stunEnd - _timing.CurTime;
             if (remaining > TimeSpan.Zero)
             {
-                comp.StunAbsorbedSeconds += (float)remaining.TotalSeconds;
-                if (comp.StunAbsorbedSeconds >= 45f)
+                comp.StunAbsorbedSeconds += TimeSpan.FromSeconds((float)remaining.TotalSeconds);
+                if ((float)comp.StunAbsorbedSeconds.TotalSeconds >= 45f)
                 {
-                    comp.StunAbsorbedSeconds = 0f;
-                    comp.StunAbsorptionRechargeDoneAt = _timing.CurTime + TimeSpan.FromMinutes(2);
-                    _schedule.Schedule(TimeSpan.FromMinutes(2), () =>
+                    comp.StunAbsorbedSeconds = comp.StunAbsorbedSecondsDelay;
+                    comp.StunAbsorptionRechargeDoneAt = _timing.CurTime + comp.StunAbsorptionRechargeDoneDelay;
+                    _schedule.Schedule(comp.MaelstromStunnedDelay, () =>
                     {
                         if (!Deleted(uid) && TryComp<HereticMaelstromOfSilverComponent>(uid, out var c))
                             c.StunAbsorptionRechargeDoneAt = null;
@@ -831,7 +820,7 @@ public sealed class HereticBladeActionsSystem : EntitySystem
                 _actions.SetUseDelay(new Entity<ActionComponent?>(action.Owner, ac), TimeSpan.FromSeconds(ac.UseDelay.Value.TotalSeconds * 0.5));
             break;
         }
-        Spawn("HereticEffectCleave", coords);
+        Spawn(HereticEffectCleave, coords);
         _popup.PopupEntity(Loc.GetString("heretic-ascension-blade"), uid, uid, PopupType.Large);
     }
 }

@@ -21,6 +21,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Items;
 
@@ -48,6 +49,12 @@ public sealed class HereticPaintingSystem : EntitySystem
         "OrganHumanLiver",
         "OrganHumanKidneys",
     };
+
+    private static readonly EntProtoId HereticPaintingSpeedBoostStatusEffect = "HereticPaintingSpeedBoostStatusEffect";
+    private static readonly EntProtoId FoodPoppy = "FoodPoppy";
+    private static readonly EntProtoId HereticWeeepingHallucinationStatusEffect = "HereticWeeepingHallucinationStatusEffect";
+    private static readonly EntProtoId Kudzu = "Kudzu";
+    private static readonly EntProtoId HereticRustOverlay = "HereticRustOverlay";
 
     public override void Update(float frameTime)
     {
@@ -91,7 +98,7 @@ public sealed class HereticPaintingSystem : EntitySystem
         {
             case HereticPaintingType.Weeping:
             case HereticPaintingType.Rust:
-                _movementMod.TryAddMovementSpeedModDuration(examiner, "HereticPaintingSpeedBoostStatusEffect", TimeSpan.FromSeconds(30), 1.1f);
+                _movementMod.TryAddMovementSpeedModDuration(examiner, HereticPaintingSpeedBoostStatusEffect, comp.ApplyHereticEffectWeepingDuration, 1.1f);
                 _popup.PopupEntity(Loc.GetString("heretic-painting-heretic-speed-effect"), examiner, examiner, PopupType.Medium);
                 break;
 
@@ -102,7 +109,7 @@ public sealed class HereticPaintingSystem : EntitySystem
                 break;
 
             case HereticPaintingType.Vines:
-                Spawn("FoodPoppy", coords);
+                Spawn(FoodPoppy, coords);
                 _popup.PopupEntity(Loc.GetString("heretic-painting-heretic-vines-effect"), examiner, examiner, PopupType.Medium);
                 break;
 
@@ -126,7 +133,7 @@ public sealed class HereticPaintingSystem : EntitySystem
         switch (comp.PaintingType)
         {
             case HereticPaintingType.Weeping:
-                _statusEffects.TryAddStatusEffectDuration(examiner, "HereticWeeepingHallucinationStatusEffect", TimeSpan.FromSeconds(30));
+                _statusEffects.TryAddStatusEffectDuration(examiner, HereticWeeepingHallucinationStatusEffect, comp.ApplyNonHereticEffectWeepingDuration);
                 if (!EnsureComp<ParacusiaComponent>(examiner, out var paracusia))
                 {
                     _paracusia.SetSounds(examiner, new SoundCollectionSpecifier("Paracusia"), paracusia);
@@ -138,12 +145,12 @@ public sealed class HereticPaintingSystem : EntitySystem
 
             case HereticPaintingType.Desire:
                 if (TryComp<HungerComponent>(examiner, out var hunger))
-                    _hunger.ModifyHunger(examiner, -100, hunger);
+                    _hunger.ModifyHunger(examiner, comp.ApplyNonHereticEffectDesireAmount, hunger);
                 _popup.PopupEntity(Loc.GetString("heretic-painting-desire-effect"), examiner, examiner, PopupType.MediumCaution);
                 break;
 
             case HereticPaintingType.Vines:
-                Spawn("Kudzu", coords);
+                Spawn(Kudzu, coords);
                 _popup.PopupEntity(Loc.GetString("heretic-painting-vines-effect"), examiner, examiner, PopupType.MediumCaution);
                 break;
 
@@ -163,8 +170,8 @@ public sealed class HereticPaintingSystem : EntitySystem
                     for (var dy = -1; dy <= 1; dy++)
                     {
                         var tilePos = new MapCoordinates(baseMapCoords.Position + new Vector2(dx, dy), baseMapCoords.MapId);
-                        if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(tilePos, 0.4f, LookupFlags.Static).Count == 0)
-                            Spawn("HereticRustOverlay", tilePos);
+                        if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(tilePos, comp.ApplyNonHereticEffectRustRange, LookupFlags.Static).Count == 0)
+                            Spawn(HereticRustOverlay, tilePos);
                     }
                 }
                 _popup.PopupEntity(Loc.GetString("heretic-painting-rust-effect"), examiner, examiner, PopupType.LargeCaution);

@@ -6,7 +6,7 @@ namespace Content.Shared.Imperial.Heretic.Paths.Rust;
 public sealed partial class HereticRustWalkerComponent : Component
 {
     [DataField]
-    public float HealInterval = 1f;
+    public TimeSpan HealInterval = TimeSpan.FromSeconds(1f);
 
     [DataField]
     public float HealAmount = 3f;
@@ -29,4 +29,13 @@ public sealed partial class HereticRustWalkerComponent : Component
     /// <summary>Клиентское: направление при последнем обновлении спрайта.</summary>
     [ViewVariables]
     public Direction? VisualDirection;
+
+    [DataField]
+    public float AggressiveSpreadRadius = 0.6f;
+
+    [DataField]
+    public float AggressiveSpreadAmount = 25f;
+
+    [DataField]
+    public float UpdateRange = 0.6f;
 }

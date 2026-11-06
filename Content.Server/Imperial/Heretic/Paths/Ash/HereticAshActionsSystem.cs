@@ -5,79 +5,41 @@ using Content.Server.Beam;
 using Content.Server.Body.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.Damage.Systems;
-using Content.Server.DoAfter;
-using Content.Server.Doors.Systems;
 using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Server.Imperial.Antimagic;
-using Content.Shared.Access;
-using Content.Shared.Access.Components;
-using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
-using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
-using Content.Shared.Body;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Events;
-using Content.Shared.Body.Systems;
 using Content.Shared.Chat;
-using Content.Shared.CombatMode.Pacification;
-using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Doors.Components;
-using Content.Shared.Electrocution;
 using Content.Shared.Eye;
-using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.FixedPoint;
-using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Items;
 using Content.Shared.Imperial.Heretic.Paths.Ash;
-using Content.Shared.Interaction;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Maps;
-using Content.Shared.Mind.Components;
-using Content.Shared.Mindshield.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Movement.Pulling.Components;
-using Content.Shared.Movement.Pulling.Systems;
-using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
-using Content.Shared.SSDIndicator;
-using Content.Shared.Slippery;
-using Content.Shared.Speech.Muting;
-using Content.Shared.Stacks;
-using Content.Shared.StatusEffect;
-using Content.Shared.Stealth;
-using Content.Shared.Stealth.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Temperature.Components;
-using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Containers;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Maths;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Systems;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Timer = Robust.Shared.Timing.Timer;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.Imperial.Heretic.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Ash;
 
@@ -115,6 +77,40 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
     private static readonly EntProtoId GreatFireCascadeActionId = "ActionHereticGreatFireCascade";
     private static readonly EntProtoId AshSpiritFlameOathActionId = "ActionHereticAshSpiritFlameOath";
+
+    private static readonly DamageSpecifier VictimDamage = new() { DamageDict = { ["Heat"] = 20 } };
+    private static readonly DamageSpecifier FireDamage = new() { DamageDict = { ["Heat"] = 30 } };
+    private static readonly DamageSpecifier AshlordRiteHeal = new() { DamageDict = { ["Blunt"] = -40, ["Slash"] = -40, ["Heat"] = -20 } };
+    private static readonly DamageSpecifier ShieldDamage = new() { DamageDict = { ["Heat"] = 5 } };
+    private static readonly DamageSpecifier RingDamage = new() { DamageDict = { ["Heat"] = 5 } };
+    private static readonly DamageSpecifier InnerDamage = new() { DamageDict = { ["Heat"] = 5 } };
+    private static readonly DamageSpecifier OuterDamage = new() { DamageDict = { ["Heat"] = 8 } };
+    private static readonly DamageSpecifier FireCascadeRingHeatDamage = new() { DamageDict = { ["Heat"] = 10 } };
+    private static readonly ProtoId<DamageTypePrototype> HeatDamageType = "Heat";
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> PoisonDamageType = "Poison";
+    private static readonly ProtoId<DamageTypePrototype> AsphyxiationDamageType = "Asphyxiation";
+
+    private static readonly EntProtoId MobHereticAshOrb = "MobHereticAshOrb";
+    private static readonly EntProtoId HereticEffectAshBlink = "HereticEffectAshBlink";
+    private static readonly EntProtoId HereticFireBeam = "HereticFireBeam";
+    private static readonly EntProtoId HereticEffectFireExplosion = "HereticEffectFireExplosion";
+    private static readonly ProtoId<HereticKnowledgePrototype> KnowledgeFieryBladeHereticKnowledge = "KnowledgeFieryBlade";
+    private static readonly EntProtoId HereticAshSpiritFire = "HereticAshSpiritFire";
+
+    private static readonly TimeSpan SendVolcanoBeamDelay = TimeSpan.FromSeconds(1.0);
+    private static readonly TimeSpan VolcanoAoETime = TimeSpan.FromSeconds(0.8);
+    private static readonly TimeSpan FireCascadeDelay = TimeSpan.FromMilliseconds(250);
+    private static readonly TimeSpan FireCascadeDelay2 = TimeSpan.FromMilliseconds(500);
+    private static readonly TimeSpan FireCascadeRingDelay = TimeSpan.FromMilliseconds(300);
+
+    private const float VolcanoAoERange = 1.5f;
+    private const float AshlordsRebirthRange = 14f;
+    private const float AshlordRiteRange = 5f;
+    private const float FireCascadeRadius = 1.5f;
+    private const float FireCascadeRadius2 = 2.5f;
+    private const float FireCascadeRadius3 = 4f;
+    private const float FireCascadeRingRange = 0.7f;
 
     public override void Initialize()
     {
@@ -220,7 +216,7 @@ public sealed class HereticAshActionsSystem : EntitySystem
         _chat.TrySendInGameICMessage(uid, Loc.GetString("heretic-incantation-ashen-passage"), InGameICChatType.Whisper, false, ignoreActionBlocker: true);
 
         var coords = Transform(uid).Coordinates;
-        var orbUid = Spawn("MobHereticAshOrb", coords);
+        var orbUid = Spawn(MobHereticAshOrb, coords);
 
         if (!TryComp<HereticAshOrbComponent>(orbUid, out var orbComp))
         {
@@ -259,7 +255,7 @@ public sealed class HereticAshActionsSystem : EntitySystem
                 _flammable.Extinguish(uid, fireComp2);
         }
 
-        Spawn("HereticEffectAshBlink", coords);
+        Spawn(HereticEffectAshBlink, coords);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_magic_ethereal_enter.ogg"), orbUid);
         _popup.PopupEntity(Loc.GetString(empowered ? "heretic-ash-passage-empowered" : "heretic-ash-passage"), orbUid, orbUid, PopupType.Medium);
     }
@@ -344,11 +340,11 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
         hitSet.Add(target);
 
-        _beam.TryCreateBeam(beamSource, target, "HereticFireBeam");
-        Spawn("HereticEffectFireExplosion", Transform(target).Coordinates);
+        _beam.TryCreateBeam(beamSource, target, HereticFireBeam);
+        Spawn(HereticEffectFireExplosion, Transform(target).Coordinates);
 
         var dmg = new DamageSpecifier();
-        dmg.DamageDict["Heat"] = FixedPoint2.New(hitDamage);
+        dmg.DamageDict[HeatDamageType] = FixedPoint2.New(hitDamage);
         _damage.TryChangeDamage(target, dmg, ignoreResistances: false);
         _flammable.AdjustFireStacks(target, empowered ? 6f : 3f, ignite: true);
 
@@ -358,7 +354,7 @@ public sealed class HereticAshActionsSystem : EntitySystem
             return;
         }
 
-        _schedule.Schedule(TimeSpan.FromSeconds(1.0), () =>
+        _schedule.Schedule(SendVolcanoBeamDelay, () =>
             ContinueVolcanoBeam(caster, target, bounces - 1, empowered, hitSet, chainRadius));
     }
 
@@ -386,7 +382,7 @@ public sealed class HereticAshActionsSystem : EntitySystem
     {
         const float aoeDamage = 15f;
         var coords = Transform(center).Coordinates;
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 1.5f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, VolcanoAoERange))
         {
             var aoeTarget = ent.Owner;
             if (hitSet.Contains(aoeTarget))
@@ -399,10 +395,10 @@ public sealed class HereticAshActionsSystem : EntitySystem
                 continue;
 
             var aoeDmg = new DamageSpecifier();
-            aoeDmg.DamageDict["Heat"] = FixedPoint2.New(aoeDamage);
+            aoeDmg.DamageDict[HeatDamageType] = FixedPoint2.New(aoeDamage);
             _damage.TryChangeDamage(aoeTarget, aoeDmg, ignoreResistances: false);
             _flammable.AdjustFireStacks(aoeTarget, empowered ? 4f : 2f, ignite: true);
-            _stun.TryKnockdown(aoeTarget, TimeSpan.FromSeconds(0.8), true);
+            _stun.TryKnockdown(aoeTarget, VolcanoAoETime, true);
         }
     }
 
@@ -456,10 +452,10 @@ public sealed class HereticAshActionsSystem : EntitySystem
             _flammable.Extinguish(uid, selfFlam);
 
         var coords = Transform(uid).Coordinates;
-        Spawn("HereticEffectFireExplosion", coords);
+        Spawn(HereticEffectFireExplosion, coords);
 
         var victimsHit = 0;
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 14f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, AshlordsRebirthRange))
         {
             if (ent.Owner == uid)
                 continue;
@@ -476,11 +472,10 @@ public sealed class HereticAshActionsSystem : EntitySystem
             if (ent.Comp.CurrentState == MobState.Critical)
                 _mobs.ChangeMobState(ent.Owner, MobState.Dead, ent.Comp);
 
-            var victimDmg = new DamageSpecifier();
-            victimDmg.DamageDict["Heat"] = FixedPoint2.New(20);
+            var victimDmg = new DamageSpecifier(VictimDamage);
             _damage.TryChangeDamage(ent.Owner, victimDmg, ignoreResistances: false);
             _flammable.Extinguish(ent.Owner, flam);
-            Spawn("HereticEffectAshBlink", Transform(ent.Owner).Coordinates);
+            Spawn(HereticEffectAshBlink, Transform(ent.Owner).Coordinates);
 
             victimsHit++;
         }
@@ -489,10 +484,10 @@ public sealed class HereticAshActionsSystem : EntitySystem
         {
             var perVictimVal = FixedPoint2.New(-10);
             var healDmg = new DamageSpecifier();
-            healDmg.DamageDict["Blunt"] = perVictimVal * victimsHit;
-            healDmg.DamageDict["Heat"] = perVictimVal * victimsHit;
-            healDmg.DamageDict["Poison"] = perVictimVal * victimsHit;
-            healDmg.DamageDict["Asphyxiation"] = perVictimVal * victimsHit;
+            healDmg.DamageDict[BluntDamageType] = perVictimVal * victimsHit;
+            healDmg.DamageDict[HeatDamageType] = perVictimVal * victimsHit;
+            healDmg.DamageDict[PoisonDamageType] = perVictimVal * victimsHit;
+            healDmg.DamageDict[AsphyxiationDamageType] = perVictimVal * victimsHit;
             _damage.TryChangeDamage(uid, healDmg, ignoreResistances: true);
             _stamina.TakeStaminaDamage(uid, -10f * victimsHit, visual: false);
 
@@ -521,7 +516,7 @@ public sealed class HereticAshActionsSystem : EntitySystem
         if (comp.CurrentPath != HereticPath.Ash)
             return;
 
-        var hasFieryBlade = _heretic.HasKnowledge(comp, "KnowledgeFieryBlade");
+        var hasFieryBlade = _heretic.HasKnowledge(comp, KnowledgeFieryBladeHereticKnowledge);
         var hasMarkOfAsh = comp.CurrentPath == HereticPath.Ash;
         if (!hasFieryBlade && !hasMarkOfAsh)
             return;
@@ -534,16 +529,14 @@ public sealed class HereticAshActionsSystem : EntitySystem
             if (!hasMarkOfAsh || !HasComp<AshMarkComponent>(target))
                 continue;
 
-            var bonusDmg = new DamageSpecifier();
-            bonusDmg.DamageDict["Stamina"] = FixedPoint2.New(10);
-            bonusDmg.DamageDict["Heat"] = FixedPoint2.New(10);
+            var bonusDmg = new DamageSpecifier(blade.Comp.BonusDamage);
             _damage.TryChangeDamage(target, bonusDmg, ignoreResistances: false);
             _flammable.AdjustFireStacks(target, 4f, ignite: true);
-            Spawn("HereticEffectAshBlink", Transform(target).Coordinates);
+            Spawn(HereticEffectAshBlink, Transform(target).Coordinates);
 
             RemCompDeferred<AshMarkComponent>(target);
 
-            foreach (var nearby in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(target).Coordinates, 5f))
+            foreach (var nearby in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(target).Coordinates, blade.Comp.AshBladeMeleeHitRange))
             {
                 if (nearby.Owner == args.User || nearby.Owner == target)
                     continue;
@@ -605,7 +598,7 @@ public sealed class HereticAshActionsSystem : EntitySystem
             return;
         }
 
-        Spawn("HereticEffectAshBlink", exitCoords);
+        Spawn(HereticEffectAshBlink, exitCoords);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_magic_ethereal_exit.ogg"), exitCoords);
 
         shift.ExitTime = _timing.CurTime + shift.ExitDelay;
@@ -647,7 +640,7 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
         // SS13: требует 3 обугленных или горящих трупа поблизости
         var corpses = new List<EntityUid>();
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, 5f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, AshlordRiteRange))
         {
             if (ent.Owner == uid)
                 continue;
@@ -678,18 +671,17 @@ public sealed class HereticAshActionsSystem : EntitySystem
         // Огненное торнадо: несколько взрывов вокруг
         var xformUid = Transform(uid);
         var pos = xformUid.Coordinates;
-        Spawn("HereticEffectFireExplosion", pos);
+        Spawn(HereticEffectFireExplosion, pos);
         for (var i = 0; i < 6; i++)
         {
             var angle = i * (Math.PI * 2 / 6);
             var offset = new Vector2((float)Math.Cos(angle) * 2f, (float)Math.Sin(angle) * 2f);
-            Spawn("HereticEffectFireExplosion", pos.Offset(offset));
+            Spawn(HereticEffectFireExplosion, pos.Offset(offset));
         }
 
         // AoE: большой огонь + поджог
-        var fireDmg = new DamageSpecifier();
-        fireDmg.DamageDict["Heat"] = FixedPoint2.New(30);
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(pos, 5f))
+        var fireDmg = new DamageSpecifier(FireDamage);
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(pos, AshlordRiteRange))
         {
             if (ent.Owner == uid)
                 continue;
@@ -704,15 +696,11 @@ public sealed class HereticAshActionsSystem : EntitySystem
         }
 
         // Исцеление еретику за ритуал
-        var heal = new DamageSpecifier();
-        heal.DamageDict["Blunt"] = FixedPoint2.New(-40);
-        heal.DamageDict["Slash"] = FixedPoint2.New(-40);
-        heal.DamageDict["Heat"] = FixedPoint2.New(-20);
+        var heal = new DamageSpecifier(AshlordRiteHeal);
         _damage.TryChangeDamage(uid, heal, ignoreResistances: true);
 
         // SS13: fire shield — ring of fire around caster for 60s (same as FireRingOath)
-        var shieldDmg = new DamageSpecifier();
-        shieldDmg.DamageDict["Heat"] = FixedPoint2.New(5);
+        var shieldDmg = new DamageSpecifier(ShieldDamage);
         StartFireRingOath(uid, shieldDmg, 120);
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_curse_curse2.ogg"), uid);
@@ -732,12 +720,11 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
         // SS13 fire_sworn: ring of fire around caster for 60s, 5 Heat / 0.5s to nearby mobs in radius 2
         var coords = Transform(uid).Coordinates;
-        Spawn("HereticEffectFireExplosion", coords);
+        Spawn(HereticEffectFireExplosion, coords);
         _popup.PopupEntity(Loc.GetString("heretic-fire-ring-oath"), uid, uid, PopupType.Large);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Magic/fireball.ogg"), uid);
 
-        var ringDmg = new DamageSpecifier();
-        ringDmg.DamageDict["Heat"] = FixedPoint2.New(5);
+        var ringDmg = new DamageSpecifier(RingDamage);
         StartFireRingOath(uid, ringDmg, 120); // 60s / 0.5s
     }
 
@@ -776,35 +763,33 @@ public sealed class HereticAshActionsSystem : EntitySystem
 
         // SS13 fire_cascade: expanding ring of fire — 3 expanding pulses (inner → outer)
         var targetCoords = args.Target;
-        Spawn("HereticEffectFireExplosion", targetCoords);
+        Spawn(HereticEffectFireExplosion, targetCoords);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Magic/fireball.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-fire-cascade"), uid, uid, PopupType.Medium);
 
         var alreadyHit = new HashSet<EntityUid> { uid };
-        var innerDmg = new DamageSpecifier();
-        innerDmg.DamageDict["Heat"] = FixedPoint2.New(5);
-        var outerDmg = new DamageSpecifier();
-        outerDmg.DamageDict["Heat"] = FixedPoint2.New(8);
+        var innerDmg = new DamageSpecifier(InnerDamage);
+        var outerDmg = new DamageSpecifier(OuterDamage);
 
         // Wave 1 — immediate, radius 1.5
-        FireCascadeWave(targetCoords, 1.5f, innerDmg, 1f, alreadyHit);
+        FireCascadeWave(targetCoords, FireCascadeRadius, innerDmg, 1f, alreadyHit);
 
         // Wave 2 — t+250ms, radius 2.5
-        _schedule.Schedule(TimeSpan.FromMilliseconds(250), () =>
+        _schedule.Schedule(FireCascadeDelay, () =>
         {
             if (!Exists(uid))
                 return;
-            Spawn("HereticEffectFireExplosion", targetCoords);
-            FireCascadeWave(targetCoords, 2.5f, innerDmg, 1.5f, alreadyHit);
+            Spawn(HereticEffectFireExplosion, targetCoords);
+            FireCascadeWave(targetCoords, FireCascadeRadius2, innerDmg, 1.5f, alreadyHit);
         });
 
         // Wave 3 — t+500ms, radius 4 (outermost, hits harder)
-        _schedule.Schedule(TimeSpan.FromMilliseconds(500), () =>
+        _schedule.Schedule(FireCascadeDelay2, () =>
         {
             if (!Exists(uid))
                 return;
-            Spawn("HereticEffectFireExplosion", targetCoords);
-            FireCascadeWave(targetCoords, 4f, outerDmg, 2f, alreadyHit);
+            Spawn(HereticEffectFireExplosion, targetCoords);
+            FireCascadeWave(targetCoords, FireCascadeRadius3, outerDmg, 2f, alreadyHit);
         });
     }
 
@@ -821,7 +806,7 @@ public sealed class HereticAshActionsSystem : EntitySystem
             alreadyHit.Add(ent.Owner);
             _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
             _flammable.AdjustFireStacks(ent.Owner, fireStacks, ignite: true);
-            Spawn("HereticEffectFireExplosion", Transform(ent.Owner).Coordinates);
+            Spawn(HereticEffectFireExplosion, Transform(ent.Owner).Coordinates);
         }
     }
 
@@ -865,8 +850,7 @@ public sealed class HereticAshActionsSystem : EntitySystem
             return;
 
         var origin = Transform(uid).Coordinates;
-        var dmg = new DamageSpecifier();
-        dmg.DamageDict["Heat"] = FixedPoint2.New(10);
+        var dmg = new DamageSpecifier(FireCascadeRingHeatDamage);
 
         for (var dx = -radius; dx <= radius; dx++)
             for (var dy = -radius; dy <= radius; dy++)
@@ -874,9 +858,9 @@ public sealed class HereticAshActionsSystem : EntitySystem
                 if ((int)Math.Round(Math.Sqrt(dx * dx + dy * dy)) != radius)
                     continue;
                 var tileCoords = origin.Offset(new Vector2(dx, dy));
-                Spawn("HereticAshSpiritFire", tileCoords);
+                Spawn(HereticAshSpiritFire, tileCoords);
 
-                foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(tileCoords, 0.7f))
+                foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(tileCoords, FireCascadeRingRange))
                 {
                     if (alreadyHit.Contains(ent.Owner))
                         continue;
@@ -887,11 +871,11 @@ public sealed class HereticAshActionsSystem : EntitySystem
                     alreadyHit.Add(ent.Owner);
                     _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
                     _flammable.AdjustFireStacks(ent.Owner, 3f, ignite: true);
-                    Spawn("HereticEffectFireExplosion", Transform(ent.Owner).Coordinates);
+                    Spawn(HereticEffectFireExplosion, Transform(ent.Owner).Coordinates);
                 }
             }
 
-        _schedule.Schedule(TimeSpan.FromMilliseconds(300), () =>
+        _schedule.Schedule(FireCascadeRingDelay, () =>
         {
             if (!Exists(uid))
                 return;

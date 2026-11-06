@@ -7,4 +7,7 @@ public sealed partial class HereticRawProphetComponent : Component
 {
     [DataField]
     public EntityUid? Master;
+
+    [DataField]
+    public TimeSpan BlindTime = TimeSpan.FromSeconds(8);
 }

@@ -12,7 +12,8 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Items;
 
@@ -26,6 +27,9 @@ public sealed class HereticEldritchCoinSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
+
+    private static readonly ProtoId<DamageTypePrototype> HeatDamageType = "Heat";
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
 
     public override void Initialize()
     {
@@ -41,7 +45,7 @@ public sealed class HereticEldritchCoinSystem : EntitySystem
 
         args.Handled = true;
         var user = args.User;
-        var heads = _random.Prob(0.5f);
+        var heads = _random.Prob(comp.UseInHandChance);
 
         if (!HasComp<HereticComponent>(user))
         {
@@ -57,7 +61,7 @@ public sealed class HereticEldritchCoinSystem : EntitySystem
         var coords = Transform(user).Coordinates;
         var flipRange = comp.FlipRange;
 
-        _schedule.Schedule(TimeSpan.FromSeconds(1), () =>
+        _schedule.Schedule(comp.UseInHandDelay, () =>
         {
             if (Deleted(coinUid))
                 return;
@@ -93,7 +97,7 @@ public sealed class HereticEldritchCoinSystem : EntitySystem
 
         if (!HasComp<HereticComponent>(user))
         {
-            DamageNonBeliever(user, _random.Prob(0.5f));
+            DamageNonBeliever(user, _random.Prob(comp.AfterInteractChance));
             return;
         }
 
@@ -113,12 +117,12 @@ public sealed class HereticEldritchCoinSystem : EntitySystem
         var dmg = new DamageSpecifier();
         if (heads)
         {
-            dmg.DamageDict["Heat"] = 20;
+            dmg.DamageDict[HeatDamageType] = 20;
             _popup.PopupEntity(Loc.GetString("heretic-eldritch-coin-nonbeliever-burn"), user, user, PopupType.MediumCaution);
         }
         else
         {
-            dmg.DamageDict["Blunt"] = 20;
+            dmg.DamageDict[BluntDamageType] = 20;
             _popup.PopupEntity(Loc.GetString("heretic-eldritch-coin-nonbeliever-blunt"), user, user, PopupType.MediumCaution);
         }
         _damageable.TryChangeDamage(user, dmg, ignoreResistances: true);

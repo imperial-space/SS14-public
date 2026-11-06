@@ -6,7 +6,7 @@ namespace Content.Shared.Imperial.Heretic.Paths.Void;
 public sealed partial class HereticMaidInMirrorComponent : Component
 {
     [DataField] public float MaxHp = 80f;
-    [DataField] public float ExamineHarmCooldown = 10f;
+    [DataField] public TimeSpan ExamineHarmCooldown = TimeSpan.FromSeconds(10f);
     [ViewVariables]
     public Dictionary<EntityUid, TimeSpan> RecentExaminers = new();
 
@@ -16,4 +16,7 @@ public sealed partial class HereticMaidInMirrorComponent : Component
     public EntityUid? MirrorBallUid;
     [ViewVariables]
     public EntityUid? BeamControllerUid;
+
+    [DataField]
+    public TimeSpan PhaseActionDelay = TimeSpan.FromSeconds(3f);
 }

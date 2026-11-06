@@ -19,4 +19,7 @@ public sealed partial class HereticInsanityStatusEffectComponent : Component
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
     public TimeSpan NextJitterTime = TimeSpan.Zero;
+
+    [DataField]
+    public TimeSpan UpdateDuration = TimeSpan.FromSeconds(1);
 }

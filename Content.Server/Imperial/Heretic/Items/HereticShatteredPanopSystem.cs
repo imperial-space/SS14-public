@@ -5,6 +5,8 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Items;
 using Content.Shared.Popups;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Items;
 
@@ -15,10 +17,12 @@ public sealed class HereticShatteredPanopSystem : EntitySystem
 
     private static readonly DamageSpecifier KnifeDamage;
 
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+
     static HereticShatteredPanopSystem()
     {
         KnifeDamage = new DamageSpecifier();
-        KnifeDamage.DamageDict["Slash"] = FixedPoint2.New(250);
+        KnifeDamage.DamageDict[SlashDamageType] = FixedPoint2.New(250);
     }
 
     public override void Initialize()

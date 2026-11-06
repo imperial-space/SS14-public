@@ -1,85 +1,37 @@
 using System.Numerics;
-using Content.Server.Atmos.Components;
-using Content.Server.Atmos.EntitySystems;
-using Content.Server.Beam;
-using Content.Server.Body;
-using Content.Server.Body.Components;
-using Content.Server.Chat.Managers;
-using Content.Server.Chat.Systems;
 using Content.Server.Damage.Systems;
-using Content.Server.DoAfter;
-using Content.Server.Doors.Systems;
 using Content.Server.Imperial.Heretic.Effects;
-using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
 using Content.Server.Imperial.Antimagic;
-using Content.Shared.Access;
-using Content.Shared.Access.Components;
-using Content.Shared.Access.Systems;
-using Content.Shared.Actions;
-using Content.Shared.Actions.Components;
-using Content.Shared.Alert;
-using Content.Shared.Atmos;
-using Content.Shared.Atmos.Components;
 using Content.Shared.Bed.Sleep;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Events;
-using Content.Shared.Body.Systems;
-using Content.Shared.Chat;
-using Content.Shared.CombatMode;
-using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Coordinates.Helpers;
-using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Doors.Components;
 using Content.Shared.Electrocution;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.FixedPoint;
-using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Rust;
-using Content.Shared.Interaction;
-using Content.Shared.Interaction.Events;
-using Content.Shared.Inventory;
-using Content.Shared.Item;
-using Content.Shared.Maps;
 using Content.Shared.Medical;
-using Content.Shared.Mindshield.Components;
-using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Movement.Pulling.Components;
-using Content.Shared.Movement.Pulling.Systems;
-using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
-using Content.Shared.SSDIndicator;
 using Content.Shared.Slippery;
-using Content.Shared.Stacks;
 using Content.Shared.StatusEffect;
-using Content.Shared.Stealth.Components;
 using Content.Shared.Stunnable;
-using Content.Shared.Temperature.Components;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee.Events;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Containers;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Maths;
-using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using NewStatusEffectsSystem = Content.Shared.StatusEffectNew.StatusEffectsSystem;
+using Content.Shared.Imperial.Heretic.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Rust;
 
@@ -104,6 +56,36 @@ public sealed class HereticRustActionsSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
     [Dependency] private readonly ImperialAntimagicSystem _antimagic = default!;
+
+    private static readonly DamageSpecifier CorrodeBluntDamage = new() { DamageDict = { ["Blunt"] = 10 } };
+    private static readonly DamageSpecifier InorganicDamage = new() { DamageDict = { ["Blunt"] = 500 } };
+    private static readonly DamageSpecifier RustWaveCausticDamage = new() { DamageDict = { ["Caustic"] = 30 } };
+    private static readonly DamageSpecifier RustConstructionBluntDamage = new() { DamageDict = { ["Blunt"] = 10 } };
+
+    private static readonly EntProtoId HereticEffectSmoke = "HereticEffectSmoke";
+    private static readonly ProtoId<HereticKnowledgePrototype> KnowledgeToxicBladeHereticKnowledge = "KnowledgeToxicBlade";
+    private static readonly EntProtoId HereticRustWall = "HereticRustWall";
+    private static readonly ProtoId<HereticKnowledgePrototype> KnowledgeMarkOfRustHereticKnowledge = "KnowledgeMarkOfRust";
+    private static readonly EntProtoId HereticEffectEntropicPlume = "HereticEffectEntropicPlume";
+    private static readonly EntProtoId HereticRustOverlay = "HereticRustOverlay";
+    private static readonly EntProtoId HereticEffectCloudSwirl = "HereticEffectCloudSwirl";
+
+    private static readonly TimeSpan CorrodeTime = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan EntropicPlagueBlindDuration = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan EntropicPlagueDuration = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan TickDelay = TimeSpan.FromSeconds(5);
+    private static readonly TimeSpan RustConstructionTime = TimeSpan.FromSeconds(5);
+
+    private const float RustWaveRange = 8f;
+    private const float EntropicPlagueRange = 4f;
+    private const float RustingCrownRange = 8f;
+    private const float AggressiveSpreadRadius = 2f;
+    private const float HereticRustWalkerAggressiveSpreadRange = 0.4f;
+    private const float RustConstructionRange = 0.6f;
+    private const float RustConstructionBaseThrowSpeed = 3f;
+    private const float RustConstructionRange2 = 0.4f;
+    private const float EntropicPlumeRange = 0.4f;
+    private const float EntropicPlumeRange2 = 0.5f;
 
     public override void Initialize()
     {
@@ -149,36 +131,34 @@ public sealed class HereticRustActionsSystem : EntitySystem
             damageable.DamageContainerID is { } containerId &&
             (containerId.Id == "Inorganic" || containerId.Id == "Silicon"))
         {
-            var inorganicDmg = new DamageSpecifier();
-            inorganicDmg.DamageDict["Blunt"] = FixedPoint2.New(500);
+            var inorganicDmg = new DamageSpecifier(InorganicDamage);
             _damage.TryChangeDamage(target, inorganicDmg, ignoreResistances: false);
-            Spawn("HereticEffectSmoke", Transform(target).Coordinates);
+            Spawn(HereticEffectSmoke, Transform(target).Coordinates);
             _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_curse.ogg"), uid);
             _popup.PopupEntity(Loc.GetString("heretic-corrode"), target, target, PopupType.LargeCaution);
             return;
         }
 
         // Toxic Blade: lets Corrode rust through Titanium/Plastitanium-grade structures
-        if (_heretic.HasKnowledge(comp, "KnowledgeToxicBlade") &&
+        if (_heretic.HasKnowledge(comp, KnowledgeToxicBladeHereticKnowledge) &&
             TryComp<DamageableComponent>(target, out var structDamageable) &&
             structDamageable.DamageContainerID is { Id: "StructuralInorganic" })
         {
             var coords = Transform(target).Coordinates;
             QueueDel(target);
-            Spawn("HereticRustWall", coords);
-            Spawn("HereticEffectSmoke", coords);
+            Spawn(HereticRustWall, coords);
+            Spawn(HereticEffectSmoke, coords);
             _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_curse.ogg"), uid);
             _popup.PopupEntity(Loc.GetString("heretic-corrode-structure"), uid, uid, PopupType.LargeCaution);
             return;
         }
 
         // SS13 Corrode (Mansus Grasp): 10 BRUTE + 80 stamina loss + Knockdown 5s
-        var dmg = new DamageSpecifier();
-        dmg.DamageDict["Blunt"] = FixedPoint2.New(10);
+        var dmg = new DamageSpecifier(CorrodeBluntDamage);
         _damage.TryChangeDamage(target, dmg, ignoreResistances: false);
         _stamina.TakeStaminaDamage(target, 80f, visual: false);
-        _stun.TryKnockdown(target, TimeSpan.FromSeconds(5), true);
-        Spawn("HereticEffectSmoke", Transform(target).Coordinates);
+        _stun.TryKnockdown(target, CorrodeTime, true);
+        Spawn(HereticEffectSmoke, Transform(target).Coordinates);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_curse.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-corrode"), target, target, PopupType.MediumCaution);
     }
@@ -207,8 +187,8 @@ public sealed class HereticRustActionsSystem : EntitySystem
         if (comp.CurrentPath != HereticPath.Rust)
             return;
 
-        var hasMarkOfRust = _heretic.HasKnowledge(comp, "KnowledgeMarkOfRust");
-        var hasToxicBlade = _heretic.HasKnowledge(comp, "KnowledgeToxicBlade");
+        var hasMarkOfRust = _heretic.HasKnowledge(comp, KnowledgeMarkOfRustHereticKnowledge);
+        var hasToxicBlade = _heretic.HasKnowledge(comp, KnowledgeToxicBladeHereticKnowledge);
         if (!hasMarkOfRust && !hasToxicBlade)
             return;
 
@@ -217,7 +197,7 @@ public sealed class HereticRustActionsSystem : EntitySystem
             if (hasMarkOfRust && HasComp<RustMarkComponent>(target))
             {
                 RemCompDeferred<RustMarkComponent>(target);
-                _stun.TryKnockdown(target, TimeSpan.FromSeconds(3), true);
+                _stun.TryKnockdown(target, blade.Comp.RustBladeMeleeHitTime, true);
                 _popup.PopupEntity(Loc.GetString("heretic-rust-mark-triggered"), args.User, args.User, PopupType.Medium);
             }
 
@@ -237,9 +217,8 @@ public sealed class HereticRustActionsSystem : EntitySystem
         }
         args.Handled = true;
         // SS13 Patron's Reach (rust_wave): 30 TOX damage, no knockdown
-        var dmg = new DamageSpecifier();
-        dmg.DamageDict["Caustic"] = FixedPoint2.New(30);
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, 8f))
+        var dmg = new DamageSpecifier(RustWaveCausticDamage);
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, RustWaveRange))
         {
             if (ent.Owner == uid)
                 continue;
@@ -247,7 +226,7 @@ public sealed class HereticRustActionsSystem : EntitySystem
                 continue;
             _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
         }
-        Spawn("HereticEffectEntropicPlume", Transform(uid).Coordinates);
+        Spawn(HereticEffectEntropicPlume, Transform(uid).Coordinates);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_curse.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-rust-wave"), uid, uid, PopupType.Large);
     }
@@ -265,17 +244,17 @@ public sealed class HereticRustActionsSystem : EntitySystem
         if (args.Entity is not { } target)
             return;
         // SS13: amok + cloudstruck/disorient; no direct HP damage.
-        var blindDuration = TimeSpan.FromSeconds(5);
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(target).Coordinates, 4f))
+        var blindDuration = EntropicPlagueBlindDuration;
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(target).Coordinates, EntropicPlagueRange))
         {
             if (ent.Owner == uid)
                 continue;
             if (_antimagic.CanBlockMagic(ent.Owner))
                 continue;
             _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(ent.Owner, TemporaryBlindnessSystem.BlindingStatusEffect, blindDuration, true);
-            _hereticEffects.ApplyInsanity(ent.Owner, TimeSpan.FromSeconds(10));
+            _hereticEffects.ApplyInsanity(ent.Owner, EntropicPlagueDuration);
         }
-        Spawn("HereticEffectEntropicPlume", Transform(target).Coordinates);
+        Spawn(HereticEffectEntropicPlume, Transform(target).Coordinates);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_curse.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-entropic-plague"), uid, uid, PopupType.LargeCaution);
     }
@@ -292,7 +271,7 @@ public sealed class HereticRustActionsSystem : EntitySystem
         args.Handled = true;
 
         var now = _timing.CurTime;
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, 8f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(uid).Coordinates, RustingCrownRange))
         {
             if (ent.Owner == uid)
                 continue;
@@ -300,11 +279,11 @@ public sealed class HereticRustActionsSystem : EntitySystem
                 continue;
             var mark = EnsureComp<HereticRustingCrownMarkComponent>(ent.Owner);
             mark.TicksRemaining = 6;
-            mark.NextTick = now + TimeSpan.FromSeconds(5);
+            mark.NextTick = now + TickDelay;
             _popup.PopupEntity(Loc.GetString("heretic-rusting-crown-marked"), ent.Owner, ent.Owner, PopupType.SmallCaution);
         }
 
-        Spawn("HereticEffectSmoke", Transform(uid).Coordinates);
+        Spawn(HereticEffectSmoke, Transform(uid).Coordinates);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_curse.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-rusting-crown"), uid, uid, PopupType.Large);
     }
@@ -321,8 +300,8 @@ public sealed class HereticRustActionsSystem : EntitySystem
             return;
         }
         args.Handled = true;
-        _heretic.SpreadRustNearby(Transform(uid).Coordinates, 2f);
-        Spawn("HereticEffectEntropicPlume", Transform(uid).Coordinates);
+        _heretic.SpreadRustNearby(Transform(uid).Coordinates, AggressiveSpreadRadius);
+        Spawn(HereticEffectEntropicPlume, Transform(uid).Coordinates);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_curse.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-aggressive-spread"), uid, uid, PopupType.Large);
     }
@@ -349,8 +328,8 @@ public sealed class HereticRustActionsSystem : EntitySystem
                 if (dx * dx + dy * dy > 4)
                     continue;
                 var pos = new MapCoordinates(mapCoords.Position + new Vector2(dx, dy), mapCoords.MapId);
-                if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(pos, 0.4f).Count == 0)
-                    Spawn("HereticRustOverlay", pos);
+                if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(pos, HereticRustWalkerAggressiveSpreadRange).Count == 0)
+                    Spawn(HereticRustOverlay, pos);
                 Spawn(_random.Pick(RustRuneEffects), pos);
             }
 
@@ -379,10 +358,9 @@ public sealed class HereticRustActionsSystem : EntitySystem
         var mapCoords = _xform.ToMapCoordinates(coords);
         var tilePos = mapCoords.Position;
 
-        var dmg = new DamageSpecifier();
-        dmg.DamageDict["Blunt"] = FixedPoint2.New(10);
+        var dmg = new DamageSpecifier(RustConstructionBluntDamage);
 
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, 0.6f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(coords, RustConstructionRange))
         {
             if (_mobs.IsDead(ent.Owner))
                 continue;
@@ -392,16 +370,16 @@ public sealed class HereticRustActionsSystem : EntitySystem
             var mobPos = _xform.GetMapCoordinates(ent.Owner).Position;
             var dir = mobPos - tilePos;
             if (dir.Length() > 0.01f)
-                _throw.TryThrow(ent.Owner, dir.Normalized() * 3f, 3f);
+                _throw.TryThrow(ent.Owner, dir.Normalized() * 3f, RustConstructionBaseThrowSpeed);
 
             _damage.TryChangeDamage(ent.Owner, dmg, ignoreResistances: false);
-            _stun.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(5), true);
+            _stun.TryKnockdown(ent.Owner, RustConstructionTime, true);
         }
 
-        Spawn("HereticRustWall", coords);
+        Spawn(HereticRustWall, coords);
 
-        if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(mapCoords, 0.4f).Count == 0)
-            Spawn("HereticRustOverlay", mapCoords);
+        if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(mapCoords, RustConstructionRange2).Count == 0)
+            Spawn(HereticRustOverlay, mapCoords);
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/constructform.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-rust-construction"), uid, uid, PopupType.Large);
@@ -428,7 +406,7 @@ public sealed class HereticRustActionsSystem : EntitySystem
 
         var right = new Vector2(dir.Y, -dir.X);
 
-        var plumeEnt = Spawn("HereticEffectEntropicPlume", Transform(uid).Coordinates);
+        var plumeEnt = Spawn(HereticEffectEntropicPlume, Transform(uid).Coordinates);
         _xform.SetWorldRotation(plumeEnt, Angle.FromWorldVec(dir));
 
         int[] halfWidths = { 0, 1, 2 };
@@ -447,7 +425,7 @@ public sealed class HereticRustActionsSystem : EntitySystem
                 var tileCoords = new MapCoordinates(tilePos, casterCoords.MapId);
 
                 var isWall = false;
-                foreach (var ent in _lookup.GetEntitiesInRange<PhysicsComponent>(tileCoords, 0.4f, LookupFlags.Static))
+                foreach (var ent in _lookup.GetEntitiesInRange<PhysicsComponent>(tileCoords, EntropicPlumeRange, LookupFlags.Static))
                 {
                     if ((ent.Comp.CollisionLayer & (int)CollisionGroup.Impassable) != 0)
                     {
@@ -462,10 +440,10 @@ public sealed class HereticRustActionsSystem : EntitySystem
                     continue;
                 }
 
-                if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(tileCoords, 0.4f).Count == 0)
-                    Spawn("HereticRustOverlay", tileCoords);
+                if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(tileCoords, EntropicPlumeRange).Count == 0)
+                    Spawn(HereticRustOverlay, tileCoords);
 
-                foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(tileCoords, 0.5f))
+                foreach (var mob in _lookup.GetEntitiesInRange<MobStateComponent>(tileCoords, EntropicPlumeRange2))
                 {
                     if (mob.Owner == uid || HasComp<HereticComponent>(mob.Owner))
                         continue;
@@ -473,7 +451,7 @@ public sealed class HereticRustActionsSystem : EntitySystem
                         continue;
 
                     EnsureComp<HereticAmokComponent>(mob.Owner);
-                    Spawn("HereticEffectCloudSwirl", Transform(mob.Owner).Coordinates);
+                    Spawn(HereticEffectCloudSwirl, Transform(mob.Owner).Coordinates);
                 }
             }
         }
@@ -523,7 +501,7 @@ public sealed class HereticRustActionsSystem : EntitySystem
         // SS13: on ascension, rust spreads globally across the station.
         _heretic.TriggerRustAscensionWave(coords);
 
-        Spawn("HereticEffectSmoke", coords);
+        Spawn(HereticEffectSmoke, coords);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_ambience_antag_heretic_ascend_rust.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-ascension-rust"), uid, uid, PopupType.Large);
     }
@@ -598,7 +576,7 @@ public sealed class HereticRustActionsSystem : EntitySystem
         // При авто-триггере: выдаём RustAscended (трупы уже потреблены ритуалом)
         EnsureComp<HereticRustAscendedComponent>(uid);
         _heretic.TriggerRustAscensionWave(coords);
-        Spawn("HereticEffectSmoke", coords);
+        Spawn(HereticEffectSmoke, coords);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_ambience_antag_heretic_ascend_rust.ogg"), uid);
         _popup.PopupEntity(Loc.GetString("heretic-ascension-rust"), uid, uid, PopupType.Large);
     }

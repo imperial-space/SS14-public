@@ -75,7 +75,7 @@ public sealed class HereticCosmicFieldSystem : EntitySystem
 
             var mapCoords = _xform.GetMapCoordinates(fieldUid);
             var inRangeSet = new HashSet<EntityUid>();
-            foreach (var mob in _lookup.GetEntitiesInRange<HereticComponent>(mapCoords, 0.6f))
+            foreach (var mob in _lookup.GetEntitiesInRange<HereticComponent>(mapCoords, field.UpdateRange))
                 inRangeSet.Add(mob);
 
             var toRemove = new List<EntityUid>();
@@ -125,7 +125,7 @@ public sealed class HereticCosmicFieldSystem : EntitySystem
             if (mobAffected.PushImmuneUntil <= _timing.CurTime)
             {
                 PushMobOutside(uid, other);
-                mobAffected.PushImmuneUntil = _timing.CurTime + TimeSpan.FromSeconds(0.5);
+                mobAffected.PushImmuneUntil = _timing.CurTime + comp.PushImmuneDelay;
             }
             return;
         }

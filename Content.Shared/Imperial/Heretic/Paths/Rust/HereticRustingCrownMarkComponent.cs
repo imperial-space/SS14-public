@@ -18,4 +18,7 @@ public sealed partial class HereticRustingCrownMarkComponent : Component
     /// <summary>Caustic damage applied per tick.</summary>
     [DataField]
     public float DamagePerTick = 5f;
+
+    [DataField]
+    public TimeSpan TickDelay = TimeSpan.FromSeconds(5);
 }

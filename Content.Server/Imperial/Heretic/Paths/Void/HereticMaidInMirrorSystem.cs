@@ -19,6 +19,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Void;
 
@@ -45,6 +46,15 @@ public sealed class HereticMaidInMirrorSystem : EntitySystem
     private static readonly SoundPathSpecifier PhaseExitSound =
         new("/Audio/Imperial/heretic/sound_effects_magic_ethereal_exit.ogg");
 
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
+
+    private static readonly EntProtoId VirtualBeamEntityController = "VirtualBeamEntityController";
+    private static readonly EntProtoId HereticMaidMirrorBeam = "HereticMaidMirrorBeam";
+
+    private const float FindMirrorNearbyRange = 2f;
+    private const float HasWindowNearbyRange = 1.5f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -66,9 +76,9 @@ public sealed class HereticMaidInMirrorSystem : EntitySystem
             if (_timing.CurTime < ball.NextHeal)
                 continue;
 
-            ball.NextHeal = _timing.CurTime + TimeSpan.FromSeconds(ball.HealInterval);
+            ball.NextHeal = _timing.CurTime + ball.HealInterval;
             var heal = new DamageSpecifier();
-            heal.DamageDict["Blunt"] = FixedPoint2.New(-ball.HealAmount);
+            heal.DamageDict[BluntDamageType] = FixedPoint2.New(-ball.HealAmount);
             _damage.TryChangeDamage(ball.MaidUid, heal, ignoreResistances: true);
         }
     }
@@ -88,14 +98,14 @@ public sealed class HereticMaidInMirrorSystem : EntitySystem
             return;
         }
 
-        var controller = Spawn("VirtualBeamEntityController", Transform(uid).Coordinates);
-        _beam.TryCreateBeam(uid, mirrorUid, "HereticMaidMirrorBeam", null, "unshaded", controller);
+        var controller = Spawn(VirtualBeamEntityController, Transform(uid).Coordinates);
+        _beam.TryCreateBeam(uid, mirrorUid, HereticMaidMirrorBeam, null, "unshaded", controller);
         maid.BeamControllerUid = controller;
 
         var doAfterArgs = new DoAfterArgs(
             EntityManager,
             uid,
-            TimeSpan.FromSeconds(3f),
+            maid.PhaseActionDelay,
             new HereticMaidMirrorEnterDoAfterEvent(),
             uid)
         {
@@ -135,13 +145,13 @@ public sealed class HereticMaidInMirrorSystem : EntitySystem
         mirrorUid = default;
         var coords = Transform(uid).Coordinates;
 
-        foreach (var ent in _lookup.GetEntitiesInRange<MagicMirrorComponent>(coords, 2f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MagicMirrorComponent>(coords, FindMirrorNearbyRange))
         {
             mirrorUid = ent.Owner;
             return true;
         }
 
-        foreach (var ent in _lookup.GetEntitiesInRange<TagComponent>(coords, 2f))
+        foreach (var ent in _lookup.GetEntitiesInRange<TagComponent>(coords, FindMirrorNearbyRange))
         {
             if (_tag.HasTag(ent.Owner, WindowTag))
             {
@@ -200,7 +210,7 @@ public sealed class HereticMaidInMirrorSystem : EntitySystem
     private bool HasWindowNearby(EntityUid uid)
     {
         var coords = Transform(uid).Coordinates;
-        foreach (var ent in _lookup.GetEntitiesInRange<TagComponent>(coords, 1.5f))
+        foreach (var ent in _lookup.GetEntitiesInRange<TagComponent>(coords, HasWindowNearbyRange))
         {
             if (_tag.HasTag(ent.Owner, WindowTag))
                 return true;
@@ -273,7 +283,7 @@ public sealed class HereticMaidInMirrorSystem : EntitySystem
 
         if (ent.Comp.RecentExaminers.TryGetValue(examiner, out var lastTime))
         {
-            if ((now - lastTime).TotalSeconds < ent.Comp.ExamineHarmCooldown)
+            if ((now - lastTime).TotalSeconds < (float)ent.Comp.ExamineHarmCooldown.TotalSeconds)
                 return;
         }
         ent.Comp.RecentExaminers[examiner] = now;
@@ -287,13 +297,13 @@ public sealed class HereticMaidInMirrorSystem : EntitySystem
         if (totalDamage.Float() >= maxHp * 0.98f)
         {
             var lethal = new DamageSpecifier();
-            lethal.DamageDict["Slash"] = FixedPoint2.New(maxHp);
+            lethal.DamageDict[SlashDamageType] = FixedPoint2.New(maxHp);
             _damage.TryChangeDamage(ent.Owner, lethal, ignoreResistances: true);
         }
         else
         {
             var harm = new DamageSpecifier();
-            harm.DamageDict["Slash"] = FixedPoint2.New(maxHp * 0.02f);
+            harm.DamageDict[SlashDamageType] = FixedPoint2.New(maxHp * 0.02f);
             _damage.TryChangeDamage(ent.Owner, harm, ignoreResistances: true);
         }
     }

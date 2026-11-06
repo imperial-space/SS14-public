@@ -13,6 +13,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Random;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Items;
 
@@ -31,6 +32,8 @@ public sealed class HereticEldritchCardSystem : EntitySystem
     private const int MaxRandomTeleportAttempts = 20;
     private const float RandomTeleportRadius = 7f;
     private const int MaxStationTeleportAttempts = 30;
+
+    private static readonly EntProtoId HereticEldritchPortal = "HereticEldritchPortal";
 
     public override void Initialize()
     {
@@ -91,7 +94,7 @@ public sealed class HereticEldritchCardSystem : EntitySystem
         if (ent.Comp.PendingPortal == null || !Exists(ent.Comp.PendingPortal.Value))
         {
             // First door — spawn a portal and remember it
-            var portal = Spawn("HereticEldritchPortal", doorCoords);
+            var portal = Spawn(HereticEldritchPortal, doorCoords);
             var portalComp = EnsureComp<HereticEldritchPortalComponent>(portal);
             portalComp.Caster = args.User;
             ent.Comp.PendingPortal = portal;
@@ -99,7 +102,7 @@ public sealed class HereticEldritchCardSystem : EntitySystem
         else
         {
             // Second door — spawn second portal and link both
-            var portal2 = Spawn("HereticEldritchPortal", doorCoords);
+            var portal2 = Spawn(HereticEldritchPortal, doorCoords);
             var comp2 = EnsureComp<HereticEldritchPortalComponent>(portal2);
             comp2.Caster = args.User;
             comp2.LinkedPortal = ent.Comp.PendingPortal.Value;

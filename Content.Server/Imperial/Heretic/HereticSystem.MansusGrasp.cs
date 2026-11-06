@@ -1,36 +1,13 @@
-using System.Numerics;
-using System.Text;
-using Content.Server.Actions;
-using Content.Server.Atmos.Components;
-using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Components;
-using Content.Server.Chat.Managers;
-using Content.Server.Chat.Systems;
-using Content.Server.Decals;
-using Content.Server.Doors.Systems;
 using Content.Server.Imperial.Heretic.Paths.Moon;
-using Content.Server.Popups;
-using Content.Server.Roles;
 using Content.Shared.Access.Components;
-using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
-using Content.Shared.Atmos.Components;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
 using Content.Shared.Chat;
-using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Systems;
-using Content.Shared.Decals;
 using Content.Shared.Doors.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Eye.Blinding.Systems;
-using Content.Shared.FixedPoint;
-using Content.Shared.Hands.EntitySystems;
-using Content.Shared.IdentityManagement;
-using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Imperial.Antimagic;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Ash;
@@ -46,33 +23,20 @@ using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mech.Components;
-using Content.Shared.Mind;
-using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Objectives.Systems;
-using Content.Shared.Overlays;
 using Content.Shared.PDA;
 using Content.Shared.Popups;
-using Content.Shared.Roles.Jobs;
-using Content.Shared.Speech.EntitySystems;
 using Content.Shared.Speech.Muting;
 using Content.Shared.StatusEffect;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Storage.Components;
-using Content.Shared.Stunnable;
-using Content.Shared.Tag;
-using Content.Shared.Temperature.Components;
-using Content.Shared.UserInterface;
 using Content.Shared.Weapons.Melee;
 using Robust.Shared.Audio;
-using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
-using Robust.Shared.Maths;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using CancellationTokenSource = System.Threading.CancellationTokenSource;
-using Timer = Robust.Shared.Timing.Timer;
+using Content.Shared.Imperial.Heretic.Prototypes;
+using Content.Server.Imperial.Antimagic;
+using Content.Server.Imperial.Heretic.Core;
 
 namespace Content.Server.Imperial.Heretic;
 
@@ -82,6 +46,44 @@ namespace Content.Server.Imperial.Heretic;
 public sealed partial class HereticSystem
 {
     [Dependency] private readonly Content.Server.Imperial.Helpers.Schedule.ImperialScheduleSystem _schedule = default!;
+
+    private static readonly DamageSpecifier MansusGraspSuicideTickHeatDamage = new() { DamageDict = { ["Heat"] = 20 } };
+    private static readonly DamageSpecifier BackstabDamage = new() { DamageDict = { ["Blunt"] = 10 } };
+    private static readonly DamageSpecifier ApplyGraspMarkCausticDamage = new() { DamageDict = { ["Caustic"] = 10 } };
+    private static readonly DamageSpecifier ApplyGraspUpgradeHeatDamage = new() { DamageDict = { ["Heat"] = 15 } };
+    private static readonly DamageSpecifier ApplyGraspUpgradeSlashDamage = new() { DamageDict = { ["Slash"] = 15 } };
+    private static readonly DamageSpecifier ApplyGraspUpgradeCausticDamage = new() { DamageDict = { ["Caustic"] = 15 } };
+    private static readonly DamageSpecifier VoidGraspDamage = new() { DamageDict = { ["Blunt"] = 10 } };
+
+    private static readonly ProtoId<HereticKnowledgePrototype> KnowledgeEmpoweredBladesHereticKnowledge = "KnowledgeEmpoweredBlades";
+    private static readonly EntProtoId HereticMansusGraspItem = "HereticMansusGraspItem";
+    private static readonly ProtoId<HereticKnowledgePrototype> KnowledgeLionhunterRifleHereticKnowledge = "KnowledgeLionhunterRifle";
+    private static readonly EntProtoId HereticEffectMansusMarkBlade = "HereticEffectMansusMarkBlade";
+    private static readonly EntProtoId HereticEffectRuneFail = "HereticEffectRuneFail";
+    private static readonly ProtoId<HereticKnowledgePrototype> KnowledgeLockwielderHereticKnowledge = "KnowledgeLockwielder";
+    private static readonly ProtoId<HereticKnowledgePrototype> KnowledgeGraspOfBladeHereticKnowledge = "KnowledgeGraspOfBlade";
+    private static readonly ProtoId<HereticKnowledgePrototype> KnowledgeSanguineSurgeHereticKnowledge = "KnowledgeSanguineSurge";
+    private static readonly ProtoId<HereticKnowledgePrototype> KnowledgeMarkOfRustHereticKnowledge = "KnowledgeMarkOfRust";
+    private static readonly EntProtoId HereticCosmicDiamondAnchor = "HereticCosmicDiamondAnchor";
+    private static readonly ProtoId<HereticKnowledgePrototype> KnowledgeAshenPassageHereticKnowledge = "KnowledgeAshenPassage";
+    private static readonly ProtoId<HereticKnowledgePrototype> KnowledgeCleaveHereticKnowledge = "KnowledgeCleave";
+    private static readonly ProtoId<HereticKnowledgePrototype> KnowledgeRustWaveHereticKnowledge = "KnowledgeRustWave";
+
+    private static readonly TimeSpan MansusGraspSuicideTickTime = TimeSpan.FromSeconds(26);
+    private static readonly TimeSpan MansusGraspSuicideTickDelay = TimeSpan.FromSeconds(0.4);
+    private static readonly TimeSpan EmpoweredBladesOnHitTime = TimeSpan.FromSeconds(1.5);
+    private static readonly TimeSpan EmpoweredBladesOnHitDelay = TimeSpan.FromSeconds(0.25);
+    private static readonly TimeSpan ApplyGraspMarkAshTime = TimeSpan.FromSeconds(20);
+    private static readonly TimeSpan ApplyGraspMarkMoonDuration = TimeSpan.FromSeconds(15);
+    private static readonly TimeSpan ApplyGraspMarkVoidTime = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan ApplyGraspMarkVoidTime2 = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan ApplyGraspUpgradeDuration = TimeSpan.FromSeconds(2);
+
+    private const float MansusGraspSuicideTickChance = 0.7f;
+    private const float MansusGraspSuicideTickChance2 = 0.5f;
+    private const int ApplyGraspMarkAshAmount = 9;
+    private const float ApplyGraspMarkBladeAmount = 5f;
+    private const float ApplyGraspUpgradeBladeAmount = 10f;
     private void OnMansusGrasp(EntityUid uid, HereticComponent comp, HereticMansusGraspActionEvent args)
     {
         if (args.Handled)
@@ -89,7 +91,7 @@ public sealed partial class HereticSystem
         args.Handled = true;
 
         // SS13: on_grasp_cast — если в активной руке тёмный клинок и есть знание, вливаем силу вместо обычной Хватки
-        if (comp.CurrentPath == HereticPath.Blade && comp.ResearchedKnowledge.Contains("KnowledgeEmpoweredBlades"))
+        if (comp.CurrentPath == HereticPath.Blade && comp.ResearchedKnowledge.Contains(KnowledgeEmpoweredBladesHereticKnowledge))
         {
             var activeItem = _hands.GetActiveItem(uid);
             if (activeItem != null && TryComp<HereticBladeBladeComponent>(activeItem.Value, out var bladeComp) && !bladeComp.Infused)
@@ -119,7 +121,7 @@ public sealed partial class HereticSystem
             return;
         }
 
-        var item = Spawn("HereticMansusGraspItem", Transform(uid).Coordinates);
+        var item = Spawn(HereticMansusGraspItem, Transform(uid).Coordinates);
         if (!_hands.TryPickupAnyHand(uid, item))
         {
             QueueDel(item);
@@ -163,24 +165,23 @@ public sealed partial class HereticSystem
         if (tick > 20 || TerminatingOrDeleted(victim) || !_mobs.IsAlive(victim))
             return;
 
-        if (_random.Prob(0.7f))
+        if (_random.Prob(MansusGraspSuicideTickChance))
         {
-            var dmg = new DamageSpecifier();
-            dmg.DamageDict["Heat"] = FixedPoint2.New(20);
+            var dmg = new DamageSpecifier(MansusGraspSuicideTickHeatDamage);
             _damageSystem.TryChangeDamage(victim, dmg, ignoreResistances: true);
             _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/sizzle.ogg"), victim);
 
-            if (_random.Prob(0.5f))
+            if (_random.Prob(MansusGraspSuicideTickChance2))
             {
                 _chat.TryEmoteWithChat(victim, "Scream", ChatTransmitRange.Normal, ignoreActionBlocker: true);
-                _stuttering.DoStutter(victim, TimeSpan.FromSeconds(26), true);
+                _stuttering.DoStutter(victim, MansusGraspSuicideTickTime, true);
             }
         }
 
         if (!_mobs.IsAlive(victim))
             return;
 
-        _schedule.Schedule(TimeSpan.FromSeconds(0.4), () => DoMansusGraspSuicideTick(victim, tick + 1));
+        _schedule.Schedule(MansusGraspSuicideTickDelay, () => DoMansusGraspSuicideTick(victim, tick + 1));
     }
 
     /// <summary>Святая вода в теле нарушает ритуалы еретика (remove_charges в SS13).</summary>
@@ -219,13 +220,13 @@ public sealed partial class HereticSystem
         var canReach = args.CanReach;
         if (!canReach)
         {
-            if (!comp.ResearchedKnowledge.Contains("KnowledgeLionhunterRifle"))
+            if (!comp.ResearchedKnowledge.Contains(KnowledgeLionhunterRifleHereticKnowledge))
                 return;
             if (!_mobs.IsAlive(target))
                 return;
 
             _xform.SetCoordinates(caster, Transform(target).Coordinates);
-            Spawn("HereticEffectMansusMarkBlade", Transform(caster).Coordinates);
+            Spawn(HereticEffectMansusMarkBlade, Transform(caster).Coordinates);
         }
 
         args.Handled = true;
@@ -234,7 +235,7 @@ public sealed partial class HereticSystem
         if (HasComp<HereticRuneComponent>(target))
         {
             _popup.PopupEntity(Loc.GetString("heretic-grasp-rune-erased"), caster, caster, PopupType.Medium);
-            Spawn("HereticEffectRuneFail", Transform(target).Coordinates);
+            Spawn(HereticEffectRuneFail, Transform(target).Coordinates);
             QueueDel(target);
             RemComp<UnremoveableComponent>(uid);
             QueueDel(uid);
@@ -251,7 +252,7 @@ public sealed partial class HereticSystem
         }
 
         if (comp.CurrentPath == HereticPath.Lock
-            && comp.ResearchedKnowledge.Contains("KnowledgeLockwielder"))
+            && comp.ResearchedKnowledge.Contains(KnowledgeLockwielderHereticKnowledge))
         {
             // SS13: ismecha → eject + Paralyze(5s)
             if (TryComp<MechComponent>(target, out var mechComp))
@@ -259,7 +260,7 @@ public sealed partial class HereticSystem
                 var pilot = mechComp.PilotSlot.ContainedEntity;
                 _mech.TryEject(target, mechComp);
                 if (pilot.HasValue)
-                    _stun.TryAddParalyzeDuration(pilot.Value, TimeSpan.FromSeconds(5));
+                    _stun.TryAddParalyzeDuration(pilot.Value, itemComp.MansusGraspItemAfterInteractDuration);
                 _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_curse.ogg"), caster);
                 _popup.PopupEntity(Loc.GetString("heretic-grasp-lock-mech"), caster, caster, PopupType.Small);
                 RemComp<UnremoveableComponent>(uid);
@@ -305,14 +306,14 @@ public sealed partial class HereticSystem
         }
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_effects_curse.ogg"), caster);
-        if (comp.CurrentPath == HereticPath.Blade && comp.ResearchedKnowledge.Contains("KnowledgeGraspOfBlade"))
+        if (comp.CurrentPath == HereticPath.Blade && comp.ResearchedKnowledge.Contains(KnowledgeGraspOfBladeHereticKnowledge))
         {
             if (IsBackstabTarget(caster, target))
-                _stun.TryKnockdown(target, TimeSpan.FromSeconds(2), true);
+                _stun.TryKnockdown(target, itemComp.MansusGraspItemAfterInteractTime, true);
         }
         else
         {
-            _stun.TryKnockdown(target, TimeSpan.FromSeconds(5), true);
+            _stun.TryKnockdown(target, itemComp.MansusGraspItemAfterInteractTime2, true);
         }
 
         foreach (var actionEnt in comp.GrantedActions)
@@ -321,7 +322,7 @@ public sealed partial class HereticSystem
                 continue;
             if (MetaData(actionEnt).EntityPrototype?.ID != "ActionHereticMansusGrasp")
                 continue;
-            _actions.SetCooldown(new Entity<ActionComponent?>(actionEnt, CompOrNull<ActionComponent>(actionEnt)), TimeSpan.FromSeconds(10));
+            _actions.SetCooldown(new Entity<ActionComponent?>(actionEnt, CompOrNull<ActionComponent>(actionEnt)), itemComp.MansusGraspItemAfterInteractCooldown);
             break;
         }
 
@@ -451,9 +452,8 @@ public sealed partial class HereticSystem
 
             if (IsBackstabTarget(heretic, target))
             {
-                _stun.TryKnockdown(target, TimeSpan.FromSeconds(1.5), true);
-                var backstabDmg = new DamageSpecifier();
-                backstabDmg.DamageDict["Blunt"] = FixedPoint2.New(10);
+                _stun.TryKnockdown(target, EmpoweredBladesOnHitTime, true);
+                var backstabDmg = new DamageSpecifier(BackstabDamage);
                 _damageSystem.TryChangeDamage(target, backstabDmg, ignoreResistances: true);
                 _popup.PopupEntity(Loc.GetString("heretic-blade-backstab"), heretic, heretic, PopupType.Medium);
                 _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/heretic/sound_weapons_guillotine.ogg"), heretic);
@@ -476,7 +476,7 @@ public sealed partial class HereticSystem
             return;
 
         var offhand = offhandBlade.Value;
-        _schedule.Schedule(TimeSpan.FromSeconds(0.25), () =>
+        _schedule.Schedule(EmpoweredBladesOnHitDelay, () =>
         {
             if (TerminatingOrDeleted(heretic) || TerminatingOrDeleted(target) || TerminatingOrDeleted(offhand))
                 return;
@@ -504,9 +504,9 @@ public sealed partial class HereticSystem
         {
             case HereticPath.Ash:
                 {
-                    _blindable.AdjustEyeDamage((target, null), 9);
+                    _blindable.AdjustEyeDamage((target, null), ApplyGraspMarkAshAmount);
                     _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(
-                        target, TemporaryBlindnessSystem.BlindingStatusEffect, TimeSpan.FromSeconds(20), true);
+                        target, TemporaryBlindnessSystem.BlindingStatusEffect, ApplyGraspMarkAshTime, true);
                     _flammable.AdjustFireStacks(target, 3f, ignite: true);
                     _marks.Refresh(EnsureComp<AshMarkComponent>(target));
                     break;
@@ -521,7 +521,7 @@ public sealed partial class HereticSystem
                     lunacy.EndTime = _timing.CurTime + lunacy.Duration;
 
                     // base_moon/on_mansus_grasp(): delusion/preset/moon (15с) и adjust_sanity(-30).
-                    _hereticEffects.ApplyMoonDelusion(target, TimeSpan.FromSeconds(15));
+                    _hereticEffects.ApplyMoonDelusion(target, ApplyGraspMarkMoonDuration);
                     var moonBrain = EnsureComp<HereticMoonBrainDamageComponent>(target);
                     moonBrain.Sanity = Math.Max(0f, moonBrain.Sanity - 30f);
                     _marks.Refresh(EnsureComp<MoonMarkComponent>(target));
@@ -549,18 +549,17 @@ public sealed partial class HereticSystem
                 }
             case HereticPath.Void:
                 if (TryComp<StatusEffectsComponent>(target, out var voidSe))
-                    _statusEffects.TryAddStatusEffect<MutedComponent>(target, "Muted", TimeSpan.FromSeconds(10), true, voidSe);
-                _stun.TryKnockdown(target, TimeSpan.FromSeconds(3), true);
-                var voidGraspDmg = new DamageSpecifier();
-                voidGraspDmg.DamageDict["Blunt"] = FixedPoint2.New(10);
+                    _statusEffects.TryAddStatusEffect<MutedComponent>(target, "Muted", ApplyGraspMarkVoidTime, true, voidSe);
+                _stun.TryKnockdown(target, ApplyGraspMarkVoidTime2, true);
+                var voidGraspDmg = new DamageSpecifier(VoidGraspDamage);
                 _damageSystem.TryChangeDamage(target, voidGraspDmg, ignoreResistances: false);
                 _hereticEffects.ApplyVoidChill(target, 2);
                 _marks.Refresh(EnsureComp<VoidMarkComponent>(target));
                 _popup.PopupEntity(Loc.GetString("heretic-grasp-mark-void"), target, target, PopupType.SmallCaution);
                 break;
             case HereticPath.Blade:
-                if (comp.ResearchedKnowledge.Contains("KnowledgeSanguineSurge"))
-                    _bloodstream.TryModifyBleedAmount(target, 5f);
+                if (comp.ResearchedKnowledge.Contains(KnowledgeSanguineSurgeHereticKnowledge))
+                    _bloodstream.TryModifyBleedAmount(target, ApplyGraspMarkBladeAmount);
                 ApplyBladeMark(heretic, target);
                 break;
             case HereticPath.Flesh:
@@ -569,11 +568,10 @@ public sealed partial class HereticSystem
                 break;
             case HereticPath.Rust:
                 {
-                    var dmg = new DamageSpecifier();
-                    dmg.DamageDict["Caustic"] = FixedPoint2.New(10);
+                    var dmg = new DamageSpecifier(ApplyGraspMarkCausticDamage);
                     _damageSystem.TryChangeDamage(target, dmg, ignoreResistances: false);
 
-                    if (comp.ResearchedKnowledge.Contains("KnowledgeMarkOfRust"))
+                    if (comp.ResearchedKnowledge.Contains(KnowledgeMarkOfRustHereticKnowledge))
                     {
                         _marks.Refresh(EnsureComp<RustMarkComponent>(target));
                         _popup.PopupEntity(Loc.GetString("heretic-grasp-mark-rust"), target, target, PopupType.SmallCaution);
@@ -587,7 +585,7 @@ public sealed partial class HereticSystem
                     var mark = EnsureComp<CosmosMarkComponent>(target);
                     if (mark.AnchorEntity.HasValue && !TerminatingOrDeleted(mark.AnchorEntity.Value))
                         QueueDel(mark.AnchorEntity.Value);
-                    mark.AnchorEntity = Spawn("HereticCosmicDiamondAnchor", Transform(target).Coordinates);
+                    mark.AnchorEntity = Spawn(HereticCosmicDiamondAnchor, Transform(target).Coordinates);
                     _marks.Refresh(mark);
                     _popup.PopupEntity(Loc.GetString("heretic-grasp-mark-cosmos"), target, target, PopupType.SmallCaution);
                     break;
@@ -599,12 +597,12 @@ public sealed partial class HereticSystem
     {
         return comp.CurrentPath switch
         {
-            HereticPath.Ash => comp.ResearchedKnowledge.Contains("KnowledgeAshenPassage"),
+            HereticPath.Ash => comp.ResearchedKnowledge.Contains(KnowledgeAshenPassageHereticKnowledge),
             HereticPath.Lock => false,
             HereticPath.Flesh => false,
             HereticPath.Void => false,
-            HereticPath.Blade => comp.ResearchedKnowledge.Contains("KnowledgeCleave"),
-            HereticPath.Rust => comp.ResearchedKnowledge.Contains("KnowledgeRustWave"),
+            HereticPath.Blade => comp.ResearchedKnowledge.Contains(KnowledgeCleaveHereticKnowledge),
+            HereticPath.Rust => comp.ResearchedKnowledge.Contains(KnowledgeRustWaveHereticKnowledge),
             HereticPath.Cosmos => false,
             _ => false,
         };
@@ -612,29 +610,26 @@ public sealed partial class HereticSystem
 
     private void ApplyGraspUpgrade(EntityUid heretic, HereticComponent comp, EntityUid target)
     {
-        _stun.TryAddStunDuration(target, TimeSpan.FromSeconds(2));
+        _stun.TryAddStunDuration(target, ApplyGraspUpgradeDuration);
 
         switch (comp.CurrentPath)
         {
             case HereticPath.Ash:
                 {
-                    var dmg = new DamageSpecifier();
-                    dmg.DamageDict["Heat"] = FixedPoint2.New(15);
+                    var dmg = new DamageSpecifier(ApplyGraspUpgradeHeatDamage);
                     _damageSystem.TryChangeDamage(target, dmg, ignoreResistances: true);
                     break;
                 }
             case HereticPath.Blade:
                 {
-                    var dmg = new DamageSpecifier();
-                    dmg.DamageDict["Slash"] = FixedPoint2.New(15);
+                    var dmg = new DamageSpecifier(ApplyGraspUpgradeSlashDamage);
                     _damageSystem.TryChangeDamage(target, dmg, ignoreResistances: false);
-                    _bloodstream.TryModifyBleedAmount(target, 10f);
+                    _bloodstream.TryModifyBleedAmount(target, ApplyGraspUpgradeBladeAmount);
                     break;
                 }
             case HereticPath.Rust:
                 {
-                    var dmg = new DamageSpecifier();
-                    dmg.DamageDict["Caustic"] = FixedPoint2.New(15);
+                    var dmg = new DamageSpecifier(ApplyGraspUpgradeCausticDamage);
                     _damageSystem.TryChangeDamage(target, dmg, ignoreResistances: false);
                     break;
                 }

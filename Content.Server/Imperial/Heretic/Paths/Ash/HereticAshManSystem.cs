@@ -3,7 +3,6 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Atmos.Components;
-using Content.Shared.FixedPoint;
 using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Ash;
 using Content.Shared.Mobs;
@@ -35,6 +34,11 @@ public sealed class HereticAshManSystem : EntitySystem
     private static readonly SoundPathSpecifier AttackSound =
         new("/Audio/Imperial/heretic/sound_effects_curse_curse2.ogg");
 
+    private static readonly EntProtoId HereticEffectFireExplosion = "HereticEffectFireExplosion";
+    private static readonly EntProtoId HereticEffectAshBlink = "HereticEffectAshBlink";
+
+    private const float FindNearestEnemyRange = 15f;
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -43,11 +47,11 @@ public sealed class HereticAshManSystem : EntitySystem
         while (query.MoveNext(out var uid, out var ash))
         {
             if (ash.LifetimeEnd == TimeSpan.Zero)
-                ash.LifetimeEnd = _timing.CurTime + TimeSpan.FromSeconds(ash.Lifetime);
+                ash.LifetimeEnd = _timing.CurTime + ash.Lifetime;
 
             if (_timing.CurTime >= ash.LifetimeEnd)
             {
-                Spawn("HereticEffectFireExplosion", Transform(uid).Coordinates);
+                Spawn(HereticEffectFireExplosion, Transform(uid).Coordinates);
                 QueueDel(uid);
                 continue;
             }
@@ -55,8 +59,8 @@ public sealed class HereticAshManSystem : EntitySystem
             // Fire trail
             if (_timing.CurTime >= ash.NextFireTrail)
             {
-                ash.NextFireTrail = _timing.CurTime + TimeSpan.FromSeconds(ash.FireTrailInterval);
-                Spawn("HereticEffectAshBlink", Transform(uid).Coordinates);
+                ash.NextFireTrail = _timing.CurTime + ash.FireTrailInterval;
+                Spawn(HereticEffectAshBlink, Transform(uid).Coordinates);
             }
 
             // Find nearest enemy
@@ -80,17 +84,13 @@ public sealed class HereticAshManSystem : EntitySystem
                 // In range: deal damage
                 if (_timing.CurTime >= ash.NextAttack)
                 {
-                    ash.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(ash.AttackCooldown);
-                    var dmg = new DamageSpecifier();
-                    // SS13 ash man: slash + heat + brute (bleed)
-                    dmg.DamageDict["Slash"] = FixedPoint2.New(10);
-                    dmg.DamageDict["Heat"] = FixedPoint2.New(8);
-                    dmg.DamageDict["Blunt"] = FixedPoint2.New(5);
+                    ash.NextAttack = _timing.CurTime + ash.AttackCooldown;
+                    var dmg = new DamageSpecifier(ash.UpdateDamage);
                     _damage.TryChangeDamage(target.Value, dmg, ignoreResistances: false);
                     if (HasComp<FlammableComponent>(target.Value))
                         _flammable.AdjustFireStacks(target.Value, 3f, ignite: true);
                     _audio.PlayPvs(AttackSound, uid);
-                    Spawn("HereticEffectAshBlink", Transform(target.Value).Coordinates);
+                    Spawn(HereticEffectAshBlink, Transform(target.Value).Coordinates);
                 }
             }
             else
@@ -114,7 +114,7 @@ public sealed class HereticAshManSystem : EntitySystem
         EntityUid? nearest = null;
         float nearestDist = float.MaxValue;
 
-        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(self).Coordinates, 15f))
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(self).Coordinates, FindNearestEnemyRange))
         {
             if (ent.Owner == self || ent.Owner == caster)
                 continue;

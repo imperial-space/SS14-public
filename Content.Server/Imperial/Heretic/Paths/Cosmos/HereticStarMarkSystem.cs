@@ -3,12 +3,16 @@ using Content.Shared.Imperial.Heretic.Core;
 using Content.Shared.Imperial.Heretic.Paths.Cosmos;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Heretic.Paths.Cosmos;
 
 public sealed class HereticStarMarkSystem : EntitySystem
 {
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+
+    private static readonly EntProtoId StarMarkStatusEffect = "StarMarkStatusEffect";
+    private static readonly EntProtoId HereticStarMarkOverlay = "HereticStarMarkOverlay";
 
     public override void Initialize()
     {
@@ -22,11 +26,11 @@ public sealed class HereticStarMarkSystem : EntitySystem
         var target = args.Target;
         if (HasComp<HereticComponent>(target) || HasComp<CosmosMarkImmuneComponent>(target))
         {
-            _statusEffects.TryRemoveStatusEffect(target, "StarMarkStatusEffect");
+            _statusEffects.TryRemoveStatusEffect(target, StarMarkStatusEffect);
             return;
         }
         var comp = EnsureComp<StarMarkComponent>(target);
-        var overlay = Spawn("HereticStarMarkOverlay", new EntityCoordinates(target, Vector2.Zero));
+        var overlay = Spawn(HereticStarMarkOverlay, new EntityCoordinates(target, Vector2.Zero));
         comp.OverlayEntity = overlay;
     }
 

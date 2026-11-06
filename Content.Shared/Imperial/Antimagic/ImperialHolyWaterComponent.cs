@@ -1,5 +1,3 @@
-using Robust.Shared.GameStates;
-
 namespace Content.Shared.Imperial.Antimagic;
 
 /// <summary>
@@ -9,7 +7,7 @@ namespace Content.Shared.Imperial.Antimagic;
 public sealed partial class ImperialHolyWaterComponent : Component
 {
     [ViewVariables]
-    public float Seconds;
+    public TimeSpan Seconds;
 
     [ViewVariables]
     public TimeSpan NextSpellClear;

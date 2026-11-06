@@ -111,7 +111,7 @@ public sealed class HereticWeeepingHallucinationOverlaySystem : EntitySystem
         Entity<SpriteComponent?> ent = (uid, sprite);
 
         // Случайный вариант: обычная роба еретика или снаряжение пути Луны.
-        if (_random.Prob(0.5f))
+        if (_random.Prob(hallucination.AddLayersChance))
         {
             AddLayerIfMissing(ent, HereticWeepingHallucinationLayers.Armor, hallucination.DefaultArmorSprite);
             AddLayerIfMissing(ent, HereticWeepingHallucinationLayers.Hood, hallucination.DefaultHoodSprite);

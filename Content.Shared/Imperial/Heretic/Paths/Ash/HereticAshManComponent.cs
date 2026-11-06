@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Content.Shared.Damage;
 
 namespace Content.Shared.Imperial.Heretic.Paths.Ash;
 
@@ -9,7 +10,7 @@ public sealed partial class HereticAshManComponent : Component
     public EntityUid? CasterUid;
 
     [DataField]
-    public float Lifetime = 60f;
+    public TimeSpan Lifetime = TimeSpan.FromSeconds(60f);
     [ViewVariables, AutoPausedField]
     public TimeSpan LifetimeEnd;
 
@@ -20,12 +21,12 @@ public sealed partial class HereticAshManComponent : Component
     public float AttackRange = 1.3f;
 
     [DataField]
-    public float AttackCooldown = 1.2f;
+    public TimeSpan AttackCooldown = TimeSpan.FromSeconds(1.2f);
     [ViewVariables, AutoPausedField]
     public TimeSpan NextAttack;
 
     [DataField]
-    public float FireTrailInterval = 0.6f;
+    public TimeSpan FireTrailInterval = TimeSpan.FromSeconds(0.6f);
     [ViewVariables, AutoPausedField]
     public TimeSpan NextFireTrail;
 
@@ -35,4 +36,7 @@ public sealed partial class HereticAshManComponent : Component
 
     [ViewVariables, AutoPausedField]
     public TimeSpan NextRetarget;
+
+    [DataField]
+    public DamageSpecifier UpdateDamage = new() { DamageDict = { ["Slash"] = 10, ["Heat"] = 8, ["Blunt"] = 5 } };
 }

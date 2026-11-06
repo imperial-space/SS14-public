@@ -1,5 +1,3 @@
-using Robust.Shared.Serialization.Manager.Attributes;
-
 namespace Content.Shared.Imperial.Heretic.Paths.Cosmos;
 
 [RegisterComponent]
@@ -10,4 +8,7 @@ public sealed partial class HereticStarBlastComponent : Component
 
     [ViewVariables]
     public EntityUid? StarBlastAction;
+
+    [DataField]
+    public TimeSpan ShootDelay = TimeSpan.FromSeconds(0.5);
 }
