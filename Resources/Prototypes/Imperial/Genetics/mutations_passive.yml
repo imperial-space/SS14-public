@@ -1,0 +1,530 @@
+# Пассивные мутации из SS13 (body.dm, speech.dm, passive.dm). Нестабильность по шкале SS13:
+# позитивные +5/+10/+25/+35, негативные дают запас стабильности −10/−20/−30/−40.
+
+# ─── Обезьяний ген: всегда первый блок генома ───────────────────────────────
+
+- type: geneticMutation
+  id: MutationMonkified
+  name: genetics-mutation-race-name
+  description: genetics-mutation-race-desc
+  gainText: genetics-mutation-race-gain
+  loseText: genetics-mutation-race-lose
+  quality: Negative
+  instability: -40
+  natural: false
+  chromosomes: None
+
+# ─── Негативные ─────────────────────────────────────────────────────────────
+
+- type: geneticMutation
+  id: MutationClumsy
+  name: genetics-mutation-clumsy-name
+  description: genetics-mutation-clumsy-desc
+  gainText: genetics-mutation-clumsy-gain
+  loseText: genetics-mutation-clumsy-lose
+  quality: MinorNegative
+  instability: -40
+  components:
+  - type: Clumsy
+
+- type: geneticMutation
+  id: MutationBlind
+  name: genetics-mutation-blind-name
+  description: genetics-mutation-blind-desc
+  gainText: genetics-mutation-blind-gain
+  loseText: genetics-mutation-blind-lose
+  quality: Negative
+  instability: -40
+  conflicts:
+  - MutationNearsight
+  components:
+  - type: PermanentBlindness
+
+- type: geneticMutation
+  id: MutationNearsight
+  name: genetics-mutation-nearsight-name
+  description: genetics-mutation-nearsight-desc
+  gainText: genetics-mutation-nearsight-gain
+  loseText: genetics-mutation-nearsight-lose
+  quality: MinorNegative
+  instability: -30
+  conflicts:
+  - MutationBlind
+  components:
+  - type: PermanentBlindness
+    blindness: 4
+
+- type: geneticMutation
+  id: MutationMute
+  name: genetics-mutation-mute-name
+  description: genetics-mutation-mute-desc
+  gainText: genetics-mutation-mute-gain
+  loseText: genetics-mutation-mute-lose
+  quality: Negative
+  instability: -40
+  components:
+  - type: Muted
+
+- type: geneticMutation
+  id: MutationEpilepsy
+  name: genetics-mutation-epilepsy-name
+  description: genetics-mutation-epilepsy-desc
+  gainText: genetics-mutation-epilepsy-gain
+  loseText: genetics-mutation-epilepsy-lose
+  quality: Negative
+  instability: -30
+  chromosomes: Stabilizer, Synchronizer, Power
+  ticks:
+  - chance: 0.005
+    popup: genetics-tick-epilepsy
+    effects:
+    - !type:ModifyParalysis
+      time: 20
+    - !type:Jitter
+      time: 100
+
+- type: geneticMutation
+  id: MutationCough
+  name: genetics-mutation-cough-name
+  description: genetics-mutation-cough-desc
+  gainText: genetics-mutation-cough-gain
+  loseText: genetics-mutation-cough-lose
+  quality: MinorNegative
+  instability: -30
+  chromosomes: Stabilizer, Synchronizer
+  ticks:
+  - chance: 0.025
+    dropHeld: true
+    effects:
+    - !type:Emote
+      emote: Cough
+      showInChat: true
+      force: true
+
+- type: geneticMutation
+  id: MutationParanoia
+  name: genetics-mutation-paranoia-name
+  description: genetics-mutation-paranoia-desc
+  gainText: genetics-mutation-paranoia-gain
+  loseText: genetics-mutation-paranoia-lose
+  quality: Negative
+  instability: -30
+  ticks:
+  - chance: 0.025
+    effects:
+    - !type:Emote
+      emote: Scream
+      showInChat: true
+      force: true
+    - !type:ModifyStatusEffect
+      probability: 0.25
+      effectProto: StatusEffectSeeingRainbow
+      time: 40
+
+- type: geneticMutation
+  id: MutationTourettes
+  name: genetics-mutation-tourettes-name
+  description: genetics-mutation-tourettes-desc
+  gainText: genetics-mutation-tourettes-gain
+  loseText: genetics-mutation-tourettes-lose
+  quality: Negative
+  instability: 0
+  chromosomes: Stabilizer, Synchronizer
+  ticks:
+  - chance: 0.05
+    say:
+    - genetics-tourettes-1
+    - genetics-tourettes-2
+    - genetics-tourettes-3
+    - genetics-tourettes-4
+    - genetics-tourettes-5
+    - genetics-tourettes-6
+    - genetics-tourettes-7
+    effects:
+    - !type:Jitter
+      time: 2
+
+- type: geneticMutation
+  id: MutationNervousness
+  name: genetics-mutation-nervousness-name
+  description: genetics-mutation-nervousness-desc
+  gainText: genetics-mutation-nervousness-gain
+  loseText: genetics-mutation-nervousness-lose
+  quality: MinorNegative
+  instability: 0
+  ticks:
+  - chance: 0.05
+    effects:
+    - !type:ModifyStatusEffect
+      effectProto: StatusEffectStutter
+      time: 20
+
+- type: geneticMutation
+  id: MutationSpastic
+  name: genetics-mutation-spastic-name
+  description: genetics-mutation-spastic-desc
+  gainText: genetics-mutation-spastic-gain
+  loseText: genetics-mutation-spastic-lose
+  quality: Negative
+  instability: -30
+  ticks:
+  - chance: 0.05
+    dropHeld: true
+    popup: genetics-tick-spastic
+    effects:
+    - !type:Jitter
+      time: 3
+
+- type: geneticMutation
+  id: MutationExtrastun
+  name: genetics-mutation-extrastun-name
+  description: genetics-mutation-extrastun-desc
+  gainText: genetics-mutation-extrastun-gain
+  loseText: genetics-mutation-extrastun-lose
+  quality: Negative
+  instability: -30
+  ticks:
+  - chance: 0.02
+    popup: genetics-tick-extrastun
+    effects:
+    - !type:ModifyKnockdown
+      time: 3
+
+- type: geneticMutation
+  id: MutationRadioactive
+  name: genetics-mutation-radioactive-name
+  description: genetics-mutation-radioactive-desc
+  gainText: genetics-mutation-radioactive-gain
+  loseText: genetics-mutation-radioactive-lose
+  quality: Negative
+  instability: -40
+  components:
+  - type: RadiationSource
+    intensity: 2
+    slope: 1
+
+- type: geneticMutation
+  id: MutationFire
+  name: genetics-mutation-fire-name
+  description: genetics-mutation-fire-desc
+  gainText: genetics-mutation-fire-gain
+  loseText: genetics-mutation-fire-lose
+  quality: Negative
+  instability: 0
+  difficulty: 14
+  chromosomes: Stabilizer, Synchronizer, Power
+  ticks:
+  - chance: 0.0005
+    scalesWithInstability: true
+    popup: genetics-tick-fire
+    effects:
+    - !type:Flammable
+      multiplier: 2
+    - !type:Ignite
+
+- type: geneticMutation
+  id: MutationAcidflesh
+  name: genetics-mutation-acidflesh-name
+  description: genetics-mutation-acidflesh-desc
+  gainText: genetics-mutation-acidflesh-gain
+  loseText: genetics-mutation-acidflesh-lose
+  quality: Negative
+  instability: -40
+  difficulty: 18
+  ticks:
+  - chance: 0.02
+    popup: genetics-tick-acidflesh
+    effects:
+    - !type:HealthChange
+      damage:
+        types:
+          Caustic: 10
+
+# ─── Речь ───────────────────────────────────────────────────────────────────
+
+- type: geneticMutation
+  id: MutationUnintelligible
+  name: genetics-mutation-unintelligible-name
+  description: genetics-mutation-unintelligible-desc
+  gainText: genetics-mutation-unintelligible-gain
+  loseText: genetics-mutation-unintelligible-lose
+  quality: Negative
+  instability: -30
+  components:
+  - type: ScrambledAccent
+
+- type: geneticMutation
+  id: MutationSwedish
+  name: genetics-mutation-swedish-name
+  description: genetics-mutation-swedish-desc
+  gainText: genetics-mutation-swedish-gain
+  loseText: genetics-mutation-swedish-lose
+  quality: MinorNegative
+  instability: 0
+  components:
+  - type: ReplacementAccent
+    accent: ImperialGeneticSwedish
+
+- type: geneticMutation
+  id: MutationChav
+  name: genetics-mutation-chav-name
+  description: genetics-mutation-chav-desc
+  gainText: genetics-mutation-chav-gain
+  loseText: genetics-mutation-chav-lose
+  quality: MinorNegative
+  instability: 0
+  components:
+  - type: ReplacementAccent
+    accent: ImperialGeneticChav
+
+- type: geneticMutation
+  id: MutationElvis
+  name: genetics-mutation-elvis-name
+  description: genetics-mutation-elvis-desc
+  gainText: genetics-mutation-elvis-gain
+  loseText: genetics-mutation-elvis-lose
+  quality: MinorNegative
+  instability: 0
+  components:
+  - type: ReplacementAccent
+    accent: ImperialGeneticElvis
+
+- type: geneticMutation
+  id: MutationMedieval
+  name: genetics-mutation-medieval-name
+  description: genetics-mutation-medieval-desc
+  gainText: genetics-mutation-medieval-gain
+  loseText: genetics-mutation-medieval-lose
+  quality: MinorNegative
+  instability: 0
+  components:
+  - type: ReplacementAccent
+    accent: ImperialGeneticMedieval
+
+- type: geneticMutation
+  id: MutationWacky
+  name: genetics-mutation-wacky-name
+  description: genetics-mutation-wacky-desc
+  gainText: genetics-mutation-wacky-gain
+  loseText: genetics-mutation-wacky-lose
+  quality: MinorNegative
+  instability: 0
+  components:
+  - type: ReplacementAccent
+    accent: ImperialGeneticWacky
+
+- type: geneticMutation
+  id: MutationPiglatin
+  name: genetics-mutation-piglatin-name
+  description: genetics-mutation-piglatin-desc
+  gainText: genetics-mutation-piglatin-gain
+  loseText: genetics-mutation-piglatin-lose
+  quality: MinorNegative
+  instability: 0
+  components:
+  - type: PigLatinAccent
+
+- type: geneticMutation
+  id: MutationStoner
+  name: genetics-mutation-stoner-name
+  description: genetics-mutation-stoner-desc
+  gainText: genetics-mutation-stoner-gain
+  loseText: genetics-mutation-stoner-lose
+  quality: Negative
+  instability: 0
+  components:
+  - type: SlurredAccent
+  - type: SlowAccent
+
+# ─── Позитивные ─────────────────────────────────────────────────────────────
+
+- type: geneticMutation
+  id: MutationGlow
+  name: genetics-mutation-glow-name
+  description: genetics-mutation-glow-desc
+  gainText: genetics-mutation-glow-gain
+  loseText: genetics-mutation-glow-lose
+  quality: Positive
+  instability: 5
+  chromosomes: Stabilizer, Power
+  conflicts:
+  - MutationAntiGlow
+  components:
+  - type: PointLight
+    radius: 2.5
+    energy: 1.5
+    color: "#A9FCFF"
+
+- type: geneticMutation
+  id: MutationInsulated
+  name: genetics-mutation-insulated-name
+  description: genetics-mutation-insulated-desc
+  gainText: genetics-mutation-insulated-gain
+  loseText: genetics-mutation-insulated-lose
+  quality: Positive
+  instability: 25
+  components:
+  - type: Insulated
+
+- type: geneticMutation
+  id: MutationDwarfism
+  name: genetics-mutation-dwarfism-name
+  description: genetics-mutation-dwarfism-desc
+  gainText: genetics-mutation-dwarfism-gain
+  loseText: genetics-mutation-dwarfism-lose
+  quality: Positive
+  instability: 10
+  locked: true
+  conflicts:
+  - MutationGigantism
+  - MutationAcromegaly
+  components:
+  - type: GeneticScale
+    scale: 0.8
+
+- type: geneticMutation
+  id: MutationGigantism
+  name: genetics-mutation-gigantism-name
+  description: genetics-mutation-gigantism-desc
+  gainText: genetics-mutation-gigantism-gain
+  loseText: genetics-mutation-gigantism-lose
+  quality: MinorNegative
+  instability: 0
+  conflicts:
+  - MutationDwarfism
+  components:
+  - type: GeneticScale
+    scale: 1.25
+
+# ─── Мутации, для которых в SS14 написаны свои механики ───
+
+- type: geneticMutation
+  id: MutationAcromegaly
+  name: genetics-mutation-acromegaly-name
+  description: genetics-mutation-acromegaly-desc
+  gainText: genetics-mutation-acromegaly-gain
+  loseText: genetics-mutation-acromegaly-lose
+  quality: MinorNegative
+  instability: -30
+  difficulty: 16
+  chromosomes: Synchronizer
+  conflicts:
+  - MutationDwarfism
+  components:
+  - type: GeneticScale
+    height: 1.2
+  - type: GeneticHeadBonk
+
+- type: geneticMutation
+  id: MutationAdaptationPressure
+  name: genetics-mutation-adaptation-pressure-name
+  description: genetics-mutation-adaptation-pressure-desc
+  gainText: genetics-mutation-adaptation-pressure-gain
+  loseText: genetics-mutation-adaptation-pressure-lose
+  quality: Positive
+  instability: 25
+  components:
+  - type: PressureImmunity
+
+- type: geneticMutation
+  id: MutationBadBlink
+  name: genetics-mutation-badblink-name
+  description: genetics-mutation-badblink-desc
+  gainText: genetics-mutation-badblink-gain
+  loseText: genetics-mutation-badblink-lose
+  quality: Negative
+  instability: -30
+  difficulty: 18
+  chromosomes: Synchronizer, Power, Energy
+  components:
+  - type: GeneticBadBlink
+
+- type: geneticMutation
+  id: MutationDeaf
+  name: genetics-mutation-deaf-name
+  description: genetics-mutation-deaf-desc
+  gainText: genetics-mutation-deaf-gain
+  loseText: genetics-mutation-deaf-lose
+  quality: Negative
+  instability: -40
+  components:
+  - type: GeneticDeaf
+
+- type: geneticMutation
+  id: MutationIlliterate
+  name: genetics-mutation-illiterate-name
+  description: genetics-mutation-illiterate-desc
+  gainText: genetics-mutation-illiterate-gain
+  loseText: genetics-mutation-illiterate-lose
+  quality: Negative
+  instability: -40
+  components:
+  - type: GeneticIlliterate
+
+- type: geneticMutation
+  id: MutationAntiGlow
+  name: genetics-mutation-glow-anti-name
+  description: genetics-mutation-glow-anti-desc
+  gainText: genetics-mutation-glow-anti-gain
+  loseText: genetics-mutation-glow-anti-lose
+  quality: Positive
+  instability: 10
+  locked: true
+  chromosomes: Stabilizer, Power
+  conflicts:
+  - MutationGlow
+  components:
+  - type: PointLight
+    radius: 2.5
+    energy: -1.5
+    color: "#FFFFFF"
+
+- type: geneticMutation
+  id: MutationMartyrdom
+  name: genetics-mutation-martyrdom-name
+  description: genetics-mutation-martyrdom-desc
+  gainText: genetics-mutation-martyrdom-gain
+  loseText: genetics-mutation-martyrdom-lose
+  quality: Positive
+  instability: -40
+  locked: true
+  components:
+  - type: GeneticMartyrdom
+
+- type: geneticMutation
+  id: MutationXray
+  name: genetics-mutation-xray-name
+  description: genetics-mutation-xray-desc
+  gainText: genetics-mutation-xray-gain
+  loseText: genetics-mutation-xray-lose
+  quality: Positive
+  instability: 35
+  locked: true
+  components:
+  - type: GeneticXray
+
+- type: geneticMutation
+  id: MutationRockEater
+  name: genetics-mutation-rock-eater-name
+  description: genetics-mutation-rock-eater-desc
+  gainText: genetics-mutation-rock-eater-gain
+  loseText: genetics-mutation-rock-eater-lose
+  quality: Positive
+  instability: 5
+  difficulty: 12
+  components:
+  - type: GeneticRockEater
+
+- type: geneticMutation
+  id: MutationVoid
+  name: genetics-mutation-void-name
+  description: genetics-mutation-void-desc
+  gainText: genetics-mutation-void-gain
+  loseText: genetics-mutation-void-lose
+  quality: MinorNegative
+  instability: 25
+  chromosomes: Synchronizer, Energy
+  components:
+  - type: GeneticVoidMagnet
+  actions:
+  - ActionGeneticVoid
