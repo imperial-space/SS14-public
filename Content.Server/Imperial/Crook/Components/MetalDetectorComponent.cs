@@ -1,83 +1,69 @@
 // this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla
 // Copyright: @crookielv
 
-using Robust.Shared.Audio;
-using Content.Shared.Imperial.Crook.Visuals;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Content.Shared.Access;
 using Content.Shared.Damage;
+using Content.Shared.Imperial.Crook.Visuals;
+using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server.Imperial.Crook.Components
+namespace Content.Server.Imperial.Crook.Components;
+
+[RegisterComponent, AutoGenerateComponentPause]
+public sealed partial class MetalDetectorComponent : Component
 {
-    [RegisterComponent]
-    public sealed partial class MetalDetectorComponent : Component
+    [DataField("allowedAccess")]
+    public List<ProtoId<AccessLevelPrototype>> AllowedAccess = new() { "Security", "Command" };
+
+    [DataField("ignoredPrototypes")]
+    public HashSet<EntProtoId> IgnoredPrototypes = new();
+
+    [DataField("maxRecursionDepth")]
+    public int MaxRecursionDepth = 5;
+
+    [DataField("dischargedSlots")]
+    public List<string> DischargedSlots = new()
     {
-        [DataField("detectionRange")]
-        public float DetectionRange = 1f;
+        "pocket1",
+        "pocket2",
+        "belt",
+        "backpack",
+        "idCard",
+        "suitStorage",
+        "outerClothing",
+    };
 
-        [ViewVariables]
-        public HashSet<EntityUid> CollidingEntities = new();
+    [DataField("stateResetDelay")]
+    public TimeSpan StateResetDelay = TimeSpan.FromSeconds(2);
 
-        [DataField("checkedSlots")]
-        public HashSet<string> CheckedSlots = new()
+    [DataField("nextStateReset", customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    public TimeSpan NextStateReset;
+
+    [DataField("shockDamage")]
+    public DamageSpecifier ShockDamage = new()
+    {
+        DamageDict = new()
         {
-            "pocket1",
-            "pocket2",
-            "belt",
-            "backpack",
-            "idCard",
-            "suitStorage",
-            "outerClothing"
-        };
+            { "Shock", 5 },
+        },
+    };
 
-        [DataField("stateResetDelay")]
-        public TimeSpan StateResetDelay = TimeSpan.FromSeconds(2);
+    [DataField("shockDuration")]
+    public TimeSpan ShockDuration = TimeSpan.FromSeconds(1);
 
-        [DataField("maxRecursionDepth")]
-        public int MaxRecursionDepth = 5;
+    [DataField("shockSound")]
+    public SoundSpecifier ShockSound = new SoundPathSpecifier("/Audio/Effects/lightburn.ogg");
 
-        [DataField("allowedAccess")]
-        public List<string> AllowedAccess = new() { "Security", "Command" };
+    [DataField("clearSound")]
+    public SoundSpecifier ClearSound = new SoundPathSpecifier("/Audio/Machines/beep.ogg");
 
-        [DataField("checkContraband")]
-        public bool CheckContraband = true;
+    [DataField("alertSound")]
+    public SoundSpecifier AlertSound = new SoundPathSpecifier("/Audio/Machines/twobeep.ogg");
 
-        [DataField("shockDuration")]
-        public TimeSpan ShockDuration = TimeSpan.FromSeconds(1);
+    [ViewVariables]
+    public MetalDetectorVisualState State = MetalDetectorVisualState.Off;
 
-        [DataField("shockDamage")]
-        public DamageSpecifier ShockDamage = new()
-        {
-            DamageDict = new()
-            {
-                { "Shock", 5f }
-            }
-        };
-
-        [DataField("shockSound")]
-        public SoundSpecifier ShockSound = new SoundPathSpecifier("/Audio/Effects/lightburn.ogg");
-
-        [ViewVariables]
-        [DataField("nextStateReset", customTypeSerializer: typeof(TimeOffsetSerializer))]
-        public TimeSpan NextStateReset;
-
-        [DataField("clearSound")]
-        public SoundSpecifier ClearSound = new SoundPathSpecifier("/Audio/Machines/beep.ogg");
-
-        [DataField("alertSound")]
-        public SoundSpecifier AlertSound = new SoundPathSpecifier("/Audio/Machines/twobeep.ogg");
-
-        [ViewVariables]
-        [DataField("ignoredPrototypes")]
-        public HashSet<EntProtoId> IgnoredPrototypes = new();
-
-        [ViewVariables]
-        public bool Powered;
-
-        [ViewVariables]
-        public bool Emagged;
-
-        [ViewVariables]
-        public MetalDetectorVisualState State = MetalDetectorVisualState.Off;
-    }
+    [ViewVariables]
+    public HashSet<EntityUid> CollidingEntities = new();
 }

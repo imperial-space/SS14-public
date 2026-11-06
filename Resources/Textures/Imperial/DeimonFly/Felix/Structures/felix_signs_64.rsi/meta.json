@@ -3,15 +3,17 @@
   "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
   "copyright": "by discord: rubelaks",
   "size": {
-    "x": 64,
-    "y": 64
+    "x": 32,
+    "y": 32
   },
   "states": [
     {
-      "name": "minefield"
+      "name": "minefield",
+      "directions": 4
     },
     {
-      "name": "stop"
+      "name": "stop",
+      "directions": 4
     }
   ]
 }

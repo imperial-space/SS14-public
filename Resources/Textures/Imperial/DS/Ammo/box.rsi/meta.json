@@ -1,0 +1,50 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Imperial Space SS14 assets",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "Ammo-Box-Big-blue"
+        },
+        {
+            "name": "Ammo-Box-Big-Default"
+        },
+        {
+            "name": "Ammo-Box-Big-mag-1"
+        },
+        {
+            "name": "Ammo-Box-Big-red"
+        },
+        {
+            "name": "Ammo-Box-Big-yellow"
+        },
+        {
+            "name": "Ammo-Box-blue"
+        },
+        {
+            "name": "Ammo-Box-Default"
+        },
+        {
+            "name": "Ammo-Box-red"
+        },
+        {
+            "name": "Ammo-Box-Shotgun-mag-1"
+        },
+        {
+            "name": "Ammo-Box-yellow"
+        },
+        {
+            "name": "Ammp-Box-mag-1"
+        },
+        {
+            "name": "Ammp-Box-Shotgun-red"
+        },
+        {
+            "name": "Ammp-Box-Shotgun"
+        }
+    ]
+}

@@ -1,0 +1,95 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Imperial Space SS14 assets",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "9x19"
+        },
+        {
+            "name": "9x19-spent"
+        },
+        {
+            "name": "9x18"
+        },
+        {
+            "name": "9x18-spent"
+        },
+        {
+            "name": "7x62x39"
+        },
+        {
+            "name": "7x62x39-spent"
+        },
+        {
+            "name": "7x62x51"
+        },
+        {
+            "name": "7x62x51-spent"
+        },
+        {
+            "name": "7x62x54"
+        },
+        {
+            "name": "7x62x54-spent"
+        },
+        {
+            "name": "5x45x39"
+        },
+        {
+            "name": "5x45x39-spent"
+        },
+        {
+            "name": "5x56x45"
+        },
+        {
+            "name": "5x56x45-spent"
+        },
+        {
+            "name": "5x6"
+        },
+        {
+            "name": "5x6-spent"
+        },
+        {
+            "name": "12x70"
+        },
+        {
+            "name": "12x70-spent"
+        },
+        {
+            "name": "12x70-AP"
+        },
+        {
+            "name": "12x70-AP-spent"
+        },
+        {
+            "name": ".308"
+        },
+        {
+            "name": ".308-spent"
+        },
+        {
+            "name": ".357"
+        },
+        {
+            "name": ".357-spent"
+        },
+        {
+            "name": ".40"
+        },
+        {
+            "name": ".40-spent"
+        },
+        {
+            "name": "Granade-M32A1"
+        },
+        {
+            "name": "Smoke-M32A1"
+        }
+    ]
+}

@@ -1,0 +1,62 @@
+- type: entity
+  name: АКМС с обвесами
+  parent: WeaponRifleAk
+  id: HamMaggotsonWeaponRifleAKAttachments
+  description: жопа.
+  components:
+  - type: ItemSlots
+    slots:
+      gun_attachment_right:
+        name: gun-attachment-slot-right
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - AttachmentRight
+      gun_attachment_top:
+        name: gun-attachment-slot-top
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - AttachmentTop
+      gun_attachment_muffler:
+        name: gun-attachment-slot-muffler
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 3
+        whitelist:
+          tags:
+            - AttachmentMuffler
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifle
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 6
+    netsync: true
+  - type: ContainerContainer
+    containers:
+      gun_attachment_right: !type:ContainerSlot
+      gun_attachment_top: !type:ContainerSlot
+      gun_attachment_muffler: !type:ContainerSlot
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: WeaponAttachments

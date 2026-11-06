@@ -1,177 +1,115 @@
+using System.Diagnostics.CodeAnalysis;
+using Content.Shared.DoAfter;
+using Content.Shared.Examine;
 using Content.Shared.Imperial.NinjaHeadset.Components;
 using Content.Shared.Imperial.NinjaHeadset.Events;
 using Content.Shared.Interaction;
-using Content.Shared.DoAfter;
-using Content.Shared.Popups;
 using Content.Shared.Inventory;
-using Content.Shared.Radio.Components;
 using Content.Shared.Ninja.Components;
-using Content.Shared.Examine;
-using System.Text;
-using Robust.Shared.Prototypes;
+using Content.Shared.Popups;
 using Content.Shared.Radio;
+using Content.Shared.Radio.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.NinjaHeadset.Systems;
 
 public sealed class NinjaHeadsetSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+
+    private const string EarsSlot = "ears";
 
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<NinjaHeadsetComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<NinjaHeadsetComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<NinjaHeadsetComponent, NinjaHackDoAfterEvent>(OnDoAfter);
-        SubscribeLocalEvent<NinjaHeadsetComponent, ExaminedEvent>(OnExamine);
     }
 
-    private string GetLocalizedChannelName(string frequencyId)
+    private void OnExamined(Entity<NinjaHeadsetComponent> ent, ref ExaminedEvent args)
     {
-        if (_prototypeManager.TryIndex<RadioChannelPrototype>(frequencyId, out var prototype))
-        {
-            return prototype.LocalizedName;
-        }
-
-        return frequencyId;
-    }
-    private void OnExamine(EntityUid uid, NinjaHeadsetComponent component, ExaminedEvent args)
-    {
-        if (component.CopiedFrequencies.Count == 0)
+        if (ent.Comp.CopiedFrequencies.Count == 0)
         {
             args.PushMarkup(Loc.GetString("ninja-headset-examine-empty"));
             return;
         }
 
-        var message = new StringBuilder();
-        message.AppendLine(Loc.GetString("ninja-headset-examine-copied"));
-
-        foreach (var frequency in component.CopiedFrequencies)
+        using (args.PushGroup(nameof(NinjaHeadsetComponent)))
         {
-            var localizedName = GetLocalizedChannelName(frequency);
-            message.AppendLine($"[color=yellow]- {localizedName}[/color]");
-        }
+            args.PushMarkup(Loc.GetString("ninja-headset-examine-copied"));
 
-        args.PushMarkup(message.ToString());
+            foreach (var frequency in ent.Comp.CopiedFrequencies)
+            {
+                var name = _prototype.TryIndex(frequency, out var channel) ? channel.LocalizedName : frequency.Id;
+                args.PushMarkup(Loc.GetString("ninja-headset-examine-channel", ("channel", name)));
+            }
+        }
     }
 
-    private void OnAfterInteract(EntityUid uid, NinjaHeadsetComponent component, AfterInteractEvent args)
+    private void OnAfterInteract(Entity<NinjaHeadsetComponent> ent, ref AfterInteractEvent args)
     {
-        if (!HasComp<SpaceNinjaComponent>(args.User))
+        if (args.Handled || !args.CanReach || args.Target is not { } target || target == args.User)
             return;
 
-        if (!args.CanReach || args.Target == null)
+        if (!HasComp<SpaceNinjaComponent>(args.User) || !TryGetTargetHeadset(target, out _))
             return;
 
-        if (!TryGetTargetHeadset(args.Target.Value, out var headsetUid) || !headsetUid.HasValue)
-            return;
-
-        if (args.Target == args.User)
-            return;
-
-        if (component.HackingTarget != null)
-            return;
-
-        component.HackingTarget = args.Target.Value;
-        component.TargetHeadset = headsetUid.Value;
-
-        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, component.CopyFrequenciesTime, new NinjaHackDoAfterEvent(), uid, target: args.Target)
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, ent.Comp.CopyFrequenciesTime, new NinjaHackDoAfterEvent(), ent, target: target, used: ent)
         {
             BreakOnDamage = true,
             BreakOnMove = true,
             NeedHand = true,
-            Broadcast = false
+            Hidden = true,
         };
 
-        if (!_doAfter.TryStartDoAfter(doAfterArgs))
-        {
-            component.HackingTarget = null;
-            component.TargetHeadset = null;
-        }
+        args.Handled = _doAfter.TryStartDoAfter(doAfterArgs);
     }
 
-    private void OnDoAfter(EntityUid uid, NinjaHeadsetComponent component, NinjaHackDoAfterEvent args)
+    private void OnDoAfter(Entity<NinjaHeadsetComponent> ent, ref NinjaHackDoAfterEvent args)
     {
-        if (args.Cancelled)
-        {
-            component.HackingTarget = null;
-            component.TargetHeadset = null;
+        if (args.Handled || args.Cancelled || args.Target is not { } target)
             return;
-        }
 
-        if (component.TargetHeadset == null || !EntityAlive(component.TargetHeadset.Value))
-        {
-            component.HackingTarget = null;
-            component.TargetHeadset = null;
+        if (!TryGetTargetHeadset(target, out var targetHolder) || !TryComp<EncryptionKeyHolderComponent>(ent, out var ninjaHolder))
             return;
-        }
 
-        var newFrequencies = new HashSet<string>();
-        var channelsChanged = false;
-        EncryptionKeyHolderComponent? ninjaEncryption = null;
+        args.Handled = true;
 
-        if (TryComp<EncryptionKeyHolderComponent>(component.TargetHeadset.Value, out var targetEncryption) &&
-            TryComp<EncryptionKeyHolderComponent>(uid, out ninjaEncryption))
+        var copied = false;
+        foreach (var channel in targetHolder.Channels)
         {
-            foreach (var channel in targetEncryption.Channels)
-            {
-                if (!component.CopiedFrequencies.Contains(channel))
-                {
-                    component.CopiedFrequencies.Add(channel);
-                    newFrequencies.Add(channel);
+            if (ent.Comp.CopiedFrequencies.Contains(channel))
+                continue;
 
-                    if (!ninjaEncryption.Channels.Contains(channel))
-                    {
-                        ninjaEncryption.Channels.Add(channel);
-                        channelsChanged = true;
-                    }
-                }
-            }
+            ent.Comp.CopiedFrequencies.Add(channel);
+            ninjaHolder.Channels.Add(channel);
+            copied = true;
         }
 
-        if (channelsChanged && ninjaEncryption != null)
-            RaiseLocalEvent(uid, new EncryptionChannelsChangedEvent(ninjaEncryption));
-
-        Dirty(uid, component);
-
-        if (newFrequencies.Count > 0)
+        if (copied)
         {
-            _popup.PopupEntity(Loc.GetString("ninja-headset-copy-success"), uid, args.User);
-        }
-        else
-        {
-            _popup.PopupEntity(Loc.GetString("ninja-headset-copy-none"), uid, args.User);
+            Dirty(ent);
+            RaiseLocalEvent(ent, new EncryptionChannelsChangedEvent(ninjaHolder));
         }
 
-        component.HackingTarget = null;
-        component.TargetHeadset = null;
+        var message = copied ? "ninja-headset-copy-success" : "ninja-headset-copy-none";
+        _popup.PopupEntity(Loc.GetString(message), ent, args.User);
     }
 
-    private bool TryGetTargetHeadset(EntityUid targetUid, out EntityUid? headsetUid)
+    private bool TryGetTargetHeadset(EntityUid target, [NotNullWhen(true)] out EncryptionKeyHolderComponent? holder)
     {
-        headsetUid = null;
-
-        if (HasComp<EncryptionKeyHolderComponent>(targetUid))
-        {
-            headsetUid = targetUid;
+        if (TryComp(target, out holder))
             return true;
-        }
 
-        if (_inventorySystem.TryGetSlotEntity(targetUid, "ears", out var earsItem) &&
-            HasComp<EncryptionKeyHolderComponent>(earsItem))
-        {
-            headsetUid = earsItem;
+        if (_inventory.TryGetSlotEntity(target, EarsSlot, out var ears) && TryComp(ears, out holder))
             return true;
-        }
 
+        holder = null;
         return false;
-    }
-
-    private bool EntityAlive(EntityUid uid)
-    {
-        return !Deleted(uid) && !Terminating(uid);
     }
 }

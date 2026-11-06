@@ -1,0 +1,230 @@
+- type: entity
+  id: WeaponDSBeneli
+  suffix: DeadSector, Gun
+  name: Beneli
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/shotgun/Beneli-gun/Beneli.rsi
+    layers:
+    - state: bolt-open
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    sprite: Imperial/DS/Guns/shotgun/Beneli-gun/Beneli-inhand.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: Clothing
+    sprite: Imperial/DS/Guns/shotgun/Beneli-gun/Beneli-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/29.ogg
+  - type: BallisticAmmoProvider
+    capacity: 4
+    proto: CartridgeDS12x70
+    whitelist:
+      tags:
+      - CartridgeDS12x70
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSMicrone14K
+  suffix: DeadSector, Gun
+  name: Microne-14K
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/shotgun/Microne-gun/Microne.rsi
+    layers:
+    - state: bolt-open
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    sprite: Imperial/DS/Guns/shotgun/Microne-gun/Microne-inhand.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: Clothing
+    sprite: Imperial/DS/Guns/shotgun/Microne-gun/Microne-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/28.ogg
+  - type: BallisticAmmoProvider
+    capacity: 12
+    proto: CartridgeDS12x70
+    whitelist:
+      tags:
+      - CartridgeDS12x70
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSObrez
+  suffix: DeadSector, Gun
+  name: Обрез
+  description: .
+  parent: [ BaseItem, BaseMinorContraband ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/shotgun/Obrez-gun/Obrez.rsi
+    layers:
+    - state: bolt-open
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    sprite: Imperial/DS/Guns/shotgun/Obrez-gun/Obrez-inhand.rsi
+    size: Normal
+    shape:
+    - 0,0,2,1
+  - type: Clothing
+    sprite: Imperial/DS/Guns/shotgun/Obrez-gun/Obrez-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/22.ogg
+  - type: BallisticAmmoProvider
+    capacity: 2
+    proto: CartridgeDS12x70
+    whitelist:
+      tags:
+      - CartridgeDS12x70
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSRemington870
+  suffix: DeadSector, Gun
+  name: Remington 870
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/shotgun/Remington-gun/Remington.rsi
+    layers:
+    - state: bolt-open
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    sprite: Imperial/DS/Guns/shotgun/Remington-gun/Remington-inhand.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: Clothing
+    sprite: Imperial/DS/Guns/shotgun/Remington-gun/Remington-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/31.ogg
+  - type: BallisticAmmoProvider
+    capacity: 6
+    proto: CartridgeDS12x70
+    whitelist:
+      tags:
+      - CartridgeDS12x70
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSSPAS12
+  suffix: DeadSector, Gun
+  name: SPAS-12
+  description: .
+  parent: [ BaseItem, BaseGunWieldable, BaseMinorContraband ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/shotgun/SPAS-12-gun/SPAS-12.rsi
+    layers:
+    - state: bolt-open
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    sprite: Imperial/DS/Guns/shotgun/SPAS-12-gun/SPAS-12-inhand.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+  - type: Clothing
+    sprite: Imperial/DS/Guns/shotgun/SPAS-12-gun/SPAS-12-inhand.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: GunRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/7.ogg
+  - type: BallisticAmmoProvider
+    capacity: 8
+    proto: CartridgeDS12x70
+    whitelist:
+      tags:
+      - CartridgeDS12x70
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Appearance
