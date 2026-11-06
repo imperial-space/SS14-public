@@ -36,6 +36,8 @@ public sealed class ZMovementSystem : EntitySystem
     private const string MoveDownAction = "ActionZMoveDown";
     private TimeSpan _next;
 
+    private static readonly TimeSpan NextDelay = TimeSpan.FromSeconds(1);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -51,7 +53,7 @@ public sealed class ZMovementSystem : EntitySystem
         var now = _timing.CurTime;
         if (now < _next)
             return;
-        _next = now + TimeSpan.FromSeconds(1);
+        _next = now + NextDelay;
         UpdateFlyActions();
         UpdateNpcAvoidance();
     }
@@ -172,24 +174,24 @@ public sealed class ZMovementSystem : EntitySystem
     {
         var here = _z.SnapToTile(_xform.GetMapCoordinates(user));
         for (var dx = 0; dx <= 2; dx++)
-        for (var dy = 0; dy <= 2; dy++)
-        {
-            // Сначала клетка над собой, потом соседние.
-            var ox = dx == 2 ? -1 : dx;
-            var oy = dy == 2 ? -1 : dy;
-            var cell = new MapCoordinates(here.Position + new System.Numerics.Vector2(ox, oy), here.MapId);
-            if (_z.GetStep(cell, true) is not { } hole || !_z.IsOpen(hole) || _z.HasWall(hole))
-                continue;
-            for (var lx = -1; lx <= 1; lx++)
-            for (var ly = -1; ly <= 1; ly++)
+            for (var dy = 0; dy <= 2; dy++)
             {
-                if (lx == 0 && ly == 0)
+                // Сначала клетка над собой, потом соседние.
+                var ox = dx == 2 ? -1 : dx;
+                var oy = dy == 2 ? -1 : dy;
+                var cell = new MapCoordinates(here.Position + new System.Numerics.Vector2(ox, oy), here.MapId);
+                if (_z.GetStep(cell, true) is not { } hole || !_z.IsOpen(hole) || _z.HasWall(hole))
                     continue;
-                var landing = _z.SnapToTile(new MapCoordinates(hole.Position + new System.Numerics.Vector2(lx, ly), hole.MapId));
-                if (!_z.IsOpen(landing) && !_z.HasWall(landing))
-                    return landing;
+                for (var lx = -1; lx <= 1; lx++)
+                    for (var ly = -1; ly <= 1; ly++)
+                    {
+                        if (lx == 0 && ly == 0)
+                            continue;
+                        var landing = _z.SnapToTile(new MapCoordinates(hole.Position + new System.Numerics.Vector2(lx, ly), hole.MapId));
+                        if (!_z.IsOpen(landing) && !_z.HasWall(landing))
+                            return landing;
+                    }
             }
-        }
         return null;
     }
 

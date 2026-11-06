@@ -54,6 +54,8 @@ public sealed class ZLevelSystem : SharedZLevelSystem
     private TimeSpan _nextSlow;
     private const float ViewerRange = 14f;
 
+    private static readonly TimeSpan SlowDelay = TimeSpan.FromSeconds(0.5);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -349,17 +351,17 @@ public sealed class ZLevelSystem : SharedZLevelSystem
             {
                 var found = false;
                 for (var dx = -1; dx <= 1 && !found; dx++)
-                for (var dy = -1; dy <= 1 && !found; dy++)
-                {
-                    if (dx == 0 && dy == 0)
-                        continue;
-                    var n = new MapCoordinates(check.Position + new System.Numerics.Vector2(dx, dy), check.MapId);
-                    if (IsTransparent(n))
+                    for (var dy = -1; dy <= 1 && !found; dy++)
                     {
-                        check = n;
-                        found = true;
+                        if (dx == 0 && dy == 0)
+                            continue;
+                        var n = new MapCoordinates(check.Position + new System.Numerics.Vector2(dx, dy), check.MapId);
+                        if (IsTransparent(n))
+                        {
+                            check = n;
+                            found = true;
+                        }
                     }
-                }
                 if (!found)
                 {
                     if (feedback)
@@ -513,7 +515,7 @@ public sealed class ZLevelSystem : SharedZLevelSystem
         var now = _timing.CurTime;
         if (now < _nextSlow)
             return;
-        _nextSlow = now + TimeSpan.FromSeconds(0.5);
+        _nextSlow = now + SlowDelay;
 
         foreach (var stack in _pendingStation.ToList())
             TryJoinStation(stack);
@@ -584,11 +586,11 @@ public sealed class ZLevelSystem : SharedZLevelSystem
 
         // Космос на многоэтажной карте тоже прозрачен: хоть одна клетка вне сеток — этаж ниже виден.
         for (var x = box.Left; x <= box.Right; x += 2f)
-        for (var y = box.Bottom; y <= box.Top; y += 2f)
-        {
-            if (!MapManager.TryFindGridAt(coords.MapId, new System.Numerics.Vector2(x, y), out _, out _))
-                return true;
-        }
+            for (var y = box.Bottom; y <= box.Top; y += 2f)
+            {
+                if (!MapManager.TryFindGridAt(coords.MapId, new System.Numerics.Vector2(x, y), out _, out _))
+                    return true;
+            }
         return false;
     }
 

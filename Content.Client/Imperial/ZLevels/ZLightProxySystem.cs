@@ -32,13 +32,15 @@ public sealed class ZLightProxySystem : EntitySystem
     private readonly Dictionary<EntityUid, EntityUid> _proxies = new();
     private TimeSpan _next;
 
+    private static readonly TimeSpan NextDelay = TimeSpan.FromSeconds(0.25);
+
     public override void FrameUpdate(float frameTime)
     {
         base.FrameUpdate(frameTime);
         var now = _timing.RealTime;
         if (now < _next)
             return;
-        _next = now + TimeSpan.FromSeconds(0.25);
+        _next = now + NextDelay;
 
         var alive = new HashSet<EntityUid>();
         if (_player.LocalEntity is { } player)
@@ -100,7 +102,7 @@ public sealed class ZLightProxySystem : EntitySystem
             _xform.SetMapCoordinates(proxy, below);
         }
 
-        var proxyLight = (PointLightComponent) _lights.EnsureLight(proxy);
+        var proxyLight = (PointLightComponent)_lights.EnsureLight(proxy);
         _lights.SetColor(proxy, light.Color, proxyLight);
         _lights.SetRadius(proxy, light.Radius, proxyLight);
         _lights.SetEnergy(proxy, light.Energy * EnergyScale, proxyLight);
@@ -111,11 +113,11 @@ public sealed class ZLightProxySystem : EntitySystem
     private bool HasOpenNear(MapCoordinates coords)
     {
         for (var dx = -OpenRange; dx <= OpenRange; dx++)
-        for (var dy = -OpenRange; dy <= OpenRange; dy++)
-        {
-            if (_z.IsTransparent(new MapCoordinates(coords.Position + new Vector2(dx, dy), coords.MapId)))
-                return true;
-        }
+            for (var dy = -OpenRange; dy <= OpenRange; dy++)
+            {
+                if (_z.IsTransparent(new MapCoordinates(coords.Position + new Vector2(dx, dy), coords.MapId)))
+                    return true;
+            }
         return false;
     }
 

@@ -88,7 +88,7 @@ public sealed class ZLevelLookOverlay : Overlay
             _stencil = _clyde.CreateRenderTarget(target.Size, new RenderTargetFormatParameters(RenderTargetColorFormat.Rgba8Srgb), name: "zlevel-look-stencil");
         }
         var st = _stencil;
-        var lightScale = target.Size / (Vector2) args.Viewport.Size;
+        var lightScale = target.Size / (Vector2)args.Viewport.Size;
         var scale = args.Viewport.RenderScale / (Vector2.One / lightScale);
         var box = args.WorldAABB.Enlarged(2f);
         var maps = _ents.System<SharedMapSystem>();
@@ -114,7 +114,7 @@ public sealed class ZLevelLookOverlay : Overlay
                         continue;
                     if ((maps.GridTileToWorldPos(grid.Owner, grid.Comp, tile.GridIndices) - from).Length() > LookRadius)
                         continue;
-                    var origin = (Vector2) tile.GridIndices * tileSize;
+                    var origin = (Vector2)tile.GridIndices * tileSize;
                     handle.DrawRect(new Box2(origin, origin + new Vector2(tileSize, tileSize)), Color.White);
                     any = true;
                 }

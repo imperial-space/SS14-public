@@ -199,8 +199,8 @@ public sealed class ZElevatorSystem : EntitySystem
         var matrix = _xform.GetWorldMatrix(ent);
         var half = (ent.Comp.Size - 1) / 2f;
         for (var x = 0; x < ent.Comp.Size; x++)
-        for (var y = 0; y < ent.Comp.Size; y++)
-            yield return Vector2.Transform(new Vector2(x - half, y - half), matrix);
+            for (var y = 0; y < ent.Comp.Size; y++)
+                yield return Vector2.Transform(new Vector2(x - half, y - half), matrix);
     }
 
     /// <summary>Вверх — над каждой клеткой платформы проём; вниз — проём под платформой. Стен на пути нет.</summary>

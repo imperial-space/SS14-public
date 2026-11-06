@@ -102,7 +102,7 @@ public sealed class ZLevelOverlay : Overlay
         }
 
         var handle = args.WorldHandle;
-        var lightScale = target.Size / (Vector2) args.Viewport.Size;
+        var lightScale = target.Size / (Vector2)args.Viewport.Size;
         var scale = args.Viewport.RenderScale / (Vector2.One / lightScale);
         var st = stencil;
         var box = args.WorldAABB.Enlarged(2f);
@@ -177,7 +177,7 @@ public sealed class ZLevelOverlay : Overlay
                 var texture = _resources.GetResource<TextureResource>(sprite).Texture;
                 var px = texture.Height;
                 var region = new UIBox2(tile.Tile.Variant * px, 0, (tile.Tile.Variant + 1) * px, px);
-                var origin = (Vector2) tile.GridIndices * tileSize;
+                var origin = (Vector2)tile.GridIndices * tileSize;
                 handle.DrawTextureRectRegion(texture, new Box2(origin, origin + new Vector2(tileSize, tileSize)), ZLevelTiles.IsSpaceLike(_tileDefs, tile.Tile) ? Color.White : GlassTint, region);
             }
         }
@@ -231,7 +231,7 @@ public sealed class ZLevelOverlay : Overlay
             {
                 if (opaqueOnly && ZLevelTiles.IsTransparent(_tileDefs, tile.Tile))
                     continue;
-                var origin = (Vector2) tile.GridIndices * tileSize;
+                var origin = (Vector2)tile.GridIndices * tileSize;
                 handle.DrawRect(new Box2(origin, origin + new Vector2(tileSize, tileSize)), color);
                 drew = true;
             }

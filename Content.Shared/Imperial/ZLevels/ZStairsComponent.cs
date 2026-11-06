@@ -24,4 +24,13 @@ public sealed partial class ZStairsComponent : Component
     /// <summary>Площадка наверху: метка на клетке над ступенью, шаг с которой назад спускает на лестницу (только сервер).</summary>
     [ViewVariables]
     public EntityUid? Top;
+
+    [DataField]
+    public TimeSpan FallDuration = TimeSpan.FromSeconds(2);
+
+    [DataField]
+    public TimeSpan FallTime = TimeSpan.FromSeconds(5);
+
+    [DataField]
+    public float FallBaseThrowSpeed = 2f;
 }
