@@ -33,7 +33,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
-using Content.Shared.Imperial.Achievements;
 
 namespace Content.Server.Imperial.Wizard.GrandRitual;
 
@@ -102,7 +101,6 @@ public sealed partial class ImperialGrandRitualSystem : EntitySystem
     private static readonly ProtoId<LocalizedDatasetPrototype>[] PossibleMagicWordsDatasets = ["ImperialImperialGrandRitualSystemPossibleMagicWords1", "ImperialImperialGrandRitualSystemPossibleMagicWords2", "ImperialImperialGrandRitualSystemPossibleMagicWords3", "ImperialImperialGrandRitualSystemPossibleMagicWords4", "ImperialImperialGrandRitualSystemPossibleMagicWords5", "ImperialImperialGrandRitualSystemPossibleMagicWords6", "ImperialImperialGrandRitualSystemPossibleMagicWords7", "ImperialImperialGrandRitualSystemPossibleMagicWords8", "ImperialImperialGrandRitualSystemPossibleMagicWords9", "ImperialImperialGrandRitualSystemPossibleMagicWords10", "ImperialImperialGrandRitualSystemPossibleMagicWords11", "ImperialImperialGrandRitualSystemPossibleMagicWords12", "ImperialImperialGrandRitualSystemPossibleMagicWords13", "ImperialImperialGrandRitualSystemPossibleMagicWords14", "ImperialImperialGrandRitualSystemPossibleMagicWords15", "ImperialImperialGrandRitualSystemPossibleMagicWords16", "ImperialImperialGrandRitualSystemPossibleMagicWords17", "ImperialImperialGrandRitualSystemPossibleMagicWords18", "ImperialImperialGrandRitualSystemPossibleMagicWords19", "ImperialImperialGrandRitualSystemPossibleMagicWords20", "ImperialImperialGrandRitualSystemPossibleMagicWords21", "ImperialImperialGrandRitualSystemPossibleMagicWords22", "ImperialImperialGrandRitualSystemPossibleMagicWords23"];
 
     private static readonly EntProtoId EffectEmpPulse = "EffectEmpPulse";
-    private static readonly ProtoId<ImperialAchievementPrototype> ImperialAchievementArchmage = "ImperialAchievementArchmage";
 
     private const float DrawDoAfterRange = 1.4f;
     private const float TearRealityChance = 0.5f;
