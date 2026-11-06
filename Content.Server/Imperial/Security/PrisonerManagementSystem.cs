@@ -210,7 +210,7 @@ public sealed class PrisonerManagementSystem : EntitySystem
                 info.InfoKeys.Add(Loc.GetString("prisoner-implant-info-status"));
                 info.InfoValues.Add(_securityImplant.GetBeaconStatus(mob));
             }
-            else if (TryComp<ChemImplantComponent>(implant, out _))
+            else if (HasComp<ChemImplantComponent>(implant))
             {
                 info.CanInject = true;
                 info.InfoKeys.Add(Loc.GetString("prisoner-implant-info-volume"));

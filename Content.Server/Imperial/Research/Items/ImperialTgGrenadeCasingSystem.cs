@@ -62,7 +62,7 @@ public sealed class ImperialTgGrenadeCasingSystem : EntitySystem
                 comp.Stash[beaker] = stash;
             }
 
-            if (TryComp<TimerTriggerComponent>(ent, out _))
+            if (HasComp<TimerTriggerComponent>(ent))
                 _schedule.Schedule(comp.ReleaseDelay, () =>
                 {
                     if (!TerminatingOrDeleted(ent) && ent.Comp.Stash.Count > 0)

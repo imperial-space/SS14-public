@@ -46,9 +46,9 @@ public sealed class PaintballSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<PaintballGunComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<PaintballGunComponent, EntInsertedIntoContainerMessage>(OnMagazineChanged);
-        SubscribeLocalEvent<PaintballGunComponent, EntRemovedFromContainerMessage>(OnMagazineChanged);
+        SubscribeLocalEvent<PaintballGunComponent, MapInitEvent>(OnUpdateVisuals);
+        SubscribeLocalEvent<PaintballGunComponent, EntInsertedIntoContainerMessage>(OnUpdateVisuals);
+        SubscribeLocalEvent<PaintballGunComponent, EntRemovedFromContainerMessage>(OnUpdateVisuals);
         SubscribeLocalEvent<PaintballGunComponent, GunShotEvent>(OnShot);
         SubscribeLocalEvent<PaintballGunComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<PaintballGunComponent, GotEmaggedEvent>(OnEmagged);
@@ -57,17 +57,7 @@ public sealed class PaintballSystem : EntitySystem
         SubscribeLocalEvent<PaintballProjectileComponent, ProjectileHitEvent>(OnProjectileHit);
     }
 
-    private void OnMapInit(Entity<PaintballGunComponent> ent, ref MapInitEvent args)
-    {
-        UpdateVisuals(ent);
-    }
-
-    private void OnMagazineChanged(Entity<PaintballGunComponent> ent, ref EntInsertedIntoContainerMessage args)
-    {
-        UpdateVisuals(ent);
-    }
-
-    private void OnMagazineChanged(Entity<PaintballGunComponent> ent, ref EntRemovedFromContainerMessage args)
+    private void OnUpdateVisuals<T>(Entity<PaintballGunComponent> ent, ref T args)
     {
         UpdateVisuals(ent);
     }

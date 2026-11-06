@@ -71,9 +71,9 @@ public sealed partial class ImperialManufacturingSystem : EntitySystem
 
         SubscribeLocalEvent<ImperialManufacturingComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ImperialManufacturingComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<ImperialManufacturingComponent, MoveEvent>(OnMove);
-        SubscribeLocalEvent<ImperialManufacturingComponent, AnchorStateChangedEvent>(OnAnchor);
-        SubscribeLocalEvent<ImperialManufacturingComponent, PowerChangedEvent>(OnPower);
+        SubscribeLocalEvent<ImperialManufacturingComponent, MoveEvent>(OnUpdateVisuals);
+        SubscribeLocalEvent<ImperialManufacturingComponent, AnchorStateChangedEvent>(OnUpdateVisuals);
+        SubscribeLocalEvent<ImperialManufacturingComponent, PowerChangedEvent>(OnUpdateVisuals);
         SubscribeLocalEvent<ImperialManufacturingComponent, EntityTerminatingEvent>(OnTerminating);
 
         InitializeMachines();
@@ -92,17 +92,7 @@ public sealed partial class ImperialManufacturingSystem : EntitySystem
         UpdateVisuals(ent);
     }
 
-    private void OnMove(Entity<ImperialManufacturingComponent> ent, ref MoveEvent args)
-    {
-        UpdateVisuals(ent);
-    }
-
-    private void OnAnchor(Entity<ImperialManufacturingComponent> ent, ref AnchorStateChangedEvent args)
-    {
-        UpdateVisuals(ent);
-    }
-
-    private void OnPower(Entity<ImperialManufacturingComponent> ent, ref PowerChangedEvent args)
+    private void OnUpdateVisuals<T>(Entity<ImperialManufacturingComponent> ent, ref T args)
     {
         UpdateVisuals(ent);
     }

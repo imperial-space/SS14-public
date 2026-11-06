@@ -405,7 +405,7 @@ public sealed class AssaultPodShipSystem : EntitySystem
             return;
         }
 
-        if (Transform(ent).GridUid is not { } grid || !TryComp<MapGridComponent>(grid, out _))
+        if (Transform(ent).GridUid is not { } grid || !HasComp<MapGridComponent>(grid))
             return;
 
         ent.Comp.State = AssaultPodState.Launching;

@@ -14,16 +14,11 @@ public sealed class ImperialDamagedLawBoardSystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<ImperialDamagedLawBoardComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<ImperialDamagedLawBoardComponent, EntGotRemovedFromContainerMessage>(OnRemoved);
+        SubscribeLocalEvent<ImperialDamagedLawBoardComponent, MapInitEvent>(OnRegenerate);
+        SubscribeLocalEvent<ImperialDamagedLawBoardComponent, EntGotRemovedFromContainerMessage>(OnRegenerate);
     }
 
-    private void OnMapInit(Entity<ImperialDamagedLawBoardComponent> ent, ref MapInitEvent args)
-    {
-        Regenerate(ent);
-    }
-
-    private void OnRemoved(Entity<ImperialDamagedLawBoardComponent> ent, ref EntGotRemovedFromContainerMessage args)
+    private void OnRegenerate<T>(Entity<ImperialDamagedLawBoardComponent> ent, ref T args)
     {
         Regenerate(ent);
     }

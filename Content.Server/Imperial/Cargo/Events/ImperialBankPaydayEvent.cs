@@ -29,4 +29,4 @@ namespace Content.Server.Imperial.Cargo;
 
 /// <summary>Зарплата выдана всем счетам (price_update TG: на этом шаге выходит экономический обзор).</summary>
 [ByRefEvent]
-public record struct ImperialBankPaydayEvent;
+public readonly record struct ImperialBankPaydayEvent;

@@ -20,9 +20,6 @@ public sealed class MegaphoneSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
-    /// <summary>Тик последнего срабатывания: одна реплика вызывает событие и для речи, и для рации.</summary>
-    private readonly Dictionary<EntityUid, GameTick> _lastTick = new();
-
     public override void Initialize()
     {
         base.Initialize();
@@ -52,7 +49,7 @@ public sealed class MegaphoneSystem : EntitySystem
 
     private void OnHolderShutdown(Entity<MegaphoneHolderComponent> ent, ref ComponentShutdown args)
     {
-        _lastTick.Remove(ent);
+        RemComp<MegaphoneLastTickComponent>(ent);
     }
 
     /// <summary>handle_speech().</summary>
@@ -62,7 +59,7 @@ public sealed class MegaphoneSystem : EntitySystem
             return;
 
         var tick = _timing.CurTick;
-        if (_lastTick.TryGetValue(ent, out var last) && last == tick)
+        if (TryGetLastTick(ent, out var last) && last == tick)
         {
             args.SpeechVerb = megaphone.Emagged ? megaphone.EmaggedSpeechVerb : megaphone.SpeechVerb;
             return;
@@ -74,7 +71,7 @@ public sealed class MegaphoneSystem : EntitySystem
             return;
         }
 
-        _lastTick[ent] = tick;
+        EnsureComp<MegaphoneLastTickComponent>(ent).Value = tick;
         megaphone.NextUse = _timing.CurTime + megaphone.Cooldown;
         args.SpeechVerb = megaphone.Emagged ? megaphone.EmaggedSpeechVerb : megaphone.SpeechVerb;
         _audio.PlayPvs(megaphone.Sound, ent);
@@ -88,5 +85,17 @@ public sealed class MegaphoneSystem : EntitySystem
         ent.Comp.Emagged = true;
         args.Handled = true;
         _popup.PopupEntity(Loc.GetString("megaphone-emagged"), ent, args.UserUid);
+    }
+
+    private bool TryGetLastTick(EntityUid uid, out GameTick value)
+    {
+        if (TryComp<MegaphoneLastTickComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            return true;
+        }
+
+        value = default!;
+        return false;
     }
 }

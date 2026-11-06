@@ -14,8 +14,8 @@ public sealed class UplinkGarrotedSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<UplinkGarrotedComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshSpeed);
-        SubscribeLocalEvent<UplinkGarrotedComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<UplinkGarrotedComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<UplinkGarrotedComponent, ComponentStartup>(OnRefreshMovementSpeedModifiers);
+        SubscribeLocalEvent<UplinkGarrotedComponent, ComponentShutdown>(OnRefreshMovementSpeedModifiers);
     }
 
     private void OnRefreshSpeed(Entity<UplinkGarrotedComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
@@ -26,13 +26,9 @@ public sealed class UplinkGarrotedSystem : EntitySystem
         args.ModifySpeed(GarrotedSpeed, GarrotedSpeed);
     }
 
-    private void OnStartup(Entity<UplinkGarrotedComponent> ent, ref ComponentStartup args)
+    private void OnRefreshMovementSpeedModifiers<T>(Entity<UplinkGarrotedComponent> ent, ref T args)
     {
         _speed.RefreshMovementSpeedModifiers(ent);
     }
 
-    private void OnShutdown(Entity<UplinkGarrotedComponent> ent, ref ComponentShutdown args)
-    {
-        _speed.RefreshMovementSpeedModifiers(ent);
-    }
 }

@@ -104,7 +104,7 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
             return;
         }
 
-        if (TryComp<InputMoverComponent>(uid, out var _))
+        if (HasComp<InputMoverComponent>(uid))
             UpdateDrawDepth(uid, GetDrawDepth(args.Component, component));
     }
 
@@ -210,7 +210,7 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
         if (pilotComponent.Vehicle != null && args.Container.Owner != pilotComponent.Vehicle)
         {
             args.Cancel();
-            _popup.PopupEntity(Loc.GetString("imperial-vehicle-cannot-insert-pilot"), uid, uid);
+            _popup.PopupPredicted(Loc.GetString("imperial-vehicle-cannot-insert-pilot"), uid, uid);
         }
     }
 
@@ -271,7 +271,7 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
         _transform.SetLocalPosition(riderUid, Vector2.Zero);
         _transform.SetLocalRotation(riderUid, Angle.Zero);
 
-        if (TryComp<InputMoverComponent>(vehicleUid, out var mover))
+        if (HasComp<InputMoverComponent>(vehicleUid))
         {
             UpdateDrawDepth(vehicleUid, GetDrawDepth(Transform(vehicleUid), component));
         }

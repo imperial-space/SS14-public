@@ -168,7 +168,7 @@ public sealed class ImperialBlackMarketSystem : EntitySystem
 
         var crate = Spawn(LaunchCrate, start);
         var goods = Spawn(item.Item, start);
-        if (TryComp<Content.Shared.Storage.Components.EntityStorageComponent>(crate, out _))
+        if (HasComp<Content.Shared.Storage.Components.EntityStorageComponent>(crate))
             EntityManager.System<Content.Shared.Storage.EntitySystems.SharedEntityStorageSystem>().Insert(goods, crate);
 
         _throwing.TryThrow(crate, -dir * 40f, LaunchBaseThrowSpeed, playSound: false);

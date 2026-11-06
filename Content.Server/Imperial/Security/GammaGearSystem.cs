@@ -43,8 +43,8 @@ public sealed class GammaGearSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<MedbeamComponent, AfterInteractEvent>(OnMedbeamAfterInteract);
-        SubscribeLocalEvent<MedbeamComponent, GotUnequippedHandEvent>(OnMedbeamUnequipped);
-        SubscribeLocalEvent<MedbeamComponent, GotEquippedHandEvent>(OnMedbeamEquipped);
+        SubscribeLocalEvent<MedbeamComponent, GotUnequippedHandEvent>(OnLoseTarget);
+        SubscribeLocalEvent<MedbeamComponent, GotEquippedHandEvent>(OnLoseTarget);
 
         SubscribeLocalEvent<GammaEnergyShieldComponent, GotEquippedEvent>(OnShieldEquipped);
         SubscribeLocalEvent<GammaEnergyShieldComponent, GotUnequippedEvent>(OnShieldUnequipped);
@@ -105,12 +105,7 @@ public sealed class GammaGearSystem : EntitySystem
         Dirty(ent, visuals);
     }
 
-    private void OnMedbeamUnequipped(Entity<MedbeamComponent> ent, ref GotUnequippedHandEvent args)
-    {
-        LoseTarget(ent);
-    }
-
-    private void OnMedbeamEquipped(Entity<MedbeamComponent> ent, ref GotEquippedHandEvent args)
+    private void OnLoseTarget<T>(Entity<MedbeamComponent> ent, ref T args)
     {
         LoseTarget(ent);
     }

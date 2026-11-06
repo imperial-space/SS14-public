@@ -88,11 +88,11 @@ public sealed class GulagSystem : EntitySystem
         SubscribeLocalEvent<GulagTeleporterComponent, ComponentShutdown>(OnTeleporterShutdown);
 
         SubscribeLocalEvent<GulagConsoleComponent, MapInitEvent>(OnConsoleMapInit);
-        SubscribeLocalEvent<GulagConsoleComponent, BoundUIOpenedEvent>(OnConsoleUiOpened);
+        SubscribeLocalEvent<GulagConsoleComponent, BoundUIOpenedEvent>(OnUpdateConsoleUi);
         SubscribeLocalEvent<GulagConsoleComponent, GulagConsoleActionMessage>(OnConsoleAction);
         SubscribeLocalEvent<GulagConsoleComponent, GulagConsoleSetGoalMessage>(OnConsoleSetGoal);
-        SubscribeLocalEvent<GulagConsoleComponent, EntInsertedIntoContainerMessage>(OnConsoleSlotChanged);
-        SubscribeLocalEvent<GulagConsoleComponent, EntRemovedFromContainerMessage>(OnConsoleSlotChanged);
+        SubscribeLocalEvent<GulagConsoleComponent, EntInsertedIntoContainerMessage>(OnUpdateConsoleUi);
+        SubscribeLocalEvent<GulagConsoleComponent, EntRemovedFromContainerMessage>(OnUpdateConsoleUi);
     }
 
     public override void Update(float frameTime)
@@ -310,17 +310,7 @@ public sealed class GulagSystem : EntitySystem
         return query.MoveNext(out var uid, out _) ? uid : null;
     }
 
-    private void OnConsoleUiOpened(Entity<GulagConsoleComponent> ent, ref BoundUIOpenedEvent args)
-    {
-        UpdateConsoleUi(ent);
-    }
-
-    private void OnConsoleSlotChanged(Entity<GulagConsoleComponent> ent, ref EntInsertedIntoContainerMessage args)
-    {
-        UpdateConsoleUi(ent);
-    }
-
-    private void OnConsoleSlotChanged(Entity<GulagConsoleComponent> ent, ref EntRemovedFromContainerMessage args)
+    private void OnUpdateConsoleUi<T>(Entity<GulagConsoleComponent> ent, ref T args)
     {
         UpdateConsoleUi(ent);
     }

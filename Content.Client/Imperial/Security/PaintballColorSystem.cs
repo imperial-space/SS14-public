@@ -12,16 +12,11 @@ public sealed class PaintballColorSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<PaintballColorComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<PaintballColorComponent, AfterAutoHandleStateEvent>(OnState);
+        SubscribeLocalEvent<PaintballColorComponent, ComponentStartup>(OnApply);
+        SubscribeLocalEvent<PaintballColorComponent, AfterAutoHandleStateEvent>(OnApply);
     }
 
-    private void OnStartup(Entity<PaintballColorComponent> ent, ref ComponentStartup args)
-    {
-        Apply(ent);
-    }
-
-    private void OnState(Entity<PaintballColorComponent> ent, ref AfterAutoHandleStateEvent args)
+    private void OnApply<T>(Entity<PaintballColorComponent> ent, ref T args)
     {
         Apply(ent);
     }

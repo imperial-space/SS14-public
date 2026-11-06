@@ -15,17 +15,12 @@ public sealed class EnergyShieldVisualsSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<EnergyShieldWearerComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<EnergyShieldWearerComponent, AfterAutoHandleStateEvent>(OnState);
+        SubscribeLocalEvent<EnergyShieldWearerComponent, ComponentStartup>(OnUpdate);
+        SubscribeLocalEvent<EnergyShieldWearerComponent, AfterAutoHandleStateEvent>(OnUpdate);
         SubscribeLocalEvent<EnergyShieldWearerComponent, ComponentShutdown>(OnShutdown);
     }
 
-    private void OnStartup(Entity<EnergyShieldWearerComponent> ent, ref ComponentStartup args)
-    {
-        Update(ent);
-    }
-
-    private void OnState(Entity<EnergyShieldWearerComponent> ent, ref AfterAutoHandleStateEvent args)
+    private void OnUpdate<T>(Entity<EnergyShieldWearerComponent> ent, ref T args)
     {
         Update(ent);
     }

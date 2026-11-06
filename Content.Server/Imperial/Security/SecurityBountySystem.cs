@@ -85,11 +85,11 @@ public sealed class SecurityBountySystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<SecurityBountyConsoleComponent, MapInitEvent>(OnConsoleMapInit);
-        SubscribeLocalEvent<SecurityBountyConsoleComponent, BoundUIOpenedEvent>(OnUiOpened);
+        SubscribeLocalEvent<SecurityBountyConsoleComponent, BoundUIOpenedEvent>(OnUpdateUi);
         SubscribeLocalEvent<SecurityBountyConsoleComponent, SecurityBountyActionMessage>(OnAction);
         SubscribeLocalEvent<SecurityBountyConsoleComponent, SecurityBountyPickMessage>(OnPick);
-        SubscribeLocalEvent<SecurityBountyConsoleComponent, EntInsertedIntoContainerMessage>(OnSlotChanged);
-        SubscribeLocalEvent<SecurityBountyConsoleComponent, EntRemovedFromContainerMessage>(OnSlotChanged);
+        SubscribeLocalEvent<SecurityBountyConsoleComponent, EntInsertedIntoContainerMessage>(OnUpdateUi);
+        SubscribeLocalEvent<SecurityBountyConsoleComponent, EntRemovedFromContainerMessage>(OnUpdateUi);
     }
 
     public override void Update(float frameTime)
@@ -149,17 +149,7 @@ public sealed class SecurityBountySystem : EntitySystem
         return null;
     }
 
-    private void OnUiOpened(Entity<SecurityBountyConsoleComponent> ent, ref BoundUIOpenedEvent args)
-    {
-        UpdateUi(ent);
-    }
-
-    private void OnSlotChanged(Entity<SecurityBountyConsoleComponent> ent, ref EntInsertedIntoContainerMessage args)
-    {
-        UpdateUi(ent);
-    }
-
-    private void OnSlotChanged(Entity<SecurityBountyConsoleComponent> ent, ref EntRemovedFromContainerMessage args)
+    private void OnUpdateUi<T>(Entity<SecurityBountyConsoleComponent> ent, ref T args)
     {
         UpdateUi(ent);
     }

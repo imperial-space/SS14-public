@@ -34,12 +34,6 @@ public sealed partial class ImperialFishTraitSystem
     /// <summary>ELECTROGENESIS_DURATION.</summary>
     private static readonly TimeSpan ElectrogenesisCooldown = TimeSpan.FromSeconds(40);
 
-    /// <summary>Конец перезарядки чернил по рыбам (TRAIT_FISH_INK_ON_COOLDOWN).</summary>
-    private readonly Dictionary<EntityUid, TimeSpan> _inkCooldown = new();
-
-    /// <summary>Хищники, отравившиеся токсичной рыбой.</summary>
-    private readonly HashSet<EntityUid> _poisoned = new();
-
     private static readonly ProtoId<ImperialFishTraitPrototype> HallucinogenicImperialFishTrait = "Hallucinogenic";
     private static readonly ProtoId<ImperialFishTraitPrototype> ElectrogenesisImperialFishTrait = "Electrogenesis";
     private static readonly EntProtoId ImperialFoodInkSac = "ImperialFoodInkSac";
@@ -59,8 +53,8 @@ public sealed partial class ImperialFishTraitSystem
 
     private void OnShutdown(Entity<ImperialFishComponent> ent, ref ComponentShutdown args)
     {
-        _inkCooldown.Remove(ent);
-        _poisoned.Remove(ent);
+        RemComp<ImperialFishTraitInkCooldownComponent>(ent);
+        RemComp<ImperialFishTraitPoisonedComponent>(ent);
     }
 
     public bool Has(ImperialFishComponent fish, string trait) => fish.Traits.Any(t => t.Id == trait);
@@ -186,7 +180,7 @@ public sealed partial class ImperialFishTraitSystem
         var fish = ent.Comp;
         var fishSys = FishSystem;
 
-        if (_poisoned.Contains(ent))
+        if (HasComp<ImperialFishTraitPoisonedComponent>(ent))
             fishSys.DamageFish(ent, 3 * dt);
 
         if (!Has(fish, "Electrogenesis") && _timing.CurTime < fish.TesliumUntil)
@@ -314,7 +308,7 @@ public sealed partial class ImperialFishTraitSystem
     {
         if (args.Dead)
         {
-            _poisoned.Remove(ent);
+            RemComp<ImperialFishTraitPoisonedComponent>(ent);
             if (Has(ent.Comp, "Revival"))
                 ent.Comp.ReviveAt = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(60, 121));
         }
@@ -328,7 +322,7 @@ public sealed partial class ImperialFishTraitSystem
         _popup.PopupEntity(Loc.GetString(message, ("fish", predator.Owner), ("prey", prey.Owner)), target, PopupType.SmallCaution);
 
         if ((Has(prey.Comp, "Toxic") || Has(prey.Comp, "Carpotoxin")) && !Has(predator.Comp, "ToxinImmunity"))
-            _poisoned.Add(predator);
+            EnsureComp<ImperialFishTraitPoisonedComponent>(predator);
 
         QueueDel(prey);
         FishSystem.SateHunger(predator);
@@ -367,13 +361,13 @@ public sealed partial class ImperialFishTraitSystem
                 InjectVenom(ent, target);
         }
 
-        if (Has(fish, "Ink") && !fish.Dead && (!_inkCooldown.TryGetValue(ent, out var until) || _timing.CurTime >= until))
+        if (Has(fish, "Ink") && !fish.Dead && (!TryGetInkCooldown(ent, out var until) || _timing.CurTime >= until))
         {
             var target = args.HitEntities[0];
             _statusEffects.TryAddStatusEffect<TemporaryBlindnessComponent>(target, "TemporaryBlindness", TimeSpan.FromSeconds(_random.Next(4, 9)), true);
             _popup.PopupEntity(Loc.GetString("imperial-fish-inked", ("target", target), ("fish", ent.Owner)), target, PopupType.MediumCaution);
             _audio.PlayPvs("/Audio/Effects/splat.ogg", target);
-            _inkCooldown[ent] = _timing.CurTime + InkCooldown;
+            EnsureComp<ImperialFishTraitInkCooldownComponent>(ent).Value = _timing.CurTime + InkCooldown;
         }
     }
 
@@ -407,5 +401,17 @@ public sealed partial class ImperialFishTraitSystem
     {
         if (Has(ent.Comp, "Ink") && _proto.HasIndex<EntityPrototype>(new Robust.Shared.Prototypes.ProtoId<EntityPrototype>("ImperialFoodInkSac")))
             Spawn(ImperialFoodInkSac, Transform(ent).Coordinates);
+    }
+
+    private bool TryGetInkCooldown(EntityUid uid, out TimeSpan value)
+    {
+        if (TryComp<ImperialFishTraitInkCooldownComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            return true;
+        }
+
+        value = default!;
+        return false;
     }
 }
