@@ -78,7 +78,7 @@ public sealed class WeaverSystem : EntitySystem
         }
 
         // Randomize melee damage within range
-        if (TryComp<MeleeWeaponComponent>(ent, out var melee))
+        if (HasComp<MeleeWeaponComponent>(ent))
         {
             var min = comp.IsEnraged ? comp.RageDamageMin : comp.NormalDamageMin;
             var max = comp.IsEnraged ? comp.RageDamageMax : comp.NormalDamageMax;

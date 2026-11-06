@@ -151,7 +151,7 @@ public sealed class ZlatozhorSystem : EntitySystem
             if (!TryComp<MobStateComponent>(hit, out var state) || state.CurrentState != MobState.Alive)
                 continue;
 
-            if (!TryComp<PhysicsComponent>(args.User, out _))
+            if (!HasComp<PhysicsComponent>(args.User))
                 continue;
 
             var zlatozhorPos = _transform.GetWorldPosition(hit);

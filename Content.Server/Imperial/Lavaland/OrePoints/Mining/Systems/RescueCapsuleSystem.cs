@@ -77,7 +77,7 @@ public sealed class RescueCapsuleSystem : EntitySystem
         var xform = Transform(userUid);
         if (xform.MapID == MapId.Nullspace ||
             xform.GridUid is not { } gridUid ||
-            !TryComp<MapGridComponent>(gridUid, out var gridComp))
+            !HasComp<MapGridComponent>(gridUid))
         {
             _popup.PopupEntity(Loc.GetString("rescue-capsule-blocked"), uid, userUid, PopupType.MediumCaution);
             return;

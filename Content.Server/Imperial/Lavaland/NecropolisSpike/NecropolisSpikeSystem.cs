@@ -103,7 +103,7 @@ public sealed class NecropolisSpikeSystem : EntitySystem
     /// <summary>Создает бездну в радиусе AbyssRadius через спавн Chasm-сущностей, не удаляя тайлы.</summary>
     private void CreateAbyss(EntityUid gridUid, EntityCoordinates center, float abyssRadius)
     {
-        if (!TryComp<MapGridComponent>(gridUid, out _))
+        if (!HasComp<MapGridComponent>(gridUid))
             return;
 
         var radius = (int)Math.Ceiling(abyssRadius);

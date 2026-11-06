@@ -41,7 +41,6 @@ public sealed class ColossusLootSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private readonly Dictionary<EntityUid, TimeSpan> _mutedUntil = new();
-    private readonly HashSet<EntityUid> _awaitingVoiceCommand = new();
 
     private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
 
@@ -110,7 +109,7 @@ public sealed class ColossusLootSystem : EntitySystem
         _actions.RemoveProvidedActions(args.Wearer, voice.Owner);
 
         voice.Comp.PrepareActionEntity = null;
-        _awaitingVoiceCommand.Remove(args.Wearer);
+        RemComp<ColossusLootAwaitingVoiceCommandComponent>(args.Wearer);
         Dirty(voice);
     }
 
@@ -131,7 +130,7 @@ public sealed class ColossusLootSystem : EntitySystem
             return;
         }
 
-        _awaitingVoiceCommand.Add(args.Performer);
+        EnsureComp<ColossusLootAwaitingVoiceCommandComponent>(args.Performer);
         _popup.PopupEntity(Loc.GetString("imperial-lavaland-colossus-loot-system-2"), args.Performer, args.Performer);
         args.Handled = true;
     }
@@ -145,7 +144,7 @@ public sealed class ColossusLootSystem : EntitySystem
             return;
 
         var hasPrefix = TryStripPrefix(args.Message, out var text);
-        var wasPending = _awaitingVoiceCommand.Remove(args.Source);
+        var wasPending = RemComp<ColossusLootAwaitingVoiceCommandComponent>(args.Source);
         if (!hasPrefix && !wasPending)
             return;
 
