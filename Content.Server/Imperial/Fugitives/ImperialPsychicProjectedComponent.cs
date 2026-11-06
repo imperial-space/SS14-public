@@ -41,4 +41,7 @@ public sealed partial class ImperialPsychicProjectedComponent : Component
 
     [ViewVariables]
     public TimeSpan NextShot;
+
+    [DataField]
+    public TimeSpan ShotDelay = TimeSpan.FromSeconds(0.2);
 }

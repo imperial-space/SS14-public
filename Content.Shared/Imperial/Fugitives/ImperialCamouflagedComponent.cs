@@ -11,4 +11,7 @@ public sealed partial class ImperialCamouflagedComponent : Component
 {
     [DataField, AutoNetworkedField]
     public float Alpha = 35f / 255f;
+
+    [DataField]
+    public float CamouflageEmpChance = 0.3f;
 }

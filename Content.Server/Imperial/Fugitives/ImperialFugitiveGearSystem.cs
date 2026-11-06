@@ -73,6 +73,15 @@ public sealed class ImperialFugitiveGearSystem : EntitySystem
         new (EntProtoId, int)[] { ("C4", 20), ("FreedomImplanter", 20), ("ClothingMaskGasChameleon", 20), ("ClothingEyesGlassesThermal", 20), ("ClothingEyesChameleon", 20) },
     };
 
+    private static readonly EntProtoId EffectSparks = "EffectSparks";
+    private static readonly EntProtoId MicroBombImplant = "MicroBombImplant";
+
+    private static readonly TimeSpan ProjectionDelay = TimeSpan.FromSeconds(10);
+    private static readonly TimeSpan BoosterDelay = TimeSpan.FromSeconds(10);
+
+    private const float EquipHunterRussianChance = 0.8f;
+    private const float EquipHunterRussianChance2 = 0.5f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -122,14 +131,14 @@ public sealed class ImperialFugitiveGearSystem : EntitySystem
     private void RemoveCamouflage(EntityUid uid)
     {
         RemComp<ImperialCamouflagedComponent>(uid);
-        Spawn("EffectSparks", Transform(uid).Coordinates);
+        Spawn(EffectSparks, Transform(uid).Coordinates);
         _popup.PopupEntity(Loc.GetString("imperial-fugitive-camouflage-off"), uid, uid);
     }
 
     /// <summary>implant/camouflage/emp_act(): 15% × сила — перегрузка.</summary>
     private void OnCamouflageEmp(Entity<ImperialCamouflagedComponent> ent, ref EmpPulseEvent args)
     {
-        if (!HasComp<ImperialCamouflageImplantComponent>(ent) || HasComp<ImperialInvisibilityComponent>(ent) || !_random.Prob(0.3f))
+        if (!HasComp<ImperialCamouflageImplantComponent>(ent) || HasComp<ImperialInvisibilityComponent>(ent) || !_random.Prob(ent.Comp.CamouflageEmpChance))
             return;
 
         _popup.PopupEntity(Loc.GetString("imperial-fugitive-camouflage-emp"), ent, Content.Shared.Popups.PopupType.MediumCaution);
@@ -278,11 +287,11 @@ public sealed class ImperialFugitiveGearSystem : EntitySystem
         switch (pack)
         {
             case ImperialHunterPack.Russian:
-                if (_random.Prob(0.8f))
+                if (_random.Prob(EquipHunterRussianChance))
                     Replace(body, "jumpsuit", _random.Pick(RussianUniforms));
-                if (_random.Prob(0.5f))
+                if (_random.Prob(EquipHunterRussianChance2))
                     Replace(body, "outerClothing", _random.Pick(RussianSuits));
-                if (_random.Prob(0.5f))
+                if (_random.Prob(EquipHunterRussianChance2))
                     Replace(body, "head", _random.Pick(RussianHelmets));
                 break;
             case ImperialHunterPack.Psyker:
@@ -304,7 +313,7 @@ public sealed class ImperialFugitiveGearSystem : EntitySystem
                 }
 
                 // implants = list(/obj/item/implant/explosive)
-                _implants.AddImplant(body, "MicroBombImplant");
+                _implants.AddImplant(body, MicroBombImplant);
                 break;
         }
 
@@ -371,7 +380,7 @@ public sealed class ImperialFugitiveGearSystem : EntitySystem
 
         args.Handled = true;
         var projected = EnsureComp<ImperialPsychicProjectedComponent>(args.Target);
-        projected.Until = _timing.CurTime + TimeSpan.FromSeconds(10);
+        projected.Until = _timing.CurTime + ProjectionDelay;
         _popup.PopupEntity(Loc.GetString("imperial-psyker-projection-victim"), args.Target, args.Target, Content.Shared.Popups.PopupType.LargeCaution);
         _chat.TryEmoteWithChat(args.Target, "Scream");
     }
@@ -383,7 +392,7 @@ public sealed class ImperialFugitiveGearSystem : EntitySystem
             return;
 
         args.Handled = true;
-        EnsureComp<ImperialPsychicBoostedComponent>(ent).Until = _timing.CurTime + TimeSpan.FromSeconds(10);
+        EnsureComp<ImperialPsychicBoostedComponent>(ent).Until = _timing.CurTime + BoosterDelay;
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Weapons/Guns/Cock/sf_rifle_cock.ogg"), ent);
         _popup.PopupEntity(Loc.GetString("imperial-psyker-booster-on"), ent, ent);
         RefreshHeldGuns(ent);
@@ -451,7 +460,7 @@ public sealed class ImperialFugitiveGearSystem : EntitySystem
             if (now < comp.NextShot)
                 continue;
 
-            comp.NextShot = now + TimeSpan.FromSeconds(0.2);
+            comp.NextShot = now + comp.ShotDelay;
             foreach (var held in _hands.EnumerateHeld(uid))
             {
                 if (!TryComp<GunComponent>(held, out var gun))
@@ -483,7 +492,7 @@ public sealed class ImperialFugitiveGearSystem : EntitySystem
             if (!capture.SuckIn)
                 continue;
 
-            foreach (var human in _lookup.GetEntitiesInRange<HumanoidProfileComponent>(xform.Coordinates, 1.5f))
+            foreach (var human in _lookup.GetEntitiesInRange<HumanoidProfileComponent>(xform.Coordinates, capture.UpdateRange))
             {
                 if (!IsWantedFugitive(human))
                     continue;

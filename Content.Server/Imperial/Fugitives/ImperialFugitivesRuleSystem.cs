@@ -90,6 +90,8 @@ public sealed class ImperialFugitivesRuleSystem : GameRuleSystem<ImperialFugitiv
 
     private static readonly string[] MaintenanceTiles = { "Plating", "FloorTechMaint", "FloorTechMaint2", "FloorTechMaint3" };
 
+    private static readonly EntProtoId ToolboxMechanicalFilled = "ToolboxMechanicalFilled";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -115,7 +117,7 @@ public sealed class ImperialFugitivesRuleSystem : GameRuleSystem<ImperialFugitiv
         }
 
         // collect_candidates(): иногда беглец один.
-        var count = _random.Prob(0.25f) ? 1 : _random.Next(3, 5);
+        var count = _random.Prob(component.StartedChance) ? 1 : _random.Next(3, 5);
         component.Backstory ??= count == 1
             ? _random.Pick(new[] { ImperialFugitiveBackstory.Invisible, ImperialFugitiveBackstory.Waldo })
             : _random.Pick(new[] { ImperialFugitiveBackstory.Cultist, ImperialFugitiveBackstory.Prisoner, ImperialFugitiveBackstory.Synth });
@@ -230,7 +232,7 @@ public sealed class ImperialFugitivesRuleSystem : GameRuleSystem<ImperialFugitiv
 
         if (leader)
         {
-            var toolbox = Spawn("ToolboxMechanicalFilled", Transform(body).Coordinates);
+            var toolbox = Spawn(ToolboxMechanicalFilled, Transform(body).Coordinates);
             _hands.TryPickupAnyHand(body, toolbox);
         }
 
@@ -249,7 +251,10 @@ public sealed class ImperialFugitivesRuleSystem : GameRuleSystem<ImperialFugitiv
     {
         _meta.SetEntityName(body, name);
         if (TryComp<MindComponent>(mindId, out var mind))
+        {
             mind.CharacterName = name;
+            Dirty(mindId, mind);
+        }
     }
 
     #endregion
@@ -333,7 +338,7 @@ public sealed class ImperialFugitivesRuleSystem : GameRuleSystem<ImperialFugitiv
     private void OnCaptureProgress(Entity<ImperialFugitiveCaptureConditionComponent> ent, ref ObjectiveGetProgressEvent args)
     {
         var (total, _, captured) = CountFugitives();
-        args.Progress = total == 0 ? 0f : (float) captured / total;
+        args.Progress = total == 0 ? 0f : (float)captured / total;
     }
 
     private (int Total, int Dead, int Captured) CountFugitives()

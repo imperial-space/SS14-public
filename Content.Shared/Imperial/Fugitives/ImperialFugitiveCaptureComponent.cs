@@ -15,4 +15,7 @@ public sealed partial class ImperialFugitiveCaptureComponent : Component
 
     [DataField]
     public TimeSpan CaptureTime = TimeSpan.FromSeconds(5);
+
+    [DataField]
+    public float UpdateRange = 1.5f;
 }

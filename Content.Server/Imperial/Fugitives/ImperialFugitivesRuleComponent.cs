@@ -67,4 +67,7 @@ public sealed partial class ImperialFugitivesRuleComponent : Component
 
     [ViewVariables]
     public readonly List<EntityUid> Hunters = new();
+
+    [DataField]
+    public float StartedChance = 0.25f;
 }
