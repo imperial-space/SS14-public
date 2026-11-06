@@ -34,6 +34,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.FixedPoint;
 
 namespace Content.Server.Imperial.BluespaceTap;
 
@@ -49,7 +50,7 @@ public sealed partial class BluespaceTapComponent : Component
 
     /// <summary>Порог «материнской жилы» (motherlode_interval, цель станции).</summary>
     [DataField]
-    public float MotherlodeInterval = 45000;
+    public TimeSpan MotherlodeInterval = TimeSpan.FromSeconds(45000);
 
     [DataField]
     public TimeSpan ProcessInterval = TimeSpan.FromSeconds(2);
@@ -102,4 +103,28 @@ public sealed partial class BluespaceTapComponent : Component
     [ViewVariables] public List<TimeSpan> PendingPortals = new();
 
     [ViewVariables] public float LastDraw;
+
+    [DataField]
+    public TimeSpan EventArcTime = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public float ProduceChance = 0.25f;
+
+    [DataField]
+    public FixedPoint2 EventDirtyQuantity = 50;
+
+    [DataField]
+    public TimeSpan EventDirtyDuration = TimeSpan.FromSeconds(10f);
+
+    [DataField]
+    public float EventArcRange = 5f;
+
+    [DataField]
+    public float EventArcChance = 0.5f;
+
+    [DataField]
+    public float UpdateVisualsRadius = 15f;
+
+    [DataField]
+    public float UpdateVisualsRadius2 = 1.5f;
 }

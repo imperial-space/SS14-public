@@ -65,4 +65,7 @@ public sealed partial class NetherPortalComponent : Component
     [ViewVariables] public HashSet<EntityUid> Spawned = new();
     [ViewVariables] public TimeSpan NextSpawn;
     [ViewVariables] public TimeSpan NextConsume;
+
+    [DataField]
+    public TimeSpan ConsumeDelay = TimeSpan.FromSeconds(2);
 }

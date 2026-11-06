@@ -83,6 +83,9 @@ public sealed class BluespaceTapSystem : EntitySystem
     /// <summary>static product_list: цены растут общие для всех сборщиков.</summary>
     private readonly Dictionary<int, int> _costs = new();
 
+    private static readonly EntProtoId EffectSparks = "EffectSparks";
+    private static readonly EntProtoId Smoke = "Smoke";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -136,7 +139,7 @@ public sealed class BluespaceTapSystem : EntitySystem
     private void OnMapInit(Entity<BluespaceTapComponent> ent, ref MapInitEvent args)
     {
         ent.Comp.NextIntervals = ent.Comp.Products.Select(p => p.Interval).ToList();
-        ent.Comp.NextMotherlode = ent.Comp.MotherlodeInterval;
+        ent.Comp.NextMotherlode = (float) ent.Comp.MotherlodeInterval.TotalSeconds;
         ent.Comp.NextProcess = _timing.CurTime + ent.Comp.ProcessInterval;
         UpdateVisuals(ent);
     }
@@ -171,7 +174,7 @@ public sealed class BluespaceTapSystem : EntitySystem
             return;
 
         args.Handled = true;
-        Spawn("EffectSparks", Transform(ent).Coordinates);
+        Spawn(EffectSparks, Transform(ent).Coordinates);
         _popup.PopupEntity(Loc.GetString("bluespace-tap-emagged", ("user", args.UserUid)), ent, PopupType.MediumCaution);
     }
 
@@ -287,7 +290,7 @@ public sealed class BluespaceTapSystem : EntitySystem
         if (tap.TotalPoints > tap.NextMotherlode)
         {
             ProduceMotherlode(ent);
-            tap.NextMotherlode += tap.MotherlodeInterval;
+            tap.NextMotherlode += (float) tap.MotherlodeInterval.TotalSeconds;
         }
 
         // Шанс порталов: 0.1 % за цикл на каждый мегаватт превышения над стабилизаторами (+5 % под емагом).
@@ -378,11 +381,11 @@ public sealed class BluespaceTapSystem : EntitySystem
         }
 
         _audio.PlayPvs(tap.BlinkSound, ent);
-        Spawn("EffectSparks", Transform(ent).Coordinates);
+        Spawn(EffectSparks, Transform(ent).Coordinates);
 
         SpawnItem(ent, tap.Products[index], FindSpawnLocation(ent, random: false) ?? Transform(ent).Coordinates);
 
-        if (doubleChance && _random.Prob(0.25f) && FindSpawnLocation(ent, random: true) is { } far)
+        if (doubleChance && _random.Prob(ent.Comp.ProduceChance) && FindSpawnLocation(ent, random: true) is { } far)
             SpawnItem(ent, tap.Products[index], far);
     }
 
@@ -489,29 +492,29 @@ public sealed class BluespaceTapSystem : EntitySystem
     {
         ent.Comp.IsDirty = true;
         var solution = new Solution();
-        solution.AddReagent(_random.Pick(new[] { "Carbon", "Flour", "Blood" }), 50);
+        solution.AddReagent(_random.Pick(new[] { "Carbon", "Flour", "Blood" }), ent.Comp.EventDirtyQuantity);
 
-        var smoke = Spawn("Smoke", Transform(ent).Coordinates);
-        _smoke.StartSmoke(smoke, solution, 10f, 3);
+        var smoke = Spawn(Smoke, Transform(ent).Coordinates);
+        _smoke.StartSmoke(smoke, solution, (float) ent.Comp.EventDirtyDuration.TotalSeconds, 3);
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/smoke.ogg"), ent);
         Radio(ent, Loc.GetString("bluespace-tap-event-dirty"));
     }
 
     private void EventArc(Entity<BluespaceTapComponent> ent)
     {
-        var mobs = _lookup.GetEntitiesInRange<MobStateComponent>(Transform(ent).Coordinates, 5f)
+        var mobs = _lookup.GetEntitiesInRange<MobStateComponent>(Transform(ent).Coordinates, ent.Comp.EventArcRange)
             .Where(m => !_mobState.IsDead(m))
             .Select(m => m.Owner)
             .ToList();
 
-        var mass = _random.Prob(0.5f);
+        var mass = _random.Prob(ent.Comp.EventArcChance);
         Radio(ent, Loc.GetString("bluespace-tap-event-arc", ("class", mass ? "E-2" : "E-1")));
         if (mobs.Count == 0)
             return;
 
         foreach (var mob in mass ? mobs : new List<EntityUid> { _random.Pick(mobs) })
         {
-            _electrocution.TryDoElectrocution(mob, ent, _random.Next(5, 26), TimeSpan.FromSeconds(1), true);
+            _electrocution.TryDoElectrocution(mob, ent, _random.Next(5, 26), ent.Comp.EventArcTime, true);
             _audio.PlayPvs(ent.Comp.ZapSound, mob);
         }
     }
@@ -564,7 +567,7 @@ public sealed class BluespaceTapSystem : EntitySystem
         if (now < portal.NextConsume || !_container.TryGetContainer(ent, NetherPortalComponent.ContainerId, out var container))
             return;
 
-        portal.NextConsume = now + TimeSpan.FromSeconds(2);
+        portal.NextConsume = now + ent.Comp.ConsumeDelay;
         foreach (var victim in container.ContainedEntities.ToArray())
         {
             if (!HasComp<MobStateComponent>(victim))
@@ -659,14 +662,14 @@ public sealed class BluespaceTapSystem : EntitySystem
         if (portaling)
         {
             _light.SetEnabled(ent, true);
-            _light.SetRadius(ent, 15);
+            _light.SetRadius(ent, ent.Comp.UpdateVisualsRadius);
             _light.SetEnergy(ent, 5);
             _light.SetColor(ent, Color.FromHex("#ff0000"));
         }
         else
         {
             _light.SetEnabled(ent, powered);
-            _light.SetRadius(ent, 1.5f);
+            _light.SetRadius(ent, ent.Comp.UpdateVisualsRadius2);
             _light.SetEnergy(ent, 1);
             _light.SetColor(ent, Color.FromHex("#353535"));
         }
