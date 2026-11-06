@@ -1,0 +1,73 @@
+{
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "Taken from tgstation/BandaStation (voidwalker.dmi)",
+    "size":  {
+                 "x":  32,
+                 "y":  48
+             },
+    "states":  [
+                   {
+                       "name":  "voidwalker",
+                       "directions":  4,
+                       "delays":  [
+                                      [
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22
+                                      ],
+                                      [
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22
+                                      ],
+                                      [
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22
+                                      ],
+                                      [
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22,
+                                          0.22
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "voidwalker_stealthed",
+                       "directions":  4
+                   },
+                   {
+                       "name":  "sunwalker",
+                       "directions":  4
+                   },
+                   {
+                       "name":  "sunwalker_stealthed",
+                       "directions":  4
+                   }
+               ]
+}

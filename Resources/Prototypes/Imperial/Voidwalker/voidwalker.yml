@@ -1,0 +1,484 @@
+# Пустоходец и гелиарх TG (antagonists/voidwalker).
+
+# ─── Роль и правила ───
+
+- type: antag
+  id: ImperialVoidwalker
+  name: roles-antag-imperial-voidwalker-name
+  antagonist: true
+  setPreference: false
+  objective: roles-antag-imperial-voidwalker-objective
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleImperialVoidwalker
+  components:
+  - type: MindRole
+    antagPrototype: ImperialVoidwalker
+    roleType: SoloAntagonist
+  - type: ImperialVoidwalkerRole
+
+# /datum/dynamic_ruleset/midround/from_ghosts/voidwalker: weight 5, min_pop 40.
+- type: entity
+  parent: BaseGameRule
+  id: ImperialVoidwalker
+  components:
+  - type: StationEvent
+    weight: 5
+    duration: null
+    earliestStart: 20
+    minimumPlayers: 40
+  - type: ImperialVoidwalkerRule
+
+# Гелиарх: в TG только для админов.
+- type: entity
+  parent: BaseGameRule
+  id: ImperialSunwalker
+  components:
+  - type: ImperialVoidwalkerRule
+    spawner: ImperialSpawnPointSunwalker
+
+- type: entity
+  parent: BaseObjective
+  id: ImperialVoidwalkerObjective
+  name: Покажи им красоту пустоты.
+  description: Выжить до конца раунда.
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-voidwalker
+    difficulty: 1
+    unique: true
+    icon:
+      sprite: Imperial/Voidwalker/items.rsi
+      state: cosmic_skull_drained
+  - type: ImperialVoidwalkerCondition
+
+- type: entity
+  parent: ImperialVoidwalkerObjective
+  id: ImperialSunwalkerObjective
+  name: Научите их бояться пустоты.
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: MarkerBase
+  id: ImperialSpawnPointVoidwalker
+  name: пустоходец
+  components:
+  - type: GhostRole
+    name: imperial-voidwalker-ghost-name
+    description: imperial-voidwalker-ghost-desc
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: ImperialMobVoidwalker
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Imperial/Voidwalker/voidwalker.rsi
+      state: voidwalker_stealthed
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: ImperialSpawnPointVoidwalker
+  id: ImperialSpawnPointSunwalker
+  name: гелиарх
+  components:
+  - type: GhostRole
+    name: imperial-sunwalker-ghost-name
+    description: imperial-sunwalker-ghost-desc
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: ImperialMobSunwalker
+
+# ─── Моб ───
+
+- type: damageModifierSet
+  id: ImperialVoidwalker
+  coefficients:
+    Heat: 0.66
+    Cold: 0.66
+    Shock: 0.66
+    Asphyxiation: 0
+
+# /mob/living/basic/voidwalker
+- type: entity
+  parent: [ SimpleSpaceMobBase, FlyingMobBase, MobCombat ]
+  id: ImperialMobVoidwalker
+  name: пустоходец
+  description: Стеклообразное существо из пустоты между звёздами. Наверное, не стоит так пристально на него смотреть.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Voidwalker/voidwalker.rsi
+    offset: 0,0.25
+    layers:
+    - state: voidwalker
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: voidwalker
+      Dead:
+        Base: voidwalker
+  - type: InputMover
+  - type: MobMover
+  - type: Eye
+    drawFov: false
+  - type: NpcFactionMember
+    factions:
+    - Dragon
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: ImperialVoidwalker
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcClaw
+    soundHit:
+      path: /Audio/Imperial/Voidwalker/shrink_hit.ogg
+    damage:
+      types:
+        Asphyxiation: 13
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 5.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 80
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: Stealth
+    enabled: false
+    lastVisibility: -1
+  - type: Hands
+  - type: Puller
+    needsHands: false
+  - type: Muted
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Common
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+  - type: ImperialGlassPasser
+  - type: ImperialVoidwalker
+  - type: ImperialVoidwalkerAntag
+    objectiveTexts:
+    - imperial-voidwalker-objective-1
+    - imperial-voidwalker-objective-2
+    - imperial-voidwalker-objective-3
+  - type: ActionGrant
+    actions:
+    - ImperialActionVoidUnsettle
+    - ImperialActionVoidTelepathy
+    - ImperialActionVoidDash
+    - ImperialActionVoidConvertWall
+  - type: PointLight
+    radius: 1.5
+    energy: 0.4
+    color: "#7a3aa8"
+
+# /mob/living/basic/voidwalker/sunwalker
+- type: entity
+  parent: ImperialMobVoidwalker
+  id: ImperialMobSunwalker
+  name: гелиарх
+  description: Космическое существо, покрытое звёздной короной. Вам ОПРЕДЕЛЁННО не стоит на него смотреть.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Voidwalker/voidwalker.rsi
+    offset: 0,0.25
+    layers:
+    - state: sunwalker
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: sunwalker
+      Dead:
+        Base: sunwalker
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcClaw
+    soundHit:
+      path: /Audio/Imperial/Voidwalker/shrink_hit.ogg
+    damage:
+      types:
+        Heat: 25
+        Structural: 50
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 5
+  - type: ImperialVoidwalker
+    canAbduct: false
+    sunwalker: true
+    dashDamage: 30
+  - type: ImperialVoidwalkerAntag
+    objective: ImperialSunwalkerObjective
+    greeting: imperial-sunwalker-greeting
+    objectiveTexts:
+    - imperial-sunwalker-objective-1
+  - type: ActionGrant
+    actions:
+    - ImperialActionVoidTelepathy
+    - ImperialActionSunDash
+  - type: PointLight
+    radius: 7
+    energy: 2
+    color: "#cfe4ff"
+
+# ─── Способности ───
+
+- type: entity
+  id: ImperialActionVoidUnsettle
+  name: Тревога
+  description: Смотрите прямо в глаза тому, кто вас не видит. Задержитесь в поле его зрения, чтобы оглушить на 2 секунды и сообщить о своём присутствии.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Voidwalker/actions.rsi
+      state: unsettle
+    useDelay: 12
+  - type: TargetAction
+    range: 9
+    checkCanAccess: false
+  - type: EntityTargetAction
+    event: !type:ImperialVoidUnsettleActionEvent
+    canTargetSelf: false
+    whitelist:
+      components:
+      - MobState
+
+- type: entity
+  id: ImperialActionVoidTelepathy
+  name: Космическая передача
+  description: Передайте мысль выбранному существу.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Voidwalker/actions.rsi
+      state: telepathy
+    useDelay: 1
+  - type: TargetAction
+    range: 7
+    checkCanAccess: false
+  - type: EntityTargetAction
+    event: !type:ImperialVoidTelepathyActionEvent
+    canTargetSelf: false
+    whitelist:
+      components:
+      - MindContainer
+
+- type: entity
+  id: ImperialActionVoidDash
+  name: Космический рывок
+  description: Стремительный рывок сквозь космос. Цель должна быть в космосе.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Voidwalker/actions.rsi
+      state: dash
+    useDelay: 8
+  - type: TargetAction
+    range: 40
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:ImperialVoidDashActionEvent
+
+- type: entity
+  parent: ImperialActionVoidDash
+  id: ImperialActionSunDash
+  name: Звёздный рывок
+  description: Рывок, оставляющий за собой пламя.
+
+- type: entity
+  id: ImperialActionVoidConvertWall
+  name: Окно в пустоту
+  description: Превратите обычную стену (и соседние) в окна пустоты, сквозь которые можно пройти. Нужны похищения.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Voidwalker/actions.rsi
+      state: unsettle
+    useDelay: 1
+  - type: TargetAction
+    range: 1.5
+  - type: EntityTargetAction
+    event: !type:ImperialVoidConvertWallActionEvent
+    canTargetSelf: false
+    whitelist:
+      tags:
+      - Wall
+
+# ─── Мир и эффекты ───
+
+# /obj/effect/decal/cleanable/vomit/nebula
+- type: entity
+  id: ImperialNebulaVomit
+  name: туманная рвота
+  description: Господи, как... красиво.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Voidwalker/items.rsi
+    drawdepth: FloorObjects
+    shader: unshaded
+    layers:
+    - state: vomitnebula_1
+      map: [ "random" ]
+  - type: RandomSprite
+    available:
+    - random:
+        vomitnebula_1: ""
+        vomitnebula_2: ""
+        vomitnebula_3: ""
+        vomitnebula_4: ""
+  - type: ImperialNebulaVomit
+
+# /obj/effect/temp_visual/circle_wave/unsettle
+- type: entity
+  parent: EffectEmpPulse
+  id: ImperialVoidUnsettleWave
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+    color: "#a020f0"
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: Effects/emp.rsi
+      state: emp_pulse
+
+# /obj/structure/window/fulltile/voidwalker
+- type: entity
+  parent: Window
+  id: ImperialVoidWindow
+  name: окно, запачканное пустотой
+  description: Это окно затемняет вид на другую сторону настолько, что видны лишь отблески звёзд. В стекле ничего не отражается.
+  components:
+  - type: Sprite
+    color: "#642a949d"
+
+# /obj/item/clothing/head/helmet/skull/cosmic
+- type: entity
+  parent: BaseItem
+  id: ImperialCosmicSkull
+  name: космический череп
+  description: Вы можете видеть и ощутить окружающее пространство, пульсирующее сквозь него...
+  components:
+  - type: Sprite
+    sprite: Imperial/Voidwalker/items.rsi
+    layers:
+    - state: cosmic_skull_charged
+      map: [ "base" ]
+  - type: Item
+    size: Normal
+  - type: PointLight
+    radius: 3
+    energy: 1
+    color: "#CC00CC"
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ImperialCosmicSkullVisuals.Drained:
+        base:
+          True: { state: cosmic_skull_drained }
+          False: { state: cosmic_skull_charged }
+  - type: ImperialCosmicSkull
+
+# /obj/item/void_eater
+- type: entity
+  parent: BaseItem
+  id: ImperialVoidEater
+  name: пожиратель пустоты
+  description: Искривлённая конечность, способная разбить любое стекло и разорвать любую плоть.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Voidwalker/items.rsi
+    state: tentacle
+  - type: Item
+    size: Huge
+    sprite: Imperial/Voidwalker/tentacle_inhand.rsi
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 25
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Unremoveable
+    deleteOnDrop: true
+  - type: ImperialVoidEater
+
+# /obj/effect/wisp_mobile
+- type: entity
+  parent: Incorporeal
+  id: ImperialWispMobile
+  name: огонёк
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Voidwalker/items.rsi
+    state: wisp
+    shader: unshaded
+    drawdepth: Mobs
+  - type: InputMover
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2
+  - type: PointLight
+    radius: 4
+    energy: 1
+    color: "#ffffff"
+  - type: ContainerContainer
+    containers:
+      imperial_wisp_driver: !type:ContainerSlot
+  - type: ImperialWisp
+
+# /obj/effect/wisp_food
+- type: entity
+  id: ImperialWispFood
+  name: огонёк
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Voidwalker/items.rsi
+    state: wisp
+    shader: unshaded
+    color: "#ffff00"
+  - type: PointLight
+    radius: 4
+    energy: 1
+    color: "#ffffff"
+  - type: ImperialWispFood

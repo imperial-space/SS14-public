@@ -1,0 +1,7 @@
+# ImperialVoidwalkerSystem.cs: Names
+- type: localizedDataset
+  id: ImperialImperialVoidwalkerSystemNames
+  values:
+    prefix: imperial-voidwalker-imperial-voidwalker-system-names-
+    count: 8
+

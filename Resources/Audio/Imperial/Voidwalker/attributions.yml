@@ -1,0 +1,11 @@
+- files:
+  - shrink_hit.ogg
+  - curse1.ogg
+  - curse5.ogg
+  - ethereal_exit.ogg
+  - blind.ogg
+  - server-ready.ogg
+  - blobattack.ogg
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation (sound)"
+  source: "https://github.com/ss220club/BandaStation"
