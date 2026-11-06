@@ -1,0 +1,41 @@
+# Polymorph prototypes for the Heretic Stalker familiar (Ritual of Solitude / path of Flesh)
+
+- type: polymorph
+  id: StalkerPolymorphCat
+  configuration:
+    entity: MobCat
+    forced: false
+    inventory: Drop
+    revertOnDeath: true
+
+- type: polymorph
+  id: StalkerPolymorphMouse
+  configuration:
+    entity: MobMouse
+    forced: false
+    inventory: Drop
+    revertOnDeath: true
+
+- type: polymorph
+  id: StalkerPolymorphCockroach
+  configuration:
+    entity: MobCockroach
+    forced: false
+    inventory: Drop
+    revertOnDeath: true
+
+- type: polymorph
+  id: StalkerPolymorphBorg
+  configuration:
+    entity: MobCleanBot
+    forced: false
+    inventory: Drop
+    revertOnDeath: true
+
+- type: polymorph
+  id: StalkerPolymorphDrone
+  configuration:
+    entity: MobFireBot
+    forced: false
+    inventory: Drop
+    revertOnDeath: true

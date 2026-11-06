@@ -1,0 +1,15 @@
+- type: entity
+  parent: WeatherBase
+  id: WeatherVoidStorm
+  components:
+  - type: WeatherStatusEffect
+    ignoreRoof: true
+    sprite:
+      sprite: /Textures/Effects/weather.rsi
+      state: snowfall_light
+    color: "#000000"
+    sound:
+      path: /Audio/Imperial/heretic/sound_ambience_antag_heretic_ascend_void.ogg
+      params:
+        loop: true
+        volume: -10

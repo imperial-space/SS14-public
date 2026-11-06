@@ -1,0 +1,176 @@
+using System.Numerics;
+using Content.Server.Atmos.EntitySystems;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Atmos.Components;
+using Content.Shared.FixedPoint;
+using Content.Shared.Imperial.Heretic.Core;
+using Content.Shared.Imperial.Heretic.Paths.Ash;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
+using Content.Shared.NPC.Prototypes;
+using Content.Shared.NPC.Systems;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
+using Content.Shared.Damage.Prototypes;
+
+namespace Content.Server.Imperial.Heretic.Paths.Ash;
+
+public sealed class HereticFireSharkSystem : EntitySystem
+{
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly FlammableSystem _flammable = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly NpcFactionSystem _faction = default!;
+
+    private static readonly ProtoId<NpcFactionPrototype> FamiliarFaction = "HereticFamiliar";
+
+    private static readonly SoundPathSpecifier AttackSound =
+        new("/Audio/Imperial/heretic/sound_effects_curse_curse2.ogg");
+
+    private static readonly ProtoId<DamageTypePrototype> BluntDamageType = "Blunt";
+
+    private static readonly EntProtoId HereticEffectFireExplosion = "HereticEffectFireExplosion";
+    private static readonly EntProtoId HereticEffectAshBlink = "HereticEffectAshBlink";
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<HereticFireSharkComponent, MobStateComponent>();
+        while (query.MoveNext(out var uid, out var shark, out var mobState))
+        {
+            if (mobState.CurrentState == MobState.Dead)
+            {
+                Spawn(HereticEffectFireExplosion, Transform(uid).Coordinates);
+                QueueDel(uid);
+                continue;
+            }
+
+            if (shark.LifetimeEnd == TimeSpan.Zero)
+                shark.LifetimeEnd = _timing.CurTime + shark.Lifetime;
+
+            if (_timing.CurTime >= shark.LifetimeEnd)
+            {
+                Spawn(HereticEffectFireExplosion, Transform(uid).Coordinates);
+                QueueDel(uid);
+                continue;
+            }
+
+            // Passive regen
+            if (_timing.CurTime >= shark.NextRegen)
+            {
+                shark.NextRegen = _timing.CurTime + shark.RegenInterval;
+                var heal = new DamageSpecifier();
+                heal.DamageDict[BluntDamageType] = FixedPoint2.New(-shark.RegenAmount);
+                _damage.TryChangeDamage(uid, heal, ignoreResistances: true);
+            }
+
+            // Fire trail
+            if (_timing.CurTime >= shark.NextFireTrail)
+            {
+                shark.NextFireTrail = _timing.CurTime + shark.FireTrailInterval;
+                Spawn(HereticEffectAshBlink, Transform(uid).Coordinates);
+            }
+
+            if (_timing.CurTime >= shark.NextRetarget || shark.CachedTarget is { } old && (TerminatingOrDeleted(old)
+                    || !TryComp<MobStateComponent>(old, out var oldMob) || oldMob.CurrentState == MobState.Dead))
+            {
+                shark.CachedTarget = ResolveTarget(uid, shark);
+                shark.NextRetarget = _timing.CurTime + RetargetInterval;
+            }
+
+            var target = shark.CachedTarget;
+            if (target == null)
+                continue;
+
+            var myPos = _xform.GetWorldPosition(uid);
+            var targetPos = _xform.GetWorldPosition(target.Value);
+            var dir = targetPos - myPos;
+            var dist = dir.Length();
+
+            if (dist <= shark.AttackRange)
+            {
+                if (_timing.CurTime >= shark.NextAttack)
+                {
+                    shark.NextAttack = _timing.CurTime + shark.AttackCooldown;
+
+                    var dmg = new DamageSpecifier(shark.UpdateBluntDamage);
+                    _damage.TryChangeDamage(target.Value, dmg, ignoreResistances: false);
+                    if (HasComp<FlammableComponent>(target.Value))
+                        _flammable.AdjustFireStacks(target.Value, 3f, ignite: true);
+                    _audio.PlayPvs(AttackSound, uid);
+                    Spawn(HereticEffectAshBlink, Transform(target.Value).Coordinates);
+
+                    // Bonus burst on marked target — consumes the mark
+                    if (HasComp<AshMarkComponent>(target.Value))
+                    {
+                        var bonusDmg = new DamageSpecifier(shark.BonusDamage);
+                        _damage.TryChangeDamage(target.Value, bonusDmg, ignoreResistances: false);
+                        if (HasComp<FlammableComponent>(target.Value))
+                            _flammable.AdjustFireStacks(target.Value, 5f, ignite: true);
+                        Spawn(HereticEffectFireExplosion, Transform(target.Value).Coordinates);
+                        RemCompDeferred<AshMarkComponent>(target.Value);
+                    }
+                }
+            }
+            else
+            {
+                var move = Vector2.Normalize(dir) * shark.MoveSpeed * frameTime;
+                _xform.SetWorldPosition(uid, myPos + move);
+            }
+        }
+    }
+
+    private static readonly TimeSpan RetargetInterval = TimeSpan.FromSeconds(0.5);
+
+    private EntityUid? ResolveTarget(EntityUid self, HereticFireSharkComponent shark)
+    {
+        // Prefer the designated target while alive
+        if (shark.TargetUid != null && !Deleted(shark.TargetUid))
+        {
+            if (TryComp<MobStateComponent>(shark.TargetUid, out var ms) && ms.CurrentState != MobState.Dead)
+                return shark.TargetUid;
+        }
+
+        // Fall back to nearest living mob in range
+        EntityUid? nearest = null;
+        float nearestDist = float.MaxValue;
+
+        foreach (var ent in _lookup.GetEntitiesInRange<MobStateComponent>(Transform(self).Coordinates, shark.ResolveTargetRange))
+        {
+            if (ent.Owner == self)
+                continue;
+            if (IsAlly(ent.Owner))
+                continue;
+            if (!TryComp<MobStateComponent>(ent.Owner, out var ms2))
+                continue;
+            if (ms2.CurrentState == MobState.Dead)
+                continue;
+
+            var dist = (_xform.GetWorldPosition(ent.Owner) - _xform.GetWorldPosition(self)).Length();
+            if (dist < nearestDist)
+            {
+                nearestDist = dist;
+                nearest = ent.Owner;
+            }
+        }
+
+        return nearest;
+    }
+
+    /// <summary>
+    /// Еретики и их фамильяры — свои: миньоны пепла их не атакуют.
+    /// </summary>
+    private bool IsAlly(EntityUid uid)
+    {
+        return HasComp<HereticComponent>(uid)
+            || HasComp<HereticAshManComponent>(uid)
+            || HasComp<HereticFireSharkComponent>(uid)
+            || _faction.IsMember(uid, FamiliarFaction);
+    }
+}

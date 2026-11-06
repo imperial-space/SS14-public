@@ -1,0 +1,8 @@
+namespace Content.Shared.Imperial.Heretic.Paths.Blade;
+
+[RegisterComponent]
+public sealed partial class HereticBladeBladeComponent : Component
+{
+    [DataField]
+    public bool Infused = false;
+}

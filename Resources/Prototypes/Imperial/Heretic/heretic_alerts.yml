@@ -1,0 +1,15 @@
+- type: alert
+  id: HereticRealignment
+  icons:
+  - sprite: Imperial/heretic/screen_alert.rsi
+    state: realignment
+  name: Перестройка
+  description: Вы находитесь в состоянии реорганизации. Атаковать невозможно.
+
+- type: alert
+  id: StarMark
+  icons:
+  - sprite: Imperial/heretic/eldritch_fx.rsi
+    state: cosmic_ring
+  name: Метка Звезды
+  description: Вы помечены Звёздной Меткой еретика. Через короткое время она исчезнет.

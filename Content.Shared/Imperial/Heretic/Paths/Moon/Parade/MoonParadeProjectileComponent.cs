@@ -1,0 +1,24 @@
+namespace Content.Shared.Imperial.Heretic.Paths.Moon.Parade;
+
+[RegisterComponent]
+public sealed partial class MoonParadeProjectileComponent : Component
+{
+    [DataField]
+    public EntityUid? Shooter;
+
+    [DataField]
+    public int MaxBounces = 40;
+
+    [DataField]
+    public int BounceCount = 0;
+
+    [DataField]
+    public float Speed = 4f;
+
+    // Runtime only — not networked
+    [ViewVariables]
+    public HashSet<EntityUid> HitMobs = new();
+
+    [DataField]
+    public TimeSpan CaptureMobDuration = TimeSpan.FromSeconds(20);
+}

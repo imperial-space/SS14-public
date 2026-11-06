@@ -1,0 +1,44 @@
+using Robust.Shared.GameStates;
+
+namespace Content.Shared.Imperial.Heretic.Items;
+
+/// <summary>
+/// Worn Mask of Madness: periodically applies stamina damage and auditory hallucinations
+/// to all entities within range. When forced onto a non-believer, cannot be removed.
+/// </summary>
+[RegisterComponent, AutoGenerateComponentPause, NetworkedComponent]
+public sealed partial class HereticMaskOfMadnessComponent : Component
+{
+    [DataField]
+    public float AoeRadius = 7.5f;
+
+    /// <summary>
+    /// Stamina damage per tick (30% chance, only if target's current loss is at most 85).
+    /// </summary>
+    [DataField]
+    public float StaminaDamagePerTick = 10f;
+
+    [DataField]
+    public TimeSpan TickInterval = TimeSpan.FromSeconds(2.5f);
+
+    [ViewVariables, AutoPausedField]
+    public TimeSpan NextTick;
+
+    /// <summary>
+    /// If true, this mask was forced onto a non-believer and cannot be removed by them.
+    /// </summary>
+    [DataField]
+    public bool Locked = false;
+
+    [DataField]
+    public TimeSpan UpdateTime = TimeSpan.FromSeconds(10);
+
+    [DataField]
+    public float UpdateChance = 0.6f;
+
+    [DataField]
+    public float UpdateChance2 = 0.4f;
+
+    [DataField]
+    public float UpdateChance3 = 0.3f;
+}

@@ -1,0 +1,12 @@
+using Robust.Shared.Serialization;
+
+namespace Content.Shared.Imperial.Heretic.Core;
+
+[Serializable, NetSerializable]
+public enum HereticMansusBookVisualState : byte
+{
+    Closed,
+    Opening,
+    Open,
+    Closing,
+}

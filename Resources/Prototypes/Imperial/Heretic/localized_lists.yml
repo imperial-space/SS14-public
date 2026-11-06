@@ -1,0 +1,7 @@
+# HereticSystem.cs: DrainMessages
+- type: localizedDataset
+  id: ImperialHereticSystemDrainMessages
+  values:
+    prefix: imperial-heretic-heretic-system-drain-messages-
+    count: 16
+

@@ -1,0 +1,26 @@
+# ==============================================
+#  Еретик — Иконки фракции
+# ==============================================
+
+- type: factionIcon
+  id: HereticFaction
+  isShaded: true
+  priority: 11
+  showTo:
+    components:
+      - ShowAntagIcons
+      - Heretic
+  icon:
+    sprite: /Textures/Imperial/heretic/hud.rsi
+    state: hudheretic
+
+# Иконка над именными жертвами — видна только назначившему их еретику (логика в HereticStatusIconSystem).
+# ВРЕМЕННО ОТКЛЮЧЕНА: hudtarget.png отсутствует, требуется предоставить из Paradise-SS220.
+# showTo не задан (null) — фильтрация идёт в коде, а не через whitelist.
+#- type: factionIcon
+#  id: HereticNamedTarget
+#  isShaded: true
+#  priority: 12
+#  icon:
+#    sprite: /Textures/Imperial/heretic/hud.rsi
+#    state: hudtarget

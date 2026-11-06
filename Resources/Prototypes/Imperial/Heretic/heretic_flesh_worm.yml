@@ -1,0 +1,105 @@
+# ==============================================
+#  Вознесение Плоти — Гигантский Червь
+# ==============================================
+
+# ─── Голова Червя (управляется игроком) ───
+
+- type: entity
+  parent: BaseControllable
+  id: MobHereticFleshWorm
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 50
+        mask:
+        - Impassable
+        - BlobImpassable
+        - HighImpassable
+        - LowImpassable
+        layer:
+        - MobLayer
+        - MidImpassable
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 3.5
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/heretic/eldritch_mobs.rsi
+    layers:
+    - state: armsy_start
+  - type: InputMover
+  - type: Damageable
+    damageContainer: Biological
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      4000: Dead
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSlime
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcClaw
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    damage:
+      types:
+        Slash: 40
+        Structural: 200
+  - type: CombatMode
+
+# ─── Сегмент тела (статичный, блокирует экипаж) ───
+
+- type: entity
+  id: MobHereticWormSegment
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 10
+        mask: []
+        layer:
+        - MidImpassable
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/heretic/eldritch_mobs.rsi
+    layers:
+    - state: armsy_mid
+  - type: Clickable
+  - type: InteractionOutline
+
+# ─── Действие: Сброс облика ───
+
+- type: entity
+  parent: BaseAction
+  id: ActionHereticShedHumanForm
+  name: heretic-action-shed-human-form-name
+  description: heretic-action-shed-human-form-desc
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: worm_ascend
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:HereticShedHumanFormActionEvent {}

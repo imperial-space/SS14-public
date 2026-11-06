@@ -1,0 +1,28 @@
+using Robust.Shared.GameStates;
+
+namespace Content.Shared.Imperial.Heretic.Paths.Moon;
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class HereticMoonParadeProjectileComponent : Component
+{
+    [DataField]
+    public EntityUid Shooter;
+
+    [DataField]
+    public int BounceCount = 0;
+
+    [DataField]
+    public int MaxBounces = 40;
+
+    [DataField]
+    public float Speed = 2f;
+
+    [ViewVariables]
+    public HashSet<EntityUid> MobsHit = new();
+
+    [DataField]
+    public TimeSpan CollideMobSensorDelay = TimeSpan.FromSeconds(20f);
+
+    [DataField]
+    public TimeSpan CollideMobSensorDuration = TimeSpan.FromSeconds(15);
+}

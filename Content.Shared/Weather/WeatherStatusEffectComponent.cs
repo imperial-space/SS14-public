@@ -43,4 +43,13 @@ public sealed partial class WeatherStatusEffectComponent : Component
     /// </summary>
     [ViewVariables]
     public EntityUid? Stream;
+
+    // Imperial Space start
+    /// <summary>
+    /// If true, weather affects all non-blocked tiles regardless of roof state or weather tile flag.
+    /// Used by VoidStorm to show precipitation inside the station.
+    /// </summary>
+    [DataField]
+    public bool IgnoreRoof;
+    // Imperial Space end
 }

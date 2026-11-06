@@ -1,0 +1,104 @@
+﻿{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from Paradise-SS220 (https://github.com/ss220club/Paradise-SS220), licensed under CC-BY-SA-3.0",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "blade_upgrade_ash"
+        },
+        {
+            "name": "blade_upgrade_rust"
+        },
+        {
+            "name": "blade_upgrade_flesh"
+        },
+        {
+            "name": "blade_upgrade_void"
+        },
+        {
+            "name": "blade_upgrade_blade"
+        },
+        {
+            "name": "blade_upgrade_cosmos"
+        },
+        {
+            "name": "blade_upgrade_moon"
+        },
+        {
+            "name": "blade_upgrade_lock"
+        },
+        {
+            "name": "grasp_ash"
+        },
+        {
+            "name": "grasp_flesh"
+        },
+        {
+            "name": "grasp_rust"
+        },
+        {
+            "name": "grasp_void"
+        },
+        {
+            "name": "grasp_blade"
+        },
+        {
+            "name": "grasp_cosmos"
+        },
+        {
+            "name": "grasp_lock"
+        },
+        {
+            "name": "grasp_moon"
+        },
+        {
+            "name": "curse_corrosion"
+        },
+        {
+            "name": "curse_paralysis"
+        },
+        {
+            "name": "ghoul_voiceless"
+        },
+        {
+            "name": "ghoul_shattered"
+        },
+        {
+            "name": "node_side"
+        },
+        {
+            "name": "node_finished"
+        },
+        {
+            "name": "node_locked"
+        },
+        {
+            "name": "node_ash"
+        },
+        {
+            "name": "node_flesh"
+        },
+        {
+            "name": "node_rust"
+        },
+        {
+            "name": "node_void"
+        },
+        {
+            "name": "node_blade"
+        },
+        {
+            "name": "node_cosmos"
+        },
+        {
+            "name": "node_lock"
+        },
+        {
+            "name": "node_moon"
+        }
+    ]
+}

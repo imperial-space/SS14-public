@@ -1,0 +1,177 @@
+# Лунатики 1 в 1 с BandaStation (antagonists/heretic/moon_lunatic.dm).
+
+# ─── Роли ───
+
+- type: antag
+  id: Lunatic
+  name: roles-antag-lunatic-name
+  antagonist: true
+  setPreference: false
+  objective: roles-antag-lunatic-objective
+
+- type: antag
+  id: LunaticMaster
+  name: roles-antag-lunatic-master-name
+  antagonist: true
+  setPreference: false
+  objective: roles-antag-lunatic-master-objective
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleLunatic
+  name: roles-antag-lunatic-name
+  components:
+  - type: MindRole
+    antagPrototype: Lunatic
+    roleType: TeamAntagonist
+    sortWeight: 64
+  - type: LunaticRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleLunaticMaster
+  name: roles-antag-lunatic-master-name
+  components:
+  - type: MindRole
+    antagPrototype: LunaticMaster
+    roleType: TeamAntagonist
+    sortWeight: 66
+  - type: LunaticMasterRole
+
+# ─── Цели (objective/lunatic) ───
+
+- type: entity
+  parent: BaseObjective
+  id: LunaticObjective
+  name: lunatic-objective-name
+  description: lunatic-objective-desc
+  components:
+  - type: Objective
+    issuer: objective-issuer-lunatic
+    difficulty: 1
+    unique: true
+    icon:
+      sprite: Imperial/heretic/lunatic_hud.rsi
+      state: lunatic
+  - type: LunaticObjectiveCondition
+
+- type: entity
+  parent: BaseObjective
+  id: LunaticMasterObjective
+  name: lunatic-master-objective-name
+  description: lunatic-master-objective-desc
+  components:
+  - type: Objective
+    issuer: objective-issuer-heretic
+    difficulty: 1
+    unique: true
+    icon:
+      sprite: Imperial/heretic/lunatic_hud.rsi
+      state: lunatic_master
+  - type: LunaticObjectiveCondition
+    isMaster: true
+
+# ─── Способности ───
+
+# action/cooldown/lunatic_track
+- type: entity
+  parent: BaseAction
+  id: ActionLunaticTrack
+  name: lunatic-action-track-name
+  description: lunatic-action-track-desc
+  components:
+  - type: Action
+    useDelay: 4
+    checkConsciousness: true
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: moon_smile
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:LunaticTrackActionEvent {}
+
+# action/cooldown/spell/touch/mansus_grasp, выданная лунатику
+- type: entity
+  parent: BaseAction
+  id: ActionLunaticMansusGrasp
+  name: heretic-action-mansus-grasp-name
+  description: lunatic-action-grasp-desc
+  components:
+  - type: ImperialMagicAction
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: mansus_grasp
+    background:
+      sprite: Imperial/heretic/actions_ecult.rsi
+      state: bg_heretic
+  - type: InstantAction
+    event: !type:LunaticMansusGraspActionEvent {}
+
+- type: entity
+  id: LunaticMansusGraspItem
+  name: ent-HereticMansusGraspItem
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/heretic/actions_ecult.rsi
+    state: mansus_grasp
+  - type: Item
+    size: Small
+  - type: LunaticMansusGraspItem
+  - type: Unremoveable
+    deleteOnDrop: true
+
+# ─── Иконки HUD (add_team_hud) ───
+
+- type: factionIcon
+  id: LunaticFaction
+  isShaded: true
+  priority: 11
+  showTo:
+    components:
+    - ShowAntagIcons
+    - Lunatic
+    - LunaticMaster
+  icon:
+    sprite: /Textures/Imperial/heretic/lunatic_hud.rsi
+    state: lunatic
+
+- type: factionIcon
+  id: LunaticMasterFaction
+  isShaded: true
+  priority: 12
+  showTo:
+    components:
+    - ShowAntagIcons
+    - Lunatic
+    - LunaticMaster
+  icon:
+    sprite: /Textures/Imperial/heretic/lunatic_hud.rsi
+    state: lunatic_master
+
+# ─── Бред и алерт берсерка ───
+
+# delusion/preset/moon: носитель видит всех вокруг лунными массами.
+- type: entity
+  parent: MobStatusEffectBase
+  id: HereticMoonDelusionStatusEffect
+  name: лунный бред
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+  - type: HereticMoonDelusionStatusEffect
+
+- type: alert
+  id: HereticMoonConverted
+  icons:
+  - sprite: Imperial/heretic/screen_alert.rsi
+    state: moon_insanity
+  name: Новообращённый Луной
+  description: Они ЛГУТ, УБЕЙ ИХ ВСЕХ ДО ПОСЛЕДНЕГО!!! ЛЖЕЦЫ СОЛНЦА ДОЛЖНЫ ПАСТЬ!!!

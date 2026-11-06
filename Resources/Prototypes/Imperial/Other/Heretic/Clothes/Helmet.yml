@@ -13,6 +13,7 @@
     clothingVisuals:
       head:
       - state: equipped-HELMET
+  - type: HereticAmberFocus
   - type: Tag
     tags:
     - WhitelistChameleon

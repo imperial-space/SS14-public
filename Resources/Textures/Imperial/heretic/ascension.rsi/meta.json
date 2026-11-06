@@ -1,0 +1,35 @@
+﻿{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from Paradise-SS220 (https://github.com/ss220club/Paradise-SS220), licensed under CC-BY-SA-3.0",
+    "size": {
+        "x": 76,
+        "y": 76
+    },
+    "states": [
+        {
+            "name": "ashascend"
+        },
+        {
+            "name": "fleshascend"
+        },
+        {
+            "name": "rustascend"
+        },
+        {
+            "name": "voidascend"
+        },
+        {
+            "name": "bladeascend"
+        },
+        {
+            "name": "cosmicascend"
+        },
+        {
+            "name": "lockascend"
+        },
+        {
+            "name": "moonascend"
+        }
+    ]
+}

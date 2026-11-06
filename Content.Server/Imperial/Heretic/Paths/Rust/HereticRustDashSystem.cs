@@ -1,0 +1,172 @@
+using Content.Server.Popups;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
+using Content.Shared.FixedPoint;
+using Content.Shared.Imperial.Heretic.Core;
+using Content.Shared.Imperial.Heretic.Paths.Rust;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Popups;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Map;
+using Robust.Shared.Random;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
+
+namespace Content.Server.Imperial.Heretic.Paths.Rust;
+
+public sealed class HereticRustDashSystem : EntitySystem
+{
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _timing = default!;
+    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+
+    private static readonly string[] RuneEffects =
+    {
+        "HereticSmallRuneEffect1", "HereticSmallRuneEffect4",
+        "HereticSmallRuneEffect7", "HereticSmallRuneEffect10"
+    };
+
+    private readonly HashSet<EntityUid> _hitBuffer = new();
+
+    private static readonly ProtoId<DamageTypePrototype> CausticDamageType = "Caustic";
+
+    private static readonly EntProtoId HereticRustOverlay = "HereticRustOverlay";
+
+    private const float RustDashRange = 0.6f;
+    private const float SpawnRustOverlayAtRange = 0.4f;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<HereticComponent, HereticRustDashActionEvent>(OnRustDash);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        var query = EntityQueryEnumerator<HereticRustDashComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (comp.IsWaiting)
+            {
+                if (comp.WaitEnd == TimeSpan.Zero)
+                    comp.WaitEnd = _timing.CurTime + comp.DashWaitDuration;
+
+                if (_timing.CurTime >= comp.WaitEnd)
+                {
+                    comp.IsWaiting = false;
+                    comp.IsActive = true;
+                }
+                continue;
+            }
+
+            if (!comp.IsActive)
+                continue;
+            ProcessDash(uid, comp, frameTime);
+        }
+    }
+
+    private void OnRustDash(Entity<HereticComponent> ent, ref HereticRustDashActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        var mapCoords = _xform.GetMapCoordinates(ent.Owner);
+        if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(mapCoords, RustDashRange).Count == 0)
+        {
+            _popup.PopupEntity(Loc.GetString("heretic-rust-dash-no-rust"), ent.Owner, ent.Owner, PopupType.Medium);
+            return;
+        }
+
+        if (HasComp<HereticRustDashComponent>(ent.Owner))
+            return;
+
+        args.Handled = true;
+
+        var comp = AddComp<HereticRustDashComponent>(ent.Owner);
+        comp.Destination = args.Target;
+        comp.IsWaiting = true;
+        comp.IsActive = false;
+        comp.WaitEnd = TimeSpan.Zero;
+        comp.NextTrail = TimeSpan.Zero;
+        comp.NextRust = TimeSpan.Zero;
+        comp.NextDamage = TimeSpan.Zero;
+
+        Spawn(comp.DashMarkerPrototype, args.Target);
+        _audio.PlayPvs(comp.DashSound, ent.Owner);
+    }
+
+    private void ProcessDash(EntityUid uid, HereticRustDashComponent comp, float frameTime)
+    {
+        var myMap = _xform.GetMapCoordinates(uid);
+        var destMap = _xform.ToMapCoordinates(comp.Destination);
+        var dir = destMap.Position - myMap.Position;
+        var dist = dir.Length();
+
+        if (dist < 0.3f) { FinishDash(uid); return; }
+
+        var dirNorm = dir / dist;
+        var step = MathF.Min(comp.DashSpeed * frameTime, dist);
+        _xform.SetWorldPosition(uid, myMap.Position + dirNorm * step);
+
+        var nowMap = _xform.GetMapCoordinates(uid);
+
+        if (_timing.CurTime >= comp.NextTrail)
+        {
+            comp.NextTrail = _timing.CurTime + comp.TrailInterval;
+            Spawn(comp.DashTrailPrototype, nowMap);
+        }
+
+        if (_timing.CurTime >= comp.NextRust)
+        {
+            comp.NextRust = _timing.CurTime + comp.RustInterval;
+            SpawnRustOverlayAt(nowMap);
+            Spawn(_random.Pick(RuneEffects), nowMap);
+        }
+
+        if (_timing.CurTime >= comp.NextDamage)
+        {
+            comp.NextDamage = _timing.CurTime + comp.DamageInterval;
+            HitEntitiesNear(uid, nowMap, comp);
+        }
+    }
+
+    private void HitEntitiesNear(EntityUid caster, MapCoordinates pos, HereticRustDashComponent comp)
+    {
+        _hitBuffer.Clear();
+        _lookup.GetEntitiesInRange(pos.MapId, pos.Position, comp.HitRadius, _hitBuffer);
+
+        foreach (var ent in _hitBuffer)
+        {
+            if (ent == caster)
+                continue;
+
+            var protoId = MetaData(ent).EntityPrototype?.ID;
+            if (protoId is "HereticRustWall" or "WallSolidRust" or "WallReinforcedRust")
+            {
+                QueueDel(ent);
+                continue;
+            }
+
+            if (!HasComp<MobStateComponent>(ent))
+                continue;
+
+            var dmg = new DamageSpecifier();
+            dmg.DamageDict[CausticDamageType] = FixedPoint2.New(comp.DashDamage);
+            _damage.TryChangeDamage(ent, dmg, ignoreResistances: false);
+        }
+    }
+
+    private void SpawnRustOverlayAt(MapCoordinates pos)
+    {
+        if (_lookup.GetEntitiesInRange<HereticRustOverlayComponent>(pos, SpawnRustOverlayAtRange).Count > 0)
+            return;
+        Spawn(HereticRustOverlay, pos);
+    }
+
+    private void FinishDash(EntityUid uid) => RemComp<HereticRustDashComponent>(uid);
+}
