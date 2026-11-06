@@ -1,0 +1,564 @@
+# Многоэтажность SS13 (/tg/station multi-z): открытое пространство, трапы, лестницы, взгляд вверх и вниз.
+# Этажи — отдельные карты, совмещённые по мировым координатам. Маппинг: команда zlevel (см. Content.Server/Imperial/ZLevels/ZLevelCommand.cs).
+
+# /turf/open/openspace: сквозь него видно этаж ниже, всё, что на него попало, падает.
+- type: tile
+  id: FloorImperialOpenSpace
+  parent: BaseStationTile
+  name: tiles-zlevel-open-space
+  sprite: /Textures/Imperial/ZLevels/openspace.png
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepCatwalk
+
+# Метка клетки открытого пространства. Ставится системой сама по тайлу и не сохраняется в карту.
+- type: entity
+  id: ZOpenSpaceMarker
+  name: open space
+  description: Watch your step!
+  categories: [ HideSpawnMenu ]
+  save: false
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      openspace:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        hard: false
+        layer:
+        - LowImpassable
+      # «Стена» только для мобов под управлением ИИ: они обходят дыры (остальным столкновение отменяется).
+      npcBlock:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        hard: true
+        layer:
+        - LowImpassable
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.4
+    stepOn: true
+  - type: ZOpenSpace
+
+# Площадка над лестницей (ставится системой лестниц на этаж выше, не сохраняется): шаг на неё в сторону спуска
+# переносит на лестницу.
+- type: entity
+  id: ZStairsTopMarker
+  name: stairs landing
+  categories: [ HideSpawnMenu ]
+  save: false
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      landing:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        hard: false
+        layer:
+        - LowImpassable
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.3
+    stepOn: true
+  - type: ZStairsTop
+
+# /obj/structure/ladder: связывается с трапом ровно этажом выше и ниже. Не даёт упасть в открытое пространство под собой.
+- type: entity
+  id: ZLadder
+  name: ladder
+  description: A sturdy metal ladder.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/ZLevels/ladder.rsi
+    drawdepth: Objects
+    layers:
+    - state: ladder11
+      map: [ "enum.ZLadderVisuals.State" ]
+  - type: Icon
+    sprite: Imperial/ZLevels/ladder.rsi
+    state: ladder11
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ZLadderVisuals.State:
+        enum.ZLadderVisuals.State:
+          ladder00: { state: ladder00 }
+          ladder01: { state: ladder01 }
+          ladder10: { state: ladder10 }
+          ladder11: { state: ladder11 }
+  - type: ZLadder
+  - type: ZBlock
+    outDown: true
+  - type: UserInterface
+    interfaces:
+      enum.ZLadderUiKey.Key:
+        type: ZLadderBoundUserInterface
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 3
+            max: 7
+
+# /obj/structure/stairs: повернуть в сторону подъёма. Над последней ступенью — открытое пространство, впереди наверху — пол.
+- type: entity
+  id: ZStairs
+  name: stairs
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Rotatable
+  - type: Sprite
+    sprite: Imperial/ZLevels/stairs.rsi
+    drawdepth: FloorObjects
+    noRot: false
+    layers:
+    - state: stairs
+      map: [ "enum.ZStairsVisuals.State" ]
+    - sprite: Imperial/ZLevels/zutil.rsi
+      state: stairs_arrow
+  - type: Icon
+    sprite: Imperial/ZLevels/stairs.rsi
+    state: stairs
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ZStairsVisuals.State:
+        enum.ZStairsVisuals.State:
+          stairs: { state: stairs }
+          stairs-l: { state: stairs-l }
+          stairs-m: { state: stairs-m }
+          stairs-r: { state: stairs-r }
+          stairs_wood: { state: stairs_wood }
+          stairs_stone: { state: stairs_stone }
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      stairs:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        hard: false
+        layer:
+        - LowImpassable
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.2
+    stepOn: true
+  - type: ZStairs
+
+- type: entity
+  parent: ZStairs
+  id: ZStairsWood
+  name: wooden stairs
+  components:
+  - type: Sprite
+    layers:
+    - state: stairs_wood
+      map: [ "enum.ZStairsVisuals.State" ]
+    - sprite: Imperial/ZLevels/zutil.rsi
+      state: stairs_arrow
+  - type: Icon
+    state: stairs_wood
+  - type: ZStairs
+    mergedSprites: false
+    baseState: stairs_wood
+
+- type: entity
+  parent: ZStairs
+  id: ZStairsStone
+  name: stone stairs
+  components:
+  - type: Sprite
+    layers:
+    - state: stairs_stone
+      map: [ "enum.ZStairsVisuals.State" ]
+    - sprite: Imperial/ZLevels/zutil.rsi
+      state: stairs_arrow
+  - type: Icon
+    state: stairs_stone
+  - type: ZStairs
+    mergedSprites: false
+    baseState: stairs_stone
+
+# Взгляд вверх и вниз (/mob/living/proc/lookup и lookdown). Выдаются игроку, пока он на многоэтажной карте.
+- type: entity
+  id: ActionZLookUp
+  name: Look up
+  description: Look up through open space. Press again to set your head straight.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/ZLevels/actions.rsi
+      state: look_up
+    useDelay: 1
+  - type: InstantAction
+    event: !type:ZLookUpActionEvent
+
+- type: entity
+  id: ActionZLookDown
+  name: Look down
+  description: Look down through open space or a glass floor. Press again to set your head straight.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/ZLevels/actions.rsi
+      state: look_down
+    useDelay: 1
+  - type: InstantAction
+    event: !type:ZLookDownActionEvent
+
+# Перезапись пикселей без смешивания: вырезает непрозрачный пол из маски вида на этаж ниже.
+- type: shader
+  id: ZLevelOverwrite
+  kind: canvas
+  blend_mode: None
+
+# Межэтажная вентиляция: связывается с такой же решёткой ровно этажом выше/ниже, как трап. Через неё можно
+# пролезть (дольше трапа, без тех, кого тащишь), и через неё же клетки этажей делят газ.
+- type: entity
+  id: ZVent
+  name: vertical vent
+  description: A wide ventilation shaft leading to another floor.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Structures/Piping/Atmospherics/vent.rsi
+    drawdepth: FloorObjects
+    layers:
+    - state: vent_passive
+      map: [ "enum.ZLadderVisuals.State" ]
+  - type: Icon
+    sprite: Structures/Piping/Atmospherics/vent.rsi
+    state: vent_passive
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ZLadderVisuals.State:
+        enum.ZLadderVisuals.State:
+          ladder00: { state: vent_off }
+          ladder01: { state: vent_passive }
+          ladder10: { state: vent_passive }
+          ladder11: { state: vent_passive }
+  - type: ZLadder
+    kind: vent
+    locPrefix: zlevel-vent
+    travelTime: 10
+    includePulled: false
+    passGas: true
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 3
+
+# Грузовой лифт 3×3: ставится центром в шахту. Наверх едет, если над всей платформой открытое пространство или
+# пустота, вниз — если они под ней. Везёт всё незакреплённое на платформе. Клик — вверх, Alt-клик — вниз.
+- type: entity
+  id: ZElevator
+  name: cargo elevator
+  description: A wide 3x3 lift platform that carries people and cargo between floors.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: false
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/ZLevels/elevator3.rsi
+    state: platform
+    drawdepth: FloorTiles
+  - type: Icon
+    sprite: Imperial/ZLevels/elevator3.rsi
+    state: platform
+  - type: ZElevator
+
+# Грузовые лифты побольше: ставятся центром в шахту 5×5 и 7×7.
+- type: entity
+  parent: ZElevator
+  id: ZElevator5
+  name: large cargo elevator
+  description: A wide 5x5 lift platform for heavy cargo.
+  components:
+  - type: Sprite
+    sprite: Imperial/ZLevels/elevator5.rsi
+    state: platform
+  - type: Icon
+    sprite: Imperial/ZLevels/elevator5.rsi
+    state: platform
+  - type: ZElevator
+    size: 5
+    travelTime: 5
+
+- type: entity
+  parent: ZElevator
+  id: ZElevator7
+  name: freight elevator
+  description: A huge 7x7 lift platform for vehicles and whole crews.
+  components:
+  - type: Sprite
+    sprite: Imperial/ZLevels/elevator7.rsi
+    state: platform
+  - type: Icon
+    sprite: Imperial/ZLevels/elevator7.rsi
+    state: platform
+  - type: ZElevator
+    size: 7
+    travelTime: 6
+
+# Кнопка вызова лифта: ставится рядом с шахтой на каждом этаже и зовёт лифт на свой этаж.
+- type: entity
+  id: ZElevatorButton
+  name: elevator call button
+  description: Calls the cargo elevator to this floor.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Structures/Wallmounts/switch.rsi
+    drawdepth: WallMountedItems
+    state: on
+  - type: ZElevatorButton
+
+# Подняться/опуститься на этаж (Move Up / Move Down SS13): призраку, ИИ и летящему на джетпаке.
+- type: entity
+  id: ActionZMoveUp
+  name: Move up
+  description: Move one floor up.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/ZLevels/actions.rsi
+      state: look_up
+    useDelay: 0.5
+  - type: InstantAction
+    event: !type:ZMoveUpActionEvent
+
+- type: entity
+  id: ActionZMoveDown
+  name: Move down
+  description: Move one floor down.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/ZLevels/actions.rsi
+      state: look_down
+    useDelay: 0.5
+  - type: InstantAction
+    event: !type:ZMoveDownActionEvent
+
+# Межэтажный кабельный щиток (multi-z cable hub): ставится на кабель; щитки одного напряжения ровно друг над другом
+# объединяют сети этажей.
+- type: entity
+  abstract: true
+  id: ZCableHubBase
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Anchorable
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Sprite
+    sprite: Imperial/ZLevels/zutil.rsi
+    drawdepth: BelowFloor
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 2
+
+- type: entity
+  parent: ZCableHubBase
+  id: ZCableHubHV
+  name: multi-z HV cable hub
+  description: Connects high-voltage cables of this floor with the floor above and below.
+  components:
+  - type: Sprite
+    state: hub_hv
+  - type: NodeContainer
+    nodes:
+      power:
+        !type:ZCableHubNode
+        nodeGroupID: HVPower
+  - type: ZLink
+    kind: cableHV
+
+- type: entity
+  parent: ZCableHubBase
+  id: ZCableHubMV
+  name: multi-z MV cable hub
+  description: Connects medium-voltage cables of this floor with the floor above and below.
+  components:
+  - type: Sprite
+    state: hub_mv
+  - type: NodeContainer
+    nodes:
+      power:
+        !type:ZCableHubNode
+        nodeGroupID: MVPower
+  - type: ZLink
+    kind: cableMV
+
+- type: entity
+  parent: ZCableHubBase
+  id: ZCableHubLV
+  name: multi-z LV cable hub
+  description: Connects low-voltage (APC) cables of this floor with the floor above and below.
+  components:
+  - type: Sprite
+    state: hub_lv
+  - type: NodeContainer
+    nodes:
+      power:
+        !type:ZCableHubNode
+        nodeGroupID: Apc
+  - type: ZLink
+    kind: cableLV
+
+# Переходник труб между этажами (multi-deck adapter): полутруба, соединённая с таким же переходником
+# ровно этажом выше и ниже в одну сеть.
+- type: entity
+  parent: GasPipeHalf
+  id: ZPipeAdapter
+  name: multi-deck pipe adapter
+  description: Connects this pipe network with the one on the floor above and below.
+  suffix: ""
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    layers:
+    - state: pipeHalf
+      map: [ "enum.PipeVisualLayers.Pipe" ]
+    - sprite: Imperial/ZLevels/zutil.rsi
+      state: adapter
+  - type: AtmosPipeLayers
+    alternativePrototypes:
+      Primary: ZPipeAdapter
+      Secondary: ZPipeAdapter
+      Tertiary: ZPipeAdapter
+  - type: ZLink
+    kind: pipe
+  - type: ZPipeAdapter
+
+# Мусоропровод вверх/вниз: одна труба в сеть этажа; что пришло из сети — выходит из такой же трубы на соседнем этаже.
+- type: entity
+  parent: DisposalPipeBase
+  id: ZDisposalLift
+  name: disposal riser
+  description: A vertical disposal pipe leading to the floor above or below.
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "pipe" ]
+      state: conpipe-t
+    - sprite: Imperial/ZLevels/zutil.rsi
+      state: disposal_lift
+  - type: DisposalTube
+    containerId: ZDisposalLift
+  - type: ContainerContainer
+    containers:
+      ZDisposalLift: !type:Container
+  - type: GenericVisualizer
+    visuals:
+      enum.DisposalTubeVisuals.VisualState:
+        pipe:
+          Free: { state: conpipe-t }
+          Anchored: { state: pipe-t }
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.5,0.25,0.4"
+        mask:
+        - SubfloorMask
+  - type: ZLink
+    kind: disposal
+  - type: ZDisposalLift
+
+# Крюк-кошка (climbing hook с Icebox): забросить в проём над собой и вылезти этажом выше.
+- type: entity
+  parent: BaseItem
+  id: ZClimbingHook
+  name: climbing hook
+  description: A sturdy hook on a rope. Throw it up through an opening and climb to the floor above.
+  components:
+  - type: Sprite
+    sprite: Imperial/ZLevels/zutil.rsi
+    state: climbing_hook
+  - type: Item
+    size: Small
+  - type: ZClimbingHook
