@@ -1,0 +1,18 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from BandaStation at https://github.com/ss220club/BandaStation, under CC-BY-SA-3.0",
+    "size": {"x": 32, "y": 32},
+    "states": [
+        {"name": "icon", "delays": [[0.04, 0.04]]},
+        {"name": "icon-off"},
+        {"name": "inhand-left", "directions": 4, "delays": [[0.04, 0.04], [0.04, 0.04], [0.04, 0.04], [0.04, 0.04]]},
+        {"name": "inhand-left-off", "directions": 4},
+        {"name": "inhand-right", "directions": 4, "delays": [[0.04, 0.04], [0.04, 0.04], [0.04, 0.04], [0.04, 0.04]]},
+        {"name": "inhand-right-off", "directions": 4},
+        {"name": "mounted-left", "directions": 4, "delays": [[0.1, 0.1], [0.1, 0.1], [0.1, 0.1], [0.1, 0.1]]},
+        {"name": "mounted-left-off", "directions": 4},
+        {"name": "mounted-right", "directions": 4, "delays": [[0.1, 0.1], [0.1, 0.1], [0.1, 0.1], [0.1, 0.1]]},
+        {"name": "mounted-right-off", "directions": 4}
+    ]
+}

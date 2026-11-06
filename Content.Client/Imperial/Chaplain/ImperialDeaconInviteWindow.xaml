@@ -1,0 +1,12 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+            xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+            MinSize="380 130" Title="{Loc imperial-deaconize-invite-title}">
+    <BoxContainer Orientation="Vertical" Margin="10" SeparationOverride="8">
+        <RichTextLabel Name="MessageLabel" HorizontalExpand="True" />
+        <Control VerticalExpand="True" />
+        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" SeparationOverride="10">
+            <Button Name="YesButton" Text="{Loc imperial-deaconize-invite-yes}" MinWidth="90" />
+            <Button Name="NoButton" Text="{Loc imperial-deaconize-invite-no}" MinWidth="90" />
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

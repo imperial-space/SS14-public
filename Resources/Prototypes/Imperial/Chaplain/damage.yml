@@ -1,0 +1,9 @@
+# Конструкты культа — «духи» (MOB_SPIRIT в SS13): получают святой урон от святого оружия.
+- type: damageContainer
+  id: ImperialCultConstruct
+  supportedGroups:
+    - Brute
+  supportedTypes:
+    - Heat
+    - Shock
+    - Holy
