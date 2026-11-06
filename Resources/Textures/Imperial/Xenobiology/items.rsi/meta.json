@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (stack_objects.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "slime"
+    },
+    {
+      "name": "slime-on"
+    },
+    {
+      "name": "slimebang"
+    },
+    {
+      "name": "slimebang_active",
+      "delays": [
+        [
+          0.060000002,
+          0.060000002,
+          0.060000002,
+          0.060000002,
+          0.060000002,
+          0.060000002,
+          0.060000002,
+          0.060000002
+        ]
+      ]
+    },
+    {
+      "name": "tile_bluespace",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "tile_sepia"
+    },
+    {
+      "name": "sheet-adamantine"
+    },
+    {
+      "name": "sheet-adamantine_2"
+    },
+    {
+      "name": "sheet-adamantine_3"
+    },
+    {
+      "name": "bluespace_crystal"
+    }
+  ]
+}

@@ -1,0 +1,266 @@
+# datum/slime_type
+
+- type: slimeType
+  id: SlimeGrey
+  colour: grey
+  name: slime-type-grey
+  transparent: true
+  core: SlimeExtractGrey
+  rgbCode: "#c2c2c2"
+  tier: 0
+  mutations:
+    SlimeBlue: 1
+    SlimeMetal: 1
+    SlimeOrange: 1
+    SlimePurple: 1
+
+- type: slimeType
+  id: SlimeBlue
+  colour: blue
+  name: slime-type-blue
+  transparent: true
+  core: SlimeExtractBlue
+  rgbCode: "#19ffff"
+  tier: 1
+  mutations:
+    SlimeDarkBlue: 1
+    SlimePink: 2
+    SlimeSilver: 1
+
+- type: slimeType
+  id: SlimeMetal
+  colour: metal
+  name: slime-type-metal
+  transparent: false
+  core: SlimeExtractMetal
+  rgbCode: "#676767"
+  tier: 1
+  mutations:
+    SlimeGold: 2
+    SlimeSilver: 1
+    SlimeYellow: 1
+
+- type: slimeType
+  id: SlimePurple
+  colour: purple
+  name: slime-type-purple
+  transparent: true
+  core: SlimeExtractPurple
+  rgbCode: "#d138ff"
+  tier: 1
+  mutations:
+    SlimeDarkBlue: 1
+    SlimeDarkPurple: 1
+    SlimeGreen: 2
+
+- type: slimeType
+  id: SlimeOrange
+  colour: orange
+  name: slime-type-orange
+  transparent: true
+  core: SlimeExtractOrange
+  rgbCode: "#ffb445"
+  tier: 1
+  mutations:
+    SlimeDarkPurple: 1
+    SlimeRed: 2
+    SlimeYellow: 1
+
+- type: slimeType
+  id: SlimeDarkBlue
+  colour: dark-blue
+  name: slime-type-dark-blue
+  transparent: true
+  core: SlimeExtractDarkBlue
+  rgbCode: "#2e9dff"
+  tier: 2
+  mutations:
+    SlimeBlue: 1
+    SlimeCerulean: 2
+    SlimePurple: 1
+
+- type: slimeType
+  id: SlimeDarkPurple
+  colour: dark-purple
+  name: slime-type-dark-purple
+  transparent: false
+  core: SlimeExtractDarkPurple
+  rgbCode: "#9948f7"
+  tier: 2
+  mutations:
+    SlimeOrange: 1
+    SlimePurple: 1
+    SlimeSepia: 2
+
+- type: slimeType
+  id: SlimeSilver
+  colour: silver
+  name: slime-type-silver
+  transparent: false
+  core: SlimeExtractSilver
+  rgbCode: "#dadada"
+  tier: 2
+  mutations:
+    SlimeBlue: 1
+    SlimeMetal: 1
+    SlimePyrite: 2
+
+- type: slimeType
+  id: SlimeYellow
+  colour: yellow
+  name: slime-type-yellow
+  transparent: true
+  core: SlimeExtractYellow
+  rgbCode: "#fff419"
+  tier: 2
+  mutations:
+    SlimeBluespace: 2
+    SlimeMetal: 1
+    SlimeOrange: 1
+
+- type: slimeType
+  id: SlimeBluespace
+  colour: bluespace
+  name: slime-type-bluespace
+  transparent: false
+  core: SlimeExtractBluespace
+  rgbCode: "#ebebeb"
+  tier: 3
+  mutations:
+    SlimeBluespace: 1
+
+- type: slimeType
+  id: SlimeCerulean
+  colour: cerulean
+  name: slime-type-cerulean
+  transparent: true
+  core: SlimeExtractCerulean
+  rgbCode: "#5783aa"
+  tier: 3
+  mutations:
+    SlimeCerulean: 1
+
+- type: slimeType
+  id: SlimePyrite
+  colour: pyrite
+  name: slime-type-pyrite
+  transparent: false
+  core: SlimeExtractPyrite
+  rgbCode: "#ffc427"
+  tier: 3
+  mutations:
+    SlimePyrite: 1
+
+- type: slimeType
+  id: SlimeSepia
+  colour: sepia
+  name: slime-type-sepia
+  transparent: true
+  core: SlimeExtractSepia
+  rgbCode: "#9b8a7a"
+  tier: 3
+  mutations:
+    SlimeSepia: 1
+
+- type: slimeType
+  id: SlimeGold
+  colour: gold
+  name: slime-type-gold
+  transparent: false
+  core: SlimeExtractGold
+  rgbCode: "#c38b07"
+  tier: 3
+  mutations:
+    SlimeAdamantine: 1
+    SlimeGold: 1
+
+- type: slimeType
+  id: SlimeGreen
+  colour: green
+  name: slime-type-green
+  transparent: true
+  core: SlimeExtractGreen
+  rgbCode: "#07f024"
+  tier: 3
+  mutations:
+    SlimeBlack: 1
+    SlimeGreen: 1
+
+- type: slimeType
+  id: SlimePink
+  colour: pink
+  name: slime-type-pink
+  transparent: true
+  core: SlimeExtractPink
+  rgbCode: "#fe5bbd"
+  tier: 3
+  mutations:
+    SlimeLightPink: 1
+    SlimePink: 1
+
+- type: slimeType
+  id: SlimeRed
+  colour: red
+  name: slime-type-red
+  transparent: true
+  core: SlimeExtractRed
+  rgbCode: "#fb4848"
+  tier: 3
+  mutations:
+    SlimeOil: 1
+    SlimeRed: 1
+
+- type: slimeType
+  id: SlimeAdamantine
+  colour: adamantine
+  name: slime-type-adamantine
+  transparent: false
+  core: SlimeExtractAdamantine
+  rgbCode: "#135f49"
+  tier: 4
+  mutations:
+    SlimeAdamantine: 1
+
+- type: slimeType
+  id: SlimeBlack
+  colour: black
+  name: slime-type-black
+  transparent: true
+  core: SlimeExtractBlack
+  rgbCode: "#3b3b3b"
+  tier: 4
+  mutations:
+    SlimeBlack: 1
+
+- type: slimeType
+  id: SlimeLightPink
+  colour: light-pink
+  name: slime-type-light-pink
+  transparent: true
+  core: SlimeExtractLightPink
+  rgbCode: "#ffe1fa"
+  tier: 4
+  mutations:
+    SlimeLightPink: 1
+
+- type: slimeType
+  id: SlimeOil
+  colour: oil
+  name: slime-type-oil
+  transparent: false
+  core: SlimeExtractOil
+  rgbCode: "#242424"
+  tier: 4
+  mutations:
+    SlimeOil: 1
+
+- type: slimeType
+  id: SlimeRainbow
+  colour: rainbow
+  name: slime-type-rainbow
+  transparent: true
+  core: SlimeExtractRainbow
+  rgbCode: "#c2c2c2"
+  tier: 5
+  mutations:
+    SlimeRainbow: 1

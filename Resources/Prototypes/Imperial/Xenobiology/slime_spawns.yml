@@ -1,0 +1,837 @@
+# Готовые слаймы каждого типа и возраста для меню спавна.
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeGreyBaby
+  name: серый слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeGrey
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: grey-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeGreyAdult
+  name: серый взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeGrey
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: grey-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeBlueBaby
+  name: синий слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeBlue
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: blue-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeBlueAdult
+  name: синий взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeBlue
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: blue-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeMetalBaby
+  name: металлический слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeMetal
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: metal-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeMetalAdult
+  name: металлический взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeMetal
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: metal-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimePurpleBaby
+  name: фиолетовый слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimePurple
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: purple-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimePurpleAdult
+  name: фиолетовый взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimePurple
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: purple-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeOrangeBaby
+  name: оранжевый слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeOrange
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: orange-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeOrangeAdult
+  name: оранжевый взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeOrange
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: orange-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeDarkBlueBaby
+  name: тёмно-синий слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeDarkBlue
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: dark-blue-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeDarkBlueAdult
+  name: тёмно-синий взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeDarkBlue
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: dark-blue-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeDarkPurpleBaby
+  name: тёмно-фиолетовый слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeDarkPurple
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: dark-purple-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeDarkPurpleAdult
+  name: тёмно-фиолетовый взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeDarkPurple
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: dark-purple-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeSilverBaby
+  name: серебряный слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeSilver
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: silver-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeSilverAdult
+  name: серебряный взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeSilver
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: silver-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeYellowBaby
+  name: жёлтый слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeYellow
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: yellow-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeYellowAdult
+  name: жёлтый взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeYellow
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: yellow-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeBluespaceBaby
+  name: блюспейс слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeBluespace
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: bluespace-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeBluespaceAdult
+  name: блюспейс взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeBluespace
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: bluespace-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeCeruleanBaby
+  name: церулеановый слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeCerulean
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: cerulean-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeCeruleanAdult
+  name: церулеановый взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeCerulean
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: cerulean-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimePyriteBaby
+  name: пиритовый слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimePyrite
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: pyrite-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimePyriteAdult
+  name: пиритовый взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimePyrite
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: pyrite-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeSepiaBaby
+  name: сепиевый слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeSepia
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: sepia-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeSepiaAdult
+  name: сепиевый взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeSepia
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: sepia-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeGoldBaby
+  name: золотой слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeGold
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: gold-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeGoldAdult
+  name: золотой взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeGold
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: gold-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeGreenBaby
+  name: зелёный слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeGreen
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: green-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeGreenAdult
+  name: зелёный взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeGreen
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: green-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimePinkBaby
+  name: розовый слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimePink
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: pink-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimePinkAdult
+  name: розовый взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimePink
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: pink-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeRedBaby
+  name: красный слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeRed
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: red-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeRedAdult
+  name: красный взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeRed
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: red-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeAdamantineBaby
+  name: адамантиновый слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeAdamantine
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: adamantine-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeAdamantineAdult
+  name: адамантиновый взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeAdamantine
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: adamantine-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeBlackBaby
+  name: чёрный слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeBlack
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: black-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeBlackAdult
+  name: чёрный взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeBlack
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: black-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeLightPinkBaby
+  name: светло-розовый слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeLightPink
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: light-pink-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeLightPinkAdult
+  name: светло-розовый взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeLightPink
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: light-pink-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeOilBaby
+  name: масляный слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeOil
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: oil-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeOilAdult
+  name: масляный взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeOil
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: oil-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeRainbowBaby
+  name: радужный слайм-детёныш
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeRainbow
+    stage: Baby
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: rainbow-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+
+- type: entity
+  parent: MobXenoSlime
+  id: MobXenoSlimeRainbowAdult
+  name: радужный взрослый слайм
+  suffix: Ксенобиология
+  components:
+  - type: Slime
+    slimeType: SlimeRainbow
+    stage: Adult
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: rainbow-adult
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false

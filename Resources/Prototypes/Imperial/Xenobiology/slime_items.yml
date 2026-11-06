@@ -1,0 +1,308 @@
+# Продукты реакций экстрактов, не подходящие под другие категории.
+
+# stock_parts/power_store/cell/emproof/slime
+- type: entity
+  id: SlimePowerCell
+  parent: BasePowerCell
+  name: ЭМИ-стойкое ядро слайма
+  description: Жёлтое ядро слайма, напитанное плазмой. Органическая природа делает его невосприимчивым к ЭМИ.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: yellow-core
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: yellow-core
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.BatteryVisuals.State:
+        enum.PowerCellVisualLayers.Unshaded:
+          Full: {visible: false}
+          Neither: {visible: false}
+          Empty: {visible: false}
+  - type: Battery
+    maxCharge: 3600
+    startingCharge: 3600
+  - type: EmpResistance
+    strengthMultiplier: 0
+    durationMultiplier: 0
+
+# flashlight/slime
+- type: entity
+  id: SlimeFlashlight
+  parent: BaseItem
+  name: светящийся экстракт слайма
+  description: Экстракт жёлтого слайма. Если его сжать, он ярко светится.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/items.rsi
+    layers:
+    - state: slime
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Item
+    size: Small
+  - type: Appearance
+  - type: ItemToggle
+    predictable: false
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: slime-on }
+          False: { state: slime }
+  - type: PointLight
+    enabled: false
+    netsync: false
+    radius: 6
+    energy: 2
+    color: "#ffff66"
+  - type: ItemTogglePointLight
+  - type: Clothing
+    slots: [ belt ]
+    quickEquip: false
+
+# stack/ore/bluespace_crystal (ID сохранён для блюспейс-крана).
+- type: entity
+  id: XenoBluespaceCrystal
+  parent: BaseItem
+  name: блюспейс кристалл
+  description: Светящийся блюспейс кристалл. Мало что известно о том, как он работает. Похоже, он очень хрупкий.
+  suffix: Полный
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/items.rsi
+    state: bluespace_crystal
+  - type: Item
+    size: Tiny
+  - type: Stack
+    stackType: XenoBluespaceCrystal
+    count: 1
+  - type: SlimeBluespaceCrystal
+  - type: UseDelay
+    delay: 5
+  - type: StaticPrice
+    price: 300
+  - type: PointLight
+    radius: 1.5
+    energy: 0.8
+    color: "#6699ff"
+
+- type: stack
+  id: XenoBluespaceCrystal
+  name: stack-xeno-bluespace-crystal
+  icon: { sprite: Imperial/Xenobiology/items.rsi, state: bluespace_crystal }
+  spawn: XenoBluespaceCrystal
+  maxCount: 50
+
+# stack/sheet/mineral/adamantine
+- type: entity
+  id: SheetAdamantine
+  parent: BaseItem
+  name: адамантин
+  description: Лист редкого и прочного металла, выращенного слаймом.
+  suffix: Полный
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/items.rsi
+    state: sheet-adamantine
+    layers:
+    - state: sheet-adamantine
+      map: [ "base" ]
+  - type: Item
+    size: Normal
+  - type: Stack
+    stackType: Adamantine
+    count: 1
+    baseLayer: base
+    layerStates:
+    - sheet-adamantine
+    - sheet-adamantine_2
+    - sheet-adamantine_3
+  - type: Appearance
+  - type: StaticPrice
+    price: 500
+
+- type: stack
+  id: Adamantine
+  name: stack-adamantine
+  icon: { sprite: Imperial/Xenobiology/items.rsi, state: sheet-adamantine }
+  spawn: SheetAdamantine
+  maxCount: 50
+
+# stack/tile/bluespace, stack/tile/sepia
+- type: entity
+  id: FloorTileItemSlimeBluespace
+  parent: FloorTileItemBase
+  name: стабилизированная блюспейс плитка
+  description: Благодаря серии микротелепортаций эта плитка позволяет передвигаться с невероятной скоростью.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/items.rsi
+    state: tile_bluespace
+  - type: Item
+    sprite: Imperial/Xenobiology/items.rsi
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorSlimeBluespace
+  - type: Stack
+    stackType: FloorTileSlimeBluespace
+
+- type: entity
+  id: FloorTileItemSlimeSepia
+  parent: FloorTileItemBase
+  name: сепиевая плитка
+  description: Кажется, время вокруг этой плитки течёт очень медленно.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/items.rsi
+    state: tile_sepia
+  - type: Item
+    sprite: Imperial/Xenobiology/items.rsi
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorSlimeSepia
+  - type: Stack
+    stackType: FloorTileSlimeSepia
+
+- type: stack
+  parent: BaseTileStack
+  id: FloorTileSlimeBluespace
+  name: stack-slime-bluespace-tile
+  spawn: FloorTileItemSlimeBluespace
+  maxCount: 60
+
+- type: stack
+  parent: BaseTileStack
+  id: FloorTileSlimeSepia
+  name: stack-slime-sepia-tile
+  spawn: FloorTileItemSlimeSepia
+  maxCount: 60
+
+- type: tile
+  id: FloorSlimeBluespace
+  parent: BaseStationTile
+  name: tiles-slime-bluespace-floor
+  sprite: /Textures/Imperial/Xenobiology/Tiles/bluespace.png
+  variants: 16
+  placementVariants: [ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 ]
+  itemDrop: FloorTileItemSlimeBluespace
+
+- type: tile
+  id: FloorSlimeSepia
+  parent: BaseStationTile
+  name: tiles-slime-sepia-floor
+  sprite: /Textures/Imperial/Xenobiology/Tiles/sepia.png
+  itemDrop: FloorTileItemSlimeSepia
+
+# grenade/clusterbuster/slime
+- type: entity
+  id: SlimeClusterGrenade
+  parent: BaseItem
+  name: Блорбл Блорбл
+  description: Шарик слизи, готовый вот-вот разлететься экстрактами.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/items.rsi
+    layers:
+    - state: slimebang
+      map: [ "base" ]
+  - type: Item
+    size: Small
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeGrenadeVisuals.Active:
+        base:
+          True: { state: slimebang_active }
+          False: { state: slimebang }
+  - type: SlimeGrenade
+
+- type: entity
+  id: SlimeClusterGrenadeVolatile
+  parent: SlimeClusterGrenade
+  suffix: Нестабильная
+  components:
+  - type: SlimeGrenade
+    volatile: true
+
+- type: entity
+  id: SlimeClusterGrenadeSegment
+  parent: SlimeClusterGrenade
+  name: сегмент Блорбл Блорбл
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SlimeGrenade
+    segment: true
+
+# obj/effect/timestop
+- type: entity
+  id: SlimeTimestop
+  name: хронополе
+  description: ZA WARUDO
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/timestop.rsi
+    state: time
+    drawdepth: Effects
+    color: "#ffffff7d"
+    noRot: true
+  - type: SlimeTimestop
+
+# blueprints/slime
+- type: entity
+  id: SlimeBlueprints
+  parent: BaseItem
+  name: церулеановые чертежи
+  description: Одноразовый набор чертежей из желеобразного органического материала. Расширяет область действия консоли управления.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    state: paper
+    color: "#2956B2"
+  - type: Item
+    size: Small
+  - type: SlimeBlueprint
+
+- type: entity
+  id: XenobioZoneMarker
+  name: зона ксенобиологии
+  description: Здесь консоль управления ксенобиологией может работать.
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: XenobioZone
+
+# chemical_mob_spawn: HOSTILE_SPAWN / FRIENDLY_SPAWN
+- type: weightedRandomEntity
+  id: SlimeGoldHostileMobs
+  weights:
+    MobCarp: 2
+    MobBearSpace: 1
+    MobGiantSpiderAngry: 1
+    MobXenoSlime: 1
+    MobSpiderSpace: 1
+    MobPurpleSnake: 1
+    MobAngryBee: 1
+    MobTick: 1
+
+- type: weightedRandomEntity
+  id: SlimeGoldFriendlyMobs
+  weights:
+    MobCorgi: 1
+    MobCat: 1
+    MobMonkey: 1
+    MobChicken: 1
+    MobCow: 1
+    MobGoat: 1
+    MobMouse: 1
+    MobFox: 1
+    MobBee: 1
+    MobPossum: 1

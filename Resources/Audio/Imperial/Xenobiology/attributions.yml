@@ -1,0 +1,4 @@
+- files: ["timestop.ogg", "smoke.ogg", "attackblob.ogg", "bubbles.ogg", "air_shoot.ogg", "air_suck.ogg", "hiss.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from tgstation/BandaStation"
+  source: "https://github.com/tgstation/tgstation"

@@ -1,0 +1,163 @@
+# obj/item/slimepotion
+
+- type: entity
+  id: BaseSlimePotion
+  parent: BaseItem
+  abstract: true
+  name: зелье слайма
+  description: Твёрдая, но студенистая капсула, выделенная слаймом, с таинственным содержимым.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/potions.rsi
+  - type: Item
+    size: Tiny
+  - type: StaticPrice
+    price: 100
+
+- type: entity
+  id: SlimePotionDocility
+  parent: BaseSlimePotion
+  name: зелье покорности
+  description: Мощная химическая смесь, которая подавляет голод слайма, делая его послушным и ручным.
+  components:
+  - type: Sprite
+    state: potsilver
+  - type: SlimePotion
+    kind: Docility
+    slimeOnly: true
+
+- type: entity
+  id: SlimePotionSentience
+  parent: BaseSlimePotion
+  name: зелье разума
+  description: Чудесная химическая смесь, дарующая живым существам разум, подобный человеческому.
+  components:
+  - type: Sprite
+    state: potpink
+  - type: SlimePotion
+    kind: Sentience
+
+- type: entity
+  id: SlimePotionTransference
+  parent: BaseSlimePotion
+  name: зелье переноса сознания
+  description: Странное химическое вещество на основе слаймов, позволяющее перенести своё сознание в низшее существо.
+  components:
+  - type: Sprite
+    state: potorange
+  - type: SlimePotion
+    kind: Transference
+
+- type: entity
+  id: SlimePotionSteroid
+  parent: BaseSlimePotion
+  name: стероид для слаймов
+  description: Мощная химическая смесь, заставляющая детёныша слайма производить больше экстракта.
+  components:
+  - type: Sprite
+    state: potred
+  - type: SlimePotion
+    kind: Steroid
+    slimeOnly: true
+
+- type: entity
+  id: SlimePotionEnhancer
+  parent: BaseSlimePotion
+  name: усилитель экстракта
+  description: Мощная химическая смесь, дающая экстракту слайма дополнительное использование.
+  components:
+  - type: Sprite
+    state: potpurple
+  - type: SlimePotion
+    kind: Enhancer
+
+- type: entity
+  id: SlimePotionMaxEnhancer
+  parent: BaseSlimePotion
+  name: максимизатор экстракта
+  description: Чрезвычайно мощная химическая смесь, доводящая число использований экстракта до максимума.
+  components:
+  - type: Sprite
+    state: potcerulean
+  - type: SlimePotion
+    kind: MaxEnhancer
+
+- type: entity
+  id: SlimePotionStabilizer
+  parent: BaseSlimePotion
+  name: стабилизатор слаймов
+  description: Мощная химическая смесь, снижающая вероятность мутации слайма.
+  components:
+  - type: Sprite
+    state: potcyan
+  - type: SlimePotion
+    kind: Stabilizer
+    slimeOnly: true
+
+- type: entity
+  id: SlimePotionMutator
+  parent: BaseSlimePotion
+  name: мутаген для слаймов
+  description: Мощная химическая смесь, повышающая вероятность мутации слайма.
+  components:
+  - type: Sprite
+    state: potgreen
+  - type: SlimePotion
+    kind: Mutator
+    slimeOnly: true
+
+- type: entity
+  id: SlimePotionSpeed
+  parent: BaseSlimePotion
+  name: зелье скорости слаймов
+  description: Мощная химическая смесь, убирающая замедление у любого предмета.
+  components:
+  - type: Sprite
+    state: potred
+  - type: SlimePotion
+    kind: Speed
+
+- type: entity
+  id: SlimePotionFireproof
+  parent: BaseSlimePotion
+  name: охлаждающее зелье слаймов
+  description: Мощная химическая смесь, делающая любую одежду огнеупорной. Хватает на три раза.
+  components:
+  - type: Sprite
+    state: potblue
+  - type: SlimePotion
+    kind: Fireproof
+    uses: 3
+
+- type: entity
+  id: SlimePotionGenderChange
+  parent: BaseSlimePotion
+  name: зелье смены пола
+  description: Интересная химическая смесь, меняющая биологический пол того, на кого её нанесли. Не действует на бесполых.
+  components:
+  - type: Sprite
+    state: potrainbow
+  - type: SlimePotion
+    kind: GenderChange
+
+- type: entity
+  id: SlimePotionRenaming
+  parent: BaseSlimePotion
+  name: зелье переименования
+  description: Зелье, позволяющее самоосознающему существу сменить имя, которым оно подсознательно представляется миру.
+  components:
+  - type: Sprite
+    state: potbrown
+  - type: SlimePotion
+    kind: Renaming
+
+- type: entity
+  id: SlimePotionRadio
+  parent: BaseSlimePotion
+  name: блюспейс радио-зелье
+  description: Странное вещество, дарующее выпившему способность принимать и передавать подпространственные радиоволны.
+  components:
+  - type: Sprite
+    state: potbluespace
+  - type: SlimePotion
+    kind: Radio

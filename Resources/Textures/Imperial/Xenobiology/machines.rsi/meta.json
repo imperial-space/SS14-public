@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (computer.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "grinder"
+    },
+    {
+      "name": "grinder_open"
+    },
+    {
+      "name": "grinder_monkey"
+    },
+    {
+      "name": "processor_slime"
+    },
+    {
+      "name": "processor_slime_open"
+    },
+    {
+      "name": "slime_comp",
+      "directions": 4
+    }
+  ]
+}

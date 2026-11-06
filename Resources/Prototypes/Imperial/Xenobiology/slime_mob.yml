@@ -1,0 +1,205 @@
+# mob/living/basic/slime
+
+- type: entity
+  id: MobXenoSlime
+  parent: [ BaseSimpleMob, MobAtmosExposed, MobCombat, MobBloodstream, MobFlammable, BaseMobAnimal ]
+  name: серый слайм-детёныш
+  description: Похоже на желе. Интересно, какое оно на вкус?
+  components:
+  - type: Slime
+  - type: SlimeBrain
+  - type: SlimeName
+  - type: ActiveListener
+    range: 7
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Xenobiology/slimes.rsi
+    layers:
+    - map: [ "enum.SlimeVisualLayers.Base" ]
+      state: grey-baby
+    - map: [ "enum.SlimeVisualLayers.Mood" ]
+      state: aslime-smile
+      visible: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.30
+        density: 80
+        mask:
+        - SmallMobMask # pass_flags = PASSTABLE | PASSGRILLE
+        layer:
+        - SmallMobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 4.5
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSlime
+  - type: Tag
+    tags:
+    - FootstepSound
+    - DoorBumpOpener
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: XenoSlime
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: SlimeJelly
+        Quantity: 150
+    bloodlossDamage:
+      types:
+        Bloodloss: 0
+    bloodlossHealDamage:
+      types:
+        Bloodloss: 0
+  - type: MeleeWeapon
+    altDisarm: false
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Blunt: 10
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: petting-success-slimes
+    interactFailureString: petting-failure-generic
+  - type: Speech
+    speechVerb: Slime
+    speechSounds: Slime
+    allowedEmotes: ['Squish']
+  - type: TypingIndicator
+    proto: slime
+  - type: Grammar
+    attributes:
+      gender: neuter
+  - type: NpcFactionMember
+    factions:
+    - SimpleNeutral
+  - type: HTN
+    rootTask:
+      task: XenoSlimeCompound
+    blackboard:
+      MeleeRange: !type:Single
+        0.8
+      IdleRange: !type:Single
+        4
+  - type: NoSlip
+  - type: Pullable
+  - type: Climbing
+  - type: MobPrice
+    price: 200
+  - type: Perishable
+
+# Действия слайма
+
+- type: entity
+  id: ActionSlimeEvolve
+  name: Эволюционировать
+  description: Когда вы наедитесь, вырастите во взрослого слайма.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Xenobiology/slime_actions.rsi
+      state: slimegrow
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SlimeEvolveActionEvent
+
+- type: entity
+  id: ActionSlimeReproduce
+  name: Размножиться
+  description: Когда вы наедитесь, разделитесь на четыре детёныша.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Xenobiology/slime_actions.rsi
+      state: slimesplit
+    useDelay: 1
+  - type: InstantAction
+    event: !type:SlimeReproduceActionEvent
+
+# damage_coeff = list(BRUTE = 1, BURN = -1, TOX = 1, STAMINA = 1, OXY = 1): огонь лечит.
+- type: damageModifierSet
+  id: XenoSlime
+  coefficients:
+    Heat: -1
+    Shock: -1
+    Caustic: -1
+
+# Эффект сердечек (love_hearts) при кормлении плазмой и смене дружбы.
+- type: entity
+  id: SlimeHeartEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/effects.rsi
+    state: love_hearts
+    drawdepth: Effects
+    noRot: true
+  - type: TimedDespawn
+    lifetime: 1.5
+
+# HTN: цели и режимы задаются SlimeSystem (blackboard SS13).
+- type: htnCompound
+  id: XenoSlimeCompound
+  branches:
+  # pet_command/idle: стоять на месте.
+  - preconditions:
+    - !type:KeyExistsPrecondition
+      key: SlimeStay
+    tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:RandomOperator
+        targetKey: IdleTime
+        minKey: MinimumIdleTime
+        maxKey: MaximumIdleTime
+    - !type:HTNPrimitiveTask
+      operator: !type:WaitOperator
+        key: IdleTime
+      preconditions:
+      - !type:KeyExistsPrecondition
+        key: IdleTime
+
+  # Охота/атака: цель выбирает SlimeSystem.
+  - preconditions:
+    - !type:KeyExistsPrecondition
+      key: SlimeHunting
+    tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:MoveToOperator
+        shutdownState: PlanFinished
+        pathfindInPlanning: true
+        removeKeyOnFinish: false
+        targetKey: SlimeTargetCoordinates
+        pathfindKey: TargetPathfind
+        rangeKey: MeleeRange
+    - !type:HTNPrimitiveTask
+      operator: !type:MeleeOperator
+        targetKey: Target
+      preconditions:
+      - !type:KeyExistsPrecondition
+        key: Target
+      - !type:TargetInRangePrecondition
+        targetKey: Target
+        rangeKey: MeleeRange
+
+  # pet_command/follow
+  - preconditions:
+    - !type:KeyExistsPrecondition
+      key: SlimeFollowing
+    tasks:
+    - !type:HTNCompoundTask
+      task: FollowCompound
+
+  - tasks:
+    - !type:HTNCompoundTask
+      task: IdleCompound

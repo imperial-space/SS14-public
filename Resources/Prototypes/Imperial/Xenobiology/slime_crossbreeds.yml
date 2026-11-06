@@ -1,0 +1,4067 @@
+# Скрещенные экстракты слаймов (crossbreeding). Сгенерировано по таблицам SS13.
+
+- type: entity
+  id: BaseSlimeCross
+  parent: BaseItem
+  abstract: true
+  name: скрещенный экстракт слайма
+  description: Чрезвычайно мощный экстракт слайма, полученный скрещиванием.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: base
+  - type: Item
+    size: Tiny
+  - type: StaticPrice
+    price: 400
+
+- type: entity
+  id: BaseSlimeCrossActivated
+  parent: BaseSlimeCross
+  abstract: true
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 10
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeCrossActivated
+
+- type: entity
+  id: SlimeCrossBurningGrey
+  parent: BaseSlimeCrossActivated
+  name: жгучий серый экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGrey
+    effect: burning
+    effectDesc: slime-cross-desc-burning-grey
+
+- type: entity
+  id: SlimeCrossBurningOrange
+  parent: BaseSlimeCrossActivated
+  name: жгучий оранжевый экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#FFA500"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOrange
+    effect: burning
+    effectDesc: slime-cross-desc-burning-orange
+
+- type: entity
+  id: SlimeCrossBurningPurple
+  parent: BaseSlimeCrossActivated
+  name: жгучий фиолетовый экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#B19CD9"
+  - type: SlimeCrossbreed
+    slimeType: SlimePurple
+    effect: burning
+    effectDesc: slime-cross-desc-burning-purple
+
+- type: entity
+  id: SlimeCrossBurningBlue
+  parent: BaseSlimeCrossActivated
+  name: жгучий синий экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#ADD8E6"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlue
+    effect: burning
+    effectDesc: slime-cross-desc-burning-blue
+
+- type: entity
+  id: SlimeCrossBurningMetal
+  parent: BaseSlimeCrossActivated
+  name: жгучий металлический экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#7E7E7E"
+  - type: SlimeCrossbreed
+    slimeType: SlimeMetal
+    effect: burning
+    effectDesc: slime-cross-desc-burning-metal
+
+- type: entity
+  id: SlimeCrossBurningYellow
+  parent: BaseSlimeCrossActivated
+  name: жгучий жёлтый экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#FFFF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeYellow
+    effect: burning
+    effectDesc: slime-cross-desc-burning-yellow
+
+- type: entity
+  id: SlimeCrossBurningDarkPurple
+  parent: BaseSlimeCrossActivated
+  name: жгучий тёмно-фиолетовый экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#551A8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkPurple
+    effect: burning
+    effectDesc: slime-cross-desc-burning-darkpurple
+
+- type: entity
+  id: SlimeCrossBurningDarkBlue
+  parent: BaseSlimeCrossActivated
+  name: жгучий тёмно-синий экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#0000FF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkBlue
+    effect: burning
+    effectDesc: slime-cross-desc-burning-darkblue
+
+- type: entity
+  id: SlimeCrossBurningSilver
+  parent: BaseSlimeCrossActivated
+  name: жгучий серебряный экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#D3D3D3"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSilver
+    effect: burning
+    effectDesc: slime-cross-desc-burning-silver
+
+- type: entity
+  id: SlimeCrossBurningBluespace
+  parent: BaseSlimeCrossActivated
+  name: жгучий блюспейс экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#32CD32"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBluespace
+    effect: burning
+    effectDesc: slime-cross-desc-burning-bluespace
+
+- type: entity
+  id: SlimeCrossBurningSepia
+  parent: BaseSlimeCrossActivated
+  name: жгучий сепиевый экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#704214"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSepia
+    effect: burning
+    effectDesc: slime-cross-desc-burning-sepia
+
+- type: entity
+  id: SlimeCrossBurningCerulean
+  parent: BaseSlimeCrossActivated
+  name: жгучий церулеановый экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#2956B2"
+  - type: SlimeCrossbreed
+    slimeType: SlimeCerulean
+    effect: burning
+    effectDesc: slime-cross-desc-burning-cerulean
+
+- type: entity
+  id: SlimeCrossBurningPyrite
+  parent: BaseSlimeCrossActivated
+  name: жгучий пиритовый экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#FAFAD2"
+  - type: SlimeCrossbreed
+    slimeType: SlimePyrite
+    effect: burning
+    effectDesc: slime-cross-desc-burning-pyrite
+
+- type: entity
+  id: SlimeCrossBurningRed
+  parent: BaseSlimeCrossActivated
+  name: жгучий красный экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#FF0000"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRed
+    effect: burning
+    effectDesc: slime-cross-desc-burning-red
+
+- type: entity
+  id: SlimeCrossBurningGreen
+  parent: BaseSlimeCrossActivated
+  name: жгучий зелёный экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#00FF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGreen
+    effect: burning
+    effectDesc: slime-cross-desc-burning-green
+
+- type: entity
+  id: SlimeCrossBurningPink
+  parent: BaseSlimeCrossActivated
+  name: жгучий розовый экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#FF69B4"
+  - type: SlimeCrossbreed
+    slimeType: SlimePink
+    effect: burning
+    effectDesc: slime-cross-desc-burning-pink
+
+- type: entity
+  id: SlimeCrossBurningGold
+  parent: BaseSlimeCrossActivated
+  name: жгучий золотой экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#FFD700"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGold
+    effect: burning
+    effectDesc: slime-cross-desc-burning-gold
+
+- type: entity
+  id: SlimeCrossBurningOil
+  parent: BaseSlimeCrossActivated
+  name: жгучий масляный экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#505050"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOil
+    effect: burning
+    effectDesc: slime-cross-desc-burning-oil
+
+- type: entity
+  id: SlimeCrossBurningBlack
+  parent: BaseSlimeCrossActivated
+  name: жгучий чёрный экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#202020"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlack
+    effect: burning
+    effectDesc: slime-cross-desc-burning-black
+
+- type: entity
+  id: SlimeCrossBurningLightPink
+  parent: BaseSlimeCrossActivated
+  name: жгучий светло-розовый экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#FFB6C1"
+  - type: SlimeCrossbreed
+    slimeType: SlimeLightPink
+    effect: burning
+    effectDesc: slime-cross-desc-burning-lightpink
+
+- type: entity
+  id: SlimeCrossBurningAdamantine
+  parent: BaseSlimeCrossActivated
+  name: жгучий адамантиновый экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#008B8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeAdamantine
+    effect: burning
+    effectDesc: slime-cross-desc-burning-adamantine
+
+- type: entity
+  id: SlimeCrossBurningRainbow
+  parent: BaseSlimeCrossActivated
+  name: жгучий радужный экстракт
+  description: Он кипит едва сдерживаемой энергией.
+  components:
+  - type: Sprite
+    state: burning
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRainbow
+    effect: burning
+    effectDesc: slime-cross-desc-burning-rainbow
+
+- type: entity
+  id: SlimeCrossChargedGrey
+  parent: BaseSlimeCrossActivated
+  name: заряженный серый экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGrey
+    effect: charged
+    effectDesc: slime-cross-desc-charged-grey
+
+- type: entity
+  id: SlimeCrossChargedOrange
+  parent: BaseSlimeCrossActivated
+  name: заряженный оранжевый экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#FFA500"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOrange
+    effect: charged
+    effectDesc: slime-cross-desc-charged-orange
+
+- type: entity
+  id: SlimeCrossChargedPurple
+  parent: BaseSlimeCrossActivated
+  name: заряженный фиолетовый экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#B19CD9"
+  - type: SlimeCrossbreed
+    slimeType: SlimePurple
+    effect: charged
+    effectDesc: slime-cross-desc-charged-purple
+
+- type: entity
+  id: SlimeCrossChargedBlue
+  parent: BaseSlimeCrossActivated
+  name: заряженный синий экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#ADD8E6"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlue
+    effect: charged
+    effectDesc: slime-cross-desc-charged-blue
+
+- type: entity
+  id: SlimeCrossChargedMetal
+  parent: BaseSlimeCrossActivated
+  name: заряженный металлический экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#7E7E7E"
+  - type: SlimeCrossbreed
+    slimeType: SlimeMetal
+    effect: charged
+    effectDesc: slime-cross-desc-charged-metal
+
+- type: entity
+  id: SlimeCrossChargedYellow
+  parent: BaseSlimeCrossActivated
+  name: заряженный жёлтый экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#FFFF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeYellow
+    effect: charged
+    effectDesc: slime-cross-desc-charged-yellow
+
+- type: entity
+  id: SlimeCrossChargedDarkPurple
+  parent: BaseSlimeCrossActivated
+  name: заряженный тёмно-фиолетовый экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#551A8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkPurple
+    effect: charged
+    effectDesc: slime-cross-desc-charged-darkpurple
+
+- type: entity
+  id: SlimeCrossChargedDarkBlue
+  parent: BaseSlimeCrossActivated
+  name: заряженный тёмно-синий экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#0000FF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkBlue
+    effect: charged
+    effectDesc: slime-cross-desc-charged-darkblue
+
+- type: entity
+  id: SlimeCrossChargedSilver
+  parent: BaseSlimeCrossActivated
+  name: заряженный серебряный экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#D3D3D3"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSilver
+    effect: charged
+    effectDesc: slime-cross-desc-charged-silver
+
+- type: entity
+  id: SlimeCrossChargedBluespace
+  parent: BaseSlimeCrossActivated
+  name: заряженный блюспейс экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#32CD32"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBluespace
+    effect: charged
+    effectDesc: slime-cross-desc-charged-bluespace
+
+- type: entity
+  id: SlimeCrossChargedSepia
+  parent: BaseSlimeCrossActivated
+  name: заряженный сепиевый экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#704214"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSepia
+    effect: charged
+    effectDesc: slime-cross-desc-charged-sepia
+
+- type: entity
+  id: SlimeCrossChargedCerulean
+  parent: BaseSlimeCrossActivated
+  name: заряженный церулеановый экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#2956B2"
+  - type: SlimeCrossbreed
+    slimeType: SlimeCerulean
+    effect: charged
+    effectDesc: slime-cross-desc-charged-cerulean
+
+- type: entity
+  id: SlimeCrossChargedPyrite
+  parent: BaseSlimeCrossActivated
+  name: заряженный пиритовый экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#FAFAD2"
+  - type: SlimeCrossbreed
+    slimeType: SlimePyrite
+    effect: charged
+    effectDesc: slime-cross-desc-charged-pyrite
+
+- type: entity
+  id: SlimeCrossChargedRed
+  parent: BaseSlimeCrossActivated
+  name: заряженный красный экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#FF0000"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRed
+    effect: charged
+    effectDesc: slime-cross-desc-charged-red
+
+- type: entity
+  id: SlimeCrossChargedGreen
+  parent: BaseSlimeCrossActivated
+  name: заряженный зелёный экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#00FF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGreen
+    effect: charged
+    effectDesc: slime-cross-desc-charged-green
+
+- type: entity
+  id: SlimeCrossChargedPink
+  parent: BaseSlimeCrossActivated
+  name: заряженный розовый экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#FF69B4"
+  - type: SlimeCrossbreed
+    slimeType: SlimePink
+    effect: charged
+    effectDesc: slime-cross-desc-charged-pink
+
+- type: entity
+  id: SlimeCrossChargedGold
+  parent: BaseSlimeCrossActivated
+  name: заряженный золотой экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#FFD700"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGold
+    effect: charged
+    effectDesc: slime-cross-desc-charged-gold
+
+- type: entity
+  id: SlimeCrossChargedOil
+  parent: BaseSlimeCrossActivated
+  name: заряженный масляный экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#505050"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOil
+    effect: charged
+    effectDesc: slime-cross-desc-charged-oil
+
+- type: entity
+  id: SlimeCrossChargedBlack
+  parent: BaseSlimeCrossActivated
+  name: заряженный чёрный экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#202020"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlack
+    effect: charged
+    effectDesc: slime-cross-desc-charged-black
+
+- type: entity
+  id: SlimeCrossChargedLightPink
+  parent: BaseSlimeCrossActivated
+  name: заряженный светло-розовый экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#FFB6C1"
+  - type: SlimeCrossbreed
+    slimeType: SlimeLightPink
+    effect: charged
+    effectDesc: slime-cross-desc-charged-lightpink
+
+- type: entity
+  id: SlimeCrossChargedAdamantine
+  parent: BaseSlimeCrossActivated
+  name: заряженный адамантиновый экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#008B8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeAdamantine
+    effect: charged
+    effectDesc: slime-cross-desc-charged-adamantine
+
+- type: entity
+  id: SlimeCrossChargedRainbow
+  parent: BaseSlimeCrossActivated
+  name: заряженный радужный экстракт
+  description: Он искрит электричеством.
+  components:
+  - type: Sprite
+    state: charged
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRainbow
+    effect: charged
+    effectDesc: slime-cross-desc-charged-rainbow
+
+- type: entity
+  id: SlimeCrossChillingGrey
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий серый экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGrey
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-grey
+
+- type: entity
+  id: SlimeCrossChillingOrange
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий оранжевый экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#FFA500"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOrange
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-orange
+
+- type: entity
+  id: SlimeCrossChillingPurple
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий фиолетовый экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#B19CD9"
+  - type: SlimeCrossbreed
+    slimeType: SlimePurple
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-purple
+
+- type: entity
+  id: SlimeCrossChillingBlue
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий синий экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#ADD8E6"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlue
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-blue
+
+- type: entity
+  id: SlimeCrossChillingMetal
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий металлический экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#7E7E7E"
+  - type: SlimeCrossbreed
+    slimeType: SlimeMetal
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-metal
+
+- type: entity
+  id: SlimeCrossChillingYellow
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий жёлтый экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#FFFF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeYellow
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-yellow
+
+- type: entity
+  id: SlimeCrossChillingDarkPurple
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий тёмно-фиолетовый экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#551A8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkPurple
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-darkpurple
+
+- type: entity
+  id: SlimeCrossChillingDarkBlue
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий тёмно-синий экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#0000FF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkBlue
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-darkblue
+
+- type: entity
+  id: SlimeCrossChillingSilver
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий серебряный экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#D3D3D3"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSilver
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-silver
+
+- type: entity
+  id: SlimeCrossChillingBluespace
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий блюспейс экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#32CD32"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBluespace
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-bluespace
+  - type: SlimeCrossLink
+
+- type: entity
+  id: SlimeCrossChillingSepia
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий сепиевый экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#704214"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSepia
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-sepia
+  - type: SlimeCrossLink
+
+- type: entity
+  id: SlimeCrossChillingCerulean
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий церулеановый экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#2956B2"
+  - type: SlimeCrossbreed
+    slimeType: SlimeCerulean
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-cerulean
+
+- type: entity
+  id: SlimeCrossChillingPyrite
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий пиритовый экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#FAFAD2"
+  - type: SlimeCrossbreed
+    slimeType: SlimePyrite
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-pyrite
+
+- type: entity
+  id: SlimeCrossChillingRed
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий красный экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#FF0000"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRed
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-red
+
+- type: entity
+  id: SlimeCrossChillingGreen
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий зелёный экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#00FF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGreen
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-green
+
+- type: entity
+  id: SlimeCrossChillingPink
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий розовый экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#FF69B4"
+  - type: SlimeCrossbreed
+    slimeType: SlimePink
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-pink
+
+- type: entity
+  id: SlimeCrossChillingGold
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий золотой экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#FFD700"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGold
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-gold
+
+- type: entity
+  id: SlimeCrossChillingOil
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий масляный экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#505050"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOil
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-oil
+
+- type: entity
+  id: SlimeCrossChillingBlack
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий чёрный экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#202020"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlack
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-black
+
+- type: entity
+  id: SlimeCrossChillingLightPink
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий светло-розовый экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#FFB6C1"
+  - type: SlimeCrossbreed
+    slimeType: SlimeLightPink
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-lightpink
+
+- type: entity
+  id: SlimeCrossChillingAdamantine
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий адамантиновый экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#008B8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeAdamantine
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-adamantine
+
+- type: entity
+  id: SlimeCrossChillingRainbow
+  parent: BaseSlimeCrossActivated
+  name: охлаждающий радужный экстракт
+  description: Он холодный на ощупь, словно замёрзший.
+  components:
+  - type: Sprite
+    state: chilling
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRainbow
+    effect: chilling
+    effectDesc: slime-cross-desc-chilling-rainbow
+
+- type: entity
+  id: SlimeCrossConsumingGrey
+  parent: BaseSlimeCross
+  name: поглощающий серый экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGrey
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-grey
+  - type: SlimeConsuming
+    cookie: SlimeCookieGrey
+
+- type: entity
+  id: SlimeCrossConsumingOrange
+  parent: BaseSlimeCross
+  name: поглощающий оранжевый экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#FFA500"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOrange
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-orange
+  - type: SlimeConsuming
+    cookie: SlimeCookieOrange
+
+- type: entity
+  id: SlimeCrossConsumingPurple
+  parent: BaseSlimeCross
+  name: поглощающий фиолетовый экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#B19CD9"
+  - type: SlimeCrossbreed
+    slimeType: SlimePurple
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-purple
+  - type: SlimeConsuming
+    cookie: SlimeCookiePurple
+
+- type: entity
+  id: SlimeCrossConsumingBlue
+  parent: BaseSlimeCross
+  name: поглощающий синий экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#ADD8E6"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlue
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-blue
+  - type: SlimeConsuming
+    cookie: SlimeCookieBlue
+
+- type: entity
+  id: SlimeCrossConsumingMetal
+  parent: BaseSlimeCross
+  name: поглощающий металлический экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#7E7E7E"
+  - type: SlimeCrossbreed
+    slimeType: SlimeMetal
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-metal
+  - type: SlimeConsuming
+    cookie: SlimeCookieMetal
+
+- type: entity
+  id: SlimeCrossConsumingYellow
+  parent: BaseSlimeCross
+  name: поглощающий жёлтый экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#FFFF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeYellow
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-yellow
+  - type: SlimeConsuming
+    cookie: SlimeCookieYellow
+
+- type: entity
+  id: SlimeCrossConsumingDarkPurple
+  parent: BaseSlimeCross
+  name: поглощающий тёмно-фиолетовый экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#551A8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkPurple
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-darkpurple
+  - type: SlimeConsuming
+    cookie: SlimeCookieDarkPurple
+
+- type: entity
+  id: SlimeCrossConsumingDarkBlue
+  parent: BaseSlimeCross
+  name: поглощающий тёмно-синий экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#0000FF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkBlue
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-darkblue
+  - type: SlimeConsuming
+    cookie: SlimeCookieDarkBlue
+
+- type: entity
+  id: SlimeCrossConsumingSilver
+  parent: BaseSlimeCross
+  name: поглощающий серебряный экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#D3D3D3"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSilver
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-silver
+  - type: SlimeConsuming
+    cookie: SlimeCookieSilver
+
+- type: entity
+  id: SlimeCrossConsumingBluespace
+  parent: BaseSlimeCross
+  name: поглощающий блюспейс экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#32CD32"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBluespace
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-bluespace
+  - type: SlimeConsuming
+    cookie: SlimeCookieBluespace
+
+- type: entity
+  id: SlimeCrossConsumingSepia
+  parent: BaseSlimeCross
+  name: поглощающий сепиевый экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#704214"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSepia
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-sepia
+  - type: SlimeConsuming
+    cookie: SlimeCookieSepia
+
+- type: entity
+  id: SlimeCrossConsumingCerulean
+  parent: BaseSlimeCross
+  name: поглощающий церулеановый экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#2956B2"
+  - type: SlimeCrossbreed
+    slimeType: SlimeCerulean
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-cerulean
+  - type: SlimeConsuming
+    cookies: 3
+    cookie: SlimeCookieCerulean
+
+- type: entity
+  id: SlimeCrossConsumingPyrite
+  parent: BaseSlimeCross
+  name: поглощающий пиритовый экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#FAFAD2"
+  - type: SlimeCrossbreed
+    slimeType: SlimePyrite
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-pyrite
+  - type: SlimeConsuming
+    cookie: SlimeCookiePyrite
+
+- type: entity
+  id: SlimeCrossConsumingRed
+  parent: BaseSlimeCross
+  name: поглощающий красный экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#FF0000"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRed
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-red
+  - type: SlimeConsuming
+    cookie: SlimeCookieRed
+
+- type: entity
+  id: SlimeCrossConsumingGreen
+  parent: BaseSlimeCross
+  name: поглощающий зелёный экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#00FF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGreen
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-green
+  - type: SlimeConsuming
+    cookie: SlimeCookieGreen
+
+- type: entity
+  id: SlimeCrossConsumingPink
+  parent: BaseSlimeCross
+  name: поглощающий розовый экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#FF69B4"
+  - type: SlimeCrossbreed
+    slimeType: SlimePink
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-pink
+  - type: SlimeConsuming
+    cookie: SlimeCookiePink
+
+- type: entity
+  id: SlimeCrossConsumingGold
+  parent: BaseSlimeCross
+  name: поглощающий золотой экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#FFD700"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGold
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-gold
+  - type: SlimeConsuming
+    cookie: SlimeCookieGold
+
+- type: entity
+  id: SlimeCrossConsumingOil
+  parent: BaseSlimeCross
+  name: поглощающий масляный экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#505050"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOil
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-oil
+  - type: SlimeConsuming
+    cookie: SlimeCookieOil
+
+- type: entity
+  id: SlimeCrossConsumingBlack
+  parent: BaseSlimeCross
+  name: поглощающий чёрный экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#202020"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlack
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-black
+  - type: SlimeConsuming
+    cookie: SlimeCookieBlack
+
+- type: entity
+  id: SlimeCrossConsumingLightPink
+  parent: BaseSlimeCross
+  name: поглощающий светло-розовый экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#FFB6C1"
+  - type: SlimeCrossbreed
+    slimeType: SlimeLightPink
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-lightpink
+  - type: SlimeConsuming
+    cookie: SlimeCookieLightPink
+
+- type: entity
+  id: SlimeCrossConsumingAdamantine
+  parent: BaseSlimeCross
+  name: поглощающий адамантиновый экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#008B8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeAdamantine
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-adamantine
+  - type: SlimeConsuming
+    cookie: SlimeCookieAdamantine
+
+- type: entity
+  id: SlimeCrossConsumingRainbow
+  parent: BaseSlimeCross
+  name: поглощающий радужный экстракт
+  description: Он жаждет... большего.
+  components:
+  - type: Sprite
+    state: consuming
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRainbow
+    effect: consuming
+    effectDesc: slime-cross-desc-consuming-rainbow
+  - type: SlimeConsuming
+
+- type: entity
+  id: SlimeCrossIndustrialGrey
+  parent: BaseSlimeCross
+  name: промышленный серый экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGrey
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-grey
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 2
+    item: MonkeyCube
+    amount: 5
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialOrange
+  parent: BaseSlimeCross
+  name: промышленный оранжевый экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#FFA500"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOrange
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-orange
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 6
+    item: SlimeLighter
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialPurple
+  parent: BaseSlimeCross
+  name: промышленный фиолетовый экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#B19CD9"
+  - type: SlimeCrossbreed
+    slimeType: SlimePurple
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-purple
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 5
+    item: SlimeAutoinjectorRegen
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialBlue
+  parent: BaseSlimeCross
+  name: промышленный синий экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#ADD8E6"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlue
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-blue
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 10
+    item: FireExtinguisher
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialMetal
+  parent: BaseSlimeCross
+  name: промышленный металлический экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#7E7E7E"
+  - type: SlimeCrossbreed
+    slimeType: SlimeMetal
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-metal
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 3
+    item: SheetSteel1
+    stackCount: 10
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialYellow
+  parent: BaseSlimeCross
+  name: промышленный жёлтый экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#FFFF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeYellow
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-yellow
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 5
+    item: PowerCellHigh
+    afterSpawn: halfcharge
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialDarkPurple
+  parent: BaseSlimeCross
+  name: промышленный тёмно-фиолетовый экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#551A8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkPurple
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-darkpurple
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 10
+    item: SheetPlasma1
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialDarkBlue
+  parent: BaseSlimeCross
+  name: промышленный тёмно-синий экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#0000FF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkBlue
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-darkblue
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 6
+    item: SlimePotionFireproof
+    afterSpawn: oneuse
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialSilver
+  parent: BaseSlimeCross
+  name: промышленный серебряный экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#D3D3D3"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSilver
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-silver
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 1
+    randomPool: foodordrink
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialBluespace
+  parent: BaseSlimeCross
+  name: промышленный блюспейс экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#32CD32"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBluespace
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-bluespace
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 7
+    item: XenoBluespaceCrystal
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialSepia
+  parent: BaseSlimeCross
+  name: промышленный сепиевый экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#704214"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSepia
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-sepia
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 2
+    item: TravelCamera
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialCerulean
+  parent: BaseSlimeCross
+  name: промышленный церулеановый экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#2956B2"
+  - type: SlimeCrossbreed
+    slimeType: SlimeCerulean
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-cerulean
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 5
+    item: SlimePotionEnhancer
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialPyrite
+  parent: BaseSlimeCross
+  name: промышленный пиритовый экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#FAFAD2"
+  - type: SlimeCrossbreed
+    slimeType: SlimePyrite
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-pyrite
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 2
+    item: SprayPainter
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialRed
+  parent: BaseSlimeCross
+  name: промышленный красный экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#FF0000"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRed
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-red
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 5
+    item: SlimeCrossBeakerBlood
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialGreen
+  parent: BaseSlimeCross
+  name: промышленный зелёный экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#00FF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGreen
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-green
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 7
+    item: SlimeAutoinjectorJelly
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialPink
+  parent: BaseSlimeCross
+  name: промышленный розовый экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#FF69B4"
+  - type: SlimeCrossbreed
+    slimeType: SlimePink
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-pink
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 6
+    item: SlimeAutoinjectorPeace
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialGold
+  parent: BaseSlimeCross
+  name: промышленный золотой экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#FFD700"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGold
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-gold
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 10
+    randomPool: coin
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialOil
+  parent: BaseSlimeCross
+  name: промышленный масляный экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#505050"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOil
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-oil
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 4
+    item: ExGrenade
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialBlack
+  parent: BaseSlimeCross
+  name: промышленный чёрный экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#202020"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlack
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-black
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 6
+    item: CigPackGreen
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialLightPink
+  parent: BaseSlimeCross
+  name: промышленный светло-розовый экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#FFB6C1"
+  - type: SlimeCrossbreed
+    slimeType: SlimeLightPink
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-lightpink
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 3
+    item: FoodSnackChocolate
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialAdamantine
+  parent: BaseSlimeCross
+  name: промышленный адамантиновый экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#008B8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeAdamantine
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-adamantine
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 10
+    item: SheetAdamantine
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossIndustrialRainbow
+  parent: BaseSlimeCross
+  name: промышленный радужный экстракт
+  description: Гелеобразный прочный экстракт, неравнодушный к плазме и промышленности.
+  components:
+  - type: Sprite
+    layers:
+    - state: industrial_still
+      map: [ "base" ]
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRainbow
+    effect: industrial
+    effectDesc: slime-cross-desc-industrial-rainbow
+  - type: SolutionContainerManager
+    solutions:
+      crossbreed:
+        maxVol: 100
+  - type: InjectableSolution
+    solution: crossbreed
+  - type: DrawableSolution
+    solution: crossbreed
+  - type: SlimeIndustrial
+    plasmaRequired: 5
+    randomPool: extract
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SlimeIndustrialVisuals.Working:
+        base:
+          True: { state: industrial }
+          False: { state: industrial_still }
+
+- type: entity
+  id: SlimeCrossPrismaticGrey
+  parent: BaseSlimeCross
+  name: призматический серый экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGrey
+    effect: prismatic
+  - type: SlimePrismatic
+    remover: true
+
+- type: entity
+  id: SlimeCrossPrismaticOrange
+  parent: BaseSlimeCross
+  name: призматический оранжевый экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#FFA500"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOrange
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#FFA500"
+
+- type: entity
+  id: SlimeCrossPrismaticPurple
+  parent: BaseSlimeCross
+  name: призматический фиолетовый экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#B19CD9"
+  - type: SlimeCrossbreed
+    slimeType: SlimePurple
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#B19CD9"
+
+- type: entity
+  id: SlimeCrossPrismaticBlue
+  parent: BaseSlimeCross
+  name: призматический синий экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#ADD8E6"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlue
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#ADD8E6"
+
+- type: entity
+  id: SlimeCrossPrismaticMetal
+  parent: BaseSlimeCross
+  name: призматический металлический экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#7E7E7E"
+  - type: SlimeCrossbreed
+    slimeType: SlimeMetal
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#7E7E7E"
+
+- type: entity
+  id: SlimeCrossPrismaticYellow
+  parent: BaseSlimeCross
+  name: призматический жёлтый экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#FFFF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeYellow
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#FFFF00"
+
+- type: entity
+  id: SlimeCrossPrismaticDarkPurple
+  parent: BaseSlimeCross
+  name: призматический тёмно-фиолетовый экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#551A8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkPurple
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#551A8B"
+
+- type: entity
+  id: SlimeCrossPrismaticDarkBlue
+  parent: BaseSlimeCross
+  name: призматический тёмно-синий экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#0000FF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkBlue
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#0000FF"
+
+- type: entity
+  id: SlimeCrossPrismaticSilver
+  parent: BaseSlimeCross
+  name: призматический серебряный экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#D3D3D3"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSilver
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#D3D3D3"
+
+- type: entity
+  id: SlimeCrossPrismaticBluespace
+  parent: BaseSlimeCross
+  name: призматический блюспейс экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#32CD32"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBluespace
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#32CD32"
+
+- type: entity
+  id: SlimeCrossPrismaticSepia
+  parent: BaseSlimeCross
+  name: призматический сепиевый экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#704214"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSepia
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#704214"
+
+- type: entity
+  id: SlimeCrossPrismaticCerulean
+  parent: BaseSlimeCross
+  name: призматический церулеановый экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#2956B2"
+  - type: SlimeCrossbreed
+    slimeType: SlimeCerulean
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#2956B2"
+
+- type: entity
+  id: SlimeCrossPrismaticPyrite
+  parent: BaseSlimeCross
+  name: призматический пиритовый экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#FAFAD2"
+  - type: SlimeCrossbreed
+    slimeType: SlimePyrite
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#FAFAD2"
+
+- type: entity
+  id: SlimeCrossPrismaticRed
+  parent: BaseSlimeCross
+  name: призматический красный экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#FF0000"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRed
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#FF0000"
+
+- type: entity
+  id: SlimeCrossPrismaticGreen
+  parent: BaseSlimeCross
+  name: призматический зелёный экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#00FF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGreen
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#00FF00"
+
+- type: entity
+  id: SlimeCrossPrismaticPink
+  parent: BaseSlimeCross
+  name: призматический розовый экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#FF69B4"
+  - type: SlimeCrossbreed
+    slimeType: SlimePink
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#FF69B4"
+
+- type: entity
+  id: SlimeCrossPrismaticGold
+  parent: BaseSlimeCross
+  name: призматический золотой экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#FFD700"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGold
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#FFD700"
+
+- type: entity
+  id: SlimeCrossPrismaticOil
+  parent: BaseSlimeCross
+  name: призматический масляный экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#505050"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOil
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#505050"
+
+- type: entity
+  id: SlimeCrossPrismaticBlack
+  parent: BaseSlimeCross
+  name: призматический чёрный экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#202020"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlack
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#202020"
+
+- type: entity
+  id: SlimeCrossPrismaticLightPink
+  parent: BaseSlimeCross
+  name: призматический светло-розовый экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#FFB6C1"
+  - type: SlimeCrossbreed
+    slimeType: SlimeLightPink
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#FFB6C1"
+
+- type: entity
+  id: SlimeCrossPrismaticAdamantine
+  parent: BaseSlimeCross
+  name: призматический адамантиновый экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#008B8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeAdamantine
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#008B8B"
+
+- type: entity
+  id: SlimeCrossPrismaticRainbow
+  parent: BaseSlimeCross
+  name: призматический радужный экстракт
+  description: Он постоянно покрыт полупрозрачной цветной слизью.
+  components:
+  - type: Sprite
+    state: prismatic
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRainbow
+    effect: prismatic
+  - type: SlimePrismatic
+    paintColor: "#FFFFFF"
+
+- type: entity
+  id: SlimeCrossRecurringGrey
+  parent: SlimeExtractGrey
+  name: повторяющийся серый экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGrey
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 10
+
+- type: entity
+  id: SlimeCrossRecurringOrange
+  parent: SlimeExtractOrange
+  name: повторяющийся оранжевый экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#FFA500"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOrange
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 10
+
+- type: entity
+  id: SlimeCrossRecurringPurple
+  parent: SlimeExtractPurple
+  name: повторяющийся фиолетовый экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#B19CD9"
+  - type: SlimeCrossbreed
+    slimeType: SlimePurple
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 10
+
+- type: entity
+  id: SlimeCrossRecurringBlue
+  parent: SlimeExtractBlue
+  name: повторяющийся синий экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#ADD8E6"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlue
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 10
+
+- type: entity
+  id: SlimeCrossRecurringMetal
+  parent: SlimeExtractMetal
+  name: повторяющийся металлический экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#7E7E7E"
+  - type: SlimeCrossbreed
+    slimeType: SlimeMetal
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 20
+
+- type: entity
+  id: SlimeCrossRecurringYellow
+  parent: SlimeExtractYellow
+  name: повторяющийся жёлтый экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#FFFF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeYellow
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 20
+
+- type: entity
+  id: SlimeCrossRecurringDarkPurple
+  parent: SlimeExtractDarkPurple
+  name: повторяющийся тёмно-фиолетовый экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#551A8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkPurple
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 20
+
+- type: entity
+  id: SlimeCrossRecurringDarkBlue
+  parent: SlimeExtractDarkBlue
+  name: повторяющийся тёмно-синий экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#0000FF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkBlue
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 10
+
+- type: entity
+  id: SlimeCrossRecurringSilver
+  parent: SlimeExtractSilver
+  name: повторяющийся серебряный экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#D3D3D3"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSilver
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 10
+
+- type: entity
+  id: SlimeCrossRecurringBluespace
+  parent: SlimeExtractBluespace
+  name: повторяющийся блюспейс экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#32CD32"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBluespace
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 10
+
+- type: entity
+  id: SlimeCrossRecurringSepia
+  parent: SlimeExtractSepia
+  name: повторяющийся сепиевый экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#704214"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSepia
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 36
+
+- type: entity
+  id: SlimeCrossRecurringCerulean
+  parent: SlimeExtractCerulean
+  name: повторяющийся церулеановый экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#2956B2"
+  - type: SlimeCrossbreed
+    slimeType: SlimeCerulean
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 10
+
+- type: entity
+  id: SlimeCrossRecurringPyrite
+  parent: SlimeExtractPyrite
+  name: повторяющийся пиритовый экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#FAFAD2"
+  - type: SlimeCrossbreed
+    slimeType: SlimePyrite
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 10
+
+- type: entity
+  id: SlimeCrossRecurringRed
+  parent: SlimeExtractRed
+  name: повторяющийся красный экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#FF0000"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRed
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 10
+
+- type: entity
+  id: SlimeCrossRecurringGreen
+  parent: SlimeExtractGreen
+  name: повторяющийся зелёный экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#00FF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGreen
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 10
+
+- type: entity
+  id: SlimeCrossRecurringPink
+  parent: SlimeExtractPink
+  name: повторяющийся розовый экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#FF69B4"
+  - type: SlimeCrossbreed
+    slimeType: SlimePink
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 10
+
+- type: entity
+  id: SlimeCrossRecurringGold
+  parent: SlimeExtractGold
+  name: повторяющийся золотой экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#FFD700"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGold
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 30
+
+- type: entity
+  id: SlimeCrossRecurringOil
+  parent: SlimeExtractOil
+  name: повторяющийся масляный экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#505050"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOil
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 10
+
+- type: entity
+  id: SlimeCrossRecurringBlack
+  parent: SlimeExtractBlack
+  name: повторяющийся чёрный экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#202020"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlack
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 10
+
+- type: entity
+  id: SlimeCrossRecurringLightPink
+  parent: SlimeExtractLightPink
+  name: повторяющийся светло-розовый экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#FFB6C1"
+  - type: SlimeCrossbreed
+    slimeType: SlimeLightPink
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 10
+
+- type: entity
+  id: SlimeCrossRecurringAdamantine
+  parent: SlimeExtractAdamantine
+  name: повторяющийся адамантиновый экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#008B8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeAdamantine
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 20
+
+- type: entity
+  id: SlimeCrossRecurringRainbow
+  parent: SlimeExtractRainbow
+  name: повторяющийся радужный экстракт
+  description: Крошечное светящееся ядро, обёрнутое несколькими слоями слизи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimecrossing.rsi
+    state: recurring
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRainbow
+    effect: recurring
+  - type: SlimeRecurring
+    maxCooldown: 40
+
+- type: entity
+  id: SlimeCrossRegenerativeGrey
+  parent: BaseSlimeCross
+  name: регенеративный серый экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGrey
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-grey
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativeOrange
+  parent: BaseSlimeCross
+  name: регенеративный оранжевый экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#FFA500"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOrange
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-orange
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativePurple
+  parent: BaseSlimeCross
+  name: регенеративный фиолетовый экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#B19CD9"
+  - type: SlimeCrossbreed
+    slimeType: SlimePurple
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-purple
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativeBlue
+  parent: BaseSlimeCross
+  name: регенеративный синий экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#ADD8E6"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlue
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-blue
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativeMetal
+  parent: BaseSlimeCross
+  name: регенеративный металлический экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#7E7E7E"
+  - type: SlimeCrossbreed
+    slimeType: SlimeMetal
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-metal
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativeYellow
+  parent: BaseSlimeCross
+  name: регенеративный жёлтый экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#FFFF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeYellow
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-yellow
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativeDarkPurple
+  parent: BaseSlimeCross
+  name: регенеративный тёмно-фиолетовый экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#551A8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkPurple
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-darkpurple
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativeDarkBlue
+  parent: BaseSlimeCross
+  name: регенеративный тёмно-синий экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#0000FF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkBlue
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-darkblue
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativeSilver
+  parent: BaseSlimeCross
+  name: регенеративный серебряный экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#D3D3D3"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSilver
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-silver
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativeBluespace
+  parent: BaseSlimeCross
+  name: регенеративный блюспейс экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#32CD32"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBluespace
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-bluespace
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativeSepia
+  parent: BaseSlimeCross
+  name: регенеративный сепиевый экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#704214"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSepia
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-sepia
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativeCerulean
+  parent: BaseSlimeCross
+  name: регенеративный церулеановый экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#2956B2"
+  - type: SlimeCrossbreed
+    slimeType: SlimeCerulean
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-cerulean
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativePyrite
+  parent: BaseSlimeCross
+  name: регенеративный пиритовый экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#FAFAD2"
+  - type: SlimeCrossbreed
+    slimeType: SlimePyrite
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-pyrite
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativeRed
+  parent: BaseSlimeCross
+  name: регенеративный красный экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#FF0000"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRed
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-red
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativeGreen
+  parent: BaseSlimeCross
+  name: регенеративный зелёный экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#00FF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGreen
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-green
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativePink
+  parent: BaseSlimeCross
+  name: регенеративный розовый экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#FF69B4"
+  - type: SlimeCrossbreed
+    slimeType: SlimePink
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-pink
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativeGold
+  parent: BaseSlimeCross
+  name: регенеративный золотой экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#FFD700"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGold
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-gold
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativeOil
+  parent: BaseSlimeCross
+  name: регенеративный масляный экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#505050"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOil
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-oil
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativeBlack
+  parent: BaseSlimeCross
+  name: регенеративный чёрный экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#202020"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlack
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-black
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativeLightPink
+  parent: BaseSlimeCross
+  name: регенеративный светло-розовый экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#FFB6C1"
+  - type: SlimeCrossbreed
+    slimeType: SlimeLightPink
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-lightpink
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativeAdamantine
+  parent: BaseSlimeCross
+  name: регенеративный адамантиновый экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#008B8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeAdamantine
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-adamantine
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossRegenerativeRainbow
+  parent: BaseSlimeCross
+  name: регенеративный радужный экстракт
+  description: Он наполнен молочной субстанцией и пульсирует, как бьющееся сердце.
+  components:
+  - type: Sprite
+    state: regenerative
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRainbow
+    effect: regenerative
+    effectDesc: slime-cross-desc-regenerative-rainbow
+  - type: SlimeRegenerative
+
+- type: entity
+  id: SlimeCrossReproductiveGrey
+  parent: BaseSlimeCross
+  name: репродуктивный серый экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGrey
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractGrey
+
+- type: entity
+  id: SlimeCrossReproductiveOrange
+  parent: BaseSlimeCross
+  name: репродуктивный оранжевый экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#FFA500"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOrange
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractOrange
+
+- type: entity
+  id: SlimeCrossReproductivePurple
+  parent: BaseSlimeCross
+  name: репродуктивный фиолетовый экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#B19CD9"
+  - type: SlimeCrossbreed
+    slimeType: SlimePurple
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractPurple
+
+- type: entity
+  id: SlimeCrossReproductiveBlue
+  parent: BaseSlimeCross
+  name: репродуктивный синий экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#ADD8E6"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlue
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractBlue
+
+- type: entity
+  id: SlimeCrossReproductiveMetal
+  parent: BaseSlimeCross
+  name: репродуктивный металлический экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#7E7E7E"
+  - type: SlimeCrossbreed
+    slimeType: SlimeMetal
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractMetal
+
+- type: entity
+  id: SlimeCrossReproductiveYellow
+  parent: BaseSlimeCross
+  name: репродуктивный жёлтый экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#FFFF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeYellow
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractYellow
+
+- type: entity
+  id: SlimeCrossReproductiveDarkPurple
+  parent: BaseSlimeCross
+  name: репродуктивный тёмно-фиолетовый экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#551A8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkPurple
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractDarkPurple
+
+- type: entity
+  id: SlimeCrossReproductiveDarkBlue
+  parent: BaseSlimeCross
+  name: репродуктивный тёмно-синий экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#0000FF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkBlue
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractDarkBlue
+
+- type: entity
+  id: SlimeCrossReproductiveSilver
+  parent: BaseSlimeCross
+  name: репродуктивный серебряный экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#D3D3D3"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSilver
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractSilver
+
+- type: entity
+  id: SlimeCrossReproductiveBluespace
+  parent: BaseSlimeCross
+  name: репродуктивный блюспейс экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#32CD32"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBluespace
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractBluespace
+
+- type: entity
+  id: SlimeCrossReproductiveSepia
+  parent: BaseSlimeCross
+  name: репродуктивный сепиевый экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#704214"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSepia
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractSepia
+
+- type: entity
+  id: SlimeCrossReproductiveCerulean
+  parent: BaseSlimeCross
+  name: репродуктивный церулеановый экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#2956B2"
+  - type: SlimeCrossbreed
+    slimeType: SlimeCerulean
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractCerulean
+
+- type: entity
+  id: SlimeCrossReproductivePyrite
+  parent: BaseSlimeCross
+  name: репродуктивный пиритовый экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#FAFAD2"
+  - type: SlimeCrossbreed
+    slimeType: SlimePyrite
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractPyrite
+
+- type: entity
+  id: SlimeCrossReproductiveRed
+  parent: BaseSlimeCross
+  name: репродуктивный красный экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#FF0000"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRed
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractRed
+
+- type: entity
+  id: SlimeCrossReproductiveGreen
+  parent: BaseSlimeCross
+  name: репродуктивный зелёный экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#00FF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGreen
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractGreen
+
+- type: entity
+  id: SlimeCrossReproductivePink
+  parent: BaseSlimeCross
+  name: репродуктивный розовый экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#FF69B4"
+  - type: SlimeCrossbreed
+    slimeType: SlimePink
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractPink
+
+- type: entity
+  id: SlimeCrossReproductiveGold
+  parent: BaseSlimeCross
+  name: репродуктивный золотой экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#FFD700"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGold
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractGold
+
+- type: entity
+  id: SlimeCrossReproductiveOil
+  parent: BaseSlimeCross
+  name: репродуктивный масляный экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#505050"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOil
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractOil
+
+- type: entity
+  id: SlimeCrossReproductiveBlack
+  parent: BaseSlimeCross
+  name: репродуктивный чёрный экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#202020"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlack
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractBlack
+
+- type: entity
+  id: SlimeCrossReproductiveLightPink
+  parent: BaseSlimeCross
+  name: репродуктивный светло-розовый экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#FFB6C1"
+  - type: SlimeCrossbreed
+    slimeType: SlimeLightPink
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractLightPink
+
+- type: entity
+  id: SlimeCrossReproductiveAdamantine
+  parent: BaseSlimeCross
+  name: репродуктивный адамантиновый экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#008B8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeAdamantine
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractAdamantine
+
+- type: entity
+  id: SlimeCrossReproductiveRainbow
+  parent: BaseSlimeCross
+  name: репродуктивный радужный экстракт
+  description: Он пульсирует странным голодом.
+  components:
+  - type: Sprite
+    state: reproductive
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRainbow
+    effect: reproductive
+  - type: SlimeReproductive
+    extract: SlimeExtractRainbow
+
+- type: entity
+  id: SlimeCrossSelfSustainingGrey
+  parent: BaseSlimeCross
+  name: самоподдерживающийся серый экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGrey
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractGrey
+
+- type: entity
+  id: SlimeCrossSelfSustainingOrange
+  parent: BaseSlimeCross
+  name: самоподдерживающийся оранжевый экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#FFA500"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOrange
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractOrange
+
+- type: entity
+  id: SlimeCrossSelfSustainingPurple
+  parent: BaseSlimeCross
+  name: самоподдерживающийся фиолетовый экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#B19CD9"
+  - type: SlimeCrossbreed
+    slimeType: SlimePurple
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractPurple
+
+- type: entity
+  id: SlimeCrossSelfSustainingBlue
+  parent: BaseSlimeCross
+  name: самоподдерживающийся синий экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#ADD8E6"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlue
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractBlue
+
+- type: entity
+  id: SlimeCrossSelfSustainingMetal
+  parent: BaseSlimeCross
+  name: самоподдерживающийся металлический экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#7E7E7E"
+  - type: SlimeCrossbreed
+    slimeType: SlimeMetal
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractMetal
+
+- type: entity
+  id: SlimeCrossSelfSustainingYellow
+  parent: BaseSlimeCross
+  name: самоподдерживающийся жёлтый экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#FFFF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeYellow
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractYellow
+
+- type: entity
+  id: SlimeCrossSelfSustainingDarkPurple
+  parent: BaseSlimeCross
+  name: самоподдерживающийся тёмно-фиолетовый экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#551A8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkPurple
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractDarkPurple
+
+- type: entity
+  id: SlimeCrossSelfSustainingDarkBlue
+  parent: BaseSlimeCross
+  name: самоподдерживающийся тёмно-синий экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#0000FF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkBlue
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractDarkBlue
+
+- type: entity
+  id: SlimeCrossSelfSustainingSilver
+  parent: BaseSlimeCross
+  name: самоподдерживающийся серебряный экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#D3D3D3"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSilver
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractSilver
+
+- type: entity
+  id: SlimeCrossSelfSustainingBluespace
+  parent: BaseSlimeCross
+  name: самоподдерживающийся блюспейс экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#32CD32"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBluespace
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractBluespace
+
+- type: entity
+  id: SlimeCrossSelfSustainingSepia
+  parent: BaseSlimeCross
+  name: самоподдерживающийся сепиевый экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#704214"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSepia
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractSepia
+
+- type: entity
+  id: SlimeCrossSelfSustainingCerulean
+  parent: BaseSlimeCross
+  name: самоподдерживающийся церулеановый экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#2956B2"
+  - type: SlimeCrossbreed
+    slimeType: SlimeCerulean
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractCerulean
+
+- type: entity
+  id: SlimeCrossSelfSustainingPyrite
+  parent: BaseSlimeCross
+  name: самоподдерживающийся пиритовый экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#FAFAD2"
+  - type: SlimeCrossbreed
+    slimeType: SlimePyrite
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractPyrite
+
+- type: entity
+  id: SlimeCrossSelfSustainingRed
+  parent: BaseSlimeCross
+  name: самоподдерживающийся красный экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#FF0000"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRed
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractRed
+
+- type: entity
+  id: SlimeCrossSelfSustainingGreen
+  parent: BaseSlimeCross
+  name: самоподдерживающийся зелёный экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#00FF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGreen
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractGreen
+
+- type: entity
+  id: SlimeCrossSelfSustainingPink
+  parent: BaseSlimeCross
+  name: самоподдерживающийся розовый экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#FF69B4"
+  - type: SlimeCrossbreed
+    slimeType: SlimePink
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractPink
+
+- type: entity
+  id: SlimeCrossSelfSustainingGold
+  parent: BaseSlimeCross
+  name: самоподдерживающийся золотой экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#FFD700"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGold
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractGold
+
+- type: entity
+  id: SlimeCrossSelfSustainingOil
+  parent: BaseSlimeCross
+  name: самоподдерживающийся масляный экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#505050"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOil
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractOil
+
+- type: entity
+  id: SlimeCrossSelfSustainingBlack
+  parent: BaseSlimeCross
+  name: самоподдерживающийся чёрный экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#202020"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlack
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractBlack
+
+- type: entity
+  id: SlimeCrossSelfSustainingLightPink
+  parent: BaseSlimeCross
+  name: самоподдерживающийся светло-розовый экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#FFB6C1"
+  - type: SlimeCrossbreed
+    slimeType: SlimeLightPink
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractLightPink
+
+- type: entity
+  id: SlimeCrossSelfSustainingAdamantine
+  parent: BaseSlimeCross
+  name: самоподдерживающийся адамантиновый экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#008B8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeAdamantine
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractAdamantine
+
+- type: entity
+  id: SlimeCrossSelfSustainingRainbow
+  parent: BaseSlimeCross
+  name: самоподдерживающийся радужный экстракт
+  description: Он медленно делится.
+  components:
+  - type: Sprite
+    state: selfsustaining
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRainbow
+    effect: self-sustaining
+  - type: SlimeSelfSustaining
+    extract: SlimeExtractRainbow
+
+- type: entity
+  id: SlimeCrossStabilizedGrey
+  parent: BaseSlimeCross
+  name: стабилизированный серый экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGrey
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-grey
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedOrange
+  parent: BaseSlimeCross
+  name: стабилизированный оранжевый экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#FFA500"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOrange
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-orange
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedPurple
+  parent: BaseSlimeCross
+  name: стабилизированный фиолетовый экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#B19CD9"
+  - type: SlimeCrossbreed
+    slimeType: SlimePurple
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-purple
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedBlue
+  parent: BaseSlimeCross
+  name: стабилизированный синий экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#ADD8E6"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlue
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-blue
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedMetal
+  parent: BaseSlimeCross
+  name: стабилизированный металлический экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#7E7E7E"
+  - type: SlimeCrossbreed
+    slimeType: SlimeMetal
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-metal
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedYellow
+  parent: BaseSlimeCross
+  name: стабилизированный жёлтый экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#FFFF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeYellow
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-yellow
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedDarkPurple
+  parent: BaseSlimeCross
+  name: стабилизированный тёмно-фиолетовый экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#551A8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkPurple
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-darkpurple
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedDarkBlue
+  parent: BaseSlimeCross
+  name: стабилизированный тёмно-синий экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#0000FF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeDarkBlue
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-darkblue
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedSilver
+  parent: BaseSlimeCross
+  name: стабилизированный серебряный экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#D3D3D3"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSilver
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-silver
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedBluespace
+  parent: BaseSlimeCross
+  name: стабилизированный блюспейс экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#32CD32"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBluespace
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-bluespace
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedSepia
+  parent: BaseSlimeCross
+  name: стабилизированный сепиевый экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#704214"
+  - type: SlimeCrossbreed
+    slimeType: SlimeSepia
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-sepia
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedCerulean
+  parent: BaseSlimeCross
+  name: стабилизированный церулеановый экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#2956B2"
+  - type: SlimeCrossbreed
+    slimeType: SlimeCerulean
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-cerulean
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedPyrite
+  parent: BaseSlimeCross
+  name: стабилизированный пиритовый экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#FAFAD2"
+  - type: SlimeCrossbreed
+    slimeType: SlimePyrite
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-pyrite
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedRed
+  parent: BaseSlimeCross
+  name: стабилизированный красный экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#FF0000"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRed
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-red
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedGreen
+  parent: BaseSlimeCross
+  name: стабилизированный зелёный экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#00FF00"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGreen
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-green
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedPink
+  parent: BaseSlimeCross
+  name: стабилизированный розовый экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#FF69B4"
+  - type: SlimeCrossbreed
+    slimeType: SlimePink
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-pink
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedGold
+  parent: BaseSlimeCross
+  name: стабилизированный золотой экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#FFD700"
+  - type: SlimeCrossbreed
+    slimeType: SlimeGold
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-gold
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedOil
+  parent: BaseSlimeCross
+  name: стабилизированный масляный экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#505050"
+  - type: SlimeCrossbreed
+    slimeType: SlimeOil
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-oil
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedBlack
+  parent: BaseSlimeCross
+  name: стабилизированный чёрный экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#202020"
+  - type: SlimeCrossbreed
+    slimeType: SlimeBlack
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-black
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedLightPink
+  parent: BaseSlimeCross
+  name: стабилизированный светло-розовый экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#FFB6C1"
+  - type: SlimeCrossbreed
+    slimeType: SlimeLightPink
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-lightpink
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedAdamantine
+  parent: BaseSlimeCross
+  name: стабилизированный адамантиновый экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#008B8B"
+  - type: SlimeCrossbreed
+    slimeType: SlimeAdamantine
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-adamantine
+  - type: SlimeStabilized
+
+- type: entity
+  id: SlimeCrossStabilizedRainbow
+  parent: BaseSlimeCross
+  name: стабилизированный радужный экстракт
+  description: Он кажется инертным, но всё, чего он касается, мягко светится...
+  components:
+  - type: Sprite
+    state: stabilized
+    color: "#FFFFFF"
+  - type: SlimeCrossbreed
+    slimeType: SlimeRainbow
+    effect: stabilized
+    effectDesc: slime-cross-desc-stabilized-rainbow
+  - type: SlimeStabilized
+  - type: ContainerContainer
+    containers:
+      regen_core: !type:ContainerSlot
+

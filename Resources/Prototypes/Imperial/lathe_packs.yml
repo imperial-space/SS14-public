@@ -4,6 +4,10 @@
 - type: latheRecipePack
   id: ImperialCircuitStatic
   recipes:
+  - XenobioConsoleComputerCircuitboard # Imperial Xenobiology
+  - XenoSlimeGrinderMachineCircuitboard # Imperial Xenobiology
+  - SlimeMonkeyRecyclerMachineCircuitboard # Imperial Xenobiology
+  - VatGrowerMachineCircuitboard # Imperial Xenobiology
   - PrinterDocMachineCircuitboard # Imperial PrinterDoc
 
 - type: latheRecipePack

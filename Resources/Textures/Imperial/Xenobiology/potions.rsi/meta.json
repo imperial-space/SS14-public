@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation/BandaStation (chemical.dmi)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "potgreen"
+    },
+    {
+      "name": "potred"
+    },
+    {
+      "name": "potpink"
+    },
+    {
+      "name": "potpurple"
+    },
+    {
+      "name": "potsilver"
+    },
+    {
+      "name": "potyellow"
+    },
+    {
+      "name": "potorange"
+    },
+    {
+      "name": "potblue"
+    },
+    {
+      "name": "potcyan"
+    },
+    {
+      "name": "potlightpink"
+    },
+    {
+      "name": "potgrey"
+    },
+    {
+      "name": "potbrown"
+    },
+    {
+      "name": "potblack"
+    },
+    {
+      "name": "potgold"
+    },
+    {
+      "name": "potbluespace"
+    },
+    {
+      "name": "potcerulean"
+    },
+    {
+      "name": "potrainbow",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "xenobag"
+    }
+  ]
+}

@@ -1,0 +1,277 @@
+# obj/item/slime_extract
+
+- type: entity
+  id: BaseSlimeExtract
+  parent: BaseItem
+  abstract: true
+  name: экстракт слайма
+  description: Слизь, извлечённая из слайма. Легенды гласят, что у неё есть «магические силы».
+  components:
+  - type: Sprite
+    sprite: Imperial/Xenobiology/slimes.rsi
+  - type: Item
+    size: Tiny
+  - type: SolutionContainerManager
+    solutions:
+      extract:
+        maxVol: 100
+      grind:
+        reagents:
+        - ReagentId: SlimeJelly
+          Quantity: 20
+  - type: InjectableSolution
+    solution: extract
+  - type: DrawableSolution
+    solution: extract
+  - type: Extractable
+    grindableSolutionName: grind
+  - type: StaticPrice
+    price: 75
+  - type: Tag
+    tags:
+    - SlimeExtract
+
+- type: entity
+  id: SlimeExtractGrey
+  parent: BaseSlimeExtract
+  name: серый экстракт слайма
+  components:
+  - type: Sprite
+    state: grey-core
+  - type: SlimeExtract
+    slimeType: SlimeGrey
+    crossbreedModification: reproductive
+
+- type: entity
+  id: SlimeExtractGold
+  parent: BaseSlimeExtract
+  name: золотой экстракт слайма
+  components:
+  - type: Sprite
+    state: gold-core
+  - type: SlimeExtract
+    slimeType: SlimeGold
+    crossbreedModification: symbiont
+
+- type: entity
+  id: SlimeExtractSilver
+  parent: BaseSlimeExtract
+  name: серебряный экстракт слайма
+  components:
+  - type: Sprite
+    state: silver-core
+  - type: SlimeExtract
+    slimeType: SlimeSilver
+    crossbreedModification: consuming
+
+- type: entity
+  id: SlimeExtractMetal
+  parent: BaseSlimeExtract
+  name: металлический экстракт слайма
+  components:
+  - type: Sprite
+    state: metal-core
+  - type: SlimeExtract
+    slimeType: SlimeMetal
+    crossbreedModification: industrial
+
+- type: entity
+  id: SlimeExtractPurple
+  parent: BaseSlimeExtract
+  name: фиолетовый экстракт слайма
+  components:
+  - type: Sprite
+    state: purple-core
+  - type: SlimeExtract
+    slimeType: SlimePurple
+    crossbreedModification: regenerative
+
+- type: entity
+  id: SlimeExtractDarkPurple
+  parent: BaseSlimeExtract
+  name: тёмно-фиолетовый экстракт слайма
+  components:
+  - type: Sprite
+    state: dark-purple-core
+  - type: SlimeExtract
+    slimeType: SlimeDarkPurple
+    crossbreedModification: self-sustaining
+
+- type: entity
+  id: SlimeExtractOrange
+  parent: BaseSlimeExtract
+  name: оранжевый экстракт слайма
+  components:
+  - type: Sprite
+    state: orange-core
+  - type: SlimeExtract
+    slimeType: SlimeOrange
+    crossbreedModification: burning
+
+- type: entity
+  id: SlimeExtractYellow
+  parent: BaseSlimeExtract
+  name: жёлтый экстракт слайма
+  components:
+  - type: Sprite
+    state: yellow-core
+  - type: SlimeExtract
+    slimeType: SlimeYellow
+    crossbreedModification: charged
+
+- type: entity
+  id: SlimeExtractRed
+  parent: BaseSlimeExtract
+  name: красный экстракт слайма
+  components:
+  - type: Sprite
+    state: red-core
+  - type: SlimeExtract
+    slimeType: SlimeRed
+    crossbreedModification: sanguine
+
+- type: entity
+  id: SlimeExtractBlue
+  parent: BaseSlimeExtract
+  name: синий экстракт слайма
+  components:
+  - type: Sprite
+    state: blue-core
+  - type: SlimeExtract
+    slimeType: SlimeBlue
+    crossbreedModification: stabilized
+
+- type: entity
+  id: SlimeExtractDarkBlue
+  parent: BaseSlimeExtract
+  name: тёмно-синий экстракт слайма
+  components:
+  - type: Sprite
+    state: dark-blue-core
+  - type: SlimeExtract
+    slimeType: SlimeDarkBlue
+    crossbreedModification: chilling
+
+- type: entity
+  id: SlimeExtractPink
+  parent: BaseSlimeExtract
+  name: розовый экстракт слайма
+  components:
+  - type: Sprite
+    state: pink-core
+  - type: SlimeExtract
+    slimeType: SlimePink
+    crossbreedModification: gentle
+
+- type: entity
+  id: SlimeExtractGreen
+  parent: BaseSlimeExtract
+  name: зелёный экстракт слайма
+  components:
+  - type: Sprite
+    state: green-core
+  - type: SlimeExtract
+    slimeType: SlimeGreen
+    crossbreedModification: mutative
+
+- type: entity
+  id: SlimeExtractLightPink
+  parent: BaseSlimeExtract
+  name: светло-розовый экстракт слайма
+  components:
+  - type: Sprite
+    state: light-pink-core
+  - type: SlimeExtract
+    slimeType: SlimeLightPink
+    crossbreedModification: loyal
+
+- type: entity
+  id: SlimeExtractBlack
+  parent: BaseSlimeExtract
+  name: чёрный экстракт слайма
+  components:
+  - type: Sprite
+    state: black-core
+  - type: SlimeExtract
+    slimeType: SlimeBlack
+    crossbreedModification: transformative
+
+- type: entity
+  id: SlimeExtractOil
+  parent: BaseSlimeExtract
+  name: масляный экстракт слайма
+  components:
+  - type: Sprite
+    state: oil-core
+  - type: SlimeExtract
+    slimeType: SlimeOil
+    crossbreedModification: detonating
+
+- type: entity
+  id: SlimeExtractAdamantine
+  parent: BaseSlimeExtract
+  name: адамантиновый экстракт слайма
+  components:
+  - type: Sprite
+    state: adamantine-core
+  - type: SlimeExtract
+    slimeType: SlimeAdamantine
+    crossbreedModification: crystalline
+
+- type: entity
+  id: SlimeExtractBluespace
+  parent: BaseSlimeExtract
+  name: блюспейс экстракт слайма
+  components:
+  - type: Sprite
+    state: bluespace-core
+  - type: SlimeExtract
+    slimeType: SlimeBluespace
+    crossbreedModification: warping
+
+- type: entity
+  id: SlimeExtractPyrite
+  parent: BaseSlimeExtract
+  name: пиритовый экстракт слайма
+  components:
+  - type: Sprite
+    state: pyrite-core
+  - type: SlimeExtract
+    slimeType: SlimePyrite
+    crossbreedModification: prismatic
+
+- type: entity
+  id: SlimeExtractCerulean
+  parent: BaseSlimeExtract
+  name: церулеановый экстракт слайма
+  components:
+  - type: Sprite
+    state: cerulean-core
+  - type: SlimeExtract
+    slimeType: SlimeCerulean
+    crossbreedModification: recurring
+
+- type: entity
+  id: SlimeExtractSepia
+  parent: BaseSlimeExtract
+  name: сепиевый экстракт слайма
+  components:
+  - type: Sprite
+    state: sepia-core
+  - type: SlimeExtract
+    slimeType: SlimeSepia
+    crossbreedModification: lengthened
+
+- type: entity
+  id: SlimeExtractRainbow
+  parent: BaseSlimeExtract
+  name: радужный экстракт слайма
+  components:
+  - type: Sprite
+    state: rainbow-core
+  - type: SlimeExtract
+    slimeType: SlimeRainbow
+    crossbreedModification: hyperchromatic
+
+- type: Tag
+  id: SlimeExtract

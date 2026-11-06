@@ -1,0 +1,402 @@
+# GLOB.cell_line_tables (_globalvars/lists/xenobiology.dm).
+# Линии без существ в SS14 (виноградная слизь, гаубероач, клоуны, чанотварь и т.п.) не перенесены.
+
+- type: cellLineTable
+  id: CellTableSludge
+  lines:
+    CellLineBlobbernaut: 1
+    CellLineChicken: 1
+    CellLineCockroach: 2
+    CellLineCow: 1
+    CellLineMouse: 1
+    CellLineSlime: 2
+    CellLineGoat: 1
+
+- type: cellLineTable
+  id: CellTableMoist
+  lines:
+    CellLineCarp: 1
+    CellLineCockroach: 1
+    CellLineMegacarp: 1
+    CellLineSlime: 2
+    CellLineSnake: 1
+
+- type: cellLineTable
+  id: CellTableBlob
+  lines:
+    CellLineBlobSpore: 1
+    CellLineBlobbernaut: 1
+
+- type: cellLineTable
+  id: CellTableMold
+  lines:
+    CellLineBear: 1
+    CellLineBlobSpore: 1
+    CellLineCat: 1
+    CellLineCockroach: 1
+    CellLineCorgi: 1
+    CellLineMouse: 2
+    CellLineSlime: 1
+    CellLinePig: 1
+
+- type: cellLineTable
+  id: CellTableAlgae
+  lines:
+    CellLineFrog: 2
+    CellLineMegaArachnid: 1
+    CellLineQueenBee: 1
+    CellLineButterfly: 1
+    CellLineSnake: 1
+
+- type: cellLineTable
+  id: CellTableBear
+  lines: { CellLineBear: 1 }
+
+- type: cellLineTable
+  id: CellTableBlobbernaut
+  lines: { CellLineBlobbernaut: 1 }
+
+- type: cellLineTable
+  id: CellTableBlobSpore
+  lines: { CellLineBlobSpore: 1 }
+
+- type: cellLineTable
+  id: CellTableCarp
+  lines: { CellLineCarp: 1 }
+
+- type: cellLineTable
+  id: CellTableCat
+  lines: { CellLineCat: 1 }
+
+- type: cellLineTable
+  id: CellTableChicken
+  lines: { CellLineChicken: 1 }
+
+- type: cellLineTable
+  id: CellTableCockroach
+  lines: { CellLineCockroach: 1 }
+
+- type: cellLineTable
+  id: CellTableCorgi
+  lines: { CellLineCorgi: 1 }
+
+- type: cellLineTable
+  id: CellTableCow
+  lines: { CellLineCow: 1 }
+
+- type: cellLineTable
+  id: CellTableMegacarp
+  lines: { CellLineMegacarp: 1 }
+
+- type: cellLineTable
+  id: CellTableMouse
+  lines: { CellLineMouse: 1 }
+
+- type: cellLineTable
+  id: CellTableSlime
+  lines: { CellLineSlime: 1 }
+
+- type: cellLineTable
+  id: CellTableSnake
+  lines: { CellLineSnake: 1 }
+
+- type: cellLineTable
+  id: CellTableSnail
+  lines: { CellLineSnail: 1 }
+
+- type: cellLineTable
+  id: CellTableFrog
+  lines: { CellLineFrog: 1 }
+
+- type: cellLineTable
+  id: CellTableQueenBee
+  lines: { CellLineQueenBee: 1 }
+
+- type: cellLineTable
+  id: CellTableButterfly
+  lines: { CellLineButterfly: 1 }
+
+- type: cellLineTable
+  id: CellTableMegaArachnid
+  lines: { CellLineMegaArachnid: 1 }
+
+- type: cellLineTable
+  id: CellTableGoat
+  lines: { CellLineGoat: 1 }
+
+- type: cellLineTable
+  id: CellTablePig
+  lines: { CellLinePig: 1 }
+
+- type: cellLineTable
+  id: CellTableOrganHeart
+  lines:
+    CellLineOrgansHeart: 3
+    CellLineOrgansHeartEvolved: 1
+
+- type: cellLineTable
+  id: CellTableOrganLungs
+  lines:
+    CellLineOrgansLungs: 3
+    CellLineOrgansLungsEvolved: 1
+
+- type: cellLineTable
+  id: CellTableOrganLiver
+  lines:
+    CellLineOrgansLiver: 3
+    CellLineOrgansLiverEvolved: 1
+    CellLineOrgansLiverBloody: 1
+
+- type: cellLineTable
+  id: CellTableOrganStomach
+  lines:
+    CellLineOrgansStomach: 3
+    CellLineOrgansStomachEvolved: 1
+
+# element/swabable: источники проб.
+
+- type: swabSource
+  id: SwabBloodPuddle
+  puddleReagents: [ Blood ]
+  table: CellTableSludge
+  minAmount: 2
+  maxAmount: 4
+  virusChance: 10
+
+- type: swabSource
+  id: SwabVomitPuddle
+  puddleReagents: [ Vomit ]
+  table: CellTableSludge
+  minAmount: 2
+  maxAmount: 4
+  virusChance: 15
+
+- type: swabSource
+  id: SwabPottedPlant
+  entities: [ PottedPlantBase ]
+  table: CellTableAlgae
+  minAmount: 2
+  maxAmount: 4
+  virusChance: 5
+
+- type: swabSource
+  id: SwabBed
+  entities: [ Bed ]
+  table: CellTableMold
+  minAmount: 2
+  maxAmount: 4
+  virusChance: 25
+
+- type: swabSource
+  id: SwabCrate
+  entities: [ CrateGeneric ]
+  table: CellTableSludge
+  minAmount: 2
+  maxAmount: 3
+  virusChance: 15
+
+- type: swabSource
+  id: SwabMoldyFood
+  entities: [ FoodBreadBase, FoodBreadSliceBase, FoodPizzaBase, FoodPizzaSliceBase ]
+  table: CellTableMold
+  minAmount: 2
+  maxAmount: 4
+  virusChance: 25
+
+- type: swabSource
+  id: SwabBlobTile
+  entities: [ BlobNormal, BlobStrong, BlobReflective, BlobNode ]
+  table: CellTableBlob
+  minAmount: 2
+  maxAmount: 2
+  virusChance: 2
+
+- type: swabSource
+  id: SwabEgg
+  entities: [ FoodEgg ]
+  table: CellTableBlobSpore
+  virusChance: 5
+
+- type: swabSource
+  id: SwabMeatRat
+  entities: [ FoodMeatRat ]
+  table: CellTableMouse
+  virusChance: 5
+
+- type: swabSource
+  id: SwabMeatCorgi
+  entities: [ FoodMeatCorgi ]
+  table: CellTableCorgi
+  virusChance: 5
+
+- type: swabSource
+  id: SwabMeatBear
+  entities: [ FoodMeatBear ]
+  table: CellTableBear
+  virusChance: 5
+
+- type: swabSource
+  id: SwabMeatChicken
+  entities: [ FoodMeatChicken ]
+  table: CellTableChicken
+  virusChance: 5
+
+- type: swabSource
+  id: SwabMeatFish
+  entities: [ FoodMeatFish ]
+  table: CellTableCarp
+  virusChance: 5
+
+- type: swabSource
+  id: SwabMobBlobbernaut
+  entities: [ MobBlobbernaut ]
+  table: CellTableBlobbernaut
+  mob: true
+
+- type: swabSource
+  id: SwabMobBlobSpore
+  entities: [ MobBlobSpore ]
+  table: CellTableBlobSpore
+  mob: true
+
+- type: swabSource
+  id: SwabMobBee
+  entities: [ MobBee, MobAngryBee ]
+  table: CellTableQueenBee
+  mob: true
+
+- type: swabSource
+  id: SwabMobChicken
+  entities: [ MobChicken ]
+  table: CellTableChicken
+  mob: true
+
+- type: swabSource
+  id: SwabMobCow
+  entities: [ MobCow ]
+  table: CellTableCow
+  mob: true
+
+- type: swabSource
+  id: SwabMobGoat
+  entities: [ MobGoat ]
+  table: CellTableGoat
+  mob: true
+
+- type: swabSource
+  id: SwabMobPig
+  entities: [ MobPig ]
+  table: CellTablePig
+  mob: true
+
+- type: swabSource
+  id: SwabMobBear
+  entities: [ MobBearSpace ]
+  table: CellTableBear
+  mob: true
+
+- type: swabSource
+  id: SwabMobSpider
+  entities: [ MobGiantSpider ]
+  table: CellTableMegaArachnid
+  mob: true
+
+- type: swabSource
+  id: SwabMobCat
+  entities: [ MobCat ]
+  table: CellTableCat
+  mob: true
+
+- type: swabSource
+  id: SwabMobCorgi
+  entities: [ MobCorgi ]
+  table: CellTableCorgi
+  mob: true
+
+- type: swabSource
+  id: SwabMobSlime
+  entities: [ MobXenoSlime ]
+  table: CellTableSlime
+  mob: true
+
+- type: swabSource
+  id: SwabMobSnail
+  entities: [ MobSnail ]
+  table: CellTableSnail
+  mob: true
+
+- type: swabSource
+  id: SwabMobCarp
+  entities: [ MobCarp ]
+  table: CellTableCarp
+  mob: true
+
+- type: swabSource
+  id: SwabMobShark
+  entities: [ MobShark ]
+  table: CellTableMegacarp
+  mob: true
+
+- type: swabSource
+  id: SwabMobSnake
+  entities: [ MobPurpleSnake, MobSnake ]
+  table: CellTableSnake
+  mob: true
+
+- type: swabSource
+  id: SwabMobButterfly
+  entities: [ MobButterfly ]
+  table: CellTableButterfly
+  mob: true
+
+- type: swabSource
+  id: SwabMobCockroach
+  entities: [ MobCockroach ]
+  table: CellTableCockroach
+  virusChance: 7
+  mob: true
+
+- type: swabSource
+  id: SwabMobFrog
+  entities: [ MobFrog ]
+  table: CellTableFrog
+  mob: true
+
+- type: swabSource
+  id: SwabMobMouse
+  entities: [ MobMouse ]
+  table: CellTableMouse
+  virusChance: 10
+  mob: true
+
+- type: swabSource
+  id: SwabOrganHeart
+  entities: [ OrganBaseHeart ]
+  table: CellTableOrganHeart
+  minAmount: 1
+  maxAmount: 2
+  virusChance: 0
+
+- type: swabSource
+  id: SwabOrganLungs
+  entities: [ OrganBaseLungs ]
+  table: CellTableOrganLungs
+  minAmount: 1
+  maxAmount: 2
+  virusChance: 0
+
+- type: swabSource
+  id: SwabOrganLiver
+  entities: [ OrganBaseLiver ]
+  table: CellTableOrganLiver
+  minAmount: 1
+  maxAmount: 2
+  virusChance: 0
+
+- type: swabSource
+  id: SwabOrganStomach
+  entities: [ OrganBaseStomach ]
+  table: CellTableOrganStomach
+  minAmount: 1
+  maxAmount: 2
+  virusChance: 0
