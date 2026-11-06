@@ -797,8 +797,8 @@ public sealed class DnaConsoleWindow : DefaultWindow
 
         var probabilities = Section(Loc.GetString("dna-console-probabilities"), null, VBox(
             LabeledText(Loc.GetString("dna-console-accuracy"), state.StdDevAcc),
-            LabeledText($"P(В±{state.StdDevStr})", "68 %"),
-            LabeledText($"P(В±{state.StdDevStr * 2})", "95 %")));
+            LabeledText($"P(±{state.StdDevStr})", "68 %"),
+            LabeledText($"P(±{state.StdDevStr * 2})", "95 %")));
 
         var blocks = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, SeparationOverride = 1 };
         var column = VBox();
