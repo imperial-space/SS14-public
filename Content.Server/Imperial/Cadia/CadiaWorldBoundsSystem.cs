@@ -27,7 +27,6 @@ public sealed class CadiaWorldBoundsSystem : EntitySystem
 
     private TimeSpan _next;
     private readonly Dictionary<EntityUid, EntityCoordinates> _safe = new();
-    private readonly Dictionary<EntityUid, TimeSpan> _nextPopup = new();
     private static readonly TimeSpan PopupDelay = TimeSpan.FromSeconds(3);
 
     public override void Update(float frameTime)
@@ -48,7 +47,7 @@ public sealed class CadiaWorldBoundsSystem : EntitySystem
         foreach (var uid in gone)
         {
             _safe.Remove(uid);
-            _nextPopup.Remove(uid);
+            RemComp<CadiaWorldBoundsNextPopupComponent>(uid);
         }
 
         while (mobs.MoveNext(out var uid, out _, out var xform))
@@ -66,9 +65,9 @@ public sealed class CadiaWorldBoundsSystem : EntitySystem
             if (!_safe.TryGetValue(uid, out var back) || _xform.GetMapId(back) != xform.MapID)
                 continue;
             _xform.SetCoordinates(uid, back);
-            if (!_nextPopup.TryGetValue(uid, out var next) || now >= next)
+            if (!TryGetNextPopup(uid, out var next) || now >= next)
             {
-                _nextPopup[uid] = now + PopupDelay;
+                EnsureComp<CadiaWorldBoundsNextPopupComponent>(uid).Value = now + PopupDelay;
                 _popup.PopupEntity(Loc.GetString("cadia-bounds-push"), uid, uid, PopupType.MediumCaution);
             }
         }
@@ -85,5 +84,17 @@ public sealed class CadiaWorldBoundsSystem : EntitySystem
             return true;
         var tile = _map.GetTileRef(field, field.Comp, xform.Coordinates);
         return !tile.Tile.IsEmpty;
+    }
+
+    private bool TryGetNextPopup(EntityUid uid, out TimeSpan value)
+    {
+        if (TryComp<CadiaWorldBoundsNextPopupComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            return true;
+        }
+
+        value = default!;
+        return false;
     }
 }

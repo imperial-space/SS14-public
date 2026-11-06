@@ -78,7 +78,6 @@ public sealed class CadiaAntiAirSystem : EntitySystem
     private TimeSpan _nextAuspex;
     private readonly List<PendingShot> _shots = new();
     private readonly Dictionary<EntityUid, List<(CadiaAirBurst Burst, TimeSpan Time)>> _bursts = new();
-    private readonly Dictionary<EntityUid, TimeSpan> _underFireWarned = new();
 
     private const float ResolveShotsSlope = 3f;
     private const float ResolveShotsMaxTileIntensity = 6f;
@@ -165,8 +164,7 @@ public sealed class CadiaAntiAirSystem : EntitySystem
 
     private void StopViewing(EntityUid user)
     {
-        if (HasComp<CadiaAntiAirViewerComponent>(user))
-            RemComp<CadiaAntiAirViewerComponent>(user);
+        RemComp<CadiaAntiAirViewerComponent>(user);
     }
 
     private void OnViewerShutdown(Entity<CadiaAntiAirViewerComponent> ent, ref ComponentShutdown args)
@@ -183,7 +181,7 @@ public sealed class CadiaAntiAirSystem : EntitySystem
     private void OnLock(Entity<CadiaAntiAirConsoleComponent> ent, ref CadiaAntiAirLockMessage args)
     {
         if (ConsoleGun(ent) is not { } gun || !TryComp<CadiaAntiAirViewerComponent>(args.Actor, out var viewer) ||
-            viewer.Ship is not { } ship || !TryComp<MapGridComponent>(ship, out _))
+            viewer.Ship is not { } ship || !HasComp<MapGridComponent>(ship))
             return;
 
         var world = _xform.ToMapCoordinates(GetCoordinates(args.Point));
@@ -764,9 +762,9 @@ public sealed class CadiaAntiAirSystem : EntitySystem
     private void WarnUnderFire(EntityUid grid)
     {
         var now = _timing.CurTime;
-        if (_underFireWarned.TryGetValue(grid, out var next) && now < next)
+        if (TryGetUnderFireWarned(grid, out var next) && now < next)
             return;
-        _underFireWarned[grid] = now + UnderFireRate;
+        EnsureComp<CadiaAntiAirUnderFireWarnedComponent>(grid).Value = now + UnderFireRate;
         _artillery.PopupGrid(grid, Loc.GetString("cadia-aa-under-fire"), PopupType.LargeCaution);
     }
 
@@ -838,5 +836,17 @@ public sealed class CadiaAntiAirSystem : EntitySystem
             args.PushMarkup(Loc.GetString("cadia-auspex-examine-line", ("name", Name(contact)), ("bearing", Bearing(ent, contact)),
                 ("level", Loc.GetString($"cadia-flight-beacon-{level.ToString().ToLowerInvariant()}"))));
         }
+    }
+
+    private bool TryGetUnderFireWarned(EntityUid uid, out TimeSpan value)
+    {
+        if (TryComp<CadiaAntiAirUnderFireWarnedComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            return true;
+        }
+
+        value = default!;
+        return false;
     }
 }

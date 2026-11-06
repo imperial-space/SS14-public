@@ -344,7 +344,7 @@ public sealed class CadiaShipWeaponSystem : EntitySystem
     /// <summary>Снаряд появляется за обшивкой своего борта: иначе пушка била бы в собственную палубу.</summary>
     private MapCoordinates PastOwnHull(EntityUid grid, MapCoordinates origin, Vector2 dir)
     {
-        if (!TryComp<MapGridComponent>(grid, out var gridComp))
+        if (!HasComp<MapGridComponent>(grid))
             return origin.Offset(dir);
         for (var d = 1f; d <= 24f; d += 0.5f)
         {

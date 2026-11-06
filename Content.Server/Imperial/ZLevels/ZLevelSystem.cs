@@ -285,7 +285,7 @@ public sealed class ZLevelSystem : SharedZLevelSystem
     /// <summary>/mob/living/proc/lookup и lookdown: повторное нажатие возвращает взгляд.</summary>
     public void LookVerb(EntityUid user, bool up)
     {
-        if (TryComp<ZLookingComponent>(user, out _))
+        if (HasComp<ZLookingComponent>(user))
         {
             _popup.PopupEntity(Loc.GetString("zlevel-look-straight"), user, user);
             EndLook(user);

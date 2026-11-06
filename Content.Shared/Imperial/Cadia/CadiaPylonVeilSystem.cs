@@ -17,7 +17,6 @@ public sealed class CadiaPylonVeilSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private static readonly TimeSpan PopupDelay = TimeSpan.FromSeconds(2);
-    private readonly Dictionary<EntityUid, TimeSpan> _nextPopup = new();
 
     public override void Initialize()
     {
@@ -53,9 +52,9 @@ public sealed class CadiaPylonVeilSystem : EntitySystem
         if (!Active())
             return false;
         var now = _timing.CurTime;
-        if (!_nextPopup.TryGetValue(user, out var next) || now >= next)
+        if (!TryGetNextPopup(user, out var next) || now >= next)
         {
-            _nextPopup[user] = now + PopupDelay;
+            EnsureComp<CadiaPylonVeilNextPopupComponent>(user).Value = now + PopupDelay;
             // Выстрел предсказывается клиентом — ему и показываем; серверные действия сообщают сами.
             if (predicted)
                 _popup.PopupClient(Loc.GetString(message), user, user, PopupType.MediumCaution);
@@ -75,5 +74,17 @@ public sealed class CadiaPylonVeilSystem : EntitySystem
     {
         if (Blocks(uid))
             args.Cancel();
+    }
+
+    private bool TryGetNextPopup(EntityUid uid, out TimeSpan value)
+    {
+        if (TryComp<CadiaPylonVeilNextPopupComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            return true;
+        }
+
+        value = default!;
+        return false;
     }
 }

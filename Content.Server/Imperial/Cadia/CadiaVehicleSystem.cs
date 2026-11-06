@@ -72,7 +72,6 @@ public sealed partial class CadiaVehicleSystem : EntitySystem
     private static readonly TimeSpan RunOverCooldown = TimeSpan.FromSeconds(1.5);
     private static readonly SoundSpecifier RunOverSound = new SoundPathSpecifier("/Audio/Effects/bodyfall2.ogg");
     private static readonly ProtoId<Content.Shared.Damage.Prototypes.DamageTypePrototype> BluntDamage = "Blunt";
-    private readonly Dictionary<EntityUid, TimeSpan> _nextRunOver = new();
     private static readonly TimeSpan DirtyRate = TimeSpan.FromSeconds(0.1);
     private TimeSpan _nextDirty;
 
@@ -581,9 +580,9 @@ public sealed partial class CadiaVehicleSystem : EntitySystem
         if (speed < RunOverMinSpeed || !HasComp<Content.Shared.Mobs.Components.MobStateComponent>(args.OtherEntity) || !_mobState.IsAlive(args.OtherEntity))
             return;
         var now = _timing.CurTime;
-        if (now < _nextRunOver.GetValueOrDefault(args.OtherEntity))
+        if (now < (CompOrNull<CadiaVehicleNextRunOverComponent>(args.OtherEntity)?.Value ?? default))
             return;
-        _nextRunOver[args.OtherEntity] = now + RunOverCooldown;
+        EnsureComp<CadiaVehicleNextRunOverComponent>(args.OtherEntity).Value = now + RunOverCooldown;
 
         var blunt = new DamageSpecifier(_proto.Index(BluntDamage), speed * (ent.Comp.TankControls ? RunOverTankDamage : RunOverWalkerDamage));
         _damage.TryChangeDamage(args.OtherEntity, blunt, origin: ent.Comp.Driver ?? ent.Owner);

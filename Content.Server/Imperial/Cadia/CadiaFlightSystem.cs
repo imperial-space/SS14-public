@@ -68,7 +68,6 @@ public sealed class CadiaFlightSystem : EntitySystem
 
     private TimeSpan _nextCheck;
     private readonly HashSet<EntityUid> _hits = new();
-    private readonly Dictionary<EntityUid, TimeSpan> _nextDenyPopup = new();
     private static readonly TimeSpan DenyPopupDelay = TimeSpan.FromSeconds(2);
 
     private static readonly EntProtoId FTLPoint = "FTLPoint";
@@ -226,9 +225,9 @@ public sealed class CadiaFlightSystem : EntitySystem
         block.Reason = Loc.GetString(reason, ("from", Name(fromMap.Value)), ("to", Name(toMap)));
         // Клиент шлёт запрос на каждый клик по карте — не засыпаем пилота одинаковыми отказами.
         var now = _timing.CurTime;
-        if (_nextDenyPopup.TryGetValue(pilot, out var next) && now < next)
+        if (TryGetNextDenyPopup(pilot, out var next) && now < next)
             return;
-        _nextDenyPopup[pilot] = now + DenyPopupDelay;
+        EnsureComp<CadiaFlightNextDenyPopupComponent>(pilot).Value = now + DenyPopupDelay;
         _popup.PopupEntity(block.Reason, pilot, pilot, PopupType.MediumCaution);
         _audio.PlayEntity(new SoundPathSpecifier("/Audio/Machines/custom_deny.ogg"), Filter.Entities(pilot), console, false);
     }
@@ -622,5 +621,17 @@ public sealed class CadiaFlightSystem : EntitySystem
                 Dirty(uid, gravity);
             }
         }
+    }
+
+    private bool TryGetNextDenyPopup(EntityUid uid, out TimeSpan value)
+    {
+        if (TryComp<CadiaFlightNextDenyPopupComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            return true;
+        }
+
+        value = default!;
+        return false;
     }
 }

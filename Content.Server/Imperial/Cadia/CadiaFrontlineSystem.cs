@@ -39,8 +39,6 @@ public sealed class CadiaFrontlineSystem : EntitySystem
     private static readonly TimeSpan AfkTick = TimeSpan.FromSeconds(5);
 
     private readonly HashSet<string> _whitelist = new(StringComparer.OrdinalIgnoreCase);
-    private readonly Dictionary<EntityUid, TimeSpan> _idleSince = new();
-    private readonly HashSet<EntityUid> _warned = new();
     private TimeSpan _nextAfk;
     private bool _lobbyCleaned;
 
@@ -146,26 +144,26 @@ public sealed class CadiaFrontlineSystem : EntitySystem
             // Лежащий в критическом состоянии ждёт медика, а не бездельничает.
             if (member.Role == null || !_mobState.IsAlive(uid) || !IsIdlePlayer(uid))
             {
-                _idleSince.Remove(uid);
-                _warned.Remove(uid);
+                RemComp<CadiaFrontlineIdleSinceComponent>(uid);
+                RemComp<CadiaFrontlineWarnedComponent>(uid);
                 continue;
             }
 
-            if (!_idleSince.TryGetValue(uid, out var since))
+            if (!TryGetIdleSince(uid, out var since))
             {
-                _idleSince[uid] = now;
+                EnsureComp<CadiaFrontlineIdleSinceComponent>(uid).Value = now;
                 continue;
             }
 
             var idle = now - since;
             if (idle >= AfkRemove)
             {
-                _idleSince.Remove(uid);
-                _warned.Remove(uid);
+                RemComp<CadiaFrontlineIdleSinceComponent>(uid);
+                RemComp<CadiaFrontlineWarnedComponent>(uid);
                 Message(uid, Loc.GetString("cadia-afk-removed"));
                 _rule.RemoveMobAndFreeSeat(uid);
             }
-            else if (idle >= AfkWarn && _warned.Add(uid))
+            else if (idle >= AfkWarn && AddWarned(uid))
             {
                 _popup.PopupEntity(Loc.GetString("cadia-afk-warning"), uid, uid, PopupType.LargeCaution);
                 Message(uid, Loc.GetString("cadia-afk-warning"));
@@ -186,5 +184,26 @@ public sealed class CadiaFrontlineSystem : EntitySystem
     {
         if (TryComp<ActorComponent>(uid, out var actor))
             _chatManager.ChatMessageToOne(ChatChannel.Server, text, text, default, false, actor.PlayerSession.Channel, Color.FromHex("#ff9a3c"));
+    }
+
+    private bool AddWarned(EntityUid uid)
+    {
+        if (HasComp<CadiaFrontlineWarnedComponent>(uid))
+            return false;
+
+        AddComp<CadiaFrontlineWarnedComponent>(uid);
+        return true;
+    }
+
+    private bool TryGetIdleSince(EntityUid uid, out TimeSpan value)
+    {
+        if (TryComp<CadiaFrontlineIdleSinceComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            return true;
+        }
+
+        value = default!;
+        return false;
     }
 }

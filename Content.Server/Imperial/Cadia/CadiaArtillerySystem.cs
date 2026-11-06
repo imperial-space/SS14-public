@@ -65,7 +65,6 @@ public sealed class CadiaArtillerySystem : EntitySystem
     private static readonly TimeSpan WhistleLead = TimeSpan.FromSeconds(1.2);
 
     private TimeSpan _nextUi;
-    private readonly HashSet<EntityUid> _whistled = new();
     private readonly HashSet<EntityUid> _static = new();
 
     private static readonly EntProtoId CadiaLanceBeam = "CadiaLanceBeam";
@@ -396,13 +395,13 @@ public sealed class CadiaArtillerySystem : EntitySystem
         var query = EntityQueryEnumerator<CadiaOrbitalStrikeComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var strike, out var xform))
         {
-            if (strike.Kind == CadiaBatteryKind.Macro && now >= strike.Impact - WhistleLead && _whistled.Add(uid))
+            if (strike.Kind == CadiaBatteryKind.Macro && now >= strike.Impact - WhistleLead && AddWhistled(uid))
                 _audio.PlayPvs(IncomingSound, uid);
 
             if (now < strike.Impact)
                 continue;
 
-            _whistled.Remove(uid);
+            RemComp<CadiaArtilleryWhistledComponent>(uid);
             var coords = _xform.GetMapCoordinates(uid, xform);
             QueueDel(uid);
 
@@ -577,5 +576,14 @@ public sealed class CadiaArtillerySystem : EntitySystem
                     UpdateUi((uid, battery));
             }
         }
+    }
+
+    private bool AddWhistled(EntityUid uid)
+    {
+        if (HasComp<CadiaArtilleryWhistledComponent>(uid))
+            return false;
+
+        AddComp<CadiaArtilleryWhistledComponent>(uid);
+        return true;
     }
 }

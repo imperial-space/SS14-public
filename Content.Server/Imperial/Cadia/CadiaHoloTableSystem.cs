@@ -87,7 +87,6 @@ public sealed class CadiaHoloTableSystem : EntitySystem
     private TimeSpan _nextLive;
     private readonly HashSet<EntityUid> _static = new();
     private const string ProjectionProto = "CadiaHoloProjection";
-    private readonly Dictionary<EntityUid, EntityUid> _projections = new();
 
     private static readonly EntProtoId CadiaBlueprintGhost = "CadiaBlueprintGhost";
     private static readonly ProtoId<StackPrototype> SteelStack = "Steel";
@@ -199,16 +198,16 @@ public sealed class CadiaHoloTableSystem : EntitySystem
 
     private void OnClosed(Entity<CadiaHoloTableComponent> ent, ref BoundUIClosedEvent args)
     {
-        if (_projections.Remove(args.Actor, out var projection))
+        if (TryRemoveProjections(args.Actor, out var projection))
             QueueDel(projection);
     }
 
     /// <summary>Визор: карта повисает голограммой перед владельцем. Смещение локальное — она поворачивается вместе с ним.</summary>
     private void ShowProjection(EntityUid actor)
     {
-        if (_projections.ContainsKey(actor))
+        if (HasComp<CadiaHoloTableProjectionsComponent>(actor))
             return;
-        _projections[actor] = Spawn(ProjectionProto, new Robust.Shared.Map.EntityCoordinates(actor, new System.Numerics.Vector2(0f, -0.55f)));
+        EnsureComp<CadiaHoloTableProjectionsComponent>(actor).Value = Spawn(ProjectionProto, new Robust.Shared.Map.EntityCoordinates(actor, new System.Numerics.Vector2(0f, -0.55f)));
     }
 
     private void OnOpened(Entity<CadiaHoloTableComponent> ent, ref BoundUIOpenedEvent args)
@@ -644,5 +643,18 @@ public sealed class CadiaHoloTableSystem : EntitySystem
             if (_ui.IsUiOpen(uid, CadiaHoloUiKey.Key))
                 UpdateUi((uid, table));
         }
+    }
+
+    private bool TryRemoveProjections(EntityUid uid, out EntityUid value)
+    {
+        if (TryComp<CadiaHoloTableProjectionsComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            RemComp(uid, comp);
+            return true;
+        }
+
+        value = default!;
+        return false;
     }
 }

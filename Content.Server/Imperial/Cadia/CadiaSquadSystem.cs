@@ -90,7 +90,6 @@ public sealed class CadiaSquadSystem : EntitySystem
         [CadiaFaction.Imperium] = new(),
         [CadiaFaction.Chaos] = new(),
     };
-    private readonly Dictionary<EntityUid, TimeSpan> _voxCooldown = new();
     private readonly List<(EntityUid Mob, TimeSpan At)> _expiries = new();
     private TimeSpan _nextUi;
 
@@ -194,7 +193,7 @@ public sealed class CadiaSquadSystem : EntitySystem
 
         foreach (var actor in _ui.GetActors(ent.Owner, CadiaSquadUiKey.Key).ToList())
         {
-            state.VoxCooldownUntil = _voxCooldown.GetValueOrDefault(actor);
+            state.VoxCooldownUntil = (CompOrNull<CadiaSquadVoxCooldownComponent>(actor)?.Value ?? default);
             _ui.SetUiState(ent.Owner, CadiaSquadUiKey.Key, state);
         }
     }
@@ -486,7 +485,7 @@ public sealed class CadiaSquadSystem : EntitySystem
             return;
 
         var now = _timing.CurTime;
-        if (_voxCooldown.TryGetValue(user, out var until) && now < until)
+        if (TryGetVoxCooldown(user, out var until) && now < until)
         {
             _popup.PopupEntity(Loc.GetString("cadia-squad-vox-cooldown", ("seconds", (int)(until - now).TotalSeconds)), user, user);
             return;
@@ -495,7 +494,7 @@ public sealed class CadiaSquadSystem : EntitySystem
         var key = args.Command.ToString().ToLowerInvariant();
         _chat.TrySendInGameICMessage(user, Loc.GetString($"cadia-squad-vox-shout-{key}"), InGameICChatType.Speak, false);
         _audio.PlayPvs(VoxSound, user);
-        _voxCooldown[user] = now + VoxCooldown;
+        EnsureComp<CadiaSquadVoxCooldownComponent>(user).Value = now + VoxCooldown;
 
         var origin = _xform.GetMapCoordinates(user);
         var affected = 0;
@@ -666,5 +665,17 @@ public sealed class CadiaSquadSystem : EntitySystem
         _nextUi = now + UiRate;
         UpdateFaction(CadiaFaction.Imperium);
         UpdateFaction(CadiaFaction.Chaos);
+    }
+
+    private bool TryGetVoxCooldown(EntityUid uid, out TimeSpan value)
+    {
+        if (TryComp<CadiaSquadVoxCooldownComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            return true;
+        }
+
+        value = default!;
+        return false;
     }
 }
