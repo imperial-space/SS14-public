@@ -32,8 +32,6 @@ public sealed partial class TerrorSpiderSystem
     private static readonly TimeSpan CocoonObjectFrequency = TimeSpan.FromSeconds(120);
 
     private TimeSpan _nextAiTick;
-    private readonly Dictionary<EntityUid, (EntityUid Vent, int Steps)> _pathToVent = new();
-    private readonly Dictionary<EntityUid, int> _cocoonSteps = new();
     private readonly List<(TimeSpan At, EntityUid Spider, EntityUid Exit, EntityCoordinates Origin, bool Entered)> _ventTravels = new();
 
     private const float HasTargetRange = 10f;
@@ -81,22 +79,22 @@ public sealed partial class TerrorSpiderSystem
         var spider = ent.Comp;
         var ventFrequency = RecentDeath(now) ? spider.VentcrawlCombatFrequency : spider.VentcrawlIdleFrequency;
 
-        if (_pathToVent.TryGetValue(ent, out var path))
+        if (TryGetPathToVent(ent, out var path))
         {
             if (!Exists(path.Vent) || path.Steps > MaxSteps)
             {
-                _pathToVent.Remove(ent);
+                RemComp<TerrorSpiderPathToVentComponent>(ent);
                 _steering.Unregister(ent);
             }
             else if (InRange(ent, path.Vent, ent.Comp.AutomatedMovementRange))
             {
-                _pathToVent.Remove(ent);
+                RemComp<TerrorSpiderPathToVentComponent>(ent);
                 _steering.Unregister(ent);
                 VentCrawlRandom(ent, path.Vent);
             }
             else
             {
-                _pathToVent[ent] = (path.Vent, path.Steps + 1);
+                EnsureComp<TerrorSpiderPathToVentComponent>(ent).Value = (path.Vent, path.Steps + 1);
                 _steering.Register(ent, Transform(path.Vent).Coordinates);
             }
         }
@@ -125,7 +123,7 @@ public sealed partial class TerrorSpiderSystem
         {
             spider.LastVentcrawl = now;
             if (NearestVent(ent, ent.Comp.AutomatedMovementRange2, spider.AiVentBreaker) is { } vent)
-                _pathToVent[ent] = (vent, 0);
+                EnsureComp<TerrorSpiderPathToVentComponent>(ent).Value = (vent, 0);
         }
         else
         {
@@ -288,22 +286,22 @@ public sealed partial class TerrorSpiderSystem
 
         if (InRange(ent, target, ent.Comp.CocoonTargetRange))
         {
-            _cocoonSteps.Remove(ent);
+            RemComp<TerrorSpiderCocoonStepsComponent>(ent);
             _steering.Unregister(ent);
             DoWrap(ent);
             return;
         }
 
-        var steps = _cocoonSteps.GetValueOrDefault(ent);
+        var steps = (CompOrNull<TerrorSpiderCocoonStepsComponent>(ent)?.Value ?? default);
         if (steps > MaxSteps)
         {
-            _cocoonSteps.Remove(ent);
+            RemComp<TerrorSpiderCocoonStepsComponent>(ent);
             ent.Comp.CocoonTarget = null;
             _steering.Unregister(ent);
             return;
         }
 
-        _cocoonSteps[ent] = steps + 1;
+        EnsureComp<TerrorSpiderCocoonStepsComponent>(ent).Value = steps + 1;
         _steering.Register(ent, Transform(target).Coordinates);
     }
 
@@ -317,7 +315,7 @@ public sealed partial class TerrorSpiderSystem
             if (_mobState.IsDead(mob) && !HasComp<TerrorSpiderComponent>(mob) && !Transform(mob).Anchored
                 && !_container.IsEntityInContainer(mob))
             {
-                _cocoonSteps[ent] = 0;
+                EnsureComp<TerrorSpiderCocoonStepsComponent>(ent).Value = 0;
                 ent.Comp.CocoonTarget = mob;
                 return;
             }
@@ -327,7 +325,7 @@ public sealed partial class TerrorSpiderSystem
         {
             if (Transform(item).Anchored || _container.IsEntityInContainer(item) || HasComp<PaperComponent>(item))
                 continue;
-            _cocoonSteps[ent] = 0;
+            EnsureComp<TerrorSpiderCocoonStepsComponent>(ent).Value = 0;
             ent.Comp.CocoonTarget = item;
             return;
         }
@@ -384,10 +382,10 @@ public sealed partial class TerrorSpiderSystem
                     }
                     else if (vent is { } entry)
                     {
-                        if (!_pathToVent.ContainsKey(ent))
+                        if (!HasComp<TerrorSpiderPathToVentComponent>(ent))
                         {
                             _popup.PopupEntity(Loc.GetString("terror-spider-queen-seeks-nest", ("spider", ent.Owner)), ent);
-                            _pathToVent[ent] = (entry, 0);
+                            EnsureComp<TerrorSpiderPathToVentComponent>(ent).Value = (entry, 0);
                         }
                     }
                     else
@@ -467,5 +465,17 @@ public sealed partial class TerrorSpiderSystem
         if (ent.Comp2.Princess)
             return CountSpidersDetailed(ent, true)["all"] >= ent.Comp2.MaxChildren;
         return CountSpiders() >= ent.Comp2.MaxPerNest;
+    }
+
+    private bool TryGetPathToVent(EntityUid uid, out (EntityUid Vent, int Steps) value)
+    {
+        if (TryComp<TerrorSpiderPathToVentComponent>(uid, out var comp))
+        {
+            value = comp.Value;
+            return true;
+        }
+
+        value = default!;
+        return false;
     }
 }
