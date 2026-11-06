@@ -241,7 +241,7 @@ public sealed partial class ImperialQuirkSystem
             "insects" => species == "Moth" || id.Contains("Bee") && HasComp<Content.Shared.Mobs.Components.MobStateComponent>(uid),
             "aliens" => id.Contains("Xeno") && HasComp<Content.Shared.Mobs.Components.MobStateComponent>(uid),
             "guns" => HasComp<GunComponent>(uid),
-            "blood" => TryComp<PuddleComponent>(uid, out _) && PuddleHasBlood(uid),
+            "blood" => HasComp<PuddleComponent>(uid) && PuddleHasBlood(uid),
             "birds" => id.Contains("Chicken") || id.Contains("Duck") || id.Contains("Crow"),
             "snakes" => id.Contains("Snake"),
             "fish" => id.Contains("Carp") || id.Contains("Fish"),
