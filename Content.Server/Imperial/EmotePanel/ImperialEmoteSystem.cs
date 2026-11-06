@@ -24,6 +24,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.Humanoid.Prototypes;
 
 namespace Content.Server.Imperial.EmotePanel;
 
@@ -56,6 +57,9 @@ public sealed partial class ImperialEmoteSystem : EntitySystem
 
     /// <summary>Фразы ванильных эмоций: такой текст сам по себе вызвал бы ванильную эмоцию.</summary>
     private readonly HashSet<string> _vanillaTriggers = new();
+
+    private static readonly ProtoId<SpeciesPrototype> MothSpecies = "Moth";
+    private static readonly ProtoId<EmotePrototype> FlapEmote = "Flap";
 
     public override void Initialize()
     {
@@ -259,7 +263,7 @@ public sealed partial class ImperialEmoteSystem : EntitySystem
             return true;
 
         var stat = GetStat(uid);
-        if (stat > (int) proto.Stat)
+        if (stat > (int)proto.Stat)
         {
             if (intentional)
             {
@@ -299,8 +303,8 @@ public sealed partial class ImperialEmoteSystem : EntitySystem
             case ImperialEmoteRequirement.Tail:
                 return HasComp<WaggingComponent>(uid);
             case ImperialEmoteRequirement.Wings:
-                return TryComp<HumanoidProfileComponent>(uid, out var profile) && profile.Species == "Moth" ||
-                       BodySounds(uid)?.Sounds.ContainsKey("Flap") == true;
+                return TryComp<HumanoidProfileComponent>(uid, out var profile) && profile.Species == MothSpecies ||
+                       BodySounds(uid)?.Sounds.ContainsKey(FlapEmote) == true;
             default:
                 return true;
         }

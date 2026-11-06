@@ -5,6 +5,7 @@ using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.Tag;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Quirks;
 
@@ -54,6 +55,11 @@ public sealed partial class ImperialQuirkSystem
         [ImperialFoodType.Sugar] = ["Sugar"],
         [ImperialFoodType.Alcohol] = ["Ethanol"],
     };
+
+    private static readonly EntProtoId Paper2 = "Paper";
+
+    private const float AllergicIngestAmount = 10f;
+    private const float AllergicIngestChance = 0.3f;
 
     private void InitializeFood()
     {
@@ -113,7 +119,7 @@ public sealed partial class ImperialQuirkSystem
         var name = Loc.GetString(FoodTypeName(ent.Comp.Allergy));
         Message(args.Player, Loc.GetString("imperial-quirk-food-allergy-gain", ("food", name)));
 
-        var tag = Spawn("Paper", Transform(ent).Coordinates);
+        var tag = Spawn(Paper2, Transform(ent).Coordinates);
         _metaData.SetEntityName(tag, Loc.GetString("imperial-quirk-allergy-tag-name"));
         if (TryComp<Content.Shared.Paper.PaperComponent>(tag, out var paper))
             _paper.SetContent((tag, paper), Loc.GetString("imperial-quirk-allergy-tag", ("name", Name(ent)), ("list", name)));
@@ -127,8 +133,8 @@ public sealed partial class ImperialQuirkSystem
             return;
 
         _popup.PopupEntity(Loc.GetString("imperial-quirk-food-allergy-reaction"), ent, ent, PopupType.LargeCaution);
-        AddReagent(ent, Histamine, 10f);
-        if (!HasComp<ImperialQuirkStrongStomachComponent>(ent) && _random.Prob(0.3f))
+        AddReagent(ent, Histamine, AllergicIngestAmount);
+        if (!HasComp<ImperialQuirkStrongStomachComponent>(ent) && _random.Prob(AllergicIngestChance))
             _vomit.Vomit(ent);
     }
 

@@ -83,4 +83,22 @@ public sealed partial class ImperialMoodComponent : Component
     /// <summary>Стадия опьянения, по которой выставлен мудлет drunk.</summary>
     [ViewVariables]
     public int DrunkStage;
+
+    [DataField]
+    public TimeSpan TickDelay = TimeSpan.FromSeconds(1);
+
+    [DataField]
+    public TimeSpan SlowTickDelay = TimeSpan.FromSeconds(5);
+
+    [DataField]
+    public TimeSpan IngestingDelay = TimeSpan.FromSeconds(5);
+
+    [DataField]
+    public float CheckLikedChance = 0.5f;
+
+    [DataField]
+    public float CheckLikedChance2 = 0.2f;
+
+    [DataField]
+    public float UpdateErraticChance = 0.01f;
 }

@@ -188,8 +188,8 @@ public sealed partial class ImperialMoodSystem : EntitySystem
                 shown += value;
         }
 
-        comp.Mood = (int) (mood * Math.Max(comp.MoodModifier, 0));
-        comp.ShownMood = (int) (shown * Math.Max(comp.MoodModifier, 0));
+        comp.Mood = (int)(mood * Math.Max(comp.MoodModifier, 0));
+        comp.ShownMood = (int)(shown * Math.Max(comp.MoodModifier, 0));
         comp.MoodLevel = comp.Mood switch
         {
             <= ImperialMood.Sad4 => 1,
@@ -224,7 +224,7 @@ public sealed partial class ImperialMoodSystem : EntitySystem
             icon = 10 + index;
         }
 
-        _alerts.ShowAlert(ent.Owner, MoodAlert, (short) ((ent.Comp.SanityLevel - 1) * 12 + icon));
+        _alerts.ShowAlert(ent.Owner, MoodAlert, (short)((ent.Comp.SanityLevel - 1) * 12 + icon));
     }
 
     #endregion
@@ -241,7 +241,7 @@ public sealed partial class ImperialMoodSystem : EntitySystem
             if (now < comp.NextTick)
                 continue;
 
-            comp.NextTick = now + TimeSpan.FromSeconds(1);
+            comp.NextTick = now + comp.TickDelay;
             var ent = (uid, comp);
 
             var expired = false;
@@ -264,7 +264,7 @@ public sealed partial class ImperialMoodSystem : EntitySystem
             PollQuirks(ent);
             if (now >= comp.NextSlowTick)
             {
-                comp.NextSlowTick = now + TimeSpan.FromSeconds(5);
+                comp.NextSlowTick = now + comp.SlowTickDelay;
                 PollPersonalities(ent);
                 PollAntag(ent);
             }

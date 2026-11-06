@@ -28,6 +28,16 @@ public sealed class ImperialEmoteVisualSystem : EntitySystem
     /// <summary>FLIP_EMOTE_DURATION.</summary>
     private const float FlipDuration = 0.7f;
 
+    private const float VisualSpinSeconds = 2f;
+    private const float VisualTauntSeconds = 1.6f;
+    private const float VisualDanceSeconds = 5f;
+    private const float VisualTongueSeconds = 5.2f;
+    private const float VisualBlushSeconds = 5.2f;
+    private const float VisualCrySeconds = 12.8f;
+    private const float VisualSighSeconds = 2f;
+    private const float VisualGlassesSeconds = 1.6f;
+    private const float FrameUpdateChance = 0.5f;
+
     private sealed class Spin
     {
         public TimeSpan End;
@@ -61,13 +71,13 @@ public sealed class ImperialEmoteVisualSystem : EntitySystem
                 PlayFlip(uid, msg.Effect == ImperialEmoteEffect.Flip);
                 break;
             case ImperialEmoteEffect.Spin:
-                StartSpin(uid, sprite, 2f, 0.1f, false);
+                StartSpin(uid, sprite, VisualSpinSeconds, 0.1f, false);
                 break;
             case ImperialEmoteEffect.Taunt:
-                StartSpin(uid, sprite, 1.6f, 0.1f, false);
+                StartSpin(uid, sprite, VisualTauntSeconds, 0.1f, false);
                 break;
             case ImperialEmoteEffect.Dance:
-                StartSpin(uid, sprite, 5f, 0.1f, true);
+                StartSpin(uid, sprite, VisualDanceSeconds, 0.1f, true);
                 PlayDanceJitter(uid, sprite);
                 break;
             case ImperialEmoteEffect.Jump:
@@ -89,19 +99,19 @@ public sealed class ImperialEmoteVisualSystem : EntitySystem
                 PlayOffsets(uid, sprite, false, (-1, 0.1f), (0, 0.1f));
                 break;
             case ImperialEmoteEffect.Tongue:
-                AddOverlay(uid, sprite, "tongue", Color.FromHex("#ff6ea0"), 5.2f);
+                AddOverlay(uid, sprite, "tongue", Color.FromHex("#ff6ea0"), VisualTongueSeconds);
                 break;
             case ImperialEmoteEffect.Blush:
-                AddOverlay(uid, sprite, "blush", Color.FromHex("#DE5D83"), 5.2f);
+                AddOverlay(uid, sprite, "blush", Color.FromHex("#DE5D83"), VisualBlushSeconds);
                 break;
             case ImperialEmoteEffect.Cry:
-                AddOverlay(uid, sprite, "cry", Color.FromHex("#00A2FF"), 12.8f);
+                AddOverlay(uid, sprite, "cry", Color.FromHex("#00A2FF"), VisualCrySeconds);
                 break;
             case ImperialEmoteEffect.Sigh:
-                AddOverlay(uid, sprite, "sigh", Color.White, 2f);
+                AddOverlay(uid, sprite, "sigh", Color.White, VisualSighSeconds);
                 break;
             case ImperialEmoteEffect.Glasses:
-                AddOverlay(uid, sprite, "glasses", Color.White, 1.6f);
+                AddOverlay(uid, sprite, "glasses", Color.White, VisualGlassesSeconds);
                 break;
         }
     }
@@ -256,7 +266,7 @@ public sealed class ImperialEmoteVisualSystem : EntitySystem
 
             sprite.EnableDirectionOverride = true;
             sprite.DirectionOverride = SpinOrder[spin.Index++ % SpinOrder.Length];
-            var step = spin.RandomStep ? (_random.Prob(0.5f) ? 0.1f : 0.2f) : spin.Step;
+            var step = spin.RandomStep ? (_random.Prob(FrameUpdateChance) ? 0.1f : 0.2f) : spin.Step;
             spin.Next = now + TimeSpan.FromSeconds(step);
         }
 

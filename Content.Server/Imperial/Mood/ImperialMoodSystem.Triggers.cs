@@ -38,6 +38,23 @@ public sealed partial class ImperialMoodSystem
 
     private const float MusicRange = 7f;
 
+    private static readonly ProtoId<ImperialMoodEventPrototype> SuffocationImperialMoodEvent = "suffocation";
+    private static readonly ProtoId<ImperialMoodEventPrototype> OnFireImperialMoodEvent = "on_fire";
+    private static readonly ProtoId<ImperialMoodEventPrototype> ColdImperialMoodEvent = "cold";
+    private static readonly ProtoId<ImperialMoodEventPrototype> HandcuffedImperialMoodEvent = "handcuffed";
+    private static readonly ProtoId<ImperialMoodEventPrototype> JitteryImperialMoodEvent = "jittery";
+    private static readonly ProtoId<ImperialMoodEventPrototype> HighImperialMoodEvent = "high";
+    private static readonly ProtoId<ImperialMoodEventPrototype> CreampieImperialMoodEvent = "creampie";
+    private static readonly ProtoId<ImperialMoodEventPrototype> DrunkAfterImperialMoodEvent = "drunk_after";
+    private static readonly ProtoId<ImperialMoodEventPrototype> DrunkImperialMoodEvent = "drunk";
+    private static readonly ProtoId<ImperialMoodEventPrototype> GoodmusicImperialMoodEvent = "goodmusic";
+    private static readonly ProtoId<ImperialMoodEventPrototype> SlippedImperialMoodEvent = "slipped";
+    private static readonly ProtoId<ImperialMoodEventPrototype> WhimsicalSlipImperialMoodEvent = "whimsical_slip";
+    private static readonly ProtoId<ImperialMoodEventPrototype> HugImperialMoodEvent = "hug";
+    private static readonly ProtoId<ImperialMoodEventPrototype> PetAnimalImperialMoodEvent = "pet_animal";
+
+    private const float SlipRange = 5f;
+
     private void InitializeTriggers()
     {
         SubscribeLocalEvent<MobStateChangedEvent>(OnAnyStateChanged);
@@ -53,28 +70,28 @@ public sealed partial class ImperialMoodSystem
         UpdateNutrition(ent);
 
         // carbon/life.dm: удушье.
-        Toggle(ent, "suffocation", "suffocation", TryComp<RespiratorComponent>(uid, out var respirator) &&
+        Toggle(ent, "suffocation", SuffocationImperialMoodEvent, TryComp<RespiratorComponent>(uid, out var respirator) &&
                                                      respirator.SuffocationCycles >= respirator.SuffocationCycleThreshold);
 
         // Горение.
-        Toggle(ent, "on_fire", "on_fire", TryComp<FlammableComponent>(uid, out var flammable) && flammable.OnFire);
+        Toggle(ent, "on_fire", OnFireImperialMoodEvent, TryComp<FlammableComponent>(uid, out var flammable) && flammable.OnFire);
 
         // species.dm: переохлаждение.
-        Toggle(ent, "cold", "cold", TryComp<TemperatureComponent>(uid, out var temperature) &&
+        Toggle(ent, "cold", ColdImperialMoodEvent, TryComp<TemperatureComponent>(uid, out var temperature) &&
                                     TryComp<TemperatureDamageComponent>(uid, out var damage) &&
                                     temperature.CurrentTemperature < damage.ColdDamageThreshold);
 
         // carbon.dm: в наручниках.
-        Toggle(ent, "handcuffed", "handcuffed", TryComp<CuffableComponent>(uid, out var cuffs) && cuffs.CuffedHandCount > 0);
+        Toggle(ent, "handcuffed", HandcuffedImperialMoodEvent, TryComp<CuffableComponent>(uid, out var cuffs) && cuffs.CuffedHandCount > 0);
 
         // jitteriness.dm и drugginess.dm.
-        Toggle(ent, "jittery", "jittery", HasComp<JitteringComponent>(uid));
-        Toggle(ent, "high", "high", _status.HasEffectComp<SeeingRainbowsStatusEffectComponent>(uid));
+        Toggle(ent, "jittery", JitteryImperialMoodEvent, HasComp<JitteringComponent>(uid));
+        Toggle(ent, "high", HighImperialMoodEvent, _status.HasEffectComp<SeeingRainbowsStatusEffectComponent>(uid));
 
         // splat.dm: крем на лице.
         var creamed = TryComp<CreamPiedComponent>(uid, out var cream) && cream.CreamPied;
         if (creamed && !HasMood((uid, ent.Comp), "creampie"))
-            AddMood((uid, ent.Comp), "creampie", "creampie");
+            AddMood((uid, ent.Comp), "creampie", CreampieImperialMoodEvent);
 
         UpdateDrunk(ent);
         UpdateMusic(ent);
@@ -130,7 +147,7 @@ public sealed partial class ImperialMoodSystem
         {
             // clear_effects: любителю выпить хорошо и после.
             if (ent.Comp.DrunkStage != 0 && HasPersonality(ent.Comp, "bibulous"))
-                AddMood((ent.Owner, ent.Comp), "drunk_after", "drunk_after");
+                AddMood((ent.Owner, ent.Comp), "drunk_after", DrunkAfterImperialMoodEvent);
 
             ent.Comp.DrunkStage = 0;
             ClearMood((ent.Owner, ent.Comp), "drunk");
@@ -153,7 +170,7 @@ public sealed partial class ImperialMoodSystem
         ent.Comp.DrunkStage = stage;
         ClearMood((ent.Owner, ent.Comp), "drunk");
         ClearMood((ent.Owner, ent.Comp), "drunk_after");
-        AddMood((ent.Owner, ent.Comp), "drunk", "drunk", change: change,
+        AddMood((ent.Owner, ent.Comp), "drunk", DrunkImperialMoodEvent, change: change,
             description: Loc.GetString($"imperial-mood-drunk-{stage}"));
     }
 
@@ -165,7 +182,7 @@ public sealed partial class ImperialMoodSystem
             if (!instrument.Comp.Playing || !_examine.InRangeUnOccluded(ent, instrument, MusicRange))
                 continue;
 
-            AddMood((ent.Owner, ent.Comp), "goodmusic", "goodmusic");
+            AddMood((ent.Owner, ent.Comp), "goodmusic", GoodmusicImperialMoodEvent);
             return;
         }
     }
@@ -173,14 +190,14 @@ public sealed partial class ImperialMoodSystem
     /// <summary>mob_movement.dm: поскользнулся.</summary>
     private void OnSlip(Entity<SlipperyComponent> ent, ref SlipEvent args)
     {
-        AddMood(args.Slipped, "slipped", "slipped");
+        AddMood(args.Slipped, "slipped", SlippedImperialMoodEvent);
 
         // slip_observed: чудакам смешно смотреть, как кто-то падает.
-        foreach (var viewer in _lookup.GetEntitiesInRange<ImperialMoodComponent>(Transform(args.Slipped).Coordinates, 5f))
+        foreach (var viewer in _lookup.GetEntitiesInRange<ImperialMoodComponent>(Transform(args.Slipped).Coordinates, SlipRange))
         {
             if (viewer.Owner != args.Slipped && HasPersonality(viewer.Comp, "whimsical") &&
-                _examine.InRangeUnOccluded(viewer, args.Slipped, 5f))
-                AddMood(viewer.AsNullable(), "slip_observed", "whimsical_slip");
+                _examine.InRangeUnOccluded(viewer, args.Slipped, SlipRange))
+                AddMood(viewer.AsNullable(), "slip_observed", WhimsicalSlipImperialMoodEvent);
         }
     }
 
@@ -192,12 +209,12 @@ public sealed partial class ImperialMoodSystem
 
         if (HasComp<HumanoidProfileComponent>(ent))
         {
-            AddMood(ent.Owner, "hug", "hug");
+            AddMood(ent.Owner, "hug", HugImperialMoodEvent);
             if (TryComp<ImperialMoodComponent>(ent, out var mood))
                 BadTouch((ent.Owner, mood));
         }
         else if (HasComp<MobStateComponent>(ent))
-            AddMood(args.User, $"pet_{ent.Owner}", "pet_animal", ent.Owner);
+            AddMood(args.User, $"pet_{ent.Owner}", PetAnimalImperialMoodEvent, ent.Owner);
     }
 
     #region Смерть
@@ -286,13 +303,13 @@ public sealed partial class ImperialMoodSystem
         var existing = GetMood((witness.Owner, witness.Comp), category);
         if (existing != null && existing.Event == id && change < 0)
         {
-            existing.Change = (int) Math.Floor(existing.Change * 1.5f);
+            existing.Change = (int)Math.Floor(existing.Change * 1.5f);
             existing.Expires = _timing.CurTime + TimeSpan.FromSeconds(existing.Timeout);
             UpdateMood(witness);
             return;
         }
 
-        AddMood((witness.Owner, witness.Comp), category, id, dead, (int) Math.Ceiling(change), description, priority, timeout);
+        AddMood((witness.Owner, witness.Comp), category, id, dead, (int)Math.Ceiling(change), description, priority, timeout);
     }
 
     /// <summary>get_descriptor: должность члена экипажа, имя питомца или «кто-то».</summary>

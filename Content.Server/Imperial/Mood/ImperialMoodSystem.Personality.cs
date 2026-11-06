@@ -147,7 +147,7 @@ public sealed partial class ImperialMoodSystem
                 break;
         }
 
-        change = (int) Math.Floor(value);
+        change = (int)Math.Floor(value);
         return true;
     }
 

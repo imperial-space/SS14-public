@@ -1,7 +1,9 @@
 using Content.Shared.Alert;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Imperial.Mood;
+using Content.Shared.Imperial.Mood;
+
+namespace Content.Server.Imperial.Mood;
 
 /// <summary>
 /// add_mood_event: другие системы поднимают его на существе, не завися от кода настроения.

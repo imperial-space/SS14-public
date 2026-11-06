@@ -1,7 +1,9 @@
 using Content.Shared.Alert;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Imperial.Mood;
+using Content.Shared.Imperial.Mood;
+
+namespace Content.Server.Imperial.Mood;
 
 /// <summary>clear_mood_event.</summary>
 [ByRefEvent]
