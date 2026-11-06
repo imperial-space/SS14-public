@@ -8,6 +8,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Whitelist;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.NullRod;
 
@@ -20,6 +21,8 @@ public sealed class NullRodCoreSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+
+    private static readonly EntProtoId CultRuneDestructionEffect = "CultRuneDestructionEffect";
 
     public override void Initialize()
     {
@@ -38,7 +41,7 @@ public sealed class NullRodCoreSystem : EntitySystem
         {
             // Как CultRuneSystem.DestroyRune: эффект разрушения, затем удаление.
             if (cultRune.DestructionState != null)
-                Spawn("CultRuneDestructionEffect", Transform(target).Coordinates);
+                Spawn(CultRuneDestructionEffect, Transform(target).Coordinates);
         }
         else if (!HasComp<ImperialNullRodErasableComponent>(target))
         {

@@ -17,6 +17,7 @@ using Content.Shared.Speech.EntitySystems;
 using Content.Shared.Stunnable;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Server.Imperial.Antimagic;
 
 namespace Content.Server.Imperial.Chaplain;
 
@@ -67,7 +68,7 @@ public sealed class ImperialHolyWaterSystem : EntitySystem
             return;
 
         _nextTick = now + TickInterval;
-        var seconds = (float) TickInterval.TotalSeconds;
+        var seconds = (float)TickInterval.TotalSeconds;
 
         var query = EntityQueryEnumerator<BloodstreamComponent, MobStateComponent>();
         while (query.MoveNext(out var uid, out _, out _))
@@ -83,7 +84,7 @@ public sealed class ImperialHolyWaterSystem : EntitySystem
             if (isNew && HasComp<CultistComponent>(uid))
                 _popup.PopupEntity(Loc.GetString("imperial-holy-water-cult-start"), uid, uid, PopupType.LargeCaution);
 
-            holy.Seconds += seconds;
+            holy.Seconds += TimeSpan.FromSeconds(seconds);
             Tick(uid, holy, now);
         }
     }
@@ -91,7 +92,7 @@ public sealed class ImperialHolyWaterSystem : EntitySystem
     private void Tick(EntityUid uid, ImperialHolyWaterComponent holy, TimeSpan now)
     {
         var cultist = HasComp<CultistComponent>(uid);
-        _jitter.DoJitter(uid, TimeSpan.FromSeconds(2), true, 10f, 4f);
+        _jitter.DoJitter(uid, holy.TickTime, true, 10f, 4f);
 
         if (now >= holy.NextSpellClear)
         {
@@ -102,30 +103,30 @@ public sealed class ImperialHolyWaterSystem : EntitySystem
             }
         }
 
-        if (holy.Seconds >= StutterThreshold)
+        if ((float)holy.Seconds.TotalSeconds >= StutterThreshold)
         {
-            _stutter.DoStutter(uid, TimeSpan.FromSeconds(2), true);
-            _drunk.TryApplyDrunkenness(uid, TimeSpan.FromSeconds(2));
+            _stutter.DoStutter(uid, holy.TickTime, true);
+            _drunk.TryApplyDrunkenness(uid, holy.TickBoozePowerDelay);
 
-            if (cultist && _random.Prob(0.1f))
+            if (cultist && _random.Prob(holy.TickChance))
             {
                 _chat.TrySendInGameICMessage(uid, _random.Pick(CultPhrases), InGameICChatType.Speak, false, ignoreActionBlocker: true);
-                if (_random.Prob(0.1f))
+                if (_random.Prob(holy.TickChance))
                 {
                     _popup.PopupEntity(Loc.GetString("imperial-holy-water-cult-seizure", ("target", uid)), uid, PopupType.LargeCaution);
-                    _stun.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(12));
+                    _stun.TryUpdateParalyzeDuration(uid, holy.TickDuration);
                 }
             }
         }
 
-        if (holy.Seconds < PurgeThreshold)
+        if ((float)holy.Seconds.TotalSeconds < PurgeThreshold)
             return;
 
         // Минута святой воды: культист очищен, остаток воды выходит из тела.
         if (cultist)
         {
             _cult.RemoveCultist(uid);
-            _stun.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(10));
+            _stun.TryUpdateParalyzeDuration(uid, holy.TickDuration2);
             _popup.PopupEntity(Loc.GetString("imperial-holy-water-cult-purged"), uid, uid, PopupType.LargeCaution);
         }
 

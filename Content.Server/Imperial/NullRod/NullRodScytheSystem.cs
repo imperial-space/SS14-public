@@ -19,6 +19,8 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.Damage.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.NullRod;
 
@@ -46,6 +48,8 @@ public sealed class NullRodScytheSystem : EntitySystem
     {
         DamageDict = { ["Slash"] = 200 },
     };
+
+    private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
 
     public override void Initialize()
     {
@@ -136,7 +140,7 @@ public sealed class NullRodScytheSystem : EntitySystem
         {
             _popup.PopupEntity(Loc.GetString("null-rod-scythe-punish", ("scythe", scythe)), user, user, PopupType.LargeCaution);
             _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/demon_attack1.ogg"), user);
-            var damage = new DamageSpecifier { DamageDict = { ["Slash"] = arm.Comp.RetractDamage } };
+            var damage = new DamageSpecifier { DamageDict = { [SlashDamageType] = arm.Comp.RetractDamage } };
             _damageable.TryChangeDamage(user, damage, true, origin: scythe);
         }
 
@@ -170,7 +174,7 @@ public sealed class NullRodScytheSystem : EntitySystem
             return;
 
         scythe.Comp.Empowerment = empowerment;
-        scythe.Comp.EmpowermentEnd = _timing.CurTime + scythe.Comp.EmpowermentDuration / (int) empowerment;
+        scythe.Comp.EmpowermentEnd = _timing.CurTime + scythe.Comp.EmpowermentDuration / (int)empowerment;
     }
 
     private void OnExamined(Entity<NullRodVorpalScytheComponent> scythe, ref ExaminedEvent args)
