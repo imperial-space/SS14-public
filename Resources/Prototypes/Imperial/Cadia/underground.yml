@@ -1,0 +1,217 @@
+# Катакомбы Касра: свет, огонь и звук подземелья.
+
+# Сломанная лампа: мигает и временами почти гаснет.
+- type: entity
+  parent: CadiaBunkerLamp
+  id: CadiaFlickerLamp
+  name: failing lamp
+  description: A caged lamp on its last wires. It buzzes and stutters in the dark.
+  components:
+  - type: PointLight
+    radius: 4
+    energy: 1.4
+    color: "#ffc070"
+  - type: LightBehaviour
+    behaviours:
+    - !type:RandomizeBehaviour
+      interpolate: Nearest
+      minDuration: 0.05
+      maxDuration: 0.9
+      startValue: 0.05
+      endValue: 1.6
+      property: Energy
+      isLooped: true
+      enabled: true
+
+# Жаровня: открытый огонь в чаше, тёплый свет и треск.
+- type: entity
+  id: CadiaBrazier
+  name: brazier
+  description: Sacred fire in an iron bowl. It has not gone out since the Kasr was founded.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: Sprite
+    drawdepth: Objects
+    noRot: true
+    layers:
+    - sprite: Effects/fire.rsi
+      state: "1"
+      scale: 0.8,0.8
+  - type: PointLight
+    radius: 5
+    energy: 2
+    color: "#ff9a40"
+  - type: LightBehaviour
+    behaviours:
+    - !type:RandomizeBehaviour
+      interpolate: Nearest
+      minDuration: 0.08
+      maxDuration: 0.25
+      startValue: 1.6
+      endValue: 2.3
+      property: Energy
+      isLooped: true
+      enabled: true
+  - type: AmbientSound
+    range: 5
+    volume: -6
+    sound:
+      path: /Audio/Ambience/Objects/fireplace.ogg
+
+# Звуки подземелья: невидимые источники, ставятся по залам и ходам.
+- type: entity
+  abstract: true
+  id: CadiaAmbienceBase
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  parent: CadiaAmbienceBase
+  id: CadiaAmbienceChoir
+  name: distant hymn
+  components:
+  - type: AmbientSound
+    range: 12
+    volume: -10
+    sound:
+      collection: CadiaChoir
+
+- type: entity
+  parent: CadiaAmbienceBase
+  id: CadiaAmbienceCave
+  name: dripping water
+  components:
+  - type: AmbientSound
+    range: 14
+    volume: -8
+    sound:
+      collection: CadiaCave
+
+- type: entity
+  parent: CadiaAmbienceBase
+  id: CadiaAmbienceWhispers
+  name: whispers
+  components:
+  - type: AmbientSound
+    range: 10
+    volume: -5
+    sound:
+      collection: CadiaWhispers
+
+- type: soundCollection
+  id: CadiaChoir
+  files:
+  - /Audio/Ambience/ambiholy.ogg
+  - /Audio/Ambience/ambiholy2.ogg
+  - /Audio/Ambience/ambiholy3.ogg
+
+- type: soundCollection
+  id: CadiaCave
+  files:
+  - /Audio/Ambience/ambicave.ogg
+  - /Audio/Ambience/ambimaint1.ogg
+  - /Audio/Ambience/ambimaint3.ogg
+  - /Audio/Ambience/ambimaint5.ogg
+
+- type: soundCollection
+  id: CadiaWhispers
+  files:
+  - /Audio/Ambience/ambidanger.ogg
+  - /Audio/Ambience/ambidanger2.ogg
+
+# Колокол собора Касра: редкий набат, слышен над всем городом.
+- type: entity
+  parent: CadiaAmbienceBase
+  id: CadiaBellTower
+  name: cathedral bell
+  components:
+  - type: AmbientSound
+    range: 45
+    volume: 0
+    sound:
+      path: /Audio/Imperial/Cadia/Ambience/bell_toll.ogg
+
+# Барабаны предателей в павшем бастионе и в лагерях.
+- type: entity
+  parent: CadiaAmbienceBase
+  id: CadiaAmbienceDrums
+  name: war drums
+  components:
+  - type: AmbientSound
+    range: 24
+    volume: -3
+    sound:
+      path: /Audio/Imperial/Cadia/Ambience/chaos_drums.ogg
+
+# ─── Флагман Хаоса ───
+
+# Красная лампа корабля предателей.
+- type: entity
+  parent: CadiaBunkerLamp
+  id: CadiaChaosLamp
+  name: blood lamp
+  description: A caged lamp glowing the colour of old blood.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/bunker.rsi
+    state: lamp
+    drawdepth: WallMountedItems
+    noRot: true
+    color: "#ff6060"
+  - type: PointLight
+    radius: 4
+    energy: 1.6
+    color: "#ff3a2a"
+
+- type: entity
+  parent: CadiaAmbienceBase
+  id: CadiaAmbienceEngine
+  name: engine roar
+  components:
+  - type: AmbientSound
+    range: 10
+    volume: -4
+    sound:
+      path: /Audio/Ambience/Objects/engine_hum.ogg
+
+# Варп-врата колдунов: переносят слугу Тёмных богов с флагмана на десантные корабли и бомбардировщики и обратно.
+- type: entity
+  id: CadiaWarpGate
+  name: warp gate
+  description: A circle of runes torn into the deck. The servants of the Dark Gods step through it from ship to ship.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/warp_rift.rsi
+    state: rift
+    drawdepth: FloorObjects
+    scale: 0.6,0.6
+    color: "#ff6aa0c0"
+  - type: PointLight
+    radius: 3
+    energy: 1.8
+    color: "#c02a6a"
+  - type: AmbientSound
+    range: 6
+    volume: -6
+    sound:
+      path: /Audio/Imperial/Cadia/Ambience/rift_drone.ogg
+  - type: CadiaWarpGate

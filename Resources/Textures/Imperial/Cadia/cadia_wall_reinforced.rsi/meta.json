@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for Imperial Space (procedural, Cadia theme)",
+  "size": { "x": 32, "y": 32 },
+  "states": [
+    { "name": "full" },
+    { "name": "cadia_wall_reinforced0", "directions": 4 },
+    { "name": "cadia_wall_reinforced1", "directions": 4 },
+    { "name": "cadia_wall_reinforced2", "directions": 4 },
+    { "name": "cadia_wall_reinforced3", "directions": 4 },
+    { "name": "cadia_wall_reinforced4", "directions": 4 },
+    { "name": "cadia_wall_reinforced5", "directions": 4 },
+    { "name": "cadia_wall_reinforced6", "directions": 4 },
+    { "name": "cadia_wall_reinforced7", "directions": 4 }
+  ]
+}

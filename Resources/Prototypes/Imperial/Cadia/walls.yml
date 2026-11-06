@@ -1,0 +1,42 @@
+# Кадия: стены крепости. Стыкуются друг с другом и с обычными стенами станции (общий ключ walls).
+
+- type: entity
+  parent: WallSolid
+  id: CadiaWall
+  name: ferrocrete wall
+  description: Thick ferrocrete blocks of a Cadian bastion, banded with riveted steel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/cadia_wall.rsi
+  - type: Icon
+    sprite: Imperial/Cadia/cadia_wall.rsi
+    state: full
+  - type: IconSmooth
+    key: walls
+    base: cadia_wall
+
+- type: entity
+  parent: WallSolid
+  id: CadiaWallReinforced
+  name: reinforced bastion wall
+  description: Plasteel-faced bastion wall with hazard trim. Built to stand against the Archenemy's siege guns.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/cadia_wall_reinforced.rsi
+  - type: Icon
+    sprite: Imperial/Cadia/cadia_wall_reinforced.rsi
+    state: full
+  - type: IconSmooth
+    key: walls
+    base: cadia_wall_reinforced
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam

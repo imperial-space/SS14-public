@@ -1,0 +1,35 @@
+# Кадия: монументальная статуя Императора (128×128 — четыре клетки). Твёрдое только основание.
+- type: entity
+  id: CadiaEmperorStatue
+  parent: BaseStructure
+  name: statue of the Emperor of Mankind
+  description: A towering statue of the God-Emperor raising a burning blade. The faithful of Cadia stand beneath it before every battle.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Cadia/emperor_statue.rsi
+    state: statue
+    drawdepth: Mobs
+    offset: "0,1.375"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.2,-0.45,1.2,0.6"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - WallLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

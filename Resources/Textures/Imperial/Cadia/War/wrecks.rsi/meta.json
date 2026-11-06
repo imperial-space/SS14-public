@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for Imperial Space from the vehicle sprites",
+  "size": { "x": 128, "y": 128 },
+  "states": [
+    { "name": "russ" },
+    { "name": "chimera" },
+    { "name": "basilisk" },
+    { "name": "rhino" },
+    { "name": "sentinel" },
+    { "name": "helbrute" },
+    { "name": "defiler" }
+  ]
+}

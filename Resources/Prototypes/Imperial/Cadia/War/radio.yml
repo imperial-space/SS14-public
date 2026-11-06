@@ -1,0 +1,42 @@
+# Вокс-сети войны за Кадию: полковая, командная и банда Хаоса. Дальняя связь — фронт больше одной карты.
+
+- type: radioChannel
+  id: CadiaVox
+  name: chat-radio-cadia-vox
+  keycode: '0'
+  frequency: 1601
+  color: "#8fbf6a"
+  longRange: true
+
+- type: radioChannel
+  id: CadiaCommand
+  name: chat-radio-cadia-command
+  keycode: '-'
+  frequency: 1603
+  color: "#e8c66a"
+  longRange: true
+
+- type: radioChannel
+  id: CadiaWarband
+  name: chat-radio-cadia-warband
+  keycode: '*'
+  frequency: 1605
+  color: "#d23b2a"
+  longRange: true
+
+# Вокс отряда: слышат только бойцы того же отряда (фильтр в CadiaSquadSystem).
+- type: radioChannel
+  id: CadiaSquad
+  name: chat-radio-cadia-squad
+  keycode: ','
+  frequency: 1607
+  color: "#4ab8ff"
+  longRange: true
+
+- type: radioChannel
+  id: CadiaWarbandSquad
+  name: chat-radio-cadia-warband-squad
+  keycode: '.'
+  frequency: 1609
+  color: "#ff7a5a"
+  longRange: true

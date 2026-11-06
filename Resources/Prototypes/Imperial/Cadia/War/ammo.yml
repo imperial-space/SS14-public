@@ -1,0 +1,1027 @@
+# Боеприпасы Кадии по канону. Лазган стреляет сгустком, а не лучом, и питается от обоймы: заряжают её на станции,
+# а не само оружие. Болтер стреляет масс-реактивными мини-ракетами: основной урон — подрыв в цели.
+
+- type: Tag
+  id: CadiaLasPack
+
+- type: Tag
+  id: CadiaLaspistolPack
+
+- type: Tag
+  id: CadiaHotShotPack
+
+- type: Tag
+  id: CadiaLongLasPack
+
+- type: Tag
+  id: CadiaPlasmaFlask
+
+- type: Tag
+  id: CadiaBoltCartridge
+
+- type: Tag
+  id: CadiaHeavyBoltCartridge
+
+- type: Tag
+  id: CadiaBoltMag
+
+- type: Tag
+  id: CadiaBoltPistolMag
+
+- type: Tag
+  id: CadiaHeavyBoltBox
+
+- type: Tag
+  id: CadiaAutogunMag
+
+- type: Tag
+  id: CadiaAutopistolMag
+
+- type: Tag
+  id: CadiaEnergyCharge
+
+# ─── Снаряды лазерного оружия ───
+
+- type: entity
+  abstract: true
+  parent: BulletLaser
+  id: CadiaLasBoltBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/projectiles.rsi
+    layers:
+    - state: las_bolt
+      shader: unshaded
+  - type: PointLight
+    radius: 1.6
+    energy: 1.2
+    color: "#ff5a3a"
+
+- type: entity
+  parent: CadiaLasBoltBase
+  id: CadiaLasBolt
+  name: las bolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 20
+
+- type: entity
+  parent: CadiaLasBoltBase
+  id: CadiaLaspistolBolt
+  name: laspistol bolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Heat: 14
+
+- type: entity
+  parent: CadiaLasBoltBase
+  id: CadiaHotShotBolt
+  name: hot-shot bolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/projectiles.rsi
+    layers:
+    - state: las_bolt_hot
+      shader: unshaded
+  - type: PointLight
+    radius: 1.8
+    energy: 1.4
+    color: "#96d2ff"
+  - type: Projectile
+    damage:
+      types:
+        Heat: 26
+        Piercing: 6
+
+- type: entity
+  parent: CadiaLasBoltBase
+  id: CadiaLongLasBolt
+  name: long-las bolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/projectiles.rsi
+    layers:
+    - state: las_bolt_long
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Heat: 55
+        Piercing: 10
+
+- type: entity
+  parent: CadiaLasBoltBase
+  id: CadiaMultilaserBolt
+  name: multilaser bolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/projectiles.rsi
+    layers:
+    - state: multilaser_bolt
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Heat: 18
+
+# ─── Масс-реактивные снаряды ───
+
+- type: entity
+  abstract: true
+  parent: BaseBullet
+  id: CadiaBoltRoundBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/projectiles.rsi
+    layers:
+    - state: bolt_round
+      shader: unshaded
+  - type: PointLight
+    radius: 1.2
+    energy: 1
+    color: "#ffb35a"
+
+- type: entity
+  parent: CadiaBoltRoundBase
+  id: CadiaBoltRound
+  name: bolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 5
+  - type: CadiaMassReactive
+    radius: 1.1
+    blast:
+      types:
+        Blunt: 14
+        Piercing: 12
+        Structural: 12
+    sound:
+      path: /Audio/Imperial/Cadia/Weapons/bolt_blast.ogg
+      params:
+        variation: 0.1
+        volume: -2
+
+- type: entity
+  parent: CadiaBoltRoundBase
+  id: CadiaHeavyBoltRound
+  name: heavy bolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 8
+  - type: CadiaMassReactive
+    radius: 1.6
+    effect: CadiaHeavyBoltBlast
+    blast:
+      types:
+        Blunt: 20
+        Piercing: 16
+        Structural: 25
+    sound:
+      path: /Audio/Imperial/Cadia/Weapons/heavybolt_blast.ogg
+      params:
+        variation: 0.1
+
+- type: entity
+  parent: CadiaBoltRoundBase
+  id: CadiaAutocannonRound
+  name: autocannon shell
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 12
+  - type: CadiaMassReactive
+    radius: 1.2
+    blast:
+      types:
+        Blunt: 10
+        Piercing: 10
+        Structural: 30
+    sound:
+      path: /Audio/Imperial/Cadia/Weapons/autocannon_blast.ogg
+      params:
+        variation: 0.1
+        volume: -2
+
+- type: entity
+  parent: CadiaBoltRoundBase
+  id: CadiaPlasmaBolt
+  name: plasma bolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/projectiles.rsi
+    layers:
+    - state: plasma_bolt
+      shader: unshaded
+  - type: PointLight
+    radius: 2.2
+    energy: 1.8
+    color: "#5fd8ff"
+  - type: Projectile
+    damage:
+      types:
+        Heat: 10
+  - type: CadiaMassReactive
+    radius: 1.4
+    effect: CadiaPlasmaBlast
+    blast:
+      types:
+        Heat: 34
+        Structural: 20
+    sound:
+      path: /Audio/Imperial/Cadia/Weapons/plasma_blast.ogg
+
+# ─── Вспышки подрыва ───
+
+- type: entity
+  abstract: true
+  id: CadiaBlastBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: TimedDespawn
+    lifetime: 0.42
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  parent: CadiaBlastBase
+  id: CadiaBoltBlast
+  name: bolt detonation
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/blasts.rsi
+    drawdepth: Effects
+    noRot: true
+    scale: 0.75,0.75
+    layers:
+    - state: fire
+      shader: unshaded
+  - type: PointLight
+    radius: 2.2
+    energy: 2
+    color: "#ff9a4a"
+
+- type: entity
+  parent: CadiaBoltBlast
+  id: CadiaHeavyBoltBlast
+  name: heavy bolt detonation
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/blasts.rsi
+    drawdepth: Effects
+    noRot: true
+    scale: 1.1,1.1
+    layers:
+    - state: fire
+      shader: unshaded
+
+- type: entity
+  parent: CadiaBlastBase
+  id: CadiaPlasmaBlast
+  name: plasma detonation
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/blasts.rsi
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - state: plasma
+      shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 2.5
+    color: "#5fd8ff"
+
+# ─── Заряды и патроны: заряд исчезает при выстреле, гильза болта падает на пол ───
+
+- type: entity
+  abstract: true
+  parent: BaseCartridge
+  id: CadiaEnergyChargeBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+    - CadiaEnergyCharge
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  parent: CadiaEnergyChargeBase
+  id: CadiaLasCharge
+  name: las charge
+  components:
+  - type: CartridgeAmmo
+    proto: CadiaLasBolt
+    deleteOnSpawn: true
+
+- type: entity
+  parent: CadiaEnergyChargeBase
+  id: CadiaLaspistolCharge
+  name: laspistol charge
+  components:
+  - type: CartridgeAmmo
+    proto: CadiaLaspistolBolt
+    deleteOnSpawn: true
+
+- type: entity
+  parent: CadiaEnergyChargeBase
+  id: CadiaHotShotCharge
+  name: hot-shot charge
+  components:
+  - type: CartridgeAmmo
+    proto: CadiaHotShotBolt
+    deleteOnSpawn: true
+
+- type: entity
+  parent: CadiaEnergyChargeBase
+  id: CadiaLongLasCharge
+  name: long-las charge
+  components:
+  - type: CartridgeAmmo
+    proto: CadiaLongLasBolt
+    deleteOnSpawn: true
+
+- type: entity
+  parent: CadiaEnergyChargeBase
+  id: CadiaPlasmaCharge
+  name: plasma charge
+  components:
+  - type: CartridgeAmmo
+    proto: CadiaPlasmaBolt
+    deleteOnSpawn: true
+
+- type: entity
+  parent: BaseCartridge
+  id: CadiaBoltCartridge
+  name: bolt shell
+  description: A brass-cased, rocket-propelled mass-reactive shell with a red tip. Load it into a boltgun magazine.
+  components:
+  - type: Tag
+    tags:
+    - CadiaBoltCartridge
+  - type: CartridgeAmmo
+    proto: CadiaBoltRound
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ammo.rsi
+    layers:
+    - state: bolt_round
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+
+- type: entity
+  parent: CadiaBoltCartridge
+  id: CadiaHeavyBoltCartridge
+  name: heavy bolt shell
+  description: A fist-thick mass-reactive shell for a heavy bolter's belt.
+  components:
+  - type: Tag
+    tags:
+    - CadiaHeavyBoltCartridge
+  - type: CartridgeAmmo
+    proto: CadiaHeavyBoltRound
+
+# ─── Обоймы ───
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: CadiaMagBase
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ammo.rsi
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: AmmoCounter
+  - type: Appearance
+
+- type: entity
+  parent: CadiaMagBase
+  id: CadiaLasPack
+  name: las power pack
+  description: A lasgun's power pack, good for thirty shots. Recharge it at a charging station.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ammo.rsi
+    state: las_pack
+  - type: Tag
+    tags:
+    - CadiaLasPack
+  - type: CadiaEnergyPack
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CadiaLasCharge
+    mayTransfer: false
+    whitelist:
+      tags:
+      - CadiaEnergyCharge
+
+- type: entity
+  parent: CadiaMagBase
+  id: CadiaLaspistolPack
+  name: laspistol power pack
+  description: A small power pack for a laspistol, good for fifteen shots. Recharge it at a charging station.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ammo.rsi
+    state: laspistol_pack
+  - type: Tag
+    tags:
+    - CadiaLaspistolPack
+  - type: CadiaEnergyPack
+  - type: BallisticAmmoProvider
+    capacity: 15
+    proto: CadiaLaspistolCharge
+    mayTransfer: false
+    whitelist:
+      tags:
+      - CadiaEnergyCharge
+
+- type: entity
+  parent: CadiaMagBase
+  id: CadiaHotShotPack
+  name: hot-shot charge pack
+  description: A heavy overcharged pack for a hot-shot lasgun. Fewer shots, far worse wounds. Recharge it at a charging station.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ammo.rsi
+    state: hotshot_pack
+  - type: Tag
+    tags:
+    - CadiaHotShotPack
+  - type: CadiaEnergyPack
+  - type: BallisticAmmoProvider
+    capacity: 20
+    proto: CadiaHotShotCharge
+    mayTransfer: false
+    whitelist:
+      tags:
+      - CadiaEnergyCharge
+
+- type: entity
+  parent: CadiaMagBase
+  id: CadiaLongLasPack
+  name: long-las power pack
+  description: A finely tuned power pack for a long-las, good for ten precise shots. Recharge it at a charging station.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ammo.rsi
+    state: las_pack
+    color: "#c8d8ff"
+  - type: Tag
+    tags:
+    - CadiaLongLasPack
+  - type: CadiaEnergyPack
+  - type: BallisticAmmoProvider
+    capacity: 10
+    proto: CadiaLongLasCharge
+    mayTransfer: false
+    whitelist:
+      tags:
+      - CadiaEnergyCharge
+
+- type: entity
+  parent: CadiaMagBase
+  id: CadiaPlasmaFlask
+  name: plasma flask
+  description: A sealed flask of hydrogen plasma, good for ten shots. Refill it at a charging station, and do not drop it.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ammo.rsi
+    state: plasma_flask
+  - type: Tag
+    tags:
+    - CadiaPlasmaFlask
+  - type: CadiaEnergyPack
+  - type: BallisticAmmoProvider
+    capacity: 10
+    proto: CadiaPlasmaCharge
+    mayTransfer: false
+    whitelist:
+      tags:
+      - CadiaEnergyCharge
+
+- type: entity
+  parent: CadiaMagBase
+  id: CadiaBoltMag
+  name: boltgun magazine
+  description: A sickle magazine of thirty mass-reactive bolts. Top it up from a tin of bolt shells.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ammo.rsi
+    state: bolt_mag
+  - type: Tag
+    tags:
+    - CadiaBoltMag
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CadiaBoltCartridge
+    mayTransfer: true
+    whitelist:
+      tags:
+      - CadiaBoltCartridge
+
+- type: entity
+  parent: CadiaMagBase
+  id: CadiaBoltPistolMag
+  name: bolt pistol magazine
+  description: A short magazine of ten mass-reactive bolts. Top it up from a tin of bolt shells.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ammo.rsi
+    state: boltpistol_mag
+  - type: Tag
+    tags:
+    - CadiaBoltPistolMag
+  - type: BallisticAmmoProvider
+    capacity: 10
+    proto: CadiaBoltCartridge
+    mayTransfer: true
+    whitelist:
+      tags:
+      - CadiaBoltCartridge
+
+- type: entity
+  parent: CadiaMagBase
+  id: CadiaHeavyBoltBox
+  name: heavy bolter belt box
+  description: An armoured box holding a belt of eighty heavy bolts.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ammo.rsi
+    state: heavybolt_box
+  - type: Tag
+    tags:
+    - CadiaHeavyBoltBox
+  - type: BallisticAmmoProvider
+    capacity: 80
+    proto: CadiaHeavyBoltCartridge
+    mayTransfer: false
+    whitelist:
+      tags:
+      - CadiaHeavyBoltCartridge
+
+- type: entity
+  parent: CadiaMagBase
+  id: CadiaAutogunMag
+  name: autogun magazine
+  description: A long stamped-steel magazine of thirty solid slugs.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ammo.rsi
+    state: autogun_mag
+  - type: Tag
+    tags:
+    - CadiaAutogunMag
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgeLightRifle
+    mayTransfer: true
+    whitelist:
+      tags:
+      - CartridgeLightRifle
+
+- type: entity
+  parent: CadiaMagBase
+  id: CadiaAutopistolMag
+  name: autopistol magazine
+  description: A cheap pistol magazine of fifteen rounds.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ammo.rsi
+    state: autopistol_mag
+  - type: Tag
+    tags:
+    - CadiaAutopistolMag
+  - type: BallisticAmmoProvider
+    capacity: 15
+    proto: CartridgePistol
+    mayTransfer: true
+    whitelist:
+      tags:
+      - CartridgePistol
+
+- type: entity
+  parent: CadiaMagBase
+  id: CadiaBoltTin
+  name: tin of bolt shells
+  description: Sixty loose bolts. Use it on a boltgun or bolt pistol magazine to load it.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ammo.rsi
+    state: bolt_tin
+  - type: BallisticAmmoProvider
+    capacity: 60
+    proto: CadiaBoltCartridge
+    mayTransfer: true
+    whitelist:
+      tags:
+      - CadiaBoltCartridge
+
+# ─── Зарядная станция и ящики ───
+
+- type: entity
+  id: CadiaPackCharger
+  name: power pack charger
+  description: A sanctified capacitor bank with four cradles. Place spent power packs and plasma flasks in it, and take them back charged. Right-click to take a pack out.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ammo.rsi
+    state: charger
+    noRot: true
+    scale: 1.3,1.3
+  - type: PointLight
+    radius: 1.8
+    energy: 1
+    color: "#5aff78"
+  - type: AmbientSound
+    range: 4
+    volume: -8
+    sound:
+      path: /Audio/Ambience/Objects/engine_hum.ogg
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 300
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Anchorable
+  - type: ItemSlots
+    slots:
+      pack1:
+        name: Cradle
+        insertSound: /Audio/Imperial/Cadia/Weapons/laspack_in.ogg
+        ejectSound: /Audio/Imperial/Cadia/Weapons/laspack_out.ogg
+        whitelist:
+          components:
+          - CadiaEnergyPack
+      pack2:
+        name: Cradle
+        insertSound: /Audio/Imperial/Cadia/Weapons/laspack_in.ogg
+        ejectSound: /Audio/Imperial/Cadia/Weapons/laspack_out.ogg
+        whitelist:
+          components:
+          - CadiaEnergyPack
+      pack3:
+        name: Cradle
+        insertSound: /Audio/Imperial/Cadia/Weapons/laspack_in.ogg
+        ejectSound: /Audio/Imperial/Cadia/Weapons/laspack_out.ogg
+        whitelist:
+          components:
+          - CadiaEnergyPack
+      pack4:
+        name: Cradle
+        insertSound: /Audio/Imperial/Cadia/Weapons/laspack_in.ogg
+        ejectSound: /Audio/Imperial/Cadia/Weapons/laspack_out.ogg
+        whitelist:
+          components:
+          - CadiaEnergyPack
+  - type: ContainerContainer
+    containers:
+      pack1: !type:ContainerSlot
+      pack2: !type:ContainerSlot
+      pack3: !type:ContainerSlot
+      pack4: !type:ContainerSlot
+  - type: CadiaPackCharger
+
+# ─── Депо снабжения: копит очки, выдаёт ящики. Ящик тащат руками или везут шаттлом ───
+
+- type: entity
+  id: CadiaDepot
+  name: Munitorum depot
+  description: The regiment's supply dump. It accumulates supplies over time; right-click to order a crate, then haul it to the line by hand or by shuttle.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/fort_large.rsi
+    state: depot
+    drawdepth: Objects
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.3,-1.2,1.3,1.2"
+        density: 2000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/explosion_small1.ogg
+      - !type:ExplodeBehavior
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 3
+    totalIntensity: 150
+    canCreateVacuum: false
+  - type: CadiaDepot
+    entries:
+    - proto: CadiaSupplyCrateAmmo
+      name: cadia-depot-ammo
+      cost: 10
+    - proto: CadiaSupplyCrateShells
+      name: cadia-depot-shells
+      cost: 15
+    - proto: CadiaFlakAmmoBox
+      name: cadia-depot-flak
+      cost: 8
+    - proto: CadiaSupplyCrateBombs
+      name: cadia-depot-bombs
+      cost: 20
+    - proto: CadiaSupplyCrateMedical
+      name: cadia-depot-medical
+      cost: 12
+    - proto: CadiaParachutePack
+      name: cadia-depot-parachute
+      cost: 3
+    - proto: CadiaPackCharger
+      name: cadia-depot-charger
+      cost: 15
+    - proto: CadiaBoltTin
+      name: cadia-depot-bolts
+      cost: 6
+    - proto: CadiaEntrenchingTool
+      name: cadia-depot-shovel
+      cost: 2
+    - proto: SmokeGrenade
+      name: cadia-depot-smoke
+      cost: 2
+    - proto: SheetSteel
+      name: cadia-depot-steel
+      cost: 5
+    - proto: CadiaFieldStretcher
+      name: cadia-depot-stretcher
+      cost: 3
+
+- type: entity
+  parent: CadiaDepot
+  id: CadiaDepotChaos
+  name: looted supply dump
+  description: Stolen munitions heaped under a blood-daubed tarp. Right-click to order a crate.
+  components:
+  - type: CadiaDepot
+    faction: Chaos
+  - type: Sprite
+    sprite: Imperial/Cadia/War/fort_large.rsi
+    state: depot
+    drawdepth: Objects
+    noRot: true
+    color: "#d89a8a"
+
+# Ящик под куполом: рисуется клиентом, при посадке заменяется настоящим грузом.
+- type: entity
+  id: CadiaSupplyDrop
+  name: supply drop
+  description: A crate coming down under a parachute. Mind your head.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    drawdepth: Overdoors
+    noRot: true
+    layers:
+    - sprite: Imperial/Cadia/War/fort_small.rsi
+      state: drop_shadow
+      map: [ "shadow" ]
+    - sprite: Imperial/Cadia/War/ammo.rsi
+      state: crate
+      map: [ "crate" ]
+    - sprite: Imperial/Cadia/War/ship_weapons.rsi
+      state: canopy
+      map: [ "canopy" ]
+  - type: Tag
+    tags:
+    - HideContextMenu
+  - type: CadiaSupplyDrop
+
+- type: entity
+  abstract: true
+  parent: BaseStructureDynamic
+  id: CadiaSupplyCrateBase
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Pullable
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.3,0.35,0.3"
+        density: 150
+        mask:
+        - CrateMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 80
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: CadiaSupplyCrateBase
+  id: CadiaSupplyCrateAmmo
+  name: ammunition crate
+  description: Click with a gun in hand to take a magazine or power pack for it. Pull it to the line.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/decor.rsi
+    state: ammo_crate
+    noRot: true
+  - type: CadiaSupply
+    charges: 30
+    deleteWhenEmpty: true
+
+- type: entity
+  parent: CadiaSupplyCrateBase
+  id: CadiaSupplyCrateShells
+  name: shell crate
+  description: Heavy shells for tank and field gun breeches. Click to take one.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/decor.rsi
+    state: shell_crate
+    noRot: true
+  - type: CadiaSupply
+    charges: 12
+    deleteWhenEmpty: true
+    items:
+    - CadiaTankShell
+
+- type: entity
+  parent: CadiaSupplyCrateBase
+  id: CadiaSupplyCrateBombs
+  name: bomb crate
+  description: Aerial bombs for shuttle bays. Click to take one.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ship_weapons.rsi
+    state: bomb
+    noRot: true
+    scale: 0.8,0.8
+  - type: CadiaSupply
+    charges: 6
+    deleteWhenEmpty: true
+    items:
+    - CadiaShipBomb
+
+- type: entity
+  parent: CadiaSupplyCrateBase
+  id: CadiaSupplyCrateMedical
+  name: medical crate
+  description: Field dressings and medkits. Click to take one.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/decor.rsi
+    state: medicae_station
+    noRot: true
+  - type: CadiaSupply
+    charges: 8
+    deleteWhenEmpty: true
+    items:
+    - MedkitFilled
+    - MedkitBruteFilled
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CadiaAmmoCrateImperium
+  name: Munitorum ammunition crate
+  description: Spare magazines, power packs and tins of bolt shells for the regiment.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/crate_munitorum.rsi
+  - type: Icon
+    sprite: Imperial/Cadia/War/crate_munitorum.rsi
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: CadiaLasPack
+          amount: 8
+        - id: CadiaLaspistolPack
+          amount: 4
+        - id: CadiaHotShotPack
+          amount: 4
+        - id: CadiaLongLasPack
+          amount: 2
+        - id: CadiaBoltMag
+          amount: 4
+        - id: CadiaBoltPistolMag
+          amount: 4
+        - id: CadiaHeavyBoltBox
+          amount: 2
+        - id: CadiaBoltTin
+          amount: 2
+        - id: BoxShotgunSlug
+          amount: 2
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CadiaAmmoCrateChaos
+  name: looted ammunition crate
+  description: Stolen and scavenged munitions, daubed with the eight-pointed star.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/crate_chaos.rsi
+  - type: Icon
+    sprite: Imperial/Cadia/War/crate_chaos.rsi
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: CadiaLasPack
+          amount: 6
+        - id: CadiaAutogunMag
+          amount: 8
+        - id: CadiaAutopistolMag
+          amount: 4
+        - id: CadiaBoltMag
+          amount: 4
+        - id: CadiaBoltPistolMag
+          amount: 4
+        - id: CadiaBoltTin
+          amount: 2

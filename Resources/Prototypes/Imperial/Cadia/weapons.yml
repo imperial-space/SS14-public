@@ -1,0 +1,431 @@
+# Кадия: оружие Астра Милитарум и Адептус Астартес. Стрелковое питается от сменных обойм (War/ammo.yml), спрайты свои:
+# иконка, в руках и за спиной во всех четырёх направлениях.
+
+# Основа стрелкового оружия: сменная обойма в слоте, заряжают её, а не само оружие.
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: CadiaMagGunBase
+  components:
+  - type: Item
+    size: Large
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: MagazineAmmoProvider
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+  - type: Appearance
+
+# ─── Лазерное оружие ───
+
+- type: entity
+  parent: CadiaMagGunBase
+  id: CadiaLasgun
+  name: Kantrael M36 lasgun
+  description: The standard-issue lasgun of the Cadian Shock Troops. Reliable, rechargeable and as Cadian as a frown.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Weapons/lasgun.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/Cadia/Weapons/lasgun.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Weapons/lasgun.rsi
+  - type: Gun
+    fireRate: 3
+    projectileSpeed: 30
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/Cadia/Weapons/las_fire.ogg
+      params:
+        variation: 0.06
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: CadiaLasPack
+        insertSound: /Audio/Imperial/Cadia/Weapons/laspack_in.ogg
+        ejectSound: /Audio/Imperial/Cadia/Weapons/laspack_out.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - CadiaLasPack
+        whitelistFailPopup: gun-magazine-whitelist-fail
+
+- type: entity
+  parent: CadiaMagGunBase
+  id: CadiaLaspistol
+  name: Kantrael laspistol
+  description: A compact laspistol carried by Cadian officers and sergeants.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Weapons/laspistol.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Cadia/Weapons/laspistol.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Weapons/laspistol.rsi
+    slots:
+    - belt
+  - type: Gun
+    fireRate: 2
+    projectileSpeed: 28
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Cadia/Weapons/laspistol_fire.ogg
+      params:
+        variation: 0.06
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: CadiaLaspistolPack
+        insertSound: /Audio/Imperial/Cadia/Weapons/laspack_in.ogg
+        ejectSound: /Audio/Imperial/Cadia/Weapons/laspack_out.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - CadiaLaspistolPack
+        whitelistFailPopup: gun-magazine-whitelist-fail
+
+- type: entity
+  parent: CadiaMagGunBase
+  id: CadiaLongLas
+  name: long-las
+  description: A long-barrelled sniper lasgun. Cadian marksmen are trained to hit a heretic between the eyes at a kilometre.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Weapons/longlas.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/Cadia/Weapons/longlas.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Weapons/longlas.rsi
+  - type: Gun
+    fireRate: 0.6
+    projectileSpeed: 55
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Cadia/Weapons/longlas_fire.ogg
+      params:
+        variation: 0.06
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: CadiaLongLasPack
+        insertSound: /Audio/Imperial/Cadia/Weapons/laspack_in.ogg
+        ejectSound: /Audio/Imperial/Cadia/Weapons/laspack_out.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - CadiaLongLasPack
+        whitelistFailPopup: gun-magazine-whitelist-fail
+
+- type: entity
+  parent: CadiaMagGunBase
+  id: CadiaPlasmaGun
+  name: plasma gun
+  description: A sacred and temperamental weapon that fires bolts of superheated plasma. Pray to the machine spirit before pulling the trigger.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Weapons/plasmagun.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/Cadia/Weapons/plasmagun.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Weapons/plasmagun.rsi
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 22
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Cadia/Weapons/plasma_fire.ogg
+      params:
+        variation: 0.06
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: CadiaPlasmaFlask
+        insertSound: /Audio/Imperial/Cadia/Weapons/laspack_in.ogg
+        ejectSound: /Audio/Imperial/Cadia/Weapons/laspack_out.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - CadiaPlasmaFlask
+        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: CadiaGetsHot
+    burn:
+      types:
+        Heat: 18
+  - type: PointLight
+    radius: 1.5
+    energy: 1
+    color: "#5fd8ff"
+
+# ─── Баллистика ───
+
+- type: entity
+  parent: CadiaMagGunBase
+  id: CadiaBolter
+  name: Godwyn-pattern boltgun
+  description: The holy weapon of the Adeptus Astartes. Each bolt is a self-propelled mass-reactive shell that explodes inside its target.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Weapons/bolter.rsi
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Large
+    sprite: Imperial/Cadia/Weapons/bolter.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Weapons/bolter.rsi
+  - type: Gun
+    fireRate: 3
+    projectileSpeed: 26
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/Cadia/Weapons/bolter_fire.ogg
+      params:
+        variation: 0.06
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: CadiaBoltMag
+        insertSound: /Audio/Imperial/Cadia/Weapons/boltmag_in.ogg
+        ejectSound: /Audio/Imperial/Cadia/Weapons/boltmag_out.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - CadiaBoltMag
+        whitelistFailPopup: gun-magazine-whitelist-fail
+
+- type: entity
+  parent: CadiaMagGunBase
+  id: CadiaBoltPistol
+  name: bolt pistol
+  description: A sidearm firing the same mass-reactive bolts as the boltgun. Kicks like a grox.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Weapons/boltpistol.rsi
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Small
+    sprite: Imperial/Cadia/Weapons/boltpistol.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Weapons/boltpistol.rsi
+    slots:
+    - belt
+  - type: Gun
+    fireRate: 2
+    projectileSpeed: 26
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Cadia/Weapons/boltpistol_fire.ogg
+      params:
+        variation: 0.06
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: CadiaBoltPistolMag
+        insertSound: /Audio/Imperial/Cadia/Weapons/boltmag_in.ogg
+        ejectSound: /Audio/Imperial/Cadia/Weapons/boltmag_out.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - CadiaBoltPistolMag
+        whitelistFailPopup: gun-magazine-whitelist-fail
+
+- type: entity
+  parent: CadiaMagGunBase
+  id: CadiaAutogun
+  name: autogun
+  description: A solid-slug automatic rifle issued to PDF and second-line Guard regiments.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Weapons/autogun.rsi
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Large
+    sprite: Imperial/Cadia/Weapons/autogun.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Weapons/autogun.rsi
+  - type: Gun
+    fireRate: 6
+    projectileSpeed: 35
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/Cadia/Weapons/autogun_fire.ogg
+      params:
+        variation: 0.06
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: CadiaAutogunMag
+        insertSound: /Audio/Imperial/Cadia/Weapons/slugmag_in.ogg
+        ejectSound: /Audio/Imperial/Cadia/Weapons/slugmag_out.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - CadiaAutogunMag
+        whitelistFailPopup: gun-magazine-whitelist-fail
+
+- type: entity
+  parent: BaseWeaponSniper
+  id: CadiaShotgun
+  name: combat shotgun
+  description: A pump-action shotgun for clearing trenches and boarding actions.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Weapons/shotgun.rsi
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Large
+    sprite: Imperial/Cadia/Weapons/shotgun.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Weapons/shotgun.rsi
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/Imperial/Cadia/Weapons/shotgun_fire.ogg
+      params:
+        variation: 0.05
+  - type: BallisticAmmoProvider
+    capacity: 8
+    proto: ShellShotgun
+    whitelist:
+      tags:
+      - ShellShotgun
+
+# ─── Ближний бой ───
+
+- type: entity
+  parent: Katana
+  id: CadiaChainsword
+  name: chainsword
+  description: A sword with a motorised chain of monomolecular teeth. The favoured blade of Imperial officers.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Weapons/chainsword.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Cadia/Weapons/chainsword.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Weapons/chainsword.rsi
+    slots:
+    - belt
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 20
+        Blunt: 5
+    soundHit:
+      path: /Audio/Imperial/Cadia/Weapons/chainsword_hit.ogg
+      params:
+        variation: 0.08
+
+- type: entity
+  parent: Katana
+  id: CadiaPowerSword
+  name: power sword
+  description: A blade wreathed in a disruptive energy field that cuts through armour like parchment.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Weapons/powersword.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Cadia/Weapons/powersword.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Weapons/powersword.rsi
+    slots:
+    - belt
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 22
+        Heat: 8
+    soundHit:
+      path: /Audio/Weapons/eblade1.ogg
+  - type: PointLight
+    radius: 1.5
+    energy: 1.5
+    color: "#9fe8ff"
+
+- type: entity
+  parent: CombatKnife
+  id: CadiaCombatKnife
+  name: Cadian combat knife
+  description: A long trench knife. Every Cadian carries one from the age of six.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Weapons/knife.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Cadia/Weapons/knife.rsi
+
+# ─── Гранаты ───
+
+- type: entity
+  parent: ExGrenade
+  id: CadiaFragGrenade
+  name: frag grenade
+  description: A standard Imperial fragmentation grenade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Weapons/frag.rsi
+  - type: Item
+    sprite: Imperial/Cadia/Weapons/frag.rsi
+
+- type: entity
+  parent: ExGrenade
+  id: CadiaKrakGrenade
+  name: krak grenade
+  description: A shaped-charge grenade for cracking tanks and bunkers. Small blast, terrible punch.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Weapons/krak.rsi
+  - type: Item
+    sprite: Imperial/Cadia/Weapons/krak.rsi
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 40
+    intensitySlope: 10
+    totalIntensity: 160
+    canCreateVacuum: false

@@ -1,0 +1,892 @@
+# Декали Кадии: поле боя и разметка кораблей и баз. В меню декалей их видно по префиксу cadia.
+
+- type: decal
+  id: cadia_ground_crater_small
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: crater_small
+
+- type: decal
+  id: cadia_ground_crater
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: crater
+
+- type: decal
+  id: cadia_ground_crater_burning
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: crater_burning
+
+- type: decal
+  id: cadia_ground_scorch
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: scorch
+
+- type: decal
+  id: cadia_ground_blast
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: blast
+
+- type: decal
+  id: cadia_ground_soot
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: soot
+
+- type: decal
+  id: cadia_ground_blood_pool
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: blood_pool
+
+- type: decal
+  id: cadia_ground_blood_smear
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: blood_smear
+
+- type: decal
+  id: cadia_ground_blood_drops
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: blood_drops
+
+- type: decal
+  id: cadia_ground_mud_puddle
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: mud_puddle
+
+- type: decal
+  id: cadia_ground_puddle
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: puddle
+
+- type: decal
+  id: cadia_ground_mud_splash
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: mud_splash
+
+- type: decal
+  id: cadia_ground_tracks
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: tracks
+
+- type: decal
+  id: cadia_ground_tracks_turn
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: tracks_turn
+
+- type: decal
+  id: cadia_ground_tracks_mud
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: tracks_mud
+
+- type: decal
+  id: cadia_ground_footprints
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: footprints
+
+- type: decal
+  id: cadia_ground_casings
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: casings
+
+- type: decal
+  id: cadia_ground_power_cells
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: power_cells
+
+- type: decal
+  id: cadia_ground_gravel
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: gravel
+
+- type: decal
+  id: cadia_ground_rubble
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: rubble
+
+- type: decal
+  id: cadia_ground_sand_rubble
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: sand_rubble
+
+- type: decal
+  id: cadia_ground_debris
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: debris
+
+- type: decal
+  id: cadia_ground_pebbles
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: pebbles
+
+- type: decal
+  id: cadia_ground_bones
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: bones
+
+- type: decal
+  id: cadia_ground_bones_scattered
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: bones_scattered
+
+- type: decal
+  id: cadia_ground_helmet
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: helmet
+
+- type: decal
+  id: cadia_ground_sandbag_torn
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: sandbag_torn
+
+- type: decal
+  id: cadia_ground_tarp
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: tarp
+
+- type: decal
+  id: cadia_ground_dead_grass
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: dead_grass
+
+- type: decal
+  id: cadia_ground_frost_grass
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: frost_grass
+
+- type: decal
+  id: cadia_ground_snow
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: snow
+
+- type: decal
+  id: cadia_ground_ash_pile
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: ash_pile
+
+- type: decal
+  id: cadia_ground_moss
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: moss
+
+- type: decal
+  id: cadia_ground_dead_branches
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: dead_branches
+
+- type: decal
+  id: cadia_ground_roots
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: roots
+
+- type: decal
+  id: cadia_ground_embers
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: embers
+
+- type: decal
+  id: cadia_ground_smoulder
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: smoulder
+
+- type: decal
+  id: cadia_ground_oil
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: oil
+
+- type: decal
+  id: cadia_ground_oil_spill
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: oil_spill
+
+- type: decal
+  id: cadia_ground_wire
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: wire
+
+- type: decal
+  id: cadia_ground_scrap
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: scrap
+
+- type: decal
+  id: cadia_ground_rocket_fin
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: rocket_fin
+
+- type: decal
+  id: cadia_ground_cables
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: cables
+
+- type: decal
+  id: cadia_ground_crack
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: crack
+
+- type: decal
+  id: cadia_ground_warp_veins
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: warp_veins
+
+- type: decal
+  id: cadia_ground_chaos_circle
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: chaos_circle
+
+- type: decal
+  id: cadia_markings_aquila_gold
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: aquila_gold
+
+- type: decal
+  id: cadia_markings_aquila_gold_small
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: aquila_gold_small
+
+- type: decal
+  id: cadia_markings_aquila_white
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: aquila_white
+
+- type: decal
+  id: cadia_markings_skull_wings
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: skull_wings
+
+- type: decal
+  id: cadia_markings_skull_wings_grey
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: skull_wings_grey
+
+- type: decal
+  id: cadia_markings_inquisition
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: inquisition
+
+- type: decal
+  id: cadia_markings_inquisition_red
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: inquisition_red
+
+- type: decal
+  id: cadia_markings_mechanicus
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: mechanicus
+
+- type: decal
+  id: cadia_markings_mechanicus_skull
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: mechanicus_skull
+
+- type: decal
+  id: cadia_markings_ultramarines
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: ultramarines
+
+- type: decal
+  id: cadia_markings_chaos_star
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: chaos_star
+
+- type: decal
+  id: cadia_markings_chaos_star_black
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: chaos_star_black
+
+- type: decal
+  id: cadia_markings_chaos_star_black_large
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: chaos_star_black_large
+
+- type: decal
+  id: cadia_markings_khorne
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: khorne
+
+- type: decal
+  id: cadia_markings_nurgle
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: nurgle
+
+- type: decal
+  id: cadia_markings_tzeentch
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: tzeentch
+
+- type: decal
+  id: cadia_markings_heretic_scrawl
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: heretic_scrawl
+
+- type: decal
+  id: cadia_markings_handprint
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: handprint
+
+- type: decal
+  id: cadia_markings_blood_splat
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: blood_splat
+
+- type: decal
+  id: cadia_markings_claw_marks
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: claw_marks
+
+- type: decal
+  id: cadia_markings_arrow_yellow
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: arrow_yellow
+
+- type: decal
+  id: cadia_markings_arrow_white
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: arrow_white
+
+- type: decal
+  id: cadia_markings_chevron_green
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: chevron_green
+
+- type: decal
+  id: cadia_markings_chevron_yellow
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: chevron_yellow
+
+- type: decal
+  id: cadia_markings_chevron_down
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: chevron_down
+
+- type: decal
+  id: cadia_markings_chevron_red
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: chevron_red
+
+- type: decal
+  id: cadia_markings_hazard
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: hazard
+
+- type: decal
+  id: cadia_markings_stripes_red
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: stripes_red
+
+- type: decal
+  id: cadia_markings_lines_white
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: lines_white
+
+- type: decal
+  id: cadia_markings_lines_yellow
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: lines_yellow
+
+- type: decal
+  id: cadia_markings_bay_outline
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: bay_outline
+
+- type: decal
+  id: cadia_markings_no_entry
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: no_entry
+
+- type: decal
+  id: cadia_markings_helipad
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: helipad
+
+- type: decal
+  id: cadia_markings_landing_cross
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: landing_cross
+
+- type: decal
+  id: cadia_markings_crosshair
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: crosshair
+
+- type: decal
+  id: cadia_markings_num_1
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: num_1
+
+- type: decal
+  id: cadia_markings_num_2
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: num_2
+
+- type: decal
+  id: cadia_markings_num_3
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: num_3
+
+- type: decal
+  id: cadia_markings_num_5
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: num_5
+
+- type: decal
+  id: cadia_markings_medic
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: medic
+
+- type: decal
+  id: cadia_markings_ammo
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: ammo
+
+- type: decal
+  id: cadia_markings_caution_skull
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: caution_skull
+
+- type: decal
+  id: cadia_markings_warning
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: warning
+
+- type: decal
+  id: cadia_markings_radiation
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: radiation
+
+- type: decal
+  id: cadia_markings_biohazard
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: biohazard
+
+- type: decal
+  id: cadia_markings_drain
+  tags: ["cadia"]
+  defaultCleanable: false
+  defaultSnap: true
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: drain
+
+- type: decal
+  id: cadia_markings_oil_floor
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: oil_floor
+
+- type: decal
+  id: cadia_markings_rust
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: rust
+
+- type: decal
+  id: cadia_markings_burn_floor
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: burn_floor
+
+- type: decal
+  id: cadia_markings_skid
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: skid
+
+- type: decal
+  id: cadia_markings_footprints_floor
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: footprints_floor
+
+- type: decal
+  id: cadia_markings_purity_seal
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: purity_seal
+
+- type: decal
+  id: cadia_markings_poster
+  tags: ["cadia"]
+  defaultCleanable: true
+  defaultSnap: false
+  sprite:
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: poster

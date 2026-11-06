@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for Imperial Space with PixelLab",
+  "size": { "x": 32, "y": 32 },
+  "states": [
+    { "name": "las_bolt" },
+    { "name": "las_bolt_hot" },
+    { "name": "las_bolt_long" },
+    { "name": "multilaser_bolt" },
+    { "name": "plasma_bolt" },
+    { "name": "warp_bolt" },
+    { "name": "bolt_round", "delays": [ [ 0.06, 0.06 ] ] }
+  ]
+}

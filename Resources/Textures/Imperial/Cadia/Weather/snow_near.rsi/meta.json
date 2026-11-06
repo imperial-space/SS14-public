@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for Imperial Space",
+  "size": { "x": 384, "y": 384 },
+  "states": [
+    { "name": "snow" }
+  ]
+}

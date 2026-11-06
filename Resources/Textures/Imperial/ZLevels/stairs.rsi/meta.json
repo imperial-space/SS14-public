@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/blob/d8cafd96055ab0d322349dd020ef27e9759b7555/icons/obj/stairs.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "stairs_wood",
+      "directions": 4
+    },
+    {
+      "name": "stairs_stone",
+      "directions": 4
+    },
+    {
+      "name": "stairs",
+      "directions": 4
+    },
+    {
+      "name": "stairs-l",
+      "directions": 4
+    },
+    {
+      "name": "stairs-m",
+      "directions": 4
+    },
+    {
+      "name": "stairs-r",
+      "directions": 4
+    }
+  ]
+}

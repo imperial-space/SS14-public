@@ -1,0 +1,402 @@
+# Корабли Хаоса: декор отсеков (спрайты PixelLab, 32×32), свет и звук. Корпуса строятся по chaos_dropship.txt и chaos_bomber.txt.
+
+- type: entity
+  parent: CadiaDecorPassableBase
+  id: CadiaShipBannerLegion
+  name: Black Legion banner
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: banner_legion
+
+- type: entity
+  parent: CadiaDecorPassableBase
+  id: CadiaShipBannerStar
+  name: chaos war banner
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: banner_star
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipTrophyRack
+  name: trophy rack
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: trophy_rack
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipBrazier
+  name: chaos brazier
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: brazier
+  - type: PointLight
+    radius: 4
+    energy: 2
+    color: "#ff5a2a"
+  - type: LightBehaviour
+    behaviours:
+    - !type:RandomizeBehaviour
+      interpolate: Nearest
+      minDuration: 0.08
+      maxDuration: 0.3
+      startValue: 1.6
+      endValue: 2.4
+      property: Energy
+      isLooped: true
+      enabled: true
+  - type: AmbientSound
+    range: 4
+    volume: -8
+    sound:
+      path: /Audio/Ambience/Objects/fireplace.ogg
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipChainHooks
+  name: chain rack
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: chain_hooks
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipIdolHorned
+  name: horned idol
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: idol_horned
+  - type: PointLight
+    radius: 2.5
+    energy: 1.2
+    color: "#ff7a3a"
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipIdolRam
+  name: ram skull idol
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: idol_ram
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipIdolGold
+  name: golden icon
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: idol_gold
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipGargoyle
+  name: gargoyle
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: gargoyle
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipCrates
+  name: supply crates
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: crates
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipAmmoCrates
+  name: ammunition crates
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: ammo_crates
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipBarrels
+  name: promethium drums
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: barrels
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipCage
+  name: prisoner cage
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: cage
+
+- type: entity
+  parent: CadiaDecorPassableBase
+  id: CadiaShipSkullPile
+  name: skull pile
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: skull_pile
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#ff6a3a"
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipCogitator
+  name: heretek cogitator
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: cogitator
+  - type: PointLight
+    radius: 1.6
+    energy: 1
+    color: "#ff2a2a"
+  - type: AmbientSound
+    range: 3
+    volume: -12
+    sound:
+      path: /Audio/Ambience/Objects/hdd_buzz.ogg
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipTerminal
+  name: auspex terminal
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: terminal
+  - type: PointLight
+    radius: 1.6
+    energy: 0.9
+    color: "#ff4a3a"
+  - type: AmbientSound
+    range: 3
+    volume: -13
+    sound:
+      path: /Audio/Ambience/Objects/server_fans.ogg
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipControlPanel
+  name: helm panel
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: control_panel
+  - type: PointLight
+    radius: 1.6
+    energy: 0.9
+    color: "#ff3a2a"
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipReactorPanel
+  name: warp coil
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: reactor_panel
+  - type: PointLight
+    radius: 1.8
+    energy: 1.2
+    color: "#ff2020"
+  - type: AmbientSound
+    range: 4
+    volume: -10
+    sound:
+      path: /Audio/Ambience/Objects/emf_buzz.ogg
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipWarpEngine
+  name: warp reactor
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: warp_engine
+  - type: PointLight
+    radius: 3
+    energy: 1.6
+    color: "#ff3020"
+  - type: AmbientSound
+    range: 7
+    volume: -2
+    sound:
+      path: /Audio/Imperial/Cadia/Ambience/warp_reactor.ogg
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipCapacitor
+  name: power capacitor
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: capacitor
+  - type: AmbientSound
+    range: 3
+    volume: -12
+    sound:
+      path: /Audio/Ambience/Objects/emf_buzz.ogg
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipPipes
+  name: coolant manifold
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: pipes
+  - type: AmbientSound
+    range: 3
+    volume: -12
+    sound:
+      path: /Audio/Ambience/Objects/gas_hiss.ogg
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipAltar
+  name: blood altar
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: altar
+  - type: PointLight
+    radius: 3
+    energy: 1.5
+    color: "#ff4030"
+
+- type: entity
+  parent: CadiaDecorFloorBase
+  id: CadiaShipRitualCircle
+  name: ritual circle
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: ritual_circle
+  - type: PointLight
+    radius: 2.5
+    energy: 1
+    color: "#ff2a2a"
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipSpikedPillar
+  name: spiked pillar
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: spiked_pillar
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipThrone
+  name: command throne
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: throne
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipCauldron
+  name: blood cauldron
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: cauldron
+  - type: PointLight
+    radius: 2.5
+    energy: 1.4
+    color: "#ff2a1a"
+  - type: AmbientSound
+    range: 3
+    volume: -10
+    sound:
+      path: /Audio/Ambience/Objects/drain.ogg
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipLantern
+  name: blood lantern
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: lantern
+  - type: PointLight
+    radius: 3.5
+    energy: 1.6
+    color: "#ff3a2a"
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipCandleTable
+  name: candle table
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: candle_table
+  - type: PointLight
+    radius: 2.5
+    energy: 1.2
+    color: "#ff8a3a"
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipVats
+  name: blood vats
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: vats
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#ff2020"
+
+- type: entity
+  parent: CadiaDecorBase
+  id: CadiaShipAnvil
+  name: daemon forge anvil
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: anvil
+
+# Стон корпуса: гул пустоты за бортом и скрип переборок. По одному на отсек.
+- type: entity
+  parent: CadiaAmbienceBase
+  id: CadiaAmbienceHull
+  name: hull groan
+  components:
+  - type: AmbientSound
+    range: 9
+    volume: -6
+    sound:
+      path: /Audio/Imperial/Cadia/Ambience/hull_groan.ogg
+
+# Тёмный хорал в десантном отсеке: низкие голоса, вдох-выдох.
+- type: entity
+  parent: CadiaAmbienceBase
+  id: CadiaAmbienceChant
+  name: dark chant
+  components:
+  - type: AmbientSound
+    range: 8
+    volume: -7
+    sound:
+      path: /Audio/Imperial/Cadia/Ambience/dark_chant.ogg

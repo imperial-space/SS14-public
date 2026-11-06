@@ -1,0 +1,173 @@
+# Пилоны и цитадель Касра.
+
+# Кадийский пилон: чёрный обелиск древних, его руны сдерживают Око Ужаса. До штурма — под защитным полем.
+- type: entity
+  id: CadiaPylon
+  name: Cadian pylon
+  description: A colossal obelisk of black necrodermis, older than the Imperium. Its runes hold the Eye of Terror at bay — for now.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  # Литания пилона: жрецы, псайкеры, астропаты и техножрецы держат завесу дольше, пока идёт подготовка.
+  - type: CadiaVeilRitual
+    faction: Imperium
+    roles: [ CadiaPriest, CadiaPsyker, CadiaAstropath, CadiaEnginseer ]
+    shift: 45
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/pylon.rsi
+    drawdepth: Mobs
+    offset: 0,0.47
+    noRot: true
+    layers:
+    - state: base
+    - state: runes
+      shader: unshaded
+    - state: shield
+      shader: unshaded
+      map: [ "enum.CadiaPylonVisuals.Shielded" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.CadiaPylonVisuals.Shielded:
+        enum.CadiaPylonVisuals.Shielded:
+          True: { visible: true }
+          False: { visible: false }
+  - type: PointLight
+    radius: 5
+    energy: 1.6
+    color: "#3dff8c"
+    castShadows: false
+  - type: AmbientSound
+    range: 9
+    volume: -1
+    sound:
+      path: /Audio/Imperial/Cadia/Ambience/pylon_hum.ogg
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/explosion_small1.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          CadiaPylonRuins:
+            min: 1
+            max: 1
+      - !type:ExplodeBehavior
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 8
+    intensitySlope: 2
+    totalIntensity: 40
+    canCreateVacuum: false
+  - type: CadiaPylon
+  - type: CadiaNullZone
+    radius: 8
+
+- type: entity
+  id: CadiaPylonRuins
+  name: ruined pylon
+  description: The shattered stump of a Cadian pylon. Its runes have gone dark, and the air around it tastes of the warp.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Cadia/War/pylon.rsi
+    state: ruins
+    drawdepth: Mobs
+    offset: 0,0.47
+    noRot: true
+  - type: PointLight
+    radius: 2.5
+    energy: 0.6
+    color: "#b02020"
+    castShadows: false
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+
+# Цитадель Касра: знамя, которое Хаос должен удержать в одиночку. При захвате знамя сменяется хаосским.
+- type: entity
+  id: CadiaCitadel
+  name: Kasr citadel standard
+  description: The standard of Kasr Kraf, raised over the citadel. If heretics hold it long enough, Cadia's last bastion falls.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Cadia/War/citadel.rsi
+    drawdepth: Mobs
+    offset: 0,0.45
+    noRot: true
+    layers:
+    - state: imperium
+      map: [ "enum.CadiaCitadelVisuals.Captured" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.CadiaCitadelVisuals.Captured:
+        enum.CadiaCitadelVisuals.Captured:
+          True: { state: chaos }
+          False: { state: imperium }
+  - type: PointLight
+    radius: 4
+    energy: 1.2
+    color: "#ffd37a"
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: CadiaCitadel

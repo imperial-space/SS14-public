@@ -1,0 +1,88 @@
+; Истребитель флота «Тандерболт», 11 x 13. Нос на севере. Пишется ships_gen.pl.
+0000NZN0000
+000NYZYN000
+00NYNNNYN00
+0hYNNNNNYh0
+GhYNNNNNYhG
+hhZNNNNNZhh
+GhYNNNNNYhG
+0hYYYNYYYh0
+00YGGGGGY00
+00YGGGGGY00
+00YGGGGGY00
+00NYYYYYN00
+000G000G000
+* 4 0 WallReinforcedDiagonal 0
+* 6 0 WallReinforcedDiagonal 270
+* 3 1 WallReinforcedDiagonal 0
+* 7 1 WallReinforcedDiagonal 270
+* 2 2 WallReinforcedDiagonal 0
+* 8 2 WallReinforcedDiagonal 270
+* 1 3 CadiaShipBulwarkDiagonalImperial 0
+* 9 3 CadiaShipBulwarkDiagonalImperial 270
+* 0 4 Thruster 0
+* 10 4 Thruster 0
+* 0 6 Thruster 90
+* 10 6 Thruster 270
+* 1 7 CadiaShipBulwarkDiagonalImperial 90
+* 5 7 CadiaAirlockGlass 0
+* 9 7 CadiaShipBulwarkDiagonalImperial 180
+* 2 11 WallReinforcedDiagonal 90
+* 8 11 WallReinforcedDiagonal 180
+* 3 12 Thruster 180
+* 7 12 Thruster 180
+* 5 2 ComputerShuttle 0
+* 4 2 CadiaShipGunConsole 0
+* 6 2 ComputerRadar 0
+* 5 3 ChairPilotSeat 180
+* 3 4 Poweredlight 90
+* 7 4 Poweredlight 270
+* 3 5 CadiaParachutePack 0
+* 7 5 CadiaFlakAmmoBox 0
+* 4 7 APCBasic 180
+* 0 5 CadiaShipGun 0
+* 10 5 CadiaShipGun 0
+* 1 4 CadiaShipLascannon 0
+* 9 4 CadiaShipRocketPod 0
+* 3 8 GeneratorBasic15kW 0
+* 3 9 CableTerminal 0
+* 3 10 SMESBasic 0
+* 5 10 SubstationBasic 0
+* 7 8 Gyroscope 0
+* 7 9 GravityGeneratorMini 0
+* 7 10 Poweredlight 180
+* 5 11 APCBasic 180
+* 3 10 CableHV 0
+* 4 10 CableHV 0
+* 5 10 CableHV 0
+* 3 8 CableHV 0
+* 3 9 CableHV 0
+* 5 10 CableMV 0
+* 5 11 CableMV 0
+* 4 7 CableMV 0
+* 4 8 CableMV 0
+* 5 8 CableMV 0
+* 5 9 CableMV 0
+* 7 10 CableApcExtension 0
+* 3 11 CableApcExtension 0
+* 4 11 CableApcExtension 0
+* 5 11 CableApcExtension 0
+* 6 11 CableApcExtension 0
+* 7 11 CableApcExtension 0
+* 5 2 CableApcExtension 0
+* 5 3 CableApcExtension 0
+* 5 4 CableApcExtension 0
+* 5 5 CableApcExtension 0
+* 1 6 CableApcExtension 0
+* 2 6 CableApcExtension 0
+* 3 6 CableApcExtension 0
+* 4 6 CableApcExtension 0
+* 5 6 CableApcExtension 0
+* 6 6 CableApcExtension 0
+* 7 6 CableApcExtension 0
+* 8 6 CableApcExtension 0
+* 9 6 CableApcExtension 0
+* 4 7 CableApcExtension 0
+* 7 9 CableApcExtension 0
+> 5 3 cadia_markings_aquila_white 0
+> 5 9 cadia_markings_chevron_yellow 180

@@ -1,0 +1,34 @@
+- files: ["las_fire.ogg", "laspistol_fire.ogg", "hotshot_fire.ogg", "longlas_fire.ogg", "multilaser_fire.ogg", "plasma_fire.ogg", "bolter_fire.ogg", "boltpistol_fire.ogg", "heavybolter_fire.ogg", "autogun_fire.ogg", "autopistol_fire.ogg", "shotgun_fire.ogg", "battlecannon_fire.ogg", "earthshaker_fire.ogg", "autocannon_fire.ogg", "ship_lascannon_fire.ogg", "ship_rocket_fire.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made for Imperial Space: synthesized layers mixed with gunshot samples from Space Station 14 (Resources/Audio/Weapons/Guns/Gunshots)"
+  source: "https://github.com/space-wizards/space-station-14"
+
+- files: ["bolt_blast.ogg", "heavybolt_blast.ogg", "autocannon_blast.ogg", "plasma_blast.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made for Imperial Space: synthesized layers mixed with explosion_small1.ogg from Space Station 14"
+  source: "https://github.com/space-wizards/space-station-14"
+
+- files: ["laspack_in.ogg", "boltmag_in.ogg", "slugmag_in.ogg"]
+  license: "CC0-1.0"
+  copyright: "Mag_In by SuHomunRiko. Pitched, trimmed and normalized for Imperial Space."
+  source: "https://freesound.org/people/SuHomunRiko/sounds/738332/"
+
+- files: ["laspack_out.ogg", "slugmag_out.ogg"]
+  license: "CC0-1.0"
+  copyright: "Mag_Out by SuHomunRiko. Pitched, trimmed and normalized for Imperial Space."
+  source: "https://freesound.org/people/SuHomunRiko/sounds/738333/"
+
+- files: ["boltmag_out.ogg"]
+  license: "CC0-1.0"
+  copyright: "Mag_Out_2 by SuHomunRiko. Pitched, trimmed and normalized for Imperial Space."
+  source: "https://freesound.org/people/SuHomunRiko/sounds/738334/"
+
+- files: ["chainsword_hit.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made for Imperial Space: synthesized motor mixed with chainsaw.ogg and bladeslice.ogg from Space Station 14"
+  source: "https://github.com/space-wizards/space-station-14"
+
+- files: ["charger_done.ogg"]
+  license: "CC0-1.0"
+  copyright: "Synthesized for Imperial Space"
+  source: "https://github.com/space-wizards/space-station-14"

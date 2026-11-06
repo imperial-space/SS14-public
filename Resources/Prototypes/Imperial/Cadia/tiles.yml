@@ -1,0 +1,254 @@
+# Тайлы Кадии: земля поля боя, плиты Касра, палубы кораблей Империума и Хаоса.
+
+- type: tile
+  id: CadiaFloorMud
+  name: tiles-cadia-floor-mud
+  sprite: /Textures/Imperial/Cadia/Tiles/mud.png
+  variants: 4
+  placementVariants:
+  - 1
+  - 1
+  - 1
+  - 1
+  baseTurf: Plating
+  isSubfloor: true
+  heatCapacity: 10000
+  weather: true
+  footstepSounds:
+    collection: FootstepPuddle
+
+- type: tile
+  id: CadiaFloorScorched
+  name: tiles-cadia-floor-scorched
+  sprite: /Textures/Imperial/Cadia/Tiles/scorched.png
+  variants: 4
+  placementVariants:
+  - 1
+  - 1
+  - 1
+  - 1
+  baseTurf: Plating
+  isSubfloor: true
+  heatCapacity: 10000
+  weather: true
+  footstepSounds:
+    collection: FootstepAsteroid
+
+- type: tile
+  id: CadiaFloorTundra
+  name: tiles-cadia-floor-tundra
+  sprite: /Textures/Imperial/Cadia/Tiles/tundra.png
+  variants: 4
+  placementVariants:
+  - 1
+  - 1
+  - 1
+  - 1
+  baseTurf: Plating
+  isSubfloor: true
+  heatCapacity: 10000
+  weather: true
+  footstepSounds:
+    collection: FootstepSnow
+
+- type: tile
+  id: CadiaFloorAsh
+  name: tiles-cadia-floor-ash
+  sprite: /Textures/Imperial/Cadia/Tiles/ash.png
+  variants: 4
+  placementVariants:
+  - 1
+  - 1
+  - 1
+  - 1
+  baseTurf: Plating
+  isSubfloor: true
+  heatCapacity: 10000
+  weather: true
+  footstepSounds:
+    collection: FootstepSnow
+
+- type: tile
+  id: CadiaFloorRoad
+  name: tiles-cadia-floor-road
+  sprite: /Textures/Imperial/Cadia/Tiles/road.png
+  variants: 4
+  placementVariants:
+  - 1
+  - 1
+  - 1
+  - 1
+  baseTurf: Plating
+  isSubfloor: true
+  heatCapacity: 10000
+  weather: true
+  footstepSounds:
+    collection: FootstepAsteroid
+
+- type: tile
+  id: CadiaFloorRockcrete
+  parent: BaseStationTile
+  name: tiles-cadia-floor-rockcrete
+  sprite: /Textures/Imperial/Cadia/Tiles/rockcrete.png
+  variants: 4
+  placementVariants:
+  - 1
+  - 0.35
+  - 0.25
+  - 0.2
+  weather: true
+  footstepSounds:
+    collection: FootstepFloor
+
+- type: tile
+  id: CadiaFloorFlagstone
+  parent: BaseStationTile
+  name: tiles-cadia-floor-flagstone
+  sprite: /Textures/Imperial/Cadia/Tiles/flagstone.png
+  variants: 4
+  placementVariants:
+  - 1
+  - 0.35
+  - 0.25
+  - 0.2
+  weather: true
+  footstepSounds:
+    collection: FootstepFloor
+
+- type: tile
+  id: CadiaFloorBasalt
+  parent: BaseStationTile
+  name: tiles-cadia-floor-basalt
+  sprite: /Textures/Imperial/Cadia/Tiles/basalt.png
+  variants: 4
+  placementVariants:
+  - 1
+  - 0.35
+  - 0.25
+  - 0.2
+  weather: true
+  footstepSounds:
+    collection: FootstepFloor
+
+- type: tile
+  id: CadiaDeckNavy
+  parent: BaseStationTile
+  name: tiles-cadia-deck-navy
+  sprite: /Textures/Imperial/Cadia/Tiles/navy_deck.png
+  variants: 4
+  placementVariants:
+  - 1
+  - 0.35
+  - 0.25
+  - 0.2
+  footstepSounds:
+    collection: FootstepHull
+
+- type: tile
+  id: CadiaDeckGrate
+  parent: BaseStationTile
+  name: tiles-cadia-deck-grate
+  sprite: /Textures/Imperial/Cadia/Tiles/navy_grate.png
+  variants: 4
+  placementVariants:
+  - 1
+  - 0.35
+  - 0.25
+  - 0.2
+  footstepSounds:
+    collection: FootstepCatwalk
+
+- type: tile
+  id: CadiaDeckGothic
+  parent: BaseStationTile
+  name: tiles-cadia-deck-gothic
+  sprite: /Textures/Imperial/Cadia/Tiles/navy_gothic.png
+  variants: 4
+  placementVariants:
+  - 1
+  - 0.35
+  - 0.25
+  - 0.2
+  footstepSounds:
+    collection: FootstepHull
+
+- type: tile
+  id: CadiaDeckCarpet
+  parent: BaseStationTile
+  name: tiles-cadia-deck-carpet
+  sprite: /Textures/Imperial/Cadia/Tiles/navy_carpet.png
+  variants: 4
+  placementVariants:
+  - 1
+  - 0.35
+  - 0.25
+  - 0.2
+  footstepSounds:
+    collection: FootstepCarpet
+
+- type: tile
+  id: CadiaDeckChaos
+  parent: BaseStationTile
+  name: tiles-cadia-deck-chaos
+  sprite: /Textures/Imperial/Cadia/Tiles/chaos_deck.png
+  variants: 4
+  placementVariants:
+  - 1
+  - 0.35
+  - 0.25
+  - 0.2
+  footstepSounds:
+    collection: FootstepHull
+
+- type: tile
+  id: CadiaDeckFlesh
+  parent: BaseStationTile
+  name: tiles-cadia-deck-flesh
+  sprite: /Textures/Imperial/Cadia/Tiles/chaos_flesh.png
+  variants: 4
+  placementVariants:
+  - 1
+  - 0.35
+  - 0.25
+  - 0.2
+  footstepSounds:
+    collection: FootstepBlood
+
+- type: tile
+  id: CadiaDeckRune
+  parent: BaseStationTile
+  name: tiles-cadia-deck-rune
+  sprite: /Textures/Imperial/Cadia/Tiles/chaos_rune.png
+  variants: 4
+  placementVariants:
+  - 1
+  - 0.35
+  - 0.25
+  - 0.2
+  footstepSounds:
+    collection: FootstepHull
+
+- type: tile
+  id: CadiaDeckHazard
+  parent: BaseStationTile
+  name: tiles-cadia-deck-hazard
+  sprite: /Textures/Imperial/Cadia/Tiles/hazard.png
+  variants: 2
+  placementVariants:
+  - 1
+  - 0.5
+  weather: true
+  footstepSounds:
+    collection: FootstepHull
+
+- type: tile
+  id: CadiaDeckEngine
+  parent: BaseStationTile
+  name: tiles-cadia-deck-engine
+  sprite: /Textures/Imperial/Cadia/Tiles/engine.png
+  variants: 2
+  placementVariants:
+  - 1
+  - 0.5
+  footstepSounds:
+    collection: FootstepPlating

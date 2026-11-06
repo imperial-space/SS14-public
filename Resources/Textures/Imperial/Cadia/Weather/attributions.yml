@@ -1,0 +1,4 @@
+- files: ["snow_far.rsi/snow.png", "snow_near.rsi/snow.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Made for Imperial Space"
+  source: "https://github.com/imperial-space/SS14-public"

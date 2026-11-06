@@ -1,0 +1,401 @@
+# Оружие ролей войны за Кадию.
+
+# ═══════════════ Империум ═══════════════
+
+# Полковой штандарт: древко бьёт как дубина, а знамя поднимает дух (механика — в фазе отрядов).
+- type: entity
+  parent: BaseItem
+  id: CadiaRegimentalStandard
+  name: Cadian regimental standard
+  description: The banner of the Cadian 8th, carried by Colour Sergeant Kell. Where it stands, Cadia stands.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Weapons/standard.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Imperial/Cadia/War/Weapons/standard.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 14
+    soundHit:
+      collection: MetalThud
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 6
+  - type: CadiaMoraleAura
+    radius: 9
+    friendRate: 1.5
+  - type: PointLight
+    radius: 2
+    energy: 0.6
+    color: "#e8c66a"
+
+- type: entity
+  parent: CadiaLasgun
+  id: CadiaHotShotLasgun
+  name: hot-shot lasgun
+  description: A Kasrkin hellgun fed by a backpack power cell. Its overcharged beams punch through flak like paper.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Weapons/hotshot.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/Cadia/War/Weapons/hotshot.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Weapons/lasgun.rsi
+  - type: Gun
+    fireRate: 3
+    projectileSpeed: 34
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/Cadia/Weapons/hotshot_fire.ogg
+      params:
+        variation: 0.06
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: CadiaHotShotPack
+        insertSound: /Audio/Imperial/Cadia/Weapons/laspack_in.ogg
+        ejectSound: /Audio/Imperial/Cadia/Weapons/laspack_out.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - CadiaHotShotPack
+        whitelistFailPopup: gun-magazine-whitelist-fail
+
+- type: entity
+  parent: BaseItem
+  id: CadiaOmnissianAxe
+  name: Omnissian power axe
+  description: A cog-bladed power axe, both tool and weapon of the Machine God's servants.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Weapons/omnissian_axe.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/Cadia/War/Weapons/omnissian_axe.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 0.9
+    damage:
+      types:
+        Slash: 16
+        Heat: 8
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Tool
+    qualities:
+    - Prying
+    speedModifier: 1.5
+  - type: Prying
+  - type: PointLight
+    radius: 1.2
+    energy: 0.8
+    color: "#ff6a3c"
+
+- type: entity
+  parent: BaseItem
+  id: CadiaPsykerStaff
+  name: psyker's staff
+  description: A wooden staff with a brass skull. The gem in its eye socket hums with barely leashed power.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Weapons/psyker_staff.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/Cadia/War/Weapons/psyker_staff.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 10
+        Cold: 4
+    soundHit:
+      collection: MetalThud
+  - type: PointLight
+    radius: 1.5
+    energy: 1
+    color: "#6fc8ff"
+
+- type: entity
+  parent: BaseItem
+  id: CadiaCrozius
+  name: crozius arcanum
+  description: The winged mace of a Chaplain — symbol of office and instrument of the Emperor's wrath.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Weapons/crozius.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/Cadia/War/Weapons/crozius.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 0.9
+    damage:
+      types:
+        Blunt: 26
+        Heat: 6
+    soundHit:
+      collection: MetalThud
+  - type: PointLight
+    radius: 1.5
+    energy: 1
+    color: "#f0d080"
+
+- type: entity
+  parent: BaseItem
+  id: CadiaForceStaff
+  name: force staff
+  description: A psychically attuned staff that channels a Librarian's mind into every blow.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Weapons/force_staff.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/Cadia/War/Weapons/force_staff.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 18
+        Cold: 10
+    soundHit:
+      path: /Audio/Effects/Lightning/lightningshock.ogg
+  - type: PointLight
+    radius: 2
+    energy: 1.2
+    color: "#6fc8ff"
+
+- type: entity
+  parent: CadiaBolter
+  id: CadiaHeavyBolter
+  name: heavy bolter
+  description: A belt-fed heavy bolter. Normally mounted on a tripod — or carried by an Astartes Devastator.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Weapons/heavy_bolter.rsi
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Huge
+    sprite: Imperial/Cadia/War/Weapons/heavy_bolter.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Weapons/bolter.rsi
+  - type: Gun
+    fireRate: 6
+    projectileSpeed: 24
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/Cadia/Weapons/heavybolter_fire.ogg
+      params:
+        variation: 0.06
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: CadiaHeavyBoltBox
+        insertSound: /Audio/Imperial/Cadia/Weapons/boltmag_in.ogg
+        ejectSound: /Audio/Imperial/Cadia/Weapons/boltmag_out.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - CadiaHeavyBoltBox
+        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -20
+    maxAngle: -25
+  - type: GunRequiresWield
+
+# ═══════════════ Хаос ═══════════════
+
+- type: entity
+  parent: Katana
+  id: CadiaDaemonSword
+  name: daemon sword
+  description: A blade with a bound daemon in its steel. It whispers to its wielder and drinks what it cuts.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Weapons/daemon_sword.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Cadia/War/Weapons/daemon_sword.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Weapons/daemon_sword.rsi
+    slots:
+    - belt
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 24
+        Heat: 6
+  - type: PointLight
+    radius: 1.5
+    energy: 1.2
+    color: "#ff2a2a"
+
+- type: entity
+  parent: CadiaCrozius
+  id: CadiaChaosCrozius
+  name: accursed crozius
+  description: A spiked mace topped with the eight-pointed star. The Dark Apostle's sermons are punctuated with it.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Weapons/chaos_crozius.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Cadia/War/Weapons/chaos_crozius.rsi
+  - type: PointLight
+    color: "#ff2a2a"
+
+- type: entity
+  parent: CadiaForceStaff
+  id: CadiaChaosForceStaff
+  name: sorcerer's staff
+  description: A black staff crowned with the star of Chaos, crackling with warp-fire.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Weapons/chaos_staff.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Cadia/War/Weapons/chaos_staff.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 16
+        Heat: 12
+    soundHit:
+      path: /Audio/Effects/Lightning/lightningshock.ogg
+  - type: PointLight
+    color: "#c040ff"
+
+- type: entity
+  parent: CadiaChainsword
+  id: CadiaChainAxe
+  name: chain axe
+  description: A brutal motorised axe favoured by the traitor Legions.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Weapons/chain_axe.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Cadia/War/Weapons/chain_axe.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Weapons/chain_axe.rsi
+    slots:
+    - belt
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 22
+        Blunt: 6
+    soundHit:
+      path: /Audio/Imperial/Cadia/Weapons/chainsword_hit.ogg
+      params:
+        variation: 0.08
+
+- type: entity
+  parent: CadiaBolter
+  id: CadiaChaosBolter
+  name: Chaos boltgun
+  description: An ancient Godwyn-pattern boltgun, defaced with spikes and brass. It has killed loyalists for ten millennia.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Weapons/chaos_bolter.rsi
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    sprite: Imperial/Cadia/War/Weapons/chaos_bolter.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/Weapons/bolter.rsi
+
+- type: entity
+  parent: Katana
+  id: CadiaDrachnyen
+  name: Drach'nyen
+  description: The daemon sword of Abaddon the Despoiler — the echo of the first murder, given a blade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Weapons/drachnyen.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Imperial/Cadia/War/Weapons/drachnyen.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Weapons/drachnyen.rsi
+    slots:
+    - back
+  - type: MeleeWeapon
+    attackRate: 0.8
+    damage:
+      types:
+        Slash: 38
+        Heat: 12
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: PointLight
+    radius: 2.5
+    energy: 1.6
+    color: "#ff1a1a"
+
+- type: entity
+  parent: CadiaMagGunBase
+  id: CadiaAutopistol
+  name: autopistol
+  description: A cheap solid-slug automatic pistol, beloved of gangers, cultists and PDF officers.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/Weapons/autopistol.rsi
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Small
+    sprite: Imperial/Cadia/War/Weapons/autopistol.rsi
+  - type: Clothing
+    sprite: Imperial/Cadia/War/Weapons/autopistol.rsi
+    slots:
+    - belt
+  - type: Gun
+    fireRate: 6
+    projectileSpeed: 32
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/Cadia/Weapons/autopistol_fire.ogg
+      params:
+        variation: 0.06
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: CadiaAutopistolMag
+        insertSound: /Audio/Imperial/Cadia/Weapons/slugmag_in.ogg
+        ejectSound: /Audio/Imperial/Cadia/Weapons/slugmag_out.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - CadiaAutopistolMag
+        whitelistFailPopup: gun-magazine-whitelist-fail
+

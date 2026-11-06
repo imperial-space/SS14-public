@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for Imperial Space with PixelLab",
+  "size": { "x": 64, "y": 64 },
+  "states": [
+    { "name": "atgun_base" },
+    { "name": "atgun_gun" },
+    { "name": "nest_base" },
+    { "name": "nest_gun" },
+    { "name": "pillbox_gun" },
+    { "name": "chaos_altar" }
+  ]
+}

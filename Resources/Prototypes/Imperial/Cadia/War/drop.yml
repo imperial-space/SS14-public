@@ -1,0 +1,345 @@
+# Высадка Хаоса когтистыми капсулами и завеса пилонов на время подготовки.
+
+# Когтистая капсула (Dreadclaw): падает с неба на свою тень, высаживает отделение и уходит обратно на флагман.
+- type: entity
+  id: CadiaDreadclaw
+  name: Dreadclaw drop pod
+  description: A clawed boarding pod of the Black Legion. It falls from orbit, tears into the ground, disgorges its warband and claws its way back to the fleet.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/Cadia/War/dreadclaw.rsi
+    drawdepth: Overdoors
+    noRot: true
+    layers:
+    - state: shadow
+      map: [ "enum.CadiaDropPodLayers.Shadow" ]
+    - state: pod
+      map: [ "enum.CadiaDropPodLayers.Pod" ]
+  - type: CadiaDropPod
+  - type: PointLight
+    radius: 4
+    energy: 2
+    color: "#ff4a2a"
+  - type: AmbientSound
+    range: 10
+    volume: -2
+    sound:
+      path: /Audio/Ambience/Objects/engine_hum.ogg
+
+# Пусковая шахта капсулы на десантной палубе флагмана: отделение встаёт рядом, командир выбирает зону высадки.
+- type: entity
+  parent: CadiaDecorFloorBase
+  id: CadiaDropBerth
+  name: Dreadclaw launch tube
+  description: An armoured iris over a Dreadclaw cradled in the hull below. Gather your warband around it and choose where to fall.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/chaos_ship.rsi
+    state: drop_berth
+  - type: PointLight
+    radius: 1.8
+    energy: 1.2
+    color: "#ff3a2a"
+  # Шахта не исчезает от урона, а разбивается: её чинит еретек.
+  - type: Destructible
+    thresholds: []
+  - type: CadiaDropBerth
+
+# Зоны высадки на восточной пустоши и в павшем бастионе.
+- type: entity
+  abstract: true
+  parent: MarkerBase
+  id: CadiaDropZoneBase
+  name: Dreadclaw drop zone
+  suffix: Chaos
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Imperial/Cadia/War/icons.rsi
+      state: chaos_star
+
+- type: entity
+  parent: CadiaDropZoneBase
+  id: CadiaDropZoneNorth
+  suffix: Chaos, north
+  components:
+  - type: CadiaDropZone
+    label: cadia-drop-zone-north
+
+- type: entity
+  parent: CadiaDropZoneBase
+  id: CadiaDropZoneGallan
+  suffix: Chaos, Gallan
+  components:
+  - type: CadiaDropZone
+    label: cadia-drop-zone-gallan
+
+- type: entity
+  parent: CadiaDropZoneBase
+  id: CadiaDropZoneSouth
+  suffix: Chaos, south
+  components:
+  - type: CadiaDropZone
+    label: cadia-drop-zone-south
+
+- type: entity
+  parent: CadiaDropZoneBase
+  id: CadiaDropZoneRidge
+  suffix: Chaos, ridge
+  components:
+  - type: CadiaDropZone
+    label: cadia-drop-zone-ridge
+
+# Завеса пилонов над пилоном: зелёное мерцающее поле, пока идёт подготовка обороны.
+- type: entity
+  id: CadiaPylonVeilField
+  name: pylon veil
+  description: The null-field of a Cadian pylon at full strength. While the pylons sing, the warp is silent and no weapon fires beneath them.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    sprite: Imperial/Cadia/War/psy_fx.rsi
+    drawdepth: Effects
+    color: "#5affc880"
+    scale: 6,6
+    noRot: true
+    layers:
+    - state: ring
+      shader: unshaded
+  - type: PointLight
+    radius: 9
+    energy: 1.4
+    color: "#5affc8"
+
+# Вспышка пилона при падении завесы: поле разрывается и гаснет.
+- type: entity
+  parent: CadiaPsyEffectBase
+  id: CadiaVeilBurst
+  name: pylon flare
+  components:
+  - type: TimedDespawn
+    lifetime: 1.2
+  - type: Sprite
+    sprite: Imperial/Cadia/War/psy_fx.rsi
+    drawdepth: Effects
+    color: "#8affd8"
+    scale: 10,10
+    noRot: true
+    layers:
+    - state: ring
+      shader: unshaded
+  - type: PointLight
+    radius: 14
+    energy: 4
+    color: "#8affd8"
+
+# Ритуальный круг в часовне флагмана: колдуны Хаоса раскачивают завесу пилонов.
+- type: entity
+  parent: CadiaShipRitualCircle
+  id: CadiaVeilRitualCircle
+  name: circle of unbinding
+  description: A circle of blood and black candles. Here the sorcerers of the Black Legion strain against the pylons' veil.
+  components:
+  - type: CadiaVeilRitual
+    faction: Chaos
+    roles: [ CadiaSorcerer, CadiaDarkApostle, CadiaChaosLord, CadiaAbaddon, CadiaDemagogue ]
+    shift: 60
+
+# ═══════════════ Беженцы Касра ═══════════════
+
+- type: startingGear
+  id: CadiaGearRefugee
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    outerClothing: ClothingOuterWinterCoat
+    shoes: ClothingShoesColorBrown
+    neck: ClothingNeckScarfStripedBrown
+
+- type: randomHumanoidSettings
+  id: CadiaRefugee
+  speciesBlacklist: [ Android, Arachnid, Diona, Dwarf, Gingerbread, Moth, Reptilian, Skeleton, SlimePerson, Vox, Vulpkanin ]
+  components:
+  - type: Loadout
+    prototypes: [ CadiaGearRefugee ]
+  - type: HTN
+    rootTask:
+      task: IdleCompound
+  - type: MobMover
+  - type: CadiaRefugee
+
+# Горожанин Касра: бродит по улицам, пока гвардия не уведёт его в катакомбы.
+- type: entity
+  parent: MarkerBase
+  id: CadiaRefugeeSpawner
+  name: Kasr refugee
+  suffix: Cadia
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: RandomHumanoidSpawner
+    settings: CadiaRefugee
+
+# Убежище в катакомбах: горожанин, доведённый сюда, укрыт.
+- type: entity
+  parent: MarkerBase
+  id: CadiaRefugeeShelter
+  name: refugee shelter
+  suffix: Cadia
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: CadiaRefugeeShelter
+
+# ═══════════════ Абордаж флагмана ═══════════════
+
+# Абордажная рампа «Валькирии»: гвардейцы встают рядом и выбирают палубу флагмана для прорыва.
+- type: entity
+  parent: CadiaDecorFloorBase
+  id: CadiaBoardingRamp
+  name: boarding ramp
+  description: A reinforced ramp with a breaching charge rig. Bring the Valkyrie alongside the enemy flagship, gather your squad and choose where to cut in.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/War/ship_weapons.rsi
+    state: bay
+    color: "#e8c66a"
+  - type: PointLight
+    radius: 1.6
+    energy: 1
+    color: "#ffd37a"
+  - type: CadiaBoardingRamp
+
+# Пробоина на палубе флагмана: здесь высаживаются абордажники и отсюда уходят обратно на «Валькирию».
+- type: entity
+  parent: CadiaDecorFloorBase
+  id: CadiaBoardingBreachBase
+  abstract: true
+  name: hull breach
+  description: A scorched hole cut by a breaching charge. Imperial boarders come through here — and leave the same way, if their Valkyrie is still alongside.
+  components:
+  - type: Sprite
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: blast
+
+- type: entity
+  parent: CadiaBoardingBreachBase
+  id: CadiaBoardingBreachEngine
+  suffix: engine room
+  components:
+  - type: CadiaBoardingPoint
+    label: cadia-boarding-deck-engine
+
+- type: entity
+  parent: CadiaBoardingBreachBase
+  id: CadiaBoardingBreachGuns
+  suffix: gun deck
+  components:
+  - type: CadiaBoardingPoint
+    label: cadia-boarding-deck-guns
+
+- type: entity
+  parent: CadiaBoardingBreachBase
+  id: CadiaBoardingBreachDrop
+  suffix: drop deck
+  components:
+  - type: CadiaBoardingPoint
+    label: cadia-boarding-deck-drop
+
+# ═══════════════ Следы ритуалов ═══════════════
+
+# Трещина завесы: колдовство Хаоса надорвало поле у пилона. Воздух дрожит, слышен шёпот, гвардейцев гложет страх.
+- type: entity
+  id: CadiaVeilCrack
+  name: crack in the veil
+  description: The air shivers over a wound in the pylon's field. Whispers leak through it, and the men nearby can't stop listening.
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Cadia/Decals/ground.rsi
+    state: warp_veins
+    drawdepth: FloorObjects
+    color: "#ff5a6a"
+    scale: 2,2
+    noRot: true
+  - type: PointLight
+    radius: 3
+    energy: 1.6
+    color: "#ff2a4a"
+  - type: AmbientSound
+    range: 6
+    volume: -6
+    sound:
+      collection: CadiaWhispers
+  - type: CadiaRitualMark
+    faction: Imperium
+    delta: -0.6
+    radius: 4
+
+# Освящённая земля: литания у пилона. Знак аквилы светится, и защитники рядом держатся твёрже.
+- type: entity
+  id: CadiaHallowedGround
+  name: hallowed ground
+  description: An aquila traced in sacred oils where the litany was sung. Standing here, a guardsman remembers why he holds the line.
+  categories: [ HideSpawnMenu ]
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Cadia/Decals/markings.rsi
+    state: aquila_gold
+    drawdepth: FloorObjects
+    scale: 1.5,1.5
+    noRot: true
+  - type: PointLight
+    radius: 3
+    energy: 1.2
+    color: "#ffd37a"
+  - type: CadiaRitualMark
+    faction: Imperium
+    delta: 0.6
+    radius: 4
+
+# Стена бурана посреди поля на время подготовки. Сама невидима — буран рисует клиент; не пускает ни людей, ни технику.
+- type: entity
+  id: CadiaMidStormWall
+  name: wall of snow
+  description: A howling wall of snow and ice-grit. Nothing crosses it while the pylons sing.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 1000
+        layer:
+        - WallLayer
+  - type: AmbientSound
+    range: 7
+    volume: -9
+    sound:
+      path: /Audio/Effects/Weather/snowstorm.ogg

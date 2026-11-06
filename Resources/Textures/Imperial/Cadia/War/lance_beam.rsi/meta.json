@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for Imperial Space with PixelLab",
+  "size": { "x": 32, "y": 256 },
+  "states": [
+    { "name": "beam", "delays": [ [ 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12 ] ] }
+  ]
+}

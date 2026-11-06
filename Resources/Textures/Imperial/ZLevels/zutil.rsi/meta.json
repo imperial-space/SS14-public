@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made for Imperial Space by Claude",
+  "size": { "x": 32, "y": 32 },
+  "states": [
+    { "name": "adapter" },
+    { "name": "climbing_hook" },
+    { "name": "disposal_lift" },
+    { "name": "hub_hv" },
+    { "name": "hub_lv" },
+    { "name": "hub_mv" },
+    { "name": "stairs_arrow" }
+  ]
+}

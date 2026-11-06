@@ -1,0 +1,212 @@
+; Штурмовой транспорт Астра Милитарум «Валькирия», 17 x 20. Нос на севере. Пишется ships_gen.pl.
+0000000NZN0000000
+000000NYZYN000000
+00000NYNNNYN00000
+0000GYNNNNNYG0000
+0000YYNNNNNYY0000
+000NYYYYNYYYYN000
+000YNNNNNNNNNY000
+000NNNNNNNNNNN000
+0hhZNNNNNNNNNZhh0
+GhhYNNNNNNNNNYhhG
+0hhZNNNNNNNNNZhh0
+000YNNNNNNNNNY000
+000NNNNNNNNNNN000
+000YNNNNNNNNNY000
+000YYYYYNYYYYY000
+00NYGGGGGGGGGYN00
+0GYGGGGGGGGGGGYG0
+00YGGGGGGGGGGGY00
+00NYYYYYYYYYYYN00
+000G00G000G00G000
+* 7 0 WallReinforcedDiagonal 0
+* 9 0 WallReinforcedDiagonal 270
+* 6 1 WallReinforcedDiagonal 0
+* 10 1 WallReinforcedDiagonal 270
+* 5 2 WallReinforcedDiagonal 0
+* 11 2 WallReinforcedDiagonal 270
+* 4 3 Thruster 0
+* 12 3 Thruster 0
+* 3 5 WallReinforcedDiagonal 0
+* 8 5 CadiaAirlockGlass 0
+* 13 5 WallReinforcedDiagonal 270
+* 3 7 CadiaAirlockGlassShuttle 270
+* 13 7 CadiaAirlockGlassShuttle 90
+* 1 8 CadiaShipBulwarkDiagonalImperial 0
+* 15 8 CadiaShipBulwarkDiagonalImperial 270
+* 0 9 Thruster 90
+* 16 9 Thruster 270
+* 1 10 CadiaShipBulwarkDiagonalImperial 90
+* 15 10 CadiaShipBulwarkDiagonalImperial 180
+* 3 12 CadiaAirlockGlassShuttle 270
+* 13 12 CadiaAirlockGlassShuttle 90
+* 8 14 CadiaAirlockGlass 0
+* 2 15 WallReinforcedDiagonal 0
+* 14 15 WallReinforcedDiagonal 270
+* 1 16 Thruster 90
+* 15 16 Thruster 270
+* 2 18 WallReinforcedDiagonal 90
+* 14 18 WallReinforcedDiagonal 180
+* 3 19 Thruster 180
+* 6 19 Thruster 180
+* 10 19 Thruster 180
+* 13 19 Thruster 180
+* 8 2 ComputerShuttle 0
+* 7 2 ComputerRadar 0
+* 9 2 CadiaShipGunConsole 0
+* 8 3 ChairPilotSeat 180
+* 6 4 CadiaCogitator 0
+* 10 4 CadiaVoxCaster 0
+* 6 3 Poweredlight 90
+* 10 3 Poweredlight 270
+* 6 5 APCBasic 180
+* 4 8 ChairPilotSeat 90
+* 12 8 ChairPilotSeat 270
+* 4 9 ChairPilotSeat 90
+* 12 9 ChairPilotSeat 270
+* 4 10 ChairPilotSeat 90
+* 12 10 ChairPilotSeat 270
+* 5 6 CadiaLasgunRack 0
+* 11 6 CadiaVoxCaster 0
+* 5 13 CadiaMedicaeStation 0
+* 11 13 CadiaAmmoCrateImperium 0
+* 6 11 CadiaParachutePack 0
+* 7 11 CadiaParachutePack 0
+* 9 11 CadiaParachutePack 0
+* 10 11 CadiaParachutePack 0
+* 7 6 CadiaFlakAmmoBox 0
+* 9 6 CadiaFlakAmmoBox 0
+* 8 11 CadiaShipBombBay 0
+* 8 12 CadiaBoardingRamp 0
+* 4 9 Poweredlight 90
+* 12 9 Poweredlight 270
+* 6 6 Poweredlight 0
+* 10 6 Poweredlight 0
+* 6 13 Poweredlight 180
+* 10 13 Poweredlight 180
+* 2 8 CadiaShipRocketPod 0
+* 2 10 CadiaShipGun 0
+* 14 8 CadiaShipRocketPod 0
+* 14 10 CadiaShipLascannon 0
+* 5 15 GeneratorBasic15kW 0
+* 7 15 GeneratorBasic15kW 0
+* 5 16 CableTerminal 0
+* 5 17 SMESBasic 0
+* 8 17 SubstationBasic 0
+* 11 16 Gyroscope 0
+* 11 15 GravityGeneratorMini 0
+* 11 17 ComputerPowerMonitoring 180
+* 3 17 CadiaFuelBarrel 0
+* 13 17 CadiaFuelBarrel 0
+* 9 16 CadiaWorkbench 0
+* 4 15 Poweredlight 0
+* 12 15 Poweredlight 0
+* 5 18 APCBasic 180
+* 11 18 APCBasic 180
+* 5 15 CableHV 0
+* 6 15 CableHV 0
+* 7 15 CableHV 0
+* 5 16 CableHV 0
+* 5 17 CableHV 0
+* 6 17 CableHV 0
+* 7 17 CableHV 0
+* 8 17 CableHV 0
+* 8 10 CableMV 0
+* 8 11 CableMV 0
+* 8 12 CableMV 0
+* 8 13 CableMV 0
+* 8 14 CableMV 0
+* 8 15 CableMV 0
+* 8 16 CableMV 0
+* 8 17 CableMV 0
+* 10 18 CableMV 0
+* 11 18 CableMV 0
+* 5 18 CableMV 0
+* 6 18 CableMV 0
+* 7 18 CableMV 0
+* 8 18 CableMV 0
+* 9 18 CableMV 0
+* 6 5 CableMV 0
+* 6 6 CableMV 0
+* 7 6 CableMV 0
+* 8 6 CableMV 0
+* 8 7 CableMV 0
+* 8 8 CableMV 0
+* 8 9 CableMV 0
+* 8 1 CableApcExtension 0
+* 8 10 CableApcExtension 0
+* 8 11 CableApcExtension 0
+* 8 12 CableApcExtension 0
+* 10 13 CableApcExtension 0
+* 11 13 CableApcExtension 0
+* 12 13 CableApcExtension 0
+* 4 13 CableApcExtension 0
+* 5 13 CableApcExtension 0
+* 6 13 CableApcExtension 0
+* 7 13 CableApcExtension 0
+* 8 13 CableApcExtension 0
+* 9 13 CableApcExtension 0
+* 13 16 CableApcExtension 0
+* 14 16 CableApcExtension 0
+* 2 16 CableApcExtension 0
+* 3 16 CableApcExtension 0
+* 13 17 CableApcExtension 0
+* 3 17 CableApcExtension 0
+* 10 18 CableApcExtension 0
+* 11 18 CableApcExtension 0
+* 12 18 CableApcExtension 0
+* 13 18 CableApcExtension 0
+* 14 18 CableApcExtension 0
+* 2 18 CableApcExtension 0
+* 3 18 CableApcExtension 0
+* 4 18 CableApcExtension 0
+* 5 18 CableApcExtension 0
+* 6 18 CableApcExtension 0
+* 8 2 CableApcExtension 0
+* 8 3 CableApcExtension 0
+* 10 4 CableApcExtension 0
+* 11 4 CableApcExtension 0
+* 12 4 CableApcExtension 0
+* 4 4 CableApcExtension 0
+* 5 4 CableApcExtension 0
+* 6 4 CableApcExtension 0
+* 7 4 CableApcExtension 0
+* 8 4 CableApcExtension 0
+* 9 4 CableApcExtension 0
+* 6 5 CableApcExtension 0
+* 10 6 CableApcExtension 0
+* 11 6 CableApcExtension 0
+* 12 6 CableApcExtension 0
+* 4 6 CableApcExtension 0
+* 5 6 CableApcExtension 0
+* 6 6 CableApcExtension 0
+* 7 6 CableApcExtension 0
+* 8 6 CableApcExtension 0
+* 9 6 CableApcExtension 0
+* 8 7 CableApcExtension 0
+* 8 8 CableApcExtension 0
+* 1 9 CableApcExtension 0
+* 10 9 CableApcExtension 0
+* 11 9 CableApcExtension 0
+* 12 9 CableApcExtension 0
+* 13 9 CableApcExtension 0
+* 14 9 CableApcExtension 0
+* 15 9 CableApcExtension 0
+* 2 9 CableApcExtension 0
+* 3 9 CableApcExtension 0
+* 4 9 CableApcExtension 0
+* 5 9 CableApcExtension 0
+* 6 9 CableApcExtension 0
+* 7 9 CableApcExtension 0
+* 8 9 CableApcExtension 0
+* 9 9 CableApcExtension 0
+> 8 4 cadia_markings_aquila_white 0
+> 8 9 cadia_markings_aquila_gold 0
+> 4 7 cadia_markings_hazard 0
+> 12 7 cadia_markings_hazard 0
+> 4 12 cadia_markings_hazard 0
+> 12 12 cadia_markings_hazard 0
+> 8 8 cadia_markings_purity_seal 0
+> 7 16 cadia_markings_chevron_yellow 180
+> 10 16 cadia_markings_oil_floor 0
+> 8 10 cadia_markings_bay_outline 0

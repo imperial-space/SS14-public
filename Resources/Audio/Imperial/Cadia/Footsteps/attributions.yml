@@ -1,0 +1,24 @@
+- files: ["astartes_step1.ogg", "astartes_step2.ogg", "astartes_step3.ogg", "astartes_step4.ogg", "astartes_step5.ogg"]
+  license: "CC0-1.0"
+  copyright: "Steps boots on metal surface by RFCaldas, trimmed, pitched down and bass-boosted"
+  source: "https://freesound.org/people/RFCaldas/sounds/749711/"
+
+- files: ["hoof1.ogg", "hoof2.ogg", "hoof3.ogg", "hoof4.ogg"]
+  license: "CC0-1.0"
+  copyright: "hoofsteps.mp3 by Carolmon, trimmed"
+  source: "https://freesound.org/people/Carolmon/sounds/238920/"
+
+- files: ["monster1.ogg", "monster2.ogg", "monster3.ogg"]
+  license: "CC0-1.0"
+  copyright: "Monster Footsteps 01 by juansua990, trimmed"
+  source: "https://freesound.org/people/juansua990/sounds/339439/"
+
+- files: ["squelch1.ogg", "squelch2.ogg", "squelch3.ogg", "squelch4.ogg"]
+  license: "CC0-1.0"
+  copyright: "Feet Squelch by eqavox, trimmed"
+  source: "https://freesound.org/people/eqavox/sounds/683520/"
+
+- files: ["claws1.ogg", "claws2.ogg", "claws3.ogg", "claws4.ogg"]
+  license: "CC0-1.0"
+  copyright: "Claws animal (foley) by Nakhas, trimmed"
+  source: "https://freesound.org/people/Nakhas/sounds/569255/"

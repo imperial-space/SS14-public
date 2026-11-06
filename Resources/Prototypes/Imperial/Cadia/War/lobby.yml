@@ -1,0 +1,20 @@
+# Оформление лобби ивента: включается командой cadia lobby on. Музыка только CC0.
+
+- type: lobbyBackground
+  id: CadiaLobby1
+  background: /Textures/Imperial/Cadia/War/Intro/lobby1.png
+
+- type: lobbyBackground
+  id: CadiaLobby2
+  background: /Textures/Imperial/Cadia/War/Intro/lobby2.png
+
+- type: lobbyBackground
+  id: CadiaLobby3
+  background: /Textures/Imperial/Cadia/War/Intro/lobby3.png
+
+- type: soundCollection
+  id: CadiaLobbyMusic
+  files:
+  - /Audio/Imperial/Cadia/Music/preparation.ogg
+  - /Audio/Imperial/Cadia/Music/bombardment.ogg
+  - /Audio/Imperial/Cadia/Music/assault.ogg
