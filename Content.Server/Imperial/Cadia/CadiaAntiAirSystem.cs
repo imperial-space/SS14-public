@@ -23,6 +23,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Cadia;
 
@@ -82,6 +83,11 @@ public sealed class CadiaAntiAirSystem : EntitySystem
     private const float ResolveShotsSlope = 3f;
     private const float ResolveShotsMaxTileIntensity = 6f;
     private const float ResolveShotsStrength = 1.2f;
+
+    private static readonly EntProtoId CadiaWallReinforced = "CadiaWallReinforced";
+    private static readonly EntProtoId CadiaEmplacementHatch = "CadiaEmplacementHatch";
+    private static readonly EntProtoId CadiaFlakAmmoBox = "CadiaFlakAmmoBox";
+    private static readonly EntProtoId CadiaBunkerLamp = "CadiaBunkerLamp";
 
     private record struct PendingShot(EntityUid Gun, MapCoordinates Point, int Level, TimeSpan Impact);
 
@@ -380,11 +386,11 @@ public sealed class CadiaAntiAirSystem : EntitySystem
                     continue;
                 if (x == 0 && y == -RoomHalf)
                     continue;
-                At("CadiaWallReinforced", x, y);
+                At(CadiaWallReinforced, x, y);
             }
         }
 
-        var hatch = At("CadiaEmplacementHatch", 0, -RoomHalf);
+        var hatch = At(CadiaEmplacementHatch, 0, -RoomHalf);
         EnsureComp<CadiaEmplacementHatchComponent>(hatch).Gun = gun;
 
         var console = At(gun.Comp.InteriorConsole, 0, 1);
@@ -392,8 +398,8 @@ public sealed class CadiaAntiAirSystem : EntitySystem
         gun.Comp.InteriorConsoleEntity = console;
 
         At(gun.Comp.InteriorSpeaker, 1, RoomHalf);
-        At("CadiaFlakAmmoBox", -1, 1);
-        At("CadiaBunkerLamp", -1, RoomHalf);
+        At(CadiaFlakAmmoBox, -1, 1);
+        At(CadiaBunkerLamp, -1, RoomHalf);
 
         _map.InitializeMap(mapId);
         gun.Comp.Interior = map;

@@ -45,6 +45,16 @@ public sealed partial class CadiaVehicleSystem
 
     private static readonly EntProtoId CadiaTankShell = "CadiaTankShell";
 
+    private static readonly EntProtoId CadiaWallReinforced = "CadiaWallReinforced";
+    private static readonly EntProtoId CadiaVehicleHatch = "CadiaVehicleHatch";
+    private static readonly EntProtoId CadiaVehicleDriverSeat = "CadiaVehicleDriverSeat";
+    private static readonly EntProtoId CadiaVehicleGunnerSeat = "CadiaVehicleGunnerSeat";
+    private static readonly EntProtoId CadiaVehicleBreech = "CadiaVehicleBreech";
+    private static readonly EntProtoId CadiaAmmoRack = "CadiaAmmoRack";
+    private static readonly EntProtoId CadiaVehicleBench = "CadiaVehicleBench";
+    private static readonly EntProtoId CadiaBunkerLamp = "CadiaBunkerLamp";
+    private static readonly EntProtoId CadiaVehicleKey = "CadiaVehicleKey";
+
     private void InitializeInterior()
     {
         SubscribeLocalEvent<CadiaVehicleSeatComponent, StrappedEvent>(OnSeatStrapped);
@@ -146,23 +156,23 @@ public sealed partial class CadiaVehicleSystem
                     continue;
                 if (x == 0 && y == -hy - 1)
                     continue;
-                At("CadiaWallReinforced", x, y);
+                At(CadiaWallReinforced, x, y);
             }
         }
 
-        EnsureComp<CadiaVehicleHatchComponent>(At("CadiaVehicleHatch", 0, -hy - 1)).Vehicle = ent;
+        EnsureComp<CadiaVehicleHatchComponent>(At(CadiaVehicleHatch, 0, -hy - 1)).Vehicle = ent;
         if (ent.Comp.HasDriverSeat)
-            EnsureComp<CadiaVehicleSeatComponent>(At("CadiaVehicleDriverSeat", -1, hy)).Vehicle = ent;
+            EnsureComp<CadiaVehicleSeatComponent>(At(CadiaVehicleDriverSeat, -1, hy)).Vehicle = ent;
         if (ent.Comp.HasGunnerSeat)
-            EnsureComp<CadiaVehicleSeatComponent>(At("CadiaVehicleGunnerSeat", 1, hy)).Vehicle = ent;
+            EnsureComp<CadiaVehicleSeatComponent>(At(CadiaVehicleGunnerSeat, 1, hy)).Vehicle = ent;
 
         // Казённик между креслами, боеукладка у борта — заряжающим может быть и наводчик, и десант.
         if (ent.Comp.Weapons.Any(w => w.Breech))
         {
-            var breech = At("CadiaVehicleBreech", 0, hy);
+            var breech = At(CadiaVehicleBreech, 0, hy);
             EnsureComp<CadiaVehicleBreechComponent>(breech).Vehicle = ent;
             // Боеукладка в кормовом углу: у кресел остаётся проход, наводчик не оказывается в ловушке.
-            var rack = At("CadiaAmmoRack", hx, -hy);
+            var rack = At(CadiaAmmoRack, hx, -hy);
             EnsureComp<CadiaAmmoRackComponent>(rack).Vehicle = ent;
             UpdateBreechVisuals(ent);
         }
@@ -175,14 +185,14 @@ public sealed partial class CadiaVehicleSystem
             {
                 if (placed >= ent.Comp.Passengers)
                     break;
-                EnsureComp<CadiaVehicleSeatComponent>(At("CadiaVehicleBench", x, y)).Vehicle = ent;
+                EnsureComp<CadiaVehicleSeatComponent>(At(CadiaVehicleBench, x, y)).Vehicle = ent;
                 placed++;
             }
         }
 
         At(ent.Comp.InteriorSpeaker, -hx - 1, 0);
-        At("CadiaBunkerLamp", hx + 1, hy);
-        EnsureComp<CadiaVehicleKeyComponent>(At("CadiaVehicleKey", 0, -hy)).Vehicle = ent;
+        At(CadiaBunkerLamp, hx + 1, hy);
+        EnsureComp<CadiaVehicleKeyComponent>(At(CadiaVehicleKey, 0, -hy)).Vehicle = ent;
 
         _map.InitializeMap(mapId);
         ent.Comp.InteriorMap = map;
