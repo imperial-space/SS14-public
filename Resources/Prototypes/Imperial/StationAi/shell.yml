@@ -1,0 +1,28 @@
+# /obj/item/borg/upgrade/ai: Б.О.Р.И.С. ставится в корпус вместо мозга и делает его оболочкой ИИ.
+- type: entity
+  parent: BaseItem
+  id: ImperialAiShellBoard
+  name: модуль Б.О.Р.И.С.
+  description: Bluespace Optimized Remote Intelligence Synchronization. Устройство связи, которое занимает место ИМК в эндоскелете киборга и превращает его в роботизированную оболочку под управлением ИИ.
+  components:
+  - type: Sprite
+    sprite: Imperial/StationAi/boris.rsi
+    state: boris
+  - type: Item
+    size: Small
+  - type: BorgBrain
+  - type: ImperialAiShellBoard
+  - type: StaticPrice
+    price: 500
+
+# /datum/design/boris_ai_controller: фабрикатор экзокостюмов.
+- type: latheRecipe
+  id: ImperialAiShellBoardRecipe
+  result: ImperialAiShellBoard
+  categories:
+  - Modules
+  completetime: 5
+  materials:
+    Steel: 60
+    Glass: 75
+    Gold: 10

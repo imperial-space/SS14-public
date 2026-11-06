@@ -1,0 +1,692 @@
+# Модули сбойного ИИ TG (malf_ai_modules.dm): цены, применения и действия 1:1.
+
+# ─── Разрушительные ───
+- type: imperialMalfModule
+  id: ImperialMalfDoomsday
+  name: imperial-malf-module-doomsday-name
+  description: imperial-malf-module-doomsday-desc
+  cost: 130
+  category: Destructive
+  onePurchase: true
+  minimumApcs: 10
+  order: 0
+  icon:
+    sprite: Imperial/StationAi/malf.rsi
+    state: ai_malf_core
+  unlockText: imperial-malf-module-doomsday-unlock
+
+- type: imperialMalfModule
+  id: ImperialMalfLockdown
+  name: imperial-malf-module-lockdown-name
+  description: imperial-malf-module-lockdown-desc
+  cost: 30
+  category: Destructive
+  onePurchase: true
+  action: ActionImperialMalfLockdown
+  uses: 1
+  order: 1
+  icon:
+    sprite: Imperial/StationAi/malf.rsi
+    state: lockdown
+  unlockText: imperial-malf-module-lockdown-unlock
+
+- type: imperialMalfModule
+  id: ImperialMalfOverrideMachine
+  name: imperial-malf-module-override-name
+  description: imperial-malf-module-override-desc
+  cost: 30
+  category: Destructive
+  action: ActionImperialMalfOverrideMachine
+  uses: 4
+  order: 2
+  icon:
+    sprite: Imperial/StationAi/malf.rsi
+    state: override_machine
+  unlockText: imperial-malf-module-override-unlock
+
+- type: imperialMalfModule
+  id: ImperialMalfOverloadMachine
+  name: imperial-malf-module-overload-name
+  description: imperial-malf-module-overload-desc
+  cost: 20
+  category: Destructive
+  action: ActionImperialMalfOverloadMachine
+  uses: 2
+  order: 3
+  icon:
+    sprite: Imperial/StationAi/malf.rsi
+    state: overload_machine
+  unlockText: imperial-malf-module-overload-unlock
+
+- type: imperialMalfModule
+  id: ImperialMalfDestroyRcds
+  name: imperial-malf-module-rcds-name
+  description: imperial-malf-module-rcds-desc
+  cost: 25
+  category: Destructive
+  onePurchase: true
+  action: ActionImperialMalfDestroyRcds
+  uses: 1
+  order: 4
+  icon:
+    sprite: Imperial/StationAi/malf.rsi
+    state: detonate_rcds
+  unlockText: imperial-malf-module-rcds-unlock
+
+- type: imperialMalfModule
+  id: ImperialMalfBlackout
+  name: imperial-malf-module-blackout-name
+  description: imperial-malf-module-blackout-desc
+  cost: 15
+  category: Destructive
+  action: ActionImperialMalfBlackout
+  uses: 3
+  order: 5
+  icon:
+    sprite: Imperial/StationAi/malf.rsi
+    state: blackout
+  unlockText: imperial-malf-module-blackout-unlock
+
+- type: imperialMalfModule
+  id: ImperialMalfMegahonk
+  name: imperial-malf-module-honk-name
+  description: imperial-malf-module-honk-desc
+  cost: 20
+  category: Destructive
+  action: ActionImperialMalfHonk
+  uses: 2
+  order: 6
+  icon:
+    sprite: Objects/Fun/bikehorn.rsi
+    state: icon
+  unlockText: imperial-malf-module-honk-unlock
+
+- type: imperialMalfModule
+  id: ImperialMalfRoboticFactory
+  name: imperial-malf-module-factory-name
+  description: imperial-malf-module-factory-desc
+  cost: 100
+  category: Destructive
+  onePurchase: true
+  action: ActionImperialMalfFactory
+  uses: 1
+  order: 7
+  icon:
+    sprite: Imperial/StationAi/malf.rsi
+    state: robotic_factory
+  unlockText: imperial-malf-module-factory-unlock
+
+- type: imperialMalfModule
+  id: ImperialMalfVendorTilt
+  name: imperial-malf-module-vendor-name
+  description: imperial-malf-module-vendor-desc
+  cost: 15
+  category: Destructive
+  action: ActionImperialMalfVendorTilt
+  uses: 8
+  order: 8
+  icon:
+    sprite: Imperial/StationAi/malf.rsi
+    state: vendor_tilt
+  unlockText: imperial-malf-module-vendor-unlock
+
+# ─── Служебные ───
+- type: imperialMalfModule
+  id: ImperialMalfAirAlarms
+  name: imperial-malf-module-air-alarms-name
+  description: imperial-malf-module-air-alarms-desc
+  cost: 50
+  category: Utility
+  onePurchase: true
+  action: ActionImperialMalfFlood
+  order: 0
+  icon:
+    sprite: Structures/Wallmounts/air_monitors.rsi
+    state: alarm2
+  unlockText: imperial-malf-module-air-alarms-unlock
+
+- type: imperialMalfModule
+  id: ImperialMalfFireAlarms
+  name: imperial-malf-module-fire-alarms-name
+  description: imperial-malf-module-fire-alarms-desc
+  cost: 25
+  category: Utility
+  onePurchase: true
+  action: ActionImperialMalfFireAlarms
+  uses: 1
+  order: 1
+  icon:
+    sprite: Imperial/StationAi/malf.rsi
+    state: break_fire_alarms
+  unlockText: imperial-malf-module-fire-alarms-unlock
+
+- type: imperialMalfModule
+  id: ImperialMalfEmergencyLights
+  name: imperial-malf-module-emergency-name
+  description: imperial-malf-module-emergency-desc
+  cost: 10
+  category: Utility
+  onePurchase: true
+  action: ActionImperialMalfEmergencyLights
+  uses: 1
+  order: 2
+  icon:
+    sprite: Structures/Wallmounts/Lighting/emergency_light.rsi
+    state: emergency_light_off
+  unlockText: imperial-malf-module-emergency-unlock
+
+- type: imperialMalfModule
+  id: ImperialMalfReactivateCameras
+  name: imperial-malf-module-cameras-name
+  description: imperial-malf-module-cameras-desc
+  cost: 10
+  category: Utility
+  onePurchase: true
+  action: ActionImperialMalfReactivateCameras
+  uses: 30
+  order: 3
+  icon:
+    sprite: Imperial/StationAi/malf.rsi
+    state: reactivate_cameras
+  unlockText: imperial-malf-module-cameras-unlock
+
+- type: imperialMalfModule
+  id: ImperialMalfEmag
+  name: imperial-malf-module-emag-name
+  description: imperial-malf-module-emag-desc
+  cost: 20
+  category: Utility
+  action: ActionImperialMalfEmag
+  uses: 7
+  order: 4
+  icon:
+    sprite: Objects/Tools/emag.rsi
+    state: icon
+  unlockText: imperial-malf-module-emag-unlock
+
+- type: imperialMalfModule
+  id: ImperialMalfDominateMech
+  name: imperial-malf-module-mech-name
+  description: imperial-malf-module-mech-desc
+  cost: 30
+  category: Utility
+  onePurchase: true
+  action: ActionImperialMalfDominateMech
+  uses: 1
+  order: 5
+  icon:
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: ripley
+  unlockText: imperial-malf-module-mech-unlock
+
+- type: imperialMalfModule
+  id: ImperialMalfVoiceChanger
+  name: imperial-malf-module-voice-name
+  description: imperial-malf-module-voice-desc
+  cost: 20
+  category: Utility
+  onePurchase: true
+  action: ActionImperialMalfVoiceChanger
+  order: 6
+  icon:
+    sprite: Imperial/StationAi/malf.rsi
+    state: voice_changer
+  unlockText: imperial-malf-module-voice-unlock
+
+- type: imperialMalfModule
+  id: ImperialMalfCoreTilt
+  name: imperial-malf-module-roll-name
+  description: imperial-malf-module-roll-desc
+  cost: 10
+  category: Utility
+  action: ActionImperialMalfRoll
+  uses: 20
+  order: 7
+  icon:
+    sprite: Imperial/StationAi/malf.rsi
+    state: roll_over
+  unlockText: imperial-malf-module-roll-unlock
+
+# ─── Улучшения ───
+- type: imperialMalfModule
+  id: ImperialMalfUpgradeCameras
+  name: imperial-malf-module-xray-name
+  description: imperial-malf-module-xray-desc
+  cost: 35
+  category: Upgrade
+  onePurchase: true
+  order: 0
+  icon:
+    sprite: Structures/Wallmounts/camera.rsi
+    state: camera
+  unlockText: imperial-malf-module-xray-unlock
+
+- type: imperialMalfModule
+  id: ImperialMalfUpgradeTurrets
+  name: imperial-malf-module-turrets-name
+  description: imperial-malf-module-turrets-desc
+  cost: 30
+  category: Upgrade
+  onePurchase: true
+  order: 1
+  icon:
+    sprite: Objects/Weapons/Guns/Turrets/sentry_turret.rsi
+    state: base
+  unlockText: imperial-malf-module-turrets-unlock
+
+- type: imperialMalfModule
+  id: ImperialMalfEavesdrop
+  name: imperial-malf-module-eavesdrop-name
+  description: imperial-malf-module-eavesdrop-desc
+  cost: 30
+  category: Upgrade
+  onePurchase: true
+  order: 2
+  icon:
+    sprite: Clothing/Ears/Headsets/base.rsi
+    state: icon
+  unlockText: imperial-malf-module-eavesdrop-unlock
+
+# ─── Действия модулей ───
+- type: entity
+  abstract: true
+  parent: BaseAction
+  id: BaseActionImperialMalf
+  components:
+  - type: Action
+    priority: -10
+    itemIconStyle: BigAction
+
+- type: entity
+  abstract: true
+  parent: BaseActionImperialMalf
+  id: BaseActionImperialMalfEntity
+  components:
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+
+- type: entity
+  parent: BaseActionImperialMalf
+  id: ActionImperialMalfLockdown
+  name: Блокировка
+  description: Закрыть, заблокировать и электрифицировать все шлюзы станции на 90 секунд.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/StationAi/malf.rsi
+      state: lockdown
+  - type: InstantAction
+    event: !type:ImperialMalfLockdownActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalfEntity
+  id: ActionImperialMalfOverrideMachine
+  name: Оживить машину
+  description: Через 5 секунд выбранная машина оживёт и нападёт на окружающих.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/StationAi/malf.rsi
+      state: override_machine
+  # ИИ выбирает точку, сервер берёт подходящую сущность у места клика.
+  - type: WorldTargetAction
+    event: !type:ImperialMalfOverrideMachineActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalfEntity
+  id: ActionImperialMalfOverloadMachine
+  name: Перегрузить машину
+  description: Через 5 секунд выбранная машина взорвётся.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/StationAi/malf.rsi
+      state: overload_machine
+  # ИИ выбирает точку, сервер берёт подходящую сущность у места клика.
+  - type: WorldTargetAction
+    event: !type:ImperialMalfOverloadMachineActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalf
+  id: ActionImperialMalfDestroyRcds
+  name: Взорвать РЦД
+  description: Подорвать все РЦД на станции, кроме установленных в киборгах.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/StationAi/malf.rsi
+      state: detonate_rcds
+  - type: InstantAction
+    event: !type:ImperialMalfDestroyRcdsActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalf
+  id: ActionImperialMalfBlackout
+  name: Отключение света
+  description: Перегрузить осветительные цепи станции, разбивая лампы.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/StationAi/malf.rsi
+      state: blackout
+  - type: InstantAction
+    event: !type:ImperialMalfBlackoutActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalf
+  id: ActionImperialMalfHonk
+  name: Мегахонк
+  description: Включить сирену на всех интеркомах станции, оглушая экипаж.
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Fun/bikehorn.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:ImperialMalfHonkActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalf
+  id: ActionImperialMalfFactory
+  name: Роботизированная фабрика
+  description: Построить фабрику киборгов там, куда смотрит ваш взгляд. Нужны три свободные клетки пола в ряд.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/StationAi/malf.rsi
+      state: robotic_factory
+  - type: InstantAction
+    event: !type:ImperialMalfFactoryActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalfEntity
+  id: ActionImperialMalfFlood
+  name: Режим затопления
+  description: Перевести воздушную тревогу в режим затопления, отключив все проверки давления.
+  components:
+  - type: Action
+    icon:
+      sprite: Structures/Wallmounts/air_monitors.rsi
+      state: alarm2
+  # ИИ выбирает точку, сервер берёт подходящую сущность у места клика.
+  - type: WorldTargetAction
+    event: !type:ImperialMalfFloodActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalf
+  id: ActionImperialMalfFireAlarms
+  name: Отключить пожарную тревогу
+  description: Пожарные тревоги перестанут замечать огонь, пожарные шлюзы откроются.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/StationAi/malf.rsi
+      state: break_fire_alarms
+  - type: InstantAction
+    event: !type:ImperialMalfFireAlarmsActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalf
+  id: ActionImperialMalfEmergencyLights
+  name: Отключить аварийный свет
+  description: Навсегда отключить аварийное освещение станции.
+  components:
+  - type: Action
+    icon:
+      sprite: Structures/Wallmounts/Lighting/emergency_light.rsi
+      state: emergency_light_off
+  - type: InstantAction
+    event: !type:ImperialMalfEmergencyLightsActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalf
+  id: ActionImperialMalfReactivateCameras
+  name: Перезапуск камер
+  description: Включить отключённые камеры станции. Каждая камера тратит одно применение.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/StationAi/malf.rsi
+      state: reactivate_cameras
+  - type: InstantAction
+    event: !type:ImperialMalfReactivateCamerasActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalfEntity
+  id: ActionImperialMalfEmag
+  name: Удалённый взлом
+  description: Снять предохранители с выбранного устройства, как криптографическим секвенсором.
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Tools/emag.rsi
+      state: icon
+  # ИИ выбирает точку, сервер берёт подходящую сущность у места клика.
+  - type: WorldTargetAction
+    event: !type:ImperialMalfEmagActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalfEntity
+  id: ActionImperialMalfDominateMech
+  name: Захват меха
+  description: Выбросить пилота и взять мех под полный контроль.
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Specific/Mech/mecha.rsi
+      state: ripley
+  # ИИ выбирает точку, сервер берёт подходящую сущность у места клика.
+  - type: WorldTargetAction
+    event: !type:ImperialMalfDominateMechActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalf
+  id: ActionImperialMalfMechReturn
+  name: Вернуться в ядро
+  description: Покинуть захваченный мех.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/StationAi/malf.rsi
+      state: ai_core
+  - type: InstantAction
+    event: !type:ImperialMalfMechReturnActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalf
+  id: ActionImperialMalfVoiceChanger
+  name: Изменение голоса
+  description: Говорить чужим именем. Пустое имя — вернуть свой голос.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/StationAi/malf.rsi
+      state: voice_changer
+  - type: InstantAction
+    event: !type:ImperialMalfVoiceChangerActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalf
+  id: ActionImperialMalfRoll
+  name: Перекатиться
+  description: Опрокинуть ядро на соседнюю клетку, раздавив всех, кто там стоит.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/StationAi/malf.rsi
+      state: roll_over
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ImperialMalfRollActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalf
+  id: ActionImperialMalfVendorTilt
+  name: Опрокинуть автомат
+  description: Обрушить торговый автомат рядом с выбранной клеткой прямо на неё.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/StationAi/malf.rsi
+      state: vendor_tilt
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ImperialMalfVendorTiltActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalf
+  id: ActionImperialMalfDoomsday
+  name: Устройство Судного дня
+  description: Запустить устройство Судного дня. Через 450 секунд вся органическая жизнь на станции погибнет. Ядро должно уцелеть.
+  components:
+  - type: Action
+    priority: -13
+    icon:
+      sprite: Imperial/StationAi/malf.rsi
+      state: ai_malf_core
+  - type: InstantAction
+    event: !type:ImperialMalfDoomsdayActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalfEntity
+  id: ActionImperialMalfShunt
+  name: Перенос в ЛКП
+  description: Перенести своё ядро во взломанный ЛКП. Если ЛКП уничтожат — вы погибнете.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/StationAi/malf.rsi
+      state: ai_shell
+  # ИИ выбирает точку, сервер берёт подходящую сущность у места клика.
+  - type: WorldTargetAction
+    event: !type:ImperialMalfShuntActionEvent
+
+- type: entity
+  parent: BaseActionImperialMalf
+  id: ActionImperialMalfReturnToCore
+  name: Вернуться в ядро
+  description: Покинуть ЛКП и вернуться в своё ядро, если оно цело.
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/StationAi/malf.rsi
+      state: ai_core
+  - type: InstantAction
+    event: !type:ImperialMalfReturnToCoreActionEvent
+
+# ─── Сущности ───
+# mimic/copy/machine: облик берётся с машины, см. ImperialMalfMimicComponent.
+- type: entity
+  parent: [ SimpleMobBase, MobCombat ]
+  id: ImperialMalfMachineMimic
+  name: машина
+  description: Она двигается.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ImperialMalfMimic
+  - type: InputMover
+  - type: MobMover
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Structures/Machines/VendingMachines/cola.rsi
+    state: normal
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        density: 1000
+        mask:
+        - MobMask
+        layer:
+        - MachineLayer
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcFist
+    damage:
+      types:
+        Blunt: 15
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2.5
+
+# /obj/machinery/transformer: лента, превращающая людей в киборгов.
+- type: entity
+  id: ImperialMalfRoboticFactory
+  name: роботизированная фабрика
+  description: Огромная машина, превращающая всё, что лежит на ленте, в киборгов. Выглядит недружелюбно.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    drawdepth: FloorObjects
+    layers:
+    - sprite: Structures/conveyor.rsi
+      state: conveyor_started_cw
+      offset: -1,0
+    - sprite: Structures/conveyor.rsi
+      state: conveyor_started_cw
+    - sprite: Structures/conveyor.rsi
+      state: conveyor_started_cw
+      offset: 1,0
+    - sprite: Structures/Machines/recycling.rsi
+      state: grinder-o0
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StrongMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# «Пилот-призрак» меха, захваченного ИИ.
+- type: entity
+  id: ImperialMalfMechProxy
+  name: ИИ
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Physics
+    bodyType: KinematicController
+  - type: MindContainer
+  - type: InputMover
+  - type: MobMover
+  - type: Eye
+  - type: ContentEye
+  - type: Actions
+  - type: Examiner
+  - type: CombatMode
+  - type: DoAfter
+  - type: Alerts
+
+# Ядро-укрытие сбойного ИИ внутри ЛКП.
+- type: entity
+  parent: PlayerStationAiEmpty
+  id: ImperialMalfShuntCore
+  name: ЛКП
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    visible: false
+  - type: Fixtures
+    fixtures: {}
