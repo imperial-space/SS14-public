@@ -44,7 +44,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Prototypes;
-using Content.Shared.Imperial.Achievements;
 using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Server.Imperial.Cult;
@@ -81,7 +80,6 @@ public sealed partial class CultItemSystem : EntitySystem
     private static readonly EntProtoId BondAction = "ActionCultBloodBond";
 
     private static readonly ProtoId<DamageTypePrototype> SlashDamageType = "Slash";
-    private static readonly ProtoId<ImperialAchievementPrototype> ImperialAchievementCultShuttleOmfg = "ImperialAchievementCultShuttleOmfg";
     private static readonly EntProtoId PuddleBlood = "PuddleBlood";
     private static readonly EntProtoId CultShieldWeak = "CultShieldWeak";
 
