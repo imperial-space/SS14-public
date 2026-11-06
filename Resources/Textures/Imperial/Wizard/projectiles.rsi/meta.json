@@ -1,0 +1,220 @@
+{
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "Taken from tgstation/BandaStation (projectiles.dmi)",
+    "size":  {
+                 "x":  32,
+                 "y":  32
+             },
+    "states":  [
+                   {
+                       "name":  "antimagic"
+                   },
+                   {
+                       "name":  "arcane_barrage"
+                   },
+                   {
+                       "name":  "babel",
+                       "delays":  [
+                                      [
+                                          0.2,
+                                          0.2,
+                                          0.2
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "blue_laser",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "bluespace",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "bounty",
+                       "delays":  [
+                                      [
+                                          0.2,
+                                          0.2
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "cultfist",
+                       "delays":  [
+                                      [
+                                          0.5,
+                                          0.05,
+                                          0.2
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "energy",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "fetch",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "fireball",
+                       "delays":  [
+                                      [
+                                          0.095,
+                                          0.095,
+                                          0.095,
+                                          0.095,
+                                          0.095
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "flight",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "ice_1"
+                   },
+                   {
+                       "name":  "ice_2"
+                   },
+                   {
+                       "name":  "ion",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "lavastaff",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "locker"
+                   },
+                   {
+                       "name":  "magicm",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "necropotence",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "pulse1_bl"
+                   },
+                   {
+                       "name":  "red_1"
+                   },
+                   {
+                       "name":  "spellcard"
+                   },
+                   {
+                       "name":  "tesla_projectile",
+                       "delays":  [
+                                      [
+                                          0.05,
+                                          0.08,
+                                          0.08,
+                                          0.08,
+                                          0.08,
+                                          0.08,
+                                          0.08,
+                                          0.08,
+                                          0.08,
+                                          0.08,
+                                          0.08,
+                                          0.08
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "wipe",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "spell",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "nothing"
+                   }
+               ]
+}

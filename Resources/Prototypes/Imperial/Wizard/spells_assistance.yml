@@ -1,0 +1,327 @@
+# Поддержка мага TG (spellbook_entries/assistance.dm): заклинания и вспомогательные сущности.
+
+# summonitem
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellSummonItem
+  name: Мгновенный призыв
+  description: Возвращает в руку ранее отмеченный предмет из любой точки вселенной.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: summons }
+  - type: ImperialSpell
+    school: transmutation
+    cooldown: 10
+    maxLevel: 1
+    invocation: imperial-spell-summonitem-invocation
+    invocationType: Whisper
+    requirements: NoAntimagic
+  - type: ImperialSummonItemSpell
+
+# charge
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellCharge
+  name: Заряд
+  description: Перезаряжает предмет в руках — от магических артефактов до электрических деталей.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: charge }
+  - type: ImperialSpell
+    school: transmutation
+    cooldown: 60
+    cooldownReductionPerRank: 5
+    invocation: imperial-spell-charge-invocation
+    invocationType: Whisper
+    requirements: NoAntimagic
+    castSound: /Audio/Imperial/Wizard/charge.ogg
+  - type: ImperialChargeSpell
+
+# tap
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellSoulTap
+  name: Высасывание души
+  description: Питайте свои заклинания собственной душой!
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: soultap }
+  - type: ImperialSpell
+    school: necromancy
+    cooldown: 1
+    maxLevel: 1
+    invocation: imperial-spell-soultap-invocation
+    invocationType: Shout
+  - type: ImperialSoulTapSpell
+
+# shapeshift/wizard
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellShapeshift
+  name: Дикое превращение
+  description: Примите на время облик другого существа. Выбор нельзя изменить.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: shapeshift }
+  - type: ImperialSpell
+    school: transmutation
+    cooldown: 20
+    cooldownReductionPerRank: 8
+    maxLevel: 3
+    invocation: imperial-spell-shapeshift-invocation
+    invocationType: Shout
+    requirements: NoAntimagic
+  - type: ImperialShapeshiftSpell
+    shapes:
+    - MobCarpMagic
+    - ImperialMobJuggernautMystic
+    - MobMouse
+    - MobCorgi
+    - MobGiantSpiderWizard
+    - ImperialMobEd209
+
+- type: entity
+  parent: [ SimpleMobBase, MobCombat ]
+  id: ImperialMobJuggernautMystic
+  name: джаггернаут
+  description: Огромный, неуклюжий конструкт, способный выдержать много урона. Сияет магией волшебника.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Wizard/constructs.rsi
+    layers:
+    - state: juggernaut
+    - state: glow_juggernaut_wizard
+      shader: unshaded
+  - type: InputMover
+  - type: MobMover
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcFist
+    damage:
+      types:
+        Blunt: 25
+    bluntStaminaDamageFactor: 0
+  - type: Reflect
+    reflectProb: 0.4
+  - type: NpcFactionMember
+    factions:
+    - Wizard
+
+- type: entity
+  parent: [ SimpleMobBase, MobCombat ]
+  id: ImperialMobEd209
+  name: ED-209
+  description: Охранный робот. Выглядит не слишком довольным.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Wizard/ed209.rsi
+    state: ed209
+  - type: InputMover
+  - type: MobMover
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Blunt: 15
+  - type: Gun
+    fireRate: 1
+    showExamineText: false
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/taser.ogg
+  - type: BatteryAmmoProvider
+    proto: RedLightLaser
+    fireCost: 0
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: NpcFactionMember
+    factions:
+    - Wizard
+
+# Оживлённый предмет (/mob/living/simple_animal/hostile/mimic/copy).
+- type: entity
+  parent: [ SimpleMobBase, MobCombat ]
+  id: ImperialAnimatedObject
+  name: предмет
+  description: Он двигается.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ImperialAnimated
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Structures/Machines/VendingMachines/cola.rsi
+    state: normal
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcFist
+    damage:
+      types:
+        Blunt: 10
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 3.5
+
+# /obj/structure/closet/decay.
+- type: entity
+  parent: ClosetSteelBase
+  id: ImperialCursedLocker
+  name: проклятый шкафчик
+  description: Внутри что-то шуршит. Через пять минут шкаф распадётся сам.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    color: "#a070ff"
+
+# ─── Пояс палочек (/obj/item/storage/belt/wands/full) ───
+- type: entity
+  parent: ClothingBeltWand
+  id: ImperialWandBeltFull
+  name: пояс палочек
+  suffix: Полный
+  components:
+  - type: StorageFill
+    contents:
+    - id: ImperialWandDeathFull
+    - id: ImperialWandResurrectionFull
+    - id: ImperialWandPolymorphFull
+    - id: ImperialWandTeleportFull
+    - id: ImperialWandDoorFull
+    - id: ImperialWandFireballFull
+    - id: ImperialWandShrinkFull
+
+- type: entity
+  parent: ClothingBeltWand
+  id: ImperialWandBeltDiscount
+  name: пояс палочек
+  suffix: Уценка
+  components:
+  - type: StorageFill
+    contents:
+    - id: ImperialWandAnimate
+      prob: 0.4
+    - id: ImperialWandBabel
+      prob: 0.4
+    - id: ImperialWandBald
+      prob: 0.4
+    - id: ImperialWandDoor
+      prob: 0.4
+    - id: ImperialWandFireball
+      prob: 0.4
+    - id: ImperialWandFreeze
+      prob: 0.4
+    - id: ImperialWandHallucination
+      prob: 0.4
+    - id: ImperialWandLevitate
+      prob: 0.4
+    - id: ImperialWandPax
+      prob: 0.4
+    - id: ImperialWandPizza
+      prob: 0.4
+    - id: ImperialWandPlague
+      prob: 0.4
+    - id: ImperialWandPrank
+      prob: 0.4
+    - id: ImperialWandRebel
+      prob: 0.4
+    - id: ImperialWandRepulse
+      prob: 0.4
+    - id: ImperialWandSwap
+      prob: 0.4
+    - id: ImperialWandTentacle
+      prob: 0.4
+    - id: ImperialWandZap
+      prob: 0.4
+
+- type: entity
+  parent: ImperialWandDeath
+  id: ImperialWandDeathFull
+  suffix: Полная
+  components:
+  - type: ImperialWand
+    variableCharges: false
+    selfEffect: Death
+
+- type: entity
+  parent: ImperialWandResurrection
+  id: ImperialWandResurrectionFull
+  suffix: Полная
+  components:
+  - type: ImperialWand
+    variableCharges: false
+    selfEffect: Resurrection
+
+- type: entity
+  parent: ImperialWandPolymorph
+  id: ImperialWandPolymorphFull
+  suffix: Полная
+  components:
+  - type: ImperialWand
+    variableCharges: false
+    selfEffect: Change
+
+- type: entity
+  parent: ImperialWandTeleport
+  id: ImperialWandTeleportFull
+  suffix: Полная
+  components:
+  - type: ImperialWand
+    variableCharges: false
+    selfEffect: Teleport
+
+- type: entity
+  parent: ImperialWandDoor
+  id: ImperialWandDoorFull
+  suffix: Полная
+  components:
+  - type: ImperialWand
+    variableCharges: false
+    selfEffect: Door
+
+- type: entity
+  parent: ImperialWandFireball
+  id: ImperialWandFireballFull
+  suffix: Полная
+  components:
+  - type: ImperialWand
+    variableCharges: false
+    selfEffect: Fireball
+
+- type: entity
+  parent: ImperialWandShrink
+  id: ImperialWandShrinkFull
+  suffix: Полная
+  components:
+  - type: ImperialWand
+    variableCharges: false
+    selfEffect: Shrink

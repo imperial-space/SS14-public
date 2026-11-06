@@ -1,0 +1,295 @@
+# Камни душ, тени и конструкты мага TG (soulstone.dm, cult/constructs).
+
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialSoulstoneMystic
+  name: осколок камня душ
+  description: Фрагмент легендарного сокровища, известного просто как «Камень душ». Осколок всё ещё мерцает частицей силы.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/soulstone.rsi
+    layers:
+    - state: empty
+      map: [ "base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ImperialSoulstoneVisuals.Full:
+        base:
+          True: { state: full }
+          False: { state: empty }
+  - type: Item
+    size: Tiny
+  - type: ImperialSoulstone
+  - type: ContainerContainer
+    containers:
+      imperial_soulstone: !type:ContainerSlot
+
+# /obj/item/storage/belt/soulstone/full
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ImperialSoulstoneBeltFull
+  name: пояс для камней душ
+  description: Пояс для хранения камней душ.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/soulstone_belt.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/soulstone_belt.rsi
+  - type: Storage
+    grid:
+    - 0,0,5,1
+  - type: StorageFill
+    contents:
+    - id: ImperialSoulstoneMystic
+      amount: 6
+
+# /obj/structure/constructshell
+- type: entity
+  id: ImperialConstructShell
+  name: пустая оболочка
+  description: Зловещая машина, используемая владеющими магическим искусством. Она неактивна.
+  components:
+  - type: Transform
+    anchored: false
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Wizard/construct_shell.rsi
+    state: shell
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 100
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Pullable
+  - type: ImperialConstructShell
+
+# /mob/living/basic/shade
+- type: entity
+  parent: [ SimpleMobBase, MobCombat ]
+  id: ImperialWizardShade
+  name: тень
+  description: Связанный дух.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Wizard/constructs.rsi
+    state: shade_wizard
+  - type: InputMover
+  - type: MobMover
+  - type: MovementIgnoreGravity
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 4.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 8
+  - type: NpcFactionMember
+    factions:
+    - Wizard
+  - type: PointLight
+    radius: 1.5
+    energy: 1
+    color: "#6f9fff"
+  - type: ImperialWizardShade
+
+- type: entity
+  abstract: true
+  parent: [ SimpleMobBase, MobCombat ]
+  id: BaseImperialWizardConstruct
+  components:
+  - type: InputMover
+  - type: MobMover
+  - type: MovementIgnoreGravity
+  - type: NpcFactionMember
+    factions:
+    - Wizard
+  - type: PointLight
+    radius: 2
+    energy: 1.5
+    color: "#5f8fff"
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Wizard/constructs.rsi
+
+# /mob/living/basic/construct/juggernaut/mystic
+- type: entity
+  parent: BaseImperialWizardConstruct
+  id: ImperialMobConstructJuggernaut
+  name: джаггернаут
+  description: Огромный неуклюжий конструкт, способный выдержать много урона. Сияет магией мага.
+  components:
+  - type: Sprite
+    layers:
+    - state: juggernaut
+    - state: glow_juggernaut_wizard
+      shader: unshaded
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcFist
+    damage:
+      types:
+        Blunt: 25
+  - type: Reflect
+    reflectProb: 0.4
+  - type: ActionGrant
+    actions:
+    - ImperialSpellConstructForcewall
+
+# /mob/living/basic/construct/wraith/mystic
+- type: entity
+  parent: BaseImperialWizardConstruct
+  id: ImperialMobConstructWraith
+  name: призрак
+  description: Зловещий, проворный конструкт, способный проходить сквозь стены.
+  components:
+  - type: Sprite
+    layers:
+    - state: wraith
+    - state: glow_wraith_wizard
+      shader: unshaded
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 5.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      65: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 20
+  - type: ActionGrant
+    actions:
+    - ImperialSpellConstructShift
+
+# /mob/living/basic/construct/artificer/mystic
+- type: entity
+  parent: BaseImperialWizardConstruct
+  id: ImperialMobConstructArtificer
+  name: мастеровой
+  description: Пузатый конструкт, созданный для строительства и поддержки других конструктов.
+  components:
+  - type: Sprite
+    layers:
+    - state: artificer
+    - state: glow_artificer_wizard
+      shader: unshaded
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 4.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcFist
+    damage:
+      types:
+        Blunt: 5
+  - type: ActionGrant
+    actions:
+    - ImperialSpellConstructShellLesser
+    - ImperialSpellConstructSoulstone
+
+# ─── Заклинания конструктов и артефакта ───
+# conjure/construct: оболочка конструкта (маг получает при покупке камней душ).
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellConstructShell
+  name: Призыв оболочки конструкта
+  description: Создаёт оболочку конструкта, которой могут управлять тени.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/construct_shell.rsi, state: shell }
+  - type: ImperialSpell
+    school: conjuration
+    cooldown: 60
+    maxLevel: 1
+    requirements: None
+    castSound: /Audio/Imperial/Wizard/summonitems_generic.ogg
+  - type: ImperialConjureSpell
+    summons: [ ImperialConstructShell ]
+    radius: 0
+
+- type: entity
+  parent: ImperialSpellConstructShell
+  id: ImperialSpellConstructShellLesser
+  name: Создание оболочки конструкта
+  components:
+  - type: ImperialSpell
+    cooldown: 180
+
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellConstructSoulstone
+  name: Создание камня душ
+  description: Создаёт осколок камня душ.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/soulstone.rsi, state: empty }
+  - type: ImperialSpell
+    school: conjuration
+    cooldown: 240
+    maxLevel: 1
+    requirements: None
+  - type: ImperialConjureSpell
+    summons: [ ImperialSoulstoneMystic ]
+    radius: 0
+
+- type: entity
+  parent: ImperialSpellForcewall
+  id: ImperialSpellConstructForcewall
+  name: Щит джаггернаута
+  components:
+  - type: ImperialSpell
+    cooldown: 40
+    invocationType: None
+    requirements: None
+
+- type: entity
+  parent: ImperialSpellJaunt
+  id: ImperialSpellConstructShift
+  name: Фазовый сдвиг
+  description: Позволяет проходить сквозь стены.
+  components:
+  - type: ImperialSpell
+    cooldown: 25
+    requirements: None

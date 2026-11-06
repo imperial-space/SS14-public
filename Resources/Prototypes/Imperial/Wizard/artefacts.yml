@@ -1,0 +1,270 @@
+# Артефакты мага TG (equipment/artefact.dm, wizard_hammer.dm, teleport_rod.dm).
+
+# /obj/item/scrying
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialScryingOrb
+  name: шар предсказаний
+  description: Раскалённый шар потусторонней энергии. Одно прикосновение дарит зрение и слух за пределами смертного, а взгляд в него показывает всю вселенную.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/artefacts.rsi
+    state: scrying
+  - type: Item
+    size: Small
+  - type: MeleeWeapon
+    damage:
+      types:
+        Heat: 15
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Heat: 15
+  - type: ImperialScryingOrb
+
+# /obj/item/necromantic_stone
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialNecromanticStone
+  name: некромантский камень
+  description: Осколок, способный воскрешать людей в виде скелетов-рабов.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/artefacts.rsi
+    state: necrostone
+  - type: Item
+    size: Tiny
+  - type: ImperialNecromanticStone
+
+# /obj/item/warp_whistle
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialWarpWhistle
+  name: свисток переноса
+  description: Призывает облако, которое подхватит вас и унесёт в случайное место станции.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/artefacts.rsi
+    state: whistle
+  - type: Item
+    size: Tiny
+  - type: ImperialWarpWhistle
+
+- type: entity
+  id: ImperialWarpTornado
+  name: смерч
+  description: Эта штука сосёт!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/artefacts.rsi
+    state: tornado
+    drawdepth: Effects
+  - type: Physics
+    bodyType: KinematicController
+  - type: TimedDespawn
+    lifetime: 6
+
+# /obj/item/runic_vendor_scepter
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialRunicScepter
+  name: скипетр рунической вендормантии
+  description: Позволяет призывать, отталкивать и взрывать рунические торгоматы. Хранит до трёх зарядов, которые восстанавливаются простым магическим сосредоточением.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/scepters.rsi
+    state: vendor_staff
+  - type: Item
+    size: Normal
+    sprite: Imperial/Wizard/scepters.rsi
+    heldPrefix: vendor_staff
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 10
+  - type: ImperialRunicScepter
+
+# /obj/machinery/vending/runic_vendor
+- type: entity
+  id: ImperialRunicVendor
+  name: рунический торговый автомат
+  description: Этот торгомат создан для войны! Идеальная приманка для жадного до покупок экипажа Nanotrasen.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Wizard/runic_vendor.rsi
+    layers:
+    - state: normal
+    - state: normal-unshaded
+      shader: unshaded
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#c95ff5"
+  - type: ImperialRunicVendor
+
+# /obj/item/mjollnir
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialMjolnir
+  name: Мьёльнир
+  description: Оружие, достойное бога, способное бить с силой молнии. Трещит от едва сдерживаемой энергии.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/mjolnir.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Imperial/Wizard/mjolnir.rsi
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 20
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      collection: sparks
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 30
+  - type: ImperialMjolnir
+
+# /obj/item/singularityhammer
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialSingularityHammer
+  name: молот сингулярности
+  description: "Вершина технологий ближнего боя: молот использует миниатюрную сингулярность для сокрушительных ударов."
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/singularity_hammer.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Imperial/Wizard/singularity_hammer.rsi
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 15
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 5
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 15
+  - type: ImperialSingularityHammer
+
+# /obj/item/teleport_rod
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialTeleportRod
+  name: телеграм-скипетр
+  description: Магический жезл, телепортирующий вас туда, куда вы им укажете. Частые прыжки причиняют боль, пока вы не стабилизируетесь.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/scepters.rsi
+    state: tele_wand_er
+  - type: Item
+    size: Normal
+    sprite: Imperial/Wizard/scepters.rsi
+    heldPrefix: tele_wand_er
+  - type: PointLight
+    radius: 2
+    energy: 1
+    color: "#d8a3c7"
+  - type: ImperialTeleportRod
+
+- type: entity
+  id: ImperialTeleportFluxEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    radius: 1
+    energy: 2
+    color: "#ff00ff"
+  - type: TimedDespawn
+    lifetime: 2
+
+# /datum/outfit/roman
+- type: entity
+  parent: ClothingHeadBase
+  id: ImperialClothingHeadHelmetRoman
+  name: римский шлем
+  description: Древний шлем из бронзы и кожи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/Clothing/roman_helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/Clothing/roman_helmet.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ImperialClothingUniformRoman
+  name: римские доспехи
+  description: Древние доспехи из бронзы и кожи.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/Clothing/roman_uniform.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/Clothing/roman_uniform.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ImperialClothingShoesRoman
+  name: римские сандалии
+  description: Сандалии с ремешками, перешитые под кожаные ботинки.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/Clothing/roman_shoes.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/Clothing/roman_shoes.rsi
+
+# Цель прислужника (/datum/antagonist/wizard_minion: «Служи <маг>»).
+- type: entity
+  parent: BaseObjective
+  id: ImperialWizardServeObjective
+  name: Служите магу
+  description: Помогайте своему хозяину любой ценой.
+  components:
+  - type: Objective
+    issuer: objective-issuer-imperial-wizard
+    difficulty: 1
+    icon:
+      sprite: Clothing/Head/Hats/wizardhat.rsi
+      state: icon
+  - type: ImperialWizardServeCondition

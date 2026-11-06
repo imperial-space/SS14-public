@@ -1,0 +1,15 @@
+{
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "Taken from tgstation/BandaStation (aibots.dmi)",
+    "size":  {
+                 "x":  32,
+                 "y":  32
+             },
+    "states":  [
+                   {
+                       "name":  "ed209",
+                       "directions":  4
+                   }
+               ]
+}

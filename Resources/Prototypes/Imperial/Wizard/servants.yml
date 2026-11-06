@@ -1,0 +1,207 @@
+# Слуги и снаряжение мага TG: контракт ученика, колода стража, лягушка, клинок, доспехи боевого мага.
+
+# /obj/item/antag_spawner/contract
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialApprenticeContract
+  name: контракт ученичества
+  description: Магический контракт, ранее подписанный учеником. В обмен на обучение магическому искусству он обязан явиться на ваш зов.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/misc_items.rsi
+    state: contract
+  - type: Item
+    size: Small
+  - type: ImperialApprenticeContract
+  - type: ImperialSpellbookRefundableItem
+    entry: ImperialSpellbookContract
+    message: imperial-spellbook-contract-refunded
+
+# /obj/item/guardian_creator/wizard
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialGuardianDeck
+  name: зачарованная колода карт таро
+  description: Зачарованная колода карт таро, по слухам — источник невообразимой силы.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/misc_items.rsi
+    state: tarot
+  - type: Item
+    size: Small
+  - type: GuardianCreator
+    guardianProto: MobIfritGuardian
+
+# /obj/item/frog_contract
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialFrogContract
+  name: лягушачий контракт
+  description: Заключите договор с древней лягушкой! Этот великий зверь станет вашим скакуном, защитником, но главное — другом.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/misc_items.rsi
+    state: frog_contract
+  - type: Item
+    size: Small
+  - type: ImperialFrogContract
+
+# /obj/item/frog_statue
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialFrogStatue
+  name: статуэтка лягушки
+  description: Им там правда удобно жить?
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/misc_items.rsi
+    state: frog_statue
+  - type: Item
+    size: Small
+  - type: ImperialFrogStatue
+  - type: ContainerContainer
+    containers:
+      imperial_frog: !type:ContainerSlot
+
+# /mob/living/basic/leaper (лягушка мага)
+- type: entity
+  parent: [ SimpleMobBase, MobCombat ]
+  id: ImperialMobWizardFrog
+  name: древняя лягушка
+  description: Громадная ядовитая лягушка, связанная договором с волшебником.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Wizard/leaper.rsi
+    layers:
+    - state: leaper
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: leaper_overlay
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: leaper
+      Dead:
+        Base: leaper_dead
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NpcFactionMember
+    factions:
+    - Wizard
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Dead
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Piercing: 15
+        Poison: 5
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 4
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.8
+        density: 300
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+
+# /obj/item/highfrequencyblade/wizard
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialHighFrequencyBlade
+  name: высокочастотный клинок
+  description: Клинок, выкованный легендарным кузнецом. Его чары позволяют рассекать что угодно.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/hfblade.rsi
+    state: icon
+  - type: Item
+    size: Large
+    sprite: Imperial/Wizard/hfblade.rsi
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Slash: 10
+  - type: MeleeWeapon
+    attackRate: 4
+    damage:
+      types:
+        Slash: 8
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 20
+  - type: Reflect
+    reflectProb: 0.25
+  - type: ImperialWizardOnlyWield
+  - type: ImperialGibDeadOnHit
+
+# /obj/item/mod/control/pre_equipped/enchanted — доспехи боевого мага.
+- type: entity
+  parent: [ ClothingOuterHardsuitBase, BaseMagicalContraband ]
+  id: ImperialBattlemageArmor
+  name: доспехи боевого мага
+  description: Артефактный комплект брони, позволяющий использовать заклинания и защищающий от атак и пустоты космоса. Щит боевого мага отражает удары.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/Clothing/battlemage_suit.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/Clothing/battlemage_suit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.4
+        Heat: 0.4
+        Radiation: 0.25
+        Caustic: 0.5
+  - type: Reflect
+    reflectProb: 0.5
+  - type: WizardClothes
+  - type: ToggleableClothing
+    clothingPrototype: ImperialBattlemageHelmet
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, BaseMagicalContraband ]
+  id: ImperialBattlemageHelmet
+  name: шлем боевого мага
+  description: Шлем доспехов боевого мага.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/Clothing/battlemage_helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/Clothing/battlemage_helmet.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.27
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+  - type: WizardClothes

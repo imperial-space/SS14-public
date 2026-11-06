@@ -1,0 +1,69 @@
+# Снаряжение мага TG: книга заклинаний, свиток телепортации, посох.
+
+# /obj/item/spellbook.
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialSpellbook
+  name: книга заклинаний
+  description: Необычный том, светящийся силой.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/spellbook.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: ImperialSpellbook
+  - type: UserInterface
+    interfaces:
+      enum.ImperialSpellbookUiKey.Key:
+        type: ImperialSpellbookBoundUserInterface
+  - type: Tag
+    tags:
+    - Book
+
+# /obj/item/teleportation_scroll.
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialTeleportScroll
+  name: свиток телепортации
+  description: Свиток для перемещения по станции.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/scroll.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: ImperialTeleportScroll
+    uses: 4
+
+# /obj/item/teleportation_scroll/apprentice.
+- type: entity
+  parent: ImperialTeleportScroll
+  id: ImperialTeleportScrollApprentice
+  name: малый свиток телепортации
+  components:
+  - type: ImperialTeleportScroll
+    uses: 1
+
+# /obj/item/staff: посох волшебника, служит тростью.
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialWizardStaff
+  name: посох волшебника
+  description: По-видимому, посох, которым пользуется волшебник.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/staff.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Wizard/staff.rsi
+    size: Small
+  - type: MeleeWeapon
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 3
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5

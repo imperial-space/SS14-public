@@ -1,0 +1,540 @@
+# Защитные заклинания мага TG (spellbook_entries/defensive.dm).
+
+# aoe/magic_missile
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellMagicMissile
+  name: Волшебная ракета
+  description: Выпускает несколько медленных магических снарядов по ближайшим целям.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: magicm }
+  - type: ImperialSpell
+    school: evocation
+    cooldown: 20
+    cooldownReductionPerRank: 3.5
+    invocation: imperial-spell-magicm-invocation
+    invocationType: Shout
+    castSound: /Audio/Imperial/Wizard/magic_missile.ogg
+  - type: ImperialMagicMissileSpell
+
+# emp/disable_tech
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellDisableTech
+  name: Отключение техники
+  description: Отключает всё оружие, камеры и большую часть техники вокруг.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: emp }
+  - type: ImperialSpell
+    school: evocation
+    cooldown: 40
+    cooldownReductionPerRank: 5
+    invocation: imperial-spell-disabletech-invocation
+    invocationType: Shout
+    castSound: /Audio/Imperial/Wizard/disable_tech.ogg
+  - type: ImperialEmpSpell
+
+# aoe/repulse/wizard
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellRepulse
+  name: Отталкивание
+  description: Отбрасывает всё вокруг заклинателя.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: repulse }
+  - type: ImperialSpell
+    school: evocation
+    cooldown: 40
+    cooldownReductionPerRank: 6.25
+    invocation: imperial-spell-repulse-invocation
+    invocationType: Shout
+    castSound: /Audio/Imperial/Wizard/repulse.ogg
+  - type: ImperialRepulseSpell
+
+# conjure_item/spellpacket
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellThrownLightning
+  name: Брошенная молния
+  description: В руке появляется мешочек чистой силы — брошенный, он оглушает цель.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: thrownlightning }
+  - type: ImperialSpell
+    school: conjuration
+    cooldown: 1
+    maxLevel: 1
+  - type: ImperialConjureItemSpell
+    item: ImperialSpellPacket
+    deleteOld: false
+    requiresHands: true
+
+# timestop
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellTimestop
+  name: Остановка времени
+  description: Останавливает время для всех, кроме вас — враги и даже снаряды замирают.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: time }
+  - type: ImperialSpell
+    school: forbidden
+    cooldown: 50
+    cooldownReductionPerRank: 10
+    invocation: imperial-spell-timestop-invocation
+    invocationType: Shout
+  - type: ImperialTimestopSpell
+
+# smoke
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellSmoke
+  name: Дым
+  description: Порождает облако удушливого дыма на вашем месте.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: smoke }
+  - type: ImperialSpell
+    school: conjuration
+    cooldown: 12
+    cooldownReductionPerRank: 2.5
+    requirements: None
+  - type: ImperialConjureSpell
+    summons: [ ImperialSpellSmokeCloud ]
+    radius: 0
+
+# forcewall
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellForcewall
+  name: Стена силы
+  description: Создайте магический барьер, через который пройдёте только вы.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: shield }
+  - type: ImperialSpell
+    school: transmutation
+    cooldown: 10
+    cooldownReductionPerRank: 1.25
+    invocation: imperial-spell-forcewall-invocation
+    invocationType: Shout
+    requirements: NoAntimagic
+    castSound: /Audio/Imperial/Wizard/forcewall.ogg
+  - type: ImperialForcewallSpell
+
+# lichdom
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellLichdom
+  name: Привязка души
+  description: Привязывает вашу душу к предмету в руке. Пока предмет цел, вы будете возрождаться после смерти.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: skeleton }
+  - type: ImperialSpell
+    school: necromancy
+    cooldown: 1
+    maxLevel: 1
+    invocation: imperial-spell-lichdom-invocation
+    invocationType: Shout
+    requirements: NoAntimagic, Station, Mind
+  - type: ImperialLichdomSpell
+
+# chuuni_invocations
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellChuuni
+  name: Призывы тюнибё
+  description: Все заклинания выкрикиваются... глупо. После каждого заклинания вы немного исцеляетесь.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: chuuni }
+  - type: ImperialSpell
+    school: forbidden
+    cooldown: 1
+    maxLevel: 1
+    invocation: imperial-spell-chuuni-invocation
+    invocationType: Shout
+    requirements: NoAntimagic, Station, Mind
+  - type: ImperialChuuniSpell
+
+# spacetime_dist
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellSpacetime
+  name: Искажение пространства-времени
+  description: Запутывает нити пространства-времени вокруг, перемешивая расположение клеток.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: spacetime }
+  - type: ImperialSpell
+    school: evocation
+    cooldown: 30
+    maxLevel: 1
+    requirements: WizardGarb, NoAntimagic, Station
+    castSound: /Audio/Imperial/Wizard/timeparadox2.ogg
+  - type: ImperialSpacetimeSpell
+
+# conjure/the_traps
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellTheTraps
+  name: Ловушки!
+  description: Призывает вокруг вас несколько ловушек.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: the_traps }
+  - type: ImperialSpell
+    school: conjuration
+    cooldown: 25
+    cooldownReductionPerRank: 5
+    invocation: imperial-spell-traps-invocation
+    invocationType: Shout
+  - type: ImperialConjureSpell
+    summons: [ ImperialTrapStun, ImperialTrapFire, ImperialTrapChill, ImperialTrapDamage ]
+    amount: 5
+    radius: 3
+    lifespan: 300
+    respectsDensity: true
+  - type: ImperialTrapsSpell
+
+# conjure/bee
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellBees
+  name: Малый призыв пчёл
+  description: Пинает транспространственный улей и призывает рой пчёл. Пчёлы НЕ дружелюбны ни к кому.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: bee }
+  - type: ImperialSpell
+    school: conjuration
+    cooldown: 60
+    cooldownReductionPerRank: 10
+    invocation: imperial-spell-bees-invocation
+    invocationType: Shout
+  - type: ImperialConjureSpell
+    summons: [ ImperialMobToxinBee ]
+    amount: 9
+    radius: 3
+
+# touch/duffelbag
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellDuffelbag
+  name: Проклятый вещмешок
+  description: Призывает демонический вещмешок на спину цели — он замедляет и медленно ест носителя.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: duffelbag_curse }
+  - type: ImperialSpell
+    school: conjuration
+    cooldown: 6
+    cooldownReductionPerRank: 1
+    invocation: imperial-spell-duffel-invocation
+    invocationType: Shout
+    requirements: NoAntimagic
+    castSound: /Audio/Imperial/Wizard/mm_hit.ogg
+  - type: ImperialSpellTouch
+    hand: ImperialTouchDuffelbag
+  - type: ImperialDuffelbagSpell
+
+# ─── Сущности ───
+- type: entity
+  parent: BaseBullet
+  id: ImperialProjectileMagicMissile
+  name: волшебная ракета
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/projectiles.rsi
+    layers:
+    - state: magicm
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 1
+    soundHit:
+      path: /Audio/Imperial/Wizard/mm_hit.ogg
+  - type: ImperialParalyzeProjectile
+  - type: TimedDespawn
+    lifetime: 8
+
+- type: entity
+  parent: BaseItem
+  id: ImperialSpellPacket
+  name: мешочек заклинания «Молния»
+  description: Немного птичьего корма в ткани, трещащего от электричества.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/effects.rsi
+    state: snappop
+  - type: Item
+    size: Tiny
+  - type: ImperialSpellPacket
+
+- type: entity
+  id: ImperialTimestopField
+  name: хронополе
+  description: ZA WARUDO
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Imperial/Wizard/timestop.rsi
+    state: time
+    drawdepth: Effects
+    color: "#ffffff80"
+  - type: ImperialTimestopField
+
+- type: entity
+  id: ImperialSpellSmokeCloud
+  name: дым
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+  - type: SmokeOnTrigger
+    duration: 16
+    spreadAmount: 20
+    smokePrototype: ImperialBadSmoke
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  id: ImperialForcewall
+  name: СТЕНА СИЛЫ
+  description: Магическая стена космического волшебника.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Wizard/effects.rsi
+    state: forcewall
+    drawdepth: Effects
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - WallLayer
+        mask:
+        - WallLayer
+        hard: true
+  - type: Airtight
+  - type: TimedDespawn
+    lifetime: 30
+  - type: ImperialForcewall
+
+- type: entity
+  id: ImperialSpacetimeDistortion
+  name: искажение пространства-времени
+  description: Искажение пространства-времени. Слышна тихая музыка...
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Imperial/Wizard/effects.rsi
+    state: purplesparkles
+    drawdepth: FloorObjects
+  - type: PointLight
+    radius: 4
+    energy: 0.5
+    color: "#c9fff5"
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        layer:
+        - SlipLayer
+        hard: false
+  - type: StepTrigger
+    intersectRatio: 0.2
+    requiredTriggeredSpeed: 0
+  - type: ImperialSpacetimeDistortion
+
+- type: entity
+  abstract: true
+  id: BaseImperialTrap
+  name: ЭТО ЛОВУШКА
+  description: Наступить на меня — гарантированно плохой день.
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Wizard/effects.rsi
+    drawdepth: FloorObjects
+    color: "#ffffff1e"
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        layer:
+        - SlipLayer
+        hard: false
+  - type: StepTrigger
+    intersectRatio: 0.2
+    requiredTriggeredSpeed: 0
+
+- type: entity
+  parent: BaseImperialTrap
+  id: ImperialTrapStun
+  name: шоковая ловушка
+  description: Ловушка, которая ударит током и обездвижит. Лучше обойти.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: trap-shock
+  - type: ImperialWizardTrap
+    kind: Stun
+
+- type: entity
+  parent: BaseImperialTrap
+  id: ImperialTrapFire
+  name: огненная ловушка
+  description: Ловушка, которая подожжёт вас. Лучше обойти.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: trap-fire
+  - type: ImperialWizardTrap
+    kind: Fire
+
+- type: entity
+  parent: BaseImperialTrap
+  id: ImperialTrapChill
+  name: ледяная ловушка
+  description: Ловушка, которая проморозит вас до костей. Лучше обойти.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: trap-frost
+  - type: ImperialWizardTrap
+    kind: Chill
+
+- type: entity
+  parent: BaseImperialTrap
+  id: ImperialTrapDamage
+  name: земляная ловушка
+  description: Ловушка, которая устроит маленькое землетрясение специально для вас. Лучше обойти.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: trap-earth
+  - type: ImperialWizardTrap
+    kind: Damage
+
+- type: entity
+  parent: FloraRockSolid
+  id: ImperialTrapRock
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: MobAngryBee
+  id: ImperialMobToxinBee
+  name: ядовитая пчела
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Poison: 5
+        Piercing: 1
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  parent: BaseImperialTouchHand
+  id: ImperialTouchDuffelbag
+  name: обременяющее касание
+  description: Где отсюда ближайший бар?
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: duffelcurse
+  - type: Item
+    heldPrefix: duffelcurse
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ImperialCursedDuffelbag
+  name: живой вещмешок
+  description: Проклятый клоунский вещмешок, жаждущий еды. Наклейка предупреждает, что он ест еду внутри.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/cursed_duffel.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/cursed_duffel.rsi
+  - type: Item
+    sprite: Imperial/Wizard/cursed_duffel.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.6
+    sprintModifier: 0.6
+  - type: Unremoveable
+    deleteOnDrop: false
+  - type: ImperialCurseOfHunger
+
+# Чёрная мантия лича.
+- type: entity
+  parent: ClothingOuterWizardBase
+  id: ImperialClothingOuterWizardBlack
+  name: чёрная мантия волшебника
+  description: Зловещая чёрная мантия, источающая некромантическую силу.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/Clothing/blackwizard_robe.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/Clothing/blackwizard_robe.rsi
+
+- type: entity
+  parent: ClothingHeadHatWizardBase
+  id: ImperialClothingHeadHatWizardBlack
+  name: чёрная шляпа волшебника
+  description: Странная чёрная шляпа, которая наверняка принадлежит могущественному некроманту.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/Clothing/blackwizard_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Wizard/Clothing/blackwizard_hat.rsi
+
+# Повязка тюнибё: считается одеждой мага вместо шляпы.
+- type: entity
+  parent: ClothingEyesEyepatch
+  id: ImperialClothingEyesChuuniPatch
+  name: повязка тюнибё
+  description: Скрывает истинную силу... наверное.
+  components:
+  - type: WizardClothes
+
+# /obj/effect/particle_effect/fluid/smoke/bad: кашель и вещи из рук.
+- type: entity
+  parent: Smoke
+  id: ImperialBadSmoke
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ImperialBadSmoke

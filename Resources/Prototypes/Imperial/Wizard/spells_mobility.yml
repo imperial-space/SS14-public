@@ -1,0 +1,174 @@
+# Заклинания мобильности мага TG (spellbook_entries/mobility.dm).
+
+# pointed/mind_transfer
+- type: entity
+  parent: BaseImperialSpellPointed
+  id: ImperialSpellMindSwap
+  name: Обмен разумом
+  description: Позволяет поменяться телами с целью рядом с вами.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: mindswap }
+  - type: TargetAction
+    range: 1.5
+  - type: ImperialSpell
+    school: transmutation
+    cooldown: 60
+    cooldownReductionPerRank: 10
+    invocation: imperial-spell-mindswap-invocation
+    invocationType: Whisper
+    requirements: NoAntimagic, Mind, CastableAsBrain
+  - type: ImperialMindSwapSpell
+
+# aoe/knock
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellKnock
+  name: Отпирание
+  description: Открывает ближайшие двери и шкафы.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: knock }
+  - type: ImperialSpell
+    school: transmutation
+    cooldown: 10
+    cooldownReductionPerRank: 2
+    invocation: imperial-spell-knock-invocation
+    invocationType: Whisper
+    requirements: NoAntimagic
+    castSound: /Audio/Imperial/Wizard/knock.ogg
+  - type: ImperialKnockSpell
+
+# teleport/radius_turf/blink
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellBlink
+  name: Скачок
+  description: Случайным образом телепортирует вас на небольшое расстояние.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: blink }
+  - type: ImperialSpell
+    school: translocation
+    cooldown: 2
+    cooldownReductionPerRank: 0.4
+    castSound: /Audio/Imperial/Wizard/blink.ogg
+  - type: ImperialBlinkSpell
+
+# jaunt/ethereal_jaunt
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellJaunt
+  name: Эфирное перемещение
+  description: Делает вашу форму эфирной — вы временно невидимы и проходите сквозь стены.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: jaunt }
+  - type: ImperialSpell
+    school: transmutation
+    cooldown: 30
+    cooldownReductionPerRank: 5
+  - type: ImperialJauntSpell
+
+- type: polymorph
+  id: ImperialEtherealJaunt
+  configuration:
+    entity: EtherealJaunt
+    transferName: true
+    inventory: None
+    forced: true
+    revertOnDeath: true
+    revertOnCrit: true
+    allowRepeatedMorphs: false
+    polymorphSound: /Audio/Imperial/Wizard/ethereal_enter.ogg
+    exitPolymorphSound: /Audio/Imperial/Wizard/ethereal_exit.ogg
+    duration: 5
+
+- type: entity
+  parent: WizardSmoke
+  id: ImperialSteamEffect
+  categories: [ HideSpawnMenu ]
+
+# pointed/swap
+- type: entity
+  parent: BaseImperialSpellPointed
+  id: ImperialSpellSwap
+  name: Обмен местами
+  description: Поменяйтесь местами с любым живым существом в пределах девяти клеток.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: swap }
+  - type: TargetAction
+    range: 9
+  - type: ImperialSpell
+    school: translocation
+    cooldown: 25
+    cooldownReductionPerRank: 10
+    maxLevel: 3
+    requirements: NoAntimagic, Station
+  - type: ImperialSwapSpell
+
+# ghostliness
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellGhostliness
+  name: Отречение от тела
+  description: Навсегда отделяет вашу душу от тела и частично привязывает её к материальному плану.
+  components:
+  - type: Action
+    icon: { sprite: Mobs/Ghosts/ghost_human.rsi, state: icon }
+  - type: ImperialSpell
+    school: necromancy
+    cooldown: 1
+    maxLevel: 1
+    invocation: imperial-spell-ghost-invocation
+    invocationType: Shout
+    requirements: NoAntimagic, Station, Mind
+  - type: ImperialGhostlinessSpell
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialSpiritPhase
+  name: Бестелесность
+  description: Сбросить материю и проходить сквозь стены. Всё, что при вас, упадёт.
+  components:
+  - type: Action
+    useDelay: 3
+    icon: { sprite: Mobs/Ghosts/ghost_human.rsi, state: icon }
+  - type: InstantAction
+    event: !type:ImperialSpiritPhaseActionEvent
+
+- type: polymorph
+  id: ImperialSpiritPhase
+  configuration:
+    entity: ImperialSpiritPhaseMob
+    transferName: true
+    inventory: Drop
+    forced: true
+    revertOnDeath: true
+    revertOnCrit: true
+    allowRepeatedMorphs: true
+
+- type: entity
+  parent: BaseMobJaunt
+  id: ImperialSpiritPhaseMob
+  name: дух
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Mobs/Ghosts/ghost_human.rsi
+    color: "#ffffff90"
+    layers:
+    - state: animated
+      shader: unshaded
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+  - type: Visibility
+    layer: 1
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 5
+    baseWalkSpeed: 3
+  - type: ActionGrant
+    actions:
+    - ActionImperialSpiritPhase

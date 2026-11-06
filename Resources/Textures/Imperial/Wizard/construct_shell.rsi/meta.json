@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation/BandaStation (wizard construct shell)",
+    "size": {
+        "x": 32,
+        "y": 40
+    },
+    "states": [
+        {
+            "name": "shell",
+            "delays": [
+                [
+                    0.5,
+                    0.3,
+                    0.5,
+                    0.3
+                ]
+            ]
+        }
+    ]
+}

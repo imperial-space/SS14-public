@@ -1,0 +1,673 @@
+# Наступательные заклинания мага TG (spellbook_entries/offensive.dm).
+
+- type: entity
+  abstract: true
+  parent: BaseImperialSpell
+  id: BaseImperialSpellInstant
+  components:
+  - type: InstantAction
+    event: !type:ImperialSpellInstantEvent
+
+- type: entity
+  abstract: true
+  parent: BaseImperialSpellTarget
+  id: BaseImperialSpellPointed
+  components:
+  - type: TargetAction
+    range: 7
+  - type: EntityTargetAction
+    event: !type:ImperialSpellEntityEvent
+    whitelist:
+      components:
+      - MobState
+
+- type: entity
+  abstract: true
+  parent: BaseImperialSpellTarget
+  id: BaseImperialSpellWorld
+  components:
+  - type: WorldTargetAction
+    event: !type:ImperialSpellWorldEvent
+
+# pointed/projectile/fireball
+- type: entity
+  parent: BaseImperialSpellWorld
+  id: ImperialSpellFireball
+  name: Огненный шар
+  description: Это заклинание выпускает в цель взрывной огненный шар.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: fireball0 }
+  - type: ImperialSpell
+    school: evocation
+    cooldown: 6
+    cooldownReductionPerRank: 1
+    invocation: imperial-spell-fireball-invocation
+    invocationType: Shout
+    requirements: NoAntimagic
+    castSound: /Audio/Imperial/Wizard/fireball.ogg
+  - type: ImperialSpellProjectile
+    proto: ImperialProjectileFireball
+    speed: 12
+    range: 6
+    rangePerLevel: 2
+
+# pointed/projectile/spell_cards
+- type: entity
+  parent: BaseImperialSpellWorld
+  id: ImperialSpellSpellCards
+  name: Карты заклинаний
+  description: Пылающие жаром быстрые самонаводящиеся карты. Отправьте врагов в теневую реальность!
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: spellcard }
+  - type: ImperialSpell
+    school: evocation
+    cooldown: 5
+    cooldownReductionPerRank: 2
+    maxLevel: 3
+    invocation: imperial-spell-spellcards-invocation
+    invocationType: Shout
+    requirements: NoAntimagic
+  - type: ImperialSpellProjectile
+    proto: ImperialProjectileSpellCard
+    amount: 5
+    perFire: 7
+    spread: 30
+    speed: 18
+    homing: true
+    homingTurnRate: 360
+
+# rod_form
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellRodForm
+  name: Форма стержня
+  description: Примите форму неподвижного стержня, уничтожающего всё на своём пути.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: immrod }
+  - type: ImperialSpell
+    school: transmutation
+    cooldown: 25
+    cooldownReductionPerRank: 3.75
+    invocation: imperial-spell-rodform-invocation
+    invocationType: Shout
+    requirements: WizardGarb, NoAntimagic, Station
+  - type: ImperialRodFormSpell
+
+# touch/smite
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellSmite
+  name: Кара
+  description: Заряжает руку нечестивой энергией, от касания которой жертва взрывается.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: gib }
+  - type: ImperialSpell
+    school: evocation
+    cooldown: 60
+    cooldownReductionPerRank: 10
+    invocation: imperial-spell-smite-invocation
+    invocationType: Shout
+    sparks: 4
+    castSound: /Audio/Imperial/Wizard/disintegrate.ogg
+  - type: ImperialSpellTouch
+    hand: ImperialTouchSmite
+  - type: ImperialSmiteSpell
+
+# conjure/simian
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellSimians
+  name: Призыв обезьян
+  description: Призывает первобытных обезьян и горилл, которые нападают на всё вокруг. Минуту они считают вас своим.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: simian }
+  - type: ImperialSpell
+    school: conjuration
+    cooldown: 90
+    cooldownReductionPerRank: 15
+    invocation: imperial-spell-simians-invocation
+    invocationType: Shout
+    castSound: /Audio/Imperial/Wizard/monkey.ogg
+  - type: ImperialConjureSpell
+    summons:
+    - ImperialMobSimianGorilla
+    - ImperialMobSimianMonkey
+    - ImperialMobSimianMonkey
+    amount: 4
+    amountPerLevel: 1
+    radius: 2
+    respectsDensity: true
+    faction: ImperialSimian
+
+# pointed/blind
+- type: entity
+  parent: BaseImperialSpellPointed
+  id: ImperialSpellBlind
+  name: Ослепление
+  description: Временно ослепляет одну цель.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: blind }
+  - type: ImperialSpell
+    school: transmutation
+    cooldown: 30
+    cooldownReductionPerRank: 6.25
+    invocation: imperial-spell-blind-invocation
+    invocationType: Whisper
+    requirements: NoAntimagic
+    castSound: /Audio/Imperial/Wizard/blind.ogg
+  - type: ImperialBlindSpell
+
+# pointed/untie_shoes
+- type: entity
+  parent: BaseImperialSpellPointed
+  id: ImperialSpellTieShoes
+  name: Связать шнурки
+  description: Это скромное заклинание сначала развязывает, а затем завязывает узлом шнурки цели.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: lace }
+  - type: TargetAction
+    range: 0
+  - type: ImperialSpell
+    school: conjuration
+    cooldown: 3
+    cooldownReductionPerRank: 0.2
+    maxLevel: 4
+    invocation: imperial-spell-tieshoes-invocation
+    invocationType: Shout
+    requirements: None
+  - type: ImperialTieShoesSpell
+
+# apply_mutations/mutate
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellMutate
+  name: Мутация
+  description: Превращает вас в огромного халка и даёт лазерное зрение на некоторое время.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: mutate }
+  - type: ImperialSpell
+    school: transmutation
+    cooldown: 40
+    cooldownReductionPerRank: 5
+    maxLevel: 3
+    invocation: imperial-spell-mutate-invocation
+    invocationType: Shout
+    requirements: WizardGarb, NoAntimagic, Human
+    castSound: /Audio/Imperial/Wizard/mutate.ogg
+  - type: ImperialMutateSpell
+
+- type: entity
+  parent: BaseAction
+  id: ActionImperialLaserEyes
+  name: Лазерное зрение
+  description: Выпустить лазер из глаз в выбранную точку.
+  components:
+  - type: Action
+    useDelay: 1
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: firebeam }
+  - type: TargetAction
+    checkCanAccess: false
+    range: 0
+  - type: WorldTargetAction
+    event: !type:ImperialLaserEyesActionEvent
+
+# touch/flesh_to_stone
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellFleshToStone
+  name: Плоть в камень
+  description: Заряжает руку силой, превращающей жертв в неподвижные статуи на долгое время.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: statue }
+  - type: ImperialSpell
+    school: transmutation
+    cooldown: 60
+    cooldownReductionPerRank: 10
+    invocation: imperial-spell-stone-invocation
+    invocationType: Shout
+    castSound: /Audio/Imperial/Wizard/fleshtostone.ogg
+  - type: ImperialSpellTouch
+    hand: ImperialTouchFleshToStone
+  - type: ImperialFleshToStoneSpell
+
+# charged/beam/tesla
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellTeslaBlast
+  name: Разряд Теслы
+  description: Накопите заряд тесла-дуги и выпустите его в случайную ближайшую цель. Дуга перескакивает между целями.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: lightning }
+  - type: ImperialSpell
+    school: evocation
+    cooldown: 30
+    cooldownReductionPerRank: 6.75
+    invocation: imperial-spell-tesla-invocation
+    invocationType: Shout
+    castSound: /Audio/Imperial/Wizard/lightningbolt.ogg
+  - type: ImperialTeslaSpell
+
+# pointed/projectile/lightningbolt
+- type: entity
+  parent: BaseImperialSpellWorld
+  id: ImperialSpellLightningBolt
+  name: Удар молнии
+  description: Выпустите молнию во врагов! Она перепрыгивает между целями, но не сбивает их с ног.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: lightning }
+  - type: ImperialSpell
+    school: evocation
+    cooldown: 10
+    cooldownReductionPerRank: 2
+    invocation: imperial-spell-lightning-invocation
+    invocationType: Shout
+    requirements: NoAntimagic
+    castSound: /Audio/Imperial/Wizard/lightningbolt.ogg
+  - type: ImperialSpellProjectile
+    proto: ImperialProjectileLightning
+    speed: 8
+
+# conjure_item/infinite_guns/gun
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellInfiniteGuns
+  name: Малый призыв оружия
+  description: Призывает бесконечный поток винтовок, которые наносят мало урона, но валят цели с ног.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: bolt_action }
+  - type: ImperialSpell
+    school: conjuration
+    cooldown: 75
+    cooldownReductionPerRank: 18.5
+  - type: ImperialConjureItemSpell
+    item: ImperialEnchantedRifle
+    deleteOld: false
+    requiresHands: true
+
+# conjure_item/infinite_guns/arcane_barrage
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellArcaneBarrage
+  name: Арканный залп
+  description: Выпустите во врагов поток магической энергии. Урона гораздо больше, но цели не падают.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: arcane_barrage }
+  - type: ImperialSpell
+    school: conjuration
+    cooldown: 75
+    cooldownReductionPerRank: 18.5
+  - type: ImperialConjureItemSpell
+    item: ImperialArcaneBarrage
+    deleteOld: false
+    requiresHands: true
+
+# pointed/barnyardcurse
+- type: entity
+  parent: BaseImperialSpellPointed
+  id: ImperialSpellBarnyard
+  name: Проклятие скотного двора
+  description: Обрекает несчастную душу на речь и лицо домашнего скота.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: barn }
+  - type: ImperialSpell
+    school: transmutation
+    cooldown: 15
+    cooldownReductionPerRank: 3
+    invocation: imperial-spell-barnyard-invocation
+    invocationType: Shout
+    requirements: NoAntimagic
+  - type: ImperialBarnyardSpell
+    masks:
+    - ImperialCursedMaskPig
+    - ImperialCursedMaskFrog
+    - ImperialCursedMaskCow
+    - ImperialCursedMaskHorse
+    - ImperialCursedMaskRat
+    - ImperialCursedMaskFox
+    - ImperialCursedMaskBee
+    - ImperialCursedMaskBear
+    - ImperialCursedMaskBat
+    - ImperialCursedMaskRaven
+    - ImperialCursedMaskJackal
+
+# splattercasting
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellSplattercasting
+  name: Кровавое колдовство Маррабио
+  description: Резко снижает откат всех заклинаний, но каждое стоит крови.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: splattercasting }
+  - type: ImperialSpell
+    school: sanguine
+    cooldown: 1
+    maxLevel: 1
+    invocation: imperial-spell-splatter-invocation
+    invocationType: Shout
+    requirements: NoAntimagic, Station, Mind
+  - type: ImperialSplattercastingSpell
+
+# sanguine_strike
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellSanguineStrike
+  name: Обескровливающий удар
+  description: Зачаровывает следующий удар оружием — больше урона, лечение и кровь от раны.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: exsanguinating_strike }
+  - type: ImperialSpell
+    school: sanguine
+    cooldown: 60
+    cooldownReductionPerRank: 10
+    invocation: imperial-spell-sanguine-invocation
+    invocationType: Whisper
+    requirements: NoAntimagic
+    castSound: /Audio/Imperial/Wizard/charge.ogg
+  - type: ImperialSanguineStrikeSpell
+
+# touch/scream_for_me
+- type: entity
+  parent: BaseImperialSpellInstant
+  id: ImperialSpellScreamForMe
+  name: Кричи для меня
+  description: Злое заклинание, наносящее множество тяжёлых кровоточащих ран.
+  components:
+  - type: Action
+    icon: { sprite: Imperial/Wizard/spells.rsi, state: scream_for_me }
+  - type: ImperialSpell
+    school: sanguine
+    cooldown: 60
+    cooldownReductionPerRank: 10
+    invocation: imperial-spell-scream-invocation
+    invocationType: Shout
+  - type: ImperialSpellTouch
+    hand: ImperialTouchScreamForMe
+  - type: ImperialScreamForMeSpell
+
+# ─── Руки заклинаний касания ───
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseImperialTouchHand
+  components:
+  - type: Item
+    size: Ginormous
+    sprite: Imperial/Wizard/touch.rsi
+  - type: Unremoveable
+    deleteOnDrop: true
+  - type: Sprite
+    sprite: Imperial/Wizard/touch.rsi
+  - type: ImperialTouchHand
+
+- type: entity
+  parent: BaseImperialTouchHand
+  id: ImperialTouchSmite
+  name: карающее касание
+  description: Эта моя рука сияет потрясающей силой!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: disintegrate
+  - type: Item
+    heldPrefix: disintegrate
+
+- type: entity
+  parent: BaseImperialTouchHand
+  id: ImperialTouchFleshToStone
+  name: окаменяющее касание
+  description: Таков итог, потому что так сказала плоть в камень!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: fleshtostone
+  - type: Item
+    heldPrefix: fleshtostone
+
+- type: entity
+  parent: BaseImperialTouchHand
+  id: ImperialTouchScreamForMe
+  name: кровавое касание
+  description: Гарантированно заставит жертву кричать — или верну деньги!
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: scream_for_me
+  - type: Item
+    heldPrefix: disintegrate
+
+# ─── Снаряды ───
+- type: entity
+  parent: BaseBulletTrigger
+  id: ImperialProjectileFireball
+  name: огненный шар
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/projectiles.rsi
+    layers:
+    - state: fireball
+      shader: unshaded
+  - type: PointLight
+    color: "#E25822"
+    radius: 2.0
+    energy: 5.0
+  - type: Projectile
+    damage:
+      types:
+        Heat: 20
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 6
+    intensitySlope: 4
+    totalIntensity: 20
+    maxTileBreak: 0
+  - type: IgnitionSource
+    temperature: 400
+    ignited: true
+  - type: IgniteOnCollide
+    fireStacks: 1.5
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialProjectileSpellCard
+  name: зачарованная карта
+  description: Кусок бумаги, зачарованный до невероятной прочности и жара.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/projectiles.rsi
+    layers:
+    - state: spellcard
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Heat: 2
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialProjectileLightning
+  name: молния
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/projectiles.rsi
+    layers:
+    - state: tesla_projectile
+      shader: unshaded
+  - type: PointLight
+    color: "#9ad8ff"
+    radius: 2.0
+    energy: 3.0
+  - type: Projectile
+    damage:
+      types:
+        Heat: 15
+  - type: ImperialLightningProjectile
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialProjectileArcaneBarrage
+  name: арканный заряд
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/projectiles.rsi
+    layers:
+    - state: arcane_barrage
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Heat: 20
+    soundHit:
+      path: /Audio/Imperial/Wizard/barragespellhit.ogg
+
+- type: entity
+  parent: BaseBullet
+  id: ImperialProjectileEnchantedBullet
+  name: зачарованная пуля
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 20
+  - type: StaminaDamageOnCollide
+    damage: 80
+
+# ─── Предметы ───
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialEnchantedRifle
+  name: зачарованная винтовка
+  description: Осторожнее, не потеряйте голову.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/enchanted_rifle.rsi
+    state: icon
+    offset: -0.25,0
+  - type: Item
+    size: Huge
+    sprite: Imperial/Wizard/enchanted_rifle_inhand.rsi
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialProjectileEnchantedBullet
+    capacity: 1
+    count: 1
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: ImperialInfiniteGun
+
+- type: entity
+  parent: [ BaseItem, BaseMagicalContraband ]
+  id: ImperialArcaneBarrage
+  name: арканный залп
+  description: Пиу-пиу-пиу.
+  components:
+  - type: Sprite
+    sprite: Imperial/Wizard/arcane_barrage.rsi
+    state: icon
+  - type: Item
+    size: Huge
+    sprite: Imperial/Wizard/arcane_barrage_inhand.rsi
+  - type: Gun
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/Wizard/emitter.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ImperialProjectileArcaneBarrage
+    capacity: 30
+    count: 30
+  - type: Wieldable
+  - type: GunRequiresWield
+  - type: ImperialInfiniteGun
+    gunsLeft: 30
+    barrage: true
+  - type: Unremoveable
+    deleteOnDrop: true
+
+# Стержень мага (/obj/effect/immovablerod/wizard).
+- type: entity
+  parent: ImmovableRod
+  id: ImperialWizardRod
+  name: неподвижный стержень
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ImmovableRod
+    randomizeVelocity: false
+    shouldGib: false
+    destroyTiles: false
+  - type: TimedDespawn
+    lifetime: 10
+  - type: ContainerContainer
+    containers:
+      imperial_wizard_rod: !type:ContainerSlot
+
+# ─── Обезьяны (simian) ───
+- type: entity
+  parent: MobGorilla
+  id: ImperialMobSimianGorilla
+  name: малая горилла
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NpcFactionMember
+    factions:
+    - ImperialSimian
+
+- type: entity
+  parent: MobMonkey
+  id: ImperialMobSimianMonkey
+  name: первобытная обезьяна
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NpcFactionMember
+    factions:
+    - ImperialSimian
+
+- type: npcFaction
+  id: ImperialSimian
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Xeno
+  - SimpleNeutral
+  - Passive
+  - PetsNT
+  - Zombie
+  - Revolutionary
+  - Dragon

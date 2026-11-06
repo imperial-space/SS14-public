@@ -1,0 +1,382 @@
+{
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "Taken from tgstation/BandaStation (magic.dmi)",
+    "size":  {
+                 "x":  32,
+                 "y":  32
+             },
+    "states":  [
+                   {
+                       "name":  "revivewand",
+                       "delays":  [
+                                      [
+                                          0.3,
+                                          0.3,
+                                          0.3,
+                                          0.3
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "revivewand-drained"
+                   },
+                   {
+                       "name":  "nothingwand",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "nothingwand-drained"
+                   },
+                   {
+                       "name":  "deathwand",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "deathwand-drained"
+                   },
+                   {
+                       "name":  "polywand",
+                       "delays":  [
+                                      [
+                                          0.4,
+                                          0.4,
+                                          0.4,
+                                          0.4
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "polywand-drained"
+                   },
+                   {
+                       "name":  "telewand",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "telewand-drained",
+                       "delays":  [
+                                      [
+                                          2,
+                                          0.1,
+                                          0.01
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "doorwand",
+                       "delays":  [
+                                      [
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "doorwand-drained"
+                   },
+                   {
+                       "name":  "firewand",
+                       "delays":  [
+                                      [
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "firewand-drained"
+                   },
+                   {
+                       "name":  "shrinkwand"
+                   },
+                   {
+                       "name":  "shrinkwand-drained"
+                   },
+                   {
+                       "name":  "babelwand",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "babelwand-drained"
+                   },
+                   {
+                       "name":  "tentawand",
+                       "delays":  [
+                                      [
+                                          0.4,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "tentawand-drained"
+                   },
+                   {
+                       "name":  "swapwand",
+                       "delays":  [
+                                      [
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "swapwand-drained"
+                   },
+                   {
+                       "name":  "animatewand",
+                       "delays":  [
+                                      [
+                                          3,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.6,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          3
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "animatewand-drained"
+                   },
+                   {
+                       "name":  "chaoswand",
+                       "delays":  [
+                                      [
+                                          0.2,
+                                          0.2,
+                                          0.2,
+                                          0.2
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "chaoswand-drained"
+                   },
+                   {
+                       "name":  "plaguewand",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "plaguewand-drained"
+                   },
+                   {
+                       "name":  "pizzawand",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          2
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "pizzawand-drained"
+                   },
+                   {
+                       "name":  "peacewand",
+                       "delays":  [
+                                      [
+                                          0.2,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "peacewand-drained"
+                   },
+                   {
+                       "name":  "icewand",
+                       "delays":  [
+                                      [
+                                          0.4,
+                                          0.4
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "icewand-drained"
+                   },
+                   {
+                       "name":  "beerwand"
+                   },
+                   {
+                       "name":  "beerwand-drained"
+                   },
+                   {
+                       "name":  "bananawand"
+                   },
+                   {
+                       "name":  "bananawand-drained"
+                   },
+                   {
+                       "name":  "repulsionwand",
+                       "delays":  [
+                                      [
+                                          0.05,
+                                          0.05,
+                                          0.05,
+                                          0.05
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "repulsionwand-drained"
+                   },
+                   {
+                       "name":  "gravwand",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "gravwand-drained"
+                   },
+                   {
+                       "name":  "shavingwand",
+                       "delays":  [
+                                      [
+                                          0.025,
+                                          0.025,
+                                          0.025,
+                                          0.025
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "shavingwand-drained"
+                   },
+                   {
+                       "name":  "necrowand",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "necrowand-drained"
+                   },
+                   {
+                       "name":  "teslawand",
+                       "delays":  [
+                                      [
+                                          0.2,
+                                          0.05,
+                                          0.05,
+                                          0.2,
+                                          0.05,
+                                          0.05,
+                                          0.2,
+                                          0.05,
+                                          0.05
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "teslawand-drained"
+                   },
+                   {
+                       "name":  "wand-inhand-left",
+                       "directions":  4
+                   },
+                   {
+                       "name":  "wand-inhand-right",
+                       "directions":  4
+                   }
+               ]
+}

@@ -1,0 +1,82 @@
+{
+    "version":  1,
+    "license":  "CC-BY-SA-3.0",
+    "copyright":  "Taken from tgstation/BandaStation (effects.dmi)",
+    "size":  {
+                 "x":  32,
+                 "y":  32
+             },
+    "states":  [
+                   {
+                       "name":  "forcewall",
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.3,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "purplesparkles",
+                       "directions":  4,
+                       "delays":  [
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ],
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ],
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ],
+                                      [
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1,
+                                          0.1
+                                      ]
+                                  ]
+                   },
+                   {
+                       "name":  "trap-shock"
+                   },
+                   {
+                       "name":  "trap-fire"
+                   },
+                   {
+                       "name":  "trap-frost"
+                   },
+                   {
+                       "name":  "trap-earth"
+                   },
+                   {
+                       "name":  "snappop"
+                   },
+                   {
+                       "name":  "rift"
+                   }
+               ]
+}
