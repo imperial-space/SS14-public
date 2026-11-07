@@ -223,7 +223,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 17; /// Imperial Added Thermonium
+        public const int TotalNumberOfGases = 19; /// Imperial Added Thermonium
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -331,6 +331,37 @@ namespace Content.Shared.Atmos
         public const float HydrogenMaxOutputPressure = 9000;
         /// Imperial Imperial Atmos Update end
 
+        /// # Imperial-Start ChargedElectrovae/Electrovae
+        public const float ElectrovaeProductionNitrogenCatalystSaturationProportion = 0.06f;
+        public const float ElectrovaeProductionWaterVaporRatio = 2f;
+        public const float ElectrovaeProductionNitrousOxideRatio = 11f;
+        public const float ElectrovaeProductionCarbonDioxideInhibitorSensitivity = 0.05f;
+        public const float ElectrovaeProductionMinimumEfficiency = 0.01f;
+        public const float ElectrovaeProductionMinTemperature = 373.15f;
+        public const float ElectrovaeProductionMaxTemperature = 1370f;
+        public const float ElectrovaeProductionTemperatureExponent = 1.5f;
+        public const float ElectrovaeChargeRateMultiplier = 0.1f;
+        public const float ElectrovaeChargeEnergyPerMole = 5000f;
+        public const float ElectrovaeChargeMinimumEfficiency = 0.01f;
+        public const float ElectrovaeChargeMinTemperature = 1508f;
+        public const float ElectrovaeChargeMaxTemperature = 1984f;
+        public const float ElectrovaeChargeTemperatureExponent = 1.2f;
+        public const float ChargedElectrovaeDischargeDecayConstant = 0.025f;
+        public const float ChargedElectrovaeMinimumMoles = 0.01f;
+        public const float ChargedElectrovaeIntensityDivisor = 2f;
+        public const float ChargedElectrovaeHighIntensityThreshold = 0.75f;
+        public const float ChargedElectrovaeMediumIntensityThreshold = 0.5f;
+        public const float ChargedElectrovaeLowIntensityThreshold = 0.25f;
+        public const float ChargedElectrovaeLightningChanceMultiplier = 0.01f;
+        public const float ChargedElectrovaeMinimumEquipmentIntensity = 0.1f;
+        public const float ChargedElectrovaeChargeRatePerIntensity = 100f;
+        public const float ChargedElectrovaeBatteryExpansionDecayConstant = 20f;
+        public const int ChargedElectrovaeLightningBaseDamage = 5;
+        public const int ChargedElectrovaeLightningDamagePerIntensity = 5;
+        public const float ChargedElectrovaeLightningBaseStunSeconds = 1f;
+        public const float ChargedElectrovaeLightningStunSecondsPerIntensity = 2f;
+        /// # Imperial-End ChargedElectrovae/Electrovae
+
         /// <summary>
         ///     Determines at what pressure the ultra-high pressure red icon is displayed.
         /// </summary>
@@ -424,6 +455,8 @@ namespace Content.Shared.Atmos
         Deuterium = 13, // Imperial Imperial Atmos Update start
         HyperNoblium = 14,
         AntiNoblium = 15,
-        BZ = 16 // Imperial Imperial Atmos Update end
+        BZ = 16, // Imperial Imperial Atmos Update end
+        Electrovae = 17, /// Imperial Added Electrovae
+        ChargedElectrovae = 18 /// Imperial Added ChargedElectrovae
     }
 }

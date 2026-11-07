@@ -448,6 +448,32 @@ namespace Content.Server.Atmos.EntitySystems
             return true;
         }
 
+        // # Imperial-Start
+        private bool ProcessChargedElectrovaeTiles(
+            Entity<GridAtmosphereComponent, GasTileOverlayComponent, MapGridComponent, TransformComponent> ent)
+        {
+            var atmosphere = ent.Comp1;
+            if (!atmosphere.ProcessingPaused)
+                QueueRunTiles(atmosphere.CurrentRunTiles, atmosphere.ChargedElectrovaeTiles);
+
+            var number = 0;
+            while (atmosphere.CurrentRunTiles.TryDequeue(out var tile))
+            {
+                ProcessChargedElectrovae(ent, tile);
+
+                if (number++ < LagCheckIterations)
+                    continue;
+
+                number = 0;
+                if (_simulationStopwatch.Elapsed.TotalMilliseconds >= AtmosMaxProcessTime)
+                    return false;
+            }
+
+            CleanupChargedElectrovaeEntities((ent.Owner, atmosphere));
+            return true;
+        }
+        // # Imperial-End
+
         private bool ProcessSuperconductivity(GridAtmosphereComponent atmosphere)
         {
             if(!atmosphere.ProcessingPaused)
@@ -782,6 +808,17 @@ namespace Content.Server.Atmos.EntitySystems
                         return AtmosphereProcessingCompletionState.Return;
                     }
 
+                    // # Imperial-Start
+                    atmosphere.ProcessingPaused = false;
+                    atmosphere.State = AtmosphereProcessingState.ChargedElectrovae;
+                    return AtmosphereProcessingCompletionState.Continue;
+                case AtmosphereProcessingState.ChargedElectrovae:
+                    if (!ProcessChargedElectrovaeTiles(ent))
+                    {
+                        atmosphere.ProcessingPaused = true;
+                        return AtmosphereProcessingCompletionState.Return;
+                    }
+                    // # Imperial-End
                     atmosphere.ProcessingPaused = false;
                     // Next state depends on whether superconduction is enabled or not.
                     // Note: We do this here instead of on the tile equalization step to prevent ending it early.

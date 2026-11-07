@@ -202,6 +202,8 @@ spray-painter-style-canisters-deuterium = Дейтерий
 spray-painter-style-canisters-hyper-noblium = Гипер-ноблий
 spray-painter-style-canisters-anti-noblium = Анти-ноблий
 spray-painter-style-canisters-bz = BZ
+spray-painter-style-canisters-electrovae = Электровей
+spray-painter-style-canisters-charged-electrovae = Заряженный электровей
 
 # Предметы
 ent-SprayPainterAmmo = сжатая краска
