@@ -1,3 +1,4 @@
+using Content.Server.Imperial.LastWords;
 using Content.Server.Imperial.Sponsors;
 
 namespace Content.Server.Imperial.Entry;
@@ -18,5 +19,6 @@ public sealed partial class ImperialEntry
     public static void IoCRegister(IDependencyCollection deps)
     {
         deps.Register<SponsorsManager>();
+        deps.Register<ImperialLastWordsManager>();
     }
 }
