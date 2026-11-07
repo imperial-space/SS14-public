@@ -137,6 +137,11 @@ namespace Content.Client.Construction.UI
             ClearButton.OnPressed += _ => ClearAllGhosts?.Invoke(this, EventArgs.Empty);
             EraseButton.Text = Loc.GetString("construction-menu-eraser-mode");
             EraseButton.OnToggled += args => EraseButtonToggled?.Invoke(this, args.Pressed);
+            //Imperial Space Blueprints; Start
+            ImperialBlueprintsButton.Text = Loc.GetString("imperial-blueprint-menu-button");
+            ImperialBlueprintsButton.OnPressed += _ =>
+                IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<Imperial.Blueprints.ImperialBlueprintSystem>().ToggleWindow();
+            //Imperial Space Blueprints; End
 
             FavoriteButton.OnPressed += args => RecipeFavorited?.Invoke(this, EventArgs.Empty);
 
