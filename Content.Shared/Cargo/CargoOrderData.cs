@@ -18,6 +18,13 @@ namespace Content.Shared.Cargo
         /// </summary>
         [DataField]
         public ProtoId<CargoProductPrototype> Product;
+        // Imperial Weekly Mode Start
+
+        [DataField]
+        public WeeklyCargoProductData? WeeklyProduct;
+
+        public bool IsWeeklyProduct => WeeklyProduct is not null;
+        // Imperial Weekly Mode End
 
         /// <summary>
         /// The number of items in the order. Not readonly, as it might change
@@ -58,6 +65,19 @@ namespace Content.Shared.Cargo
             Account = account;
         }
 
+        // Imperial Weekly Mode Start
+        public CargoOrderData(int orderId, WeeklyCargoProductData product, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account)
+        {
+            OrderId = orderId;
+            Product = new ProtoId<CargoProductPrototype>(product.ProductId);
+            WeeklyProduct = product;
+            OrderQuantity = amount;
+            Requester = requester;
+            Reason = reason;
+            Account = account;
+        }
+
+        // Imperial Weekly Mode End
         public void SetApproverData(string? approver)
         {
             Approver = approver;

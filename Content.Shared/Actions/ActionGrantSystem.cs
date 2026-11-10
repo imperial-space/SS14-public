@@ -5,7 +5,11 @@ namespace Content.Shared.Actions;
 /// <summary>
 /// <see cref="ActionGrantComponent"/>
 /// </summary>
-public sealed class ActionGrantSystem : EntitySystem
+// Imperial Weekly Mode: Original code:
+// public sealed class ActionGrantSystem : EntitySystem
+// Imperial Weekly Mode Start
+public sealed partial class ActionGrantSystem : EntitySystem
+// Imperial Weekly Mode End
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
 
@@ -43,6 +47,7 @@ public sealed class ActionGrantSystem : EntitySystem
                 ent.Comp.ActionEntities.Add(actionEnt.Value);
         }
     }
+
 
     private void OnShutdown(Entity<ActionGrantComponent> ent, ref ComponentShutdown args)
     {

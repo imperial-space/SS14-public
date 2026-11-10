@@ -62,9 +62,22 @@ public sealed partial class GameMapPrototype : IPrototype
         return new()
         {
             ID = ID,
+            // Imperial Weekly Mode Start
+            MaxRandomOffset = MaxRandomOffset,
+            IsGrid = IsGrid,
+            RandomRotation = RandomRotation,
+            // Imperial Weekly Mode End
             MapName = MapName,
             MapPath = mapPath,
-            _stations = _stations
+            // Imperial Weekly Mode: Original code:
+            // _stations = _stations
+            // Imperial Weekly Mode Start
+            _stations = _stations,
+            Fallback = Fallback,
+            MinPlayers = MinPlayers,
+            MaxPlayers = MaxPlayers,
+            _conditions = _conditions
+            // Imperial Weekly Mode End
         };
 #pragma warning restore RA0039
     }
