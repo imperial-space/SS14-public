@@ -61,6 +61,9 @@
   - type: Item
     size: Tiny
   - type: PhysicalComposition
+    materialComposition: # Imperial PrinterDoc
+      Paper: 100 # Imperial PrinterDoc
+  - type: Material # Imperial PrinterDoc
 
 - type: entity
   name: paper
@@ -306,6 +309,7 @@
     - Trash
     - Paper
   - type: PaperVisuals
+    headerImagePath: "/Textures/Imperial/ImprovedSalvage/paper_heading_miner_assotiation.png" # IMPERIAL IMPROVED SALVAGE
     backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
     contentImagePath: "/Textures/Interface/Paper/paper_content_lined.svg.96dpi.png"
     backgroundModulate: "#f7e574"

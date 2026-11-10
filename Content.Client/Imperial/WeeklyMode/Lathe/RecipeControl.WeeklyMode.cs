@@ -1,11 +1,13 @@
+using Content.Client.Lathe;
+using Content.Client.Lathe.UI;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.XAML;
 
-namespace Content.Client.Lathe.UI;
+namespace Content.Client.Imperial.WeeklyMode.Lathe;
 
-public sealed partial class RecipeControl
+public sealed partial class WeeklyRecipeControl
 {
-    public RecipeControl(LatheSystem latheSystem, string recipeId, string recipeName, Func<string> tooltipTextSupplier, bool canProduce, Control displayControl)
+    public WeeklyRecipeControl(LatheSystem latheSystem, string recipeId, string recipeName, Func<string> tooltipTextSupplier, bool canProduce, Control displayControl)
     {
         RobustXamlLoader.Load(this);
 

@@ -1,0 +1,20 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Imperial Space SS14 assets",
+    "size": {
+        "x": 80,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "mag-0"
+        },
+        {
+            "name": "base"
+        },
+        {
+            "name": "icon"
+        }
+    ]
+}

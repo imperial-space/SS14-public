@@ -1,6 +1,11 @@
+// Imperial Weekly Mode Start
+using Content.Client.Imperial.WeeklyMode.Systems;
+// Imperial Weekly Mode End
 using Content.Client.Info;
 using Content.Client.Info.PlaytimeStats;
-using Content.Client.GameTicking.Managers; // Imperial Weekly Mode
+// Imperial Weekly Mode Start
+using Content.Client.GameTicking.Managers;
+// Imperial Weekly Mode End
 using Content.Client.Resources;
 using Content.Shared.CCVar;
 using Content.Shared.Preferences;
@@ -27,8 +32,9 @@ namespace Content.Client.Lobby.UI
         [Dependency] private readonly IResourceCache _resourceCache = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
-        // Imperial Weekly Mode
+        // Imperial Weekly Mode Start
         [Dependency] private readonly IEntityManager _entManager = default!;
+        // Imperial Weekly Mode End
 
         private readonly Button _createNewCharacterButton;
 
@@ -91,8 +97,9 @@ namespace Content.Client.Lobby.UI
                     ("maxCharacters", _preferencesManager.Settings!.MaxCharacterSlots));
 
             var selectedSlot = _preferencesManager.Preferences?.SelectedCharacterIndex;
-            // Imperial Weekly Mode
-            var gameTicker = _entManager.System<ClientGameTicker>();
+            // Imperial Weekly Mode Start
+            var weeklyRoles = _entManager.System<WeeklyRoleNameSystem>();
+            // Imperial Weekly Mode End
 
             foreach (var (slot, character) in _preferencesManager.Preferences!.Characters)
             {
@@ -101,11 +108,11 @@ namespace Content.Client.Lobby.UI
                     _playerManager,
                     characterButtonsGroup,
                     character,
-                    // Imperial Weekly Mode: Original code removed:
+                    // Imperial Weekly Mode: Original code:
                     // slot == selectedSlot);
                     // Imperial Weekly Mode Start
                     slot == selectedSlot,
-                    jobId => gameTicker.GetJobDisplayName(jobId, _protomanager));
+                    jobId => weeklyRoles.GetJobDisplayName(jobId, _protomanager));
                     // Imperial Weekly Mode End
 
                 Characters.AddChild(characterPickerButton);

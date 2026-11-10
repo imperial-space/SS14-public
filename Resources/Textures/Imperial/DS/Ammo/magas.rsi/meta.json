@@ -1,0 +1,122 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Imperial Space SS14 assets",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "magazine-bizon-default"
+        },
+        {
+            "name": "magazine-bizon-mag-0"
+        },
+        {
+            "name": "magazine-bizon-mag-1"
+        },
+        {
+            "name": "magazine-bizon-mag-2"
+        },
+        {
+            "name": "magazine-bizon-mag-3"
+        },
+        {
+            "name": "magazine-bizon-mag-4"
+        },
+        {
+            "name": "magazine-bizon-red"
+        },
+        {
+            "name": "Magazine-HMG-Default"
+        },
+        {
+            "name": "Magazine-HMG-mag-1"
+        },
+        {
+            "name": "Magazine-HMG-mag-2"
+        },
+        {
+            "name": "Magazine-HMG-RPK"
+        },
+        {
+            "name": "magazine-p90-default"
+        },
+        {
+            "name": "magazine-p90-mag-1"
+        },
+        {
+            "name": "magazine-p90-mag-2"
+        },
+        {
+            "name": "magazine-p90-mag-3"
+        },
+        {
+            "name": "magazine-p90-mag-4"
+        },
+        {
+            "name": "magazine-p90-mag-5"
+        },
+        {
+            "name": "magazine-p90-mag-6"
+        },
+        {
+            "name": "magazine-p90-red"
+        },
+        {
+            "name": "magazine-pistol-default"
+        },
+        {
+            "name": "magazine-pistol-mag-1"
+        },
+        {
+            "name": "magazine-pistol-mag-2"
+        },
+        {
+            "name": "magazine-pistol-mag-3"
+        },
+        {
+            "name": "magazine-pistol-mag-4"
+        },
+        {
+            "name": "magazine-pistol-mag-5"
+        },
+        {
+            "name": "magazine-pistol-mag-6"
+        },
+        {
+            "name": "magazine-pistol-red"
+        },
+        {
+            "name": "magazine-PPSH-default"
+        },
+        {
+            "name": "magazine-PPSH-default-mag-1"
+        },
+        {
+            "name": "magazine-rifle-1-default"
+        },
+        {
+            "name": "magazine-rifle-1-mag-1"
+        },
+        {
+            "name": "magazine-rifle-1-red"
+        },
+        {
+            "name": "magazine-rifle-2-default"
+        },
+        {
+            "name": "magazine-rifle-2-mag-1"
+        },
+        {
+            "name": "magazine-sniper-default"
+        },
+        {
+            "name": "magazine-sniper-mag-1"
+        },
+        {
+            "name": "magazine-sniper-red"
+        }
+    ]
+}

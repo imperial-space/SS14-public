@@ -52,25 +52,11 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
     {
         TechnologyCardsContainer.Children.Clear();
 
-        // Imperial Weekly Mode: Original technology list refresh moved below the weekly panel hook:
-        // var availableTech = _research.GetAvailableTechnologies(Entity);
-        // SyncTechnologyList(AvailableCardsContainer, availableTech);
-        if (!_entity.TryGetComponent(Entity, out TechnologyDatabaseComponent? database))
-            return;
-
-        // Imperial Weekly Mode: Original access check moved before normal panel rendering for weekly UI reuse.
-        // Imperial Weekly Mode Start
-        var hasAccess = _player.LocalEntity is not { } local ||
-                        !_entity.TryGetComponent<AccessReaderComponent>(Entity, out var access) ||
-                        _accessReader.IsAllowed(local, Entity, access);
-
-        if (TryUpdateWeeklyPanels(state, database, hasAccess))
-            return;
-        // Imperial Weekly Mode End
-
-        // Imperial Weekly Mode: Original technology list refresh moved here after the weekly panel hook.
         var availableTech = _research.GetAvailableTechnologies(Entity);
         SyncTechnologyList(AvailableCardsContainer, availableTech);
+
+        if (!_entity.TryGetComponent(Entity, out TechnologyDatabaseComponent? database))
+            return;
 
         // i can't figure out the spacing so here you go
         TechnologyCardsContainer.AddChild(new Control
@@ -78,7 +64,9 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
             MinHeight = 10
         });
 
-        // Imperial Weekly Mode: Original access check moved above the weekly panel hook.
+        var hasAccess = _player.LocalEntity is not { } local ||
+                        !_entity.TryGetComponent<AccessReaderComponent>(Entity, out var access) ||
+                        _accessReader.IsAllowed(local, Entity, access);
         foreach (var techId in database.CurrentTechnologyCards)
         {
             var tech = _prototype.Index<TechnologyPrototype>(techId);
@@ -163,14 +151,10 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
         var currentTechControls = new Dictionary<TechnologyPrototype, Control>();
         foreach (var child in container.Children)
         {
-            // Imperial Weekly Mode: Original code removed:
-            // if (child is MiniTechnologyCardControl)
-            // {
-            //     currentTechControls.Add((child as MiniTechnologyCardControl)!.Technology, child);
-            // }
-            // Imperial Weekly Mode
-            if (child is MiniTechnologyCardControl { Technology: { } technology } control)
-                currentTechControls.Add(technology, control);
+            if (child is MiniTechnologyCardControl)
+            {
+                currentTechControls.Add((child as MiniTechnologyCardControl)!.Technology, child);
+            }
         }
 
         foreach (var tech in technologies)
@@ -190,8 +174,7 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
 
         // Now, any items left in the dictionary are technologies which were previously
         // available, but now are not. Remove them.
-        // Imperial Weekly Mode
-        foreach (var (_, techControl) in currentTechControls)
+        foreach (var (tech, techControl) in currentTechControls)
         {
             container.Children.Remove(techControl);
         }

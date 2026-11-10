@@ -83,7 +83,7 @@ namespace Content.Shared.Lathe
         /// The recipe the lathe is currently producing
         /// </summary>
         [ViewVariables]
-        // Imperial Weekly Mode: Original code removed:
+        // Imperial Weekly Mode: Original code:
         // public ProtoId<LatheRecipePrototype>? CurrentRecipe;
         // Imperial Weekly Mode Start
         public string? CurrentRecipe;
@@ -119,7 +119,11 @@ namespace Content.Shared.Lathe
         #endregion
     }
 
-    public sealed class LatheGetRecipesEvent : EntityEventArgs
+    // Imperial Weekly Mode: Original code:
+    // public sealed class LatheGetRecipesEvent : EntityEventArgs
+    // Imperial Weekly Mode Start
+    public sealed partial class LatheGetRecipesEvent : EntityEventArgs
+    // Imperial Weekly Mode End
     {
         public readonly EntityUid Lathe;
         public readonly LatheComponent Comp;
@@ -138,6 +142,8 @@ namespace Content.Shared.Lathe
     [Serializable]
     public sealed partial class LatheRecipeBatch
     {
+        // Imperial Weekly Mode: Original code:
+        // public ProtoId<LatheRecipePrototype> Recipe;
         // Imperial Weekly Mode Start
         public string Recipe;
         public bool IsWeekly;
@@ -150,15 +156,8 @@ namespace Content.Shared.Lathe
         public int ItemsPrinted;
         public int ItemsRequested;
 
-        // Imperial Weekly Mode: Original code removed:
-        // public LatheRecipeBatch(ProtoId<LatheRecipePrototype> recipe, int itemsPrinted, int itemsRequested)
-        // {
-        //     Recipe = recipe;
-        //     ItemsPrinted = itemsPrinted;
-        //     ItemsRequested = itemsRequested;
-        // }
-        // Imperial Weekly Mode Start
         public LatheRecipeBatch(ProtoId<LatheRecipePrototype> recipe, int itemsPrinted, int itemsRequested)
+            // Imperial Weekly Mode Start
             : this(recipe.Id, false, itemsPrinted, itemsRequested)
         {
         }
@@ -173,8 +172,10 @@ namespace Content.Shared.Lathe
             int weeklyResultAmount = 1,
             string? weeklyRecipeName = null,
             double weeklyProductionTimeSeconds = 0)
+            // Imperial Weekly Mode End
         {
             Recipe = recipe;
+            // Imperial Weekly Mode Start
             IsWeekly = isWeekly;
             WeeklyMaterialSnapshot = weeklyMaterialSnapshot is null
                 ? new List<WeeklyLatheRecipeMaterialData>()
@@ -183,10 +184,10 @@ namespace Content.Shared.Lathe
             WeeklyResultAmount = weeklyResultAmount;
             WeeklyRecipeName = weeklyRecipeName ?? string.Empty;
             WeeklyProductionTimeSeconds = weeklyProductionTimeSeconds;
+            // Imperial Weekly Mode End
             ItemsPrinted = itemsPrinted;
             ItemsRequested = itemsRequested;
         }
-        // Imperial Weekly Mode End
     }
 
     /// <summary>

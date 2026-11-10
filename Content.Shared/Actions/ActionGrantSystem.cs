@@ -5,7 +5,11 @@ namespace Content.Shared.Actions;
 /// <summary>
 /// <see cref="ActionGrantComponent"/>
 /// </summary>
-public sealed class ActionGrantSystem : EntitySystem
+// Imperial Weekly Mode: Original code:
+// public sealed class ActionGrantSystem : EntitySystem
+// Imperial Weekly Mode Start
+public sealed partial class ActionGrantSystem : EntitySystem
+// Imperial Weekly Mode End
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
 
@@ -44,18 +48,6 @@ public sealed class ActionGrantSystem : EntitySystem
         }
     }
 
-    // Imperial Weekly Mode Start
-    public int SuppressMapInitGrants(Entity<ActionGrantComponent> ent)
-    {
-        var suppressed = ent.Comp.Actions.Count;
-        if (suppressed == 0)
-            return 0;
-
-        ent.Comp.Actions.Clear();
-        Dirty(ent.Owner, ent.Comp);
-        return suppressed;
-    }
-    // Imperial Weekly Mode End
 
     private void OnShutdown(Entity<ActionGrantComponent> ent, ref ComponentShutdown args)
     {

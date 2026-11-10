@@ -21,7 +21,7 @@ public sealed class WmCargoCommand : LocalizedEntityCommands
 
     public override string Command => "wm.cargo";
     public override string Description => "Adds or removes a weekly cargo product entry.";
-    public override string Help => "wm.cargo <setId> <add|remove> <productId> [category] [cost] [boxed] [amount] [itemPrototype]";
+    public override string Help => "wm.cargo <setId> add <productId> <category> <cost> <boxed> <amount> <itemPrototype> | wm.cargo <setId> remove <productId>";
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {

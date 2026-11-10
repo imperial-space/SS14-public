@@ -1,0 +1,75 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Imperial Space SS14 assets",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "wielded-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "wielded-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "equipped-BACKPACK",
+            "directions": 4
+        },
+        {
+            "name": "equipped-SUITSTORAGE",
+            "directions": 4
+        },
+        {
+            "name": "equipped-BACKPACK-equipped-light-off",
+            "directions": 4
+        },
+        {
+            "name": "equipped-BACKPACK-equipped-light-on",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left-eqiped-light-off",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left-eqiped-light-on",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right-equipped-light-off",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right-equipped-light-on",
+            "directions": 4
+        },
+        {
+            "name": "wielded-inhand-left-equipped-light-off",
+            "directions": 4
+        },
+        {
+            "name": "wielded-inhand-left-equipped-light-on",
+            "directions": 4
+        },
+        {
+            "name": "wielded-inhand-right-equipped-light-off",
+            "directions": 4
+        },
+        {
+            "name": "wielded-inhand-right-equipped-light-on",
+            "directions": 4
+        }
+    ]
+}

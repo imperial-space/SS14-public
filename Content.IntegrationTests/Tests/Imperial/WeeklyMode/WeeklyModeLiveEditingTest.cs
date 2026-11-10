@@ -1,3 +1,5 @@
+using Content.Shared.Research;
+using Content.Shared.Imperial.ICCVar;
 #nullable enable
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,7 @@ using Content.Server.Materials;
 using Content.Server.Power.Components;
 using Content.Server.Research.Systems;
 using Content.Server.Station.Systems;
+using Content.Server.Station.Components;
 using Content.Server.WeeklyMode.Systems;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
@@ -41,6 +44,131 @@ public sealed class WeeklyModeLiveEditingTest : GameTest
     private const string CargoItem = "SheetSteel";
     private static readonly ProtoId<JobPrototype> Captain = "Captain";
     private static readonly ProtoId<JobPrototype> Passenger = "Passenger";
+
+    [Test]
+    public async Task CargoDeliveryOnAnotherMapUsesCampaignCrateSettings()
+    {
+        var setId = UniqueSetId();
+        await UseIsolatedWeeklyRoot();
+        await Server.WaitPost(() =>
+        {
+            var weekly = SEntMan.System<WeeklyModeSystem>();
+            StartWeeklySet(weekly, setId);
+            var mapSystem = SEntMan.System<SharedMapSystem>();
+            var campaignMap = mapSystem.CreateMap(out var campaignMapId);
+            var settings = SEntMan.EnsureComponent<WeeklyCargoSettingsComponent>(campaignMap);
+            settings.CratePrototype = "WeeklyConfiguredCargoCrate";
+            var prototypes = Server.ResolveDependency<IPrototypeManager>();
+            var mapPrototype = prototypes.EnumeratePrototypes<GameMapPrototype>()
+                .First(map => map.MapPath.CanonPath == EmptyMapPath);
+            var grid = Server.ResolveDependency<IMapManager>().CreateGridEntity(campaignMapId);
+            // Model the mapping component normally deserialized by the map loader.
+#pragma warning disable RA0002
+            SEntMan.AddComponent(grid.Owner, new BecomesStationComponent { Id = mapPrototype.Stations.Keys.First() });
+#pragma warning restore RA0002
+            SEntMan.EventBus.RaiseEvent(EventSource.Local, new Content.Server.GameTicking.PostGameMapLoad(
+                mapPrototype, campaignMapId, new[] { grid.Owner }, null));
+
+            var deliveryMap = mapSystem.CreateMap(out _);
+            var product = new WeeklyCargoProductData
+            {
+                ProductId = "WeeklySettingsProduct",
+                Name = "Weekly settings product",
+                ItemPrototype = CargoItem,
+                Amount = 1,
+                Boxed = true,
+            };
+            var order = new CargoOrderData(1, product, 1, "test", "test", "Cargo");
+            Assert.That(SEntMan.System<CargoSystem>().FulfillWeeklyOrder(order, "Cargo",
+                new EntityCoordinates(deliveryMap, System.Numerics.Vector2.Zero), null), Is.True);
+            Assert.That(CountEntitiesByPrototype("WeeklyConfiguredCargoCrate"), Is.EqualTo(1));
+        });
+    }
+
+    [Test]
+    public async Task WeeklyWindowsLoadTheirOwnXaml()
+    {
+        await Client.WaitPost(() =>
+        {
+            var owner = CEntMan.SpawnEntity(null, MapCoordinates.Nullspace);
+            var prototypes = Client.ResolveDependency<IPrototypeManager>();
+            var sprites = CEntMan.System<Robust.Client.GameObjects.SpriteSystem>();
+            using var cargo = new Content.Client.Imperial.WeeklyMode.Cargo.WeeklyCargoConsoleMenu(owner, CEntMan, prototypes, sprites);
+            using var shuttle = new Content.Client.Imperial.WeeklyMode.Cargo.WeeklyCargoShuttleMenu();
+            using var lathe = new Content.Client.Imperial.WeeklyMode.Lathe.WeeklyLatheMenu();
+            using var research = new Content.Client.Imperial.WeeklyMode.Research.WeeklyResearchConsoleMenu();
+            cargo.PopulateCategories();
+            cargo.PopulateProducts();
+            shuttle.SetOrders(sprites, prototypes, new());
+            Assert.Multiple(() =>
+            {
+                Assert.That(cargo.ChildCount, Is.GreaterThan(0));
+                Assert.That(shuttle.ChildCount, Is.GreaterThan(0));
+                Assert.That(lathe.ChildCount, Is.GreaterThan(0));
+                Assert.That(research.ChildCount, Is.GreaterThan(0));
+            });
+            CEntMan.DeleteEntity(owner);
+        });
+    }
+
+    [Test]
+    public async Task ResearchLiveEditWithoutClearingUnlocksReconcilesRecipes()
+    {
+        await Server.WaitPost(() =>
+        {
+            var research = SEntMan.System<ResearchSystem>();
+            var uid = SEntMan.SpawnEntity("WeeklyLiveResearchDatabase", MapCoordinates.Nullspace);
+            var database = SEntMan.GetComponent<TechnologyDatabaseComponent>(uid);
+            var first = new WeeklyTechnologyData
+            {
+                TechnologyId = "WeeklyLiveEdit",
+                Branch = "Industrial",
+                Tier = 1,
+                RecipeIds = new() { FirstRecipe },
+            };
+            research.SetWeeklyModeOverlay(uid, true, new[] { first }, false, database);
+            research.AddWeeklyTechnology(uid, first, database);
+            var normal = Server.ResolveDependency<IPrototypeManager>().EnumeratePrototypes<TechnologyPrototype>()
+                .First(technology => technology.RecipeUnlocks.Count > 0);
+            research.AddTechnology(uid, normal, database);
+            var normalRecipes = normal.RecipeUnlocks.ToArray();
+
+            var changed = first with { RecipeIds = new() { SecondRecipe } };
+            research.SetWeeklyModeOverlay(uid, true, new[] { changed }, false, database);
+            Assert.Multiple(() =>
+            {
+                Assert.That(database.WeeklyUnlockedTechnologies, Contains.Item(first.TechnologyId));
+                Assert.That(database.UnlockedRecipes.Select(recipe => recipe.Id), Contains.Item(SecondRecipe));
+                if (!normalRecipes.Any(recipe => recipe.Id == FirstRecipe))
+                    Assert.That(database.UnlockedRecipes.Select(recipe => recipe.Id), Does.Not.Contain(FirstRecipe));
+                Assert.That(database.UnlockedRecipes, Is.SupersetOf(normalRecipes));
+            });
+
+            research.SetWeeklyModeOverlay(uid, true, Array.Empty<WeeklyTechnologyData>(), false, database);
+            Assert.Multiple(() =>
+            {
+                Assert.That(database.WeeklyUnlockedTechnologies, Is.Empty);
+                if (!normalRecipes.Any(recipe => recipe.Id == SecondRecipe))
+                    Assert.That(database.UnlockedRecipes.Select(recipe => recipe.Id), Does.Not.Contain(SecondRecipe));
+                Assert.That(database.UnlockedRecipes, Is.SupersetOf(normalRecipes));
+            });
+        });
+    }
+
+    [Test]
+    public async Task MissingWeeklyDisciplineLeavesMainDisciplineUnchanged()
+    {
+        await Server.WaitPost(() =>
+        {
+            var research = SEntMan.System<ResearchSystem>();
+            var uid = SEntMan.SpawnEntity("WeeklyLiveResearchDatabase", MapCoordinates.Nullspace);
+            var database = SEntMan.GetComponent<TechnologyDatabaseComponent>(uid);
+            var previous = database.MainDiscipline;
+            Assert.DoesNotThrow(() => research.TrySetWeeklyMainDiscipline(
+                new WeeklyTechnologyData { Branch = "MissingWeeklyDiscipline", Tier = 3 }, uid, database));
+            Assert.That(database.MainDiscipline, Is.EqualTo(previous));
+        });
+    }
 
     [Test]
     public async Task AddUpdateAndRemoveResearchDuringActiveCampaignRefreshesRuntimeDatabase()
@@ -293,7 +421,7 @@ public sealed class WeeklyModeLiveEditingTest : GameTest
             {
                 Assert.That(securityRecipes.Select(recipe => recipe.RecipeId), Is.EqualTo(new[] { "WeeklyGasMaskRecipe" }));
                 Assert.That(medicalRecipes.Select(recipe => recipe.RecipeId), Does.Not.Contain("WeeklyGasMaskRecipe"));
-                Assert.That(ui.TryGetUiState<LatheUpdateState>(securityLathe, LatheUiKey.Key, out var state), Is.True);
+                Assert.That(ui.TryGetUiState<WeeklyLatheUpdateState>(securityLathe, LatheUiKey.Key, out var state), Is.True);
                 Assert.That(state!.WeeklyRecipes.Select(recipe => recipe.RecipeId), Contains.Item("WeeklyGasMaskRecipe"));
             });
 
@@ -478,7 +606,7 @@ public sealed class WeeklyModeLiveEditingTest : GameTest
 
     private async Task UseIsolatedWeeklyRoot()
     {
-        await OverrideCVar(Side.Server, CCVars.WeeklyModeDataRoot, $"/weekly-mode-tests/{Guid.NewGuid():N}");
+        await OverrideCVar(Side.Server, ICCVars.WeeklyModeDataRoot, $"/weekly-mode-tests/{Guid.NewGuid():N}");
     }
 
     private static string UniqueSetId()
@@ -539,7 +667,7 @@ public sealed class WeeklyModeLiveEditingTest : GameTest
     private void AssertCargoUiState(EntityUid consoleUid, string productId, string category, int cost, bool boxed, int amount)
     {
         var ui = SEntMan.System<SharedUserInterfaceSystem>();
-        Assert.That(ui.TryGetUiState<CargoConsoleInterfaceState>(consoleUid, CargoConsoleUiKey.Orders, out var state),
+        Assert.That(ui.TryGetUiState<WeeklyCargoConsoleInterfaceState>(consoleUid, CargoConsoleUiKey.Orders, out var state),
             Is.True,
             "Cargo order console did not receive a UI state update.");
 
@@ -556,7 +684,7 @@ public sealed class WeeklyModeLiveEditingTest : GameTest
     private void AssertCargoUiStateDoesNotContain(EntityUid consoleUid, string productId)
     {
         var ui = SEntMan.System<SharedUserInterfaceSystem>();
-        Assert.That(ui.TryGetUiState<CargoConsoleInterfaceState>(consoleUid, CargoConsoleUiKey.Orders, out var state),
+        Assert.That(ui.TryGetUiState<WeeklyCargoConsoleInterfaceState>(consoleUid, CargoConsoleUiKey.Orders, out var state),
             Is.True,
             "Cargo order console did not receive a UI state update.");
 
@@ -571,6 +699,10 @@ public sealed class WeeklyModeLiveEditingTest : GameTest
 
     [TestPrototypes]
     private const string Prototypes = @"
+- type: entity
+  id: WeeklyConfiguredCargoCrate
+  parent: CrateGenericSteel
+
 - type: gameMap
   id: WeeklyForcedRoleStationMap
   mapName: WeeklyForcedRoleStationMap

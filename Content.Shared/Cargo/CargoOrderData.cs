@@ -18,8 +18,8 @@ namespace Content.Shared.Cargo
         /// </summary>
         [DataField]
         public ProtoId<CargoProductPrototype> Product;
-
         // Imperial Weekly Mode Start
+
         [DataField]
         public WeeklyCargoProductData? WeeklyProduct;
 
@@ -76,8 +76,8 @@ namespace Content.Shared.Cargo
             Reason = reason;
             Account = account;
         }
-        // Imperial Weekly Mode End
 
+        // Imperial Weekly Mode End
         public void SetApproverData(string? approver)
         {
             Approver = approver;

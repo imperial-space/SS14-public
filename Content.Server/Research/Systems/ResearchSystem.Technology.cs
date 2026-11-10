@@ -1,6 +1,10 @@
-using System.Linq; // Imperial Weekly Mode
+// Imperial Weekly Mode Start
+using System.Linq;
+// Imperial Weekly Mode End
 using Content.Shared.Database;
-using Content.Shared.Research; // Imperial Weekly Mode
+// Imperial Weekly Mode Start
+using Content.Shared.Research;
+// Imperial Weekly Mode End
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
 using JetBrains.Annotations;
@@ -27,8 +31,9 @@ public sealed partial class ResearchSystem
         primaryDb.WeeklyTechnologies = otherDb.WeeklyTechnologies;
         // Imperial Weekly Mode End
         primaryDb.UnlockedTechnologies = otherDb.UnlockedTechnologies;
-        // Imperial Weekly Mode
+        // Imperial Weekly Mode Start
         primaryDb.WeeklyUnlockedTechnologies = otherDb.WeeklyUnlockedTechnologies;
+        // Imperial Weekly Mode End
         primaryDb.UnlockedRecipes = otherDb.UnlockedRecipes;
 
         Dirty(primaryUid, primaryDb);
@@ -67,8 +72,8 @@ public sealed partial class ResearchSystem
         // Imperial Weekly Mode Start
         if (Resolve(client, ref component, ref clientDatabase, false) && clientDatabase.WeeklyModeOnly)
             return UnlockWeeklyTechnology(client, prototypeid, user, component, clientDatabase);
-        // Imperial Weekly Mode End
 
+        // Imperial Weekly Mode End
         if (!PrototypeManager.TryIndex<TechnologyPrototype>(prototypeid, out var prototype))
             return false;
 
@@ -187,8 +192,9 @@ public sealed partial class ResearchSystem
         component.WeeklyTechnologies = new List<WeeklyTechnologyData>();
         // Imperial Weekly Mode End
         component.UnlockedTechnologies = new List<ProtoId<TechnologyPrototype>>();
-        // Imperial Weekly Mode
+        // Imperial Weekly Mode Start
         component.WeeklyUnlockedTechnologies = new List<string>();
+        // Imperial Weekly Mode End
         component.UnlockedRecipes = new List<ProtoId<LatheRecipePrototype>>();
         Dirty(uid, component);
     }

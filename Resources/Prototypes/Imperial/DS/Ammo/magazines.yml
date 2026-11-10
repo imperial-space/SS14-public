@@ -1,0 +1,1084 @@
+# ── Магазины DS ───────────────────────────────────────────────────────────────
+
+# ── Базовые абстрактные сущности ──────────────────────────────────────────────
+
+- type: entity
+  id: BaseMagazineDSBizon
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS9x18
+    capacity: 64
+    proto: CartridgeDS9x18
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-bizon-default
+      map: ["enum.GunVisualLayers.Base"]
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  id: BaseMagazineDSP90
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 30
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-p90-default
+      map: ["enum.GunVisualLayers.Base"]
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  id: BaseMagazineDSPPSH
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 35
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-PPSH-default
+      map: ["enum.GunVisualLayers.Base"]
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  id: BaseMagazineDSPistol
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 15
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-pistol-default
+      map: ["enum.GunVisualLayers.Base"]
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  id: BaseMagazineDSRifle1
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 30
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-rifle-1-default
+      map: ["enum.GunVisualLayers.Base"]
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  id: BaseMagazineDSRifle2
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 30
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-rifle-2-default
+      map: ["enum.GunVisualLayers.Base"]
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  id: BaseMagazineDSSniper
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 10
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-sniper-default
+      map: ["enum.GunVisualLayers.Base"]
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  id: BaseMagazineDSHMG
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 100
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: Magazine-HMG-Default
+      map: ["enum.GunVisualLayers.Base"]
+  - type: StaticPrice
+    price: 20
+
+# ── ПП-19 Бизон ───────────────────────────────────────────────────────────────
+
+- type: entity
+  id: MagazineDSBizon
+  suffix: DeadSector
+  name: Магазин ПП-19 Бизон
+  parent: BaseMagazineDSBizon
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSBizon
+
+- type: entity
+  id: MagazineDSBizonBB
+  suffix: DeadSector
+  name: Магазин ПП-19 Бизон ББ
+  parent: BaseMagazineDSBizon
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSBizon
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-bizon-red
+      map: ["enum.GunVisualLayers.Base"]
+
+# ── P90-тип ПП ────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: MagazineDSMac10
+  suffix: DeadSector
+  name: Магазин Mac-10
+  parent: BaseMagazineDSP90
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSMac10
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS9x19
+    whitelist:
+      tags:
+        - CartridgeDS9x19
+
+- type: entity
+  id: MagazineDSMac10BB
+  suffix: DeadSector
+  name: Магазин Mac-10 ББ
+  parent: MagazineDSMac10
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-p90-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSMineral
+  suffix: DeadSector
+  name: Магазин Минервал
+  parent: BaseMagazineDSP90
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSMineral
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS9x19
+    whitelist:
+      tags:
+        - CartridgeDS9x19
+
+- type: entity
+  id: MagazineDSMineralBB
+  suffix: DeadSector
+  name: Магазин Минервал ББ
+  parent: MagazineDSMineral
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-p90-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSMP5
+  suffix: DeadSector
+  name: Магазин МП-5
+  parent: BaseMagazineDSP90
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSMP5
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS9x19
+    whitelist:
+      tags:
+        - CartridgeDS9x19
+
+- type: entity
+  id: MagazineDSMP5BB
+  suffix: DeadSector
+  name: Магазин МП-5 ББ
+  parent: MagazineDSMP5
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-p90-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSP90
+  suffix: DeadSector
+  name: Магазин FN P90
+  parent: BaseMagazineDSP90
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSP90
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS5x6
+    whitelist:
+      tags:
+        - CartridgeDS5x6
+    capacity: 50
+
+- type: entity
+  id: MagazineDSP90BB
+  suffix: DeadSector
+  name: Магазин FN P90 ББ
+  parent: MagazineDSP90
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-p90-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSFAMAS
+  suffix: DeadSector
+  name: Магазин FAMAS
+  parent: BaseMagazineDSP90
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSFAMAS
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS5x56x45
+    whitelist:
+      tags:
+        - CartridgeDS5x56x45
+
+- type: entity
+  id: MagazineDSFAMASBB
+  suffix: DeadSector
+  name: Магазин FAMAS ББ
+  parent: MagazineDSFAMAS
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-p90-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSNamaz
+  suffix: DeadSector
+  name: Магазин Namaz
+  parent: BaseMagazineDSP90
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSNamaz
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS9x19
+    whitelist:
+      tags:
+        - CartridgeDS9x19
+
+- type: entity
+  id: MagazineDSNamazBB
+  suffix: DeadSector
+  name: Магазин Namaz ББ
+  parent: MagazineDSNamaz
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-p90-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSAgram
+  suffix: DeadSector
+  name: Магазин Аграм
+  parent: BaseMagazineDSP90
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSAgram
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS9x19
+    whitelist:
+      tags:
+        - CartridgeDS9x19
+
+- type: entity
+  id: MagazineDSAgramBB
+  suffix: DeadSector
+  name: Магазин Аграм ББ
+  parent: MagazineDSAgram
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-p90-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSScorpion
+  suffix: DeadSector
+  name: Магазин Скорпион
+  parent: BaseMagazineDSP90
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSScorpion
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS9x18
+    whitelist:
+      tags:
+        - CartridgeDS9x18
+
+- type: entity
+  id: MagazineDSScorpionBB
+  suffix: DeadSector
+  name: Магазин Скорпион ББ
+  parent: MagazineDSScorpion
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-p90-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSTEC9
+  suffix: DeadSector
+  name: Магазин TEC-9
+  parent: BaseMagazineDSP90
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSTEC9
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS9x19
+    whitelist:
+      tags:
+        - CartridgeDS9x19
+
+- type: entity
+  id: MagazineDSTEC9BB
+  suffix: DeadSector
+  name: Магазин TEC-9 ББ
+  parent: MagazineDSTEC9
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-p90-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSUzi
+  suffix: DeadSector
+  name: Магазин Узи
+  parent: BaseMagazineDSP90
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSUzi
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS9x19
+    whitelist:
+      tags:
+        - CartridgeDS9x19
+
+- type: entity
+  id: MagazineDSUziBB
+  suffix: DeadSector
+  name: Магазин Узи ББ
+  parent: MagazineDSUzi
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-p90-red
+      map: ["enum.GunVisualLayers.Base"]
+
+# ── Томпсон / ППШ ─────────────────────────────────────────────────────────────
+
+- type: entity
+  id: MagazineDSThompson
+  suffix: DeadSector
+  name: Магазин Томпсон
+  parent: BaseMagazineDSPPSH
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSThompson
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS40
+    whitelist:
+      tags:
+        - CartridgeDS40
+
+- type: entity
+  id: MagazineDSThompsonBB
+  suffix: DeadSector
+  name: Магазин Томпсон ББ
+  parent: MagazineDSThompson
+
+- type: entity
+  id: MagazineDSPPSh
+  suffix: DeadSector
+  name: Магазин ППШ
+  parent: BaseMagazineDSPPSH
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSPPSh
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS9x18
+    whitelist:
+      tags:
+        - CartridgeDS9x18
+
+- type: entity
+  id: MagazineDSPPShBB
+  suffix: DeadSector
+  name: Магазин ППШ ББ
+  parent: MagazineDSPPSh
+
+# ── Пистолеты ─────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: MagazineDSKeparis
+  suffix: DeadSector
+  name: Магазин Кепарис
+  parent: BaseMagazineDSPistol
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSKeparis
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS9x19
+    whitelist:
+      tags:
+        - CartridgeDS9x19
+
+- type: entity
+  id: MagazineDSKeparisBB
+  suffix: DeadSector
+  name: Магазин Кепарис ББ
+  parent: MagazineDSKeparis
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-pistol-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSDesertEagle
+  suffix: DeadSector
+  name: Магазин Desert Eagle
+  parent: BaseMagazineDSPistol
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSDesertEagle
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS357
+    whitelist:
+      tags:
+        - CartridgeDS357
+    capacity: 8
+
+- type: entity
+  id: MagazineDSDesertEagleBB
+  suffix: DeadSector
+  name: Магазин Desert Eagle ББ
+  parent: MagazineDSDesertEagle
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-pistol-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSPM
+  suffix: DeadSector
+  name: Магазин ПМ
+  parent: BaseMagazineDSPistol
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSPM
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS9x18
+    whitelist:
+      tags:
+        - CartridgeDS9x18
+    capacity: 8
+
+- type: entity
+  id: MagazineDSPMBB
+  suffix: DeadSector
+  name: Магазин ПМ ББ
+  parent: MagazineDSPM
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-pistol-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSStok
+  suffix: DeadSector
+  name: Магазин Сток
+  parent: BaseMagazineDSPistol
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSStok
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS9x19
+    whitelist:
+      tags:
+        - CartridgeDS9x19
+
+- type: entity
+  id: MagazineDSStokBB
+  suffix: DeadSector
+  name: Магазин Сток ББ
+  parent: MagazineDSStok
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-pistol-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSMilton
+  suffix: DeadSector
+  name: Магазин Милтон
+  parent: BaseMagazineDSPistol
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSMilton
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS9x19
+    whitelist:
+      tags:
+        - CartridgeDS9x19
+
+- type: entity
+  id: MagazineDSMiltonBB
+  suffix: DeadSector
+  name: Магазин Милтон ББ
+  parent: MagazineDSMilton
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-pistol-red
+      map: ["enum.GunVisualLayers.Base"]
+
+# ── Карабины тип 1 ────────────────────────────────────────────────────────────
+
+- type: entity
+  id: MagazineDSAK74
+  suffix: DeadSector
+  name: Магазин АК-74
+  parent: BaseMagazineDSRifle1
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSAK74
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS5x45x39
+    whitelist:
+      tags:
+        - CartridgeDS5x45x39
+
+- type: entity
+  id: MagazineDSAK74BB
+  suffix: DeadSector
+  name: Магазин АК-74 ББ
+  parent: MagazineDSAK74
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-rifle-1-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSAR15
+  suffix: DeadSector
+  name: Магазин AR-15
+  parent: BaseMagazineDSRifle1
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSAR15
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS5x56x45
+    whitelist:
+      tags:
+        - CartridgeDS5x56x45
+
+- type: entity
+  id: MagazineDSAR15BB
+  suffix: DeadSector
+  name: Магазин AR-15 ББ
+  parent: MagazineDSAR15
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-rifle-1-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSAR57
+  suffix: DeadSector
+  name: Магазин AR-57
+  parent: BaseMagazineDSRifle1
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSAR57
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS7x62x51
+    whitelist:
+      tags:
+        - CartridgeDS7x62x51
+
+- type: entity
+  id: MagazineDSAR57BB
+  suffix: DeadSector
+  name: Магазин AR-57 ББ
+  parent: MagazineDSAR57
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-rifle-1-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSSteyrAUG
+  suffix: DeadSector
+  name: Магазин Steyr AUG
+  parent: BaseMagazineDSRifle1
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSSteyrAUG
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS5x56x45
+    whitelist:
+      tags:
+        - CartridgeDS5x56x45
+
+- type: entity
+  id: MagazineDSSteyrAUGBB
+  suffix: DeadSector
+  name: Магазин Steyr AUG ББ
+  parent: MagazineDSSteyrAUG
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-rifle-1-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSM4A1
+  suffix: DeadSector
+  name: Магазин M4A1
+  parent: BaseMagazineDSRifle1
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSM4A1
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS5x56x45
+    whitelist:
+      tags:
+        - CartridgeDS5x56x45
+
+- type: entity
+  id: MagazineDSM4A1BB
+  suffix: DeadSector
+  name: Магазин M4A1 ББ
+  parent: MagazineDSM4A1
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-rifle-1-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSM16
+  suffix: DeadSector
+  name: Магазин M16
+  parent: BaseMagazineDSRifle1
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSM16
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS5x56x45
+    whitelist:
+      tags:
+        - CartridgeDS5x56x45
+
+- type: entity
+  id: MagazineDSM16BB
+  suffix: DeadSector
+  name: Магазин M16 ББ
+  parent: MagazineDSM16
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-rifle-1-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSSIGSauer
+  suffix: DeadSector
+  name: Магазин SIG Sauer
+  parent: BaseMagazineDSRifle1
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSSIGSauer
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS5x56x45
+    whitelist:
+      tags:
+        - CartridgeDS5x56x45
+
+- type: entity
+  id: MagazineDSSIGSauerBB
+  suffix: DeadSector
+  name: Магазин SIG Sauer ББ
+  parent: MagazineDSSIGSauer
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-rifle-1-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSAK12
+  suffix: DeadSector
+  name: Магазин АК-12
+  parent: BaseMagazineDSRifle1
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSAK12
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS5x45x39
+    whitelist:
+      tags:
+        - CartridgeDS5x45x39
+
+- type: entity
+  id: MagazineDSAK12BB
+  suffix: DeadSector
+  name: Магазин АК-12 ББ
+  parent: MagazineDSAK12
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-rifle-1-red
+      map: ["enum.GunVisualLayers.Base"]
+
+# ── Карабины тип 2 (HK-416) ───────────────────────────────────────────────────
+
+- type: entity
+  id: MagazineDSHK416
+  suffix: DeadSector
+  name: Магазин HK-416
+  parent: BaseMagazineDSRifle2
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSHK416
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS5x56x45
+    whitelist:
+      tags:
+        - CartridgeDS5x56x45
+
+- type: entity
+  id: MagazineDSHK416BB
+  suffix: DeadSector
+  name: Магазин HK-416 ББ
+  parent: MagazineDSHK416
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-rifle-2-default
+      map: ["enum.GunVisualLayers.Base"]
+
+# ── Снайперские винтовки ───────────────────────────────────────────────────────
+
+- type: entity
+  id: MagazineDSAWM
+  suffix: DeadSector
+  name: Магазин AWM
+  parent: BaseMagazineDSSniper
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSAWM
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS308
+    whitelist:
+      tags:
+        - CartridgeDS308
+
+- type: entity
+  id: MagazineDSAWMBB
+  suffix: DeadSector
+  name: Магазин AWM ББ
+  parent: MagazineDSAWM
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-sniper-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSBarrettM82
+  suffix: DeadSector
+  name: Магазин Barret M82
+  parent: BaseMagazineDSSniper
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSBarrettM82
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS7x62x54
+    whitelist:
+      tags:
+        - CartridgeDS7x62x54
+
+- type: entity
+  id: MagazineDSBarrettM82BB
+  suffix: DeadSector
+  name: Магазин Barret M82 ББ
+  parent: MagazineDSBarrettM82
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-sniper-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSM40
+  suffix: DeadSector
+  name: Магазин M40
+  parent: BaseMagazineDSSniper
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSM40
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS7x62x51
+    whitelist:
+      tags:
+        - CartridgeDS7x62x51
+
+- type: entity
+  id: MagazineDSM40BB
+  suffix: DeadSector
+  name: Магазин M40 ББ
+  parent: MagazineDSM40
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-sniper-red
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineDSPSL
+  suffix: DeadSector
+  name: Магазин PSL
+  parent: BaseMagazineDSSniper
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSPSL
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS7x62x54
+    whitelist:
+      tags:
+        - CartridgeDS7x62x54
+
+- type: entity
+  id: MagazineDSPSLBB
+  suffix: DeadSector
+  name: Магазин PSL ББ
+  parent: MagazineDSPSL
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: magazine-sniper-red
+      map: ["enum.GunVisualLayers.Base"]
+
+# ── Пулемёты ──────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: MagazineDSMk48
+  suffix: DeadSector
+  name: Магазин Mk.48
+  parent: BaseMagazineDSHMG
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSMk48
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS7x62x51
+    whitelist:
+      tags:
+        - CartridgeDS7x62x51
+
+- type: entity
+  id: MagazineDSPKM
+  suffix: DeadSector
+  name: Магазин ПКМ
+  parent: BaseMagazineDSHMG
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSPKM
+  - type: BallisticAmmoProvider
+    proto: CartridgeDS7x62x54
+    whitelist:
+      tags:
+        - CartridgeDS7x62x54
+
+- type: entity
+  id: MagazineDSRPK
+  suffix: DeadSector
+  name: Магазин РПК
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - DSAmmoItem
+      - MagazineDSRPK
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeDS7x62x39
+    capacity: 75
+    proto: CartridgeDS7x62x39
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/DS/Ammo/magas.rsi
+    layers:
+    - state: Magazine-HMG-RPK
+      map: ["enum.GunVisualLayers.Base"]
+  - type: StaticPrice
+    price: 20

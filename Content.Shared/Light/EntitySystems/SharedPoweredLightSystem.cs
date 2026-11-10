@@ -21,7 +21,11 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Light.EntitySystems;
 
-public abstract class SharedPoweredLightSystem : EntitySystem
+// Imperial Weekly Mode: Original code:
+// public abstract class SharedPoweredLightSystem : EntitySystem
+// Imperial Weekly Mode Start
+public abstract partial class SharedPoweredLightSystem : EntitySystem
+// Imperial Weekly Mode End
 {
     [Dependency] protected readonly IGameTiming GameTiming = default!;
     [Dependency] private readonly DamageOnInteractSystem _damageOnInteractSystem = default!;
@@ -210,20 +214,6 @@ public abstract class SharedPoweredLightSystem : EntitySystem
         return true;
     }
 
-    // Imperial Weekly Mode Start
-    /// <summary>
-    ///     Clears the prototype that would be spawned into this light during map init.
-    /// </summary>
-    public bool ClearSpawnedPrototype(Entity<PoweredLightComponent> light)
-    {
-        if (light.Comp.HasLampOnSpawn == null)
-            return false;
-
-        light.Comp.HasLampOnSpawn = null;
-        Dirty(light.Owner, light.Comp);
-        return true;
-    }
-    // Imperial Weekly Mode End
 
     /// <summary>
     ///     Try to replace current bulb with a new one

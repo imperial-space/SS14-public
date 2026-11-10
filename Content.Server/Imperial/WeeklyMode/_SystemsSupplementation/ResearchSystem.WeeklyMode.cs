@@ -54,16 +54,32 @@ public sealed partial class ResearchSystem
 
             databaseComponent.WeeklyUnlockedTechnologies.Clear();
         }
-        else if (clearUnlocked)
+        else
         {
-            var allowedPrototypes = databaseComponent.WeeklyAllowedTechnologies.ToHashSet();
-            databaseComponent.UnlockedTechnologies.RemoveAll(id => !allowedPrototypes.Contains(id));
+            if (clearUnlocked)
+            {
+                var allowedPrototypes = databaseComponent.WeeklyAllowedTechnologies.ToHashSet();
+                databaseComponent.UnlockedTechnologies.RemoveAll(id => !allowedPrototypes.Contains(id));
+            }
 
             var weeklyRecipesToKeep = databaseComponent.WeeklyTechnologies
                 .Where(technology => databaseComponent.WeeklyUnlockedTechnologies.Contains(technology.TechnologyId))
                 .SelectMany(technology => technology.RecipeIds)
                 .ToHashSet(StringComparer.Ordinal);
-            databaseComponent.UnlockedRecipes.RemoveAll(recipe => !weeklyRecipesToKeep.Contains(recipe));
+            var normalRecipesToKeep = databaseComponent.UnlockedTechnologies
+                .Select(id => PrototypeManager.TryIndex(id, out var technology) ? technology : null)
+                .Where(technology => technology != null)
+                .SelectMany(technology => technology!.RecipeUnlocks)
+                .Select(recipe => recipe.Id)
+                .ToHashSet(StringComparer.Ordinal);
+            var previousWeeklyRecipes = previousWeeklyTechnologies
+                .SelectMany(technology => technology.RecipeIds)
+                .ToHashSet(StringComparer.Ordinal);
+
+            databaseComponent.UnlockedRecipes.RemoveAll(recipe =>
+                !weeklyRecipesToKeep.Contains(recipe.Id) &&
+                !normalRecipesToKeep.Contains(recipe.Id) &&
+                (clearUnlocked || previousWeeklyRecipes.Contains(recipe.Id)));
 
             foreach (var recipe in weeklyRecipesToKeep)
             {
@@ -151,7 +167,8 @@ public sealed partial class ResearchSystem
         if (!Resolve(uid, ref component))
             return;
 
-        var discipline = PrototypeManager.Index<TechDisciplinePrototype>(technology.Branch);
+        if (!PrototypeManager.TryIndex<TechDisciplinePrototype>(technology.Branch, out var discipline))
+            return;
         if (technology.Tier < discipline.LockoutTier)
             return;
 

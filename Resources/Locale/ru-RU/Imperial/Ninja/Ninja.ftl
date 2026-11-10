@@ -4,3 +4,4 @@ ninja-headset-copy-success = Частоты успешно скопирован�
 ninja-headset-copy-none = Новая частота не обнаружена.
 ninja-headset-examine-empty = [color=yellow]Скопированных частот нет.[/color]
 ninja-headset-examine-copied = [color=green]Скопированные частоты:[/color]
+ninja-headset-examine-channel = [color=yellow]- {$channel}[/color]

@@ -31,7 +31,7 @@ public sealed partial class CharacterPickerButton : ContainerButton
         ISharedPlayerManager playerMan,
         ButtonGroup group,
         HumanoidCharacterProfile profile,
-        // Imperial Weekly Mode: Original code removed:
+        // Imperial Weekly Mode: Original code:
         // bool isSelected)
         // Imperial Weekly Mode Start
         bool isSelected,
@@ -49,10 +49,11 @@ public sealed partial class CharacterPickerButton : ContainerButton
         var highPriorityJob = profile.JobPriorities.SingleOrDefault(p => p.Value == JobPriority.High).Key;
         if (highPriorityJob != default)
         {
-            // Imperial Weekly Mode: Original code removed:
+            // Imperial Weekly Mode: Original code:
             // var jobName = prototypeManager.Index(highPriorityJob).LocalizedName;
-            // Imperial Weekly Mode
+            // Imperial Weekly Mode Start
             var jobName = getJobDisplayName?.Invoke(highPriorityJob) ?? prototypeManager.Index(highPriorityJob).LocalizedName;
+            // Imperial Weekly Mode End
             description = $"{description}\n{jobName}";
         }
 

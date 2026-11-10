@@ -1,6 +1,8 @@
-﻿using System.Globalization;
+using System.Globalization;
 using Content.Server.Chat.Managers;
-using Content.Server.WeeklyMode.Systems; // Imperial Weekly Mode
+// Imperial Weekly Mode Start
+using Content.Server.WeeklyMode.Systems;
+// Imperial Weekly Mode End
 using Content.Shared.Mind;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
@@ -16,8 +18,9 @@ public sealed class JobSystem : SharedJobSystem
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
-    // Imperial Weekly Mode
+    // Imperial Weekly Mode Start
     [Dependency] private readonly WeeklyModeSystem _weeklyMode = default!;
+    // Imperial Weekly Mode End
 
     public override void Initialize()
     {
@@ -55,17 +58,20 @@ public sealed class JobSystem : SharedJobSystem
         var jobName = _weeklyMode.GetJobDisplayName(prototype.ID);
         // Imperial Weekly Mode End
         _chat.DispatchServerMessage(session, Loc.GetString("job-greet-introduce-job-name",
-            // Imperial Weekly Mode: Original code removed:
+            // Imperial Weekly Mode: Original code:
             // ("jobName", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(prototype.LocalizedName))));
+            // Imperial Weekly Mode Start
             ("jobName", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))));
+            // Imperial Weekly Mode End
 
         if (prototype.RequireAdminNotify)
             _chat.DispatchServerMessage(session, Loc.GetString("job-greet-important-disconnect-admin-notify"));
 
-        // Imperial Weekly Mode: Original code removed:
+        // Imperial Weekly Mode: Original code:
         // _chat.DispatchServerMessage(session, Loc.GetString("job-greet-supervisors-warning", ("jobName", prototype.LocalizedName), ("supervisors", Loc.GetString(prototype.Supervisors))));
-        // Imperial Weekly Mode
+        // Imperial Weekly Mode Start
         _chat.DispatchServerMessage(session, Loc.GetString("job-greet-supervisors-warning", ("jobName", jobName), ("supervisors", Loc.GetString(prototype.Supervisors))));
+        // Imperial Weekly Mode End
     }
 
     public void MindAddJob(EntityUid mindId, string jobPrototypeId)

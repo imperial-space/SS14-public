@@ -1,3 +1,5 @@
+using Content.Client.Lathe;
+using Content.Client.Lathe.UI;
 using System.Linq;
 using System.Text;
 using Content.Client.UserInterface.Controls;
@@ -9,9 +11,9 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Client.Lathe.UI;
+namespace Content.Client.Imperial.WeeklyMode.Lathe;
 
-public sealed partial class LatheMenu
+public sealed partial class WeeklyLatheMenu
 {
     public List<WeeklyLatheRecipeData> WeeklyRecipes = new();
 
@@ -21,12 +23,12 @@ public sealed partial class LatheMenu
         if (CurrentCategory != null)
             return weeklyRecipesToShow;
 
+        var normalizedSearchText = NormalizeRussianText(SearchBar.Text.Trim().ToLowerInvariant());
         foreach (var recipe in WeeklyRecipes)
         {
-            if (SearchBar.Text.Trim().Length != 0)
+            if (normalizedSearchText.Length != 0)
             {
                 var normalizedRecipeName = NormalizeRussianText(recipe.Name.ToLowerInvariant());
-                var normalizedSearchText = NormalizeRussianText(SearchBar.Text.Trim().ToLowerInvariant());
                 if (normalizedRecipeName.Contains(normalizedSearchText))
                     weeklyRecipesToShow.Add(recipe);
             }
@@ -58,7 +60,7 @@ public sealed partial class LatheMenu
 
             if (idx >= oldChildCount)
             {
-                var control = new RecipeControl(_lathe, recipe.RecipeId, recipe.Name, tooltipFunction, canProduce, GetRecipeDisplayControl(recipe));
+                var control = new WeeklyRecipeControl(_lathe, recipe.RecipeId, recipe.Name, tooltipFunction, canProduce, GetRecipeDisplayControl(recipe));
                 control.OnButtonPressed += s =>
                 {
                     if (!int.TryParse(AmountLineEdit.Text, out var amount) || amount <= 0)
@@ -69,11 +71,11 @@ public sealed partial class LatheMenu
             }
             else
             {
-                var child = RecipeList.GetChild(idx) as RecipeControl;
+                var child = RecipeList.GetChild(idx) as WeeklyRecipeControl;
 
                 if (child == null)
                 {
-                    DebugTools.Assert($"Lathe menu recipe control at {idx} is not of type RecipeControl");
+                    DebugTools.Assert($"Lathe menu recipe control at {idx} is not of type WeeklyRecipeControl");
                     continue;
                 }
 

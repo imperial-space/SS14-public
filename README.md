@@ -21,7 +21,7 @@ Assets have their license and the copyright in the metadata file. [Example](http
 ### Требуемые программы
 Если вы хотите запустить именно нашу сборку, то вам понадобится данное программное обеспечение:
 1. [Git](https://git-scm.com/downloads)
-1. [DotNet SDK 9](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
+1. [DotNet SDK 10](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 1. [Python](https://www.python.org/downloads/)
 
 ### Пошаговая инструкция установки

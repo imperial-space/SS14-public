@@ -3,20 +3,19 @@
 
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Imperial.Crook.Visuals
-{
-    [Serializable, NetSerializable]
-    public enum MetalDetectorVisualState
-    {
-        Off,
-        Powered,
-        Scanning,
-        Alert
-    }
+namespace Content.Shared.Imperial.Crook.Visuals;
 
-    [Serializable, NetSerializable]
-    public enum MetalDetectorVisuals
-    {
-        State
-    }
+[Serializable, NetSerializable]
+public enum MetalDetectorVisualState : byte
+{
+    Off,
+    Powered,
+    Scanning,
+    Alert,
+}
+
+[Serializable, NetSerializable]
+public enum MetalDetectorVisuals : byte
+{
+    State,
 }

@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by Sir_Felix, PR made by CrookLv",
+  "size": {
+    "x": 60,
+    "y": 27
+  },
+  "states": [
+    {
+      "name": "firepoint",
+      "delays": [
+        [ 0.7, 0.7, 0.7, 0.7, 0.7 ]
+      ]
+    },
+    {
+      "name": "medimart"
+    },
+    {
+      "name": "toolbox",
+      "delays": [
+        [ 0.7, 0.7, 0.7, 0.7, 0.7 ]
+      ]
+    },
+    {
+      "name": "warmc"
+    }
+  ]
+}

@@ -1,0 +1,316 @@
+- type: entity
+  id: WeaponDSDesertEagle
+  suffix: DeadSector, Gun
+  name: Desert Eagle
+  description: .
+  parent: [ BaseItem, BaseMinorContraband ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/pistols/Deagle-gun/Deagle.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    sprite: Imperial/DS/Guns/pistols/Deagle-gun/Deagle-inhand.rsi
+    size: Small
+  - type: Clothing
+    sprite: Imperial/DS/Guns/pistols/Deagle-gun/Deagle-inhand.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/12.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDSDesertEagle
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineDSDesertEagle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeDS357
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeDS357
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSIgla
+  suffix: DeadSector, Gun
+  name: Игла
+  description: .
+  parent: [ BaseItem, BaseMinorContraband ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/pistols/Igla-gun/Igla.rsi
+    layers:
+    - state: bolt-open
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    sprite: Imperial/DS/Guns/pistols/Igla-gun/Igla-inhand.rsi
+    size: Small
+  - type: Clothing
+    sprite: Imperial/DS/Guns/pistols/Igla-gun/Igla-inhand.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 1.4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/3.ogg
+  - type: RevolverAmmoProvider
+    capacity: 6
+    proto: CartridgeDS40
+    whitelist:
+      tags:
+      - CartridgeDS40
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSJudge
+  suffix: DeadSector, Gun
+  name: Судья
+  description: .
+  parent: [ BaseItem, BaseMinorContraband ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/pistols/Judge-gun/Judge.rsi
+    layers:
+    - state: bolt-open
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    sprite: Imperial/DS/Guns/pistols/Judge-gun/Judge-inhand.rsi
+    size: Small
+  - type: Clothing
+    sprite: Imperial/DS/Guns/pistols/Judge-gun/Judge-inhand.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/5.ogg
+  - type: RevolverAmmoProvider
+    capacity: 5
+    proto: CartridgeDS12x70
+    whitelist:
+      tags:
+      - CartridgeDS12x70
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSMilton
+  suffix: DeadSector, Gun
+  name: Пистолет Милтон
+  description: .
+  parent: [ BaseItem, BaseMinorContraband ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/pistols/Milton-gun/Milton.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    sprite: Imperial/DS/Guns/pistols/Milton-gun/Milton-inhand.rsi
+    size: Small
+  - type: Clothing
+    sprite: Imperial/DS/Guns/pistols/Milton-gun/Milton-inhand.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/40.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDSMilton
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineDSMilton
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeDS9x19
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeDS9x19
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSPM
+  suffix: DeadSector, Gun
+  name: Пистолет Макарова
+  description: .
+  parent: [ BaseItem, BaseMinorContraband ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/pistols/PM-gun/PM.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    sprite: Imperial/DS/Guns/pistols/PM-gun/PM-inhand.rsi
+    size: Small
+  - type: Clothing
+    sprite: Imperial/DS/Guns/pistols/PM-gun/PM-inhand.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/2.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDSPM
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineDSPM
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeDS9x18
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeDS9x18
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: WeaponDSStok
+  suffix: DeadSector, Gun
+  name: Пистолет Сток
+  description: .
+  parent: [ BaseItem, BaseMinorContraband ]
+  components:
+  - type: Sprite
+    sprite: Imperial/DS/Guns/pistols/Stock-gun/Stock.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Item
+    sprite: Imperial/DS/Guns/pistols/Stock-gun/Stock-inhand.rsi
+    size: Small
+  - type: Clothing
+    sprite: Imperial/DS/Guns/pistols/Stock-gun/Stock-inhand.rsi
+    quickEquip: false
+    slots:
+    - Belt
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/DeadSector/weapons_shots/20.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/pistol_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDSStok
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineDSStok
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeDS9x19
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeDS9x19
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance

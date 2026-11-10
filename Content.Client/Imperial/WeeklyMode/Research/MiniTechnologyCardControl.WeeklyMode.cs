@@ -1,3 +1,5 @@
+using Content.Client.Research;
+using Content.Client.Research.UI;
 using Content.Shared.Research;
 using Content.Shared.Research.Prototypes;
 using Robust.Client.GameObjects;
@@ -6,11 +8,11 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Client.Research.UI;
+namespace Content.Client.Imperial.WeeklyMode.Research;
 
-public sealed partial class MiniTechnologyCardControl
+public sealed partial class WeeklyMiniTechnologyCardControl
 {
-    public MiniTechnologyCardControl(WeeklyTechnologyData technology, IPrototypeManager prototypeManager, SpriteSystem spriteSys, FormattedMessage description)
+    public WeeklyMiniTechnologyCardControl(WeeklyTechnologyData technology, IPrototypeManager prototypeManager, SpriteSystem spriteSys, FormattedMessage description)
     {
         RobustXamlLoader.Load(this);
 

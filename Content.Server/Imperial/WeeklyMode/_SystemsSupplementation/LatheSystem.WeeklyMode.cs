@@ -1,3 +1,5 @@
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Lathe.Prototypes;
 using System.Linq;
 using Content.Server.Lathe.Components;
 using Content.Shared.Lathe;
@@ -10,6 +12,60 @@ namespace Content.Server.Lathe;
 
 public sealed partial class LatheSystem
 {
+    private void InitializeWeeklyMode()
+    {
+        SubscribeLocalEvent<WeeklyRecipesChangedEvent>(OnWeeklyRecipesChanged);
+        SubscribeLocalEvent<LatheComponent, LatheGetRecipesEvent>(OnGetWeeklyRecipes);
+    }
+
+    private void OnGetWeeklyRecipes(EntityUid uid, LatheComponent component, LatheGetRecipesEvent args)
+    {
+        args.WeeklyRecipes.AddRange(_weeklyMode.GetAvailableWeeklyLatheRecipes(uid, component, args.GetUnavailable));
+    }
+
+    private List<WeeklyLatheRecipeData> GetWeeklyRecipes(EntityUid uid, LatheComponent component, bool getUnavailable = false)
+    {
+        var ev = new LatheGetRecipesEvent((uid, component), getUnavailable);
+        RaiseLocalEvent(uid, ev);
+        return ev.WeeklyRecipes;
+    }
+
+        private void OnGetWhitelist(EntityUid uid, LatheComponent component, ref GetMaterialWhitelistEvent args)
+        {
+            if (args.Storage != uid)
+                return;
+            var materialWhitelist = new List<ProtoId<MaterialPrototype>>();
+            var recipes = GetAvailableRecipes(uid, component, true);
+            foreach (var id in recipes)
+            {
+                if (!_proto.Resolve(id, out var proto))
+                    continue;
+
+                foreach (var (mat, _) in proto.Materials)
+                {
+                    if (!materialWhitelist.Contains(mat))
+                    {
+                        materialWhitelist.Add(mat);
+                    }
+                }
+            }
+
+            // Imperial Weekly Mode Start
+            foreach (var recipe in GetWeeklyRecipes(uid, component, true))
+            {
+                foreach (var material in recipe.Materials)
+                {
+                    var materialId = new ProtoId<MaterialPrototype>(material.MaterialId);
+                    if (!materialWhitelist.Contains(materialId))
+                        materialWhitelist.Add(materialId);
+                }
+            }
+            // Imperial Weekly Mode End
+
+            var combined = args.Whitelist.Union(materialWhitelist).ToList();
+            args.Whitelist = combined;
+        }
+
     public bool TryAddWeeklyToQueue(EntityUid uid, WeeklyLatheRecipeData recipe, int quantity, LatheComponent? component = null)
     {
         if (!Resolve(uid, ref component))

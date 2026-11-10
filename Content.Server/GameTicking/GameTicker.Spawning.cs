@@ -82,8 +82,8 @@ namespace Content.Server.GameTicking
 
             if (readyPlayers.Count == 0)
                 return;
-            // Imperial Weekly Mode End
 
+            // Imperial Weekly Mode End
             // Allow game rules to spawn players by themselves if needed. (For example, nuke ops or wizard)
             RaiseLocalEvent(new RulePlayerSpawningEvent(readyPlayers, profiles, force));
 
@@ -173,8 +173,8 @@ namespace Content.Server.GameTicking
                         _chatManager.DispatchServerMessage(player, weeklyMessage);
                     return;
                 }
-                // Imperial Weekly Mode End
 
+                // Imperial Weekly Mode End
                 var jobs = new List<ProtoId<JobPrototype>> {jobId};
                 var ev = new IsRoleAllowedEvent(player, jobs, null);
                 RaiseLocalEvent(ref ev);
@@ -262,8 +262,8 @@ namespace Content.Server.GameTicking
             var jobBans = _banManager.GetJobBans(player.UserId);
             if (jobBans != null)
                 restrictedRoles.UnionWith(jobBans);
-
             // Imperial Weekly Mode Start
+
             string? forcedMessage = null;
             if (jobId == null)
             {
@@ -406,10 +406,11 @@ namespace Content.Server.GameTicking
             _mind.TransferTo(newMind, mob);
 
             _roles.MindAddJobRole(newMind, silent: silent, jobPrototype: jobId);
-            // Imperial Weekly Mode: Original code removed:
+            // Imperial Weekly Mode: Original code:
             // jobName = _jobs.MindTryGetJobName(newMind);
-            // Imperial Weekly Mode
+            // Imperial Weekly Mode Start
             jobName = _weeklyMode.GetJobDisplayName(jobPrototype.ID);
+            // Imperial Weekly Mode End
             _admin.UpdatePlayerList(player);
         }
 
@@ -437,12 +438,12 @@ namespace Content.Server.GameTicking
                 return;
 
             if (!_userDb.IsLoadComplete(player))
+                // Imperial Weekly Mode Start
                 return;
 
-            // Imperial Weekly Mode Start
             if (!_weeklyMode.IsWeeklyAccessAllowedForJob(player, jobId, true))
+                // Imperial Weekly Mode End
                 return;
-            // Imperial Weekly Mode End
 
             SpawnPlayer(player, station, jobId, silent: silent);
         }

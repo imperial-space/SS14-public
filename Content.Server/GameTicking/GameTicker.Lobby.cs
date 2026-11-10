@@ -181,8 +181,8 @@ namespace Content.Server.GameTicking
                 UpdateInfoText();
                 return;
             }
-            // Imperial Weekly Mode End
 
+            // Imperial Weekly Mode End
             _playerGameStatuses[player.UserId] = ready ? PlayerGameStatus.ReadyToPlay : PlayerGameStatus.NotReadyToPlay;
             RaiseNetworkEvent(GetStatusMsg(player), player.Channel);
             // update server info to reflect new ready count

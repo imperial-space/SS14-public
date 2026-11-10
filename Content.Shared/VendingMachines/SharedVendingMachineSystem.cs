@@ -157,8 +157,8 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
             Dirty(uid, component);
             return;
         }
-        // Imperial Weekly Mode End
 
+        // Imperial Weekly Mode End
         RestockInventoryFromPrototype(uid, component, component.InitialStockQuality);
     }
 

@@ -1,12 +1,14 @@
+using Content.Client.Research;
+using Content.Client.Research.UI;
 using System.Linq;
 using Content.Shared.Research;
 using Content.Shared.Research.Components;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 
-namespace Content.Client.Research.UI;
+namespace Content.Client.Imperial.WeeklyMode.Research;
 
-public sealed partial class ResearchConsoleMenu
+public sealed partial class WeeklyResearchConsoleMenu
 {
     private bool TryUpdateWeeklyPanels(ResearchConsoleBoundInterfaceState state, TechnologyDatabaseComponent database, bool hasAccess)
     {
@@ -28,7 +30,7 @@ public sealed partial class ResearchConsoleMenu
             if (string.IsNullOrEmpty(tech.TechnologyId))
                 continue;
 
-            var cardControl = new TechnologyCardControl(tech, _prototype, _sprite, _research.GetWeeklyTechnologyDescription(tech, includeTier: false), state.Points, hasAccess);
+            var cardControl = new WeeklyTechnologyCardControl(tech, _prototype, _sprite, _research.GetWeeklyTechnologyDescription(tech, includeTier: false), state.Points, hasAccess);
             cardControl.OnPressed += () => OnTechnologyCardPressed?.Invoke(tech.TechnologyId);
             TechnologyCardsContainer.AddChild(cardControl);
         }
@@ -44,7 +46,7 @@ public sealed partial class ResearchConsoleMenu
         container.Children.Clear();
         foreach (var tech in technologies)
         {
-            var mini = new MiniTechnologyCardControl(tech, _prototype, _sprite, _research.GetWeeklyTechnologyDescription(tech));
+            var mini = new WeeklyMiniTechnologyCardControl(tech, _prototype, _sprite, _research.GetWeeklyTechnologyDescription(tech));
             container.AddChild(mini);
         }
     }

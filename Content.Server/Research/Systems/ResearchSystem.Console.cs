@@ -7,7 +7,9 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
-using Content.Shared.Research; // Imperial Weekly Mode
+// Imperial Weekly Mode Start
+using Content.Shared.Research;
+// Imperial Weekly Mode End
 
 namespace Content.Server.Research.Systems;
 
@@ -33,9 +35,9 @@ public sealed partial class ResearchSystem
         if (!this.IsPowered(uid, EntityManager))
             return;
 
-        // Imperial Weekly Mode: Original code removed:
+        // Imperial Weekly Mode: Original code:
         // if (!PrototypeManager.TryIndex<TechnologyPrototype>(args.Id, out var technologyPrototype))
-        //     return;
+        // return;
         // Imperial Weekly Mode Start
         TechnologyPrototype? technologyPrototype = null;
         WeeklyTechnologyData? weeklyTechnology = null;
@@ -74,12 +76,13 @@ public sealed partial class ResearchSystem
             // Imperial Weekly Mode End
             var message = Loc.GetString(
                 "research-console-unlock-technology-radio-broadcast",
-                // Imperial Weekly Mode: Original code removed:
+                // Imperial Weekly Mode: Original code:
                 // ("technology", Loc.GetString(technologyPrototype.Name)),
-                ("technology", technologyName),
-                // Imperial Weekly Mode: Original code removed:
                 // ("amount", technologyPrototype.Cost),
+                // Imperial Weekly Mode Start
+                ("technology", technologyName),
                 ("amount", technologyCost),
+                // Imperial Weekly Mode End
                 ("approver", getIdentityEvent.Title ?? string.Empty)
             );
             _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);

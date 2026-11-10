@@ -165,21 +165,12 @@ public sealed partial class LatheMenu : FancyWindow
             }
         }
 
-        // Imperial Weekly Mode Start
-        var weeklyRecipesToShow = GetWeeklyRecipesToShow();
-        // Imperial Weekly Mode End
-
         if (!int.TryParse(AmountLineEdit.Text, out var quantity) || quantity <= 0)
             quantity = 1;
 
-        // Imperial Weekly Mode: Original code removed:
-        // RecipeCount.Text = Loc.GetString("lathe-menu-recipe-count", ("count", recipesToShow.Count));
-        // Imperial Weekly Mode
-        RecipeCount.Text = Loc.GetString("lathe-menu-recipe-count", ("count", recipesToShow.Count + weeklyRecipesToShow.Count));
+        RecipeCount.Text = Loc.GetString("lathe-menu-recipe-count", ("count", recipesToShow.Count));
 
         var sortedRecipesToShow = recipesToShow.OrderBy(_lathe.GetRecipeName);
-        // Imperial Weekly Mode
-        var sortedWeeklyRecipesToShow = SortWeeklyRecipesToShow(weeklyRecipesToShow);
 
         // Get the existing list of queue controls
         var oldChildCount = RecipeList.ChildCount;
@@ -219,10 +210,6 @@ public sealed partial class LatheMenu : FancyWindow
             }
             idx++;
         }
-
-        // Imperial Weekly Mode Start
-        idx = PopulateWeeklyRecipes(sortedWeeklyRecipesToShow, idx, oldChildCount, quantity, lathe);
-        // Imperial Weekly Mode End
 
         // Shrink list if new list is shorter than old list.
         for (var childIdx = oldChildCount - 1; idx <= childIdx; childIdx--)
@@ -329,25 +316,22 @@ public sealed partial class LatheMenu : FancyWindow
         var idx = 0;
         foreach (var batch in queue)
         {
-            // Imperial Weekly Mode: Original code removed:
+            // Imperial Weekly Mode: Original code:
             // var recipe = _prototypeManager.Index(batch.Recipe);
-            // var itemName = _lathe.GetRecipeName(batch.Recipe);
-            // Imperial Weekly Mode
-            var itemName = GetQueuedRecipeName(batch);
+            // Imperial Weekly Mode Start
+            var recipe = _prototypeManager.Index<LatheRecipePrototype>(batch.Recipe);
+            // Imperial Weekly Mode End
+
+            var itemName = _lathe.GetRecipeName(batch.Recipe);
             string displayText;
             if (batch.ItemsRequested > 1)
                 displayText = Loc.GetString("lathe-menu-item-batch", ("index", idx + 1), ("name", itemName), ("printed", batch.ItemsPrinted), ("total", batch.ItemsRequested));
             else
                 displayText = Loc.GetString("lathe-menu-item-single", ("index", idx + 1), ("name", itemName));
 
-            // Imperial Weekly Mode
-            var displayControl = GetQueuedRecipeDisplayControl(batch);
             if (idx >= oldChildCount)
             {
-                // Imperial Weekly Mode: Original code removed:
-                // var queuedRecipeBox = new QueuedRecipeControl(displayText, idx, GetRecipeDisplayControl(recipe));
-                // Imperial Weekly Mode
-                var queuedRecipeBox = new QueuedRecipeControl(displayText, idx, displayControl);
+                var queuedRecipeBox = new QueuedRecipeControl(displayText, idx, GetRecipeDisplayControl(recipe));
                 queuedRecipeBox.OnDeletePressed += s => QueueDeleteAction?.Invoke(s);
                 queuedRecipeBox.OnMoveUpPressed += s => QueueMoveUpAction?.Invoke(s);
                 queuedRecipeBox.OnMoveDownPressed += s => QueueMoveDownAction?.Invoke(s);
@@ -365,10 +349,7 @@ public sealed partial class LatheMenu : FancyWindow
 
                 child.SetDisplayText(displayText);
                 child.SetIndex(idx);
-                // Imperial Weekly Mode: Original code removed:
-                // child.SetDisplayControl(GetRecipeDisplayControl(recipe));
-                // Imperial Weekly Mode
-                child.SetDisplayControl(displayControl);
+                child.SetDisplayControl(GetRecipeDisplayControl(recipe));
             }
             idx++;
         }
@@ -380,24 +361,19 @@ public sealed partial class LatheMenu : FancyWindow
         }
     }
 
-    // Imperial Weekly Mode: Original code removed:
-    // public void SetQueueInfo(ProtoId<LatheRecipePrototype>? recipeProto)
-    // Imperial Weekly Mode Start
-    public void SetQueueInfo(string? recipeId, bool isWeekly)
+    public void SetQueueInfo(ProtoId<LatheRecipePrototype>? recipeProto)
     {
-        FabricatingContainer.Visible = recipeId != null;
-        if (recipeId == null)
+        FabricatingContainer.Visible = recipeProto != null;
+        if (recipeProto == null)
             return;
+
+        var recipe = _prototypeManager.Index(recipeProto.Value);
 
         FabricatingDisplayContainer.Children.Clear();
-        if (TrySetWeeklyQueueInfo(recipeId, isWeekly))
-            return;
+        FabricatingDisplayContainer.AddChild(GetRecipeDisplayControl(recipe));
 
-        var prototype = _prototypeManager.Index<LatheRecipePrototype>(recipeId);
-        FabricatingDisplayContainer.AddChild(GetRecipeDisplayControl(prototype));
-        NameLabel.Text = _lathe.GetRecipeName(prototype);
+        NameLabel.Text = _lathe.GetRecipeName(recipe);
     }
-    // Imperial Weekly Mode End
 
     public Control GetRecipeDisplayControl(LatheRecipePrototype recipe)
     {

@@ -1,3 +1,6 @@
+// Imperial Weekly Mode Start
+using Content.Client.Imperial.WeeklyMode.Cargo;
+// Imperial Weekly Mode End
 using Content.Client.Cargo.UI;
 using Content.Shared.Cargo.BUI;
 using JetBrains.Annotations;
@@ -13,7 +16,11 @@ public sealed class CargoShuttleConsoleBoundUserInterface : BoundUserInterface
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
 
     [ViewVariables]
-    private CargoShuttleMenu? _menu;
+    // Imperial Weekly Mode: Original code:
+    // private CargoShuttleMenu? _menu;
+    // Imperial Weekly Mode Start
+    private WeeklyCargoShuttleMenu? _menu;
+    // Imperial Weekly Mode End
 
     public CargoShuttleConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -22,7 +29,11 @@ public sealed class CargoShuttleConsoleBoundUserInterface : BoundUserInterface
     protected override void Open()
     {
         base.Open();
-        _menu = this.CreateWindow<CargoShuttleMenu>();
+        // Imperial Weekly Mode: Original code:
+        // _menu = this.CreateWindow<CargoShuttleMenu>();
+        // Imperial Weekly Mode Start
+        _menu = this.CreateWindow<WeeklyCargoShuttleMenu>();
+        // Imperial Weekly Mode End
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

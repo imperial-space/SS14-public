@@ -1,5 +1,7 @@
 using Content.Shared.Lathe;
-using Content.Shared.Research; // Imperial Weekly Mode
+// Imperial Weekly Mode Start
+using Content.Shared.Research;
+// Imperial Weekly Mode End
 using Content.Shared.Research.Prototypes;
 using Content.Shared.Research.Systems;
 using Robust.Shared.GameStates;
@@ -36,23 +38,25 @@ public sealed partial class TechnologyDatabaseComponent : Component
 
     [AutoNetworkedField]
     [DataField]
+    // Only the subset backed by YAML prototypes; campaign-only IDs are not prototypes.
     public List<ProtoId<TechnologyPrototype>> WeeklyAllowedTechnologies = new();
 
     [AutoNetworkedField]
     [DataField]
     public List<WeeklyTechnologyData> WeeklyTechnologies = new();
-    // Imperial Weekly Mode End
 
+    // Imperial Weekly Mode End
     /// <summary>
     /// The ids of all the technologies which have been unlocked.
     /// </summary>
     [AutoNetworkedField]
     [DataField]
     public List<ProtoId<TechnologyPrototype>> UnlockedTechnologies = new();
-
     // Imperial Weekly Mode Start
+
     [AutoNetworkedField]
     [DataField]
+    // Campaign technology IDs also include dynamically defined technologies without YAML prototypes.
     public List<string> WeeklyUnlockedTechnologies = new();
     // Imperial Weekly Mode End
 

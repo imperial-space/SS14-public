@@ -1,12 +1,12 @@
+using Content.Client.Cargo;
+using Content.Client.Cargo.UI;
 using Content.Shared.Cargo;
 
-namespace Content.Client.Cargo.UI;
+namespace Content.Client.Imperial.WeeklyMode.Cargo;
 
-public sealed partial class CargoProductRow
+public sealed partial class WeeklyCargoProductRow
 {
-    // Imperial Weekly Mode Start
     public WeeklyCargoProductData? WeeklyProduct { get; set; }
 
     public string ProductId { get; set; } = string.Empty;
-    // Imperial Weekly Mode End
 }

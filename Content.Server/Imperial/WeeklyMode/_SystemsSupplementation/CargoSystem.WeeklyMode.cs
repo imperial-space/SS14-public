@@ -15,8 +15,47 @@ namespace Content.Server.Cargo.Systems;
 
 public sealed partial class CargoSystem
 {
-    private const string WeeklyCargoCratePrototype = "CrateGenericSteel";
-    private const string WeeklyCargoCrateContainerId = "entity_storage";
+
+    private bool TryResolveOrderPricing(EntityUid uid, CargoOrderConsoleComponent component, EntityUid actor,
+        CargoOrderData order, out string name, out int cost)
+    {
+        name = order.WeeklyProduct?.Name ?? order.Product.Id;
+        cost = order.WeeklyProduct?.Cost ?? 0;
+        if (order.IsWeeklyProduct)
+            return order.WeeklyProduct.HasValue;
+
+        if (!_protoMan.Resolve(order.Product, out var product))
+        {
+            ConsolePopup(actor, Loc.GetString("cargo-console-invalid-product"));
+            PlayDenySound(uid, component);
+            return false;
+        }
+
+        name = product.Name;
+        cost = product.Cost;
+        return true;
+    }
+
+    // A handled weekly request may deliberately produce no order (e.g. a slip printer).
+    private bool TryBuildWeeklyOrder(EntityUid uid, CargoOrderConsoleComponent component,
+        CargoConsoleAddOrderMessage args, StationCargoOrderDatabaseComponent database, out CargoOrderData? order)
+    {
+        order = null;
+        if (!_weeklyMode.TryGetActiveWeeklyCargoProduct(args.CargoProductId, out var product))
+            return false;
+
+        if (!GetAvailableWeeklyProducts((uid, component)).Any(candidate => candidate.ProductId == args.CargoProductId))
+            return true;
+
+        if (component.Mode == CargoOrderConsoleMode.PrintSlip)
+        {
+            PlayDenySound(uid, component);
+            return true;
+        }
+
+        order = GetOrderData(args, product, GenerateOrderId(database), component.Account);
+        return true;
+    }
 
     private void OnWeeklyCargoCatalogChanged(WeeklyCargoCatalogChangedEvent args)
     {
@@ -39,7 +78,7 @@ public sealed partial class CargoSystem
         }
     }
 
-    private bool FulfillWeeklyOrder(CargoOrderData order, ProtoId<CargoAccountPrototype> account, EntityCoordinates spawn, string? paperProto)
+    internal bool FulfillWeeklyOrder(CargoOrderData order, ProtoId<CargoAccountPrototype> account, EntityCoordinates spawn, string? paperProto)
     {
         if (order.WeeklyProduct is not { } product)
             return false;
@@ -47,13 +86,15 @@ public sealed partial class CargoSystem
         if (product.Amount < 1 || string.IsNullOrWhiteSpace(product.ItemPrototype))
             return false;
 
+        // Delivery usually happens on a trade-station map, while settings belong to the campaign map.
+        var settings = _weeklyMode.GetCargoSettings();
         EntityUid item;
         if (product.Boxed)
         {
-            var containerEntity = Spawn(WeeklyCargoCratePrototype, spawn);
+            var containerEntity = Spawn(settings.CratePrototype, spawn);
             _transformSystem.Unanchor(containerEntity, Transform(containerEntity));
 
-            if (!_container.TryGetContainer(containerEntity, WeeklyCargoCrateContainerId, out var container))
+            if (!_container.TryGetContainer(containerEntity, settings.CrateContainerId, out var container))
             {
                 QueueDel(containerEntity);
                 return false;
@@ -142,6 +183,7 @@ public sealed partial class CargoSystem
             return new List<WeeklyCargoProductData>();
 
         var markets = ent.Comp.AllowedGroups.Intersect(db.Markets).ToList();
+        // Campaign products replace the ordinary market, never specialized markets (e.g. salvage).
         if (!markets.Contains("market"))
             return new List<WeeklyCargoProductData>();
 

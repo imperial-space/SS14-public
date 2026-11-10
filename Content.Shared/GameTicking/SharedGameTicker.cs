@@ -147,10 +147,10 @@ namespace Content.Shared.GameTicking
 
     [Serializable, NetSerializable]
     public sealed class TickerJobsAvailableEvent(
-        // Imperial Weekly Mode: Original code removed:
+        Dictionary<NetEntity, string> stationNames,
+        // Imperial Weekly Mode: Original code:
         // Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> jobsAvailableByStation)
         // Imperial Weekly Mode Start
-        Dictionary<NetEntity, string> stationNames,
         Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> jobsAvailableByStation,
         Dictionary<ProtoId<JobPrototype>, string>? jobNameOverrides = null)
         // Imperial Weekly Mode End
@@ -162,8 +162,8 @@ namespace Content.Shared.GameTicking
         public Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> JobsAvailableByStation { get; } = jobsAvailableByStation;
 
         public Dictionary<NetEntity, string> StationNames { get; } = stationNames;
-
         // Imperial Weekly Mode Start
+
         public Dictionary<ProtoId<JobPrototype>, string> JobNameOverrides { get; } = jobNameOverrides ?? new();
         // Imperial Weekly Mode End
     }

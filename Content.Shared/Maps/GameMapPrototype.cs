@@ -69,10 +69,10 @@ public sealed partial class GameMapPrototype : IPrototype
             // Imperial Weekly Mode End
             MapName = MapName,
             MapPath = mapPath,
-            // Imperial Weekly Mode: Original code removed:
+            // Imperial Weekly Mode: Original code:
             // _stations = _stations
-            _stations = _stations,
             // Imperial Weekly Mode Start
+            _stations = _stations,
             Fallback = Fallback,
             MinPlayers = MinPlayers,
             MaxPlayers = MaxPlayers,
