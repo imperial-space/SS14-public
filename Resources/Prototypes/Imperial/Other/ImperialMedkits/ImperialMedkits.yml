@@ -64,6 +64,7 @@
     - bottle1
     - bottle2
   - type: Appearance
+  - type: Dumpable
 
 
 - type: entity
@@ -72,7 +73,7 @@
   parent: FirstAidMedkitImperial
   components:
   - type: StorageFill
-    contents: 
+    contents:
       - id: Gauze
       - id: Brutepack
       - id: Ointment
@@ -141,6 +142,7 @@
     - bottle1
     - bottle2
   - type: Appearance
+  - type: Dumpable
 
 
 - type: entity
@@ -149,7 +151,7 @@
   parent: ToxinMedkitImperial
   components:
   - type: StorageFill
-    contents: 
+    contents:
       - id: AntiPoisonMedipen
       - id: SyringeIpecac
       - id: SyringeEthylredoxrazine
@@ -213,7 +215,7 @@
     - bottle1
     - bottle2
   - type: Appearance
-
+  - type: Dumpable
 
 - type: entity
   id: BruteMedkitImperialFilled # Заполненная аптечка против механических повреждений
@@ -221,7 +223,7 @@
   parent: BruteMedkitImperial
   components:
   - type: StorageFill
-    contents: 
+    contents:
       - id: Brutepack
       - id: Ointment
       - id: PillCanister
@@ -289,6 +291,7 @@
     - bottle2
     - bottle3
   - type: Appearance
+  - type: Dumpable
 
 - type: entity
   id: AdvancedFirstAidMedkitImperialFilled # Заполненная продвинутая аптечка первой помощи
@@ -296,7 +299,7 @@
   parent: AdvancedFirstAidMedkitImperial
   components:
   - type: StorageFill
-    contents: 
+    contents:
       - id: MedicatedSuture
       - id: RegenerativeMesh
       - id: Bloodpack
@@ -362,6 +365,7 @@
     - bottle1
     - bottle2
   - type: Appearance
+  - type: Dumpable
 
 - type: entity
   id: MedkitRadiationImperialFilled # Заполненная аптечка против радиационных повреждений
@@ -369,7 +373,7 @@
   parent: MedkitRadiationImperial
   components:
   - type: StorageFill
-    contents: 
+    contents:
       - id: RadAutoInjector
       - id: SyringePhalanximine
       - id: AmpulaHyro
@@ -434,6 +438,7 @@
     - bottle1
     - bottle2
   - type: Appearance
+  - type: Dumpable
 
 - type: entity
   id: MedkitBurnImperialFilled # Заполненная аптечка от ожоговых повреждений
@@ -441,7 +446,7 @@
   parent: MedkitBurnImperial
   components:
   - type: StorageFill
-    contents: 
+    contents:
       - id: Ointment
         amount: 2
       - id: AmpulaDerm
@@ -511,6 +516,7 @@
     - medipen
     - oxytank
   - type: Appearance
+  - type: Dumpable
 
 - type: entity
   id: MedkitOxygenImperialFilled # Заполненная аптечка помощи от кислородного голодания
@@ -518,7 +524,7 @@
   parent: MedkitOxygenImperial
   components:
   - type: StorageFill
-    contents: 
+    contents:
       - id: EmergencyOxygenTankFilled
       - id: AmpulaDexa
         amount: 2
@@ -584,6 +590,7 @@
     - syringe1
     - syringe2
   - type: Appearance
+  - type: Dumpable
 
 - type: entity
   id: MedkitCobmatImperialFilled # Заполненная боевая аптечка
@@ -591,7 +598,7 @@
   parent: MedkitCobmatImperial
   components:
   - type: StorageFill
-    contents: 
+    contents:
       - id: MedicatedSuture
       - id: RegenerativeMesh
       - id: BruteAutoInjector
@@ -662,6 +669,6 @@
   parent: MedkitStimImperial
   components:
   - type: StorageFill
-    contents: 
+    contents:
       - id: StimpackMini
         amount: 6

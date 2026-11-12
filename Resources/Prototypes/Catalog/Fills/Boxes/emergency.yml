@@ -25,6 +25,7 @@
     maxItemSize: Small
     grid:
     - 0,0,3,2
+  - type: Dumpable #Imperial space Dumpable component for emergency boxes
 
 - type: entity
   parent: BoxSurvival
@@ -81,6 +82,7 @@
     maxItemSize: Small
     grid:
     - 0,0,3,2
+  - type: Dumpable #Imperial space Dumpable component for emergency boxes
 
 - type: entity
   parent: BoxSurvivalEngineering
@@ -138,6 +140,7 @@
     maxItemSize: Small
     grid:
     - 0,0,3,2
+  - type: Dumpable #Imperial space Dumpable component for emergency boxes
 
 - type: entity
   parent: BoxSurvivalSecurity
@@ -195,6 +198,7 @@
     maxItemSize: Small
     grid:
     - 0,0,3,2
+  - type: Dumpable #Imperial space Dumpable component for emergency boxes
 
 - type: entity
   parent: BoxSurvivalMedical
@@ -257,6 +261,7 @@
     maxItemSize: Small
     grid:
     - 0,0,3,2
+  - type: Dumpable #Imperial space Dumpable component for emergency boxes
 
 - type: entity
   parent: BoxHug
@@ -365,6 +370,7 @@
     maxItemSize: Small
     grid:
     - 0,0,3,2
+  - type: Dumpable #Imperial space Dumpable component for emergency boxes
 
 - type: entity
   parent: BoxSurvivalSyndicate
@@ -412,6 +418,7 @@
     maxItemSize: Small
     grid:
     - 0,0,3,2
+  - type: Dumpable #Imperial space Dumpable component for emergency boxes
 
 - type: entity
   parent: BoxSurvivalMilitaryDouble

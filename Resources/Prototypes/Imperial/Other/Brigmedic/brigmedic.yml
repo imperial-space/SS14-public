@@ -33,3 +33,4 @@
     maxItemSize: Small
     grid:
     - 0,0,3,2
+  - type: Dumpable #Imperial space Dumpable component for emergency boxes

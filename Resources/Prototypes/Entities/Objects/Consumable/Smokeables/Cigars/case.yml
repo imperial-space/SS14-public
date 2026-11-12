@@ -63,6 +63,7 @@
     - cigar7
     - cigar8
   - type: Appearance
+  - type: Dumpable #Imperial space Dumpable component
 
 - type: entity
   id: CigarGoldCase
