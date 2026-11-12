@@ -34,6 +34,7 @@
     tags:
     - WhitelistChameleon
     - Backpack
+  - type: Dumpable #Imperial space Dumpable component
 
 - type: entity
   parent: ClothingBackpack

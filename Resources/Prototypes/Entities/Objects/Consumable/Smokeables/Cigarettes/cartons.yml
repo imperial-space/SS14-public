@@ -6,11 +6,11 @@
   components:
   - type: Sprite
     sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/green.rsi
-    layers: # Imperial Space Revert Cabinetification 
-      - state: closed # Imperial Space Revert Cabinetification 
+    layers: # Imperial Space Revert Cabinetification
+      - state: closed # Imperial Space Revert Cabinetification
         map: ["closeLayer"] # Imperial Space Revert Cabinetification // По стандарту здесь просто значение state: icon
-      - state: open # Imperial Space Revert Cabinetification 
-        map: ["openLayer"] # Imperial Space Revert Cabinetification 
+      - state: open # Imperial Space Revert Cabinetification
+        map: ["openLayer"] # Imperial Space Revert Cabinetification
   - type: Item
     sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/green.rsi
     size: Normal
@@ -29,6 +29,7 @@
     materialComposition:
       Plastic: 50
   - type: SpaceGarbage
+  - type: Dumpable #Imperial space Dumpable component
 
 - type: entity
   id: CigCartonRed
@@ -38,7 +39,7 @@
   components:
   - type: Sprite
     sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/red.rsi
-    layers: # Imperial Space Revert Cabinetification 
+    layers: # Imperial Space Revert Cabinetification
       - state: closed # Imperial Space Revert Cabinetification По стандарту просто значение state: icon
   - type: Item
     sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/red.rsi
@@ -56,7 +57,7 @@
   components:
   - type: Sprite
     sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/blue.rsi
-    layers: # Imperial Space Revert Cabinetification 
+    layers: # Imperial Space Revert Cabinetification
       - state: closed # Imperial Space Revert Cabinetification По стандарту просто значение state: icon
   - type: Item
     sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/blue.rsi
@@ -74,7 +75,7 @@
   components:
   - type: Sprite
     sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/black.rsi
-    layers: # Imperial Space Revert Cabinetification 
+    layers: # Imperial Space Revert Cabinetification
       - state: closed # Imperial Space Revert Cabinetification По стандарту просто значение state: icon
   - type: Item
     sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/black.rsi
@@ -92,7 +93,7 @@
   components:
   - type: Sprite
     sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/mixed.rsi
-    layers: # Imperial Space Revert Cabinetification 
+    layers: # Imperial Space Revert Cabinetification
       - state: closed # Imperial Space Revert Cabinetification По стандарту просто значение state: icon
   - type: Item
     sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/mixed.rsi
