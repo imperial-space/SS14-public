@@ -8,7 +8,7 @@
   - type: Sprite
     sprite: Imperial/DS/Guns/shotgun/Beneli-gun/Beneli.rsi
     layers:
-    - state: bolt-open
+    - state: icon
       map: [ "enum.GunVisualLayers.Base" ]
   - type: Item
     sprite: Imperial/DS/Guns/shotgun/Beneli-gun/Beneli-inhand.rsi
@@ -55,7 +55,7 @@
   - type: Sprite
     sprite: Imperial/DS/Guns/shotgun/Microne-gun/Microne.rsi
     layers:
-    - state: bolt-open
+    - state: icon
       map: [ "enum.GunVisualLayers.Base" ]
   - type: Item
     sprite: Imperial/DS/Guns/shotgun/Microne-gun/Microne-inhand.rsi
@@ -102,7 +102,7 @@
   - type: Sprite
     sprite: Imperial/DS/Guns/shotgun/Obrez-gun/Obrez.rsi
     layers:
-    - state: bolt-open
+    - state: icon
       map: [ "enum.GunVisualLayers.Base" ]
   - type: Item
     sprite: Imperial/DS/Guns/shotgun/Obrez-gun/Obrez-inhand.rsi
@@ -145,7 +145,7 @@
   - type: Sprite
     sprite: Imperial/DS/Guns/shotgun/Remington-gun/Remington.rsi
     layers:
-    - state: bolt-open
+    - state: icon
       map: [ "enum.GunVisualLayers.Base" ]
   - type: Item
     sprite: Imperial/DS/Guns/shotgun/Remington-gun/Remington-inhand.rsi
@@ -192,7 +192,7 @@
   - type: Sprite
     sprite: Imperial/DS/Guns/shotgun/SPAS-12-gun/SPAS-12.rsi
     layers:
-    - state: bolt-open
+    - state: icon
       map: [ "enum.GunVisualLayers.Base" ]
   - type: Item
     sprite: Imperial/DS/Guns/shotgun/SPAS-12-gun/SPAS-12-inhand.rsi
