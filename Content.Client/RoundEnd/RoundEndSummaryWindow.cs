@@ -33,6 +33,7 @@ namespace Content.Client.RoundEnd
             var roundEndTabs = new TabContainer();
             roundEndTabs.AddChild(MakeRoundEndSummaryTab(gm, roundEnd, roundTimeSpan, roundId));
             roundEndTabs.AddChild(MakePlayerManifestTab(info));
+            roundEndTabs.AddChild(new Content.Client.Imperial.LastWords.ImperialLastWordsTab(roundId)); // Imperial Space: последние слова перед смертью
 
             ContentsContainer.AddChild(roundEndTabs);
 

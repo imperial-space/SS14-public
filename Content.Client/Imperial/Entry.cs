@@ -1,3 +1,4 @@
+using Content.Client.Imperial.LastWords;
 using Content.Client.Imperial.ShockWave;
 using Content.Client.Imperial.Sponsors;
 using Robust.Client.Graphics;
@@ -23,10 +24,12 @@ public sealed partial class ImperialEntry
         overlayManager.AddOverlay(new ShockWaveDistortionOverlay());
 
         IoCManager.Resolve<SponsorsManager>().Initialize();
+        IoCManager.Resolve<ImperialLastWordsManager>().Initialize();
     }
 
     public static void IoCRegister()
     {
         IoCManager.Register<SponsorsManager>(); //Imperial sponsors
+        IoCManager.Register<ImperialLastWordsManager>();
     }
 }
