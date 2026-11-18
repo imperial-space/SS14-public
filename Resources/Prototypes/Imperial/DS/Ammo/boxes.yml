@@ -737,5 +737,9 @@
     whitelist:
       tags:
         - DSAmmoItem
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
   - type: StaticPrice
     price: 200

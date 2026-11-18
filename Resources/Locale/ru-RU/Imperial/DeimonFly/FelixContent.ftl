@@ -24,9 +24,19 @@ ent-BaseFelixBarricade = баррикада
 
 ent-FelixBarricadeSandy = песчаная баррикада
     .desc = Самодельная оборонительная конструкция из мешков с песком.
+    .suffix = DeadSector, Structure, 1
+
+ent-FelixBarricadeSandy2 = песчаная баррикада
+    .desc = Самодельная оборонительная конструкция из мешков с песком.
+    .suffix = DeadSector, Structure, 2
 
 ent-FelixBarricadeSnowy = заснеженная баррикада
     .desc = Самодельная оборонительная конструкция из замёрзших мешков с песком.
+    .suffix = DeadSector, Structure, 1
+
+ent-FelixBarricadeSnowy2 = заснеженная баррикада
+    .desc = Самодельная оборонительная конструкция из замёрзших мешков с песком.
+    .suffix = DeadSector, Structure, 2
 
 ent-FelixBarricadeMetal = металлическая баррикада
     .desc = Низкая баррикада, собранная из металлических стоек.
