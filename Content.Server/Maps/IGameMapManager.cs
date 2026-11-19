@@ -1,4 +1,7 @@
 using Content.Shared.Maps;
+// Imperial Weekly Mode Start
+using Robust.Shared.Utility;
+// Imperial Weekly Mode End
 
 namespace Content.Server.Maps;
 
@@ -53,6 +56,19 @@ public interface IGameMapManager
     void SelectMap(string gameMap);
 
     /// <summary>
+    // Imperial Weekly Mode Start
+    /// Selects a map prototype while replacing its content map path for this selection only.
+    /// </summary>
+    void SelectMapPath(string baseMapPrototype, ResPath mapPath);
+
+    /// <summary>
+    /// Selects a map prototype, replacing its map path with a saved user-data map if it exists.
+    /// Falls back to the base map prototype if the saved map path is missing.
+    /// </summary>
+    void SelectPersistentMap(string baseMapPrototype, ResPath mapPath);
+
+    /// <summary>
+    // Imperial Weekly Mode End
     /// Selects a random map eligible map
     /// </summary>
     void SelectMapRandom();

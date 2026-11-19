@@ -1,3 +1,6 @@
+// Imperial Weekly Mode Start
+using Content.Client.Imperial.WeeklyMode.Cargo;
+// Imperial Weekly Mode End
 using Content.Shared.Cargo;
 using Content.Client.Cargo.UI;
 using Content.Shared.Cargo.BUI;
@@ -18,7 +21,11 @@ namespace Content.Client.Cargo.BUI
         private readonly SharedCargoSystem _cargoSystem;
 
         [ViewVariables]
-        private CargoConsoleMenu? _menu;
+        // Imperial Weekly Mode: Original code:
+        // private CargoConsoleMenu? _menu;
+        // Imperial Weekly Mode Start
+        private WeeklyCargoConsoleMenu? _menu;
+        // Imperial Weekly Mode End
 
         /// <summary>
         /// This is the separate popup window for individual orders.
@@ -42,7 +49,11 @@ namespace Content.Client.Cargo.BUI
         /// Currently selected product
         /// </summary>
         [ViewVariables]
-        private CargoProductPrototype? _product;
+        // Imperial Weekly Mode: Original code:
+        // private CargoProductPrototype? _product;
+        // Imperial Weekly Mode Start
+        private string _productId = string.Empty;
+        // Imperial Weekly Mode End
 
         public CargoOrderConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
@@ -55,7 +66,11 @@ namespace Content.Client.Cargo.BUI
 
             var spriteSystem = EntMan.System<SpriteSystem>();
             var dependencies = IoCManager.Instance!;
-            _menu = new CargoConsoleMenu(Owner, EntMan, dependencies.Resolve<IPrototypeManager>(), spriteSystem);
+            // Imperial Weekly Mode: Original code:
+            // _menu = new CargoConsoleMenu(Owner, EntMan, dependencies.Resolve<IPrototypeManager>(), spriteSystem);
+            // Imperial Weekly Mode Start
+            _menu = new WeeklyCargoConsoleMenu(Owner, EntMan, dependencies.Resolve<IPrototypeManager>(), spriteSystem);
+            // Imperial Weekly Mode End
             var localPlayer = dependencies.Resolve<IPlayerManager>().LocalEntity;
             var description = new FormattedMessage();
 
@@ -81,7 +96,11 @@ namespace Content.Client.Cargo.BUI
                     description.AddText(row.MainButton.ToolTip);
 
                 _orderMenu.Description.SetMessage(description);
-                _product = row.Product;
+                // Imperial Weekly Mode: Original code:
+                // _product = row.Product;
+                // Imperial Weekly Mode Start
+                _productId = row.ProductId;
+                // Imperial Weekly Mode End
                 _orderMenu.ProductName.Text = row.ProductName.Text;
                 _orderMenu.PointCost.Text = row.PointCost.Text;
                 _orderMenu.Requester.Text = orderRequester;
@@ -118,17 +137,28 @@ namespace Content.Client.Cargo.BUI
             if (_menu == null)
                 return;
 
-            _menu.PopulateProducts();
+            // Imperial Weekly Mode Start
             _menu.PopulateCategories();
+            // Imperial Weekly Mode End
+            _menu.PopulateProducts();
+            // Imperial Weekly Mode: Original code:
+            // _menu.PopulateCategories();
             _menu.PopulateOrders(orders);
             _menu.PopulateAccountActions();
+            // Imperial Weekly Mode Start
+            RefreshSelectedProduct();
+            // Imperial Weekly Mode End
         }
 
         protected override void UpdateState(BoundUserInterfaceState state)
         {
             base.UpdateState(state);
 
-            if (state is not CargoConsoleInterfaceState cState || !EntMan.TryGetComponent<CargoOrderConsoleComponent>(Owner, out var orderConsole))
+            // Imperial Weekly Mode: Original code:
+            // if (state is not CargoConsoleInterfaceState cState || !EntMan.TryGetComponent<CargoOrderConsoleComponent>(Owner, out var orderConsole))
+            // Imperial Weekly Mode Start
+            if (state is not WeeklyCargoConsoleInterfaceState cState || !EntMan.TryGetComponent<CargoOrderConsoleComponent>(Owner, out var orderConsole))
+            // Imperial Weekly Mode End
                 return;
             var station = EntMan.GetEntity(cState.Station);
 
@@ -142,6 +172,10 @@ namespace Content.Client.Cargo.BUI
                 return;
 
             _menu.ProductCatalogue = cState.Products;
+            // Imperial Weekly Mode Start
+            _menu.WeeklyProductCatalogue = cState.WeeklyProducts;
+            _menu.InvalidateProductCache();
+            // Imperial Weekly Mode End
 
             _menu?.UpdateStation(station);
             Populate(cState.Orders);
@@ -169,10 +203,41 @@ namespace Content.Client.Cargo.BUI
             SendMessage(new CargoConsoleAddOrderMessage(
                 _orderMenu?.Requester.Text ?? "",
                 _orderMenu?.Reason.Text ?? "",
-                _product?.ID ?? "",
+                // Imperial Weekly Mode: Original code:
+                // _product?.ID ?? "",
+                // Imperial Weekly Mode Start
+                _productId,
+                // Imperial Weekly Mode End
                 orderAmt));
 
             return true;
+        // Imperial Weekly Mode Start
+        }
+
+        private void RefreshSelectedProduct()
+        {
+            if (_menu == null ||
+                _orderMenu == null ||
+                string.IsNullOrEmpty(_productId))
+            {
+                return;
+            }
+
+            if (!_menu.TryGetProductDisplayData(_productId, out var name, out var descriptionText, out var cost))
+            {
+                _productId = string.Empty;
+                _orderMenu.Close();
+                return;
+            }
+
+            var description = new FormattedMessage();
+            description.PushColor(Color.White); // Rich text default color is grey
+            description.AddText(descriptionText);
+
+            _orderMenu.Description.SetMessage(description);
+            _orderMenu.ProductName.Text = name;
+            _orderMenu.PointCost.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", cost.ToString()));
+        // Imperial Weekly Mode End
         }
 
         private void RemoveOrder(CargoOrderData? order)

@@ -21,7 +21,11 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Light.EntitySystems;
 
-public abstract class SharedPoweredLightSystem : EntitySystem
+// Imperial Weekly Mode: Original code:
+// public abstract class SharedPoweredLightSystem : EntitySystem
+// Imperial Weekly Mode Start
+public abstract partial class SharedPoweredLightSystem : EntitySystem
+// Imperial Weekly Mode End
 {
     [Dependency] protected readonly IGameTiming GameTiming = default!;
     [Dependency] private readonly DamageOnInteractSystem _damageOnInteractSystem = default!;
@@ -209,6 +213,7 @@ public abstract class SharedPoweredLightSystem : EntitySystem
         light.Comp.HasLampOnSpawn = bulb;
         return true;
     }
+
 
     /// <summary>
     ///     Try to replace current bulb with a new one

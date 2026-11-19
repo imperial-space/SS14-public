@@ -7,6 +7,9 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
+// Imperial Weekly Mode Start
+using Content.Shared.Research;
+// Imperial Weekly Mode End
 
 namespace Content.Server.Research.Systems;
 
@@ -32,8 +35,24 @@ public sealed partial class ResearchSystem
         if (!this.IsPowered(uid, EntityManager))
             return;
 
-        if (!PrototypeManager.TryIndex<TechnologyPrototype>(args.Id, out var technologyPrototype))
-            return;
+        // Imperial Weekly Mode: Original code:
+        // if (!PrototypeManager.TryIndex<TechnologyPrototype>(args.Id, out var technologyPrototype))
+        // return;
+        // Imperial Weekly Mode Start
+        TechnologyPrototype? technologyPrototype = null;
+        WeeklyTechnologyData? weeklyTechnology = null;
+        if (!PrototypeManager.TryIndex<TechnologyPrototype>(args.Id, out technologyPrototype))
+        {
+            if (!TryComp<TechnologyDatabaseComponent>(uid, out var database) ||
+                !database.WeeklyModeOnly ||
+                !TryGetWeeklyTechnology(database, args.Id, out var weeklyTechnologyData))
+            {
+                return;
+            }
+
+            weeklyTechnology = weeklyTechnologyData;
+        }
+        // Imperial Weekly Mode End
 
         if (TryComp<AccessReaderComponent>(uid, out var access) && !_accessReader.IsAllowed(act, uid, access))
         {
@@ -49,10 +68,21 @@ public sealed partial class ResearchSystem
             var getIdentityEvent = new TryGetIdentityShortInfoEvent(uid, act);
             RaiseLocalEvent(getIdentityEvent);
 
+            // Imperial Weekly Mode Start
+            var technologyName = technologyPrototype != null
+                ? Loc.GetString(technologyPrototype.Name)
+                : weeklyTechnology?.Name ?? args.Id;
+            var technologyCost = technologyPrototype?.Cost ?? weeklyTechnology?.Cost ?? 0;
+            // Imperial Weekly Mode End
             var message = Loc.GetString(
                 "research-console-unlock-technology-radio-broadcast",
-                ("technology", Loc.GetString(technologyPrototype.Name)),
-                ("amount", technologyPrototype.Cost),
+                // Imperial Weekly Mode: Original code:
+                // ("technology", Loc.GetString(technologyPrototype.Name)),
+                // ("amount", technologyPrototype.Cost),
+                // Imperial Weekly Mode Start
+                ("technology", technologyName),
+                ("amount", technologyCost),
+                // Imperial Weekly Mode End
                 ("approver", getIdentityEvent.Title ?? string.Empty)
             );
             _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);

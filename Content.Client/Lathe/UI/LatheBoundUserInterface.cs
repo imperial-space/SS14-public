@@ -1,3 +1,6 @@
+// Imperial Weekly Mode Start
+using Content.Client.Imperial.WeeklyMode.Lathe;
+// Imperial Weekly Mode End
 using Content.Shared.Lathe;
 using Content.Shared.Research.Components;
 using Content.Shared.PrinterDoc; // Imperial PrinterDoc
@@ -10,7 +13,11 @@ namespace Content.Client.Lathe.UI
     public sealed class LatheBoundUserInterface : BoundUserInterface
     {
         [ViewVariables]
-        private LatheMenu? _menu;
+        // Imperial Weekly Mode: Original code:
+        // private LatheMenu? _menu;
+        // Imperial Weekly Mode Start
+        private WeeklyLatheMenu? _menu;
+        // Imperial Weekly Mode End
         public LatheBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
         }
@@ -19,7 +26,12 @@ namespace Content.Client.Lathe.UI
         {
             base.Open();
 
-            _menu = this.CreateWindowCenteredRight<LatheMenu>();
+            // Imperial Weekly Mode: Original code:
+            // _menu = this.CreateWindowCenteredRight<LatheMenu>();
+            // Imperial Weekly Mode Start
+
+            _menu = this.CreateWindowCenteredRight<WeeklyLatheMenu>();
+            // Imperial Weekly Mode End
             _menu.SetEntity(Owner);
 
             _menu.OnServerListButtonPressed += _ =>
@@ -52,13 +64,24 @@ namespace Content.Client.Lathe.UI
             // Imperial PrinterDoc
             if (_menu == null)
                 return;
-            if (state is LatheUpdateState msg)
+            // Imperial Weekly Mode: Original code:
+            // if (state is LatheUpdateState msg)
+            // Imperial Weekly Mode Start
+            if (state is WeeklyLatheUpdateState msg)
+            // Imperial Weekly Mode End
             {
                 _menu.Recipes = msg.Recipes;
+                // Imperial Weekly Mode Start
+                _menu.WeeklyRecipes = msg.WeeklyRecipes;
+                // Imperial Weekly Mode End
                 _menu.PopulateRecipes();
                 _menu.UpdateCategories();
                 _menu.PopulateQueueList(msg.Queue);
-                _menu.SetQueueInfo(msg.CurrentlyProducing);
+                // Imperial Weekly Mode: Original code:
+                // _menu.SetQueueInfo(msg.CurrentlyProducing);
+                // Imperial Weekly Mode Start
+                _menu.SetQueueInfo(msg.CurrentlyProducing, msg.CurrentlyProducingIsWeekly);
+                // Imperial Weekly Mode End
                 _menu.SetUseCardId(msg.UseCardId);
             }
         }
