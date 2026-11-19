@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Modified from tgstation canister sprites at commit https://github.com/tgstation/tgstation/commit/f8581a636acfc1517611a680b7711a74fc7ef335.",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "electrovae"
+        },
+        {
+            "name": "electrovae-1"
+        },
+        {
+            "name": "mask-electrovae"
+        },
+        {
+            "name": "chargedelectrovae"
+        },
+        {
+            "name": "chargedelectrovae-1"
+        },
+        {
+            "name": "mask-chargedelectrovae"
+        },
+        {
+            "name": "integrity-unshaded-0"
+        },
+        {
+            "name": "paper"
+        }
+    ]
+}

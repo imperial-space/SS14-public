@@ -121,6 +121,10 @@
       weight: 2.0
     - id: XenoArtifactEffectCreationGasAmmonia
       weight: 3.0
+    # Imperial-Start
+    - id: XenoArtifactEffectCreationGasElectrovae
+      weight: 1.0
+    # Imperial-End
     - id: XenoArtifactEffectCreationGasFrezon
       weight: 1.0
     - id: XenoArtifactEffectCreationGasNitrousOxide
@@ -1349,6 +1353,17 @@
   - type: XAECreateGas
     gases:
       Ammonia: 300
+
+# Imperial-Start
+- type: entity
+  id: XenoArtifactEffectCreationGasElectrovae
+  parent: BaseXenoArtifactEffect
+  description: Expels electrovae
+  components:
+  - type: XAECreateGas
+    gases:
+      Electrovae: 300
+# Imperial-End
 
 - type: entity
   id: XenoArtifactEffectCreationGasFrezon

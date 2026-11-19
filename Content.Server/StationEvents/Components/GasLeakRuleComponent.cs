@@ -19,6 +19,7 @@ public sealed partial class GasLeakRuleComponent : Component
         Gas.Frezon,
         Gas.WaterVapor, // the fog
         Gas.Hydrogen, /// Imperial Added Hydrogen
+        Gas.ChargedElectrovae, // # Imperial
     };
 
     /// <summary>

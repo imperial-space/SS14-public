@@ -70,6 +70,8 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
         _airtightQuery = GetEntityQuery<AirtightComponent>();
         _firelockQuery = GetEntityQuery<FirelockComponent>();
 
+        InitializeChargedElectrovae(); // # Imperial
+
         SubscribeLocalEvent<TileChangedEvent>(OnTileChanged);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
 

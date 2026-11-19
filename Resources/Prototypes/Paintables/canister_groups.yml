@@ -22,3 +22,5 @@
     hyper-noblium: HyperNobliumCanister # Imperial Space Gases
     anti-noblium: AntiNobliumCanister # Imperial Space Gases
     bz: BZCanister # Imperial Space Gases
+    electrovae: ElectrovaeCanister # Imperial Space Gases
+    charged-electrovae: ChargedElectrovaeCanister # Imperial Space Gases
