@@ -125,6 +125,9 @@
   id: CartridgeDS5x56x45
 
 - type: Tag
+  id: CartridgeDS5x7x28
+
+- type: Tag
   id: CartridgeDS5x6
 
 - type: Tag

@@ -32,6 +32,31 @@
         Piercing: 15
 
 - type: entity
+  id: Bullet5x7x28AP
+  name: bullet 5.7x28 (AP)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 11
+    ignoreResistances: true
+
+- type: entity
+  id: Bullet5x7x28LongRange
+  name: bullet 5.7x28 (T)
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 30
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 22
+
+- type: entity
   id: BulletCarabineAK
   name: bullet (.35 MP-9)
   parent: BaseBullet

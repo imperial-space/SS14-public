@@ -2,7 +2,7 @@
   name: AR-57
   parent: [BaseWeaponRifle, BaseMinorContraband]
   id: WeaponRifleAR57
-  description: The carbine is larger than average and has above average ammunition capacity. It has a dark gray color. Uses 7x62x51 NATO ammo.
+  description: The carbine is larger than average and has above average ammunition capacity. It has a dark gray color. Uses 5.7x28 ammo.
   components:
   - type: Item
     sprite: Imperial/DeadSector/weapons/weapons/rifle/AR57-inhand.rsi
@@ -42,11 +42,11 @@
             - MagazineAR57
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeAR57
+        startingItem: CartridgeDS5x7x28
         priority: 1
         whitelist:
           tags:
-            - CartridgeAR57
+            - CartridgeDS5x7x28
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -95,11 +95,11 @@
           - MagazineAR15
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeCarabineAR
+        startingItem: CartridgeDS5x7x28
         priority: 1
         whitelist:
           tags:
-          - CartridgeFelixCarabineAR
+          - CartridgeDS5x7x28
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
