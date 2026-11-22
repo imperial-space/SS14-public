@@ -1,0 +1,229 @@
+- type: htnCompound
+  id: DeathNotePriorityHostileCompound
+  branches:
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: OrderedTargets
+    - !type:HTNCompoundTask
+      task: MeleeAttackOrderedTargetCompound
+  - tasks:
+    - !type:HTNCompoundTask
+      task: SimpleHostileCompound
+
+- type: entity
+  id: DeathNoteRoundUnrevivable
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+  - type: DeathNoteRoundUnrevivableRule
+
+- type: entity
+  id: DeathNote
+  parent: BaseItem
+  name: death note
+  suffix: Admeme, Channel I
+  description: A black notebook whose pages await true names.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/DeathNote/death_note.rsi
+    state: death_note
+  - type: Item
+    size: Small
+  - type: Tag
+    tags:
+    - Book
+  - type: DeathNote
+    writablePageCount: 30
+    entriesPerPage: 12
+    maxEntries: 360
+  - type: ActivatableUI
+    key: enum.DeathNoteUiKey.Notebook
+    inHandsOnly: false
+    singleUser: true
+  - type: UserInterface
+    interfaces:
+      enum.DeathNoteUiKey.Notebook:
+        type: DeathNoteBoundUserInterface
+
+- type: entity
+  id: DeathNoteAdminLedger
+  parent: BaseItem
+  name: death note ledger
+  suffix: Admeme
+  description: A read-only administrative ledger for Death Note events.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/books.rsi
+    layers:
+    - state: paper
+    - state: cover_strong
+      color: "#353535"
+    - state: icon_text
+      color: "#b8b8b8"
+  - type: Item
+    size: Small
+  - type: Tag
+    tags:
+    - Book
+  - type: DeathNoteAdminLedger
+  - type: ActivatableUI
+    key: enum.DeathNoteUiKey.AdminLedger
+    inHandsOnly: true
+    adminOnly: true
+    singleUser: true
+  - type: UserInterface
+    interfaces:
+      enum.DeathNoteUiKey.AdminLedger:
+        type: DeathNoteAdminBoundUserInterface
+
+- type: entity
+  id: DeathNote2
+  parent: DeathNote
+  name: death note
+  suffix: Admeme, Channel II
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/DeathNote/death_note.rsi
+    state: death_note_2
+  - type: DeathNote
+    ownershipChannel: Second
+
+- type: entity
+  id: DeathNote3
+  parent: DeathNote
+  name: death note
+  suffix: Admeme, Channel III
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/DeathNote/death_note.rsi
+    state: death_note_3
+  - type: DeathNote
+    ownershipChannel: Third
+
+- type: entity
+  id: DeathNoteUnrevivable
+  parent: DeathNote
+  name: death note
+  suffix: Admeme, Unrevivable, Channel I
+  description: A black notebook whose pages await true names.
+  components:
+  - type: DeathNote
+    makeTargetsUnrevivable: true
+
+- type: entity
+  id: DeathNoteUnrevivable2
+  parent: DeathNote2
+  name: death note
+  suffix: Admeme, Unrevivable, Channel II
+  components:
+  - type: DeathNote
+    makeTargetsUnrevivable: true
+
+- type: entity
+  id: DeathNoteUnrevivable3
+  parent: DeathNote3
+  name: death note
+  suffix: Admeme, Unrevivable, Channel III
+  components:
+  - type: DeathNote
+    makeTargetsUnrevivable: true
+
+- type: entity
+  id: DeathGodNote
+  parent: DeathNote
+  name: shinigami notebook
+  suffix: Admeme, Shinigami
+  description: An ancient notebook carried by a god of death.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeimonFly/DeathNote/death_god_note.rsi
+    state: death_god_note
+  - type: DeathNote
+    assignsPermanentOwner: false
+    grantsAllShinigamiVisibility: true
+
+- type: entity
+  id: DeathGodNoteUnrevivable
+  parent: DeathGodNote
+  name: shinigami notebook
+  suffix: Admeme, Shinigami, Unrevivable
+  components:
+  - type: DeathNote
+    assignsPermanentOwner: false
+    grantsAllShinigamiVisibility: true
+    makeTargetsUnrevivable: true
+
+- type: entity
+  id: DeathNoteImmovableRod
+  parent: ImmovableRod
+  suffix: Admeme, Death Note
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ImmovableRod
+    randomizeVelocity: false
+    minSpeed: 0
+    maxSpeed: 0
+    destroyTiles: true
+
+- type: entity
+  id: DeathNoteLightningSource
+  parent: MarkerBase
+  name: death note lightning source
+  suffix: Admeme, Death Note
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 4
+
+- type: entity
+  id: DeathNoteMimic
+  parent: MobMimic
+  name: death note mimic
+  suffix: Admeme, Death Note
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+      task: DeathNotePriorityHostileCompound
+  - type: MeleeWeapon
+    angle: 0
+    animation: WeaponArcFist
+    damage:
+      types:
+        Blunt: 20
+
+- type: entity
+  id: DeathNoteTargetedCarp
+  parent: MobCarp
+  name: death note space carp
+  suffix: Admeme, Death Note
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+      task: DeathNotePriorityHostileCompound
+
+- type: entity
+  id: DeathNoteCarpRift
+  parent: CarpRift
+  name: death note carp rift
+  suffix: Admeme, Death Note
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: DragonRift
+    spawn: DeathNoteTargetedCarp
+    spawnAccumulator: 0
+    spawnCooldown: 86400
+    maxAccumuluator: 86400
+
+- type: entity
+  id: DeathNoteTargetedSpider
+  parent: MobGiantSpiderAngry
+  name: death note giant spider
+  suffix: Admeme, Death Note
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HTN
+    rootTask:
+      task: DeathNotePriorityHostileCompound

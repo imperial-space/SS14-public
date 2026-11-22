@@ -1,0 +1,23 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               Title="{Loc 'death-note-admin-ui-title'}"
+               MinSize="760 520"
+               SetSize="900 650">
+    <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="6">
+        <BoxContainer Orientation="Horizontal">
+            <Label Name="SummaryLabel" />
+            <Control HorizontalExpand="True" />
+            <Label Name="RequestStatusLabel" />
+        </BoxContainer>
+        <PanelContainer StyleClasses="BackgroundPanelDark" VerticalExpand="True">
+            <ScrollContainer HScrollEnabled="False" VerticalExpand="True">
+                <RichTextLabel Name="EntriesText" Margin="6" />
+            </ScrollContainer>
+        </PanelContainer>
+        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" SeparationOverride="6">
+            <Button Name="PreviousButton" Text="{Loc 'death-note-ui-previous-page'}" />
+            <Label Name="PageLabel" />
+            <Button Name="NextButton" Text="{Loc 'death-note-ui-next-page'}" />
+            <Button Name="RefreshButton" Text="{Loc 'death-note-admin-refresh'}" />
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>
