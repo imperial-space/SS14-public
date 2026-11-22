@@ -1,0 +1,230 @@
+- type: listing
+  id: SyndieBattleEnergyCrossbow
+  productEntity: WeaponEnergyCrossbow
+  cost: { Telecrystal: 6 }
+  categories: [ SyndiebattleUplinkWeaponry ]
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: SyndieBattleHushpupBriefcase
+  productEntity: BriefcaseWeaponHushpupFilled
+  cost: { Telecrystal: 11 }
+  categories: [ SyndiebattleUplinkWeaponry ]
+
+- type: listing
+  id: SyndieBattleChinaLakeBriefcase
+  productEntity: BriefcaseWeaponChinaLakeFilled
+  cost: { Telecrystal: 22 }
+  categories: [ SyndiebattleUplinkWeaponry ]
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: SyndieBattleFragGrenade
+  productEntity: GrenadeFrag
+  cost: { Telecrystal: 2 }
+  categories: [ SyndiebattleUplinkAmmo ]
+
+- type: listing
+  id: SyndieBattleBlastGrenade
+  productEntity: GrenadeBlast
+  cost: { Telecrystal: 3 }
+  categories: [ SyndiebattleUplinkAmmo ]
+
+- type: listing
+  id: SyndieBattleChainsaw
+  productEntity: Chainsaw
+  cost: { Telecrystal: 14 }
+  categories: [ SyndiebattleUplinkWeaponry ]
+
+- type: listing
+  id: SyndieBattleRapierSheath
+  productEntity: ClothingBeltSheathRapierFilled
+  cost: { Telecrystal: 15 }
+  categories: [ SyndiebattleUplinkWeaponry ]
+
+- type: listing
+  id: SyndieBattleAkmsBundle
+  productEntity: ClothingBackpackDuffelSyndicateAKMS
+  cost: { Telecrystal: 22 }
+  categories: [ SyndiebattleUplinkWeaponry ]
+
+- type: listing
+  id: SyndieBattleLightRifleMagazine
+  productEntity: MagazineLightRifle
+  cost: { Telecrystal: 2 }
+  categories: [ SyndiebattleUplinkAmmo ]
+
+- type: listing
+  id: SyndieBattleMimeBriefcase
+  productEntity: BriefcaseSyndieMimeFilled
+  cost: { Telecrystal: 13 }
+  categories: [ SyndiebattleUplinkJob ]
+
+- type: listing
+  id: SyndieBattleThiefGloves
+  productEntity: ClothingHandsChameleonThief
+  cost: { Telecrystal: 7 }
+  categories: [ SyndiebattleUplinkWearables ]
+
+- type: listing
+  id: SyndieBattleFoamLauncher
+  productEntity: WeaponLauncherFoam
+  cost: { Telecrystal: 7 }
+  categories: [ SyndiebattleUplinkDisruption ]
+
+- type: listing
+  id: SyndieBattleFrameCartridge
+  productEntity: FRAMEPDACartridge
+  cost: { Telecrystal: 6 }
+  categories: [ SyndiebattleUplinkDisruption ]
+
+- type: listing
+  id: SyndieBattleSmokeImplanter
+  productEntity: ImperialSmokeImplanter
+  cost: { Telecrystal: 5 }
+  categories: [ SyndiebattleUplinkImplants ]
+
+- type: listing
+  id: SyndieBattleBlinkImplanter
+  productEntity: ImperialBlinkImplanter
+  cost: { Telecrystal: 15 }
+  categories: [ SyndiebattleUplinkImplants ]
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: SyndieBattleVoiceMaskImplanter
+  productEntity: VoiceMaskImplanter
+  cost: { Telecrystal: 3 }
+  categories: [ SyndiebattleUplinkImplants ]
+
+- type: listing
+  id: SyndieBattleVentMonkeyImplanter
+  productEntity: VentMonkeyImplanter
+  cost: { Telecrystal: 5 }
+  categories: [ SyndiebattleUplinkImplants ]
+
+- type: listing
+  id: SyndieBattleTravelCamera
+  productEntity: TravelCamera
+  cost: { Telecrystal: 2 }
+  categories: [ SyndiebattleUplinkDeception ]
+
+- type: listing
+  id: SyndieBattleEverythingStamp
+  productEntity: EverythingStamp
+  cost: { Telecrystal: 2 }
+  categories: [ SyndiebattleUplinkDeception ]
+
+- type: listing
+  id: SyndieBattlePieCannon
+  productEntity: WeaponPieCannonClown
+  cost: { Telecrystal: 10 }
+  categories: [ SyndiebattleUplinkJob ]
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: SyndieBattleSleepPizza
+  productEntity: FoodPizzaMafiaSleep
+  cost: { Telecrystal: 8 }
+  categories: [ SyndiebattleUplinkDeception ]
+
+- type: listing
+  id: SyndieBattleOmnizineCigarCase
+  productEntity: CigarMafiaOmnizineCase
+  cost: { Telecrystal: 12 }
+  categories: [ SyndiebattleUplinkChemicals ]
+
+- type: listing
+  id: SyndieBattleSmgBriefcase
+  productEntity: WeaponSubMachineGunBriefcase
+  cost: { Telecrystal: 16 }
+  categories: [ SyndiebattleUplinkJob ]
+
+- type: listing
+  id: SyndieBattleAcolyteBundle
+  productEntity: ClothingBackpackDuffelAcolyteBundle
+  cost: { Telecrystal: 5 }
+  categories: [ SyndiebattleUplinkWearables ]
+
+- type: listing
+  id: SyndieBattleM90Bundle
+  productEntity: ClothingBackpackDuffelSyndicateFilledCarbineImperial
+  cost: { Telecrystal: 27 }
+  categories: [ SyndiebattleUplinkWeaponry ]
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: SyndieBattleM90Magazine
+  productEntity: MagazineM90gl
+  cost: { Telecrystal: 3 }
+  categories: [ SyndiebattleUplinkAmmo ]
+
+- type: listing
+  id: SyndieBattleM90MagazineBox
+  productEntity: MagazineBoxM90gl
+  cost: { Telecrystal: 6 }
+  categories: [ SyndiebattleUplinkAmmo ]
+
+- type: listing
+  id: SyndieBattleOperativeModsuit
+  productEntity: ClothingControlModsuitOperativeSealed
+  cost: { Telecrystal: 14 }
+  categories: [ SyndiebattleUplinkWearables ]
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: SyndieBattleStunKnuckles
+  productEntity: ClothingHandsKnuckleDustersStun
+  cost: { Telecrystal: 18 }
+  categories: [ SyndiebattleUplinkWeaponry ]
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: SyndieBattleHolographicCigarette
+  productEntity: HolographicCigarette
+  cost: { Telecrystal: 5 }
+  categories: [ SyndiebattleUplinkWearables ]
+
+- type: listing
+  id: SyndieBattleNutrimentImplanter
+  productEntity: ImperialNutrimentPumpImplanter
+  cost: { Telecrystal: 2 }
+  categories: [ SyndiebattleUplinkImplants ]
+
+- type: listing
+  id: SyndieBattleUtilityWebbing
+  productEntity: ClothingBeltUtilityWebbing
+  cost: { Telecrystal: 2 }
+  categories: [ SyndiebattleUplinkWearables ]
+
+- type: listing
+  id: SyndieBattleGasBalaclava
+  productEntity: ClothingMaskGasBalaclava
+  cost: { Telecrystal: 1 }
+  categories: [ SyndiebattleUplinkWearables ]
+
+- type: listing
+  id: SyndieBattleSpaceCleaner
+  productEntity: SyndiSpaceCleanerSprayBottleFull
+  cost: { Telecrystal: 1 }
+  categories: [ SyndiebattleUplinkPointless ]
+
+- type: listing
+  id: SyndieBattleFakeCapGun
+  productEntity: RevolverCapGunFake
+  cost: { Telecrystal: 4 }
+  categories: [ SyndiebattleUplinkJob ]

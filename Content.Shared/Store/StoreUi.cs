@@ -21,13 +21,19 @@ public sealed class StoreUpdateState : BoundUserInterfaceState
 
     public readonly bool AllowRefund;
 
-    public StoreUpdateState(HashSet<ListingDataWithCostModifiers> listings, Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> balance, bool showFooter, bool allowRefund)
+    // Imperial Space Start SyndieBattle
+    public readonly bool AllowWithdraw;
+
+    // Original: public StoreUpdateState(HashSet<ListingDataWithCostModifiers> listings, Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> balance, bool showFooter, bool allowRefund)
+    public StoreUpdateState(HashSet<ListingDataWithCostModifiers> listings, Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> balance, bool showFooter, bool allowRefund, bool allowWithdraw)
     {
         Listings = listings;
         Balance = balance;
         ShowFooter = showFooter;
         AllowRefund = allowRefund;
+        AllowWithdraw = allowWithdraw;
     }
+    // Imperial Space End SyndieBattle
 }
 
 [Serializable, NetSerializable]

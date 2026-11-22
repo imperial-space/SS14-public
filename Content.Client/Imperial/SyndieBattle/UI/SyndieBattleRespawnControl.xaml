@@ -1,0 +1,36 @@
+<ui:SyndieBattleRespawnControl
+    xmlns="https://spacestation14.io"
+    xmlns:ui="clr-namespace:Content.Client.Imperial.SyndieBattle.UI"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    MinSize="360 0"
+    HorizontalAlignment="Right"
+    VerticalAlignment="Center"
+    Margin="0 80 32 0"
+    Visible="False"
+    MouseFilter="Stop">
+    <PanelContainer.PanelOverride>
+        <gfx:StyleBoxFlat
+            BackgroundColor="#191114F2"
+            BorderColor="#9B2635"
+            BorderThickness="2"
+            ContentMarginLeftOverride="14"
+            ContentMarginRightOverride="14"
+            ContentMarginTopOverride="12"
+            ContentMarginBottomOverride="12" />
+    </PanelContainer.PanelOverride>
+    <BoxContainer Orientation="Vertical" SeparationOverride="8">
+        <Label
+            Text="{Loc syndiebattle-respawn-title}"
+            HorizontalAlignment="Center"
+            StyleClasses="LabelHeading" />
+        <RichTextLabel Text="{Loc syndiebattle-respawn-description}" HorizontalExpand="True" />
+        <RichTextLabel Text="{Loc syndiebattle-respawn-route-hint}" HorizontalExpand="True" />
+        <RichTextLabel Text="{Loc syndiebattle-respawn-repeat-hint}" HorizontalExpand="True" />
+        <RichTextLabel Name="StatusLabel" HorizontalAlignment="Center" />
+        <Label Name="CooldownLabel" HorizontalAlignment="Center" />
+        <Button
+            Name="RespawnButton"
+            Text="{Loc syndiebattle-respawn-button}"
+            HorizontalExpand="True" />
+    </BoxContainer>
+</ui:SyndieBattleRespawnControl>

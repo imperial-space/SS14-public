@@ -257,6 +257,11 @@ public sealed partial class StoreSystem
     /// </remarks>
     private void OnRequestWithdraw(EntityUid uid, StoreComponent component, StoreRequestWithdrawMessage msg)
     {
+        // Imperial Space Start SyndieBattle
+        if (!component.AllowWithdraw)
+            return;
+        // Imperial Space End SyndieBattle
+
         if (msg.Amount <= 0)
             return;
 

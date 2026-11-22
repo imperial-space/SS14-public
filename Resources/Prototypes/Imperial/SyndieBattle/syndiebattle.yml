@@ -1,0 +1,84 @@
+- type: entity
+  id: SyndieBattleRule
+  parent: BaseGameRule
+  suffix: Бой предателей
+  components:
+  - type: GameRule
+    minPlayers: 0
+  - type: SyndieBattleRule
+    spawnProtectionDuration: 45s
+    spawnPositionAttempts: 32
+    spawnSeparation: 8
+    initialTelecrystals: 24
+    arenaComebackTelecrystals: 12
+    killStealFraction: 0.25
+    maxKillSteal: 8
+    leaderKillThreshold: 3
+    leaderKillReward: 4
+    victoryKillLimit: 20
+    repeatKillCooldown: 3m
+    killStreakAnnouncements: [3, 5, 10, 15]
+    roundDuration: 40m
+    roundEndDelay: 12s
+    roundTimeAnnouncements: [20m, 10m, 5m, 1m]
+  - type: SyndieBattleRespawn
+    music:
+      collection: SyndieBattleMusic
+      params:
+        volume: -14
+  - type: SyndieBattlePower
+
+- type: soundCollection
+  id: SyndieBattleMusic
+  files:
+    - /Audio/Imperial/SyndieBattle/syndie_battle_01.ogg
+    - /Audio/Imperial/SyndieBattle/syndie_battle_02.ogg
+    - /Audio/Imperial/SyndieBattle/syndie_battle_03.ogg
+    - /Audio/Imperial/SyndieBattle/syndie_battle_04.ogg
+    - /Audio/Imperial/SyndieBattle/unbreakable_strings.ogg
+    - /Audio/Imperial/SyndieBattle/starborn.ogg
+
+- type: startingGear
+  id: SyndieBattleGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesColorBlack
+    ears: ClothingHeadsetGrey
+    id: SyndieBattlePDA
+
+- type: antag
+  id: SyndieBattleAntag
+  name: syndiebattle-antag-name
+  antagonist: true
+  objective: syndiebattle-antag-objective
+
+- type: entity
+  id: MindRoleSyndieBattle
+  parent: MindRoleTraitor
+  suffix: Бой предателей
+  components:
+  - type: MindRole
+    roleType: FreeAgent
+    antagPrototype: SyndieBattleAntag
+    subtype: syndiebattle-role-subtype
+  - type: SyndieBattleRole
+
+- type: gamePreset
+  id: SyndieBattle
+  alias:
+    - syndiebattle
+    - sb
+  name: preset-syndiebattle-title
+  description: preset-syndiebattle-description
+  showInVote: false
+  rules:
+    - SyndieBattleRule
+    - BasicRoundstartVariation
+
+- type: syndieBattleLeaderIcon
+  id: SyndieBattleLeader
+  priority: 20
+  locationPreference: Right
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Syndicate

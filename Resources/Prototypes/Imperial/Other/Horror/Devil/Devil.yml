@@ -95,3 +95,18 @@
       damage:
         types:
           Piercing: 10
+
+- type: entity
+  name: Devil boss spawner
+  id: SpawnHorrorMobDevilBoss
+  parent: MarkerBase
+  suffix: PN, Хоррор, Босс
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/Other/Horror/Devil.rsi
+      state: Devil
+  - type: ConditionalSpawner
+    prototypes:
+    - HorrorMobDevilBos

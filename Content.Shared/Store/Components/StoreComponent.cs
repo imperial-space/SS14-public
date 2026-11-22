@@ -81,6 +81,14 @@ public sealed partial class StoreComponent : Component
     [ViewVariables, DataField]
     public bool RefundAllowed;
 
+    // Imperial Space Start SyndieBattle
+    /// <summary>
+    /// Controls whether currency can be converted back into physical items.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool AllowWithdraw = true;
+    // Imperial Space End SyndieBattle
+
     /// <summary>
     ///     Checks if store can be opened by the account owner only.
     ///     Not meant to be used with uplinks.
