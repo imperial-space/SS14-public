@@ -1158,7 +1158,7 @@ entities:
     - type: Transform
       pos: -1.5,35.5
       parent: 2
-- proto: MedievalBannerHell
+- proto: BannerSyndicate
   entities:
   - uid: 331
     components:
@@ -1170,7 +1170,7 @@ entities:
     - type: Transform
       pos: 7.5,9.5
       parent: 2
-- proto: MedievalPosterTeamBasedHell
+- proto: PosterContrabandSyndicateRecruitment
   entities:
   - uid: 324
     components:
