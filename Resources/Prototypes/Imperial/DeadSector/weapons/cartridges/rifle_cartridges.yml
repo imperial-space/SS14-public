@@ -83,6 +83,66 @@
     proto: BulletAR57LongRange
 
 - type: entity
+  id: BaseCartridge5x7x28AP
+  name: cartridge (5.7x28 AP)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeDS5x7x28
+  - type: CartridgeAmmo
+    proto: Bullet5x7x28AP
+  - type: Sprite
+    scale: 0.5, 0.5
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    layers:
+      - state: .357
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: .357
+
+- type: entity
+  id: Cartridge5x7x28AP
+  name: cartridge (5.7x28 AP)
+  parent: BaseCartridge5x7x28AP
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet5x7x28AP
+
+- type: entity
+  id: BaseCartridge5x7x28LongRange
+  name: cartridge (5.7x28 T)
+  parent: BaseCartridge
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeDS5x7x28
+  - type: CartridgeAmmo
+    proto: Bullet5x7x28LongRange
+  - type: Sprite
+    scale: 0.5, 0.5
+    sprite: Imperial/DS/Ammo/cartrige.rsi
+    layers:
+      - state: .357
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: .357
+
+- type: entity
+  id: Cartridge5x7x28LongRange
+  name: cartridge (5.7x28 T)
+  parent: BaseCartridge5x7x28LongRange
+  components:
+  - type: CartridgeAmmo
+    proto: Bullet5x7x28LongRange
+
+- type: entity
   id: BaseCartridgeCarabineAK
   name: cartridge (.35 mp-9)
   parent: BaseCartridge

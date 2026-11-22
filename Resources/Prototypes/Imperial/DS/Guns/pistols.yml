@@ -67,7 +67,7 @@
   - type: Sprite
     sprite: Imperial/DS/Guns/pistols/Igla-gun/Igla.rsi
     layers:
-    - state: bolt-open
+    - state: icon
       map: [ "enum.GunVisualLayers.Base" ]
   - type: Item
     sprite: Imperial/DS/Guns/pistols/Igla-gun/Igla-inhand.rsi
@@ -107,7 +107,7 @@
   - type: Sprite
     sprite: Imperial/DS/Guns/pistols/Judge-gun/Judge.rsi
     layers:
-    - state: bolt-open
+    - state: icon
       map: [ "enum.GunVisualLayers.Base" ]
   - type: Item
     sprite: Imperial/DS/Guns/pistols/Judge-gun/Judge-inhand.rsi

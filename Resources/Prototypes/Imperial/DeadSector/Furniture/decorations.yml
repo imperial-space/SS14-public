@@ -1,0 +1,38 @@
+- type: entity
+  parent: BaseItem
+  id: TestTubeStandDeadSector
+  name: test tube stand
+  suffix: DeadSector, Decoration
+  description: A rack holding a few empty test tubes.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/Furniture/beakers.rsi
+    state: beakers
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: BaseItem
+  id: TestTubeStandAltDeadSector
+  name: filled test tube stand
+  suffix: DeadSector, Decoration
+  description: A rack full of test tubes, still holding reagents nobody will ever identify.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/Furniture/beakers.rsi
+    state: beakers_alt
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: BaseItem
+  id: MicroscopeDeadSector
+  name: microscope
+  suffix: DeadSector, Decoration
+  description: An old optical microscope, still pointed at a slide nobody remembers.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/Furniture/microscope.rsi
+    state: microscope
+  - type: Item
+    size: Normal

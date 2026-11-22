@@ -1,0 +1,47 @@
+- type: entity
+  parent: FoodBase
+  id: SandwichWhitePopularDeadSector
+  name: sandwich
+  suffix: DeadSector, Food
+  description: A white bread sandwich with a slice of Popular sausage.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/DeadSector/Food/sandwich_white.rsi
+    state: sandwich1
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - meaty
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+
+- type: entity
+  parent: FoodBase
+  id: SandwichWhiteProfsoyuznayaDeadSector
+  name: sandwich
+  suffix: DeadSector, Food
+  description: A white bread sandwich with a slice of Profsoyuznaya sausage.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/DeadSector/Food/sandwich_white.rsi
+    state: sandwich2
+  - type: FlavorProfile
+    flavors:
+    - bread
+    - meaty
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 13
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7

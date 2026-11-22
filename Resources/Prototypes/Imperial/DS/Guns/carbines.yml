@@ -637,11 +637,11 @@
           - MagazineDSAR57
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeDS7x62x51
+        startingItem: CartridgeDS5x7x28
         priority: 1
         whitelist:
           tags:
-          - CartridgeDS7x62x51
+          - CartridgeDS5x7x28
       gun_attachment_right:
         name: gun-attachment-slot-right
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
@@ -730,11 +730,11 @@
           - MagazineDSAR15
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeDS5x56x45
+        startingItem: CartridgeDS5x7x28
         priority: 1
         whitelist:
           tags:
-          - CartridgeDS5x56x45
+          - CartridgeDS5x7x28
       gun_attachment_right:
         name: gun-attachment-slot-right
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg

@@ -1,0 +1,61 @@
+- type: entity
+  parent: FoodBreadBase
+  id: BreadDarkDeadSector
+  name: dark bread loaf
+  suffix: DeadSector, Food
+  description: A dense loaf of dark bread.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/Food/bread_dark.rsi
+    state: full
+  - type: SliceableFood
+    count: 5
+    slice: BreadDarkSliceDeadSector
+
+- type: entity
+  parent: FoodBreadSliceBase
+  id: BreadDarkSliceDeadSector
+  name: dark bread slice
+  suffix: DeadSector, Food
+  description: A slice of dense dark bread.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/Food/bread_dark.rsi
+    layers:
+    - state: slice
+    - map: ["foodSequenceLayers"]
+  - type: FoodSequenceStartPoint
+    key: DeadSectorSandwich
+    maxLayers: 1
+  - type: FoodMetamorphableByAdding
+
+- type: entity
+  parent: FoodBreadBase
+  id: BreadWhiteDeadSector
+  name: white bread loaf
+  suffix: DeadSector, Food
+  description: A soft loaf of white bread.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/Food/bread_white.rsi
+    state: full
+  - type: SliceableFood
+    count: 5
+    slice: BreadWhiteSliceDeadSector
+
+- type: entity
+  parent: FoodBreadSliceBase
+  id: BreadWhiteSliceDeadSector
+  name: white bread slice
+  suffix: DeadSector, Food
+  description: A slice of soft white bread.
+  components:
+  - type: Sprite
+    sprite: Imperial/DeadSector/Food/bread_white.rsi
+    layers:
+    - state: slice
+    - map: ["foodSequenceLayers"]
+  - type: FoodSequenceStartPoint
+    key: DeadSectorSandwich
+    maxLayers: 1
+  - type: FoodMetamorphableByAdding

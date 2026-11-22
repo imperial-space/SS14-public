@@ -13,18 +13,18 @@
 
 - type: entity
   id: BaseMagazineAR57
-  name: magazine AR-57 (7x62x51 NATO)
+  name: magazine AR-57 (5.7x28)
   parent: BaseFelixMagazineRifle
   components:
   - type: Tag
     tags:
       - MagazineAR57
   - type: BallisticAmmoProvider
-    proto: CartridgeAR57
+    proto: CartridgeDS5x7x28
     mayTransfer: true
     whitelist:
       tags:
-        - CartridgeAR57
+        - CartridgeDS5x7x28
     capacity: 35
   - type: Sprite
     sprite: Imperial/DeadSector/weapons/magazines/rifle/AR57_mag.rsi
@@ -40,18 +40,18 @@
 
 - type: entity
   id: BaseMagazineAR57Piercing
-  name: magazine AR-57 (7x62x51 NATO-AP)
+  name: magazine AR-57 (5.7x28 AP)
   parent: BaseFelixMagazineRifle
   components:
   - type: Tag
     tags:
       - MagazineAR57
   - type: BallisticAmmoProvider
-    proto: CartridgeAR57Piercing
+    proto: Cartridge5x7x28AP
     mayTransfer: true
     whitelist:
       tags:
-        - CartridgeAR57
+        - CartridgeDS5x7x28
     capacity: 35
   - type: Sprite
     sprite: Imperial/DeadSector/weapons/magazines/rifle/AR57_mag.rsi
@@ -67,18 +67,18 @@
 
 - type: entity
   id: BaseMagazineAR57LongRange
-  name: magazine AR-57 (7x62x51 NATO-T)
+  name: magazine AR-57 (5.7x28 T)
   parent: BaseFelixMagazineRifle
   components:
   - type: Tag
     tags:
       - MagazineAR57
   - type: BallisticAmmoProvider
-    proto: CartridgeAR57LongRange
+    proto: Cartridge5x7x28LongRange
     mayTransfer: true
     whitelist:
       tags:
-        - CartridgeAR57
+        - CartridgeDS5x7x28
     capacity: 35
   - type: Sprite
     sprite: Imperial/DeadSector/weapons/magazines/rifle/AR57_mag.rsi
@@ -95,14 +95,14 @@
 - type: entity
   id: BaseMagazineAR15
   parent: BaseFelixMagazineRifle
-  name: pistol magazine (.35 MP9)
+  name: magazine AR-15 (5.7x28)
   abstract: true
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
       tags:
-        - CartridgeFelixCarabineAR
+        - CartridgeDS5x7x28
     capacity: 40
   - type: Tag
     tags:
@@ -111,11 +111,11 @@
 - type: entity
   id: MagazineAR15
   parent: BaseMagazineAR15
-  name: pistol magazine (.35 MP5)
+  name: magazine AR-15 (5.7x28)
   suffix: Felix
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeCarabineAR
+    proto: CartridgeDS5x7x28
   - type: Sprite
     sprite: Imperial/DeadSector/weapons/magazines/rifle/AR15_mag.rsi
     layers:
@@ -124,15 +124,15 @@
 
 - type: entity
   id: BaseMagazineAR15Piercing
-  name: magazine AR-15
+  name: magazine AR-15 (5.7x28 AP)
   parent: BaseMagazineAR15
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeAR15Piercing
+    proto: Cartridge5x7x28AP
     mayTransfer: true
     whitelist:
       tags:
-        - CartridgeFelixCarabineAR
+        - CartridgeDS5x7x28
     capacity: 40
   - type: Sprite
     sprite: Imperial/DeadSector/weapons/magazines/rifle/AR15_mag.rsi
@@ -147,15 +147,15 @@
 
 - type: entity
   id: BaseMagazineAR15LongRange
-  name: magazine AR-15
+  name: magazine AR-15 (5.7x28 T)
   parent: BaseMagazineAR15
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeAR15LongRange
+    proto: Cartridge5x7x28LongRange
     mayTransfer: true
     whitelist:
       tags:
-        - CartridgeFelixCarabineAR
+        - CartridgeDS5x7x28
     capacity: 40
   - type: Sprite
     sprite: Imperial/DeadSector/weapons/magazines/rifle/AR15_mag.rsi
