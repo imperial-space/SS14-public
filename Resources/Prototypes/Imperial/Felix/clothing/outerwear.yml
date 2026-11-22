@@ -1,0 +1,89 @@
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterCoatBlue
+  name: blue coat
+  suffix: DeadSector
+  description: A blue coat that offers a little protection from the cold.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/outer/blue_coat.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/outer/blue_coat.rsi
+  - type: TemperatureProtection
+    coolingCoefficient: 0.88
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterCoatHanza
+  name: hanza coat
+  suffix: DeadSector
+  description: A Hanza coat that offers a little protection from the cold.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/outer/hanza_coat.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/outer/hanza_coat.rsi
+  - type: TemperatureProtection
+    coolingCoefficient: 0.88
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterCoatRed
+  name: red coat
+  suffix: DeadSector
+  description: A red coat that offers a little protection from the cold.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/outer/red_coat.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/outer/red_coat.rsi
+  - type: TemperatureProtection
+    coolingCoefficient: 0.88
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterCoatWhite
+  name: white coat
+  suffix: DeadSector
+  description: A white coat that offers a little protection from the cold.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/outer/white_coat.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/outer/white_coat.rsi
+  - type: TemperatureProtection
+    coolingCoefficient: 0.88
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterMantleHanza
+  name: hanza mantle
+  suffix: DeadSector
+  description: A heavy Hanza mantle that protects from most damage.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/outer/hanza_mantle.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/outer/hanza_mantle.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Caustic: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.5

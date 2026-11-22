@@ -150,9 +150,9 @@
 - type: entity
   parent: ClothingHeadHelmetBasic
   id: AssaultHelmetAltyn
-  name: Assault helmet "Altyn"
+  name: infantry military helmet
   suffix: DeadSector
-  description: Small helmet. It has a thick body with MK-I fragmentation protection and a visor on the helmet. Black color.
+  description: An old but sturdy military infantry helmet with a ballistic visor.
   components:
   - type: Item
     size: Small

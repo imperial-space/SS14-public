@@ -1,0 +1,47 @@
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesBlack
+  name: black glasses
+  suffix: ElysiumPrime
+  description: Simple glasses with black lenses.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/eyes/black.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/eyes/black.rsi
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesBlue
+  name: blue glasses
+  suffix: ElysiumPrime
+  description: Simple glasses with blue lenses.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/eyes/blue.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/eyes/blue.rsi
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesRed
+  name: red glasses
+  suffix: ElysiumPrime
+  description: Simple glasses with red lenses.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/eyes/red.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/eyes/red.rsi
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesYellow
+  name: yellow glasses
+  suffix: ElysiumPrime
+  description: Simple glasses with yellow lenses.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/eyes/yellow.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/eyes/yellow.rsi

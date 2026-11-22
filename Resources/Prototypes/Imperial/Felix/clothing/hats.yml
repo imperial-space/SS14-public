@@ -1,0 +1,143 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatAtomCap
+  name: atom cap
+  suffix: DeadSector
+  description: A cap with the Atom faction insignia.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/head/atom_cap.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/head/atom_cap.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretAtom
+  name: atom beret
+  suffix: DeadSector, 1
+  description: A beret with the Atom faction insignia.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/head/atom_beret.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/head/atom_beret.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretAtom2
+  name: atom beret
+  suffix: DeadSector, 2
+  description: A beret with the Atom faction insignia.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/head/atom_beret2.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/head/atom_beret2.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretHanza
+  name: hanza beret
+  suffix: DeadSector, 1
+  description: A beret with the Hanza faction insignia.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/head/hanza_beret.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/head/hanza_beret.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretHanza2
+  name: hanza beret
+  suffix: DeadSector, 2
+  description: A beret with the Hanza faction insignia.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/head/hanza_beret2.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/head/hanza_beret2.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatHanzaCap
+  name: hanza cap
+  suffix: DeadSector
+  description: A cap with the Hanza faction insignia.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/head/hanza_cap.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/head/hanza_cap.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatMarketCap
+  name: market cap
+  suffix: DeadSector, 1
+  description: A cap worn by the Market traders.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/head/market_cap.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/head/market_cap.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatMarketCap2
+  name: market cap
+  suffix: DeadSector, 2
+  description: A cap worn by the Market traders.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/head/market_cap2.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/head/market_cap2.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon

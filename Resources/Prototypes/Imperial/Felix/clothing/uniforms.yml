@@ -1,0 +1,77 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformCivilianBlackRed
+  name: civilian uniform
+  suffix: ElysiumPrime
+  description: A plain civilian uniform.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/jumpsuits/civilian_black_red.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/jumpsuits/civilian_black_red.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformCivilianSuit
+  name: civilian suit
+  suffix: ElysiumPrime, 1
+  description: A plain civilian suit.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/jumpsuits/civilian_brow.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/jumpsuits/civilian_brow.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformCivilianSuit2
+  name: civilian suit
+  suffix: ElysiumPrime, 2
+  description: A plain civilian suit.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/jumpsuits/civilian_green.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/jumpsuits/civilian_green.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformHanza
+  name: hanza uniform
+  suffix: DeadSector
+  description: Looks like an old special forces uniform.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/jumpsuits/hanza.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/jumpsuits/hanza.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformMedical
+  name: medical uniform
+  suffix: ElysiumPrime
+  description: A medical uniform that makes it a little easier to move.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/jumpsuits/medical.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/jumpsuits/medical.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1.05
+    sprintModifier: 1.05
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformTrafficController
+  name: traffic police uniform
+  suffix: ElysiumPrime
+  description: Belongs to the traffic police. It makes it a little easier to move.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Clothing/jumpsuits/traffic_controller.rsi
+  - type: Clothing
+    sprite: Imperial/Felix/Clothing/jumpsuits/traffic_controller.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1.05
+    sprintModifier: 1.05

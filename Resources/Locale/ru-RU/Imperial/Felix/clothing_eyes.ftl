@@ -1,0 +1,12 @@
+ent-ClothingEyesBlack = чёрные очки
+    .desc = Простые очки с чёрными линзами.
+    .suffix = { "ElysiumPrime" }
+ent-ClothingEyesBlue = синие очки
+    .desc = Простые очки с синими линзами.
+    .suffix = { "ElysiumPrime" }
+ent-ClothingEyesRed = красные очки
+    .desc = Простые очки с красными линзами.
+    .suffix = { "ElysiumPrime" }
+ent-ClothingEyesYellow = жёлтые очки
+    .desc = Простые очки с жёлтыми линзами.
+    .suffix = { "ElysiumPrime" }

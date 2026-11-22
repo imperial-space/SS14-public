@@ -1,0 +1,15 @@
+ent-ClothingOuterCoatBlue = синее пальто
+    .desc = Синее пальто, немного защищающее от холода.
+    .suffix = { "DeadSector" }
+ent-ClothingOuterCoatHanza = пальто Ганзы
+    .desc = Пальто Ганзы, немного защищающее от холода.
+    .suffix = { "DeadSector" }
+ent-ClothingOuterCoatRed = красное пальто
+    .desc = Красное пальто, немного защищающее от холода.
+    .suffix = { "DeadSector" }
+ent-ClothingOuterCoatWhite = белое пальто
+    .desc = Белое пальто, немного защищающее от холода.
+    .suffix = { "DeadSector" }
+ent-ClothingOuterMantleHanza = мантия Ганзы
+    .desc = Тяжёлая мантия Ганзы, защищающая от большинства повреждений.
+    .suffix = { "DeadSector" }
