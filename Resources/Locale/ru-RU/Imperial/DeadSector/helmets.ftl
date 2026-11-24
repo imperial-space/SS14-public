@@ -22,6 +22,9 @@ ent-ClothingHeadHelmetWoodGrouseOrange = исследовательский "Г�
 ent-ClothingHeadHelmetWoodGrouseGreen = исследовательский "Глухарь-1с"
     .desc = Шлем модели Глухарь-1с Полевой, крупноразмерный шлем, имеет зелёную окраску, имеет встроенную вентиляционную систему, которая защищает на 100% от инфекций и встроенный воздушный стимулятор ускоряющий передвижение, имеет нашивку Исследовательской Экспедиции.
 
+ent-ClothingHeadHelmetPSY = ПСИ-Шлем
+    .desc = Шлем модели ПСИ, среднеразмерный шлем, имеет металлическую окраску и встроенную гарнитуру.
+
 ent-ClothingHeadHelmetK63Alternate = { ent-ClothingHeadHelmetK63 }
     .desc = { ent-ClothingHeadHelmetK63.desc }
 

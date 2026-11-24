@@ -65,34 +65,6 @@
     zeroVisible: false
 
 - type: entity
-  id: AmmoBigBoxDS5x7x28
-  suffix: DeadSector
-  name: Ящик патрон 5.7x28
-  parent: BaseAmmoBoxDSBig
-  components:
-  - type: Tag
-    tags:
-      - DSAmmoItem
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    whitelist:
-      tags:
-        - CartridgeDS5x7x28
-    capacity: 60
-    proto: CartridgeDS5x7x28
-  - type: Sprite
-    sprite: Imperial/DS/Ammo/box.rsi
-    layers:
-    - state: Ammo-Box-Big-blue
-      map: ["enum.GunVisualLayers.Base"]
-    - state: Ammo-Box-Big-mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: Ammo-Box-Big-mag
-    steps: 2
-    zeroVisible: false
-
-- type: entity
   id: AmmoBigBoxDS9x18
   suffix: DeadSector
   name: Ящик патрон 9x18
@@ -403,34 +375,6 @@
     zeroVisible: false
 
 - type: entity
-  id: AmmoBoxDS5x7x28
-  suffix: DeadSector
-  name: Коробка патрон 5.7x28
-  parent: BaseAmmoBoxDSSmall
-  components:
-  - type: Tag
-    tags:
-      - DSAmmoItem
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    whitelist:
-      tags:
-        - CartridgeDS5x7x28
-    capacity: 30
-    proto: CartridgeDS5x7x28
-  - type: Sprite
-    sprite: Imperial/DS/Ammo/box.rsi
-    layers:
-    - state: Ammo-Box-blue
-      map: ["enum.GunVisualLayers.Base"]
-    - state: Ammp-Box-mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: Ammp-Box-mag
-    steps: 2
-    zeroVisible: false
-
-- type: entity
   id: AmmoBoxDS9x18
   suffix: DeadSector
   name: Коробка патрон 9x18
@@ -727,7 +671,7 @@
       tags:
         - CartridgeDS12x70
     capacity: 20
-    proto: CartridgeDS12x70AP
+    proto: CartridgeDS12x70
   - type: Sprite
     sprite: Imperial/DS/Ammo/box.rsi
     layers:
@@ -755,7 +699,7 @@
       tags:
         - CartridgeDS12x70
     capacity: 20
-    proto: CartridgeDS12x70
+    proto: CartridgeDS12x70AP
   - type: Sprite
     sprite: Imperial/DS/Ammo/box.rsi
     layers:
@@ -793,9 +737,5 @@
     whitelist:
       tags:
         - DSAmmoItem
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
   - type: StaticPrice
     price: 200

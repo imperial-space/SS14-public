@@ -40,8 +40,10 @@ public sealed class RemoveInjectorOnEmptySystem : EntitySystem
         if (!Resolve(uid, ref injector))
             return;
 
-        if (!_solutions.ResolveSolution(uid, injector.SolutionName, ref injector.Solution, out var solution)
-            || solution.Volume > 0)
+        if (!_solutions.TryGetSolution(uid, injector.SolutionName, out _, out var solution))
+            return;
+
+        if (solution.Volume > 0)
             return;
 
         RemCompDeferred<InjectorComponent>(uid);
