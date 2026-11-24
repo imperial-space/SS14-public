@@ -239,38 +239,6 @@
 # ──────────────────────────────────────────────────────────────────────────────
 
 - type: entity
-  id: BaseCartridgeDS5x7x28
-  name: cartridge (5.7x28)
-  parent: BaseCartridge
-  abstract: true
-  components:
-  - type: Tag
-    tags:
-      - Cartridge
-      - DSAmmoItem
-      - CartridgeDS5x7x28
-  - type: CartridgeAmmo
-    proto: BulletDS5x7x28
-  - type: Sprite
-    scale: 0.5, 0.5
-    sprite: Imperial/DS/Ammo/cartrige.rsi
-    layers:
-      - state: .357
-        map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: Appearance
-  - type: SpentAmmoVisuals
-    state: .357
-
-- type: entity
-  id: CartridgeDS5x7x28
-  suffix: DS
-  name: cartridge (5.7x28)
-  parent: BaseCartridgeDS5x7x28
-  components:
-  - type: CartridgeAmmo
-    proto: BulletDS5x7x28
-
-- type: entity
   id: BaseCartridgeDS5x6
   name: cartridge (5.6mm)
   parent: BaseCartridge
@@ -316,7 +284,7 @@
       - DSAmmoItem
       - CartridgeDS12x70
   - type: CartridgeAmmo
-    proto: BulletDS12x70Spread
+    proto: BulletDS12x70
   - type: Sprite
     scale: 0.5, 0.5
     sprite: Imperial/DS/Ammo/cartrige.rsi
@@ -334,7 +302,7 @@
   parent: BaseCartridgeDS12x70
   components:
   - type: CartridgeAmmo
-    proto: BulletDS12x70Spread
+    proto: BulletDS12x70
 
 - type: entity
   id: CartridgeDS12x70AP
@@ -349,7 +317,7 @@
       - state: 12x70-AP
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
-    proto: BulletDS12x70APSpread
+    proto: BulletDS12x70AP
   - type: SpentAmmoVisuals
     state: 12x70-AP
 

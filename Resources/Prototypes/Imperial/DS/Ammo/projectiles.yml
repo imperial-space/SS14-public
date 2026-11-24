@@ -10,7 +10,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 18
+        Piercing: 9.4
 
 - type: entity
   id: BulletDS9x18
@@ -22,7 +22,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 16.5
+        Piercing: 8.5
 
 - type: entity
   id: BulletDS7x62x39
@@ -34,7 +34,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 70
+        Piercing: 20.0
 
 - type: entity
   id: BulletDS7x62x51
@@ -46,7 +46,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 50
+        Piercing: 15.0
 
 - type: entity
   id: BulletDS7x62x54
@@ -70,7 +70,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 42
+        Piercing: 14.5
 
 - type: entity
   id: BulletDS5x56x45
@@ -82,19 +82,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 30
-
-- type: entity
-  id: BulletDS5x7x28
-  suffix: DS
-  name: bullet (5.7x28)
-  parent: BaseBullet
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 22
+        Piercing: 14.5
 
 - type: entity
   id: BulletDS5x6
@@ -106,7 +94,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 14
+        Piercing: 6.0
 
 - type: entity
   id: BulletDS12x70
@@ -118,7 +106,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 15
+        Piercing: 12.0
 
 - type: entity
   id: BulletDS12x70AP
@@ -130,32 +118,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 15
+        Piercing: 8.0
     ignoreResistances: true
-
-- type: entity
-  id: BulletDS12x70Spread
-  suffix: DS
-  name: bullet (12x70 spread)
-  parent: BulletDS12x70
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: ProjectileSpread
-    proto: BulletDS12x70
-    count: 5
-    spread: 15
-
-- type: entity
-  id: BulletDS12x70APSpread
-  suffix: DS
-  name: bullet (12x70 AP spread)
-  parent: BulletDS12x70AP
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: ProjectileSpread
-    proto: BulletDS12x70AP
-    count: 5
-    spread: 15
 
 - type: entity
   id: BulletDS308
@@ -167,7 +131,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 80
+        Piercing: 16.0
 
 - type: entity
   id: BulletDS357
@@ -191,7 +155,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 20.5
+        Piercing: 13.0
 
 # ── Гранаты M32A1 ─────────────────────────────────────────────────────────────
 

@@ -693,10 +693,10 @@
       - DSAmmoItem
       - MagazineDSAR15
   - type: BallisticAmmoProvider
-    proto: CartridgeDS5x7x28
+    proto: CartridgeDS5x56x45
     whitelist:
       tags:
-        - CartridgeDS5x7x28
+        - CartridgeDS5x56x45
 
 - type: entity
   id: MagazineDSAR15BB
@@ -721,10 +721,10 @@
       - DSAmmoItem
       - MagazineDSAR57
   - type: BallisticAmmoProvider
-    proto: CartridgeDS5x7x28
+    proto: CartridgeDS7x62x51
     whitelist:
       tags:
-        - CartridgeDS5x7x28
+        - CartridgeDS7x62x51
 
 - type: entity
   id: MagazineDSAR57BB
