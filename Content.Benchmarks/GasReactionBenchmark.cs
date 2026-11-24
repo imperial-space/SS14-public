@@ -6,6 +6,7 @@ using Content.IntegrationTests.Pair;
 using Content.Server.Atmos;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Reactions;
+using Content.Server.Imperial.Atmos.Reactions; // # Imperial
 using Content.Shared.Atmos;
 using Robust.Shared;
 using Robust.Shared.Analyzers;
@@ -38,6 +39,11 @@ public class GasReactionBenchmark
     private AmmoniaOxygenReaction _ammoniaOxygenReaction = default!;
     private N2ODecompositionReaction _n2oDecompositionReaction = default!;
     private WaterVaporReaction _waterVaporReaction = default!;
+    // # Imperial-Start
+    private ElectrovaeProductionReaction _electrovaeProductionReaction = default!;
+    private ElectrovaeChargeReaction _electrovaeChargeReaction = default!;
+    private ChargedElectrovaeDischargeReaction _chargedElectrovaeDischargeReaction = default!;
+    // # Imperial-End
     // Gas mixtures for each reaction type
     private GasMixture _plasmaFireMixture = default!;
     private GasMixture _tritiumFireMixture = default!;
@@ -46,6 +52,11 @@ public class GasReactionBenchmark
     private GasMixture _ammoniaOxygenMixture = default!;
     private GasMixture _n2oDecompositionMixture = default!;
     private GasMixture _waterVaporMixture = default!;
+    // # Imperial-Start
+    private GasMixture _electrovaeProductionMixture = default!;
+    private GasMixture _electrovaeChargeMixture = default!;
+    private GasMixture _chargedElectrovaeDischargeMixture = default!;
+    // # Imperial-End
 
     [GlobalSetup]
     public async Task SetupAsync()
@@ -71,6 +82,11 @@ public class GasReactionBenchmark
             _ammoniaOxygenReaction = new AmmoniaOxygenReaction();
             _n2oDecompositionReaction = new N2ODecompositionReaction();
             _waterVaporReaction = new WaterVaporReaction();
+            // # Imperial-Start
+            _electrovaeProductionReaction = new ElectrovaeProductionReaction();
+            _electrovaeChargeReaction = new ElectrovaeChargeReaction();
+            _chargedElectrovaeDischargeReaction = new ChargedElectrovaeDischargeReaction();
+            // # Imperial-End
 
             SetupGasMixtures();
             SetupTile();
@@ -137,6 +153,20 @@ public class GasReactionBenchmark
             Temperature = Atmospherics.T20C
         };
         _waterVaporMixture.AdjustMoles(Gas.WaterVapor, 50f);
+
+        // # Imperial-Start
+        _electrovaeProductionMixture = new GasMixture(Atmospherics.CellVolume) { Temperature = 1000f };
+        _electrovaeProductionMixture.AdjustMoles(Gas.Nitrogen, 10f);
+        _electrovaeProductionMixture.AdjustMoles(Gas.WaterVapor, 20f);
+        _electrovaeProductionMixture.AdjustMoles(Gas.NitrousOxide, 110f);
+
+        _electrovaeChargeMixture = new GasMixture(Atmospherics.CellVolume) { Temperature = 1984f };
+        _electrovaeChargeMixture.AdjustMoles(Gas.Electrovae, 100f);
+
+        _chargedElectrovaeDischargeMixture = new GasMixture(Atmospherics.CellVolume) { Temperature = Atmospherics.T20C };
+        _chargedElectrovaeDischargeMixture.AdjustMoles(Gas.ChargedElectrovae, 100f);
+        _chargedElectrovaeDischargeMixture.AdjustMoles(Gas.Oxygen, 100f);
+        // # Imperial-End
     }
 
     private void SetupTile()
@@ -244,6 +274,47 @@ public class GasReactionBenchmark
             }
         });
     }
+
+    // # Imperial-Start
+    [Benchmark]
+    public async Task ElectrovaeProductionReaction()
+    {
+        await _pair.Server.WaitPost(() =>
+        {
+            for (var i = 0; i < Iterations; i++)
+            {
+                var mixture = CloneMixture(_electrovaeProductionMixture);
+                _electrovaeProductionReaction.React(mixture, _testTile, _atmosphereSystem, 1f);
+            }
+        });
+    }
+
+    [Benchmark]
+    public async Task ElectrovaeChargeReaction()
+    {
+        await _pair.Server.WaitPost(() =>
+        {
+            for (var i = 0; i < Iterations; i++)
+            {
+                var mixture = CloneMixture(_electrovaeChargeMixture);
+                _electrovaeChargeReaction.React(mixture, _testTile, _atmosphereSystem, 1f);
+            }
+        });
+    }
+
+    [Benchmark]
+    public async Task ChargedElectrovaeDischargeReaction()
+    {
+        await _pair.Server.WaitPost(() =>
+        {
+            for (var i = 0; i < Iterations; i++)
+            {
+                var mixture = CloneMixture(_chargedElectrovaeDischargeMixture);
+                _chargedElectrovaeDischargeReaction.React(mixture, _testTile, _atmosphereSystem, 1f);
+            }
+        });
+    }
+    // # Imperial-End
 
     [GlobalCleanup]
     public async Task CleanupAsync()

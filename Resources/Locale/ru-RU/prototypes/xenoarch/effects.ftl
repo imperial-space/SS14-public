@@ -134,3 +134,5 @@ ent-XenoArtifactEffectCreationGasNitrousOxide = эффект артефакта
     .desc = Выпускает оксид азота
 ent-XenoArtifactEffectCreationGasCarbonDioxide = эффект артефакта
     .desc = Выпускает диоксид углерода
+ent-XenoArtifactEffectCreationGasElectrovae = эффект артефакта
+    .desc = Выпускает газ электровея

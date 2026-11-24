@@ -1,0 +1,31 @@
+- type: gas
+  id: Electrovae
+  name: gas-electrovae
+  abbreviation: gas-electrovae-abbreviation
+  molarHeatCapacity: 250
+  heatCapacityRatio: 1.28
+  molarMass: 520
+  gasOverlaySprite:
+    sprite: /Textures/Imperial/Gases/Electrovae/atmospherics.rsi
+    state: electrovae
+  gasMolesVisible: 0.1
+  gasVisibilityFactor: 2
+  color: '#0022ff'
+  reagent: Electrovae
+  pricePerMole: 0.05
+
+- type: gas
+  id: ChargedElectrovae
+  name: gas-charged-electrovae
+  abbreviation: gas-charged-electrovae-abbreviation
+  molarHeatCapacity: 150
+  heatCapacityRatio: 1.3
+  molarMass: 520
+  gasOverlaySprite:
+    sprite: /Textures/Imperial/Gases/Electrovae/atmospherics.rsi
+    state: electrovae_charged
+  gasMolesVisible: 1
+  gasVisibilityFactor: 3
+  color: '#ddff00'
+  reagent: ChargedElectrovae
+  pricePerMole: 1.2

@@ -1,0 +1,143 @@
+- type: entity
+  parent: GasCanister
+  id: ElectrovaeCanister
+  name: Electrovae canister
+  description: A canister containing electrovae. It can be attached to connector ports using a wrench.
+  components:
+  - type: Sprite
+    sprite: /Textures/Structures/Storage/canister.rsi
+    noRot: true
+    layers:
+    - sprite: /Textures/Imperial/Gases/Electrovae/canister.rsi
+      state: electrovae
+    - state: paper
+      visible: false
+      map: [ "enum.PaperLabelVisuals.Layer" ]
+    - state: integrity-unshaded-0
+      map: [ "enum.MaxPressureVisualLayers.BaseUnshaded" ]
+      shader: unshaded
+      visible: false
+    - sprite: /Textures/Imperial/Gases/Electrovae/canister.rsi
+      state: mask-electrovae
+      map: [ "enum.MaxPressureVisualLayers.Base" ]
+      visible: false
+  - type: MaxPressureVisuals
+    integrityMask: mask-electrovae
+  - type: GasCanister
+    gasTankSlot:
+      name: comp-gas-canister-slot-name-gas-tank
+      ejectOnBreak: true
+      whitelist:
+        components:
+        - GasTank
+    air:
+      volume: 1500
+      moles:
+        Electrovae: 2769.36
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ElectrovaeCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanister
+  id: ChargedElectrovaeCanister
+  name: Charged Electrovae canister
+  description: A canister containing charged electrovae. It can be attached to connector ports using a wrench.
+  components:
+  - type: Sprite
+    sprite: /Textures/Structures/Storage/canister.rsi
+    noRot: true
+    layers:
+    - sprite: /Textures/Imperial/Gases/Electrovae/canister.rsi
+      state: chargedelectrovae
+    - state: paper
+      visible: false
+      map: [ "enum.PaperLabelVisuals.Layer" ]
+    - state: integrity-unshaded-0
+      map: [ "enum.MaxPressureVisualLayers.BaseUnshaded" ]
+      shader: unshaded
+      visible: false
+    - sprite: /Textures/Imperial/Gases/Electrovae/canister.rsi
+      state: mask-chargedelectrovae
+      map: [ "enum.MaxPressureVisualLayers.Base" ]
+      visible: false
+  - type: MaxPressureVisuals
+    integrityMask: mask-chargedelectrovae
+  - type: GasCanister
+    gasTankSlot:
+      name: comp-gas-canister-slot-name-gas-tank
+      ejectOnBreak: true
+      whitelist:
+        components:
+        - GasTank
+    air:
+      volume: 1500
+      moles:
+        ChargedElectrovae: 2769.36
+      temperature: 293.15
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ChargedElectrovaeCanisterBroken:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:DumpCanisterBehavior
+  - type: Lock
+    locked: true
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: ElectrovaeCanisterBroken
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Gases/Electrovae/canister.rsi
+    state: electrovae-1
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: ChargedElectrovaeCanisterBroken
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Gases/Electrovae/canister.rsi
+    state: chargedelectrovae-1
