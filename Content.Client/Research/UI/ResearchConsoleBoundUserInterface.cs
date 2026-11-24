@@ -1,3 +1,6 @@
+// Imperial Weekly Mode Start
+using Content.Client.Imperial.WeeklyMode.Research;
+// Imperial Weekly Mode End
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
 using JetBrains.Annotations;
@@ -10,7 +13,11 @@ namespace Content.Client.Research.UI;
 public sealed class ResearchConsoleBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]
-    private ResearchConsoleMenu? _consoleMenu;
+    // Imperial Weekly Mode: Original code:
+    // private ResearchConsoleMenu? _consoleMenu;
+    // Imperial Weekly Mode Start
+    private WeeklyResearchConsoleMenu? _consoleMenu;
+    // Imperial Weekly Mode End
 
     public ResearchConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -22,7 +29,12 @@ public sealed class ResearchConsoleBoundUserInterface : BoundUserInterface
 
         var owner = Owner;
 
-        _consoleMenu = this.CreateWindow<ResearchConsoleMenu>();
+        // Imperial Weekly Mode: Original code:
+        // _consoleMenu = this.CreateWindow<ResearchConsoleMenu>();
+        // Imperial Weekly Mode Start
+
+        _consoleMenu = this.CreateWindow<WeeklyResearchConsoleMenu>();
+        // Imperial Weekly Mode End
         _consoleMenu.SetEntity(owner);
 
         _consoleMenu.OnTechnologyCardPressed += id =>

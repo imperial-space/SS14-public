@@ -1,5 +1,8 @@
 using System.Linq;
 using Content.Shared.Lathe;
+// Imperial Weekly Mode Start
+using Content.Shared.Research;
+// Imperial Weekly Mode End
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
 using JetBrains.Annotations;
@@ -9,7 +12,11 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Research.Systems;
 
-public abstract class SharedResearchSystem : EntitySystem
+// Imperial Weekly Mode: Original code:
+// public abstract class SharedResearchSystem : EntitySystem
+// Imperial Weekly Mode Start
+public abstract partial class SharedResearchSystem : EntitySystem
+// Imperial Weekly Mode End
 {
     [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -32,9 +39,20 @@ public abstract class SharedResearchSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
+        // Imperial Weekly Mode Start
+        var cards = new ResearchTechnologyCardsEvent();
+        RaiseLocalEvent(uid, ref cards);
+        if (cards.Handled)
+        {
+            component.CurrentTechnologyCards.Clear();
+            component.CurrentTechnologyCards.AddRange(cards.Cards);
+            Dirty(uid, component);
+            return;
+        }
+
+        // Imperial Weekly Mode End
         var availableTechnology = GetAvailableTechnologies(uid, component);
         _random.Shuffle(availableTechnology);
-
         component.CurrentTechnologyCards.Clear();
         foreach (var discipline in component.SupportedDisciplines)
         {
@@ -44,6 +62,7 @@ public abstract class SharedResearchSystem : EntitySystem
 
             component.CurrentTechnologyCards.Add(selected.ID);
         }
+
         Dirty(uid, component);
     }
 
@@ -52,9 +71,20 @@ public abstract class SharedResearchSystem : EntitySystem
         if (!Resolve(uid, ref component, false))
             return new List<TechnologyPrototype>();
 
+        // Imperial Weekly Mode Start
+        var available = new ResearchTechnologiesEvent();
+        RaiseLocalEvent(uid, ref available);
+        if (available.Handled)
+            return available.Technologies;
+
+        // Imperial Weekly Mode End
         var availableTechnologies = new List<TechnologyPrototype>();
         var disciplineTiers = GetDisciplineTiers(component);
-        foreach (var tech in PrototypeManager.EnumeratePrototypes<TechnologyPrototype>())
+        // Imperial Weekly Mode: Original code:
+        // foreach (var tech in PrototypeManager.EnumeratePrototypes<TechnologyPrototype>())
+        // Imperial Weekly Mode Start
+        foreach (var tech in EnumerateDatabaseTechnologies(component))
+        // Imperial Weekly Mode End
         {
             if (IsTechnologyAvailable(component, tech, disciplineTiers))
                 availableTechnologies.Add(tech);
@@ -106,7 +136,14 @@ public abstract class SharedResearchSystem : EntitySystem
 
     public int GetHighestDisciplineTier(TechnologyDatabaseComponent component, TechDisciplinePrototype techDiscipline)
     {
-        var allTech = PrototypeManager.EnumeratePrototypes<TechnologyPrototype>()
+        // Imperial Weekly Mode: Original code:
+        // var allTech = PrototypeManager.EnumeratePrototypes<TechnologyPrototype>()
+        // Imperial Weekly Mode Start
+        if (component.WeeklyModeOnly)
+            return GetHighestWeeklyDisciplineTier(component, techDiscipline);
+
+        var allTech = EnumerateDatabaseTechnologies(component)
+        // Imperial Weekly Mode End
             .Where(p => p.Discipline == techDiscipline.ID && !p.Hidden).ToList();
         var allUnlocked = new List<TechnologyPrototype>();
         foreach (var recipe in component.UnlockedTechnologies)
@@ -214,7 +251,16 @@ public abstract class SharedResearchSystem : EntitySystem
     /// <returns>Whether it is unlocked or not</returns>
     public bool IsTechnologyUnlocked(EntityUid uid, string technologyId, TechnologyDatabaseComponent? component = null)
     {
-        return Resolve(uid, ref component, false) && component.UnlockedTechnologies.Contains(technologyId);
+        // Imperial Weekly Mode: Original code:
+        // return Resolve(uid, ref component, false) && component.UnlockedTechnologies.Contains(technologyId);
+        // Imperial Weekly Mode Start
+        if (!Resolve(uid, ref component, false))
+            return false;
+
+        return component.WeeklyModeOnly
+            ? component.WeeklyUnlockedTechnologies.Contains(technologyId)
+            : component.UnlockedTechnologies.Contains(technologyId);
+        // Imperial Weekly Mode End
     }
 
     public void TrySetMainDiscipline(TechnologyPrototype prototype, EntityUid uid, TechnologyDatabaseComponent? component = null)
@@ -279,10 +325,18 @@ public abstract class SharedResearchSystem : EntitySystem
     [PublicAPI]
     public void ClearTechs(EntityUid uid, TechnologyDatabaseComponent? comp = null)
     {
-        if (!Resolve(uid, ref comp) || comp.UnlockedTechnologies.Count == 0)
+        // Imperial Weekly Mode: Original code:
+        // if (!Resolve(uid, ref comp) || comp.UnlockedTechnologies.Count == 0)
+        // Imperial Weekly Mode Start
+        if (!Resolve(uid, ref comp) ||
+            comp.UnlockedTechnologies.Count == 0 && comp.WeeklyUnlockedTechnologies.Count == 0)
+        // Imperial Weekly Mode End
             return;
 
         comp.UnlockedTechnologies.Clear();
+        // Imperial Weekly Mode Start
+        comp.WeeklyUnlockedTechnologies.Clear();
+        // Imperial Weekly Mode End
         Dirty(uid, comp);
     }
 

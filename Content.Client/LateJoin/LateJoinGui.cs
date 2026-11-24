@@ -1,3 +1,6 @@
+// Imperial Weekly Mode Start
+using Content.Client.Imperial.WeeklyMode.Systems;
+// Imperial Weekly Mode End
 using System.Linq;
 using System.Numerics;
 using Content.Client.CrewManifest;
@@ -75,6 +78,9 @@ namespace Content.Client.LateJoin
             };
 
             _gameTicker.LobbyJobsAvailableUpdated += JobsAvailableUpdated;
+            // Imperial Weekly Mode Start
+            _entitySystem.GetEntitySystem<WeeklyRoleNameSystem>().NamesUpdated += RebuildUI;
+            // Imperial Weekly Mode End
         }
 
         private void RebuildUI()
@@ -236,7 +242,11 @@ namespace Content.Client.LateJoin
                             Margin = new Thickness(5f, 0, 0, 0)
                         };
 
-                        var jobButton = new JobButton(jobLabel, prototype.ID, prototype.LocalizedName, value);
+                        // Imperial Weekly Mode: Original code:
+                        // var jobButton = new JobButton(jobLabel, prototype.ID, prototype.LocalizedName, value);
+                        // Imperial Weekly Mode Start
+                        var jobButton = new JobButton(jobLabel, prototype.ID, _entitySystem.GetEntitySystem<WeeklyRoleNameSystem>().GetJobDisplayName(prototype), value);
+                        // Imperial Weekly Mode End
 
                         var jobSelector = new BoxContainer
                         {
@@ -262,6 +272,9 @@ namespace Content.Client.LateJoin
 
                         if (!_jobRequirements.IsAllowed(prototype, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason))
                         {
+                            // Imperial Weekly Mode Start
+                            jobButton.DisabledByRequirements = true;
+                            // Imperial Weekly Mode End
                             jobButton.Disabled = true;
 
                             if (!reason.IsEmpty)
@@ -312,10 +325,22 @@ namespace Content.Client.LateJoin
                             var updatedJobValue = jobsAvailable[existingJobEntry.Key];
                             foreach (var matchingJobButton in existingJobEntry.Value)
                             {
-                                if (matchingJobButton.Amount != updatedJobValue)
+                                // Imperial Weekly Mode: Original code:
+                                // if (matchingJobButton.Amount != updatedJobValue)
+                                // Imperial Weekly Mode Start
+                                var jobName = _entitySystem.GetEntitySystem<WeeklyRoleNameSystem>().GetJobDisplayName(existingJobEntry.Key, _prototypeManager);
+                                if (matchingJobButton.Amount != updatedJobValue ||
+                                    !string.Equals(matchingJobButton.JobLocalisedName, jobName, StringComparison.Ordinal))
+                                // Imperial Weekly Mode End
                                 {
-                                    matchingJobButton.RefreshLabel(updatedJobValue);
-                                    matchingJobButton.Disabled |= matchingJobButton.Amount == 0;
+                                    // Imperial Weekly Mode: Original code:
+                                    // matchingJobButton.RefreshLabel(updatedJobValue);
+                                    // matchingJobButton.Disabled |= matchingJobButton.Amount == 0;
+                                    // Imperial Weekly Mode Start
+                                    matchingJobButton.RefreshLabel(updatedJobValue, jobName);
+                                    matchingJobButton.Disabled = matchingJobButton.DisabledByRequirements ||
+                                                                 matchingJobButton.Amount == 0;
+                                    // Imperial Weekly Mode End
                                 }
                             }
                         }
@@ -332,6 +357,9 @@ namespace Content.Client.LateJoin
             {
                 _jobRequirements.Updated -= RebuildUI;
                 _gameTicker.LobbyJobsAvailableUpdated -= JobsAvailableUpdated;
+                // Imperial Weekly Mode Start
+                _entitySystem.GetEntitySystem<WeeklyRoleNameSystem>().NamesUpdated -= RebuildUI;
+                // Imperial Weekly Mode End
                 _jobButtons.Clear();
                 _jobCategories.Clear();
             }
@@ -342,7 +370,12 @@ namespace Content.Client.LateJoin
     {
         public Label JobLabel { get; }
         public string JobId { get; }
-        public string JobLocalisedName { get; }
+        // Imperial Weekly Mode: Original code:
+        // public string JobLocalisedName { get; }
+        // Imperial Weekly Mode Start
+        public string JobLocalisedName { get; private set; }
+        public bool DisabledByRequirements { get; set; }
+        // Imperial Weekly Mode End
         public int? Amount { get; private set; }
         private bool _initialised = false;
 
@@ -356,13 +389,27 @@ namespace Content.Client.LateJoin
             _initialised = true;
         }
 
-        public void RefreshLabel(int? amount)
+        // Imperial Weekly Mode: Original code:
+        // public void RefreshLabel(int? amount)
+        // Imperial Weekly Mode Start
+        public void RefreshLabel(int? amount, string? jobLocalisedName = null)
+        // Imperial Weekly Mode End
         {
-            if (Amount == amount && _initialised)
+            // Imperial Weekly Mode: Original code:
+            // if (Amount == amount && _initialised)
+            // Imperial Weekly Mode Start
+            jobLocalisedName ??= JobLocalisedName;
+            if (Amount == amount &&
+                string.Equals(JobLocalisedName, jobLocalisedName, StringComparison.Ordinal) &&
+                _initialised)
+            // Imperial Weekly Mode End
             {
                 return;
             }
             Amount = amount;
+            // Imperial Weekly Mode Start
+            JobLocalisedName = jobLocalisedName;
+            // Imperial Weekly Mode End
 
             JobLabel.Text = Amount != null ?
                 Loc.GetString("late-join-gui-job-slot-capped", ("jobName", JobLocalisedName), ("amount", Amount)) :

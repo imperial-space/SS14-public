@@ -316,7 +316,11 @@ public sealed partial class LatheMenu : FancyWindow
         var idx = 0;
         foreach (var batch in queue)
         {
-            var recipe = _prototypeManager.Index(batch.Recipe);
+            // Imperial Weekly Mode: Original code:
+            // var recipe = _prototypeManager.Index(batch.Recipe);
+            // Imperial Weekly Mode Start
+            var recipe = _prototypeManager.Index<LatheRecipePrototype>(batch.Recipe);
+            // Imperial Weekly Mode End
 
             var itemName = _lathe.GetRecipeName(batch.Recipe);
             string displayText;

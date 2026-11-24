@@ -12,6 +12,9 @@ using Content.Shared.Maps;
 using Content.Shared.Mind;
 using Content.Shared.Players;
 using Content.Shared.Preferences;
+// Imperial Weekly Mode Start
+using Content.Shared.Roles;
+// Imperial Weekly Mode End
 using Content.Shared.Roles.Components;
 using JetBrains.Annotations;
 using Prometheus;
@@ -22,6 +25,9 @@ using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+// Imperial Weekly Mode Start
+using Robust.Shared.Prototypes;
+// Imperial Weekly Mode End
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.Imperial.ICCVar; //Imperial
@@ -568,6 +574,16 @@ namespace Content.Server.GameTicking
                 }
 
                 var roles = _roles.MindGetAllRoleInfo(mindId);
+                // Imperial Weekly Mode Start
+                var firstRole = roles.FirstOrDefault();
+                var roleDisplay = firstRole.Name ?? Loc.GetString("game-ticker-unknown-role");
+                if (!antag &&
+                    firstRole.Prototype != null &&
+                    _prototypeManager.HasIndex<JobPrototype>(firstRole.Prototype))
+                {
+                    roleDisplay = _weeklyMode.GetJobDisplayName(new ProtoId<JobPrototype>(firstRole.Prototype));
+                }
+                // Imperial Weekly Mode End
 
                 var playerEndRoundInfo = new RoundEndMessageEvent.RoundEndPlayerInfo()
                 {
@@ -579,8 +595,13 @@ namespace Content.Server.GameTicking
                     PlayerGuid = userId,
                     PlayerNetEntity = GetNetEntity(entity),
                     Role = antag
-                        ? roles.First(role => role.Antagonist).Name
-                        : roles.FirstOrDefault().Name ?? Loc.GetString("game-ticker-unknown-role"),
+                        // Imperial Weekly Mode: Original code:
+                        // ? roles.First(role => role.Antagonist).Name
+                        // : roles.FirstOrDefault().Name ?? Loc.GetString("game-ticker-unknown-role"),
+                        // Imperial Weekly Mode Start
+                        ? roles.FirstOrDefault(role => role.Antagonist).Name ?? roleDisplay
+                        : roleDisplay,
+                        // Imperial Weekly Mode End
                     Antag = antag,
                     JobPrototypes = roles.Where(role => !role.Antagonist).Select(role => role.Prototype).ToArray(),
                     AntagPrototypes = roles.Where(role => role.Antagonist).Select(role => role.Prototype).ToArray(),

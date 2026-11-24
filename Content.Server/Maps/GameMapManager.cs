@@ -1,5 +1,8 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+// Imperial Weekly Mode Start
+using System.IO;
+// Imperial Weekly Mode End
 using System.Linq;
 using Content.Server.GameTicking;
 using Content.Shared.CCVar;
@@ -13,7 +16,11 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Maps;
 
-public sealed class GameMapManager : IGameMapManager
+// Imperial Weekly Mode: Original code:
+// public sealed class GameMapManager : IGameMapManager
+// Imperial Weekly Mode Start
+public sealed partial class GameMapManager : IGameMapManager
+// Imperial Weekly Mode End
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -58,16 +65,30 @@ public sealed class GameMapManager : IGameMapManager
                 var startMap = _configurationManager.GetCVar<string>(CCVars.PersistenceMap);
                 _configSelectedMap = _prototypeManager.Index<GameMapPrototype>(startMap);
 
-                var mapPath = new ResPath(value);
-                if (_resMan.UserData.Exists(mapPath))
-                {
-                    _configSelectedMap = _configSelectedMap.Persistence(mapPath);
-                    _log.Info($"Using persistence map from {value}");
-                    return;
-                }
-
-                // persistence save path doesn't exist so we just use the start map
-                _log.Warning($"Using persistence start map {startMap} as {value} doesn't exist");
+                // Imperial Weekly Mode: Original code:
+                // var mapPath = new ResPath(value);
+                // if (_resMan.UserData.Exists(mapPath))
+                // {
+                // _configSelectedMap = _configSelectedMap.Persistence(mapPath);
+                // _log.Info($"Using persistence map from {value}");
+                // return;
+                // }
+                // // persistence save path doesn't exist so we just use the start map
+                // _log.Warning($"Using persistence start map {startMap} as {value} doesn't exist");
+                // Imperial Weekly Mode Start
+                // var mapPath = new ResPath(value);
+                // if (_resMan.UserData.Exists(mapPath))
+                // {
+                // _configSelectedMap = _configSelectedMap.Persistence(mapPath);
+                // _log.Info($"Using persistence map from {value}");
+                // return;
+                // }
+                //
+                // // persistence save path doesn't exist so we just use the start map
+                // _log.Warning($"Using persistence start map {startMap} as {value} doesn't exist");
+                // return;
+                _configSelectedMap = ResolvePersistenceVariant(_configSelectedMap, new ResPath(value));
+                // Imperial Weekly Mode End
                 return;
             }
 
@@ -131,7 +152,11 @@ public sealed class GameMapManager : IGameMapManager
 
     public GameMapPrototype? GetSelectedMap()
     {
-        return _configSelectedMap ?? _selectedMap;
+        // Imperial Weekly Mode: Original code:
+        // return _configSelectedMap ?? _selectedMap;
+        // Imperial Weekly Mode Start
+        return _selectedMap ?? _configSelectedMap;
+        // Imperial Weekly Mode End
     }
 
     public void ClearSelectedMap()

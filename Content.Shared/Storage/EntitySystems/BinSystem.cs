@@ -16,7 +16,11 @@ namespace Content.Shared.Storage.EntitySystems;
 /// <summary>
 /// This handles <see cref="BinComponent"/>
 /// </summary>
-public sealed class BinSystem : EntitySystem
+// Imperial Weekly Mode: Original code:
+// public sealed class BinSystem : EntitySystem
+// Imperial Weekly Mode Start
+public sealed partial class BinSystem : EntitySystem
+// Imperial Weekly Mode End
 {
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly ISharedAdminLogManager _admin = default!;
@@ -64,6 +68,7 @@ public sealed class BinSystem : EntitySystem
             }
         }
     }
+
 
     private void OnEntInserted(Entity<BinComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
