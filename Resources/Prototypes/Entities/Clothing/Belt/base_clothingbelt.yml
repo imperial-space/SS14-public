@@ -38,6 +38,7 @@
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
+  - type: Dumpable #Imperial space Dumpable component
 
 - type: entity
   abstract: true

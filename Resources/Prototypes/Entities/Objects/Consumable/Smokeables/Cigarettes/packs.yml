@@ -67,6 +67,7 @@
     - cig5
     - cig6
   - type: Appearance
+  - type: Dumpable #Imperial space Dumpable component
 
 - type: entity
   id: CigPackMixedBase
@@ -132,6 +133,7 @@
     - cig5
     - cig6
   - type: Appearance
+  - type: Dumpable #Imperial space Dumpable component
 
 - type: entity
   id: CigPackGreen
