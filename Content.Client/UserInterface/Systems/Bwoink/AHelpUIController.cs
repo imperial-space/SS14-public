@@ -244,6 +244,7 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
 
         helper.WindowRoot = _uiManager.CreateWindowRoot(helper.ClydeWindow);
         helper.WindowRoot.AddChild(helper.Control);
+        helper.WindowRoot.CreateRootControls(); // Imperial Space
 
         helper.Control.PopOut.Disabled = true;
         helper.Control.PopOut.Visible = false;

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -12,18 +13,19 @@ namespace Content.Client.Imperial.UI.WindowPopOut;
 public static class ImperialWindowPopOut
 {
     public static bool PopOutEnabled = true;
-    private static readonly Dictionary<BaseWindow, PopoutState> States = new();
+
+    private static readonly AttachedProperty<PopoutState?> StateProperty = AttachedProperty<PopoutState?>.CreateNull("ImperialPopOutState", typeof(ImperialWindowPopOut));
 
     public static bool IsPoppedOut(BaseWindow window) =>
-        States.TryGetValue(window, out var state) && state.PopOutWindow != null;
+        TryGetState(window, out var state) && state.PopOutWindow != null;
 
     public static void Enable(BaseWindow window, Func<string?>? getTitle = null, TextureButton? button = null)
     {
-        if (States.ContainsKey(window))
+        if (TryGetState(window, out _))
             return;
 
         var state = new PopoutState(window, getTitle);
-        States[window] = state;
+        window.SetValue(StateProperty, state);
 
         state.Button = button ?? InsertPopOutButton(window);
         state.Button.OnPressed += _ => Toggle(window);
@@ -40,7 +42,7 @@ public static class ImperialWindowPopOut
 
     public static void PopOut(BaseWindow window)
     {
-        if (!PopOutEnabled || !States.TryGetValue(window, out var state) || state.PopOutWindow != null || !window.IsOpen)
+        if (!PopOutEnabled || !TryGetState(window, out var state) || state.PopOutWindow != null || !window.IsOpen)
             return;
 
         var clyde = IoCManager.Resolve<IClyde>();
@@ -65,23 +67,34 @@ public static class ImperialWindowPopOut
 
         state.PopOutRoot = uiManager.CreateWindowRoot(state.PopOutWindow);
         state.PopOutRoot.AddChild(window);
+        state.PopOutRoot.CreateRootControls();
+
+        state.PopOutChildRemovedHandler = child => OnPopOutRootChildRemoved(window, child);
+        state.PopOutRoot.OnChildRemoved += state.PopOutChildRemovedHandler;
 
         UpdateButton(window, state);
     }
 
     public static void PopIn(BaseWindow window)
     {
-        if (!States.TryGetValue(window, out var state) || state.PopOutWindow == null)
+        if (!TryGetState(window, out var state) || state.PopOutWindow == null)
             return;
 
-        window.Orphan();
         DestroyPopOutWindow(state);
         window.Open(state.PopInPosition);
     }
 
     private static void OnWindowClosed(BaseWindow window)
     {
-        if (!States.TryGetValue(window, out var state) || state.PopOutWindow == null || state.CloseInProgress)
+        if (!TryGetState(window, out var state) || state.PopOutWindow == null || state.CloseInProgress)
+            return;
+
+        DestroyPopOutWindow(state);
+    }
+
+    private static void OnPopOutRootChildRemoved(BaseWindow window, Control child)
+    {
+        if (child != window || !TryGetState(window, out var state) || state.CloseInProgress)
             return;
 
         DestroyPopOutWindow(state);
@@ -89,7 +102,7 @@ public static class ImperialWindowPopOut
 
     private static void OnPopOutWindowRequestClosed(BaseWindow window)
     {
-        if (!States.TryGetValue(window, out var state) || state.CloseInProgress)
+        if (!TryGetState(window, out var state) || state.CloseInProgress)
             return;
 
         state.CloseInProgress = true;
@@ -109,8 +122,18 @@ public static class ImperialWindowPopOut
         if (popOut == null)
             return;
 
+        var popOutRoot = state.PopOutRoot;
         state.PopOutWindow = null;
         state.PopOutRoot = null;
+
+        if (popOutRoot != null && state.PopOutChildRemovedHandler != null)
+        {
+            popOutRoot.OnChildRemoved -= state.PopOutChildRemovedHandler;
+            state.PopOutChildRemovedHandler = null;
+        }
+
+        if (state.Window.Parent == popOutRoot)
+            state.Window.Orphan();
 
         if (state.PopOutClosedHandler != null)
         {
@@ -126,6 +149,12 @@ public static class ImperialWindowPopOut
         popOut.Dispose();
 
         UpdateButton(state.Window, state);
+    }
+
+    private static bool TryGetState(BaseWindow window, [NotNullWhen(true)] out PopoutState? state)
+    {
+        state = window.GetValue(StateProperty);
+        return state != null;
     }
 
     private static TextureButton InsertPopOutButton(BaseWindow window)

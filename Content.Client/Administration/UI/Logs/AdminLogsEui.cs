@@ -181,6 +181,7 @@ public sealed class AdminLogsEui : BaseEui
 
         Root = _uiManager.CreateWindowRoot(ClydeWindow);
         Root.AddChild(LogsControl);
+        Root.CreateRootControls(); // Imperial Space tooltips
 
         LogsControl.PopOutButton.Disabled = true;
         LogsControl.PopOutButton.Visible = false;

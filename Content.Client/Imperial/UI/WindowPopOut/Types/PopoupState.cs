@@ -1,5 +1,6 @@
 using System.Numerics;
 using Robust.Client.Graphics;
+using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 
@@ -16,6 +17,7 @@ public sealed class PopoutState
     public Vector2 PopInPosition;
     public bool CloseInProgress;
     public Action<WindowRequestClosedEventArgs>? PopOutClosedHandler;
+    public Action<Control>? PopOutChildRemovedHandler;
 
     public PopoutState(BaseWindow window, Func<string?>? getTitle)
     {
