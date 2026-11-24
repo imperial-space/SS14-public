@@ -261,7 +261,8 @@ namespace Content.Client.Construction
             ConstructionPrototype prototype,
             EntityCoordinates loc,
             Direction dir,
-            [NotNullWhen(true)] out EntityUid? ghost)
+            [NotNullWhen(true)] out EntityUid? ghost,
+            bool fromBlueprint = false) // Imperial Space Blueprints: чертёж ставит призраков без проверки дальности и без подсказок
         {
             ghost = null;
             if (_playerManager.LocalEntity is not { } user ||
@@ -277,10 +278,10 @@ namespace Content.Client.Construction
                 return false;
 
             var predicate = GetPredicate(prototype.CanBuildInImpassable, _transformSystem.ToMapCoordinates(loc));
-            if (!_examineSystem.InRangeUnOccluded(user, loc, 20f, predicate: predicate))
+            if (!fromBlueprint && !_examineSystem.InRangeUnOccluded(user, loc, 20f, predicate: predicate)) // Imperial Space Blueprints
                 return false;
 
-            if (!CheckConstructionConditions(prototype, loc, dir, user, showPopup: true))
+            if (!CheckConstructionConditions(prototype, loc, dir, user, showPopup: !fromBlueprint)) // Imperial Space Blueprints
                 return false;
 
             ghost = Spawn("constructionghost", loc);
