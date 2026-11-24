@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Client.Imperial.LastWords; // Imperial Space
 using Content.Client.Message;
 using Content.Shared.GameTicking;
 using Robust.Client.UserInterface.Controls;
@@ -33,6 +34,7 @@ namespace Content.Client.RoundEnd
             var roundEndTabs = new TabContainer();
             roundEndTabs.AddChild(MakeRoundEndSummaryTab(gm, roundEnd, roundTimeSpan, roundId));
             roundEndTabs.AddChild(MakePlayerManifestTab(info));
+            roundEndTabs.AddChild(new ImperialLastWordsTab(roundId)); // Imperial Space: последние слова перед смертью
 
             ContentsContainer.AddChild(roundEndTabs);
 
