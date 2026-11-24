@@ -8,13 +8,21 @@ imperial-blueprint-list-title = Мои чертежи
 imperial-blueprint-refresh = Обновить
 imperial-blueprint-folder = Открыть папку
 imperial-blueprint-list-empty = Сохранённых чертежей пока нет.
-imperial-blueprint-details = { $count } объектов · { $width }×{ $height } · автор: { $author }
+imperial-blueprint-details = { $count } { $count ->
+    [one] объект
+    [few] объекта
+   *[other] объектов
+} · { $width }×{ $height } · автор: { $author }
 imperial-blueprint-place = Разместить
 imperial-blueprint-delete = Удалить
 imperial-blueprint-delete-confirm = Точно?
 imperial-blueprint-hint = Размещение: ЛКМ — поставить, R — повернуть, ПКМ — отмена. Файлы чертежей — обычный YAML, ими можно делиться.
 imperial-blueprint-placing = Чертёж «{ $name }» на курсоре: ЛКМ — поставить, R — повернуть.
-imperial-blueprint-saved = Чертёж «{ $name }» сохранён: { $count } объектов.
+imperial-blueprint-saved = Чертёж «{ $name }» сохранён: { $count } { $count ->
+    [one] объект
+    [few] объекта
+   *[other] объектов
+}.
 imperial-blueprint-deleted = Чертёж «{ $name }» удалён.
 imperial-blueprint-placed = Поставлено призраков: { $placed }{ $skipped ->
     [0] {""}
@@ -27,3 +35,4 @@ imperial-blueprint-error-name = Введите название чертежа.
 imperial-blueprint-error-empty = Нет призраков строительства — сначала расставьте их через меню строительства.
 imperial-blueprint-error-io = Не удалось записать файл чертежа.
 imperial-blueprint-error-grid = Чертёж можно поставить только на станции или шаттле.
+imperial-blueprint-error-too-big = Слишком много призраков: в чертеже не больше { $max }.

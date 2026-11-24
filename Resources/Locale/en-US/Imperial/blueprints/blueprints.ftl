@@ -8,13 +8,19 @@ imperial-blueprint-list-title = My blueprints
 imperial-blueprint-refresh = Refresh
 imperial-blueprint-folder = Open folder
 imperial-blueprint-list-empty = No saved blueprints yet.
-imperial-blueprint-details = { $count } objects · { $width }×{ $height } · author: { $author }
+imperial-blueprint-details = { $count } { $count ->
+    [one] object
+   *[other] objects
+} · { $width }×{ $height } · author: { $author }
 imperial-blueprint-place = Place
 imperial-blueprint-delete = Delete
 imperial-blueprint-delete-confirm = Sure?
 imperial-blueprint-hint = Placing: LMB — place, R — rotate, RMB — cancel. Blueprint files are plain YAML and can be shared.
 imperial-blueprint-placing = Blueprint "{ $name }" is on the cursor: LMB — place, R — rotate.
-imperial-blueprint-saved = Blueprint "{ $name }" saved: { $count } objects.
+imperial-blueprint-saved = Blueprint "{ $name }" saved: { $count } { $count ->
+    [one] object
+   *[other] objects
+}.
 imperial-blueprint-deleted = Blueprint "{ $name }" deleted.
 imperial-blueprint-placed = Ghosts placed: { $placed }{ $skipped ->
     [0] {""}
@@ -27,3 +33,4 @@ imperial-blueprint-error-name = Enter a blueprint name.
 imperial-blueprint-error-empty = No construction ghosts — place some with the construction menu first.
 imperial-blueprint-error-io = Could not write the blueprint file.
 imperial-blueprint-error-grid = Blueprints can only be placed on a station or shuttle.
+imperial-blueprint-error-too-big = Too many ghosts: a blueprint holds at most { $max }.

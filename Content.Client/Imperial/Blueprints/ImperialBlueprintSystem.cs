@@ -1,6 +1,8 @@
+using System.IO;
 using System.Linq;
 using System.Text;
 using Content.Client.Construction;
+using Content.Client.Imperial.Blueprints.Types;
 using Content.Client.Popups;
 using Content.Shared.Construction.Prototypes;
 using Robust.Client.GameObjects;
@@ -12,7 +14,11 @@ using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.Manager;
+using Robust.Shared.Serialization.Markdown;
+using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Utility;
+using YamlDotNet.RepresentationModel;
 
 namespace Content.Client.Imperial.Blueprints;
 
@@ -32,9 +38,13 @@ public sealed class ImperialBlueprintSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly ISerializationManager _serialization = default!;
 
     public static readonly ResPath Folder = new("/Blueprints");
     private const int MaxNameLength = 40;
+
+    /// <summary>Больше построек в чертеже не бывает: огромный чужой файл не должен подвесить клиент.</summary>
+    public const int MaxEntries = 400;
 
     private ImperialBlueprintWindow? _window;
     private ImperialBlueprintPlacementHijack? _hijack;
@@ -124,6 +134,12 @@ public sealed class ImperialBlueprintSystem : EntitySystem
             return false;
         }
 
+        if (ghosts.Count > MaxEntries)
+        {
+            message = Loc.GetString("imperial-blueprint-error-too-big", ("max", MaxEntries));
+            return false;
+        }
+
         var cells = ghosts.Select(g => (g.Proto, Tile: _map.LocalToTile(gridUid, grid, g.Coords), g.Rotation)).ToList();
         var minX = cells.Min(c => c.Tile.X);
         var minY = cells.Min(c => c.Tile.Y);
@@ -133,19 +149,25 @@ public sealed class ImperialBlueprintSystem : EntitySystem
             Name = name,
             Author = _player.LocalSession?.Name ?? string.Empty,
             Created = DateTime.Now.ToString("yyyy-MM-dd HH:mm"),
-            File = FileName(name),
+            File = UniqueFileName(name),
         };
 
         foreach (var (proto, tile, rotation) in cells.OrderBy(c => c.Tile.Y).ThenBy(c => c.Tile.X))
         {
-            blueprint.Entries.Add(new ImperialBlueprintEntry(proto.ID, new Vector2i(tile.X - minX, tile.Y - minY), rotation.GetCardinalDir()));
+            blueprint.Entries.Add(new ImperialBlueprintEntry
+            {
+                Construction = proto.ID,
+                X = tile.X - minX,
+                Y = tile.Y - minY,
+                Dir = rotation.GetCardinalDir(),
+            });
         }
 
         try
         {
             _resources.UserData.CreateDir(Folder);
             using var writer = _resources.UserData.OpenWriteText(Folder / blueprint.File);
-            blueprint.Write(writer);
+            Write(blueprint, writer);
         }
         catch (Exception e)
         {
@@ -170,6 +192,64 @@ public sealed class ImperialBlueprintSystem : EntitySystem
         return builder.ToString().Trim('_') is { Length: > 0 } clean ? clean + ".yml" : "blueprint.yml";
     }
 
+    /// <summary>
+    /// Файл для чертежа: разные названия могут дать одно имя файла («a b» и «a_b») — тогда к имени добавляется номер,
+    /// чтобы не затереть чужой чертёж. Тот же чертёж (то же название) перезаписывается.
+    /// </summary>
+    private string UniqueFileName(string name)
+    {
+        var file = FileName(name);
+        var stem = file[..^".yml".Length];
+        for (var i = 2; _resources.UserData.Exists(Folder / file) && ReadFile(file)?.Name != name; i++)
+        {
+            file = $"{stem}_{i}.yml";
+        }
+
+        return file;
+    }
+
+    // ---------- Файл ----------
+
+    private void Write(ImperialBlueprint blueprint, TextWriter writer)
+    {
+        var node = _serialization.WriteValueAs<MappingDataNode>(blueprint);
+        new YamlStream(new YamlDocument(node.ToYamlNode())).Save(writer, false);
+    }
+
+    /// <summary>Прочитать чертёж; null — не чертёж, повреждён или слишком большой.</summary>
+    private ImperialBlueprint? Read(TextReader reader)
+    {
+        var stream = new YamlStream();
+        stream.Load(reader);
+        if (stream.Documents.Count == 0 || stream.Documents[0].RootNode.ToDataNode() is not MappingDataNode root)
+            return null;
+
+        var blueprint = _serialization.Read<ImperialBlueprint>(root, notNullableOverride: true);
+        return blueprint.Entries.Count is > 0 and <= MaxEntries ? blueprint : null;
+    }
+
+    private ImperialBlueprint? ReadFile(string file)
+    {
+        try
+        {
+            using var reader = _resources.UserData.OpenText(Folder / file);
+            return Read(reader);
+        }
+        catch (Exception e)
+        {
+            Log.Warning($"Чертёж {file} не прочитан: {e.Message}");
+            return null;
+        }
+    }
+
+    /// <summary>Размер чертежа в клетках.</summary>
+    public Vector2i SizeOf(ImperialBlueprint blueprint)
+    {
+        return blueprint.Entries.Count == 0
+            ? Vector2i.Zero
+            : new Vector2i(blueprint.Entries.Max(e => e.X) + 1, blueprint.Entries.Max(e => e.Y) + 1);
+    }
+
     // ---------- Список ----------
 
     public List<ImperialBlueprint> List()
@@ -183,21 +263,13 @@ public sealed class ImperialBlueprintSystem : EntitySystem
             if (!file.EndsWith(".yml", StringComparison.OrdinalIgnoreCase))
                 continue;
 
-            try
-            {
-                using var reader = _resources.UserData.OpenText(Folder / file);
-                if (ImperialBlueprint.Read(reader) is not { } blueprint)
-                    continue;
+            if (ReadFile(file) is not { } blueprint)
+                continue;
 
-                blueprint.File = file;
-                if (blueprint.Name.Length == 0)
-                    blueprint.Name = file[..^".yml".Length]; // System.IO.Path песочница клиента не пропускает
-                list.Add(blueprint);
-            }
-            catch (Exception e)
-            {
-                Log.Warning($"Чертёж {file} не прочитан: {e.Message}");
-            }
+            blueprint.File = file;
+            if (blueprint.Name.Length == 0)
+                blueprint.Name = file[..^".yml".Length]; // System.IO.Path песочница клиента не пропускает
+            list.Add(blueprint);
         }
 
         return list.OrderBy(b => b.Name).ToList();
@@ -248,9 +320,9 @@ public sealed class ImperialBlueprintSystem : EntitySystem
         var rotation = direction.ToAngle();
         foreach (var entry in blueprint.Entries)
         {
-            var offset = rotation.RotateVec(entry.Offset);
+            var offset = rotation.RotateVec(new Vector2i(entry.X, entry.Y));
             var tile = origin + new Vector2i((int) MathF.Round(offset.X), (int) MathF.Round(offset.Y));
-            yield return (entry, tile, (entry.Direction.ToAngle() + rotation).GetCardinalDir());
+            yield return (entry, tile, (entry.Dir.ToAngle() + rotation).GetCardinalDir());
         }
     }
 
@@ -310,36 +382,5 @@ public sealed class ImperialBlueprintSystem : EntitySystem
 
         _icons[construction] = texture;
         return texture;
-    }
-}
-
-/// <summary>Перехват размещения: клик по карте ставит весь чертёж, R поворачивает его.</summary>
-public sealed class ImperialBlueprintPlacementHijack(ImperialBlueprintSystem system, ImperialBlueprint blueprint) : PlacementHijack
-{
-    public readonly ImperialBlueprint Blueprint = blueprint;
-
-    public override bool CanRotate => true;
-
-    /// <summary>Этот перехват сейчас управляет размещением (до StartHijack менеджера ещё нет).</summary>
-    // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
-    public bool Active => Manager != null && Manager.Hijack == this;
-
-    public override bool HijackPlacementRequest(EntityCoordinates coordinates)
-    {
-        system.Place(Blueprint, coordinates, Manager.Direction);
-        return true;
-    }
-
-    public override bool HijackDeletion(EntityUid entity)
-    {
-        return true;
-    }
-
-    public override void StartHijack(PlacementManager manager)
-    {
-        base.StartHijack(manager);
-
-        // Свой предпросмотр рисует оверлей — у курсора текстур нет.
-        manager.CurrentTextures = new List<IDirectionalTextureProvider>();
     }
 }

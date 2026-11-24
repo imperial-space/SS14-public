@@ -87,7 +87,7 @@ public sealed class ImperialBlueprintWindow : DefaultWindow
             var row = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Horizontal, SeparationOverride = 4 };
             var info = new BoxContainer { Orientation = BoxContainer.LayoutOrientation.Vertical, HorizontalExpand = true };
             info.AddChild(new Label { Text = blueprint.Name, ClipText = true });
-            var size = blueprint.Size;
+            var size = _system.SizeOf(blueprint);
             info.AddChild(new Label
             {
                 Text = Loc.GetString("imperial-blueprint-details",
