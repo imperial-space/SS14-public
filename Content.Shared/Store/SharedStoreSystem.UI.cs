@@ -81,7 +81,10 @@ public abstract partial class SharedStoreSystem
         // only tell operatives to lock their uplink if it can be locked
         var showFooter = HasComp<RingerUplinkComponent>(store);
 
-        var state = new StoreUpdateState(component.LastAvailableListings, allCurrency, showFooter, component.RefundAllowed);
+        // Imperial Space Start SyndieBattle
+        // Original: var state = new StoreUpdateState(component.LastAvailableListings, allCurrency, showFooter, component.RefundAllowed);
+        var state = new StoreUpdateState(component.LastAvailableListings, allCurrency, showFooter, component.RefundAllowed, component.AllowWithdraw);
+        // Imperial Space End SyndieBattle
         UpdateRemoteStores(store, state);
         UI.SetUiState(store, StoreUiKey.Key, state);
     }

@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseTraitorObjective
+  id: SyndieBattleWinObjective
+  suffix: Бой предателей
+  components:
+  - type: Objective
+    difficulty: 1.0
+    issuer: objective-issuer-syndicate
+    icon:
+      sprite: Mobs/Ghosts/ghost_human.rsi
+      state: icon
+  - type: SyndieBattleWinCondition

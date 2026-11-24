@@ -43,7 +43,10 @@ public sealed partial class StoreMenu : DefaultWindow
         SearchBar.OnTextChanged += _ => SearchTextUpdated?.Invoke(this, SearchBar.Text);
     }
 
-    public void UpdateBalance(Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> balance)
+    // Imperial Space Start SyndieBattle
+    // Original: public void UpdateBalance(Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> balance)
+    public void UpdateBalance(Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> balance, bool allowWithdraw = true)
+    // Imperial Space End SyndieBattle
     {
         Balance = balance;
 
@@ -62,7 +65,10 @@ public sealed partial class StoreMenu : DefaultWindow
         var disabled = true;
         foreach (var type in currency)
         {
-            if (type.Value.CanWithdraw && type.Value.Cash != null && type.Key.Item2 > 0)
+            // Imperial Space Start SyndieBattle
+            // Original: if (type.Value.CanWithdraw && type.Value.Cash != null && type.Key.Item2 > 0)
+            if (allowWithdraw && type.Value.CanWithdraw && type.Value.Cash != null && type.Key.Item2 > 0)
+            // Imperial Space End SyndieBattle
             {
                 disabled = false;
                 break;

@@ -26,8 +26,12 @@ public sealed class GodmodeSystem : SharedGodmodeSystem
 
         base.DisableGodmode(uid, godmode);
 
-        if (godmode.Deleted)
+        // Imperial Space Start SyndieBattleSpawnProtection
+        // base.DisableGodmode removes the component before pressure movement is restored.
+        // if (godmode.Deleted)
+        if (TerminatingOrDeleted(uid))
             return;
+        // Imperial Space End SyndieBattleSpawnProtection
 
         if (TryComp<MovedByPressureComponent>(uid, out var moved))
         {

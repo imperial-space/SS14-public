@@ -70,7 +70,10 @@ public sealed class StoreBoundUserInterface : BoundUserInterface
             case StoreUpdateState msg:
                 _listings = msg.Listings;
 
-                _menu?.UpdateBalance(msg.Balance);
+                // Imperial Space Start SyndieBattle
+                // Original: _menu?.UpdateBalance(msg.Balance);
+                _menu?.UpdateBalance(msg.Balance, msg.AllowWithdraw);
+                // Imperial Space End SyndieBattle
 
                 UpdateListingsWithSearchFilter();
                 _menu?.SetFooterVisibility(msg.ShowFooter);
