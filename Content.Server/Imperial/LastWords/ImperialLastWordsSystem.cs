@@ -1,25 +1,32 @@
 using System.Linq;
 using Content.Server.GameTicking;
+using Content.Server.Imperial.LastWords.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Chat;
 using Content.Shared.GameTicking;
 using Content.Shared.Imperial.LastWords;
+using Content.Shared.Imperial.LastWords.Events;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Roles.Jobs;
 using Robust.Server.GameStates;
+using Robust.Shared.Map;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.LastWords;
 
 /// <summary>
-/// Мост между событиями мира и <see cref="ImperialLastWordsManager"/>: передаёт ему речь игроков и переход в
-/// критическое состояние, а в конце раунда собирает фразы (должность, имя, жив ли) и отдаёт менеджеру на рассылку.
+/// Последние слова перед смертью. Учитываются только тела игроков (<see cref="ImperialLastWordsComponent"/>
+/// вешается при вселении игрока в моба). Фраза, сказанная в пределах окна до критического состояния, вместе с именем
+/// и должностью на этот момент записывается в отдельную сущность (<see cref="ImperialLastWordsRecordComponent"/>).
+/// В конце раунда записи рассылаются всем клиентам: сначала умершие, потом выжившие.
 /// </summary>
 public sealed class ImperialLastWordsSystem : EntitySystem
 {
-    [Dependency] private readonly ImperialLastWordsManager _manager = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
@@ -30,64 +37,87 @@ public sealed class ImperialLastWordsSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        _manager.Initialize();
 
-        // Оба события рассылаются широковещательно — подписка без компонента не мешает чужим подпискам.
-        SubscribeLocalEvent<EntitySpokeEvent>(OnSpoke);
-        SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<ImperialLastWordsComponent, EntitySpokeEvent>(OnSpoke);
+        SubscribeLocalEvent<ImperialLastWordsComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<RoundEndMessageEvent>(OnRoundEnd);
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => _manager.Clear());
     }
 
-    private void OnSpoke(EntitySpokeEvent args)
+    private void OnPlayerAttached(PlayerAttachedEvent args)
     {
-        // Только игроки.
-        if (HasComp<ActorComponent>(args.Source))
-            _manager.OnSpoke(args.Source, args.Message);
+        if (HasComp<MobStateComponent>(args.Entity))
+            EnsureComp<ImperialLastWordsComponent>(args.Entity);
     }
 
-    private void OnMobStateChanged(MobStateChangedEvent args)
+    private void OnSpoke(EntityUid uid, ImperialLastWordsComponent comp, EntitySpokeEvent args)
     {
-        if (args.NewMobState == MobState.Critical)
-            _manager.OnCritical(args.Target);
+        if (string.IsNullOrWhiteSpace(args.Message))
+            return;
+
+        comp.Recent = args.Message;
+        comp.RecentAt = _timing.CurTime;
+    }
+
+    private void OnMobStateChanged(Entity<ImperialLastWordsComponent> ent, ref MobStateChangedEvent args)
+    {
+        if (args.NewMobState != MobState.Critical)
+            return;
+
+        // Перед этим критом ничего не сказал — прежняя запись (с прошлого крита) больше не последние слова.
+        if (ent.Comp.Recent == null || _timing.CurTime - ent.Comp.RecentAt > ent.Comp.Window)
+        {
+            if (ent.Comp.Record is { } old)
+                QueueDel(old);
+            ent.Comp.Record = null;
+            return;
+        }
+
+        var record = ent.Comp.Record ?? Spawn(null, MapCoordinates.Nullspace);
+        ent.Comp.Record = record;
+        var data = EnsureComp<ImperialLastWordsRecordComponent>(record);
+        data.Phrase = ent.Comp.Recent;
+        data.Name = Name(ent);
+        data.Job = JobOf(ent);
+        data.Body = ent;
     }
 
     private void OnRoundEnd(RoundEndMessageEvent args)
     {
-        var message = new MsgImperialLastWords { RoundId = _ticker.RoundId };
-        foreach (var (uid, phrase) in _manager.LastWords)
+        var entries = new List<ImperialLastWordsEntry>();
+        var query = EntityQueryEnumerator<ImperialLastWordsRecordComponent>();
+        while (query.MoveNext(out var data))
         {
-            var exists = !TerminatingOrDeleted(uid);
             var entry = new ImperialLastWordsEntry
             {
-                Phrase = phrase,
-                // Удалённое тело (сгорело, разорвано) — тоже мёртв.
-                Dead = !exists || _mobState.IsDead(uid),
+                Phrase = data.Phrase,
+                Name = data.Name,
+                Job = data.Job,
             };
 
-            if (exists)
+            if (data.Body is { } body && !TerminatingOrDeleted(body))
             {
-                entry.Name = Name(uid);
-                entry.Job = JobOf(uid);
-                entry.Entity = GetNetEntity(uid);
+                entry.Dead = _mobState.IsDead(body);
+                entry.Entity = GetNetEntity(body);
 
                 // Как в манифесте игроков: тело видно всем клиентам, чтобы нарисовать спрайт.
-                _pvsOverride.AddGlobalOverride(uid);
+                _pvsOverride.AddGlobalOverride(body);
             }
             else
             {
-                entry.Job = Loc.GetString("imperial-last-words-unknown-job");
+                // Тела нет (разорвано, сожжено) — не выжил.
+                entry.Dead = true;
             }
 
-            message.Entries.Add(entry);
+            entries.Add(entry);
         }
 
         // Сначала умершие, потом те, кто был при смерти, но выжил.
-        message.Entries = message.Entries.OrderByDescending(e => e.Dead).ToList();
-        _manager.Send(message);
+        entries = entries.OrderByDescending(e => e.Dead).ToList();
+        RaiseNetworkEvent(new ImperialLastWordsEvent(_ticker.RoundId, entries));
     }
 
-    /// <summary>Должность: работа разума, иначе должность на ID-карте, иначе имя персонажа.</summary>
+    /// <summary>Должность: работа разума, иначе должность на ID-карте.</summary>
     private string JobOf(EntityUid uid)
     {
         if (_mind.TryGetMind(uid, out var mindId, out _) && _jobs.MindTryGetJobName(mindId, out var job))

@@ -15,7 +15,7 @@ namespace Content.Client.Imperial.LastWords;
 /// </summary>
 public sealed class ImperialLastWordsTab : BoxContainer
 {
-    [Dependency] private readonly ImperialLastWordsManager _manager = default!;
+    [Dependency] private readonly IEntitySystemManager _systems = default!;
     [Dependency] private readonly IEntityManager _entities = default!;
     [Dependency] private readonly IResourceCache _cache = default!;
 
@@ -25,10 +25,12 @@ public sealed class ImperialLastWordsTab : BoxContainer
 
     private readonly int _roundId;
     private readonly BoxContainer _list;
+    private readonly ImperialLastWordsSystem _lastWords;
 
     public ImperialLastWordsTab(int roundId)
     {
         IoCManager.InjectDependencies(this);
+        _lastWords = _systems.GetEntitySystem<ImperialLastWordsSystem>();
         _roundId = roundId;
         Orientation = LayoutOrientation.Vertical;
         Name = Loc.GetString("imperial-last-words-tab-title");
@@ -44,14 +46,14 @@ public sealed class ImperialLastWordsTab : BoxContainer
     protected override void EnteredTree()
     {
         base.EnteredTree();
-        _manager.Updated += Rebuild;
+        _lastWords.Updated += Rebuild;
         Rebuild();
     }
 
     protected override void ExitedTree()
     {
         base.ExitedTree();
-        _manager.Updated -= Rebuild;
+        _lastWords.Updated -= Rebuild;
     }
 
     private void Rebuild()
@@ -59,18 +61,18 @@ public sealed class ImperialLastWordsTab : BoxContainer
         _list.RemoveAllChildren();
 
         // Слова пришли от другого раунда (или ещё не пришли) — ждём.
-        if (_manager.RoundId != _roundId || _manager.Entries.Count == 0)
+        if (_lastWords.RoundId != _roundId || _lastWords.Entries.Count == 0)
         {
             _list.AddChild(new Label
             {
-                Text = Loc.GetString(_manager.RoundId == _roundId ? "imperial-last-words-empty" : "imperial-last-words-waiting"),
+                Text = Loc.GetString(_lastWords.RoundId == _roundId ? "imperial-last-words-empty" : "imperial-last-words-waiting"),
                 FontColorOverride = Color.Gray,
             });
             return;
         }
 
         var jobFont = _cache.NotoStack("Bold", 16);
-        foreach (var entry in _manager.Entries)
+        foreach (var entry in _lastWords.Entries)
         {
             _list.AddChild(Card(entry, jobFont));
         }
@@ -103,9 +105,10 @@ public sealed class ImperialLastWordsTab : BoxContainer
             PanelOverride = new StyleBoxFlat { BackgroundColor = Color.FromHex("#1E1E21") },
             VerticalAlignment = VAlignment.Center,
         };
-        if (entry.Entity is { } net && _entities.TryGetEntity(net, out var uid))
+        if (entry.Entity is { } net)
         {
-            portrait.AddChild(new SpriteView(uid.Value, _entities)
+            // По NetEntity: тело может прийти к клиенту позже открытия окна.
+            portrait.AddChild(new SpriteView(net, _entities)
             {
                 OverrideDirection = Direction.South,
                 Scale = new Vector2(2, 2),
