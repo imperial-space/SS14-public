@@ -229,45 +229,35 @@
   id: FelixBarricadeSandy
   parent: BaseFelixBarricade
   name: sandy barricade
-  suffix: DeadSector, Structure, 1
   description: An improvised defensive structure made from sandbags.
   components:
   - type: Sprite
     sprite: Imperial/DeimonFly/Felix/Structures/barricade_sandy.rsi
-    state: bags4
-
-- type: entity
-  id: FelixBarricadeSandy2
-  parent: BaseFelixBarricade
-  name: sandy barricade
-  suffix: DeadSector, Structure, 2
-  description: An improvised defensive structure made from sandbags.
-  components:
-  - type: Sprite
-    sprite: Imperial/DeimonFly/Felix/Structures/barricade_sandy.rsi
-    state: bags5
+    layers:
+    - state: bags5
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        bags4: ""
+        bags5: ""
 
 - type: entity
   id: FelixBarricadeSnowy
   parent: BaseFelixBarricade
   name: snowy barricade
-  suffix: DeadSector, Structure, 1
   description: An improvised defensive structure made from frozen sandbags.
   components:
   - type: Sprite
     sprite: Imperial/DeimonFly/Felix/Structures/barricade_snowy.rsi
-    state: bags4
-
-- type: entity
-  id: FelixBarricadeSnowy2
-  parent: BaseFelixBarricade
-  name: snowy barricade
-  suffix: DeadSector, Structure, 2
-  description: An improvised defensive structure made from frozen sandbags.
-  components:
-  - type: Sprite
-    sprite: Imperial/DeimonFly/Felix/Structures/barricade_snowy.rsi
-    state: bags5
+    layers:
+    - state: bags5
+      map: ["random"]
+  - type: RandomSprite
+    available:
+    - random:
+        bags4: ""
+        bags5: ""
 
 - type: entity
   id: FelixBarricadeMetal

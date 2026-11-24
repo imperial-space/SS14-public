@@ -195,6 +195,33 @@
               solution: tank
 
 - type: entity
+  parent: WallmountTelescreenFrame
+  id: WallmountTelevisionBroken
+  name: broken television
+  suffix: DeadSector, Decoration
+  description: Finally, some decent reception around here...
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.75,-0.10,0.75,0.35"
+        density: 75
+        mask:
+          - FullTileMask
+        layer:
+          - WallLayer
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: Imperial/DeadSector/location_objects/WallmountTelevisionBroken.rsi
+    layers:
+      - map: ["computerLayerBody"]
+        state: base
+      - map: ["computerLayerScreen"]
+        state: base
+
+- type: entity
   id: ELTTelevision
   parent: BaseStructureDynamic
   name: ELT television
@@ -224,38 +251,24 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
     - type: Sprite
-      drawdepth: SmallObjects
       sprite: Imperial/DeadSector/location_objects/ELTTelevision.rsi
-      layers:
-      - state: base
-      - state: on
-        map: ["screen"]
-        visible: false
-    - type: ItemToggle
-    - type: Appearance
-    - type: ToggleableVisuals
-      spriteLayer: screen
+      state: base
     - type: PointLight
-      enabled: false
-      radius: 2
-      energy: 0.6
-      color: "#cfe8ff"
-      netsync: false
-    - type: ItemTogglePointLight
-    - type: ItemToggleActiveSound
-      activeSound:
-        path: /Audio/Imperial/Asimov/Oldradio/static.ogg
-        params:
-          volume: -4
-          maxDistance: 3
+      radius: 1.5
+      energy: 1.6
+      color: "#ffe4ce"
 
 - type: entity
   id: FoldableLightPost
-  parent: BaseStructure
-  name: foldable light post
-  suffix: DeadSector, Structure
-  description: Guides you through the abyss of darkness!
+  parent: [BaseItem, FlashlightLantern]
+  name: foldapbe light post
+  description: Gudies you trough the abyss of darkness!
   components:
+    - type: Item
+      storedRotation: -90
+      size: Large
+      shape:
+      - 0,0,2,2
     - type: Sprite
       sprite: Imperial/DeadSector/location_objects/foldable_light_post.rsi
       noRot: true
@@ -269,7 +282,12 @@
         map: ["light"]
         visible: false
     - type: Rotatable
+    - type: MovedByPressure
+    - type: DamageOnHighSpeedImpact
+      soundHit:
+        collection: MetalThud
     - type: InteractionOutline
+    - type: Physics
     - type: Fixtures
       fixtures:
         fix1:
