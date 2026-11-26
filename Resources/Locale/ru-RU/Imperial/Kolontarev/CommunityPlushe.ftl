@@ -31,14 +31,14 @@ plushie-StefanKolontarev-7 = Что это? Неважно
 plushie-StefanKolontarev-8 = Фотографы? В баре?
 plushie-StefanKolontarev-9 = Земля плоская
 
-plushie-AnnaYusupova-1 = Не болей
-plushie-AnnaYusupova-2 = Выйди на улицу
-plushie-AnnaYusupova-3 = Потрогай траву
-plushie-AnnaYusupova-4 = Ты лучший!
+plushie-AnnaYusupova-1 = "Любого можно оклеветать и указать на его недостатки, а вот хорошее в человеке увидеть - это труд, а не привычка. Но пока есть те, кто этот труд выбирает, - есть и надежда."
+plushie-AnnaYusupova-2 = "Память - это единственное место, где прошлое ещё живёт"
+plushie-AnnaYusupova-3 = "Давайте жить дружно"
+plushie-AnnaYusupova-4 = "Мне грустно осознавать, насколько мимолётно наше с тобой время. Но я всегда буду помнить о тебе."
 plushie-AnnaYusupova-5 = Увы и ах!
-plushie-AnnaYusupova-6 = Мяу~!
-plushie-AnnaYusupova-7 = Ня!
-plushie-AnnaYusupova-8 = Я верю в тебя!
+plushie-AnnaYusupova-6 = "ФизДекс+, РетроБик, ПираДерм, ТрайТрико..."
+plushie-AnnaYusupova-7 = "Любую травму можно вылечить, а вот душевную её не лечат - с ней просто учатся жить." 
+
 
 plushie-KolontarevGennadyPetrov-1 = "КЗ, СРП знаешь?"
 plushie-KolontarevGennadyPetrov-2 = "Валяй"
