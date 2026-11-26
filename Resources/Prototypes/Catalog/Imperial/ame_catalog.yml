@@ -1,0 +1,19 @@
+- type: cargoProduct
+  id: CrateEngineeringAMEControl
+  icon:
+    sprite: Structures/Power/Generation/ame.rsi
+    state: control
+  product: CrateEngineeringAMEControl
+  cost: 5000
+  category: cargoproduct-category-name-engineering
+  group: market
+
+- type: cargoProduct
+  id: CrateEngineeringAMEShielding
+  icon:
+    sprite: Objects/Devices/flatpack.rsi
+    state: ame-part
+  product: CrateEngineeringAMEShielding
+  cost: 4000
+  category: cargoproduct-category-name-engineering
+  group: market
