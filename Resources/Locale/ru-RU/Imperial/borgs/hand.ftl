@@ -1,0 +1,1 @@
+energy-zipties = Стяжки

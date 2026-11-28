@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseAction
+  id: BorgEnergyZiptiesAction
+  name: Give energy zipties
+  description: Create energy zipties in an empty module slot.
+  components:
+  - type: Action
+    useDelay: 180
+    itemIconStyle: BigAction
+    icon: { sprite: Imperial/Other/refugesos/EnergyZipties.rsi, state: cuff }
+  - type: InstantAction
+    event: !type:BorgEnergyZiptiesAction
