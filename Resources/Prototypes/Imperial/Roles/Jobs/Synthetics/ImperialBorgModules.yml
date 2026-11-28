@@ -322,6 +322,7 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 50
+  - type: BorgEnergyZipties
 
 - type: entity
   name: flash
@@ -346,13 +347,13 @@
     - item: StunbatonBorg
     - item: WeaponDisablerBorg
     - item: FlashBorg
-    - item: Handcuffs
+    - item: EnergyZipties
       hand:
-        emptyLabel: borg-slot-security-cuffs-empty
-        emptyRepresentative: Handcuffs
+        emptyLabel: energy-zipties
+        emptyRepresentative: EnergyZipties
         whitelist:
-          components:
-          - Handcuff
+         tags:
+          - Zipties
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-borg-unlethal } # Надо заменить, пока заглушка
   - type: Tag

@@ -68,6 +68,10 @@
     sprite: Objects/Misc/cablecuffs.rsi
     state: cuff
     color: forestgreen
+  - type: Tag
+    tags:
+    - Zipties
+
 
 - type: entity
   name: zipties
@@ -97,6 +101,9 @@
   - type: Sprite
     sprite: Objects/Misc/zipties.rsi
     state: cuff
+  - type: Tag
+    tags:
+    - Zipties
 
 - type: entity
   id: BaseHandcuffsBroken

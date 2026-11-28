@@ -7,7 +7,7 @@
   - type: Handcuff
     used: true
     breakoutTime: 5
-    cuffedRSI: Objects/Misc/cablecuffs.rsi  # cablecuffs will look fine
+    cuffedRSI: Imperial/Other/refugesos/EnergyZipties.rsi  # cablecuffs will look fine
     bodyIconState: body-overlay
     breakOnRemove: true
     brokenPrototype: EnergyZiptiesBroken
@@ -22,8 +22,11 @@
     startBreakoutSound:
       path: /Audio/Items/Handcuffs/rope_takeoff.ogg
   - type: Sprite
-    sprite: Objects/Misc/zipties.rsi
+    sprite: Imperial/Other/refugesos/EnergyZipties.rsi
     state: cuff
+  - type: Tag
+    tags:
+    - Zipties
 
 - type: entity
   name: broken zipties
@@ -32,7 +35,7 @@
   parent: BaseHandcuffsBroken
   components:
   - type: Sprite
-    sprite: Objects/Misc/zipties.rsi
+    sprite: Imperial/Other/refugesos/EnergyZipties.rsi
     state: cuff-broken
   - type: TriggerOnSpawn
   - type: DeleteOnTrigger
@@ -46,7 +49,11 @@
   - type: HandledCuffer
     spawnedPrototype: EnergyZipties
   - type: Sprite
-    sprite: Objects/Tools/access_breaker.rsi
+    sprite: Imperial/Other/refugesos/EnergyZipties.rsi
     state: icon
   - type: Item
-    sprite: Objects/Tools/access_breaker.rsi
+    sprite: Imperial/Other/refugesos/EnergyZipties.rsi
+
+
+- type: Tag
+  id: Zipties
